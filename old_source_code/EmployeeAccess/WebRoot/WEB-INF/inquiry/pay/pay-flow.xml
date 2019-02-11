@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	parent="abstract">
+	
+	<on-start>
+		<set name="flowScope.employeeId" value="externalContext.sessionMap.currentUser_employeeNumber"/>
+		<evaluate result="flowScope.jobs" expression="jobService.retrieveJobs(externalContext.sessionMap.currentUser_employeeNumber)"/>
+		<evaluate result="flowScope.stipends" expression="jobService.retrieveStipends(externalContext.sessionMap.currentUser_employeeNumber)"/>
+		<evaluate result="flowScope.accounts" expression="jobService.retrieveAccounts(externalContext.sessionMap.currentUser_employeeNumber)"/>
+		<evaluate result="flowScope.frequencies" expression="jobService.getFrequencies(flowScope.jobs)"/>
+		<evaluate result="flowScope.payInfos" 
+		expression="jobService.retrievePayInfo(externalContext.sessionMap.currentUser_employeeNumber,flowScope.frequencies)"/>
+		<evaluate result="flowScope.user"
+		expression="jobService.retrieveUser(externalContext.sessionMap.currentUser_employeeNumber)"/>
+		<evaluate result="flowScope.message" expression="jobService.getMessage()"/>
+		<evaluate result="flowScope.payCampuses"
+		expression="jobService.retrievePayCampuses(externalContext.sessionMap.currentUser_employeeNumber)"/>
+		<evaluate result="flowScope.employeeInfo"
+		expression="jobService.retrieveEmployeeInfo(externalContext.sessionMap.currentUser_employeeNumber)"/>
+	</on-start>
+	
+	<decision-state id="checkPermission">
+		<if test="flowScope.options.enableCurrentPayInformation" then="startView" else="noAccess"/>
+	</decision-state>
+	
+	<view-state id="pay" view="pay">
+		<transition on="retrieve" to="doPayRpt">
+			<render fragments="body"/>
+		</transition>
+	</view-state>
+	
+	<action-state id="doPayRpt">
+		<on-entry>
+			<evaluate result="flowScope.user"
+			expression="jobService.retrieveUser(externalContext.sessionMap.currentUser_employeeNumber)"/>
+			<evaluate result="flowScope.employeeInfo"
+			expression="jobService.retrieveEmployeeInfo(externalContext.sessionMap.currentUser_employeeNumber)"/>
+			<evaluate result="flowScope.PayPrint"
+			expression="jobService.generatePayPrint(flowScope.user, flowScope.employeeInfo)"/>
+		</on-entry>
+		<evaluate result="externalContext.sessionMap.PARAMETER_REPORT"
+		expression="jobService.setupReport(payReport,flowScope.PayPrint)"/>
+		<transition to="pay"/>
+	</action-state>
+	
+	<action-state id="startView">
+		<set name="flowScope.dummyVariable" value="true"></set>
+		<transition to="doPayRpt"/>
+	</action-state>
+	
+</flow>

@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="W2_2010" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="548" leftMargin="32" rightMargin="32" topMargin="32" bottomMargin="32">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="ssn" class="java.lang.String"/>
+	<field name="tgross" class="java.lang.String"/>
+	<field name="whold" class="java.lang.String"/>
+	<field name="ein" class="java.lang.String"/>
+	<field name="fgross" class="java.lang.String"/>
+	<field name="ftax" class="java.lang.String"/>
+	<field name="ename" class="java.lang.String"/>
+	<field name="eaddress" class="java.lang.String"/>
+	<field name="ecityst" class="java.lang.String"/>
+	<field name="mgross" class="java.lang.String"/>
+	<field name="mtax" class="java.lang.String"/>
+	<field name="eic" class="java.lang.String"/>
+	<field name="dcare" class="java.lang.String"/>
+	<field name="empname" class="java.lang.String"/>
+	<field name="empaddress" class="java.lang.String"/>
+	<field name="empcityst" class="java.lang.String"/>
+	<field name="statemp" class="java.lang.String"/>
+	<field name="retplan" class="java.lang.String"/>
+	<field name="thrdsick" class="java.lang.String"/>
+	<field name="copy" class="java.lang.String"/>
+	<field name="code1201" class="java.lang.String"/>
+	<field name="amt1201" class="java.lang.String"/>
+	<field name="code1202" class="java.lang.String"/>
+	<field name="amt1202" class="java.lang.String"/>
+	<field name="code1203" class="java.lang.String"/>
+	<field name="amt1203" class="java.lang.String"/>
+	<field name="code1204" class="java.lang.String"/>
+	<field name="amt1204" class="java.lang.String"/>
+	<field name="code1205" class="java.lang.String"/>
+	<field name="amt1205" class="java.lang.String"/>
+	<field name="code1206" class="java.lang.String"/>
+	<field name="amt1206" class="java.lang.String"/>
+	<field name="code1207" class="java.lang.String"/>
+	<field name="amt1207" class="java.lang.String"/>
+	<field name="code1208" class="java.lang.String"/>
+	<field name="amt1208" class="java.lang.String"/>
+	<field name="code1209" class="java.lang.String"/>
+	<field name="amt1209" class="java.lang.String"/>
+	<field name="code1401" class="java.lang.String"/>
+	<field name="amt1401" class="java.lang.String"/>
+	<field name="code1402" class="java.lang.String"/>
+	<field name="amt1402" class="java.lang.String"/>
+	<field name="code1403" class="java.lang.String"/>
+	<field name="amt1403" class="java.lang.String"/>
+	<field name="code1404" class="java.lang.String"/>
+	<field name="amt1404" class="java.lang.String"/>
+	<field name="code1405" class="java.lang.String"/>
+	<field name="amt1405" class="java.lang.String"/>
+	<field name="code1406" class="java.lang.String"/>
+	<field name="amt1406" class="java.lang.String"/>
+	<field name="code1407" class="java.lang.String"/>
+	<field name="amt1407" class="java.lang.String"/>
+	<field name="code1408" class="java.lang.String"/>
+	<field name="amt1408" class="java.lang.String"/>
+	<group name="instructions" isStartNewPage="true">
+		<groupExpression><![CDATA[$V{REPORT_COUNT}]]></groupExpression>
+		<groupFooter>
+			<band height="728">
+				<frame>
+					<reportElement x="0" y="0" width="548" height="728">
+						<printWhenExpression><![CDATA[new java.lang.Boolean($V{PAGE_NUMBER}.intValue() == 2)]]></printWhenExpression>
+					</reportElement>
+					<staticText>
+						<reportElement x="280" y="30" width="248" height="360"/>
+						<textElement markup="styled">
+							<font size="10" isBold="false"/>
+						</textElement>
+						<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Corrections</style>. If your name, SSN, or address is incorrect, correct Copies B, C, and 2 and ask your employer to correct your employment record. Be sure to ask the employer to file Form W-2c, Corrected Wage and Tax Statement, with the Social Security Administration (SSA) to correct any name, SSN, or money amount error reported to the SSA on Form W-2. If your name and SSN are correct but are not the same as shown on your social security card, you should ask for a new card that displays your correct name at any SSA office or by calling 1-800-772-1213. You also may visit the SSA at <style isItalic="true" pdfFontName="Helvetica-Oblique">www.socialsecurity.gov</style>.
+
+<style isBold="true" pdfFontName="Helvetica-Bold">Credit for excess taxes</style>. If you had more than one employer in 2010 and more than $6,621.60 in social security and/or Tier I railroad retirement (RRTA) taxes were withheld, you may be able to claim a credit for the excess against your federal income tax. If you had more than one railroad employer and more than $3,088.80 in Tier II RRTA tax was withheld, you also may be able to claim a credit. See your Form 1040 or Form 1040A instructions and Pub. 505, Tax Withholding and Estimated Tax.
+
+(Also see <style isItalic="true" pdfFontName="Helvetica-Oblique">Instructions for Employee</style> on the back of Copy C.) ]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="0" y="0" width="200" height="20"/>
+						<textElement>
+							<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Notice to Employee]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="0" y="30" width="248" height="385"/>
+						<textElement markup="styled">
+							<font size="10" isBold="false"/>
+						</textElement>
+						<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Refund</style>. Even if you do not have to file a tax return, you should file to get a refund if box 2 shows federal income tax withheld or if you can take the earned income credit.
+
+<style isBold="true" pdfFontName="Helvetica-Bold">Earned income credit (EIC)</style>. You must file a tax return if any amount is shown in box 9.
+
+You may be able to take the EIC for 2010 if (a) you do not have a qualifying child and you earned less than $13,460 ($18,470 if married filing jointly), (b) you have one qualifying child and you earned less than $35,535 ($40,545 if married filing jointly), (c) you have two qualifying children and you earned less than $40,363 ($45,373 if married filing jointly), or (d) you have three or more qualifying children and you earned less than $43,352 ($48,362 if married filing jointly). You and any qualifying children must have valid social security numbers (SSNs). You cannot take the EIC if your investment income is more than $3,100. <style isBold="true" pdfFontName="Helvetica-Bold">Any EIC that is more than your tax liability is refunded to you, but only if you file a tax return.</style> If you have at least one qualifying child, you may get as much as $1,830 of the EIC in advance by completing Form W-5, Earned Income Credit Advance Payment Certificate, and giving it to your employer.
+
+<style isBold="true" pdfFontName="Helvetica-Bold">Clergy and religious workers</style>. If you are not subject to social security and Medicare taxes, see Publication 517, Social Security and Other Information for Members of the Clergy and Religious Workers. ]]></text>
+					</staticText>
+				</frame>
+				<frame>
+					<reportElement x="0" y="0" width="548" height="728">
+						<printWhenExpression><![CDATA[new java.lang.Boolean($V{PAGE_NUMBER}.intValue() == 4)]]></printWhenExpression>
+					</reportElement>
+					<staticText>
+						<reportElement x="0" y="0" width="248" height="40"/>
+						<textElement markup="styled">
+							<font size="12" isBold="false"/>
+						</textElement>
+						<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Instructions for Employee</style> (Also see <style isItalic="true" pdfFontName="Helvetica-Oblique">Notice to Employee,</style> on the back of Copy B.)]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="0" y="50" width="248" height="465"/>
+						<textElement markup="styled">
+							<font size="10" isBold="false"/>
+						</textElement>
+						<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Box 1</style>. Enter this amount on the wages line of your tax return.
+<style isBold="true" pdfFontName="Helvetica-Bold">Box 2</style>. Enter this amount on the federal income tax withheld line of your tax return.
+<style isBold="true" pdfFontName="Helvetica-Bold">Box 8</style>. This amount is <style isBold="true" pdfFontName="Helvetica-Bold">not</style> included in boxes 1, 3, 5, or 7. For information on how to report tips on your tax return, see your Form 1040 instructions.
+<style isBold="true" pdfFontName="Helvetica-Bold">Box 9</style>. Enter this amount on the advance earned income credit payments line of your Form 1040 or Form 1040A.
+<style isBold="true" pdfFontName="Helvetica-Bold">Box 10</style>. This amount is the total dependent care benefits that your employer paid to you or incurred on your behalf (including amounts from a section 125 (cafeteria) plan). Any amount over $5,000 is also included in box 1. Complete Form 2441, Child and Dependent Care Expenses, to compute any taxable and nontaxable amounts.
+<style isBold="true" pdfFontName="Helvetica-Bold">Box 11</style>. This amount is (a) reported in box 1 if it is a distribution made to you from a nonqualified deferred compensation or nongovernmental section 457(b) plan or (b) included in box 3 and/or 5 if it is a prior year deferral under a nonqualified or section 457(b) plan that became taxable for social security and Medicare taxes this year because there is no longer a substantial risk of forfeiture of your right to the deferred amount.
+<style isBold="true" pdfFontName="Helvetica-Bold">Box 12</style>. The following list explains the codes shown in box 12. You may need this information to complete your tax return. Elective deferrals (codes D, E, F, and S) and designated Roth contributions (codes AA and BB) under all plans are generally limited to a total of $16,500 ($11,500 if you only have SIMPLE plans; $19,500 for section 403(b) plans if you qualify for the 15-year rule explained in Pub. 571). Deferrals under code G are limited to $16,500. Deferrals under code H are limited to $7,000.]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="280" y="50" width="248" height="465"/>
+						<textElement markup="styled">
+							<font size="10" isBold="false"/>
+						</textElement>
+						<text><![CDATA[However, if you were at least age 50 in 2010, your employer may have allowed an additional deferral of up to $5,500 ($2,500 for section 401(k)(11) and 408(p) SIMPLE plans). This additional deferral amount is not subject to the overall limit on elective deferrals. For code G, the limit on elective deferrals may be higher for the last 3 years before you reach retirement age. Contact your plan administrator for more information. Amounts in excess of the overall elective deferral limit must be included in income. See the “Wages, Salaries, Tips, etc.” line instructions for Form 1040.
+<style isBold="true" pdfFontName="Helvetica-Bold">Note</style>. If a year follows code D through H, S, Y, AA, or BB, you made a make-up pension contribution for a prior year(s) when you were in military service. To figure whether you made excess deferrals, consider these amounts for the year shown, not the current year. If no year is shown, the contributions are for the current year.
+<style isBold="true" pdfFontName="Helvetica-Bold">A</style>—Uncollected social security or RRTA tax on tips. Include this tax on Form 1040. See “Total Tax” in the Form 1040 instructions.
+<style isBold="true" pdfFontName="Helvetica-Bold">B</style>—Uncollected Medicare tax on tips. Include this tax on Form 1040. See “Total Tax” in the Form 1040 instructions.
+<style isBold="true" pdfFontName="Helvetica-Bold">C</style>—Taxable cost of group-term life insurance over $50,000 (included in boxes 1, 3 (up to social security wage base), and 5)
+<style isBold="true" pdfFontName="Helvetica-Bold">D</style>—Elective deferrals to a section 401(k) cash or deferred arrangement. Also includes deferrals under a SIMPLE retirement account that is part of a section 401(k) arrangement.
+<style isBold="true" pdfFontName="Helvetica-Bold">E</style>—Elective deferrals under a section 403(b) salary reduction agreement
+<style isItalic="true" pdfFontName="Helvetica-Oblique">                                        (continued on back of Copy 2)</style>]]></text>
+					</staticText>
+				</frame>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="432">
+			<staticText>
+				<reportElement x="0" y="0" width="548" height="15"/>
+				<textElement>
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Form W-2 Wage and Tax Statement]]></text>
+			</staticText>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="15" width="208" height="40"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="208" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ a Employee's social security number]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="15" width="200" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ssn}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="208" y="15" width="167" height="40"/>
+				<box>
+					<topPen lineWidth="3.0" lineStyle="Solid"/>
+					<leftPen lineWidth="3.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="3.0" lineStyle="Solid"/>
+					<rightPen lineWidth="3.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="167" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ 1 Wages, Tips other compensation]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="8" y="15" width="100" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{tgross}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="375" y="15" width="167" height="40"/>
+				<box>
+					<topPen lineWidth="3.0" lineStyle="Solid"/>
+					<leftPen lineWidth="3.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="3.0" lineStyle="Solid"/>
+					<rightPen lineWidth="3.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="167" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ 2 Federal income tax withheld]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="8" y="15" width="100" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{whold}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="0" y="55" width="208" height="40"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="208" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ b Employer identification number (EIN)]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="15" width="200" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ein}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="208" y="55" width="167" height="40"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="167" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ 3 Social security wages]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="8" y="15" width="100" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{fgross}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="375" y="55" width="167" height="40"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="167" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ 4 Social security tax withheld]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="8" y="15" width="100" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ftax}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="0" y="95" width="208" height="80"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="208" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ c Employer's name, address and Zip code]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="15" width="200" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ename}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="30" width="200" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{eaddress}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="45" width="200" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ecityst}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="208" y="95" width="167" height="40"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="167" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ 5 Medicare wages and tips]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="8" y="15" width="100" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{mgross}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="375" y="95" width="167" height="40"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="167" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ 6 Medicare tax withheld]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="8" y="15" width="100" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{mtax}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="208" y="135" width="167" height="40"/>
+				<box>
+					<topPen lineWidth="3.0" lineStyle="Solid"/>
+					<leftPen lineWidth="3.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="3.0" lineStyle="Solid"/>
+					<rightPen lineWidth="3.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="167" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ 9 Advanced EIC payment]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="8" y="15" width="100" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{eic}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="375" y="135" width="167" height="40"/>
+				<box>
+					<topPen lineWidth="3.0" lineStyle="Solid"/>
+					<leftPen lineWidth="3.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="3.0" lineStyle="Solid"/>
+					<rightPen lineWidth="3.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="167" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ 10 Dependent care benefits]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="8" y="15" width="100" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dcare}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="0" y="175" width="208" height="189"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="208" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ e Employee's name]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="30" width="200" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{empaddress}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="15" width="200" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{empname}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="45" width="200" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{empcityst}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="208" y="175" width="167" height="155"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="167" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ 12 See Instrs. for box 12]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="15" width="20" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1201}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="28" y="15" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1201}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="28" y="30" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1202}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="30" width="20" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1202}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="45" width="20" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1203}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="28" y="45" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1203}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="60" width="20" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1204}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="28" y="60" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1204}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="75" width="20" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1205}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="28" y="75" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1205}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="90" width="20" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1206}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="28" y="90" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1206}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="105" width="20" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1207}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="28" y="105" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1207}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="120" width="20" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1208}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="28" y="120" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1208}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="135" width="20" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1209}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="28" y="135" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1209}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="208" y="330" width="334" height="34"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="1" width="111" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ 13 Statutory Employee]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="111" y="1" width="111" height="15"/>
+					<textElement textAlignment="Center">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ Retirement Plan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="222" y="1" width="111" height="15"/>
+					<textElement textAlignment="Center">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Third party sick pay]]></text>
+				</staticText>
+				<image>
+					<reportElement x="50" y="18" width="12" height="12"/>
+					<imageExpression class="java.lang.String"><![CDATA[$F{statemp}]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="160" y="18" width="12" height="12"/>
+					<imageExpression class="java.lang.String"><![CDATA[$F{retplan}]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="270" y="18" width="12" height="12"/>
+					<imageExpression class="java.lang.String"><![CDATA[$F{thrdsick}]]></imageExpression>
+				</image>
+			</frame>
+			<frame>
+				<reportElement x="375" y="175" width="167" height="155"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="167" height="15"/>
+					<textElement>
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[14 See Instrs. for box 14]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="102" y="15" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1401}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="102" y="45" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1403}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="60" width="94" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1404}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="30" width="94" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1402}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="102" y="30" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1402}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="102" y="60" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1404}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="15" width="94" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1401}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="45" width="94" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1403}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="102" y="120" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1408}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="102" y="75" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1405}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="75" width="94" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1405}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="102" y="105" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1407}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="90" width="94" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1406}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="120" width="94" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1408}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="102" y="90" width="57" height="15"/>
+					<textElement textAlignment="Right">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1406}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="8" y="105" width="94" height="15"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1407}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement x="325" y="364" width="217" height="15"/>
+				<textElement textAlignment="Right">
+					<font size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Department of the Treasury - Internal Revenue Service]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="380" width="542" height="45"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[2010]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="364" width="325" height="15"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{copy}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="728">
+			<frame>
+				<reportElement x="0" y="0" width="548" height="728"/>
+				<staticText>
+					<reportElement x="0" y="0" width="248" height="40"/>
+					<textElement markup="styled">
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Instructions for Employee</style> <style isItalic="true" pdfFontName="Helvetica-Oblique">(continued from back of Copy C)</style>]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="50" width="248" height="560"/>
+					<textElement markup="styled">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">F</style>—Elective deferrals under a section 408(k)(6) salary reduction SEP
+<style isBold="true" pdfFontName="Helvetica-Bold">G</style>—Elective deferrals and employer contributions (including nonelective deferrals) to a section 457(b) deferred compensation plan
+<style isBold="true" pdfFontName="Helvetica-Bold">H</style>—Elective deferrals to a section 501(c)(18)(D) tax-exempt organization plan. See “Adjusted Gross Income” in the Form 1040 instructions for how to deduct.
+<style isBold="true" pdfFontName="Helvetica-Bold">J</style>—Nontaxable sick pay (information only, not included in boxes 1, 3, or 5)
+<style isBold="true" pdfFontName="Helvetica-Bold">K</style>—20% excise tax on excess golden parachute payments. See “Total Tax” in the Form 1040 instructions.
+<style isBold="true" pdfFontName="Helvetica-Bold">L</style>—Substantiated employee business expense reimbursements (nontaxable)
+<style isBold="true" pdfFontName="Helvetica-Bold">M</style>—Uncollected social security or RRTA tax on taxable cost of group-term life insurance over $50,000 (former employees only). See “Total Tax” in the Form 1040 instructions.
+<style isBold="true" pdfFontName="Helvetica-Bold">N</style>—Uncollected Medicare tax on taxable cost of group-term life insurance over $50,000 (former employees only). See “Total Tax” in the Form 1040 instructions.
+<style isBold="true" pdfFontName="Helvetica-Bold">P</style>—Excludable moving expense reimbursements paid directly to employee (not included in boxes 1, 3, or 5)
+<style isBold="true" pdfFontName="Helvetica-Bold">Q</style>—Nontaxable combat pay. See the instructions for Form 1040 or Form 1040A for details on reporting this amount.
+<style isBold="true" pdfFontName="Helvetica-Bold">R</style>—Employer contributions to your Archer MSA. Report on Form 8853, Archer MSAs and Long-Term Care Insurance Contracts.
+<style isBold="true" pdfFontName="Helvetica-Bold">S</style>—Employee salary reduction contributions under a section 408(p) SIMPLE (not included in box 1)
+<style isBold="true" pdfFontName="Helvetica-Bold">T</style>—Adoption benefits (not included in box 1). Complete Form 8839, Qualified Adoption Expenses, to compute any taxable and nontaxable amounts.
+<style isBold="true" pdfFontName="Helvetica-Bold">V</style>—Income from exercise of nonstatutory stock option(s) (included in boxes 1, 3 (up to social security wage base), and 5). See Pub. 525 and instructions for Schedule D (Form 1040) for reporting requirements.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="280" y="50" width="248" height="589"/>
+					<textElement markup="styled">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">W</style>—Employer contributions (including amounts the employee elected to contribute using a section 125 (cafeteria) plan) to your health savings account. Report on Form 8889, Health Savings Accounts (HSAs).
+<style isBold="true" pdfFontName="Helvetica-Bold">Y</style>—Deferrals under a section 409A nonqualified deferred compensation plan.
+<style isBold="true" pdfFontName="Helvetica-Bold">Z</style>—Income under section 409A on a nonqualified deferred compensation plan. This amount is also included in box 1. It is subject to an additional 20% tax plus interest. See “Total Tax” in the Form 1040 instructions.
+<style isBold="true" pdfFontName="Helvetica-Bold">AA</style>—Designated Roth contributions under a section 401(k) plan.
+<style isBold="true" pdfFontName="Helvetica-Bold">BB</style>—Designated Roth contributions under a section 403(b) plan.
+<style isBold="true" pdfFontName="Helvetica-Bold">CC</style> (For employer use only)—HIRE exempt wages and tips
+<style isBold="true" pdfFontName="Helvetica-Bold">Box 13</style>. If the “Retirement plan” box is checked, special limits may apply to the amount of traditional IRA contributions that you may deduct.
+<style isBold="true" pdfFontName="Helvetica-Bold">Box 14</style>.
+<style isBold="true" pdfFontName="Helvetica-Bold">HEALTH</style> – Employee deductions for health and dental insurance.
+<style isBold="true" pdfFontName="Helvetica-Bold">NTA</style> – Non-TRS Non-Taxable allowance amount paid to the employee for travel pay.
+<style isBold="true" pdfFontName="Helvetica-Bold">TXA</style> – Non-TRS Non-Taxable business expense paid to the employee.
+<style isBold="true" pdfFontName="Helvetica-Bold">CAF</style> – Salary reduction amount deducted from the employee as defined under Section 125 of the Internal Revenue Service Code.
+<style isBold="true" pdfFontName="Helvetica-Bold">TRS</style> – Employee contributions to the Teachers Retirement System of Texas.
+<style isBold="true" pdfFontName="Helvetica-Bold">401A</style> – The amount deducted from the employee for annuities as defined under Section 401A of the Internal Revenue Code
+<style isBold="true" pdfFontName="Helvetica-Bold">TFB</style> – Fringe benefits amount taxed for withholding purposes.
+<style isBold="true" pdfFontName="Helvetica-Bold">Note</style>. Keep <style isBold="true" pdfFontName="Helvetica-Bold">Copy C</style> of Form W-2 for at least 3 years after the due date for filing your income tax return. However, to help <style isBold="true" pdfFontName="Helvetica-Bold">protect your social security benefits,</style> keep Copy C until you begin receiving social security benefits, just in case there is a question about your work record and/or earnings in a particular year. Compare the Social Security wages and the Medicare wages to the information shown on your annual (for workers over 25) Social Security Statement.]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band/>
+	</summary>
+	<noData>
+		<band/>
+	</noData>
+</jasperReport>

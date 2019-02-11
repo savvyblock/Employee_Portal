@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+	<definition name="forgotPassword" extends="standardLayout">
+		<put-attribute name="breadcrumb" value="Employee Access > Forgot Password"/>
+		<put-attribute name="body" value="forgotPassword.body"/>
+		<put-attribute name="title" value="Forgot Password"/>
+		<put-attribute name="windowid" value="02"/>
+		<put-attribute name="helpPath" value="logon/forgotpassword"/>
+	</definition>
+	
+	<definition name="forgotPassword.body" template="/WEB-INF/forgotPassword/forgotPassword.jsp">
+		<put-attribute name="search" value="/WEB-INF/views/userSearch.jsp"/>
+		<put-attribute name="error" value="/WEB-INF/views/error.jsp"/>		
+	</definition>	
+	
+</tiles-definitions>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	>
+
+	<var name="pick" class="net.esc20.txeis.EmployeeAccess.web.view.Pick" />
+
+	<input name="codes"/>
+	<input name="codeType"/>
+	<input name="codeHeader1"/>
+	<input name="codeHeader2"/>
+
+	<on-start>
+		<set name="flowScope.codes" value="codes"/>
+		<set name="flowScope.codeType" value="codeType"/>
+		<set name="flowScope.codeHeader1" value="codeHeader1"/>
+		<set name="flowScope.codeHeader2" value="codeHeader2"/>
+		<set name="pick.recordsPerPage" value="20" type="java.lang.Integer"/>
+		
+		<set name="pick.pageNumber" value="1"/>
+		<evaluate expression="codeAction.filter(flowScope.codes, pick.codeCriteria.searchCode, pick.codeCriteria.searchDescription)" result="flowScope.filteredCodes"/>
+		<evaluate expression="pick.resetPagination(flowScope.filteredCodes)"/>
+		<evaluate expression="pick.getPaginatedList(flowScope.filteredCodes)" result="flowScope.paginatedCodes"/>
+	</on-start>
+	
+	<view-state id="pickPopup" model="pick" view="pickPopup" popup="true">
+		<on-entry>
+			<render fragments="body"/>
+		</on-entry>
+		<transition on="selectCode" to="selectCode" bind="false" validate="false"/>
+		<transition on="page_pick" validate="false" bind="true">
+			<set name="pick.pageNumber" value="requestParameters.page_pick" type="java.lang.Integer"/>
+			<evaluate expression="pick.getPaginatedList(flowScope.filteredCodes)" result="flowScope.paginatedCodes"/>
+			<render fragments="results"/>
+		</transition>
+		<transition on="search" validate="false" bind="true">
+			<set name="pick.pageNumber" value="1"/>
+			<evaluate expression="codeAction.filter(flowScope.codes, pick.codeCriteria.searchCode, pick.codeCriteria.searchDescription)" result="flowScope.filteredCodes"/>
+			<evaluate expression="pick.resetPagination(flowScope.filteredCodes)"/>
+			<evaluate expression="pick.getPaginatedList(flowScope.filteredCodes)" result="flowScope.paginatedCodes"/>
+			<render fragments="results"/>
+		</transition>
+	</view-state>
+
+	<end-state id="selectCode">
+		<output name="selected" value="requestParameters.selected"/>
+		<output name="subSelected" value="requestParameters.subSelected"/>
+		<output name="description" value="requestParameters.description"/>
+	</end-state>
+</flow>

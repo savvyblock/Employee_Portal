@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"  
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:sec="http://www.springframework.org/schema/security"     
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/security 
+           http://www.springframework.org/schema/security/spring-security-2.0.xsd"
+           default-lazy-init="true">
+
+	<!-- Scans for application @Components to deploy -->
+	<context:component-scan  base-package="net.esc20.txeis.EmployeeAccess"></context:component-scan>
+
+	<!-- Datasource Configuration -->
+	<bean id="appRoutingDataSource" class="net.esc20.txeis.EmployeeAccess.domainobject.JndiRoutingDataSource">
+		<property name="dataSourceFactory" ref="dataSourceFactory" />
+	</bean>
+	
+	<bean id="dataSourceFactory" class="net.esc20.txeis.EmployeeAccess.domainobject.JndiDataSourceFactory">
+		<property name="jndiFormatString" value="java:jboss/%s" />
+	</bean>
+
+	<bean id="datasource" class="net.esc20.txeis.EmployeeAccess.dao.UserDataSource">
+		<constructor-arg ref="appRoutingDataSource" />
+	</bean>
+		
+	<!-- Imports the configurations of the different infrastructure systems of the application -->
+	<import resource="data-access-config.xml" />
+	<import resource="service-config.xml" />
+	<import resource="controller-config.xml" />
+	<import resource="webmvc-config.xml" />
+	<import resource="webflow-config.xml" />
+	<import resource="security-config.xml" />
+	<import resource="report-config.xml" />
+	
+	<mvc:annotation-driven/>
+	
+</beans>

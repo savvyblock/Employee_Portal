@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="TxEIS_EmployeeAccess" default="deploy">
+
+
+	<target name="deploy" depends="war">
+		<delete file="${jboss.location}/EmployeeAccess.war" />
+		<copy tofile="${jboss.location}/EmployeeAccess.war" file="${EmployeeAccess.location}/output/EmployeeAccess.war" />
+	</target>
+
+	<target name="war" depends="optimized-WebRoot">
+		<delete file="${EmployeeAccess.location}/output/EmployeeAccess.war" />
+		<war basedir="${EmployeeAccess.location}/output/WebRoot" 
+			destfile="${EmployeeAccess.location}/output/EmployeeAccess.war"
+			manifest="${EmployeeAccess.location}/output/WebRoot/META-INF/MANIFEST.MF" />
+	</target>
+	
+	<target name="optimized-WebRoot" depends="WebRoot"  if="alternateTheme">
+		<delete file="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes/eaTheme.properties" />
+		<delete file="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes/districtIcons.properties" />
+		<delete file="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes/mailServer.properties" />
+	</target>
+
+	<target name="WebRoot">
+		<delete dir="${EmployeeAccess.location}/output/WebRoot" />
+		<mkdir dir="${EmployeeAccess.location}/output/WebRoot" />
+		
+		<copy todir="${EmployeeAccess.location}/output/WebRoot">
+			<fileset dir="${EmployeeAccess.location}/WebRoot" >
+				<exclude name="/WEB-INF/lib/*"/>
+			</fileset>
+		</copy>
+		
+		<copy tofile="${EmployeeAccess.location}/output/WebRoot/WEB-INF/lib/txeisTLDs.jar" 
+			file="${txeisCommon.location}/output/txeisTLDs.jar" />
+		<copy tofile="${EmployeeAccess.location}/output/WebRoot/WEB-INF/lib/txeisCommon.jar" 
+			file="${txeisCommon.location}/output/txeisCommon.jar" />
+		<copy todir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/lib" flatten="true">
+			<filelist dir="${libraryFiles.location}/teamCityJars">
+				<file name="common/aopalliance.jar"/>
+				<file name="asm-all-2.2.3.jar"/>
+				<file name="aspectjweaver.jar"/>
+				<file name="cglib-nodep-2.1_3.jar"/>
+				<file name="commons-attributes-api.jar"/>
+				<file name="commons-attributes-compiler.jar"/>
+				<file name="commons-beanutils-1.7.jar"/>
+				<file name="commons-codec-1.3.jar"/>
+				<file name="commons-collections-3.2.1.jar"/>
+				<file name="commons-dbcp-1.2.2.jar"/>
+				<file name="commons-digester-1.7.jar"/>
+				<file name="commons-discovery.jar"/>
+				<file name="commons-fileupload-1.2.jar"/>
+				<file name="commons-httpclient.jar"/>
+				<file name="commons-io-1.4.jar"/>
+				<file name="common/commons-javaflow-20060411.jar"/>
+				<file name="commons-lang-2.3.jar"/>
+				<file name="common/commons-logging.jar"/>
+				<file name="commons-pool-1.3.jar"/>
+				<file name="core-renderer-R8.jar"/>
+				<file name="displaytag-1.2.jar"/>
+				<file name="dwr-2.0.3.jar"/>
+				<file name="ehcache-1.3.0.jar"/>
+				<file name="common/iText-2.1.6-patched.jar"/>
+				<file name="jaas.jar"/>
+				<file name="jacc-1_0-fr.jar"/>
+				<file name="common/jasperreports-javaflow-5.5.0.jar" />
+				<file name="jdom.jar"/>
+				<file name="common/jdt-compiler-3.1.1.jar" />
+				<file name="jgroups-2.2.8.jar"/>
+				<file name="json-lib-1.0b2-jdk13.jar"/>
+				<file name="common/jstl.jar"/>
+				<file name="jxl-2.6.jar"/>
+				<file name="common/ldapbp.jar"/>
+				<file name="minium.jar"/>
+				<file name="ognl-2.6.9.jar"/>
+				<file name="webflow/org.springframework.binding-2.0.6.RELEASE.jar"/>
+				<file name="webflow/org.springframework.js-2.0.6.RELEASE.jar"/>
+				<file name="webflow/org.springframework.webflow-2.0.6.RELEASE.jar"/>
+				<file name="png-encoder-1.5.jar"/>
+				<file name="poi-2.5.1.jar"/>
+				<file name="resolver.jar"/>
+				<file name="slf4j-api-1.6.1.jar"/>
+				<file name="snowdrop-vfs-3.0.3.Final.jar"/>
+				<file name="common/sojo-optional-0.5.0.jar"/>
+				<file name="spring-3.2.11/spring-aop-3.2.11.RELEASE.jar"/>
+				<file name="spring-3.2.11/spring-beans-3.2.11.RELEASE.jar"/>
+				<file name="spring-3.2.11/spring-context-support-3.2.11.RELEASE.jar"/>
+				<file name="spring-3.2.11/spring-context-3.2.11.RELEASE.jar"/>
+				<file name="spring-3.2.11/spring-core-3.2.11.RELEASE.jar"/>
+				<file name="spring-3.2.11/spring-expression-3.2.11.RELEASE.jar"/>
+				<file name="spring-3.2.11/spring-jdbc-3.2.11.RELEASE.jar"/>
+				<file name="spring/spring-json-1.3.1.jar"/>
+				<file name="spring/spring-ldap-1.2.jar"/>
+				<file name="springSecurity-2.0.3/spring-security-core-2.0.3.jar"/>
+				<file name="spring-3.2.11/spring-tx-3.2.11.RELEASE.jar"/>
+				<file name="spring-3.2.11/spring-web-3.2.11.RELEASE.jar"/>
+				<file name="spring-3.2.11/spring-webmvc-3.2.11.RELEASE.jar"/>
+				<file name="standard.jar"/>
+				<file name="webflow/tiles-api-2.2.2.jar"/>
+				<file name="webflow/tiles-core-2.2.2.jar"/>
+				<file name="webflow/tiles-jsp-2.2.2.jar"/>
+				<file name="webflow/tiles-servlet-2.2.2.jar"/>
+				<file name="webflow/tiles-template-2.2.2.jar"/>
+				<file name="jackson-core-asl-1.9.13.jar"/>
+				<file name="jackson-mapper-asl-1.9.13.jar"/>
+			</filelist>
+		</copy>
+		
+		<mkdir dir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes" />
+		
+		<copy todir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes">
+			<fileset dir="${EmployeeAccess.location}/src" excludes="**/*.java" />
+		</copy>
+		
+		<copy todir="${EmployeeAccess.location}/output/WebRoot" overwrite="true">
+			<fileset dir="${webhelp.location}/EmployeeAccess" />
+		</copy>		
+		
+		<javac debug="${debug}" debuglevel="${debuglevel}" source="${javaversion}" target="${javaversion}" destdir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes" includeantruntime="false">
+			<src path="${EmployeeAccess.location}/src" />
+			<classpath>
+				<fileset dir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/lib" />
+				<fileset dir="${server.location}/standalone/lib" />
+			</classpath>
+		</javac>
+		
+		<mkdir dir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes/META-INF" />
+		<copy todir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes/META-INF">
+			<fileset dir="${EmployeeAccess.location}/src/META-INF" />
+		</copy>
+		
+		<replace file="${EmployeeAccess.location}/output/WebRoot/META-INF/MANIFEST.MF" token="{Development}" value="${label}" />
+		<replace file="${EmployeeAccess.location}/output/WebRoot/META-INF/MANIFEST.MF" token="{Version}" value="${version}" />
+
+	</target>
+
+</project>

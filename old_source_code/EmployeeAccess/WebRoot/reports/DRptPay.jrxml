@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DRptPay" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="07fcd2ec-19e2-4c3e-97d1-f208a6f21ce8">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="drptpaysubrptfreq" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="drptpaysubrptpay" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="drptpaysubrptpositions" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="drptpaysubrptbank" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="drptpaysubrptstipend" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="subRptConnection" class="java.sql.Connection" isForPrompting="false"/>
+	<field name="dname" class="java.lang.String"/>
+	<field name="daddress" class="java.lang.String"/>
+	<field name="dcityst" class="java.lang.String"/>
+	<field name="ename" class="java.lang.String"/>
+	<field name="eaddress" class="java.lang.String"/>
+	<field name="ecityst" class="java.lang.String"/>
+	<field name="phoneNumber" class="java.lang.String"/>
+	<field name="employeeNumber" class="java.lang.String"/>
+	<field name="dateOfBirth" class="java.lang.String"/>
+	<field name="gender" class="java.lang.String"/>
+	<field name="degree" class="java.lang.String"/>
+	<field name="proExperience" class="java.lang.String">
+		<fieldDescription><![CDATA[proExperience]]></fieldDescription>
+	</field>
+	<field name="proExperienceDistrict" class="java.lang.String">
+		<fieldDescription><![CDATA[proExperienceDistrict]]></fieldDescription>
+	</field>
+	<field name="nonProExperience" class="java.lang.String">
+		<fieldDescription><![CDATA[nonProExperience]]></fieldDescription>
+	</field>
+	<field name="nonProExperienceDistrict" class="java.lang.String">
+		<fieldDescription><![CDATA[nonProExperienceDistrict]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band height="101">
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="207" y="76" width="200" height="14" backcolor="#C0C0C0" uuid="794311a9-08af-4338-a789-b9b7626ac798"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("MM-dd-yyyy h:mm a").format(java.util.Calendar.getInstance().getTime())]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="207" y="7" width="200" height="14" backcolor="#C0C0C0" uuid="bbdd7f97-a4db-42cb-b4f8-ea6f4959211a"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="207" y="61" width="200" height="14" backcolor="#C0C0C0" uuid="52831fe4-70fb-4359-94bf-f44362b27da2"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Current Pay Information"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="207" y="22" width="200" height="14" backcolor="#C0C0C0" uuid="9df8a3bb-2e78-4f54-bcd6-cab692fd5ca6"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{daddress}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="207" y="37" width="200" height="14" backcolor="#C0C0C0" uuid="1372651f-1e53-4d26-be2c-d9e5dfcdf8f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dcityst}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="false">
+				<reportElement key="textField" x="580" y="7" width="35" height="14" uuid="772bada2-d268-4e47-935e-e0f20deec482"/>
+				<textElement>
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="505" y="7" width="73" height="14" backcolor="#C0C0C0" uuid="efe45f2f-54c6-4406-8f87-ae462f63547f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page: " + $V{PAGE_NUMBER} + "    of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="129">
+			<staticText>
+				<reportElement key="staticText" x="0" y="1" width="116" height="14" backcolor="#C0C0C0" uuid="bdd802d1-f3f5-4f85-b9f6-eab9e5bdfbbd"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Employee Information]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="156" y="26" width="167" height="11" backcolor="#C0C0C0" uuid="bcae05dc-a853-40ba-8dba-58fb758d45f4"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ename}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="5" y="98" width="150" height="11" backcolor="#C0C0C0" uuid="29ddfacc-a2d6-4d95-86a9-58e7e292be17"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Non Professional Years Experience]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="328" y="62" width="150" height="11" backcolor="#C0C0C0" uuid="c7da0c79-0ff4-4719-b5af-b05ae273210d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Gender]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="5" y="26" width="150" height="11" backcolor="#C0C0C0" uuid="1b06870d-afab-4a93-bfa2-2cb823283319"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="5" y="38" width="150" height="11" backcolor="#C0C0C0" uuid="0644ddfc-f0f1-40b0-8840-123a6c113db5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="5" y="62" width="150" height="11" backcolor="#C0C0C0" uuid="45520ad6-b289-4c87-8ef3-a25d68311ef5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Phone Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="5" y="74" width="150" height="11" backcolor="#C0C0C0" uuid="255d4b80-0a7c-42a5-9da7-368306ba7865"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Degree]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="5" y="86" width="150" height="11" backcolor="#C0C0C0" uuid="91ce101b-ea6a-451a-990b-ddfd8654d2ba"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Professional Years Experience]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="156" y="38" width="167" height="11" backcolor="#C0C0C0" uuid="c566ab0d-54f1-4998-8b21-adedab7687bc"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{eaddress}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="156" y="50" width="167" height="11" backcolor="#C0C0C0" uuid="583a6066-48fa-49e7-8d80-2c869e511da8"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ecityst}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="156" y="62" width="167" height="11" backcolor="#C0C0C0" uuid="ca0a8369-6e5b-47e7-b8ca-7f0e34a44596"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{phoneNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="328" y="38" width="150" height="11" backcolor="#C0C0C0" uuid="ec2ab28b-8e48-424b-abb9-fe4d3eb854bc"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Employee ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="328" y="50" width="150" height="11" backcolor="#C0C0C0" uuid="6233dc86-496c-41f3-a8e6-d754d2cf4b77"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Date of Birth]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="328" y="86" width="150" height="11" backcolor="#C0C0C0" uuid="29eb756b-54ff-4c8d-ac16-86e91ae37a0f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Professional District Experience]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="328" y="98" width="150" height="11" backcolor="#C0C0C0" uuid="ec2b7f4f-bdd5-4f95-9a16-c4c7b5ab18ba"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Non Professional District Experience]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="156" y="74" width="167" height="11" backcolor="#C0C0C0" uuid="e7a16b1a-b22a-4bb4-b117-23b0f6a88ffa"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{degree}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="479" y="38" width="80" height="11" backcolor="#C0C0C0" uuid="6d8a861b-6807-4498-bb68-0071cd5cfc1a"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{employeeNumber}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="479" y="50" width="80" height="11" backcolor="#C0C0C0" uuid="82b0f763-4731-49c6-830c-dc3c1cce30e9"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dateOfBirth}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="479" y="62" width="80" height="11" backcolor="#C0C0C0" uuid="197c246a-24b3-4086-b08e-c441916f1d93"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#0" isBlankWhenNull="true">
+				<reportElement key="textField" x="156" y="86" width="167" height="11" backcolor="#C0C0C0" uuid="b175e726-f29d-439a-9038-a074c157b857"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proExperience}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#0" isBlankWhenNull="true">
+				<reportElement key="textField" x="156" y="98" width="167" height="11" backcolor="#C0C0C0" uuid="714bef06-3438-4979-97e5-b23d1a608fd6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nonProExperience}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#0" isBlankWhenNull="true">
+				<reportElement key="textField" x="479" y="86" width="80" height="11" backcolor="#C0C0C0" uuid="68d8a35e-8dd3-41d5-bbcb-649c23b058ea"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proExperienceDistrict}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#0" isBlankWhenNull="true">
+				<reportElement key="textField" x="479" y="98" width="80" height="11" backcolor="#C0C0C0" uuid="837d1af2-cef0-40c1-bcc6-52aacac3d5f8"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nonProExperienceDistrict}]]></textFieldExpression>
+			</textField>
+			<subreport runToBottom="false">
+				<reportElement key="drptpaysubrptfreq" positionType="Float" x="0" y="111" width="551" height="17" isRemoveLineWhenBlank="true" uuid="9694b07c-ded0-4227-8a8c-2cd9ec3a0a7f"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="drptpaysubrptstipend">
+					<subreportParameterExpression><![CDATA[$P{drptpaysubrptstipend}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="drptpaysubrptpositions">
+					<subreportParameterExpression><![CDATA[$P{drptpaysubrptpositions}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="drptpaysubrptpay">
+					<subreportParameterExpression><![CDATA[$P{drptpaysubrptpay}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="drptpaysubrptbank">
+					<subreportParameterExpression><![CDATA[$P{drptpaysubrptbank}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="as_empnbr">
+					<subreportParameterExpression><![CDATA[$F{employeeNumber}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{drptpaysubrptfreq}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="13"/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningJobTab" pageWidth="315" pageHeight="792" columnWidth="315" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="b9963339-7046-472f-b409-301991f980bf">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="vs_payfreq" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_empnbr" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_dtofpay" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_chknbr" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_void_or_iss" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vi_adjnbr" class="java.lang.Integer" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT bhr_emp_job_hist.job_cd as job_cd,
+       (select bthr_job_cd.job_cd || '-' || bthr_job_cd.job_cd_descr _display
+		from bthr_job_cd
+		WHERE ( bthr_job_cd.cyr_nyr_flg = 'C' ) and
+			trim(bthr_job_cd.job_cd) <> '' and
+			bthr_job_cd.job_cd = bhr_emp_job_hist.job_cd) as display,
+	bhr_emp_job_hist.pay_rate as pay_rate,
+ 	bhr_emp_job_hist.reg_hrs_wrk as reg_hrs_wrk,
+        bhr_emp_job_hist.xmital_hrs_wrk as xmital_hrs_wrk,
+        bhr_emp_job_hist.pay_type as pay_type,
+        bhr_pay_hist.std_gross as bhr_pay_hist_std_gross
+FROM bhr_emp_job_hist, bhr_pay_hist
+   WHERE bhr_emp_job_hist.pay_freq = $P{vs_payfreq} and
+         bhr_emp_job_hist.emp_nbr = $P{vs_empnbr} and
+         bhr_emp_job_hist.dt_of_pay = $P{vs_dtofpay} and
+         bhr_emp_job_hist.chk_nbr = $P{vs_chknbr} and
+         bhr_emp_job_hist.void_or_iss = $P{vs_void_or_iss} and
+         bhr_emp_job_hist.adj_nbr = $P{vi_adjnbr} and
+         bhr_emp_job_hist.job_cd <> 'XTRA' and
+         ((bhr_emp_job_hist.pay_rate <> 0 and
+           bhr_emp_job_hist.pay_type in ('1','2')) or
+          (bhr_emp_job_hist.pay_rate <> 0 and
+           bhr_emp_job_hist.pay_type in ('3', '4') and
+           (bhr_emp_job_hist.reg_hrs_wrk <> 0 or
+      	   bhr_emp_job_hist.xmital_hrs_wrk <>  0))) and
+         bhr_emp_job_hist.pay_freq = bhr_pay_hist.pay_freq and
+         bhr_emp_job_hist.dt_of_pay = bhr_pay_hist.dt_of_pay and
+         bhr_emp_job_hist.adj_nbr = bhr_pay_hist.adj_nbr and
+         bhr_emp_job_hist.emp_nbr = bhr_pay_hist.emp_nbr and
+         bhr_emp_job_hist.chk_nbr = bhr_pay_hist.chk_nbr and
+         bhr_emp_job_hist.void_or_Iss = bhr_pay_hist.void_or_iss
+
+union all select bhr_suppl_xmital.job_cd,
+	case when bhr_suppl_xmital.extra_duty_cd = '' then
+        (select bthr_job_cd.job_cd || '-' || bthr_job_cd.job_cd_descr
+		    from bthr_job_cd
+		    WHERE bthr_job_cd.cyr_nyr_flg = 'C' and
+		          trim(bthr_job_cd.job_cd) <> '' and
+		          bthr_job_cd.job_cd = bhr_suppl_xmital.job_cd)
+        else (select bthr_extra_duty.extra_duty_cd|| '-' || bthr_extra_duty.extra_duty_descr
+    		from bthr_extra_duty
+    		WHERE bthr_extra_duty.cyr_nyr_flg = 'C' and
+    		      trim(bthr_extra_duty.extra_duty_cd) <> '' and
+    		      bthr_extra_duty.extra_duty_cd = bhr_suppl_xmital.extra_duty_cd)
+        end as display,
+	sum(bhr_suppl_xmital.suppl_amt),
+	1, 0, bhr_emp_job_hist.pay_type,
+	bhr_pay_hist.std_gross
+  from bhr_suppl_xmital, bhr_emp_job_hist, bhr_pay_hist
+ where bhr_emp_job_hist.pay_freq =  $P{vs_payfreq} and
+       bhr_emp_job_hist.emp_nbr =  $P{vs_empnbr} and
+       bhr_emp_job_hist.dt_of_pay = $P{vs_dtofpay} and
+       bhr_emp_job_hist.chk_nbr = $P{vs_chknbr} and
+       bhr_emp_job_hist.void_or_iss = $P{vs_void_or_iss} and
+       bhr_emp_job_hist.adj_nbr = $P{vi_adjnbr} and
+       0 = $P{vi_adjnbr} and
+       bhr_emp_job_hist.pay_freq = bhr_pay_hist.pay_freq and
+       bhr_emp_job_hist.dt_of_pay = bhr_pay_hist.dt_of_pay and
+       bhr_emp_job_hist.adj_nbr = bhr_pay_hist.adj_nbr and
+       bhr_emp_job_hist.emp_nbr = bhr_pay_hist.emp_nbr and
+       bhr_emp_job_hist.chk_nbr = bhr_pay_hist.chk_nbr and
+       bhr_emp_job_hist.void_or_Iss = bhr_pay_hist.void_or_iss and
+       bhr_suppl_xmital.pay_freq = bhr_emp_job_hist.pay_freq and
+       bhr_suppl_xmital.dt_of_pay = bhr_emp_job_hist.dt_of_pay and
+       bhr_suppl_xmital.emp_nbr = bhr_emp_job_hist.emp_nbr and
+       bhr_suppl_xmital.job_cd = bhr_emp_job_hist.job_cd and
+       bhr_suppl_xmital.add_std_gross_cd = 'Y' and
+       bhr_suppl_xmital.transmittal_type = 'S'
+
+group by bhr_suppl_xmital.job_cd,
+         bhr_emp_job_hist.job_cd,
+	 bhr_emp_job_hist.pay_type,
+	 bhr_pay_hist.std_gross,
+	 bhr_suppl_xmital.extra_duty_cd]]>
+	</queryString>
+	<field name="job_cd" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="display" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pay_rate" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="reg_hrs_wrk" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="xmital_hrs_wrk" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pay_type" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bhr_pay_hist_std_gross" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<sortField name="job_cd"/>
+	<variable name="sum_c_std_pay" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[($F{pay_type}.equals( "3" ) || $F{pay_type}.equals( "4" ))?
+(
+$F{xmital_hrs_wrk}.doubleValue() != 0 ?
+new Double(net.esc20.txeis.EmployeeAccess.util.NumberUtil.round(($F{xmital_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue()),2)):
+new Double(net.esc20.txeis.EmployeeAccess.util.NumberUtil.round(($F{reg_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue()),2))
+):
+(
+$F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
+)]]></variableExpression>
+	</variable>
+	<variable name="c_std_pay" class="java.lang.Double">
+		<variableExpression><![CDATA[($F{pay_type}.equals( "3" ) || $F{pay_type}.equals( "4" ))?
+(
+$F{xmital_hrs_wrk}.doubleValue() != 0 ?
+new Double(net.esc20.txeis.EmployeeAccess.util.NumberUtil.round($F{xmital_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue(),2)):
+new Double(net.esc20.txeis.EmployeeAccess.util.NumberUtil.round($F{reg_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue(),2))
+):
+(
+$F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
+)]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band height="15">
+			<staticText>
+				<reportElement key="staticText" x="2" y="2" width="141" height="11" backcolor="#C0C0C0" uuid="912d52a3-6185-4cf4-99de-254341b2e0c5"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Job Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="195" y="2" width="52" height="11" backcolor="#C0C0C0" uuid="1962ed95-0cf9-4354-80b3-5adbc1deadd6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Pay Rate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="145" y="2" width="48" height="11" backcolor="#C0C0C0" uuid="02bc1431-7e06-42d9-94af-11619625f0a9"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Units]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="249" y="2" width="65" height="11" backcolor="#C0C0C0" uuid="3787c004-4124-4d84-8381-83d4539ad9bd"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[This Period]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="13" width="141" height="1" uuid="2db71fa4-a384-41fa-a337-7cb067ea7b58"/>
+			</line>
+			<line>
+				<reportElement x="145" y="13" width="48" height="1" uuid="bd3235ce-84f2-4784-b060-25bcba9a501d"/>
+			</line>
+			<line>
+				<reportElement x="195" y="13" width="52" height="1" uuid="89fac33e-7f43-45f9-8e4c-f3ed71f49adc"/>
+			</line>
+			<line>
+				<reportElement x="249" y="13" width="65" height="1" uuid="1663e569-b26c-4cce-94f9-f9277f1dae37"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="12">
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="2" y="1" width="141" height="11" backcolor="#C0C0C0" uuid="36a8587a-8e24-451c-98f2-4c262f7c9320"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{display}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="195" y="1" width="52" height="11" backcolor="#C0C0C0" uuid="c0012456-8cd5-4105-88f6-1f3b38ed8adb"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pay_rate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="145" y="1" width="48" height="11" backcolor="#C0C0C0" uuid="e1dc958f-7681-4cdb-92e1-fad100fb33a2">
+					<printWhenExpression><![CDATA[($F{pay_type}.equals( "3" ) || $F{pay_type}.equals( "4" ))? new Boolean(true):new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{xmital_hrs_wrk}.doubleValue() == 0 ? $F{reg_hrs_wrk}:$F{xmital_hrs_wrk}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="248" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="790f8822-baad-44c1-ad15-0ae8f38b80cc"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{pay_type}.equals( "3" ) || $F{pay_type}.equals( "4" ))?
+(
+$F{xmital_hrs_wrk}.doubleValue() != 0 ?
+new Double(net.esc20.txeis.EmployeeAccess.util.NumberUtil.round($F{xmital_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue(),2)):
+new Double(net.esc20.txeis.EmployeeAccess.util.NumberUtil.round($F{reg_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue(),2))
+):
+$F{pay_rate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<summary>
+		<band height="26">
+			<staticText>
+				<reportElement key="staticText" x="5" y="15" width="310" height="11" backcolor="#C0C0C0" uuid="231605f8-7d81-4a3a-8322-5649714b1a2d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[********************************************************************************************************]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="2" y="3" width="106" height="11" backcolor="#C0C0C0" uuid="b295a565-7c53-4a45-9c32-66f30f1db0cb"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Total Standard Gross:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="108" y="3" width="136" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="57466fea-782c-4c5d-94f6-7aaec129bd2b">
+					<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[This dw used by ytd rept also.]]></text>
+			</staticText>
+			<textField pattern="###,###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="246" y="3" width="62" height="11" backcolor="#C0C0C0" uuid="207e3013-d8b0-4b84-b06c-f843683d127e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sum_c_std_pay}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	abstract="true" start-state="checkVersionInfo">
+	
+	<on-start>
+		<evaluate result="flowScope.options" expression="optionsDao.getOptions()"/>
+	</on-start>
+	
+	<decision-state id="checkVersionInfo">
+		<if test = "externalContext.sessionMap.versionInfo == null" then="createVersionInfo" else="checkHelpURL"/>
+	</decision-state>
+
+	<decision-state id="checkHelpURL">
+		<if test = "externalContext.sessionMap.helpURL == null" then="getHelpURL" else="checkTempPass"/>
+	</decision-state>
+	
+	<decision-state id="checkTempPass">
+		<if test = "externalContext.sessionMap.usedTempPass == true" then="changePassword" else="checkEapPermission"/>
+	</decision-state>
+	
+	<decision-state id="checkEapPermission">
+		<if test="flowScope.options.enableEmployeeAccessSystem" then="checkPermission" else="noAccess"/>
+	</decision-state>
+	
+	<subflow-state id="changePassword" subflow="self/change/changeParent">
+		<transition to="passwordSuccess"/>
+	</subflow-state>
+
+	<action-state id="passwordSuccess">
+		<evaluate expression="passwordService.addPasswordSuccessMessage(messageContext)"/>
+		<transition to="startView"/>
+	</action-state>
+	
+	<action-state id="createVersionInfo">
+		<evaluate result="externalContext.sessionMap.versionInfo" expression="versionService.createVersionInfo('EmployeeAccess.war')"/>
+		<transition to="checkHelpURL"/>
+	</action-state>
+
+	<action-state id="getHelpURL">
+		<evaluate result="externalContext.sessionMap.helpURL" expression="versionService.getHelpURL()"/>
+		<transition to="checkTempPass"/>
+	</action-state>
+
+	<view-state id="noAccess" view="noAccess"></view-state>
+</flow>

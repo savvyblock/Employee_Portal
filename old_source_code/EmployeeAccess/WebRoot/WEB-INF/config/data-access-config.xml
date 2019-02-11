@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	  <property name="dataSource" ref="datasource"/>
+	</bean>
+
+	<!-- enable the configuration of transactional behavior based on annotations -->
+  	<tx:annotation-driven transaction-manager="txManager"/>
+  	
+  	<!-- DAO Configurations -->
+  	
+  	<bean id ="authorityDao" class = "net.esc20.txeis.EmployeeAccess.dao.AuthorityDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id ="earningsDao" class = "net.esc20.txeis.EmployeeAccess.dao.EarningsDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id ="userDao" class = "net.esc20.txeis.EmployeeAccess.dao.UserDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id ="passwordDao" class = "net.esc20.txeis.EmployeeAccess.dao.PasswordDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+
+	<!-- <bean id="reportParametersDao" class="net.esc20.txeis.common.dao.ReportParametersDao">
+		<property name="dataSource" ref="datasource" />
+	</bean> -->
+
+	<bean id="optionsDao" class="net.esc20.txeis.EmployeeAccess.dao.OptionsDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+
+	<bean id="calendarDao" class="net.esc20.txeis.EmployeeAccess.dao.CalendarDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id="jobDao" class="net.esc20.txeis.EmployeeAccess.dao.JobDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id="sickPayDao" class="net.esc20.txeis.EmployeeAccess.dao.SickPayDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id="stipendDao" class="net.esc20.txeis.EmployeeAccess.dao.StipendDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+
+	<bean id="w2Dao" class="net.esc20.txeis.EmployeeAccess.dao.W2Dao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id="leaveDao" class="net.esc20.txeis.EmployeeAccess.dao.LeaveDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id="deductionDao" class="net.esc20.txeis.EmployeeAccess.dao.DeductionDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id="payDao" class="net.esc20.txeis.EmployeeAccess.dao.PayDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id="payrollDao" class="net.esc20.txeis.EmployeeAccess.dao.PayrollDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id="referenceDataDao" class="net.esc20.txeis.EmployeeAccess.dao.ReferenceDataDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id="demoDao" class="net.esc20.txeis.EmployeeAccess.dao.DemoDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id="payrollAccountDao" class="net.esc20.txeis.EmployeeAccess.dao.PayrollAccountDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id="employeeDao" class="net.esc20.txeis.EmployeeAccess.dao.EmployeeDao">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+	
+	<bean id="txeisPreferenceDAO" class="net.esc20.txeis.EmployeeAccess.dao.TxeisPreferenceDao" >
+	    	<property name="dataSource" ref="datasource" />
+	</bean>	    	
+</beans>

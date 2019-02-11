@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+						   http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+
+	<bean id="versionService" class="net.esc20.txeis.EmployeeAccess.service.VersionService">
+		<property name="displayBuild" value="$txeis{displayBuild}" />
+	</bean>
+	
+	<bean id="jasperReportService" class="net.esc20.txeis.EmployeeAccess.service.report.JasperReportService">
+		<property name="dataSource" ref="datasource" />
+		<property name="reportPath" value="reports" />
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="datasource"/>
+	</bean>
+	
+	<bean id="demoServiceTx" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+	    <property name="transactionManager"><ref bean="transactionManager"/></property>
+	    <property name="target"><ref bean="demoService"/></property>
+	    <property name="transactionAttributes">
+	        <props>
+	            <prop key="saveDemo">PROPAGATION_REQUIRED,-Exception</prop>
+	        </props>
+	    </property>
+	</bean>
+	
+	<bean id="demoService" class="net.esc20.txeis.EmployeeAccess.service.DemoService">
+		<property name="demoDao" ref="demoDao" />
+		<property name="optionsDao" ref="optionsDao" />
+		<property name="mailUtilService" ref="mailUtilService"/>
+	</bean>
+	
+	
+	<bean id="payrollService" class="net.esc20.txeis.EmployeeAccess.service.PayrollService">
+		<property name="payrollDao" ref="payrollDao" />
+		<property name="optionsDao" ref="optionsDao" />
+		<property name="payDao" ref="payDao" />
+		<property name="payrollAccountDao" ref="payrollAccountDao" />
+		<property name="mailUtilService" ref="mailUtilService"/>
+	</bean>
+	
+	<bean id="referenceDataService" class="net.esc20.txeis.EmployeeAccess.service.ReferenceDataService">
+		<property name="referenceDataDao" ref="referenceDataDao" />
+	</bean>
+	
+	<bean id="mailUtilService" class="net.esc20.txeis.EmployeeAccess.service.MailUtilService">
+		<property name="preferences" ref="preferenceFactory" />
+	</bean>
+	
+    <bean id="preferenceFactory" class="net.esc20.txeis.EmployeeAccess.domainobject.RoutedPreferenceFactory">
+		<property name="txeisPreferenceDAO" ref="txeisPreferenceDAO" />
+	</bean>
+    
+</beans>

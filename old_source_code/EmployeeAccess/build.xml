@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<project name="TxEIS_EmployeeAccess" default="deploy">
+
+<!-- Ant Setup *********************************************************** -->
+
+		<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+	
+		<target name="source" depends="deployment-source, production-source" >
+			<retrieve-from-starteam projectName="EmployeeAccess" />
+		</target>
+
+		<target name="deployment-source" unless="releaseBuild">
+			<exec dir="." executable="${starteam.location}/bco.bat" failonerror="true">
+				
+				<!-- Server location -->
+				<arg value="-p" /><arg value="${starteamServer.baseUrl}/EmployeeAccess/EmployeeAccess" />
+				
+				<!-- Workspace location -->
+				<arg value="-rp" /><arg value="${EmployeeAccess.location}/src/EmployeeAccess" />
+				
+				<!-- Recursive -->
+				<arg value="-is" />
+				
+				<!-- Force -->
+				<arg value="-o" />
+			</exec>
+		</target>
+		
+		<target name="production-source" if="releaseBuild">
+			<exec dir="." executable="${starteam.location}/stcmd.exe" failonerror="false">
+				<!-- Create a label -->
+				<arg value="label" />
+				
+				<!-- Server location -->
+				<arg value="-p" /><arg value="${starteamServer.baseUrl}/EmployeeAccess/EmployeeAccess" />
+				
+				<!-- Workspace location -->
+				<arg value="-nl" /><arg value="Version: ${version} Build: ${label}" />
+				
+				<!-- This is a build label -->
+				<arg value="-b" />
+			</exec>
+			
+			<delete>
+				<fileset dir="${EmployeeAccess.location}/src/EmployeeAccess" excludes="build.xml" />
+			</delete>
+			
+			<exec dir="." executable="${starteam.location}/bco.bat" failonerror="true">
+				
+				<!-- Server location -->
+				<arg value="-p" /><arg value="${starteamServer.baseUrl}/EmployeeAccess/EmployeeAccess" />
+				
+				<!-- Workspace location -->
+				<arg value="-rp" /><arg value="${EmployeeAccess.location}/src/EmployeeAccess" />
+				
+				<!-- Version Label -->
+				<arg value="-cfgl" /><arg value="Version: ${version} Build: ${label}" />
+				
+				<!-- Recursive -->
+				<arg value="-is" />
+				
+				<!-- Force -->
+				<arg value="-o" />
+			</exec>
+		</target>
+
+		<macrodef name="retrieve-from-starteam">
+			<attribute name="projectName" />
+			<attribute name="projectLocation" default="${EmployeeAccess.location}" />
+			<sequential>
+				<if>
+					<isset property="releaseBuild" />
+					<then>
+						<retrieve-from-starteam-production 
+							projectName="EmployeeAccess" projectLocation="${EmployeeAccess.location}" />
+					</then>
+					<else>
+						<retrieve-from-starteam-development
+							projectName="EmployeeAccess" projectLocation="${EmployeeAccess.location}" />
+					</else>
+				</if>
+			</sequential>
+		</macrodef>
+		
+		<macrodef name="retrieve-from-starteam-production">
+			<attribute name="projectName" />
+			<attribute name="projectLocation" />
+			<sequential>
+				<exec dir="." executable="${starteam.location}/stcmd.exe" failonerror="false">
+					<!-- Create a label -->
+					<arg value="label" />
+					
+					<!-- Server location -->
+					<arg value="-p" /><arg value="${starteamServer.baseUrl}/EmployeeAccess/EmployeeAccess" />
+					
+					<!-- Workspace location -->
+					<arg value="-nl" /><arg value="Version: ${version} Build: ${label}" />
+					
+					<!-- This is a build label -->
+					<arg value="-b" />
+				</exec>
+				
+				<delete>
+					<fileset dir="@{projectLocation}/src/EmployeeAccess" excludes="build.xml" />
+				</delete>
+				
+				<exec dir="." executable="${starteam.location}/bco.bat" failonerror="true">
+					
+					<!-- Server location -->
+					<arg value="-p" /><arg value="${starteamServer.baseUrl}/EmployeeAccess/EmployeeAccess" />
+					
+					<!-- Workspace location -->
+					<arg value="-rp" /><arg value="@{projectLocation}/src/EmployeeAccess" />
+					
+					<!-- Version Label -->
+					<arg value="-cfgl" /><arg value="Version: ${version} Build: ${label}" />
+					
+					<!-- Recursive -->
+					<arg value="-is" />
+					
+					<!-- Force -->
+					<arg value="-o" />
+				</exec>
+			</sequential>
+		</macrodef>
+		
+		
+		<macrodef name="retrieve-from-starteam-development">
+			<attribute name="projectName" />
+			<attribute name="projectLocation" />
+			<sequential>
+			
+				<delete>
+					<fileset dir="@{projectLocation}/src/EmployeeAccess" excludes="build.xml" />
+				</delete>
+			
+				<exec dir="." executable="${starteam.location}/bco.bat" failonerror="true">
+					
+					<!-- Server location -->
+					<arg value="-p" /><arg value="${starteamServer.baseUrl}/EmployeeAccess/EmployeeAccess" />
+					
+					<!-- Workspace location -->
+					<arg value="-rp" /><arg value="@{projectLocation}/src/EmployeeAccess" />
+					
+					<!-- Recursive -->
+					<arg value="-is" />
+					
+					<!-- Force -->
+					<arg value="-o" />
+				</exec>
+			</sequential>
+		</macrodef>
+
+	
+<!-- ********************************************************************* -->
+
+	<target name="deploy" depends="war">
+		<delete file="${server.location}/deploy/EmployeeAccess.war" />
+		<copy tofile="${server.location}/deploy/EmployeeAccess.war" file="${EmployeeAccess.location}/output/EmployeeAccess.war" />
+	</target>
+
+	<target name="war" depends="optimized-WebRoot, help">
+		<delete file="${EmployeeAccess.location}/output/EmployeeAccess.war" />
+		<war basedir="${EmployeeAccess.location}/output/WebRoot" 
+			destfile="${EmployeeAccess.location}/output/EmployeeAccess.war"
+			manifest="${EmployeeAccess.location}/output/WebRoot/META-INF/MANIFEST.MF" />
+	</target>
+	
+	<target name="help" if="employeeHelp">
+		<delete dir="${EmployeeAccess.location}/output/WebRoot/WebHelp" />
+		<mkdir dir="${EmployeeAccess.location}/output/WebRoot/WebHelp" />
+		<copy todir="${EmployeeAccess.location}/output/WebRoot/WebHelp">
+			<fileset dir="${employeeHelp}" />
+		</copy>
+	</target>
+
+	<target name="optimized-WebRoot" depends="WebRoot"  if="alternateTheme">
+		<delete file="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes/eaTheme.properties" />
+		<delete file="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes/districtIcons.properties" />
+		<delete file="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes/mailServer.properties" />
+	</target>
+
+	<target name="WebRoot" depends="source, libraryFiles">
+		<delete dir="${EmployeeAccess.location}/output/WebRoot" />
+		<mkdir dir="${EmployeeAccess.location}/output/WebRoot" />
+		
+		<copy todir="${EmployeeAccess.location}/output/WebRoot">
+			<fileset dir="${EmployeeAccess.location}/src/EmployeeAccess/WebRoot" />
+		</copy>
+		
+		<copy tofile="${EmployeeAccess.location}/output/WebRoot/WEB-INF/lib/txeisTLDs.jar" 
+			file="${txeisCommon.location}/output/txeisTLDs.jar" />
+		<copy tofile="${EmployeeAccess.location}/output/WebRoot/WEB-INF/lib/txeisCommon.jar" 
+			file="${txeisCommon.location}/output/txeisCommon.jar" />
+		<copy todir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/lib">
+			<fileset dir="${libraryFiles.location}/jar" excludes="log4j*, commons-logging*" />
+		</copy>
+		
+		<mkdir dir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes" />
+		
+		<copy todir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes">
+			<fileset dir="${EmployeeAccess.location}/src/EmployeeAccess/src" excludes="**/*.java" />
+		</copy>
+		
+		<javac debug="${debug}" debuglevel="${debuglevel}" source="${javaversion}" target="${javaversion}" destdir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes">
+			<src path="${EmployeeAccess.location}/src/EmployeeAccess/src" />
+			<classpath>
+				<fileset dir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/lib" />
+				<fileset dir="${server.location}/lib" />
+				<fileset dir="${jboss.location}/lib" />
+				<fileset dir="${jboss.location}/lib/endorsed" />
+				<fileset dir="${jboss.location}/common/lib" />
+			</classpath>
+		</javac>
+		
+		<mkdir dir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes/META-INF" />
+		<copy todir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/classes/META-INF">
+			<fileset dir="${EmployeeAccess.location}/src/EmployeeAccess/src/META-INF" />
+		</copy>
+		
+		<replace file="${EmployeeAccess.location}/output/WebRoot/META-INF/MANIFEST.MF" token="{Development}" value="${label}" />
+		<replace file="${EmployeeAccess.location}/output/WebRoot/META-INF/MANIFEST.MF" token="{Version}" value="${version}" />
+		
+	</target>
+
+	<target name="libraryFiles">
+		<ant antfile="${libraryFiles.makeFile}" />
+	</target>
+
+	
+<!-- ********************************************************************* -->
+
+	<target name="classes-debug" depends="source, libraryFiles">
+		<delete dir="${EmployeeAccess.location}/output/classes-debug" />
+		<mkdir dir="${EmployeeAccess.location}/output/classes-debug" />
+		
+		<javac debug="true" debuglevel="source,lines,vars"
+				source="${javaversion}" target="${javaversion}" destdir="${EmployeeAccess.location}/output/classes-debug">
+			<src path="${EmployeeAccess.location}/src/EmployeeAccess/src" />
+			<classpath>
+				<fileset dir="${libraryFiles.location}/jar" />
+				<fileset file="${txeisCommon.location}/output/txeisCommon.jar" />
+				<fileset dir="${server.location}/lib" />
+				<fileset dir="${jboss.location}/lib" />
+				<fileset dir="${jboss.location}/lib/endorsed" />
+				<fileset dir="${jboss.location}/common/lib" />
+			</classpath>
+		</javac>
+	</target>
+
+<!-- Fortify ************************************************************* -->
+
+	<typedef name="sourceanalyzer" classname="com.fortify.dev.ant.SourceanalyzerTask" onerror="ignore" />
+	
+	<property name="sourceanalyzer.buildid" value="EmployeeAccess" />
+	
+	<target name="fortify-report" depends="fortify-WebRoot">
+		<delete dir="${EmployeeAccess.location}/report/Fortify" />
+		<mkdir dir="${EmployeeAccess.location}/report/Fortify" />
+		
+		<sourceanalyzer buildid="${sourceanalyzer.buildid}"
+			scan="true" resultsfile="${EmployeeAccess.location}/report/Fortify/security_fortify.fpr"  />
+	</target>
+	
+	<target name="fortify-WebRoot">
+		<antcall target="WebRoot">
+			<param name="build.compiler" value="com.fortify.dev.ant.SCACompiler" />
+		</antcall>
+		
+		<sourceanalyzer buildid="${sourceanalyzer.buildid}">
+			<fileset dir="${EmployeeAccess.location}/output/WebRoot">
+				<include name="**/*.jsp" />
+				<include name="**/*.js" />
+				<include name="**/*.vm" />
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+			</fileset>
+			<classpath>
+				<fileset dir="${EmployeeAccess.location}/output/WebRoot/WEB-INF/lib" />
+				<pathelement location="${server.location}/lib/javax.servlet.jar" />
+			</classpath>
+		</sourceanalyzer>
+	</target>
+
+</project>

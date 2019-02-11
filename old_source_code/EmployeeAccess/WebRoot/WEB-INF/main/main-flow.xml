@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	parent="abstract" >
+	
+	<on-start>
+		<evaluate result="flowScope.message" expression="optionsDao.options.messageEmployeeAccessSystem"/>
+	</on-start>
+	
+	<decision-state id="checkPermission">
+		<if test="!flowScope.options.enableEmployeeAccessSystem" then="noAccess" else="startView"/>
+	</decision-state>
+	
+	<view-state id="main" view="main">
+
+	</view-state>
+	
+	<action-state id="startView">
+		<set name="flowScope.dummyVariable" value="true"></set>
+		<transition to="main"/>
+	</action-state>
+	
+</flow>

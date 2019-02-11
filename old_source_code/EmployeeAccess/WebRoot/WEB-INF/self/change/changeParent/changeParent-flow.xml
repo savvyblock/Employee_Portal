@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	abstract="false">
+	
+	<var name="changePassword" class="net.esc20.txeis.EmployeeAccess.domainobject.User" />
+	
+	<view-state id="changePasswordInfo" view="change" model="changePassword">
+		<transition on="submit" to="submit" bind="true" validate="false">
+			<render fragments="body" />
+		</transition>
+	</view-state>
+	
+	<action-state id="submit">
+		<evaluate expression="passwordService.changePassword(messageContext, changePassword, externalContext.sessionMap.currentUser_userName, externalContext.sessionMap.currentUser_firstName, externalContext.sessionMap.currentUser_lastName, externalContext.sessionMap.currentUser_workEmail, externalContext.sessionMap.currentUser_homeEmail)" result="flowScope.saveSuccess"/>
+		<transition to="isSubmitSuccessful" />
+	</action-state>
+	
+	<decision-state id="isSubmitSuccessful">
+		<if test = "flowScope.saveSuccess" then="resetTempPass" else="changePasswordInfo"/>
+	</decision-state>
+	
+	
+	<action-state id="resetTempPass">
+		<set name="externalContext.sessionMap.usedTempPass" value="false"/>
+		<transition to="submitSuccess" />
+	</action-state>
+	
+	<end-state id="submitSuccess"/>
+	
+</flow>

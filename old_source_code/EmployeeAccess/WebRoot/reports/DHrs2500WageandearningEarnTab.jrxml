@@ -1,0 +1,1540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningEarnTab" pageWidth="282" pageHeight="792" columnWidth="282" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="34ff9a40-5fd7-4126-a3b4-a0b92250b022">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="vs_calyear" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_payfreq" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_empnbr" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_dtofpay" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_drctdeposit" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_void_iss" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_chk_nbr" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_adj_nbr" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT distinct bhr_pay_hist.std_gross as bhr_pay_hist_std_gross,
+         isnull(bhr_cal_ytd.noncontr_amt,0) as bhr_cal_ytd_noncontr_amt,
+         isnull(bhr_cal_ytd.contr_amt,0) as bhr_cal_ytd_contr_amt,
+         bhr_pay_hist.extra_duty_gross as bhr_pay_hist_extra_duty_gross,
+         isnull(bhr_cal_ytd.suppl_pay_amt,0) as bhr_cal_ytd_suppl_pay_amt,
+         bhr_pay_hist.ovtm_gross as bhr_pay_hist_ovtm_gross,
+         bhr_pay_hist.abs_ded_amt as bhr_pay_hist_abs_ded_amt,
+         bhr_pay_hist.abs_ded_refund as bhr_pay_hist_abs_ded_refund,
+         bhr_pay_hist.abs_ded_coded as bhr_pay_hist_abs_ded_coded,
+         bhr_pay_hist.gross_pay_tot as bhr_pay_hist_gross_pay_tot,
+         bhr_pay_hist.annuity_ded as bhr_pay_hist_annuity_ded,
+         bhr_pay_hist.cafe_amt as bhr_pay_hist_cafe_amt,
+         bhr_pay_hist.trs_salary_red as bhr_pay_hist_trs_salary_red,
+         isnull(bhr_cal_ytd.nontrs_bus_allow,0) as bhr_cal_ytd_nontrs_bus_allow,
+         bhr_pay_hist.emp_457 as bhr_pay_hist_emp_457,
+         isnull(bhr_cal_ytd.annuity_ded,0) as bhr_cal_ytd_annuity_ded,
+         isnull(bhr_cal_ytd.cafe_amt,0) as bhr_cal_ytd_cafe_amt,
+         isnull(bhr_cal_ytd.emp_457_contrib,0) as bhr_cal_ytd_emp_457_contrib,
+         bhr_pay_hist.wh_gross as bhr_pay_hist_wh_gross,
+         isnull(bhr_cal_ytd.wh_gross,0) as bhr_cal_ytd_wh_gross,
+         bhr_pay_hist.misc_ded_amt as bhr_pay_hist_misc_ded_amt,
+         bhr_pay_hist.wh_tax as bhr_pay_hist_wh_tax,
+         isnull(bhr_cal_ytd.wh_tax,0) as bhr_cal_ytd_wh_tax,
+         bhr_pay_hist.fica_tax as bhr_pay_hist_fica_tax,
+         isnull(bhr_cal_ytd.fica_tax,0) as bhr_cal_ytd_fica_tax,
+         bhr_pay_hist.med_tax as bhr_pay_hist_med_tax,
+         isnull(bhr_cal_ytd.med_tax,0) as bhr_cal_ytd_med_tax,
+         bhr_pay_hist.eic_amt as bhr_pay_hist_eic_amt,
+         isnull(bhr_cal_ytd.eic_amt,0) as bhr_cal_ytd_eic_amt,
+         bhr_pay_hist.net_pay as bhr_pay_hist_net_pay,
+         bhr_pay_hist.emplr_non_annuity_contrib as bhr_pay_hist_emplr_non_annuity_contrib,
+         bhr_pay_hist.emplr_annuity_contrib as bhr_pay_hist_emplr_annuity_contrib,
+         bhr_pay_hist.emplr_457 as bhr_pay_hist_emplr_457,
+         bhr_pay_hist.fica_gross as bhr_pay_hist_fica_gross,
+         isnull(bhr_cal_ytd.fica_gross,0) as bhr_cal_ytd_fica_gross,
+         bhr_pay_hist.med_gross as bhr_pay_hist_med_gross,
+         isnull(bhr_cal_ytd.med_gross,0) as bhr_cal_ytd_med_gross,
+         bhr_pay_hist.trs_deposit as bhr_pay_hist_trs_deposit,
+         tot_addl_ded = sum(case when isnull(bthr_deduc_cd.ded_abbrev_typ, '') = 'WH' then 0
+                                 when bhr_pay_deduct_hist.refund_flg = 'Y'
+				 then bhr_pay_deduct_hist.ded_amt * -1
+                                 else bhr_pay_deduct_hist.ded_amt end ),
+         tot_other_ded = sum(bhr_pay_deduct_hist.ded_amt),
+         bhr_pay_hist.trs_suppl_comp as bhr_pay_hist_trs_suppl_comp,
+         isnull(bhr_cal_ytd.trs_suppl_comp,0) as bhr_cal_ytd_trs_suppl_comp,
+         ( bhr_pay_hist.nontrs_bus_allow + bhr_pay_hist.nontrs_reimbr_excess ) as non_trs_tax_pymt_amt,
+	 ( bhr_pay_hist.nontrs_reimbr_base + bhr_pay_hist.nontrs_nontax_bus_allow) as non_trs_nontax_pymt_amt,
+         bhr_pay_hist.taxed_benefits as bhr_pay_hist_taxed_benefits,
+         isnull(bhr_cal_ytd.nontrs_nontax_bus_allow,0) as bhr_cal_ytd_nontrs_nontax_bus_allow,
+         isnull(bhr_cal_ytd.tax_emplr_life,0) as bhr_cal_ytd_tax_emplr_life,
+     	 isnull(bhr_cal_ytd.tax_emplr_life_grp,0) as bhr_cal_ytd_tax_emplr_life_grp,
+	 isnull(bhr_cal_ytd.withdraw_457,0) as bhr_cal_ytd_withdraw_457,
+         isnull(bhr_cal_ytd.taxed_benefits,0) as bhr_cal_ytd_taxed_benefits,
+	 bhr_pay_hist.trs_salary_red as bhr_pay_hist_trs_salary_red_1,
+	 isnull(bhr_cal_ytd.trs_salary_red,0) as bhr_cal_ytd_trs_salary_red,
+	 trs_ins_amt =  (bhr_pay_hist.trs_deposit - bhr_pay_hist.trs_salary_red),
+	 isnull(bhr_cal_ytd.trs_deposit,0) as bhr_cal_ytd_trs_deposit,
+         isnull(bhr_cal_ytd.nontrs_reimbr_excess,0) as bhr_cal_ytd_nontrs_reimbr_excess,
+         isnull(bhr_cal_ytd.nontrs_reimbr_base,0) as bhr_cal_ytd_nontrs_reimbr_base,
+         bhr_pay_hist.nontrs_nonpay_bus_allow as bhr_pay_hist_nontrs_nonpay_bus_allow,
+         isnull(bhr_cal_ytd.nontrs_nonpay_bus_allow,0) as bhr_cal_ytd_nontrs_nonpay_bus_allow,
+         bhr_pay_hist.nontrs_nontax_nonpay_allow as bhr_pay_hist_nontrs_nontax_nonpay_allow,
+         isnull(bhr_cal_ytd.nontrs_nontax_nonpay_allow,0) as bhr_cal_ytd_nontrs_nontax_nonpay_allow,
+         bhr_pay_hist.nontrs_nontax_bus_allow as bhr_pay_hist_nontrs_nontax_bus_allow,
+         bhr_pay_hist.nontrs_suppl as bhr_pay_hist_nontrs_suppl,
+         tot_ytd_ded = isnull((select sum(case when isnull(ytd_ded_cd.ded_abbrev_typ, '') = 'WH' then 0
+						 when ytd_ded.refund_flg = 'Y'
+						 then ytd_ded.ded_amt * -1
+						 else ytd_ded.ded_amt end )
+                              from {oj bhr_pay_deduct_hist ytd_ded left outer join bthr_deduc_cd ytd_ded_cd on
+								ytd_ded.ded_cd = ytd_ded_cd.ded_cd}
+                              where ( ytd_ded.emp_nbr = $P{vs_empnbr} ) and
+				    ( ytd_ded.cyr_nyr_flg = 'C' ) and
+				    ( ytd_ded.pay_freq = $P{vs_payfreq} ) and
+				    ( substr(ytd_ded.dt_of_pay,1,4) = $P{vs_calyear} ) and
+				    ( isnull(ytd_ded_cd.ded_abbrev_typ,'') <> 'WH' ) and
+				    ytd_ded.ded_amt <> 0  and
+				    ((ytd_ded.ded_cd) in ('0CA', '0CD', '0CH', '0CN') or
+				     (substr(ytd_ded.ded_cd, 1, 2) <> '0C'))),0.00),
+	 isnull(bhr_cal_ytd.emplr_prvd_hlthcare,0) as bhr_cal_ytd_emplr_prvd_hlthcare,
+	 prt_hlthcare = case when $P{vs_calyear} > '2010' then 'Y' else 'N' end
+
+    FROM {oj bhr_pay_hist left outer join bhr_cal_ytd on
+			bhr_cal_ytd.cyr_nyr_flg = bhr_pay_hist.cyr_nyr_flg and
+			bhr_cal_ytd.pay_freq = bhr_pay_hist.pay_freq and
+			bhr_cal_ytd.emp_nbr = bhr_pay_hist.emp_nbr and
+			bhr_cal_ytd.cal_yr = $P{vs_calyear}},
+         {oj bhr_pay_deduct_hist left outer join bthr_deduc_cd on
+			bhr_pay_deduct_hist.ded_cd = bthr_deduc_cd.ded_cd}
+   WHERE bhr_pay_hist.cyr_nyr_flg = 'C' and
+	 bhr_pay_hist.pay_freq = $P{vs_payfreq} and
+	 bhr_pay_hist.emp_nbr = $P{vs_empnbr} and
+	 bhr_pay_hist.dt_of_pay = $P{vs_dtofpay} and
+	 bhr_pay_hist.drct_deposit_flg = (CASE WHEN LENGTH(TRIM($P{vs_drctdeposit})) = 0
+					       THEN bhr_pay_hist.drct_deposit_flg
+					       ELSE $P{vs_drctdeposit} END) and
+	 bhr_pay_hist.void_or_iss = $P{vs_void_iss} and
+	 bhr_pay_deduct_hist.emp_nbr = bhr_pay_hist.emp_nbr  and
+	 bhr_pay_deduct_hist.cyr_nyr_flg = 'C' and
+	 bhr_pay_deduct_hist.pay_freq = bhr_pay_hist.pay_freq and
+	 bhr_pay_deduct_hist.dt_of_pay = bhr_pay_hist.dt_of_pay and
+         bhr_pay_deduct_hist.void_or_iss = bhr_pay_hist.void_or_iss and
+         bhr_pay_hist.chk_nbr = $P{vs_chk_nbr}  and
+         bhr_pay_deduct_hist.chk_nbr = bhr_pay_hist.chk_nbr and
+         cast(bhr_pay_hist.adj_nbr as char(3)) =
+		 CASE WHEN isnull(TRIM($P{vs_adj_nbr}), '') = ''
+		      THEN cast(bhr_pay_hist.adj_nbr as char(3))
+		      ELSE $P{vs_adj_nbr} END and
+    	 bhr_pay_hist.adj_nbr = bhr_pay_deduct_hist.adj_nbr and
+         (( bhr_pay_deduct_hist.ded_cd in ('0CA', '0CD', '0CH', '0CN')) or
+          ( substr(bhr_pay_deduct_hist.ded_cd, 1, 2) <> '0C' ) )
+
+  group by bhr_pay_hist.std_gross,
+	   bhr_cal_ytd.noncontr_amt,
+           bhr_cal_ytd.contr_amt,
+           bhr_pay_hist.extra_duty_gross,
+           bhr_cal_ytd.suppl_pay_amt,
+           bhr_pay_hist.ovtm_gross,
+           bhr_pay_hist.abs_ded_amt,
+           bhr_pay_hist.abs_ded_refund,
+           bhr_pay_hist.abs_ded_coded,
+           bhr_pay_hist.gross_pay_tot,
+           bhr_cal_ytd.nontrs_nontax_bus_allow,
+           bhr_pay_hist.annuity_ded,
+           bhr_pay_hist.cafe_amt,
+           bhr_pay_hist.trs_salary_red,
+           bhr_cal_ytd.nontrs_bus_allow,
+           bhr_pay_hist.emp_457,
+           bhr_cal_ytd.annuity_ded,
+           bhr_cal_ytd.cafe_amt,
+           bhr_cal_ytd.trs_salary_red,
+           bhr_cal_ytd.emp_457_contrib,
+           bhr_pay_hist.wh_gross,
+           bhr_cal_ytd.wh_gross,
+           bhr_pay_hist.misc_ded_amt,
+           bhr_pay_hist.wh_tax,
+           bhr_cal_ytd.wh_tax,
+           bhr_pay_hist.fica_tax,
+           bhr_cal_ytd.fica_tax,
+           bhr_pay_hist.med_tax,
+           bhr_cal_ytd.med_tax,
+           bhr_pay_hist.eic_amt,
+           bhr_cal_ytd.eic_amt,
+           bhr_pay_hist.net_pay,
+           bhr_pay_hist.emplr_non_annuity_contrib,
+           bhr_pay_hist.emplr_annuity_contrib,
+           bhr_pay_hist.emplr_457,
+           bhr_pay_hist.fica_gross,
+           bhr_cal_ytd.fica_gross,
+           bhr_pay_hist.med_gross,
+           bhr_cal_ytd.med_gross,
+	   bhr_pay_hist.trs_deposit,
+           bhr_pay_hist.trs_suppl_comp,
+           bhr_cal_ytd.trs_suppl_comp,
+           bhr_pay_hist.taxed_benefits,
+           bhr_cal_ytd.nontrs_nontax_bus_allow,
+	   bhr_pay_hist.nontrs_bus_allow,
+	   bhr_cal_ytd.tax_emplr_life,
+	   bhr_cal_ytd.tax_emplr_life_grp,
+	   bhr_cal_ytd.withdraw_457,
+           bhr_cal_ytd.taxed_benefits,
+ 	   bhr_pay_hist.nontrs_reimbr_excess,
+	   bhr_pay_hist.nontrs_suppl,
+           bhr_pay_hist.nontrs_nonpay_bus_allow,
+           bhr_pay_hist.nontrs_nontax_nonpay_allow,
+           bhr_pay_hist.nontrs_reimbr_base,
+	   bhr_pay_hist.nontrs_nontax_bus_allow,
+	   bhr_cal_ytd.trs_deposit,
+           bhr_cal_ytd.nontrs_reimbr_excess,
+           bhr_cal_ytd.nontrs_reimbr_base,
+           bhr_pay_hist.nontrs_nonpay_bus_allow,
+           bhr_cal_ytd.nontrs_nonpay_bus_allow,
+           bhr_pay_hist.nontrs_nontax_nonpay_allow,
+           bhr_cal_ytd.nontrs_nontax_nonpay_allow,
+           bhr_pay_hist.nontrs_nontax_bus_allow,
+           bhr_pay_hist.nontrs_suppl,
+	   bhr_cal_ytd.emplr_prvd_hlthcare
+
+union SELECT distinct bhr_pay_hist.std_gross,
+         isnull(bhr_cal_ytd.noncontr_amt,0) as bhr_cal_ytd_noncontr_amt,
+         isnull(bhr_cal_ytd.contr_amt,0) as bhr_cal_ytd_contr_amt,
+         bhr_pay_hist.extra_duty_gross,
+         isnull(bhr_cal_ytd.suppl_pay_amt,0) as bhr_cal_ytd_suppl_pay_amt,
+         bhr_pay_hist.ovtm_gross,
+         bhr_pay_hist.abs_ded_amt,
+         bhr_pay_hist.abs_ded_refund,
+         bhr_pay_hist.abs_ded_coded,
+         bhr_pay_hist.gross_pay_tot,
+         bhr_pay_hist.annuity_ded,
+         bhr_pay_hist.cafe_amt,
+         bhr_pay_hist.trs_salary_red,
+         isnull(bhr_cal_ytd.nontrs_bus_allow,0) as bhr_cal_ytd_nontrs_bus_allow,
+         bhr_pay_hist.emp_457,
+         isnull(bhr_cal_ytd.annuity_ded,0) as bhr_cal_ytd_annuity_ded,
+         isnull(bhr_cal_ytd.cafe_amt,0) as bhr_cal_ytd_cafe_amt,
+         isnull(bhr_cal_ytd.emp_457_contrib,0) as bhr_cal_ytd_emp_457_contrib,
+         bhr_pay_hist.wh_gross,
+         isnull(bhr_cal_ytd.wh_gross,0) as bhr_cal_ytd_wh_gross,
+         bhr_pay_hist.misc_ded_amt,
+         bhr_pay_hist.wh_tax,
+         isnull(bhr_cal_ytd.wh_tax,0) as bhr_cal_ytd_wh_tax,
+         bhr_pay_hist.fica_tax,
+         isnull(bhr_cal_ytd.fica_tax,0) as bhr_cal_ytd_fica_tax,
+         bhr_pay_hist.med_tax,
+         isnull(bhr_cal_ytd.med_tax,0) as bhr_cal_ytd_med_tax,
+         bhr_pay_hist.eic_amt,
+         isnull(bhr_cal_ytd.eic_amt,0) as bhr_cal_ytd_eic_amt,
+         bhr_pay_hist.net_pay,
+         bhr_pay_hist.emplr_non_annuity_contrib,
+         bhr_pay_hist.emplr_annuity_contrib,
+         bhr_pay_hist.emplr_457,
+         bhr_pay_hist.fica_gross,
+         isnull(bhr_cal_ytd.fica_gross,0) as bhr_cal_ytd_fica_gross,
+         bhr_pay_hist.med_gross,
+         isnull(bhr_cal_ytd.med_gross,0) as bhr_cal_ytd_med_gross,
+         bhr_pay_hist.trs_deposit,
+         tot_addl_ded = 0,
+         tot_other_ded = 0,
+         bhr_pay_hist.trs_suppl_comp,
+         isnull(bhr_cal_ytd.trs_suppl_comp,0) as bhr_cal_ytd_trs_suppl_comp,
+         ( bhr_pay_hist.nontrs_bus_allow + bhr_pay_hist.nontrs_reimbr_excess ) as non_trs_tax_pymt_amt,
+	 ( bhr_pay_hist.nontrs_reimbr_base + bhr_pay_hist.nontrs_nontax_bus_allow) as non_trs_nontax_pymt_amt,
+         bhr_pay_hist.taxed_benefits,
+         isnull(bhr_cal_ytd.nontrs_nontax_bus_allow,0) as bhr_cal_ytd_nontrs_nontax_bus_allow,
+         isnull(bhr_cal_ytd.tax_emplr_life,0) as bhr_cal_ytd_tax_emplr_life,
+     	 isnull(bhr_cal_ytd.tax_emplr_life_grp,0) as bhr_cal_ytd_tax_emplr_life_grp,
+	 isnull(bhr_cal_ytd.withdraw_457,0) as bhr_cal_ytd_withdraw_457,
+         isnull(bhr_cal_ytd.taxed_benefits,0) as bhr_cal_ytd_taxed_benefits,
+	 bhr_pay_hist.trs_salary_red,
+	 isnull(bhr_cal_ytd.trs_salary_red,0) as bhr_cal_ytd_trs_salary_red,
+	 trs_ins_amt =  (bhr_pay_hist.trs_deposit - bhr_pay_hist.trs_salary_red),
+	 isnull(bhr_cal_ytd.trs_deposit,0) as bhr_cal_ytd_trs_deposit,
+         isnull(bhr_cal_ytd.nontrs_reimbr_excess,0) as bhr_cal_ytd_nontrs_reimbr_excess,
+         isnull(bhr_cal_ytd.nontrs_reimbr_base,0) as bhr_cal_ytd_nontrs_reimbr_base,
+         bhr_pay_hist.nontrs_nonpay_bus_allow,
+         isnull(bhr_cal_ytd.nontrs_nonpay_bus_allow,0) as bhr_cal_ytd_nontrs_nonpay_bus_allow,
+         bhr_pay_hist.nontrs_nontax_nonpay_allow,
+         isnull(bhr_cal_ytd.nontrs_nontax_nonpay_allow,0) as bhr_cal_ytd_nontrs_nontax_nonpay_allow,
+         bhr_pay_hist.nontrs_nontax_bus_allow,
+         bhr_pay_hist.nontrs_suppl,
+         tot_ytd_ded = isnull((select sum(case when isnull(ytd_ded_cd.ded_abbrev_typ, '') = 'WH' then 0
+                                 when ytd_ded.refund_flg = 'Y'
+				 then ytd_ded.ded_amt * -1
+                                 else ytd_ded.ded_amt end )
+                              from {oj bhr_pay_deduct_hist ytd_ded left outer join bthr_deduc_cd ytd_ded_cd on
+						 ytd_ded.ded_cd = ytd_ded_cd.ded_cd}
+                              where ( ytd_ded.emp_nbr = $P{vs_empnbr} ) and
+				    ( ytd_ded.cyr_nyr_flg = 'C' ) and
+	   			    ( ytd_ded.pay_freq = $P{vs_payfreq} ) and
+				    ( substr(ytd_ded.dt_of_pay,1,4) = $P{vs_calyear} ) and
+				    ( isnull(ytd_ded_cd.ded_abbrev_typ,'') <> 'WH' ) and
+				    ytd_ded.ded_amt <> 0  and
+				    ((ytd_ded.ded_cd) in ('0CA', '0CD', '0CH', '0CN') or
+				     (substr(ytd_ded.ded_cd, 1, 2) <> '0C'))),0),
+	isnull(bhr_cal_ytd.emplr_prvd_hlthcare,0) as bhr_cal_ytd_emplr_prvd_hlthcare,
+	prt_hlthcare = case when $P{vs_calyear} > '2010' then 'Y' else 'N' end
+    FROM {oj bhr_pay_hist left outer join bhr_cal_ytd on
+	     bhr_cal_ytd.cyr_nyr_flg = bhr_pay_hist.cyr_nyr_flg and
+	     bhr_cal_ytd.pay_freq = bhr_pay_hist.pay_freq and
+	     bhr_cal_ytd.emp_nbr = bhr_pay_hist.emp_nbr and
+	     bhr_cal_ytd.cal_yr = $P{vs_calyear}}
+   WHERE bhr_pay_hist.cyr_nyr_flg = 'C' and
+	 bhr_pay_hist.pay_freq = $P{vs_payfreq} and
+	 bhr_pay_hist.emp_nbr = $P{vs_empnbr} and
+	 bhr_pay_hist.dt_of_pay = $P{vs_dtofpay} and
+	 bhr_pay_hist.drct_deposit_flg = (CASE
+			WHEN LENGTH(TRIM($P{vs_drctdeposit})) = 0
+			THEN bhr_pay_hist.drct_deposit_flg
+			ELSE $P{vs_drctdeposit}	END) and
+	 not exists (select 'x' from bhr_pay_deduct_hist
+ 			where bhr_pay_deduct_hist.emp_nbr = bhr_pay_hist.emp_nbr  and
+				bhr_pay_deduct_hist.cyr_nyr_flg = 'C' and
+				bhr_pay_deduct_hist.pay_freq = bhr_pay_hist.pay_Freq and
+				bhr_pay_deduct_hist.dt_of_pay = bhr_pay_hist.dt_of_pay and
+                       		bhr_pay_deduct_hist.void_or_iss = bhr_pay_hist.void_or_iss and
+                        	bhr_pay_deduct_hist.adj_nbr = bhr_pay_hist.adj_nbr and
+                       		((bhr_pay_deduct_hist.ded_cd in ('0CA', '0CD', '0CH', '0CN')) or
+            		         (substr(bhr_pay_deduct_hist.ded_cd, 1, 2) <> '0C' ) )) and
+	 bhr_pay_hist.void_or_iss = $P{vs_void_iss} and
+         bhr_pay_hist.chk_nbr = $P{vs_chk_nbr} and
+         cast(bhr_pay_hist.adj_nbr as char(3)) = CASE
+			WHEN isnull(TRIM($P{vs_adj_nbr}), '') = ''
+			THEN cast(bhr_pay_hist.adj_nbr as char(3))
+			ELSE $P{vs_adj_nbr} END
+
+   group by bhr_pay_hist.std_gross,
+	 bhr_cal_ytd.noncontr_amt,
+         bhr_cal_ytd.contr_amt,
+         bhr_pay_hist.extra_duty_gross,
+         bhr_cal_ytd.suppl_pay_amt,
+         bhr_pay_hist.ovtm_gross,
+         bhr_pay_hist.abs_ded_amt,
+         bhr_pay_hist.abs_ded_refund,
+         bhr_pay_hist.abs_ded_coded,
+         bhr_pay_hist.gross_pay_tot,
+         bhr_cal_ytd.nontrs_nontax_bus_allow,
+         bhr_pay_hist.annuity_ded,
+         bhr_pay_hist.cafe_amt,
+         bhr_pay_hist.trs_salary_red,
+         bhr_cal_ytd.nontrs_bus_allow,
+         bhr_pay_hist.emp_457,
+         bhr_cal_ytd.annuity_ded,
+         bhr_cal_ytd.cafe_amt,
+         bhr_cal_ytd.trs_salary_red,
+         bhr_cal_ytd.emp_457_contrib,
+         bhr_pay_hist.wh_gross,
+         bhr_cal_ytd.wh_gross,
+         bhr_pay_hist.misc_ded_amt,
+         bhr_pay_hist.wh_tax,
+         bhr_cal_ytd.wh_tax,
+         bhr_pay_hist.fica_tax,
+         bhr_cal_ytd.fica_tax,
+         bhr_pay_hist.med_tax,
+         bhr_cal_ytd.med_tax,
+         bhr_pay_hist.eic_amt,
+         bhr_cal_ytd.eic_amt,
+         bhr_pay_hist.net_pay,
+         bhr_pay_hist.emplr_non_annuity_contrib,
+         bhr_pay_hist.emplr_annuity_contrib,
+         bhr_pay_hist.emplr_457,
+         bhr_pay_hist.fica_gross,
+         bhr_cal_ytd.fica_gross,
+         bhr_pay_hist.med_gross,
+         bhr_cal_ytd.med_gross,
+	 bhr_pay_hist.trs_deposit,
+	 bhr_pay_hist.trs_suppl_comp,
+         bhr_cal_ytd.trs_suppl_comp,
+         bhr_pay_hist.taxed_benefits,
+         bhr_cal_ytd.nontrs_nontax_bus_allow,
+	 bhr_pay_hist.nontrs_bus_allow,
+         bhr_cal_ytd.tax_emplr_life,
+	 bhr_cal_ytd.tax_emplr_life_grp,
+	 bhr_cal_ytd.withdraw_457,
+	 bhr_cal_ytd.taxed_benefits,
+	 bhr_pay_hist.nontrs_reimbr_excess,
+	 bhr_pay_hist.nontrs_suppl,
+         bhr_pay_hist.nontrs_nonpay_bus_allow,
+         bhr_pay_hist.nontrs_nontax_nonpay_allow,
+         bhr_pay_hist.nontrs_reimbr_base,
+	 bhr_pay_hist.nontrs_nontax_bus_allow,
+	 bhr_cal_ytd.trs_deposit,
+         bhr_cal_ytd.nontrs_reimbr_excess,
+         bhr_cal_ytd.nontrs_reimbr_base,
+         bhr_pay_hist.nontrs_nonpay_bus_allow,
+         bhr_cal_ytd.nontrs_nonpay_bus_allow,
+         bhr_pay_hist.nontrs_nontax_nonpay_allow,
+         bhr_cal_ytd.nontrs_nontax_nonpay_allow,
+         bhr_pay_hist.nontrs_nontax_bus_allow,
+         bhr_pay_hist.nontrs_suppl,
+	 bhr_cal_ytd.emplr_prvd_hlthcare]]>
+	</queryString>
+	<field name="bhr_pay_hist_std_gross" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_noncontr_amt" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_contr_amt" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_extra_duty_gross" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_suppl_pay_amt" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_ovtm_gross" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_abs_ded_amt" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_abs_ded_refund" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_abs_ded_coded" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_gross_pay_tot" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_annuity_ded" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_cafe_amt" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_trs_salary_red" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_nontrs_bus_allow" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_emp_457" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_annuity_ded" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_cafe_amt" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_emp_457_contrib" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_wh_gross" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_wh_gross" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_misc_ded_amt" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_wh_tax" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_wh_tax" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_fica_tax" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_fica_tax" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_med_tax" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_med_tax" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_eic_amt" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_eic_amt" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_net_pay" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_emplr_non_annuity_contrib" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_emplr_annuity_contrib" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_emplr_457" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_fica_gross" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_fica_gross" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_med_gross" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_med_gross" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_trs_deposit" class="java.lang.Double"/>
+	<field name="tot_addl_ded" class="java.lang.Double"/>
+	<field name="tot_ytd_ded" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_trs_suppl_comp" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_trs_suppl_comp" class="java.lang.Double"/>
+	<field name="non_trs_tax_pymt_amt" class="java.lang.Double"/>
+	<field name="non_trs_nontax_pymt_amt" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_taxed_benefits" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_nontrs_nontax_bus_allow" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_tax_emplr_life" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_tax_emplr_life_grp" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_withdraw_457" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_taxed_benefits" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_trs_salary_red" class="java.lang.Double"/>
+	<field name="trs_ins_amt" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_trs_deposit" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_nontrs_reimbr_excess" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_nontrs_reimbr_base" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_nontrs_nonpay_bus_allow" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_nontrs_nonpay_bus_allow" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_nontrs_nontax_nonpay_allow" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_nontrs_nontax_nonpay_allow" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_nontrs_nontax_bus_allow" class="java.lang.Double"/>
+	<field name="bhr_pay_hist_nontrs_suppl" class="java.lang.Double"/>
+	<field name="bhr_cal_ytd_emplr_prvd_hlthcare" class="java.lang.Double"/>
+	<field name="prt_hlthcare" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="358">
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="101" width="70" height="11" backcolor="#C0C0C0" uuid="8c83a847-3a17-4360-a6e8-f524424ffc26"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($F{non_trs_tax_pymt_amt}.doubleValue() + $F{bhr_pay_hist_nontrs_suppl}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="8" y="3" width="60" height="21" backcolor="#C0C0C0" uuid="c803f2cc-4c6f-49bb-a8e3-27963ee900b6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Earnings & Deductions]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="29" width="63" height="11" backcolor="#C0C0C0" uuid="876ab0d8-996f-4f4a-bd4f-c4632d514bff"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Standard Gross:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="41" width="70" height="11" backcolor="#C0C0C0" uuid="c10751ef-59a6-4b4d-b2fc-0fcbb38d44be"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Supplemental Pay:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="53" width="55" height="11" backcolor="#C0C0C0" uuid="d97af281-0cd6-491e-8efc-723b5d0ca611"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Overtime Pay:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="65" width="66" height="11" backcolor="#C0C0C0" uuid="d2e28e51-c96a-45d7-8bd0-35c1b83fd66e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Absence Refund:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="89" width="86" height="11" backcolor="#C0C0C0" uuid="bae9dc71-39c3-449a-8156-259c2c190531"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Earned Income Credit:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="101" width="71" height="11" backcolor="#C0C0C0" uuid="78906490-7f2d-4a3e-851a-d1625dfce35d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Non-TRS Taxable:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="113" width="90" height="11" backcolor="#C0C0C0" uuid="d767e3e5-bb4f-4f76-a227-bd92ae9afccb"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Non-TRS Non-Taxable:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="77" width="85" height="11" backcolor="#C0C0C0" uuid="b7cb3fb8-df7c-4f89-91e2-e51bf2fd773f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Taxed Fringe Benefits:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="174" width="40" height="11" backcolor="#C0C0C0" uuid="aa2687c9-b937-410a-9e66-53ef23abfcce"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[FICA Tax:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="186" width="57" height="11" backcolor="#C0C0C0" uuid="8519d424-0b74-4576-87be-0f869cee028b"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Medicare Tax:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="138" width="80" height="11" backcolor="#C0C0C0" uuid="fd8d4c43-88b7-4e26-87e1-75600ce17eff"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[---Total Earnings:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="150" width="84" height="11" backcolor="#C0C0C0" uuid="2e5aa41a-b562-448a-97e2-ee7599cac75a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Absence Deductions:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="162" width="66" height="11" backcolor="#C0C0C0" uuid="2c104227-3ce7-453d-97e2-078371554b03"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Withholding Tax:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="125" width="74" height="11" backcolor="#C0C0C0" uuid="ab9dc404-363e-4c35-a6ae-6f7b47e3173d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[TRS Supplemental:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="198" width="64" height="11" backcolor="#C0C0C0" uuid="48097b6f-ac9c-46f3-81d9-299c143ced1f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[TRS Salary Red:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="210" width="60" height="11" backcolor="#C0C0C0" uuid="155fb644-44a1-4079-b63d-00c620564922"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[TRS Insurance:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="248" width="62" height="11" backcolor="#C0C0C0" uuid="ce548b88-2aeb-4848-92f7-f274692a64dd"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[---Net Pay:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="235" width="94" height="11" backcolor="#C0C0C0" uuid="cb72226d-b0b5-4d67-b0c6-391cdcb6b3d1"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[---Total Deductions:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="309" width="45" height="11" backcolor="#C0C0C0" uuid="c57dfecd-4d78-4c1a-a207-fd27bb439829"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[FICA Gross:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="320" width="62" height="11" backcolor="#C0C0C0" uuid="7f42cabe-6a8a-475a-bd50-67ea5b4e0f44"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Medicare Gross:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="296" width="65" height="11" backcolor="#C0C0C0" uuid="259b7694-404b-49f2-93ee-73b01e4ffa0f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Taxable Wages:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="284" width="271" height="11" backcolor="#C0C0C0" uuid="ed7c7677-7ce2-45df-a959-2b46d4465d57"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[********************************************************************************************]]></text>
+			</staticText>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="204" y="235" width="70" height="11" backcolor="#C0C0C0" uuid="df1df9e4-04fa-4b26-b817-01f52c40c162"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($F{bhr_cal_ytd_wh_tax}.doubleValue() + $F{bhr_cal_ytd_fica_tax}.doubleValue() +
+$F{bhr_cal_ytd_med_tax}.doubleValue() +  $F{bhr_cal_ytd_trs_deposit}.doubleValue() +
+$F{tot_ytd_ded}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="53" width="70" height="11" backcolor="#C0C0C0" uuid="546180f3-cf6c-4af3-87bb-dcff1c94f558"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_ovtm_gross}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="89" width="70" height="11" backcolor="#C0C0C0" uuid="276b47e4-8e97-416b-98a8-e6c64ea7a6c0"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_eic_amt}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="113" width="70" height="11" backcolor="#C0C0C0" uuid="11e7307f-27c3-40d6-983c-59265758a37f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{non_trs_nontax_pymt_amt}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="77" width="70" height="11" backcolor="#C0C0C0" uuid="9c2b8a05-b5f9-4435-85bf-9280b81f0034"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_taxed_benefits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="138" width="70" height="11" backcolor="#C0C0C0" uuid="1f43ebd5-103a-4546-9613-4df635925dcc"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double(($F{bhr_pay_hist_gross_pay_tot}.doubleValue() +
+$F{bhr_pay_hist_abs_ded_amt}.doubleValue()+
+($F{bhr_pay_hist_abs_ded_coded}.doubleValue() >0 ?$F{bhr_pay_hist_abs_ded_coded}.doubleValue():0)) -
+$F{bhr_pay_hist_nontrs_nonpay_bus_allow}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="150" width="70" height="11" backcolor="#C0C0C0" uuid="52d4e905-1ab2-4c8a-9c72-333e7c5d9602"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($F{bhr_pay_hist_abs_ded_amt}.doubleValue() +
+($F{bhr_pay_hist_abs_ded_coded}.doubleValue() > 0?$F{bhr_pay_hist_abs_ded_coded}.doubleValue() : 0))]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="162" width="70" height="11" backcolor="#C0C0C0" uuid="d7e7dcb5-eca5-4db0-8ff7-a83db410044e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_wh_tax}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="174" width="70" height="11" backcolor="#C0C0C0" uuid="e0c264c1-770a-4e1c-891a-839f7f9f1606"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_fica_tax}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="186" width="70" height="11" backcolor="#C0C0C0" uuid="7a06c6c6-8f78-4c5c-9435-60df313e309e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_med_tax}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="125" width="70" height="11" backcolor="#C0C0C0" uuid="b7ad6288-96ce-4ce1-839c-2073ea3f0500"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_trs_suppl_comp}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="198" width="70" height="11" backcolor="#C0C0C0" uuid="630fffee-3091-4ee1-8577-e41f0a13723d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_trs_salary_red}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="248" width="70" height="11" backcolor="#C0C0C0" uuid="136d3e38-97f5-418c-8c1e-f39a7b0b3d73"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_net_pay}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="235" width="70" height="11" backcolor="#C0C0C0" uuid="241f3535-5dab-4f6b-b77f-b04b60fa6b0b"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($F{bhr_pay_hist_med_tax}.doubleValue() +$F{bhr_pay_hist_fica_tax}.doubleValue() +
+$F{bhr_pay_hist_wh_tax}.doubleValue() +  $F{bhr_pay_hist_trs_salary_red}.doubleValue() +
+$F{trs_ins_amt}.doubleValue() + $F{tot_addl_ded}.doubleValue() +
+$F{bhr_pay_hist_abs_ded_amt}.doubleValue() +
+( $F{bhr_pay_hist_abs_ded_coded}.doubleValue() > 0?$F{bhr_pay_hist_abs_ded_coded}.doubleValue() : 0))]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="65" width="70" height="11" backcolor="#C0C0C0" uuid="70423918-cba3-43e6-a02b-c06b87751b19"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($F{bhr_pay_hist_abs_ded_refund}.doubleValue() + ($F{bhr_pay_hist_abs_ded_coded}.doubleValue() < 0 ?($F{bhr_pay_hist_abs_ded_coded}.doubleValue()*-1):0))]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="309" width="70" height="11" backcolor="#C0C0C0" uuid="18e1abd8-de9b-4dad-a35b-fcf0cfd4997b"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_fica_gross}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="321" width="70" height="11" backcolor="#C0C0C0" uuid="1b728477-eed4-4b5a-9ad9-ada784e0ea9f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_med_gross}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="8" y="260" width="108" height="11" backcolor="#C0C0C0" uuid="8834a288-0e1f-412b-ac2a-f58e7dfc0a58"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Non-TRS Non-pay Taxable:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText" x="8" y="272" width="123" height="11" backcolor="#C0C0C0" uuid="5c2dcb74-406c-42dd-8342-eee636f0b11b"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Non-TRS Non-pay Non-Taxable:]]></text>
+			</staticText>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="203" y="260" width="70" height="11" backcolor="#C0C0C0" uuid="94a44aed-ba7b-4cf0-88c9-52d798567e87"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_nontrs_nonpay_bus_allow}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="203" y="272" width="70" height="11" backcolor="#C0C0C0" uuid="efe401e5-46a8-48e8-a2b3-9cbe021d5839"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_nontrs_nontax_nonpay_allow}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="260" width="70" height="11" backcolor="#C0C0C0" uuid="776b7cc8-323a-4dc3-b736-cb406854227c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_nontrs_nonpay_bus_allow}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="272" width="70" height="11" backcolor="#C0C0C0" uuid="697fa53a-d0f4-4f7c-9dee-9e561b6dfd10"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_nontrs_nontax_nonpay_allow}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="204" y="296" width="70" height="11" backcolor="#C0C0C0" uuid="33f37713-ad45-42d8-bb8d-6c5702a99e0e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($F{bhr_cal_ytd_wh_gross}.doubleValue() + $F{bhr_cal_ytd_nontrs_nontax_bus_allow}.doubleValue()+$F{bhr_cal_ytd_nontrs_nontax_nonpay_allow}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="296" width="70" height="11" backcolor="#C0C0C0" uuid="7f0f588e-467b-452c-8c82-96c88162c8ff"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($F{bhr_pay_hist_wh_gross}.doubleValue() + $F{bhr_pay_hist_nontrs_nontax_bus_allow}.doubleValue() + $F{bhr_pay_hist_nontrs_nontax_nonpay_allow}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="8" y="222" width="88" height="11" backcolor="#C0C0C0" uuid="818e567a-c7e0-475d-a7a3-1eba24ad2db9"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Total Other Deductions:]]></text>
+			</staticText>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="132" y="222" width="69" height="11" backcolor="#C0C0C0" uuid="81709389-ae31-434a-9411-da3b54ae1d5c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tot_addl_ded}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="132" y="210" width="69" height="11" backcolor="#C0C0C0" uuid="a0b50fc7-4730-4ba9-800d-3ee6273e0ad6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{trs_ins_amt}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="41" width="70" height="11" backcolor="#C0C0C0" uuid="013de2e6-9c59-4460-9cce-8dc9c9f82980"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_extra_duty_gross}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="204" y="138" width="70" height="11" backcolor="#C0C0C0" uuid="847dea01-b052-42f7-8fed-2a73eabf90b7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($F{bhr_cal_ytd_noncontr_amt}.doubleValue() + $F{bhr_cal_ytd_contr_amt}.doubleValue()+
+ $F{bhr_cal_ytd_suppl_pay_amt}.doubleValue() + $F{bhr_cal_ytd_taxed_benefits}.doubleValue() +
+ $F{bhr_cal_ytd_eic_amt}.doubleValue() + $F{bhr_cal_ytd_nontrs_bus_allow}.doubleValue() +
+ $F{bhr_cal_ytd_nontrs_reimbr_excess}.doubleValue() + $F{bhr_cal_ytd_nontrs_nontax_bus_allow}.doubleValue() +
+ $F{bhr_cal_ytd_nontrs_reimbr_base}.doubleValue() + $F{bhr_cal_ytd_trs_suppl_comp}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="204" y="101" width="70" height="11" backcolor="#C0C0C0" uuid="499ca6cc-0360-4446-a4a8-6d80d23c64f8"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($F{bhr_cal_ytd_nontrs_bus_allow}.doubleValue() + $F{bhr_cal_ytd_nontrs_reimbr_excess}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="204" y="113" width="70" height="11" backcolor="#C0C0C0" uuid="602a452e-4137-4726-811b-6e3d160ff91f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($F{bhr_cal_ytd_nontrs_nontax_bus_allow}.doubleValue() + $F{bhr_cal_ytd_nontrs_reimbr_base}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="203" y="210" width="70" height="11" backcolor="#C0C0C0" uuid="fb63c134-56ca-44bb-8e61-af4a2a7d3ae6"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($F{bhr_cal_ytd_trs_deposit}.doubleValue() - $F{bhr_cal_ytd_trs_salary_red}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="203" y="41" width="70" height="11" backcolor="#C0C0C0" uuid="93a0f2b3-4121-44b1-ab83-411d517c06eb"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_suppl_pay_amt}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="203" y="198" width="70" height="11" backcolor="#C0C0C0" uuid="eadc8958-0cb0-4e82-b63f-4f1f51ddd361"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_trs_salary_red}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="204" y="89" width="70" height="11" backcolor="#C0C0C0" uuid="46e83bf0-7477-433e-9fa7-3c555b580457"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_eic_amt}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="203" y="162" width="70" height="11" backcolor="#C0C0C0" uuid="413b8c1a-f115-49f7-9445-5583a3762724"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_wh_tax}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="202" y="174" width="70" height="11" backcolor="#C0C0C0" uuid="efae22fe-6c51-458b-9324-deab6cfca23b"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_fica_tax}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="202" y="186" width="70" height="11" backcolor="#C0C0C0" uuid="6cef1a5c-f4e9-41bb-9c90-681bb9ed3257"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_med_tax}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="204" y="309" width="70" height="11" backcolor="#C0C0C0" uuid="5aaa7634-c673-48b6-b481-87f41652f385"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_fica_gross}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="204" y="321" width="70" height="11" backcolor="#C0C0C0" uuid="45784df9-bbc8-4639-a66e-313583f04bad"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_med_gross}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="204" y="77" width="70" height="11" backcolor="#C0C0C0" uuid="c08ec695-d721-4031-9071-3cbc43ca843f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_taxed_benefits}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="204" y="125" width="70" height="11" backcolor="#C0C0C0" uuid="b4681a8c-7964-445f-9e87-ff0e322f6c6c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_trs_suppl_comp}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="131" y="29" width="70" height="11" backcolor="#C0C0C0" uuid="179aff32-0e9c-4f97-8762-530069becdc0"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_pay_hist_std_gross}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="131" y="3" width="70" height="21" backcolor="#C0C0C0" uuid="b6f6a2a9-3452-40df-b0c9-d1b09a7a754e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[This
+Period]]></text>
+			</staticText>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="203" y="29" width="70" height="11" backcolor="#C0C0C0" uuid="a230b179-32fe-4843-9192-cb44a20b85e2"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($F{bhr_cal_ytd_noncontr_amt}.doubleValue() + $F{bhr_cal_ytd_contr_amt}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="203" y="1" width="70" height="23" backcolor="#C0C0C0" uuid="e5415132-b609-4e64-8379-018b396bb31c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Calendar\r\nYTD " + ($P{vs_calyear}==null?"":$P{vs_calyear})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-1" x="8" y="24" width="60" height="1" uuid="109dd672-c180-4230-8c07-b0bcaf415bd9"/>
+			</line>
+			<line>
+				<reportElement key="line-2" x="130" y="24" width="70" height="1" uuid="ac64d2b9-62bc-40dc-9bcd-201130d1be24"/>
+			</line>
+			<line>
+				<reportElement key="line-3" x="203" y="24" width="70" height="1" uuid="943ac7ff-ca8a-44aa-95f8-c6baeb36bb77"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-1" x="7" y="347" width="271" height="10" backcolor="#C0C0C0" uuid="5fa2435c-b489-4d95-aba9-f1c62cda33e7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[********************************************************************************************]]></text>
+			</staticText>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField-1" x="203" y="222" width="70" height="11" backcolor="#C0C0C0" uuid="29fa3e78-eed0-4e8d-8c44-180ace4248ad"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tot_ytd_ded}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="8" y="332" width="122" height="11" backcolor="#C0C0C0" uuid="dcc3a03d-9531-471e-9142-1a0ca3027d75">
+					<printWhenExpression><![CDATA[("Y".equals($F{prt_hlthcare})) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Emplr Sponsored Health Covrg:]]></text>
+			</staticText>
+			<textField pattern="###,###.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="204" y="332" width="70" height="11" backcolor="#C0C0C0" uuid="acd9a2b7-233b-4e9f-b027-c1512a7da83b">
+					<printWhenExpression><![CDATA[("Y".equals($F{prt_hlthcare})) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bhr_cal_ytd_emplr_prvd_hlthcare}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

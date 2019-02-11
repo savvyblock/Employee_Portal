@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	parent="abstract" >
+
+	<var name="payroll" class="net.esc20.txeis.EmployeeAccess.web.view.Payroll"/>
+
+	<on-start>
+		<evaluate result="flowScope.message" expression="payrollService.getMessage()"/>
+		<evaluate result="flowScope.frequencies" expression="payrollService.getAvailableFrequencies(externalContext.sessionMap.currentUser_employeeNumber)"/>
+		<evaluate result="flowScope.maritalStatuses" expression="referenceDataService.getMaritalStatusesDisplay()"/>
+		<evaluate result="flowScope.accountTypes" expression="referenceDataService.getDdAccountTypesDisplay()"/>
+		<evaluate result="flowScope.ddAccountLimit" expression="payrollService.getDirectDepositLimit()"/>
+		<evaluate result="payroll.frequency" expression="payrollService.getInitialFrequency(flowScope.frequencies)"/>
+		<set name="flowScope.showPopup" value="false"/>
+	</on-start>
+	
+	<decision-state id="checkPermission">
+		<if test="flowScope.options.enableSelfServicePayroll" then="startView" else="noAccess"/>
+	</decision-state>
+	
+	<view-state id="payrollStartView" view="payroll" model="payroll">
+		<on-entry>
+			<set name="flowScope.showPopup" value="false"/>
+			<render fragments="body"/>
+		</on-entry>		
+		<transition on="retrieve" to="retrievePayroll" bind="true" validate="false">
+			<render fragments="body"/>
+		</transition>
+		
+		<transition on="reset" to="reset" validate="false" bind="false">
+			<render fragments="body"/>
+		</transition>
+		
+		<transition on="add_bankTable" to="addBankRowHR" bind="true" validate="false">	
+			<render fragments="body"/>
+		</transition>
+		
+		<transition on="delete_bankTable" to="deleteBankRow" bind="true" validate="false">
+			<set name="flowScope.selectedBank" value="requestParameters.selectedBank" type="java.lang.Integer"/>
+		</transition>
+		
+		<transition on="revert_payroll" to="revertPayroll" bind="false" validate="false"/>
+		
+		<transition on="revert_bankTable" to="revertBankRow" bind="false" validate="false">
+			<set name="flowScope.selectedBank" value="requestParameters.selectedBank" type="java.lang.Integer"/>
+		</transition>	
+		
+		<transition on="pick_bankCode" to="bankCodePick" validate="false">
+			<set name="flowScope.selectedBank" value="requestParameters.selectedBank" type="java.lang.Integer"/>
+			<evaluate expression="payrollService.getAvailableBanks()" result="flowScope.banks"/>
+			<set name="flowScope.focusedField" value="'bankName'"/>
+			<render fragments="body"/>
+		</transition>
+		
+		<transition on="save" to="save" bind="true" validate="true">
+			<render fragments="body" />
+		</transition>
+		
+		<transition on="cancel" to="payrollStartView" bind="true" validate="false"/>
+		
+	</view-state>
+	
+	<subflow-state id="bankCodePick" subflow="common/pick">
+		<input name="codes" value="flowScope.banks"/>
+		<input name="codeType" value="'Banks'"/>
+		<input name="codeHeader1" value="'Routing Number'"/>
+		<input name="codeHeader2" value="'Bank Name'"/>
+		<transition on="selectCode" to="payrollStartView">
+			<set name="payroll.accountInfo[flowScope.selectedBank].code.code" value="currentEvent.attributes.subSelected" />
+			<set name="payroll.accountInfo[flowScope.selectedBank].code.subCode" value="currentEvent.attributes.selected" />
+			<set name="payroll.accountInfo[flowScope.selectedBank].code.description" value="currentEvent.attributes.description" />
+			<set name="flowScope.focusedField" value="'bankName'"/>
+			<set name="flowScope.focusedRow" value="flowScope.selectedBank" type="java.lang.Integer"/>
+		</transition>
+		<transition on="cancel" to="payrollStartView">
+			<set name="flowScope.focusedField" value="'bankName'"/>
+			<set name="flowScope.focusedRow" value="flowScope.selectedBank" type="java.lang.Integer"/>
+		</transition>
+	</subflow-state>
+	
+	<action-state id="reset">
+		<evaluate expression="payrollService.clearErrors(messageContext)"/>
+		<transition to="retrievePayroll"/>
+	</action-state>
+	
+	<action-state id="retrievePayroll">
+		<evaluate result="flowScope.payInfoCurrent" expression="payrollService.getPayInfo(externalContext.sessionMap.currentUser_employeeNumber, payroll.frequency)"/>
+		<transition to="retrievePayrollPending"/>
+	</action-state>
+	
+	<action-state id="retrievePayrollPending">
+		<evaluate result="payroll.payInfo" expression="payrollService.getPayInfoPending(externalContext.sessionMap.currentUser_employeeNumber, payroll.frequency, flowScope.payInfoCurrent)"/>
+		<transition to="setPayrollChanges"/>
+		<on-exit>
+			<evaluate result="flowScope.payInfoPending" expression="payrollService.copyPayInfo(payroll.payInfo)"/>
+		</on-exit>
+	</action-state>
+	
+	<action-state id="setPayrollChanges">
+		<evaluate result="payroll.payInfoChanges" expression="payrollService.setPayInfoChanges(flowScope.payInfoCurrent, payroll.payInfo)"/>
+		<transition to="retrieveAccount"/>
+	</action-state>
+	
+	<action-state id="revertPayroll">
+		<evaluate result="payroll.payInfo" expression="payrollService.revertPayInfo(flowScope.payInfoCurrent, payroll.payInfo)"/>
+		<transition to="payrollStartView"/>
+		<on-exit>
+			<render fragments="body" />
+		</on-exit>
+	</action-state>
+	
+	<action-state id="retrieveAccount">
+		<evaluate result="flowScope.accountInfoHR" expression="payrollService.getAccountInfo(externalContext.sessionMap.currentUser_employeeNumber, payroll.frequency)"/>
+		<transition to="retrieveAccountPending"/>
+	</action-state>
+	
+	<action-state id="retrieveAccountPending">
+		<evaluate result="flashScope.accountRequests" expression="payrollService.getAccountInfoRequests(externalContext.sessionMap.currentUser_employeeNumber, payroll.frequency, flowScope.accountInfoHR)"/>
+		<transition to="setAccountChanges"/>
+		<on-exit>
+			<set name="flowScope.accountInfoHR" value="flashScope.accountRequests[0]"/>
+			<set name="flowScope.accountInfoCurrent" value="flashScope.accountRequests[1]"/>
+			<set name="payroll.accountInfo" value="flashScope.accountRequests[2]"/>
+			<evaluate result="flowScope.accountInfoPending" expression="payrollService.copyAllAccountInfo(payroll.accountInfo)"/>
+		</on-exit>
+	</action-state>
+	
+	<action-state id="setAccountChanges">
+		<evaluate result="payroll.accountInfoChanges" expression="payrollService.setAccountInfoChanges(flowScope.accountInfoHR, payroll.accountInfo)"/>
+		<transition to="setFieldDisplay"/>
+	</action-state>
+	
+	<action-state id="setFieldDisplay">
+		<evaluate result="payroll" expression="payrollService.setOptions(externalContext.sessionMap.currentUser_employeeNumber, payroll)"/>
+		<transition to="checkInvalidAccount"/>
+		<on-exit>
+			<set name="flowScope.focusedField" value="'retrieve'"/>
+			<render fragments="body" />
+		</on-exit>
+	</action-state>
+	
+	<action-state id="checkInvalidAccount">
+		<evaluate result="flowScope.hasInvalidAccounts" expression="payrollService.hasInvalidAccounts(flowScope.accountInfoHR)"/>
+		<transition to="invalidAccountPopup"/>
+		<on-exit>
+			<set name="flowScope.showPopup" value="true"/>
+		</on-exit>
+	</action-state>
+	
+	<decision-state id="invalidAccountPopup">
+		<if test ="flowScope.hasInvalidAccounts == true" then="displayInvalidPopup" else="payrollStartView"/>
+	</decision-state>
+	
+	<view-state id="displayInvalidPopup" view="payroll" model="payroll">		
+		<transition on="hidePopup" to="hidePopup" bind="true" validate="false">
+			<render fragments="body" />
+		</transition>
+	</view-state>
+	
+	<action-state id="hidePopup">
+		<evaluate result="payroll" expression="payrollService.setOptions(payroll)"/>
+		<transition to="payrollStartView"/>
+		<on-exit>
+			<set name="flowScope.showPopup" value="false"/>
+			<render fragments="body" />
+		</on-exit>
+	</action-state>
+	
+	<action-state id="revertBankRow">
+		<evaluate result="payroll.accountInfo" expression="payrollService.revertAccountInfo(flowScope.selectedBank, flowScope.accountInfoHR, payroll.accountInfo)"/>
+		<transition to="payrollStartView"/>
+		<on-exit>
+			<set name="flowScope.focusedField" value="'bankName'"/>
+			<set name="flowScope.focusedRow" value="flowScope.selectedBank" type="java.lang.Integer"/>
+			<render fragments="body" />
+		</on-exit>
+	</action-state>
+	
+	<action-state id="addBankRowHR">
+		<evaluate result="flowScope.accountInfoHR" expression="payrollService.addBankAccount(messageContext, flowScope.ddAccountLimit, flowScope.accountInfoHR)"/>
+		<transition to="addBankRow"/>
+	</action-state>
+	
+	<action-state id="addBankRow">
+		<evaluate result="payroll.accountInfo" expression="payrollService.addBankAccount(messageContext, flowScope.ddAccountLimit, payroll.accountInfo)"/>
+		<transition to="addBankRowCurrent"/>
+	</action-state>
+	
+	<action-state id="addBankRowCurrent">
+		<evaluate result="flowScope.accountInfoCurrent" expression="payrollService.addBankAccount(messageContext, flowScope.ddAccountLimit, flowScope.accountInfoCurrent)"/>
+		<transition to="addBankRowPending"/>
+	</action-state>
+	
+	<action-state id="addBankRowPending">
+		<evaluate result="flowScope.accountInfoPending" expression="payrollService.addBankAccount(messageContext, flowScope.ddAccountLimit, flowScope.accountInfoPending)"/>
+		<transition to="resetAccountChanges"/>
+	</action-state>
+	
+	<action-state id="resetAccountChanges">
+		<evaluate result="payroll.accountInfoChanges" expression="payrollService.setAccountInfoChanges(flowScope.accountInfoHR, payroll.accountInfo)"/>
+		<transition to="payrollStartView"/>
+		<on-exit>
+			<set name="flowScope.focusedField" value="'bankNameLast'"/>
+			<render fragments="body" />
+		</on-exit>
+	</action-state>
+	
+	<action-state id="deleteBankRow">
+		<evaluate result="payroll.accountInfo" expression="payrollService.deleteBankAccountRequest(flowScope.selectedBank, flowScope.accountInfoHR, payroll.accountInfo)"/>
+		<transition to="payrollStartView"/>
+	</action-state>
+	
+	<action-state id="save">
+		<evaluate expression="payrollService.savePayroll(messageContext, externalContext.sessionMap.currentUser_employeeNumber, payroll, flowScope.payInfoCurrent, flowScope.accountInfoHR, flowScope.payInfoPending, flowScope.accountInfoPending)" result="flowScope.saveSuccess"/>
+		<transition to="isSaveSuccessful" />
+	</action-state>
+	
+	<decision-state id="isSaveSuccessful">
+		<if test = "flowScope.saveSuccess == true" then="sendEmail" else="payrollStartView"/>
+	</decision-state>
+	
+	<action-state id="sendEmail">
+		<evaluate expression="payrollService.sendEmail(externalContext.sessionMap.currentUser_firstName, externalContext.sessionMap.currentUser_lastName, externalContext.sessionMap.currentUser_workEmail, externalContext.sessionMap.currentUser_homeEmail, payroll, flowScope.payInfoPending, flowScope.accountInfoPending, flowScope.payInfoCurrent, flowScope.accountInfoHR)" result="flowScope.emailChanges"/>
+		<transition to="isEmailChanges" />
+	</action-state>
+	
+	<decision-state id="isEmailChanges">
+		<if test = "flowScope.emailChanges != 0" then="sendEmailApprover" else="retrievePayroll"/>
+	</decision-state>
+	
+	<action-state id="sendEmailApprover">
+		<evaluate expression="payrollService.sendApproverEmail(flowScope.emailChanges, externalContext.sessionMap.currentUser_firstName, externalContext.sessionMap.currentUser_lastName, payroll, flowScope.payInfoCurrent, flowScope.accountInfoHR)" result="flashScope.approverEmail"/>
+		<transition to="retrievePayroll" />
+		<on-exit>
+			<set name="flowScope.focusedField" value="'retrieve'"/>
+		</on-exit>
+	</action-state>
+	
+	<action-state id="startView">
+		<set name="flowScope.dummyVariable" value="true"></set>
+		<transition to="retrievePayroll"/>
+	</action-state>
+	
+</flow>

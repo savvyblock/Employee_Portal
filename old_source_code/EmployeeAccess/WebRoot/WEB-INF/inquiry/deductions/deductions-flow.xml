@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	parent="abstract">
+	
+	<on-start>
+		<evaluate result="flowScope.frequencies" 
+		expression="deductionService.getAvailableFrequencies(externalContext.sessionMap.currentUser_employeeNumber)"/>
+		<evaluate result="flowScope.deductions" 
+		expression="deductionService.retrieveAllDeductions(externalContext.sessionMap.currentUser_employeeNumber)"/>
+		<evaluate result="flowScope.payInfo"
+		expression="deductionService.retrieveAllPayInfo(externalContext.sessionMap.currentUser_employeeNumber)"/>
+		<evaluate result="flowScope.message" expression="deductionService.getMessage()"/>
+	</on-start>
+	
+	<decision-state id="checkPermission">
+		<if test="flowScope.options.enableDeductions" then="startView" else="noAccess"/>
+	</decision-state>
+	
+	<view-state id="deductions" view="deductions">
+
+	</view-state>
+	
+	<action-state id="startView">
+		<set name="flowScope.dummyVariable" value="true"></set>
+		<transition to="deductions"/>
+	</action-state>
+</flow>

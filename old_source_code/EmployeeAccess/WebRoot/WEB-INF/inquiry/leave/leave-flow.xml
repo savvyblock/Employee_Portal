@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	parent="abstract">
+
+	<var name="leave" class="net.esc20.txeis.EmployeeAccess.web.view.Leave"/>
+
+	<on-start>
+		<evaluate result="flowScope.message" expression="leaveService.getMessage()"/>
+		<evaluate result="flowScope.leaveInfos" 
+		expression="leaveService.retrieveLeaveInfos(externalContext.sessionMap.currentUser_employeeNumber, true)"/>
+		<evaluate result="flowScope.frequencies" expression="leaveService.getAvailableFrequencies(flowScope.leaveInfos)"/>
+		<evaluate result="leave.frequency" expression="leaveService.getInitialFrequency(flowScope.frequencies)"/>
+	</on-start>
+
+	<decision-state id="checkPermission">
+		<if test="flowScope.options.enableLeave" then="startView" else="noAccess"/>
+	</decision-state>
+
+	<view-state id="leave" model="leave" view="leave">
+		<binder>
+			<binding property="frequency" converter="displayFrequency" required="true"/>
+			<binding property="from" converter="displayDate"/>
+			<binding property="to" converter="displayDate"/>
+			<binding property="leaveType"/>
+		</binder>
+	
+		<transition on="retrieveLeaveInfos" to="retrieveLeaveInfos" validate="false">
+			<render fragments="body"/>
+		</transition>
+		
+		<transition on="retrieveLeaves" to="retrieveLeaves">
+			<render fragments="body"/>
+		</transition>
+	</view-state>
+	
+	<action-state id="retrieveLeaveInfos">
+		<on-entry>
+			<evaluate result="flowScope.leaves" expression="leaveService.getBlankLeaves()"/>
+		</on-entry>
+		<evaluate result="flowScope.leaveTypes"
+		expression="leaveService.getAvailableLeaveTypes(externalContext.sessionMap.currentUser_employeeNumber,leave.frequency)"/>
+		<transition to="leave"/>
+	</action-state>
+	
+	<action-state id="retrieveLeaves">
+		<evaluate result="flowScope.leaves" 
+		expression="leaveService.retrieveLeaves(externalContext.sessionMap.currentUser_employeeNumber,leave.frequency,leave.from,leave.to,leave.leaveType)"/>
+		<transition to="leave"/>
+	</action-state>
+	
+	<action-state id="startView">
+		<set name="flowScope.dummyVariable" value="true"></set>
+		<transition to="retrieveLeaveInfos"/>
+	</action-state>
+</flow>

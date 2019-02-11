@@ -1,0 +1,52 @@
+div#content {
+	width: 99%;
+}
+
+table.filerecovery_results_criteria td {
+	padding: 0 5px 5px 10px;
+}
+
+.containerdsfr{
+  width: 99.9%;
+  display: table;
+  margin: 0;
+}
+
+.xxxx {
+  display: inline-block;
+	
+}
+.filerecoverydiv {
+ 	width: 100%; 
+/* 	width: auto; */
+	overflow: auto;
+	max-height: 350px;
+	display: inline-block;
+/*   
+	border-bottom-style: solid;
+	border-width: 0px 0px 2px 0px;
+	border-bottom-color: #a0ddf6; .... from colors.css table.tabular 
+	
+ */    
+}
+
+.fixedheadertable {
+  border-collapse:collapse;
+  width:100%;
+}
+
+.fixeddsfr{
+  position:absolute;
+  width: auto;
+  display:none;
+  border:none;
+}
+
+.filerecovery_criteria {
+  text-align: right;
+}
+
+.filerecovery th {
+  padding: 5px;
+  white-space: nowrap;
+}

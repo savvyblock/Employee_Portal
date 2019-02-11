@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="EmployeeAccess">
+        <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="txeisCommon.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/txeisCommon/txeisCommon">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-security-taglibs-2.0.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/libraryFiles/teamCityJars/springSecurity-2.0.3/spring-security-taglibs-2.0.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-security-cas-client-2.0.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/libraryFiles/teamCityJars/springSecurity-2.0.3/spring-security-cas-client-2.0.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-security-core-tiger-2.0.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/libraryFiles/teamCityJars/springSecurity-2.0.3/spring-security-core-tiger-2.0.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-security-acl-2.0.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/libraryFiles/teamCityJars/springSecurity-2.0.3/spring-security-acl-2.0.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-security-core-2.0.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/libraryFiles/teamCityJars/springSecurity-2.0.3/spring-security-core-2.0.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jdt-compiler-3.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/libraryFiles/teamCityJars/common/jdt-compiler-3.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="tiles-core-2.2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/libraryFiles/teamCityJars/webflow/tiles-core-2.2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="tiles-template-2.2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/libraryFiles/teamCityJars/webflow/tiles-template-2.2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="tiles-api-2.2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/libraryFiles/teamCityJars/webflow/tiles-api-2.2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="tiles-servlet-2.2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/libraryFiles/teamCityJars/webflow/tiles-servlet-2.2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="tiles-jsp-2.2.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/libraryFiles/teamCityJars/webflow/tiles-jsp-2.2.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-collections-3.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/libraryFiles/teamCityJars/commons-collections-3.2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="/EmployeeAccess"/>
+        <property name="java-output-path" value="/EmployeeAccess/WebRoot/WEB-INF/classes"/>
+        <property name="me-merge-utility-modules" value="true"/>
+    </wb-module>
+</project-modules>

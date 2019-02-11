@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	abstract="false">
+	
+	<var name="newUser" class="net.esc20.txeis.EmployeeAccess.domainobject.User" />
+	<var name="searchEmployee" class="net.esc20.txeis.EmployeeAccess.search.EmployeeCriteria" />
+	
+	<view-state id="createNewUserSearch" view="createNewUser" model="searchEmployee">
+		<on-entry>
+			<set name="externalContext.sessionMap.passwordRequested" value="false" type="java.lang.Boolean"/>
+			<set name="flowScope.validEmployee" value="false" type="java.lang.Boolean"/>
+			<set name="flowScope.hideMenus" value="true" type="java.lang.Boolean"/>
+			<set name="flowScope.hideLogout" value="true" type="java.lang.Boolean"/>
+			<evaluate expression="userService.useSSN(externalContext.sessionMap.district)" result="flowScope.useSSN"/>
+			<evaluate result="externalContext.sessionMap.helpURL" expression="versionService.getHelpURL()"/>
+		</on-entry>
+		<transition on="retrieve" to="retrieve" />
+	</view-state>
+	
+	<action-state id="retrieve">
+		<evaluate expression="userService.retrieveEmployee(messageContext, searchEmployee, true, flowScope.useSSN)" result="newUser"/>
+		<transition to="isValidEmployee"/>
+	</action-state>
+	
+	<decision-state id="isValidEmployee">
+		<if test = "newUser == null" then="createNewUserSearch" else="createNewUserInfo"/>
+	</decision-state>
+	
+	<view-state id="createNewUserInfo" view="createNewUser" model="newUser">
+		<on-entry>
+			<set name="flowScope.hideMenus" value="true" type="java.lang.Boolean"/>
+			<set name="flowScope.validEmployee" value="true" type="java.lang.Boolean"/>
+		</on-entry>
+		<transition on="save" to="save" bind="true" validate="true">
+			<render fragments="body" />
+		</transition>
+	</view-state>
+	
+	<action-state id="save">
+		<evaluate expression="userService.saveUser(messageContext, newUser)" result="flowScope.saveSuccess"/>
+		<transition to="isSaveSuccessful" />
+	</action-state>
+	
+	<decision-state id="isSaveSuccessful">
+		<if test = "flowScope.saveSuccess == true" then="loginHome" else="createNewUserInfo"/>
+	</decision-state>
+	
+	<end-state id="loginHome" view="externalRedirect:contextRelative:/app/redirect">
+		<on-entry>
+			<set name="externalContext.sessionMap.newUserCreated" value="true" type="java.lang.Boolean"/>
+			<set name="externalContext.sessionMap.currentUser_userName" value="newUser.userName" type="java.lang.String"/>
+			<set name="externalContext.sessionMap.currentUser_password" value="newUser.password" type="java.lang.String"/>
+		</on-entry>
+	</end-state>  
+
+</flow>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+						   http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
+
+	<bean id="passThroughController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+
+	<bean id="mainTileController" name="mainTileController" class="net.esc20.txeis.EmployeeAccess.web.mvc.MainTileController">
+		<property name="versionService" ref="versionService" />
+		<property name="view" value="main-tile"/>
+	</bean>
+	
+	<bean id="loginController" class="net.esc20.txeis.EmployeeAccess.web.mvc.LoginController"/>
+	
+	<bean id="viewReportValidator" class="net.esc20.txeis.EmployeeAccess.web.mvc.report.ViewReportValidator" />
+	<bean id="viewReportController" class="net.esc20.txeis.EmployeeAccess.web.mvc.report.ViewReportController">
+		<property name="formView" value="viewreport" />
+		<property name="commandClass" value="net.esc20.txeis.EmployeeAccess.domainobject.report.ViewReportCommand" />
+		<property name="commandName" value="command" />
+		<property name="validator" ref="viewReportValidator" />
+		<property name="jasperReportService" ref="jasperReportService" />
+		<dwr:remote javascript="viewReportController">
+			<dwr:include method="getAvailableColumns" />
+			<dwr:include method="getComparators" />
+		</dwr:remote>
+	</bean>
+	
+	<dwr:controller id="dwrController" debug="true" />
+	<dwr:configuration/>
+</beans>

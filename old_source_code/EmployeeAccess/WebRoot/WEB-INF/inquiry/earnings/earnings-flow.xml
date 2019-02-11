@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd"
+	parent="abstract" >
+	
+	<var name="earningsModel" class="net.esc20.txeis.EmployeeAccess.web.view.Earnings"/>
+	
+	<on-start>
+			<evaluate result="flowScope.restEarn" expression="earningsService.getRestrictEarnings()"/>
+			<evaluate result="flowScope.payDates" expression="earningsService.retrievePayDates(externalContext.sessionMap.currentUser_employeeNumber, flowScope.restEarn)"/>
+			<evaluate result="earningsModel.payDate" expression="earningsService.getLatestPayDate(flowScope.payDates)"/>
+			<evaluate result="flowScope.message" expression="earningsService.getMessage()"/>
+	</on-start>
+	
+	<decision-state id="checkPermission">
+		<if test="flowScope.options.enableEarnings" then="startView" else="noAccess"/>
+	</decision-state>
+	
+	<view-state id="earningsStartView" model="earningsModel" view="earnings">
+		<binder>
+			<binding property="payDate" converter="displayPayDate" required="true"/>
+		</binder>
+		
+		<transition on="retrieve" to="retrieveEarnings">
+			<render fragments="body"/>
+		</transition>
+	</view-state>
+	
+	<action-state id="retrieveEarnings">
+		<evaluate result="flowScope.earnings" 
+		expression="earningsService.retrieveEarnings(messageContext, externalContext.sessionMap.currentUser_employeeNumber, earningsModel.payDate)"/>
+		<transition to="doEarningsRpt"/>
+	</action-state>
+	
+	<action-state id="doEarningsRpt">
+		<on-entry>
+			<evaluate result="flowScope.user"
+				expression="jobService.retrieveUser(externalContext.sessionMap.currentUser_employeeNumber)"/>
+			<evaluate result="flowScope.earnings" 
+				expression="earningsService.retrieveEarnings(messageContext, externalContext.sessionMap.currentUser_employeeNumber, earningsModel.payDate)"/>
+			<evaluate result="flowScope.jobs" 
+				expression="jobService.retrieveJobs(externalContext.sessionMap.currentUser_employeeNumber)"/>
+			<evaluate result="flowScope.EarningsPrint"
+				expression="earningsService.generateEarningsPrint(flowScope.user, flowScope.earnings.info, earningsModel.payDate, flowScope.jobs)"/>
+		</on-entry>
+		<evaluate result="externalContext.sessionMap.PARAMETER_REPORT"
+			expression="earningsService.setupReport(earningsReport,flowScope.EarningsPrint)"/>
+		<transition to="earningsStartView"/>
+	</action-state>
+	
+	<action-state id="startView">
+		<set name="flowScope.dummyVariable" value="true"></set>
+		<transition to="retrieveEarnings"/>
+	</action-state>
+	
+</flow>
