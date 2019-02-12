@@ -292,7 +292,7 @@ public class IndexController {
 	         
 	         
 	         //for local path
-	         String path= System.getProperty("user.dir").replace("bin", "standalone\\deployments\\ESC20.war\\static\\images\\avatar\\")+demo.getEmpNbr()+".jpg";
+	         String path= System.getProperty("user.dir").replace("bin", "standalone\\data\\images\\")+demo.getEmpNbr()+".jpg";
 	
 	         OutputStream out = new FileOutputStream(path);
 	         out.write(b);
@@ -303,7 +303,7 @@ public class IndexController {
 	         mav.setViewName("profile");
 	        
 	         	
-	         demo.setAvatar("/"+req.getContextPath().split("/")[1]+"/images/avatar/"+demo.getEmpNbr()+".jpg");
+	         demo.setAvatar("/uploadFiles/"+demo.getEmpNbr()+".jpg");
 	         this.indexService.updateDemoAvatar(demo);
 	         session.removeAttribute("userDetail");
 	         session.setAttribute("userDetail", demo);
