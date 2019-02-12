@@ -274,6 +274,7 @@
                             .attr('data-bv-result', this.STATUS_NOT_VALIDATED)
                             .html(this._getMessage(field, validatorName))
                             .appendTo($message);
+                            // console.log(this._getMessage(field, validatorName))
                         setGlobal()
                     }
 
@@ -800,7 +801,12 @@
             }
 
             $fields.each(function() {
-                $(this).data('bv.messages').find('.help-block[data-bv-validator="' + validator + '"][data-bv-for="' + field + '"]').html(message);
+                // console.log(message)
+                $(this).data('bv.messages').
+                find('.help-block[data-bv-validator="' + validator + '"][data-bv-for="' + field + '"]')
+                .attr('data-localize',message)
+                .html(message);
+                setGlobal()
             });
         },
         

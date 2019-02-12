@@ -57,6 +57,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 .destroy()
                             $('#requestForm').data('bootstrapValidator', null)
                             formValidator()
+                            $('.dateValidator').hide()
                             let leaveStartDate = calEvent.start._i
                             let leaveEndDate = calEvent.end._i
 
@@ -143,9 +144,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 // let newBtn = `<button class="btn btn-primary xs"  data-title="${title}" title="Add a new request" onclick="newEvent(this)">Add</button>`
                                 let newBtn = `<button class="btn btn-primary xs" data-title="`
                                                 + title +
-                                                `" title="Add a new request" onclick="newEvent(this)">Add</button>`
+                                                `" title="Add a new request" data-localize="label.add" onclick="newEvent(this)"></button>`
                                 $(this).prepend(newBtn)
                             })
+                            initLocalize(initialLocaleCode)//Initialize multilingual function
                         }
                     })
                 },

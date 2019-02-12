@@ -307,6 +307,12 @@ input {
 .valid-wrap {
     position: relative;
 }
+.error-vertical{
+    &.has-error .help-block{
+        position: relative;
+        display: block;
+    }
+}
 .has-error .help-block,
 .has-error .control-label,
 .has-error .radio,

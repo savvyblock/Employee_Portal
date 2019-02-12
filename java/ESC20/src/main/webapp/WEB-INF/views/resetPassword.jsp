@@ -25,7 +25,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group error-vertical">
                         <label class="form-title"data-localize="label.confirmPassword"></label>
                         <div class="valid-wrap">
                             <input
@@ -53,7 +53,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         })
         $('#updatePassword').bootstrapValidator({
             live: 'enable',
-            message: 'This value is not valid',
             trigger: 'blur keyup',
             feedbackIcons: {
                 valid: 'fa fa-check ',
@@ -62,32 +61,28 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             },
             fields: {
                 password: {
-                    message: 'This value is not valid',
                     validators: {
                         notEmpty: {
-                            message: 'This field cannot be empty.'
+                            message: 'validator.requiredField'
                         },
                         stringLength: {
                             min: 6,
-                            message:
-                                'Password length must not be less than 6 bits.'
+                            message:'validator.passwordLengthNotLessThan6'
                         }
                     }
                 },
                 newPassword: {
-                    message: 'This value is not valid',
                     validators: {
                         notEmpty: {
-                            message: 'This field cannot be empty.'
+                            message: 'validator.requiredField'
                         },
                         identical: {
                             field: 'password',
-                            message:
-                                'The two passwords you entered did not match.'
+                            message:'validator.passwordNotMatch'
                         },
                         stringLength: {
                             min: 6,
-                            message: 'Password length must not be less than 6 .'
+                            message: 'validator.passwordLengthNotLessThan6'
                         }
                     }
                 }

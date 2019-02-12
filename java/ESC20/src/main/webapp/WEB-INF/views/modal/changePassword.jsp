@@ -40,7 +40,7 @@
                           </div>
                       </div>  
                       <div class="form-group has-error oldPsdValidator" style = "display:none">
-                            <small class="help-block" data-localize="validator.oldPasswordWrong">Old password is wrong</small>
+                            <small class="help-block" data-localize="validator.oldPasswordWrong"></small>
                         </div>
                     <div class="form-group">
                           <label class="form-title" data-localize="label.newPassword"></label>

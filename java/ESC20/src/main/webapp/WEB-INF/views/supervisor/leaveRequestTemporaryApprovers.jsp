@@ -24,7 +24,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     method="POST"
                                 >
                                 <span hidden="hidden" id="chainValue">${chain}</span>
-                                    <input hidden="hidden" id="chain" name="chain" type="text" value="">
+                                    <input hidden="hidden" id="chain" class="chain" name="chain" type="text" value="">
                                     <div class="form-group in-line flex-auto">
                                         <label class="form-title"><span data-localize="label.directReportSupervisor"></span>:</label>
                                         <select  class="form-control" name="selectEmpNbr" onchange="changeLevel()"
@@ -64,58 +64,63 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <span data-localize="label.temporaryApproversFor"></span>
                                 <b class="highlight">
                                         <c:forEach var="item" items="${chain}" varStatus="status">
-                                                <c:if test="${status.last}">${item.employeeNumber}:${item.lastName},${item.firstName} </c:if>
+                                                <c:if test="${status.last}"><span id="currentEmployee">${item.employeeNumber}</span>:${item.lastName},${item.firstName} </c:if>
                                         </c:forEach>
                                     </b
                                 >
                             </div>
-                            <form action="">
+                            <form action="saveTempApprovers" id="saveTempApprovers" method="POST">
+                                    <input hidden="hidden" class="chain" name="chain" type="text" value="">
+                                    <input hidden="hidden" id="empNbr" name="empNbr" type="text" value="">
                                 <table
                                     class="table border-table setApprovers-list responsive-table"
                                 >
                                     <thead>
                                         <tr>
-                                            <th data-localize="setTemporaryApprovers.rowNbr">Row Nbr</th>
-                                            <th data-localize="setTemporaryApprovers.temporaryApprover">Temporary Approver</th>
-                                            <th data-localize="setTemporaryApprovers.fromDate">From Date</th>
-                                            <th data-localize="setTemporaryApprovers.toDate">To Date</th>
-                                            <th data-localize="setTemporaryApprovers.delete">Delete</th>
+                                            <th data-localize="setTemporaryApprovers.rowNbr"></th>
+                                            <th data-localize="setTemporaryApprovers.temporaryApprover"></th>
+                                            <th data-localize="setTemporaryApprovers.fromDate"></th>
+                                            <th data-localize="setTemporaryApprovers.toDate"></th>
+                                            <th data-localize="setTemporaryApprovers.delete"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="approver_tr">
-                                            <td
-                                                class="countIndex"
-                                                data-localize="setTemporaryApprovers.rowNbr" data-localize-location="scope"
-                                            >
-                                                1
-                                            </td>
-                                            <td
-                                            data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope"
-                                            ></td>
-                                            <td data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope"></td>
-                                            <td data-localize="setTemporaryApprovers.toDate" data-localize-location="scope"></td>
-                                            <td data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
-                                                <button
-                                                    type="button"
-                                                    class="a-btn"
-                                                    data-localize="label.delete"
-                                                    data-localize-location="title"
-                                                >
-                                                    <i
-                                                        class="fa fa-trash"
-                                                        onclick="deleteApprover()"
-                                                    ></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                            <c:forEach var="tem" items="${tmpApprovers}" varStatus="status">
+                                                    <tr class="approver_tr">
+                                                            <td
+                                                                class="countIndex"
+                                                                data-localize="setTemporaryApprovers.rowNbr" data-localize-location="scope"
+                                                            >
+                                                                ${status.index + 1}
+                                                            </td>
+                                                            <td
+                                                            data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope"
+                                                            ></td>
+                                                            <td data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope"></td>
+                                                            <td data-localize="setTemporaryApprovers.toDate" data-localize-location="scope"></td>
+                                                            <td data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
+                                                                <button
+                                                                    type="button"
+                                                                    class="a-btn"
+                                                                    data-localize="label.delete"
+                                                                    data-localize-location="title"
+                                                                >
+                                                                    <i
+                                                                        class="fa fa-trash"
+                                                                        onclick="deleteApprover()"
+                                                                    ></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                            </c:forEach>
+                                        
                                         <tr class="approver_tr">
                                             <td
                                                 class="countIndex"
                                                 data-localize="setTemporaryApprovers.rowNbr"
                                                 data-localize-location="scope"
                                             >
-                                                2
+                                                <span id="firstRow"></span>
                                             </td>
                                             <td data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope">
                                                 <div class="form-group">
@@ -211,32 +216,41 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             changeLevel()
             initDateControl()
             let level = $("#level").val()
+            let chainString = JSON.stringify(chain)
+            let empNbr = $("#currentEmployee").text()
+            let lengthNow = $('.setApprovers-list tbody tr').length + 1
+            console.log($('.setApprovers-list tbody tr').length)
+            console.log(lengthNow)
+            if($("#firstRow")){
+                $("#firstRow").text(lengthNow)
+            }
+            $("#empNbr").val(empNbr)
+            $(".chain").val(chainString)
             if(chain.length>1){
                 $("#prevLevel").removeClass("disabled").removeAttr("disabled");
             }else{
                 $("#prevLevel").addClass("disabled").attr('disabled',"true");
             }
             $("#nextLevel").click(function(){
-                let chainString = JSON.stringify(chain)
                 $("#chain").val(chainString)
                 $("#filterSupervisor")[0].submit()  
             })
             $("#prevLevel").click(function(){
-                let chainString = JSON.stringify(chain)
                 $("#preChain").val(chainString)
                 $("#previousLevel")[0].submit()  
             })
             $('.add-new-row').click(function() {
-                let length = $('.setApprovers-list tbody tr').length
+                let length = $('.setApprovers-list tbody tr').length + 1
+                console.log(length)
                 let newRow = `<tr class="approver_tr">
                                             <td class="countIndex" data-localize="setTemporaryApprovers.rowNbr"
-                                                data-localize-location="scope">${length}</td>
+                                                data-localize-location="scope">`+ length +`</td>
                                             <td data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope">
                                                 <div class="form-group">
                                                     <input class="form-control" type="text" 
                                                     title=""
                                                     data-localize="setTemporaryApprovers.temporaryApprover"
-                                                    name="temporaryApprovers[${length}].temporaryApprover.employeeNumber" 
+                                                    name="" 
                                                     id="name_01">
                                                 </div>
                                             </td>
@@ -245,7 +259,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <input class="form-control date-control"
                                                         title=""
                                                         data-localize="setTemporaryApprovers.fromDate" type="text" 
-                                                        name="temporaryApprovers[${length}].fromDateString" 
+                                                        name="" 
                                                         id="fromDate_01">
                                                     </div>
                                             </td>
@@ -253,8 +267,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="form-group">
                                                     <input class="form-control  date-control"
                                                     title=""
-                                                        data-localize="setTemporaryApprovers.toDate" type="text" 
-                                                    name="temporaryApprovers[${length}].toDateString" 
+                                                    data-localize="setTemporaryApprovers.toDate" type="text" 
+                                                    name="" 
                                                     id="toDate_01">
                                                 </div>
                                             </td>
@@ -267,7 +281,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </tr>
                     `
                 $('.setApprovers-list tbody tr:last-child').before(newRow)
-                initLocalize(initialLocaleCode)
+                initLocalize(initialLocaleCode)//Initialize multilingual function
                 initDateControl()
             })
         })
@@ -300,6 +314,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 .fdatepicker({
                     // startDate: now,
                     format: 'mm/dd/yyyy',
+                    language:initialLocaleCode,
                     onRender: function(date) {
                         if(checkout[index]&&haveEndDate[index]){
                             return date.valueOf() > checkout[index].date.valueOf() ? 'disabled' : '';
@@ -314,6 +329,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 .fdatepicker({
                     // startDate: now,
                     format: 'mm/dd/yyyy',
+                    language:initialLocaleCode,
                     onRender: function(date) {
                         return date.valueOf() < checkin[index].date.valueOf()
                             ? 'disabled'

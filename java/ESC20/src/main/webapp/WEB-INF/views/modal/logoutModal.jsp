@@ -21,7 +21,7 @@
                 >
                     &times;
                 </button>
-                <h4 class="modal-title"></h4>
+                <h4 class="modal-title" data-localize="label.information"></h4>
             </div>
               
                       <div class="modal-body">
