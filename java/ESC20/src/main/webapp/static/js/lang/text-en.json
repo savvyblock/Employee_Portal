@@ -536,6 +536,7 @@
 		"undo":"Undo",
 		"ok":"OK",
 		"areYouQuit":"Are you sure to want to quit?",
+		"areYouRescind":"Are you sure you want to rescind the request?",
 		"update":"Update",
 		"addComments":"add  comments",
 		"deleteThisComment":"Delete This Comment",
@@ -545,7 +546,8 @@
 		"notProcessed":"Not Processed",
 		"unprocessedLeaveRequest":"Unprocessed Leave Request",
 		"newRequest":"Create Leave Requests",
-		"editRequest":"Edit Leave Requests"
+		"editRequest":"Edit Leave Requests",
+		"consent1095":"1095 Consent"
 	},
 	"language":{
 		"english":"English",

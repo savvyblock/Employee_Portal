@@ -20,7 +20,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="btn btn-primary"
                                         data-toggle="modal"
                                         data-target="#electronicConsent"
-                                        data-localize="label.w-2Consent"></button>
+                                        data-localize="label.consent1095"></button>
                                     <button class="btn btn-primary" onclick="doPrint()" data-localize="label.print">
                                     </button>
                                 </div>
@@ -491,7 +491,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     <div class="modal-body">
                         <form action="">
                             <div class="form-group">
-                                <textarea class="form-control form-text" name="customMessage" id="customMessage" cols="30" rows="6" title="" placeholder="" data-localize="label.customMessageHere"></textarea>
+                                <textarea class="form-control form-text" name="customMessage" id="customMessage" cols="30" rows="6" title="" placeholder="" data-localize="label.customMessageHere"  disabled></textarea>
                             </div>
                             <div class="form-group">
                                     <div class="checkbox mb-2">

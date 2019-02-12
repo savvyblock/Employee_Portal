@@ -32,7 +32,7 @@ section {
 
 body {
   margin: 0;
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: 'Open Sans',sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
@@ -309,6 +309,10 @@ input:focus {
   position: relative;
 }
 
+.form-group.p-l-0 {
+  padding-left: 0;
+}
+
 .form-title {
   font-size: 14px;
   color: #000;
@@ -490,6 +494,26 @@ input:focus {
   border: 1px solid #dee2e6;
 }
 
+.table.border-table tbody td {
+  text-align: right;
+}
+
+.table.border-table tbody td:first-child {
+  text-align: left;
+}
+
+.table.deductionTable tbody td {
+  text-align: right;
+}
+
+.table.deductionTable tbody td:first-child {
+  text-align: left;
+}
+
+.table.deductionTable tbody td:nth-child(2) {
+  text-align: left;
+}
+
 .table.no-border-table {
   border: 0;
 }
@@ -509,6 +533,10 @@ input:focus {
   text-align: left;
   word-spacing: normal;
   font-size: 12px;
+}
+
+.table th.td-content, .table td.td-content {
+  text-align: right;
 }
 
 .table th .focused-value, .table td .focused-value {
