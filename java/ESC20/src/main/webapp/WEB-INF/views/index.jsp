@@ -58,6 +58,11 @@
                             <div class="form-group account-btn">
                                 <button id="signin" type="submit" class="btn btn-primary" name="signin" data-localize="label.login"></button>
                             </div>
+                            <div class="text-center">
+                                <a class="a-line" href="/<%=request.getContextPath().split("/")[1]%>/searchUser" data-localize="label.newUser">
+                                    
+                                </a>
+                            </div>
                             
                         </form>
                         
