@@ -22,7 +22,7 @@
 					method="POST"
 								>
 								<div class="form-group in-line">
-								<label class="form-title"  for="freq"  data-localize="label.payrollFreq"></label>
+								<label class="form-title"  for="freq"  data-localize="label.pleaseSelectFre"></label>
 				<select class="form-control" name="freq" id="freq" onchange="changeFreq()">
 								<c:forEach var="freq" items="${availableFreqs}" varStatus="count">
 									<option value="${freq.code}" <c:if test="${freq.code == selectedFreq }">selected</c:if>>${freq.description}</option>
@@ -62,12 +62,15 @@
 						</div>
 						<div class="form-group btn-group">
 							<div style="margin-top:20px;">
-									<button type="submit" class="btn btn-primary" data-localize="leaveBalance.retrieve">
+									<button id="retrieve" type="submit" class="btn btn-primary" data-localize="leaveBalance.retrieve">
 										</button>
 							</div>
 						</div>
 					</form>
-
+					<div class="form-group">
+						<p class="error-hint hide" id="timeErrorMessage" data-localize="validator.fromDateNotGreaterToDate"></p>
+					</div>
+					
 				<c:if test="${fn:length(leaves) > 0}">
 					<table class="table request-list responsive-table">
 						<thead>
@@ -129,14 +132,48 @@
 	$(document).ready(
 			function() {
 				console.log(initialLocaleCode)
-				$('#SearchStartDate').fdatepicker({
+				var formDate = $('#SearchStartDate').fdatepicker({
 					format:'mm/dd/yyyy',
 					language:initialLocaleCode
+				}).on('changeDate', function(ev) {
+					let fromInput = $("#SearchStartDate").val()
+					let toInput = $("#SearchEndDate").val()
+					if(fromInput&&toInput){
+						let from = ev.date.valueOf()
+						let to = toDate.date.valueOf()
+						if(from>to){
+							$("#timeErrorMessage").removeClass("hide")
+							$("#retrieve").attr("disabled","disabled")
+							$("#retrieve").addClass("disabled")
+						}else{
+							$("#timeErrorMessage").addClass("hide")
+							$("#retrieve").removeAttr("disabled")
+							$("#retrieve").removeClass("disabled")
+						}
+					}
 				})
-				$('#SearchEndDate').fdatepicker({
+				.data('datepicker')
+				var toDate = $('#SearchEndDate').fdatepicker({
 					format:'mm/dd/yyyy',
 					language:initialLocaleCode
+				}).on('changeDate', function(ev) {
+					let fromInput = $("#SearchStartDate").val()
+					let toInput = $("#SearchEndDate").val()
+					if(fromInput&&toInput){
+						let to = ev.date.valueOf()
+						let from = formDate.date.valueOf()
+						if(from>to){
+							$("#timeErrorMessage").removeClass("hide")
+							$("#retrieve").attr("disabled","disabled")
+							$("#retrieve").addClass("disabled")
+						}else{
+							$("#timeErrorMessage").addClass("hide")
+							$("#retrieve").removeAttr("disabled")
+							$("#retrieve").removeClass("disabled")
+						}
+					}
 				})
+				.data('datepicker')
 			});
 
 	function changeMMYYDDFormat(date){

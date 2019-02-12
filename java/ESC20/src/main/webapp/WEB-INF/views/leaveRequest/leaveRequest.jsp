@@ -76,12 +76,18 @@
 						</div>
 						<div class="form-group btn-group">
 							<div style="margin-top:20px;">
-									<button type="submit" class="btn btn-primary" data-localize="leaveBalance.retrieve">
+									<button id="retrieve" type="submit" class="btn btn-primary" data-localize="leaveBalance.retrieve">
 										</button>
 							</div>
 						</div>
 					</form>
-
+					<div class="form-group">
+						<p class="error-hint hide" id="timeErrorMessage" data-localize="validator.fromDateNotGreaterToDate"></p>
+					</div>
+					<p class="table-top-title">
+						<b data-localize="label.unprocessedLeaveRequest"></b>
+					</p>
+					<div class="hr-black"></div>
 				<c:if test="${fn:length(leaves) > 0}">
 					<table class="table request-list responsive-table">
 						<thead>
@@ -103,9 +109,9 @@
 							<c:forEach var="leave" items="${leaves}" varStatus="leaves">
 								<tr>
 									<td  data-localize="leaveRequest.sno" data-localize-location="scope">${leaves.index + 1}</td>
-									<td data-localize="leaveRequest.leaveType">
+									<td data-localize="leaveRequest.leaveType" data-localize-location="scope">
 											<c:forEach var="type" items="${leaveTypes}" varStatus="count">
-													<c:if test="${type.code == leave.LeaveType }">${type.description}</c:if>
+													<c:if test="${type.code == leave.leaveType}">${type.description}</c:if>
 											</c:forEach>
 									</td>
 									<td data-localize="leaveRequest.absenceReason" data-localize-location="scope">
@@ -157,14 +163,48 @@
 	$(document).ready(
 			function() {
 				console.log(initialLocaleCode)
-				$('#SearchStartDate').fdatepicker({
+				var formDate = $('#SearchStartDate').fdatepicker({
 					format:'mm/dd/yyyy',
 					language:initialLocaleCode
-				});
-				$('#SearchEndDate').fdatepicker({
+				}).on('changeDate', function(ev) {
+					let fromInput = $("#SearchStartDate").val()
+					let toInput = $("#SearchEndDate").val()
+					if(fromInput&&toInput){
+						let from = ev.date.valueOf()
+						let to = toDate.date.valueOf()
+						if(from>to){
+							$("#timeErrorMessage").removeClass("hide")
+							$("#retrieve").attr("disabled","disabled")
+							$("#retrieve").addClass("disabled")
+						}else{
+							$("#timeErrorMessage").addClass("hide")
+							$("#retrieve").removeAttr("disabled")
+							$("#retrieve").removeClass("disabled")
+						}
+					}
+				})
+				.data('datepicker')
+				var toDate = $('#SearchEndDate').fdatepicker({
 					format:'mm/dd/yyyy',
 					language:initialLocaleCode
-				});
+				}).on('changeDate', function(ev) {
+					let fromInput = $("#SearchStartDate").val()
+					let toInput = $("#SearchEndDate").val()
+					if(fromInput&&toInput){
+						let to = ev.date.valueOf()
+						let from = formDate.date.valueOf()
+						if(from>to){
+							$("#timeErrorMessage").removeClass("hide")
+							$("#retrieve").attr("disabled","disabled")
+							$("#retrieve").addClass("disabled")
+						}else{
+							$("#timeErrorMessage").addClass("hide")
+							$("#retrieve").removeAttr("disabled")
+							$("#retrieve").removeClass("disabled")
+						}
+					}
+				})
+				.data('datepicker')
 			});
 	
 		function editLeave(id,leaveType,absenceReason,leaveStartDate,leaveEndDate,lvUnitsDaily,lvUnitsUsed){
@@ -178,7 +218,8 @@
 				$('#requestForm')
             .data('bootstrapValidator')
             .destroy()
-        $('#requestForm').data('bootstrapValidator', null)
+				$('#requestForm').data('bootstrapValidator', null)
+				$('.dateValidator').hide()
         formValidator()
 				let start_arry = leaveStartDate.split(" ")
 				let end_arry = leaveEndDate.split(" ")
@@ -271,6 +312,7 @@
         $('#cancelAdd').show()
 				$('#deleteLeave').hide()
 				$(".edit-title").hide();
+				$('.dateValidator').hide()
         $(".new-title").show();
         //Initializes the time control when edit event modal show
 				$("#commentList").html("")
