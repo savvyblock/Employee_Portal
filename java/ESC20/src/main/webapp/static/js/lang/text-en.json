@@ -556,7 +556,8 @@
 		"retrieve":"Retrieve",
 		"month":"month",
 		"day":"day",
-		"year":"year"
+		"year":"year",
+		"newUser":"New User"
 	},
 	"language":{
 		"english":"English",

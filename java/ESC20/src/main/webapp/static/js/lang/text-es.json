@@ -547,7 +547,17 @@
 		"unprocessedLeaveRequest":"Unprocessed Leave Request",
 		"newRequest":"Create Leave Requests",
 		"editRequest":"Edit Leave Requests",
-		"consent1095":"1095 Consent"
+		"consent1095":"1095 Consent",
+		"employeeNumber":"Employee Number",
+		"noDashes":"no dashes",
+		"dateOfBirth":"Date of Birth",
+		"mmddyyyy":"mm dd yyyy",
+		"zipCode":"Zip Code",
+		"retrieve":"Retrieve",
+		"month":"month",
+		"day":"day",
+		"year":"year",
+		"newUser":"New User"
 	},
 	"language":{
 		"english":"English",
@@ -615,7 +625,8 @@
 		"calendar":"TxEIS : Employee Access -  Calendar",
 		"leaveOverview":"TxEIS : Employee Access -  Leave Overview",
 		"setTempApprovers":"TxEIS : Employee Access -  Set Temporary Approvers",
-		"notFound":"TxEIS : Employee Access -  Page Not Found"
+		"notFound":"TxEIS : Employee Access -  Page Not Found",
+		"createNewUser":"TxEIS : Employee Access -  Create New User"
 	},
 	"validator":{
 		"requiredField":"This field is required!",
@@ -640,6 +651,7 @@
 		"remarksCannotBeEmpty":"The remarks cannot be empty",
 		"updateWasSuccessful":"Update was successful - an email will be sent confirming your selection.",
 		"maxLength7":"The maximum length of a string is 7",
+		"maxLength6":"The maximum length of a string is 6",
 		"maxLength19":"The maximum length of a string is 19",
 		"maxLength20":"The maximum length of a string is 20",
 		"maxLength25":"The maximum length of a string is 25",

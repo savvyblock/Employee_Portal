@@ -176,6 +176,12 @@ public class IndexController {
         mav.addObject("errorMessage", "User Does not exist");
         return mav;
     }
+    @RequestMapping("searchUser")
+    public ModelAndView searchUser(HttpServletRequest req){
+    	ModelAndView mav = new ModelAndView();
+        mav.setViewName("searchUser");
+        return mav;
+    }
     
     @RequestMapping("home")
     public ModelAndView getHome(HttpServletRequest req){
