@@ -308,8 +308,8 @@ public class IndexController {
 	         
 	         
 	         //for local path
-	         String path= System.getProperty("user.dir").replace("bin", "standalone\\data\\images\\")+demo.getEmpNbr()+".jpg";
-	
+	         String path= System.getProperty("user.dir").replace("bin", "standalone/data/images/")+demo.getEmpNbr()+".jpg";
+	         System.out.println(path);
 	         OutputStream out = new FileOutputStream(path);
 	         out.write(b);
 	         out.flush();
