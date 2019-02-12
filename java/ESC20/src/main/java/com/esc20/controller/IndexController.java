@@ -46,6 +46,8 @@ import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
+import com.esc20.util.DateUtil;
+import com.esc20.util.StringUtil;
 
 import sun.misc.BASE64Decoder;
 
@@ -75,7 +77,8 @@ public class IndexController {
         if(param != null){
             String uName = param.get("userName");
             BeaUsers user = this.indexService.getUserPwd(uName);
-            if(this.decrypt(user.getUsrpswd()).equals(param.get("userPwd"))){
+            
+            if(user != null && this.decrypt(user.getUsrpswd()).equals(param.get("userPwd"))){
                 res.put("isSuccess","true");
                 res.put("userName", uName);
                 HttpSession session = req.getSession();
@@ -83,11 +86,17 @@ public class IndexController {
                 Options options = this.indexService.getOptions();
                 District districtInfo = this.indexService.getDistrict();
                 userDetail.setEmpNbr(user.getEmpNbr());
+                userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+                String phone = districtInfo.getPhone();
+                districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.left(phone, 4));
                 session.setAttribute("user", user);
                 session.setAttribute("userDetail", userDetail);
                 session.setAttribute("companyId", user.getCmpId());
                 session.setAttribute("options", options);
                 session.setAttribute("district", districtInfo);
+            }else {
+            	  res.put("isSuccess","false");
+                  res.put("userName", uName);
             }
         }
         return res;
@@ -97,7 +106,13 @@ public class IndexController {
     public ModelAndView retrieveUserName(HttpServletRequest req, String email){
     	ModelAndView mav = new ModelAndView();
     	BeaUsers user = this.indexService.getUserByEmail(email);
-    	user.setUserEmail(email);
+    	
+    	if(user == null) {
+    		mav.addObject("retrieveUserNameErrorMessage", "Email Does not exist");
+    	}else {
+    		user.setUserEmail(email);
+    	}
+    	
         mav.setViewName("forgetPassword");
         mav.addObject("user", user);
         mav.addObject("email", email);

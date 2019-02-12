@@ -640,7 +640,12 @@
 		"maxLength25":"The maximum length of a string is 25",
 		"maxLength26":"The maximum length of a string is 26",
 		"oldPasswordWrong":"Old password is wrong!",
-		"usernameOrPasswordError":"User name or password error!"
+		"usernameOrPasswordError":"User name or password error!",
+		"usernameOrPasswordIncorrect":"Incorrect User name or password!",
+		"emailNotExit":"The email address does not exist!",
+		"userNotExist":"User Does not exist!",
+		"usernameOrEmailError":"User name or email error!",
+		"fromDateNotGreaterToDate":"From date cannot be greater than To date!"
 	},
 	"w2Notice":{
 		"box":"Box ",
