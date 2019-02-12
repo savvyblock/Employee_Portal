@@ -307,6 +307,13 @@ input {
 }
 .valid-wrap {
     position: relative;
+    &.inline{
+        display: flex;
+        .form-group{
+            margin: 0 3px;
+            margin-bottom: 10px;
+        }
+    }
 }
 .error-vertical{
     &.has-error .help-block{
