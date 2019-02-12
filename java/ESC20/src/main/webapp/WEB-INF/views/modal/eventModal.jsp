@@ -23,6 +23,7 @@
                 <h4 class="modal-title edit-title" data-localize="label.editRequest"></h4>
             </div>
             <form id="requestForm" action="submitLeaveRequest" method="post">
+                <input type="text" hidden="hidden" name="chain" id="chainModal">
                 <input type="text" name="freq" hidden="hidden" value="${selectedFreq}">
                 <div class="modal-body requestForm">
                     <input type="hidden" name="leaveId" id="leaveId" />
@@ -218,6 +219,7 @@
             .fdatepicker({
                 // startDate: now,
                 format: 'mm/dd/yyyy',
+                language:initialLocaleCode,
                 onRender: function(date) {
                     // if(checkout&&haveEndDate){
                     //     return date.valueOf() > checkout.date.valueOf() ? 'disabled' : '';
@@ -245,6 +247,7 @@
             .fdatepicker({
                 // startDate: now,
                 format: 'mm/dd/yyyy',
+                language:initialLocaleCode,
                 onRender: function(date) {
                     return date.valueOf() < checkin.date.valueOf()
                         ? 'disabled'
