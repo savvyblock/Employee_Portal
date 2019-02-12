@@ -51,11 +51,11 @@
       <%@ include file="logo.jsp"%>
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <c:if test="${sessionScope.userDetail.avatar&&sessionScope.userDetail.avatar!=''}" >
-                <a href="/<%=request.getContextPath().split("/")[1]%>/profile" class="d-block"  style="background-image:url(' + ${sessionScope.userDetail.avatar} + ')">
+            <c:if test="${sessionScope.userDetail.avatar!=null}" >
+                <a href="/<%=request.getContextPath().split("/")[1]%>/profile" class="d-block"  style="background-image:url(${sessionScope.userDetail.avatar})">
               </a>
             </c:if>
-            <c:if test="${!sessionScope.userDetail.avatar||sessionScope.userDetail.avatar==''}">
+            <c:if test="${sessionScope.userDetail.avatar==null}">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/profile" class="d-block noImage">
                   <i class="fa fa-user"></i>
                 </a>
