@@ -47,6 +47,11 @@ public class AppUserDao {
         q.setParameter("name", name.toUpperCase());
         BeaUsers res = (BeaUsers) q.uniqueResult();
         session.close();
+        
+        if(res == null) {
+        	return null;
+        }
+        
         if(res.getLkPswd() == 'Y' || ("").equals(res.getUsrpswd())) {
         	return null;
         } else if (res.getLkPswd() == 'N') {

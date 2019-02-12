@@ -37,6 +37,7 @@
                                 
                             </div>
                             <p class="error-hint hide" id="errorMessage" data-localize="validator.usernameOrPasswordError"></p>
+                            <p class="error-hint hide" id="incorrectMessage" data-localize="validator.usernameOrPasswordIncorrect"></p>
                             <div class="form-group clearfix">
                                 <!-- <div class="checkbox pull-left">
                                     <label>
@@ -92,7 +93,7 @@
                 var bootstrapValidator = $('#loginForm').data('bootstrapValidator');
                 bootstrapValidator.validate();
                 if(bootstrapValidator.isValid()){
-                    console.log("000")
+                    
                     $.ajax({
                         type:'POST',
                         url:'<%=request.getContextPath()%>/login',
@@ -103,12 +104,14 @@
                             userPwd: userPwd
                         }),
                         success : function (res) {
-                            if(res.isSuccess){
+                            if(res.isSuccess == "true"){
                                 document.location = '<%=request.getContextPath()%>/home'
+                            } else {
+                            	$("#incorrectMessage").show();
                             }
                         },
                         error:function(res){
-                            $("#errorMessage").show()
+                            $("#errorMessage").show();
                         }
                     });
                 }
