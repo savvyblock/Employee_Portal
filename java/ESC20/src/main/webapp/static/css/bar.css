@@ -148,6 +148,7 @@
 
 .user-panel {
   position: relative;
+  display: flex;
 }
 
 .user-panel,
@@ -157,8 +158,30 @@
 }
 
 .user-panel .image {
-  padding-left: 0.8rem;
   display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #d8d0ce;
+  overflow: hidden;
+}
+
+.user-panel .image a {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #2a3f54 !important;
+  display: block;
+  line-height: 80px;
+  text-align: center;
+  font-size: 42px;
+}
+
+.user-panel .image a .fa {
+  line-height: 80px;
 }
 
 .user-panel img {
@@ -167,8 +190,9 @@
 }
 
 .user-panel .info {
-  display: inline-block;
+  display: flex;
   padding: 5px 5px 5px 10px;
+  align-items: center;
 }
 
 .nav-sidebar .nav-item > .nav-link {
@@ -484,6 +508,11 @@
   display: none;
   list-style: none;
   padding: 0;
+}
+
+.main-sidebar .sidebar .nav.nav-treeview .fa {
+  font-size: 12px;
+  text-transform: uppercase;
 }
 
 .main-sidebar .sidebar-btm {

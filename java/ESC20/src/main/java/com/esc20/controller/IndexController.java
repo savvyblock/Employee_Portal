@@ -1,6 +1,5 @@
 package com.esc20.controller;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -17,14 +16,12 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.esc20.model.AppUser;
 import com.esc20.model.BeaAltMailAddr;
 import com.esc20.model.BeaBusPhone;
 import com.esc20.model.BeaCellPhone;
@@ -37,10 +34,7 @@ import com.esc20.model.BeaMailAddr;
 import com.esc20.model.BeaMrtlStat;
 import com.esc20.model.BeaRestrict;
 import com.esc20.model.BeaUsers;
-import com.esc20.model.BeaW4;
-import com.esc20.model.BhrEapDemoAssgnGrp;
 import com.esc20.model.BhrEmpDemo;
-import com.esc20.model.BhrEmpPay;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
@@ -106,7 +100,13 @@ public class IndexController {
     public ModelAndView retrieveUserName(HttpServletRequest req, String email){
     	ModelAndView mav = new ModelAndView();
     	BeaUsers user = this.indexService.getUserByEmail(email);
-    	user.setUserEmail(email);
+    	
+    	if(user == null) {
+    		mav.addObject("retrieveUserNameErrorMessage", "Email Does not exist");
+    	}else {
+    		user.setUserEmail(email);
+    	}
+    	
         mav.setViewName("forgetPassword");
         mav.addObject("user", user);
         mav.addObject("email", email);
@@ -122,11 +122,19 @@ public class IndexController {
     @RequestMapping("updatePassword")
     public ModelAndView updatePassword(HttpServletRequest req,String password, String id){
     	ModelAndView mav = new ModelAndView();
-    	BeaUsers user = this.indexService.getUserByEmpNbr(id);
-    	user.setUsrpswd(this.encrypt(password));
-    	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
-    	this.indexService.updateUser(user);
-        return this.getIndexPage(mav);
+    	mav.setViewName("index");
+    	
+    	try {
+	    	BeaUsers user = this.indexService.getUserByEmpNbr(id);
+	    	user.setUsrpswd(this.encrypt(password));
+	    	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
+	    	this.indexService.updateUser(user);
+	    	
+    	}catch(Exception e) {
+    		mav.addObject("resetPsw", "resetPswFaild");
+    	}
+    	mav.addObject("resetPsw", "resetPswSuccess");
+        return mav;
     }
     
     @RequestMapping("changePassword")
@@ -152,9 +160,17 @@ public class IndexController {
     	ModelAndView mav = new ModelAndView();
     	BeaUsers user = this.indexService.getUserPwd(userName);
     	if(user!=null) {
-    		mav.setViewName("resetPassword");
-    		mav.addObject("id", user.getEmpNbr());
-    		return mav;
+    		
+    		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+    		if(email.endsWith(userDetail.getEmail())) {
+    			mav.setViewName("resetPassword");
+        		mav.addObject("id", user.getEmpNbr());
+        		return mav;
+    		}else {
+    			 mav.setViewName("forgetPassword");
+    		     mav.addObject("errorMessage", "User Does not exist");
+    		}
+    		
     	}
         mav.setViewName("forgetPassword");
         mav.addObject("errorMessage", "User Does not exist");

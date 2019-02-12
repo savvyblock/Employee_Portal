@@ -123,6 +123,7 @@
 }
 .user-panel {
     position: relative;
+    display: flex;
 }
 .user-panel,
 .user-panel .info {
@@ -130,16 +131,37 @@
     white-space: nowrap;
 }
 .user-panel .image {
-    padding-left: 0.8rem;
     display: inline-block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #d8d0ce;
+    overflow: hidden;
+    a{
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #2a3f54!important;
+        display: block;
+        line-height: 80px;
+        text-align: center;
+        font-size: 42px;
+        .fa{
+            line-height: 80px;
+        }
+    }
 }
 .user-panel img {
     width: 2.1rem;
     height: auto;
 }
 .user-panel .info {
-    display: inline-block;
+    display: flex;
     padding: 5px 5px 5px 10px;
+    align-items: center;
 }
 .nav-sidebar .nav-item > .nav-link {
     position: relative;
@@ -404,6 +426,10 @@
                 display: none;
                 list-style: none;
                 padding: 0;
+                .fa{
+                    font-size: 12px;
+                    text-transform:uppercase
+                }
             }
         }
     }

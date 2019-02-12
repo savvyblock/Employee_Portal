@@ -442,7 +442,7 @@
 		"employeeName":"Employee Name",
 		"frequency":"Frequency",
 		"lastPostedPayDate":"Last Posted Pay Date",
-		"login":"login",
+		"login":"Login",
 		"newMessage":"new messages",
 		"noCrrentPay":"No Current Pay Information is available.",
 		"noDeductions":"No Deductions information is available.",
@@ -484,7 +484,7 @@
 		"resetPassword":"Reset Password",
 		"emailAddress":"Email Address",
 		"welcome":"Welcome",
-		"pleaseSignIn":"Please sign in",
+		"pleaseSignIn":"Please login",
 		"forgotPassword":"Forgot Password?",
 		"signIn":"Sign In",
 		"edit":"Edit",
@@ -536,13 +536,18 @@
 		"undo":"Undo",
 		"ok":"OK",
 		"areYouQuit":"Are you sure to want to quit?",
+		"areYouRescind":"Are you sure you want to rescind the request?",
 		"update":"Update",
 		"addComments":"add  comments",
 		"deleteThisComment":"Delete This Comment",
 		"days":"DAYS",
 		"hours":"HOURS",
 		"processed":"Processed",
-		"notProcessed":"Not Processed"
+		"notProcessed":"Not Processed",
+		"unprocessedLeaveRequest":"Unprocessed Leave Request",
+		"newRequest":"Create Leave Requests",
+		"editRequest":"Edit Leave Requests",
+		"consent1095":"1095 Consent"
 	},
 	"language":{
 		"english":"English",
@@ -627,7 +632,7 @@
 		"pleaseEnterComment":"Please enter supervisor comment.",
 		"newRequest":"New Request",
 		"editRequest":"Edit Request",
-		"startNotBeGreaterThanEndTime":"The start time can not be greater than the end time!",
+		"startNotBeGreaterThanEndTime":"The end time must be greater than the start time!",
 		"startDateCannotBeEmpty":"The start date cannot be empty",
 		"endDateCannotBeEmpty":"The end date cannot be empty",
 		"startTimeCannotBeEmpty":"The start time cannot be empty",
@@ -645,7 +650,10 @@
 		"emailNotExit":"The email address does not exist!",
 		"userNotExist":"User Does not exist!",
 		"usernameOrEmailError":"User name or email error!",
-		"fromDateNotGreaterToDate":"From date cannot be greater than To date!"
+		"usernameOrEmailNotExit":"User or email does not exist!",
+		"fromDateNotGreaterToDate":"From date cannot be greater than To date!",
+		"resetPswSuccess":"reset password success!",
+		"resetPswFaild":"reset password faild!"
 	},
 	"w2Notice":{
 		"box":"Box ",

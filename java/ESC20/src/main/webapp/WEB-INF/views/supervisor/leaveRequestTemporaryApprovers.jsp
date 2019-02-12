@@ -218,11 +218,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             let level = $("#level").val()
             let chainString = JSON.stringify(chain)
             let empNbr = $("#currentEmployee").text()
-            let lengthNow = $('.setApprovers-list tbody tr').length + 1
+            let lengthNow = $('.setApprovers-list tbody tr').length
             console.log($('.setApprovers-list tbody tr').length)
             console.log(lengthNow)
             if($("#firstRow")){
-                $("#firstRow").text(lengthNow)
+                $("#firstRow").text(lengthNow - 1)
             }
             $("#empNbr").val(empNbr)
             $(".chain").val(chainString)
