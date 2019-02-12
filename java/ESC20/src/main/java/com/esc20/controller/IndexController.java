@@ -122,11 +122,19 @@ public class IndexController {
     @RequestMapping("updatePassword")
     public ModelAndView updatePassword(HttpServletRequest req,String password, String id){
     	ModelAndView mav = new ModelAndView();
-    	BeaUsers user = this.indexService.getUserByEmpNbr(id);
-    	user.setUsrpswd(this.encrypt(password));
-    	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
-    	this.indexService.updateUser(user);
-        return this.getIndexPage(mav);
+    	mav.setViewName("index");
+    	
+    	try {
+	    	BeaUsers user = this.indexService.getUserByEmpNbr(id);
+	    	user.setUsrpswd(this.encrypt(password));
+	    	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
+	    	this.indexService.updateUser(user);
+	    	
+    	}catch(Exception e) {
+    		mav.addObject("resetPsw", "resetPswFaild");
+    	}
+    	mav.addObject("resetPsw", "resetPswSuccess");
+        return mav;
     }
     
     @RequestMapping("changePassword")
@@ -316,7 +324,7 @@ public class IndexController {
 	         mav.setViewName("profile");
 	        
 	         	
-	         demo.setAvatar("/"+req.getContextPath().split("/")[1]+"/images/avatar/"+demo.getEmpNbr()+".jpg");
+	         demo.setAvatar("/uploadFiles/"+demo.getEmpNbr()+".jpg");
 	         this.indexService.updateDemoAvatar(demo);
 	         session.removeAttribute("userDetail");
 	         session.setAttribute("userDetail", demo);
