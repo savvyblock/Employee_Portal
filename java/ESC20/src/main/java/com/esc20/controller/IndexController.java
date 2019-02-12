@@ -46,6 +46,8 @@ import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
+import com.esc20.util.DateUtil;
+import com.esc20.util.StringUtil;
 
 import sun.misc.BASE64Decoder;
 
@@ -83,6 +85,9 @@ public class IndexController {
                 Options options = this.indexService.getOptions();
                 District districtInfo = this.indexService.getDistrict();
                 userDetail.setEmpNbr(user.getEmpNbr());
+                userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+                String phone = districtInfo.getPhone();
+                districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.left(phone, 4));
                 session.setAttribute("user", user);
                 session.setAttribute("userDetail", userDetail);
                 session.setAttribute("companyId", user.getCmpId());
