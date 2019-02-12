@@ -41,13 +41,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <span hidden="hidden" id="chainValue">${chain}</span>
                                     <input hidden="hidden" type="text" value="${level}" name="level" id="level">
                                     <input hidden="hidden" id="chain" name="chain" type="text" value="">
+                                    <input hidden="hidden" type="text" name="isChangeLevel" class="isChangeLevel">
                                     <div class="form-group in-line flex-auto">
                                         <label class="form-title"><span data-localize="label.directReportSupervisor"></span>:</label>
                                         <select  class="form-control"name="selectEmpNbr" onchange="changeEmployee()"
                                             id="selectEmpNbr">
-                                            <option value=""></option>
                                             <c:forEach var="item" items="${directReportEmployee}" varStatus="count">
-                                                <option value="${item.employeeNumber}">${item.selectOptionLabel}</option>
+                                                <option value="${item.employeeNumber}" <c:if test="${item.employeeNumber==selectedEmployee}">selected</c:if>>${item.selectOptionLabel}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -77,6 +77,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         method="POST"
                                             >
                                             <input hidden="hidden" type="text" name="empNbr" class="employeeNum">
+                                            <input hidden="hidden" class="chain" name="chain" type="text" value="">
+                                            <input hidden="hidden" type="text" name="isChangeLevel" class="isChangeLevel">
                                         <div class="form-group type-group">
                                                 <label class="form-title"  for="freq"  data-localize="label.payrollFreq"></label>
                                                 <select class="form-control" name="freq" id="freq" onchange="changeFreq()">
@@ -168,7 +170,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                             onClick='editLeave("${item.id}","${item.LeaveType}","${item.AbsenseReason}","${item.start}",
                                                                             "${item.end}", "${item.lvUnitsDaily}","${item.lvUnitsUsed}")'' data-localize="label.edit"></button>
                                                                             <button class="btn btn-secondary sm delete-btn" id="deleteLeave" 
-                                                                            onClick="deleteLeave()" data-localize="label.delete"></button>
+                                                                            onClick="deleteLeave('${item.id}')" data-localize="label.delete"></button>
                                                                             </c:if>
                                                                     
                                                                 </td>
@@ -188,6 +190,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                             </div>
                         </section>
+                        <form hidden="hidden" id="deleteForm" action="" method="POST">
+                            <input type="text" name="" id="deleteId">
+                        </form>
             </main>
         </div>
         <%@ include file="../modal/eventModal.jsp"%>
@@ -198,8 +203,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <script>
         var directReportEmployee = eval(${directReportEmployee});
         var chain = eval(${chain});
+        let chainString = JSON.stringify(chain)
+        console.log(chainString)
         $(function(){
             changeLevel()
+            $(".chain").val(chainString)
             let level = $("#level").val()
             console.log(initialLocaleCode)
 				$('#SearchStartDate').fdatepicker({
@@ -210,7 +218,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 					format:'mm/dd/yyyy',
 					language:initialLocaleCode
 				});
-            if(chain.length>1){
+            if(chain&&chain!=''&&chain.length>1){
                 $("#prevLevel").removeClass("disabled").removeAttr("disabled");
             }else{
                 $("#prevLevel").addClass("disabled").attr('disabled',"true");
@@ -219,12 +227,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 let chain = $("#chainValue").text()
                 console.log(chain)
                 $("#chain").val(chain)
+                $(".isChangeLevel").val(true)
                 $("#filterSupervisor")[0].submit()  
             })
             $("#prevLevel").click(function(){
                 let chain = $("#chainValue").text()
                 console.log(chain)
                 $("#preChain").val(chain)
+                $(".isChangeLevel").val(true)
                 $("#previousLevel")[0].submit()  
             })
         })
@@ -256,6 +266,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         $('#deleteLeave').hide()
                         $(".edit-title").hide();
                 $(".new-title").show();
+                $("#chainModal").val(chainString)
                 $("#requestForm").attr("action","updateLeaveFromLeaveOverview")
    
             }
@@ -269,7 +280,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $("#SearchStartDate").val("")
                 $("#SearchEndDate").val("")
                 $(".employeeNum").val(selectNum)
-                $("#changeFreqForm")[0].submit()  
+                $(".isChangeLevel").val(false)
+                if(selectNum&&selectNum!=''){
+                    $("#changeFreqForm")[0].submit()  
+                }
+                
             }
 
             function editLeave(id,leaveType,absenceReason,leaveStartDate,leaveEndDate,lvUnitsDaily,lvUnitsUsed){
@@ -341,7 +356,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 				$("#deleteLeave").show();	
 				$(".edit-title").show();
                 $(".new-title").hide();
-				$("#commentList").html("")
+                $("#commentList").html("")
 				for(let i=0;i<comments.length;i++){
 						let html = '<p>'+comments[i].detail+'</p>'
 						$("#commentList").append(html)

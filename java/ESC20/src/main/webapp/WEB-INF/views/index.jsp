@@ -12,11 +12,11 @@
             <div class="account-top">
                 <div class="account-inner">
                     <div class="account-left">
-                        <img src="/<%=request.getContextPath().split("/")[1]%>/images/ascender_pecan_logo.jpg" alt="esc logo" data-localize="logoName.esc">
+                        <img src="/<%=request.getContextPath().split("/")[1]%>/images/ascender_pecan_logo.jpg" alt="" data-localize="logoName.esc">
                     </div>
                     <div class="account-box">
                         <div class="account-logo">
-                            <img src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="esc logo" data-localize="logoName.esc">
+                            <img src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="" data-localize="logoName.esc">
                         </div>
                         <form id="loginForm" class="card" method="get">
                         <h1 class="title" data-localize="label.pleaseSignIn"></h1>
@@ -36,7 +36,7 @@
                                 </div>
                                 
                             </div>
-                            <p class="error-hint hide" id="errorMessage">User name or password error!</p>
+                            <p class="error-hint hide" id="errorMessage" data-localize="validator.usernameOrPasswordError"></p>
                             <div class="form-group clearfix">
                                 <!-- <div class="checkbox pull-left">
                                     <label>
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="form-group account-btn">
-                                <button id="signin" type="submit" class="btn btn-primary" name="signin" data-localize="label.signIn"></button>
+                                <button id="signin" type="submit" class="btn btn-primary" name="signin" data-localize="label.login"></button>
                             </div>
                             
                         </form>

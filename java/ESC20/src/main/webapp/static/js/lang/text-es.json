@@ -327,6 +327,7 @@
 		"leaveRequested":"Leave Requested",
 		"commentLog":"Comment Log",
 		"status":"Status",
+		"approver":"Approver",
 		"remark":"Remarks",
 		"days":"days",
 		"totalRequested":"Total Requested",
@@ -344,6 +345,7 @@
 		"absenceReason":"Absence Reason",
 		"leaveRequested":"Leave Requested",
 		"commentLog":"Comment Log",
+		"status":"Status",
 		"supervisorAction":"Supervisor Action"
 	},
 	"setTemporaryApprovers":{
@@ -421,6 +423,7 @@
 
 	},
 	"label":{
+		"ESC20":"ESC20",
 		"back":"Go Back",
 		"pleaseTryAgain":"Please try again later",
 		"allRightReserved":"All rights reserved.",
@@ -614,9 +617,10 @@
 		"notValid":"This value is not valid",
 		"pleaseEnterCorrectMailFormat":"Please enter the correct mail format.",
 		"twoPasswordsNotMatch":"The two passwords you entered did not match.",
-		"passwordLengthNotLessThan6":"Password length must not be less than 6 .",
+		"passwordLengthNotLessThan6":"Password length must not be less than 6 bits.",
 		"usernameCannotBeEmpty":"The username is required and cannot be empty",
 		"passwordCannotBeEmpty":"The password is required and cannot be empty",
+		"passwordNotMatch":"The two passwords you entered did not match.",
 		"maximumBankAmmount":"Maximum allowed number of Direct Deposit accounts reached. Unable to add new account.",
 		"pleaseEnterCorrectFormat":"Please enter correct format",
 		"pleaseSelectOne":"Please select one at least.",
@@ -634,7 +638,9 @@
 		"maxLength19":"The maximum length of a string is 19",
 		"maxLength20":"The maximum length of a string is 20",
 		"maxLength25":"The maximum length of a string is 25",
-		"maxLength26":"The maximum length of a string is 26"
+		"maxLength26":"The maximum length of a string is 26",
+		"oldPasswordWrong":"Old password is wrong!",
+		"usernameOrPasswordError":"User name or password error!"
 	},
 	"w2Notice":{
 		"box":"Box ",

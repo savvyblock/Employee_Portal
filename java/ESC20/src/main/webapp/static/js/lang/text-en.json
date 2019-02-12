@@ -423,6 +423,7 @@
 
 	},
 	"label":{
+		"ESC20":"ESC20",
 		"back":"Go Back",
 		"pleaseTryAgain":"Please try again later",
 		"allRightReserved":"All rights reserved.",
@@ -441,7 +442,7 @@
 		"employeeName":"Employee Name",
 		"frequency":"Frequency",
 		"lastPostedPayDate":"Last Posted Pay Date",
-		"login":"login",
+		"login":"Login",
 		"newMessage":"new messages",
 		"noCrrentPay":"No Current Pay Information is available.",
 		"noDeductions":"No Deductions information is available.",
@@ -483,7 +484,7 @@
 		"resetPassword":"Reset Password",
 		"emailAddress":"Email Address",
 		"welcome":"Welcome",
-		"pleaseSignIn":"Please sign in",
+		"pleaseSignIn":"Please login",
 		"forgotPassword":"Forgot Password?",
 		"signIn":"Sign In",
 		"edit":"Edit",
@@ -541,7 +542,10 @@
 		"days":"DAYS",
 		"hours":"HOURS",
 		"processed":"Processed",
-		"notProcessed":"Not Processed"
+		"notProcessed":"Not Processed",
+		"unprocessedLeaveRequest":"Unprocessed Leave Request",
+		"newRequest":"Create Leave Requests",
+		"editRequest":"Edit Leave Requests"
 	},
 	"language":{
 		"english":"English",
@@ -616,16 +620,17 @@
 		"notValid":"This value is not valid",
 		"pleaseEnterCorrectMailFormat":"Please enter the correct mail format.",
 		"twoPasswordsNotMatch":"The two passwords you entered did not match.",
-		"passwordLengthNotLessThan6":"Password length must not be less than 6 .",
+		"passwordLengthNotLessThan6":"Password length must not be less than 6 bits.",
 		"usernameCannotBeEmpty":"The username is required and cannot be empty",
 		"passwordCannotBeEmpty":"The password is required and cannot be empty",
+		"passwordNotMatch":"The two passwords you entered did not match.",
 		"maximumBankAmmount":"Maximum allowed number of Direct Deposit accounts reached. Unable to add new account.",
 		"pleaseEnterCorrectFormat":"Please enter correct format",
 		"pleaseSelectOne":"Please select one at least.",
 		"pleaseEnterComment":"Please enter supervisor comment.",
 		"newRequest":"New Request",
 		"editRequest":"Edit Request",
-		"startNotBeGreaterThanEndTime":"The start time can not be greater than the end time!",
+		"startNotBeGreaterThanEndTime":"The end time must be greater than the start time!",
 		"startDateCannotBeEmpty":"The start date cannot be empty",
 		"endDateCannotBeEmpty":"The end date cannot be empty",
 		"startTimeCannotBeEmpty":"The start time cannot be empty",
@@ -637,7 +642,12 @@
 		"maxLength20":"The maximum length of a string is 20",
 		"maxLength25":"The maximum length of a string is 25",
 		"maxLength26":"The maximum length of a string is 26",
-		"oldPasswordWrong":"Old password is wrong!"
+		"oldPasswordWrong":"Old password is wrong!",
+		"usernameOrPasswordError":"User name or password error!",
+		"emailNotExit":"The email address does not exist!",
+		"userNotExist":"User Does not exist!",
+		"usernameOrEmailError":"User name or email error!",
+		"fromDateNotGreaterToDate":"From date cannot be greater than To date!"
 	},
 	"w2Notice":{
 		"box":"Box ",
