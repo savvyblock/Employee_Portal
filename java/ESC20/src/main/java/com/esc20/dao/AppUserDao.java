@@ -76,6 +76,11 @@ public class AppUserDao {
         String hql = "select empNbr from BhrEmpDemo where email = :email" ;
         Query q = session.createQuery(hql);
         q.setParameter("email", email);
+        
+        if(q.list() == null || q.list().isEmpty()) {
+        	return null;
+        }
+        
         String empNbr = (String) q.list().get(0);
         session.close();
         return getUserByEmpNbr(empNbr);

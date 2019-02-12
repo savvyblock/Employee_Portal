@@ -106,7 +106,13 @@ public class IndexController {
     public ModelAndView retrieveUserName(HttpServletRequest req, String email){
     	ModelAndView mav = new ModelAndView();
     	BeaUsers user = this.indexService.getUserByEmail(email);
-    	user.setUserEmail(email);
+    	
+    	if(user == null) {
+    		mav.addObject("retrieveUserNameErrorMessage", "Email Does not exist");
+    	}else {
+    		user.setUserEmail(email);
+    	}
+    	
         mav.setViewName("forgetPassword");
         mav.addObject("user", user);
         mav.addObject("email", email);
