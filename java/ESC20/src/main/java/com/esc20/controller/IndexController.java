@@ -239,24 +239,23 @@ public class IndexController {
         }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        demo.setNamePre(namePreNew);
+    	demo.setNameF(nameFNew);
+    	demo.setNameL(nameLNew);
+    	demo.setNameM(nameMNew);
+    	demo.setNameGen((nameGenNew==null||("").equals(nameGenNew))?'\0':nameGenNew.charAt(0));
         BeaLglName nameRequest;
         
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_LGL_NAME")) {
         	nameRequest = new BeaLglName(demo, empNbr, reqDts, namePreNew, nameFNew, nameLNew, nameMNew, (nameGenNew==null||("").equals(nameGenNew))?'\0':nameGenNew.charAt(0), 'A');
         	this.indexService.saveNameRequest(nameRequest);
-        	demo.setNamePre(namePreNew);
-        	demo.setNameF(nameFNew);
-        	demo.setNameL(nameLNew);
-        	demo.setNameM(nameMNew);
-        	demo.setNameGen((nameGenNew==null||("").equals(nameGenNew))?'\0':nameGenNew.charAt(0));
-        	//TODO: need to write own update method
-        	this.indexService.updateDemoName(demo);
-        	session.removeAttribute("userDetail");
-        	session.setAttribute("userDetail", demo);
         }else {
         	nameRequest = new BeaLglName(demo, empNbr, reqDts, namePreNew, nameFNew, nameLNew, nameMNew, (nameGenNew==null||("").equals(nameGenNew))?'\0':nameGenNew.charAt(0), 'P');
         	this.indexService.saveNameRequest(nameRequest);
         }
+        this.indexService.updateDemoName(demo);
+        session.removeAttribute("userDetail");
+    	session.setAttribute("userDetail", demo);
         this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "nameRequest");
         return mav;
