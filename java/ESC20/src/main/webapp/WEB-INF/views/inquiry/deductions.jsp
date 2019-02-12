@@ -37,7 +37,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <br>
                                                 <span data-localize="label.numOfExemptions"></span>: ${payInfos[frequency].nbrTaxExempts}<br>
                                         </div>
-                                        <table class="table border-table responsive-table print-table">
+                                        <table class="table border-table responsive-table print-table deductionTable">
                                             <thead>
                                                 <tr>
                                                     <th data-localize="deductionsTable.deductionCode"></th>

@@ -47,6 +47,11 @@ public class AppUserDao {
         q.setParameter("name", name.toUpperCase());
         BeaUsers res = (BeaUsers) q.uniqueResult();
         session.close();
+        
+        if(res == null) {
+        	return null;
+        }
+        
         if(res.getLkPswd() == 'Y' || ("").equals(res.getUsrpswd())) {
         	return null;
         } else if (res.getLkPswd() == 'N') {
@@ -71,6 +76,11 @@ public class AppUserDao {
         String hql = "select empNbr from BhrEmpDemo where email = :email" ;
         Query q = session.createQuery(hql);
         q.setParameter("email", email);
+        
+        if(q.list() == null || q.list().isEmpty()) {
+        	return null;
+        }
+        
         String empNbr = (String) q.list().get(0);
         session.close();
         return getUserByEmpNbr(empNbr);

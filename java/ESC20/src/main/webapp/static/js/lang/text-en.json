@@ -536,6 +536,7 @@
 		"undo":"Undo",
 		"ok":"OK",
 		"areYouQuit":"Are you sure to want to quit?",
+		"areYouRescind":"Are you sure you want to rescind the request?",
 		"update":"Update",
 		"addComments":"add  comments",
 		"deleteThisComment":"Delete This Comment",
@@ -545,7 +546,8 @@
 		"notProcessed":"Not Processed",
 		"unprocessedLeaveRequest":"Unprocessed Leave Request",
 		"newRequest":"Create Leave Requests",
-		"editRequest":"Edit Leave Requests"
+		"editRequest":"Edit Leave Requests",
+		"consent1095":"1095 Consent"
 	},
 	"language":{
 		"english":"English",
@@ -644,6 +646,7 @@
 		"maxLength26":"The maximum length of a string is 26",
 		"oldPasswordWrong":"Old password is wrong!",
 		"usernameOrPasswordError":"User name or password error!",
+		"usernameOrPasswordIncorrect":"Incorrect User name or password!",
 		"emailNotExit":"The email address does not exist!",
 		"userNotExist":"User Does not exist!",
 		"usernameOrEmailError":"User name or email error!",

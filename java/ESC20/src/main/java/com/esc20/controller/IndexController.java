@@ -77,7 +77,8 @@ public class IndexController {
         if(param != null){
             String uName = param.get("userName");
             BeaUsers user = this.indexService.getUserPwd(uName);
-            if(this.decrypt(user.getUsrpswd()).equals(param.get("userPwd"))){
+            
+            if(user != null && this.decrypt(user.getUsrpswd()).equals(param.get("userPwd"))){
                 res.put("isSuccess","true");
                 res.put("userName", uName);
                 HttpSession session = req.getSession();
@@ -93,6 +94,9 @@ public class IndexController {
                 session.setAttribute("companyId", user.getCmpId());
                 session.setAttribute("options", options);
                 session.setAttribute("district", districtInfo);
+            }else {
+            	  res.put("isSuccess","false");
+                  res.put("userName", uName);
             }
         }
         return res;
@@ -102,7 +106,13 @@ public class IndexController {
     public ModelAndView retrieveUserName(HttpServletRequest req, String email){
     	ModelAndView mav = new ModelAndView();
     	BeaUsers user = this.indexService.getUserByEmail(email);
-    	user.setUserEmail(email);
+    	
+    	if(user == null) {
+    		mav.addObject("retrieveUserNameErrorMessage", "Email Does not exist");
+    	}else {
+    		user.setUserEmail(email);
+    	}
+    	
         mav.setViewName("forgetPassword");
         mav.addObject("user", user);
         mav.addObject("email", email);
