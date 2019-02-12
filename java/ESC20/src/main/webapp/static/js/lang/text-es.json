@@ -645,7 +645,10 @@
 		"emailNotExit":"The email address does not exist!",
 		"userNotExist":"User Does not exist!",
 		"usernameOrEmailError":"User name or email error!",
-		"fromDateNotGreaterToDate":"From date cannot be greater than To date!"
+		"usernameOrEmailNotExit":"User or email does not exist!",
+		"fromDateNotGreaterToDate":"From date cannot be greater than To date!",
+		"resetPswSuccess":"reset password success!",
+		"resetPswFaild":"reset password faild!"
 	},
 	"w2Notice":{
 		"box":"Box ",

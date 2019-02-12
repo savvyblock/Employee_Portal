@@ -90,9 +90,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             />
                         </div>
                     </div>
-                    <p class="error-hint hide" id="errorMessage" data-localize="validator.usernameOrEmailError"></p>
+                    
                     <c:if test="${errorMessage!=null && errorMessage!=''}">
-                        <div class="valid-wrap error-hint" data-localize="validator.userNotExist"></div>
+                        <div class="valid-wrap error-hint" data-localize="validator.usernameOrEmailNotExit"></div>
                     </c:if>
                     <div class="form-group account-btn">
                         <button type="submit" class="btn btn-primary" data-localize="label.resetPassword">
