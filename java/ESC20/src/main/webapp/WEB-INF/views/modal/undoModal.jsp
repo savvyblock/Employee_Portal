@@ -1,9 +1,9 @@
 <div
     class="modal fade"
-    id="logoutModal"
+    id="undoModal"
     tabindex="-1"
     role="dialog"
-    aria-labelledby="logoutModal"
+    aria-labelledby="undoModal"
     aria-hidden="true"
     data-backdrop="static"
 >
@@ -17,7 +17,6 @@
                     aria-hidden="true"
                     data-localize="label.closeModal"
                     data-localize-location="title"
-                    onclick="startCountTime()"
                 >
                     &times;
                 </button>
@@ -26,13 +25,11 @@
               
                       <div class="modal-body">
                       
-                        <p data-localize="label.areYouQuit"></p>
+                        <p data-localize="label.areYouRescind"></p>
                     </div>
                     <div class="modal-footer">
-                        <a href="/<%=request.getContextPath().split("/")[1]%>/logout">
-                            <button type="button"  class="btn btn-primary" data-localize="label.ok">
-                            </button>
-                        </a>
+                        <button type="button"  class="btn btn-primary sureUndo" data-localize="label.ok">
+                        </button>
                         <button
                           type="button"
                             class="btn btn-secondary"
@@ -40,7 +37,6 @@
                             aria-hidden="true"
                             id="cancelAdd"
                             data-localize="label.cancel"
-                            onclick="startCountTime()"
                         >
                         </button>
                     </div>

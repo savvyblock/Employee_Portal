@@ -1131,6 +1131,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         </form>
                         <form hidden="hidden" action="deletePhone" id="deletePhone" method="POST"></form>
                         <p class="sub-title" data-localize="profile.W4MaritalStatusInfo"></p>
+                        <form
+                            class="no-print searchForm"
+                            action=""
+                            id="changeFreqForm"
+                            method="POST"
+										>
+							<div class="form-group in-line p-l-0">
+								<label class="form-title"  for="freq"  data-localize="label.payrollFreq"></label>
+						        <select class="form-control" name="freq" id="freq" onchange="changeFreq()">
+                                    <c:forEach var="freq" items="${availableFreqs}" varStatus="count">
+                                        <option value="${freq.code}" <c:if test="${freq.code == selectedFreq }">selected</c:if>>${freq.description}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+					</form>
                         <form class="profile-item" id="w4InfoForm">
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
@@ -1531,6 +1546,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         </div>
         <%@ include file="commons/footer.jsp"%>
         <%@ include file="modal/changePassword.jsp"%>
+        <%@ include file="modal/undoModal.jsp"%>
         <div
             class="modal fade"
             id="selectBankModal"
@@ -1645,6 +1661,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     </body>
     <script>
         let bank01, bank02
+        var formSelect
         $(function() {
             personalValidator()
             maritalStatusValidator()
@@ -1741,35 +1758,51 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 bankInputCode.val(number)
                 $('#selectBankModal').modal('hide')
             })
-        
+            
             $("#undoNameRequest").click(function(){
-                $("#deleteNameRequest")[0].submit()
+                $('#undoModal').modal('show')
+                formSelect = "deleteNameRequest"
             })
             $("#undoMaritalRequest").click(function(){
-                $("#deleteMaritalRequest")[0].submit()
+                $('#undoModal').modal('show')
+                formSelect = "deleteMaritalRequest"
             })
             $("#undoDriverLicense").click(function(){
-                $("#deleteDriversLicense")[0].submit()
+                $('#undoModal').modal('show')
+                formSelect = "deleteDriversLicense"
             })
             $("#undoRestriction").click(function(){
-                $("#deleteRestrictionCodesRequest")[0].submit()
+                $('#undoModal').modal('show')
+                formSelect = "deleteRestrictionCodesRequest"
             })
             $("#undoEmail").click(function(){
-                $("#deleteEmail")[0].submit()
+                $('#undoModal').modal('show')
+                formSelect = "deleteEmail"
             })
             $("#undoEmergencyContact").click(function(){
-                $("#deleteEmergencyContact")[0].submit()
+                $('#undoModal').modal('show')
+                formSelect = "deleteEmergencyContact"
             })
             $("#undoMailingAddress").click(function(){
-                $("#deleteMailAddr")[0].submit()
+                $('#undoModal').modal('show')
+                formSelect = "deleteMailAddr"
             })
             $("#undoAlternative").click(function(){
-                $("#deleteAltMailAddr")[0].submit()
+                $('#undoModal').modal('show')
+                formSelect = "deleteAltMailAddr"
             })
             $("#undoPhoneNumber").click(function(){
-                $("#")[0].submit()
+                $('#undoModal').modal('show')
+                formSelect = "deletePhone"
+            })
+            $(".sureUndo").click(function(){
+                undoFormSubmit()
             })
         })
+        function undoFormSubmit(){
+            let form = "#" + formSelect
+            $(form)[0].submit()
+        }
         function startRead() {
             var fileDom = document.getElementById('imgUpFile')
             var img = document.getElementById('imgContentImg')
@@ -1803,6 +1836,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             }
         }
 
+            function changeFreq(){
+				$("#changeFreqForm")[0].submit();
+			}
         function clearValidator() {
             // reset  #personalForm form
             $('#personalForm')
