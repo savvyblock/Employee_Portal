@@ -231,7 +231,7 @@
    <%@ include file="../modal/logoutModal.jsp"%>
 
    <script>
-   var maxTime = 1800; // seconds
+   var maxTime = 60; // seconds
     var time = maxTime;
     $('body').on('keydown mousemove mousedown', function(e){
     time = maxTime; // reset

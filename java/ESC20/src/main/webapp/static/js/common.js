@@ -68,7 +68,7 @@ function initLocalize(language){
     $('[data-localize]').localize('text', {
         pathPrefix: pathPrefix,
         language: language,
-        timeout:5000
+        timeout:50000
     })
 }
 

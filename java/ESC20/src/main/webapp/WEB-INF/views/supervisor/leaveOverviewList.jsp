@@ -93,7 +93,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <input
                                                     class="form-control" type="text" name="startDate"
                                                     id="SearchStartDate" readonly value="${startDate}" />
-                                                    <a class="clear-btn" onclick="clearDate(this)" data-localize="label.removeContent" data-localize-location="title"><i class="fa fa-times"></i></a>
+                                                    <button class="clear-btn" type="button" onclick="clearDate(this)" data-localize="label.removeContent" data-localize-location="title" tabindex="0"><i class="fa fa-times"></i></button>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -102,7 +102,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <input
                                                     class="form-control" type="text" name="endDate"
                                                     id="SearchEndDate" value="${endDate}" readonly />
-                                                    <a class="clear-btn" onclick="clearDate(this)" data-localize="label.removeContent" data-localize-location="title"><i class="fa fa-times"></i></a>
+                                                    <button class="clear-btn" type="button" onclick="clearDate(this)" data-localize="label.removeContent" data-localize-location="title" tabindex="0"><i class="fa fa-times"></i></button>
                                                 </div>
                                             </div>
                                             <div class="form-group btn-group">

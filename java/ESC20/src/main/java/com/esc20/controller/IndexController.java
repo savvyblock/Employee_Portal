@@ -183,6 +183,13 @@ public class IndexController {
         return mav;
     }
     
+    @RequestMapping("createNewUser")
+    public ModelAndView createNewUser(HttpServletRequest req){
+    	ModelAndView mav = new ModelAndView();
+        mav.setViewName("createNewUser");
+        return mav;
+    }
+    
     @RequestMapping("home")
     public ModelAndView getHome(HttpServletRequest req){
         HttpSession session = req.getSession();
