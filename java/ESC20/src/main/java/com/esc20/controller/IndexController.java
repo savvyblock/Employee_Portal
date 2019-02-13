@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -145,7 +146,11 @@ public class IndexController {
         if(null == user){
         	return this.getIndexPage(mav);
         }
-
+        if(StringUtils.isEmpty(password)) {
+        	mav = new ModelAndView("redirect:/profile");
+        	return mav;
+        }
+ 
     	user.setUsrpswd(this.encrypt(password));
     	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
     	this.indexService.updateUser(user);
