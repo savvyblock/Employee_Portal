@@ -37,7 +37,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <br>
                                                 <span data-localize="label.numOfExemptions"></span>: ${payInfos[frequency].nbrTaxExempts}<br>
                                         </div>
-                                        <table class="table border-table responsive-table print-table">
+                                        <table class="table border-table responsive-table print-table deductionTable">
                                             <thead>
                                                 <tr>
                                                     <th data-localize="deductionsTable.deductionCode"></th>
@@ -53,7 +53,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             <td data-localize="deductionsTable.deductionCode" data-localize-location="scope">${deduct.dedCd}</td>
                                                             <td data-localize="deductionsTable.description" data-localize-location="scope">${deduct.dedCdDesc}</td>
                                                             <td data-localize="deductionsTable.amount" data-localize-location="scope">${deduct.empAmt}</td>
-                                                            <td data-localize="deductionsTable.cafeteriaFlag" data-localize-location="scope">${deduct.cafeFlg}</td>
+                                                            <td data-localize="deductionsTable.cafeteriaFlag" data-localize-location="scope">${deduct.cafeFlgStr}</td>
                                                             <td data-localize="deductionsTable.employerContributionAmount" data-localize-location="scope">${deduct.emplrAmt}</td>
                                                         </tr>
                                                     </c:forEach>

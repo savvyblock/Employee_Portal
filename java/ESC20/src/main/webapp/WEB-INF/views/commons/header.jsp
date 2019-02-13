@@ -34,6 +34,7 @@
 </script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/common.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/bootstrapValidator.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/autoAdvance.js"></script>
 <c:if test="${sessionScope.companyId == 1}">
 <style>
 .main-sidebar{

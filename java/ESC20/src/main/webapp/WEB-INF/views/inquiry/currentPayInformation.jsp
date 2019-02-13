@@ -287,10 +287,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <td data-title="Account Type" data-localize="currentPayTable.accountType" data-localize-location="scope">
                                                                 ${account.bankAccountType} - ${account.bankAccountTypeDescription}
                                                         </td>
-                                                        <td data-title="Acct Nbr" data-localize="currentPayTable.acctNbr" data-localize-location="scope">
+                                                        <td data-title="Account Number" data-localize="currentPayTable.acctNbr" data-localize-location="scope">
                                                                 ${account.bankAccountNumber}
                                                         </td>
-                                                        <td data-title="Dep Amt" data-localize="currentPayTable.depAmt" data-localize-location="scope">
+                                                        <td data-title="Deposit Amount" data-localize="currentPayTable.depAmt" data-localize-location="scope">
                                                                 ${account.bankAccountAmount}
                                                         </td>
                                                     </tr>
@@ -388,5 +388,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         function doPrint() {
             window.print()
         }
+        
+        function displayAccountNumber(num) {
+        	var lastFourNum = num.substr(-4);
+        	
+            return lastFourNum;
+        }
+        
     </script>
 </html>

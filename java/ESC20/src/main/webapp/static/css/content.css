@@ -52,7 +52,6 @@
   width: 1100px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
 }
 
 .account-wrap .account-top .account-inner.sm {
@@ -198,7 +197,7 @@
 }
 
 .content-wrapper {
-  min-height: calc(100vh - 159px) !important;
+  min-height: calc(100vh - 117px) !important;
 }
 
 .main-footer {
@@ -208,6 +207,7 @@
   background: #fff;
   display: flex;
   align-items: center;
+  height: 45px;
 }
 
 .main-footer .footer-word {
@@ -219,7 +219,7 @@
 }
 
 .main-footer .footer-logo img {
-  height: 50px;
+  height: 30px;
 }
 
 @media (max-width: 900px) {
@@ -745,11 +745,6 @@
   font-size: 12px;
 }
 
-.table.print-table td,
-.table.print-table th {
-  text-align: left;
-}
-
 #leaveBalanceSummary, #leaveBalanceSummaryStatic {
   display: none;
 }
@@ -1013,6 +1008,9 @@
   .table.print-table th, .table.print-table td {
     padding: 3px 5px;
   }
+  .table.print-table th.td-content, .table.print-table td.td-content {
+    text-align: right;
+  }
   .table.print-table td {
     display: table-cell !important;
     width: initial !important;
@@ -1035,6 +1033,12 @@
   .table.border-table td, .table.border-table th {
     border-color: #000 !important;
     border-width: 1px;
+  }
+  .table.border-table tbody td {
+    text-align: right;
+  }
+  .table.border-table tbody td:first-child {
+    text-align: left;
   }
   .table.no-print {
     display: none;
@@ -1292,10 +1296,6 @@
   display: block;
 }
 
-.profile .profile-item .valueInput {
-  display: none !important;
-}
-
 .profile .profile-item .valueInput .form-control {
   height: 25px;
   padding: 0 5px;
@@ -1309,10 +1309,6 @@
 
 .profile .profile-item .valueInput .btn {
   height: 25px;
-}
-
-.profile .profile-item .valueInput.group-line {
-  display: none;
 }
 
 .profile .profile-item .valueInput.group-line .getBank {

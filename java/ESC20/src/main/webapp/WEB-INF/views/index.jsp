@@ -37,6 +37,13 @@
                                 
                             </div>
                             <p class="error-hint hide" id="errorMessage" data-localize="validator.usernameOrPasswordError"></p>
+                            <p class="error-hint hide" id="incorrectMessage" data-localize="validator.usernameOrPasswordIncorrect"></p>
+                            <c:if test="${resetPsw!=null && resetPsw=='resetPswSuccess'}">
+		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswSuccess"></div>
+		                    </c:if>
+		                    <c:if test="${resetPsw!=null && resetPsw=='resetPswFaild'}">
+		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswFaild"></div>
+		                    </c:if>
                             <div class="form-group clearfix">
                                 <!-- <div class="checkbox pull-left">
                                     <label>
@@ -50,6 +57,11 @@
                             </div>
                             <div class="form-group account-btn">
                                 <button id="signin" type="submit" class="btn btn-primary" name="signin" data-localize="label.login"></button>
+                            </div>
+                            <div class="text-center">
+                                <a class="a-line" href="/<%=request.getContextPath().split("/")[1]%>/searchUser" data-localize="label.newUser">
+                                    
+                                </a>
                             </div>
                             
                         </form>
@@ -92,7 +104,7 @@
                 var bootstrapValidator = $('#loginForm').data('bootstrapValidator');
                 bootstrapValidator.validate();
                 if(bootstrapValidator.isValid()){
-                    console.log("000")
+                    
                     $.ajax({
                         type:'POST',
                         url:'<%=request.getContextPath()%>/login',
@@ -103,12 +115,14 @@
                             userPwd: userPwd
                         }),
                         success : function (res) {
-                            if(res.isSuccess){
+                            if(res.isSuccess == "true"){
                                 document.location = '<%=request.getContextPath()%>/home'
+                            } else {
+                            	$("#incorrectMessage").show();
                             }
                         },
                         error:function(res){
-                            $("#errorMessage").show()
+                            $("#errorMessage").show();
                         }
                     });
                 }

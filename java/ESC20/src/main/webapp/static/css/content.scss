@@ -42,7 +42,7 @@
             width: 1100px;
             border-radius: 5px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
+            // overflow: hidden;
             &.sm {
                 max-width: 380px;
                 padding: 20px;
@@ -162,7 +162,7 @@
     }
 }
 .content-wrapper {
-    min-height: calc(100vh - 159px) !important;
+    min-height: calc(100vh - 117px) !important;
 }
 
 .main-footer {
@@ -172,13 +172,14 @@
     background: #fff;
     display: flex;
     align-items: center;
+    height: 45px;
     .footer-word {
         flex: 1;
     }
     .footer-logo {
         flex: 0 0 230px;
         img {
-            height: 50px;
+            height: 30px;
         }
     }
     @media (max-width: 900px) {
@@ -630,7 +631,7 @@
         font-size: 12px;
         td,
         th {
-            text-align: left;
+            // text-align: left;
         }
     }
     &.earning-table {
@@ -915,6 +916,9 @@
             }
             th,td{
                 padding: 3px 5px;
+                &.td-content{
+                    text-align: right;
+                }
             }
             td {
                 display: table-cell !important;
@@ -940,6 +944,14 @@
             td,th{
                 border-color: #000!important;
                 border-width: 1px;
+            }
+            tbody{
+                td{
+                    &:first-child{
+                        text-align: left;
+                    }
+                    text-align: right;
+                }
             }
         }
         &.no-print{
@@ -1150,7 +1162,7 @@
             display: block
         }
         .valueInput{
-            display: none!important;
+            // display: none!important;
             .form-control{
                 height: 25px;
                 padding: 0 5px;
@@ -1164,7 +1176,7 @@
                 height: 25px;
             }
             &.group-line{
-                display: none;
+                // display: none;
                 .getBank{
                     min-width: 35px;
                 }

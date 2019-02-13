@@ -54,7 +54,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         <label class="form-title" data-localize="label.username"></label>
                         <div class="valid-wrap">${user.usrname}</div>
                     </div>
-                    <p class="error-hint hide" id="errorMessage" data-localize="validator.emailNotExit"></p>
+                    <c:if test="${retrieveUserNameErrorMessage!=null && retrieveUserNameErrorMessage!=''}">
+                        <div class="valid-wrap error-hint" data-localize="validator.emailNotExit"></div>
+                    </c:if>
                     <div class="form-group account-btn">
                         <button type="submit" class="btn btn-primary" data-localize="label.retrieveUsername">
                         </button>
@@ -88,9 +90,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             />
                         </div>
                     </div>
-                    <p class="error-hint hide" id="errorMessage" data-localize="validator.usernameOrEmailError"></p>
+                    
                     <c:if test="${errorMessage!=null && errorMessage!=''}">
-                        <div class="valid-wrap error-hint" data-localize="validator.userNotExist"></div>
+                        <div class="valid-wrap error-hint" data-localize="validator.usernameOrEmailNotExit"></div>
                     </c:if>
                     <div class="form-group account-btn">
                         <button type="submit" class="btn btn-primary" data-localize="label.resetPassword">

@@ -51,9 +51,16 @@
       <%@ include file="logo.jsp"%>
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-       		<a href="/<%=request.getContextPath().split("/")[1]%>/profile" class="d-block">
-          		<img src="${sessionScope.userDetail.avatar}" class="img-circle" alt="User Image">
-        	</a>
+            <c:if test="${sessionScope.userDetail.avatar!=null}" >
+                <a href="/<%=request.getContextPath().split("/")[1]%>/profile" class="d-block"  style="background-image:url(${sessionScope.userDetail.avatar})">
+              </a>
+            </c:if>
+            <c:if test="${sessionScope.userDetail.avatar==null}">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/profile" class="d-block noImage">
+                  <i class="fa fa-user"></i>
+                </a>
+            </c:if>
+       		
         </div>
         <div class="info">
           <a href="/<%=request.getContextPath().split("/")[1]%>/profile" class="d-block">${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameL}</a>
