@@ -1043,6 +1043,13 @@
   .table.noNumTable tbody td {
     text-align: left;
   }
+  .table.w2Check-table tbody td {
+    text-align: center;
+  }
+  .table.w2Check-table tbody td:first-child {
+    text-align: left;
+    padding-left: 0;
+  }
   .table.no-print {
     display: none;
   }

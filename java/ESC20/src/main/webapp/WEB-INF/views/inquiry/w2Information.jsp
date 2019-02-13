@@ -527,9 +527,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                         <td>
                                                 <table class="table no-border-table">
-                                                    <col
-                                                        style="text-align: left; padding-left: 2pt; padding-right: 3pt">
-                                                    <col style="text-align: right; padding-right: 3pt">
                                                     <tr>
                                                         <td class="boxtitle" colspan="2">
                                                             <span data-localize="w2InformationTable.12seeInstrs"></span>
@@ -662,7 +659,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         
                                     <tr>
                                             <td colspan="2">
-                                                <table class="table no-border-table">
+                                                <table class="table no-border-table w2Check-table">
                                                     <tr>
                                                         <td valign="top">
                                                             <div class="boxtitle">
@@ -883,9 +880,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </td>
                                             <td>
                                                     <table class="table no-border-table">
-                                                        <col
-                                                            style="text-align: left; padding-left: 2pt; padding-right: 3pt">
-                                                        <col style="text-align: right; padding-right: 3pt">
                                                         <tr>
                                                             <td class="boxtitle" colspan="2">
                                                                 <span data-localize="w2InformationTable.12seeInstrs"></span>
@@ -1018,7 +1012,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             
                                         <tr>
                                             <td colspan="2">
-                                                <table class="table no-border-table">
+                                                <table class="table no-border-table w2Check-table">
                                                     <tr>
                                                         <td valign="top">
                                                             <div class="boxtitle">
