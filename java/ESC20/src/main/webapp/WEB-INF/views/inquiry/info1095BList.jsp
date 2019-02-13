@@ -42,7 +42,7 @@
                 <td colspan="17" style="text-align: center;" data-localize="label.noRows">No Rows</td>
             </tr>
         </c:if>
-        <c:if test="${fn:length(bList) == 0}">
+        <c:if test="${fn:length(bList) > 0}">
             <c:forEach var="itemB" items="${bList}">
                 <tr>
                     <td data-localize="info1095Table.nameIndividuals" data-localize-location="scope">
