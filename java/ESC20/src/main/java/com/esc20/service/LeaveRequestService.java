@@ -2,6 +2,7 @@ package com.esc20.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,10 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.esc20.dao.AlertDao;
 import com.esc20.dao.LeaveRequestDao;
 import com.esc20.model.BeaEmpLvComments;
 import com.esc20.model.BeaEmpLvRqst;
 import com.esc20.model.BeaEmpLvWorkflow;
+import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpLvXmital;
 import com.esc20.model.BhrPmisPosCtrl;
 import com.esc20.nonDBModels.AppLeaveRequest;
@@ -28,7 +31,8 @@ public class LeaveRequestService {
 
     @Autowired
     private LeaveRequestDao leaveRequestDao;
-    
+    @Autowired
+    private AlertDao alertDao;   
     
     public BeaEmpLvRqst getleaveRequestById(int id) {
     	return leaveRequestDao.getleaveRequestById(id);
@@ -119,8 +123,12 @@ public class LeaveRequestService {
 	public void saveLvComments(BeaEmpLvComments comments) {
 		leaveRequestDao.saveLvComments(comments);
 	}
-	public void saveLvWorkflow(BeaEmpLvWorkflow flow) {
+	public void saveLvWorkflow(BeaEmpLvWorkflow flow, BhrEmpDemo demo) {
 		leaveRequestDao.saveLvWorkflow(flow);
+		//create alert
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a E");
+		String message = sdf.format(new Date())+": Leave Request from "+ demo.getNameF()+" " + demo.getNameL() +" pending your approval";
+		alertDao.createAlert(demo.getEmpNbr(), flow.getApprvrEmpNbr(),message);
 	}
 	public void deleteLeaveComments(BeaEmpLvComments comments) {
 		leaveRequestDao.deleteLeaveComments(comments);

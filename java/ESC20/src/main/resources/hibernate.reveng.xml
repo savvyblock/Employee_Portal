@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-	<table-filter match-name="SEC_USERS" match-catalog="rsccc"
+	<table-filter match-name="BEA_ALERT" match-catalog="rsccc"
 		match-schema="rsccc">
 	</table-filter>
 </hibernate-reverse-engineering>
