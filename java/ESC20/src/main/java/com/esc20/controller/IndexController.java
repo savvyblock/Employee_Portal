@@ -235,7 +235,7 @@ public class IndexController {
         BeaAltMailAddr altMailAddrRequest = this.indexService.getBeaAltMailAddr(demo);
         BeaMailAddr mailAddrRequest = this.indexService.getBeaMailAddr(demo);
         List<Code> maritalOptions = this.referenceService.getMaritalActualStatuses();
-//        List<Code> maritalTaxOptions = this.referenceService.getMaritalTaxStatuses();
+        List<Code> maritalTaxOptions = this.referenceService.getMaritalTaxStatuses();
         List<Code> generationOptions = this.referenceService.getGenerations();
         List<Code> titleOptions = this.referenceService.getTitles();
         List<Code> statesOptions = this.referenceService.getStates();
@@ -253,7 +253,7 @@ public class IndexController {
         mav.addObject("cellRequest", cellRequest);
         mav.addObject("busRequest", busRequest);
         mav.addObject("maritalOptions", maritalOptions);
-//        mav.addObject("maritalTaxOptions", maritalTaxOptions);
+        mav.addObject("maritalTaxOptions", maritalTaxOptions);
         mav.addObject("generationOptions", generationOptions);
         mav.addObject("titleOptions", titleOptions);
         mav.addObject("statesOptions", statesOptions);
@@ -272,24 +272,23 @@ public class IndexController {
         }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        demo.setNamePre(namePreNew);
+    	demo.setNameF(nameFNew);
+    	demo.setNameL(nameLNew);
+    	demo.setNameM(nameMNew);
+    	demo.setNameGen((nameGenNew==null||("").equals(nameGenNew))?'\0':nameGenNew.charAt(0));
         BeaLglName nameRequest;
         
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_LGL_NAME")) {
         	nameRequest = new BeaLglName(demo, empNbr, reqDts, namePreNew, nameFNew, nameLNew, nameMNew, (nameGenNew==null||("").equals(nameGenNew))?'\0':nameGenNew.charAt(0), 'A');
         	this.indexService.saveNameRequest(nameRequest);
-        	demo.setNamePre(namePreNew);
-        	demo.setNameF(nameFNew);
-        	demo.setNameL(nameLNew);
-        	demo.setNameM(nameMNew);
-        	demo.setNameGen((nameGenNew==null||("").equals(nameGenNew))?'\0':nameGenNew.charAt(0));
-        	//TODO: need to write own update method
-        	this.indexService.updateDemoName(demo);
-        	session.removeAttribute("userDetail");
-        	session.setAttribute("userDetail", demo);
         }else {
         	nameRequest = new BeaLglName(demo, empNbr, reqDts, namePreNew, nameFNew, nameLNew, nameMNew, (nameGenNew==null||("").equals(nameGenNew))?'\0':nameGenNew.charAt(0), 'P');
         	this.indexService.saveNameRequest(nameRequest);
         }
+        this.indexService.updateDemoName(demo);
+        session.removeAttribute("userDetail");
+    	session.setAttribute("userDetail", demo);
         this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "nameRequest");
         return mav;
@@ -375,18 +374,17 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaMrtlStat maritalStatusRequest;
-        
+        demo.setMaritalStat(maritalStatNew.charAt(0));
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_MRTL_STAT")) {
         	maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts,maritalStatNew,'A');
         	this.indexService.saveMaritalRequest(maritalStatusRequest);
-        	demo.setMaritalStat(maritalStatNew.charAt(0));
-        	this.indexService.updateDemoMaritalStatus(demo);
-        	session.removeAttribute("userDetail");
-        	session.setAttribute("userDetail", demo);
         }else {
         	maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts,maritalStatNew,'P');
         	this.indexService.saveMaritalRequest(maritalStatusRequest);
         }
+        this.indexService.updateDemoMaritalStatus(demo);
+    	session.removeAttribute("userDetail");
+    	session.setAttribute("userDetail", demo);
         this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "maritalStatusRequest");
         return mav;
@@ -419,19 +417,18 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaDrvsLic driversLicenseRequest;
-        
+        demo.setDriversLicNbr(driversLicNbrNew);
+    	demo.setDriversLicSt(driversLicStNew);
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_DRVS_LIC")) {
         	driversLicenseRequest = new BeaDrvsLic(demo, empNbr, reqDts,driversLicNbrNew,driversLicStNew,'A');
         	this.indexService.saveDriversLicenseRequest(driversLicenseRequest);
-        	demo.setDriversLicNbr(driversLicNbrNew);
-        	demo.setDriversLicSt(driversLicStNew);
-        	this.indexService.updateDemoDriversLicense(demo);
-        	session.removeAttribute("userDetail");
-        	session.setAttribute("userDetail", demo);
         }else {
         	driversLicenseRequest = new BeaDrvsLic(demo, empNbr, reqDts,driversLicNbrNew,driversLicStNew,'P');
         	this.indexService.saveDriversLicenseRequest(driversLicenseRequest);
         }
+        this.indexService.updateDemoDriversLicense(demo);
+        session.removeAttribute("userDetail");
+    	session.setAttribute("userDetail", demo);
         this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "driversLicenseRequest");
         return mav;
@@ -464,19 +461,19 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaRestrict restrictionCodesRequest;
-        
+        demo.setRestrictCd(restrictCdNew.charAt(0));
+    	demo.setRestrictCdPublic(restrictCdPublicNew.charAt(0));
+    	
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_RESTRICT")) {
         	restrictionCodesRequest = new BeaRestrict(demo, empNbr, reqDts, restrictCdNew, restrictCdPublicNew, 'A');
         	this.indexService.saveRestrictionCodesRequest(restrictionCodesRequest);
-        	demo.setRestrictCd(restrictCdNew.charAt(0));
-        	demo.setRestrictCdPublic(restrictCdPublicNew.charAt(0));
-        	this.indexService.updateDemoRestrictionCodes(demo);
-        	session.removeAttribute("userDetail");
-        	session.setAttribute("userDetail", demo);
         }else {
         	restrictionCodesRequest = new BeaRestrict(demo, empNbr, reqDts, restrictCdNew, restrictCdPublicNew, 'P');
         	this.indexService.saveRestrictionCodesRequest(restrictionCodesRequest);
         }
+        this.indexService.updateDemoRestrictionCodes(demo);
+        session.removeAttribute("userDetail");
+    	session.setAttribute("userDetail", demo);
         this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "restrictionCodesRequest");
         return mav;
@@ -509,19 +506,19 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaEmail emailRequest;
-        
+        demo.setEmail(emailNew);
+    	demo.setHmEmail(hmEmailNew);
+    	
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_EMAIL")) {
         	emailRequest = new BeaEmail(demo, empNbr, reqDts, emailNew, hmEmailNew, 'A');
         	this.indexService.saveEmailRequest(emailRequest);
-        	demo.setEmail(emailNew);
-        	demo.setHmEmail(hmEmailNew);
-        	this.indexService.updateDemoEmail(demo);
-        	session.removeAttribute("userDetail");
-        	session.setAttribute("userDetail", demo);
         }else {
         	emailRequest = new BeaEmail(demo, empNbr, reqDts, emailNew, hmEmailNew, 'P');
         	this.indexService.saveEmailRequest(emailRequest);
         }
+        this.indexService.updateDemoEmail(demo);
+        session.removeAttribute("userDetail");
+    	session.setAttribute("userDetail", demo);
         this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "emailRequest");
         return mav;
@@ -555,23 +552,23 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaEmerContact emergencyContactRequest;
-        
+        demo.setEmerContact(emerContactNew);
+    	demo.setEmerPhoneAc(emerPhoneAcNew);
+    	demo.setEmerPhoneNbr(emerPhoneNbrNew);
+    	demo.setEmerPhoneExt(emerPhoneExtNew);
+    	demo.setEmerRel(emerRelNew);
+    	demo.setEmerNote(emerNoteNew);
+    	
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_EMER_CONTACT")) {
         	emergencyContactRequest = new BeaEmerContact(demo, empNbr, reqDts, emerContactNew, emerPhoneAcNew,emerPhoneNbrNew,emerPhoneExtNew,emerRelNew,emerNoteNew, 'A');
         	this.indexService.saveEmergencyContactRequest(emergencyContactRequest);
-        	demo.setEmerContact(emerContactNew);
-        	demo.setEmerPhoneAc(emerPhoneAcNew);
-        	demo.setEmerPhoneNbr(emerPhoneNbrNew);
-        	demo.setEmerPhoneExt(emerPhoneExtNew);
-        	demo.setEmerRel(emerRelNew);
-        	demo.setEmerNote(emerNoteNew);
-        	this.indexService.updateDemoEmergencyContact(demo);
-        	session.removeAttribute("userDetail");
-        	session.setAttribute("userDetail", demo);
         }else {
         	emergencyContactRequest = new BeaEmerContact(demo, empNbr, reqDts, emerContactNew, emerPhoneAcNew,emerPhoneNbrNew,emerPhoneExtNew,emerRelNew,emerNoteNew, 'P');
         	this.indexService.saveEmergencyContactRequest(emergencyContactRequest);
         }
+        this.indexService.updateDemoEmergencyContact(demo);
+        session.removeAttribute("userDetail");
+    	session.setAttribute("userDetail", demo);
         this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "emergencyContactRequest");
         return mav;
@@ -605,24 +602,24 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaMailAddr mailingAddressRequest;
-        
+        demo.setAddrNbr(addrNbrNew);
+    	demo.setAddrStr(addrStrNew);
+    	demo.setAddrApt(addrAptNew);
+    	demo.setAddrCity(addrCityNew);
+    	demo.setAddrSt(addrStNew);
+    	demo.setAddrZip(addrZipNew);
+    	demo.setAddrZip4(addrZip4New);
+    	
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_MAIL_ADDR")) {
         	mailingAddressRequest = new BeaMailAddr(demo, empNbr, reqDts, addrNbrNew, addrStrNew,addrAptNew,addrCityNew,addrStNew,addrZipNew,addrZip4New, 'A');
         	this.indexService.saveMailAddrRequest(mailingAddressRequest);
-        	demo.setAddrNbr(addrNbrNew);
-        	demo.setAddrStr(addrStrNew);
-        	demo.setAddrApt(addrAptNew);
-        	demo.setAddrCity(addrCityNew);
-        	demo.setAddrSt(addrStNew);
-        	demo.setAddrZip(addrZipNew);
-        	demo.setAddrZip4(addrZip4New);
-        	this.indexService.updateDemoMailAddr(demo);
-        	session.removeAttribute("userDetail");
-        	session.setAttribute("userDetail", demo);
         }else {
         	mailingAddressRequest = new BeaMailAddr(demo, empNbr, reqDts,  addrNbrNew, addrStrNew,addrAptNew,addrCityNew,addrStNew,addrZipNew,addrZip4New, 'P');
         	this.indexService.saveMailAddrRequest(mailingAddressRequest);
         }
+        this.indexService.updateDemoMailAddr(demo);
+        session.removeAttribute("userDetail");
+    	session.setAttribute("userDetail", demo);
         this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "mailingAddressRequest");
         return mav;
@@ -656,24 +653,24 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaAltMailAddr altMailingAddressRequest;
-        
+        demo.setSmrAddrNbr(smrAddrNbrNew);
+    	demo.setSmrAddrStr(smrAddrStrNew);
+    	demo.setSmrAddrApt(smrAddrAptNew);
+    	demo.setSmrAddrCity(smrAddrCityNew);
+    	demo.setSmrAddrSt(smrAddrStNew);
+    	demo.setSmrAddrZip(smrAddrZipNew);
+    	demo.setSmrAddrZip4(smrAddrZip4New);
+    	
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_ALT_MAIL_ADDR")) {
         	altMailingAddressRequest = new BeaAltMailAddr(demo, empNbr, reqDts, smrAddrNbrNew, smrAddrStrNew,smrAddrAptNew,smrAddrCityNew,smrAddrStNew,smrAddrZipNew,smrAddrZip4New, 'A');
         	this.indexService.saveAltMailAddrRequest(altMailingAddressRequest);
-        	demo.setSmrAddrNbr(smrAddrNbrNew);
-        	demo.setSmrAddrStr(smrAddrStrNew);
-        	demo.setSmrAddrApt(smrAddrAptNew);
-        	demo.setSmrAddrCity(smrAddrCityNew);
-        	demo.setSmrAddrSt(smrAddrStNew);
-        	demo.setSmrAddrZip(smrAddrZipNew);
-        	demo.setSmrAddrZip4(smrAddrZip4New);
-        	this.indexService.updateDemoAltMailAddr(demo);
-        	session.removeAttribute("userDetail");
-        	session.setAttribute("userDetail", demo);
         }else {
         	altMailingAddressRequest = new BeaAltMailAddr(demo, empNbr, reqDts, smrAddrNbrNew, smrAddrStrNew,smrAddrAptNew,smrAddrCityNew,smrAddrStNew,smrAddrZipNew,smrAddrZip4New, 'P');
         	this.indexService.saveAltMailAddrRequest(altMailingAddressRequest);
         }
+        this.indexService.updateDemoAltMailAddr(demo);
+        session.removeAttribute("userDetail");
+    	session.setAttribute("userDetail", demo);
         this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "altMailingAddressRequest");
         return mav;
@@ -707,7 +704,6 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         
-        
         BeaHmPhone homePhoneRequest;
         BeaCellPhone cellPhoneRequest;
         BeaBusPhone businessPhoneRequest;
@@ -723,6 +719,11 @@ public class IndexController {
         }else {
         	homePhoneRequest = new BeaHmPhone(demo, empNbr, reqDts, phoneAreaNew, phoneNbrNew, 'P');
         	this.indexService.saveHomePhoneRequest(homePhoneRequest);
+        	demo.setPhoneArea(phoneAreaNew);
+        	demo.setPhoneNbr(phoneNbrNew);
+        	this.indexService.updateDemoHomePhone(demo);
+        	session.removeAttribute("userDetail");
+        	session.setAttribute("userDetail", demo);
         }
         this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "homePhoneRequest");
@@ -738,6 +739,11 @@ public class IndexController {
         }else {
         	cellPhoneRequest = new BeaCellPhone(demo, empNbr, reqDts, phoneAreaCellNew, phoneNbrCellNew, 'P');
         	this.indexService.saveCellPhoneRequest(cellPhoneRequest);
+        	demo.setPhoneAreaCell(phoneAreaCellNew);
+        	demo.setPhoneNbrCell(phoneNbrCellNew);
+        	this.indexService.updateDemoCellPhone(demo);
+        	session.removeAttribute("userDetail");
+        	session.setAttribute("userDetail", demo);
         }
         this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "cellPhoneRequest");
@@ -754,6 +760,12 @@ public class IndexController {
         }else {
         	businessPhoneRequest = new BeaBusPhone(demo, empNbr, reqDts, phoneAreaBusNew, phoneNbrBusNew, busPhoneExtNew, 'P');
         	this.indexService.saveBusinessPhoneRequest(businessPhoneRequest);
+        	demo.setPhoneAreaBus(phoneAreaBusNew);
+        	demo.setPhoneNbrBus(phoneNbrBusNew);
+        	demo.setBusPhoneExt(busPhoneExtNew);
+        	this.indexService.updateDemoBusinessPhone(demo);
+        	session.removeAttribute("userDetail");
+        	session.setAttribute("userDetail", demo);
         }
         this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "businessPhoneRequest");
