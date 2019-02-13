@@ -63,6 +63,7 @@
                                   placeholder=""
                                   data-localize="label.confirmPassword"
                                   name="newPassword"
+                                  id="newPassword"
                               />
                           </div>
                       </div>
@@ -154,15 +155,16 @@
     }
     
     $(function(){
-        $("#changePsd").click(function(){
+        $("#changePsd").click(function(e){
         	var bootstrapValidator = $("#updatePassword").data('bootstrapValidator');
         	bootstrapValidator.validate();
             if (bootstrapValidator.isValid()) {
-                let old = $("#sessionPsd").val()
+                let old = sessionStorage.getItem("sessionPws");
                 let currentOld = $("#oldPassword").val()
                 if(old == currentOld){
                     $('.oldPsdValidator').hide()
                     $('#updatePassword')[0].submit()
+                    sessionStorage.setItem("sessionPws",$("#newPassword").val());
                 }else{
                     $('.oldPsdValidator').show()
                     return false

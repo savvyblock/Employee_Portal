@@ -1673,6 +1673,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             alternativeAddressValidator()
             phoneValidator()
             w4InfoValidator()
+            initSessionPws()
             bank01 = $('#bankAccountForm_01').length
             if (bank01 != 0) {
                 bankAccount01Validator()
@@ -2596,5 +2597,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 }
             })
         }
+        
+       function initSessionPws(){
+    	   const psd = $("#sessionPsd").val();
+    	   if(psd !== ""){
+    		   sessionStorage.setItem("sessionPws",psd);
+    	   }
+       }
+        
     </script>
 </html>

@@ -157,7 +157,23 @@
   white-space: nowrap;
 }
 
-.user-panel .image {
+.sidebar-collapse .user-panel .image {
+  width: 60px;
+  height: 60px;
+}
+
+.sidebar-collapse .user-panel .image a {
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 38px;
+}
+
+.sidebar-collapse .user-panel .image a .fa {
+  line-height: 60px;
+}
+
+.user-panel .image, .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel .image {
   display: inline-block;
   width: 80px;
   height: 80px;
@@ -166,7 +182,7 @@
   overflow: hidden;
 }
 
-.user-panel .image a {
+.user-panel .image a, .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel .image a {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -180,7 +196,7 @@
   font-size: 42px;
 }
 
-.user-panel .image a .fa {
+.user-panel .image a .fa, .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel .image a .fa {
   line-height: 80px;
 }
 
@@ -309,6 +325,7 @@
   .sidebar-mini.sidebar-collapse .nav-sidebar .nav-link p,
   .sidebar-mini.sidebar-collapse .sidebar .user-panel > .info {
     opacity: 0;
+    display: none;
     margin-left: -10px;
   }
   .sidebar-mini.sidebar-collapse .main-sidebar,
@@ -332,12 +349,13 @@
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .nav-sidebar .nav-link p,
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .info {
     opacity: 1;
+    display: flex;
     margin-left: 0;
     display: inline-block;
   }
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-form,
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .info {
-    display: block !important;
+    display: flex !important;
     -webkit-transform: translateZ(0);
   }
   .sidebar-mini.sidebar-collapse
