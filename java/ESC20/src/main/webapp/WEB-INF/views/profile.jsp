@@ -2461,7 +2461,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         
                         validators: {
                             regexp: {
-                                regexp: /^\d+$|^\d+[\.]{1}\d{2}$/,
+                                regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
                                 message: 'validator.pleaseEnterCorrectFormat'
                             }
                         }
@@ -2525,7 +2525,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         
                         validators: {
                             regexp: {
-                                regexp: /^\d+$|^\d+[\.]{1}\d{2}$/,
+                                regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
                                 message: 'validator.pleaseEnterCorrectFormat'
                             }
                         }
@@ -2589,7 +2589,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         
                         validators: {
                             regexp: {
-                                regexp: /^\d+$|^\d+[\.]{1}\d{2}$/,
+                                regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
                                 message: 'validator.pleaseEnterCorrectFormat'
                             }
                         }
