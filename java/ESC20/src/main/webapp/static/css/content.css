@@ -1281,11 +1281,19 @@
 }
 
 .profile .profile-item .profile-btn .edit {
-  display: block;
+  display: none;
 }
 
 .profile .profile-item .profile-btn .saveOrCancel {
+  display: block;
+}
+
+.profile .profile-item .profile-btn .saveOrCancel .cancel-btn {
   display: none;
+}
+
+.profile .profile-item .profile-btn .saveOrCancel .cancel-btn:first-child {
+  display: inline-block;
 }
 
 .profile .profile-item .profile-btn .saveOrCancel.flex-line .btn {
