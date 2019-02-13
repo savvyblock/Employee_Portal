@@ -12,6 +12,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <div class="account-top">
                 <div class="account-inner sm">
                         <form id="retrieveUser" action="retrieveUser" method="post">
+                            <p>
+                                    <b data-localize="label.pleaseEnterEmpBirthZipCode"></b>
+                            </p>
                                 <div class="form-group">
                                         <input type="hidden" name="id" value="${id}">
                                         <label class="form-title" for="autoAdvance_1"><span data-localize="label.employeeNumber"></span>(<span data-localize="label.noDashes"></span>)</label>
@@ -40,6 +43,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <input type="text" id="autoAdvance_5" class="form-control autoAdvance" placeholder="" name="zipCode" maxlength="5">
                                             </div>
                                         </div>
+                                        <p class="error-hint hide" id="noUserError" data-localize="validator.noUserAccountAssociated"></p>
                                         <div class="form-group account-btn">
                                             <button type="submit" class="btn btn-primary" data-localize="label.retrieve"></button>
                                         </div>

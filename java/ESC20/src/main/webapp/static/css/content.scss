@@ -954,6 +954,24 @@
                 }
             }
         }
+        &.noNumTable{
+            tbody{
+                td{
+                    text-align: left;
+                }
+            }
+        }
+        &.w2Check-table{
+            tbody{
+                td{
+                    &:first-child{
+                        text-align: left;
+                        padding-left: 0;
+                    }
+                    text-align: center;
+                }
+            }
+        }
         &.no-print{
             display: none;
         }
@@ -1147,10 +1165,16 @@
                 display: block;
             }
             .edit{
-                display: block;
+                display: none;
             }
             .saveOrCancel{
-                display: none;
+                display: block;
+                .cancel-btn{
+                    display: none;
+                    &:first-child{
+                        display: inline-block;
+                    }
+                }
                 &.flex-line{
                     .btn{
                         display: inline-block;

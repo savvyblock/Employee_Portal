@@ -48,7 +48,7 @@
 							<input
 								class="form-control" type="text" name="SearchStart"
 								id="SearchStartDate" readonly value="${SearchStart}" />
-								<a class="clear-btn" onclick="clearDate(this)" data-localize="label.removeContent" data-localize-location="title"><i class="fa fa-times"></i></a>
+								<button class="clear-btn" type="button" onclick="clearDate(this)" data-localize="label.removeContent" data-localize-location="title"><i class="fa fa-times"></i></button>
 							</div>
 						</div>
 						<div class="form-group">
@@ -57,7 +57,7 @@
 							<input
 								class="form-control" type="text" name="SearchEnd"
 								id="SearchEndDate" readonly value="${SearchEnd}"/>
-								<a class="clear-btn" onclick="clearDate(this)" data-localize="label.removeContent" data-localize-location="title"><i class="fa fa-times"></i></a>
+								<button class="clear-btn" type="button" onclick="clearDate(this)" data-localize="label.removeContent" data-localize-location="title" tabindex="0"><i class="fa fa-times"></i></button>
 							</div>
 						</div>
 						<div class="form-group btn-group">

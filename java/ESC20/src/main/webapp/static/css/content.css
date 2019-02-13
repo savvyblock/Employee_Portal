@@ -1040,6 +1040,16 @@
   .table.border-table tbody td:first-child {
     text-align: left;
   }
+  .table.noNumTable tbody td {
+    text-align: left;
+  }
+  .table.w2Check-table tbody td {
+    text-align: center;
+  }
+  .table.w2Check-table tbody td:first-child {
+    text-align: left;
+    padding-left: 0;
+  }
   .table.no-print {
     display: none;
   }
@@ -1281,11 +1291,19 @@
 }
 
 .profile .profile-item .profile-btn .edit {
-  display: block;
+  display: none;
 }
 
 .profile .profile-item .profile-btn .saveOrCancel {
+  display: block;
+}
+
+.profile .profile-item .profile-btn .saveOrCancel .cancel-btn {
   display: none;
+}
+
+.profile .profile-item .profile-btn .saveOrCancel .cancel-btn:first-child {
+  display: inline-block;
 }
 
 .profile .profile-item .profile-btn .saveOrCancel.flex-line .btn {
