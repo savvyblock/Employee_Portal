@@ -633,7 +633,7 @@
 		"notValid":"This value is not valid",
 		"pleaseEnterCorrectMailFormat":"Please enter the correct mail format.",
 		"twoPasswordsNotMatch":"The two passwords you entered did not match.",
-		"passwordLengthNotLessThan6":"Password length must not be less than 6 bits.",
+		"passwordLengthNotLessThan6":"Password length should not be less than 6",
 		"usernameCannotBeEmpty":"The username is required and cannot be empty",
 		"passwordCannotBeEmpty":"The password is required and cannot be empty",
 		"passwordNotMatch":"The two passwords you entered did not match.",
