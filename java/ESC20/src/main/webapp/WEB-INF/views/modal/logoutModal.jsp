@@ -25,7 +25,7 @@
             </div>
               
                       <div class="modal-body">
-                      
+                        <p style="text-align:center;font-size:20px;margin:10px 0;"><b id="timeCounter"></b></p>
                         <p data-localize="label.areYouQuit"></p>
                     </div>
                     <div class="modal-footer">

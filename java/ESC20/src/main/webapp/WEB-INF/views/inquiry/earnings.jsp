@@ -187,7 +187,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 >
                                     <div class="form-group in-line">
                                         <label class="form-title" for="SearchPayDate"><span data-localize="label.payDates"></span>:</label>
-                                        <select class="form-control" name="payDateString" id="payDateString" onchange="submitEarning()">
+                                        <select class="form-control" name="payDateString" id="payDateString" onchange="submitEarning()" style="max-width:280px;">
                                             <c:forEach var="payDate" items="${payDates}" varStatus="counter">
                                                 <option value="${payDate.dateFreqVoidAdjChk}" <c:if test="${payDate.dateFreq == selectedPayDate.dateFreq }">selected</c:if>>${payDate.label}</option>
                                             </c:forEach>
@@ -519,7 +519,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         </c:forEach>
                                                     <tr class="total-tr">
                                                         <td colspan="3" data-localize="earningTable.totalOvertimePay" data-localize-location="scope">
-                                                            <span data-localize="totalOvertimePay"></span>
+                                                            <span data-localize="earningTable.totalOvertimePay"></span>
                                                         </td>
                                                         <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                 ${earnings.earningsOvertimeTotal}

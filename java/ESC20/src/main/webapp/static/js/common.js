@@ -21,6 +21,7 @@ $(function() {
 
     console.log(language);
     if (language.indexOf('en') > -1) {
+    	language = 'en'
         initLocalize(language)
     }
     if (language.indexOf('zh') > -1) {
@@ -68,7 +69,7 @@ function initLocalize(language){
     $('[data-localize]').localize('text', {
         pathPrefix: pathPrefix,
         language: language,
-        timeout:5000
+        timeout:50000
     })
 }
 
