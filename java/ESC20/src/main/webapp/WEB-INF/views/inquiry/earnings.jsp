@@ -519,7 +519,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         </c:forEach>
                                                     <tr class="total-tr">
                                                         <td colspan="3" data-localize="earningTable.totalOvertimePay" data-localize-location="scope">
-                                                            <span data-localize="totalOvertimePay"></span>
+                                                            <span data-localize="earningTable.totalOvertimePay"></span>
                                                         </td>
                                                         <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                 ${earnings.earningsOvertimeTotal}
