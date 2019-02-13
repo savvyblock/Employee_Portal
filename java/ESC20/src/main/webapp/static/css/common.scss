@@ -435,6 +435,13 @@ input {
             }
         }
     }
+    &.noNumTable{
+        tbody{
+            td{
+                text-align: left;
+            }
+        }
+    }
     &.deductionTable{
         tbody{
             td{
@@ -466,6 +473,9 @@ input {
         text-align: left;
         word-spacing: normal;
         font-size: 12px;
+        &.boxtitle,&.boxvalue,&.boxvaluerj{
+            padding: 0;
+        }
         &.td-content{
             text-align: right;
         }
