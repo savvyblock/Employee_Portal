@@ -231,7 +231,7 @@
    <%@ include file="../modal/logoutModal.jsp"%>
 
    <script>
-   var maxTime = 60; // seconds
+   var maxTime = 300; // seconds
     var time = maxTime;
     $('body').on('keydown mousemove mousedown', function(e){
     time = maxTime; // reset
@@ -240,9 +240,13 @@
   function startCountTime(){
     var intervalId = setInterval(function(){
       time--;
-      if(time <= 0) {
+      if(time <= 10) {
         $("#logoutModal").modal("show")
-        clearInterval(intervalId);
+        $("#timeCounter").text(time)
+        // clearInterval(intervalId);
+        if(time == 0){
+          window.location="/<%=request.getContextPath().split("/")[1]%>/logout"
+        }
       }
     }, 1000)
   }
