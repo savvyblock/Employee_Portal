@@ -111,7 +111,15 @@ public class IndexController {
         mav.addObject("user", user);
         mav.addObject("email", email);
         return mav;
-    }    
+    }
+    
+    @RequestMapping("retrieveEmployee")
+    public ModelAndView retrieveEmployee(HttpServletRequest req, String email){
+    	ModelAndView mav = new ModelAndView();
+    	BeaUsers user = this.indexService.getUserByEmail(email);
+        return mav;
+    }
+    
     @RequestMapping("forgetPassword")
     public ModelAndView retrieveUserName(HttpServletRequest req){
     	ModelAndView mav = new ModelAndView();

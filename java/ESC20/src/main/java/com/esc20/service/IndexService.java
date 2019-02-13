@@ -262,4 +262,8 @@ public class IndexService {
 		userDao.deleteBusinessPhonerequest(empNbr);
 	}
 	
+	public BeaUsers retrieveEmployee(String email) {
+		return userDao.getUserByEmail(email);
+	}
+	
 }
