@@ -511,6 +511,10 @@ input:focus {
   text-align: left;
 }
 
+.table.noNumTable tbody td {
+  text-align: left;
+}
+
 .table.deductionTable tbody td {
   text-align: right;
 }
@@ -542,6 +546,10 @@ input:focus {
   text-align: left;
   word-spacing: normal;
   font-size: 12px;
+}
+
+.table th.boxtitle, .table th.boxvalue, .table th.boxvaluerj, .table td.boxtitle, .table td.boxvalue, .table td.boxvaluerj {
+  padding: 0;
 }
 
 .table th.td-content, .table td.td-content {

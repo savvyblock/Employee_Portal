@@ -954,6 +954,13 @@
                 }
             }
         }
+        &.noNumTable{
+            tbody{
+                td{
+                    text-align: left;
+                }
+            }
+        }
         &.no-print{
             display: none;
         }

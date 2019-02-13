@@ -564,7 +564,9 @@
 		"workEmail":"Work E-mail",
 		"homeEmail":"Home E-mail",
 		"hintQuestion":"Hint Question",
-		"hintAnswer":"Hint Answer"
+		"hintAnswer":"Hint Answer",
+		"pleaseEnterEmpBirthZipCode":"Please enter your employee number, date of birth, and zip and click Retrieve.",
+		"":""
 	},
 	"language":{
 		"english":"English",
@@ -672,7 +674,9 @@
 		"usernameOrEmailNotExit":"User or email does not exist!",
 		"fromDateNotGreaterToDate":"From date cannot be greater than To date!",
 		"resetPswSuccess":"reset password success!",
-		"resetPswFaild":"reset password faild!"
+		"resetPswFaild":"reset password faild!",
+		"noUserAccountAssociated":"User account already associated with employee. Please contact personnel office to delete existing user account before creating a new one.",
+		"":""
 	},
 	"w2Notice":{
 		"box":"Box ",

@@ -384,7 +384,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </c:forEach>
 
                                 
-                                <table class="table border-table mb-5 print-block-table">
+                                <table class="table border-table mb-5 print-block-table noNumTable">
                                     <tr>
                                         <td class="header" colspan="3" valign="top">
                                             <span data-localize="w2InformationTable.formW2WageAndTaxStatement"></span>
@@ -740,7 +740,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <jsp:include page="../report-w2/${selectedYear}-1.jsp"></jsp:include> 
                                 <div class="PageNext"></div>
                                
-                                <table class="table border-table mb-5 print-block-table">
+                                <table class="table border-table mb-5 print-block-table noNumTable">
                                         <tr>
                                             <td class="header" colspan="3" valign="top">
                                                 <span data-localize="w2InformationTable.formW2WageAndTaxStatement"></span>

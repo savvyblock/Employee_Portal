@@ -1040,6 +1040,9 @@
   .table.border-table tbody td:first-child {
     text-align: left;
   }
+  .table.noNumTable tbody td {
+    text-align: left;
+  }
   .table.no-print {
     display: none;
   }
