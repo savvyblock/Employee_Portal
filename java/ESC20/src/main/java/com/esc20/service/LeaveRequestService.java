@@ -2,7 +2,6 @@ package com.esc20.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -106,12 +105,7 @@ public class LeaveRequestService {
 	}
 
 	public List<Code> getLeaveTypes(String empNbr, String freq, String leaveType) {
-		List<Code> res = new ArrayList<>();
-		Code code = new Code("0", "All");
-		res.add(code);
-		List<Code> codes = leaveRequestDao.getLeaveTypes(empNbr, freq, leaveType);
-		res.addAll(codes);
-		return res;
+		return leaveRequestDao.getLeaveTypes(empNbr, freq, leaveType);
 	}
 
 	public List<LeaveInfo> getLeaveInfo(String empNbr, String freq, boolean removeZeroedOutLeaveTypes) {
