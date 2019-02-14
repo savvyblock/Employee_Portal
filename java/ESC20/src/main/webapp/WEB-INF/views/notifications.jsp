@@ -18,21 +18,28 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     <div class="content-white EMP-detail">
                        <ul class="note-list">
                        		<c:forEach var="notification" items="${unReadList}" varStatus="unReadList">
-	                            <li class="note-item">
+	                            <li class="note-item" <c:if test="${notification.status != 'UR' }">active</c:if>>
 	                               <i class="fa fa-envelope left-fa"></i> 
 	                               <div class="msg">${notification.msgContent}</div>
-	                               <div class="note-btn">
+	                               <button class="note-btn" onclick="markRead('${notification.id}')">
 	                                    Mark as Read
-	                               </div>
+	                               </button>
 	                            </li>
                             </c:forEach>
                        </ul>
                     </div>
                 </section>
             </main>
+            <form id="markAsReadForm" hidden="hidden" action="markAsRead" method="POST">
+                <input type="text" id="noteId" name="id">
+            </form>
         </div>
         <%@ include file="commons/footer.jsp"%>
     </body>
     <script>
+        function markRead(id){
+            $("#noteId").val(id)
+            $("#markAsReadForm")[0].submit()
+        }
     </script>
 </html>

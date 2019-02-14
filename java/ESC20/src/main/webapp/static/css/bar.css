@@ -160,6 +160,7 @@
 .sidebar-collapse .user-panel .image {
   width: 60px;
   height: 60px;
+  flex: 0 0 60px;
 }
 
 .sidebar-collapse .user-panel .image a {
@@ -180,6 +181,7 @@
   border-radius: 50%;
   background: #d8d0ce;
   overflow: hidden;
+  flex: 0 0 80px;
 }
 
 .user-panel .image a, .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel .image a {
@@ -209,6 +211,12 @@
   display: flex;
   padding: 5px 5px 5px 10px;
   align-items: center;
+}
+
+.user-panel .info a {
+  width: 145px;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .nav-sidebar .nav-item > .nav-link {

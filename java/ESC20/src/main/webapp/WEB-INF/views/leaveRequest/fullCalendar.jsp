@@ -42,6 +42,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             right: 'month'
                             // right: 'month,agendaWeek,agendaDay,listMonth'
                         },
+                        buttonText: {
+                            today: 'Today',
+                            month: 'Month'
+                        },
                         defaultDate: new Date(),
                         weekNumbers: false,
                         navLinks: true, // can click day/week names to navigate views
@@ -144,7 +148,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 // let newBtn = `<button class="btn btn-primary xs"  data-title="${title}" title="Add a new request" onclick="newEvent(this)">Add</button>`
                                 let newBtn = `<button class="btn btn-primary xs" data-title="`
                                                 + title +
-                                                `" title="Add a new request" data-localize="label.add" onclick="newEvent(this)"></button>`
+                                                `" title="" data-localize="label.add" onclick="newEvent(this)"></button>`
                                 $(this).prepend(newBtn)
                             })
                             initLocalize(initialLocaleCode)//Initialize multilingual function
