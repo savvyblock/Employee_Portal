@@ -275,5 +275,8 @@ public class IndexService {
 	public List<BeaAlert> getTop5Alerts(String empNbr) {
 		return alertDao.getTop5UnreadAlerts(empNbr);
 	}
+	public void deleteAlert(String id) {
+		alertDao.deleteAlert(id);
+	}
 	
 }
