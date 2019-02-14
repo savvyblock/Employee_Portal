@@ -28,6 +28,7 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPay;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.SearchUser;
 
 @Service
 public class IndexService {
@@ -262,8 +263,9 @@ public class IndexService {
 		userDao.deleteBusinessPhonerequest(empNbr);
 	}
 	
-	public BeaUsers retrieveEmployee(String email) {
-		return userDao.getUserByEmail(email);
+	public BhrEmpDemo retrieveEmployee(SearchUser searchUser) {
+		return userDao.retrieveEmployee(searchUser);
+		
 	}
 	
 }

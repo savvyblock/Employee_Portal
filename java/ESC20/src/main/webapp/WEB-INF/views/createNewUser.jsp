@@ -15,31 +15,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.employeeNumber"></label>
                                 <div class="valid-wrap">
-                                    newUser.employeeNumber
+                                   ${newUser.empNumber}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.dateOfBirth"></label>
                                 <div class="valid-wrap">
-                                    newUser.dateOfBirth
+                                   ${ newUser.searchFormattedDateofBirth}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.zipCode"></label>
                                 <div class="valid-wrap">
-                                    newUser.employeeNumber
+                                    ${newUser.zipCode}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.lastname"></label>
                                 <div class="valid-wrap">
-                                    newUser.lastname
+                                    ${newUser.nameL}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.firstname"></label>
                                 <div class="valid-wrap">
-                                    newUser.firstname
+                                    ${newUser.nameF}
                                 </div>
                             </div>
                             <div>
