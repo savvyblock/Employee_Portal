@@ -72,6 +72,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <form action="saveTempApprovers" id="saveTempApprovers" method="POST">
                                     <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="">
                                     <input hidden="hidden" id="empNbrForm" name="empNbr" type="text" value="">
+                                    <input hidden="hidden" id="approverJson" name="approverJson" type="text" value="">
                                 <table
                                     class="table border-table setApprovers-list responsive-table"
                                 >
@@ -129,8 +130,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         type="text"
                                                         title=""
                                                         data-localize="setTemporaryApprovers.temporaryApprover"
-                                                        name="temporaryApprovers[${row.index}].temporaryApprover.employeeNumber"
-                                                        onchange="judgeContent()"
+                                                        name=""
                                                         id="name_01"
                                                     />
                                                 </div>
@@ -219,10 +219,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <script>
         var directReportEmployee = eval(${directReportEmployee});
         var chain = eval(${chain});
+        var employeeList = [
+            { name: "Peter Pan", number: "0002" },
+            { name: "Peter jan", number: "0006" },
+            { name: "Peter kan", number: "0004" },
+            { name: "Peter jan", number: "0006" },
+            { name: "Peter kan", number: "0004" },
+
+        ];
         $(function() {
             changeLevel()
             initDateControl()
             judgeContent()
+            initialCompleteList()
             let level = $("#level").val()
             let chainString = JSON.stringify(chain)
             let empNbr = $("#currentEmployee").text()
@@ -256,7 +265,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <td data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope">
                                                 <div class="form-group">
                                                     <input class="form-control empControl" type="text" 
-                                                    onchange="judgeContent()"
                                                     title=""
                                                     data-localize="setTemporaryApprovers.temporaryApprover"
                                                     name="" 
@@ -294,6 +302,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 console.log("add noEmpty:" +noEmpty)
                 if(noEmpty == trLen){
                     $('.setApprovers-list tbody tr:last-child').before(newRow)
+                    initialCompleteList()
                     $("#errorComplete").hide()
                 }else{
                     $("#errorComplete").show()
@@ -307,18 +316,73 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 initDateControl()
                 $("#chainString").val(chainString)
                 $("#empNbrForm").val(empNbr)
+                $("#approverJson").val(JSON.stringify(approverJson))
                 console.log(approverJson)
+                console.log($("#chainString").val())
+                console.log($("#empNbrForm").val())
+                console.log($("#approverJson").val())
                 let length = $(".approver_tr").length
                 if(noEmpty == length){
-                    return false
-                    $("#saveTempApprovers")[0].submit()  
+                    // let json = {
+                    //     chain:chainString,
+                    //     empNbr:empNbr,
+                    //     approverJson:JSON.stringify(approverJson)
+                    // }
+                    // console.log(json)
+                    // saveTempApprovers(json)
+                    $("#errorComplete").hide()
+                    $("#saveTempApprovers")[0].submit()
                 }else{
                     $("#errorComplete").show()
                 }
                 return
                 
             })
+        
+            
         })
+        function initialCompleteList(){
+            $(".empControl").each(function(){
+                $(this).autocomplete(employeeList, {
+                    max: 10,    //
+                    minChars: 0,    //
+                    width: $(this).width()+1,     //
+                    scrollHeight: 300,   //
+                    matchContains: true,    //
+                    autoFill: true,    //
+                    formatItem: function(row, i, max) {
+                        if(row.number){
+                            return  row.number + '-' + row.name;
+                        }else{
+                            $(".ac_results").hide()
+                        }
+                    },
+                    formatMatch: function(row, i, max) {
+                        return row.number + '-' + row.name;
+                    },
+                    formatResult: function(row) {
+                        return row.number + '-' + row.name;
+                    }
+                }).result(function(event, row, formatted) {
+                    judgeContent()
+                });
+            })
+        }
+        // function saveTempApprovers(stringJson){
+        //     $.ajax({
+        //                 type:'POST',
+        //                 url:'<%=request.getContextPath()%>/supervisor/saveTempApprovers',
+        //                 dataType:'JSON',
+        //                 contentType:'application/json;charset=UTF-8',
+        //                 data:stringJson,
+        //                 success : function (res) {
+        //                     console.log(res)
+        //                 },
+        //                 error:function(res){
+        //                     console.log(res)
+        //                 }
+        //             });
+        // }
         function deleteApprover() {
             console.log('delete')
         }
@@ -350,11 +414,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         // }
                     }
                 }).on('changeDate', function(ev) {
-                    judgeContent()
                     let endDate = toCalendar.val()
                     let startDate = fromCalendar.val()
-                    console.log(fromCalendar)
-                    console.log(startDate)
                     if (
                         ev.date &&
                         (ev.date.valueOf() >= checkout[index].date.valueOf() || !endDate||endDate=='')
@@ -362,8 +423,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         startDate = new Date(startDate)
                         startDate.setDate(startDate.getDate())
                         checkout[index].update(startDate)
-                        console.log(startDate)
                         toCalendar.change()
+                        judgeContent()
                     }
                 }).data('datepicker')
 

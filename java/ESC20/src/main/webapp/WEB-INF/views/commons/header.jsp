@@ -1,6 +1,7 @@
 
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/font-awesome.min.css">
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/animate.css" />
+<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/jquery.autocomplete.css">
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/foundation-datepicker.css" />
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/mobiscroll.css" />
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/icheck.css">
@@ -13,6 +14,7 @@
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/bootstrap.min.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/icheck.min.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/foundation-datepicker.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/jquery.autocomplete.js"></script>
 <%--foundation datepicker control language package --start --%>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/locales/foundation-datepicker.en.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/locales/foundation-datepicker.es.js"></script>
