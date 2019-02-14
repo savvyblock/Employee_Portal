@@ -111,7 +111,7 @@
 									<td  data-localize="leaveRequest.sno" data-localize-location="scope">${leaves.index + 1}</td>
 									<td data-localize="leaveRequest.leaveType" data-localize-location="scope">
 											<c:forEach var="type" items="${leaveTypes}" varStatus="count">
-													<c:if test="${type.code == leave.leaveType}">${type.description}</c:if>
+													<c:if test="${type.code == leave.LeaveType}">${type.description}</c:if>
 											</c:forEach>
 									</td>
 									<td data-localize="leaveRequest.absenceReason" data-localize-location="scope">
