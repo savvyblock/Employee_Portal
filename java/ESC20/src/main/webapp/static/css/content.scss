@@ -1171,9 +1171,9 @@
                 display: block;
                 .cancel-btn{
                     display: none;
-                    &#undoNameRequest{
-                        display: inline-block;
-                    }
+                }
+                button:nth-child(2){
+                    display: inline-block;
                 }
                 &.flex-line{
                     .btn{
