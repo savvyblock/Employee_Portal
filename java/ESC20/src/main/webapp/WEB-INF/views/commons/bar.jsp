@@ -30,9 +30,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-localize="nav.myAccount" href="/<%=request.getContextPath().split("/")[1]%>/profile">
-          <i class="fa fa-user"></i>
-        </a>
+      <a class="nav-link" href="/<%=request.getContextPath().split("/")[1]%>/profile" title="" data-localize="nav.myAccount" data-localize-location="title"><i class="fa fa-user"></i></a>
       </li>
       <li class="nav-item flex-middle">
           <%@ include file="global-select.jsp"%>
