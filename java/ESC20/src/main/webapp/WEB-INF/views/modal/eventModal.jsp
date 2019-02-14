@@ -82,7 +82,7 @@
                     </div>
                     <div class="date-group">
                         <div class="form-group calendar-left">
-                                <label class="form-title"><span data-localize="leaveRequest.startTime"></span>: </label>
+                                <label class="form-title" for="startHour"><span data-localize="leaveRequest.startTime"></span>: </label>
                                 <div class="valid-wrap flex-middle">
                                     <input class="form-control timeControl" type="text" name="startHour" 
                                     id="startHour" onchange="calcTime()" 
@@ -102,7 +102,7 @@
                         </div>
 
                         <div class="form-group time-right">
-                            <label class="form-title"><span data-localize="leaveRequest.endTime"></span>: </label>
+                            <label class="form-title" for="endHour"><span data-localize="leaveRequest.endTime"></span>: </label>
                             <div class="valid-wrap flex-middle">
                                 <input class="form-control timeControl" type="text" name="endHour" 
                                 id="endHour" onchange="calcTime()" 
@@ -316,6 +316,22 @@
                         }
                     }
                 },
+                startHour: {
+                    trigger: 'change',
+                    validators: {
+                        notEmpty: {
+                            message: 'validator.startTimeCannotBeEmpty'
+                        }
+                    }
+                },
+                endHour: {
+                    trigger: 'change',
+                    validators: {
+                        notEmpty: {
+                            message: 'validator.endTimeCannotBeEmpty'
+                        }
+                    }
+                },
                 Remarks: {
                     validators: {
                         // notEmpty: {
@@ -350,10 +366,18 @@
             $('#requestForm').bootstrapValidator('disableSubmitButtons', false);  
             let startH = $("#startHour").val()
             let startM = $("#startMinute").val()
+            if(startM === ''){
+            	$("#startMinute").val('00');
+            	startM='00';
+            }
             let startTo = $("#startAmOrPm").val()
             let startTime = startH&&startM&&startTo?changeFormatTime(startH+":"+startM+" "+startTo):null
             let endH = $("#endHour").val()
             let endM = $("#endMinute").val()
+            if(endM === ''){
+            	$("#endMinute").val('00');
+            	startM='00';
+            }
             let endTo = $("#endAmOrPm").val()
             let endTime = endH&&endM&&endTo?changeFormatTime(endH+":"+endM+" "+endTo):null
             let start = startTime?new Date("2000/01/01 " + startTime):null;

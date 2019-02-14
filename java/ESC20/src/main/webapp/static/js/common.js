@@ -21,6 +21,7 @@ $(function() {
 
     console.log(language);
     if (language.indexOf('en') > -1) {
+    	language = 'en'
         initLocalize(language)
     }
     if (language.indexOf('zh') > -1) {

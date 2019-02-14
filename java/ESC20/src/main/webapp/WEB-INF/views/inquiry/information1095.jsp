@@ -491,7 +491,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     <div class="modal-body">
                         <form action="">
                             <div class="form-group">
-                                <textarea class="form-control form-text" name="customMessage" id="customMessage" cols="30" rows="6" title="" placeholder="" data-localize="label.customMessageHere"  disabled></textarea>
+                                <label for="customMessage" data-localize="label.customMessageHere"></label>
+                                <textarea class="form-control form-text" name="customMessage" id="customMessage" cols="30" rows="6" title="" placeholder="" data-localize="label.customMessageHere"  disabled>
+                                    ${message}
+                                </textarea>
                             </div>
                             <div class="form-group">
                                     <div class="checkbox mb-2">

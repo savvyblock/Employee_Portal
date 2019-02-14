@@ -527,9 +527,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                         <td>
                                                 <table class="table no-border-table">
-                                                    <col
-                                                        style="text-align: left; padding-left: 2pt; padding-right: 3pt">
-                                                    <col style="text-align: right; padding-right: 3pt">
                                                     <tr>
                                                         <td class="boxtitle" colspan="2">
                                                             <span data-localize="w2InformationTable.12seeInstrs"></span>
@@ -662,7 +659,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         
                                     <tr>
                                             <td colspan="2">
-                                                <table class="table no-border-table">
+                                                <table class="table no-border-table w2Check-table">
                                                     <tr>
                                                         <td valign="top">
                                                             <div class="boxtitle">
@@ -883,9 +880,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </td>
                                             <td>
                                                     <table class="table no-border-table">
-                                                        <col
-                                                            style="text-align: left; padding-left: 2pt; padding-right: 3pt">
-                                                        <col style="text-align: right; padding-right: 3pt">
                                                         <tr>
                                                             <td class="boxtitle" colspan="2">
                                                                 <span data-localize="w2InformationTable.12seeInstrs"></span>
@@ -1018,7 +1012,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             
                                         <tr>
                                             <td colspan="2">
-                                                <table class="table no-border-table">
+                                                <table class="table no-border-table w2Check-table">
                                                     <tr>
                                                         <td valign="top">
                                                             <div class="boxtitle">
@@ -1127,7 +1121,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     <div class="modal-body">
                         <form >
                             <div class="form-group">
-                                <textarea class="form-control form-text" name="customMessage" id="" cols="30" rows="6" title="" placeholder="" data-localize="label.customMessageHere" disabled>
+                                <label for="customMessage" data-localize="label.customMessageHere"></label>
+                                <textarea class="form-control form-text" name="customMessage" id="customMessage" cols="30" rows="6" title="" placeholder="" data-localize="label.customMessageHere" disabled>
                                     ${elecConsntMsgW2}
                                 </textarea>
                             </div>

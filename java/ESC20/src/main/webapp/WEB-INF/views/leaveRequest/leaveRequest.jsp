@@ -111,7 +111,7 @@
 									<td  data-localize="leaveRequest.sno" data-localize-location="scope">${leaves.index + 1}</td>
 									<td data-localize="leaveRequest.leaveType" data-localize-location="scope">
 											<c:forEach var="type" items="${leaveTypes}" varStatus="count">
-													<c:if test="${type.code == leave.leaveType}">${type.description}</c:if>
+													<c:if test="${type.code == leave.LeaveType}">${type.description}</c:if>
 											</c:forEach>
 									</td>
 									<td data-localize="leaveRequest.absenceReason" data-localize-location="scope">
@@ -129,7 +129,7 @@
 													${comment.detail}<br>
 											</c:forEach>
 									</td>
-									<td data-localize="leaveRequest.status" data-localize-location="scope">${leave.status}</td>
+									<td data-localize="leaveRequest.status" data-localize-location="scope">${leave.statusDescr}</td>
 									<td style="width:150px;">
 										<button class="btn btn-primary sm edit-btn" id="editLeave" data-toggle="modal" data-target="#requestModal" 
 										onClick='editLeave("${leave.id}","${leave.LeaveType}","${leave.AbsenseReason}","${leave.start}",

@@ -961,6 +961,17 @@
                 }
             }
         }
+        &.w2Check-table{
+            tbody{
+                td{
+                    &:first-child{
+                        text-align: left;
+                        padding-left: 0;
+                    }
+                    text-align: center;
+                }
+            }
+        }
         &.no-print{
             display: none;
         }
@@ -1160,9 +1171,9 @@
                 display: block;
                 .cancel-btn{
                     display: none;
-                    &:first-child{
-                        display: inline-block;
-                    }
+                }
+                button:nth-child(2){
+                    display: inline-block;
                 }
                 &.flex-line{
                     .btn{

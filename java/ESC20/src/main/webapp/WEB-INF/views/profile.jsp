@@ -53,7 +53,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     autofocus
                                                 >
                                                 <c:forEach var="title" items="${titleOptions}" varStatus="count">
-                                                    <option value="${title.code}" <c:if test="${title.code == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
+                                                    <option value="${title.description}" <c:if test="${title.description == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
                                                 </c:forEach>
                                                 </select>
                                             </div>
@@ -138,7 +138,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="generation"
                                                 >
                                                     <c:forEach var="gen" items="${generationOptions}" varStatus="count">
-                                                        <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                        <option value="${gen.description}" <c:if test="${gen.description == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -369,7 +369,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 class="form-control"
                                                 style="width:188px"
                                                 title=""
-                                                data-localize="profile.public"
+                                                data-localize="profile.restrictionCodesPublic"
                                             >
                                             <c:forEach var="restriction" items="${restrictionsOptions}" varStatus="count">
                                                     <option value="${restriction.code}" <c:if test="${restriction.code == restrictRequest.restrictCdPublicNew }">selected</c:if>>${restriction.code} - ${restriction.description}</option>
@@ -768,6 +768,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 class="form-control"
                                                 name="addrZip4New"
                                                 id="mailAddrZipPlusFour"
+                                                title=""
+                                                data-localize="profile.zip4"
                                                 value="${mailAddrRequest.addrZip4New}"
                                             />
                                         </div>
@@ -2461,7 +2463,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         
                         validators: {
                             regexp: {
-                                regexp: /^\d+$|^\d+[\.]{1}\d{2}$/,
+                                regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
                                 message: 'validator.pleaseEnterCorrectFormat'
                             }
                         }
@@ -2525,7 +2527,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         
                         validators: {
                             regexp: {
-                                regexp: /^\d+$|^\d+[\.]{1}\d{2}$/,
+                                regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
                                 message: 'validator.pleaseEnterCorrectFormat'
                             }
                         }
@@ -2589,7 +2591,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         
                         validators: {
                             regexp: {
-                                regexp: /^\d+$|^\d+[\.]{1}\d{2}$/,
+                                regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
                                 message: 'validator.pleaseEnterCorrectFormat'
                             }
                         }

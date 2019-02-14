@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib
+uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
+language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <table class="table border-table responsive-table no-thead print-table middle-td-table">
     <thead>
         <tr>
@@ -42,7 +45,7 @@
                 <td colspan="17" style="text-align: center;" data-localize="label.noRows">No Rows</td>
             </tr>
         </c:if>
-        <c:if test="${fn:length(bList) == 0}">
+        <c:if test="${fn:length(bList) > 0}">
             <c:forEach var="itemB" items="${bList}">
                 <tr>
                     <td data-localize="info1095Table.nameIndividuals" data-localize-location="scope">
