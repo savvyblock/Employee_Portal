@@ -42,10 +42,12 @@
                                                 <input type="text" id="autoAdvance_5" class="form-control autoAdvance" placeholder="" name="zipCode" maxlength="5">
                                             </div>
                                         </div>
-                                         <c:if test="${isSuccess!=null && isSuccess=='false'}">
-                                        <p class="error-hint" id="noUserError" data-localize="validator.noUserAccountAssociated"></p>
+                                         <c:if test="${isExistUser!=null && isExistUser=='true'}">
+                                         <p class="error-hint" id="noUserError" data-localize="validator.noUserAccountAssociated"></p>
                                          </c:if>
-                                         
+                                         <c:if test="${isSuccess!=null && isSuccess=='false'}">
+                                        <p class="error-hint" id="noEmployeeError" data-localize="validator.noEmployeeAccountAssociated"></p>
+                                         </c:if>
                                         <div class="form-group account-btn">
                                             <button type="submit" id="retrieveBtn" class="btn btn-primary" data-localize="label.retrieve"></button>
                                         </div>

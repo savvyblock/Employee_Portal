@@ -146,6 +146,44 @@ public class IndexController {
         return mav;
     }
     
+    @RequestMapping("saveNewUser")
+    public ModelAndView saveNewUser(HttpServletRequest req){
+    	ModelAndView mav = new ModelAndView();
+    	BeaUsers newUser=new BeaUsers();
+    	newUser.setEmpNbr(req.getParameter("empNumber"));
+    	newUser.setUsrname(req.getParameter("username"));//username
+    	newUser.setHint(req.getParameter("hintQuestion"));//hintQuestion
+    	newUser.setHintAns(req.getParameter("hintAnswer"));//  hintAnswer
+    	newUser.setUserEmail(req.getParameter("workEmail"));//workEmail
+    	newUser.setUsrpswd(this.encrypt(req.getParameter("password")));
+    	
+    	newUser.setLkPswd('N');
+    	newUser.setPswdCnt(0);
+    	newUser.setLkFnl('N');
+    	newUser.setTmpDts("N");
+    	newUser.setTmpCnt(0);
+    	newUser.setHintCnt(0);
+//    	newUser.setCmpId(0);
+    	
+//    	BhrEmpDemo bed= this.indexService.retrieveEmployee(searchUser);
+    	
+    	BeaUsers user=indexService.getUserByUsername(req.getParameter("username"));
+    	if(user!=null) {
+    		mav.setViewName("createNewUser");
+    	    mav.addObject("user", user);
+    	    mav.addObject("newUser", newUser);
+    	    mav.addObject("isUserExist", "true");
+    	}else {
+    		indexService.saveBeaUsers(newUser);
+    		mav.setViewName("createNewUser");
+    	    mav.addObject("user", user);
+    	    mav.addObject("newUser", newUser);
+    	    mav.addObject("isSuccess", "true");
+    	}
+    	
+        return mav;
+    }
+    
     @RequestMapping(value="retrieveEmployee",method=RequestMethod.POST)
     public ModelAndView retrieveEmployee(HttpServletRequest req){
     	ModelAndView mav = new ModelAndView();
@@ -161,7 +199,6 @@ public class IndexController {
     	
     	if(user !=null) {
     		mav.setViewName("searchUser");
-        	mav.addObject("isSuccess", "false");
         	mav.addObject("isExistUser", "true");
         	mav.addObject("newUser", searchUser);
     	}else {

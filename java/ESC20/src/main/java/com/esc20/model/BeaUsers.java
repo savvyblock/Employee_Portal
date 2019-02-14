@@ -19,20 +19,20 @@ public class BeaUsers implements java.io.Serializable {
 	private String hint;
 	private String hintAns;
 	private char lkPswd;
-	private int pswdCnt;
+	private Integer pswdCnt;
 	private char lkFnl;
-	private int tmpCnt;
+	private Integer tmpCnt;
 	private char lkHint;
-	private int hintCnt;
+	private Integer hintCnt;
 	private String tmpDts;
-	private int cmpId;
+	private Integer cmpId;
 	private String userEmail;
 
 	public BeaUsers() {
 	}
 
 	public BeaUsers(String empNbr, String usrname, String usrpswd, String hint, String hintAns, char lkPswd,
-			int pswdCnt, char lkFnl, int tmpCnt, char lkHint, int hintCnt, String tmpDts ,int cmpIdm) {
+			Integer pswdCnt, char lkFnl, Integer tmpCnt, char lkHint, Integer hintCnt, String tmpDts ,Integer cmpId) {
 		this.empNbr = empNbr;
 		this.usrname = usrname;
 		this.usrpswd = usrpswd;
@@ -105,11 +105,11 @@ public class BeaUsers implements java.io.Serializable {
 	}
 
 	@Column(name = "PSWD_CNT", nullable = false)
-	public int getPswdCnt() {
+	public Integer getPswdCnt() {
 		return this.pswdCnt;
 	}
 
-	public void setPswdCnt(int pswdCnt) {
+	public void setPswdCnt(Integer pswdCnt) {
 		this.pswdCnt = pswdCnt;
 	}
 
@@ -123,11 +123,11 @@ public class BeaUsers implements java.io.Serializable {
 	}
 
 	@Column(name = "TMP_CNT", nullable = false)
-	public int getTmpCnt() {
+	public Integer getTmpCnt() {
 		return this.tmpCnt;
 	}
 
-	public void setTmpCnt(int tmpCnt) {
+	public void setTmpCnt(Integer tmpCnt) {
 		this.tmpCnt = tmpCnt;
 	}
 
@@ -141,11 +141,11 @@ public class BeaUsers implements java.io.Serializable {
 	}
 
 	@Column(name = "HINT_CNT", nullable = false)
-	public int getHintCnt() {
+	public Integer getHintCnt() {
 		return this.hintCnt;
 	}
 
-	public void setHintCnt(int hintCnt) {
+	public void setHintCnt(Integer hintCnt) {
 		this.hintCnt = hintCnt;
 	}
 
@@ -159,11 +159,11 @@ public class BeaUsers implements java.io.Serializable {
 	}
 
 	@Column(name = "CMP_ID", nullable = false)
-	public int getCmpId() {
+	public Integer getCmpId() {
 		return cmpId;
 	}
 
-	public void setCmpId(int cmpId) {
+	public void setCmpId(Integer cmpId) {
 		this.cmpId = cmpId;
 	}
 

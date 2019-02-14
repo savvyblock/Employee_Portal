@@ -97,6 +97,25 @@ public class AppUserDao {
         session.close();
         return res;
 	}
+	
+	public BeaUsers getUserByUsername(String username) {
+		Session session = this.getSession();
+		Query q;
+		String sql= "from BeaUsers where usrname =:usrname";
+        q = session.createQuery(sql);
+        q.setParameter("usrname", username);
+        BeaUsers res = (BeaUsers) q.uniqueResult();
+        session.close();
+        return res;
+	}
+	
+	public BeaUsers saveBeaUsers(BeaUsers user) {
+		Session session = this.getSession();
+		session.saveOrUpdate(user);
+        session.flush();
+        session.close();
+        return user;
+	}
 
 	public void updateUser(BeaUsers user) {
 		Session session = this.getSession();

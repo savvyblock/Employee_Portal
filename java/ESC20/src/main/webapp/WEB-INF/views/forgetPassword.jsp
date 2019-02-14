@@ -83,7 +83,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         <div class="valid-wrap">${user.username}</div>
                     </div>
                     <c:if test="${retrieve!=null && retrieve=='false'}">
-                        <div class="valid-wrap error-hint" data-localize="validator.emailNotExit"></div>
+                        <div class="valid-wrap error-hint" data-localize="validator.userNotExist"></div>
                     </c:if>
                     <div class="form-group account-btn">
                         <button type="submit" class="btn btn-primary" data-localize="label.retrieveUsername">

@@ -670,12 +670,15 @@
 		"usernameOrPasswordIncorrect":"Incorrect User name or password!",
 		"emailNotExit":"The email address does not exist!",
 		"userNotExist":"User Does not exist!",
+		"userExist":"User name is already associated with another employee. Please choose a different user name!",
+		"saveUserSuccess":"create user success!",
 		"usernameOrEmailError":"User name or email error!",
 		"usernameOrEmailNotExit":"User or email does not exist!",
 		"fromDateNotGreaterToDate":"From date cannot be greater than To date!",
 		"resetPswSuccess":"reset password success!",
 		"resetPswFaild":"reset password faild!",
 		"noUserAccountAssociated":"User account already associated with employee. Please contact personnel office to delete existing user account before creating a new one.",
+		"noEmployeeAccountAssociated":"Employee is not exist.",
 		"":""
 	},
 	"w2Notice":{

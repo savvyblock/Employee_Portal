@@ -59,6 +59,17 @@ public class IndexService {
 		
 		return userDao.getUserByEmpNbr(id);
 	}
+	
+	public BeaUsers getUserByUsername(String username) {
+		
+		return userDao.getUserByUsername(username);
+	}
+	
+	public BeaUsers saveBeaUsers(BeaUsers user) {
+		
+		return userDao.saveBeaUsers(user);
+	}
+	
 	public void updateUser(BeaUsers user) {
 		userDao.updateUser(user);
 	}

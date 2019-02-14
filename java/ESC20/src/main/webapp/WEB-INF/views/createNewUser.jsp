@@ -11,12 +11,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <%@ include file="commons/bar-account.jsp"%>
         <div class="account-top">
                 <div class="account-inner sm">
-                        <form id="createNewUserForm" action="" method="post">
+                        <form id="createNewUserForm" action="saveNewUser" method="post">
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.employeeNumber"></label>
                                 <div class="valid-wrap">
                                    ${newUser.empNumber}
                                 </div>
+                                <input type="hidden" name="empNumber" value="${newUser.empNumber}" />
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.dateOfBirth"></label>
@@ -123,6 +124,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
 
+ 							<c:if test="${isUserExist!=null && isUserExist=='true'}">
+                             	<p class="error-hint" id="noUserError" data-localize="validator.userExist"></p>
+                            </c:if>
+                            <c:if test="${isSuccess!=null && isSuccess=='true'}">
+                             	<p class="error-hint" id="saveUserSuccess" data-localize="validator.saveUserSuccess"></p>
+                            </c:if>
                             <div class="form-group account-btn">
                                 <button type="submit" class="btn btn-primary" data-localize="label.submit">
                                 </button>
