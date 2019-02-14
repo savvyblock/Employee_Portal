@@ -30,7 +30,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/<%=request.getContextPath().split("/")[1]%>/profile">
+        <a class="nav-link" data-localize="nav.myAccount" href="/<%=request.getContextPath().split("/")[1]%>/profile">
           <i class="fa fa-user"></i>
         </a>
       </li>

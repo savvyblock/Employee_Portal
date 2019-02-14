@@ -53,7 +53,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     autofocus
                                                 >
                                                 <c:forEach var="title" items="${titleOptions}" varStatus="count">
-                                                    <option value="${title.code}" <c:if test="${title.code == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
+                                                    <option value="${title.description}" <c:if test="${title.description == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
                                                 </c:forEach>
                                                 </select>
                                             </div>
@@ -369,7 +369,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 class="form-control"
                                                 style="width:188px"
                                                 title=""
-                                                data-localize="profile.public"
+                                                data-localize="profile.restrictionCodesPublic"
                                             >
                                             <c:forEach var="restriction" items="${restrictionsOptions}" varStatus="count">
                                                     <option value="${restriction.code}" <c:if test="${restriction.code == restrictRequest.restrictCdPublicNew }">selected</c:if>>${restriction.code} - ${restriction.description}</option>
@@ -768,6 +768,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 class="form-control"
                                                 name="addrZip4New"
                                                 id="mailAddrZipPlusFour"
+                                                data-localize="profile.zip4"
                                                 value="${mailAddrRequest.addrZip4New}"
                                             />
                                         </div>
