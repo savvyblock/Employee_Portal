@@ -134,6 +134,7 @@
     .user-panel .image{
         width: 60px;
         height: 60px;
+        flex: 0 0 60px;
         a{
             width: 60px;
             height: 60px;
@@ -153,6 +154,7 @@
     border-radius: 50%;
     background: #d8d0ce;
     overflow: hidden;
+    flex: 0 0 80px;
     a{
         width: 80px;
         height: 80px;
@@ -178,6 +180,11 @@
     display: flex;
     padding: 5px 5px 5px 10px;
     align-items: center;
+    a{
+        width: 145px;
+        white-space: normal;
+        word-wrap: break-word;
+    }
 }
 .nav-sidebar .nav-item > .nav-link {
     position: relative;
