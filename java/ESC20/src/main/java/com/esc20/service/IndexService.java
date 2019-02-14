@@ -8,8 +8,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.esc20.dao.AlertDao;
 import com.esc20.dao.AppUserDao;
 import com.esc20.dao.OptionsDao;
+import com.esc20.model.BeaAlert;
 import com.esc20.model.BeaAltMailAddr;
 import com.esc20.model.BeaBusPhone;
 import com.esc20.model.BeaCellPhone;
@@ -39,6 +41,9 @@ public class IndexService {
     
     @Autowired
     private OptionsDao optionsDao;
+
+    @Autowired
+    private AlertDao alertDao;
     
     public String getMessage() throws ParseException{
         String message = "Hello, JBoss has started!";
@@ -260,6 +265,15 @@ public class IndexService {
 	}
 	public void deleteBusinessPhoneRequest(String empNbr) {
 		userDao.deleteBusinessPhonerequest(empNbr);
+	}
+	public List<BeaAlert> getUnReadAlert(String empNbr) {
+		return alertDao.getUnreadAlerts(empNbr);
+	}
+	public Integer getBudgeCount(String empNbr) {
+		return alertDao.getAlertCount(empNbr);
+	}
+	public List<BeaAlert> getTop5Alerts(String empNbr) {
+		return alertDao.getTop5UnreadAlerts(empNbr);
 	}
 	
 }

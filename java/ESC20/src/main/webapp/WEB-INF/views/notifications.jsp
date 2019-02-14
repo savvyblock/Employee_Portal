@@ -17,27 +17,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     </h2>
                     <div class="content-white EMP-detail">
                        <ul class="note-list">
-                            <li class="note-item">
-                               <i class="fa fa-envelope left-fa"></i> 
-                               <div class="msg">a new message!</div>
-                               <div class="note-btn">
-                                    1/28/2019 1:46 PM
-                               </div>
-                            </li>
-                            <li class="note-item">
-                                <i class="fa fa-envelope left-fa"></i> 
-                                <div class="msg">a new message!</div>
-                                <div class="note-btn">
-                                    1/28/2019 1:46 PM
-                                </div>
-                             </li>
-                             <li class="note-item">
-                                <i class="fa fa-envelope left-fa"></i> 
-                                <div class="msg">a new message!</div>
-                                <div class="note-btn">
-                                    <button class="a-btn"><i class="fa fa-trash"></i></button>
-                                </div>
-                             </li>
+                       		<c:forEach var="notification" items="${unReadList}" varStatus="unReadList">
+	                            <li class="note-item">
+	                               <i class="fa fa-envelope left-fa"></i> 
+	                               <div class="msg">${notification.msgContent}</div>
+	                               <div class="note-btn">
+	                                    Mark as Read
+	                               </div>
+	                            </li>
+                            </c:forEach>
                        </ul>
                     </div>
                 </section>

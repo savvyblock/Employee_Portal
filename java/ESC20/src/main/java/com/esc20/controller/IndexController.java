@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.esc20.model.BeaAlert;
 import com.esc20.model.BeaAltMailAddr;
 import com.esc20.model.BeaBusPhone;
 import com.esc20.model.BeaCellPhone;
@@ -44,6 +45,8 @@ import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import sun.misc.BASE64Decoder;
 
 @Controller
@@ -803,11 +806,41 @@ public class IndexController {
         if(null == user){
         	return this.getIndexPage(mav);
         }
-        
+        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        List<BeaAlert> unReadList = this.indexService.getUnReadAlert(demo.getEmpNbr());
         mav.setViewName("notifications");
         mav.addObject("user", user);
-        
+        mav.addObject("unReadList",unReadList);
         return mav;
+    }
+
+    @RequestMapping(value = "getBudgeCount", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, String> getBudgeCount(HttpServletRequest req) throws Exception{
+    	HttpSession session = req.getSession();
+    	Map<String, String> res = new HashMap<>();
+    	BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+    	Integer count = this.indexService.getBudgeCount(demo.getEmpNbr());
+        res.put("count", count.toString());
+        return res;
+    }
+
+    @RequestMapping(value = "getTop5Alerts", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, JSONArray> getTop5Alerts(HttpServletRequest req) throws Exception{
+    	HttpSession session = req.getSession();
+    	Map<String, JSONArray> result = new HashMap<>();
+    	BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+    	List<BeaAlert> top5 = this.indexService.getTop5Alerts(demo.getEmpNbr());
+        JSONArray res = new JSONArray();
+        JSONObject obj = new JSONObject();
+        for(BeaAlert item: top5) {
+        	obj = new JSONObject();
+        	obj.put("msgContent", item.getMsgContent());
+        	res.add(obj);
+        }
+        result.put("list", res);
+        return result;
     }
     
 //    @RequestMapping("saveW4")

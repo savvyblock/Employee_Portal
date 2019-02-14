@@ -17,14 +17,13 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" tabindex="0">
           <i class="fa fa-bell-o"></i>
-          <span class="navbar-badge">15</span>
+          <span id="navBadge" class="navbar-badge">0</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right note-dropdown">
-          <div class="dropdown-item dropdown-header">15 <span data-localize="label.notification"></span></div>
+          <div class="dropdown-item dropdown-header"><div id="budgeCount">0</div><span data-localize="label.notification"></span></div>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <i class="fa fa-envelope mr-2"></i> 4 <span data-localize="label.newMessage"></span>
-            <span class="pull-right text-minor">3 mins</span>
+            <div id="top5Alert"></div>
           </a>
           <div class="dropdown-divider"></div>          
           <a data-localize="label.seeAllNote" href="/<%=request.getContextPath().split("/")[1]%>/notifications" class="dropdown-item dropdown-footer">See All Notifications</a>
@@ -224,6 +223,9 @@
         }
         if(itemElement)
         	itemElement.addClass("active");
+        //update budgeCount and info every second
+        getBudgeDetail();
+    	updateBudgeCountAndInfo();
     });
     </script>
   </aside>
@@ -232,11 +234,12 @@
 
    <script>
    var maxTime = 300; // seconds
-    var time = maxTime;
+   var time = maxTime;
+   var budgeCount = 0;
     $('body').on('keydown mousemove mousedown', function(e){
     time = maxTime; // reset
   });
-  startCountTime()
+  startCountTime();
   function startCountTime(){
     var intervalId = setInterval(function(){
       time--;
@@ -250,5 +253,44 @@
       }
     }, 1000)
   }
-
-    </script>
+	function updateBudgeCountAndInfo(){
+		console.log("here");
+		var budgeCount = setInterval(function(){
+			getBudgeDetail();
+		},3000);
+	}
+	function getBudgeDetail(){
+		$.ajax({
+			type: "post",
+			url: "/txeisDemo/getBudgeCount",
+			cache: false,
+			dataType: "json",
+			success: function(data){
+				if(budgeCount == data.count){
+					return;
+				} else {
+					console.log("data", data);
+					budgeCount = data.count;
+					$("#budgeCount").html(budgeCount);
+					$("#navBadge").html(budgeCount);
+					$.ajax({
+						type: "post",
+						url: "/txeisDemo/getTop5Alerts",
+						cache: false,
+						dataType: "json",
+						success: function(data){
+							console.log("list",data);
+							var list = "<ul>";
+							var items = data.list;
+							for(var s in items){
+								list+= "<li>"+items[s].msgContent+"</li>"
+							}
+							list+="</ul>";
+							$("#top5Alert").html(list);
+						}
+					});
+				}
+			}
+			});
+	}
+  </script>

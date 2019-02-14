@@ -204,7 +204,7 @@ public class LeaveRequestController {
         	return this.getIndexPage(mav);
         }
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
-        this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate, endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo.getEmpNbr());   
+        this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate, endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo);   
         return this.leaveRequest(req,null,null,null,null);
     }
 
@@ -219,19 +219,19 @@ public class LeaveRequestController {
         	return this.getIndexPage(mav);
         }
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
-        this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate, endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo.getEmpNbr());   
+        this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate, endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo);   
         return this.getEventCalendar(req,freq);
     }
     
 	private void saveLeaveRequest(String leaveId, String leaveType, String absenseReason, String LeaveStartDate, String startTimeValue,
-			String LeaveEndDate, String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq, String empNbr) throws ParseException {
+			String LeaveEndDate, String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq, BhrEmpDemo demo) throws ParseException {
 		BeaEmpLvRqst request;
 		if(leaveId==null||("").equals(leaveId))
         	request = new BeaEmpLvRqst();
         else
         	request = this.service.getleaveRequestById(Integer.parseInt(leaveId+""));
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm a",Locale.ENGLISH);
-        request.setEmpNbr(empNbr);
+        request.setEmpNbr(demo.getEmpNbr());
         request.setPayFreq(freq.charAt(0));
         request.setLvTyp(leaveType);
         request.setAbsRsn(absenseReason);
@@ -251,23 +251,23 @@ public class LeaveRequestController {
         if(Remarks!=null && !("").equals(Remarks)) {
 	        BeaEmpLvComments comments = new BeaEmpLvComments();
 	        comments.setBeaEmpLvRqst(res);
-	        comments.setLvCommentEmpNbr(empNbr);
+	        comments.setLvCommentEmpNbr(demo.getEmpNbr());
 	        comments.setLvCommentDatetime(new Date());
 	        comments.setLvComment(Remarks);
 	        comments.setLvCommentTyp('C');
 	        this.service.saveLvComments(comments);
         }
-        //Create Workflow
-        if((leaveId!=null&&!("").equals(leaveId))) {
+        //Create Workflow upon first creation
+        if((leaveId==null||("").equals(leaveId))) {
 	        LeaveParameters params = this.service.getLeaveParameters();
-	        String supervisorEmpNbr = this.service.getFirstLineSupervisor(empNbr, params.isUsePMIS());
+	        String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
 	        BeaEmpLvWorkflow flow = new BeaEmpLvWorkflow();
 	        flow.setBeaEmpLvRqst(res);
 	        flow.setInsertDatetime(new Date());
 	        flow.setSeqNum(1);
 	        flow.setApprvrEmpNbr(supervisorEmpNbr==null?"":supervisorEmpNbr);
 	        flow.setTmpApprvrExpDatetime(null);
-	        this.service.saveLvWorkflow(flow);
+	        this.service.saveLvWorkflow(flow,demo);
         }
 	}
 

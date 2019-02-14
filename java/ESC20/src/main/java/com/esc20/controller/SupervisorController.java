@@ -468,7 +468,7 @@ public class SupervisorController {
  	        flow.setSeqNum(1);
  	        flow.setApprvrEmpNbr(supervisorEmpNbr==null?"":supervisorEmpNbr);
  	        flow.setTmpApprvrExpDatetime(null);
- 	        this.service.saveLvWorkflow(flow);
+ 	        this.service.saveLvWorkflow(flow,demo);
          }
         mav = this.getLeaveOverviewList(req, empNbr,null,freq,startDate,endDate,false);
   		mav.addObject("chain", levels);
