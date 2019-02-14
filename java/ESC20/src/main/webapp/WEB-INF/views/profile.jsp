@@ -138,7 +138,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="generation"
                                                 >
                                                     <c:forEach var="gen" items="${generationOptions}" varStatus="count">
-                                                        <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                        <option value="${gen.description}" <c:if test="${gen.description == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>

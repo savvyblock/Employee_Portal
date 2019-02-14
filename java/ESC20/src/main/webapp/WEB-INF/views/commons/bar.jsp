@@ -17,7 +17,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" tabindex="0">
           <i class="fa fa-bell-o"></i>
-          <span id="navBadge" class="navbar-badge">0</span>
+          <span id="navBadge" class="navbar-badge"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right note-dropdown">
           <div class="dropdown-item dropdown-header"><div id="budgeCount">0</div><span data-localize="label.notification"></span></div>
