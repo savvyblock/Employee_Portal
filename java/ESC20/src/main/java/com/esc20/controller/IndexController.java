@@ -814,6 +814,24 @@ public class IndexController {
         return mav;
     }
 
+    @RequestMapping("markAsRead")
+    public ModelAndView markAsRead(HttpServletRequest req,String id){
+        HttpSession session = req.getSession();
+        BeaUsers user = (BeaUsers)session.getAttribute("user");
+        ModelAndView mav = new ModelAndView();
+        if(null == user){
+        	return this.getIndexPage(mav);
+        }
+        Long alertId = Long.parseLong(id);
+        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        this.indexService.deleteAlert(id);
+        List<BeaAlert> unReadList = this.indexService.getUnReadAlert(demo.getEmpNbr());
+        mav.setViewName("notifications");
+        mav.addObject("user", user);
+        mav.addObject("unReadList",unReadList);
+        return mav;
+    }
+    
     @RequestMapping(value = "getBudgeCount", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, String> getBudgeCount(HttpServletRequest req) throws Exception{

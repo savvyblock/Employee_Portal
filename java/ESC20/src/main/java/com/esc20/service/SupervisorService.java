@@ -1,6 +1,7 @@
 package com.esc20.service;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.esc20.dao.AlertDao;
 import com.esc20.dao.AppUserDao;
 import com.esc20.dao.LeaveRequestDao;
 import com.esc20.dao.SupervisorDao;
@@ -21,6 +23,7 @@ import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveRequestComment;
 
+
 @Service
 public class SupervisorService {
 
@@ -32,6 +35,9 @@ public class SupervisorService {
  
     @Autowired
     private AppUserDao appUserDao;
+    
+    @Autowired
+    private AlertDao alertDao;   
     
 	public List<LeaveEmployeeData> getDirectReportEmployee(String empNbr, boolean usePMIS, boolean supervisorsOnly,
 			boolean excludeTempApprovers) {
@@ -133,6 +139,12 @@ public class SupervisorService {
 		rqst.setStatusCd('A');
 		rqst.setDtOfPay("");
 		this.leaveRequestDao.saveLeaveRequest(rqst, true);
+		//create alert
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a E");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+		String message = sdf.format(new Date())+": "+ demo.getNameF()+" " + demo.getNameL() +
+						 " had approved your leave request from "+sdf1.format(rqst.getDatetimeFrom())+" to " + sdf1.format(rqst.getDatetimeTo());
+		alertDao.createAlert(demo.getEmpNbr(), rqst.getEmpNbr(), message);
 	}
 
 	public void disApproveLeave(BeaEmpLvRqst rqst, BhrEmpDemo demo, String disapproveComment) {
@@ -148,6 +160,12 @@ public class SupervisorService {
 		rqst.setStatusCd('D');
 		rqst.setDtOfPay("");
 		this.leaveRequestDao.saveLeaveRequest(rqst, true);
+		//create alert
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a E");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+		String message = sdf.format(new Date())+": "+ demo.getNameF()+" " + demo.getNameL() +" disapproved your leave from "+
+						 sdf1.format(rqst.getDatetimeFrom())+" to " + sdf1.format(rqst.getDatetimeTo()) +" with comment: " + disapproveComment;
+		alertDao.createAlert(demo.getEmpNbr(), rqst.getEmpNbr(), message);
 	}
 
 	public List<BeaEmpLvTmpApprovers> getBeaEmpLvTmpApprovers(String empNbr) {

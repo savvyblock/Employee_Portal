@@ -83,4 +83,11 @@ public class AlertDao {
 		session.update(alert);
 		session.flush();
 	}
+
+	public void deleteAlert(String id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		BeaAlert alert = (BeaAlert) session.get(BeaAlert.class, id);
+		session.delete(alert);
+		session.flush();
+	}
 }
