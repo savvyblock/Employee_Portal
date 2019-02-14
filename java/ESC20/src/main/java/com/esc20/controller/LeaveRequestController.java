@@ -140,9 +140,9 @@ public class LeaveRequestController {
 			request.setDatetimeFrom(sdf1.parse(SearchStart));
 		if (SearchEnd != null && !("").equals(SearchEnd))
 			request.setDatetimeTo(sdf1.parse(SearchEnd));
+		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
 		if (freq == null || ("").equals(freq)) {
 			if (availableFreqs.size() > 0) {
-				List<Code> leaveStatus = this.referenceService.getLeaveStatus();
 				freq = availableFreqs.get(0).getCode();
 				List<AppLeaveRequest> requests = this.service.getLeaveRequests(request, demo.getEmpNbr(), freq);
 				List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
@@ -172,11 +172,15 @@ public class LeaveRequestController {
 				model = new LeaveRequestModel(requests.get(i));
 				requestModels.add(model);
 			}
+			JSONArray json = new JSONArray();
+			for (int i = 0; i < requestModels.size(); i++) {
+				json.add(requestModels.get(i).toJSON(leaveStatus));
+			}
 			List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
 			List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
 			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
 			mav.addObject("selectedFreq", freq);
-			mav.addObject("leaves", requestModels);
+			mav.addObject("leaves", json);
 			mav.addObject("absRsns", absRsns);
 			mav.addObject("leaveTypes", leaveTypes);
 			mav.addObject("leaveInfo", leaveInfo);
