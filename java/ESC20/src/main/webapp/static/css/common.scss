@@ -68,6 +68,9 @@ input {
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 0.2rem rgba(92, 206, 111, 0.5);
     }
 }
+.add-new-row:focus{
+    box-shadow: none;
+}
 .pull-right {
     float: right;
 }

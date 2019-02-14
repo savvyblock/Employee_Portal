@@ -1171,7 +1171,7 @@
                 display: block;
                 .cancel-btn{
                     display: none;
-                    &:first-child{
+                    &#undoNameRequest{
                         display: inline-block;
                     }
                 }

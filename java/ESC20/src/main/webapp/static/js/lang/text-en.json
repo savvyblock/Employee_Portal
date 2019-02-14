@@ -676,6 +676,7 @@
 		"resetPswSuccess":"reset password success!",
 		"resetPswFaild":"reset password faild!",
 		"noUserAccountAssociated":"User account already associated with employee. Please contact personnel office to delete existing user account before creating a new one.",
+		"pleaseCompleteForm":"Please complete the form",
 		"":""
 	},
 	"w2Notice":{

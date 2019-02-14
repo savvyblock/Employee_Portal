@@ -70,8 +70,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 >
                             </div>
                             <form action="saveTempApprovers" id="saveTempApprovers" method="POST">
-                                    <input hidden="hidden" class="chain" name="chain" type="text" value="">
-                                    <input hidden="hidden" id="empNbr" name="empNbr" type="text" value="">
+                                    <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="">
+                                    <input hidden="hidden" id="empNbrForm" name="empNbr" type="text" value="">
                                 <table
                                     class="table border-table setApprovers-list responsive-table"
                                 >
@@ -86,7 +86,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </thead>
                                     <tbody>
                                             <c:forEach var="tem" items="${tmpApprovers}" varStatus="status">
-                                                    <tr class="approver_tr">
+                                                    <tr class="">
                                                             <td
                                                                 class="countIndex"
                                                                 data-localize="setTemporaryApprovers.rowNbr" data-localize-location="scope"
@@ -125,11 +125,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <td data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope">
                                                 <div class="form-group">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control empControl"
                                                         type="text"
                                                         title=""
                                                         data-localize="setTemporaryApprovers.temporaryApprover"
                                                         name="temporaryApprovers[${row.index}].temporaryApprover.employeeNumber"
+                                                        onchange="judgeContent()"
                                                         id="name_01"
                                                     />
                                                 </div>
@@ -137,24 +138,28 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <td data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope">
                                                 <div class="form-group">
                                                     <input
-                                                        class="form-control date-control"
+                                                        class="form-control date-control dateFromControl"
                                                         title=""
+                                                        data-title="from"
                                                         data-localize="setTemporaryApprovers.fromDate"
                                                         type="text"
                                                         name="temporaryApprovers[${row.index}].fromDateString"
                                                         id="fromDate_01"
+                                                        readonly
                                                     />
                                                 </div>
                                             </td>
                                             <td data-localize="setTemporaryApprovers.toDate" data-localize-location="scope">
                                                 <div class="form-group">
                                                     <input
-                                                        class="form-control  date-control"
+                                                        class="form-control  date-control dateToControl"
                                                         title=""
                                                         data-localize="setTemporaryApprovers.toDate"
                                                         type="text"
+                                                        data-title="to"
                                                         name="temporaryApprovers[${row.index}].toDateString"
                                                         id="toDate_01"
+                                                        readonly
                                                     />
                                                 </div>
                                             </td>
@@ -185,11 +190,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <p class="error-hint hide" id="errorComplete" data-localize="validator.pleaseCompleteForm"></p>
                                 <div class="text-right mt-3">
                                     <button
-                                        type="submit"
+                                        type="button"
                                         class="btn btn-primary"
                                         title=""
+                                        id="saveSet"
                                         data-localize="label.save"
                                     >
                                     </button>
@@ -215,12 +222,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         $(function() {
             changeLevel()
             initDateControl()
+            judgeContent()
             let level = $("#level").val()
             let chainString = JSON.stringify(chain)
             let empNbr = $("#currentEmployee").text()
             let lengthNow = $('.setApprovers-list tbody tr').length
-            console.log($('.setApprovers-list tbody tr').length)
-            console.log(lengthNow)
             if($("#firstRow")){
                 $("#firstRow").text(lengthNow - 1)
             }
@@ -240,14 +246,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $("#previousLevel")[0].submit()  
             })
             $('.add-new-row').click(function() {
-                let length = $('.setApprovers-list tbody tr').length + 1
-                console.log(length)
+                judgeContent()
+                let  trLen = $('.setApprovers-list tbody .approver_tr').length
+                let length = trLen + 1
+                console.log(approverJson)
                 let newRow = `<tr class="approver_tr">
                                             <td class="countIndex" data-localize="setTemporaryApprovers.rowNbr"
                                                 data-localize-location="scope">`+ length +`</td>
                                             <td data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope">
                                                 <div class="form-group">
-                                                    <input class="form-control" type="text" 
+                                                    <input class="form-control empControl" type="text" 
+                                                    onchange="judgeContent()"
                                                     title=""
                                                     data-localize="setTemporaryApprovers.temporaryApprover"
                                                     name="" 
@@ -256,20 +265,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </td>
                                             <td data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope">
                                                     <div class="form-group">
-                                                        <input class="form-control date-control"
+                                                        <input class="form-control date-control dateFromControl"
                                                         title=""
+                                                        data-title="from"
                                                         data-localize="setTemporaryApprovers.fromDate" type="text" 
                                                         name="" 
-                                                        id="fromDate_01">
+                                                        id="fromDate_01" readonly>
                                                     </div>
                                             </td>
                                             <td data-localize="setTemporaryApprovers.toDate" data-localize-location="scope">
                                                 <div class="form-group">
-                                                    <input class="form-control  date-control"
+                                                    <input class="form-control  date-control dateToControl"
                                                     title=""
+                                                    data-title="to"
                                                     data-localize="setTemporaryApprovers.toDate" type="text" 
                                                     name="" 
-                                                    id="toDate_01">
+                                                    id="toDate_01" readonly>
                                                 </div>
                                             </td>
                                             <td  data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
@@ -280,54 +291,83 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </td>
                                         </tr>
                     `
-                $('.setApprovers-list tbody tr:last-child').before(newRow)
+                console.log("add noEmpty:" +noEmpty)
+                if(noEmpty == trLen){
+                    $('.setApprovers-list tbody tr:last-child').before(newRow)
+                    $("#errorComplete").hide()
+                }else{
+                    $("#errorComplete").show()
+                }
+                
                 initLocalize(initialLocaleCode)//Initialize multilingual function
                 initDateControl()
+            })
+        
+            $("#saveSet").click(function(){
+                initDateControl()
+                $("#chainString").val(chainString)
+                $("#empNbrForm").val(empNbr)
+                console.log(approverJson)
+                let length = $(".approver_tr").length
+                if(noEmpty == length){
+                    return false
+                    $("#saveTempApprovers")[0].submit()  
+                }else{
+                    $("#errorComplete").show()
+                }
+                return
+                
             })
         })
         function deleteApprover() {
             console.log('delete')
         }
         function deleteRow(dom) {
-            $(dom)
+            let length = $('.setApprovers-list tbody .approver_tr').length
+            if(length>1){
+                $(dom)
                 .parents('.approver_tr')
                 .remove()
+            }
+            judgeContent()
+            
         }
         var checkin = [];
         var checkout=[];
         var haveEndDate = []
         function initDateControl() {
             let nowTemp = new Date()
-            let now = new Date(
-                nowTemp.getFullYear(),
-                nowTemp.getMonth(),
-                nowTemp.getDate(),
-                0,
-                0,
-                0,
-                0
-            )
             $(".approver_tr").each(function(index){
-                console.log(index)
                 haveEndDate[index] = false
-                checkin[index] = $(this).find('.date-control[data-title="from"]')
-                .fdatepicker({
-                    // startDate: now,
+                let fromCalendar = $(this).find('.date-control[data-title="from"]')
+                let toCalendar = $(this).find('.date-control[data-title="to"]')
+                checkin[index] = fromCalendar.fdatepicker({
                     format: 'mm/dd/yyyy',
                     language:initialLocaleCode,
                     onRender: function(date) {
-                        if(checkout[index]&&haveEndDate[index]){
-                            return date.valueOf() > checkout[index].date.valueOf() ? 'disabled' : '';
-                        }
+                        // if(checkout[index]&&haveEndDate[index]){
+                        //     return date.valueOf() > checkout[index].date.valueOf() ? 'disabled' : '';
+                        // }
                     }
-                })
-                .on('changeDate', function(ev) {
+                }).on('changeDate', function(ev) {
+                    judgeContent()
+                    let endDate = toCalendar.val()
+                    let startDate = fromCalendar.val()
+                    console.log(fromCalendar)
+                    console.log(startDate)
+                    if (
+                        ev.date &&
+                        (ev.date.valueOf() >= checkout[index].date.valueOf() || !endDate||endDate=='')
+                    ) {
+                        startDate = new Date(startDate)
+                        startDate.setDate(startDate.getDate())
+                        checkout[index].update(startDate)
+                        console.log(startDate)
+                        toCalendar.change()
+                    }
+                }).data('datepicker')
 
-                })
-                .data('datepicker')
-                checkout[index] = $(this).find('.date-control[data-title="to"]')
-                .fdatepicker({
-                    // startDate: now,
+                checkout[index] = toCalendar.fdatepicker({
                     format: 'mm/dd/yyyy',
                     language:initialLocaleCode,
                     onRender: function(date) {
@@ -335,15 +375,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             ? 'disabled'
                             : ''
                     }
-                })
-                .on('changeDate', function(ev) {
+                }).on('changeDate', function(ev) {
                     console.log(ev)
                     if(ev.date){
                         haveEndDate[index] = true
                     }
+                    judgeContent()
                     
-                })
-                .data('datepicker')
+                }).data('datepicker')
             })
             
         }
@@ -362,5 +401,30 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     $("#nextLevel").addClass("disabled").attr('disabled',"true");
                 }
             }
+            
+        var noEmpty = 0
+        var approverJson=[]
+        function judgeContent(){
+            approverJson=[]
+            noEmpty = 0
+            let length = $(".approver_tr").length
+            console.log("judge tr length:" + length)
+            $(".approver_tr").each(function(index){
+                let empNbr = $(this).find(".empControl").val()
+                let from = $(this).find(".dateFromControl").val()
+                let to = $(this).find(".dateToControl").val()
+                let obj = {
+                    empNbr:empNbr,
+                    from:from,
+                    to:to
+                }
+                if(empNbr==''||from==''||to==''){
+                }else{
+                    noEmpty += 1
+                }
+                approverJson.push(obj)
+            })
+            console.log("judge tr noEmpty:" + noEmpty)
+        }
     </script>
 </html>

@@ -1302,7 +1302,7 @@
   display: none;
 }
 
-.profile .profile-item .profile-btn .saveOrCancel .cancel-btn:first-child {
+.profile .profile-item .profile-btn .saveOrCancel .cancel-btn#undoNameRequest {
   display: inline-block;
 }
 
