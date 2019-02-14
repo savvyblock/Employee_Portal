@@ -125,7 +125,7 @@ public class LeaveRequestController {
 		if (null == user) {
 			return this.getIndexPage(mav);
 		}
-		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		mav.setViewName("/leaveRequest/leaveRequest");
 		AppLeaveRequest request = new AppLeaveRequest();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
@@ -136,10 +136,14 @@ public class LeaveRequestController {
 			supervisorEmpNbr = "";
 		}
 		request.setLvTyp(SearchType);
-		if (SearchStart != null && !("").equals(SearchStart))
+		if (SearchStart != null && !("").equals(SearchStart)) {
+			SearchStart = SearchStart + " 00:00:00";
 			request.setDatetimeFrom(sdf1.parse(SearchStart));
-		if (SearchEnd != null && !("").equals(SearchEnd))
+		}
+		if (SearchEnd != null && !("").equals(SearchEnd)) {
+			SearchEnd = SearchEnd + " 24:59:59";
 			request.setDatetimeTo(sdf1.parse(SearchEnd));
+		}
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
 		if (freq == null || ("").equals(freq)) {
 			if (availableFreqs.size() > 0) {
