@@ -40,6 +40,7 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.SearchUser;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
@@ -100,24 +101,130 @@ public class IndexController {
         return res;
     }
     
+//    @RequestMapping("retrieveUserName")
+//    public ModelAndView retrieveUserName(HttpServletRequest req, String email){
+//    	ModelAndView mav = new ModelAndView();
+//    	BeaUsers user = this.indexService.getUserByEmail(email);
+//    	
+//    	if(user == null) {
+//    		mav.addObject("retrieveUserNameErrorMessage", "Email Does not exist");
+//    	}else {
+//    		user.setUserEmail(email);
+//    	}
+//    	
+//        mav.setViewName("forgetPassword");
+//        mav.addObject("user", user);
+//        mav.addObject("email", email);
+//        return mav;
+//    }
+    
     @RequestMapping("retrieveUserName")
-    public ModelAndView retrieveUserName(HttpServletRequest req, String email){
+    public ModelAndView retrieveUserName(HttpServletRequest req){
     	ModelAndView mav = new ModelAndView();
-    	BeaUsers user = this.indexService.getUserByEmail(email);
+    	SearchUser searchUser=new SearchUser();
+    	searchUser.setDateDay(req.getParameter("dateDay"));
+    	searchUser.setDateMonth(req.getParameter("dateMonth"));
+    	searchUser.setDateYear(req.getParameter("dateYear"));
+    	searchUser.setEmpNumber(req.getParameter("empNumber"));
+    	searchUser.setZipCode(req.getParameter("zipCode"));
     	
-    	if(user == null) {
-    		mav.addObject("retrieveUserNameErrorMessage", "Email Does not exist");
+    	BhrEmpDemo bed= this.indexService.retrieveEmployee(searchUser);
+    	if(bed == null) {
+    		mav.addObject("retrieve", "false");
     	}else {
-    		user.setUserEmail(email);
+    		
+    		BeaUsers user = this.indexService.getUserByEmpNbr(searchUser.getEmpNumber());
+    		if(user == null) {
+    			mav.addObject("retrieve", "false");
+        		mav.addObject("retrieveUserNameErrorMessage", "Email Does not exist");
+        	}else {
+        		searchUser.setUsername(user.getUsrname());
+        		searchUser.setUserEmail(bed.getEmail());
+        		mav.addObject("retrieve", "true");
+        	}
+        	
     	}
     	
         mav.setViewName("forgetPassword");
-        mav.addObject("user", user);
-        mav.addObject("email", email);
+        mav.addObject("user", searchUser);
         return mav;
-    }    
-    @RequestMapping("forgetPassword")
-    public ModelAndView retrieveUserName(HttpServletRequest req){
+    }
+    
+    @RequestMapping("saveNewUser")
+    public ModelAndView saveNewUser(HttpServletRequest req){
+    	ModelAndView mav = new ModelAndView();
+    	BeaUsers newUser=new BeaUsers();
+    	newUser.setEmpNbr(req.getParameter("empNumber"));
+    	newUser.setUsrname(req.getParameter("username"));//username
+    	newUser.setHint(req.getParameter("hintQuestion"));//hintQuestion
+    	newUser.setHintAns(req.getParameter("hintAnswer"));//  hintAnswer
+    	newUser.setUserEmail(req.getParameter("workEmail"));//workEmail
+    	newUser.setUsrpswd(this.encrypt(req.getParameter("password")));
+    	
+    	newUser.setLkPswd('N');
+    	newUser.setPswdCnt(0);
+    	newUser.setLkFnl('N');
+    	newUser.setTmpDts("N");
+    	newUser.setTmpCnt(0);
+    	newUser.setHintCnt(0);
+//    	newUser.setCmpId(0);
+    	
+//    	BhrEmpDemo bed= this.indexService.retrieveEmployee(searchUser);
+    	
+    	BeaUsers user=indexService.getUserByUsername(req.getParameter("username"));
+    	if(user!=null) {
+    		mav.setViewName("createNewUser");
+    	    mav.addObject("user", user);
+    	    mav.addObject("newUser", newUser);
+    	    mav.addObject("isUserExist", "true");
+    	}else {
+    		indexService.saveBeaUsers(newUser);
+    		mav.setViewName("createNewUser");
+    	    mav.addObject("user", user);
+    	    mav.addObject("newUser", newUser);
+    	    mav.addObject("isSuccess", "true");
+    	}
+    	
+        return mav;
+    }
+    
+    @RequestMapping(value="retrieveEmployee",method=RequestMethod.POST)
+    public ModelAndView retrieveEmployee(HttpServletRequest req){
+    	ModelAndView mav = new ModelAndView();
+    	
+    	SearchUser searchUser=new SearchUser();
+    	searchUser.setDateDay(req.getParameter("dateDay"));
+    	searchUser.setDateMonth(req.getParameter("dateMonth"));
+    	searchUser.setDateYear(req.getParameter("dateYear"));
+    	searchUser.setEmpNumber(req.getParameter("empNumber"));
+    	searchUser.setZipCode(req.getParameter("zipCode"));
+    	
+    	BeaUsers user = this.indexService.getUserByEmpNbr(searchUser.getEmpNumber());
+    	
+    	if(user !=null) {
+    		mav.setViewName("searchUser");
+        	mav.addObject("isExistUser", "true");
+        	mav.addObject("newUser", searchUser);
+    	}else {
+    		BhrEmpDemo bed= this.indexService.retrieveEmployee(searchUser);
+        	
+        	if(bed == null) {
+        		mav.setViewName("searchUser");
+            	mav.addObject("isSuccess", "false");
+            	mav.addObject("newUser", searchUser);
+        	}else {
+        		searchUser.setNameF(bed.getNameF());
+        		searchUser.setNameL(bed.getNameL());
+        		mav.setViewName("createNewUser");
+            	mav.addObject("newUser", searchUser);
+        	}
+    	}
+    	
+        return mav;
+    }
+    
+	@RequestMapping("forgetPassword")
+    public ModelAndView forgetPassword(HttpServletRequest req){
     	ModelAndView mav = new ModelAndView();
         mav.setViewName("forgetPassword");
         return mav;

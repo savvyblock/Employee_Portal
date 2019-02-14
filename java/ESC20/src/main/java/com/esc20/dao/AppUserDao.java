@@ -24,6 +24,7 @@ import com.esc20.model.BhrEapDemoAssgnGrp;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPayId;
 import com.esc20.nonDBModels.District;
+import com.esc20.nonDBModels.SearchUser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -95,6 +96,25 @@ public class AppUserDao {
         BeaUsers res = (BeaUsers) q.uniqueResult();
         session.close();
         return res;
+	}
+	
+	public BeaUsers getUserByUsername(String username) {
+		Session session = this.getSession();
+		Query q;
+		String sql= "from BeaUsers where usrname =:usrname";
+        q = session.createQuery(sql);
+        q.setParameter("usrname", username);
+        BeaUsers res = (BeaUsers) q.uniqueResult();
+        session.close();
+        return res;
+	}
+	
+	public BeaUsers saveBeaUsers(BeaUsers user) {
+		Session session = this.getSession();
+		session.saveOrUpdate(user);
+        session.flush();
+        session.close();
+        return user;
 	}
 
 	public void updateUser(BeaUsers user) {
@@ -678,4 +698,20 @@ public class AppUserDao {
     	session.close();
 		
 	}
+	
+	public BhrEmpDemo retrieveEmployee(SearchUser searchUser) 
+	{
+		
+		Session session = this.getSession();
+		Query q;
+		String sql= "from BhrEmpDemo where empNbr =:empNbr and dob =:dob  and addrZip =:addrZip";
+        q = session.createQuery(sql);
+        q.setParameter("empNbr", searchUser.getEmpNumber());
+        q.setParameter("dob", searchUser.getSearchFormattedDateofBirth());
+        q.setParameter("addrZip", searchUser.getZipCode());
+        BhrEmpDemo res = (BhrEmpDemo) q.uniqueResult();
+        session.close();
+        return res;
+	}
+	
 }

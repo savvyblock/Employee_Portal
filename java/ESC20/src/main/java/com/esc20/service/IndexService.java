@@ -30,6 +30,7 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPay;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.SearchUser;
 
 @Service
 public class IndexService {
@@ -63,6 +64,17 @@ public class IndexService {
 		
 		return userDao.getUserByEmpNbr(id);
 	}
+	
+	public BeaUsers getUserByUsername(String username) {
+		
+		return userDao.getUserByUsername(username);
+	}
+	
+	public BeaUsers saveBeaUsers(BeaUsers user) {
+		
+		return userDao.saveBeaUsers(user);
+	}
+	
 	public void updateUser(BeaUsers user) {
 		userDao.updateUser(user);
 	}
@@ -277,6 +289,11 @@ public class IndexService {
 	}
 	public void deleteAlert(String id) {
 		alertDao.deleteAlert(id);
+	}
+	
+	public BhrEmpDemo retrieveEmployee(SearchUser searchUser) {
+		return userDao.retrieveEmployee(searchUser);
+		
 	}
 	
 }
