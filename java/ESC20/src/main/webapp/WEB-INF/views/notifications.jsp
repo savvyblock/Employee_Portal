@@ -20,10 +20,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                        		<c:forEach var="notification" items="${unReadList}" varStatus="unReadList">
 	                            <li class="note-item" <c:if test="${notification.status != 'UR' }">active</c:if>>
 	                               <i class="fa fa-envelope left-fa"></i> 
-	                               <div class="msg">${notification.msgContent}</div>
-	                               <button class="note-btn" onclick="markRead('${notification.id}')">
-	                                    Mark as Read
-	                               </button>
+                                   <div class="msg">${notification.msgContent}</div>
+                                   <c:if test="${notification.status == 'UR' }">
+                                    <button class="note-btn" onclick="markRead('${notification.id}')" data-localize="label.markAsRead"
+                                    data-localize-location="title">
+                                            <i class="fa fa-eye"></i>
+                                    </button>
+                                    </c:if>
 	                            </li>
                             </c:forEach>
                        </ul>
