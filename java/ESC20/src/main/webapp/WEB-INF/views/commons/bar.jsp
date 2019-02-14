@@ -17,8 +17,8 @@
       <li class="nav-item dropdown">
         <button class="nav-link nobtn-style" data-toggle="dropdown" tabindex="0">
           <i class="fa fa-bell-o"></i>
-          <span id="navBadge" class="navbar-badge">0</span>
-        </button>
+          <span id="navBadge" class="navbar-badge"></span>
+        </a>
         <div class="dropdown-menu dropdown-menu-right note-dropdown">
           <div class="dropdown-item dropdown-header">
             <span id="budgeCount">0</span> <span data-localize="label.notification"></span>
@@ -32,9 +32,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/<%=request.getContextPath().split("/")[1]%>/profile">
-          <i class="fa fa-user"></i>
-        </a>
+      <a class="nav-link" href="/<%=request.getContextPath().split("/")[1]%>/profile" title="" data-localize="nav.myAccount" data-localize-location="title"><i class="fa fa-user"></i></a>
       </li>
       <li class="nav-item flex-middle">
           <%@ include file="global-select.jsp"%>
