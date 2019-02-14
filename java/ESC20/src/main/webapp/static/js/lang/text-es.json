@@ -485,7 +485,7 @@
 		"resetPassword":"Reset Password",
 		"emailAddress":"Email Address",
 		"welcome":"Welcome",
-		"pleaseSignIn":"Please login",
+		"pleaseSignIn":"Please Login",
 		"forgotPassword":"Forgot Password?",
 		"signIn":"Sign In",
 		"edit":"Edit",
@@ -674,9 +674,10 @@
 		"usernameOrEmailError":"User name or email error!",
 		"usernameOrEmailNotExit":"User or email does not exist!",
 		"fromDateNotGreaterToDate":"From date cannot be greater than To date!",
-		"resetPswSuccess":"reset password success!",
-		"resetPswFaild":"reset password faild!",
+		"resetPswSuccess":"Reset Password Success!",
+		"resetPswFaild":"Reset Password Failed!",
 		"noUserAccountAssociated":"User account already associated with employee. Please contact personnel office to delete existing user account before creating a new one.",
+		"pleaseCompleteForm":"Please complete the form",
 		"":""
 	},
 	"w2Notice":{

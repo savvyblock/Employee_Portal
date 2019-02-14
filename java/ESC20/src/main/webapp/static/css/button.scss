@@ -1,3 +1,9 @@
+button{
+  &.nobtn-style{
+    background: none;
+    border: 0;
+  }
+}
 .a-btn{
   background: none;
   border:0;

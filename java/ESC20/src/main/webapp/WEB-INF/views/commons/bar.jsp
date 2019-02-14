@@ -15,18 +15,20 @@
     <ul class="navbar-nav nav-right">
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" tabindex="0">
+        <button class="nav-link nobtn-style" data-toggle="dropdown" tabindex="0">
           <i class="fa fa-bell-o"></i>
           <span id="navBadge" class="navbar-badge"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right note-dropdown">
-          <div class="dropdown-item dropdown-header"><div id="budgeCount">0</div><span data-localize="label.notification"></span></div>
+          <div class="dropdown-item dropdown-header">
+            <span id="budgeCount">0</span> <span data-localize="label.notification"></span>
+          </div>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <div id="top5Alert"></div>
           </a>
           <div class="dropdown-divider"></div>          
-          <a data-localize="label.seeAllNote" href="/<%=request.getContextPath().split("/")[1]%>/notifications" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a data-localize="label.seeAllNote" href="/<%=request.getContextPath().split("/")[1]%>/notifications" class="dropdown-item dropdown-footer"></a>
         </div>
       </li>
       <li class="nav-item">
