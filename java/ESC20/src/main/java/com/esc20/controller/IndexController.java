@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,6 +68,7 @@ public class IndexController {
     
     @Autowired
     private BankService bankService;
+    private static ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
     
     @RequestMapping(value="", method=RequestMethod.GET)
     public ModelAndView getIndexPage(ModelAndView mav){
@@ -82,8 +84,10 @@ public class IndexController {
         if(param != null){
             String uName = param.get("userName");
             BeaUsers user = this.indexService.getUserPwd(uName);
+            String plainTextPwd = param.get("userPwd");
             
-            if(user != null && this.decrypt(user.getUsrpswd()).equals(param.get("userPwd"))){
+            plainTextPwd = encoder.encodePassword(plainTextPwd,null);
+            if(user != null && user.getUsrpswd().equals(plainTextPwd)){
                 res.put("isSuccess","true");
                 res.put("userName", uName);
                 HttpSession session = req.getSession();
@@ -160,20 +164,21 @@ public class IndexController {
     public ModelAndView saveNewUser(HttpServletRequest req){
     	ModelAndView mav = new ModelAndView();
     	BeaUsers newUser=new BeaUsers();
+    	ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
     	newUser.setEmpNbr(req.getParameter("empNumber"));
     	newUser.setUsrname(req.getParameter("username"));//username
     	newUser.setHint(req.getParameter("hintQuestion"));//hintQuestion
-    	newUser.setHintAns(req.getParameter("hintAnswer"));//  hintAnswer
-    	newUser.setUserEmail(req.getParameter("workEmail"));//workEmail
-    	newUser.setUsrpswd(this.encrypt(req.getParameter("password")));
+    	newUser.setHintAns(encoder.encodePassword(req.getParameter("hintAnswer"),null));//  hintAnswer
+    	//newUser.setUserEmail(req.getParameter("workEmail"));//workEmail
+    	newUser.setUsrpswd(encoder.encodePassword(req.getParameter("password"),null));
     	
     	newUser.setLkPswd('N');
     	newUser.setPswdCnt(0);
     	newUser.setLkFnl('N');
-    	newUser.setTmpDts("N");
+    	newUser.setTmpDts("");
     	newUser.setTmpCnt(0);
     	newUser.setHintCnt(0);
-//    	newUser.setCmpId(0);
+    	newUser.setCmpId(0);
     	
 //    	BhrEmpDemo bed= this.indexService.retrieveEmployee(searchUser);
     	
@@ -307,8 +312,7 @@ public class IndexController {
         	mav = new ModelAndView("redirect:/profile");
         	return mav;
         }
- 
-    	user.setUsrpswd(this.encrypt(password));
+    	user.setUsrpswd(encoder.encodePassword(this.encrypt(password),null));
     	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
     	this.indexService.updateUser(user);
     	session.removeAttribute("user");

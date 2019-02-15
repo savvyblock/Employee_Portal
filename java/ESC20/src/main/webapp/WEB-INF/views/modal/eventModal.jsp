@@ -5,6 +5,7 @@
     role="dialog"
     aria-labelledby="requestModal"
     aria-hidden="true"
+    data-backdrop="static"
 >
     <div class="modal-dialog requestFormDialog">
         <div class="modal-content">
@@ -178,9 +179,8 @@
                         data-localize="leaveBalance.submitForApproval">Submit for Approval</button>
                         <button
                             class="btn btn-secondary"
-                            data-dismiss="modal"
-                            aria-hidden="true"
                             id="deleteLeave"
+                            type="button"
                             onclick="deleteRequest()"
                             data-localize="label.delete"
                         >
@@ -280,8 +280,8 @@
 
     function deleteRequest() {
         var id = $('#leaveId').val()
-        $('#deleteId').val(id)
-        $('#deleteForm').submit()
+        $("#deleteId").val(id);
+		$("#deleteModal").modal("show")
     }
     function closeRequestForm() {
         $('#requestForm')

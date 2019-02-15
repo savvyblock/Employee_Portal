@@ -32,8 +32,8 @@
     <logback-spring-version>0.1.4</logback-spring-version>
     <slf4j-version>1.5.8</slf4j-version>
     <aspectjweaver-version>1.5.4</aspectjweaver-version>
+    <org.springframework.security.version>3.2.3.RELEASE</org.springframework.security.version>
   </properties>
-
   <dependencies>
     <!--Spring framework-->
     <dependency>
@@ -71,6 +71,11 @@
       <artifactId>spring-web</artifactId>
       <version>${spring-version}</version>
     </dependency>
+    <dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-core</artifactId>
+		<version>${org.springframework.security.version}</version>
+	</dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>

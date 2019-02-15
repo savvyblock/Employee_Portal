@@ -368,10 +368,11 @@
 		"number":"Number",
 		"driverLicenseNum":"Driver's License Number",
 		"state":"State",
-		"driversLicenseState":"driver's License State",
+		"driversLicenseState":"Driver's License State",
 		"restrictionCodes":"Restriction Codes",
 		"restrictionCodesLocal":"Restriction Codes Local",
 		"public":"Public",
+		"restrictionCodesPublic":"Restriction Codes Public",
 		"email":"Email",
 		"workEmail":"Work Email",
 		"homeEmail":"Home Email",
@@ -567,6 +568,7 @@
 		"changeAvatar":"Change Avatar",
 		"chooseImageSize":"Choose a picture(JPG/JPEG/PNG/ <500kb):",
 		"rows":"Rows",
+		"areYouDelete":"Are you sure you want to delete?",
 		"":""
 	},
 	"language":{

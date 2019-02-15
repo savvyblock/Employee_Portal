@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -270,13 +271,15 @@ public class LeaveRequestController {
 		if ((leaveId == null || ("").equals(leaveId))) {
 			LeaveParameters params = this.service.getLeaveParameters();
 			String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
-			BeaEmpLvWorkflow flow = new BeaEmpLvWorkflow();
-			flow.setBeaEmpLvRqst(res);
-			flow.setInsertDatetime(new Date());
-			flow.setSeqNum(1);
-			flow.setApprvrEmpNbr(supervisorEmpNbr == null ? "" : supervisorEmpNbr);
-			flow.setTmpApprvrExpDatetime(null);
-			this.service.saveLvWorkflow(flow, demo);
+			if (!StringUtils.isEmpty(supervisorEmpNbr)) {
+				BeaEmpLvWorkflow flow = new BeaEmpLvWorkflow();
+				flow.setBeaEmpLvRqst(res);
+				flow.setInsertDatetime(new Date());
+				flow.setSeqNum(1);
+				flow.setApprvrEmpNbr(supervisorEmpNbr == null ? "" : supervisorEmpNbr);
+				flow.setTmpApprvrExpDatetime(null);
+				this.service.saveLvWorkflow(flow, demo);
+			}
 		}
 	}
 

@@ -5,6 +5,7 @@
     role="dialog"
     aria-labelledby="changePasswordModal"
     aria-hidden="true"
+    data-backdrop="static"
 >
     <div class="modal-dialog approveForm" style="max-width:350px;">
         <div class="modal-content">

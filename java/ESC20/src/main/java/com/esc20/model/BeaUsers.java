@@ -26,7 +26,6 @@ public class BeaUsers implements java.io.Serializable {
 	private Integer hintCnt;
 	private String tmpDts;
 	private Integer cmpId;
-	private String userEmail;
 
 	public BeaUsers() {
 	}
@@ -158,21 +157,13 @@ public class BeaUsers implements java.io.Serializable {
 		this.tmpDts = tmpDts;
 	}
 
-	@Column(name = "CMP_ID", nullable = false)
+	@Column(name = "CMP_ID", nullable = true)
 	public Integer getCmpId() {
 		return cmpId;
 	}
 
 	public void setCmpId(Integer cmpId) {
 		this.cmpId = cmpId;
-	}
-
-	public String getUserEmail() {
-		return userEmail;
-	}
-
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
 	}
 
 }
