@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.esc20.model.BthrBankCodes;
+import com.esc20.nonDBModels.Page;
 
 @Repository
 public class BankDao {
@@ -24,6 +25,20 @@ public class BankDao {
     	Session session = this.sessionFactory.getCurrentSession();
         String hql = "from BthrBankCodes order by bankName ASC" ;
         Query q = session.createQuery(hql);
+        List<BthrBankCodes> result = q.list();
+        if(result== null || result.isEmpty()) {
+        	return null;
+        }
+    	return result;
+    }
+    
+    public List<BthrBankCodes> getAll(Page p) {
+    	Session session = this.sessionFactory.getCurrentSession();
+        String hql = "from BthrBankCodes order by bankName ASC" ;
+        Query q = session.createQuery(hql);
+        q.setFirstResult((p.getCurrentPage()-1)*p.getPerPageRows());
+        q.setMaxResults(p.getPerPageRows());
+        
         List<BthrBankCodes> result = q.list();
         if(result== null || result.isEmpty()) {
         	return null;

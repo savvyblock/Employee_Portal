@@ -1611,7 +1611,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <div class="form-group btn-group">
                                 <div style="margin-top:20px;">
                                     <button
-                                        type="submit"
+                                        type="submit" id="searchBankBtn"
                                         class="btn btn-primary"
                                         data-localize="label.search"
                                     ></button>
@@ -1778,10 +1778,23 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             })
             $('.getBank').click(function() {
             	
-            	
-            	
-            	
-            	
+            	var page={
+            			currentPage:1,
+            			perPageRows:10
+            	};
+            	$.ajax({
+                     type: "POST",
+                     dataType: "json",
+                     url: "getAllBanks" ,
+                     data:JSON.stringify(page),
+                     contentType: 'application/json;charset=UTF-8',
+                     success: function (result) {
+                    	 console.log(result);
+                     },
+                     error : function(e) {
+                    	 console.log(e);
+                     }
+                 });
             	
                 $('#selectBankModal').modal('show')
                 bankInputName = $(this)
@@ -1793,6 +1806,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     
                     
             })
+            $('#searchBankBtn').click(function() {
+            	alert("search bank");
+            })
+            
             $('.bankNumberBtn').click(function() {
                 let number = $(this).val()
                 let name = $(this).attr('data-title')

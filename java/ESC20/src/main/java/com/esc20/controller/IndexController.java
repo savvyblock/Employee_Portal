@@ -41,6 +41,7 @@ import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.Page;
 import com.esc20.nonDBModels.SearchUser;
 import com.esc20.service.BankService;
 import com.esc20.service.IndexService;
@@ -50,7 +51,6 @@ import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import net.sf.json.util.JSONUtils;
 import sun.misc.BASE64Decoder;
 
 @Controller
@@ -231,10 +231,27 @@ public class IndexController {
     
     @RequestMapping("getAllBanks")
     @ResponseBody
-    public JSONArray getAllBanks(HttpServletRequest req){
-    	List<BthrBankCodes> banks = bankService.getAllBanks();
-    	JSONArray json = JSONArray.fromObject(banks); 
-        return json;
+    public JSONObject getAllBanks(HttpServletRequest req,@RequestBody Page page){
+    	
+    	System.out.println(page);
+    	
+    	Page p = new Page();
+    	p.setCurrentPage(1);
+    	p.setPerPageRows(10);
+    	
+    	List<BthrBankCodes> allbanks = bankService.getAllBanks();
+    	
+    	p.setTotalRows(allbanks.size());
+    	p.setTotalPages((int) Math.ceil(p.getTotalRows()/p.getPerPageRows()));
+    	
+    	List<BthrBankCodes> banks = bankService.getAllBanks(p);
+    	JSONArray json = JSONArray.fromObject(banks);
+	    JSONObject result=new JSONObject();
+	    result.put("result", json);
+	    result.put("page", p);
+	    result.put("isSuccess", "true");
+	    
+        return result;
     }
     
     @RequestMapping("getBanks")

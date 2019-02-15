@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.esc20.dao.BankDao;
 import com.esc20.model.BthrBankCodes;
+import com.esc20.nonDBModels.Page;
 
 @Service
 public class BankService {
@@ -20,6 +21,10 @@ public class BankService {
 
     public List<BthrBankCodes> getAllBanks() {
 		return bankDao.getAll();
+	}
+    
+    public List<BthrBankCodes> getAllBanks(Page p) {
+		return bankDao.getAll(p);
 	}
     
     public List<BthrBankCodes> getBanksByEntity(BthrBankCodes bbc) {
