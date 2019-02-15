@@ -926,6 +926,16 @@ input {
 .img-alt-span{
     display: none;
 }
+.flex{
+    display: flex;
+    align-items: center;
+    .pageGroup{
+        flex: 1;
+    }
+    .totalRows{
+        flex: 0 0 60px
+    }
+}
 .pageGroup{
     display: flex;
     .pageBtn{

@@ -14,22 +14,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <div class="content-white no-title profile">
                         <div class="profile-item first-child">
                             <div class="profile-title" >
-                                <form id="changeAvatar" action="changeAvatar" method="POST">
+                                <div id="changeAvatar" >
                                         <div
                                         class="avatar"
                                         id="imgContentImg"
                                         style="background-image:url(${sessionScope.userDetail.avatar})"
                                     >
-                                        <input id="userName" hidden="hidden" type="text" value="${sessionScope.userDetail.nameF}">
+                                        <!-- <input id="userName" hidden="hidden" type="text" value="${sessionScope.userDetail.nameF}">
                                         <input id="avatarImg" hidden="hidden" type="text" name="file">
                                         <input id="avatarImgName" hidden="hidden" type="text" name="fileName">
-                                        <input class="avatar-file" type="file" name="file"  id="imgUpFile"  onchange="startRead()"  accept="image/*"/>
-                                        <label class="avatar-word" data-localize="profile.change"></label>
+                                        <input class="avatar-file" type="file" name="file"  id="imgUpFile"  onchange="startRead()"  accept="image/*"/> -->
+                                        <button type="button" class="avatar-word" data-localize="profile.change" data-toggle="modal" data-target="#changeAvatarModal"></button>
                                     </div>
                                     <button type="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal" data-localize="label.changePassword" data-localize-location="title">
                                             <span data-localize="label.changePassword"></span>
                                         </button>
-                                    </form>
+                                    </div>
                                 
                             </div>
                             <form class="profile-desc" id="personalForm" action="saveName" method="POST">
@@ -1549,6 +1549,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <%@ include file="commons/footer.jsp"%>
         <%@ include file="modal/changePassword.jsp"%>
         <%@ include file="modal/undoModal.jsp"%>
+        <%@ include file="modal/changeAvatar.jsp"%>
         <div
             class="modal fade"
             id="selectBankModal"
@@ -1638,6 +1639,38 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </td>
                                         <td data-localize="profile.bankName" data-localize-location="scope">A+ FEDERAL CREDIT UNION</td>
+                                    </tr>
+                                    <tr>
+                                            <td colspan="2">
+                                                <div class="flex">
+                                                        <div class="pageGroup">
+                                                                <button class="pageBtn firstPate" title="" data-localize="label.firstPage" data-localize-location="title">
+                                                                        <i class="fa fa-angle-double-left "></i>
+                                                                </button>  
+                                                                <button class="pageBtn prevPage" title="" data-localize="label.prevPage" data-localize-location="title">
+                                                                        <i class="fa fa-angle-left "></i>
+                                                                </button>
+                                                                <select class="selectPage" name="page" id="pageNow" title="" data-localize="label.choosePage" onchange="changePage()"  data-localize-location="title">
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                </select>
+                                                                <div class="page-list">
+                                                                        <span class="slash">/</span>
+                                                                        <span class="totalPate">2</span>
+                                                                </div>
+                                                                <button class="pageBtn nextPate" title="" data-localize="label.nextPage" data-localize-location="title">
+                                                                                <i class="fa fa-angle-right "></i>
+                                                                </button>
+                                                                <button class="pageBtn lastPate" title="" data-localize="label.lastPage" data-localize-location="title">
+                                                                    <i class="fa fa-angle-double-right"></i>
+                                                                </button>
+                                                        </div>
+                                                        <b class="totalRows">
+                                                            <span data-localize="label.rows"></span>: 100
+                                                        </b>
+                                                </div>
+                                                    
+                                            </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1806,38 +1839,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             let form = "#" + formSelect
             $(form)[0].submit()
         }
-        function startRead() {
-            var fileDom = document.getElementById('imgUpFile')
-            var img = document.getElementById('imgContentImg')
-            if (fileDom && img) {
-                fileHandle(fileDom, img)
-            }
-        }
-        function fileHandle(fileDom, img) {
-            //read
-            var file = fileDom.files[0]
-            var fileName = file.name
-            var type = file.type.split("/")
-            var username = $("#userName").val()
-            var name = (new Date()).valueOf() + username  + "." + type[1];
-            console.log(name)
-            $("#avatarImgName").val(name)
-            var reader = new FileReader()
-            reader.readAsDataURL(file)
-            reader.onloadstart = function() {
-                console.log('do upload ......')
-            }
-            //done
-            reader.onload = function(e) {
-                //file
-                $("#avatarImg").val(reader.result)
-                $("#changeAvatar")[0].submit()
-                img.style.backgroundImage = "url('" + reader.result + " ') "
-            }
-            reader.onerror = function(){
-                /* error handler **/
-            }
-        }
+        
 
             function changeFreq(){
 				$("#changeFreqForm")[0].submit();
