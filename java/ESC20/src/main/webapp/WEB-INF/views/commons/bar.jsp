@@ -17,7 +17,7 @@
       <li class="nav-item dropdown">
         <button class="nav-link nobtn-style" data-toggle="dropdown" tabindex="0">
           <i class="fa fa-bell-o"></i>
-          <span id="navBadge" class="navbar-badge">0</span>
+          <span id="navBadge" class="navbar-badge"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right note-dropdown">
           <div class="dropdown-item dropdown-header">
@@ -271,6 +271,10 @@
 				} else {
 					console.log("data", data);
 					budgeCount = data.count;
+          console.log(budgeCount)
+          if(budgeCount>0){
+            $("#navBadge").show();
+          }
 					$("#budgeCount").html(budgeCount);
 					$("#navBadge").html(budgeCount);
 					$.ajax({

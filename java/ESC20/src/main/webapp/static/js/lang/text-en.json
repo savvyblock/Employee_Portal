@@ -62,8 +62,8 @@
 		"bankCode":"Bank Code",
 		"bankName":"Bank Name",
 		"accountType":"Account Type",
-		"acctNbr":"Acct Nbr",
-		"depAmt":"Dep Amt",
+		"acctNbr":"Account Number",
+		"depAmt":"Deposit Amount",
 		"extraDuty":"Extra Duty",
 		"type":"Type",
 		"amount":"Amount",
@@ -368,10 +368,11 @@
 		"number":"Number",
 		"driverLicenseNum":"Driver's License Number",
 		"state":"State",
-		"driversLicenseState":"driver's License State",
+		"driversLicenseState":"Driver's License State",
 		"restrictionCodes":"Restriction Codes",
 		"restrictionCodesLocal":"Restriction Codes Local",
 		"public":"Public",
+		"restrictionCodesPublic":"Restriction Codes Public",
 		"email":"Email",
 		"workEmail":"Work Email",
 		"homeEmail":"Home Email",
@@ -418,9 +419,6 @@
 		"selectABank":"Select A Bank",
 		"routingNumber":"Routing Number",
 		"addANewBankAccount":"Add a new bank account"
-	},
-	"modal":{
-
 	},
 	"label":{
 		"ESC20":"ESC20",
@@ -567,6 +565,9 @@
 		"hintAnswer":"Hint Answer",
 		"pleaseEnterEmpBirthZipCode":"Please enter your employee number, date of birth, and zip and click Retrieve.",
 		"markAsRead":"Mark As Read",
+		"changeAvatar":"Change Avatar",
+		"chooseImageSize":"Choose a picture(JPG/JPEG/PNG/ <500kb):",
+		"rows":"Rows",
 		"":""
 	},
 	"language":{
@@ -681,6 +682,7 @@
 		"noUserAccountAssociated":"User account already associated with employee. Please contact personnel office to delete existing user account before creating a new one.",
 		"pleaseCompleteForm":"Please complete the form",
 		"noEmployeeAccountAssociated":"Employee is not exist.",
+		"pictureTooLarge":"This picture is too large!",
 		"":""
 	},
 	"w2Notice":{

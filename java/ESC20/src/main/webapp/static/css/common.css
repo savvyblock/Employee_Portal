@@ -1026,6 +1026,19 @@ input:focus {
   display: none;
 }
 
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex .pageGroup {
+  flex: 1;
+}
+
+.flex .totalRows {
+  flex: 0 0 60px;
+}
+
 .pageGroup {
   display: flex;
 }

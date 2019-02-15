@@ -12,7 +12,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             <%@ include file="../commons/bar.jsp"%>
 
             <main class="content-wrapper" id="content">
-                    <section class="content">
+                <section class="content body-1095">
                             <h2 class="clearfix no-print section-title">
                                 <span data-localize="title.info1095"></span>
                                 <div class="right-btn pull-right">
@@ -149,61 +149,61 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </td>
                                             <td>
                                                 2 <span data-localize="info1095Table.SSN"></span>
-                                                <div class="focused-value">234-31-5056</div>
+                                                <div class="focused-value">SSN</div>
                                             </td>
                                             <td colspan="2">
                                                 7 <span data-localize="info1095Table.nameOfEmployer"></span>
-                                                <div class="focused-value">TEXAS ISD</div>
+                                                <div class="focused-value">${sessionScope.district.name}</div>
                                             </td>
                                             <td>
                                                 8 <span data-localize="info1095Table.EIN"></span>
-                                                <div class="focused-value">51-9128683</div>
+                                                <div class="focused-value">EIN</div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="3">
                                                 3 <span data-localize="info1095Table.streetAddressApt"></span>
                                                 <div class="focused-value">
-                                                    73010 ROSEWOOD CRK
+                                                        ${sessionScope.userDetail.addrApt}
                                                 </div>
                                             </td>
                                             <td colspan="2">
                                                 9 <span data-localize="info1095Table.streetAddressRoomSuite"></span>
                                                 <div class="focused-value">
-                                                    1715 MAIN STREET
+                                                        ${sessionScope.userDetail.addrNbr} ${sessionScope.userDetail.addrStr}
                                                 </div>
                                             </td>
                                             <td>
                                                 10 <span data-localize="info1095Table.contactTelephoneNum"></span>
                                                 <div class="focused-value">
-                                                    (555) 675-6338
+                                                         (${sessionScope.userDetail.phoneArea}) ${sessionScope.userDetail.phoneNbr}
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 4 <span data-localize="info1095Table.cityOrTown"></span>
-                                                <div class="focused-value">Alamo City</div>
+                                                <div class="focused-value">${sessionScope.district.city}</div>
                                             </td>
                                             <td>
                                                 5 <span data-localize="info1095Table.stateOrProvince"></span>
-                                                <div class="focused-value">TX</div>
+                                                <div class="focused-value">${sessionScope.district.state}</div>
                                             </td>
                                             <td>
                                                 6 <span data-localize="info1095Table.countryAndZip"></span>
-                                                <div class="focused-value">47715</div>
+                                                <div class="focused-value">${sessionScope.userDetail.addrZip}</div>
                                             </td>
                                             <td>
                                                 11 <span data-localize="info1095Table.cityOrTown"></span>
-                                                <div class="focused-value">ALAMO CITY</div>
+                                                <div class="focused-value">${sessionScope.district.city}</div>
                                             </td>
                                             <td>
                                                 12 <span data-localize="info1095Table.stateOrProvince"></span>
-                                                <div class="focused-value">TX</div>
+                                                <div class="focused-value">${sessionScope.district.state}TX</div>
                                             </td>
                                             <td>
                                                 13 <span data-localize="info1095Table.countryAndZip"></span>
-                                                <div class="focused-value">46119-4521</div>
+                                                <div class="focused-value">${sessionScope.district.zip}-${sessionScope.district.zip4}</div>
                                             </td>
                                         </tr>
                                     </table>
@@ -361,106 +361,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </td>
                                             <td>Cat. No. 60705M</td>
                                             <td style="text-align:right">
-                                                <span data-localize="info1095Table.from"></span> <span id="fromWitch1095"></span> (<span class="selectYearSpan">2016</span>)
+                                                <span data-localize="info1095Table.from"></span> <span id="fromWitch1095"></span> (<span class="selectYearSpan">${selectedYear}</span>)
                                             </td>
                                         </tr>
                                     </table>
             
                                     <div class="PageNext"></div>
-                                    <table class="table no-border-table print-block-table">
-                                        <tr>
-                                            <td class="word-title" width="50%">
-                                                <span data-localize="info1095Table.instructionsForRecipient"></span>
-                                            </td>
-                                            <td class="word-sub-title">
-                                                <span data-localize="info1095Table.partIIEmployerOfferCoverage"></span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <span data-localize="info1095Table.line01"></span>
-                                                <br />
-                                                <span data-localize="info1095Table.line02"></span> <br />
-                                                <span data-localize="info1095Table.line03"></span> <br />
-                                                <br />
-                                                <i><img class="pull-left" src="" alt=""/>
-                                                    <span data-localize="info1095Table.line04"></span>
-                                                </i>
-                                                <br /><br />
-                                                <b data-localize="info1095Table.line05-1"></b> 
-                                                <span data-localize="info1095Table.line05-2"></span>
-                                                <br /><br />
-                                                <div class="word-title" data-localize="info1095Table.partIEmployee">
-                                                </div>
-                                                <br />
-                                                <b data-localize="info1095Table.line06-1"></b> 
-                                                <span data-localize="info1095Table.line06-2"></span>
-                                                <br />
-                                                <b data-localize="info1095Table.line07-1"></b> 
-                                                <span data-localize="info1095Table.line07-2"></span><br /><br />
-                                                <i>
-                                                    <img class="pull-left" src="" alt="" />
-                                                    <span data-localize="info1095Table.line08"></span>
-                                                </i>
-                                                <br /><br />
-                                                <div class="word-title" data-localize="info1095Table.partIApplicable">
-                                                </div>
-                                                <br />
-                                                <b data-localize="info1095Table.line09-1"></b> 
-                                                <span data-localize="info1095Table.line09-2"></span><br>
-                                                <b data-localize="info1095Table.line10-1"></b> 
-                                                <span data-localize="info1095Table.line10-2"></span>
-                                            </td>
-                                            <td>
-                                                    <b data-localize="info1095Table.line11-1"></b> 
-                                                    <span data-localize="info1095Table.line11-2"></span>
-                                                    <br>
-                                                    <b data-localize="info1095Table.line12-1"></b> 
-                                                    <span data-localize="info1095Table.line12-2"></span>
-                                                    <br><b data-localize="info1095Table.line13-1"></b> 
-                                                    <span data-localize="info1095Table.line13-2"></span>
-                                                    <br><b data-localize="info1095Table.line14-1"></b> 
-                                                    <span data-localize="info1095Table.line14-2"></span>
-                                                    <br>
-                                                    <b data-localize="info1095Table.line15-1"></b> 
-                                                    <span data-localize="info1095Table.line15-2"></span>
-                                                    <br>
-                                                    <b data-localize="info1095Table.line16-1"></b> 
-                                                    <span data-localize="info1095Table.line16-2"></span>
-                                                    <br>
-                                                    <b data-localize="info1095Table.line17-1"></b> 
-                                                    <span data-localize="info1095Table.line17-2"></span>
-                                                    <br>
-                                                    <b data-localize="info1095Table.line18-1"></b> 
-                                                    <span data-localize="info1095Table.line18-2"></span>
-                                                    <br><b data-localize="info1095Table.line19-1"></b> 
-                                                    <span data-localize="info1095Table.line19-2"></span>
-                                                    <br><b data-localize="info1095Table.line20-1"></b> 
-                                                    <span data-localize="info1095Table.line20-2"></span>
-                                                    <br><b data-localize="info1095Table.line21-1"></b> 
-                                                    <span data-localize="info1095Table.line21-2"></span>
-                                                    <br><b data-localize="info1095Table.line22-1"></b> 
-                                                    <span data-localize="info1095Table.line22-2"></span>
-                                                    <br><b data-localize="info1095Table.line23-1"></b> 
-                                                    <span data-localize="info1095Table.line23-2"></span>
-                                                    <br><br>
-                                                    <div class="word-title" data-localize="info1095Table.partIIICoveredIndividuals"> </div>
-                                                    <span data-localize="info1095Table.line24"></span>
-                                            </td>
-                                        </tr>
-                                            
-                                    </table>
-                                </c:if>
-                                <!-- <jsp:include page="../report-1095/1095B-2015.jsp"></jsp:include>
-                                <jsp:include page="../report-1095/1095B-2016.jsp"></jsp:include>
-                                <jsp:include page="../report-1095/1095B-2017.jsp"></jsp:include>
-                                <jsp:include page="../report-1095/1095B-2018.jsp"></jsp:include>
-                                <jsp:include page="../report-1095/1095C-2015.jsp"></jsp:include>
-                                <jsp:include page="../report-1095/1095C-2016.jsp"></jsp:include>
-                                <jsp:include page="../report-1095/1095C-2017.jsp"></jsp:include>
-                                <jsp:include page="../report-1095/1095C-2018.jsp"></jsp:include> -->
-                            </div>
-                        </section>
+                                    <jsp:include page="../report-1095/1095${type}-${selectedYear}.jsp"></jsp:include>
+                            </c:if>
+                        </div>
+                </section>
             </main>
         </div>
         <%@ include file="../commons/footer.jsp"%>

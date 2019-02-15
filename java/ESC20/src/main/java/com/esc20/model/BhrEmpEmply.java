@@ -2,6 +2,7 @@ package com.esc20.model;
 // Generated Jan 4, 2019 3:40:12 PM by Hibernate Tools 4.3.5.Final
 
 import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -22,7 +24,7 @@ public class BhrEmpEmply implements java.io.Serializable {
 	private static final long serialVersionUID = 6715142900654758429L;
 	private String empNbr;
 	private BhrEmpDemo bhrEmpDemo;
-	private String statCdEmpl;
+	private Character statCdEmpl;
 	private String dtOrgEmp;
 	private String yrsExpDist;
 	private String yrsExpDistLoc;
@@ -40,100 +42,103 @@ public class BhrEmpEmply implements java.io.Serializable {
 	private String lvOfAbsBegin;
 	private String lvOfAbsEnd;
 	private String lvRsn;
-	private String yrRound;
+	private Character yrRound;
 	private String extractId;
-	private String eligRehire;
-	private String highDegree;
+	private Character eligRehire;
+	private Character highDegree;
 	private String gradesTaught;
-	private String campusCluster;
-	private String campusLvl;
+	private Character campusCluster;
+	private Character campusLvl;
 	private String dtPhyExam;
 	private String dtTbExam;
 	private String totYrsExpClaim;
-	private short transReqNum;
-	private String transReqRsn;
-	private String verifyDob;
-	private String verifyService;
-	private String verifyTrans;
-	private String verifyRef;
-	private String verifyCert;
-	private String verifyOath;
+	private Short transReqNum;
+	private Character transReqRsn;
+	private Character verifyDob;
+	private Character verifyService;
+	private Character verifyTrans;
+	private Character verifyRef;
+	private Character verifyCert;
+	private Character verifyOath;
 	private String tcatYr;
-	private String tcatResult;
-	private short hrsAboveDegree;
-	private short hrsThisPer;
-	private short inserHrs;
+	private Character tcatResult;
+	private Short hrsAboveDegree;
+	private Short hrsThisPer;
+	private Short inserHrs;
 	private String dtLInser;
 	private String interviewCd;
 	private String interviewLoc;
-	private String sourceNewPer;
-	private String noBudChg;
+	private Character sourceNewPer;
+	private Character noBudChg;
 	private String campusIdAlt;
-	private String deptAlt;
+	private Character deptAlt;
 	private String orgBud;
 	private String crimeHistDt;
 	private String crimeHistTyp;
-	private String crimeHistPost;
+	private Character crimeHistPost;
 	private String evaluator;
-	private String receive13th;
-	private String trs118Sel;
-	private String yrsExpPayStep;
-	private int estAnnualSalaryHrly;
+	private Character receive13th;
+	private Character trs118Sel;
+	private Character yrsExpPayStep;
+	private Integer estAnnualSalaryHrly;
 	private String estAnnualPayActy;
 	private String estAnnualFund;
 	private String estAnnualFunc;
 	private String estAnnualObj;
 	private String estAnnualOrg;
 	private String estAnnualPgm;
-	private String unempEligQtr1Mon1;
-	private String unempEligQtr1Mon2;
-	private String unempEligQtr1Mon3;
-	private String unempEligQtr2Mon1;
-	private String unempEligQtr2Mon2;
-	private String unempEligQtr2Mon3;
-	private String unempEligQtr3Mon1;
-	private String unempEligQtr3Mon2;
-	private String unempEligQtr3Mon3;
-	private String unempEligQtr4Mon1;
-	private String unempEligQtr4Mon2;
-	private String unempEligQtr4Mon3;
+	private Character unempEligQtr1Mon1;
+	private Character unempEligQtr1Mon2;
+	private Character unempEligQtr1Mon3;
+	private Character unempEligQtr2Mon1;
+	private Character unempEligQtr2Mon2;
+	private Character unempEligQtr2Mon3;
+	private Character unempEligQtr3Mon1;
+	private Character unempEligQtr3Mon2;
+	private Character unempEligQtr3Mon3;
+	private Character unempEligQtr4Mon1;
+	private Character unempEligQtr4Mon2;
+	private Character unempEligQtr4Mon3;
 	private String dtRetire;
-	private String takeRetSurchg;
-	private String nyTakeRetSurchg;
-	private String fngrprtStat;
+	private Character takeRetSurchg;
+	private Character nyTakeRetSurchg;
+	private Character fngrprtStat;
 	private String dtExtr;
 	private String dtFngrprt;
 	private String module;
-	private String ersRetHlthElig;
-	private String nyErsRetHlthElig;
-	private String elecConsntW2;
-	private String elecConsnt1095;
-	private String emplmntTypCd;
-	private String retEmplmntTypCd;
-	private String fullSem;
+	private Character ersRetHlthElig;
+	private Character nyErsRetHlthElig;
+	private Character elecConsntW2;
+	private Character elecConsnt1095;
+	private Character emplmntTypCd;
+	private Character retEmplmntTypCd;
+	private Character fullSem;
 	private String auxRoleId;
 
 	public BhrEmpEmply() {
 	}
 
-	public BhrEmpEmply(BhrEmpDemo bhrEmpDemo, String statCdEmpl, String dtOrgEmp, String yrsExpDist, String yrsExpDistLoc,
-			String yrsProExper, String yrsProExperLoc, String contrClass, String contrTerm, String contrYr,
-			String subTyp, BigDecimal dayEmpldPct, String dtReassign, String dtTerm, String termRea, String dtReEmp,
-			String lvOfAbsBegin, String lvOfAbsEnd, String lvRsn, String yrRound, String extractId, String eligRehire,
-			String highDegree, String gradesTaught, String campusCluster, String campusLvl, String dtPhyExam, String dtTbExam,
-			String totYrsExpClaim, short transReqNum, String transReqRsn, String verifyDob, String verifyService,
-			String verifyTrans, String verifyRef, String verifyCert, String verifyOath, String tcatYr, String tcatResult,
-			short hrsAboveDegree, short hrsThisPer, short inserHrs, String dtLInser, String interviewCd,
-			String interviewLoc, String sourceNewPer, String noBudChg, String campusIdAlt, String deptAlt, String orgBud,
-			String crimeHistDt, String crimeHistTyp, String crimeHistPost, String evaluator, String receive13th,
-			String trs118Sel, String yrsExpPayStep, int estAnnualSalaryHrly, String estAnnualPayActy, String estAnnualFund,
-			String estAnnualFunc, String estAnnualObj, String estAnnualOrg, String estAnnualPgm, String unempEligQtr1Mon1,
-			String unempEligQtr1Mon2, String unempEligQtr1Mon3, String unempEligQtr2Mon1, String unempEligQtr2Mon2,
-			String unempEligQtr2Mon3, String unempEligQtr3Mon1, String unempEligQtr3Mon2, String unempEligQtr3Mon3,
-			String unempEligQtr4Mon1, String unempEligQtr4Mon2, String unempEligQtr4Mon3, String dtRetire, String takeRetSurchg,
-			String nyTakeRetSurchg, String fngrprtStat, String dtExtr, String dtFngrprt, String module, String ersRetHlthElig,
-			String nyErsRetHlthElig, String elecConsntW2, String elecConsnt1095, String emplmntTypCd, String retEmplmntTypCd,
-			String fullSem, String auxRoleId) {
+	public BhrEmpEmply(BhrEmpDemo bhrEmpDemo, Character statCdEmpl, String dtOrgEmp, String yrsExpDist,
+			String yrsExpDistLoc, String yrsProExper, String yrsProExperLoc, String contrClass, String contrTerm,
+			String contrYr, String subTyp, BigDecimal dayEmpldPct, String dtReassign, String dtTerm, String termRea,
+			String dtReEmp, String lvOfAbsBegin, String lvOfAbsEnd, String lvRsn, Character yrRound, String extractId,
+			Character eligRehire, Character highDegree, String gradesTaught, Character campusCluster,
+			Character campusLvl, String dtPhyExam, String dtTbExam, String totYrsExpClaim, Short transReqNum,
+			Character transReqRsn, Character verifyDob, Character verifyService, Character verifyTrans,
+			Character verifyRef, Character verifyCert, Character verifyOath, String tcatYr, Character tcatResult,
+			Short hrsAboveDegree, Short hrsThisPer, Short inserHrs, String dtLInser, String interviewCd,
+			String interviewLoc, Character sourceNewPer, Character noBudChg, String campusIdAlt, Character deptAlt,
+			String orgBud, String crimeHistDt, String crimeHistTyp, Character crimeHistPost, String evaluator,
+			Character receive13th, Character trs118Sel, Character yrsExpPayStep, Integer estAnnualSalaryHrly,
+			String estAnnualPayActy, String estAnnualFund, String estAnnualFunc, String estAnnualObj,
+			String estAnnualOrg, String estAnnualPgm, Character unempEligQtr1Mon1, Character unempEligQtr1Mon2,
+			Character unempEligQtr1Mon3, Character unempEligQtr2Mon1, Character unempEligQtr2Mon2,
+			Character unempEligQtr2Mon3, Character unempEligQtr3Mon1, Character unempEligQtr3Mon2,
+			Character unempEligQtr3Mon3, Character unempEligQtr4Mon1, Character unempEligQtr4Mon2,
+			Character unempEligQtr4Mon3, String dtRetire, Character takeRetSurchg, Character nyTakeRetSurchg,
+			Character fngrprtStat, String dtExtr, String dtFngrprt, String module, Character ersRetHlthElig,
+			Character nyErsRetHlthElig, Character elecConsntW2, Character elecConsnt1095, Character emplmntTypCd,
+			Character retEmplmntTypCd, Character fullSem, String auxRoleId) {
 		this.bhrEmpDemo = bhrEmpDemo;
 		this.statCdEmpl = statCdEmpl;
 		this.dtOrgEmp = dtOrgEmp;
@@ -251,11 +256,11 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "STAT_CD_EMPL", nullable = false, length = 1)
-	public String getStatCdEmpl() {
+	public Character getStatCdEmpl() {
 		return this.statCdEmpl;
 	}
 
-	public void setStatCdEmpl(String statCdEmpl) {
+	public void setStatCdEmpl(Character statCdEmpl) {
 		this.statCdEmpl = statCdEmpl;
 	}
 
@@ -413,11 +418,11 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "YR_ROUND", nullable = false, length = 1)
-	public String getYrRound() {
+	public Character getYrRound() {
 		return this.yrRound;
 	}
 
-	public void setYrRound(String yrRound) {
+	public void setYrRound(Character yrRound) {
 		this.yrRound = yrRound;
 	}
 
@@ -431,20 +436,20 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "ELIG_REHIRE", nullable = false, length = 1)
-	public String getEligRehire() {
+	public Character getEligRehire() {
 		return this.eligRehire;
 	}
 
-	public void setEligRehire(String eligRehire) {
+	public void setEligRehire(Character eligRehire) {
 		this.eligRehire = eligRehire;
 	}
 
 	@Column(name = "HIGH_DEGREE", nullable = false, length = 1)
-	public String getHighDegree() {
+	public Character getHighDegree() {
 		return this.highDegree;
 	}
 
-	public void setHighDegree(String highDegree) {
+	public void setHighDegree(Character highDegree) {
 		this.highDegree = highDegree;
 	}
 
@@ -458,20 +463,20 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "CAMPUS_CLUSTER", nullable = false, length = 1)
-	public String getCampusCluster() {
+	public Character getCampusCluster() {
 		return this.campusCluster;
 	}
 
-	public void setCampusCluster(String campusCluster) {
+	public void setCampusCluster(Character campusCluster) {
 		this.campusCluster = campusCluster;
 	}
 
 	@Column(name = "CAMPUS_LVL", nullable = false, length = 1)
-	public String getCampusLvl() {
+	public Character getCampusLvl() {
 		return this.campusLvl;
 	}
 
-	public void setCampusLvl(String campusLvl) {
+	public void setCampusLvl(Character campusLvl) {
 		this.campusLvl = campusLvl;
 	}
 
@@ -503,74 +508,74 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "TRANS_REQ_NUM", nullable = false, precision = 3, scale = 0)
-	public short getTransReqNum() {
+	public Short getTransReqNum() {
 		return this.transReqNum;
 	}
 
-	public void setTransReqNum(short transReqNum) {
+	public void setTransReqNum(Short transReqNum) {
 		this.transReqNum = transReqNum;
 	}
 
 	@Column(name = "TRANS_REQ_RSN", nullable = false, length = 1)
-	public String getTransReqRsn() {
+	public Character getTransReqRsn() {
 		return this.transReqRsn;
 	}
 
-	public void setTransReqRsn(String transReqRsn) {
+	public void setTransReqRsn(Character transReqRsn) {
 		this.transReqRsn = transReqRsn;
 	}
 
 	@Column(name = "VERIFY_DOB", nullable = false, length = 1)
-	public String getVerifyDob() {
+	public Character getVerifyDob() {
 		return this.verifyDob;
 	}
 
-	public void setVerifyDob(String verifyDob) {
+	public void setVerifyDob(Character verifyDob) {
 		this.verifyDob = verifyDob;
 	}
 
 	@Column(name = "VERIFY_SERVICE", nullable = false, length = 1)
-	public String getVerifyService() {
+	public Character getVerifyService() {
 		return this.verifyService;
 	}
 
-	public void setVerifyService(String verifyService) {
+	public void setVerifyService(Character verifyService) {
 		this.verifyService = verifyService;
 	}
 
 	@Column(name = "VERIFY_TRANS", nullable = false, length = 1)
-	public String getVerifyTrans() {
+	public Character getVerifyTrans() {
 		return this.verifyTrans;
 	}
 
-	public void setVerifyTrans(String verifyTrans) {
+	public void setVerifyTrans(Character verifyTrans) {
 		this.verifyTrans = verifyTrans;
 	}
 
 	@Column(name = "VERIFY_REF", nullable = false, length = 1)
-	public String getVerifyRef() {
+	public Character getVerifyRef() {
 		return this.verifyRef;
 	}
 
-	public void setVerifyRef(String verifyRef) {
+	public void setVerifyRef(Character verifyRef) {
 		this.verifyRef = verifyRef;
 	}
 
 	@Column(name = "VERIFY_CERT", nullable = false, length = 1)
-	public String getVerifyCert() {
+	public Character getVerifyCert() {
 		return this.verifyCert;
 	}
 
-	public void setVerifyCert(String verifyCert) {
+	public void setVerifyCert(Character verifyCert) {
 		this.verifyCert = verifyCert;
 	}
 
 	@Column(name = "VERIFY_OATH", nullable = false, length = 1)
-	public String getVerifyOath() {
+	public Character getVerifyOath() {
 		return this.verifyOath;
 	}
 
-	public void setVerifyOath(String verifyOath) {
+	public void setVerifyOath(Character verifyOath) {
 		this.verifyOath = verifyOath;
 	}
 
@@ -584,38 +589,38 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "TCAT_RESULT", nullable = false, length = 1)
-	public String getTcatResult() {
+	public Character getTcatResult() {
 		return this.tcatResult;
 	}
 
-	public void setTcatResult(String tcatResult) {
+	public void setTcatResult(Character tcatResult) {
 		this.tcatResult = tcatResult;
 	}
 
 	@Column(name = "HRS_ABOVE_DEGREE", nullable = false, precision = 3, scale = 0)
-	public short getHrsAboveDegree() {
+	public Short getHrsAboveDegree() {
 		return this.hrsAboveDegree;
 	}
 
-	public void setHrsAboveDegree(short hrsAboveDegree) {
+	public void setHrsAboveDegree(Short hrsAboveDegree) {
 		this.hrsAboveDegree = hrsAboveDegree;
 	}
 
 	@Column(name = "HRS_THIS_PER", nullable = false, precision = 3, scale = 0)
-	public short getHrsThisPer() {
+	public Short getHrsThisPer() {
 		return this.hrsThisPer;
 	}
 
-	public void setHrsThisPer(short hrsThisPer) {
+	public void setHrsThisPer(Short hrsThisPer) {
 		this.hrsThisPer = hrsThisPer;
 	}
 
 	@Column(name = "INSER_HRS", nullable = false, precision = 3, scale = 0)
-	public short getInserHrs() {
+	public Short getInserHrs() {
 		return this.inserHrs;
 	}
 
-	public void setInserHrs(short inserHrs) {
+	public void setInserHrs(Short inserHrs) {
 		this.inserHrs = inserHrs;
 	}
 
@@ -647,20 +652,20 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "SOURCE_NEW_PER", nullable = false, length = 1)
-	public String getSourceNewPer() {
+	public Character getSourceNewPer() {
 		return this.sourceNewPer;
 	}
 
-	public void setSourceNewPer(String sourceNewPer) {
+	public void setSourceNewPer(Character sourceNewPer) {
 		this.sourceNewPer = sourceNewPer;
 	}
 
 	@Column(name = "NO_BUD_CHG", nullable = false, length = 1)
-	public String getNoBudChg() {
+	public Character getNoBudChg() {
 		return this.noBudChg;
 	}
 
-	public void setNoBudChg(String noBudChg) {
+	public void setNoBudChg(Character noBudChg) {
 		this.noBudChg = noBudChg;
 	}
 
@@ -674,11 +679,11 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "DEPT_ALT", nullable = false, length = 1)
-	public String getDeptAlt() {
+	public Character getDeptAlt() {
 		return this.deptAlt;
 	}
 
-	public void setDeptAlt(String deptAlt) {
+	public void setDeptAlt(Character deptAlt) {
 		this.deptAlt = deptAlt;
 	}
 
@@ -710,11 +715,11 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "CRIME_HIST_POST", nullable = false, length = 1)
-	public String getCrimeHistPost() {
+	public Character getCrimeHistPost() {
 		return this.crimeHistPost;
 	}
 
-	public void setCrimeHistPost(String crimeHistPost) {
+	public void setCrimeHistPost(Character crimeHistPost) {
 		this.crimeHistPost = crimeHistPost;
 	}
 
@@ -728,38 +733,38 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "RECEIVE_13TH", nullable = false, length = 1)
-	public String getReceive13th() {
+	public Character getReceive13th() {
 		return this.receive13th;
 	}
 
-	public void setReceive13th(String receive13th) {
+	public void setReceive13th(Character receive13th) {
 		this.receive13th = receive13th;
 	}
 
 	@Column(name = "TRS_118_SEL", nullable = false, length = 1)
-	public String getTrs118Sel() {
+	public Character getTrs118Sel() {
 		return this.trs118Sel;
 	}
 
-	public void setTrs118Sel(String trs118Sel) {
+	public void setTrs118Sel(Character trs118Sel) {
 		this.trs118Sel = trs118Sel;
 	}
 
 	@Column(name = "YRS_EXP_PAY_STEP", nullable = false, length = 1)
-	public String getYrsExpPayStep() {
+	public Character getYrsExpPayStep() {
 		return this.yrsExpPayStep;
 	}
 
-	public void setYrsExpPayStep(String yrsExpPayStep) {
+	public void setYrsExpPayStep(Character yrsExpPayStep) {
 		this.yrsExpPayStep = yrsExpPayStep;
 	}
 
 	@Column(name = "EST_ANNUAL_SALARY_HRLY", nullable = false, precision = 6, scale = 0)
-	public int getEstAnnualSalaryHrly() {
+	public Integer getEstAnnualSalaryHrly() {
 		return this.estAnnualSalaryHrly;
 	}
 
-	public void setEstAnnualSalaryHrly(int estAnnualSalaryHrly) {
+	public void setEstAnnualSalaryHrly(Integer estAnnualSalaryHrly) {
 		this.estAnnualSalaryHrly = estAnnualSalaryHrly;
 	}
 
@@ -818,110 +823,110 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "UNEMP_ELIG_QTR1_MON1", nullable = false, length = 1)
-	public String getUnempEligQtr1Mon1() {
+	public Character getUnempEligQtr1Mon1() {
 		return this.unempEligQtr1Mon1;
 	}
 
-	public void setUnempEligQtr1Mon1(String unempEligQtr1Mon1) {
+	public void setUnempEligQtr1Mon1(Character unempEligQtr1Mon1) {
 		this.unempEligQtr1Mon1 = unempEligQtr1Mon1;
 	}
 
 	@Column(name = "UNEMP_ELIG_QTR1_MON2", nullable = false, length = 1)
-	public String getUnempEligQtr1Mon2() {
+	public Character getUnempEligQtr1Mon2() {
 		return this.unempEligQtr1Mon2;
 	}
 
-	public void setUnempEligQtr1Mon2(String unempEligQtr1Mon2) {
+	public void setUnempEligQtr1Mon2(Character unempEligQtr1Mon2) {
 		this.unempEligQtr1Mon2 = unempEligQtr1Mon2;
 	}
 
 	@Column(name = "UNEMP_ELIG_QTR1_MON3", nullable = false, length = 1)
-	public String getUnempEligQtr1Mon3() {
+	public Character getUnempEligQtr1Mon3() {
 		return this.unempEligQtr1Mon3;
 	}
 
-	public void setUnempEligQtr1Mon3(String unempEligQtr1Mon3) {
+	public void setUnempEligQtr1Mon3(Character unempEligQtr1Mon3) {
 		this.unempEligQtr1Mon3 = unempEligQtr1Mon3;
 	}
 
 	@Column(name = "UNEMP_ELIG_QTR2_MON1", nullable = false, length = 1)
-	public String getUnempEligQtr2Mon1() {
+	public Character getUnempEligQtr2Mon1() {
 		return this.unempEligQtr2Mon1;
 	}
 
-	public void setUnempEligQtr2Mon1(String unempEligQtr2Mon1) {
+	public void setUnempEligQtr2Mon1(Character unempEligQtr2Mon1) {
 		this.unempEligQtr2Mon1 = unempEligQtr2Mon1;
 	}
 
 	@Column(name = "UNEMP_ELIG_QTR2_MON2", nullable = false, length = 1)
-	public String getUnempEligQtr2Mon2() {
+	public Character getUnempEligQtr2Mon2() {
 		return this.unempEligQtr2Mon2;
 	}
 
-	public void setUnempEligQtr2Mon2(String unempEligQtr2Mon2) {
+	public void setUnempEligQtr2Mon2(Character unempEligQtr2Mon2) {
 		this.unempEligQtr2Mon2 = unempEligQtr2Mon2;
 	}
 
 	@Column(name = "UNEMP_ELIG_QTR2_MON3", nullable = false, length = 1)
-	public String getUnempEligQtr2Mon3() {
+	public Character getUnempEligQtr2Mon3() {
 		return this.unempEligQtr2Mon3;
 	}
 
-	public void setUnempEligQtr2Mon3(String unempEligQtr2Mon3) {
+	public void setUnempEligQtr2Mon3(Character unempEligQtr2Mon3) {
 		this.unempEligQtr2Mon3 = unempEligQtr2Mon3;
 	}
 
 	@Column(name = "UNEMP_ELIG_QTR3_MON1", nullable = false, length = 1)
-	public String getUnempEligQtr3Mon1() {
+	public Character getUnempEligQtr3Mon1() {
 		return this.unempEligQtr3Mon1;
 	}
 
-	public void setUnempEligQtr3Mon1(String unempEligQtr3Mon1) {
+	public void setUnempEligQtr3Mon1(Character unempEligQtr3Mon1) {
 		this.unempEligQtr3Mon1 = unempEligQtr3Mon1;
 	}
 
 	@Column(name = "UNEMP_ELIG_QTR3_MON2", nullable = false, length = 1)
-	public String getUnempEligQtr3Mon2() {
+	public Character getUnempEligQtr3Mon2() {
 		return this.unempEligQtr3Mon2;
 	}
 
-	public void setUnempEligQtr3Mon2(String unempEligQtr3Mon2) {
+	public void setUnempEligQtr3Mon2(Character unempEligQtr3Mon2) {
 		this.unempEligQtr3Mon2 = unempEligQtr3Mon2;
 	}
 
 	@Column(name = "UNEMP_ELIG_QTR3_MON3", nullable = false, length = 1)
-	public String getUnempEligQtr3Mon3() {
+	public Character getUnempEligQtr3Mon3() {
 		return this.unempEligQtr3Mon3;
 	}
 
-	public void setUnempEligQtr3Mon3(String unempEligQtr3Mon3) {
+	public void setUnempEligQtr3Mon3(Character unempEligQtr3Mon3) {
 		this.unempEligQtr3Mon3 = unempEligQtr3Mon3;
 	}
 
 	@Column(name = "UNEMP_ELIG_QTR4_MON1", nullable = false, length = 1)
-	public String getUnempEligQtr4Mon1() {
+	public Character getUnempEligQtr4Mon1() {
 		return this.unempEligQtr4Mon1;
 	}
 
-	public void setUnempEligQtr4Mon1(String unempEligQtr4Mon1) {
+	public void setUnempEligQtr4Mon1(Character unempEligQtr4Mon1) {
 		this.unempEligQtr4Mon1 = unempEligQtr4Mon1;
 	}
 
 	@Column(name = "UNEMP_ELIG_QTR4_MON2", nullable = false, length = 1)
-	public String getUnempEligQtr4Mon2() {
+	public Character getUnempEligQtr4Mon2() {
 		return this.unempEligQtr4Mon2;
 	}
 
-	public void setUnempEligQtr4Mon2(String unempEligQtr4Mon2) {
+	public void setUnempEligQtr4Mon2(Character unempEligQtr4Mon2) {
 		this.unempEligQtr4Mon2 = unempEligQtr4Mon2;
 	}
 
 	@Column(name = "UNEMP_ELIG_QTR4_MON3", nullable = false, length = 1)
-	public String getUnempEligQtr4Mon3() {
+	public Character getUnempEligQtr4Mon3() {
 		return this.unempEligQtr4Mon3;
 	}
 
-	public void setUnempEligQtr4Mon3(String unempEligQtr4Mon3) {
+	public void setUnempEligQtr4Mon3(Character unempEligQtr4Mon3) {
 		this.unempEligQtr4Mon3 = unempEligQtr4Mon3;
 	}
 
@@ -935,29 +940,29 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "TAKE_RET_SURCHG", nullable = false, length = 1)
-	public String getTakeRetSurchg() {
+	public Character getTakeRetSurchg() {
 		return this.takeRetSurchg;
 	}
 
-	public void setTakeRetSurchg(String takeRetSurchg) {
+	public void setTakeRetSurchg(Character takeRetSurchg) {
 		this.takeRetSurchg = takeRetSurchg;
 	}
 
 	@Column(name = "NY_TAKE_RET_SURCHG", nullable = false, length = 1)
-	public String getNyTakeRetSurchg() {
+	public Character getNyTakeRetSurchg() {
 		return this.nyTakeRetSurchg;
 	}
 
-	public void setNyTakeRetSurchg(String nyTakeRetSurchg) {
+	public void setNyTakeRetSurchg(Character nyTakeRetSurchg) {
 		this.nyTakeRetSurchg = nyTakeRetSurchg;
 	}
 
 	@Column(name = "FNGRPRT_STAT", nullable = false, length = 1)
-	public String getFngrprtStat() {
+	public Character getFngrprtStat() {
 		return this.fngrprtStat;
 	}
 
-	public void setFngrprtStat(String fngrprtStat) {
+	public void setFngrprtStat(Character fngrprtStat) {
 		this.fngrprtStat = fngrprtStat;
 	}
 
@@ -989,65 +994,65 @@ public class BhrEmpEmply implements java.io.Serializable {
 	}
 
 	@Column(name = "ERS_RET_HLTH_ELIG", nullable = false, length = 1)
-	public String getErsRetHlthElig() {
+	public Character getErsRetHlthElig() {
 		return this.ersRetHlthElig;
 	}
 
-	public void setErsRetHlthElig(String ersRetHlthElig) {
+	public void setErsRetHlthElig(Character ersRetHlthElig) {
 		this.ersRetHlthElig = ersRetHlthElig;
 	}
 
 	@Column(name = "NY_ERS_RET_HLTH_ELIG", nullable = false, length = 1)
-	public String getNyErsRetHlthElig() {
+	public Character getNyErsRetHlthElig() {
 		return this.nyErsRetHlthElig;
 	}
 
-	public void setNyErsRetHlthElig(String nyErsRetHlthElig) {
+	public void setNyErsRetHlthElig(Character nyErsRetHlthElig) {
 		this.nyErsRetHlthElig = nyErsRetHlthElig;
 	}
 
 	@Column(name = "ELEC_CONSNT_W2", nullable = false, length = 1)
-	public String getElecConsntW2() {
+	public Character getElecConsntW2() {
 		return this.elecConsntW2;
 	}
 
-	public void setElecConsntW2(String elecConsntW2) {
+	public void setElecConsntW2(Character elecConsntW2) {
 		this.elecConsntW2 = elecConsntW2;
 	}
 
 	@Column(name = "ELEC_CONSNT_1095", nullable = false, length = 1)
-	public String getElecConsnt1095() {
+	public Character getElecConsnt1095() {
 		return this.elecConsnt1095;
 	}
 
-	public void setElecConsnt1095(String elecConsnt1095) {
+	public void setElecConsnt1095(Character elecConsnt1095) {
 		this.elecConsnt1095 = elecConsnt1095;
 	}
 
 	@Column(name = "EMPLMNT_TYP_CD", nullable = false, length = 1)
-	public String getEmplmntTypCd() {
+	public Character getEmplmntTypCd() {
 		return this.emplmntTypCd;
 	}
 
-	public void setEmplmntTypCd(String emplmntTypCd) {
+	public void setEmplmntTypCd(Character emplmntTypCd) {
 		this.emplmntTypCd = emplmntTypCd;
 	}
 
 	@Column(name = "RET_EMPLMNT_TYP_CD", nullable = false, length = 1)
-	public String getRetEmplmntTypCd() {
+	public Character getRetEmplmntTypCd() {
 		return this.retEmplmntTypCd;
 	}
 
-	public void setRetEmplmntTypCd(String retEmplmntTypCd) {
+	public void setRetEmplmntTypCd(Character retEmplmntTypCd) {
 		this.retEmplmntTypCd = retEmplmntTypCd;
 	}
 
 	@Column(name = "FULL_SEM", nullable = false, length = 1)
-	public String getFullSem() {
+	public Character getFullSem() {
 		return this.fullSem;
 	}
 
-	public void setFullSem(String fullSem) {
+	public void setFullSem(Character fullSem) {
 		this.fullSem = fullSem;
 	}
 
