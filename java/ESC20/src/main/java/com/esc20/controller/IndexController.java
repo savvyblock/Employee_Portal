@@ -181,8 +181,6 @@ public class IndexController {
     	newUser.setHintCnt(0);
     	newUser.setCmpId(0);
     	
-//    	BhrEmpDemo bed= this.indexService.retrieveEmployee(searchUser);
-    	
     	BeaUsers user=indexService.getUserByUsername(req.getParameter("username"));
     	if(user!=null) {
     		mav.setViewName("createNewUser");
@@ -191,7 +189,7 @@ public class IndexController {
     	    mav.addObject("isUserExist", "true");
     	}else {
     		indexService.saveBeaUsers(newUser);
-    		mav.setViewName("createNewUser");
+    		mav.setViewName("index");
     	    mav.addObject("user", user);
     	    mav.addObject("newUser", newUser);
     	    mav.addObject("isSuccess", "true");
