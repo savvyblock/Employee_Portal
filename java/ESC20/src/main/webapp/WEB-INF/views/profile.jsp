@@ -14,7 +14,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <div class="content-white no-title profile">
                         <div class="profile-item first-child">
                             <div class="profile-title" >
-                                <div id="changeAvatar" >
+                                <div>
                                         <div
                                         class="avatar"
                                         id="imgContentImg"
