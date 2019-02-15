@@ -26,6 +26,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         </div>
         <%@ include file="../commons/footer.jsp"%>
         <%@ include file="../modal/eventModal.jsp"%>
+        <%@ include file="../modal/deleteModal.jsp"%>
     </body>
     <script>
         $(document).ready(function() {
@@ -164,6 +165,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     )
                 }
             })
+        
+            $(".sureDelete").click(function(){
+					$("#deleteForm")[0].submit();
+				})
         })
         function newEvent(dom){
             $('.dateValidator').hide()

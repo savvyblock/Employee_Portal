@@ -155,10 +155,12 @@
 	</div>
 	<%@ include file="../commons/footer.jsp"%>
 	<%@ include file="../modal/eventModal.jsp"%>
+	<%@ include file="../modal/deleteModal.jsp"%>
 </body>
 
 <script>
 	var leaveList = eval(${leaves});
+	var currentChooseId
 	console.log(leaveList)
 	$(document).ready(
 			function() {
@@ -205,6 +207,9 @@
 					}
 				})
 				.data('datepicker')
+				$(".sureDelete").click(function(){
+					$("#deleteForm")[0].submit();
+				})
 			});
 	
 		function editLeave(id,leaveType,absenceReason,leaveStartDate,leaveEndDate,lvUnitsDaily,lvUnitsUsed){
@@ -264,8 +269,9 @@
 			}
 		
 		function deleteLeave(id){
+			// currentChooseId = id
 			$("#deleteId").val(id);
-			$("#deleteForm").submit();
+			$("#deleteModal").modal("show")
 		}
 
 		function changeMMDDFormat(date){
