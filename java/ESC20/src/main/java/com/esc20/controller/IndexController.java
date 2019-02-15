@@ -68,6 +68,7 @@ public class IndexController {
     
     @Autowired
     private BankService bankService;
+    
     private static ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
     
     @RequestMapping(value="", method=RequestMethod.GET)
