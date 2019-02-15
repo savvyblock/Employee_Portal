@@ -37,10 +37,12 @@ import com.esc20.model.BeaMrtlStat;
 import com.esc20.model.BeaRestrict;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
+import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.SearchUser;
+import com.esc20.service.BankService;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
@@ -48,6 +50,7 @@ import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sf.json.util.JSONUtils;
 import sun.misc.BASE64Decoder;
 
 @Controller
@@ -61,6 +64,9 @@ public class IndexController {
 
     @Autowired
     private ReferenceService referenceService;
+    
+    @Autowired
+    private BankService bankService;
     
     @RequestMapping(value="", method=RequestMethod.GET)
     public ModelAndView getIndexPage(ModelAndView mav){
@@ -221,6 +227,30 @@ public class IndexController {
     	}
     	
         return mav;
+    }
+    
+    @RequestMapping("getAllBanks")
+    @ResponseBody
+    public JSONArray getAllBanks(HttpServletRequest req){
+    	List<BthrBankCodes> banks = bankService.getAllBanks();
+    	JSONArray json = JSONArray.fromObject(banks); 
+        return json;
+    }
+    
+    @RequestMapping("getBanks")
+    @ResponseBody
+    public JSONArray getBanks(HttpServletRequest req){
+    	
+    	String routingNumber = req.getParameter("routingNumber");
+    	String bankName = req.getParameter("bankName");
+    	
+    	BthrBankCodes bbc= new BthrBankCodes();
+    	bbc.setTransitRoute(routingNumber);
+    	bbc.setBankName(bankName);
+    	
+    	List<BthrBankCodes> banks = bankService.getBanksByEntity(bbc);
+    	JSONArray json = JSONArray.fromObject(banks); 
+        return json;
     }
     
 	@RequestMapping("forgetPassword")

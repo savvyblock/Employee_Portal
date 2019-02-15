@@ -20,7 +20,7 @@ public class BankDao {
         return sessionFactory.openSession();
     }
     
-    public List<BthrBankCodes> getAll(String empNbr) {
+    public List<BthrBankCodes> getAll() {
     	Session session = this.sessionFactory.getCurrentSession();
         String hql = "from BthrBankCodes order by bankName ASC" ;
         Query q = session.createQuery(hql);
@@ -31,7 +31,7 @@ public class BankDao {
     	return result;
     }
     
-    public List<BthrBankCodes> getBanksBy(BthrBankCodes bbc) {
+    public List<BthrBankCodes> getBanksByEntity(BthrBankCodes bbc) {
     	Session session = this.sessionFactory.getCurrentSession();
         String hql = "from BthrBankCodes where 1=1 " ;
         
