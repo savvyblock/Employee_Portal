@@ -417,7 +417,7 @@
 }
 
 .navbar-badge {
-  display: inline-block;
+  display: none;
   line-height: 1;
   text-align: center;
   white-space: nowrap;
