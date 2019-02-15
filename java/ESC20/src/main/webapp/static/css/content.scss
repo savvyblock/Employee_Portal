@@ -741,7 +741,14 @@
         }
     }
 }
-
+.body-1095{
+    .table.border-table tbody td{
+        text-align: left
+    }
+    .table.border-table tbody th{
+        text-align: left
+    }
+}
 @media print {
     .print-block-table{
         display: table;

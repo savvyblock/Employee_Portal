@@ -14,7 +14,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <div class="content-white no-title profile">
                         <div class="profile-item first-child">
                             <div class="profile-title" >
-                                <div id="changeAvatar" >
+                                <div>
                                         <div
                                         class="avatar"
                                         id="imgContentImg"
@@ -165,7 +165,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <button
                                             type="button"
                                             id="undoNameRequest"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -229,7 +229,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoMaritalRequest"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -313,7 +313,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoDriverLicense"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -367,8 +367,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 id="restrictionCodesPublicRestriction"
                                                 name="restrictCdPublicNew"
                                                 class="form-control"
-                                                style="width:188px"
                                                 title=""
+                                                style="width:188px"
                                                 data-localize="profile.restrictionCodesPublic"
                                             >
                                             <c:forEach var="restriction" items="${restrictionsOptions}" varStatus="count">
@@ -399,7 +399,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoRestriction"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -477,7 +477,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoEmail"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -624,7 +624,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoEmergencyContact"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -796,7 +796,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoMailingAddress"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -968,7 +968,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoAlternative"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -1118,7 +1118,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoPhoneNumber"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -1214,7 +1214,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id=""
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -1393,7 +1393,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id=""
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
