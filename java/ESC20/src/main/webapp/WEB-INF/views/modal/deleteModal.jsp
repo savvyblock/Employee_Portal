@@ -25,17 +25,16 @@
               
                       <div class="modal-body">
                       
-                        <p data-localize="label.areYouRescind"></p>
+                        <p data-localize="label.areYouDelete"></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button"  class="btn btn-primary sureUndo" data-localize="label.ok">
+                        <button type="button"  class="btn btn-primary sureDelete" data-localize="label.ok">
                         </button>
                         <button
                           type="button"
                             class="btn btn-secondary"
                             data-dismiss="modal"
                             aria-hidden="true"
-                            id="cancelAdd"
                             data-localize="label.cancel"
                         >
                         </button>
