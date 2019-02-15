@@ -335,7 +335,7 @@ public class IndexController {
         	return this.getIndexPage(mav);
         }
         getProfileDetails(session, mav);
-        mav.addObject("decryptedPwd",this.decrypt(user.getUsrpswd()));
+        mav.addObject("decryptedPwd",user.getUsrpswd());
         return mav;
     }
 

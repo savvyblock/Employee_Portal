@@ -86,7 +86,7 @@ public class AlertDao {
 
 	public void deleteAlert(String id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		BeaAlert alert = (BeaAlert) session.get(BeaAlert.class, id);
+		BeaAlert alert = (BeaAlert) session.get(BeaAlert.class, Long.parseLong(id));
 		session.delete(alert);
 		session.flush();
 	}
