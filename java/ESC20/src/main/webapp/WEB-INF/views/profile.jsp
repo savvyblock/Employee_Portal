@@ -53,7 +53,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     autofocus
                                                 >
                                                 <c:forEach var="title" items="${titleOptions}" varStatus="count">
-                                                    <option value="${title.description}" <c:if test="${title.description == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
+                                                    <option value="${title.code}" <c:if test="${title.code == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
                                                 </c:forEach>
                                                 </select>
                                             </div>
@@ -138,7 +138,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="generation"
                                                 >
                                                     <c:forEach var="gen" items="${generationOptions}" varStatus="count">
-                                                        <option value="${gen.description}" <c:if test="${gen.description == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                        <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -1682,7 +1682,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             class="btn btn-secondary"
                             data-dismiss="modal"
                             aria-hidden="true"
-                            id="cancelAdd"
                             data-localize="label.cancel"
                         >
                         
@@ -1697,6 +1696,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <script>
         let bank01, bank02
         var formSelect
+        var formUndoSelect
         $(function() {
             personalValidator()
             maritalStatusValidator()
@@ -1799,7 +1799,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $('#undoModal').modal('show')
                 formSelect = "deleteNameRequest"
             })
-            $("#undoMaritalRequest").click(function(){
+            $("#undoMaritalRequest").click(function(e){
+            	e.preventDefault();
                 $('#undoModal').modal('show')
                 formSelect = "deleteMaritalRequest"
             })

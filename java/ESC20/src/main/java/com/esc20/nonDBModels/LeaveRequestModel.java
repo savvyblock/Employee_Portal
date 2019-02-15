@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.springframework.util.CollectionUtils;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -147,10 +149,18 @@ public class LeaveRequestModel implements Serializable {
 		return end;
 	}
 
-	public JSONObject toJSON(List<Code> leaveStatus) {
+	public JSONObject toJSON(List<Code> leaveStatus, List<Code> leaveTypes) {
 		JSONObject jo = new JSONObject();
 		jo.put("id", this.getId());
-		jo.put("title", "Leave");
+		String title = "Leave";
+		if (!CollectionUtils.isEmpty(leaveTypes)) {
+			for (Code type : leaveTypes) {
+				if (type.getCode().equals(this.getLeaveType())) {
+					title = type.getDescription();
+				}
+			}
+		}
+		jo.put("title", title);
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
 		jo.put("LeaveType", this.getLeaveType());
 		jo.put("AbsenseReason", this.getAbsenseReason());
