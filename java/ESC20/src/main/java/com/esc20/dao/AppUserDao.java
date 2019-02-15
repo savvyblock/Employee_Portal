@@ -701,17 +701,24 @@ public class AppUserDao {
 	
 	public BhrEmpDemo retrieveEmployee(SearchUser searchUser) 
 	{
-		
+		BhrEmpDemo demo = new BhrEmpDemo();
 		Session session = this.getSession();
 		Query q;
-		String sql= "from BhrEmpDemo where empNbr =:empNbr and dob =:dob  and addrZip =:addrZip";
+		String sql= "select email,nameF,nameL from BhrEmpDemo where empNbr =:empNbr and dob =:dob  and addrZip =:addrZip";
         q = session.createQuery(sql);
         q.setParameter("empNbr", searchUser.getEmpNumber());
         q.setParameter("dob", searchUser.getSearchFormattedDateofBirth());
         q.setParameter("addrZip", searchUser.getZipCode());
-        BhrEmpDemo res = (BhrEmpDemo) q.uniqueResult();
+        Object[] res = (Object[]) q.uniqueResult();
+        if(res==null)
+        	return null;
+        else {
+        	demo.setEmail((String) res[0]);
+        	demo.setNameF((String) res[1]);
+        	demo.setNameL((String) res[2]);
+        }
         session.close();
-        return res;
+        return demo;
 	}
 	
 }

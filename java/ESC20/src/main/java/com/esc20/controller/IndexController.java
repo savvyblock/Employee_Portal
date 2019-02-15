@@ -63,6 +63,8 @@ public class IndexController {
     @Autowired
     private ReferenceService referenceService;
     
+    private static ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
+    
     @RequestMapping(value="", method=RequestMethod.GET)
     public ModelAndView getIndexPage(ModelAndView mav){
         mav.setViewName("index");
@@ -78,8 +80,8 @@ public class IndexController {
             String uName = param.get("userName");
             BeaUsers user = this.indexService.getUserPwd(uName);
             String plainTextPwd = param.get("userPwd");
-            ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
-            plainTextPwd = encoder.encodePassword(this.encrypt(plainTextPwd),null);
+            
+            plainTextPwd = encoder.encodePassword(plainTextPwd,null);
             if(user != null && user.getUsrpswd().equals(plainTextPwd)){
                 res.put("isSuccess","true");
                 res.put("userName", uName);
@@ -161,14 +163,14 @@ public class IndexController {
     	newUser.setEmpNbr(req.getParameter("empNumber"));
     	newUser.setUsrname(req.getParameter("username"));//username
     	newUser.setHint(req.getParameter("hintQuestion"));//hintQuestion
-    	newUser.setHintAns(encoder.encodePassword(this.encrypt(req.getParameter("hintAnswer")),null));//  hintAnswer
+    	newUser.setHintAns(encoder.encodePassword(req.getParameter("hintAnswer"),null));//  hintAnswer
     	//newUser.setUserEmail(req.getParameter("workEmail"));//workEmail
-    	newUser.setUsrpswd(encoder.encodePassword(this.encrypt(req.getParameter("password")),null));
+    	newUser.setUsrpswd(encoder.encodePassword(req.getParameter("password"),null));
     	
     	newUser.setLkPswd('N');
     	newUser.setPswdCnt(0);
     	newUser.setLkFnl('N');
-    	newUser.setTmpDts("N");
+    	newUser.setTmpDts("");
     	newUser.setTmpCnt(0);
     	newUser.setHintCnt(0);
     	newUser.setCmpId(0);
@@ -264,7 +266,6 @@ public class IndexController {
         	mav = new ModelAndView("redirect:/profile");
         	return mav;
         }
-        ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
     	user.setUsrpswd(encoder.encodePassword(this.encrypt(password),null));
     	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
     	this.indexService.updateUser(user);
