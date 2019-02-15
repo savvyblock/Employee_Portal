@@ -155,7 +155,7 @@
                             </div>
                         </div>
                     <div class="form-group">
-                        <label class="form-title"><span data-localize="leaveRequest.remark"></span>: </label>
+                        <label class="form-title" for="Remarks"><span data-localize="leaveRequest.remark"></span>: </label>
                         <div class="valid-wrap">
                                 <div class="commentsList" id="commentList">
                                         
@@ -334,9 +334,9 @@
                 },
                 Remarks: {
                     validators: {
-                        // notEmpty: {
-                        //     message: 'validator.remarksCannotBeEmpty'
-                        // }
+                         notEmpty: {
+                             message: 'validator.remarksCannotBeEmpty'
+                         }
                     }
                 }
             }
