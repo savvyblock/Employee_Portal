@@ -137,12 +137,10 @@ public class LeaveRequestController {
 		}
 		request.setLvTyp(SearchType);
 		if (SearchStart != null && !("").equals(SearchStart)) {
-			SearchStart = SearchStart + " 00:00:00";
-			request.setDatetimeFrom(sdf1.parse(SearchStart));
+			request.setDatetimeFrom(sdf1.parse(SearchStart + " 00:00:00"));
 		}
 		if (SearchEnd != null && !("").equals(SearchEnd)) {
-			SearchEnd = SearchEnd + " 24:59:59";
-			request.setDatetimeTo(sdf1.parse(SearchEnd));
+			request.setDatetimeTo(sdf1.parse(SearchEnd + " 23:59:59"));
 		}
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
 		if (freq == null || ("").equals(freq)) {
