@@ -74,11 +74,11 @@ public class LeaveRequestController {
 					model = new LeaveRequestModel(requests.get(i));
 					requestModels.add(model);
 				}
+				List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
 				for (int i = 0; i < requestModels.size(); i++) {
-					json.add(requestModels.get(i).toJSON(leaveStatus));
+					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
 				}
 				List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
-				List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
 				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
 				mav.addObject("selectedFreq", freq);
 				mav.addObject("absRsns", absRsns);
@@ -96,11 +96,11 @@ public class LeaveRequestController {
 				model = new LeaveRequestModel(requests.get(i));
 				requestModels.add(model);
 			}
+			List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
 			for (int i = 0; i < requestModels.size(); i++) {
-				json.add(requestModels.get(i).toJSON(leaveStatus));
+				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
 			}
 			List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
-			List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
 			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
 			mav.addObject("selectedFreq", freq);
 			mav.addObject("absRsns", absRsns);
@@ -153,13 +153,13 @@ public class LeaveRequestController {
 					model = new LeaveRequestModel(requests.get(i));
 					requestModels.add(model);
 				}
-				JSONArray json = new JSONArray();
-				for (int i = 0; i < requestModels.size(); i++) {
-					json.add(requestModels.get(i).toJSON(leaveStatus));
-				}
 				List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
 				List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
 				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
+				JSONArray json = new JSONArray();
+				for (int i = 0; i < requestModels.size(); i++) {
+					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
+				}
 				mav.addObject("selectedFreq", freq);
 				mav.addObject("absRsns", absRsns);
 				mav.addObject("leaveTypes", leaveTypes);
@@ -174,13 +174,13 @@ public class LeaveRequestController {
 				model = new LeaveRequestModel(requests.get(i));
 				requestModels.add(model);
 			}
-			JSONArray json = new JSONArray();
-			for (int i = 0; i < requestModels.size(); i++) {
-				json.add(requestModels.get(i).toJSON(leaveStatus));
-			}
 			List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
 			List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
 			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
+			JSONArray json = new JSONArray();
+			for (int i = 0; i < requestModels.size(); i++) {
+				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
+			}
 			mav.addObject("selectedFreq", freq);
 			mav.addObject("leaves", json);
 			mav.addObject("absRsns", absRsns);

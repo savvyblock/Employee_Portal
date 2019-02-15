@@ -66,7 +66,7 @@ public class LeaveRequestDao {
 		if (request.getLvTyp() != null && !request.getLvTyp().equals(""))
 			sql.append(" and ELR.lvTyp = :type ");
 		if (request.getDatetimeFrom() != null)
-			sql.append(" and ELR.datetimeFrom >= :startDate");
+			sql.append(" and ELR.datetimeFrom >= :startDate ");
 		if (request.getDatetimeTo() != null)
 			sql.append(" and ELR.datetimeTo <= :endDate ");
 		sql.append("ORDER BY ELR.datetimeFrom DESC");
