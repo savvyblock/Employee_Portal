@@ -1090,6 +1090,18 @@
   }
 }
 
+#changeAvatar .avatar-file {
+  display: block;
+  padding: 6px 12px;
+  color: #757575;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+
+#changeAvatar .showUploadImg {
+  max-width: 150px;
+}
+
 @media (max-width: 1150px) {
   .profile .profile-item.first-child .profile-title {
     padding-bottom: 25px;
@@ -1140,6 +1152,7 @@
   text-align: center;
   color: #fff;
   font-size: 14px;
+  border: 0;
 }
 
 .profile .sub-title {

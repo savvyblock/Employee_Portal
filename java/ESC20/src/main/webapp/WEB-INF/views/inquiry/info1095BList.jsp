@@ -195,15 +195,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             <tr>
                 <td colspan="17">
                         <div class="pageGroup">
-                                <button class="pageBtn firstPate" title="" data-localize="label.firstPage" onclick="changePage(1)"
+                                <button class="pageBtn firstPate" title="" data-localize="label.firstPage" onclick="changePage(1)"  data-localize-location="title"
                                         <c:if test="${ BPageNo ==1 }">disabled</c:if>>
                                         <i class="fa fa-angle-double-left "></i>
                                 </button>  
-                                <button class="pageBtn prevPage" title="" data-localize="label.prevPage" onclick="changePage(${BPageNo - 1})"
+                                <button class="pageBtn prevPage" title="" data-localize="label.prevPage" onclick="changePage(${BPageNo - 1})"  data-localize-location="title"
                                         <c:if test="${ BPageNo ==1  }">disabled</c:if>>
                                         <i class="fa fa-angle-left "></i>
                                 </button>
-                                <select class="selectPage" name="page" id="pageNow" title="" data-localize="label.choosePage" onchange="changePage()">
+                                <select class="selectPage" name="page" id="pageNow" title="" data-localize="label.choosePage" onchange="changePage()"  data-localize-location="title">
                                         <c:forEach  var="page"  begin="1" end="${BTotal}">
                                         <option value="${page}" <c:if test="${page == BPageNo }">selected</c:if>>${page}</option>
                                         </c:forEach>
@@ -212,11 +212,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <span class="slash">/</span>
                                         <span class="totalPate">${BTotal}</span>
                                 </div>
-                                <button class="pageBtn nextPate" title="" data-localize="label.nextPage"  onclick="changePage(${BPageNo + 1})"
+                                <button class="pageBtn nextPate" title="" data-localize="label.nextPage"  onclick="changePage(${BPageNo + 1})"  data-localize-location="title"
                                         <c:if test="${BPageNo == BTotal  }">disabled</c:if>>
                                                 <i class="fa fa-angle-right "></i>
                                 </button>
-                                <button class="pageBtn lastPate" title="" data-localize="label.lastPage"  onclick="changePage(${BTotal})"
+                                <button class="pageBtn lastPate" title="" data-localize="label.lastPage"  onclick="changePage(${BTotal})"  data-localize-location="title"
                                         <c:if test="${BPageNo == BTotal   }">disabled</c:if>>
                                                 <i class="fa fa-angle-double-right"></i>
                                 </button>

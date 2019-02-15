@@ -195,15 +195,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             <tr>
                         <td colspan="17">
                                 <div class="pageGroup">
-                                        <button class="pageBtn firstPate" title="" data-localize="label.firstPage" onclick="changePage(1)"
+                                        <button class="pageBtn firstPate" title="" data-localize="label.firstPage" onclick="changePage(1)"  data-localize-location="title"
                                                 <c:if test="${ CPageNo ==1 }">disabled</c:if>>
                                                 <i class="fa fa-angle-double-left "></i>
                                         </button>  
-                                        <button class="pageBtn prevPage" title="" data-localize="label.prevPage" onclick="changePage(${CPageNo - 1})"
+                                        <button class="pageBtn prevPage" title="" data-localize="label.prevPage" onclick="changePage(${CPageNo - 1})"  data-localize-location="title"
                                                 <c:if test="${ CPageNo ==1  }">disabled</c:if>>
                                                 <i class="fa fa-angle-left "></i>
                                         </button>
-                                        <select class="selectPage" name="page" id="pageNow" title="" data-localize="label.choosePage" onchange="changePage()">
+                                        <select class="selectPage" name="page" id="pageNow" title="" data-localize="label.choosePage" onchange="changePage()"  data-localize-location="title">
                                                 <c:forEach  var="page"  begin="1" end="${CTotal}">
                                                 <option value="${page}" <c:if test="${page == CPageNo }">selected</c:if>>${page}</option>
                                                 </c:forEach>
@@ -212,11 +212,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <span class="slash">/</span>
                                                 <span class="totalPate">${CTotal}</span>
                                         </div>
-                                        <button class="pageBtn nextPate" title="" data-localize="label.nextPage"  onclick="changePage(${CPageNo + 1})"
+                                        <button class="pageBtn nextPate" title="" data-localize="label.nextPage"  onclick="changePage(${CPageNo + 1})"  data-localize-location="title"
                                                 <c:if test="${CPageNo == CTotal  }">disabled</c:if>>
                                                         <i class="fa fa-angle-right "></i>
                                         </button>
-                                        <button class="pageBtn lastPate" title="" data-localize="label.lastPage"  onclick="changePage(${CTotal})"
+                                        <button class="pageBtn lastPate" title="" data-localize="label.lastPage"  onclick="changePage(${CTotal})"  data-localize-location="title"
                                                 <c:if test="${CPageNo == CTotal   }">disabled</c:if>>
                                                         <i class="fa fa-angle-double-right"></i>
                                         </button>
