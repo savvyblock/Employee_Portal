@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
     <head>
         <title data-localize="headTitle.deductions"></title>
@@ -52,9 +53,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <tr>
                                                             <td data-localize="deductionsTable.deductionCode" data-localize-location="scope">${deduct.dedCd}</td>
                                                             <td data-localize="deductionsTable.description" data-localize-location="scope">${deduct.dedCdDesc}</td>
-                                                            <td data-localize="deductionsTable.amount" data-localize-location="scope">${deduct.empAmt}</td>
+                                                            <td data-localize="deductionsTable.amount" data-localize-location="scope">
+                                                                <fmt:formatNumber value="${deduct.empAmt}" pattern="#,##0.00"/>
+                                                            </td>
                                                             <td data-localize="deductionsTable.cafeteriaFlag" data-localize-location="scope">${deduct.cafeFlgStr}</td>
-                                                            <td data-localize="deductionsTable.employerContributionAmount" data-localize-location="scope">${deduct.emplrAmt}</td>
+                                                            <td data-localize="deductionsTable.employerContributionAmount" data-localize-location="scope">
+                                                                <fmt:formatNumber value="${deduct.emplrAmt}" pattern="#,##0.00"/>
+                                                            </td>
                                                         </tr>
                                                     </c:forEach>
                                             </tbody>

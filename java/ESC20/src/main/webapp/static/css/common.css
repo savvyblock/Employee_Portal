@@ -865,6 +865,13 @@ input:focus {
   padding: 1rem;
 }
 
+.modal-body .warn-icon {
+  font-size: 50px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #c55459;
+}
+
 @media (max-width: 425px) {
   .modal-body {
     padding: 10px;
@@ -886,6 +893,15 @@ input:focus {
   .modal-footer {
     padding: 1rem 2px;
   }
+}
+
+.warn-modal .modal-footer {
+  justify-content: center;
+  border-top: 0;
+}
+
+.warn-modal .modal-footer .btn {
+  min-width: 70px;
 }
 
 .modal-footer > :not(:first-child) {

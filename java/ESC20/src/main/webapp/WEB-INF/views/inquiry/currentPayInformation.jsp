@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
     <head>
         <title data-localize="headTitle.currentPayInfo"></title>
@@ -232,7 +233,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </td>
                                                 <td class="td-title" data-localize="currentPayTable.regularHour"></td>
                                                 <td class="td-content" data-title="Regular Hours" data-localize="currentPayTable.regularHour">
-                                                        ${job.regHrsWrk}
+                                                        <fmt:formatNumber value="${job.regHrsWrk}" pattern="#,##0.00"/>
                                                 </td>
                                                 <td class="td-title" data-localize="currentPayTable.remailPayments"></td>
                                                 <td class="td-content" data-title="Remain Payments" data-localize="currentPayTable.remailPayments">
@@ -242,19 +243,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <tr>
                                                 <td class="td-title" data-localize="currentPayTable.annualSalary"></td>
                                                 <td class="td-content" data-title="Annual Salary" data-localize="currentPayTable.annualSalary">
-                                                        ${job.contrAmt}
+                                                        <fmt:formatNumber value="${job.contrAmt}" pattern="#,##0.00"/>
                                                 </td>
                                                 <td class="td-title" data-localize="currentPayTable.dailyRate"></td>
                                                 <td class="td-content" data-title="Daily Rate" data-localize="currentPayTable.dailyRate">
-                                                        ${job.dlyRateofPay}
+                                                        <fmt:formatNumber value="${job.dlyRateofPay}" pattern="#,##0.00"/>
                                                 </td>
                                                 <td class="td-title" data-localize="currentPayTable.payRate"></td>
                                                 <td class="td-content" data-title="Pay Rate" data-localize="currentPayTable.payRate">
-                                                        ${job.payRate}
+                                                        <fmt:formatNumber value="${job.payRate}" pattern="#,##0.00"/>
                                                 </td>
                                                 <td class="td-title" data-localize="currentPayTable.overtimeRate"></td>
                                                 <td class="td-content" data-title="Overtime Rate" data-localize="currentPayTable.overtimeRate">
-                                                        ${job.ovtmRate}
+                                                        <fmt:formatNumber value="${job.ovtmRate}" pattern="#,##0.00"/>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -291,7 +292,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 ${account.bankAccountNumber}
                                                         </td>
                                                         <td data-title="Deposit Amount" data-localize="currentPayTable.depAmt" data-localize-location="scope">
-                                                                ${account.bankAccountAmount}
+                                                                <fmt:formatNumber value="${account.bankAccountAmount}" pattern="#,##0.00"/>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -323,13 +324,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 ${stipend.defaultAccountType}
                                                         </td>
                                                         <td data-title="" data-localize="currentPayTable.amount" data-localize-location="scope">
-                                                                ${stipend.extraDutyAmt}
+                                                                <fmt:formatNumber value="${stipend.extraDutyAmt}" pattern="#,##0.00"/>
                                                         </td>
                                                         <td data-title="" data-localize="currentPayTable.remainAmount" data-localize-location="scope">
-                                                                ${stipend.remainAmt}
+                                                                <fmt:formatNumber value="${stipend.remainAmt}" pattern="#,##0.00"/>
                                                         </td>
                                                         <td data-title="" data-localize="currentPayTable.remainPayments" data-localize-location="scope">
-                                                                ${stipend.remainPayments}
+                                                                <fmt:formatNumber value="${stipend.remainPayments}" pattern="#,##0.00"/>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

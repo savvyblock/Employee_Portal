@@ -218,15 +218,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     </body>
     <script>
         var directReportEmployee = eval(${directReportEmployee});
+        console.log(directReportEmployee)
         var chain = eval(${chain});
-        var employeeList = [
-            { name: "Peter Pan", number: "0002" },
-            { name: "Peter jan", number: "0006" },
-            { name: "Peter kan", number: "0004" },
-            { name: "Peter jan", number: "0006" },
-            { name: "Peter kan", number: "0004" },
-
-        ];
+        var employeeList = directReportEmployee;
         $(function() {
             changeLevel()
             initDateControl()
@@ -351,17 +345,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     matchContains: true,    //
                     autoFill: true,    //
                     formatItem: function(row, i, max) {
-                        if(row.number){
-                            return  row.number + '-' + row.name;
+                        if(row.employeeNumber){
+                            return  row.employeeNumber + '-' + row.firstName  +","+ row.lastName + row.firstName ;
                         }else{
                             $(".ac_results").hide()
                         }
                     },
                     formatMatch: function(row, i, max) {
-                        return row.number + '-' + row.name;
+                        return row.employeeNumber + '-' + row.firstName  +","+ row.lastName + row.firstName ;
                     },
                     formatResult: function(row) {
-                        return row.number + '-' + row.name;
+                        return row.employeeNumber + '-' + row.firstName  +","+ row.lastName + row.firstName ;
                     }
                 }).result(function(event, row, formatted) {
                     judgeContent()

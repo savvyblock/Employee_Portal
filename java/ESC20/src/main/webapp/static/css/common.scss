@@ -782,6 +782,12 @@ input {
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 1rem;
+    .warn-icon{
+        font-size: 50px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        color: #c55459;
+    }
     @media (max-width:425px){
         padding: 10px;
     }
@@ -798,6 +804,15 @@ input {
     border-top: 1px solid #e9ecef;
     @media (max-width:320px){
         padding: 1rem 2px;
+    }
+  }
+  .warn-modal{
+    .modal-footer{
+        justify-content: center;
+        border-top: 0;
+        .btn{
+            min-width: 70px;
+        }
     }
   }
   
