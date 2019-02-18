@@ -304,4 +304,9 @@ public class IndexService {
 		
 	}
 	
+	public void updateEmailEmployee(String employeeNumber, String workEmail, String hmEmail) {
+		 userDao.updateEmailEmployee(employeeNumber,workEmail,hmEmail);
+		
+	}
+	
 }

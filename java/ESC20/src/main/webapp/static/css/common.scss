@@ -502,6 +502,7 @@ input {
         &.td-title{
             font-weight: bold;
             border-right: 1px solid #dee2e6;
+            text-align: left!important;
         }
         &.td-content{
             border-right: 1px solid #dee2e6;
@@ -925,6 +926,16 @@ input {
 }
 .img-alt-span{
     display: none;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    .pageGroup{
+        flex: 1;
+    }
+    .totalRows{
+        flex: 0 0 60px
+    }
 }
 .pageGroup{
     display: flex;

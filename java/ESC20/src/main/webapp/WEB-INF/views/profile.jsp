@@ -14,22 +14,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <div class="content-white no-title profile">
                         <div class="profile-item first-child">
                             <div class="profile-title" >
-                                <form id="changeAvatar" action="changeAvatar" method="POST">
+                                <div>
                                         <div
                                         class="avatar"
                                         id="imgContentImg"
                                         style="background-image:url(${sessionScope.userDetail.avatar})"
                                     >
-                                        <input id="userName" hidden="hidden" type="text" value="${sessionScope.userDetail.nameF}">
+                                        <!-- <input id="userName" hidden="hidden" type="text" value="${sessionScope.userDetail.nameF}">
                                         <input id="avatarImg" hidden="hidden" type="text" name="file">
                                         <input id="avatarImgName" hidden="hidden" type="text" name="fileName">
-                                        <input class="avatar-file" type="file" name="file"  id="imgUpFile"  onchange="startRead()"  accept="image/*"/>
-                                        <label class="avatar-word" data-localize="profile.change"></label>
+                                        <input class="avatar-file" type="file" name="file"  id="imgUpFile"  onchange="startRead()"  accept="image/*"/> -->
+                                        <button type="button" class="avatar-word" data-localize="profile.change" data-toggle="modal" data-target="#changeAvatarModal"></button>
                                     </div>
                                     <button type="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal" data-localize="label.changePassword" data-localize-location="title">
                                             <span data-localize="label.changePassword"></span>
                                         </button>
-                                    </form>
+                                    </div>
                                 
                             </div>
                             <form class="profile-desc" id="personalForm" action="saveName" method="POST">
@@ -53,7 +53,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     autofocus
                                                 >
                                                 <c:forEach var="title" items="${titleOptions}" varStatus="count">
-                                                    <option value="${title.description}" <c:if test="${title.description == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
+                                                    <option value="${title.code}" <c:if test="${title.code == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
                                                 </c:forEach>
                                                 </select>
                                             </div>
@@ -138,7 +138,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="generation"
                                                 >
                                                     <c:forEach var="gen" items="${generationOptions}" varStatus="count">
-                                                        <option value="${gen.description}" <c:if test="${gen.description == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                        <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -165,7 +165,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <button
                                             type="button"
                                             id="undoNameRequest"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -229,7 +229,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoMaritalRequest"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -313,7 +313,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoDriverLicense"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -367,8 +367,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 id="restrictionCodesPublicRestriction"
                                                 name="restrictCdPublicNew"
                                                 class="form-control"
-                                                style="width:188px"
                                                 title=""
+                                                style="width:188px"
                                                 data-localize="profile.restrictionCodesPublic"
                                             >
                                             <c:forEach var="restriction" items="${restrictionsOptions}" varStatus="count">
@@ -399,7 +399,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoRestriction"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -477,7 +477,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoEmail"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -624,7 +624,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoEmergencyContact"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -796,7 +796,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoMailingAddress"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -968,7 +968,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoAlternative"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -1118,7 +1118,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoPhoneNumber"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -1216,7 +1216,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id=""
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -1395,7 +1395,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id=""
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.undo"
+                                            class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
                                         </button>
@@ -1551,6 +1551,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <%@ include file="commons/footer.jsp"%>
         <%@ include file="modal/changePassword.jsp"%>
         <%@ include file="modal/undoModal.jsp"%>
+        <%@ include file="modal/changeAvatar.jsp"%>
         <div
             class="modal fade"
             id="selectBankModal"
@@ -1612,7 +1613,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <div class="form-group btn-group">
                                 <div style="margin-top:20px;">
                                     <button
-                                        type="submit"
+                                        type="submit" id="searchBankBtn"
                                         class="btn btn-primary"
                                         data-localize="label.search"
                                     ></button>
@@ -1641,6 +1642,38 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </td>
                                         <td data-localize="profile.bankName" data-localize-location="scope">A+ FEDERAL CREDIT UNION</td>
                                     </tr>
+                                    <tr>
+                                            <td colspan="2">
+                                                <div class="flex">
+                                                        <div class="pageGroup">
+                                                                <button class="pageBtn firstPate" title="" data-localize="label.firstPage" data-localize-location="title">
+                                                                        <i class="fa fa-angle-double-left "></i>
+                                                                </button>  
+                                                                <button class="pageBtn prevPage" title="" data-localize="label.prevPage" data-localize-location="title">
+                                                                        <i class="fa fa-angle-left "></i>
+                                                                </button>
+                                                                <select class="selectPage" name="page" id="pageNow" title="" data-localize="label.choosePage" onchange="changePage()"  data-localize-location="title">
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                </select>
+                                                                <div class="page-list">
+                                                                        <span class="slash">/</span>
+                                                                        <span class="totalPate">2</span>
+                                                                </div>
+                                                                <button class="pageBtn nextPate" title="" data-localize="label.nextPage" data-localize-location="title">
+                                                                                <i class="fa fa-angle-right "></i>
+                                                                </button>
+                                                                <button class="pageBtn lastPate" title="" data-localize="label.lastPage" data-localize-location="title">
+                                                                    <i class="fa fa-angle-double-right"></i>
+                                                                </button>
+                                                        </div>
+                                                        <b class="totalRows">
+                                                            <span data-localize="label.rows"></span>: 100
+                                                        </b>
+                                                </div>
+                                                    
+                                            </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -1651,7 +1684,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             class="btn btn-secondary"
                             data-dismiss="modal"
                             aria-hidden="true"
-                            id="cancelAdd"
                             data-localize="label.cancel"
                         >
                         
@@ -1666,6 +1698,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <script>
         let bank01, bank02
         var formSelect
+        var formUndoSelect
         $(function() {
             personalValidator()
             maritalStatusValidator()
@@ -1746,6 +1779,25 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 }
             })
             $('.getBank').click(function() {
+            	
+            	var page={
+            			currentPage:1,
+            			perPageRows:10
+            	};
+            	$.ajax({
+                     type: "POST",
+                     dataType: "json",
+                     url: "getAllBanks" ,
+                     data:JSON.stringify(page),
+                     contentType: 'application/json;charset=UTF-8',
+                     success: function (result) {
+                    	 console.log(result);
+                     },
+                     error : function(e) {
+                    	 console.log(e);
+                     }
+                 });
+            	
                 $('#selectBankModal').modal('show')
                 bankInputName = $(this)
                     .parent()
@@ -1753,7 +1805,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 bankInputCode = $(this)
                     .parent()
                     .find('.form-control.code')
+                    
+                    
             })
+            $('#searchBankBtn').click(function() {
+            	alert("search bank");
+            })
+            
             $('.bankNumberBtn').click(function() {
                 let number = $(this).val()
                 let name = $(this).attr('data-title')
@@ -1768,7 +1826,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $('#undoModal').modal('show')
                 formSelect = "deleteNameRequest"
             })
-            $("#undoMaritalRequest").click(function(){
+            $("#undoMaritalRequest").click(function(e){
+            	e.preventDefault();
                 $('#undoModal').modal('show')
                 formSelect = "deleteMaritalRequest"
             })
@@ -1808,38 +1867,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             let form = "#" + formSelect
             $(form)[0].submit()
         }
-        function startRead() {
-            var fileDom = document.getElementById('imgUpFile')
-            var img = document.getElementById('imgContentImg')
-            if (fileDom && img) {
-                fileHandle(fileDom, img)
-            }
-        }
-        function fileHandle(fileDom, img) {
-            //read
-            var file = fileDom.files[0]
-            var fileName = file.name
-            var type = file.type.split("/")
-            var username = $("#userName").val()
-            var name = (new Date()).valueOf() + username  + "." + type[1];
-            console.log(name)
-            $("#avatarImgName").val(name)
-            var reader = new FileReader()
-            reader.readAsDataURL(file)
-            reader.onloadstart = function() {
-                console.log('do upload ......')
-            }
-            //done
-            reader.onload = function(e) {
-                //file
-                $("#avatarImg").val(reader.result)
-                $("#changeAvatar")[0].submit()
-                img.style.backgroundImage = "url('" + reader.result + " ') "
-            }
-            reader.onerror = function(){
-                /* error handler **/
-            }
-        }
+        
 
             function changeFreq(){
 				$("#changeFreqForm")[0].submit();

@@ -149,6 +149,61 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             message: 'validator.pleaseEnterCorrectMailFormat'
                         }
                     }
+                },
+                empNumber: {
+                    validators: {
+                        notEmpty: {
+                                message: 'validator.requiredField'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]\d{5}$/,
+                                message: 'validator.pleaseEnterCorrectFormat'
+                            }
+                    }
+                },
+                dateMonth: {
+                    validators: {
+                        notEmpty: {
+                                message: 'validator.requiredField'
+                            },
+                            regexp: {
+                                regexp: /^[0-1]\d{0,1}$/,
+                                message: 'validator.pleaseEnterCorrectFormat'
+                            }
+                    }
+                },
+                dateDay: {
+                    validators: {
+                        notEmpty: {
+                                message: 'validator.requiredField'
+                            },
+                            regexp: {
+                                regexp: /^[0-3]\d{0,1}$/,
+                                message: 'validator.pleaseEnterCorrectFormat'
+                            }
+                    }
+                },
+                dateYear: {
+                    validators: {
+                        notEmpty: {
+                                message: 'validator.requiredField'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]\d{3}$/,
+                                message: 'validator.pleaseEnterCorrectFormat'
+                            }
+                    }
+                },
+                zipCode: {
+                    validators: {
+                        notEmpty: {
+                                message: 'validator.requiredField'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]\d{4}$/,
+                                message: 'validator.pleaseEnterCorrectFormat'
+                            }
+                    }
                 }
             }
         })

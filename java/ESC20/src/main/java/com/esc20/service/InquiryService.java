@@ -202,6 +202,12 @@ public class InquiryService {
 	}
 
 	public Earnings getTYDEarnings(String employeeNumber, List<PayDate> payDates, PayDate payDate) {
+		if (payDate == null) {
+			Earnings earnings = new Earnings();
+			earnings.setInfo(new EarningsInfo());
+			return earnings;
+		}
+
 		String year = payDate.getDateFreq().substring(0, 4);
 		// remove not selected year PayDates
 		List<PayDate> tempDates = new ArrayList<PayDate>();

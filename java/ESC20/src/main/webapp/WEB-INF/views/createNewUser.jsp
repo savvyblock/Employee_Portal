@@ -87,6 +87,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="form-control"
                                         name="workEmail"
                                         id="workEmail"
+                                        value="${emailShowRequest.emailNew}"
                                     />
                                 </div>
                             </div>
@@ -98,6 +99,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="form-control"
                                         name="homeEmail"
                                         id="homeEmail"
+                                        value="${emailShowRequest.hmEmailNew}"
                                     />
                                 </div>
                             </div>

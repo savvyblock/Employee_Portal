@@ -5,6 +5,7 @@
     role="dialog"
     aria-labelledby="requestModal"
     aria-hidden="true"
+    data-backdrop="static"
 >
     <div class="modal-dialog requestFormDialog">
         <div class="modal-content">
@@ -155,7 +156,7 @@
                             </div>
                         </div>
                     <div class="form-group">
-                        <label class="form-title"><span data-localize="leaveRequest.remark"></span>: </label>
+                        <label class="form-title" for="Remarks"><span data-localize="leaveRequest.remark"></span>: </label>
                         <div class="valid-wrap">
                                 <div class="commentsList" id="commentList">
                                         
@@ -178,9 +179,8 @@
                         data-localize="leaveBalance.submitForApproval">Submit for Approval</button>
                         <button
                             class="btn btn-secondary"
-                            data-dismiss="modal"
-                            aria-hidden="true"
                             id="deleteLeave"
+                            type="button"
                             onclick="deleteRequest()"
                             data-localize="label.delete"
                         >
@@ -280,8 +280,8 @@
 
     function deleteRequest() {
         var id = $('#leaveId').val()
-        $('#deleteId').val(id)
-        $('#deleteForm').submit()
+        $("#deleteId").val(id);
+		$("#deleteModal").modal("show")
     }
     function closeRequestForm() {
         $('#requestForm')
@@ -334,9 +334,9 @@
                 },
                 Remarks: {
                     validators: {
-                        // notEmpty: {
-                        //     message: 'validator.remarksCannotBeEmpty'
-                        // }
+                         notEmpty: {
+                             message: 'validator.remarksCannotBeEmpty'
+                         }
                     }
                 }
             }

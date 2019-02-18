@@ -26,6 +26,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         </div>
         <%@ include file="../commons/footer.jsp"%>
         <%@ include file="../modal/eventModal.jsp"%>
+        <%@ include file="../modal/deleteModal.jsp"%>
     </body>
     <script>
         $(document).ready(function() {
@@ -46,6 +47,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             today: 'Today',
                             month: 'Month'
                         },
+                        timeFormat: 'h(:mm)t',
+                        displayEventEnd: true,
                         defaultDate: new Date(),
                         weekNumbers: false,
                         navLinks: true, // can click day/week names to navigate views
@@ -82,8 +85,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     startH = startH - 12
                                 }
                             }else{
-                                startAMOrPM = 'AM'
-                                startH = startH
+                                startAMOrPM = 'AM';
+                                startH = startH;
                             }
                             if(endH>=12){
                                 endAMOrPM = 'PM'
@@ -93,8 +96,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     endH = endH - 12
                                 }
                             }else{
-                                endAMOrPM = 'AM'
-                                endH = endH
+                                endAMOrPM = 'AM';
+                                endH = endH;
                             }
 
                             if(startH>=10){
@@ -135,7 +138,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             //Initializes the time control when edit event modal show
                         },
                         viewRender:function(){
-                            $(".fc-event").attr("tabindex",0)
+                            $(".fc-event").attr("tabindex",0);
                             $(".fc-event").keypress(function(e){
                                 console.log(e)
                                 var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
@@ -156,7 +159,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     })
                 },
                 change: function(themeSystem) {
-                    console.log("111111111")
+                    console.log("111111111");
                     $('#calendar').fullCalendar(
                         'option',
                         'themeSystem',
@@ -164,6 +167,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     )
                 }
             })
+        
+            $(".sureDelete").click(function(){
+					$("#deleteForm")[0].submit();
+				})
         })
         function newEvent(dom){
             $('.dateValidator').hide()

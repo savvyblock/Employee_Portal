@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,6 +31,7 @@ import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequestModel;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
+import com.esc20.util.DateUtil;
 
 import net.sf.json.JSONArray;
 
@@ -244,8 +246,8 @@ public class LeaveRequestController {
 		request.setPayFreq(freq.charAt(0));
 		request.setLvTyp(leaveType);
 		request.setAbsRsn(absenseReason);
-		request.setDatetimeFrom(formatter.parse(LeaveStartDate + " " + startTimeValue));
-		request.setDatetimeTo(formatter.parse(LeaveEndDate + " " + endTimeValue));
+		request.setDatetimeFrom(DateUtil.getUTCTime(formatter.parse(LeaveStartDate + " " + startTimeValue)));
+		request.setDatetimeTo(DateUtil.getUTCTime(formatter.parse(LeaveEndDate + " " + endTimeValue)));
 		request.setDatetimeSubmitted(new Date());
 		request.setLvUnitsDaily(BigDecimal.valueOf(Double.parseDouble(lvUnitsDaily)));
 		request.setLvUnitsUsed(BigDecimal.valueOf(Double.parseDouble(lvUnitsUsed)));
@@ -261,7 +263,7 @@ public class LeaveRequestController {
 			BeaEmpLvComments comments = new BeaEmpLvComments();
 			comments.setBeaEmpLvRqst(res);
 			comments.setLvCommentEmpNbr(demo.getEmpNbr());
-			comments.setLvCommentDatetime(new Date());
+			comments.setLvCommentDatetime(DateUtil.getUTCTime(new Date()));
 			comments.setLvComment(Remarks);
 			comments.setLvCommentTyp('C');
 			this.service.saveLvComments(comments);
@@ -270,13 +272,15 @@ public class LeaveRequestController {
 		if ((leaveId == null || ("").equals(leaveId))) {
 			LeaveParameters params = this.service.getLeaveParameters();
 			String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
-			BeaEmpLvWorkflow flow = new BeaEmpLvWorkflow();
-			flow.setBeaEmpLvRqst(res);
-			flow.setInsertDatetime(new Date());
-			flow.setSeqNum(1);
-			flow.setApprvrEmpNbr(supervisorEmpNbr == null ? "" : supervisorEmpNbr);
-			flow.setTmpApprvrExpDatetime(null);
-			this.service.saveLvWorkflow(flow, demo);
+			if (!StringUtils.isEmpty(supervisorEmpNbr)) {
+				BeaEmpLvWorkflow flow = new BeaEmpLvWorkflow();
+				flow.setBeaEmpLvRqst(res);
+				flow.setInsertDatetime(DateUtil.getUTCTime(new Date()));
+				flow.setSeqNum(1);
+				flow.setApprvrEmpNbr(supervisorEmpNbr == null ? "" : supervisorEmpNbr);
+				flow.setTmpApprvrExpDatetime(null);
+				this.service.saveLvWorkflow(flow, demo);
+			}
 		}
 	}
 
@@ -330,15 +334,15 @@ public class LeaveRequestController {
 		String start = SearchStart;
 		String end = SearchEnd;
 		if (SearchStart != null && !("").equals(SearchStart)) {
-			start = sdf2.format(sdf1.parse(SearchStart));
+			start = sdf2.format(DateUtil.getUTCTime(sdf1.parse(SearchStart)));
 		}
 		if (SearchEnd != null && !("").equals(SearchEnd)) {
-			end = sdf2.format(sdf1.parse(SearchEnd));
+			end = sdf2.format(DateUtil.getUTCTime(sdf1.parse(SearchEnd)));
 		}
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
 		List<Code> leaveTypesWithAll = new ArrayList<>();
-		Code code = new Code("0", "All");
+		Code code = new Code("", "All");
 		leaveTypesWithAll.add(code);
 		if (freq == null || ("").equals(freq)) {
 			if (availableFreqs.size() > 0) {

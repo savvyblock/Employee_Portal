@@ -584,6 +584,7 @@ input:focus {
 .table th.td-title, .table td.td-title {
   font-weight: bold;
   border-right: 1px solid #dee2e6;
+  text-align: left !important;
 }
 
 .table th.td-content, .table td.td-content {
@@ -1024,6 +1025,19 @@ input:focus {
 
 .img-alt-span {
   display: none;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex .pageGroup {
+  flex: 1;
+}
+
+.flex .totalRows {
+  flex: 0 0 60px;
 }
 
 .pageGroup {

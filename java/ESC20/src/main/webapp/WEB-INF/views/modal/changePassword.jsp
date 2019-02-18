@@ -5,6 +5,7 @@
     role="dialog"
     aria-labelledby="changePasswordModal"
     aria-hidden="true"
+    data-backdrop="static"
 >
     <div class="modal-dialog approveForm" style="max-width:350px;">
         <div class="modal-content">
@@ -160,7 +161,10 @@
         	bootstrapValidator.validate();
             if (bootstrapValidator.isValid()) {
                 let old = sessionStorage.getItem("sessionPws");
-                let currentOld = $("#oldPassword").val()
+                let currentOld = sha256_digest($("#oldPassword").val());
+                console.log("old", old);
+                
+                console.log("currentOld", currentOld);
                 if(old == currentOld){
                     $('.oldPsdValidator').hide()
                     $('#updatePassword')[0].submit()
