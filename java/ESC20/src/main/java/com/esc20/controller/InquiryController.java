@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -166,21 +167,29 @@ public class InquiryController {
 			days = 0;
 		List<PayDate> payDates = this.service.getAvailablePayDates(employeeNumber, days);
 		mav.addObject("payDates", payDates);
-		PayDate latestPayDate = this.service.getLatestPayDate(payDates);
-		String message = ((Options) session.getAttribute("options")).getMessageEarnings();
-		Earnings earnings = this.service.retrieveEarnings(employeeNumber, latestPayDate);
-		Earnings YTDEarnings = this.service.getTYDEarnings(employeeNumber, payDates, latestPayDate);
-		for (int i = 0; i < earnings.getOther().size(); i++) {
-			for (int j = 0; j < YTDEarnings.getOther().size(); j++) {
-				if (earnings.getOther().get(i).getCode().equals(YTDEarnings.getOther().get(j).getCode())) {
-					earnings.getOther().get(i).setTydAmt(YTDEarnings.getOther().get(j).getTydAmt());
-					earnings.getOther().get(i).setTydContrib(YTDEarnings.getOther().get(j).getContrib());
+		PayDate latestPayDate = null;
+		String message = "";
+		Earnings earnings = null;
+		Earnings YTDEarnings = null;
+		Frequency freq = null;
+		String year = null;
+		if (!CollectionUtils.isEmpty(payDates)) {
+			latestPayDate = this.service.getLatestPayDate(payDates);
+			message = ((Options) session.getAttribute("options")).getMessageEarnings();
+			earnings = this.service.retrieveEarnings(employeeNumber, latestPayDate);
+			YTDEarnings = this.service.getTYDEarnings(employeeNumber, payDates, latestPayDate);
+			for (int i = 0; i < earnings.getOther().size(); i++) {
+				for (int j = 0; j < YTDEarnings.getOther().size(); j++) {
+					if (earnings.getOther().get(i).getCode().equals(YTDEarnings.getOther().get(j).getCode())) {
+						earnings.getOther().get(i).setTydAmt(YTDEarnings.getOther().get(j).getTydAmt());
+						earnings.getOther().get(i).setTydContrib(YTDEarnings.getOther().get(j).getContrib());
+					}
 				}
 			}
+			YTDEarnings.setEmplrPrvdHlthcare(this.service.getEmplrPrvdHlthcare(employeeNumber, latestPayDate));
+			freq = Frequency.getFrequency(StringUtil.mid(latestPayDate.getDateFreq(), 9, 1));
+			year = latestPayDate.getDateFreq().substring(0, 4);
 		}
-		YTDEarnings.setEmplrPrvdHlthcare(this.service.getEmplrPrvdHlthcare(employeeNumber, latestPayDate));
-		Frequency freq = Frequency.getFrequency(StringUtil.mid(latestPayDate.getDateFreq(), 9, 1));
-		String year = latestPayDate.getDateFreq().substring(0, 4);
 		mav.setViewName("/inquiry/earnings");
 		mav.addObject("days", days);
 		mav.addObject("selectedPayDate", latestPayDate);

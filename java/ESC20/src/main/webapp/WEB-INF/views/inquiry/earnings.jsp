@@ -272,6 +272,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            <c:if test="${not empty earnings}">
                                                 <tr>
                                                     <td><span data-localize="earningTable.standardGross"></span></td>
                                                     <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
@@ -450,6 +451,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <td data-localize="earningTable.thisPeriod" data-localize-location="scope"></td>
                                                     <td data-localize="earningTable.calendarYTD" data-localize-location="scope">${YTDEarnings.emplrPrvdHlthcare}</td>
                                                 </tr>
+                                                </c:if>
                                             </tbody>
                                         </table>
                                     </div>
