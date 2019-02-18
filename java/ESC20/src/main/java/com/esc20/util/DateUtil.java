@@ -211,7 +211,9 @@ private static long msInDay = 24 * 60 * 60 * 1000;
             return day2-day1;
         }
     }
-    
+    public static Date getUTCTime() {
+    	return getUTCTime(null);
+    }
     //get current UAT time as of GMT 0
     public static Date getUTCTime(Date localTime) {
     	Calendar cal = Calendar.getInstance();
