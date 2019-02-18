@@ -11,7 +11,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.esc20.model.BhrEmpPay;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.Frequency;
+
 
 @Repository
 public class ReferenceDao {
@@ -193,4 +196,26 @@ public class ReferenceDao {
 		}
 		return result;
 	}
+	
+	public List<Code> getPayrollFrequencies(String empNbr) {
+		Session session = this.getSession();
+		String sql= "SELECT DISTINCT pay.id.payFreq FROM BhrEmpPay pay where pay.id.empNbr = :empNbr AND pay.id.cyrNyrFlg ='C'";
+        Query q = session.createQuery(sql.toString());
+        q.setParameter("empNbr", empNbr);
+        List <Character> result = q.list();
+		List<Code> payrollFrequencies = new ArrayList <Code>();
+		Frequency freq;
+		Code code;
+		for(int i=0; i < result.size(); i++ )
+		{
+			code = new Code();
+			code.setCode(result.get(i).toString());
+			freq = Frequency.getFrequency(result.get(i).toString());
+			code.setDescription(freq.getLabel());
+			code.setSubCode("");
+			payrollFrequencies.add(code);
+		}
+		return payrollFrequencies;
+	}
+
 }

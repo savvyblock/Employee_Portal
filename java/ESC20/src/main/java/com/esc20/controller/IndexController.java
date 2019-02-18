@@ -36,10 +36,12 @@ import com.esc20.model.BeaMailAddr;
 import com.esc20.model.BeaMrtlStat;
 import com.esc20.model.BeaRestrict;
 import com.esc20.model.BeaUsers;
+import com.esc20.model.BeaW4;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.SearchUser;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
@@ -266,7 +268,7 @@ public class IndexController {
     	this.indexService.updateUser(user);
     	session.removeAttribute("user");
     	session.setAttribute("user", user);
-        getProfileDetails(session, mav);
+        getProfileDetails(session, mav,null);
         return mav;
     }
     
@@ -322,26 +324,24 @@ public class IndexController {
     }
     
     @RequestMapping("profile")
-    public ModelAndView getProfile(HttpServletRequest req){
+    public ModelAndView getProfile(HttpServletRequest req,String freq){
         HttpSession session = req.getSession();
         BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
         if(null == user){
         	return this.getIndexPage(mav);
         }
-        getProfileDetails(session, mav);
+        getProfileDetails(session, mav,freq);
         mav.addObject("decryptedPwd",this.decrypt(user.getUsrpswd()));
         return mav;
     }
 
-	private void getProfileDetails(HttpSession session, ModelAndView mav) {
+	private void getProfileDetails(HttpSession session, ModelAndView mav, String freq) {
 		BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
-//		BhrEmpPay pay = this.indexService.getW4(demo.getEmpNbr(),freq);
         BeaLglName nameRequest = this.indexService.getBeaLglName(demo);
         BeaEmerContact emerRequest = this.indexService.getBeaEmerContact(demo);
         BeaDrvsLic licRequest = this.indexService.getBeaDrvsLic(demo);
         BeaMrtlStat mrtlRequest = this.indexService.getBeaMrtlStat(demo);
-//        BeaW4 w4Request = this.indexService.getW4(pay);
         BeaRestrict restrictRequest = this.indexService.getBeaRestrict(demo);
         BeaEmail emailRequest = this.indexService.getBeaEmail(demo);
         BeaCellPhone cellRequest = this.indexService.getBeaCellPhone(demo);
@@ -349,12 +349,24 @@ public class IndexController {
         BeaHmPhone hmRequest = this.indexService.getBeaHmPhone(demo);
         BeaAltMailAddr altMailAddrRequest = this.indexService.getBeaAltMailAddr(demo);
         BeaMailAddr mailAddrRequest = this.indexService.getBeaMailAddr(demo);
+        
+        List<Code> payRollFrequenciesOptions = this.referenceService.getPayrollFrequencies(demo.getEmpNbr());
+    	
+    	
+        if (freq != null && !("").equals(freq)) {
+        	mav.addObject("selectedFreq", freq);
+        	PayInfo payRequest = this.indexService.getPayInfo(demo,freq);
+        }
+        else {
+        	PayInfo payRequest = this.indexService.getPayInfo(demo,payRollFrequenciesOptions.get(0).getDescription());
+        }
         List<Code> maritalOptions = this.referenceService.getMaritalActualStatuses();
         List<Code> maritalTaxOptions = this.referenceService.getMaritalTaxStatuses();
         List<Code> generationOptions = this.referenceService.getGenerations();
         List<Code> titleOptions = this.referenceService.getTitles();
         List<Code> statesOptions = this.referenceService.getStates();
         List<Code> restrictionsOptions = this.referenceService.getRestrictions();
+        
         mav.setViewName("profile");
         mav.addObject("nameRequest", nameRequest);
         mav.addObject("mrtlRequest", mrtlRequest);
@@ -373,6 +385,8 @@ public class IndexController {
         mav.addObject("titleOptions", titleOptions);
         mav.addObject("statesOptions", statesOptions);
         mav.addObject("restrictionsOptions", restrictionsOptions);
+        mav.addObject("payRollFrequenciesOptions", payRollFrequenciesOptions);
+       
 //        mav.addObject("w4Request", w4Request);
 	}
 
@@ -404,7 +418,7 @@ public class IndexController {
         this.indexService.updateDemoName(demo);
         session.removeAttribute("userDetail");
     	session.setAttribute("userDetail", demo);
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "nameRequest");
         return mav;
     }
@@ -451,7 +465,7 @@ public class IndexController {
 	         session.removeAttribute("userDetail");
 	         session.setAttribute("userDetail", demo);
 	         
-	         this.getProfileDetails(session, mav);
+	         this.getProfileDetails(session, mav,null);
 	       
 	         
          } catch (IOException e) {
@@ -472,7 +486,7 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteNameRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -500,7 +514,7 @@ public class IndexController {
         this.indexService.updateDemoMaritalStatus(demo);
     	session.removeAttribute("userDetail");
     	session.setAttribute("userDetail", demo);
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "maritalStatusRequest");
         return mav;
     }
@@ -516,7 +530,7 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteMaritalRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -544,7 +558,7 @@ public class IndexController {
         this.indexService.updateDemoDriversLicense(demo);
         session.removeAttribute("userDetail");
     	session.setAttribute("userDetail", demo);
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "driversLicenseRequest");
         return mav;
     }
@@ -560,7 +574,7 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteDirversLicenseRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -589,7 +603,7 @@ public class IndexController {
         this.indexService.updateDemoRestrictionCodes(demo);
         session.removeAttribute("userDetail");
     	session.setAttribute("userDetail", demo);
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "restrictionCodesRequest");
         return mav;
     }
@@ -605,7 +619,7 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteRestrictionCodesRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -634,7 +648,7 @@ public class IndexController {
         this.indexService.updateDemoEmail(demo);
         session.removeAttribute("userDetail");
     	session.setAttribute("userDetail", demo);
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "emailRequest");
         return mav;
     }
@@ -650,7 +664,7 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteEmailRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -684,7 +698,7 @@ public class IndexController {
         this.indexService.updateDemoEmergencyContact(demo);
         session.removeAttribute("userDetail");
     	session.setAttribute("userDetail", demo);
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "emergencyContactRequest");
         return mav;
     }
@@ -700,7 +714,7 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteEmergencyContactRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -735,7 +749,7 @@ public class IndexController {
         this.indexService.updateDemoMailAddr(demo);
         session.removeAttribute("userDetail");
     	session.setAttribute("userDetail", demo);
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "mailingAddressRequest");
         return mav;
     }
@@ -751,7 +765,7 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteMailAddrRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -786,7 +800,7 @@ public class IndexController {
         this.indexService.updateDemoAltMailAddr(demo);
         session.removeAttribute("userDetail");
     	session.setAttribute("userDetail", demo);
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "altMailingAddressRequest");
         return mav;
     }
@@ -802,7 +816,7 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteAltMailAddrRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -840,7 +854,7 @@ public class IndexController {
         	session.removeAttribute("userDetail");
         	session.setAttribute("userDetail", demo);
         }
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "homePhoneRequest");
         
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_CELL_PHONE")) {
@@ -860,7 +874,7 @@ public class IndexController {
         	session.removeAttribute("userDetail");
         	session.setAttribute("userDetail", demo);
         }
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "cellPhoneRequest");
         
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_BUS_PHONE")) {
@@ -882,7 +896,7 @@ public class IndexController {
         	session.removeAttribute("userDetail");
         	session.setAttribute("userDetail", demo);
         }
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "businessPhoneRequest");
         
         return mav;
@@ -901,7 +915,7 @@ public class IndexController {
         this.indexService.deleteHomePhoneRequest(demo.getEmpNbr());
         this.indexService.deleteCellPhoneRequest(demo.getEmpNbr());
         this.indexService.deleteBusinessPhoneRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -1009,7 +1023,7 @@ public class IndexController {
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteAltMailAddrRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav);
+        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
