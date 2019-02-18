@@ -273,6 +273,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            <c:if test="${not empty earnings}">
                                                 <tr>
                                                     <td><span data-localize="earningTable.standardGross"></span></td>
                                                     <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
@@ -505,6 +506,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <fmt:formatNumber value="${YTDEarnings.emplrPrvdHlthcare}" pattern="#,##0.00"/>
                                                     </td>
                                                 </tr>
+                                                </c:if>
                                             </tbody>
                                         </table>
                                     </div>

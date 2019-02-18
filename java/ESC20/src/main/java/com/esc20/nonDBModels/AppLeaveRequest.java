@@ -10,6 +10,7 @@ import java.util.List;
 import com.esc20.model.BeaEmpLvRqst;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpLvXmital;
+import com.esc20.util.DateUtil;
 
 public class AppLeaveRequest implements Serializable {
 
@@ -52,9 +53,9 @@ public class AppLeaveRequest implements Serializable {
 			this.id = id;
 			this.lvTyp= lvTyp;
 			this.absRsn = absRsn;
-			this.datetimeSubmitted = datetimeSubmitted;
-			this.datetimeFrom = datetimeFrom;
-			this.datetimeTo = datetimeTo;
+			this.datetimeSubmitted = DateUtil.getLocalTime(datetimeSubmitted);
+			this.datetimeFrom = DateUtil.getLocalTime(datetimeFrom);
+			this.datetimeTo = DateUtil.getLocalTime(datetimeTo);
 			this.lvUnitsDaily = lvUnitsDaily;
 			this.lvUnitsUsed = lvUnitsUsed;
 			this.statusCd = statusCd;
@@ -75,9 +76,9 @@ public class AppLeaveRequest implements Serializable {
 		this.empNbr = empNbr;
 		this.lvTyp= lvTyp;
 		this.absRsn = absRsn;
-		this.datetimeSubmitted = datetimeSubmitted;
-		this.datetimeFrom = datetimeFrom;
-		this.datetimeTo = datetimeTo;
+		this.datetimeSubmitted = DateUtil.getLocalTime(datetimeSubmitted);
+		this.datetimeFrom = DateUtil.getLocalTime(datetimeFrom);
+		this.datetimeTo = DateUtil.getLocalTime(datetimeTo);
 		this.lvUnitsDaily = lvUnitsDaily;
 		this.lvUnitsUsed = lvUnitsUsed;
 		this.statusCd = statusCd;
@@ -96,8 +97,8 @@ public class AppLeaveRequest implements Serializable {
 		this.empNbr = demo.getEmpNbr();
 		this.lvTyp = item.getLvTyp();
 		this.absRsn = item.getAbsRsn();
-		this.datetimeFrom = sdf2.parse(item.getDtOfAbs());
-		this.datetimeTo = sdf2.parse(item.getDtOfAbs());
+		this.datetimeFrom = DateUtil.getLocalTime(sdf2.parse(item.getDtOfAbs()));
+		this.datetimeTo = DateUtil.getLocalTime(sdf2.parse(item.getDtOfAbs()));
 		this.lvUnitsUsed = item.getLvUnitsUsed();
 		this.daysHrs = "D";
 		this.firstName = demo.getNameF();
@@ -113,8 +114,8 @@ public class AppLeaveRequest implements Serializable {
 		this.empNbr = demo.getEmpNbr();
 		this.lvTyp = item.getLvTyp();
 		this.absRsn = item.getAbsRsn();
-		this.datetimeFrom = item.getDatetimeFrom();
-		this.datetimeTo = item.getDatetimeTo();
+		this.datetimeFrom = DateUtil.getLocalTime(item.getDatetimeFrom());
+		this.datetimeTo = DateUtil.getLocalTime(item.getDatetimeTo());
 		this.lvUnitsDaily = item.getLvUnitsDaily();
 		this.lvUnitsUsed = item.getLvUnitsUsed();
 		this.statusCd = item.getStatusCd();

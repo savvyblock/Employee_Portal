@@ -202,11 +202,15 @@ public class SupervisorController {
 		} else {
 			demo = this.indexService.getUserDetail(empNbr);
 		}
+		LeaveEmployeeData empty = new LeaveEmployeeData();
 		List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(empNbr, params.isUsePMIS(),
 				supervisorsOnly, excludeTempApprovers);
+		List<LeaveEmployeeData> directReport = new ArrayList<LeaveEmployeeData>();
+		directReport.add(empty);
+		directReport.addAll(employeeData);
 		JSONArray employeeDataJSON = new JSONArray();
-		for (int i = 0; i < employeeData.size(); i++) {
-			employeeDataJSON.add(employeeData.get(i).toJSON());
+		for (int i = 0; i < directReport.size(); i++) {
+			employeeDataJSON.add(directReport.get(i).toJSON());
 		}
 
 		List<Code> absRsns = this.referenceService.getAbsRsns();
@@ -541,11 +545,15 @@ public class SupervisorController {
 		} else {
 			demo = this.indexService.getUserDetail(empNbr);
 		}
+		LeaveEmployeeData empty = new LeaveEmployeeData();
 		List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(empNbr, params.isUsePMIS(),
 				supervisorsOnly, excludeTempApprovers);
+		List<LeaveEmployeeData> directReport = new ArrayList<LeaveEmployeeData>();
+		directReport.add(empty);
+		directReport.addAll(employeeData);
 		JSONArray employeeDataJSON = new JSONArray();
-		for (int i = 0; i < employeeData.size(); i++) {
-			employeeDataJSON.add(employeeData.get(i).toJSON());
+		for (int i = 0; i < directReport.size(); i++) {
+			employeeDataJSON.add(directReport.get(i).toJSON());
 		}
 		List<BeaEmpLvTmpApprovers> records = this.supService.getBeaEmpLvTmpApprovers(empNbr);
 		BhrEmpDemo employee;
