@@ -342,7 +342,7 @@ public class LeaveRequestController {
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
 		List<Code> leaveTypesWithAll = new ArrayList<>();
-		Code code = new Code("0", "All");
+		Code code = new Code("", "All");
 		leaveTypesWithAll.add(code);
 		if (freq == null || ("").equals(freq)) {
 			if (availableFreqs.size() > 0) {
