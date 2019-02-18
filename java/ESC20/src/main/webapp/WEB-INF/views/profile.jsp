@@ -1398,7 +1398,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
-                                        </button>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        id=""
+                                        class="btn btn-secondary delete-btn"  data-localize="label.delete" onclick="deleteBankAmount()"
+                                    >
+                                    
+                                    </button>
                                     <button
                                         type="button"
                                         class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
@@ -1552,6 +1559,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <%@ include file="modal/changePassword.jsp"%>
         <%@ include file="modal/undoModal.jsp"%>
         <%@ include file="modal/changeAvatar.jsp"%>
+        <%@ include file="modal/deleteModal.jsp"%>
         <div
             class="modal fade"
             id="selectBankModal"
@@ -1881,10 +1889,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $(".sureUndo").click(function(){
                 undoFormSubmit()
             })
+            $(".sureDelete").click(function(){
+                console.log("modal -- delete")
+            })
         })
         function undoFormSubmit(){
             let form = "#" + formSelect
             $(form)[0].submit()
+        }
+        function deleteBankAmount(){
+            $('#deleteModal').modal('show')
+            console.log("delete")
         }
         
 
