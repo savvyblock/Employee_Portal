@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -500,7 +501,7 @@ public class IndexController {
 	         mav.setViewName("profile");
 	        
 	         	
-	         demo.setAvatar("/uploadFiles/"+demo.getEmpNbr()+".jpg");
+	         demo.setAvatar("/uploadFiles/"+demo.getEmpNbr()+".jpg"+"?uploadTime="+Calendar.getInstance().getTimeInMillis());
 	         this.indexService.updateDemoAvatar(demo);
 	         session.removeAttribute("userDetail");
 	         session.setAttribute("userDetail", demo);
@@ -989,6 +990,8 @@ public class IndexController {
     	HttpSession session = req.getSession();
     	Map<String, String> res = new HashMap<>();
     	BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+    	if(demo==null)
+    		return null;
     	Integer count = this.indexService.getBudgeCount(demo.getEmpNbr());
         res.put("count", count.toString());
         return res;
@@ -1000,6 +1003,8 @@ public class IndexController {
     	HttpSession session = req.getSession();
     	Map<String, JSONArray> result = new HashMap<>();
     	BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+    	if(demo==null)
+    		return null;
     	List<BeaAlert> top5 = this.indexService.getTop5Alerts(demo.getEmpNbr());
         JSONArray res = new JSONArray();
         JSONObject obj = new JSONObject();
