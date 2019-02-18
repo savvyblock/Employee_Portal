@@ -87,7 +87,7 @@ public class BankDao {
         return ("Y").equals(res.toString());
 	}
     
-    public List<Bank> getAccounts(String employeeNumber, Frequency frequency)
+    public List<Bank> getAccounts(String employeeNumber, String frequency)
 	{
     	List<Bank> bankList = new ArrayList<Bank>();
     	Session session = this.getSession();
@@ -110,7 +110,9 @@ public class BankDao {
 		sql.append(" AND BHR_BANK_DEPOSIT.BANK_ACCT_TYP = BTHR_BANK_ACCT_TYP.BANK_ACCT_TYP ORDER BY BTHR_BANK_CODES.BANK_NAME ASC ");
 		q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
-		q.setParameter("freq", frequency.getCode());
+//		q.setParameter("freq", frequency.getCode());
+		q.setParameter("freq", frequency);
+
 		List<Object[]> res = q.list();
 		
 		for(Object[] item: res) {

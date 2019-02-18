@@ -41,6 +41,7 @@ import com.esc20.model.BeaUsers;
 import com.esc20.model.BeaW4;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BthrBankCodes;
+import com.esc20.nonDBModels.Bank;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
@@ -270,22 +271,22 @@ public class IndexController {
         if(null == user){
         	return this.getIndexPage(mav);
         }
-        mav.setViewName("profile");
-        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
-        BeaMrtlStat maritalStatusRequest;
-        if(this.indexService.getBhrEapDemoAssgnGrp("BEA_MRTL_STAT")) {
-        	maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts,maritalStatNew,'A');
-        	this.indexService.saveMaritalRequest(maritalStatusRequest);
-        	demo.setMaritalStat(maritalStatNew.charAt(0));
-        	this.indexService.updateDemoMaritalStatus(demo);
-        	session.removeAttribute("userDetail");
-        	session.setAttribute("userDetail", demo);
-        }else {
-        	maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts,maritalStatNew,'P');
-        	this.indexService.saveMaritalRequest(maritalStatusRequest);
-        }
+//        mav.setViewName("profile");
+//        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+//        BeaMrtlStat maritalStatusRequest;
+//        if(this.indexService.getBhrEapDemoAssgnGrp("BEA_MRTL_STAT")) {
+//        	maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts,maritalStatNew,'A');
+//        	this.indexService.saveMaritalRequest(maritalStatusRequest);
+//        	demo.setMaritalStat(maritalStatNew.charAt(0));
+//        	this.indexService.updateDemoMaritalStatus(demo);
+//        	session.removeAttribute("userDetail");
+//        	session.setAttribute("userDetail", demo);
+//        }else {
+//        	maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts,maritalStatNew,'P');
+//        	this.indexService.saveMaritalRequest(maritalStatusRequest);
+//        }
         
-        this.getProfileDetails(session, mav);
+      //  this.getProfileDetails(session, mav);
         mav.addObject("activeTab", "maritalStatusRequest");
         return mav;
     }
@@ -302,6 +303,31 @@ public class IndexController {
     	bbc.setBankName(bankName);
     	
     	List<BthrBankCodes> banks = bankService.getBanksByEntity(bbc);
+    	JSONArray json = JSONArray.fromObject(banks); 
+        return json;
+    }
+    
+    @RequestMapping("getAccounts")
+    @ResponseBody
+    public JSONArray getAccounts(HttpServletRequest req){
+    	
+    	String employeeNumber = req.getParameter("employeeNumber");
+    	String frequency = req.getParameter("frequency");
+    	
+    	List<Bank> banks = bankService.getAccounts(employeeNumber, frequency);
+    	JSONArray json = JSONArray.fromObject(banks); 
+        return json;
+    }
+    
+    
+    @RequestMapping("getAccountRequests")
+    @ResponseBody
+    public JSONArray getAccountRequests(HttpServletRequest req){
+    	
+    	String employeeNumber = req.getParameter("employeeNumber");
+    	String frequency = req.getParameter("frequency");
+    	
+    	List<Bank> banks = bankService.getAccounts(employeeNumber, frequency);
     	JSONArray json = JSONArray.fromObject(banks); 
         return json;
     }
