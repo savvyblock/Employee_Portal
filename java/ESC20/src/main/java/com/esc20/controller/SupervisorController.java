@@ -33,6 +33,7 @@ import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
 import com.esc20.service.SupervisorService;
+import com.esc20.util.DateUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -656,6 +657,18 @@ public class SupervisorController {
 		JSONObject temp;
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
 		boolean isDelete = true;
+		//all add when the existing list is empty
+		if(records.size()==0) {
+			for (int i = 0; i < inputs.size(); i++) {
+				temp = ((JSONObject) inputs.get(i));
+				tempApprover = new BeaEmpLvTmpApprovers();
+				tempApprover.setDatetimeFrom(DateUtil.getUTCTime(sdf1.parse(temp.getString("from"))));
+				tempApprover.setDatetimeTo(DateUtil.getUTCTime(sdf1.parse(temp.getString("to"))));
+				tempApprover.setSpvsrEmpNbr(empNbr);
+				tempApprover.setTmpApprvrEmpNbr(temp.getString("empNbr"));
+				this.supService.saveTempApprover(tempApprover, false);
+			}
+		}
 		for (int j = 0; j < records.size(); j++) {
 			isDelete = true;
 			for (int i = 0; i < inputs.size(); i++) {
