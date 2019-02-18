@@ -43,6 +43,7 @@ import com.esc20.model.BeaW4;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Bank;
+import com.esc20.nonDBModels.BankRequest;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
@@ -328,8 +329,8 @@ public class IndexController {
     	String employeeNumber = req.getParameter("employeeNumber");
     	String frequency = req.getParameter("frequency");
     	
-    	List<Bank> banks = bankService.getAccounts(employeeNumber, frequency);
-    	JSONArray json = JSONArray.fromObject(banks); 
+    	List<BankRequest> banks = bankService.getAccountRequests(employeeNumber, frequency);
+    	JSONArray json = JSONArray.fromObject(banks);
         return json;
     }
     
@@ -474,6 +475,15 @@ public class IndexController {
         List<Code> statesOptions = this.referenceService.getStates();
         List<Code> restrictionsOptions = this.referenceService.getRestrictions();
         
+        String freqCode = freq;
+        if (freq != null && !("").equals(freq)) {
+        	freqCode = payRollFrequenciesOptions.get(0).getCode(); //TODO 
+        }else {
+        	freqCode = payRollFrequenciesOptions.get(0).getCode();
+        }
+        List<Bank> banks = this.bankService.getAccounts(demo.getEmpNbr(), freqCode);
+        List<BankRequest> banksRequest = this.bankService.getAccountRequests(demo.getEmpNbr(), freqCode);
+        
         mav.setViewName("profile");
         mav.addObject("nameRequest", nameRequest);
         mav.addObject("mrtlRequest", mrtlRequest);
@@ -494,6 +504,8 @@ public class IndexController {
         mav.addObject("restrictionsOptions", restrictionsOptions);
         mav.addObject("payRollFrequenciesOptions", payRollFrequenciesOptions);
        
+        mav.addObject("banks", banks);
+        mav.addObject("banksRequest", banksRequest);
 //        mav.addObject("w4Request", w4Request);
 	}
 

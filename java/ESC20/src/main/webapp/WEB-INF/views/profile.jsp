@@ -1230,7 +1230,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </div>
                         </form>
                         <p class="sub-title" data-localize="profile.directDepositBankAccounts"></p>
-                        <form
+                        
+                        <c:forEach var="bank" items="${banks}" varStatus="count">
+							
+							
+							 <form
                             class="profile-item border-0 bankAccountBlock"
                             id="bankAccountForm_01"
                         >
@@ -1244,6 +1248,196 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="icheck"
                                                     id="primary_0"
                                                     type="checkbox"
+                                                    name="primaryAccount"
+                                                    disabled
+                                                />
+                                            </label>
+                                        </span>
+                                        <div class="form-group valueInput">
+                                            <label for="primaryAccount">
+                                                <input
+                                                    class="icheck"
+                                                    id="primary_1"
+                                                    type="checkbox"
+                                                    name="primaryAccount"
+                                                />
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profile-item-line form-line">
+                                    <div class="profile-title" data-localize="profile.bankName"></div>
+                                    <div class="profile-desc">
+                                        <span class="haveValue"
+                                            >${bank.code.description}</span
+                                        >
+                                        <div class="valueInput group-line">
+                                            <div class="form-group">
+                                                <input
+                                                    class="form-control name"
+                                                    type="text"
+                                                    name="accountInfo[0].code.description"
+                                                    value="${bank.code.description}"
+                                                    disabled
+                                                />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input
+                                                    class="form-control code"
+                                                    type="text"
+                                                    name="accountInfo[0].code.subCode"
+                                                    value="${bank.code.subCode}"
+                                                    disabled
+                                                />
+                                            </div>
+
+                                            <button
+                                                class="btn btn-secondary xs getBank"
+                                                type="button"
+                                                title=""
+                                                data-localize="profile.chooseBank"
+                                                data-localize-location="title"
+                                            >
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profile-item-line form-line">
+                                    <div class="profile-title" data-localize="profile.bankAcctNbr">
+                                    </div>
+                                    <div class="profile-desc">
+                                        <span class="haveValue"
+                                            >${bank.accountNumber}</span
+                                        >
+                                        <div class="form-group valueInput">
+                                            <input
+                                                id="bankAccountNumber_0"
+                                                class="form-control"
+                                                type="text"
+                                                title=""
+                                                data-localize="profile.bankAcctNbr"
+                                                name="accountInfo[0].accountNumber"
+                                                value="${bank.accountNumber}"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profile-item-line form-line">
+                                    <div class="profile-title" data-localize="profile.bankAcctType">
+                                    </div>
+                                    <div class="profile-desc">
+                                        <span class="haveValue"
+                                            >${bank.accountType.displayLabel}</span
+                                        >
+                                        <div class="form-group valueInput">
+                                            <select
+                                                class="form-control"
+                                                id="bankAccountType_1"
+                                                title=""
+                                                data-localize="profile.bankAcctType"
+                                                name="accountInfo[0].accountType.displayLabel"
+                                            >
+                                                <option value=""></option>
+                                                <option
+                                                    value="2 - Checking account"
+                                                    selected="selected"
+                                                    >2 - Checking
+                                                    account</option
+                                                >
+                                                <option
+                                                    value="3 - Savings account"
+                                                    >3 - Savings account</option
+                                                >
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profile-item-line form-line">
+                                    <div class="profile-title" data-localize="profile.bankAcctAmt">
+                                    </div>
+                                    <div class="profile-desc">
+                                        <span class="haveValue"
+                                            >${bank.depositAmount.displayAmount}</span
+                                        >
+                                        <div class="form-group valueInput">
+                                            <input
+                                                class="form-control amount_2"
+                                                id="bankDepositAmount_1"
+                                                type="text"
+                                                title="" data-localize="profile.bankAcctAmt"
+                                                name="accountInfo[0].depositAmount.displayAmount"
+                                                value="${bank.depositAmount.displayAmount}"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile-btn">
+                                <div class="edit">
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary edit-btn" data-localize="label.edit"
+                                    >
+                                     
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary delete-btn" data-localize="label.delete"
+                                    >
+                                    </button>
+                                </div>
+                                <div class="saveOrCancel">
+                                    <button
+                                        type="submit"
+                                        class="btn btn-primary save-btn" data-localize="label.update"
+                                        id="saveBank_01"
+                                    >
+                                     
+                                    </button>
+                                    <button
+                                            type="button"
+                                            id=""
+                                            class="btn btn-secondary"  data-localize="label.undo"
+                                        >
+                                        
+                                    </button>
+                                    <button
+                                        type="button"
+                                        id=""
+                                        class="btn btn-secondary delete-btn"  data-localize="label.delete" onclick="deleteBankAmount()"
+                                    >
+                                    
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
+                                    >
+                                    
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+							
+                                                   
+                        </c:forEach>
+                        
+                        
+                        <form
+                            class="profile-item border-0 bankAccountBlock"
+                            id="bankAccountForm_01"
+                        >
+                            <div class="profile-left">
+                                <div class="profile-item-line form-line">
+                                    <div class="profile-title" data-localize="profile.primary"></div>
+                                    <div class="profile-desc">
+                                        <span class="haveValue">
+                                            <label for="primaryAccount">
+                                                <input
+                                                    class="icheck"
+                                                    id="primary_0"
+                                                    type="radio"
                                                     name="primaryAccount"
                                                     disabled
                                                 />
