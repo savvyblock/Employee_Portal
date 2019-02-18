@@ -155,14 +155,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             }
             $("#nextLevel").click(function(){
                 let chainString = $("#chainValue").text()
-                console.log(chain)
-                $("#chain").val(chain)
+                console.log(chainString)
+                $("#chain").val(chainString)
                 $("#filterSupervisor")[0].submit()  
             })
             $("#prevLevel").click(function(){
                 let chainString = $("#chainValue").text()
-                console.log(chain)
-                $("#preChain").val(chain)
+                console.log(chainString)
+                $("#preChain").val(chainString)
                 $("#previousLevel")[0].submit()  
             })
             let chainSt = $("#chainValue").text()
