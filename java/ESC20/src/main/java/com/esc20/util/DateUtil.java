@@ -211,4 +211,25 @@ private static long msInDay = 24 * 60 * 60 * 1000;
             return day2-day1;
         }
     }
+    
+    //get current UAT time as of GMT 0
+    public static Date getUTCTime(Date localTime) {
+    	Calendar cal = Calendar.getInstance();
+    	if(localTime!=null)
+    		cal.setTime(localTime);
+    	int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);  
+    	int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);  
+    	cal.add(java.util.Calendar.MILLISECOND, -(zoneOffset + dstOffset));
+    	return cal.getTime();
+    }
+    
+    //get local time relates to GMT
+    public static Date getLocalTime(Date GMTTime) {
+    	Calendar cal = Calendar.getInstance();
+    	cal.setTime(GMTTime);
+    	int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);  
+    	int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);  
+    	cal.add(java.util.Calendar.MILLISECOND, (zoneOffset + dstOffset));
+    	return cal.getTime();
+    }
 }
