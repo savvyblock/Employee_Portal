@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -188,6 +189,7 @@ public class IndexController {
     	    mav.addObject("newUser", newUser);
     	    mav.addObject("isUserExist", "true");
     	}else {
+    		this.indexService.updateEmailEmployee(newUser.getEmpNbr(),req.getParameter("workEmail"),req.getParameter("homeEmail"));
     		indexService.saveBeaUsers(newUser);
     		mav.setViewName("index");
     	    mav.addObject("user", user);
@@ -217,7 +219,7 @@ public class IndexController {
         	mav.addObject("newUser", searchUser);
     	}else {
     		BhrEmpDemo bed= this.indexService.retrieveEmployee(searchUser);
-        	
+    		BeaEmail emailRequest = this.indexService.getBeaEmail(bed);
         	if(bed == null) {
         		mav.setViewName("searchUser");
             	mav.addObject("isSuccess", "false");
@@ -227,6 +229,7 @@ public class IndexController {
         		searchUser.setNameL(bed.getNameL());
         		mav.setViewName("createNewUser");
             	mav.addObject("newUser", searchUser);
+            	mav.addObject("emailShowRequest", emailRequest);
         	}
     	}
     	
