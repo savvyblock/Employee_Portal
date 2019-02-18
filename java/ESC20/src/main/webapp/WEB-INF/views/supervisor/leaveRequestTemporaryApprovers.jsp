@@ -96,9 +96,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             </td>
                                                             <td
                                                             data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope"
-                                                            ></td>
-                                                            <td data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope"></td>
-                                                            <td data-localize="setTemporaryApprovers.toDate" data-localize-location="scope"></td>
+                                                            >${tem.tmpApprvrEmpNbr}</td>
+                                                            <td data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope">${tem.datetimeFrom}</td>
+                                                            <td data-localize="setTemporaryApprovers.toDate" data-localize-location="scope">${tem.datetimeTo}</td>
                                                             <td data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
                                                                 <button
                                                                     type="button"

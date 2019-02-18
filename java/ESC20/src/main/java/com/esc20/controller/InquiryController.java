@@ -271,9 +271,10 @@ public class InquiryController {
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		BhrW2 w2Info = this.service.getW2Info(employeeNumber, year);
-		if (isSuccess == null)
+		if (isSuccess == null) {
 			mav = setW2ValuesByCalYr(session, mav, employeeNumber, w2Info, year, true);
-		else
+			mav.addObject("isSuccess", false);
+		} else
 			mav = setW2ValuesByCalYr(session, mav, employeeNumber, w2Info, year, isSuccess);
 		return mav;
 	}
