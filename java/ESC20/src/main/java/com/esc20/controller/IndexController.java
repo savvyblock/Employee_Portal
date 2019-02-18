@@ -288,7 +288,7 @@ public class IndexController {
     	
     	try {
 	    	BeaUsers user = this.indexService.getUserByEmpNbr(id);
-	    	user.setUsrpswd(this.encrypt(password));
+	    	user.setUsrpswd(encoder.encodePassword(password,null));
 	    	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
 	    	this.indexService.updateUser(user);
 	    	
@@ -311,7 +311,7 @@ public class IndexController {
         	mav = new ModelAndView("redirect:/profile");
         	return mav;
         }
-    	user.setUsrpswd(encoder.encodePassword(this.encrypt(password),null));
+    	user.setUsrpswd(encoder.encodePassword(password,null));
     	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
     	this.indexService.updateUser(user);
     	session.removeAttribute("user");
