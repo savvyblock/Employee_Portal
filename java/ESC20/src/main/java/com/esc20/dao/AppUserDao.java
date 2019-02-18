@@ -283,19 +283,6 @@ public class AppUserDao {
         session.close();
         return res;
 	}
-	
-	public BeaW4 getW4(BhrEmpPayId payId) {
-		Session session = this.getSession();
-		Query q;
-		String sql= "from BeaW4 where id.empNbr =:empNbr and id.payFreq = :payFreq and id.cyrNyrFlg=:cyrNyrFlg and statCd='P'";
-        q = session.createQuery(sql);
-        q.setParameter("empNbr", payId.getEmpNbr());
-        q.setParameter("payFreq", payId.getPayFreq());
-        q.setParameter("cyrNyrFlg", payId.getCyrNyrFlg());
-        BeaW4 res = (BeaW4) q.uniqueResult();
-        session.close();
-        return res;
-	}
 
 	public BeaRestrict getBeaRestrict(String empNbr) {
 		Session session = this.getSession();
@@ -704,7 +691,7 @@ public class AppUserDao {
 		BhrEmpDemo demo = new BhrEmpDemo();
 		Session session = this.getSession();
 		Query q;
-		String sql= "select email,nameF,nameL from BhrEmpDemo where empNbr =:empNbr and dob =:dob  and addrZip =:addrZip";
+		String sql= "select email,nameF,nameL,hmEmail from BhrEmpDemo where empNbr =:empNbr and dob =:dob  and addrZip =:addrZip";
         q = session.createQuery(sql);
         q.setParameter("empNbr", searchUser.getEmpNumber());
         q.setParameter("dob", searchUser.getSearchFormattedDateofBirth());
@@ -716,9 +703,26 @@ public class AppUserDao {
         	demo.setEmail((String) res[0]);
         	demo.setNameF((String) res[1]);
         	demo.setNameL((String) res[2]);
+        	demo.setHmEmail((String) res[3]);
         }
         session.close();
         return demo;
+	}
+	
+	public void updateEmailEmployee(String employeeNumber,String workEmail, String homeEmail) 
+	{
+		BhrEmpDemo demo = new BhrEmpDemo();
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("UPDATE BhrEmpDemo SET email = :workEmail, hmEmail = :homeEmail ");
+		sql.append(" WHERE empNbr = :employeeNumber ");
+		
+		Query q = session.createQuery(sql.toString());
+		q.setParameter("workEmail", workEmail);
+		q.setParameter("homeEmail", homeEmail);
+		q.setParameter("employeeNumber", employeeNumber);
+		Integer res = q.executeUpdate();
+    	session.close();
 	}
 	
 }

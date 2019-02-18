@@ -1135,14 +1135,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         <p class="sub-title" data-localize="profile.W4MaritalStatusInfo"></p>
                         <form
                             class="no-print searchForm"
-                            action=""
+                            action="profile"
                             id="changeFreqForm"
                             method="POST"
 										>
+										
 							<div class="form-group in-line p-l-0">
 								<label class="form-title"  for="freq"  data-localize="label.payrollFreq"></label>
+								
 						        <select class="form-control" name="freq" id="freq" onchange="changeFreq()">
-                                    <c:forEach var="freq" items="${availableFreqs}" varStatus="count">
+                                    <c:forEach var="freq" items="${payRollFrequenciesOptions}" varStatus="count">
                                         <option value="${freq.code}" <c:if test="${freq.code == selectedFreq }">selected</c:if>>${freq.description}</option>
                                     </c:forEach>
                                 </select>
@@ -1168,7 +1170,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 autofocus
                                             >
                                                 <c:forEach var="maritalTax" items="${maritalTaxOptions}" varStatus="count">
-                                                    <option value="${maritalTax.code}" <c:if test="${maritalTax.code == w4Request.maritalStatTaxNew }">selected</c:if>>${maritalTax.description}</option>
+                                                    <option value="${maritalTax.code}" <c:if test="${maritalTax.code == payRequest.maritalStatTaxNew }">selected</c:if>>${maritalTax.description}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>

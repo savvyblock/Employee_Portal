@@ -161,7 +161,10 @@
         	bootstrapValidator.validate();
             if (bootstrapValidator.isValid()) {
                 let old = sessionStorage.getItem("sessionPws");
-                let currentOld = $("#oldPassword").val()
+                let currentOld = sha256_digest($("#oldPassword").val());
+                console.log("old", old);
+                
+                console.log("currentOld", currentOld);
                 if(old == currentOld){
                     $('.oldPsdValidator').hide()
                     $('#updatePassword')[0].submit()

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.esc20.dao.AlertDao;
 import com.esc20.dao.AppUserDao;
 import com.esc20.dao.OptionsDao;
+import com.esc20.dao.PayDao;
 import com.esc20.model.BeaAlert;
 import com.esc20.model.BeaAltMailAddr;
 import com.esc20.model.BeaBusPhone;
@@ -30,7 +31,9 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPay;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.SearchUser;
+
 
 @Service
 public class IndexService {
@@ -45,6 +48,9 @@ public class IndexService {
 
     @Autowired
     private AlertDao alertDao;
+    
+    @Autowired
+    private PayDao payDao;
     
     public String getMessage() throws ParseException{
         String message = "Hello, JBoss has started!";
@@ -149,14 +155,6 @@ public class IndexService {
 		return result;
 	}
 	
-	public BeaW4 getW4(BhrEmpPay pay) {
-		BeaW4 result = userDao.getW4(pay.getId());
-		if(result == null) {
-			result = new BeaW4(pay);
-		}
-		return result;
-	}
-	
 	public BeaRestrict getBeaRestrict(BhrEmpDemo demo) {
 		BeaRestrict result = userDao.getBeaRestrict(demo.getEmpNbr());
 		if(result == null) {
@@ -206,6 +204,16 @@ public class IndexService {
 		}
 		return result;
 	}
+	
+	public PayInfo getPayInfo(BhrEmpDemo demo, String frequency)
+	{
+		PayInfo result = payDao.getPayInfo(demo.getEmpNbr(), frequency);
+		if(result == null) {
+			result = new PayInfo(demo.getEmpNbr(),"");
+		}
+		return result; 
+	}
+	
 	public boolean getBhrEapDemoAssgnGrp(String tableName) {
 		return userDao.getBhrEapDemoAssgnGrp(tableName);
 	}
@@ -293,6 +301,11 @@ public class IndexService {
 	
 	public BhrEmpDemo retrieveEmployee(SearchUser searchUser) {
 		return userDao.retrieveEmployee(searchUser);
+		
+	}
+	
+	public void updateEmailEmployee(String employeeNumber, String workEmail, String hmEmail) {
+		 userDao.updateEmailEmployee(employeeNumber,workEmail,hmEmail);
 		
 	}
 	

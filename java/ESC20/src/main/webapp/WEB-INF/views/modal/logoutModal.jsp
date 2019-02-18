@@ -7,45 +7,29 @@
     aria-hidden="true"
     data-backdrop="static"
 >
-    <div class="modal-dialog approveForm" style="max-width:350px;">
-        <div class="modal-content">
-            <div class="modal-header">
+    <div class="modal-dialog approveForm warn-modal" style="max-width:350px;">
+        <div class="modal-content text-center">             
+            <div class="modal-body">
+                <i class="fa fa-exclamation-circle warn-icon"></i>
+                <p style="text-align:center;font-size:20px;margin:10px 0;"><b id="timeCounter"></b></p>
+                <p data-localize="label.areYouQuit"></p>
+            </div>
+            <div class="modal-footer">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/logout">
+                    <button type="button"  class="btn btn-primary" data-localize="label.ok">
+                    </button>
+                </a>
                 <button
                     type="button"
-                    class="close"
+                    class="btn btn-secondary"
                     data-dismiss="modal"
                     aria-hidden="true"
-                    data-localize="label.closeModal"
-                    data-localize-location="title"
+                    id="cancelAdd"
+                    data-localize="label.cancel"
                     onclick="startCountTime()"
                 >
-                    &times;
                 </button>
-                <h4 class="modal-title" data-localize="label.information"></h4>
-            </div>
-              
-                      <div class="modal-body">
-                        <p style="text-align:center;font-size:20px;margin:10px 0;"><b id="timeCounter"></b></p>
-                        <p data-localize="label.areYouQuit"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="/<%=request.getContextPath().split("/")[1]%>/logout">
-                            <button type="button"  class="btn btn-primary" data-localize="label.ok">
-                            </button>
-                        </a>
-                        <button
-                          type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
-                            aria-hidden="true"
-                            id="cancelAdd"
-                            data-localize="label.cancel"
-                            onclick="startCountTime()"
-                        >
-                        </button>
-                    </div>
-              
-              
+            </div>             
         </div>
         <!-- /.modal-content -->
     </div>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
     <head>
         <title data-localize="headTitle.calendarYTD"></title>
@@ -90,21 +91,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.contractPay"
                                     >
-                                    ${calendar.contrAmt}
+                                    <fmt:formatNumber value="${calendar.contrAmt}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.nonContractPay"></td>
                                     <td
                                         class="td-content"
                                         data-localize="calendarTable.nonContractPay"
                                     >
-                                    ${calendar.noncontrAmt}
+                                    <fmt:formatNumber value="${calendar.noncontrAmt}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.supplementalPay"></td>
                                     <td
                                         class="td-content"
                                         data-localize="calendarTable.supplementalPay"
                                     >
-                                    ${calendar.supplPayAmt}
+                                    <fmt:formatNumber value="${calendar.supplPayAmt}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -113,14 +114,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.withholdingGross"
                                     >
-                                    ${calendar.whGross}
+                                    <fmt:formatNumber value="${calendar.whGross}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.withholdingTax"></td>
                                     <td
                                         class="td-content"
                                         data-localize="calendarTable.withholdingTax"
                                     >
-                                    ${calendar.whTax}
+                                    <fmt:formatNumber value="${calendar.whTax}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.earnedIncomeCredit">
                                         
@@ -129,7 +130,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.earnedIncomeCredit"
                                     >
-                                    ${calendar.eicAmt}
+                                    <fmt:formatNumber value="${calendar.eicAmt}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -138,14 +139,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.ficaGross"
                                     >
-                                    ${calendar.ficaGross}
+                                    <fmt:formatNumber value="${calendar.ficaGross}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.ficaTax"></td>
                                     <td
                                         class="td-content"
                                         data-localize="calendarTable.ficaTax"
                                     >
-                                    ${calendar.ficaTax}
+                                    <fmt:formatNumber value="${calendar.ficaTax}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" colspan="2"></td>
                                 </tr>
@@ -157,7 +158,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.dependentCare"
                                     >
-                                    ${calendar.dependCare}
+                                    <fmt:formatNumber value="${calendar.dependCare}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.dependentCareEmployer">
                                         
@@ -166,7 +167,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.dependentCareEmployer"
                                     >
-                                    ${calendar.emplrDependCare}
+                                    <fmt:formatNumber value="${calendar.emplrDependCare}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.dependentCareExceeds">
                                         
@@ -175,7 +176,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.dependentCareExceeds"
                                     >
-                                    ${calendar.emplrDependCareTax}
+                                    <fmt:formatNumber value="${calendar.emplrDependCareTax}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -184,14 +185,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.medicareGross"
                                     >
-                                    ${calendar.medGross}
+                                    <fmt:formatNumber value="${calendar.medGross}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.medicareTax"></td>
                                     <td
                                         class="td-content"
                                         data-localize="calendarTable.medicareTax"
                                     >
-                                    ${calendar.medTax}
+                                    <fmt:formatNumber value="${calendar.medTax}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" colspan="2"></td>
                                 </tr>
@@ -204,7 +205,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.annuityDeduction"
                                     >
-                                    ${calendar.annuityDed}
+                                    <fmt:formatNumber value="${calendar.annuityDed}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.roth403BAfterTax">
                                         
@@ -213,14 +214,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.roth403BAfterTax"
                                     >
-                                    ${calendar.annuityRoth}
+                                    <fmt:formatNumber value="${calendar.annuityRoth}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.taxableBenefits"></td>
                                     <td
                                         class="td-content"
                                         data-localize="calendarTable.taxableBenefits"
                                     >
-                                    ${calendar.taxedBenefits}
+                                    <fmt:formatNumber value="${calendar.taxedBenefits}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -231,7 +232,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.annuity457Employee"
                                     >
-                                    ${calendar.emp457Contrib}
+                                    <fmt:formatNumber value="${calendar.emp457Contrib}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.annuity457Employer">
                                         
@@ -240,14 +241,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.annuity457Employer"
                                     >
-                                    ${calendar.emplr457Contrib}
+                                    <fmt:formatNumber value="${calendar.emplr457Contrib}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.annuity457Withdraw"></td>
                                     <td
                                         class="td-content"
                                         data-localize="calendarTable.annuity457Withdraw"
                                     >
-                                    ${calendar.withdraw457}
+                                    <fmt:formatNumber value="${calendar.withdraw457}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -261,7 +262,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.nonTrsBusinessExpense"
                                     >
-                                    ${calendar.nontrsBusAllow}
+                                    <fmt:formatNumber value="${calendar.nontrsBusAllow}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.nonTrsReimbursementBase">
                                         
@@ -270,7 +271,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.nonTrsReimbursementBase"
                                     >
-                                    ${calendar.nontrsReimbrBase}
+                                    <fmt:formatNumber value="${calendar.nontrsReimbrBase}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.nonTrsReimbursementExcess">
                                         
@@ -279,7 +280,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.nonTrsReimbursementExcess"
                                     >
-                                    ${calendar.nontrsReimbrExcess}
+                                    <fmt:formatNumber value="${calendar.nontrsReimbrExcess}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -290,7 +291,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.movingExpenseReimbursement"
                                     >
-                                    ${calendar.movingExpReimbr}
+                                    <fmt:formatNumber value="${calendar.movingExpReimbr}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.nonTrsNonTaxBusinessAllow">
                                         
@@ -299,7 +300,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.nonTrsNonTaxBusinessAllow"
                                     >
-                                    ${calendar.nontrsNontaxBusAllow}
+                                    <fmt:formatNumber value="${calendar.nontrsNontaxBusAllow}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.nonTrsNonTaxNonPayAllow">
                                         
@@ -308,7 +309,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.nonTrsNonTaxNonPayAllow"
                                     >
-                                    ${calendar.nontrsNontaxNonpayAllow}
+                                    <fmt:formatNumber value="${calendar.nontrsNontaxNonpayAllow}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -322,14 +323,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.salaryReduction"
                                     >
-                                    ${calendar.trsSalaryRed}
+                                    <fmt:formatNumber value="${calendar.trsSalaryRed}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.trsInsurance"></td>
                                     <td
                                         class="td-content"
                                         data-localize="calendarTable.trsInsurance"
                                     >
-                                    ${trsIns}
+                                    <fmt:formatNumber value="${trsIns}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" colspan="2"></td>
                                 </tr>
@@ -341,7 +342,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.hsaEmployerContribution"
                                     >
-                                    ${calendar.hsaEmplrContrib}
+                                    <fmt:formatNumber value="${calendar.hsaEmplrContrib}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.hsaEmployeeSalaryReductionContribution">
                                         
@@ -350,7 +351,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.hsaEmployeeSalaryReductionContribution"
                                     >
-                                    ${calendar.hsaEmpSalRedctnContrib}
+                                    <fmt:formatNumber value="${calendar.hsaEmpSalRedctnContrib}" pattern="#,##0.00"/>
                                     </td>
 
                                     <td class="td-title" data-localize="calendarTable.hireExemptWgs"></td>
@@ -358,7 +359,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.hireExemptWgs"
                                     >
-                                    ${calendar.hireExemptWgs}
+                                    <fmt:formatNumber value="${calendar.hireExemptWgs}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -369,7 +370,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.taxedLifeContribution"
                                     >
-                                    ${calendar.taxEmplrLife}
+                                    <fmt:formatNumber value="${calendar.taxEmplrLife}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.taxedGroupContribution">
                                     </td>
@@ -377,7 +378,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.taxedGroupContribution"
                                     >
-                                    ${calendar.taxEmplrLifeGrp}
+                                    <fmt:formatNumber value="${calendar.taxEmplrLifeGrp}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" data-localize="calendarTable.healthInsuranceDeduction">
                                        
@@ -386,7 +387,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.healthInsuranceDeduction"
                                     >
-                                    ${calendar.hlthInsDed}
+                                    <fmt:formatNumber value="${calendar.hlthInsDed}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
 
@@ -401,7 +402,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.emplrPrvdHlthcare"
                                     >
-                                    ${calendar.emplrPrvdHlthcare}
+                                    <fmt:formatNumber value="${calendar.emplrPrvdHlthcare}" pattern="#,##0.00"/>
                                     </td>
 
                                     <td class="td-title" data-localize="calendarTable.annuityRoth457b"></td>
@@ -409,7 +410,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="td-content"
                                         data-localize="calendarTable.annuityRoth457b"
                                     >
-                                    ${calendar.annuityRoth457b}
+                                    <fmt:formatNumber value="${calendar.annuityRoth457b}" pattern="#,##0.00"/>
                                     </td>
 
                                     <td class="td-title" colspan="2"></td>

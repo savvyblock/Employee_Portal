@@ -1,15 +1,13 @@
 package com.esc20.nonDBModels;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+
+import com.esc20.util.DateUtil;
 
 import net.sf.json.JSONObject;
 
 public class LeaveRequestComment {
-
 
 	private static final long serialVersionUID = -4452126278573279987L;
 
@@ -22,8 +20,8 @@ public class LeaveRequestComment {
 	private SimpleDateFormat dateTimeFormat24hr = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
 	private SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mmaa");
-	private SimpleDateFormat bhrDateFormat = new SimpleDateFormat ("yyyyMMdd");
-	
+	private SimpleDateFormat bhrDateFormat = new SimpleDateFormat("yyyyMMdd");
+
 	private int id;
 	private int leaveId;
 	private String comment;
@@ -35,13 +33,13 @@ public class LeaveRequestComment {
 	private String commentEmpFirstName;
 	private String commentEmpMiddleName;
 	private String commentEmpLastName;
-	
-	public LeaveRequestComment(Integer id, Integer leaveId, String comment, Date lvCommentDatetime, Character lvCommentTyp,
-			String lvCommentEmpNbr, String nameF, String nameM, String nameL) {
+
+	public LeaveRequestComment(Integer id, Integer leaveId, String comment, Date lvCommentDatetime,
+			Character lvCommentTyp, String lvCommentEmpNbr, String nameF, String nameM, String nameL) {
 		this.id = id;
 		this.leaveId = leaveId;
 		this.comment = comment;
-		this.commentDateTime = lvCommentDatetime;
+		this.commentDateTime = DateUtil.getLocalTime(lvCommentDatetime);
 		this.commentDateString = dateFormat.format(this.commentDateTime);
 		this.commentTimeString = timeFormat.format(this.commentDateTime);
 		this.commentType = lvCommentTyp.toString();
@@ -50,70 +48,91 @@ public class LeaveRequestComment {
 		this.commentEmpMiddleName = nameM;
 		this.commentEmpLastName = nameL;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public String getCommentEmpNumber() {
 		return commentEmpNumber;
 	}
+
 	public void setCommentEmpNumber(String commentEmpNumber) {
 		this.commentEmpNumber = commentEmpNumber;
 	}
+
 	public String getCommentEmpFirstName() {
 		return commentEmpFirstName;
 	}
+
 	public void setCommentEmpFirstName(String commentEmpFirstName) {
 		this.commentEmpFirstName = commentEmpFirstName;
 	}
+
 	public String getCommentEmpMiddleName() {
 		return commentEmpMiddleName;
 	}
+
 	public void setCommentEmpMiddleName(String commentEmpMiddleName) {
 		this.commentEmpMiddleName = commentEmpMiddleName;
 	}
+
 	public String getCommentEmpLastName() {
 		return commentEmpLastName;
 	}
+
 	public void setCommentEmpLastName(String commentEmpLastName) {
 		this.commentEmpLastName = commentEmpLastName;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public int getLeaveId() {
 		return leaveId;
 	}
+
 	public void setLeaveId(int leaveId) {
 		this.leaveId = leaveId;
 	}
+
 	public String getComment() {
 		return comment;
 	}
+
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
 	public String getCommentType() {
 		return commentType;
 	}
+
 	public void setCommentType(String commentType) {
 		this.commentType = commentType;
 	}
+
 	public Date getCommentDateTime() {
 		return commentDateTime;
 	}
+
 	public void setCommentDateTime(Date commentDateTime) {
 		this.commentDateTime = commentDateTime;
 	}
+
 	public String getCommentDateString() {
 		return commentDateString;
 	}
+
 	public void setCommentDateString(String commentDateString) {
 		this.commentDateString = commentDateString;
 	}
+
 	public String getCommentTimeString() {
 		return commentTimeString;
 	}
+
 	public void setCommentTimeString(String commentTimeString) {
 		this.commentTimeString = commentTimeString;
 	}
@@ -133,19 +152,20 @@ public class LeaveRequestComment {
 		jo.put("commentEmpLastName", this.getCommentEmpLastName());
 		return jo;
 	}
+
 	public JSONObject formatComment() {
 		JSONObject jo = new JSONObject();
 		String detail = "";
-		boolean middleNameExists = this.getCommentEmpMiddleName()==null||this.getCommentEmpMiddleName().equals("");
-		String name = this.getCommentEmpNumber()+ "-"+this.getCommentEmpFirstName()+ (middleNameExists?"":(" "+ this.getCommentEmpMiddleName()))+
-						this.getCommentEmpLastName();
+		boolean middleNameExists = this.getCommentEmpMiddleName() == null || this.getCommentEmpMiddleName().equals("");
+		String name = this.getCommentEmpNumber() + "-" + this.getCommentEmpFirstName()
+				+ (middleNameExists ? "" : (" " + this.getCommentEmpMiddleName())) + this.getCommentEmpLastName();
 		detail += name;
 		detail += " commented on ";
-		String date = this.getCommentDateString() + " " +this.getCommentTimeString();
+		String date = this.getCommentDateString() + " " + this.getCommentTimeString();
 		detail += date;
 		detail += ": " + this.getComment();
 		Integer value = detail.indexOf("'");
-		detail = detail.replaceAll("'", "\\"+"'");
+		detail = detail.replaceAll("'", "\\" + "'");
 		jo.put("detail", detail);
 		return jo;
 	}
