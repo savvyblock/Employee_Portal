@@ -216,6 +216,18 @@
         if(item=='eventCalendar'){
           item = 'leaveRequest'
         }
+        if(item=='getCalendarYearToDateByYear'){
+            item = 'calendarYearToDate';
+        }
+        if(item=='earningsByPayDate'){
+            item = 'earnings';
+        }
+        if(item=='w2InformationByYear'){
+            item = 'w2Information';
+        }
+        if(item=='information1095ByYear'){
+            item = 'information1095';
+        }
         var menuElement = $("#"+menuItem);
         var itemElement = $("#"+item);
         console.log(itemElement)
