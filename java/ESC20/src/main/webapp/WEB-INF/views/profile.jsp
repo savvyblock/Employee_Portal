@@ -1135,14 +1135,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         <p class="sub-title" data-localize="profile.W4MaritalStatusInfo"></p>
                         <form
                             class="no-print searchForm"
-                            action=""
+                            action="profile"
                             id="changeFreqForm"
                             method="POST"
 										>
+										
 							<div class="form-group in-line p-l-0">
 								<label class="form-title"  for="freq"  data-localize="label.payrollFreq"></label>
+								
 						        <select class="form-control" name="freq" id="freq" onchange="changeFreq()">
-                                    <c:forEach var="freq" items="${availableFreqs}" varStatus="count">
+                                    <c:forEach var="freq" items="${payRollFrequenciesOptions}" varStatus="count">
                                         <option value="${freq.code}" <c:if test="${freq.code == selectedFreq }">selected</c:if>>${freq.description}</option>
                                     </c:forEach>
                                 </select>
@@ -1168,7 +1170,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 autofocus
                                             >
                                                 <c:forEach var="maritalTax" items="${maritalTaxOptions}" varStatus="count">
-                                                    <option value="${maritalTax.code}" <c:if test="${maritalTax.code == w4Request.maritalStatTaxNew }">selected</c:if>>${maritalTax.description}</option>
+                                                    <option value="${maritalTax.code}" <c:if test="${maritalTax.code == payRequest.maritalStatTaxNew }">selected</c:if>>${maritalTax.description}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
@@ -1396,7 +1398,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
-                                        </button>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        id=""
+                                        class="btn btn-secondary delete-btn"  data-localize="label.delete" onclick="deleteBankAmount()"
+                                    >
+                                    
+                                    </button>
                                     <button
                                         type="button"
                                         class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
@@ -1550,6 +1559,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <%@ include file="modal/changePassword.jsp"%>
         <%@ include file="modal/undoModal.jsp"%>
         <%@ include file="modal/changeAvatar.jsp"%>
+        <%@ include file="modal/deleteModal.jsp"%>
         <div
             class="modal fade"
             id="selectBankModal"
@@ -1619,7 +1629,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </div>
                         </form>
                         <div class="bankResult">
-                            <table class="table border-table">
+                            <table class="table border-table" id="bankTable">
                                 <thead>
                                     <tr>
                                         <th data-localize="profile.routingNumber"></th>
@@ -1627,6 +1637,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                 <!-- 
                                     <tr>
                                         <td data-localize="profile.routingNumber" data-localize-location="scope">
                                             <button
@@ -1640,6 +1651,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </td>
                                         <td data-localize="profile.bankName" data-localize-location="scope">A+ FEDERAL CREDIT UNION</td>
                                     </tr>
+                                   
                                     <tr>
                                             <td colspan="2">
                                                 <div class="flex">
@@ -1672,6 +1684,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     
                                             </td>
                                     </tr>
+                                     -->
                                 </tbody>
                             </table>
                         </div>
@@ -1790,19 +1803,43 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                      contentType: 'application/json;charset=UTF-8',
                      success: function (result) {
                     	 console.log(result);
+                    	 
+                    	 //$('#bankTable').find('tr').remove();
+                    	// $("#bankTable  tr:not(:first)").empty("");  
+                    	 var res = result.result;
+                    	 console.log(res);
+                    	 for (var p in res) {
+                    		 var bankTr= "<tr><td data-localize='profile.routingNumber' data-localize-location='scope'>";
+                    		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].transitRoute+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
+                    		 bankTr = bankTr + " <td data-localize='profile.bankName' data-localize-location='scope'>"+res[p].bankName+"</td> </tr>";
+                    		 $("#bankTable").append(bankTr);
+                    	 }
+                    	 
+                    	    $('#selectBankModal').modal('show')
+                            bankInputName = $('.getBank')
+                                .parent()
+                                .find('.form-control.name');
+                            bankInputCode = $('.getBank')
+                                .parent()
+                                .find('.form-control.code');
+                            
+                            $('.bankNumberBtn').click(function() {
+                                let number = $(this).val()
+                                let name = $(this).attr('data-title')
+                                console.log(number)
+                                console.log(name)
+                                bankInputName.val(name)
+                                bankInputCode.val(number)
+                                $('#selectBankModal').modal('hide')
+                            })
+                    	 
                      },
                      error : function(e) {
                     	 console.log(e);
                      }
                  });
             	
-                $('#selectBankModal').modal('show')
-                bankInputName = $(this)
-                    .parent()
-                    .find('.form-control.name')
-                bankInputCode = $(this)
-                    .parent()
-                    .find('.form-control.code')
+            
                     
                     
             })
@@ -1810,15 +1847,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             	alert("search bank");
             })
             
-            $('.bankNumberBtn').click(function() {
-                let number = $(this).val()
-                let name = $(this).attr('data-title')
-                console.log(number)
-                console.log(name)
-                bankInputName.val(name)
-                bankInputCode.val(number)
-                $('#selectBankModal').modal('hide')
-            })
+          
             
             $("#undoNameRequest").click(function(){
                 $('#undoModal').modal('show')
@@ -1860,10 +1889,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $(".sureUndo").click(function(){
                 undoFormSubmit()
             })
+            $(".sureDelete").click(function(){
+                console.log("modal -- delete")
+            })
         })
         function undoFormSubmit(){
             let form = "#" + formSelect
             $(form)[0].submit()
+        }
+        function deleteBankAmount(){
+            $('#deleteModal').modal('show')
+            console.log("delete")
         }
         
 

@@ -283,19 +283,6 @@ public class AppUserDao {
         session.close();
         return res;
 	}
-	
-	public BeaW4 getW4(BhrEmpPayId payId) {
-		Session session = this.getSession();
-		Query q;
-		String sql= "from BeaW4 where id.empNbr =:empNbr and id.payFreq = :payFreq and id.cyrNyrFlg=:cyrNyrFlg and statCd='P'";
-        q = session.createQuery(sql);
-        q.setParameter("empNbr", payId.getEmpNbr());
-        q.setParameter("payFreq", payId.getPayFreq());
-        q.setParameter("cyrNyrFlg", payId.getCyrNyrFlg());
-        BeaW4 res = (BeaW4) q.uniqueResult();
-        session.close();
-        return res;
-	}
 
 	public BeaRestrict getBeaRestrict(String empNbr) {
 		Session session = this.getSession();

@@ -569,6 +569,7 @@
 		"chooseImageSize":"Choose a picture(JPG/JPEG/PNG/ <500kb):",
 		"rows":"Rows",
 		"areYouDelete":"Are you sure you want to delete?",
+		"warning":"Warn",
 		"":""
 	},
 	"language":{
