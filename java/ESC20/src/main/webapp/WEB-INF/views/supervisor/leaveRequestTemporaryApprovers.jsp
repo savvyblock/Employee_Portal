@@ -190,6 +190,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <p class="error-hint hide" id="noResultError" data-localize="validator.noResultError"></p>
                                 <p class="error-hint hide" id="errorComplete" data-localize="validator.pleaseCompleteForm"></p>
                                 <div class="text-right mt-3">
                                     <button
@@ -346,8 +347,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     autoFill: true,    //
                     formatItem: function(row, i, max) {
                         if(row.employeeNumber){
+                            $("#noResultError").hide()
+                            $("#saveSet").removeClass("disabled").removeAttr("disabled")
                             return  row.employeeNumber + '-' + row.firstName  +","+ row.lastName + row.firstName ;
                         }else{
+                            console.log("no result")
+                            $("#noResultError").show()
+                            $("#saveSet").addClass("disabled").attr("disabled","disabled")
                             $(".ac_results").hide()
                         }
                     },
@@ -362,21 +368,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 });
             })
         }
-        // function saveTempApprovers(stringJson){
-        //     $.ajax({
-        //                 type:'POST',
-        //                 url:'<%=request.getContextPath()%>/supervisor/saveTempApprovers',
-        //                 dataType:'JSON',
-        //                 contentType:'application/json;charset=UTF-8',
-        //                 data:stringJson,
-        //                 success : function (res) {
-        //                     console.log(res)
-        //                 },
-        //                 error:function(res){
-        //                     console.log(res)
-        //                 }
-        //             });
-        // }
         function deleteApprover() {
             console.log('delete')
         }
@@ -466,10 +457,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             console.log("judge tr length:" + length)
             $(".approver_tr").each(function(index){
                 let empNbr = $(this).find(".empControl").val()
+                let empArry = empNbr.split("-")
+                console.log(empArry)
                 let from = $(this).find(".dateFromControl").val()
                 let to = $(this).find(".dateToControl").val()
                 let obj = {
-                    empNbr:empNbr,
+                    empNbr:empArry[0],
                     from:from,
                     to:to
                 }

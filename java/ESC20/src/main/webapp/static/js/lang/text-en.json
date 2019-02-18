@@ -685,6 +685,7 @@
 		"pleaseCompleteForm":"Please complete the form",
 		"noEmployeeAccountAssociated":"Employee is not exist.",
 		"pictureTooLarge":"This picture is too large!",
+		"noResultError":"Employee does not exist!",
 		"":""
 	},
 	"w2Notice":{
