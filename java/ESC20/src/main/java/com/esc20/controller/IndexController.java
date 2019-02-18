@@ -237,8 +237,6 @@ public class IndexController {
     @ResponseBody
     public JSONObject getAllBanks(HttpServletRequest req,@RequestBody Page page){
     	
-    	System.out.println(page);
-    	
     	Page p = new Page();
     	p.setCurrentPage(1);
     	p.setPerPageRows(10);
@@ -256,6 +254,35 @@ public class IndexController {
 	    result.put("isSuccess", "true");
 	    
         return result;
+    }
+    
+    @RequestMapping("saveBank")
+    public ModelAndView saveBank(HttpServletRequest req, 
+    		String empNbr, String reqDts, String maritalStatNew) {
+        HttpSession session = req.getSession();
+        BeaUsers user = (BeaUsers)session.getAttribute("user");
+        ModelAndView mav = new ModelAndView();
+        if(null == user){
+        	return this.getIndexPage(mav);
+        }
+        mav.setViewName("profile");
+        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        BeaMrtlStat maritalStatusRequest;
+        if(this.indexService.getBhrEapDemoAssgnGrp("BEA_MRTL_STAT")) {
+        	maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts,maritalStatNew,'A');
+        	this.indexService.saveMaritalRequest(maritalStatusRequest);
+        	demo.setMaritalStat(maritalStatNew.charAt(0));
+        	this.indexService.updateDemoMaritalStatus(demo);
+        	session.removeAttribute("userDetail");
+        	session.setAttribute("userDetail", demo);
+        }else {
+        	maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts,maritalStatNew,'P');
+        	this.indexService.saveMaritalRequest(maritalStatusRequest);
+        }
+        
+        this.getProfileDetails(session, mav);
+        mav.addObject("activeTab", "maritalStatusRequest");
+        return mav;
     }
     
     @RequestMapping("getBanks")
