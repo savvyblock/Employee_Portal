@@ -426,8 +426,17 @@ input {
                 border-bottom-width: 2px;
             }
         }
+        tr{
+            &.redTd{
+                background: #e28088 !important;
+                .a-btn{
+                    display: none;
+                }
+            }
+        }
         th,td{
             border: 1px solid #dee2e6;
+            
         }
         tbody{
             td{

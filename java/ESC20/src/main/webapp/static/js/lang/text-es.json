@@ -686,6 +686,7 @@
 		"noEmployeeAccountAssociated":"Employee is not exist.",
 		"pictureTooLarge":"This picture is too large!",
 		"noResultError":"Employee does not exist!",
+		"repeatError":"The employee has already been added",
 		"":""
 	},
 	"w2Notice":{

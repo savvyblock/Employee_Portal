@@ -87,28 +87,30 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </thead>
                                     <tbody>
                                             <c:forEach var="tem" items="${tmpApprovers}" varStatus="status">
-                                                    <tr class="">
+                                                    <tr class="listTr">
                                                             <td
                                                                 class="countIndex"
                                                                 data-localize="setTemporaryApprovers.rowNbr" data-localize-location="scope"
                                                             >
                                                                 ${status.index + 1}
                                                             </td>
-                                                            <td
+                                                            <td class="empNumber"
                                                             data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope"
-                                                            >${tem.tmpApprvrEmpNbr}</td>
-                                                            <td data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope">${tem.datetimeFrom}</td>
-                                                            <td data-localize="setTemporaryApprovers.toDate" data-localize-location="scope">${tem.datetimeTo}</td>
+                                                            >
+                                                            <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}">
+                                                            ${tem.tmpApprvrEmpNbr}-${tem.approverName}
+                                                        </td>
+                                                            <td class="empFrom" data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope">${tem.datetimeFrom}</td>
+                                                            <td class="empTo" data-localize="setTemporaryApprovers.toDate" data-localize-location="scope">${tem.datetimeTo}</td>
                                                             <td data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
                                                                 <button
                                                                     type="button"
-                                                                    class="a-btn"
+                                                                    class="a-btn deleteApprover"
                                                                     data-localize="label.delete"
                                                                     data-localize-location="title"
                                                                 >
                                                                     <i
                                                                         class="fa fa-trash"
-                                                                        onclick="deleteApprover()"
                                                                     ></i>
                                                                 </button>
                                                             </td>
@@ -190,6 +192,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <p class="error-hint hide" id="repeatError" data-localize="validator.repeatError"></p>
                                 <p class="error-hint hide" id="noResultError" data-localize="validator.noResultError"></p>
                                 <p class="error-hint hide" id="errorComplete" data-localize="validator.pleaseCompleteForm"></p>
                                 <div class="text-right mt-3">
@@ -215,13 +218,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 </section>
             </main>
         </div>
+        <form hidden="hidden" action="" id="">
+            <input type="text" id="deleteEmpID">
+        </form>
         <%@ include file="../commons/footer.jsp"%>
     </body>
     <script>
         var directReportEmployee = eval(${directReportEmployee});
+        var addedApprover = eval(${tmpApprovers});
+        console.log(addedApprover)
         console.log(directReportEmployee)
         var chain = eval(${chain});
         var employeeList = directReportEmployee;
+        var thisTrIndex,repeat,currentInputNbr
         $(function() {
             changeLevel()
             initDateControl()
@@ -251,8 +260,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             })
             $('.add-new-row').click(function() {
                 judgeContent()
-                let  trLen = $('.setApprovers-list tbody .approver_tr').length
-                let length = trLen + 1
+                let  trLen = $('.setApprovers-list tbody tr').length
+                let  approverLen = $('.setApprovers-list tbody tr.approver_tr').length
+                let length = trLen
                 console.log(approverJson)
                 let newRow = `<tr class="approver_tr">
                                             <td class="countIndex" data-localize="setTemporaryApprovers.rowNbr"
@@ -295,7 +305,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </tr>
                     `
                 console.log("add noEmpty:" +noEmpty)
-                if(noEmpty == trLen){
+                if(noEmpty == approverLen){
                     $('.setApprovers-list tbody tr:last-child').before(newRow)
                     initialCompleteList()
                     $("#errorComplete").hide()
@@ -312,19 +322,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $("#chainString").val(chainString)
                 $("#empNbrForm").val(empNbr)
                 $("#approverJson").val(JSON.stringify(approverJson))
-                console.log(approverJson)
-                console.log($("#chainString").val())
-                console.log($("#empNbrForm").val())
-                console.log($("#approverJson").val())
                 let length = $(".approver_tr").length
                 if(noEmpty == length){
-                    // let json = {
-                    //     chain:chainString,
-                    //     empNbr:empNbr,
-                    //     approverJson:JSON.stringify(approverJson)
-                    // }
-                    // console.log(json)
-                    // saveTempApprovers(json)
+                    console.log(approverJson)
                     $("#errorComplete").hide()
                     $("#saveTempApprovers")[0].submit()
                 }else{
@@ -334,10 +334,68 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 
             })
         
+            $(".empControl").blur(function(){
+                console.log($(this).val())
+                thisTrIndex = $(this).parents(".approver_tr").index() - 1
+                console.log("当前选中的修改的tr的index"+thisTrIndex)
+                let empArry = $(this).val().split("-")
+                currentInputNbr = empArry[0]
+                repeat = 0
+                verifyRepeat()
+                
+            })
+            $(".deleteApprover").click(function(){
+                let id = $(this).parents(".listTr").find(".empId").val()
+                $(this).parents(".listTr").removeClass("listTr").addClass("redTd")
+                addedApprover = addedApprover.filter((value) => {
+                    return value.tmpApprvrEmpNbr!=id;
+                })
+                repeat = 0
+                verifyRepeat()
+            })
             
         })
+        function verifyRepeat(){
+                console.log(currentInputNbr)
+                console.log(thisTrIndex)
+                
+                    console.log("已经填写的人")
+                console.log(approverJson)
+                console.log("已经添加的人")
+                console.log(addedApprover)
+                console.log(currentInputNbr)
+                    addedApprover.forEach((item,index)=>{
+                        console.log(item)
+                    if(item.tmpApprvrEmpNbr == currentInputNbr){
+                        console.log("已经添加的人循环")
+                        repeat++
+                    }
+                    })
+                    approverJson.forEach((item,index)=>{
+                        console.log(item)
+                    if(item.empNbr&&item.empNbr == currentInputNbr &&thisTrIndex!=item.id){
+                        console.log("已经填写的人循环")
+                        console.log(item.empNbr)
+                        console.log(currentInputNbr)
+                        console.log(thisTrIndex)
+                        console.log(item.id)
+                    
+                        repeat++
+                    }
+                    })
+                    console.log("repeat"+repeat)
+                    if(repeat>0){
+                        $("#repeatError").show()
+                        $("#saveSet").addClass("disabled").attr("disabled","disabled")
+                    }else{
+                        $("#repeatError").hide()
+                        $("#saveSet").removeClass("disabled").removeAttr("disabled")
+                    }
+                
+        }
         function initialCompleteList(){
             $(".empControl").each(function(){
+                let input = this
                 $(this).autocomplete(employeeList, {
                     max: 10,    //
                     minChars: 0,    //
@@ -352,8 +410,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             return  row.employeeNumber + '-' + row.firstName  +","+ row.lastName + row.firstName ;
                         }else{
                             console.log("no result")
-                            $("#noResultError").show()
-                            $("#saveSet").addClass("disabled").attr("disabled","disabled")
+                            if($(input).val()&&$(input).val()!=''){
+                                $("#noResultError").show()
+                                $("#saveSet").addClass("disabled").attr("disabled","disabled")
+                            }
                             $(".ac_results").hide()
                         }
                     },
@@ -368,17 +428,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 });
             })
         }
-        function deleteApprover() {
-            console.log('delete')
-        }
+
         function deleteRow(dom) {
             let length = $('.setApprovers-list tbody .approver_tr').length
-            if(length>1){
-                $(dom)
+            $(dom)
                 .parents('.approver_tr')
-                .remove()
-            }
+                .removeClass("approver_tr").addClass("redTd")
             judgeContent()
+            verifyRepeat()
             
         }
         var checkin = [];
@@ -454,25 +511,27 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             approverJson=[]
             noEmpty = 0
             let length = $(".approver_tr").length
-            console.log("judge tr length:" + length)
             $(".approver_tr").each(function(index){
                 let empNbr = $(this).find(".empControl").val()
                 let empArry = empNbr.split("-")
-                console.log(empArry)
                 let from = $(this).find(".dateFromControl").val()
                 let to = $(this).find(".dateToControl").val()
-                let obj = {
-                    empNbr:empArry[0],
-                    from:from,
-                    to:to
-                }
+                let obj
                 if(empNbr==''||from==''||to==''){
                 }else{
+                    obj = {
+                        id:index,
+                        empNbr:empArry[0],
+                        from:from,
+                        to:to
+                    }
                     noEmpty += 1
                 }
-                approverJson.push(obj)
+                if(obj && obj!=''){
+                    approverJson.push(obj)
+                }
+                
             })
-            console.log("judge tr noEmpty:" + noEmpty)
         }
     </script>
 </html>
