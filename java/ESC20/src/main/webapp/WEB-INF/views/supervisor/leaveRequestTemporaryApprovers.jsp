@@ -416,6 +416,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 .parents('.approver_tr')
                 .removeClass("approver_tr").addClass("redTd")
             judgeContent()
+            
             verifyRepeat()
             
         }
