@@ -102,6 +102,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             center: 'title',
                             right: 'month,agendaWeek,agendaDay,listMonth'
                         },
+                        buttonText: {
+                            today: 'Today',
+                            month: 'Month',
+                            agendaWeek: 'AgendaWeek',
+                            agendaDay: 'AgendaDay',
+                            listMonth: 'ListMonth'
+                        },
+                        timeFormat: 'hh:mm A',
                         defaultDate: new Date(),
                         weekNumbers: false,
                         navLinks: true, // can click day/week names to navigate views
