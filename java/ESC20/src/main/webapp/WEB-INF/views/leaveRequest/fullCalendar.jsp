@@ -47,7 +47,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             today: 'Today',
                             month: 'Month'
                         },
-                        timeFormat: 'h(:mm)t',
+                        timeFormat: 'hh:mm A',
                         displayEventEnd: true,
                         defaultDate: new Date(),
                         weekNumbers: false,
