@@ -28,15 +28,15 @@ public enum Frequency
 	
 	public static Frequency getFrequency(String code)
 	{
-		if("4".equals(code) || "Biweekly".equals(code))
+		if("4".equals(code) || "Biweekly".equals(code)|| "B".equals(code))
 		{
 			return Biweekly; //jlf 20111104
 		}
-		else if("5".equals(code) || "Semimonthly".equals(code)) //jlf 20111104
+		else if("5".equals(code) || "Semimonthly".equals(code)|| "S".equals(code)) //jlf 20111104
 		{
 			return Semimonthly; //jlf 20111104
 		}
-		else if("6".equals(code) || "Monthly".equals(code))
+		else if("6".equals(code) || "Monthly".equals(code)|| "M".equals(code))
 		{
 			return Monthly;
 		}

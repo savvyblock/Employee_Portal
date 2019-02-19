@@ -325,6 +325,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 let length = $(".approver_tr").length
                 if(noEmpty == length){
                     console.log(approverJson)
+                    console.log(addedApprover)
+                    addedApprover.forEach((item,index)=>{
+                        let approver = {
+                            id:'',
+                            empNbr:item.tmpApprvrEmpNbr,
+                            from:item.datetimeFrom,
+                            to:item.datetimeTo
+                        }
+                        approverJson.push(approver)
+                    })
+                    console.log(approverJson)
                     $("#errorComplete").hide()
                     $("#saveTempApprovers")[0].submit()
                 }else{
@@ -333,59 +344,53 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 return
                 
             })
-        
-            $(".empControl").blur(function(){
-                console.log($(this).val())
+            
+            $(document).on('blur', '.empControl', function(){
+                console.log(this)
                 thisTrIndex = $(this).parents(".approver_tr").index() - 1
-                console.log("当前选中的修改的tr的index"+thisTrIndex)
                 let empArry = $(this).val().split("-")
                 currentInputNbr = empArry[0]
-                repeat = 0
                 verifyRepeat()
-                
-            })
+            });
             $(".deleteApprover").click(function(){
                 let id = $(this).parents(".listTr").find(".empId").val()
                 $(this).parents(".listTr").removeClass("listTr").addClass("redTd")
                 addedApprover = addedApprover.filter((value) => {
                     return value.tmpApprvrEmpNbr!=id;
                 })
-                repeat = 0
                 verifyRepeat()
             })
             
         })
         function verifyRepeat(){
-                console.log(currentInputNbr)
-                console.log(thisTrIndex)
-                console.log(approverJson)
-                console.log(addedApprover)
-                console.log(currentInputNbr)
-                    addedApprover.forEach((item,index)=>{
-                        console.log(item)
-                    if(item.tmpApprvrEmpNbr == currentInputNbr){
-                        repeat++
-                    }
-                    })
-                    approverJson.forEach((item,index)=>{
-                        console.log(item)
-                    if(item.empNbr&&item.empNbr == currentInputNbr &&thisTrIndex!=item.id){
-                        console.log(item.empNbr)
-                        console.log(currentInputNbr)
-                        console.log(thisTrIndex)
-                        console.log(item.id)
-                    
-                        repeat++
-                    }
-                    })
-                    console.log("repeat"+repeat)
-                    if(repeat>0){
-                        $("#repeatError").show()
-                        $("#saveSet").addClass("disabled").attr("disabled","disabled")
-                    }else{
-                        $("#repeatError").hide()
-                        $("#saveSet").removeClass("disabled").removeAttr("disabled")
-                    }
+            repeat = 0
+            console.log(approverJson)
+            console.log(addedApprover)
+            console.log(currentInputNbr)
+            addedApprover.forEach((item,index)=>{
+                console.log("come in saved")
+            if(item.tmpApprvrEmpNbr == currentInputNbr){
+                console.log(item.tmpApprvrEmpNbr)
+                repeat++
+            }
+            })
+            approverJson.forEach((item,index)=>{
+                console.log("come in adding")
+            if(item.empNbr&&item.empNbr == currentInputNbr &&thisTrIndex!=item.domId){   
+                console.log(thisTrIndex) 
+                console.log(item.domId)
+                console.log(item.empNbr)                
+                repeat++
+            }
+            })
+            console.log("repeat"+repeat)
+            if(repeat>0){
+                $("#repeatError").show()
+                $("#saveSet").addClass("disabled").attr("disabled","disabled")
+            }else{
+                $("#repeatError").hide()
+                $("#saveSet").removeClass("disabled").removeAttr("disabled")
+            }
                 
         }
         function initialCompleteList(){
@@ -429,6 +434,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $(dom)
                 .parents('.approver_tr')
                 .removeClass("approver_tr").addClass("redTd")
+                thisTrIndex = thisTrIndex -1
             judgeContent()
             verifyRepeat()
             
@@ -515,7 +521,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 if(empNbr==''||from==''||to==''){
                 }else{
                     obj = {
-                        id:index,
+                        id:'',
+                        domId:index,
                         empNbr:empArry[0],
                         from:from,
                         to:to
@@ -527,6 +534,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 }
                 
             })
+            console.log(approverJson)
         }
     </script>
 </html>

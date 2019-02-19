@@ -44,6 +44,7 @@ import com.esc20.model.BeaRestrict;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BeaW4;
 import com.esc20.model.BhrEmpDemo;
+import com.esc20.model.BhrEmpPay;
 import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Bank;
 import com.esc20.nonDBModels.BankRequest;
@@ -648,13 +649,16 @@ public class IndexController {
         
         List<Code> payRollFrequenciesOptions = this.referenceService.getPayrollFrequencies(demo.getEmpNbr());
     	
-    	
+        PayInfo payInfo;
+        BeaW4 w4Request;
         if (freq != null && !("").equals(freq)) {
         	mav.addObject("selectedFreq", freq);
-        	PayInfo payRequest = this.indexService.getPayInfo(demo,freq);
+        	payInfo = this.indexService.getPayInfo(demo,freq);
+        	w4Request = this.indexService.getBeaW4(demo,freq);
         }
         else {
-        	PayInfo payRequest = this.indexService.getPayInfo(demo,payRollFrequenciesOptions.get(0).getDescription());
+        	payInfo = this.indexService.getPayInfo(demo,payRollFrequenciesOptions.get(0).getDescription());
+        	w4Request = this.indexService.getBeaW4(demo,payRollFrequenciesOptions.get(0).getDescription());
         }
         List<Code> maritalOptions = this.referenceService.getMaritalActualStatuses();
         List<Code> maritalTaxOptions = this.referenceService.getMaritalTaxStatuses();
@@ -727,9 +731,10 @@ public class IndexController {
         mav.addObject("statesOptions", statesOptions);
         mav.addObject("restrictionsOptions", restrictionsOptions);
         mav.addObject("payRollFrequenciesOptions", payRollFrequenciesOptions);
+        mav.addObject("payInfo",payInfo);
        
         mav.addObject("banks", allBanks);
-//        mav.addObject("w4Request", w4Request);
+        mav.addObject("w4Request", w4Request);
 	}
 
     @RequestMapping("saveName")
@@ -1319,38 +1324,42 @@ public class IndexController {
         return result;
     }
     
-//    @RequestMapping("saveW4")
-//    public ModelAndView saveW4(HttpServletRequest req, 
-//    		String empNbr, String reqDts, String maritalStatTaxNew,String nbrTaxExemptsNew) {
-//        HttpSession session = req.getSession();
-//        BeaUsers user = (BeaUsers)session.getAttribute("user");
-//        ModelAndView mav = new ModelAndView();
-//        if(null == user){
-//        	return this.getIndexPage(mav);
-//        }
-//        mav.setViewName("profile");
-//        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
-//        BeaW4 w4Request;
-//        
-//        if(this.indexService.getBhrEapDemoAssgnGrp("BEA_W4")) {
-//        	w4Request = new BeaW4(demo, empNbr, reqDts, maritalStatTaxNew, nbrTaxExemptsNew, 'A');
-//        	this.indexService.saveAltMailAddrRequest(w4Request);
-//        	demo.setSmrAddrNbr(smrAddrNbrNew);
-//        	demo.setSmrAddrStr(smrAddrStrNew);
-//        	this.indexService.updateDemoAltMailAddr(demo);
-//        	session.removeAttribute("userDetail");
-//        	session.setAttribute("userDetail", demo);
-//        }else {
-//        	w4Request = new BeaAltMailAddr(demo, empNbr, reqDts, maritalStatTaxNew, nbrTaxExemptsNew, 'P');
-//        	this.indexService.saveAltMailAddrRequest(w4Request);
-//        }
-//        this.getProfileDetails(session, mav);
-//        mav.addObject("activeTab", "altMailingAddressRequest");
-//        return mav;
-//    }
+    @RequestMapping("saveW4")
+    public ModelAndView saveW4(HttpServletRequest req,String empNbr, String reqDts,  String payFreq,Character maritalStatTax, Character maritalStatTaxNew, Integer nbrTaxExempts, Integer nbrTaxExemptsNew) {
+    	
+    	 HttpSession session = req.getSession();
+         BeaUsers user = (BeaUsers)session.getAttribute("user");
+         ModelAndView mav = new ModelAndView();
+         if(null == user){
+         	return this.getIndexPage(mav);
+         }
+         mav.setViewName("profile");
+         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+         BhrEmpPay pay = new BhrEmpPay();
+         pay.setMaritalStatTax(maritalStatTax);
+         pay.setNbrTaxExempts(nbrTaxExempts);
+         BeaW4 w4Request;
+     	 Frequency freq ;
+		 freq = Frequency.getFrequency(payFreq);
+         if(this.indexService.getBhrEapPayAssgnGrp("BEA_W4")) {
+        	w4Request = new BeaW4(pay, empNbr,freq.getCode().charAt(0), reqDts,maritalStatTaxNew,nbrTaxExemptsNew,'A');
+         	this.indexService.saveW4Request(w4Request);
+         	this.indexService.updatePayInfo(demo, pay,freq.getCode().charAt(0),maritalStatTaxNew,nbrTaxExemptsNew);
+         	
+         }else {
+        	w4Request = new BeaW4(pay, empNbr,freq.getCode().charAt(0), reqDts,maritalStatTaxNew,nbrTaxExemptsNew,'P');
+         	this.indexService.saveW4Request(w4Request);
+         }
+         
+         this.getProfileDetails(session, mav,freq.getCode());
+         mav.addObject("activeTab", "w4Request");
+         return mav;
+    
+    }
+    
     
     @RequestMapping("deleteW4")
-    public ModelAndView deleteW4(HttpServletRequest req) {
+    public ModelAndView deleteW4(HttpServletRequest req,String empNbr, String reqDts,  String payFreq,Character maritalStatTax, Integer nbrTaxExempts) {
         HttpSession session = req.getSession();
         BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
@@ -1359,8 +1368,11 @@ public class IndexController {
         }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
-        this.indexService.deleteAltMailAddrRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+        this.indexService.deleteW4Request(demo.getEmpNbr(), payFreq, maritalStatTax, nbrTaxExempts);
+        
+        Frequency freq ;
+		freq = Frequency.getFrequency(payFreq);
+        this.getProfileDetails(session, mav,freq.getCode());
         return mav;
     } 
     

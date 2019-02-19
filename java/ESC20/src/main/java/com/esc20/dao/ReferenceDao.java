@@ -198,7 +198,7 @@ public class ReferenceDao {
 	}
 	
 	public List<Code> getPayrollFrequencies(String empNbr) {
-		Session session = this.getSession();
+		Session session = this.sessionFactory.getCurrentSession();
 		String sql= "SELECT DISTINCT pay.id.payFreq FROM BhrEmpPay pay where pay.id.empNbr = :empNbr AND pay.id.cyrNyrFlg ='C'";
         Query q = session.createQuery(sql.toString());
         q.setParameter("empNbr", empNbr);

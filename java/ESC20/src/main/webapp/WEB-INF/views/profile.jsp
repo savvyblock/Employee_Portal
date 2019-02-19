@@ -1150,7 +1150,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </select>
                             </div>
 					</form>
-                        <form class="profile-item" id="w4InfoForm">
+                        <form class="profile-item" id="w4InfoForm" action="saveW4" id="w4InfoForm" method="POST">
+                        	<input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}">
+                            <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}">
+                            <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}">
+                            <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}">
+                            <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}">
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
                                     <div class="profile-title" data-localize="profile.MaritalStatus">
@@ -1158,19 +1163,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                     <div class="profile-desc">
                                         <span class="haveValue"
-                                            >${payInfo.maritalStatus.displayLabel}</span
+                                            >${payInfo.maritalStatTax}</span
                                         >
                                         <div class="form-group valueInput">
                                             <select
                                                 id="maritalStatusLabel"
-                                                name="payInfo.maritalStatus.displayLabel"
+                                                name="maritalStatTaxNew"
                                                 class="form-control"
+                                                value="${w4Request.maritalStatTaxNew}"
                                                 title=""
                                                 data-localize="profile.MaritalStatus"
                                                 autofocus
                                             >
                                                 <c:forEach var="maritalTax" items="${maritalTaxOptions}" varStatus="count">
-                                                    <option value="${maritalTax.code}" <c:if test="${maritalTax.code == payRequest.maritalStatTaxNew }">selected</c:if>>${maritalTax.description}</option>
+                                                    <option value="${maritalTax.code}" <c:if test="${maritalTax.code == w4Request.maritalStatTaxNew }">selected</c:if>>${maritalTax.description}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
@@ -1182,15 +1188,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                     <div class="profile-desc">
                                         <span class="haveValue"
-                                            >${payInfo.numberOfExemptions}</span
+                                            >${payInfo.nbrTaxExempts}</span
                                         >
                                         <div class="form-group valueInput">
                                             <input
                                                 class="form-control"
                                                 id="numberOfExemptions"
-                                                name="payInfo.numberOfExemptions"
+                                                name="nbrTaxExemptsNew"
                                                 title=""  data-localize="profile.NbrOfExemptions"
-                                                value="${payInfo.numberOfExemptions}"
+                                                value="${w4Request.nbrTaxExemptsNew}"
                                             />
                                         </div>
                                     </div>
@@ -1215,7 +1221,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </button>
                                     <button
                                             type="button"
-                                            id=""
+                                            id="undoW4"
                                             class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
@@ -1228,6 +1234,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </button>
                                 </div>
                             </div>
+                        </form>
+                        <form hidden="hidden" action="deleteW4" id="deleteW4" method="POST">
+                        	<input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}">
+                            <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}">
+                            <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}">
+                            <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}">
+                            <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}">
                         </form>
                         <p class="sub-title" data-localize="profile.directDepositBankAccounts"></p>
                         
@@ -1950,6 +1963,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $("#undoPhoneNumber").click(function(){
                 $('#undoModal').modal('show')
                 formSelect = "deletePhone"
+            })
+             $("#undoW4").click(function(){
+                $('#undoModal').modal('show')
+                formSelect = "deleteW4"
             })
             $(".sureUndo").click(function(){
                 undoFormSubmit()

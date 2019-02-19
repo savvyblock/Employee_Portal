@@ -43,7 +43,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     method="POST"
                                 >
                                     <div class="form-group in-line">
-                                        <label class="form-title"  for="SearchYear"  data-localize="label.pleaseSelectYear"></label>
+                                        <label class="form-title"  for="year"  data-localize="label.pleaseSelectYear"></label>
                                         <select class="form-control" name="year" id="year" onchange="submitCalendarForm()">
                                             <c:forEach var="year" items="${years}" varStatus="years">
                                                 <option value="${year}" <c:if test="${year == selectedYear }">selected</c:if>>${year}</option>
@@ -677,7 +677,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.statemp=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" />
+                                                                        <input class="checkBoxOld" type="checkbox" title="" data-localize="accessHint.statutoryEmployeeCheckbox" />
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -691,7 +691,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.retplan=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" />
+                                                                        <input class="checkBoxOld" type="checkbox"  title="" data-localize="accessHint.retirementPlanCheckbox"/>
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -705,7 +705,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.thrdsick=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" />
+                                                                        <input class="checkBoxOld" type="checkbox"   title="" data-localize="accessHint.thirdPartySickPayCheckbox"/>
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -1030,7 +1030,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.statemp=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" />
+                                                                        <input class="checkBoxOld" type="checkbox" title="" data-localize="accessHint.statutoryEmployeeCheckbox" />
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -1044,7 +1044,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.retplan=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" />
+                                                                        <input class="checkBoxOld" type="checkbox" title="" data-localize="accessHint.retirementPlanCheckbox"/>
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -1058,7 +1058,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.thrdsick=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" />
+                                                                        <input class="checkBoxOld" type="checkbox"   title="" data-localize="accessHint.thirdPartySickPayCheckbox"/>
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -1129,13 +1129,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                             <div class="form-group">
                                     <div class="checkbox mb-2">
-                                        <label for="">
+                                        <label for="consent">
                                             <input class="icheck" type="radio" name="consent" id="consent"> 
                                             <span data-localize="label.w2Yes"></span>
                                         </label>
                                     </div>
                                     <div class="checkbox">
-                                            <label>
+                                            <label for="notConsent">
                                                 <input class="icheck" type="radio" name="consent" id="notConsent"> 
                                                 <span data-localize="label.w2No"></span>
                                             </label>
@@ -1143,11 +1143,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                         </form>
                         <form hidden="hidden" id="consentForm" action="updateW2Consent" method="POST">
-                            <input type="text" name="year" id="consentYear" value="${selectedYear}">
-                            <input type="hidden" id="w2Latest" value="${sessionScope.options.w2Latest}"/>
-                            <input type="text" name="consentMsg" id="elecConsntMsgW2" value="${elecConsntMsgW2}">
-                            <input type="text" name="consent" id="elecConsntW2Flag" value="${consent}">
-                            <input type="text"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}"/>
+                            <input type="text" name="year" id="consentYear" value="${selectedYear}" title="" data-localize="accessHint.year">
+                            <input type="hidden" id="w2Latest" value="${sessionScope.options.w2Latest}" title="" data-localize="accessHint.w2Latest"/>
+                            <input type="text" name="consentMsg" id="elecConsntMsgW2" value="${elecConsntMsgW2}" title="" data-localize="accessHint.elecConsntMsgW2">
+                            <input type="text" name="consent" id="elecConsntW2Flag" value="${consent}" title="" data-localize="accessHint.consent">
+                            <input type="text"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}" title="" data-localize="accessHint.enableElecConsntW2"/>
                         </form>
                     </div>
                     <div class="modal-footer">
