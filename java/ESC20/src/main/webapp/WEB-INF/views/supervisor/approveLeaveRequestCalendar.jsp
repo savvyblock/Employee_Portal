@@ -110,6 +110,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             listMonth: 'ListMonth'
                         },
                         timeFormat: 'hh:mm A',
+                        displayEventEnd: true,
                         defaultDate: new Date(),
                         weekNumbers: false,
                         navLinks: true, // can click day/week names to navigate views

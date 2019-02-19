@@ -63,6 +63,7 @@ $(document).ready(function() {
                             listMonth: 'ListMonth'
                         },
                         timeFormat: 'hh:mm A',
+                        displayEventEnd: true,
                         defaultDate: new Date(),
                         weekNumbers: false,
                         navLinks: true, // can click day/week names to navigate views
