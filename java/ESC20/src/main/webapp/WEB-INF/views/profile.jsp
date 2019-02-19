@@ -1150,7 +1150,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </select>
                             </div>
 					</form>
-                        <form class="profile-item" id="w4InfoForm" action="saveW4" id="w4InfoForm" method="POST">
+                        <form class="profile-item" id="w4InfoForm" action="saveW4" method="POST">
                         	<input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}">
                             <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}">
                             <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}">
@@ -1193,7 +1193,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="form-group valueInput">
                                             <input
                                                 class="form-control"
-                                                id="numberOfExemptions"
+                                                id="nbrTaxExemptsNew"
                                                 name="nbrTaxExemptsNew"
                                                 title=""  data-localize="profile.NbrOfExemptions"
                                                 value="${w4Request.nbrTaxExemptsNew}"
@@ -1215,7 +1215,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                         type="submit"
                                         class="btn btn-primary save-btn" data-localize="label.update"
-                                        id="saveW4Info"
+                                        id="saveW4"
                                     >
                                      
                                     </button>
@@ -2469,7 +2469,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         function w4InfoValidator() {
             $('#w4InfoForm').bootstrapValidator({
                 live: 'enable',
-                submitButtons: '#saveW4Info',
+                submitButtons: '#saveW4',
                 
                 feedbackIcons: {
                     valid: 'fa fa-check ',
@@ -2477,7 +2477,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     validating: 'fa fa-refresh'
                 },
                 fields: {
-                    'payInfo.maritalStatus.displayLabel': {
+                    'maritalStatTaxNew': {
                         trigger: 'input',
                         
                         validators: {
@@ -2486,7 +2486,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             }
                         }
                     },
-                    'payInfo.numberOfExemptions': {
+                    'nbrTaxExemptsNew': {
                         trigger: 'input',
                         
                         validators: {
