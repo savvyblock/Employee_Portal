@@ -76,9 +76,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         id="changeFreqForm"
                                         method="POST"
                                             >
-                                            <input hidden="hidden" type="text" name="empNbr" class="employeeNum">
+                                            <input hidden="hidden" type="text" name="empNbr" class="employeeNum" value="${selectedEmployee}">
                                             <input hidden="hidden" class="chain" name="chain" type="text" value="">
-                                            <input hidden="hidden" type="text" name="isChangeLevel" class="isChangeLevel">
+                                            <input hidden="hidden" type="text" name="isChangeLevel" class="isChangeLevel" value="false">
                                         <div class="form-group type-group">
                                                 <label class="form-title"  for="freq"  data-localize="label.payrollFreq"></label>
                                                 <select class="form-control" name="freq" id="freq" onchange="changeFreq()">

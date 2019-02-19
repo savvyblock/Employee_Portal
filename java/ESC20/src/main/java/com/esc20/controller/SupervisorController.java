@@ -279,29 +279,6 @@ public class SupervisorController {
 			demo = this.indexService.getUserDetail(empNbr);
 		}
 		JSONArray employeeDataJSON = new JSONArray();
-		if ((isChangeLevel != null && isChangeLevel) || (root.getEmpNbr().equals(empNbr))) {
-			List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(empNbr, params.isUsePMIS(),
-					supervisorsOnly, excludeTempApprovers);
-			LeaveEmployeeData empty = new LeaveEmployeeData();
-			List<LeaveEmployeeData> directReport = new ArrayList<LeaveEmployeeData>();
-			directReport.add(empty);
-			directReport.addAll(employeeData);
-
-			for (int i = 0; i < directReport.size(); i++) {
-				employeeDataJSON.add(directReport.get(i).toJSON());
-			}
-		} else {
-			String supervisor = this.service.getFirstLineSupervisor(empNbr, params.isUsePMIS());
-			List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(supervisor,
-					params.isUsePMIS(), supervisorsOnly, excludeTempApprovers);
-			LeaveEmployeeData empty = new LeaveEmployeeData();
-			List<LeaveEmployeeData> directReport = new ArrayList<LeaveEmployeeData>();
-			directReport.add(empty);
-			directReport.addAll(employeeData);
-			for (int i = 0; i < directReport.size(); i++) {
-				employeeDataJSON.add(directReport.get(i).toJSON());
-			}
-		}
 		if (chain != null && (isChangeLevel != null && !isChangeLevel)) {
 			JSONArray levels = JSONArray.fromObject(chain);
 			mav.addObject("chain", levels);
@@ -314,6 +291,39 @@ public class SupervisorController {
 		currentLevel.put("middleName", demo.getNameM());
 		currentLevel.put("employeeNumber", demo.getEmpNbr());
 		rootLevel.add(currentLevel);
+		if (root.getEmpNbr().equals(empNbr)) {
+			mav.addObject("chain", rootLevel);
+		}
+		if ((isChangeLevel != null && isChangeLevel) || (root.getEmpNbr().equals(empNbr))) {
+			List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(empNbr, params.isUsePMIS(),
+					supervisorsOnly, excludeTempApprovers);
+			LeaveEmployeeData empty = new LeaveEmployeeData();
+			List<LeaveEmployeeData> directReport = new ArrayList<LeaveEmployeeData>();
+			directReport.add(empty);
+			directReport.addAll(employeeData);
+
+			for (int i = 0; i < directReport.size(); i++) {
+				employeeDataJSON.add(directReport.get(i).toJSON());
+			}
+		} else {
+			String selectedEmp = "";
+			if(chain != null) {
+				JSONArray levels = JSONArray.fromObject(chain);
+				selectedEmp = ((JSONObject) levels.get(levels.size()-1)).getString("employeeNumber");
+			}else {
+				selectedEmp = currentLevel.getString("employeeNumber");
+			}
+			List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(selectedEmp,
+					params.isUsePMIS(), supervisorsOnly, excludeTempApprovers);
+			LeaveEmployeeData empty = new LeaveEmployeeData();
+			List<LeaveEmployeeData> directReport = new ArrayList<LeaveEmployeeData>();
+			directReport.add(empty);
+			directReport.addAll(employeeData);
+			for (int i = 0; i < directReport.size(); i++) {
+				employeeDataJSON.add(directReport.get(i).toJSON());
+			}
+		}
+
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
 		if (freq == null || ("").equals(freq))
 			freq = availableFreqs.get(0).getCode();
@@ -326,9 +336,6 @@ public class SupervisorController {
 		}
 		if (endDate != null && !("").equals(endDate)) {
 			end = sdf2.format(sdf1.parse(endDate));
-		}
-		if (root.getEmpNbr().equals(empNbr)) {
-			mav.addObject("chain", rootLevel);
 		}
 		List<AppLeaveRequest> leavesCalendar = this.supService.getLeaveDetailsForCalendar(demo.getEmpNbr(), freq, start,
 				end);
