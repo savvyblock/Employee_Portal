@@ -133,6 +133,9 @@ public class IndexService {
 	public void saveBusinessPhoneRequest(BeaBusPhone businessPhoneRequest) {
 		userDao.saveBusinessPhoneRequest(businessPhoneRequest);
 	}
+	public void saveW4Request(BeaW4 w4Request) {
+		payDao.savew4Request(w4Request);
+	}
 	public BeaEmerContact getBeaEmerContact(BhrEmpDemo demo) {
 		BeaEmerContact result = userDao.getBeaEmerContact(demo.getEmpNbr());
 		if(result == null) {
@@ -214,8 +217,21 @@ public class IndexService {
 		return result; 
 	}
 	
+	public BeaW4 getBeaW4(BhrEmpDemo demo, String frequency)
+	{
+		BeaW4 result = payDao.getW4(demo.getEmpNbr(), frequency);
+		if(result == null) {
+			PayInfo info = payDao.getPayInfo(demo.getEmpNbr(), frequency);
+			result = new BeaW4(info,demo,frequency);
+		}
+		return result; 
+	}
+	
 	public boolean getBhrEapDemoAssgnGrp(String tableName) {
 		return userDao.getBhrEapDemoAssgnGrp(tableName);
+	}
+	public boolean getBhrEapPayAssgnGrp(String tableName) {
+		return payDao.getBhrEapPayAssgnGrp(tableName);
 	}
 	public void updateDemoName(BhrEmpDemo demo) {
 		userDao.updateDemoName(demo);
@@ -253,6 +269,9 @@ public class IndexService {
 	public void updateDemoBusinessPhone(BhrEmpDemo demo) {
 		userDao.updateDemoBusinessPhone(demo);
 	}
+	public void updatePayInfo(BhrEmpDemo demo, BhrEmpPay pay, Character payFreq, Character maritalStatTaxNew, Integer nbrTaxExemptsNew) {
+		payDao.updatePayInfo(demo,pay,payFreq,maritalStatTaxNew,nbrTaxExemptsNew);
+	}
 	public void deleteNameRequest(String empNbr) {
 		userDao.deleteNamerequest(empNbr);
 	}
@@ -285,6 +304,9 @@ public class IndexService {
 	}
 	public void deleteBusinessPhoneRequest(String empNbr) {
 		userDao.deleteBusinessPhonerequest(empNbr);
+	}
+	public void deleteW4Request(String empNbr,String payFreq,Character maritalStatTax, Integer nbrTaxExempts) {
+		payDao.deleteW4request(empNbr,payFreq,maritalStatTax,nbrTaxExempts);
 	}
 	public List<BeaAlert> getUnReadAlert(String empNbr) {
 		return alertDao.getUnreadAlerts(empNbr);
