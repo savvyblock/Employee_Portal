@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.esc20.dao.BankDao;
+import com.esc20.dao.OptionsDao;
 import com.esc20.dao.ReferenceDao;
 import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Bank;
 import com.esc20.nonDBModels.BankRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.Page;
 
 @Service
@@ -23,7 +25,12 @@ public class BankService {
     @Autowired
     private BankDao bankDao;
     
-
+    @Autowired
+    private OptionsDao optionsDao;
+    
+    @Autowired
+    private ReferenceDao referenceDao;
+    
     public List<BthrBankCodes> getAllBanks() {
 		return bankDao.getAll();
 	}
@@ -64,11 +71,27 @@ public class BankService {
     	return bankDao.deleteAccountRequest(employeeNumber, frequency, payrollAccountInfo, accountInfo, accountInfoPending);
     }
     
-    public int insertAccountApprove(String employeeNumber, String frequency, String prenote, Bank payrollAccountInfo) {
+    public int insertAccountApprove(String employeeNumber, String frequency, Bank payrollAccountInfo) {
+    	
+    	Options o = optionsDao.getOptions();
+		String prenote="";
+		
+		if(o.getPreNote().equals("Y"))
+		{
+			prenote = "P";
+		}
+    	
     	return bankDao.insertAccountApprove(employeeNumber, frequency, prenote, payrollAccountInfo);
     }
     
-    public int updateAccountApprove(String employeeNumber, String frequency, String prenote, Bank payrollAccountInfo, Bank accountInfo) {
+    public int updateAccountApprove(String employeeNumber, String frequency,  Bank payrollAccountInfo, Bank accountInfo) {
+    	Options o = optionsDao.getOptions();
+		String prenote="";
+		
+		if(o.getPreNote().equals("Y"))
+		{
+			prenote = "P";
+		}
     	return bankDao.updateAccountApprove(employeeNumber, frequency, prenote, payrollAccountInfo, accountInfo);
     }
     
@@ -84,5 +107,17 @@ public class BankService {
 		return bankDao.getDirectDepositLimit();
 	}
 
-    
+	  public Code getDdAccountType(String t) {
+	    	
+	    	return bankDao.getDdAccountType(t);
+	    }
+	    
+	    public Code getBank(String b) {
+	    	
+	    	return bankDao.getBank(b);
+	    }
+	    
+	    public Code getPayrollFrequencies(String empNbr, String code) {
+	    	return bankDao.getPayrollFrequencies(empNbr,code);
+	    }
 }

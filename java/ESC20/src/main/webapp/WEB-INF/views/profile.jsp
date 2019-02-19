@@ -1234,10 +1234,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         <c:forEach var="bank" items="${banks}" varStatus="count">
 							
 							
-							 <form
-                            class="profile-item border-0 bankAccountBlock"
-                            id="bankAccountForm_01"
-                        >
+						<form
+                            	class="profile-item border-0 bankAccountBlock"
+                            	id="bankAccountForm_01"
+                        		>
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
                                     <div class="profile-title" data-localize="profile.primary"></div>
@@ -1419,200 +1419,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </div>
                         </form>
-							
                                                    
                         </c:forEach>
-                        
-                        
-                        <form
-                            class="profile-item border-0 bankAccountBlock"
-                            id="bankAccountForm_01"
-                        >
-                            <div class="profile-left">
-                                <div class="profile-item-line form-line">
-                                    <div class="profile-title" data-localize="profile.primary"></div>
-                                    <div class="profile-desc">
-                                        <span class="haveValue">
-                                            <label for="primaryAccount">
-                                                <input
-                                                    class="icheck"
-                                                    id="primary_0"
-                                                    type="radio"
-                                                    name="primaryAccount"
-                                                    disabled
-                                                />
-                                            </label>
-                                        </span>
-                                        <div class="form-group valueInput">
-                                            <label for="primaryAccount">
-                                                <input
-                                                    class="icheck"
-                                                    id="primary_1"
-                                                    type="checkbox"
-                                                    name="primaryAccount"
-                                                />
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="profile-item-line form-line">
-                                    <div class="profile-title" data-localize="profile.bankName"></div>
-                                    <div class="profile-desc">
-                                        <span class="haveValue"
-                                            >${accountInfo[0].code.description}</span
-                                        >
-                                        <div class="valueInput group-line">
-                                            <div class="form-group">
-                                                <input
-                                                    class="form-control name"
-                                                    type="text"
-                                                    name="accountInfo[0].code.description"
-                                                    value="${accountInfo[0].code.description}"
-                                                    disabled
-                                                />
-                                            </div>
-
-                                            <div class="form-group">
-                                                <input
-                                                    class="form-control code"
-                                                    type="text"
-                                                    name="accountInfo[0].code.subCode"
-                                                    value="${accountInfo[0].code.subCode}"
-                                                    disabled
-                                                />
-                                            </div>
-
-                                            <button
-                                                class="btn btn-secondary xs getBank"
-                                                type="button"
-                                                title=""
-                                                data-localize="profile.chooseBank"
-                                                data-localize-location="title"
-                                            >
-                                                <i class="fa fa-ellipsis-h"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="profile-item-line form-line">
-                                    <div class="profile-title" data-localize="profile.bankAcctNbr">
-                                    </div>
-                                    <div class="profile-desc">
-                                        <span class="haveValue"
-                                            >${accountInfo[0].accountNumber}</span
-                                        >
-                                        <div class="form-group valueInput">
-                                            <input
-                                                id="bankAccountNumber_0"
-                                                class="form-control"
-                                                type="text"
-                                                title=""
-                                                data-localize="profile.bankAcctNbr"
-                                                name="accountInfo[0].accountNumber"
-                                                value="${accountInfo[0].accountNumber}"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="profile-item-line form-line">
-                                    <div class="profile-title" data-localize="profile.bankAcctType">
-                                    </div>
-                                    <div class="profile-desc">
-                                        <span class="haveValue"
-                                            >${accountInfo[0].accountType.displayLabel}</span
-                                        >
-                                        <div class="form-group valueInput">
-                                            <select
-                                                class="form-control"
-                                                id="bankAccountType_1"
-                                                title=""
-                                                data-localize="profile.bankAcctType"
-                                                name="accountInfo[0].accountType.displayLabel"
-                                            >
-                                                <option value=""></option>
-                                                <option
-                                                    value="2 - Checking account"
-                                                    selected="selected"
-                                                    >2 - Checking
-                                                    account</option
-                                                >
-                                                <option
-                                                    value="3 - Savings account"
-                                                    >3 - Savings account</option
-                                                >
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="profile-item-line form-line">
-                                    <div class="profile-title" data-localize="profile.bankAcctAmt">
-                                    </div>
-                                    <div class="profile-desc">
-                                        <span class="haveValue"
-                                            >${accountInfo[0].depositAmount.displayAmount}</span
-                                        >
-                                        <div class="form-group valueInput">
-                                            <input
-                                                class="form-control amount_2"
-                                                id="bankDepositAmount_1"
-                                                type="text"
-                                                title="" data-localize="profile.bankAcctAmt"
-                                                name="accountInfo[0].depositAmount.displayAmount"
-                                                value="${accountInfo[0].depositAmount.displayAmount}"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="profile-btn">
-                                <div class="edit">
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary edit-btn" data-localize="label.edit"
-                                    >
-                                     
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary delete-btn" data-localize="label.delete"
-                                    >
-                                    </button>
-                                </div>
-                                <div class="saveOrCancel">
-                                    <button
-                                        type="submit"
-                                        class="btn btn-primary save-btn" data-localize="label.update"
-                                        id="saveBank_01"
-                                    >
-                                     
-                                    </button>
-                                    <button
-                                            type="button"
-                                            id=""
-                                            class="btn btn-secondary"  data-localize="label.undo"
-                                        >
-                                        
-                                    </button>
-                                    <button
-                                        type="button"
-                                        id=""
-                                        class="btn btn-secondary delete-btn"  data-localize="label.delete" onclick="deleteBankAmount()"
-                                    >
-                                    
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
-                                    >
-                                    
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
 
                         <div>
                             <form
-                                action=""
+                                action="saveBank"
                                 class="profile-item border-0 activeEdit addBankForm"
                                 id="addBankAccountForm"
                             >
@@ -1626,7 +1438,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input
                                                         class="form-control name"
                                                         type="text"
-                                                        name="accountInfo[0].code.description"
+                                                        name="description"
                                                         value=""
                                                         disabled
                                                     />
@@ -1636,7 +1448,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input
                                                         class="form-control code"
                                                         type="text"
-                                                        name="accountInfo[0].code.subCode"
+                                                        name="subCode"
                                                         value=""
                                                         disabled
                                                     />
@@ -1662,11 +1474,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="profile-desc">
                                             <div class="form-group valueInput">
                                                 <input
-                                                    id="bankAccountNumber_1"
                                                     class="form-control"
                                                     type="text"
                                                     title="" data-localize="profile.bankAcctNbr"
-                                                    name="accountInfo[0].accountNumber"
+                                                    name="accountNumber"
                                                     value=""
                                                 />
                                             </div>
@@ -1679,9 +1490,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="form-group valueInput">
                                                 <select
                                                     class="form-control"
-                                                    id="bankAccountType_0"
                                                     title="" data-localize="profile.bankAcctType"
-                                                    name="accountInfo[0].accountType.displayLabel"
+                                                    name="displayLabel"
                                                 >
                                                     <option value=""></option>
                                                     <option
@@ -1705,10 +1515,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="form-group valueInput">
                                                 <input
                                                     class="form-control amount_2"
-                                                    id="bankDepositAmount_0"
                                                     type="text"
                                                     title=""
-                                                    name="accountInfo[0].depositAmount.displayAmount"
+                                                    name="displayAmount"
                                                     value=""
                                                 />
                                             </div>
@@ -1718,7 +1527,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <div class="profile-btn">
                                     <div class="saveOrCancel flex-line">
                                         <button
-                                            type="submit"
+                                            type="button"
                                             class="btn btn-primary save-btn" data-localize="label.save"
                                             id="saveNewBank"
                                         >
@@ -1983,8 +1792,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     $(this).hide()
                 }
             })
+            
+             $('#saveNewBank').click(function() {
+            	 var freq = $('#freq').val();
+            	 
+            	 console.log("$$$$$$$$$ = " +  freq);
+            	 
+            	 $('#addBankAccountForm').form('submit', {
+            	        onSubmit: function(param){
+            	        	param.freq =freq;
+            	        }
+            	 });
+
+            })
+            
             $('.getBank').click(function() {
-            	
             	var page={
             			currentPage:1,
             			perPageRows:10
@@ -1997,9 +1819,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                      contentType: 'application/json;charset=UTF-8',
                      success: function (result) {
                     	 console.log(result);
-                    	 
                     	 //$('#bankTable').find('tr').remove();
-                    	// $("#bankTable  tr:not(:first)").empty("");  
+                    	 $("#bankTable  tr:not(:first)").empty(""); 
                     	 var res = result.result;
                     	 console.log(res);
                     	 for (var p in res) {
