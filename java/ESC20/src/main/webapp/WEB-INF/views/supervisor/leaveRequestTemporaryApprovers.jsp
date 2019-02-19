@@ -339,7 +339,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 thisTrIndex = $(this).parents(".approver_tr").index() - 1
                 let empArry = $(this).val().split("-")
                 currentInputNbr = empArry[0]
-                repeat = 0
                 verifyRepeat()
             });
             $(".deleteApprover").click(function(){
@@ -348,19 +347,26 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 addedApprover = addedApprover.filter((value) => {
                     return value.tmpApprvrEmpNbr!=id;
                 })
-                repeat = 0
                 verifyRepeat()
             })
             
         })
         function verifyRepeat(){
+            repeat = 0
+            console.log(approverJson)
+            console.log(addedApprover)
+            console.log(currentInputNbr)
             addedApprover.forEach((item,index)=>{
+                console.log("come in saved")
             if(item.tmpApprvrEmpNbr == currentInputNbr){
+                console.log(item.tmpApprvrEmpNbr)
                 repeat++
             }
             })
             approverJson.forEach((item,index)=>{
-            if(item.empNbr&&item.empNbr == currentInputNbr &&thisTrIndex!=item.domId){                    
+                console.log("come in adding")
+            if(item.empNbr&&item.empNbr == currentInputNbr){    
+                console.log(item.empNbr)                
                 repeat++
             }
             })
@@ -416,7 +422,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 .parents('.approver_tr')
                 .removeClass("approver_tr").addClass("redTd")
             judgeContent()
-            
             verifyRepeat()
             
         }
