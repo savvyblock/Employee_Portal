@@ -77,40 +77,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             let startH = parseInt(startTime[0])
                             let endH = parseInt(endTime[0])
                             let startAMOrPM,endAMOrPM;
-                            if(startH>=12){
-                                startAMOrPM = 'PM'
-                                if(startH==12){
-                                    startH = 12
-                                }else{
-                                    startH = startH - 12
-                                }
-                            }else{
-                                startAMOrPM = 'AM';
-                                startH = startH;
-                            }
-                            if(endH>=12){
-                                endAMOrPM = 'PM'
-                                if(endH == 12){
-                                    endH = 12
-                                }else{
-                                    endH = endH - 12
-                                }
-                            }else{
-                                endAMOrPM = 'AM';
-                                endH = endH;
-                            }
-
-                            if(startH>=10){
-                                $("#startHour").val(startH)
-                            }else{
-                                $("#startHour").val("0" + startH)
-                            }
-
-                            if(endH>=10){
-                                $("#endHour").val(endH)
-                            }else{
-                                $("#endHour").val("0" + endH)
-                            }
+                            startH = startTime[0].trim();
+            				startAMOrPM = start_arry[2].trim();
+            				endH = endTime[0].trim();
+            				endAMOrPM = end_arry[2].trim();
+            				$("#startHour").val(startH);
+            				$("#endHour").val(endH);
                             $("#startAmOrPm").val(startAMOrPM)
                             $("#endAmOrPm").val(endAMOrPM)
                             let startTimeValue = startH + ":" + startTime[1] + " " + startAMOrPM
