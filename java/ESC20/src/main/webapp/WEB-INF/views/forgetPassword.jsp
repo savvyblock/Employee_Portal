@@ -93,7 +93,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
                 <form id="resetPassword" action="resetPassword" method="post">
                     <div class="form-group">
-                        <label class="form-title" data-localize="label.username"></label>
+                        <label class="form-title" data-localize="label.username" for="resetUsername"></label>
                         <div class="valid-wrap">
                             <input
                                 type="text"
@@ -101,12 +101,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 placeholder=""
                                 data-localize="label.username"
                                 name="userName"
+                                id="resetUsername"
                                 value="${user.username}"
                             />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-title" data-localize="label.emailAddress"></label>
+                        <label class="form-title" data-localize="label.emailAddress" for="resetEmail"></label>
                         <div class="valid-wrap">
                             <input
                                 type="text"
@@ -114,6 +115,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 placeholder=""
                                 data-localize="label.emailAddress"
                                 name="email"
+                                id="resetEmail"
                                 value="${user.userEmail}"
                             />
                         </div>

@@ -24,6 +24,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                    <c:if test="${notification.status == 'UR' }">
                                     <button class="note-btn" onclick="markRead('${notification.id}')" data-localize="label.markAsRead"
                                     data-localize-location="title">
+                                    <span class="hide" data-localize="accessHint.markAsRead"></span>
                                             <i class="fa fa-eye"></i>
                                     </button>
                                     </c:if>
@@ -34,7 +35,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 </section>
             </main>
             <form id="markAsReadForm" hidden="hidden" action="markAsRead" method="POST">
-                <input type="text" id="noteId" name="id">
+                <input type="text" id="noteId" name="id" title="" data-localize="accessHint.selectId">
             </form>
         </div>
         <%@ include file="commons/footer.jsp"%>

@@ -187,7 +187,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     method="POST"
                                 >
                                     <div class="form-group in-line">
-                                        <label class="form-title" for="SearchPayDate"><span data-localize="label.payDates"></span>:</label>
+                                        <label class="form-title" for="payDateString"><span data-localize="label.payDates"></span>:</label>
                                         <select class="form-control" name="payDateString" id="payDateString" onchange="submitEarning()" style="max-width:280px;">
                                             <c:forEach var="payDate" items="${payDates}" varStatus="counter">
                                                 <option value="${payDate.dateFreqVoidAdjChk}" <c:if test="${payDate.dateFreq == selectedPayDate.dateFreq }">selected</c:if>>${payDate.label}</option>

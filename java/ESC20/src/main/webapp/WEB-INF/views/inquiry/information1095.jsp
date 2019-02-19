@@ -38,7 +38,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     method="POST"
                                 >
                                     <div class="form-group in-line">
-                                        <label class="form-title" data-localize="label.pleaseSelectYear"></label
+                                        <label class="form-title" data-localize="label.pleaseSelectYear" for="year"></label
                                         >
                                         <select class="form-control" name="year" id="year" onchange="submitYear()">
                                             <c:forEach var="year" items="${years}" varStatus="years">
@@ -47,7 +47,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </select>
                                     </div>
                                     <div class="form-group in-line">
-                                        <label for="bc-1095" class="mr-3">
+                                        <label for="b-1095" class="mr-3">
                                             <input
                                                 class="icheck"
                                                 type="radio"
@@ -58,7 +58,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             />
                                             <span data-localize="label.b1095"></span>
                                         </label>
-                                        <label for="bc-1095">
+                                        <label for="c-1095">
                                             <input
                                                 class="icheck"
                                                 type="radio"
@@ -408,13 +408,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                             <div class="form-group">
                                     <div class="checkbox mb-2">
-                                        <label for="">
+                                        <label for="consent">
                                             <input class="icheck" type="radio" name="electronicConsent" id="consent" checked> 
                                             <span data-localize="label.consentElectronicAccess"></span>
                                         </label>
                                     </div>
                                     <div class="checkbox">
-                                            <label>
+                                            <label for="notConsent">
                                                 <input class="icheck" type="radio" name="electronicConsent" id="notConsent"> 
                                                 <span data-localize="label.donotConsentElectronicAccess"></span>
                                             </label>
