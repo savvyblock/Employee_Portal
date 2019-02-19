@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
     <head>
         <title data-localize="headTitle.w2Info"></title>
@@ -42,7 +43,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     method="POST"
                                 >
                                     <div class="form-group in-line">
-                                        <label class="form-title"  for="SearchYear"  data-localize="label.pleaseSelectYear"></label>
+                                        <label class="form-title"  for="year"  data-localize="label.pleaseSelectYear"></label>
                                         <select class="form-control" name="year" id="year" onchange="submitCalendarForm()">
                                             <c:forEach var="year" items="${years}" varStatus="years">
                                                 <option value="${year}" <c:if test="${year == selectedYear }">selected</c:if>>${year}</option>
@@ -60,14 +61,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.taxableGrossPay"
                                             >
-                                            ${w2Info.whGross}
+                                            <fmt:formatNumber value="${w2Info.whGross}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.withholdingTax"></td>
                                             <td
                                                 class="td-content"
                                                 data-localize="w2InformationTable.withholdingTax"
                                             >
-                                            ${w2Info.whTax}
+                                            <fmt:formatNumber value="${w2Info.whTax}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.pension"></td>
                                             <td class="td-content" data-localize="w2InformationTable.pension">
@@ -80,7 +81,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.FICAGross"
                                             >
-                                            ${w2Info.ficaGross}
+                                            <fmt:formatNumber value="${w2Info.ficaGross}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.FICATax"></td>
                                             <td
@@ -88,7 +89,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 data-localize="w2InformationTable.FICATax"
                                                 colspan="3"
                                             >
-                                            ${w2Info.ficaTax}
+                                            <fmt:formatNumber value="${w2Info.ficaTax}" pattern="#,##0.00"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -97,7 +98,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.medicareGross"
                                             >
-                                            ${w2Info.medGross}
+                                            <fmt:formatNumber value="${w2Info.medGross}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.medicareTax"></td>
                                             <td
@@ -105,7 +106,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 data-localize="w2InformationTable.medicareTax"
                                                 colspan="3"
                                             >
-                                            ${w2Info.medTax}
+                                            <fmt:formatNumber value="${w2Info.medTax}" pattern="#,##0.00"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -115,7 +116,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.earnedIncomeCredit"
                                             >
-                                            ${w2Info.eicAmt}
+                                            <fmt:formatNumber value="${w2Info.eicAmt}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.dependentCare"></td>
                                             <td
@@ -123,7 +124,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 data-localize="w2InformationTable.dependentCare"
                                                 colspan="3"
                                             >
-                                            ${w2Info.dependCare}
+                                            <fmt:formatNumber value="${w2Info.dependCare}" pattern="#,##0.00"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -135,14 +136,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.annuityDeduction"
                                             >
-                                            ${w2Info.annuityDed}
+                                            <fmt:formatNumber value="${w2Info.annuityDed}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.457withdraw"></td>
                                             <td
                                                 class="td-content"
                                                 data-localize="w2InformationTable.457withdraw"
                                             >
-                                            ${w2Info.withdraw457}
+                                            <fmt:formatNumber value="${w2Info.withdraw457}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.457Annuities">
                                             </td>
@@ -150,7 +151,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.457Annuities"
                                             >
-                                            ${w2Info.emp457Contrib + w2Info.emplrContrib457}
+                                            <fmt:formatNumber value="${w2Info.emp457Contrib + w2Info.emplrContrib457}" pattern="#,##0.00"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -159,7 +160,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.cafeteria125"
                                             >
-                                            ${w2Info.cafeAmt}
+                                            <fmt:formatNumber value="${w2Info.cafeAmt}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.roth403BAfterTax">
                                             </td>
@@ -168,7 +169,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 data-localize="w2InformationTable.roth403BAfterTax"
                                                 colspan="3"
                                             >
-                                            ${w2Info.annuityRoth}
+                                            <fmt:formatNumber value="${w2Info.annuityRoth}" pattern="#,##0.00"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -181,14 +182,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.nonTrsBusinessExpense"
                                             >
-                                            ${w2Info.nontrsNontaxBusAllow}
+                                            <fmt:formatNumber value="${w2Info.nontrsNontaxBusAllow}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.taxableAllowance"></td>
                                             <td
                                                 class="td-content"
                                                 data-localize="w2InformationTable.taxableAllowance"
                                             >
-                                            ${w2Info.nontrsBusAllow}
+                                            <fmt:formatNumber value="${w2Info.nontrsBusAllow}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.empBusinessExpense">
                                             </td>
@@ -196,7 +197,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.empBusinessExpense"
                                             >
-                                            ${w2Info.empBusinessExpense}
+                                            <fmt:formatNumber value="${w2Info.empBusinessExpense}" pattern="#,##0.00"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -206,7 +207,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.movingExpenseReimbursement"
                                             >
-                                            ${w2Info.movingExpReimbr}
+                                            <fmt:formatNumber value="${w2Info.movingExpReimbr}" pattern="#,##0.00"/>
                                             </td>
                                             <c:choose>
 							                    <c:when test="${selectedYear >= '2012'}">
@@ -216,7 +217,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         class="td-content"
                                                         data-localize="w2InformationTable.empSponsoredHealthCoverage"
                                                     >
-                                                    ${w2Info.emplrPrvdHlthcare}
+                                                    <fmt:formatNumber value="${w2Info.emplrPrvdHlthcare}" pattern="#,##0.00"/>
                                                     </td>
                                                 </c:when>
                                                 <c:otherwise>
@@ -231,7 +232,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         class="td-content"
                                                         data-localize="w2InformationTable.annuityRoth"
                                                     >
-                                                    ${w2Info.annuityRoth457b}
+                                                    <fmt:formatNumber value="${w2Info.annuityRoth457b}" pattern="#,##0.00"/>
                                                     </td>
                                                 </c:when>
                                                 <c:otherwise>
@@ -251,7 +252,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 data-localize="w2InformationTable.TRSSalaryReduction"
                                                 colspan="5"
                                             >
-                                            ${w2Info.trsDeposit}
+                                            <fmt:formatNumber value="${w2Info.trsDeposit}" pattern="#,##0.00"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -264,7 +265,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.taxedLifeContribution"
                                             >
-                                            ${w2Info.taxEmplrLifeGrp}
+                                            <fmt:formatNumber value="${w2Info.taxEmplrLifeGrp}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.healthInsuranceDeduction">
                                             </td>
@@ -272,7 +273,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.healthInsuranceDeduction"
                                             >
-                                            ${w2Info.hlthInsDed}
+                                            <fmt:formatNumber value="${w2Info.hlthInsDed}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.taxableFringeBenefits">
                                             </td>
@@ -280,7 +281,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.taxableFringeBenefits"
                                             >
-                                            ${w2Info.taxedBenefits}
+                                            <fmt:formatNumber value="${w2Info.taxedBenefits}" pattern="#,##0.00"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -293,14 +294,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="td-content"
                                                 data-localize="w2InformationTable.healthSavingsAccount"
                                             >
-                                            ${w2Info.hsaContrib}
+                                            <fmt:formatNumber value="${w2Info.hsaContrib}" pattern="#,##0.00"/>
                                             </td>
                                             <td class="td-title" data-localize="w2InformationTable.nonTaxSickPay"></td>
                                             <td
                                                 class="td-content"
                                                 data-localize="w2InformationTable.nonTaxSickPay"
                                             >
-                                            ${w2Info.sickPayNontax}
+                                            <fmt:formatNumber value="${w2Info.sickPayNontax}" pattern="#,##0.00"/>
                                             </td>
                                             <c:choose>
                                                 <c:when test="${selectedYear >= '2010'}">
@@ -309,7 +310,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         class="td-content"
                                                         data-localize="w2InformationTable.hireExemptWages"
                                                     >
-                                                    ${w2Info.hireExemptWgs}
+                                                    <fmt:formatNumber value="${w2Info.hireExemptWgs}" pattern="#,##0.00"/>
                                                     </td>
                                                 </c:when>
                                                 <c:otherwise>
@@ -331,12 +332,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td class="td-title" data-localize="w2InformationTable.withholdingGross">
                                                 </td>
                                                 <td class="td-content" data-localize="w2InformationTable.withholdingGross">
-                                                        ${sick.sickPayWhGross}
+                                                        <fmt:formatNumber value="${sick.sickPayWhGross}" pattern="#,##0.00"/>
                                                 </td>
                                                 <td class="td-title" data-localize="w2InformationTable.withholdingTax">
                                                 </td>
                                                 <td class="td-content" data-localize="w2InformationTable.withholdingTax">
-                                                        ${sick.sickPayWhTax}
+                                                        <fmt:formatNumber value="${sick.sickPayWhTax}" pattern="#,##0.00"/>
                                                 </td>
                                                 <td class="td-title"></td>
                                                 <td class="td-content"></td>
@@ -345,12 +346,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td class="td-title" data-localize="w2InformationTable.FICAGross">
                                                 </td>
                                                 <td class="td-content" data-localize="w2InformationTable.FICAGross">
-                                                        ${sick.sickPayFicaGross}
+                                                        <fmt:formatNumber value="${sick.sickPayFicaGross}" pattern="#,##0.00"/>
                                                 </td>
                                                 <td class="td-title" data-localize="w2InformationTable.FICATax">
                                                 </td>
                                                 <td class="td-content" data-localize="w2InformationTable.FICATax">
-                                                        ${sick.sickPayFicaTax}
+                                                        <fmt:formatNumber value="${sick.sickPayFicaTax}" pattern="#,##0.00"/>
                                                 </td>
                                                 <td class="td-title"></td>
                                                 <td class="td-content"></td>
@@ -359,12 +360,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td class="td-title" data-localize="w2InformationTable.medicareGross">
                                                 </td>
                                                 <td class="td-content" data-localize="w2InformationTable.medicareGross">
-                                                        ${sick.sickPayMedGross}
+                                                        <fmt:formatNumber value="${sick.sickPayMedGross}" pattern="#,##0.00"/>
                                                 </td>
                                                 <td class="td-title" data-localize="w2InformationTable.medicareTax">
                                                 </td>
                                                 <td class="td-content" data-localize="w2InformationTable.medicareTax">
-                                                        ${sick.sickPayMedTax}
+                                                        <fmt:formatNumber value="${sick.sickPayMedTax}" pattern="#,##0.00"/>
                                                 </td>
                                                 <td class="td-title"></td>
                                                 <td class="td-content"></td>
@@ -373,7 +374,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td class="td-title" data-localize="w2InformationTable.nontaxablePay">
                                                 </td>
                                                 <td class="td-content" data-localize="w2InformationTable.nontaxablePay">
-                                                        ${sick.sickNontax}
+                                                        <fmt:formatNumber value="${sick.sickNontax}" pattern="#,##0.00"/>
                                                 </td>
                                                 <td class="td-title"></td>
                                                 <td class="td-content"></td>
@@ -676,7 +677,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.statemp=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" />
+                                                                        <input class="checkBoxOld" type="checkbox" title="" data-localize="accessHint.statutoryEmployeeCheckbox" />
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -690,7 +691,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.retplan=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" />
+                                                                        <input class="checkBoxOld" type="checkbox"  title="" data-localize="accessHint.retirementPlanCheckbox"/>
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -704,7 +705,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.thrdsick=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" />
+                                                                        <input class="checkBoxOld" type="checkbox"   title="" data-localize="accessHint.thirdPartySickPayCheckbox"/>
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -1029,7 +1030,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.statemp=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" />
+                                                                        <input class="checkBoxOld" type="checkbox" title="" data-localize="accessHint.statutoryEmployeeCheckbox" />
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -1043,7 +1044,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.retplan=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" />
+                                                                        <input class="checkBoxOld" type="checkbox" title="" data-localize="accessHint.retirementPlanCheckbox"/>
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -1057,7 +1058,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.thrdsick=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" />
+                                                                        <input class="checkBoxOld" type="checkbox"   title="" data-localize="accessHint.thirdPartySickPayCheckbox"/>
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -1128,13 +1129,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                             <div class="form-group">
                                     <div class="checkbox mb-2">
-                                        <label for="">
+                                        <label for="consent">
                                             <input class="icheck" type="radio" name="consent" id="consent"> 
                                             <span data-localize="label.w2Yes"></span>
                                         </label>
                                     </div>
                                     <div class="checkbox">
-                                            <label>
+                                            <label for="notConsent">
                                                 <input class="icheck" type="radio" name="consent" id="notConsent"> 
                                                 <span data-localize="label.w2No"></span>
                                             </label>
@@ -1142,11 +1143,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                         </form>
                         <form hidden="hidden" id="consentForm" action="updateW2Consent" method="POST">
-                            <input type="text" name="year" id="consentYear" value="${selectedYear}">
-                            <input type="hidden" id="w2Latest" value="${sessionScope.options.w2Latest}"/>
-                            <input type="text" name="consentMsg" id="elecConsntMsgW2" value="${elecConsntMsgW2}">
-                            <input type="text" name="consent" id="elecConsntW2Flag" value="${consent}">
-                            <input type="text"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}"/>
+                            <input type="text" name="year" id="consentYear" value="${selectedYear}" title="" data-localize="accessHint.year">
+                            <input type="hidden" id="w2Latest" value="${sessionScope.options.w2Latest}" title="" data-localize="accessHint.w2Latest"/>
+                            <input type="text" name="consentMsg" id="elecConsntMsgW2" value="${elecConsntMsgW2}" title="" data-localize="accessHint.elecConsntMsgW2">
+                            <input type="text" name="consent" id="elecConsntW2Flag" value="${consent}" title="" data-localize="accessHint.consent">
+                            <input type="text"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}" title="" data-localize="accessHint.enableElecConsntW2"/>
                         </form>
                     </div>
                     <div class="modal-footer">

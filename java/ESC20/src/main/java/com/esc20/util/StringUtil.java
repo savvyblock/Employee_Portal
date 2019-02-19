@@ -310,6 +310,13 @@ public class StringUtil {
         else
             return "";
     }
+    
+    public static String trim(Object s) {
+        if (s != null)
+            return s.toString().trim();
+        else
+            return "";
+    }
 
     /**
      * Converts all the characters in a string to lowercase.

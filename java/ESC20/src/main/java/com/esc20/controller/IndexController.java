@@ -4,8 +4,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.crypto.Cipher;
@@ -43,9 +46,12 @@ import com.esc20.model.BeaW4Id;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPay;
 import com.esc20.model.BthrBankCodes;
+import com.esc20.nonDBModels.Bank;
+import com.esc20.nonDBModels.BankRequest;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Frequency;
+import com.esc20.nonDBModels.Money;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.Page;
@@ -245,8 +251,6 @@ public class IndexController {
     @ResponseBody
     public JSONObject getAllBanks(HttpServletRequest req,@RequestBody Page page){
     	
-    	System.out.println(page);
-    	
     	Page p = new Page();
     	p.setCurrentPage(1);
     	p.setPerPageRows(10);
@@ -266,6 +270,67 @@ public class IndexController {
         return result;
     }
     
+    @RequestMapping("saveBank")
+    public ModelAndView saveBank(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        
+        String freq = req.getParameter("freq");
+        
+        String displayAmount = req.getParameter("displayAmount");
+        String displayLabel = req.getParameter("displayLabel");
+        String accountNumber = req.getParameter("accountNumber");
+        
+        String code = req.getParameter("subCode");
+        
+        String description = req.getParameter("description");
+        
+        String employeeNumber = demo.getEmpNbr();
+        
+        ModelAndView mav = new ModelAndView();
+        Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
+        
+        Bank payrollAccountInfo = new Bank();
+        Bank accountInfo = new Bank();
+        
+        accountInfo.setAccountNumber(accountNumber);
+        accountInfo.setAccountType(this.bankService.getDdAccountType(displayLabel));
+        accountInfo.setCode(this.bankService.getBank(code));
+        accountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
+        accountInfo.setFrequency(Frequency.getFrequency(freq));
+        
+        
+        this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
+        
+        if(autoApprove) {
+        	 this.bankService.insertAccountApprove(employeeNumber, freq, payrollAccountInfo);
+        	 this.bankService.deleteNextYearAccounts(employeeNumber);
+        	 this.bankService.insertNextYearAccounts(employeeNumber);
+        }
+        
+        getProfileDetails(session, mav,freq);
+        return mav;
+    }
+    
+    @RequestMapping("getBankLimit")
+    @ResponseBody
+    public Integer getBankLimit(HttpServletRequest req){
+    	
+    	Integer limit = bankService.getDirectDepositLimit();
+        return limit;
+    }
+    
+    @RequestMapping("updateAccount")
+    @ResponseBody
+    public JSONObject updateAccount(HttpServletRequest req){
+    	
+    	Boolean auto = bankService.getAutoApproveAccountInfo("frequency");
+    	JSONObject result=new JSONObject();
+	    result.put("isSuccess", "true");
+	    
+        return result;
+    }
+    
     @RequestMapping("getBanks")
     @ResponseBody
     public JSONArray getBanks(HttpServletRequest req){
@@ -279,6 +344,31 @@ public class IndexController {
     	
     	List<BthrBankCodes> banks = bankService.getBanksByEntity(bbc);
     	JSONArray json = JSONArray.fromObject(banks); 
+        return json;
+    }
+    
+    @RequestMapping("getAccounts")
+    @ResponseBody
+    public JSONArray getAccounts(HttpServletRequest req){
+    	
+    	String employeeNumber = req.getParameter("employeeNumber");
+    	String frequency = req.getParameter("frequency");
+    	
+    	List<Bank> banks = bankService.getAccounts(employeeNumber, frequency);
+    	JSONArray json = JSONArray.fromObject(banks); 
+        return json;
+    }
+    
+    
+    @RequestMapping("getAccountRequests")
+    @ResponseBody
+    public JSONArray getAccountRequests(HttpServletRequest req){
+    	
+    	String employeeNumber = req.getParameter("employeeNumber");
+    	String frequency = req.getParameter("frequency");
+    	
+    	List<BankRequest> banks = bankService.getAccountRequests(employeeNumber, frequency);
+    	JSONArray json = JSONArray.fromObject(banks);
         return json;
     }
     
@@ -427,6 +517,15 @@ public class IndexController {
         List<Code> statesOptions = this.referenceService.getStates();
         List<Code> restrictionsOptions = this.referenceService.getRestrictions();
         
+        String freqCode = freq;
+        if (freq != null && !("").equals(freq)) {
+        	freqCode = payRollFrequenciesOptions.get(0).getCode(); //TODO 
+        }else {
+        	freqCode = payRollFrequenciesOptions.get(0).getCode();
+        }
+        List<Bank> banks = this.bankService.getAccounts(demo.getEmpNbr(), freqCode);
+        List<BankRequest> banksRequest = this.bankService.getAccountRequests(demo.getEmpNbr(), freqCode);
+        
         mav.setViewName("profile");
         mav.addObject("nameRequest", nameRequest);
         mav.addObject("mrtlRequest", mrtlRequest);
@@ -448,6 +547,8 @@ public class IndexController {
         mav.addObject("payRollFrequenciesOptions", payRollFrequenciesOptions);
         mav.addObject("payInfo",payInfo);
        
+        mav.addObject("banks", banks);
+        mav.addObject("banksRequest", banksRequest);
         mav.addObject("w4Request", w4Request);
 	}
 
@@ -523,7 +624,7 @@ public class IndexController {
 	         mav.setViewName("profile");
 	        
 	         	
-	         demo.setAvatar("/uploadFiles/"+demo.getEmpNbr()+".jpg");
+	         demo.setAvatar("/uploadFiles/"+demo.getEmpNbr()+".jpg"+"?uploadTime="+Calendar.getInstance().getTimeInMillis());
 	         this.indexService.updateDemoAvatar(demo);
 	         session.removeAttribute("userDetail");
 	         session.setAttribute("userDetail", demo);
@@ -1012,6 +1113,8 @@ public class IndexController {
     	HttpSession session = req.getSession();
     	Map<String, String> res = new HashMap<>();
     	BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+    	if(demo==null)
+    		return null;
     	Integer count = this.indexService.getBudgeCount(demo.getEmpNbr());
         res.put("count", count.toString());
         return res;
@@ -1023,6 +1126,8 @@ public class IndexController {
     	HttpSession session = req.getSession();
     	Map<String, JSONArray> result = new HashMap<>();
     	BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+    	if(demo==null)
+    		return null;
     	List<BeaAlert> top5 = this.indexService.getTop5Alerts(demo.getEmpNbr());
         JSONArray res = new JSONArray();
         JSONObject obj = new JSONObject();

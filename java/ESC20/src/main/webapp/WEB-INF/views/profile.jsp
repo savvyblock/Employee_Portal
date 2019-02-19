@@ -1243,10 +1243,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}">
                         </form>
                         <p class="sub-title" data-localize="profile.directDepositBankAccounts"></p>
-                        <form
-                            class="profile-item border-0 bankAccountBlock"
-                            id="bankAccountForm_01"
-                        >
+                        
+                        <c:forEach var="bank" items="${banks}" varStatus="count">
+							
+							
+						<form
+                            	class="profile-item border-0 bankAccountBlock"
+                            	id="bankAccountForm_01"
+                        		>
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
                                     <div class="profile-title" data-localize="profile.primary"></div>
@@ -1278,7 +1282,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-title" data-localize="profile.bankName"></div>
                                     <div class="profile-desc">
                                         <span class="haveValue"
-                                            >${accountInfo[0].code.description}</span
+                                            >${bank.code.description}</span
                                         >
                                         <div class="valueInput group-line">
                                             <div class="form-group">
@@ -1286,7 +1290,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control name"
                                                     type="text"
                                                     name="accountInfo[0].code.description"
-                                                    value="${accountInfo[0].code.description}"
+                                                    value="${bank.code.description}"
                                                     disabled
                                                 />
                                             </div>
@@ -1296,7 +1300,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control code"
                                                     type="text"
                                                     name="accountInfo[0].code.subCode"
-                                                    value="${accountInfo[0].code.subCode}"
+                                                    value="${bank.code.subCode}"
                                                     disabled
                                                 />
                                             </div>
@@ -1318,7 +1322,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                     <div class="profile-desc">
                                         <span class="haveValue"
-                                            >${accountInfo[0].accountNumber}</span
+                                            >${bank.accountNumber}</span
                                         >
                                         <div class="form-group valueInput">
                                             <input
@@ -1328,7 +1332,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 title=""
                                                 data-localize="profile.bankAcctNbr"
                                                 name="accountInfo[0].accountNumber"
-                                                value="${accountInfo[0].accountNumber}"
+                                                value="${bank.accountNumber}"
                                             />
                                         </div>
                                     </div>
@@ -1338,7 +1342,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                     <div class="profile-desc">
                                         <span class="haveValue"
-                                            >${accountInfo[0].accountType.displayLabel}</span
+                                            >${bank.accountType.displayLabel}</span
                                         >
                                         <div class="form-group valueInput">
                                             <select
@@ -1368,7 +1372,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                     <div class="profile-desc">
                                         <span class="haveValue"
-                                            >${accountInfo[0].depositAmount.displayAmount}</span
+                                            >${bank.depositAmount.displayAmount}</span
                                         >
                                         <div class="form-group valueInput">
                                             <input
@@ -1377,7 +1381,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 type="text"
                                                 title="" data-localize="profile.bankAcctAmt"
                                                 name="accountInfo[0].depositAmount.displayAmount"
-                                                value="${accountInfo[0].depositAmount.displayAmount}"
+                                                value="${bank.depositAmount.displayAmount}"
                                             />
                                         </div>
                                     </div>
@@ -1411,7 +1415,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             class="btn btn-secondary"  data-localize="label.undo"
                                         >
                                         
-                                        </button>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        id=""
+                                        class="btn btn-secondary delete-btn"  data-localize="label.delete" onclick="deleteBankAmount()"
+                                    >
+                                    
+                                    </button>
                                     <button
                                         type="button"
                                         class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
@@ -1421,10 +1432,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </div>
                         </form>
+                                                   
+                        </c:forEach>
 
                         <div>
                             <form
-                                action=""
+                                action="saveBank"
                                 class="profile-item border-0 activeEdit addBankForm"
                                 id="addBankAccountForm"
                             >
@@ -1438,7 +1451,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input
                                                         class="form-control name"
                                                         type="text"
-                                                        name="accountInfo[0].code.description"
+                                                        name="description"
                                                         value=""
                                                         disabled
                                                     />
@@ -1448,7 +1461,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input
                                                         class="form-control code"
                                                         type="text"
-                                                        name="accountInfo[0].code.subCode"
+                                                        name="subCode"
                                                         value=""
                                                         disabled
                                                     />
@@ -1474,11 +1487,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="profile-desc">
                                             <div class="form-group valueInput">
                                                 <input
-                                                    id="bankAccountNumber_1"
                                                     class="form-control"
                                                     type="text"
                                                     title="" data-localize="profile.bankAcctNbr"
-                                                    name="accountInfo[0].accountNumber"
+                                                    name="accountNumber"
                                                     value=""
                                                 />
                                             </div>
@@ -1491,9 +1503,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="form-group valueInput">
                                                 <select
                                                     class="form-control"
-                                                    id="bankAccountType_0"
                                                     title="" data-localize="profile.bankAcctType"
-                                                    name="accountInfo[0].accountType.displayLabel"
+                                                    name="displayLabel"
                                                 >
                                                     <option value=""></option>
                                                     <option
@@ -1517,10 +1528,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="form-group valueInput">
                                                 <input
                                                     class="form-control amount_2"
-                                                    id="bankDepositAmount_0"
                                                     type="text"
                                                     title=""
-                                                    name="accountInfo[0].depositAmount.displayAmount"
+                                                    name="displayAmount"
                                                     value=""
                                                 />
                                             </div>
@@ -1530,7 +1540,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <div class="profile-btn">
                                     <div class="saveOrCancel flex-line">
                                         <button
-                                            type="submit"
+                                            type="button"
                                             class="btn btn-primary save-btn" data-localize="label.save"
                                             id="saveNewBank"
                                         >
@@ -1565,6 +1575,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <%@ include file="modal/changePassword.jsp"%>
         <%@ include file="modal/undoModal.jsp"%>
         <%@ include file="modal/changeAvatar.jsp"%>
+        <%@ include file="modal/deleteModal.jsp"%>
         <div
             class="modal fade"
             id="selectBankModal"
@@ -1634,7 +1645,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </div>
                         </form>
                         <div class="bankResult">
-                            <table class="table border-table">
+                            <table class="table border-table" id="bankTable">
                                 <thead>
                                     <tr>
                                         <th data-localize="profile.routingNumber"></th>
@@ -1642,6 +1653,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                 <!-- 
                                     <tr>
                                         <td data-localize="profile.routingNumber" data-localize-location="scope">
                                             <button
@@ -1655,6 +1667,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </td>
                                         <td data-localize="profile.bankName" data-localize-location="scope">A+ FEDERAL CREDIT UNION</td>
                                     </tr>
+                                   
                                     <tr>
                                             <td colspan="2">
                                                 <div class="flex">
@@ -1687,6 +1700,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     
                                             </td>
                                     </tr>
+                                     -->
                                 </tbody>
                             </table>
                         </div>
@@ -1791,8 +1805,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     $(this).hide()
                 }
             })
+            
+             $('#saveNewBank').click(function() {
+            	 var freq = $('#freq').val();
+            	 
+            	 console.log("$$$$$$$$$ = " +  freq);
+            	 
+            	 $('#addBankAccountForm').form('submit', {
+            	        onSubmit: function(param){
+            	        	param.freq =freq;
+            	        }
+            	 });
+
+            })
+            
             $('.getBank').click(function() {
-            	
             	var page={
             			currentPage:1,
             			perPageRows:10
@@ -1805,19 +1832,42 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                      contentType: 'application/json;charset=UTF-8',
                      success: function (result) {
                     	 console.log(result);
+                    	 //$('#bankTable').find('tr').remove();
+                    	 $("#bankTable  tr:not(:first)").empty(""); 
+                    	 var res = result.result;
+                    	 console.log(res);
+                    	 for (var p in res) {
+                    		 var bankTr= "<tr><td data-localize='profile.routingNumber' data-localize-location='scope'>";
+                    		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].transitRoute+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
+                    		 bankTr = bankTr + " <td data-localize='profile.bankName' data-localize-location='scope'>"+res[p].bankName+"</td> </tr>";
+                    		 $("#bankTable").append(bankTr);
+                    	 }
+                    	 
+                    	    $('#selectBankModal').modal('show')
+                            bankInputName = $('.getBank')
+                                .parent()
+                                .find('.form-control.name');
+                            bankInputCode = $('.getBank')
+                                .parent()
+                                .find('.form-control.code');
+                            
+                            $('.bankNumberBtn').click(function() {
+                                let number = $(this).val()
+                                let name = $(this).attr('data-title')
+                                console.log(number)
+                                console.log(name)
+                                bankInputName.val(name)
+                                bankInputCode.val(number)
+                                $('#selectBankModal').modal('hide')
+                            })
+                    	 
                      },
                      error : function(e) {
                     	 console.log(e);
                      }
                  });
             	
-                $('#selectBankModal').modal('show')
-                bankInputName = $(this)
-                    .parent()
-                    .find('.form-control.name')
-                bankInputCode = $(this)
-                    .parent()
-                    .find('.form-control.code')
+            
                     
                     
             })
@@ -1825,15 +1875,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             	alert("search bank");
             })
             
-            $('.bankNumberBtn').click(function() {
-                let number = $(this).val()
-                let name = $(this).attr('data-title')
-                console.log(number)
-                console.log(name)
-                bankInputName.val(name)
-                bankInputCode.val(number)
-                $('#selectBankModal').modal('hide')
-            })
+          
             
             $("#undoNameRequest").click(function(){
                 $('#undoModal').modal('show')
@@ -1879,10 +1921,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $(".sureUndo").click(function(){
                 undoFormSubmit()
             })
+            $(".sureDelete").click(function(){
+                console.log("modal -- delete")
+            })
         })
         function undoFormSubmit(){
             let form = "#" + formSelect
             $(form)[0].submit()
+        }
+        function deleteBankAmount(){
+            $('#deleteModal').modal('show')
+            console.log("delete")
         }
         
 

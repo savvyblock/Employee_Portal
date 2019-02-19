@@ -7,40 +7,26 @@
     aria-hidden="true"
     data-backdrop="static"
 >
-    <div class="modal-dialog approveForm" style="max-width:350px;">
-        <div class="modal-content">
-            <div class="modal-header">
+    <div class="modal-dialog approveForm warn-modal" style="max-width:350px;">
+        <div class="modal-content text-center">  
+            <div class="modal-body text-center">
+                <i class="fa fa-exclamation-circle warn-icon"></i>
+                <p data-localize="label.areYouDelete"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-primary sureDelete" data-localize="label.ok">
+                </button>
                 <button
                     type="button"
-                    class="close"
+                    class="btn btn-secondary"
                     data-dismiss="modal"
                     aria-hidden="true"
-                    data-localize="label.closeModal"
-                    data-localize-location="title"
+                    data-localize="label.cancel"
                 >
-                    &times;
                 </button>
-                <h4 class="modal-title" data-localize="label.information"></h4>
             </div>
-              
-                      <div class="modal-body">
-                      
-                        <p data-localize="label.areYouDelete"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button"  class="btn btn-primary sureDelete" data-localize="label.ok">
-                        </button>
-                        <button
-                          type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
-                            aria-hidden="true"
-                            data-localize="label.cancel"
-                        >
-                        </button>
-                    </div>
-              
-              
+                
+                
         </div>
         <!-- /.modal-content -->
     </div>

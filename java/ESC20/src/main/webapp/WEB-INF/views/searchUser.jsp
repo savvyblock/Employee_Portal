@@ -82,7 +82,7 @@
                                     message: 'validator.requiredField'
                                 },
                                 regexp: {
-                                    regexp: /^[0-1]\d{0,1}$/,
+                                    regexp: /0[1-9]|1[0-2]/,
                                     message: 'validator.pleaseEnterCorrectFormat'
                                 }
                         }
@@ -93,7 +93,7 @@
                                     message: 'validator.requiredField'
                                 },
                                 regexp: {
-                                    regexp: /^[0-3]\d{0,1}$/,
+                                    regexp: /[0-2]\d|3[0-1]/,
                                     message: 'validator.pleaseEnterCorrectFormat'
                                 }
                         }

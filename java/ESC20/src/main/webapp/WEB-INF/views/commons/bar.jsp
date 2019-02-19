@@ -4,7 +4,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#"><span class="hide" data-localize="accessHint.collapseOrExpand"></span> <i class="fa fa-bars"></i></a>
       </li>
     </ul>
 
@@ -15,7 +15,8 @@
     <ul class="navbar-nav nav-right">
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-        <button class="nav-link nobtn-style" data-toggle="dropdown" tabindex="0">
+        <button class="nav-link nobtn-style" data-toggle="dropdown">
+          <span class="hide" data-localize="accessHint.showOrHideNote"></span>
           <i class="fa fa-bell-o"></i>
           <span id="navBadge" class="navbar-badge"></span>
         </button>
@@ -23,18 +24,19 @@
           <div class="dropdown-header">
             <span id="budgeCount">0</span> <span data-localize="label.notification"></span>
           </div>
-          <a href="/<%=request.getContextPath().split("/")[1]%>/notifications">
 	          <div class="dropdown-divider"></div>
 	          <div class="dropdown-item">
 	            <div id="top5Alert"></div>
 	          </div>
 	          <div class="dropdown-divider"></div>
-          </a>       
           <a data-localize="label.seeAllNote" href="/<%=request.getContextPath().split("/")[1]%>/notifications" class="dropdown-footer"></a>
         </div>
       </li>
       <li class="nav-item">
-      <a class="nav-link" href="/<%=request.getContextPath().split("/")[1]%>/profile" title="" data-localize="nav.myAccount" data-localize-location="title"><i class="fa fa-user"></i></a>
+      <a class="nav-link" href="/<%=request.getContextPath().split("/")[1]%>/profile" title="" data-localize="nav.myAccount" data-localize-location="title">
+        <span class="hide" data-localize="accessHint.goMyAccount"></span>
+        <i class="fa fa-user"></i>
+      </a>
       </li>
       <li class="nav-item flex-middle">
           <%@ include file="global-select.jsp"%>
@@ -54,10 +56,12 @@
         <div class="image">
             <c:if test="${sessionScope.userDetail.avatar!=null}" >
                 <a href="/<%=request.getContextPath().split("/")[1]%>/profile" class="d-block"  style="background-image:url(${sessionScope.userDetail.avatar})">
+                  <span class="hide" data-localize="accessHint.goMyAccount"></span>
               </a>
             </c:if>
             <c:if test="${sessionScope.userDetail.avatar==null}">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/profile" class="d-block noImage">
+                  <span class="hide" data-localize="accessHint.goMyAccount"></span>
                   <i class="fa fa-user"></i>
                 </a>
             </c:if>
@@ -198,12 +202,20 @@
     </div>
     <!-- /.sidebar -->
     <ul class="sidebar-btm">
-        <li><a href="/<%=request.getContextPath().split("/")[1]%>/profile" title="" data-localize="nav.myAccount" data-localize-location="title"><i class="fa fa-user"></i></a></li>
+        <li><a href="/<%=request.getContextPath().split("/")[1]%>/profile" title="" data-localize="nav.myAccount" data-localize-location="title">
+          <span class="hide" data-localize="accessHint.goMyAccount"></span>
+          <i class="fa fa-user"></i>
+        </a></li>
         <!-- <li><a href="/" title="Full Screen"><i class="fa fa-arrows-alt"></i></a></li> -->
         <li><a href="https://tcc-help.net/txeis/employeeaccess/doku.php/leave/supervisor/settemporaryapprovers?version=3.3" 
           title=""  target="_blank"
-          data-localize="nav.help" data-localize-location="title"><i class="fa fa-question-circle"></i></a></li>
-        <li><a href="/<%=request.getContextPath().split("/")[1]%>/logout" title="" data-localize="nav.logout" data-localize-location="title"><i class="fa fa-sign-out "></i></a></li>
+          data-localize="nav.help" data-localize-location="title">
+          <span class="hide" data-localize="accessHint.goHelp"></span>
+          <i class="fa fa-question-circle"></i>
+        </a></li>
+        <li><a href="/<%=request.getContextPath().split("/")[1]%>/logout" title="" data-localize="nav.logout" data-localize-location="title">
+          <span class="hide" data-localize="accessHint.logout"></span>
+          <i class="fa fa-sign-out "></i></a></li>
     </ul>
     <script>
     $(document).ready(function() {
@@ -215,6 +227,18 @@
         console.log(item)
         if(item=='eventCalendar'){
           item = 'leaveRequest'
+        }
+        if(item=='getCalendarYearToDateByYear'){
+            item = 'calendarYearToDate';
+        }
+        if(item=='earningsByPayDate'){
+            item = 'earnings';
+        }
+        if(item=='w2InformationByYear'){
+            item = 'w2Information';
+        }
+        if(item=='information1095ByYear'){
+            item = 'information1095';
         }
         var menuElement = $("#"+menuItem);
         var itemElement = $("#"+item);

@@ -33,6 +33,7 @@ import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
 import com.esc20.service.SupervisorService;
+import com.esc20.util.DateUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -278,29 +279,6 @@ public class SupervisorController {
 			demo = this.indexService.getUserDetail(empNbr);
 		}
 		JSONArray employeeDataJSON = new JSONArray();
-		if ((isChangeLevel != null && isChangeLevel) || (root.getEmpNbr().equals(empNbr))) {
-			List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(empNbr, params.isUsePMIS(),
-					supervisorsOnly, excludeTempApprovers);
-			LeaveEmployeeData empty = new LeaveEmployeeData();
-			List<LeaveEmployeeData> directReport = new ArrayList<LeaveEmployeeData>();
-			directReport.add(empty);
-			directReport.addAll(employeeData);
-
-			for (int i = 0; i < directReport.size(); i++) {
-				employeeDataJSON.add(directReport.get(i).toJSON());
-			}
-		} else {
-			String supervisor = this.service.getFirstLineSupervisor(empNbr, params.isUsePMIS());
-			List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(supervisor,
-					params.isUsePMIS(), supervisorsOnly, excludeTempApprovers);
-			LeaveEmployeeData empty = new LeaveEmployeeData();
-			List<LeaveEmployeeData> directReport = new ArrayList<LeaveEmployeeData>();
-			directReport.add(empty);
-			directReport.addAll(employeeData);
-			for (int i = 0; i < directReport.size(); i++) {
-				employeeDataJSON.add(directReport.get(i).toJSON());
-			}
-		}
 		if (chain != null && (isChangeLevel != null && !isChangeLevel)) {
 			JSONArray levels = JSONArray.fromObject(chain);
 			mav.addObject("chain", levels);
@@ -313,6 +291,39 @@ public class SupervisorController {
 		currentLevel.put("middleName", demo.getNameM());
 		currentLevel.put("employeeNumber", demo.getEmpNbr());
 		rootLevel.add(currentLevel);
+		if (root.getEmpNbr().equals(empNbr)) {
+			mav.addObject("chain", rootLevel);
+		}
+		if ((isChangeLevel != null && isChangeLevel) || (root.getEmpNbr().equals(empNbr))) {
+			List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(empNbr, params.isUsePMIS(),
+					supervisorsOnly, excludeTempApprovers);
+			LeaveEmployeeData empty = new LeaveEmployeeData();
+			List<LeaveEmployeeData> directReport = new ArrayList<LeaveEmployeeData>();
+			directReport.add(empty);
+			directReport.addAll(employeeData);
+
+			for (int i = 0; i < directReport.size(); i++) {
+				employeeDataJSON.add(directReport.get(i).toJSON());
+			}
+		} else {
+			String selectedEmp = "";
+			if(chain != null) {
+				JSONArray levels = JSONArray.fromObject(chain);
+				selectedEmp = ((JSONObject) levels.get(levels.size()-1)).getString("employeeNumber");
+			}else {
+				selectedEmp = currentLevel.getString("employeeNumber");
+			}
+			List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(selectedEmp,
+					params.isUsePMIS(), supervisorsOnly, excludeTempApprovers);
+			LeaveEmployeeData empty = new LeaveEmployeeData();
+			List<LeaveEmployeeData> directReport = new ArrayList<LeaveEmployeeData>();
+			directReport.add(empty);
+			directReport.addAll(employeeData);
+			for (int i = 0; i < directReport.size(); i++) {
+				employeeDataJSON.add(directReport.get(i).toJSON());
+			}
+		}
+
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
 		if (freq == null || ("").equals(freq))
 			freq = availableFreqs.get(0).getCode();
@@ -325,9 +336,6 @@ public class SupervisorController {
 		}
 		if (endDate != null && !("").equals(endDate)) {
 			end = sdf2.format(sdf1.parse(endDate));
-		}
-		if (root.getEmpNbr().equals(empNbr)) {
-			mav.addObject("chain", rootLevel);
 		}
 		List<AppLeaveRequest> leavesCalendar = this.supService.getLeaveDetailsForCalendar(demo.getEmpNbr(), freq, start,
 				end);
@@ -660,30 +668,23 @@ public class SupervisorController {
 			isDelete = true;
 			for (int i = 0; i < inputs.size(); i++) {
 				temp = ((JSONObject) inputs.get(i));
-				// add
-				if (temp.getString("id") == null || temp.getString("id").equals("")) {
+				if (temp.getString("id") != null && !("").equals(temp.getString("id")) && Integer.parseInt(temp.getString("id")) == records.get(j).getId()) {
 					isDelete = false;
-					tempApprover = new BeaEmpLvTmpApprovers();
-					tempApprover.setDatetimeFrom(sdf1.parse(temp.getString("datetimeFrom")));
-					tempApprover.setDatetimeTo(sdf1.parse(temp.getString("datetimeTo")));
-					tempApprover.setSpvsrEmpNbr(temp.getString("spvsrEmpNbr"));
-					tempApprover.setTmpApprvrEmpNbr(temp.getString("tmpApprvrEmpNbr"));
-					this.supService.saveTempApprover(tempApprover, false);
-					// update
-				} else if (Integer.parseInt(temp.getString("id")) == records.get(j).getId()) {
-					isDelete = false;
-					tempApprover = records.get(j);
-					tempApprover.setDatetimeFrom(sdf1.parse(temp.getString("datetimeFrom")));
-					tempApprover.setDatetimeTo(sdf1.parse(temp.getString("datetimeTo")));
-					tempApprover.setSpvsrEmpNbr(temp.getString("spvsrEmpNbr"));
-					tempApprover.setTmpApprvrEmpNbr(temp.getString("tmpApprvrEmpNbr"));
-					this.supService.saveTempApprover(tempApprover, true);
 				}
 			}
 			if (isDelete) {
 				tempApprover = records.get(j);
 				this.supService.deleteTempApprover(tempApprover);
 			}
+		}
+		for (int i = 0; i < inputs.size(); i++) {
+			temp = ((JSONObject) inputs.get(i));
+			tempApprover = new BeaEmpLvTmpApprovers();
+			tempApprover.setDatetimeFrom(DateUtil.getUTCTime(sdf1.parse(temp.getString("from"))));
+			tempApprover.setDatetimeTo(DateUtil.getUTCTime(sdf1.parse(temp.getString("to"))));
+			tempApprover.setSpvsrEmpNbr(empNbr);
+			tempApprover.setTmpApprvrEmpNbr(temp.getString("empNbr"));
+			this.supService.saveTempApprover(tempApprover, !(temp.getString("id") == null || temp.getString("id").equals("")));
 		}
 		mav = this.getLeaveRequestTemporaryApprovers(req, empNbr);
 		mav.addObject("chain", levels);
@@ -696,8 +697,8 @@ public class SupervisorController {
 		jo.put("id", record.getId());
 		jo.put("spvsrEmpNbr", record.getSpvsrEmpNbr());
 		jo.put("tmpApprvrEmpNbr", record.getTmpApprvrEmpNbr());
-		jo.put("datetimeFrom", sdf1.format(record.getDatetimeFrom()));
-		jo.put("datetimeTo", sdf1.format(record.getDatetimeTo()));
+		jo.put("datetimeFrom", sdf1.format(DateUtil.getLocalTime(record.getDatetimeFrom())));
+		jo.put("datetimeTo", sdf1.format(DateUtil.getLocalTime(record.getDatetimeTo())));
 		jo.put("approverName", approver.getNameF() + " " + approver.getNameL());
 		return jo;
 	}
