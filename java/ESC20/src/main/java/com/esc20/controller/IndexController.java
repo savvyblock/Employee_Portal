@@ -25,7 +25,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -329,25 +328,19 @@ public class IndexController {
         String freq = req.getParameter("freq");
         
         String displayAmount = req.getParameter("displayAmount");
-        String displayLabel = req.getParameter("displayLabel");
+        String displayLabel = req.getParameter("accountType");
         String accountNumber = req.getParameter("accountNumber");
+        String code = req.getParameter("code");
         
-        String code = req.getParameter("subCode");
-        
-        String description = req.getParameter("description");
+        String displayAmountNew = req.getParameter("displayAmountNew");
+        String displayLabelNew = req.getParameter("accountTypeNew");
+        String accountNumberNew = req.getParameter("accountNumberNew");
+        String codeNew = req.getParameter("codeNew");
         
         String employeeNumber = demo.getEmpNbr();
         
         ModelAndView mav = new ModelAndView();
         Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
-        
-        Bank payrollAccountInfo = new Bank();
-        
-        payrollAccountInfo.setAccountNumber(accountNumber);
-        payrollAccountInfo.setAccountType(this.bankService.getDdAccountType(displayLabel));
-        payrollAccountInfo.setCode(this.bankService.getBank(code));
-        payrollAccountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
-        payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
         
         Bank accountInfo = new Bank();
         
@@ -357,13 +350,21 @@ public class IndexController {
         accountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
         accountInfo.setFrequency(Frequency.getFrequency(freq));
         
+        Bank payrollAccountInfo = new Bank();
+        
+        payrollAccountInfo.setAccountNumber(accountNumberNew);
+        payrollAccountInfo.setAccountType(this.bankService.getDdAccountType(displayLabelNew));
+        payrollAccountInfo.setCode(this.bankService.getBank(codeNew));
+        payrollAccountInfo.setDepositAmount(new Money(new Double (displayAmountNew).doubleValue(), Currency.getInstance(Locale.US)));
+        payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
+        
+       
+        
         
         this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
         
         if(autoApprove) {
-        	 this.bankService.insertAccountApprove(employeeNumber, freq, payrollAccountInfo);
-        	 this.bankService.deleteNextYearAccounts(employeeNumber);
-        	 this.bankService.insertNextYearAccounts(employeeNumber);
+        	 this.bankService.updateAccountApprove(employeeNumber, freq, payrollAccountInfo, accountInfo);
         }
         
         getProfileDetails(session, mav,freq);
@@ -380,12 +381,9 @@ public class IndexController {
         String freq = req.getParameter("freq");
         
         String displayAmount = req.getParameter("displayAmount");
-        String displayLabel = req.getParameter("displayLabel");
+        String displayLabel = req.getParameter("accountType");
         String accountNumber = req.getParameter("accountNumber");
-        
-        String code = req.getParameter("subCode");
-        
-        String description = req.getParameter("description");
+        String code = req.getParameter("code");
         
         String employeeNumber = demo.getEmpNbr();
         
@@ -402,24 +400,22 @@ public class IndexController {
         
         Bank accountInfo = new Bank();
         
-        accountInfo.setAccountNumber(accountNumber);
-        accountInfo.setAccountType(this.bankService.getDdAccountType(displayLabel));
-        accountInfo.setCode(this.bankService.getBank(code));
-        accountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
+        accountInfo.setAccountNumber("");
+        accountInfo.setAccountType(new Code());
+        accountInfo.setCode(new Code());
+        accountInfo.setDepositAmount(new Money(0d, Currency.getInstance(Locale.US)));
         accountInfo.setFrequency(Frequency.getFrequency(freq));
         
         
-        this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
+        this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq,accountInfo , payrollAccountInfo );
         
         if(autoApprove) {
-        	 this.bankService.insertAccountApprove(employeeNumber, freq, payrollAccountInfo);
-        	 this.bankService.deleteNextYearAccounts(employeeNumber);
-        	 this.bankService.insertNextYearAccounts(employeeNumber);
+        	 this.bankService.deleteAccountApprove(employeeNumber, freq, payrollAccountInfo);
         }
         
         getProfileDetails(session, mav,freq);
         
-//        mav.setViewName("profile");
+        mav.setViewName("profile");
         return mav;
     }
     
@@ -442,6 +438,13 @@ public class IndexController {
 //        Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
         
         Bank payrollAccountInfo = new Bank();
+        
+        if(code ==null || code.isEmpty()) {
+        	code = codeNew;
+        }
+        if(accountNumber ==null || accountNumber.isEmpty()) {
+        	accountNumber = accountNumberNew;
+        }
         
         payrollAccountInfo.setAccountNumber(accountNumber);
         payrollAccountInfo.setCode(this.bankService.getBank(code));
@@ -701,11 +704,14 @@ public class IndexController {
         		}
         	}
         	if(isNewBank) {
-        		b.setAccountNumber("");
-        		b.setAccountType(new Code());
-        		b.setCode(new Code());
-        		b.setDepositAmount(new Money(0d,Currency.getInstance(Locale.US)));
-            	allBanks.add(b);
+        		if(b.getCodeNew() != null && !b.getAccountNumberNew().isEmpty()) {
+        		
+	        		b.setAccountNumber("");
+	        		b.setAccountType(new Code());
+	        		b.setCode(new Code());
+	        		b.setDepositAmount(new Money(0d,Currency.getInstance(Locale.US)));
+	            	allBanks.add(b);
+        		}
         	}
         	
         }

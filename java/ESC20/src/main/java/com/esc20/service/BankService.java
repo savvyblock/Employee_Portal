@@ -137,7 +137,8 @@ public class BankService {
 	public Boolean checkSameRequest(BankRequest b, BankRequest br) {
 
 		if (b.getAccountNumber().equals(br.getAccountNumber()) && b.getCode().equals(br.getCode())
-				&& b.getAccountType().equals(br.getAccountType())) {
+//				&& b.getAccountType().equals(br.getAccountType())
+				) {
 			return true;
 		}
 
