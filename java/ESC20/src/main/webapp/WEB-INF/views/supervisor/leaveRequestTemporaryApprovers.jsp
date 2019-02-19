@@ -325,6 +325,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 let length = $(".approver_tr").length
                 if(noEmpty == length){
                     console.log(approverJson)
+                    console.log(addedApprover)
+                    addedApprover.forEach((item,index)=>{
+                        let approver = {
+                            id:'',
+                            empNbr:item.tmpApprvrEmpNbr,
+                            from:item.datetimeFrom,
+                            to:item.datetimeTo
+                        }
+                        approverJson.push(approver)
+                    })
+                    console.log(approverJson)
                     $("#errorComplete").hide()
                     $("#saveTempApprovers")[0].submit()
                 }else{
@@ -365,7 +376,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             })
             approverJson.forEach((item,index)=>{
                 console.log("come in adding")
-            if(item.empNbr&&item.empNbr == currentInputNbr){    
+            if(item.empNbr&&item.empNbr == currentInputNbr &&thisTrIndex!=item.domId){   
+                console.log(thisTrIndex) 
+                console.log(item.domId)
                 console.log(item.empNbr)                
                 repeat++
             }
@@ -421,6 +434,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $(dom)
                 .parents('.approver_tr')
                 .removeClass("approver_tr").addClass("redTd")
+                thisTrIndex = thisTrIndex -1
             judgeContent()
             verifyRepeat()
             
@@ -507,6 +521,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 if(empNbr==''||from==''||to==''){
                 }else{
                     obj = {
+                        id:'',
                         domId:index,
                         empNbr:empArry[0],
                         from:from,
@@ -519,6 +534,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 }
                 
             })
+            console.log(approverJson)
         }
     </script>
 </html>
