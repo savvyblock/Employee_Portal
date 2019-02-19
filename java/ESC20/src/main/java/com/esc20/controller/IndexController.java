@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.crypto.Cipher;
@@ -46,6 +48,8 @@ import com.esc20.nonDBModels.Bank;
 import com.esc20.nonDBModels.BankRequest;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
+import com.esc20.nonDBModels.Frequency;
+import com.esc20.nonDBModels.Money;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.Page;
@@ -265,32 +269,64 @@ public class IndexController {
     }
     
     @RequestMapping("saveBank")
-    public ModelAndView saveBank(HttpServletRequest req, 
-    		String empNbr, String reqDts, String maritalStatNew) {
+    public ModelAndView saveBank(HttpServletRequest req) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
-        ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
-//        mav.setViewName("profile");
-//        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
-//        BeaMrtlStat maritalStatusRequest;
-//        if(this.indexService.getBhrEapDemoAssgnGrp("BEA_MRTL_STAT")) {
-//        	maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts,maritalStatNew,'A');
-//        	this.indexService.saveMaritalRequest(maritalStatusRequest);
-//        	demo.setMaritalStat(maritalStatNew.charAt(0));
-//        	this.indexService.updateDemoMaritalStatus(demo);
-//        	session.removeAttribute("userDetail");
-//        	session.setAttribute("userDetail", demo);
-//        }else {
-//        	maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts,maritalStatNew,'P');
-//        	this.indexService.saveMaritalRequest(maritalStatusRequest);
-//        }
+        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         
-      //  this.getProfileDetails(session, mav);
-        mav.addObject("activeTab", "maritalStatusRequest");
+        String freq = req.getParameter("freq");
+        
+        String displayAmount = req.getParameter("displayAmount");
+        String displayLabel = req.getParameter("displayLabel");
+        String accountNumber = req.getParameter("accountNumber");
+        
+        String code = req.getParameter("subCode");
+        
+        String description = req.getParameter("description");
+        
+        String employeeNumber = demo.getEmpNbr();
+        
+        ModelAndView mav = new ModelAndView();
+        Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
+        
+        Bank payrollAccountInfo = new Bank();
+        Bank accountInfo = new Bank();
+        
+        accountInfo.setAccountNumber(accountNumber);
+        accountInfo.setAccountType(this.bankService.getDdAccountType(displayLabel));
+        accountInfo.setCode(this.bankService.getBank(code));
+        accountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
+        accountInfo.setFrequency(Frequency.getFrequency(freq));
+        
+        
+        this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
+        
+        if(autoApprove) {
+        	 this.bankService.insertAccountApprove(employeeNumber, freq, payrollAccountInfo);
+        	 this.bankService.deleteNextYearAccounts(employeeNumber);
+        	 this.bankService.insertNextYearAccounts(employeeNumber);
+        }
+        
+        getProfileDetails(session, mav,freq);
         return mav;
+    }
+    
+    @RequestMapping("getBankLimit")
+    @ResponseBody
+    public Integer getBankLimit(HttpServletRequest req){
+    	
+    	Integer limit = bankService.getDirectDepositLimit();
+        return limit;
+    }
+    
+    @RequestMapping("updateAccount")
+    @ResponseBody
+    public JSONObject updateAccount(HttpServletRequest req){
+    	
+    	Boolean auto = bankService.getAutoApproveAccountInfo("frequency");
+    	JSONObject result=new JSONObject();
+	    result.put("isSuccess", "true");
+	    
+        return result;
     }
     
     @RequestMapping("getBanks")

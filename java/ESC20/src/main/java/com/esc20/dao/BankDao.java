@@ -202,6 +202,27 @@ public class BankDao {
     	return new Code();
     }
     
+    public Code getFreq(String b) {
+    	List<Code> freqs = referenceDao.getAvailableBanks();
+    	for(Code c:freqs) {
+    		if(c.getCode().equals(b)) {
+    			return c;
+    		}
+    	}
+    	
+    	return new Code();
+    }
+    
+    public Code getPayrollFrequencies(String empNbr, String code) {
+    	List<Code> freqs = referenceDao.getPayrollFrequencies(empNbr);
+    	for(Code c:freqs) {
+    		if(c.getCode().equals(code)) {
+    			return c;
+    		}
+    	}
+    	return new Code();
+    }
+    
 	public int insertNextYearAccounts(String employeeNumber)
 	{
 		Session session = this.getSession();
