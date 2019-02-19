@@ -333,17 +333,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 return
                 
             })
-        
-            $(".empControl").blur(function(){
-                console.log($(this).val())
+            
+            $(document).on('blur', '.empControl', function(){
+                console.log(this)
                 thisTrIndex = $(this).parents(".approver_tr").index() - 1
-                console.log("当前选中的修改的tr的index"+thisTrIndex)
                 let empArry = $(this).val().split("-")
                 currentInputNbr = empArry[0]
                 repeat = 0
                 verifyRepeat()
-                
-            })
+            });
             $(".deleteApprover").click(function(){
                 let id = $(this).parents(".listTr").find(".empId").val()
                 $(this).parents(".listTr").removeClass("listTr").addClass("redTd")
@@ -356,41 +354,24 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             
         })
         function verifyRepeat(){
-                console.log(currentInputNbr)
-                console.log(thisTrIndex)
-                
-                    console.log("已经填写的人")
-                console.log(approverJson)
-                console.log("已经添加的人")
-                console.log(addedApprover)
-                console.log(currentInputNbr)
-                    addedApprover.forEach((item,index)=>{
-                        console.log(item)
-                    if(item.tmpApprvrEmpNbr == currentInputNbr){
-                        console.log("已经添加的人循环")
-                        repeat++
-                    }
-                    })
-                    approverJson.forEach((item,index)=>{
-                        console.log(item)
-                    if(item.empNbr&&item.empNbr == currentInputNbr &&thisTrIndex!=item.id){
-                        console.log("已经填写的人循环")
-                        console.log(item.empNbr)
-                        console.log(currentInputNbr)
-                        console.log(thisTrIndex)
-                        console.log(item.id)
-                    
-                        repeat++
-                    }
-                    })
-                    console.log("repeat"+repeat)
-                    if(repeat>0){
-                        $("#repeatError").show()
-                        $("#saveSet").addClass("disabled").attr("disabled","disabled")
-                    }else{
-                        $("#repeatError").hide()
-                        $("#saveSet").removeClass("disabled").removeAttr("disabled")
-                    }
+            addedApprover.forEach((item,index)=>{
+            if(item.tmpApprvrEmpNbr == currentInputNbr){
+                repeat++
+            }
+            })
+            approverJson.forEach((item,index)=>{
+            if(item.empNbr&&item.empNbr == currentInputNbr &&thisTrIndex!=item.domId){                    
+                repeat++
+            }
+            })
+            console.log("repeat"+repeat)
+            if(repeat>0){
+                $("#repeatError").show()
+                $("#saveSet").addClass("disabled").attr("disabled","disabled")
+            }else{
+                $("#repeatError").hide()
+                $("#saveSet").removeClass("disabled").removeAttr("disabled")
+            }
                 
         }
         function initialCompleteList(){
@@ -520,7 +501,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 if(empNbr==''||from==''||to==''){
                 }else{
                     obj = {
-                        id:index,
+                        domId:index,
                         empNbr:empArry[0],
                         from:from,
                         to:to

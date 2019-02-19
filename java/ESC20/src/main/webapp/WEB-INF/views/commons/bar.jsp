@@ -4,7 +4,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#"> <span class="hide">666</span> <i class="fa fa-bars"></i></a>
       </li>
     </ul>
 
@@ -15,7 +15,7 @@
     <ul class="navbar-nav nav-right">
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-        <button class="nav-link nobtn-style" data-toggle="dropdown" tabindex="0">
+        <button class="nav-link nobtn-style" data-toggle="dropdown">
           <i class="fa fa-bell-o"></i>
           <span id="navBadge" class="navbar-badge"></span>
         </button>
@@ -23,13 +23,11 @@
           <div class="dropdown-header">
             <span id="budgeCount">0</span> <span data-localize="label.notification"></span>
           </div>
-          <a href="/<%=request.getContextPath().split("/")[1]%>/notifications">
 	          <div class="dropdown-divider"></div>
 	          <div class="dropdown-item">
 	            <div id="top5Alert"></div>
 	          </div>
 	          <div class="dropdown-divider"></div>
-          </a>       
           <a data-localize="label.seeAllNote" href="/<%=request.getContextPath().split("/")[1]%>/notifications" class="dropdown-footer"></a>
         </div>
       </li>
