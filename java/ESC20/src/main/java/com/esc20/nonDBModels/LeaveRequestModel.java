@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -155,7 +156,7 @@ public class LeaveRequestModel implements Serializable {
 		String title = "Leave";
 		if (!CollectionUtils.isEmpty(leaveTypes)) {
 			for (Code type : leaveTypes) {
-				if (type.getCode().equals(this.getLeaveType())) {
+				if (!StringUtils.isEmpty(type.code) && type.getCode().equals(this.getLeaveType())) {
 					title = type.getDescription();
 				}
 			}
