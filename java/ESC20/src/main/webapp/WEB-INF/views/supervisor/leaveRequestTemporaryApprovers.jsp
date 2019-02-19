@@ -358,23 +358,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         function verifyRepeat(){
                 console.log(currentInputNbr)
                 console.log(thisTrIndex)
-                
-                    console.log("已经填写的人")
                 console.log(approverJson)
-                console.log("已经添加的人")
                 console.log(addedApprover)
                 console.log(currentInputNbr)
                     addedApprover.forEach((item,index)=>{
                         console.log(item)
                     if(item.tmpApprvrEmpNbr == currentInputNbr){
-                        console.log("已经添加的人循环")
                         repeat++
                     }
                     })
                     approverJson.forEach((item,index)=>{
                         console.log(item)
                     if(item.empNbr&&item.empNbr == currentInputNbr &&thisTrIndex!=item.id){
-                        console.log("已经填写的人循环")
                         console.log(item.empNbr)
                         console.log(currentInputNbr)
                         console.log(thisTrIndex)

@@ -681,22 +681,22 @@ public class SupervisorController {
 			for (int i = 0; i < inputs.size(); i++) {
 				temp = ((JSONObject) inputs.get(i));
 				// add
-				if (temp.getString("id") == null || temp.getString("id").equals("")) {
+				if (temp.getString("id") == null || temp.getString("id").equals("") || temp.getString("id").equals("0")) {
 					isDelete = false;
 					tempApprover = new BeaEmpLvTmpApprovers();
-					tempApprover.setDatetimeFrom(sdf1.parse(temp.getString("datetimeFrom")));
-					tempApprover.setDatetimeTo(sdf1.parse(temp.getString("datetimeTo")));
-					tempApprover.setSpvsrEmpNbr(temp.getString("spvsrEmpNbr"));
-					tempApprover.setTmpApprvrEmpNbr(temp.getString("tmpApprvrEmpNbr"));
+					tempApprover.setDatetimeFrom(sdf1.parse(temp.getString("from")));
+					tempApprover.setDatetimeTo(sdf1.parse(temp.getString("to")));
+					tempApprover.setSpvsrEmpNbr(empNbr);
+					tempApprover.setTmpApprvrEmpNbr(temp.getString("empNbr"));
 					this.supService.saveTempApprover(tempApprover, false);
 					// update
 				} else if (Integer.parseInt(temp.getString("id")) == records.get(j).getId()) {
 					isDelete = false;
 					tempApprover = records.get(j);
-					tempApprover.setDatetimeFrom(sdf1.parse(temp.getString("datetimeFrom")));
-					tempApprover.setDatetimeTo(sdf1.parse(temp.getString("datetimeTo")));
-					tempApprover.setSpvsrEmpNbr(temp.getString("spvsrEmpNbr"));
-					tempApprover.setTmpApprvrEmpNbr(temp.getString("tmpApprvrEmpNbr"));
+					tempApprover.setDatetimeFrom(sdf1.parse(temp.getString("from")));
+					tempApprover.setDatetimeTo(sdf1.parse(temp.getString("to")));
+					tempApprover.setSpvsrEmpNbr(empNbr);
+					tempApprover.setTmpApprvrEmpNbr(temp.getString("empNbr"));
 					this.supService.saveTempApprover(tempApprover, true);
 				}
 			}
