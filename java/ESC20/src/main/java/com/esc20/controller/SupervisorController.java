@@ -664,46 +664,27 @@ public class SupervisorController {
 		JSONObject temp;
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
 		boolean isDelete = true;
-		//all add when the existing list is empty
-		if(records.size()==0) {
-			for (int i = 0; i < inputs.size(); i++) {
-				temp = ((JSONObject) inputs.get(i));
-				tempApprover = new BeaEmpLvTmpApprovers();
-				tempApprover.setDatetimeFrom(DateUtil.getUTCTime(sdf1.parse(temp.getString("from"))));
-				tempApprover.setDatetimeTo(DateUtil.getUTCTime(sdf1.parse(temp.getString("to"))));
-				tempApprover.setSpvsrEmpNbr(empNbr);
-				tempApprover.setTmpApprvrEmpNbr(temp.getString("empNbr"));
-				this.supService.saveTempApprover(tempApprover, false);
-			}
-		}
 		for (int j = 0; j < records.size(); j++) {
 			isDelete = true;
 			for (int i = 0; i < inputs.size(); i++) {
 				temp = ((JSONObject) inputs.get(i));
-				// add
-				if (temp.getString("id") == null || temp.getString("id").equals("") || temp.getString("id").equals("0")) {
+				if (temp.getString("id") != null && !("").equals(temp.getString("id")) && Integer.parseInt(temp.getString("id")) == records.get(j).getId()) {
 					isDelete = false;
-					tempApprover = new BeaEmpLvTmpApprovers();
-					tempApprover.setDatetimeFrom(sdf1.parse(temp.getString("from")));
-					tempApprover.setDatetimeTo(sdf1.parse(temp.getString("to")));
-					tempApprover.setSpvsrEmpNbr(empNbr);
-					tempApprover.setTmpApprvrEmpNbr(temp.getString("empNbr"));
-					this.supService.saveTempApprover(tempApprover, false);
-					// update
-				} else if (Integer.parseInt(temp.getString("id")) == records.get(j).getId()) {
-					isDelete = false;
-					tempApprover = records.get(j);
-					tempApprover.setDatetimeFrom(sdf1.parse(temp.getString("from")));
-					tempApprover.setDatetimeTo(sdf1.parse(temp.getString("to")));
-					tempApprover.setSpvsrEmpNbr(empNbr);
-					tempApprover.setTmpApprvrEmpNbr(temp.getString("empNbr"));
-					this.supService.saveTempApprover(tempApprover, true);
 				}
 			}
 			if (isDelete) {
 				tempApprover = records.get(j);
 				this.supService.deleteTempApprover(tempApprover);
 			}
+		}
+		for (int i = 0; i < inputs.size(); i++) {
+			temp = ((JSONObject) inputs.get(i));
+			tempApprover = new BeaEmpLvTmpApprovers();
+			tempApprover.setDatetimeFrom(DateUtil.getUTCTime(sdf1.parse(temp.getString("from"))));
+			tempApprover.setDatetimeTo(DateUtil.getUTCTime(sdf1.parse(temp.getString("to"))));
+			tempApprover.setSpvsrEmpNbr(empNbr);
+			tempApprover.setTmpApprvrEmpNbr(temp.getString("empNbr"));
+			this.supService.saveTempApprover(tempApprover, !(temp.getString("id") == null || temp.getString("id").equals("")));
 		}
 		mav = this.getLeaveRequestTemporaryApprovers(req, empNbr);
 		mav.addObject("chain", levels);
@@ -716,8 +697,8 @@ public class SupervisorController {
 		jo.put("id", record.getId());
 		jo.put("spvsrEmpNbr", record.getSpvsrEmpNbr());
 		jo.put("tmpApprvrEmpNbr", record.getTmpApprvrEmpNbr());
-		jo.put("datetimeFrom", sdf1.format(record.getDatetimeFrom()));
-		jo.put("datetimeTo", sdf1.format(record.getDatetimeTo()));
+		jo.put("datetimeFrom", sdf1.format(DateUtil.getLocalTime(record.getDatetimeFrom())));
+		jo.put("datetimeTo", sdf1.format(DateUtil.getLocalTime(record.getDatetimeTo())));
 		jo.put("approverName", approver.getNameF() + " " + approver.getNameL());
 		return jo;
 	}
