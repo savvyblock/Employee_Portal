@@ -11,6 +11,11 @@ public class TimestampConverter
 	{
 		DateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSS");
 		String time = df.format(stamp.getTime());
+		
+		if(time.length() > 16) {
+			time = time.substring(0, 16);
+		}
+		
 		return time;
 	}
 }

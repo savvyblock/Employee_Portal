@@ -1249,7 +1249,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 							
 						<form
                             	class="profile-item border-0 bankAccountBlock"
-                            	id="bankAccountForm_01"
+                            	id="bankAccountForm_${count.index}"
                         		>
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
@@ -1284,13 +1284,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <span class="haveValue"
                                             >${bank.code.description}</span
                                         >
+                                        
+                                        <input type="hidden" id="codeNew_${count.index}" value="${bank.codeNew.code}" />
+                                        <input type="hidden" id="code_${count.index}" value="${bank.code.code}" />
+                                        
                                         <div class="valueInput group-line">
                                             <div class="form-group">
                                                 <input
                                                     class="form-control name"
                                                     type="text"
-                                                    name="accountInfo[0].code.description"
-                                                    value="${bank.code.description}"
+                                                    name="description"
+                                                    value="${bank.codeNew.description}"
                                                     disabled
                                                 />
                                             </div>
@@ -1299,8 +1303,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <input
                                                     class="form-control code"
                                                     type="text"
-                                                    name="accountInfo[0].code.subCode"
-                                                    value="${bank.code.subCode}"
+                                                    name="subCode"
+                                                    value="${bank.codeNew.subCode}"
                                                     disabled
                                                 />
                                             </div>
@@ -1321,18 +1325,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-title" data-localize="profile.bankAcctNbr">
                                     </div>
                                     <div class="profile-desc">
-                                        <span class="haveValue"
+                                        <span class="haveValue" id="accountNumber_${count.index}"
                                             >${bank.accountNumber}</span
                                         >
                                         <div class="form-group valueInput">
                                             <input
-                                                id="bankAccountNumber_0"
                                                 class="form-control"
                                                 type="text"
                                                 title=""
                                                 data-localize="profile.bankAcctNbr"
-                                                name="accountInfo[0].accountNumber"
-                                                value="${bank.accountNumber}"
+                                                name="accountNumber"
+                                                id="accountNumberNew_${count.index}"
+                                                value="${bank.accountNumberNew}"
                                             />
                                         </div>
                                     </div>
@@ -1341,16 +1345,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-title" data-localize="profile.bankAcctType">
                                     </div>
                                     <div class="profile-desc">
-                                        <span class="haveValue"
+                                        <span class="haveValue"  id="accountType_${count.index}"
                                             >${bank.accountType.displayLabel}</span
                                         >
                                         <div class="form-group valueInput">
                                             <select
                                                 class="form-control"
-                                                id="bankAccountType_1"
                                                 title=""
+                                                 id="accountTypeNew_${count.index}"
                                                 data-localize="profile.bankAcctType"
-                                                name="accountInfo[0].accountType.displayLabel"
+                                                name="displayLabel"
+                                                value="${bank.accountTypeNew.displayLabel}"
                                             >
                                                 <option value=""></option>
                                                 <option
@@ -1371,17 +1376,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-title" data-localize="profile.bankAcctAmt">
                                     </div>
                                     <div class="profile-desc">
-                                        <span class="haveValue"
+                                        <span class="haveValue" id="displayAmount_${count.index}"
                                             >${bank.depositAmount.displayAmount}</span
                                         >
                                         <div class="form-group valueInput">
                                             <input
                                                 class="form-control amount_2"
-                                                id="bankDepositAmount_1"
+                                                id="displayAmountNew_${count.index}"
                                                 type="text"
                                                 title="" data-localize="profile.bankAcctAmt"
-                                                name="accountInfo[0].depositAmount.displayAmount"
-                                                value="${bank.depositAmount.displayAmount}"
+                                                name="displayAmount"
+                                                value="${bank.depositAmountNew.displayAmount}"
                                             />
                                         </div>
                                     </div>
@@ -1403,25 +1408,27 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                                 <div class="saveOrCancel">
                                     <button
-                                        type="submit"
+                                        type="button"
                                         class="btn btn-primary save-btn" data-localize="label.update"
                                         id="saveBank_01"
+                                        onclick="updateBank(${count.index})"
                                     >
                                      
                                     </button>
                                     <button
                                             type="button"
-                                            id=""
+                                            id="undoBank_${count.index}"
                                             class="btn btn-secondary"  data-localize="label.undo"
+                                            onclick="undoBank(${count.index})"
                                         >
                                         
                                     </button>
                                     <button
                                         type="button"
-                                        id=""
-                                        class="btn btn-secondary delete-btn"  data-localize="label.delete" onclick="deleteBankAmount()"
+                                        id="deleteBank_${count.index}"
+                                        class="btn btn-secondary delete-btn"  data-localize="label.delete" onclick="deleteBankAmount(${count.index})"
                                     >
-                                    
+                                     
                                     </button>
                                     <button
                                         type="button"
@@ -1436,8 +1443,42 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         </c:forEach>
 
                         <div>
+                        <form hidden="hidden" action="updateBank" id="updateBankHidden" method="POST">
+	                        <input type="hidden" name="freq" id="hidden_freq_update" />
+	                        <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_update" />
+	                        <input type="hidden" name="accountNumber" id="hidden_accountNumber_update" />
+	                        <input type="hidden" name="code" id="hidden_code_update" />
+	                        <input type="hidden" name="codeNew" id="hidden_codeNew_update" />
+	                        
+	                        <input type="hidden" name="accountType" id="hidden_accountType_update" />
+	                        <input type="hidden" name="accountTypeNew" id="hidden_accountTypeNew_update" />
+	                        <input type="hidden" name="displayAmount" id="hidden_displayAmount_update" />
+	                        <input type="hidden" name="displayAmountNew" id="hidden_displayAmountNew_update" />
+                        </form>
+                        <form hidden="hidden" action="undoBank" id="undoBankHidden" method="POST">
+	                        <input type="hidden" name="freq" id="hidden_freq_undo" />
+	                        <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_undo" />
+	                        <input type="hidden" name="accountNumber" id="hidden_accountNumber_undo" />
+	                        <input type="hidden" name="code" id="hidden_code_undo" />
+	                        <input type="hidden" name="codeNew" id="hidden_codeNew_undo" />
+                        </form>
+                        <form hidden="hidden" action="deleteBank"  id="deleteBankHidden" method="POST">
+	                         <input type="hidden" name="freq" id="hidden_freq_delete" />
+	                        <input type="hidden" name="accountNumber" id="hidden_accountNumber_delete" />
+	                        <input type="hidden" name="code" id="hidden_code_delete" />
+	                        <input type="hidden" name="accountType" id="hidden_accountType_delete" />
+	                        <input type="hidden" name="displayAmount" id="hidden_displayAmount_delete" />
+                        </form>
+                        <form hidden="hidden" action="saveBank" id="saveBankHidden" method="POST">
+	                        <input type="hidden" name="freq" id="hiddenfreq" />
+	                        <input type="hidden" name="displayAmount" id="hiddendisplayAmount" />
+	                        <input type="hidden" name="displayLabel" id="hiddendisplayLabel" />
+	                        <input type="hidden" name="accountNumber" id="hiddenaccountNumber" />
+	                        <input type="hidden" name="subCode" id="hiddensubCode" />
+	                        <input type="hidden" name="description" id="hiddendescription" />
+                        </form>
                             <form
-                                action="saveBank"
+                                action=""
                                 class="profile-item border-0 activeEdit addBankForm"
                                 id="addBankAccountForm"
                             >
@@ -1452,6 +1493,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control name"
                                                         type="text"
                                                         name="description"
+                                                        id="saveBankDescription"
                                                         value=""
                                                         disabled
                                                     />
@@ -1462,6 +1504,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control code"
                                                         type="text"
                                                         name="subCode"
+                                                         id="saveBankCode"
                                                         value=""
                                                         disabled
                                                     />
@@ -1491,6 +1534,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     type="text"
                                                     title="" data-localize="profile.bankAcctNbr"
                                                     name="accountNumber"
+                                                     id="saveBankAccountNumber"
                                                     value=""
                                                 />
                                             </div>
@@ -1505,6 +1549,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control"
                                                     title="" data-localize="profile.bankAcctType"
                                                     name="displayLabel"
+                                                    id="saveBankDisplayLabel"
                                                 >
                                                     <option value=""></option>
                                                     <option
@@ -1531,6 +1576,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     type="text"
                                                     title=""
                                                     name="displayAmount"
+                                                     id="saveBankDisplayAmount"
                                                     value=""
                                                 />
                                             </div>
@@ -1806,16 +1852,29 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 }
             })
             
-             $('#saveNewBank').click(function() {
+            $('#saveNewBank').click(function() {
             	 var freq = $('#freq').val();
+            	 var saveBankDescription = $('#saveBankDescription').val();
+            	 var saveBankCode = $('#saveBankCode').val();
+            	 var saveBankAccountNumber = $('#saveBankAccountNumber').val();
+            	 var saveBankDisplayLabel = $('#saveBankDisplayLabel').val();
+            	 var saveBankDisplayAmount = $('#saveBankDisplayAmount').val();
             	 
             	 console.log("$$$$$$$$$ = " +  freq);
+            	 console.log("$$$$$$$$$ = " +  saveBankDescription);
+            	 console.log("$$$$$$$$$ = " +  saveBankCode);
+            	 console.log("$$$$$$$$$ = " +  saveBankAccountNumber);
+            	 console.log("$$$$$$$$$ = " +  saveBankDisplayLabel);
+            	 console.log("$$$$$$$$$ = " +  saveBankDisplayAmount);
             	 
-            	 $('#addBankAccountForm').form('submit', {
-            	        onSubmit: function(param){
-            	        	param.freq =freq;
-            	        }
-            	 });
+            	 $('#hiddenfreq').val(freq);
+            	 $('#hiddendescription').val(saveBankDescription);
+            	 $('#hiddensubCode').val(saveBankCode);
+            	 $('#hiddenaccountNumber').val(saveBankAccountNumber);
+            	 $('#hiddendisplayLabel').val(saveBankDisplayLabel);
+            	 $('#hiddendisplayAmount').val(saveBankDisplayAmount);
+
+            	 $('#saveBankHidden').submit();
 
             })
             
@@ -1838,7 +1897,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     	 console.log(res);
                     	 for (var p in res) {
                     		 var bankTr= "<tr><td data-localize='profile.routingNumber' data-localize-location='scope'>";
-                    		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].transitRoute+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
+                    		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].bankCd+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
                     		 bankTr = bankTr + " <td data-localize='profile.bankName' data-localize-location='scope'>"+res[p].bankName+"</td> </tr>";
                     		 $("#bankTable").append(bankTr);
                     	 }
@@ -1918,23 +1977,95 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $('#undoModal').modal('show')
                 formSelect = "deleteW4"
             })
-            $(".sureUndo").click(function(){
-                undoFormSubmit()
-            })
             $(".sureDelete").click(function(){
                 console.log("modal -- delete")
             })
         })
-        function undoFormSubmit(){
-            let form = "#" + formSelect
-            $(form)[0].submit()
-        }
-        function deleteBankAmount(){
+        function deleteBankAmount(index){
             $('#deleteModal').modal('show')
-            console.log("delete")
+            console.log("delete="+index)
+            
+            var freq = $('#freq').val();
+	       	var code = $('#code_'+index).val();
+	       	var accountNumber = $('#accountNumber_'+index).text();
+	       	var accountType = $('#accountType_'+index).text();
+	       	var displayAmount = $('#displayAmount_'+index).text();
+       	 
+	       	 console.log("$$$$$$$$$ = " +  freq);
+	       	 console.log("$$$$$$$$$ = " +  code);
+	       	 console.log("$$$$$$$$$ = " +  accountType);
+	       	 console.log("$$$$$$$$$ = " +  accountNumber);
+	       	 console.log("$$$$$$$$$ = " +  displayAmount);
+
+            
+             $('#hidden_freq_delete').val(freq);
+	       	 $('#hidden_accountNumber_delete').val(accountNumber);
+	       	 $('#hidden_code_delete').val(code);
+	       	 
+	       	 $('#hidden_accountType_delete').val(accountType);
+	       	 $('#hidden_displayAmount_delete').val(displayAmount);
+	       	 
+	       	 $('#deleteBankHidden').submit();
+            
+        }
+        function updateBank(index){
+        	 console.log("delete="+index)
+             
+             var freq = $('#freq').val();
+ 	       	var code = $('#code_'+index).val();
+ 	       	var accountNumber = $('#accountNumber_'+index).text();
+ 	       	var accountType = $('#accountType_'+index).text();
+ 	       	var displayAmount = $('#displayAmount_'+index).text();
+        	 
+ 	   		var codeNew = $('#codeNew_'+index).val();
+	       	var accountNumberNew = $('#accountNumberNew_'+index).val();
+	       	var accountTypeNew = $('#accountTypeNew_'+index).val();
+	       	var displayAmountNew = $('#displayAmountNew_'+index).val();
+ 	       	
+ 	       	 console.log("$$$$$$$$$ = " +  freq);
+ 	       	 console.log("$$$$$$$$$ = " +  code);
+ 	       	 console.log("$$$$$$$$$ = " +  accountType);
+ 	       	 console.log("$$$$$$$$$ = " +  accountNumber);
+ 	       	 console.log("$$$$$$$$$ = " +  displayAmount);
+
+             
+             $('#hidden_freq_update').val(freq);
+ 	       	 $('#hidden_code_update').val(code);
+ 	       	 $('#hidden_codeNew_update').val(codeNew);
+ 	       	 $('#hidden_accountNumber_update').val(accountNumber);
+ 	       	 $('#hidden_accountNumberNew_update').val(accountNumberNew);
+ 	       	 
+ 	       	$('#hidden_accountType_update').val(accountType);
+	       	 $('#hidden_accountTypeNew_update').val(accountTypeNew);
+	       	 $('#hidden_displayAmount_update').val(displayAmount);
+	       	 $('#hidden_displayAmountNew_update').val(displayAmountNew);
+ 	       	 
+ 	       	 $('#updateBankHidden').submit();
+        }
+        function undoBank(index){
+             var freq = $('#freq').val();
+	       	 var code = $('#code_'+index).val();
+	       	 var codeNew = $('#codeNew_'+index).val();
+	       	 var accountNumber = $('#accountNumber_'+index).text();
+	       	 var accountNumberNew = $('#accountNumberNew_'+index).val();
+       	 
+	       	 console.log("$$$$$$$$$ = " +  freq);
+	       	 console.log("$$$$$$$$$ = " +  code);
+	       	 console.log("$$$$$$$$$ = " +  codeNew);
+	       	 console.log("$$$$$$$$$ = " +  accountNumber);
+	       	 console.log("$$$$$$$$$ = " +  accountNumberNew);
+
+            
+             $('#hidden_freq_undo').val(freq);
+	       	 $('#hidden_code_undo').val(code);
+	       	 $('#hidden_codeNew_undo').val(codeNew);
+	       	 $('#hidden_accountNumber_undo').val(accountNumber);
+	       	 $('#hidden_accountNumberNew_undo').val(accountNumberNew);
+	       	 
+	       	 $('#undoBankHidden').submit();
+
         }
         
-
             function changeFreq(){
 				$("#changeFreqForm")[0].submit();
 			}
@@ -2634,7 +2765,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         function bankAccountAddValidator() {
             $('#addBankAccountForm').bootstrapValidator({
                 live: 'enable',
-                submitButtons: '#saveNewBank',
+               // submitButtons: '#saveNewBank',
                 
                 feedbackIcons: {
                     valid: 'fa fa-check ',

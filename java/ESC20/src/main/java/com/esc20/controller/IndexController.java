@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Currency;
 import java.util.HashMap;
@@ -24,7 +25,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,7 +42,6 @@ import com.esc20.model.BeaMrtlStat;
 import com.esc20.model.BeaRestrict;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BeaW4;
-import com.esc20.model.BeaW4Id;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPay;
 import com.esc20.model.BthrBankCodes;
@@ -291,6 +290,13 @@ public class IndexController {
         Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
         
         Bank payrollAccountInfo = new Bank();
+        
+        payrollAccountInfo.setAccountNumber(accountNumber);
+        payrollAccountInfo.setAccountType(this.bankService.getDdAccountType(displayLabel));
+        payrollAccountInfo.setCode(this.bankService.getBank(code));
+        payrollAccountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
+        payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
+        
         Bank accountInfo = new Bank();
         
         accountInfo.setAccountNumber(accountNumber);
@@ -309,15 +315,155 @@ public class IndexController {
         }
         
         getProfileDetails(session, mav,freq);
+        
+//        mav.setViewName("profile");
         return mav;
     }
     
-    @RequestMapping("getBankLimit")
-    @ResponseBody
-    public Integer getBankLimit(HttpServletRequest req){
-    	
-    	Integer limit = bankService.getDirectDepositLimit();
-        return limit;
+    @RequestMapping("updateBank")
+    public ModelAndView updateBank(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        
+        String freq = req.getParameter("freq");
+        
+        String displayAmount = req.getParameter("displayAmount");
+        String displayLabel = req.getParameter("accountType");
+        String accountNumber = req.getParameter("accountNumber");
+        String code = req.getParameter("code");
+        
+        String displayAmountNew = req.getParameter("displayAmountNew");
+        String displayLabelNew = req.getParameter("accountTypeNew");
+        String accountNumberNew = req.getParameter("accountNumberNew");
+        String codeNew = req.getParameter("codeNew");
+        
+        String employeeNumber = demo.getEmpNbr();
+        
+        ModelAndView mav = new ModelAndView();
+        Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
+        
+        Bank accountInfo = new Bank();
+        
+        accountInfo.setAccountNumber(accountNumber);
+        accountInfo.setAccountType(this.bankService.getDdAccountType(displayLabel));
+        accountInfo.setCode(this.bankService.getBank(code));
+        accountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
+        accountInfo.setFrequency(Frequency.getFrequency(freq));
+        
+        Bank payrollAccountInfo = new Bank();
+        
+        payrollAccountInfo.setAccountNumber(accountNumberNew);
+        payrollAccountInfo.setAccountType(this.bankService.getDdAccountType(displayLabelNew));
+        payrollAccountInfo.setCode(this.bankService.getBank(codeNew));
+        payrollAccountInfo.setDepositAmount(new Money(new Double (displayAmountNew).doubleValue(), Currency.getInstance(Locale.US)));
+        payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
+        
+       
+        
+        
+        this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
+        
+        if(autoApprove) {
+        	 this.bankService.updateAccountApprove(employeeNumber, freq, payrollAccountInfo, accountInfo);
+        }
+        
+        getProfileDetails(session, mav,freq);
+        
+//        mav.setViewName("profile");
+        return mav;
+    }
+    
+    @RequestMapping("deleteBank")
+    public ModelAndView deleteBank(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        
+        String freq = req.getParameter("freq");
+        
+        String displayAmount = req.getParameter("displayAmount");
+        String displayLabel = req.getParameter("accountType");
+        String accountNumber = req.getParameter("accountNumber");
+        String code = req.getParameter("code");
+        
+        String employeeNumber = demo.getEmpNbr();
+        
+        ModelAndView mav = new ModelAndView();
+        Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
+        
+        Bank payrollAccountInfo = new Bank();
+        
+        payrollAccountInfo.setAccountNumber(accountNumber);
+        payrollAccountInfo.setAccountType(this.bankService.getDdAccountType(displayLabel));
+        payrollAccountInfo.setCode(this.bankService.getBank(code));
+        payrollAccountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
+        payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
+        
+        Bank accountInfo = new Bank();
+        
+        accountInfo.setAccountNumber("");
+        accountInfo.setAccountType(new Code());
+        accountInfo.setCode(new Code());
+        accountInfo.setDepositAmount(new Money(0d, Currency.getInstance(Locale.US)));
+        accountInfo.setFrequency(Frequency.getFrequency(freq));
+        
+        
+        this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq,accountInfo , payrollAccountInfo );
+        
+        if(autoApprove) {
+        	 this.bankService.deleteAccountApprove(employeeNumber, freq, payrollAccountInfo);
+        }
+        
+        getProfileDetails(session, mav,freq);
+        
+        mav.setViewName("profile");
+        return mav;
+    }
+    
+    @RequestMapping("undoBank")
+    public ModelAndView undoBank(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        
+        String freq = req.getParameter("freq");
+        
+        
+        String code = req.getParameter("code");
+        String codeNew = req.getParameter("codeNew");
+        String accountNumber = req.getParameter("accountNumber");
+        String accountNumberNew = req.getParameter("accountNumberNew");
+        
+        String employeeNumber = demo.getEmpNbr();
+        
+        ModelAndView mav = new ModelAndView();
+//        Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
+        
+        Bank payrollAccountInfo = new Bank();
+        
+        if(code ==null || code.isEmpty()) {
+        	code = codeNew;
+        }
+        if(accountNumber ==null || accountNumber.isEmpty()) {
+        	accountNumber = accountNumberNew;
+        }
+        
+        payrollAccountInfo.setAccountNumber(accountNumber);
+        payrollAccountInfo.setCode(this.bankService.getBank(code));
+        payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
+        
+        Bank accountInfo = new Bank();
+        
+        accountInfo.setAccountNumber(accountNumberNew);
+        accountInfo.setCode(this.bankService.getBank(codeNew));
+        accountInfo.setFrequency(Frequency.getFrequency(freq));
+        
+        
+        this.bankService.deleteAccountRequest(employeeNumber, freq, payrollAccountInfo, accountInfo);
+        //insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
+        
+        getProfileDetails(session, mav,freq);
+        
+//        mav.setViewName("profile");
+        return mav;
     }
     
     @RequestMapping("updateAccount")
@@ -329,6 +475,14 @@ public class IndexController {
 	    result.put("isSuccess", "true");
 	    
         return result;
+    }
+    
+    @RequestMapping("getBankLimit")
+    @ResponseBody
+    public Integer getBankLimit(HttpServletRequest req){
+    	
+    	Integer limit = bankService.getDirectDepositLimit();
+        return limit;
     }
     
     @RequestMapping("getBanks")
@@ -496,7 +650,6 @@ public class IndexController {
         BeaAltMailAddr altMailAddrRequest = this.indexService.getBeaAltMailAddr(demo);
         BeaMailAddr mailAddrRequest = this.indexService.getBeaMailAddr(demo);
         
-        
         List<Code> payRollFrequenciesOptions = this.referenceService.getPayrollFrequencies(demo.getEmpNbr());
     	
         PayInfo payInfo;
@@ -525,8 +678,47 @@ public class IndexController {
         }
         List<Bank> banks = this.bankService.getAccounts(demo.getEmpNbr(), freqCode);
         List<BankRequest> banksRequest = this.bankService.getAccountRequests(demo.getEmpNbr(), freqCode);
+        List<BankRequest> allBanks = new ArrayList<BankRequest>();
+        for(Bank b:banks) {
+        	BankRequest br = new BankRequest();
+        	br.setAccountNumber(b.getAccountNumber());
+        	br.setAccountNumberNew(b.getAccountNumber());
+        	br.setAccountType(b.getAccountType());
+        	br.setAccountTypeNew(b.getAccountType());
+        	br.setCode(b.getCode());
+        	br.setCodeNew(b.getCode());
+        	br.setDepositAmount(b.getDepositAmount());
+        	br.setDepositAmountNew(b.getDepositAmount());
+        	br.setFrequency(b.getFrequency());
+        	allBanks.add(br);
+        }
+        for(BankRequest b:banksRequest) {
+        	boolean isNewBank = true;
+        	for(BankRequest ab:allBanks) {
+        		if(this.bankService.checkSameRequest(b, ab)) {
+        			ab.setAccountNumberNew(b.getAccountNumberNew());
+        			ab.setAccountTypeNew(b.getAccountTypeNew());
+        			ab.setDepositAmountNew(b.getDepositAmountNew());
+        			ab.setCodeNew(b.getCodeNew());
+        			isNewBank= false;
+        		}
+        	}
+        	if(isNewBank) {
+        		if(b.getCodeNew() != null && !b.getAccountNumberNew().isEmpty()) {
+        		
+	        		b.setAccountNumber("");
+	        		b.setAccountType(new Code());
+	        		b.setCode(new Code());
+	        		b.setDepositAmount(new Money(0d,Currency.getInstance(Locale.US)));
+	            	allBanks.add(b);
+        		}
+        	}
+        	
+        }
+        
         
         mav.setViewName("profile");
+        
         mav.addObject("nameRequest", nameRequest);
         mav.addObject("mrtlRequest", mrtlRequest);
         mav.addObject("licRequest", licRequest);
@@ -547,8 +739,7 @@ public class IndexController {
         mav.addObject("payRollFrequenciesOptions", payRollFrequenciesOptions);
         mav.addObject("payInfo",payInfo);
        
-        mav.addObject("banks", banks);
-        mav.addObject("banksRequest", banksRequest);
+        mav.addObject("banks", allBanks);
         mav.addObject("w4Request", w4Request);
 	}
 
@@ -586,7 +777,6 @@ public class IndexController {
         return mav;
     }
     
-   
     @RequestMapping("changeAvatar")
     public ModelAndView changeAvatar(HttpServletRequest req, String file, String fileName) {
     	 HttpSession session = req.getSession();

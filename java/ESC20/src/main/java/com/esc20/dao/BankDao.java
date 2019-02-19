@@ -117,7 +117,7 @@ public class BankDao {
 			tempBank.setCodeNew(getBank(StringUtil.trim(item[7])));
 			tempBank.setAccountNumberNew(StringUtil.trim(item[8]));
 			tempBank.setAccountTypeNew(getDdAccountType(StringUtil.trim(item[9])));
-			tempBank.setDepositAmountNew(new Money(new Double (item[10].toString()).doubleValue(), Currency.getInstance(Locale.US)));
+			tempBank.setDepositAmountNew(new Money(new Double (item[11].toString()).doubleValue(), Currency.getInstance(Locale.US)));
 			
 			bankList.add(tempBank);
 			
@@ -241,6 +241,8 @@ public class BankDao {
 		q = session.createSQLQuery(sql.toString());
 		q.setParameter("emp_nbr", employeeNumber);
 		
+		System.out.println(sql.toString());
+		
 		return q.executeUpdate();
 		
 	}
@@ -311,7 +313,7 @@ public class BankDao {
 		sql.append("', '");
 		sql.append(statusCode);
 		sql.append("' ) ");
-		
+		System.out.println(sql.toString());
 		q = session.createSQLQuery(sql.toString());
 		return q.executeUpdate();
 		
@@ -370,7 +372,7 @@ public class BankDao {
 		
 	}
 
-	public int deleteAccountRequest(String employeeNumber, String frequency, Bank payrollAccountInfo, Bank accountInfo, Bank accountInfoPending)
+	public int deleteAccountRequest(String employeeNumber, String frequency, Bank accountInfo, Bank accountInfoPending)
 	{	
 		StringBuilder sql = new StringBuilder();
 		sql.append("DELETE FROM BEA_DRCT_DPST_BNK_ACCT WHERE pay_freq = '");
