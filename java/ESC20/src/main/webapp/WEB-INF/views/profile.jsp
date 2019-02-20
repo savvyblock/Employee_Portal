@@ -1894,49 +1894,50 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $('#searchBankBtn').click(function() {
             	alert("search bank");
             })
-            
-          
-            
             $("#undoNameRequest").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteNameRequest"
+                formSelect = $("#deleteNameRequest")
             })
             $("#undoMaritalRequest").click(function(e){
             	e.preventDefault();
                 $('#undoModal').modal('show')
-                formSelect = "deleteMaritalRequest"
+                formSelect = $("#deleteMaritalRequest")
             })
             $("#undoDriverLicense").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteDriversLicense"
+                formSelect = $("#deleteDriversLicense")
             })
             $("#undoRestriction").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteRestrictionCodesRequest"
+                formSelect = $("#deleteRestrictionCodesRequest")
             })
             $("#undoEmail").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteEmail"
+                formSelect = $("#deleteEmail")
             })
             $("#undoEmergencyContact").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteEmergencyContact"
+                formSelect = $("#deleteEmergencyContact")
             })
             $("#undoMailingAddress").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteMailAddr"
+                formSelect = $("#deleteMailAddr")
             })
             $("#undoAlternative").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteAltMailAddr"
+                formSelect = $("#deleteAltMailAddr")
             })
             $("#undoPhoneNumber").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deletePhone"
+                formSelect = $("#deletePhone")
             })
              $("#undoW4").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteW4"
+                formSelect = $("#deleteW4")
+            })
+            $(".sureUndo").click(function(){
+                console.log("modal -- undo")
+                formSelect.submit();
             })
             $(".sureDelete").click(function(){
                 console.log("modal -- delete")
@@ -2021,8 +2022,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	       	 $('#hidden_codeNew_undo').val(codeNew);
 	       	 $('#hidden_accountNumber_undo').val(accountNumber);
 	       	 $('#hidden_accountNumberNew_undo').val(accountNumberNew);
-	       	 
-	       	 $('#undoBankHidden').submit();
+                
+             $('#undoModal').modal('show')
+             formSelect = $('#undoBankHidden')
 
         }
         
