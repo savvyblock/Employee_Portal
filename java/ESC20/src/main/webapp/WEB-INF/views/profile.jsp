@@ -1772,6 +1772,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         let bank01, bank02
         var formSelect
         var formUndoSelect
+        var willSubmitFormDelete
         $(function() {
             personalValidator()
             maritalStatusValidator()
@@ -1883,6 +1884,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             			currentPage:1,
             			perPageRows:10
             	};
+                let that = this
             	$.ajax({
                      type: "POST",
                      dataType: "json",
@@ -1903,10 +1905,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     	 }
                     	 
                     	    $('#selectBankModal').modal('show')
-                            bankInputName = $('.getBank')
+                            bankInputName = $(that)
                                 .parent()
                                 .find('.form-control.name');
-                            bankInputCode = $('.getBank')
+                            bankInputCode = $(that)
                                 .parent()
                                 .find('.form-control.code');
                             
@@ -1979,6 +1981,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             })
             $(".sureDelete").click(function(){
                 console.log("modal -- delete")
+                willSubmitFormDelete.submit();
             })
         })
         function deleteBankAmount(index){
@@ -2004,9 +2007,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	       	 
 	       	 $('#hidden_accountType_delete').val(accountType);
 	       	 $('#hidden_displayAmount_delete').val(displayAmount);
-	       	 
-	       	 $('#deleteBankHidden').submit();
-            
+            willSubmitFormDelete = $('#deleteBankHidden')
         }
         function updateBank(index){
         	 console.log("delete="+index)
