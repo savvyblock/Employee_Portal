@@ -351,6 +351,23 @@ public class InquiryController {
 		return mav;
 	}
 
+	@RequestMapping("update1095Consent")
+	public ModelAndView update1095Consent(HttpServletRequest req, String year, String consent) {
+		HttpSession session = req.getSession();
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		ModelAndView mav = new ModelAndView();
+		if (null == user) {
+			return this.getIndexPage(mav);
+		}
+		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		String employeeNumber = userDetail.getEmpNbr();
+		Boolean isSuccess = this.service.update1095ElecConsent(employeeNumber, consent);
+		mav.setViewName("/inquiry/information1095");
+		mav = init1095(mav, session, year, 1, 1, null, null, null);
+		mav.addObject("isSuccess", isSuccess);
+		return mav;
+	}
+	
 	@RequestMapping("information1095ByYear")
 	public ModelAndView getInformation1095ByYear(HttpServletRequest req, String year) {
 		HttpSession session = req.getSession();
