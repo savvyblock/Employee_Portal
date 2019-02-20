@@ -1858,7 +1858,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     	 console.log(res);
                     	 for (var p in res) {
                     		 var bankTr= "<tr><td data-localize='profile.routingNumber' data-localize-location='scope'>";
-                    		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].bankCd+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
+                    		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].transitRoute+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
                     		 bankTr = bankTr + " <td data-localize='profile.bankName' data-localize-location='scope'>"+res[p].bankName+"</td> </tr>";
                     		 $("#bankTable").append(bankTr);
                     	 }
