@@ -14,23 +14,21 @@
                     type="button"
                     class="close"
                     data-dismiss="modal"
-                    aria-hidden="true"
-                    data-localize="label.closeModal"
-                    data-localize-location="title"
-                >
+                    aria-hidden="true">
+                    <span class="hide" data-localize="label.closeModal"></span>
                     &times;
                 </button>
                 <h4 class="modal-title" data-localize="label.approveLeaveRequests"></h4>
             </div>
               <div class="modal-body">
-                  <input type="hidden" name="leaveId" id="leaveId" />
+                  <input type="hidden" name="leaveId" id="leaveId" title="" data-localize="accessHint.id" />
                   <table class="table border-table no-thead">
                     <tbody>
                       <tr>
                         <td><b data-localize="label.employee"></b></td>
                         <td data-localize="label.employee" data-localize-location="title">
-                            <button class="showBalanceBtn pull-right a-btn" data-localize="label.showLeaveBalanceSummary" data-localize-location="title"
-                            type="button" onclick="showDetail(this)">
+                            <button class="showBalanceBtn pull-right a-btn" type="button" onclick="showDetail(this)">
+                            <span class="hide" data-localize="label.showLeaveBalanceSummary"></span>
                                 <i class="fa fa-angle-double-down"></i>
                                 <i class="fa fa-angle-double-up"></i>
                             </button>
@@ -119,16 +117,16 @@
     </div>
     <!-- /.modal -->
 </div>
-<form hidden="hidden" action="disapproveLeave" id="disapproveLeave" method="POST">
-    <input type="text" name="id" id="disId">
-    <input type="text" name="chain" id="disChain">
-    <input type="text" name="comment" id="disComment">
+<form hidden="hidden" action="" id="" method="POST">
+    <input type="text" name="id" id="disId"  title="" data-localize="accessHint.id">
+    <input type="text" name="chain" id="disChain"  title="" data-localize="accessHint.chain">
+    <input type="text" name="comment" id="disComment"  title="" data-localize="accessHint.comment">
 </form>
 
 <form hidden="hidden" action="approveLeave" id="approveLeave" method="POST">
-        <input type="text" name="id" id="appId">
-        <input type="text" name="chain" id="appChain">
-        <input type="text" name="comment" id="appComment">
+        <input type="text" name="id" id="appId"  title="" data-localize="accessHint.id">
+        <input type="text" name="chain" id="appChain"  title="" data-localize="accessHint.chain">
+        <input type="text" name="comment" id="appComment"  title="" data-localize="accessHint.comment">
     </form>
 
 <script>

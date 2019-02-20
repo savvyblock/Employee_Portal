@@ -12,16 +12,14 @@ data-backdrop="static"
 <div class="modal-content">
     <div class="modal-header">
         <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-hidden="true"
-            data-localize="label.closeModal"
-            data-localize-location="title"
-        >
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-hidden="true">
+                    <span class="hide" data-localize="label.closeModal"></span>
             &times;
         </button>
-        <h4 class="modal-title"></h4>
+        <h4 class="modal-title"><span class="hide" data-localize="accessHint.calendarView"></span></h4>
     </div>
     <div class="modal-body">
         <div id="calendar"></div>

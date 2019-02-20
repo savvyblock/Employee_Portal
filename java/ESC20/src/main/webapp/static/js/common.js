@@ -62,7 +62,7 @@ function setGlobal(){
         initialLocaleCode = language
         initLocalize(language)
     }
-    console.log(initialLocaleCode)
+    // console.log(initialLocaleCode)
 }
 
 function initLocalize(language){

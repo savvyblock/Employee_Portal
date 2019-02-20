@@ -891,27 +891,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         function submitEarning(){
             $("#selectEarnings")[0].submit();
         }
-        let dateAvailable = ['12/15/2018', '11/28/2018', '11/15/2018']
+
         $(function() {
-            let dateArry = dateAvailable.map(function(item, key, ary) {
-                let date = new Date(item)
-                item = new Date(date.setHours(12, 0, 0, 0)).valueOf()
-                return item
-            })
-            $('#SearchPayDate')
-                .fdatepicker({
-                    format: 'mm/dd/yyyy',
-                    onRender: function(date) {
-                        let a = new Date(date.setHours(12, 0, 0, 0))
-                        let newDate = a.valueOf()
-                        let value = $.inArray(newDate, dateArry)
-                        return value === -1 ? 'disabled' : ''
-                    }
-                })
-                .on('changeDate', function(ev) {
-                    console.log(ev)
-                })
-                .data('datepicker')
             let showEarningDetail = false
             let showDeductionsDetail = false
             $(".totalEarningBtn").click(function(){

@@ -14,16 +14,16 @@
     <tbody>
         <c:forEach var="leave" items="${leaveInfo}" varStatus="count">
             <tr>
-                <td data-localize="leaveBalance.leaveType">
+                <td data-localize="leaveBalance.leaveType"  data-localize-location="scope">
                         ${leave.type.code}-${leave.type.description}
                 </td>
-                <td data-localize="leaveBalance.beginningBalance">${leave.beginBalance}</td>
-                <td data-localize="leaveBalance.advancedEarned">${leave.advancedEarned}</td>
-                <td data-localize="leaveBalance.pendingEarned">${leave.pendingEarned}</td>
-                <td data-localize="leaveBalance.used">${leave.used}</td>
-                <td data-localize="leaveBalance.pendingUsed">${leave.pendingUsed}</td>
-                <td data-localize="leaveBalance.available">${leave.availableBalanceLabel}</td>
-                <td data-localize="leaveBalance.units">
+                <td data-localize="leaveBalance.beginningBalance"  data-localize-location="scope">${leave.beginBalance}</td>
+                <td data-localize="leaveBalance.advancedEarned" data-localize-location="scope">${leave.advancedEarned}</td>
+                <td data-localize="leaveBalance.pendingEarned" data-localize-location="scope">${leave.pendingEarned}</td>
+                <td data-localize="leaveBalance.used" data-localize-location="scope">${leave.used}</td>
+                <td data-localize="leaveBalance.pendingUsed" data-localize-location="scope">${leave.pendingUsed}</td>
+                <td data-localize="leaveBalance.available" data-localize-location="scope">${leave.availableBalanceLabel}</td>
+                <td data-localize="leaveBalance.units" data-localize-location="scope">
                         <c:if test="${leave.daysHrs == 'D'}">													
                                 <span data-localize="label.days"></span>
                             </c:if> 
