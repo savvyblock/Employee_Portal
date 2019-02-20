@@ -17,7 +17,7 @@ public class EA1095Dao {
     @Autowired
     private SessionFactory sessionFactory;
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
     
     private final Integer pageSize = 20;
@@ -29,7 +29,7 @@ public class EA1095Dao {
         Query q = session.createQuery(sql);
         q.setParameter("employeeNumber", employeeNumber);
         List<String> years = (List<String>) q.list();
-        session.close();
+        
         return years;
 	}
 
@@ -39,7 +39,7 @@ public class EA1095Dao {
         Query q = session.createQuery(retrieveSQL);
         q.setParameter("employeeNumber", employeeNumber);
         String result = (String) q.uniqueResult();
-        session.close();
+        
         return result;
 	}
 
@@ -57,7 +57,7 @@ public class EA1095Dao {
         q.setFirstResult(bPageNo*pageSize);  
         q.setMaxResults(pageSize);
         List<BhrAca1095bCovrdHist> result = q.list();
-        session.close();
+        
         return result;
 	}
 
@@ -75,7 +75,7 @@ public class EA1095Dao {
         q.setFirstResult(cPageNo*pageSize);  
         q.setMaxResults(pageSize);  
         List<BhrAca1095cCovrdHist> result = q.list();
-        session.close();
+        
         return result;
 	}
 
@@ -90,7 +90,7 @@ public class EA1095Dao {
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
         List<String> result = q.list();
-        session.close();
+        
 		return result;
 	}
 
@@ -101,7 +101,7 @@ public class EA1095Dao {
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year); 
         List<BhrAca1095cEmpHist> result = q.list();
-        session.close();
+        
         return result;
 	}
 
@@ -112,7 +112,7 @@ public class EA1095Dao {
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
         Integer result = ((Long) q.iterate().next()).intValue();
-        session.close();
+        
         return result;
 	}
 
@@ -123,7 +123,7 @@ public class EA1095Dao {
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
         Integer result = ((Long) q.iterate().next()).intValue();
-        session.close();
+        
         return result;
 	}
 }

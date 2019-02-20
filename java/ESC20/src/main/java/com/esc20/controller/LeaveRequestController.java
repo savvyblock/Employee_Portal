@@ -26,6 +26,7 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpLvXmital;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.LeaveBalance;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequestModel;
@@ -347,7 +348,7 @@ public class LeaveRequestController {
 		if (freq == null || ("").equals(freq)) {
 			if (availableFreqs.size() > 0) {
 				freq = availableFreqs.get(0).getCode();
-				List<BhrEmpLvXmital> approvedLeaves = this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType,
+				List<LeaveBalance> approvedLeaves = this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType,
 						start, end, freq);
 				List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
 				List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
@@ -361,7 +362,7 @@ public class LeaveRequestController {
 				mav.addObject("leaves", approvedLeaves);
 			}
 		} else {
-			List<BhrEmpLvXmital> approvedLeaves = this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType, start,
+			List<LeaveBalance> approvedLeaves = this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType, start,
 					end, freq);
 			List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
 			List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");

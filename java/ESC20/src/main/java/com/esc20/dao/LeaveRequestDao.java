@@ -30,7 +30,7 @@ public class LeaveRequestDao {
 	private SessionFactory sessionFactory;
 
 	private Session getSession() {
-		return sessionFactory.openSession();
+		return sessionFactory.getCurrentSession();
 	}
 
 	private SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM-dd-yyyy hh:mmaa");
@@ -45,7 +45,7 @@ public class LeaveRequestDao {
 		Query q = session.createQuery(hql);
 		q.setParameter(0, id);
 		List<BeaEmpLvRqst> res = q.list();
-		session.close();
+		
 		return res.get(0);
 	}
 
@@ -90,7 +90,7 @@ public class LeaveRequestDao {
 					(String) item[9], (String) item[10], (String) item[11], (String) item[12], (String) item[13]);
 			result.add(req);
 		}
-		session.close();
+		
 		return result;
 	}
 
@@ -106,7 +106,7 @@ public class LeaveRequestDao {
 				req = (BeaEmpLvRqst) session.get(BeaEmpLvRqst.class, id);
 			}
 			session.flush();
-			session.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -119,7 +119,7 @@ public class LeaveRequestDao {
 		try {
 			session.delete(request);
 			session.flush();
-			session.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -136,7 +136,7 @@ public class LeaveRequestDao {
 		sql.append("FROM BhrOptions BO, BhrEapOpt BEO");
 		Query q = session.createQuery(sql.toString());
 		Object[] res = (Object[]) q.uniqueResult();
-		session.close();
+		
 		LeaveParameters result = new LeaveParameters((BigDecimal) res[0], (BigDecimal) res[1], (Character) res[2],
 				(Character) res[3], (Character) res[4], (String) res[5], (String) res[6]);
 		return result;
@@ -159,7 +159,7 @@ public class LeaveRequestDao {
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for (Object[] item : res) {
@@ -179,7 +179,7 @@ public class LeaveRequestDao {
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", directReportEmployeeNumber);
 		BhrPmisPosCtrl res = (BhrPmisPosCtrl) q.list().get(0);
-		session.close();
+		
 		return res;
 	}
 
@@ -203,7 +203,7 @@ public class LeaveRequestDao {
 		q.setParameter("supervisorBilletNumber", spvsrBilletNbr);
 		q.setParameter("supervisorPosNumber", spvsrPosNbr);
 		Object[] res = (Object[]) q.uniqueResult();
-		session.close();
+		
 		String empNbr = res == null ? null : (String) res[1];
 		return empNbr;
 	}
@@ -221,7 +221,7 @@ public class LeaveRequestDao {
 		Query q = session.createQuery(sql);
 		q.setParameter("employeeNumber", directReportEmployeeNumber);
 		Object[] res = (Object[]) q.uniqueResult();
-		session.close();
+		
 		String empNbr = res == null ? null : (String) res[0];
 		return empNbr;
 	}
@@ -232,7 +232,7 @@ public class LeaveRequestDao {
 		Query q = session.createQuery(sql);
 		q.setParameter("employeeNumber", directReportEmployeeNumber);
 		Object[] res = (Object[]) q.uniqueResult();
-		session.close();
+		
 		String tmpApprover = res == null ? null : (String) res[1];
 		return tmpApprover;
 	}
@@ -258,7 +258,7 @@ public class LeaveRequestDao {
 		}
 		sql.append(" ORDER BY AR.absDescr ASC ");
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for (Object[] item : res) {
@@ -291,7 +291,7 @@ public class LeaveRequestDao {
 		}
 		sql.append(" ORDER BY AR2LT.id.lvTyp ASC ");
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for (Object[] item : res) {
@@ -349,7 +349,7 @@ public class LeaveRequestDao {
 		q.setParameter("employeeNumber", empNbr);
 		q.setParameter("payFrequency", freq.charAt(0));
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<LeaveInfo> leaveInfo = new ArrayList<LeaveInfo>();
 		LeaveInfo info;
 		for (Object[] item : res) {
@@ -374,14 +374,14 @@ public class LeaveRequestDao {
 		}
 		session.save(comments);
 		session.flush();
-		session.close();
+		
 	}
 
 	public void saveLvWorkflow(BeaEmpLvWorkflow flow) {
 		Session session = this.getSession();
 		session.save(flow);
 		session.flush();
-		session.close();
+		
 	}
 
 	public List<LeaveRequestComment> getLeaveComments(Integer id) {
@@ -397,7 +397,7 @@ public class LeaveRequestDao {
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("leaveId", id);
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<LeaveRequestComment> comments = new ArrayList<LeaveRequestComment>();
 		LeaveRequestComment comment;
 		for (Object[] item : res) {
@@ -419,7 +419,7 @@ public class LeaveRequestDao {
 				session.delete(res.get(i));
 			}
 			session.flush();
-			session.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -436,7 +436,7 @@ public class LeaveRequestDao {
 				session.delete(res.get(i));
 			}
 			session.flush();
-			session.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -445,7 +445,7 @@ public class LeaveRequestDao {
 	public BeaEmpLvRqst getBeaEmpLvRqstById(int id) {
 		Session session = this.getSession();
 		BeaEmpLvRqst res = (BeaEmpLvRqst) session.get(BeaEmpLvRqst.class, id);
-		session.close();
+		
 		return res;
 	}
 
@@ -482,7 +482,7 @@ public class LeaveRequestDao {
 			requests.add(request);
 		}
 
-		session.close();
+		
 		return requests;
 	}
 
@@ -509,7 +509,7 @@ public class LeaveRequestDao {
 		if (searchEnd != null && !("").equals(searchEnd))
 			q.setParameter("dateTo", searchEnd);
 		List<BhrEmpLvXmital> res = q.list();
-		session.close();
+		
 		return res;
 	}
 }

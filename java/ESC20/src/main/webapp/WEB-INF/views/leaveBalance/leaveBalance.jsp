@@ -92,7 +92,7 @@
 										</c:forEach>
 									</td>
 									<td data-localize="leaveBalance.dateOfPay" data-localize-location="scope">
-											${leave.id.dtOfPay}
+											${leave.dtOfPay}
 									</td>
 									<td data-localize="leaveBalance.dateOfLeave" data-localize-location="scope">${leave.dtOfAbs}</td>
 									<td data-localize="leaveBalance.leaveUsed" data-localize-location="scope">${leave.lvUnitsUsed} 

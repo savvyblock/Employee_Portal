@@ -38,7 +38,7 @@ public class AppUserDao {
     private SessionFactory sessionFactory;
     
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 
 	public BeaUsers getUserByName(String name) throws ParseException{
@@ -47,7 +47,7 @@ public class AppUserDao {
         Query q = session.createQuery(sql);
         q.setParameter("name", name.toUpperCase());
         BeaUsers res = (BeaUsers) q.uniqueResult();
-        session.close();
+        
         
         if(res == null) {
         	return null;
@@ -83,7 +83,7 @@ public class AppUserDao {
         }
         
         String empNbr = (String) q.list().get(0);
-        session.close();
+        
         return getUserByEmpNbr(empNbr);
 	}
 
@@ -94,7 +94,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaUsers res = (BeaUsers) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 	
@@ -105,7 +105,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("usrname", username);
         BeaUsers res = (BeaUsers) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 	
@@ -113,7 +113,7 @@ public class AppUserDao {
 		Session session = this.getSession();
 		session.saveOrUpdate(user);
         session.flush();
-        session.close();
+        
         return user;
 	}
 
@@ -148,7 +148,7 @@ public class AppUserDao {
     			 (String) res[37],(String) res[38],(String) res[39],(String) res[40],(String) res[41],(String) res[42],(String) res[43]);
         String genDescr = (String) res[18];
         userInfo.setGenDescription(genDescr);
-        session.close();
+        
         return userInfo;
 	}
 	
@@ -162,7 +162,7 @@ public class AppUserDao {
         Query q = session.createQuery(sql.toString());
         Object[] res =  (Object[]) q.uniqueResult();
         District dis = new District(res[0],res[1],res[2],res[3],res[4],res[5],res[6],res[7],res[8]);
-        session.close();
+        
         return dis;
 	}
 
@@ -173,7 +173,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaLglName res = (BeaLglName) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 
@@ -181,74 +181,74 @@ public class AppUserDao {
 		Session session = this.getSession();
 		session.saveOrUpdate(nameRequest);
         session.flush();
-        session.close();
+        
 	}
 	
 	public void saveMaritalRequest(BeaMrtlStat maritalStatusRequest) {
 		Session session = this.getSession();
 		session.saveOrUpdate(maritalStatusRequest);
         session.flush();
-        session.close();
+        
 	}
 	
 	public void saveDriversLicenseRequest(BeaDrvsLic driversLicenseRequest) {
 		Session session = this.getSession();
 		session.saveOrUpdate(driversLicenseRequest);
         session.flush();
-        session.close();
+        
 	}
 	
 	public void saveRestrictionCodesRequest(BeaRestrict restrictionCodesRequest) {
 		Session session = this.getSession();
 		session.saveOrUpdate(restrictionCodesRequest);
         session.flush();
-        session.close();
+        
 	}
 	
 	public void saveEmailRequest(BeaEmail emailRequest) {
 		Session session = this.getSession();
 		session.saveOrUpdate(emailRequest);
         session.flush();
-        session.close();
+        
 	}
 	
 	public void saveEmergencyContactRequest(BeaEmerContact emergencyContactRequest) {
 		Session session = this.getSession();
 		session.saveOrUpdate(emergencyContactRequest);
         session.flush();
-        session.close();
+        
 	}
 	
 	public void saveMailAddrRequest(BeaMailAddr maillingAddressRequest) {
 		Session session = this.getSession();
 		session.saveOrUpdate(maillingAddressRequest);
         session.flush();
-        session.close();
+        
 	}
 	
 	public void saveAltMailAddrRequest(BeaAltMailAddr altMaillingAddressRequest) {
 		Session session = this.getSession();
 		session.saveOrUpdate(altMaillingAddressRequest);
         session.flush();
-        session.close();
+        
 	}
 	public void saveHomePhoneRequest(BeaHmPhone homePhoneRequest) {
 		Session session = this.getSession();
 		session.saveOrUpdate(homePhoneRequest);
         session.flush();
-        session.close();
+        
 	}
 	public void saveCellPhoneRequest(BeaCellPhone cellPhoneRequest) {
 		Session session = this.getSession();
 		session.saveOrUpdate(cellPhoneRequest);
         session.flush();
-        session.close();
+        
 	}
 	public void saveBusinessPhoneRequest(BeaBusPhone businessPhoneRequest) {
 		Session session = this.getSession();
 		session.saveOrUpdate(businessPhoneRequest);
         session.flush();
-        session.close();
+        
 	}
 
 	public BeaEmerContact getBeaEmerContact(String empNbr) {
@@ -258,7 +258,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaEmerContact res = (BeaEmerContact) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 
@@ -269,7 +269,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaDrvsLic res = (BeaDrvsLic) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 
@@ -280,7 +280,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaMrtlStat res = (BeaMrtlStat) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 
@@ -291,7 +291,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaRestrict res = (BeaRestrict) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 
@@ -302,7 +302,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaEmail res = (BeaEmail) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 
@@ -313,7 +313,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaCellPhone res = (BeaCellPhone) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 
@@ -324,7 +324,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaBusPhone res = (BeaBusPhone) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 
@@ -335,7 +335,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaHmPhone res = (BeaHmPhone) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 
@@ -346,7 +346,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaAltMailAddr res = (BeaAltMailAddr) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 
@@ -357,7 +357,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaMailAddr res = (BeaMailAddr) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 
@@ -368,7 +368,7 @@ public class AppUserDao {
         q = session.createQuery(sql);
         q.setParameter("tableName", tableName);
         Character res = (Character) q.uniqueResult();
-        session.close();
+        
         return ("Y").equals(res.toString());
 	}
 
@@ -386,7 +386,7 @@ public class AppUserDao {
 		q.setParameter("generationNew", demo.getNameGen());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 	public void updateDemoAvatar(BhrEmpDemo demo) {
@@ -399,7 +399,7 @@ public class AppUserDao {
 		q.setParameter("avatar", demo.getAvatar());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 	public void updateDemoMaritalStatus(BhrEmpDemo demo) {
@@ -412,7 +412,7 @@ public class AppUserDao {
 		q.setParameter("maritalStat", demo.getMaritalStat());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 	public void updateDemoDriversLicense(BhrEmpDemo demo) {
@@ -426,7 +426,7 @@ public class AppUserDao {
 		q.setParameter("driversLicSt", demo.getDriversLicSt());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 	public void updateDemoRestrictionCodes(BhrEmpDemo demo) {
@@ -440,7 +440,7 @@ public class AppUserDao {
 		q.setParameter("restrictCdPublic", demo.getRestrictCdPublic());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 	public void updateDemoEmail(BhrEmpDemo demo) {
@@ -454,7 +454,7 @@ public class AppUserDao {
 		q.setParameter("hmEmail", demo.getHmEmail());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 	public void updateDemoEmergencyContact(BhrEmpDemo demo) {
@@ -473,7 +473,7 @@ public class AppUserDao {
 		q.setParameter("emerNote", demo.getEmerNote());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 	public void updateDemoMailAddr(BhrEmpDemo demo) {
@@ -493,7 +493,7 @@ public class AppUserDao {
 		q.setParameter("addrZip4", demo.getAddrZip4());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 	public void updateDemoAltMailAddr(BhrEmpDemo demo) {
@@ -513,7 +513,7 @@ public class AppUserDao {
 		q.setParameter("smrAddrZip4", demo.getSmrAddrZip4());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 	public void updateDemoHomePhone(BhrEmpDemo demo) {
@@ -527,7 +527,7 @@ public class AppUserDao {
 		q.setParameter("phoneNbr", demo.getPhoneNbr());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 	public void updateDemoCellPhone(BhrEmpDemo demo) {
@@ -541,7 +541,7 @@ public class AppUserDao {
 		q.setParameter("phoneNbrCell", demo.getPhoneNbrCell());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 	public void updateDemoBusinessPhone(BhrEmpDemo demo) {
@@ -556,7 +556,7 @@ public class AppUserDao {
 		q.setParameter("busPhoneExt", demo.getBusPhoneExt());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 
 	public void deleteNamerequest(String empNbr) {
@@ -567,8 +567,6 @@ public class AppUserDao {
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
 		session.flush();
-    	session.close();
-		
 	}
 	
 	public void deleteMaritalrequest(String empNbr) {
@@ -579,8 +577,6 @@ public class AppUserDao {
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
 		session.flush();
-    	session.close();
-		
 	}
 	
 	public void deleteDriversLicenserequest(String empNbr) {
@@ -591,8 +587,6 @@ public class AppUserDao {
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
 		session.flush();
-    	session.close();
-		
 	}
 	
 	public void deleteRestrictionCodesrequest(String empNbr) {
@@ -603,8 +597,6 @@ public class AppUserDao {
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
 		session.flush();
-    	session.close();
-		
 	}
 	
 	public void deleteEmailrequest(String empNbr) {
@@ -615,8 +607,6 @@ public class AppUserDao {
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
 		session.flush();
-    	session.close();
-		
 	}
 	
 	public void deleteEmergencyContactrequest(String empNbr) {
@@ -627,8 +617,6 @@ public class AppUserDao {
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
 		session.flush();
-    	session.close();
-		
 	}
 	public void deleteMailAddrrequest(String empNbr) {
 		Session session = this.getSession();
@@ -638,8 +626,6 @@ public class AppUserDao {
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
 		session.flush();
-    	session.close();
-		
 	}
 	public void deleteAltMailAddrrequest(String empNbr) {
 		Session session = this.getSession();
@@ -649,8 +635,6 @@ public class AppUserDao {
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
 		session.flush();
-    	session.close();
-		
 	}
 	public void deleteHomePhonerequest(String empNbr) {
 		Session session = this.getSession();
@@ -660,8 +644,6 @@ public class AppUserDao {
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
 		session.flush();
-    	session.close();
-		
 	}
 	public void deleteCellPhonerequest(String empNbr) {
 		Session session = this.getSession();
@@ -671,8 +653,6 @@ public class AppUserDao {
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
 		session.flush();
-    	session.close();
-		
 	}
 	public void deleteBusinessPhonerequest(String empNbr) {
 		Session session = this.getSession();
@@ -682,8 +662,6 @@ public class AppUserDao {
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
 		session.flush();
-    	session.close();
-		
 	}
 	
 	public BhrEmpDemo retrieveEmployee(SearchUser searchUser) 
@@ -705,7 +683,7 @@ public class AppUserDao {
         	demo.setNameL((String) res[2]);
         	demo.setHmEmail((String) res[3]);
         }
-        session.close();
+        
         return demo;
 	}
 	
@@ -722,7 +700,7 @@ public class AppUserDao {
 		q.setParameter("homeEmail", homeEmail);
 		q.setParameter("employeeNumber", employeeNumber);
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 }

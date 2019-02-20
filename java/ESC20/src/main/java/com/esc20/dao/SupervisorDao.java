@@ -24,7 +24,7 @@ public class SupervisorDao {
     @Autowired
     private SessionFactory sessionFactory;
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 	public List<LeaveEmployeeData> getPMISSupervisorDirectReports(String spvsrBilletNbr, String spvsrPosNbr) {
 		Session session = this.getSession();
@@ -41,7 +41,7 @@ public class SupervisorDao {
         q.setParameter("billetNumber", spvsrBilletNbr);
         q.setParameter("spvsrPosNbr", spvsrPosNbr);
         List<Object[]> res = q.list();
-        session.close();
+        
         List<LeaveEmployeeData> result = new ArrayList<LeaveEmployeeData>();
         LeaveEmployeeData data;
         for(Object[] item: res) {
@@ -58,7 +58,7 @@ public class SupervisorDao {
         Query q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         List<Object[]> res = q.list();
-        session.close();
+        
         List<LeaveEmployeeData> result = new ArrayList<LeaveEmployeeData>();
         LeaveEmployeeData data;
         for(Object[] item: res) {
@@ -85,7 +85,7 @@ public class SupervisorDao {
         if(payFreq!=null)
         	q.setParameter("payFreq", payFreq.charAt(0));
         List<BhrEmpLvXmital> result = q.list();
-        session.close();
+        
         List<AppLeaveRequest> res = new ArrayList<AppLeaveRequest>();
         AppLeaveRequest request;
         for(BhrEmpLvXmital item : result) {
@@ -114,7 +114,7 @@ public class SupervisorDao {
         if(payFreq!=null)
         	q.setParameter("payFreq", payFreq.charAt(0));
         List<BeaEmpLvRqst> result = q.list();
-        session.close();
+        
         List<AppLeaveRequest> res = new ArrayList<AppLeaveRequest>();
         AppLeaveRequest request;
         for(BeaEmpLvRqst item : result) {
@@ -136,7 +136,7 @@ public class SupervisorDao {
 			result = res.get(0);
 		else
 			return "";
-		session.close();
+		
 		if(res!=null) {
 			return result.getUsrNameF()+" "+ result.getUsrNameL();
 		}else {
@@ -149,7 +149,7 @@ public class SupervisorDao {
 		Query q = session.createQuery(sql);
 		q.setParameter("empNbr", empNbr);
 		List<BeaEmpLvTmpApprovers> res =  q.list();
-		session.close();
+		
 		return res;
 	}
 	public void saveTempApprover(BeaEmpLvTmpApprovers tempApprover, boolean isUpdate) {
@@ -161,7 +161,7 @@ public class SupervisorDao {
         		session.save(tempApprover);
         	}
         	session.flush();
-        	session.close();
+        	
         }catch(Exception e) {
         	e.printStackTrace();
         }
@@ -171,7 +171,7 @@ public class SupervisorDao {
         try {
         	session.delete(tempApprover);
         	session.flush();
-        	session.close();
+        	
         }catch(Exception e) {
         	e.printStackTrace();
         }

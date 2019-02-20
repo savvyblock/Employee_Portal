@@ -21,7 +21,7 @@ public class CalendarYearToDateDao {
     @Autowired
     private SessionFactory sessionFactory;
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 
 	public Date getLastPostedPayDate(String employeeNumber, Frequency frequency) throws ParseException
@@ -34,7 +34,7 @@ public class CalendarYearToDateDao {
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("frequency", frequency.getCode());
 		String payDate = (String) q.list().get(0);
-		session.close();
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		return sdf.parse(payDate);
 	}
@@ -48,7 +48,7 @@ public class CalendarYearToDateDao {
         q.setParameter("empNbr", empNbr);
         q.setParameter("jobCd", jobCd);
         List<BhrEmpJob> res = q.list();
-        session.close();
+        
         return res.get(0);
     }
 	
@@ -62,7 +62,7 @@ public class CalendarYearToDateDao {
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
 		List<String> years = q.list();
-		session.close();
+		
 		return years;
 	}
 
@@ -77,7 +77,7 @@ public class CalendarYearToDateDao {
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("year", year);
 		BhrCalYtd res = (BhrCalYtd) q.list().get(0);
-		session.close();
+		
 		return res;
 	}
 
@@ -90,7 +90,7 @@ public class CalendarYearToDateDao {
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("frequency", freq.getCode().charAt(0));
 		String result = (String) q.uniqueResult();
-		session.close();
+		
 		if(result!=null) {
 			return StringUtil.mid(result, 5, 2) + "-" + StringUtil.right(result, 2) + "-" + StringUtil.left(result, 4);
 		} else {

@@ -34,11 +34,11 @@ public class BankDao {
     private ReferenceDao referenceDao;
     
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
     
     public List<BthrBankCodes> getAll() {
-    	Session session = this.sessionFactory.getCurrentSession();
+    	Session session = this.getSession();
         String hql = "from BthrBankCodes order by bankName ASC" ;
         Query q = session.createQuery(hql);
         List<BthrBankCodes> result = q.list();
@@ -49,7 +49,7 @@ public class BankDao {
     }
     
     public List<BthrBankCodes> getAll(Page p) {
-    	Session session = this.sessionFactory.getCurrentSession();
+    	Session session = this.getSession();
         String hql = "from BthrBankCodes order by bankName ASC" ;
         Query q = session.createQuery(hql);
         q.setFirstResult((p.getCurrentPage()-1)*p.getPerPageRows());
@@ -63,7 +63,7 @@ public class BankDao {
     }
     
     public List<BthrBankCodes> getBanksByEntity(BthrBankCodes bbc) {
-    	Session session = this.sessionFactory.getCurrentSession();
+    	Session session = this.getSession();
         String hql = "from BthrBankCodes where 1=1 " ;
         
         if(bbc.getBankName()!=null && !bbc.getBankName().isEmpty()) {
@@ -243,8 +243,9 @@ public class BankDao {
 		
 		System.out.println(sql.toString());
 		
-		return q.executeUpdate();
-		
+		int res = q.executeUpdate();
+		session.flush();
+		return res;
 	}
 	
 	public int deleteNextYearAccounts(String employeeNumber)
@@ -261,8 +262,9 @@ public class BankDao {
 		q = session.createSQLQuery(sql.toString());
 		q.setParameter("emp_nbr", employeeNumber);
 		
-		return q.executeUpdate();
-		
+		int res =  q.executeUpdate();
+		session.flush();
+		return res;
 	}
 	
 	public int insertAccountRequest(Boolean autoApprove, String employeeNumber, String frequency, Bank payrollAccountInfo, Bank accountInfo)
@@ -315,8 +317,9 @@ public class BankDao {
 		sql.append("' ) ");
 		System.out.println(sql.toString());
 		q = session.createSQLQuery(sql.toString());
-		return q.executeUpdate();
-		
+		int res =  q.executeUpdate();
+		session.flush();
+		return res;
 	}
 
 	public int updateAccountRequest(Boolean autoApprove, String employeeNumber, String frequency, Bank payrollAccountInfo, Bank accountInfo,  Bank accountInfoPending)
@@ -368,8 +371,9 @@ public class BankDao {
 		
 		
 		q = session.createSQLQuery(sql.toString());
-		return q.executeUpdate();
-		
+		int res = q.executeUpdate();
+		session.flush();
+		return res;
 	}
 
 	public int deleteAccountRequest(String employeeNumber, String frequency, Bank accountInfo, Bank accountInfoPending)
@@ -392,8 +396,9 @@ public class BankDao {
 
 		Session session = this.getSession();
 		Query q = session.createSQLQuery(sql.toString());
-		return q.executeUpdate();
-		
+		int res = q.executeUpdate();
+		session.flush();
+		return res;
 	}
 	
 	public int insertAccountApprove(String employeeNumber, String frequency, String prenote, Bank payrollAccountInfo)
@@ -419,8 +424,9 @@ public class BankDao {
 		
 		Session session = this.getSession();
 		Query q = session.createSQLQuery(sql.toString());
-		return q.executeUpdate();
-		
+		int res = q.executeUpdate();
+		session.flush();
+		return res;
 	}
 
 	public int updateAccountApprove(String employeeNumber, String frequency, String prenote, Bank payrollAccountInfo, Bank accountInfo)
@@ -455,7 +461,9 @@ public class BankDao {
 	
 		Session session = this.getSession();
 		Query q = session.createSQLQuery(sql.toString());
-		return q.executeUpdate();
+		int res = q.executeUpdate();
+		session.flush();
+		return res;
 	}
 
 	public int deleteAccountApprove(String employeeNumber, String frequency, Bank accountInfo)
@@ -477,7 +485,9 @@ public class BankDao {
 		
 		Session session = this.getSession();
 		Query q = session.createSQLQuery(sql.toString());
-		return q.executeUpdate();
+		int res = q.executeUpdate();
+		session.flush();
+		return res;
 	}
 	
 	
@@ -490,7 +500,7 @@ public class BankDao {
 		q = session.createSQLQuery(sql.toString());
 		q.setParameter("frequency", frequency);
 		Character res = (Character) q.uniqueResult();
-	    session.close();
+	    
 		
 		return ("Y").equals(res.toString());
 		

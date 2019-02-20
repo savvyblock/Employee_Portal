@@ -27,7 +27,7 @@ public class EarningsDao {
     @Autowired
     private SessionFactory sessionFactory;
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
     
 	public Integer getRestrictEarnings()
@@ -38,7 +38,7 @@ public class EarningsDao {
 			sql.append("SELECT isnull(max_days, 0) as max_days from bhr_eap_opt"); 
 			Query q = session.createQuery(sql.toString());
 			List<Object> result = q.list();
-			session.close();
+			
 			if(result!=null && result.size()!=0)
 				return (Integer) result.get(0);
 			else
@@ -61,7 +61,7 @@ public class EarningsDao {
 	        q.setParameter("employeeNumber", employeeNumber);
 
 			List <Object[]> result = q.list();
-			session.close();
+			
 			List<PayDate> payDates = new ArrayList<PayDate>();
 			PayDate payDate;
 			
@@ -91,7 +91,7 @@ public class EarningsDao {
         q.setParameter("adjNbr", Short.parseShort(payDate.getAdjNumber()));
         q.setParameter("chkNbr", payDate.getCheckNumber());
         Object[] res = (Object[]) q.uniqueResult();
-        session.close();
+        
         EarningsInfo info = new EarningsInfo(res[0],res[1],res[2],res[3],res[4],res[5],res[6]);
 		return info;
 	}
@@ -123,7 +123,7 @@ public class EarningsDao {
         q.setParameter("adjNbr", Short.parseShort(payDate.getAdjNumber()));
         q.setParameter("chkNbr", payDate.getCheckNumber());
 		Object[] res = (Object[]) q.uniqueResult();
-		session.close();
+		
 		if(res != null) {
 			EarningsDeductions deductions = new EarningsDeductions((BigDecimal) res[0],(BigDecimal) res[1],(BigDecimal) res[2],(BigDecimal) res[3],(BigDecimal) res[4],(BigDecimal) res[5],(BigDecimal) res[6],
 					(BigDecimal) res[7],(BigDecimal) res[8],(BigDecimal) res[9],(BigDecimal) res[10],(BigDecimal) res[11],(BigDecimal) res[12],(BigDecimal) res[13],
@@ -173,7 +173,7 @@ public class EarningsDao {
         	other = new EarningsOther((String) item[0], (String) item[1], (BigDecimal) item[2], (Character) item[3], (BigDecimal) item[4], (Integer) item[5], (Integer) item[6]);
         	result.add(other);
         }
-        session.close();
+        
 		return result;
 	}
 
@@ -231,7 +231,7 @@ public class EarningsDao {
         	job = new EarningsJob((String) item[0], (BigDecimal) item[1], (BigDecimal) item[2], (BigDecimal) item[3], (Character) item[4], (String) item[5]);
         	result.add(job);
         }
-        session.close();
+        
 		return result;
 	}
 	public List<EarningsSupplemental> getEarningsSupplemental(String employeeNumber, PayDate payDate,
@@ -284,7 +284,7 @@ public class EarningsDao {
         			(Character) item[5],(Short) item[6],(String) item[7]);
         	result.add(suppl);
         }
-        session.close();
+        
 		return result;
 	}
 
@@ -325,7 +325,7 @@ public class EarningsDao {
         	bank = new EarningsBank((String) item[0], (String) item[1], (Character) item[2], (String) item[3], (String) item[4],(BigDecimal) item[5]);
         	result.add(bank);
         }
-        session.close();
+        
 		return result;
 		
 	}
@@ -358,7 +358,7 @@ public class EarningsDao {
         	leave = new EarningsLeave((String) item[0], (String) item[1], (BigDecimal) item[2], (Character) item[3], (Short) item[4],(BigDecimal) item[5],(Character) item[6]);
         	result.add(leave);
         }
-        session.close();
+        
 		return result;
 	}
 
@@ -392,7 +392,7 @@ public class EarningsDao {
         	overTime = new EarningsOvertime((String) item[0], (String) item[1], (BigDecimal) item[2], (BigDecimal) item[3], (BigDecimal) item[4]);
         	result.add(overTime);
         }
-        session.close();
+        
 		return result;
 	}
 
@@ -410,7 +410,7 @@ public class EarningsDao {
         q.setParameter("frequency", tempFreq.charAt(0));
         q.setParameter("calYr", year);
         BigDecimal res = (BigDecimal) q.uniqueResult();
-        session.close();
+        
 		return res;
 	}
 }

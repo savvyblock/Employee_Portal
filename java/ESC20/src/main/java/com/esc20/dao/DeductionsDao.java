@@ -18,7 +18,7 @@ public class DeductionsDao {
     @Autowired
     private SessionFactory sessionFactory;
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
     
 	public List<Frequency> getAvailableFrequencies(String employeeNumber)
@@ -39,7 +39,7 @@ public class DeductionsDao {
 		for(Character code: res) {
 			result.add(Frequency.getFrequency((code.toString()).trim()));
 		}
-		session.close();
+		
 		return result;
 	}
 
@@ -62,7 +62,7 @@ public class DeductionsDao {
 			deduct= new Deduction(item[0],item[1],item[2],item[3],item[4]);
 			result.add(deduct);
 		}
-		session.close();
+		
 		return result;
 	}
 }

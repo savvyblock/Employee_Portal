@@ -22,7 +22,7 @@ public class ReferenceDao {
     @Autowired
     private SessionFactory sessionFactory;
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
     
 	public List<Code> getGenerations()
@@ -32,7 +32,7 @@ public class ReferenceDao {
 		sql.append("SELECT DISTINCT id.genCd, '', genDescr FROM EtC012Gen");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
@@ -54,7 +54,7 @@ public class ReferenceDao {
 		sql.append("SELECT DISTINCT abbrev, '',state FROM BthrStateAbbrev");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
@@ -71,7 +71,7 @@ public class ReferenceDao {
 		sql.append("SELECT DISTINCT type, '', descr FROM BthrRestrictTyp");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
@@ -88,7 +88,7 @@ public class ReferenceDao {
 		sql.append("SELECT DISTINCT stat,'',descr as subCode FROM BthrMaritalTaxStat");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
@@ -105,7 +105,7 @@ public class ReferenceDao {
 		sql.append("SELECT DISTINCT bankAcctTyp, '',bankAcctTypDescr FROM BthrBankAcctTyp");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
@@ -122,7 +122,7 @@ public class ReferenceDao {
 		sql.append("SELECT DISTINCT bankCd,transitRoute,bankName FROM BthrBankCodes ORDER BY bankName ASC");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
@@ -139,7 +139,7 @@ public class ReferenceDao {
 		sql.append("SELECT DISTINCT stat, '', descr FROM BthrMaritalActualStatus");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
@@ -155,7 +155,7 @@ public class ReferenceDao {
 		sql.append("SELECT DISTINCT absRsn, '', absDescr FROM BthrAbsRsn");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
@@ -171,7 +171,7 @@ public class ReferenceDao {
 		sql.append("SELECT DISTINCT LTD.lvTyp, LT.daysHrs, LTD.longDescr FROM BthrLvTypDescr LTD, BthrLvTyp LT WHERE LTD.lvTyp=LT.id.lvTyp");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
@@ -187,7 +187,7 @@ public class ReferenceDao {
 		sql.append("SELECT DISTINCT cd, '', descr FROM BteaEmpLvStatusCodes");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
-		session.close();
+		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {

@@ -14,7 +14,7 @@ public class OptionsDao {
     @Autowired
     private SessionFactory sessionFactory;
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 	public Options getOptions() {
 		Session session = this.getSession();
@@ -22,7 +22,6 @@ public class OptionsDao {
 		Query q = session.createQuery(sql);
 		BhrEapOpt opt = (BhrEapOpt) q.uniqueResult();
 		Options option = new Options(opt);
-		session.close();
 		return option;
 	}
 }
