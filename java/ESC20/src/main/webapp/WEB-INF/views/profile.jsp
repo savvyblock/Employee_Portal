@@ -1683,7 +1683,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <div class="form-group btn-group">
                                 <div style="margin-top:20px;">
                                     <button
-                                        type="submit" id="searchBankBtn"
+                                        type="button" id="searchBankBtn"
                                         class="btn btn-primary"
                                         data-localize="label.search"
                                     ></button>
@@ -1861,13 +1861,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             	 var saveBankDisplayLabel = $('#saveBankDisplayLabel').val();
             	 var saveBankDisplayAmount = $('#saveBankDisplayAmount').val();
             	 
-            	 console.log("$$$$$$$$$ = " +  freq);
-            	 console.log("$$$$$$$$$ = " +  saveBankDescription);
-            	 console.log("$$$$$$$$$ = " +  saveBankCode);
-            	 console.log("$$$$$$$$$ = " +  saveBankAccountNumber);
-            	 console.log("$$$$$$$$$ = " +  saveBankDisplayLabel);
-            	 console.log("$$$$$$$$$ = " +  saveBankDisplayAmount);
-            	 
             	 $('#hiddenfreq').val(freq);
             	 $('#hiddendescription').val(saveBankDescription);
             	 $('#hiddensubCode').val(saveBankCode);
@@ -1880,6 +1873,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             })
             
             $('.getBank').click(function() {
+            	
             	var page={
             			currentPage:1,
             			perPageRows:10
@@ -1896,7 +1890,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     	 //$('#bankTable').find('tr').remove();
                     	 $("#bankTable  tr:not(:first)").empty(""); 
                     	 var res = result.result;
-                    	 console.log(res);
                     	 for (var p in res) {
                     		 var bankTr= "<tr><td data-localize='profile.routingNumber' data-localize-location='scope'>";
                     		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].bankCd+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
@@ -1928,14 +1921,67 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                      }
                  });
             	
-            
-                    
-                    
             })
             $('#searchBankBtn').click(function() {
             	alert("search bank");
+            	
+            	var page={
+            			"currentPage":1,
+            			"perPageRows":10
+            	};
+            	
+            	
+            	var searchCode = $('#codeCriteria.searchCode').val();
+				var searchDescription = $('#codeCriteria.searchDescription').val();
+            	
+            	var criteria ={
+            			  "searchCode":searchCode,
+            			  "searchDescription":searchDescription
+            	}
+            	
+            	var data = [page,criteria];
+                let that = this
+            	$.ajax({
+                     type: "POST",
+                     dataType: "json",
+                     url: "searchBanks" ,
+                     data:JSON.stringify(data),
+                     contentType: 'application/json;charset=UTF-8',
+                     success: function (result) {
+                    	 console.log(result);
+                    	 $("#bankTable  tr:not(:first)").empty(""); 
+                    	 var res = result.result;
+                    	 for (var p in res) {
+                    		 var bankTr= "<tr><td data-localize='profile.routingNumber' data-localize-location='scope'>";
+                    		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].bankCd+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
+                    		 bankTr = bankTr + " <td data-localize='profile.bankName' data-localize-location='scope'>"+res[p].bankName+"</td> </tr>";
+                    		 $("#bankTable").append(bankTr);
+                    	 }
+                    	 
+                    	    //$('#selectBankModal').modal('show')
+                            bankInputName = $(that)
+                                .parent()
+                                .find('.form-control.name');
+                            bankInputCode = $(that)
+                                .parent()
+                                .find('.form-control.code');
+                            
+                            $('.bankNumberBtn').click(function() {
+                                let number = $(this).val()
+                                let name = $(this).attr('data-title')
+                                console.log(number)
+                                console.log(name)
+                                bankInputName.val(name)
+                                bankInputCode.val(number)
+                                $('#selectBankModal').modal('hide')
+                            })
+                    	 
+                     },
+                     error : function(e) {
+                    	 console.log(e);
+                     }
+                 });
             })
-            
           
             
             $("#undoNameRequest").click(function(){
@@ -1994,13 +2040,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	       	var accountType = $('#accountType_'+index).text();
 	       	var displayAmount = $('#displayAmount_'+index).text();
        	 
-	       	 console.log("$$$$$$$$$ = " +  freq);
-	       	 console.log("$$$$$$$$$ = " +  code);
-	       	 console.log("$$$$$$$$$ = " +  accountType);
-	       	 console.log("$$$$$$$$$ = " +  accountNumber);
-	       	 console.log("$$$$$$$$$ = " +  displayAmount);
-
-            
              $('#hidden_freq_delete').val(freq);
 	       	 $('#hidden_accountNumber_delete').val(accountNumber);
 	       	 $('#hidden_code_delete').val(code);
@@ -2023,13 +2062,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	       	var accountTypeNew = $('#accountTypeNew_'+index).val();
 	       	var displayAmountNew = $('#displayAmountNew_'+index).val();
  	       	
- 	       	 console.log("$$$$$$$$$ = " +  freq);
- 	       	 console.log("$$$$$$$$$ = " +  code);
- 	       	 console.log("$$$$$$$$$ = " +  accountType);
- 	       	 console.log("$$$$$$$$$ = " +  accountNumber);
- 	       	 console.log("$$$$$$$$$ = " +  displayAmount);
-
-             
              $('#hidden_freq_update').val(freq);
  	       	 $('#hidden_code_update').val(code);
  	       	 $('#hidden_codeNew_update').val(codeNew);
@@ -2050,13 +2082,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	       	 var accountNumber = $('#accountNumber_'+index).text();
 	       	 var accountNumberNew = $('#accountNumberNew_'+index).val();
        	 
-	       	 console.log("$$$$$$$$$ = " +  freq);
-	       	 console.log("$$$$$$$$$ = " +  code);
-	       	 console.log("$$$$$$$$$ = " +  codeNew);
-	       	 console.log("$$$$$$$$$ = " +  accountNumber);
-	       	 console.log("$$$$$$$$$ = " +  accountNumberNew);
-
-            
              $('#hidden_freq_undo').val(freq);
 	       	 $('#hidden_code_undo').val(code);
 	       	 $('#hidden_codeNew_undo').val(codeNew);

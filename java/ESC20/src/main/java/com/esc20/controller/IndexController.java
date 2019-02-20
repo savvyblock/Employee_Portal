@@ -269,6 +269,31 @@ public class IndexController {
         return result;
     }
     
+    @RequestMapping("searchBanks")
+    @ResponseBody
+    public JSONObject searchBanks(HttpServletRequest req,@RequestBody Page page){
+    	
+    	Object data=req.getParameter("data");
+    	
+    	Page p = new Page();
+    	p.setCurrentPage(1);
+    	p.setPerPageRows(10);
+    	
+    	List<BthrBankCodes> allbanks = bankService.getAllBanks();
+    	
+    	p.setTotalRows(allbanks.size());
+    	p.setTotalPages((int) Math.ceil(p.getTotalRows()/p.getPerPageRows()));
+    	
+    	List<BthrBankCodes> banks = bankService.getAllBanks(p);
+    	JSONArray json = JSONArray.fromObject(banks);
+	    JSONObject result=new JSONObject();
+	    result.put("result", json);
+	    result.put("page", p);
+	    result.put("isSuccess", "true");
+	    
+        return result;
+    }
+    
     @RequestMapping("saveBank")
     public ModelAndView saveBank(HttpServletRequest req) {
         HttpSession session = req.getSession();
