@@ -46,7 +46,7 @@
 					id="changeFreqForm"
 					method="POST"
 						>
-						<input type="text" name="freq" hidden="hidden" value="${selectedFreq}">
+						<input type="text" name="freq" hidden="hidden" value="${selectedFreq}" title="" data-localize="accessHint.frequency">
 					<div class="form-group type-group">
 						<label class="form-title" for="SearchType"><span data-localize="label.type"></span>:</label> 
 						<select id="SearchType"
@@ -62,7 +62,10 @@
 							<input
 								class="form-control" type="text" name="SearchStart"
 								id="SearchStartDate" readonly value="${SearchStart}" />
-								<button class="clear-btn" type="button" onclick="clearDate(this)" data-localize="label.removeContent" data-localize-location="title" tabindex="0"><i class="fa fa-times"></i></button>
+								<button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0">
+									<span class="hide" data-localize="label.removeContent"></span>
+									<i class="fa fa-times"></i>
+								</button>
 							</div>
 						</div>
 						<div class="form-group">
@@ -71,7 +74,10 @@
 							<input
 								class="form-control" type="text" name="SearchEnd"
 								id="SearchEndDate" value="${SearchEnd}" readonly />
-								<button class="clear-btn" type="button" onclick="clearDate(this)" data-localize="label.removeContent" data-localize-location="title" tabindex="0"><i class="fa fa-times"></i></button>
+								<button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0">
+									<span class="hide" data-localize="label.removeContent"></span>
+									<i class="fa fa-times"></i>
+								</button>
 							</div>
 						</div>
 						<div class="form-group btn-group">
@@ -149,7 +155,7 @@
 			</div>
 		</section>
 			<form hidden="true" id="deleteForm" action="deleteLeaveRequest" method="post">
-				<input type="text" id="deleteId" name="id"/>
+				<input type="text" id="deleteId" name="id" title="" data-localize="accessHint.id"/>
 			</form>
 		</main>
 	</div>
@@ -207,6 +213,7 @@
 					}
 				})
 				.data('datepicker')
+				setGlobal()
 				$(".sureDelete").click(function(){
 					$("#deleteForm")[0].submit();
 				})

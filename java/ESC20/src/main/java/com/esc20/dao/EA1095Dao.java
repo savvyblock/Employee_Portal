@@ -43,6 +43,17 @@ public class EA1095Dao {
         return result;
 	}
 
+	public boolean update1095ElecConsent(String employeeNumber, String elecConsnt1095) {
+		Session session = this.getSession();
+		String updateW2ElecConsntSql = "UPDATE BhrEmpEmply SET elecConsnt1095 =:elecConsnt1095, module = 'Employee Access' WHERE empNbr =:employeeNumber";
+		Query q = session.createQuery(updateW2ElecConsntSql);
+		q.setParameter("employeeNumber", employeeNumber);
+		q.setParameter("elecConsntW2", elecConsnt1095.charAt(0));
+		Integer res = q.executeUpdate();
+		session.flush();
+		return res>0;
+	}
+	
 	public List<BhrAca1095bCovrdHist> retrieveEA1095BInfo(String employeeNumber, String year, String sortBy, String sortOrder, Integer bPageNo) {
 		Session session = this.getSession();
 		String retrieveSQL = "FROM BhrAca1095bCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";

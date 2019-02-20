@@ -40,8 +40,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <span class="haveValue"
                                                 >${sessionScope.userDetail.namePre}</span
                                             >
-                                            <input hidden="hidden" type="text" name="empNbr" value="${nameRequest.id.empNbr}">
-                                            <input hidden="hidden" type="text" name="reqDts" value="${nameRequest.id.reqDts}">
+                                            <input hidden="hidden" type="text" name="empNbr" value="${nameRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
+                                            <input hidden="hidden" type="text" name="reqDts" value="${nameRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
                                             <div class="form-group valueInput">
                                                 <select
                                                     class="form-control"
@@ -190,8 +190,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <span class="haveValue">
                                             ${sessionScope.userDetail.maritalStat}</span
                                         >
-                                        <input hidden="hidden" type="text" name="empNbr" value="${mrtlRequest.id.empNbr}">
-                                            <input hidden="hidden" type="text" name="reqDts" value="${mrtlRequest.id.reqDts}">
+                                        <input hidden="hidden" type="text" name="empNbr" value="${mrtlRequest.id.empNbr}"  title="" data-localize="accessHint.employeeNumber">
+                                            <input hidden="hidden" type="text" name="reqDts" value="${mrtlRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
                                         <div class="form-group valueInput">
                                             <select
                                                 id="maritalStatus"
@@ -245,8 +245,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         <form hidden="hidden" action="deleteMaritalRequest" id="deleteMaritalRequest" method="POST"></form>
                         <p class="sub-title" data-localize="profile.driversLicense"></p>
                         <form class="profile-item" id="driverLicenseForm" action="saveDriversLicense" method="POST">
-                         	<input hidden="hidden" type="text" name="empNbr" value="${licRequest.id.empNbr}">
-                            <input hidden="hidden" type="text" name="reqDts" value="${licRequest.id.reqDts}">
+                         	<input hidden="hidden" type="text" name="empNbr" value="${licRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
+                            <input hidden="hidden" type="text" name="reqDts" value="${licRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
                                     <div class="profile-title" data-localize="profile.number"></div>
@@ -329,8 +329,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         <form hidden="hidden" action="deleteDriversLicenseRequest" id="deleteDriversLicense" method="POST"></form>
                         <p class="sub-title" data-localize="profile.restrictionCodes"></p>
                         <form class="profile-item" id="restrictionCodeForm" action="saveRestrictionCodes" method="POST">
-                        	<input hidden="hidden" type="text" name="empNbr" value="${restrictRequest.id.empNbr}">
-                            <input hidden="hidden" type="text" name="reqDts" value="${restrictRequest.id.reqDts}">
+                        	<input hidden="hidden" type="text" name="empNbr" value="${restrictRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
+                            <input hidden="hidden" type="text" name="reqDts" value="${restrictRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
                                     <div class="profile-title" data-localize="profile.local"></div>
@@ -415,8 +415,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         <form hidden="hidden" action="deleteRestrictionCodesRequest" id="deleteRestrictionCodesRequest" method="POST"></form>
                         <p class="sub-title" data-localize="profile.email"></p>
                         <form class="profile-item" id="emailForm" action="saveEmail" method="POST">
-                                <input hidden="hidden" type="text" name="empNbr" value="${emailRequest.id.empNbr}">
-                                <input hidden="hidden" type="text" name="reqDts" value="${emailRequest.id.reqDts}">
+                                <input hidden="hidden" type="text" name="empNbr" value="${emailRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
+                                <input hidden="hidden" type="text" name="reqDts" value="${emailRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
                                     <div class="profile-title" data-localize="profile.workEmail"></div>
@@ -493,8 +493,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         <form hidden="hidden" action="deleteEmail" id="deleteEmail" method="POST"></form>
                         <p class="sub-title" data-localize="profile.emergenceContactInfo"></p>
                         <form class="profile-item" id="emergencyContactForm" action="saveEmergencyContact" method="POST">
-                                <input hidden="hidden" type="text" name="empNbr" value="${emerRequest.id.empNbr}">
-                                <input hidden="hidden" type="text" name="reqDts" value="${emerRequest.id.reqDts}">
+                                <input hidden="hidden" type="text" name="empNbr" value="${emerRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
+                                <input hidden="hidden" type="text" name="reqDts" value="${emerRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
                                     <div class="profile-title" data-localize="profile.name"></div>
@@ -640,8 +640,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         <form hidden="hidden" action="deleteEmergencyContact" id="deleteEmergencyContact" method="POST"></form>
                         <p class="sub-title" data-localize="profile.mailingAddress"></p>
                         <form class="profile-item" id="mailingAddressForm" action="saveMailAddr" method="POST">
-                                <input hidden="hidden" type="text" name="empNbr" value="${mailAddrRequest.id.empNbr}">
-                                <input hidden="hidden" type="text" name="reqDts" value="${mailAddrRequest.id.reqDts}">
+                                <input hidden="hidden" type="text" name="empNbr" value="${mailAddrRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
+                                <input hidden="hidden" type="text" name="reqDts" value="${mailAddrRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
                                     <div class="profile-title" data-localize="profile.number"></div>
@@ -812,8 +812,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         <form hidden="hidden" action="deleteMailAddr" id="deleteMailAddr" method="POST"></form>
                         <p class="sub-title" data-localize="profile.altAddr"></p>
                         <form class="profile-item" id="alternativeAddressForm" action="saveAltMailAddr" method="POST">
-                                <input hidden="hidden" type="text" name="empNbr" value="${altMailAddrRequest.id.empNbr}">
-                                <input hidden="hidden" type="text" name="reqDts" value="${altMailAddrRequest.id.reqDts}">
+                                <input hidden="hidden" type="text" name="empNbr" value="${altMailAddrRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
+                                <input hidden="hidden" type="text" name="reqDts" value="${altMailAddrRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
                                     <div class="profile-title" data-localize="profile.number"></div>
@@ -984,8 +984,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         <form hidden="hidden" action="deleteAltMailAddr" id="deleteAltMailAddr" method="POST"></form>
                         <p class="sub-title" data-localize="profile.phoneNumbers"></p>
                         <form class="profile-item" id="phoneForm" action="savePhone" method="POST">
-                                <input hidden="hidden" type="text" name="empNbr" value="${hmRequest.id.empNbr}">
-                                <input hidden="hidden" type="text" name="reqDts" value="${hmRequest.id.reqDts}">
+                                <input hidden="hidden" type="text" name="empNbr" value="${hmRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
+                                <input hidden="hidden" type="text" name="reqDts" value="${hmRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
                                     <div class="profile-title" data-localize="profile.home"></div>
@@ -1151,11 +1151,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </div>
 					</form>
                         <form class="profile-item" id="w4InfoForm" action="saveW4" method="POST">
-                        	<input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}">
-                            <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}">
-                            <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}">
-                            <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}">
-                            <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}">
+                        	<input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
+                            <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}" title="" data-localize="accessHint.reqDts">
+                            <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}"  title="" data-localize="accessHint.payFreq">
+                            <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}" title="" data-localize="accessHint.maritalStatTax">
+                            <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" title="" data-localize="accessHint.nbrTaxExempts">
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
                                     <div class="profile-title" data-localize="profile.MaritalStatus">
@@ -1236,11 +1236,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </div>
                         </form>
                         <form hidden="hidden" action="deleteW4" id="deleteW4" method="POST">
-                        	<input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}">
-                            <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}">
-                            <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}">
-                            <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}">
-                            <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}">
+                        	<input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
+                            <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}" title="" data-localize="accessHint.reqDts">
+                            <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}" title="" data-localize="accessHint.payFreq">
+                            <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}" title="" data-localize="accessHint.maritalStatTax">
+                            <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" title="" data-localize="accessHint.nbrTaxExempts">
                         </form>
                         <p class="sub-title" data-localize="profile.directDepositBankAccounts"></p>
                         
@@ -1262,8 +1262,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="primary_0"
                                                     type="checkbox"
                                                     name="primaryAccount"
+                                                    title="" 
+                                                    data-localize="accessHint.primaryAccountCheckbox"
                                                     disabled
                                                 />
+                                                <span class="hide" data-localize="accessHint.primaryAccountCheckbox"></span>
                                             </label>
                                         </span>
                                         <div class="form-group valueInput">
@@ -1272,8 +1275,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="icheck"
                                                     id="primary_1"
                                                     type="checkbox"
+                                                    title="" 
+                                                    data-localize="accessHint.primaryAccountCheckbox"
                                                     name="primaryAccount"
                                                 />
+                                                <span class="hide" data-localize="accessHint.primaryAccountCheckbox"></span>
                                             </label>
                                         </div>
                                     </div>
@@ -1285,8 +1291,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             >${bank.code.description}</span
                                         >
                                         
-                                        <input type="hidden" id="codeNew_${count.index}" value="${bank.codeNew.code}" />
-                                        <input type="hidden" id="code_${count.index}" value="${bank.code.code}" />
+                                        <input type="hidden" id="codeNew_${count.index}" value="${bank.codeNew.code}"  title="" data-localize="accessHint.bankCodeNew"/>
+                                        <input type="hidden" id="code_${count.index}" value="${bank.code.code}"  title="" data-localize="accessHint.bankCode"/>
                                         
                                         <div class="valueInput group-line">
                                             <div class="form-group">
@@ -1294,6 +1300,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control name"
                                                     type="text"
                                                     name="description"
+                                                    title="" 
+                                                    data-localize="accessHint.description"
                                                     value="${bank.codeNew.description}"
                                                     disabled
                                                 />
@@ -1304,6 +1312,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control code"
                                                     type="text"
                                                     name="subCode"
+                                                    title="" 
+                                                    data-localize="accessHint.bankCode"
                                                     value="${bank.codeNew.subCode}"
                                                     disabled
                                                 />
@@ -1312,10 +1322,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                 class="btn btn-secondary xs getBank"
                                                 type="button"
-                                                title=""
-                                                data-localize="profile.chooseBank"
-                                                data-localize-location="title"
                                             >
+                                                <span class="hide" data-localize="profile.chooseBank"></span>
                                                 <i class="fa fa-ellipsis-h"></i>
                                             </button>
                                         </div>
@@ -1444,38 +1452,38 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                         <div>
                         <form hidden="hidden" action="updateBank" id="updateBankHidden" method="POST">
-	                        <input type="hidden" name="freq" id="hidden_freq_update" />
-	                        <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_update" />
-	                        <input type="hidden" name="accountNumber" id="hidden_accountNumber_update" />
+	                        <input type="hidden" name="freq" id="hidden_freq_update"   title="" data-localize="accessHint.reqDts"/>
+	                        <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_update"   title="" data-localize="accessHint.accountNumberNew"/>
+	                        <input type="hidden" name="accountNumber" id="hidden_accountNumber_update"   title="" data-localize="accessHint.accountNumber"/>
 	                        <input type="hidden" name="code" id="hidden_code_update" />
-	                        <input type="hidden" name="codeNew" id="hidden_codeNew_update" />
+	                        <input type="hidden" name="codeNew" id="hidden_codeNew_update"   title="" data-localize="accessHint.reqDts"/>
 	                        
-	                        <input type="hidden" name="accountType" id="hidden_accountType_update" />
-	                        <input type="hidden" name="accountTypeNew" id="hidden_accountTypeNew_update" />
-	                        <input type="hidden" name="displayAmount" id="hidden_displayAmount_update" />
-	                        <input type="hidden" name="displayAmountNew" id="hidden_displayAmountNew_update" />
+	                        <input type="hidden" name="accountType" id="hidden_accountType_update"   title="" data-localize="accessHint.accountType"/>
+	                        <input type="hidden" name="accountTypeNew" id="hidden_accountTypeNew_update"   title="" data-localize="accessHint.accountTypeNew"/>
+	                        <input type="hidden" name="displayAmount" id="hidden_displayAmount_update"   title="" data-localize="accessHint.displayAmount"/>
+	                        <input type="hidden" name="displayAmountNew" id="hidden_displayAmountNew_update"   title="" data-localize="accessHint.displayAmountNew"/>
                         </form>
                         <form hidden="hidden" action="undoBank" id="undoBankHidden" method="POST">
-	                        <input type="hidden" name="freq" id="hidden_freq_undo" />
-	                        <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_undo" />
-	                        <input type="hidden" name="accountNumber" id="hidden_accountNumber_undo" />
-	                        <input type="hidden" name="code" id="hidden_code_undo" />
-	                        <input type="hidden" name="codeNew" id="hidden_codeNew_undo" />
+	                        <input type="hidden" name="freq" id="hidden_freq_undo"   title="" data-localize="accessHint.frequency"/>
+	                        <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_undo"   title="" data-localize="accessHint.accountNumberNew"/>
+	                        <input type="hidden" name="accountNumber" id="hidden_accountNumber_undo"   title="" data-localize="accessHint.accountNumber"/>
+	                        <input type="hidden" name="code" id="hidden_code_undo"   title="" data-localize="accessHint.bankCode"/>
+	                        <input type="hidden" name="codeNew" id="hidden_codeNew_undo"   title="" data-localize="accessHint.bankCodeNew"/>
                         </form>
                         <form hidden="hidden" action="deleteBank"  id="deleteBankHidden" method="POST">
-	                         <input type="hidden" name="freq" id="hidden_freq_delete" />
-	                        <input type="hidden" name="accountNumber" id="hidden_accountNumber_delete" />
-	                        <input type="hidden" name="code" id="hidden_code_delete" />
-	                        <input type="hidden" name="accountType" id="hidden_accountType_delete" />
-	                        <input type="hidden" name="displayAmount" id="hidden_displayAmount_delete" />
+	                         <input type="hidden" name="freq" id="hidden_freq_delete"   title="" data-localize="accessHint.frequency"/>
+	                        <input type="hidden" name="accountNumber" id="hidden_accountNumber_delete"   title="" data-localize="accessHint.accountNumber"/>
+	                        <input type="hidden" name="code" id="hidden_code_delete"  title="" data-localize="accessHint.bankCode"/>
+	                        <input type="hidden" name="accountType" id="hidden_accountType_delete"   title="" data-localize="accessHint.accountType"/>
+	                        <input type="hidden" name="displayAmount" id="hidden_displayAmount_delete"   title="" data-localize="accessHint.displayAmount"/>
                         </form>
                         <form hidden="hidden" action="saveBank" id="saveBankHidden" method="POST">
-	                        <input type="hidden" name="freq" id="hiddenfreq" />
-	                        <input type="hidden" name="displayAmount" id="hiddendisplayAmount" />
-	                        <input type="hidden" name="displayLabel" id="hiddendisplayLabel" />
-	                        <input type="hidden" name="accountNumber" id="hiddenaccountNumber" />
-	                        <input type="hidden" name="subCode" id="hiddensubCode" />
-	                        <input type="hidden" name="description" id="hiddendescription" />
+	                        <input type="hidden" name="freq" id="hiddenfreq"   title="" data-localize="accessHint.frequency"/>
+	                        <input type="hidden" name="displayAmount" id="hiddendisplayAmount"  title="" data-localize="accessHint.displayAmount"/>
+	                        <input type="hidden" name="displayLabel" id="hiddendisplayLabel"   title="" data-localize="accessHint.displayLabel"/>
+	                        <input type="hidden" name="accountNumber" id="hiddenaccountNumber"   title="" data-localize="accessHint.accountNumber"/>
+	                        <input type="hidden" name="subCode" id="hiddensubCode"   title="" data-localize="accessHint.bankCode"/>
+	                        <input type="hidden" name="description" id="hiddendescription"   title="" data-localize="accessHint.bankName"/>
                         </form>
                             <form
                                 action=""
@@ -1494,6 +1502,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         type="text"
                                                         name="description"
                                                         id="saveBankDescription"
+                                                        title="" data-localize="accessHint.bankName"
                                                         value=""
                                                         disabled
                                                     />
@@ -1505,6 +1514,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         type="text"
                                                         name="subCode"
                                                          id="saveBankCode"
+                                                         title="" data-localize="accessHint.bankCode"
                                                         value=""
                                                         disabled
                                                     />
@@ -1513,10 +1523,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <button
                                                     class="btn btn-secondary xs getBank"
                                                     type="button"
-                                                    title=""
-                                                    data-localize="profile.chooseBank"
-                                                    data-localize-location="title"
                                                 >
+                                                    <span class="hide" data-localize="profile.chooseBank"></span>
                                                     <i
                                                         class="fa fa-ellipsis-h"
                                                     ></i>
@@ -1574,7 +1582,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <input
                                                     class="form-control amount_2"
                                                     type="text"
-                                                    title=""
+                                                    title="" data-localize="profile.bankAcctType"
                                                     name="displayAmount"
                                                      id="saveBankDisplayAmount"
                                                     value=""
@@ -1634,13 +1642,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 <div class="modal-content">
                     <div class="modal-header">
                         <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-hidden="true"
-                            data-localize="label.closeModal"
-                            data-localize-location="title"
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-hidden="true"
                         >
+                        <span class="hide" data-localize="label.closeModal"></span>
                             &times;
                         </button>
                         <h4 class="modal-title" data-localize="profile.selectABank"></h4>
@@ -1667,7 +1674,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title" for="SearchStartDate"
+                                <label class="form-title" for="searchDescription"
                                     ><span data-localize="profile.bankName"></span>:</label
                                 >
                                 <div class="button-group">
@@ -1892,7 +1899,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     	 var res = result.result;
                     	 for (var p in res) {
                     		 var bankTr= "<tr><td data-localize='profile.routingNumber' data-localize-location='scope'>";
-                    		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].bankCd+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
+                    		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].transitRoute+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
                     		 bankTr = bankTr + " <td data-localize='profile.bankName' data-localize-location='scope'>"+res[p].bankName+"</td> </tr>";
                     		 $("#bankTable").append(bankTr);
                     	 }
@@ -1986,44 +1993,48 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             
             $("#undoNameRequest").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteNameRequest"
+                formSelect = $("#deleteNameRequest")
             })
             $("#undoMaritalRequest").click(function(e){
             	e.preventDefault();
                 $('#undoModal').modal('show')
-                formSelect = "deleteMaritalRequest"
+                formSelect = $("#deleteMaritalRequest")
             })
             $("#undoDriverLicense").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteDriversLicense"
+                formSelect = $("#deleteDriversLicense")
             })
             $("#undoRestriction").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteRestrictionCodesRequest"
+                formSelect = $("#deleteRestrictionCodesRequest")
             })
             $("#undoEmail").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteEmail"
+                formSelect = $("#deleteEmail")
             })
             $("#undoEmergencyContact").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteEmergencyContact"
+                formSelect = $("#deleteEmergencyContact")
             })
             $("#undoMailingAddress").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteMailAddr"
+                formSelect = $("#deleteMailAddr")
             })
             $("#undoAlternative").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteAltMailAddr"
+                formSelect = $("#deleteAltMailAddr")
             })
             $("#undoPhoneNumber").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deletePhone"
+                formSelect = $("#deletePhone")
             })
              $("#undoW4").click(function(){
                 $('#undoModal').modal('show')
-                formSelect = "deleteW4"
+                formSelect = $("#deleteW4")
+            })
+            $(".sureUndo").click(function(){
+                console.log("modal -- undo")
+                formSelect.submit();
             })
             $(".sureDelete").click(function(){
                 console.log("modal -- delete")
@@ -2087,8 +2098,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	       	 $('#hidden_codeNew_undo').val(codeNew);
 	       	 $('#hidden_accountNumber_undo').val(accountNumber);
 	       	 $('#hidden_accountNumberNew_undo').val(accountNumberNew);
-	       	 
-	       	 $('#undoBankHidden').submit();
+                
+             $('#undoModal').modal('show')
+             formSelect = $('#undoBankHidden')
 
         }
         

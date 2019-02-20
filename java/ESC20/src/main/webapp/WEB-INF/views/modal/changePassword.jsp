@@ -14,21 +14,19 @@
                     type="button"
                     class="close"
                     data-dismiss="modal"
-                    aria-hidden="true"
-                    data-localize="label.closeModal"
-                    data-localize-location="title"
-                >
+                    aria-hidden="true">
+                    <span class="hide" data-localize="label.closeModal"></span>
                     &times;
                 </button>
                 <h4 class="modal-title" data-localize="label.changePassword"></h4>
             </div>
               
                   <form id="updatePassword" action="changePassword" method="post" style="max-width:350px;">
-                    <input type="text" id="sessionPsd" value="${decryptedPwd}" style = "display:none"> 
-                    <input type="text" name="id" id="userId" value="${sessionScope.user.empNbr}" style = "display:none"> 
+                    <input type="text" id="sessionPsd" value="${decryptedPwd}" style = "display:none" title="" data-localize="accessHint.sessionPassword"> 
+                    <input type="text" name="id" id="userId" value="${sessionScope.user.empNbr}" style = "display:none" title="" data-localize="accessHint.employeeNumber"> 
                     <div class="modal-body">
                       <div class="form-group">
-                          <label class="form-title" data-localize="label.oldPassword"></label>
+                          <label class="form-title" for="oldPassword" data-localize="label.oldPassword"></label>
                           <div class="valid-wrap">
                               <input
                                   type="password"
@@ -44,7 +42,7 @@
                             <small class="help-block" data-localize="validator.oldPasswordWrong"></small>
                         </div>
                     <div class="form-group">
-                          <label class="form-title" data-localize="label.newPassword"></label>
+                          <label class="form-title" for="newPassword" data-localize="label.newPassword"></label>
                           <div class="valid-wrap">
                               <input
                                   type="password"
@@ -52,11 +50,12 @@
                                   placeholder=""
                                   data-localize="label.newPassword"
                                   name="password"
+                                  id="newPassword"
                               />
                           </div>
                       </div>
                       <div class="form-group">
-                          <label class="form-title" data-localize="label.confirmPassword"></label>
+                          <label class="form-title" for="newCheckPassword" data-localize="label.confirmPassword"></label>
                           <div class="valid-wrap">
                               <input
                                   type="password"
@@ -64,7 +63,7 @@
                                   placeholder=""
                                   data-localize="label.confirmPassword"
                                   name="newPassword"
-                                  id="newPassword"
+                                  id="newCheckPassword"
                               />
                           </div>
                       </div>

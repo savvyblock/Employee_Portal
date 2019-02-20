@@ -24,9 +24,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     method="POST"
                                 >
                                 <span hidden="hidden" id="chainValue">${chain}</span>
-                                    <input hidden="hidden" id="chain" class="chain" name="chain" type="text" value="">
+                                    <input hidden="hidden" id="chain" class="chain" name="chain" type="text" value="" title="" data-localize="accessHint.chain">
                                     <div class="form-group in-line flex-auto">
-                                        <label class="form-title"><span data-localize="label.directReportSupervisor"></span>:</label>
+                                        <label class="form-title" for="selectEmpNbr"><span data-localize="label.directReportSupervisor"></span>:</label>
                                         <select  class="form-control" name="selectEmpNbr" onchange="changeLevel()"
                                             id="selectEmpNbr">
                                             <c:forEach var="item" items="${directReportEmployee}" varStatus="count">
@@ -48,8 +48,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                 </form>
                                 <form hidden="hidden" action="previousLevelFromTempApprovers" id="previousLevel" method="POST">
-                                        <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel">
-                                        <input hidden="hidden" name="chain" type="text" value="" id="preChain">
+                                        <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" title="" data-localize="accessHint.level">
+                                        <input hidden="hidden" name="chain" type="text" value="" id="preChain" title="" data-localize="accessHint.chain">
                                 </form>
                                 <div class="showSelectSupervisor">
                                         <label class="form-title"><span data-localize="label.supervisorHierarchy"></span>: </label>
@@ -70,9 +70,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 >
                             </div>
                             <form action="saveTempApprovers" id="saveTempApprovers" method="POST">
-                                    <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="">
-                                    <input hidden="hidden" id="empNbrForm" name="empNbr" type="text" value="">
-                                    <input hidden="hidden" id="approverJson" name="approverJson" type="text" value="">
+                                    <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="" title="" data-localize="accessHint.chain">
+                                    <input hidden="hidden" id="empNbrForm" name="empNbr" type="text" value="" title="" data-localize="accessHint.employeeNumber">
+                                    <input hidden="hidden" id="approverJson" name="approverJson" type="text" value="" title="" data-localize="accessHint.approverJson">
                                 <table
                                     class="table border-table setApprovers-list responsive-table"
                                 >
@@ -97,7 +97,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             <td class="empNumber"
                                                             data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope"
                                                             >
-                                                            <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}">
+                                                            <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}" title="" data-localize="accessHint.employeeId">
                                                             ${tem.tmpApprvrEmpNbr}-${tem.approverName}
                                                         </td>
                                                             <td class="empFrom" data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope">${tem.datetimeFrom}</td>
@@ -106,9 +106,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                 <button
                                                                     type="button"
                                                                     class="a-btn deleteApprover"
-                                                                    data-localize="label.delete"
-                                                                    data-localize-location="title"
                                                                 >
+                                                                    <span class="hide" data-localize="label.delete"></span>
                                                                     <i
                                                                         class="fa fa-trash"
                                                                     ></i>
@@ -170,9 +169,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     type="button"
                                                     class="a-btn"
                                                     onclick="deleteRow(this)"
-                                                    data-localize="label.delete"
-                                                    data-localize-location="title"
                                                 >
+                                                    <span class="hide" data-localize="label.delete"></span>
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </td>
@@ -219,7 +217,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             </main>
         </div>
         <form hidden="hidden" action="" id="">
-            <input type="text" id="deleteEmpID">
+            <input type="text" id="deleteEmpID" title="" data-localize="accessHint.employeeId">
         </form>
         <%@ include file="../commons/footer.jsp"%>
     </body>
@@ -297,8 +295,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </td>
                                             <td  data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
-                                                    <button type="button" class="a-btn" onclick="deleteRow(this)" data-localize="label.delete"
-                                                     data-localize-location="title">
+                                                    <button type="button" class="a-btn" onclick="deleteRow(this)">
+                                                     <span class="hide" data-localize="label.delete"></span>
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                             </td>
@@ -487,8 +485,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     judgeContent()
                     
                 }).data('datepicker')
+                
             })
-            
+            setGlobal()
         }
         function changeLevel(){
                 let selectNum = $("#selectEmpNbr").val()

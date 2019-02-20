@@ -1379,11 +1379,12 @@
 
             return viewMode;
         },
-        headTemplate: function(leftArrow, rightArrow) {return('<thead>' +
+        headTemplate: function(leftArrow, rightArrow) {
+            return('<thead>' +
             '<tr>' +
-            '<th class="prev">' + leftArrow + '</th>' +
+            '<th class="prev"><span data-localize="accessHint.prev" style="display:none">prev</span>' + leftArrow + '</th>' +
             '<th colspan="5" class="date-switch"></th>' +
-            '<th class="next">' + rightArrow + '</th>' +
+            '<th class="next"><span data-localize="accessHint.next" style="display:none">next</span>' + rightArrow + '</th>' +
             '</tr>' +
             '</thead>')},
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',

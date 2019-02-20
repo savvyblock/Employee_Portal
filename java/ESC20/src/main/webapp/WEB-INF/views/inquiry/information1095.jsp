@@ -399,7 +399,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <form action="">
+                        <form action="update1095Consent" id="update1095Consent" method="POST">
+                                <input hidden="hidden" type="text" name="year" id="consentYear" value="${selectedYear}" title="" data-localize="accessHint.year">
+                                <input hidden="hidden" type="text" name="consent" id="consentModal" value="" title="" data-localize="accessHint.consent">
                             <div class="form-group">
                                 <label for="customMessage" data-localize="label.customMessageHere"></label>
                                 <textarea class="form-control form-text" name="customMessage" id="customMessage" cols="30" rows="6" title="" placeholder="" data-localize="label.customMessageHere"  disabled>
@@ -409,7 +411,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <div class="form-group">
                                     <div class="checkbox mb-2">
                                         <label for="consent">
-                                            <input class="icheck" type="radio" name="electronicConsent" id="consent" checked> 
+                                            <input class="icheck" type="radio" name="electronicConsent" id="consent"> 
                                             <span data-localize="label.consentElectronicAccess"></span>
                                         </label>
                                     </div>
@@ -424,6 +426,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     </div>
                     <div class="modal-footer">
                         <button
+                            type="button"
                             class="btn btn-secondary"
                             data-dismiss="modal"
                             aria-hidden="true"
@@ -442,8 +445,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             $("#selectCalendar")[0].submit()
         }
         $(function(){
-            // let val = $("#year").val()
-            // $(".selectYearSpan").text(val)
+            $('#consent').on('ifChecked', function(event) {
+                toggleOptions('Y')
+            })
+            $('#notConsent').on('ifChecked', function(event) {
+                toggleOptions('N')
+            })
         })
+    function toggleOptions(value){
+            $("#consentModal").val(value)
+            let year = $("#consentYear").val()
+            console.log("year" + year)
+            if(year&&year!=''){
+                $("#update1095Consent")[0].submit()
+            }
+            
+        }
     </script>
 </html>

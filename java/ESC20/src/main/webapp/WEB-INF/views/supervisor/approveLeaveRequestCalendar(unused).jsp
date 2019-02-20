@@ -25,10 +25,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     method="POST"
                                 >
                                     <span hidden="hidden" id="chainValue">${chain}</span>
-                                    <input hidden="hidden" type="text" value="${level}" name="level">
-                                    <input hidden="hidden" id="chain" name="chain" type="text" value="">
+                                    <input hidden="hidden" type="text" value="${level}" name="level" title="" data-localize="accessHint.level">
+                                    <input hidden="hidden" id="chain" name="chain" type="text" value="" title="" data-localize="accessHint.chain">
                                     <div class="form-group in-line flex-auto">
-                                        <label class="form-title"><span data-localize="label.directReportSupervisor"></span>:</label>
+                                        <label class="form-title" for="selectEmpNbr"><span data-localize="label.directReportSupervisor"></span>:</label>
                                         <select  class="form-control"name="selectEmpNbr" onchange="changeLevel()"
                                             id="selectEmpNbr">
                                             <c:forEach var="item" items="${directReportEmployee}" varStatus="count">

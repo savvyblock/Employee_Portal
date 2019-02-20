@@ -15,24 +15,23 @@
                     class="close"
                     data-dismiss="modal"
                     aria-hidden="true"
-                    data-localize="label.closeModal"
-                            data-localize-location="title"
-                >
+                    >
+                    <span class="hide" data-localize="label.closeModal"></span>
                     &times;
                 </button>
                 <h4 class="modal-title new-title" data-localize="label.newRequest"></h4>
                 <h4 class="modal-title edit-title" data-localize="label.editRequest"></h4>
             </div>
             <form id="requestForm" action="submitLeaveRequest" method="post">
-                <input type="text" hidden="hidden" name="chain" id="chainModal">
-                <input type="text" name="freq" hidden="hidden" value="${selectedFreq}">
+                <input type="text" hidden="hidden" name="chain" id="chainModal" title="" data-localize="accessHint.chain">
+                <input type="text" name="freq" hidden="hidden" value="${selectedFreq}" title="" data-localize="accessHint.frequency">
                 <div class="modal-body requestForm">
                     <input type="hidden" name="leaveId" id="leaveId" />
                     <div class="line-2-flex">
                         <div class="form-group line-left">
-                            <label class="form-title"> <span data-localize="leaveRequest.leaveType"></span>: </label>
+                            <label class="form-title" for="modalLeaveType"> <span data-localize="leaveRequest.leaveType"></span>: </label>
                             <div class="valid-wrap">
-                                <select class="form-control" name="leaveType">
+                                <select class="form-control" name="leaveType" id="modalLeaveType">
                                         <c:forEach var="type" items="${leaveTypes}" varStatus="count">
                                                 <option value="${type.code}">${type.description}</option>
                                         </c:forEach>
@@ -40,7 +39,7 @@
                             </div>
                         </div>
                         <div class="form-group line-right">
-                            <label class="form-title" for="absenseReason"><span data-localize="leaveRequest.absenceReason"></span>: </label>
+                            <label class="form-title" for="absenceReason"><span data-localize="leaveRequest.absenceReason"></span>: </label>
                             <div class="valid-wrap">
                                 <select class="form-control" id="absenceReason" name="absenseReason">
                                         <c:forEach var="abs" items="${absRsns}" varStatus="count">
@@ -53,7 +52,7 @@
 
                     <div class="date-group">
                         <div class="form-group calendar-left">
-                            <label class="form-title" for="LeaveStartDate"><span data-localize="leaveRequest.startDate"></span>: </label>
+                            <label class="form-title" for="startDate"><span data-localize="leaveRequest.startDate"></span>: </label>
                             <div class="valid-wrap">
                                 <input
                                     class="form-control"
@@ -67,7 +66,7 @@
                         </div>
 
                         <div class="form-group time-right">
-                                <label class="form-title" for="LeaveEndDate"><span data-localize="leaveRequest.endDate"></span>: </label>
+                                <label class="form-title" for="endDate"><span data-localize="leaveRequest.endDate"></span>: </label>
                                 <div class="valid-wrap">
                                     <input
                                         class="form-control"
@@ -83,38 +82,42 @@
                     </div>
                     <div class="date-group">
                         <div class="form-group calendar-left">
-                                <label class="form-title" for="startHour"><span data-localize="leaveRequest.startTime"></span>: </label>
+                                <label class="form-title" for="startTimeValue"><span data-localize="leaveRequest.startTime"></span>: </label>
                                 <div class="valid-wrap flex-middle">
                                     <input class="form-control timeControl" type="text" name="startHour" 
                                     id="startHour" onchange="calcTime()" 
                                     onkeypress="return isHourKey(event)"
+                                    title="" data-localize="accessHint.startHour"
                                     >
                                     <span class="oclock-colon">:</span>
                                     <input class="form-control timeControl" type="text" name="startMinute" 
                                     id="startMinute" onchange="calcTime()" 
                                     onkeypress="return isMinuteKey(event)"
+                                    title="" data-localize="accessHint.startMinute"
                                     >
-                                    <select class="form-control toAmPm" name="startAmOrPm" id="startAmOrPm" onchange="calcTime()">
+                                    <select class="form-control toAmPm" name="startAmOrPm" id="startAmOrPm" onchange="calcTime()" title="" data-localize="accessHint.startAmOrPm">
                                             <option value="AM" data-localize="leaveRequest.AM"></option>
                                             <option value="PM" data-localize="leaveRequest.PM"></option>
                                     </select>
-                                    <input hidden="hidden" type="text" name="startTimeValue" id="startTimeValue">
+                                    <input hidden="hidden" type="text" name="startTimeValue" id="startTimeValue" >
                                 </div>
                         </div>
 
                         <div class="form-group time-right">
-                            <label class="form-title" for="endHour"><span data-localize="leaveRequest.endTime"></span>: </label>
+                            <label class="form-title" for="endTimeValue"><span data-localize="leaveRequest.endTime"></span>: </label>
                             <div class="valid-wrap flex-middle">
                                 <input class="form-control timeControl" type="text" name="endHour" 
                                 id="endHour" onchange="calcTime()" 
                                 onkeypress="return isHourKey(event)"
+                                title="" data-localize="accessHint.endHour"
                                 >
                                 <span class="oclock-colon">:</span>
                                 <input class="form-control timeControl" type="text" name="endMinute" 
                                 id="endMinute" onchange="calcTime()" 
                                 onkeypress="return isMinuteKey(event)"
+                                title="" data-localize="accessHint.endMinute"
                                 >
-                                <select class="form-control toAmPm" name="endAmOrPm" id="endAmOrPm" onchange="calcTime()">
+                                <select class="form-control toAmPm" name="endAmOrPm" id="endAmOrPm" onchange="calcTime()" title="" data-localize="accessHint.endAmOrPm">
                                     <option value="AM" data-localize="leaveRequest.AM"></option>
                                     <option value="PM" data-localize="leaveRequest.PM"></option>
                                 </select>
@@ -141,7 +144,7 @@
                             </div>
     
                             <div class="form-group time-right">
-                                <label class="form-title" for=""><span data-localize="leaveRequest.totalRequested"></span>: </label>
+                                <label class="form-title" for="totalRequested"><span data-localize="leaveRequest.totalRequested"></span>: </label>
                                 <div class="valid-wrap text-group">
                                     <input
                                         type="text"
@@ -165,6 +168,7 @@
                                 style="height: auto;"
                                 class="form-control"
                                 name="Remarks"
+                                id="Remarks"
                                 rows="2"
                             ></textarea>
                         </div>
@@ -256,6 +260,7 @@
             })
             .on('changeDate', function(ev) {})
             .data('datepicker')
+            setGlobal()
     })
 
     function changeFormatTime(value) {
