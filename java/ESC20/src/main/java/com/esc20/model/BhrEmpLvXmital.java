@@ -29,7 +29,7 @@ public class BhrEmpLvXmital implements java.io.Serializable {
 	private String userId;
 	private String module;
 	private int lvId;
-
+	
 	public BhrEmpLvXmital() {
 	}
 

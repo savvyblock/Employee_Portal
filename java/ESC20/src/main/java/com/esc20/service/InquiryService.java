@@ -926,4 +926,9 @@ public class InquiryService {
 		return ea1095Dao.getCInfoTotal(employeeNumber, year);
 	}
 
+	public Boolean update1095ElecConsent(String employeeNumber, String consent) {
+		// TODO Auto-generated method stub
+		return ea1095Dao.update1095ElecConsent(employeeNumber, consent);
+	}
+
 }

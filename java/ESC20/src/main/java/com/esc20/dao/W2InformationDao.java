@@ -16,7 +16,7 @@ public class W2InformationDao {
     @Autowired
     private SessionFactory sessionFactory;
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
     
 	public List<String> getAvailableYears(String employeeNumber) {
@@ -28,7 +28,7 @@ public class W2InformationDao {
         Query q = session.createQuery(sql.toString());
         q.setParameter("employeeNumber", employeeNumber);
         List<String> years = (List<String>) q.list();
-        session.close();
+        
         return years;
 	}
 	
@@ -39,7 +39,7 @@ public class W2InformationDao {
 		q.setParameter("empNbr", empNbr);
 		Character result = ((Character)q.uniqueResult());
 		String res = result==null?"N":result.toString();
-		session.close();
+		
 		if(res!=null)
 			return res.trim();
 		else
@@ -57,7 +57,7 @@ public class W2InformationDao {
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("year", year);
 		BhrW2 w2 = (BhrW2)q.uniqueResult();
-		session.close();
+		
 		return w2;
 	}
 	
@@ -73,7 +73,7 @@ public class W2InformationDao {
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("year", year);
 		List<BhrThirdPartySickPay> res = q.list();
-		session.close();
+		
 		return res;
 	}
 	
@@ -84,7 +84,7 @@ public class W2InformationDao {
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("elecConsntW2", elecConsntW2.charAt(0));
 		Integer res = q.executeUpdate();
-		session.close();
+		session.flush();
 		return res>0;
 	}
 }

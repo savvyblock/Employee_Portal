@@ -44,7 +44,7 @@ public class PayDao {
     private SessionFactory sessionFactory;
     
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
 
 
@@ -67,7 +67,7 @@ public class PayDao {
         
         PayInfo payInfo = new PayInfo(res[0],res[1]);
        
-        session.close();
+        
         return payInfo;
 	}
 	
@@ -83,7 +83,7 @@ public class PayDao {
 		freq = Frequency.getFrequency(frequency);
         q.setParameter("frequency", freq.getCode().charAt(0));
         BeaW4 res = (BeaW4) q.uniqueResult();
-        session.close();
+        
         return res;
 	}
 
@@ -94,7 +94,7 @@ public class PayDao {
         q = session.createQuery(sql);
         q.setParameter("tableName", tableName);
         Character res = (Character) q.uniqueResult();
-        session.close();
+        
         return ("Y").equals(res.toString());
 	}
 
@@ -102,7 +102,6 @@ public class PayDao {
 		Session session = this.getSession();
 		session.saveOrUpdate(w4Request);
         session.flush();
-        session.close();
 	}
 	
 	public void updatePayInfo(BhrEmpDemo demo, BhrEmpPay pay, Character payFreq, Character maritalStatTaxNew,  Integer nbrTaxExemptsNew) {
@@ -123,7 +122,7 @@ public class PayDao {
 		q.setParameter("empNbr", demo.getEmpNbr());
 		q.setParameter("payFreq", payFreq);
 		Integer res = q.executeUpdate();
-    	session.close();
+    	session.flush();
 	}
 	
 	public void deleteW4request(String empNbr,String payFreq,Character maritalStatTax, Integer nbrTaxExempts ) {
@@ -143,8 +142,6 @@ public class PayDao {
 		q.setParameter("nbrTaxExempts", nbrTaxExempts);
 		Integer res = q.executeUpdate();
 		session.flush();
-    	session.close();
-		
 	}
 	
 }

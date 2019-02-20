@@ -17,7 +17,7 @@ public class EA1095Dao {
     @Autowired
     private SessionFactory sessionFactory;
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
     
     private final Integer pageSize = 20;
@@ -29,7 +29,7 @@ public class EA1095Dao {
         Query q = session.createQuery(sql);
         q.setParameter("employeeNumber", employeeNumber);
         List<String> years = (List<String>) q.list();
-        session.close();
+        
         return years;
 	}
 
@@ -39,10 +39,21 @@ public class EA1095Dao {
         Query q = session.createQuery(retrieveSQL);
         q.setParameter("employeeNumber", employeeNumber);
         String result = (String) q.uniqueResult();
-        session.close();
+        
         return result;
 	}
 
+	public boolean update1095ElecConsent(String employeeNumber, String elecConsnt1095) {
+		Session session = this.getSession();
+		String updateW2ElecConsntSql = "UPDATE BhrEmpEmply SET elecConsnt1095 =:elecConsnt1095, module = 'Employee Access' WHERE empNbr =:employeeNumber";
+		Query q = session.createQuery(updateW2ElecConsntSql);
+		q.setParameter("employeeNumber", employeeNumber);
+		q.setParameter("elecConsntW2", elecConsnt1095.charAt(0));
+		Integer res = q.executeUpdate();
+		session.flush();
+		return res>0;
+	}
+	
 	public List<BhrAca1095bCovrdHist> retrieveEA1095BInfo(String employeeNumber, String year, String sortBy, String sortOrder, Integer bPageNo) {
 		Session session = this.getSession();
 		String retrieveSQL = "FROM BhrAca1095bCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";
@@ -57,7 +68,7 @@ public class EA1095Dao {
         q.setFirstResult(bPageNo*pageSize);  
         q.setMaxResults(pageSize);
         List<BhrAca1095bCovrdHist> result = q.list();
-        session.close();
+        
         return result;
 	}
 
@@ -75,7 +86,7 @@ public class EA1095Dao {
         q.setFirstResult(cPageNo*pageSize);  
         q.setMaxResults(pageSize);  
         List<BhrAca1095cCovrdHist> result = q.list();
-        session.close();
+        
         return result;
 	}
 
@@ -90,7 +101,7 @@ public class EA1095Dao {
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
         List<String> result = q.list();
-        session.close();
+        
 		return result;
 	}
 
@@ -101,7 +112,7 @@ public class EA1095Dao {
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year); 
         List<BhrAca1095cEmpHist> result = q.list();
-        session.close();
+        
         return result;
 	}
 
@@ -112,7 +123,7 @@ public class EA1095Dao {
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
         Integer result = ((Long) q.iterate().next()).intValue();
-        session.close();
+        
         return result;
 	}
 
@@ -123,7 +134,7 @@ public class EA1095Dao {
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
         Integer result = ((Long) q.iterate().next()).intValue();
-        session.close();
+        
         return result;
 	}
 }

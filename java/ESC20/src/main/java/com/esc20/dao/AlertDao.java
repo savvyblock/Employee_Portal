@@ -17,11 +17,11 @@ public class AlertDao {
     private SessionFactory sessionFactory;
     
     private Session getSession(){
-        return sessionFactory.openSession();
+        return sessionFactory.getCurrentSession();
     }
     
     public List<BeaAlert> getAlerts(String empNbr) {
-    	Session session = this.sessionFactory.getCurrentSession();
+    	Session session = this.getSession();
         String hql = "from BeaAlert where msgTo = :empNbr order by id desc" ;
         Query q = session.createQuery(hql);
         q.setParameter("empNbr", empNbr);
@@ -41,7 +41,7 @@ public class AlertDao {
     }
 
     public List<BeaAlert> getTop5UnreadAlerts(String empNbr) {
-    	Session session = this.sessionFactory.getCurrentSession();
+    	Session session = this.getSession();
         String hql = "from BeaAlert where msgTo = :empNbr and status = 'UR' order by id desc" ;
         Query q = session.createQuery(hql);
         q.setParameter("empNbr", empNbr);
@@ -54,7 +54,7 @@ public class AlertDao {
     }
 
     public List<BeaAlert> getUnreadAlerts(String empNbr) {
-    	Session session = this.sessionFactory.getCurrentSession();
+    	Session session = this.getSession();
         String hql = "from BeaAlert where msgTo = :empNbr and status = 'UR' order by id desc" ;
         Query q = session.createQuery(hql);
         q.setParameter("empNbr", empNbr);
@@ -66,7 +66,7 @@ public class AlertDao {
     }
     
 	public void createAlert(String empNbr, String apprvrEmpNbr, String message) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getSession();
 		BeaAlert alert = new BeaAlert();
 		alert.setMsgFrom(empNbr);
 		alert.setMsgTo(apprvrEmpNbr);
@@ -77,7 +77,7 @@ public class AlertDao {
 	}
 	
 	public void markRead(Integer id) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getSession();
 		BeaAlert alert = (BeaAlert) session.get(BeaAlert.class, id);
 		alert.setStatus("R");
 		session.update(alert);
@@ -85,7 +85,7 @@ public class AlertDao {
 	}
 
 	public void deleteAlert(String id) {
-		Session session = this.sessionFactory.getCurrentSession();
+		Session session = this.getSession();
 		BeaAlert alert = (BeaAlert) session.get(BeaAlert.class, Long.parseLong(id));
 		session.delete(alert);
 		session.flush();

@@ -24,7 +24,7 @@ public class CurrentPayInformationDao {
 	private SessionFactory sessionFactory;
 
 	private Session getSession() {
-		return sessionFactory.openSession();
+		return sessionFactory.getCurrentSession();
 	}
 
 	public List<CurrentPayInformation> getJob(String employeeNumber) {
@@ -63,7 +63,7 @@ public class CurrentPayInformationDao {
 					item[8], item[9], item[10], item[11], item[12]);
 			result.add(info);
 		}
-		session.close();
+		
 		return result;
 	}
 
@@ -92,7 +92,7 @@ public class CurrentPayInformationDao {
 			temp = new Stipend(item[0], item[1], item[2], item[3], item[4], item[5], item[6]);
 			result.add(temp);
 		}
-		session.close();
+		
 		return result;
 	}
 
@@ -123,7 +123,7 @@ public class CurrentPayInformationDao {
 			temp = new Account(item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7]);
 			result.add(temp);
 		}
-		session.close();
+		
 		return result;
 	}
 
@@ -149,7 +149,7 @@ public class CurrentPayInformationDao {
 
 		sql.append(" AND deg.id.schYr = opt.peimsCdYr");
 		EmployeeInfo temp = new EmployeeInfo(item[0], item[1], item[2], item[3], item[4], item[5]);
-		session.close();
+		
 		return temp;
 	}
 
@@ -159,7 +159,7 @@ public class CurrentPayInformationDao {
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("empNbr", empNbr);
 		String result = ((Character) q.uniqueResult()).toString().trim();
-		session.close();
+		
 		return result;
 	}
 
@@ -177,7 +177,7 @@ public class CurrentPayInformationDao {
 		q.setParameter("frequency", frequency.getCode().charAt(0));
 		Object[] res = (Object[]) q.uniqueResult();
 		PayInfo payinfo = new PayInfo(res[0], res[1]);
-		session.close();
+		
 		return payinfo;
 	}
 
@@ -194,7 +194,7 @@ public class CurrentPayInformationDao {
 		String frequency = ((Character) res[0]).toString();
 		String payCampus = (String) res[1];
 		result.put(Frequency.getFrequency(frequency), payCampus);
-		session.close();
+		
 		return result;
 	}
 }

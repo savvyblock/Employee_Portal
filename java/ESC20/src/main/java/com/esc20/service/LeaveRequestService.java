@@ -2,6 +2,7 @@ package com.esc20.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.esc20.model.BhrEmpLvXmital;
 import com.esc20.model.BhrPmisPosCtrl;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.LeaveBalance;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
 
@@ -155,17 +157,16 @@ public class LeaveRequestService {
 		return leaveRequestDao.getBeaEmpLvRqstById(id);
 	}
 
-	public List<BhrEmpLvXmital> getApprovedLeaves(String empNbr, String leaveType, String searchStart, String searchEnd,
+	public List<LeaveBalance> getApprovedLeaves(String empNbr, String leaveType, String searchStart, String searchEnd,
 			String freq) throws ParseException {
-		// TODO Auto-generated method stub
-		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
-		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
 		List<BhrEmpLvXmital> result = leaveRequestDao.getApprovedLeaves(empNbr, leaveType, searchStart, searchEnd,
 				freq);
+		List<LeaveBalance> balances = new ArrayList<LeaveBalance>();
+		LeaveBalance temp;
 		for (int i = 0; i < result.size(); i++) {
-			result.get(i).getId().setDtOfPay(sdf1.format(sdf2.parse(result.get(i).getId().getDtOfPay())));
-			result.get(i).setDtOfAbs(sdf1.format(sdf2.parse(result.get(i).getDtOfAbs())));
+			temp = new LeaveBalance(result.get(i));
+			balances.add(temp);
 		}
-		return result;
+		return balances;
 	}
 }
