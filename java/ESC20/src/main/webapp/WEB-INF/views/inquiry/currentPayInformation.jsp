@@ -292,7 +292,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 ${account.bankAccountNumber}
                                                         </td>
                                                         <td data-title="Deposit Amount" data-localize="currentPayTable.depAmt" data-localize-location="scope">
-                                                                <fmt:formatNumber value="${account.bankAccountAmount}" pattern="#,##0.00"/>
+                                                                <fmt:formatNumber value="${account.bankAccountAmount.amount}" pattern="#,##0.00"/> ${account.bankAccountAmount.currency}
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
