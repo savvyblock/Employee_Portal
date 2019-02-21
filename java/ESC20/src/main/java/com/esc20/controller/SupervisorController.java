@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -334,8 +336,11 @@ public class SupervisorController {
 		if (startDate != null && !("").equals(startDate)) {
 			start = sdf2.format(sdf1.parse(startDate));
 		}
+		Calendar cal = Calendar.getInstance();
 		if (endDate != null && !("").equals(endDate)) {
-			end = sdf2.format(sdf1.parse(endDate));
+			cal.setTime(sdf1.parse(endDate));
+			cal.add(Calendar.DATE, 1);
+			end = sdf2.format(cal.getTime());
 		}
 		List<AppLeaveRequest> leavesCalendar = this.supService.getLeaveDetailsForCalendar(demo.getEmpNbr(), freq, start,
 				end);
@@ -462,18 +467,20 @@ public class SupervisorController {
 		request.setPayFreq(freq.charAt(0));
 		request.setLvTyp(leaveType);
 		request.setAbsRsn(absenseReason);
-		request.setDatetimeFrom(formatter.parse(LeaveStartDate + " " + startTimeValue));
-		request.setDatetimeTo(formatter.parse(LeaveEndDate + " " + endTimeValue));
+		request.setDatetimeSubmitted(DateUtil.getUTCTime());
+		request.setDatetimeFrom(DateUtil.getUTCTime(formatter.parse(LeaveStartDate + " " + startTimeValue)));
+		request.setDatetimeTo(DateUtil.getUTCTime(formatter.parse(LeaveEndDate + " " + endTimeValue)));
 		request.setLvUnitsDaily(BigDecimal.valueOf(Double.parseDouble(lvUnitsDaily)));
 		request.setLvUnitsUsed(BigDecimal.valueOf(Double.parseDouble(lvUnitsUsed)));
 		request.setDtOfPay(request.getDtOfPay() == null ? "" : request.getDtOfPay());
+		request.setStatusCd('P');
 		BeaEmpLvRqst res = this.service.saveLeaveRequest(request, (leaveId != null && !("").equals(leaveId)));
 		// Create Comments
 		if (Remarks != null && !("").equals(Remarks)) {
 			BeaEmpLvComments comments = new BeaEmpLvComments();
 			comments.setBeaEmpLvRqst(res);
 			comments.setLvCommentEmpNbr(empNbr);
-			comments.setLvCommentDatetime(new Date());
+			comments.setLvCommentDatetime(DateUtil.getUTCTime());
 			comments.setLvComment(Remarks);
 			comments.setLvCommentTyp('C');
 			this.service.saveLvComments(comments);
@@ -482,13 +489,15 @@ public class SupervisorController {
 		if ((leaveId == null || ("").equals(leaveId))) {
 			LeaveParameters params = this.service.getLeaveParameters();
 			String supervisorEmpNbr = this.service.getFirstLineSupervisor(empNbr, params.isUsePMIS());
-			BeaEmpLvWorkflow flow = new BeaEmpLvWorkflow();
-			flow.setBeaEmpLvRqst(res);
-			flow.setInsertDatetime(new Date());
-			flow.setSeqNum(1);
-			flow.setApprvrEmpNbr(supervisorEmpNbr == null ? "" : supervisorEmpNbr);
-			flow.setTmpApprvrExpDatetime(null);
-			this.service.saveLvWorkflow(flow, demo);
+			if (!StringUtils.isEmpty(supervisorEmpNbr)) {
+				BeaEmpLvWorkflow flow = new BeaEmpLvWorkflow();
+				flow.setBeaEmpLvRqst(res);
+				flow.setInsertDatetime(DateUtil.getUTCTime());
+				flow.setSeqNum(1);
+				flow.setApprvrEmpNbr(supervisorEmpNbr == null ? "" : supervisorEmpNbr);
+				flow.setTmpApprvrExpDatetime(null);
+				this.service.saveLvWorkflow(flow, demo);
+			}
 		}
 		mav = this.getLeaveOverviewList(req, empNbr, null, freq, startDate, endDate, false);
 		mav.addObject("chain", levels);
