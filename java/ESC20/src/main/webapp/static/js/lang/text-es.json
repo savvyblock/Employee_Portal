@@ -314,7 +314,8 @@
 		"leaveUsed":"Leave Used",
 		"leaveEarned":"Leave Earned",
 		"status":"Status",
-		"submitForApproval":"Submit for Approval"
+		"submitForApproval":"Submit for Approval",
+		"reSubmitForApproval":"Resubmit for Approval"
 	},
 	"leaveRequest":{
 		"sno":"Sno.",
