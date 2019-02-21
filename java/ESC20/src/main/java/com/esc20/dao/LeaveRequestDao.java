@@ -231,9 +231,7 @@ public class LeaveRequestDao {
 		String sql = "	select TA.tmpApprvrEmpNbr from BeaEmpLvTmpApprovers TA where TA.spvsrEmpNbr=:employeeNumber AND TA.datetimeFrom <= GETDATE() AND GETDATE() <= TA.datetimeTo";
 		Query q = session.createQuery(sql);
 		q.setParameter("employeeNumber", directReportEmployeeNumber);
-		Object[] res = (Object[]) q.uniqueResult();
-		
-		String tmpApprover = res == null ? null : (String) res[1];
+		String tmpApprover = (String) q.uniqueResult();
 		return tmpApprover;
 	}
 

@@ -22,6 +22,7 @@ import com.esc20.model.BhrPmisPosCtrl;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveRequestComment;
+import com.esc20.util.DateUtil;
 
 
 @Service
@@ -131,7 +132,7 @@ public class SupervisorService {
         BeaEmpLvComments comments = new BeaEmpLvComments();
         comments.setBeaEmpLvRqst(rqst);
         comments.setLvCommentEmpNbr(demo.getEmpNbr());
-        comments.setLvCommentDatetime(new Date());
+        comments.setLvCommentDatetime(DateUtil.getUTCTime());
         comments.setLvComment(approverComment==null?"":approverComment);
         comments.setLvCommentTyp('A');
         this.leaveRequestDao.saveLvComments(comments);
@@ -152,7 +153,7 @@ public class SupervisorService {
         BeaEmpLvComments comments = new BeaEmpLvComments();
         comments.setBeaEmpLvRqst(rqst);
         comments.setLvCommentEmpNbr(demo.getEmpNbr());
-        comments.setLvCommentDatetime(new Date());
+        comments.setLvCommentDatetime(DateUtil.getUTCTime());
         comments.setLvComment(disapproveComment==null?"":disapproveComment);
         comments.setLvCommentTyp('D');
         this.leaveRequestDao.saveLvComments(comments);
