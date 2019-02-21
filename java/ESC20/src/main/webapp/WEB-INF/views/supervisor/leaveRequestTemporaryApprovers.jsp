@@ -327,7 +327,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 console.log("approverEmptyJson"+approverEmptyJson)
                 if(approverEmptyJson&&approverEmptyJson.length>0){
                     $("#errorComplete").show()
-                }else{
+                }else{   
                     console.log(approverJson)
                     console.log(addedApprover)
                     addedApprover.forEach((item,index)=>{
