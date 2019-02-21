@@ -206,11 +206,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         type="button"
                                         class="btn btn-secondary"
                                         title=""
+                                        id="reset"
                                         data-localize="label.reset"
                                     >
                                     </button>
                                 </div>
                             </form>
+                             <form hidden="hidden" action="leaveRequestTemporaryApprovers" id="resetForm" method="POST">
+                             </form>
                         </div>
                     </div>
                 </section>
@@ -314,7 +317,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 initLocalize(initialLocaleCode)//Initialize multilingual function
                 initDateControl()
             })
-        
+	        $("#reset").click(function(){
+		        
+		        $("#resetForm")[0].submit();
+	        });
             $("#saveSet").click(function(){
                 initDateControl()
                 $("#chainString").val(chainString)

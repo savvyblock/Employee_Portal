@@ -314,8 +314,14 @@
 							console.log("list",data);
 							var list = "<ul>";
 							var items = data.list;
+							var content
 							for(var s in items){
-								list+= "<li>"+items[s].msgContent+"</li>"
+								content = items[s].msgContent+"";
+								console.log(content);
+								if(content.length>=20){
+									content = content.substring(0,80)+'...';
+								}
+								list+= "<li>"+content+"</li>";
 							}
 							list+="</ul>";
 							$("#top5Alert").html(list);

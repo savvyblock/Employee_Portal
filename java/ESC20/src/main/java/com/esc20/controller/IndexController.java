@@ -229,12 +229,12 @@ public class IndexController {
         	mav.addObject("newUser", searchUser);
     	}else {
     		BhrEmpDemo bed= this.indexService.retrieveEmployee(searchUser);
-    		BeaEmail emailRequest = this.indexService.getBeaEmail(bed);
         	if(bed == null) {
         		mav.setViewName("searchUser");
             	mav.addObject("isSuccess", "false");
             	mav.addObject("newUser", searchUser);
         	}else {
+        		BeaEmail emailRequest = this.indexService.getBeaEmail(bed);
         		searchUser.setNameF(bed.getNameF());
         		searchUser.setNameL(bed.getNameL());
         		mav.setViewName("createNewUser");
