@@ -1261,7 +1261,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="icheck"
                                                     id="primaryStatic_${count.index}"
                                                     type="radio"
-                                                    name="primaryAccountStatic"
+                                                    name="primaryAccount"
                                                     title="" 
                                                     data-localize="accessHint.primaryAccountCheckbox"
                                                     disabled
@@ -1660,7 +1660,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             class="flex"
                         >
                             <div class="form-group">
-                                <label class="form-title" for="SearchStartDate"
+                                <label class="form-title" for="codeCriteria.searchCode"
                                     ><span data-localize="profile.routingNumber"></span>:</label
                                 >
                                 <div class="button-group">
@@ -1674,7 +1674,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title" for="searchDescription"
+                                <label class="form-title" for="codeCriteria.searchDescription"
                                     ><span data-localize="profile.bankName"></span>:</label
                                 >
                                 <div class="button-group">
