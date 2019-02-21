@@ -99,7 +99,6 @@ $(document).ready(function() {
 
                           let start = startDate + " " + startTime
                           let end = endDate + " " +endTime
-
                           // $("#leaveIdStatic").attr("value", leaveRequest.id+"");
                           $("#disIdStatic").attr("value", leaveRequest.id+"");
                           $("#appIdStatic").attr("value", leaveRequest.id+"");
@@ -138,7 +137,7 @@ $(document).ready(function() {
         })
         function changeMMDDFormat(date){
           let dateArry = date.split("-")
-          return dateArry[1]+"/"+dateArry[2]+"/"+dateArry[0]
+          return dateArry[0]
         }
         function changeFormatTimeAm(value){
           let array = value.split(/[,: ]/);

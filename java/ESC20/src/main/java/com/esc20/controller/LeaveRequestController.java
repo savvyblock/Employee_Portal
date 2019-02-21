@@ -252,10 +252,15 @@ public class LeaveRequestController {
 		request.setDatetimeSubmitted(new Date());
 		request.setLvUnitsDaily(BigDecimal.valueOf(Double.parseDouble(lvUnitsDaily)));
 		request.setLvUnitsUsed(BigDecimal.valueOf(Double.parseDouble(lvUnitsUsed)));
+		Boolean isDisapproveUpdate = false;
 		if (leaveId == null || ("").equals(leaveId)) {
 			request.setStatusCd('P');
 			request.setDtOfPay("");
 		} else {
+			if('D'==request.getStatusCd()) {
+				request.setStatusCd('P');
+				isDisapproveUpdate = true;
+			}
 			request.setDtOfPay(request.getDtOfPay() == null ? "" : request.getDtOfPay());
 		}
 		BeaEmpLvRqst res = this.service.saveLeaveRequest(request, (leaveId != null && !("").equals(leaveId)));
@@ -269,8 +274,8 @@ public class LeaveRequestController {
 			comments.setLvCommentTyp('C');
 			this.service.saveLvComments(comments);
 		}
-		// Create Workflow upon first creation
-		if ((leaveId == null || ("").equals(leaveId))) {
+		// Create Workflow upon first creation or modify disapproved leave
+		if ((leaveId == null || ("").equals(leaveId)) || ((leaveId != null && !("").equals(leaveId) && isDisapproveUpdate))) {
 			LeaveParameters params = this.service.getLeaveParameters();
 			String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
 			if (!StringUtils.isEmpty(supervisorEmpNbr)) {

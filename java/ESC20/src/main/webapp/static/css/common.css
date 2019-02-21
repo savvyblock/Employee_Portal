@@ -627,6 +627,14 @@ input:focus {
   margin: 2px;
 }
 
+.table.leftTdTable tbody td {
+  text-align: left;
+}
+
+.table.leftTdTable tbody td:first-child {
+  text-align: left;
+}
+
 @media print {
   .table th, .table td {
     padding: 5px;

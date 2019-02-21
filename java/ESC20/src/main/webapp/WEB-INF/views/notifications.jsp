@@ -22,8 +22,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	                               <i class="fa fa-envelope left-fa"></i> 
                                    <div class="msg">${notification.msgContent}</div>
                                    <c:if test="${notification.status == 'UR' }">
-                                    <button class="note-btn" onclick="markRead('${notification.id}')" data-localize="label.markAsRead"
-                                    data-localize-location="title">
+                                    <button class="note-btn" onclick="markRead('${notification.id}')">
                                     <span class="hide" data-localize="accessHint.markAsRead"></span>
                                             <i class="fa fa-eye"></i>
                                     </button>
