@@ -35,7 +35,7 @@
         </div>
       </li>
       <li class="nav-item">
-      <a class="nav-link" href="/<%=request.getContextPath().split("/")[1]%>/profile" title="" data-localize="nav.myAccount" data-localize-location="title">
+      <a class="nav-link" href="/<%=request.getContextPath().split("/")[1]%>/profile">
         <span class="hide" data-localize="accessHint.goMyAccount"></span>
         <i class="fa fa-user"></i>
       </a>

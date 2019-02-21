@@ -22,7 +22,7 @@
             </div>
               <div class="modal-body">
                   <input type="hidden" name="leaveId" id="leaveId" title="" data-localize="accessHint.id" />
-                  <table class="table border-table no-thead">
+                  <table class="table border-table no-thead leftTdTable">
                     <tbody>
                       <tr>
                         <td><b data-localize="label.employee"></b></td>
