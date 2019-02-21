@@ -18,7 +18,7 @@ http://keith-wood.name/localisation.html
   };
   $.defaultLanguage = normaliseLang(navigator.languages && navigator.languages.length > 0 ? navigator.languages[0] : navigator.language || navigator.userLanguage);
   $.localize = function(pkg, options) {
-    var defaultCallback, deferred, fileExtension, intermediateLangData, jsonCall, lang, loadLanguage, localizeElement, localizeForSpecialKeys, localizeImageElement, localizeInputElement, localizeOptgroupElement, notifyDelegateLanguageLoaded, regexify, setAttrFromValueForKey, setTextFromValueForKey, valueForKey, wrappedSet;
+    var defaultCallback, deferred, fileExtension, intermediateLangData, jsonCall, lang, loadLanguage, localizeElement,localizeTextElement,localizeAttrElement, localizeForSpecialKeys, localizeImageElement, localizeInputElement, localizeOptgroupElement, notifyDelegateLanguageLoaded, regexify, setAttrFromValueForKey, setTextFromValueForKey, valueForKey, wrappedSet;
     if (options == null) {
       options = {};
     }
@@ -105,55 +105,81 @@ http://keith-wood.name/localisation.html
         }
       });
     };
+    /****
+    // elem  ----HTML tag
+    // key---- value of data-localize
+    // value--- words in JSON file
+     ****/
+
     localizeElement = function(elem, key, value) {
+      let locationAttr = elem.attr("data-localize-location")
+      let locationArry = []
+      if(locationAttr && locationAttr!=''){
+        locationArry = elem.attr("data-localize-location").split(',');
+      }
       if (elem.is('input')) {
-        localizeInputElement(elem, key, value);
+        localizeInputElement(elem, locationArry, value);
       } else if (elem.is('select')) {
-        localizeInputElement(elem, key, value);
+        localizeInputElement(elem, locationArry, value);
       } else if (elem.is('textarea')) {
-        localizeInputElement(elem, key, value);
+        localizeInputElement(elem, locationArry, value);
       } else if (elem.is('img')) {
-        localizeImageElement(elem, key, value);
-      } else if (elem.is('optgroup')) {
-        localizeOptgroupElement(elem, key, value);
-      } else if(elem.is('td')&&!elem.hasClass("td-title")){
-        localizeTdElement(elem, key, value)
+        localizeImageElement(elem, locationArry, value);
+      }else if(elem.is('td')&&!elem.hasClass("td-title")){
+        localizeTdElement(elem, locationArry, value)
       }else if (!$.isPlainObject(value)) {
-        let location = elem.attr("data-localize-location");
-        localizeAttrElement(elem,location,value)
+        localizeTextElement(elem,locationArry,value)
       }
       if ($.isPlainObject(value)) {
         return localizeForSpecialKeys(elem, value);
       }
     };
-    localizeAttrElement = function(elem,location,value){
+    localizeTextElement = function(elem,locationArry,value){
+      localizeAttrElement(elem,locationArry,value)
+      elem.html(value);
+    };
+
+    localizeInputElement = function(elem, locationArry, value) {
+      localizeAttrElement(elem,locationArry,value)
+      // return elem.val(val);
+    };
+
+    localizeImageElement = function(elem, locationArry, value) {
+      localizeAttrElement(elem,locationArry,value)
+    };
+    
+    localizeTdElement = function(elem, locationArry, value) {
+      localizeAttrElement(elem,locationArry,value)
+    };
+
+    localizeAttrElement = function(elem,locationArry,value){
+      let length = locationArry.length;
+      for(let i=0;i<length;i++){
+        if(locationArry[i] == 'text'){
+          elem.val(value);
+          elem.html(value);
+        }else{
+          elem.attr(locationArry[i], value);
+        }
+      }
       if(elem.is("[placeholder]")){
         elem.attr("placeholder", value);
       }
       if(elem.is("[title]")){
         elem.attr("title", value);
       }
-      if(location&&location!=''){
-        setAttrFromValueForKey(elem, location, value);
-      }else{
-        elem.html(value);
+      if(elem.is("[data-title]")){
+        elem.attr("title", value);
       }
-    };
-    localizeInputElement = function(elem, key, value) {
-      var val;
-      val = $.isPlainObject(value) ? value.value : value;
-      if (elem.is("[placeholder]")||elem.is("[title]")) {
-        if(elem.is("[placeholder]")){
-          elem.attr("placeholder", val);
-        }
-        if(elem.is("[title]")){
-          elem.attr("title", val);
-        }
-        return
-      }else {
-        return elem.val(val);
+      if(elem.is("[scope]")){
+        elem.attr("scope", value);
       }
-    };
+      if(elem.is("[alt]")){
+        elem.attr("alt", value);
+      }
+    }
+
+    
     localizeForSpecialKeys = function(elem, value) {
       setAttrFromValueForKey(elem, "title", value);
       setAttrFromValueForKey(elem, "href", value);
@@ -162,17 +188,8 @@ http://keith-wood.name/localisation.html
     localizeOptgroupElement = function(elem, key, value) {
       return elem.attr("label", value);
     };
-    localizeImageElement = function(elem, key, value) {
-      return  setAttrFromValueForKey(elem, "alt", value);
-      // setAttrFromValueForKey(elem, "src", value);
-    };
-    localizeTdElement = function(elem, key, value) {
-      let location = elem.attr("data-localize-location");
-      if(location&&location!=''){
-        setAttrFromValueForKey(elem, location, value);
-      }
-      return  setAttrFromValueForKey(elem, "data-title", value);
-    };
+    
+    
     
     valueForKey = function(key, data) {
       var keys, value, _i, _len;
