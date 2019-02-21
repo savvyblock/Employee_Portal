@@ -180,8 +180,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <button
                                                     type="button"
                                                     class="a-btn add-new-row"
-                                                    data-localize="label.add"
-                                                    data-localize-location="title"
                                                 >
                                                     <i class="fa fa-plus"></i>
                                                     <span data-localize="label.add"></span>

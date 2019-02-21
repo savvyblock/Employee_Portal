@@ -471,6 +471,5 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         function submitCalendarForm(){
             $("#selectCalendar")[0].submit()
         }
-        
     </script>
 </html>

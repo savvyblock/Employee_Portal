@@ -447,6 +447,7 @@ input {
             }
         }
     }
+   
     &.noNumTable{
         tbody{
             td{
@@ -540,6 +541,16 @@ input {
     .btn {
         min-width: 55px;
         margin: 2px;
+    }
+    &.leftTdTable{
+        tbody{
+            td{
+                &:first-child{
+                    text-align: left;
+                }
+                text-align: left;
+            }
+        }
     }
     @media print {
         th,td{

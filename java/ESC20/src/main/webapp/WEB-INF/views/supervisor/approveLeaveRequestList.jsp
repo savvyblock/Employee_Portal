@@ -205,7 +205,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 //         let html = '<p>'+comments[i].detail+'</p>'
                 //         $("#commentLog").append(html)
                 // }
-                $("infoEmpName").html(leaveRequest.empNbr + ":" +leaveRequest.firstName+ ","+leaveRequest.firstName)
+                $("#infoEmpName").html(leaveRequest.empNbr + ":" +leaveRequest.firstName+ ","+leaveRequest.lastName)
                 $("#infoDetail").html("")
                 let infoDetail = leaveRequest.infos
                 for(let i=0;i<infoDetail.length;i++){

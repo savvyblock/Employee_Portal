@@ -22,7 +22,7 @@
             </div>
               <div class="modal-body">
                   <input type="hidden" name="leaveId" id="leaveId" title="" data-localize="accessHint.id" />
-                  <table class="table border-table no-thead">
+                  <table class="table border-table no-thead leftTdTable">
                     <tbody>
                       <tr>
                         <td><b data-localize="label.employee"></b></td>
@@ -117,7 +117,7 @@
     </div>
     <!-- /.modal -->
 </div>
-<form hidden="hidden" action="" id="" method="POST">
+<form hidden="hidden" action="disapproveLeave" id="disapproveLeave" method="POST">
     <input type="text" name="id" id="disId"  title="" data-localize="accessHint.id">
     <input type="text" name="chain" id="disChain"  title="" data-localize="accessHint.chain">
     <input type="text" name="comment" id="disComment"  title="" data-localize="accessHint.comment">

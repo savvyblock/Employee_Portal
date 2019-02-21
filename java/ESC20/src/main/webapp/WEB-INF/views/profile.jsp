@@ -1291,7 +1291,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             >${bank.code.description}</span
                                         >
                                         
-                                        <input type="hidden" id="codeNew_${count.index}" value="${bank.codeNew.code}"  title="" data-localize="accessHint.bankCodeNew"/>
+                                        <input type="hidden"  class="form-control bankcode"  id="codeNew_${count.index}" value="${bank.codeNew.code}"  title="" data-localize="accessHint.bankCodeNew"/>
                                         <input type="hidden" id="code_${count.index}" value="${bank.code.code}"  title="" data-localize="accessHint.bankCode"/>
                                         
                                         <div class="valueInput group-line">
@@ -1660,13 +1660,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             class="flex"
                         >
                             <div class="form-group">
-                                <label class="form-title" for="codeCriteria.searchCode"
+                                <label class="form-title" for="codeCriteriaSearchCode"
                                     ><span data-localize="profile.routingNumber"></span>:</label
                                 >
                                 <div class="button-group">
                                     <input
-                                        id="codeCriteria.searchCode"
-                                        name="codeCriteria.searchCode"
+                                        id="codeCriteriaSearchCode"
+                                        name="codeCriteriaSearchCode"
                                         class="form-control"
                                         type="text"
                                         value=""
@@ -1674,13 +1674,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title" for="codeCriteria.searchDescription"
+                                <label class="form-title" for="codeCriteriaSearchDescription"
                                     ><span data-localize="profile.bankName"></span>:</label
                                 >
                                 <div class="button-group">
                                     <input
-                                        id="codeCriteria.searchDescription"
-                                        name="codeCriteria.searchDescription"
+                                        id="codeCriteriaSearchDescription"
+                                        name="codeCriteriaSearchDescription"
                                         class="form-control"
                                         type="text"
                                         value=""
@@ -1906,7 +1906,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     	 var res = result.result;
                     	 for (var p in res) {
                     		 var bankTr= "<tr><td data-localize='profile.routingNumber' data-localize-location='scope'>";
-                    		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].transitRoute+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
+                    		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].bankCd+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
                     		 bankTr = bankTr + " <td data-localize='profile.bankName' data-localize-location='scope'>"+res[p].bankName+"</td> </tr>";
                     		 $("#bankTable").append(bankTr);
                     	 }
@@ -1915,16 +1915,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             bankInputName = $(that)
                                 .parent()
                                 .find('.form-control.name');
+                    	    bankInputBankCode = $(that)
+                            .parent()
+                            .find('.form-control.bankcode');
                             bankInputCode = $(that)
                                 .parent()
                                 .find('.form-control.code');
                             
                             $('.bankNumberBtn').click(function() {
-                                let number = $(this).val()
+                            	let number = $(this).text()
+                                let code = $(this).val()
                                 let name = $(this).attr('data-title')
                                 console.log(number)
                                 console.log(name)
+                                console.log(code)
                                 bankInputName.val(name)
+                                bankInputBankCode.val(code)
                                 bankInputCode.val(number)
                                 $('#selectBankModal').modal('hide')
                             })
@@ -1945,21 +1951,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             	};
             	
             	
-            	var searchCode = $('#codeCriteria.searchCode').val();
-				var searchDescription = $('#codeCriteria.searchDescription').val();
+            	var searchCode = $('#codeCriteriaSearchCode').val();
+				var searchDescription = $('#codeCriteriaSearchDescription').val();
             	
             	var criteria ={
             			  "searchCode":searchCode,
             			  "searchDescription":searchDescription
             	}
             	
-            	var data = [page,criteria];
+            	var searchCriteria = {"page":page,"criteria":criteria};
                 let that = this
             	$.ajax({
                      type: "POST",
                      dataType: "json",
                      url: "searchBanks" ,
-                     data:JSON.stringify(data),
+                     data:JSON.stringify(searchCriteria),
                      contentType: 'application/json;charset=UTF-8',
                      success: function (result) {
                     	 console.log(result);
@@ -1976,16 +1982,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             bankInputName = $(that)
                                 .parent()
                                 .find('.form-control.name');
+                            bankInputBankCode = $(that)
+                            .parent()
+                            .find('.form-control.bankcode');
                             bankInputCode = $(that)
                                 .parent()
                                 .find('.form-control.code');
                             
                             $('.bankNumberBtn').click(function() {
-                                let number = $(this).val()
+                                let number = $(this).text()
+                                let code = $(this).val()
                                 let name = $(this).attr('data-title')
                                 console.log(number)
                                 console.log(name)
+                                console.log(code)
                                 bankInputName.val(name)
+                                bankInputBankCode.val(code)
                                 bankInputCode.val(number)
                                 $('#selectBankModal').modal('hide')
                             })
