@@ -275,10 +275,15 @@ public class SupervisorController {
 		BhrEmpDemo root = demo;
 		boolean supervisorsOnly = true;
 		boolean excludeTempApprovers = false;
+		boolean initialLoad = false;
 		if (empNbr == null || ("").equals(empNbr)) {
 			empNbr = demo.getEmpNbr();
+			initialLoad = true;
 		} else {
 			demo = this.indexService.getUserDetail(empNbr);
+		}
+		if(isChangeLevel != null && isChangeLevel) {
+			initialLoad = true;
 		}
 		JSONArray employeeDataJSON = new JSONArray();
 		if (chain != null && (isChangeLevel != null && !isChangeLevel)) {
@@ -325,10 +330,12 @@ public class SupervisorController {
 				employeeDataJSON.add(directReport.get(i).toJSON());
 			}
 		}
-
-		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
-		if (freq == null || ("").equals(freq))
-			freq = availableFreqs.get(0).getCode();
+		List<Code> availableFreqs = new ArrayList<Code>();
+		if(!initialLoad) {
+			availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
+			if (freq == null || ("").equals(freq))
+				freq = availableFreqs.get(0).getCode();
+		}
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
 		String start = null;
@@ -354,11 +361,15 @@ public class SupervisorController {
 			requestModels.add(model);
 		}
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
-		List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
+		List<LeaveInfo> leaveInfo = new ArrayList<LeaveInfo>();
+		if(!initialLoad) 
+			leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
 		for (int i = 0; i < requestModels.size(); i++) {
 			calendar.add(requestModels.get(i).toJSON(leaveStatus, null));
-			if (requestModels.get(i).getEmpNbr().equals(demo.getEmpNbr()))
-				employee.add(requestModels.get(i).toJSON(leaveStatus, null));
+			if(!initialLoad) {
+				if (requestModels.get(i).getEmpNbr().equals(demo.getEmpNbr()))
+					employee.add(requestModels.get(i).toJSON(leaveStatus, null));
+			}
 		}
 		List<Code> absRsns = this.referenceService.getAbsRsns();
 		JSONArray absRsnsJson = new JSONArray();

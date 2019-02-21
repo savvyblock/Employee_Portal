@@ -48,11 +48,13 @@ import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Bank;
 import com.esc20.nonDBModels.BankRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.Criteria;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Money;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayInfo;
+import com.esc20.nonDBModels.SearchCriteria;
 import com.esc20.nonDBModels.Page;
 import com.esc20.nonDBModels.SearchUser;
 import com.esc20.service.BankService;
@@ -229,12 +231,12 @@ public class IndexController {
         	mav.addObject("newUser", searchUser);
     	}else {
     		BhrEmpDemo bed= this.indexService.retrieveEmployee(searchUser);
-    		BeaEmail emailRequest = this.indexService.getBeaEmail(bed);
         	if(bed == null) {
         		mav.setViewName("searchUser");
             	mav.addObject("isSuccess", "false");
             	mav.addObject("newUser", searchUser);
         	}else {
+        		BeaEmail emailRequest = this.indexService.getBeaEmail(bed);
         		searchUser.setNameF(bed.getNameF());
         		searchUser.setNameL(bed.getNameL());
         		mav.setViewName("createNewUser");
@@ -271,12 +273,11 @@ public class IndexController {
     
     @RequestMapping("searchBanks")
     @ResponseBody
-    public JSONObject searchBanks(HttpServletRequest req,@RequestBody Page page){
+    public JSONObject searchBanks(HttpServletRequest req,@RequestBody SearchCriteria searchCriteria){
     	
-    	Object data=req.getParameter("data");
     	
-    	Page p = new Page();
-    	p.setCurrentPage(1);
+    	Page p = searchCriteria.getPage();
+    	
     	p.setPerPageRows(10);
     	
     	List<BthrBankCodes> allbanks = bankService.getAllBanks();
@@ -284,7 +285,7 @@ public class IndexController {
     	p.setTotalRows(allbanks.size());
     	p.setTotalPages((int) Math.ceil(p.getTotalRows()/p.getPerPageRows()));
     	
-    	List<BthrBankCodes> banks = bankService.getAllBanks(p);
+    	List<BthrBankCodes> banks = bankService.getAllBanks(searchCriteria.getCriteria(), p);
     	JSONArray json = JSONArray.fromObject(banks);
 	    JSONObject result=new JSONObject();
 	    result.put("result", json);
