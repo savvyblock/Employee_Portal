@@ -325,7 +325,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $("#empNbrForm").val(empNbr)
                 $("#approverJson").val(JSON.stringify(approverJson))
                 let length = $(".approver_tr").length
-                if(noEmpty == length){
+                console.log("approverEmptyJson"+approverEmptyJson)
+                if(approverEmptyJson&&approverEmptyJson.length>0){
+                    $("#errorComplete").show()
+                }else{
                     console.log(approverJson)
                     console.log(addedApprover)
                     addedApprover.forEach((item,index)=>{
@@ -340,8 +343,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     console.log(approverJson)
                     $("#errorComplete").hide()
                     $("#saveTempApprovers")[0].submit()
-                }else{
-                    $("#errorComplete").show()
                 }
                 return
                 
@@ -353,6 +354,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 let empArry = $(this).val().split("-")
                 currentInputNbr = empArry[0]
                 verifyRepeat()
+                judgeContent()
             });
             $(".deleteApprover").click(function(){
                 let id = $(this).parents(".listTr").find(".empId").val()
@@ -371,7 +373,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             console.log(currentInputNbr)
             addedApprover.forEach((item,index)=>{
                 console.log("come in saved")
-            if(item.tmpApprvrEmpNbr == currentInputNbr){
+            if(item.tmpApprvrEmpNbr == currentInputNbr && thisTrIndex != 'no'){
                 console.log(item.tmpApprvrEmpNbr)
                 repeat++
             }
@@ -436,7 +438,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $(dom)
                 .parents('.approver_tr')
                 .removeClass("approver_tr").addClass("redTd")
-                thisTrIndex = thisTrIndex -1
+            let inputApproverLine = $('.approver_tr').length
+            thisTrIndex = thisTrIndex -1
+            if(!inputApproverLine||inputApproverLine<1){
+                thisTrIndex = 'no'
+            }
             judgeContent()
             verifyRepeat()
             
@@ -511,8 +517,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             
         var noEmpty = 0
         var approverJson=[]
+        var approverEmptyJson = []
+        
         function judgeContent(){
             approverJson=[]
+            approverEmptyJson = []
             noEmpty = 0
             let length = $(".approver_tr").length
             $(".approver_tr").each(function(index){
@@ -534,6 +543,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 }
                 if(obj && obj!=''){
                     approverJson.push(obj)
+                }
+                if((empNbr==''&&from==''&&to=='')||(empNbr!=''&&from!=''&&to!='')){
+                }else{
+                    approverEmptyJson.push(index)
                 }
                 
             })
