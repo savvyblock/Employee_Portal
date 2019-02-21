@@ -323,7 +323,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 initDateControl()
                 $("#chainString").val(chainString)
                 $("#empNbrForm").val(empNbr)
-                $("#approverJson").val(JSON.stringify(approverJson))
                 let length = $(".approver_tr").length
                 console.log("approverEmptyJson"+approverEmptyJson)
                 if(approverEmptyJson&&approverEmptyJson.length>0){
@@ -341,6 +340,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         approverJson.push(approver)
                     })
                     console.log(approverJson)
+                    $("#approverJson").val(JSON.stringify(approverJson))
                     $("#errorComplete").hide()
                     $("#saveTempApprovers")[0].submit()
                 }
