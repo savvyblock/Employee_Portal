@@ -198,12 +198,6 @@
       <artifactId>jcl-over-slf4j</artifactId>
       <version>${slf4j-version}</version>
     </dependency>
-    <!-- Mysql jdbc -->
-    <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.12</version>
-    </dependency>
     <!-- Sybase -->
     <dependency> 
       <groupId>SybaseConnector</groupId>

@@ -1256,11 +1256,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-title" data-localize="profile.primary"></div>
                                     <div class="profile-desc">
                                         <span class="haveValue">
-                                            <label for="primaryAccount">
+                                            <label for="primaryStatic_${count.index}">
                                                 <input
                                                     class="icheck"
-                                                    id="primary_0"
-                                                    type="checkbox"
+                                                    id="primaryStatic_${count.index}"
+                                                    type="radio"
                                                     name="primaryAccount"
                                                     title="" 
                                                     data-localize="accessHint.primaryAccountCheckbox"
@@ -1270,11 +1270,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </label>
                                         </span>
                                         <div class="form-group valueInput">
-                                            <label for="primaryAccount">
+                                            <label for="primary_${count.index}">
                                                 <input
-                                                    class="icheck"
-                                                    id="primary_1"
-                                                    type="checkbox"
+                                                    class="icheck icheckRadioBank"
+                                                    id="primary_${count.index}"
+                                                    type="radio"
                                                     title="" 
                                                     data-localize="accessHint.primaryAccountCheckbox"
                                                     name="primaryAccount"
@@ -1660,7 +1660,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             class="flex"
                         >
                             <div class="form-group">
-                                <label class="form-title" for="SearchStartDate"
+                                <label class="form-title" for="codeCriteria.searchCode"
                                     ><span data-localize="profile.routingNumber"></span>:</label
                                 >
                                 <div class="button-group">
@@ -1674,7 +1674,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title" for="searchDescription"
+                                <label class="form-title" for="codeCriteria.searchDescription"
                                     ><span data-localize="profile.bankName"></span>:</label
                                 >
                                 <div class="button-group">
@@ -1801,7 +1801,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 bankAccount02Validator()
             }
             bankAccountAddValidator()
-
+            $(".icheckRadioBank").on('ifChecked', function(event) {
+                let  indexBank = $(".icheckRadioBank").index(this);
+                $('.icheckRadioBank').each(function(index){
+                    if(index!=indexBank){
+                        $(this).iCheck('uncheck');
+                    }
+                })
+            })
             let bankInputName, bankInputCode
             $('.edit-btn').click(function() {
                 $('.addBankForm').hide()
