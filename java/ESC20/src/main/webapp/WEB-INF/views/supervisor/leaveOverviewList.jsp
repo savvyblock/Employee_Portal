@@ -132,7 +132,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             <th data-localize="approveRequest.leaveRequested"></th>
                                                             <th data-localize="approveRequest.commentLog"></th>
                                                             <th data-localize="approveRequest.status"></th>
-                                                            <th data-localize="approveRequest.supervisorAction"></th>
+                                                            <th><span class="hide" data-localize="approveRequest.supervisorAction"></span></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -205,6 +205,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <%@ include file="../modal/leaveListCalendarEdit.jsp"%>
         <%@ include file="../modal/eventModalStatic.jsp"%>
         <%@ include file="../commons/footer.jsp"%>
+        <%@ include file="../modal/deleteModal.jsp"%>
     </body>
     <script>
         var directReportEmployee = eval(${directReportEmployee});
@@ -244,6 +245,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $(".isChangeLevel").val(true)
                 $("#previousLevel")[0].submit()  
             })
+            $(".sureDelete").click(function(){
+					$("#deleteForm")[0].submit();
+			})
         })
         function changeLevel(){
                 let selectNum = $("#selectEmpNbr").val()
@@ -260,126 +264,130 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     $("#nextLevel").addClass("disabled").attr('disabled',"true");
                 }
             }
-            function showRequestForm() {
-                $('#leaveId').attr('value', '')
-                $("[name='Remarks']").text('')
-                $('#requestForm')[0].reset()
-                $('#requestForm')
-                    .data('bootstrapValidator')
-                    .destroy()
-                $('#requestForm').data('bootstrapValidator', null)
-                formValidator()
-                $('#cancelAdd').show()
-                        $('#deleteLeave').hide()
-                        $(".edit-title").hide();
-                $(".new-title").show();
-                $("#chainModal").val(chainString)
-                $("#requestForm").attr("action","updateLeaveFromLeaveOverview")
-   
+        function showRequestForm() {
+            $('#leaveId').attr('value', '')
+            $("[name='Remarks']").text('')
+            $('#requestForm')[0].reset()
+            $('#requestForm')
+                .data('bootstrapValidator')
+                .destroy()
+            $('#requestForm').data('bootstrapValidator', null)
+            formValidator()
+            $('#cancelAdd').show()
+            $('#deleteLeave').hide()
+            $(".edit-title").hide();
+            $(".new-title").show();
+            $(".firstSubmit").show();
+            $(".secondSubmit").hide();
+            $("#chainModal").val(chainString)
+            $("#requestForm").attr("action","updateLeaveFromLeaveOverview")
+
+        }
+        function changeFreq(){
+            let select = $("#freq").val()
+            $(".selectFreq").val()
+            // $("#changeFreqForm")[0].submit();
+        }
+        function changeEmployee(){
+            let selectNum = $("#selectEmpNbr").val()
+            $("#SearchStartDate").val("")
+            $("#SearchEndDate").val("")
+            $(".employeeNum").val(selectNum)
+            $(".isChangeLevel").val(false)
+            if(selectNum&&selectNum!=''){
+                $("#changeFreqForm")[0].submit()  
             }
-            function changeFreq(){
-                let select = $("#freq").val()
-                $(".selectFreq").val()
-				// $("#changeFreqForm")[0].submit();
-			}
-            function changeEmployee(){
-                let selectNum = $("#selectEmpNbr").val()
-                $("#SearchStartDate").val("")
-                $("#SearchEndDate").val("")
-                $(".employeeNum").val(selectNum)
-                $(".isChangeLevel").val(false)
-                if(selectNum&&selectNum!=''){
-                    $("#changeFreqForm")[0].submit()  
+            
+        }
+
+        function editLeave(id,leaveType,absenceReason,leaveStartDate,leaveEndDate,lvUnitsDaily,lvUnitsUsed){
+            $("#requestForm").attr("action","updateLeaveFromLeaveOverview")
+            let comments
+            leaveList.forEach(element => {
+                if(element.id == id){
+                    console.log(element)
+                    comments = element.comments
                 }
-                
+            });
+            $('#requestForm')
+                .data('bootstrapValidator')
+                .destroy()
+            $('#requestForm').data('bootstrapValidator', null)
+            formValidator()
+            let start_arry = leaveStartDate.split(" ")
+            let end_arry = leaveEndDate.split(" ")
+            let startTime = start_arry[1].split(":")
+            let endTime = end_arry[1].split(":")
+            console.log(startTime)
+            console.log(endTime)
+            let startH = parseInt(startTime[0])
+            let endH = parseInt(endTime[0])
+            let startAMOrPM,endAMOrPM;
+            if(startH>=12){
+                startAMOrPM = 'PM'
+                if(startH==12){
+                    startH = 12
+                }else{
+                    startH = startH - 12
+                }
+            }else{
+                startAMOrPM = 'AM'
+                startH = startH
+            }
+            if(endH>=12){
+                endAMOrPM = 'PM'
+                if(endH == 12){
+                    endH = 12
+                }else{
+                    endH = endH - 12
+                }
+            }else{
+                endAMOrPM = 'AM'
+                endH = endH
             }
 
-            function editLeave(id,leaveType,absenceReason,leaveStartDate,leaveEndDate,lvUnitsDaily,lvUnitsUsed){
-                $("#requestForm").attr("action","updateLeaveFromLeaveOverview")
-                let comments
-                leaveList.forEach(element => {
-                    if(element.id == id){
-                        console.log(element)
-                        comments = element.comments
-                    }
-                });
-                $('#requestForm')
-                    .data('bootstrapValidator')
-                    .destroy()
-                $('#requestForm').data('bootstrapValidator', null)
-                formValidator()
-				let start_arry = leaveStartDate.split(" ")
-				let end_arry = leaveEndDate.split(" ")
-				let startTime = start_arry[1].split(":")
-				let endTime = end_arry[1].split(":")
-				console.log(startTime)
-				console.log(endTime)
-				let startH = parseInt(startTime[0])
-				let endH = parseInt(endTime[0])
-				let startAMOrPM,endAMOrPM;
-				if(startH>=12){
-					startAMOrPM = 'PM'
-					if(startH==12){
-						startH = 12
-					}else{
-						startH = startH - 12
-					}
-				}else{
-					startAMOrPM = 'AM'
-					startH = startH
-				}
-				if(endH>=12){
-					endAMOrPM = 'PM'
-					if(endH == 12){
-						endH = 12
-					}else{
-						endH = endH - 12
-					}
-				}else{
-					endAMOrPM = 'AM'
-					endH = endH
-				}
+            if(startH>=10){
+                $("#startHour").val(startH)
+            }else{
+                $("#startHour").val("0" + startH)
+            }
 
-				if(startH>=10){
-					$("#startHour").val(startH)
-				}else{
-					$("#startHour").val("0" + startH)
-				}
-
-				if(endH>=10){
-					$("#endHour").val(endH)
-				}else{
-					$("#endHour").val("0" + endH)
-				}
-				$("#startAmOrPm").val(startAMOrPM)
-				$("#endAmOrPm").val(endAMOrPM)
-				let startTimeValue = startH + ":" + startTime[1] + " " + startAMOrPM
-				let endTimeValue = endH + ":" + endTime[1] + " " + endAMOrPM
-				$("#startTimeValue").val(startTimeValue)
-				$("#endTimeValue").val(endTimeValue)
-				$("#startMinute").val(startTime[1])
-				$("#endMinute").val(endTime[1])
-				$("#cancelAdd").hide();
-				$("#deleteLeave").show();	
-				$(".edit-title").show();
-                $(".new-title").hide();
-                $("#commentList").html("")
-				for(let i=0;i<comments.length;i++){
-						let html = '<p>'+comments[i].detail+'</p>'
-						$("#commentList").append(html)
-				}
-				$("[name='leaveId']").attr("value", id+"");
-				$("[name='leaveType']").val(leaveType);
-				$("#absenceReason").val(absenceReason);
-				$("#startDate").val(changeMMDDFormat(start_arry[0]));
-				$("#endDate").val(changeMMDDFormat(end_arry[0]));
-				$("#leaveHoursDaily").val(lvUnitsDaily);
-				$("#totalRequested").val(lvUnitsUsed);
-			}
-		
+            if(endH>=10){
+                $("#endHour").val(endH)
+            }else{
+                $("#endHour").val("0" + endH)
+            }
+            $("#startAmOrPm").val(startAMOrPM)
+            $("#endAmOrPm").val(endAMOrPM)
+            let startTimeValue = startH + ":" + startTime[1] + " " + startAMOrPM
+            let endTimeValue = endH + ":" + endTime[1] + " " + endAMOrPM
+            $("#startTimeValue").val(startTimeValue)
+            $("#endTimeValue").val(endTimeValue)
+            $("#startMinute").val(startTime[1])
+            $("#endMinute").val(endTime[1])
+            $("#cancelAdd").hide();
+            $("#deleteLeave").show();	
+            $(".edit-title").show();
+            $(".new-title").hide();
+            $(".firstSubmit").hide();
+            $(".secondSubmit").show();
+            $("#commentList").html("")
+            for(let i=0;i<comments.length;i++){
+                    let html = '<p>'+comments[i].detail+'</p>'
+                    $("#commentList").append(html)
+            }
+            $("[name='leaveId']").attr("value", id+"");
+            $("[name='leaveType']").val(leaveType);
+            $("#absenceReason").val(absenceReason);
+            $("#startDate").val(changeMMDDFormat(start_arry[0]));
+            $("#endDate").val(changeMMDDFormat(end_arry[0]));
+            $("#leaveHoursDaily").val(lvUnitsDaily);
+            $("#totalRequested").val(lvUnitsUsed);
+        }
+    
 		function deleteLeave(id){
-			$("#deleteId").val(id);
-			$("#deleteForm").submit();
+            $("#deleteId").val(id);
+            $("#deleteModal").modal("show")
         }
         function changeMMDDFormat(date){
 			let dateArry = date.split("-")

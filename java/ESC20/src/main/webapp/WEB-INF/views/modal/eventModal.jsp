@@ -176,11 +176,16 @@
                     <%@ include file="../commons/leaveBalanceTable.jsp"%>
                 </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" 
+                        <button class="btn btn-primary firstSubmit save" 
                         type="button"
-                        id="save"
+                        id="saveCreate"
                         name="save" 
-                        data-localize="leaveBalance.submitForApproval">Submit for Approval</button>
+                        data-localize="leaveBalance.submitForApproval"></button>
+                        <button class="btn btn-primary secondSubmit save" 
+                        type="button"
+                        id="saveEdit"
+                        name="save" 
+                        data-localize="leaveBalance.reSubmitForApproval"></button>
                         <button
                             class="btn btn-secondary"
                             id="deleteLeave"
@@ -298,7 +303,7 @@
     function formValidator() {
         $('#requestForm').bootstrapValidator({
             live: 'enable',
-            submitButtons: '#save',
+            submitButtons: '.save',
             feedbackIcons: {
                 valid: 'fa fa-check ',
                 // invalid: 'fa fa-times',
@@ -536,7 +541,7 @@
             }
             return true;
         }
-         $('#save').on('click', function() {
+         $('.save').on('click', function() {
             var bootstrapValidator = $('#requestForm').data('bootstrapValidator')
             bootstrapValidator.validate()
             if (bootstrapValidator.isValid()) {
