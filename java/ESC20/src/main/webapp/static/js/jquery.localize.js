@@ -173,6 +173,7 @@ http://keith-wood.name/localisation.html
       }
       return  setAttrFromValueForKey(elem, "data-title", value);
     };
+    
     valueForKey = function(key, data) {
       var keys, value, _i, _len;
       keys = key.split(/\./);
