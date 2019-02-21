@@ -14,6 +14,7 @@ import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Bank;
 import com.esc20.nonDBModels.BankRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.Criteria;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.Page;
 
@@ -37,6 +38,10 @@ public class BankService {
 
 	public List<BthrBankCodes> getAllBanks(Page p) {
 		return bankDao.getAll(p);
+	}
+	
+	public List<BthrBankCodes> getAllBanks(Criteria criteria , Page p) {
+		return bankDao.getAll(criteria,p);
 	}
 
 	public List<BthrBankCodes> getBanksByEntity(BthrBankCodes bbc) {

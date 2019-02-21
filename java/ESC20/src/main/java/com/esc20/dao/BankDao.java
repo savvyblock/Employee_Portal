@@ -19,6 +19,7 @@ import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Bank;
 import com.esc20.nonDBModels.BankRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.Criteria;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Money;
 import com.esc20.nonDBModels.Page;
@@ -52,6 +53,31 @@ public class BankDao {
     	Session session = this.getSession();
         String hql = "from BthrBankCodes order by bankName ASC" ;
         Query q = session.createQuery(hql);
+        q.setFirstResult((p.getCurrentPage()-1)*p.getPerPageRows());
+        q.setMaxResults(p.getPerPageRows());
+        
+        List<BthrBankCodes> result = q.list();
+        if(result== null || result.isEmpty()) {
+        	return null;
+        }
+    	return result;
+    }
+    
+    public List<BthrBankCodes> getAll(Criteria c, Page p) {
+    	Session session = this.getSession();
+        String hql = "from BthrBankCodes where 1=1 ";
+        
+        if(c.getSearchCode() !=null && !c.getSearchCode().isEmpty()) {
+        	hql = hql + " and transitRoute='" + c.getSearchCode()+"'";
+        }
+        if(c.getSearchDescription() !=null && !c.getSearchDescription().isEmpty()) {
+        	hql = hql + " and bankName='" + c.getSearchDescription()+"'";
+        }
+        
+        hql = hql +" order by bankName ASC" ;
+        Query q = session.createQuery(hql);
+        
+        
         q.setFirstResult((p.getCurrentPage()-1)*p.getPerPageRows());
         q.setMaxResults(p.getPerPageRows());
         
