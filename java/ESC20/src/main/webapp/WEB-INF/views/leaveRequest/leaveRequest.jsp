@@ -258,6 +258,8 @@
 				$("#endMinute").val(endTime[1])
 				$("#cancelAdd").hide();
 				$("#deleteLeave").show();	
+				$(".firstSubmit").hide();
+				$(".secondSubmit").show();
 				$(".edit-title").show();
         $(".new-title").hide();
 				$("#commentList").html("")
@@ -298,7 +300,9 @@
 				$('#deleteLeave').hide()
 				$(".edit-title").hide();
 				$('.dateValidator').hide()
-        $(".new-title").show();
+				$(".new-title").show();
+				$(".firstSubmit").show();
+				$(".secondSubmit").hide();
         //Initializes the time control when edit event modal show
 				$("#commentList").html("")
     }

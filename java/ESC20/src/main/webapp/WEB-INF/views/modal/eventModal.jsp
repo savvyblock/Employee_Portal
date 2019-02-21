@@ -176,11 +176,16 @@
                     <%@ include file="../commons/leaveBalanceTable.jsp"%>
                 </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" 
+                        <button class="btn btn-primary firstSubmit" 
                         type="button"
                         id="save"
                         name="save" 
-                        data-localize="leaveBalance.submitForApproval">Submit for Approval</button>
+                        data-localize="leaveBalance.submitForApproval"></button>
+                        <button class="btn btn-primary secondSubmit" 
+                        type="button"
+                        id="save"
+                        name="save" 
+                        data-localize="leaveBalance.reSubmitForApproval"></button>
                         <button
                             class="btn btn-secondary"
                             id="deleteLeave"

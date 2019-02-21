@@ -270,9 +270,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $('#requestForm').data('bootstrapValidator', null)
                 formValidator()
                 $('#cancelAdd').show()
-                        $('#deleteLeave').hide()
-                        $(".edit-title").hide();
+                $('#deleteLeave').hide()
+                $(".edit-title").hide();
                 $(".new-title").show();
+                $(".firstSubmit").show();
+				$(".secondSubmit").hide();
                 $("#chainModal").val(chainString)
                 $("#requestForm").attr("action","updateLeaveFromLeaveOverview")
    
@@ -363,6 +365,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 				$("#deleteLeave").show();	
 				$(".edit-title").show();
                 $(".new-title").hide();
+                $(".firstSubmit").hide();
+				$(".secondSubmit").show();
                 $("#commentList").html("")
 				for(let i=0;i<comments.length;i++){
 						let html = '<p>'+comments[i].detail+'</p>'
