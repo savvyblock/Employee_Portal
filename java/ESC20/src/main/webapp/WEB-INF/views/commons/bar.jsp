@@ -202,18 +202,17 @@
     </div>
     <!-- /.sidebar -->
     <ul class="sidebar-btm">
-        <li><a href="/<%=request.getContextPath().split("/")[1]%>/profile" title="" data-localize="nav.myAccount" data-localize-location="title">
+        <li><a href="/<%=request.getContextPath().split("/")[1]%>/profile">
           <span class="hide" data-localize="accessHint.goMyAccount"></span>
           <i class="fa fa-user"></i>
         </a></li>
         <!-- <li><a href="/" title="Full Screen"><i class="fa fa-arrows-alt"></i></a></li> -->
         <li><a href="https://tcc-help.net/txeis/employeeaccess/doku.php/leave/supervisor/settemporaryapprovers?version=3.3" 
-          title=""  target="_blank"
-          data-localize="nav.help" data-localize-location="title">
+          title=""  target="_blank">
           <span class="hide" data-localize="accessHint.goHelp"></span>
           <i class="fa fa-question-circle"></i>
         </a></li>
-        <li><a href="/<%=request.getContextPath().split("/")[1]%>/logout" title="" data-localize="nav.logout" data-localize-location="title">
+        <li><a href="/<%=request.getContextPath().split("/")[1]%>/logout">
           <span class="hide" data-localize="accessHint.logout"></span>
           <i class="fa fa-sign-out "></i></a></li>
     </ul>
