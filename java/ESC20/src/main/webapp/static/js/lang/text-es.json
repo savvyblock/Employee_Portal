@@ -516,6 +516,7 @@
 		"noAction":"No Action",
 		"supervisorComment":"Supervisor Comment",
 		"directReportSupervisor":"Direct Report Supervisors",
+		"directReportEmployees":"Direct Report Employees",
 		"previousLevel":"Previous Level",
 		"nextLevel":"Next Level",
 		"supervisorHierarchy":"Supervisor Hierarchy",

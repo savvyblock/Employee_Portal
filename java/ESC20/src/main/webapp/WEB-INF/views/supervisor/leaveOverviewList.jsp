@@ -43,7 +43,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <input hidden="hidden" id="chain" name="chain" type="text" value="" title="" data-localize="accessHint.chain">
                                     <input hidden="hidden" type="text" name="isChangeLevel" class="isChangeLevel"  title="" data-localize="accessHint.whetherChangeLevel">
                                     <div class="form-group in-line flex-auto">
-                                        <label class="form-title" for="selectEmpNbr"><span data-localize="label.directReportSupervisor"></span>:</label>
+                                        <label class="form-title" for="selectEmpNbr"><span data-localize="label.directReportEmployees"></span>:</label>
                                         <select  class="form-control"name="selectEmpNbr" onchange="changeEmployee()"
                                             id="selectEmpNbr">
                                             <c:forEach var="item" items="${directReportEmployee}" varStatus="count">
@@ -119,7 +119,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </form>
 
-                                        <table class="table request-list responsive-table">
+                                        <table class="table request-list responsive-table" id="leaveOverviewList">
                                                 <thead>
                                                     <tr>
                                                             <!-- <th data-localize="approveRequest.employee"></th> -->
@@ -138,7 +138,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <tbody>
                                                     <c:if test="${isEmpty==false}">
                                                         <c:forEach var="item" items="${employeeList}" varStatus="status">
-                                                            <tr>
+                                                            <tr class="hide">
                                                                     <!-- <td data-localize="approveRequest.employee" data-localize-location="scope">
                                                                             ${item.firstName} ${item.lastName}
                                                                     </td> -->
@@ -217,15 +217,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $(".chain").val(chainString)
             let level = $("#level").val()
             console.log(initialLocaleCode)
-				$('#SearchStartDate').fdatepicker({
-					format:'mm/dd/yyyy',
-					language:initialLocaleCode
-				});
-				$('#SearchEndDate').fdatepicker({
-					format:'mm/dd/yyyy',
-					language:initialLocaleCode
-                });
-                setGlobal()
+            $('#SearchStartDate').fdatepicker({
+                format:'mm/dd/yyyy',
+                language:initialLocaleCode
+            });
+            $('#SearchEndDate').fdatepicker({
+                format:'mm/dd/yyyy',
+                language:initialLocaleCode
+            });
+            setGlobal()
             if(chain&&chain!=''&&chain.length>1){
                 $("#prevLevel").removeClass("disabled").removeAttr("disabled");
             }else{
@@ -245,10 +245,30 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $(".isChangeLevel").val(true)
                 $("#previousLevel")[0].submit()  
             })
+            initList()
+
             $(".sureDelete").click(function(){
 					$("#deleteForm")[0].submit();
 			})
         })
+        function initList(){
+            let employeeSelect = $("#selectEmpNbr").val()
+            console.log(employeeSelect)
+            if(!employeeSelect || employeeSelect==''){
+                let options = "<option values=''></option>"
+                $("#freq").html('options')
+                $("#new-btn").addClass("disabled").attr("disabled","disabled")
+                let noResult = `<tr>
+                                                            <td colspan="8">
+                                                                <span data-localize="label.noData"></span>
+                                                            </td>
+                                                        </tr>`
+                $("#leaveOverviewList tbody").html(noResult)
+                setGlobal()
+            }else{
+                $("#leaveOverviewList tbody tr").removeClass("hide")
+            }
+        }
         function changeLevel(){
                 let selectNum = $("#selectEmpNbr").val()
                 let numDirect = 0 ;
@@ -297,6 +317,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             if(selectNum&&selectNum!=''){
                 $("#changeFreqForm")[0].submit()  
             }
+            initList()
             
         }
 
