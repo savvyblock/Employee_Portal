@@ -117,7 +117,7 @@
     </div>
     <!-- /.modal -->
 </div>
-<form hidden="hidden" action="" id="" method="POST">
+<form hidden="hidden" action="disapproveLeave" id="disapproveLeave" method="POST">
     <input type="text" name="id" id="disId"  title="" data-localize="accessHint.id">
     <input type="text" name="chain" id="disChain"  title="" data-localize="accessHint.chain">
     <input type="text" name="comment" id="disComment"  title="" data-localize="accessHint.comment">
