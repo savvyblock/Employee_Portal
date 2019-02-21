@@ -25,11 +25,11 @@
                 <td data-localize="leaveBalance.available" data-localize-location="scope">${leave.availableBalanceLabel}</td>
                 <td data-localize="leaveBalance.units" data-localize-location="scope">
                         <c:if test="${leave.daysHrs == 'D'}">													
-                                <span data-localize="label.days"></span>
-                            </c:if> 
-                            <c:if test="${leave.daysHrs == 'H'}">													
-                                    <span data-localize="label.hours"></span>
-                            </c:if>
+                        	<span data-localize="label.days"></span>
+                        </c:if> 
+                        <c:if test="${leave.daysHrs == 'H'}">													
+                        	<span data-localize="label.hours"></span>
+                        </c:if>
                 </td>
             </tr>
         </c:forEach>

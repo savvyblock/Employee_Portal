@@ -138,7 +138,7 @@ $(document).ready(function() {
         })
         function changeMMDDFormat(date){
           let dateArry = date.split("-")
-          return dateArry[1]+"/"+dateArry[2]+"/"+dateArry[0]
+          return dateArry[0]
         }
         function changeFormatTimeAm(value){
           let array = value.split(/[,: ]/);

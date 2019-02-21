@@ -383,7 +383,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         }
         function changeMMDDFormat(date){
 			let dateArry = date.split("-")
-			return dateArry[1]+"/"+dateArry[2]+"/"+dateArry[0]
+			return dateArry[0]
 		}
     </script>
 </html>
