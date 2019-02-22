@@ -317,6 +317,21 @@ input:focus {
   padding-left: 0;
 }
 
+.form-group.inputDisabled {
+  position: relative;
+}
+
+.form-group.inputDisabled::after {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25px;
+  content: "";
+  display: block;
+}
+
 .form-title {
   font-size: 14px;
   color: #000;

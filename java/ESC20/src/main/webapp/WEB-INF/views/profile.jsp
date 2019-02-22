@@ -1249,7 +1249,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 							
 						<form
                             	class="profile-item border-0 bankAccountBlock"
-                            	id="bankAccountForm_${count.index}"
+                                id="bankAccountForm_${count.index}"
+                                method="POST"
                         		>
                             <div class="profile-left">
                                 <div class="profile-item-line form-line">
@@ -1291,11 +1292,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             >${bank.code.description}</span
                                         >
                                         
-                                        <input type="hidden"  class="form-control bankcode"  id="codeNew_${count.index}" value="${bank.codeNew.code}"  title="" data-localize="accessHint.bankCodeNew"/>
+                                        <input type="hidden"  class="form-control bankcode bankNewCode"  id="codeNew_${count.index}" value="${bank.codeNew.code}"  title="" data-localize="accessHint.bankCodeNew"/>
                                         <input type="hidden" id="code_${count.index}" value="${bank.code.code}"  title="" data-localize="accessHint.bankCode"/>
                                         
                                         <div class="valueInput group-line">
-                                            <div class="form-group">
+                                            <div class="form-group inputDisabled">
                                                 <input
                                                     class="form-control name"
                                                     type="text"
@@ -1303,11 +1304,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     title="" 
                                                     data-localize="accessHint.description"
                                                     value="${bank.codeNew.description}"
-                                                    disabled
                                                 />
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group inputDisabled">
                                                 <input
                                                     class="form-control code"
                                                     type="text"
@@ -1315,7 +1315,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     title="" 
                                                     data-localize="accessHint.bankCode"
                                                     value="${bank.codeNew.subCode}"
-                                                    disabled
                                                 />
                                             </div>
 
@@ -1401,24 +1400,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </div>
                             <div class="profile-btn">
-                                <div class="edit">
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary edit-btn" data-localize="label.edit"
-                                    >
-                                     
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary delete-btn" data-localize="label.delete"
-                                    >
-                                    </button>
-                                </div>
                                 <div class="saveOrCancel">
                                     <button
                                         type="button"
-                                        class="btn btn-primary save-btn" data-localize="label.update"
-                                        id="saveBank_01"
+                                        class="btn btn-primary save-btn saveUpdateBankBtn" data-localize="label.update"
+                                        id="saveBank_${count.index}"
                                         onclick="updateBank(${count.index})"
                                     >
                                      
@@ -1437,12 +1423,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         class="btn btn-secondary delete-btn"  data-localize="label.delete" onclick="deleteBankAmount(${count.index})"
                                     >
                                      
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
-                                    >
-                                    
                                     </button>
                                 </div>
                             </div>
@@ -1486,9 +1466,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	                        <input type="hidden" name="description" id="hiddendescription"   title="" data-localize="accessHint.bankName"/>
                         </form>
                             <form
-                                action=""
                                 class="profile-item border-0 activeEdit addBankForm"
                                 id="addBankAccountForm"
+                                method="POST"
                             >
                                 <div class="profile-left">
                                     <div class="profile-item-line form-line">
@@ -1504,7 +1484,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="saveBankDescription"
                                                         title="" data-localize="accessHint.bankName"
                                                         value=""
-                                                        disabled
                                                     />
                                                 </div>
 
@@ -1516,7 +1495,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                          id="saveBankCode"
                                                          title="" data-localize="accessHint.bankCode"
                                                         value=""
-                                                        disabled
                                                     />
                                                 </div>
 
@@ -1792,14 +1770,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             phoneValidator()
             w4InfoValidator()
             initSessionPws()
-            bank01 = $('#bankAccountForm_01').length
-            if (bank01 != 0) {
-                bankAccount01Validator()
-            }
-            bank02 = $('#bankAccountForm_02').length
-            if (bank02 != 0) {
-                bankAccount02Validator()
-            }
+            //edit
+            bankAccountValidator()
+            //add
             bankAccountAddValidator()
             $(".icheckRadioBank").on('ifChecked', function(event) {
                 let  indexBank = $(".icheckRadioBank").index(this);
@@ -1921,6 +1894,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             bankInputCode = $(that)
                                 .parent()
                                 .find('.form-control.code');
+                         bankInputNewCode = $(that)
+                                .parents(".profile-desc")
+                                .find('.bankNewCode');
                             
                             $('.bankNumberBtn').click(function() {
                             	let number = $(this).text()
@@ -1932,7 +1908,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 bankInputName.val(name)
                                 bankInputBankCode.val(code)
                                 bankInputCode.val(number)
+                                bankInputNewCode.val(code)
                                 $('#selectBankModal').modal('hide')
+                                bankInputName.change()
+                                bankInputCode.change()
                             })
                     	 
                      },
@@ -1999,6 +1978,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 bankInputBankCode.val(code)
                                 bankInputCode.val(number)
                                 $('#selectBankModal').modal('hide')
+                                bankInputName.change()
+                                bankInputCode.change()
                             })
                     	 
                      },
@@ -2079,14 +2060,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         }
         function updateBank(index){
         	 console.log("delete="+index)
-             
-             var freq = $('#freq').val();
+             var bootstrapValidator = $('#bankAccountForm_'+index).data('bootstrapValidator')
+            bootstrapValidator.validate()
+            console.log(bootstrapValidator.isValid())
+            if (bootstrapValidator.isValid()) {
+                var freq = $('#freq').val();
  	       	var code = $('#code_'+index).val();
  	       	var accountNumber = $('#accountNumber_'+index).text();
  	       	var accountType = $('#accountType_'+index).text();
  	       	var displayAmount = $('#displayAmount_'+index).text();
         	 
  	   		var codeNew = $('#codeNew_'+index).val();
+                console.log("codeNew" + codeNew)
 	       	var accountNumberNew = $('#accountNumberNew_'+index).val();
 	       	var accountTypeNew = $('#accountTypeNew_'+index).val();
 	       	var displayAmountNew = $('#displayAmountNew_'+index).val();
@@ -2101,8 +2086,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	       	 $('#hidden_accountTypeNew_update').val(accountTypeNew);
 	       	 $('#hidden_displayAmount_update').val(displayAmount);
 	       	 $('#hidden_displayAmountNew_update').val(displayAmountNew);
- 	       	 
  	       	 $('#updateBankHidden').submit();
+            }
+            
         }
         function undoBank(index){
              var freq = $('#freq').val();
@@ -2236,7 +2222,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'nameFNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             notEmpty: {
@@ -2245,7 +2231,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'nameLNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             notEmpty: {
@@ -2269,7 +2255,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'no': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             notEmpty: {
@@ -2293,7 +2279,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'driversLicNbrNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             stringLength: {
                                 max: 19,
@@ -2317,7 +2303,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'no': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             notEmpty: {
@@ -2340,7 +2326,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'emailNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             notEmpty: {
                                 message: 'validator.requiredField'
@@ -2351,7 +2337,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'hmEmailNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             emailAddress: {
                                 message: 'validator.pleaseEnterCorrectFormat'
@@ -2374,14 +2360,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'emerContactNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         stringLength: {
                                 max: 26,
                                 message: 'validator.maxLength26'
                             },
                     },
                     'emerPhoneAcNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             notEmpty: {
                                 message: 'validator.requiredField'
@@ -2393,7 +2379,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'emerPhoneNbrNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             notEmpty: {
@@ -2406,7 +2392,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'emerPhoneExtNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             regexp: {
                                 regexp: /^[\d]{0,4}$/,
@@ -2415,14 +2401,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'emerRelNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         stringLength: {
                                 max: 25,
                                 message: 'validator.maxLength25'
                             },
                     },
                     'emerNoteNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         stringLength: {
                                 max: 25,
                                 message: 'validator.maxLength25'
@@ -2444,7 +2430,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'addrNbrNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9]\d{0,7}$/,
@@ -2453,7 +2439,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'addrStrNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             stringLength: {
                                 max: 20,
@@ -2462,7 +2448,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'addrAptNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             stringLength: {
                                 max: 7,
@@ -2471,7 +2457,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'addrCityNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             stringLength: {
                                 max: 20,
@@ -2480,7 +2466,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'addrZipNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             notEmpty: {
                                 message: 'validator.requiredField'
@@ -2492,7 +2478,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'addrZip4New': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9][\d]{3}$/,
@@ -2515,7 +2501,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'smrAddrNbrNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9]\d{0,7}$/,
@@ -2524,7 +2510,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'smrAddrStrNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             stringLength: {
                                 max: 20,
@@ -2533,7 +2519,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'smrAddrAptNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             stringLength: {
                                 max: 7,
@@ -2542,7 +2528,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'smrAddrCityNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             stringLength: {
                                 max: 20,
@@ -2551,7 +2537,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'smrAddrZipNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             notEmpty: {
                                 message: 'validator.requiredField'
@@ -2563,7 +2549,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'smrAddrZip4New': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9][\d]{3}$/,
@@ -2586,7 +2572,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'phoneAreaNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9]\d{2}$/,
@@ -2595,7 +2581,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'phoneNbrNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
@@ -2604,7 +2590,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'phoneAreaCellNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9]\d{2}$/,
@@ -2613,7 +2599,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'phoneNbrCellNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
@@ -2622,7 +2608,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'phoneAreaBusNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9]\d{2}$/,
@@ -2631,7 +2617,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'phoneNbrBusNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
@@ -2640,7 +2626,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'busPhoneExtNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             regexp: {
@@ -2665,7 +2651,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'maritalStatTaxNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             notEmpty: {
@@ -2674,7 +2660,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'nbrTaxExemptsNew': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             notEmpty: {
@@ -2690,133 +2676,68 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             })
         }
 
-        function bankAccount01Validator() {
-            $('#bankAccountForm_01').bootstrapValidator({
-                live: 'enable',
-                submitButtons: '#saveBank_01',
-                
-                feedbackIcons: {
-                    valid: 'fa fa-check ',
-                    // invalid: 'fa fa-times',
-                    validating: 'fa fa-refresh'
-                },
-                fields: {
-                    'accountInfo[0].code.description': {
-                        trigger: 'input',
-                        
-                        validators: {
-                            notEmpty: {
-                                message: 'validator.requiredField'
-                            }
-                        }
+        function bankAccountValidator() {
+            let arrayBankLength = $('.bankAccountBlock').length
+            for(let i = 0;i<arrayBankLength;i++){
+                $('#bankAccountForm_'+i).bootstrapValidator({
+                    live: 'enable',
+                    submitButtons: '.saveUpdateBankBtn',
+                    feedbackIcons: {
+                        valid: 'fa fa-check ',
+                        // invalid: 'fa fa-times',
+                        validating: 'fa fa-refresh'
                     },
-                    'accountInfo[0].code.subCode': {
-                        trigger: 'input',
-                        
-                        validators: {
-                            notEmpty: {
-                                message: 'validator.requiredField'
+                    fields: {
+                        'description': {
+                            trigger: 'change',
+                            validators: {
+                                notEmpty: {
+                                    message: 'validator.requiredField'
+                                }
                             }
-                        }
-                    },
-                    'accountInfo[0].accountNumber': {
-                        trigger: 'input',
-                        
-                        validators: {
-                            notEmpty: {
-                                message: 'validator.requiredField'
-                            },
-                            regexp: {
-                                regexp: /^[0-9]\d{0,16}$/,
-                                message: 'validator.pleaseEnterCorrectFormat'
+                        },
+                        'subCode': {
+                            trigger: 'change',
+                            validators: {
+                                notEmpty: {
+                                    message: 'validator.requiredField'
+                                }
                             }
-                        }
-                    },
-                    'accountInfo[0].accountType.displayLabel': {
-                        trigger: 'input',
-                        
-                        validators: {
-                            notEmpty: {
-                                message: 'validator.requiredField'
+                        },
+                        'accountNumber': {
+                            trigger: 'change',
+                            validators: {
+                                notEmpty: {
+                                    message: 'validator.requiredField'
+                                },
+                                regexp: {
+                                    regexp: /^[0-9]\d{0,16}$/,
+                                    message: 'validator.pleaseEnterCorrectFormat'
+                                }
                             }
-                        }
-                    },
-                    'accountInfo[0].depositAmount.displayAmount': {
-                        trigger: 'input',
-                        
-                        validators: {
-                            regexp: {
-                                regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
-                                message: 'validator.pleaseEnterCorrectFormat'
+                        },
+                        'displayLabel': {
+                            trigger: 'change',
+                            validators: {
+                                notEmpty: {
+                                    message: 'validator.requiredField'
+                                }
+                            }
+                        },
+                        'displayAmount': {
+                            trigger: 'change',
+                            validators: {
+                                regexp: {
+                                    regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
+                                    message: 'validator.pleaseEnterCorrectFormat'
+                                }
                             }
                         }
                     }
-                }
-            })
-        }
-        function bankAccount02Validator() {
-            $('#bankAccountForm_02').bootstrapValidator({
-                live: 'enable',
-                submitButtons: '#saveBank_02',
-                
-                feedbackIcons: {
-                    valid: 'fa fa-check ',
-                    // invalid: 'fa fa-times',
-                    validating: 'fa fa-refresh'
-                },
-                fields: {
-                    'accountInfo[1].code.description': {
-                        trigger: 'input',
-                        
-                        validators: {
-                            notEmpty: {
-                                message: 'validator.requiredField'
-                            }
-                        }
-                    },
-                    'accountInfo[1].code.subCode': {
-                        trigger: 'input',
-                        
-                        validators: {
-                            notEmpty: {
-                                message: 'validator.requiredField'
-                            }
-                        }
-                    },
-                    'accountInfo[1].accountNumber': {
-                        trigger: 'input',
-                        
-                        validators: {
-                            notEmpty: {
-                                message: 'validator.requiredField'
-                            },
-                            regexp: {
-                                regexp: /^[0-9]\d{0,16}$/,
-                                message: 'validator.pleaseEnterCorrectFormat'
-                            }
-                        }
-                    },
-                    'accountInfo[1].accountType.displayLabel': {
-                        trigger: 'input',
-                        
-                        validators: {
-                            notEmpty: {
-                                message: 'validator.requiredField'
-                            }
-                        }
-                    },
-                    'accountInfo[1].depositAmount.displayAmount': {
-                        trigger: 'input',
-                        
-                        validators: {
-                            regexp: {
-                                regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
-                                message: 'validator.pleaseEnterCorrectFormat'
-                            }
-                        }
-                    }
-                }
-            })
+                })
+        
+            }
+            
         }
         function bankAccountAddValidator() {
             $('#addBankAccountForm').bootstrapValidator({
@@ -2830,7 +2751,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'accountInfo[0].code.description': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             notEmpty: {
@@ -2839,7 +2760,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'accountInfo[0].code.subCode': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             notEmpty: {
@@ -2848,7 +2769,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'accountInfo[0].accountNumber': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             notEmpty: {
@@ -2861,7 +2782,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'accountInfo[0].accountType.displayLabel': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             notEmpty: {
@@ -2870,7 +2791,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'accountInfo[0].depositAmount.displayAmount': {
-                        trigger: 'input',
+                        trigger: 'change',
                         
                         validators: {
                             regexp: {

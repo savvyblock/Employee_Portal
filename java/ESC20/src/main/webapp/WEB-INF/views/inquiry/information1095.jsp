@@ -390,9 +390,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             class="close"
                             data-dismiss="modal"
                             aria-hidden="true"
-                            data-localize="label.closeModal"
-                            data-localize-location="title"
                         >
+                        <span class="hide" data-localize="label.closeModal"></span>
                             &times;
                         </button>
                         <h4 class="modal-title new-title" data-localize="label.electronic1095Consent">
