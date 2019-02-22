@@ -1943,7 +1943,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             	
             })
             $('#searchBankBtn').click(function() {
-            	alert("search bank");
             	
             	var page={
             			"currentPage":1,
