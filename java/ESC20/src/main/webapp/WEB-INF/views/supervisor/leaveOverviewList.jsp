@@ -18,9 +18,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <div class="pull-right right-btn">
 					                <button class="btn btn-primary" id="new-btn" data-toggle="modal" data-target="#requestModal" onclick="showRequestForm()">Add</button>
                                     <a class="btn btn-primary pull-right" style="height:35px;display:flex;align-items:center;"
-                                    data-toggle="modal" data-target="#leaveOverviewCalendarModal" 
-                                    data-localize="label.switchToCalendarView" data-localize-location="title">
-                                    <i class="fa fa-calendar"></i>
+                                    data-toggle="modal" data-target="#leaveOverviewCalendarModal" >
+                                    <span data-localize="label.switchToCalendarView" ></span> <i class="fa fa-calendar"></i>
                                 </a>
                                 </div>
                                 </h2>
@@ -312,6 +311,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $(".firstSubmit").show();
             $(".secondSubmit").hide();
             $("#chainModal").val(chainString)
+            let empNbr = $("#selectEmpNbr").val()
+            $("#empNbrModal").val(empNbr)
             $("#requestForm").attr("action","updateLeaveFromLeaveOverview")
 
         }

@@ -24,6 +24,7 @@
             </div>
             <form id="requestForm" action="submitLeaveRequest" method="post">
                 <input type="text" hidden="hidden" name="chain" id="chainModal" title="" data-localize="accessHint.chain">
+                <input type="text" hidden="hidden" name="empNbr" id="empNbrModal" title="" data-localize="accessHint.employeeNumber">
                 <input type="text" name="freq" hidden="hidden" value="${selectedFreq}" title="" data-localize="accessHint.frequency">
                 <div class="modal-body requestForm">
                     <input type="hidden" name="leaveId" id="leaveId" />
