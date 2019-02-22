@@ -422,6 +422,7 @@
 		"addANewBankAccount":"Add a new bank account"
 	},
 	"label":{
+		"action":"Action",
 		"ESC20":"ESC20",
 		"back":"Go Back",
 		"pleaseTryAgain":"Please try again later",
@@ -572,6 +573,8 @@
 		"rows":"Rows",
 		"areYouDelete":"Are you sure you want to delete?",
 		"warning":"Warn",
+		"LeaveRequests":"Leave Requests",
+		"for":"for",
 		"":""
 	},
 	"language":{

@@ -118,7 +118,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </div>
                                         </form>
-
+                                        <p>
+                                            <span data-localize="label.LeaveRequests"></span>
+                                            <span id="forWord" class="hide" data-localize="label.for"></span>
+                                            <span id="currentLeaveRequests"></span>
+                                        </p>
                                         <table class="table request-list responsive-table" id="leaveOverviewList">
                                                 <thead>
                                                     <tr>
@@ -253,7 +257,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         })
         function initList(){
             let employeeSelect = $("#selectEmpNbr").val()
-            console.log(employeeSelect)
             if(!employeeSelect || employeeSelect==''){
                 let options = "<option values=''></option>"
                 $("#freq").html('options')
@@ -268,6 +271,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             }else{
                 $("#leaveOverviewList tbody tr").removeClass("hide")
             }
+            let requester = $("#selectEmpNbr option:selected").text()
+            if(requester&&requester!=''){
+                $("#forWord").removeClass("hide")
+                $("#currentLeaveRequests").text(requester)
+            }else{
+                $("#forWord").addClass("hide")
+                $("#currentLeaveRequests").text('')
+            }
+            
         }
         function changeLevel(){
                 let selectNum = $("#selectEmpNbr").val()

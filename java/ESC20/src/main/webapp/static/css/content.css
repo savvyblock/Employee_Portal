@@ -1440,3 +1440,7 @@
   width: 80%;
   max-width: 1000px;
 }
+
+.fc-day-grid-event .fc-content {
+  white-space: normal;
+}

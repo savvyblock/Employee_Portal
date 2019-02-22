@@ -422,6 +422,7 @@
 		"addANewBankAccount":"Add a new bank account"
 	},
 	"label":{
+		"action":"Action",
 		"ESC20":"ESC20",
 		"back":"Go Back",
 		"pleaseTryAgain":"Please try again later",

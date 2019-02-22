@@ -165,13 +165,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $("#startDate").val(date);
             $("#endDate").val(date);
             $("#commentList").html("")
+            $(".firstSubmit").show();
+			$(".secondSubmit").hide();
             calcTime()
             //Initializes the time control when new event modal show
         }
 
         function changeMMDDFormat(date){
 			let dateArry = date.split("-")
-			return dateArry[0]
+			return dateArry[1] +"/"+ dateArry[2] +"/"+dateArry[0]
 		}
        
         function changeFormatTimeAm(value){
