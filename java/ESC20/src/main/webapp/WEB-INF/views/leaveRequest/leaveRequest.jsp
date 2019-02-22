@@ -16,7 +16,7 @@
 			<h2 class="clearfix section-title">
 					<span data-localize="title.leaveRequest"></span>
 				<div class="pull-right right-btn">
-					<button class="btn btn-primary" id="new-btn" data-toggle="modal" data-target="#requestModal" onclick="showRequestForm()" data-localize="label.addNewRequest" data-localize-location="title">
+					<button class="btn btn-primary"  onclick="showRequestForm()" id="new-btn" data-toggle="modal" data-target="#requestModal">
 						<span data-localize="label.add"></span>
 					</button>
 					<a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/eventCalendar" data-localize="label.switchToCalendarView"></a>

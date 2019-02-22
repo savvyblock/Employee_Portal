@@ -1947,8 +1947,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                      contentType: 'application/json;charset=UTF-8',
                      success: function (result) {
                     	 console.log(result);
-                    	 $("#bankTable  tr:not(:first)").empty(""); 
-                    	 var res = result.result;
+                         $("#bankTable  tr:not(:first)").empty(""); 
+                         if(result.result&&result.result.length>0){
+                            var res = result.result;
                     	 for (var p in res) {
                     		 var bankTr= "<tr><td data-localize='profile.routingNumber' data-localize-location='scope'>";
                     		 bankTr = bankTr + "<button class='a-btn bankNumberBtn' type='button' value='"+res[p].bankCd+"' data-title='"+res[p].bankName+"' > "+ res[p].transitRoute +" </button> </td>";
@@ -1981,10 +1982,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 bankInputName.change()
                                 bankInputCode.change()
                             })
+                         }else{
+                            $("#bankTable tbody").empty()
+                            let noResult = `<tr><td colspan="2"> <span data-localize="label.noData"></span></td></tr>`
+                            $("#bankTable tbody").append(noResult)
+                         }
+                    	 
+                            setGlobal()
                     	 
                      },
                      error : function(e) {
                     	 console.log(e);
+                         $("#bankTable tbody").empty()
+                         let noResult = `<tr><td colspan="2"> <span data-localize="label.noData"></span></td></tr>`
+                         $("#bankTable tbody").append(noResult)
+                         setGlobal()
                      }
                  });
             })
@@ -2045,10 +2057,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             console.log("delete="+index)
             
             var freq = $('#freq').val();
-	       	var code = $('#code_'+index).val();
+	       	var code = $('#codeNew_'+index).val();
 	       	var accountNumber = $('#accountNumber_'+index).text();
 	       	var accountType = $('#accountType_'+index).text();
 	       	var displayAmount = $('#displayAmount_'+index).text();
+               console.log(code)
+               console.log(accountNumber)
+               console.log(accountType)
+               console.log(displayAmount)
        	 
              $('#hidden_freq_delete').val(freq);
 	       	 $('#hidden_accountNumber_delete').val(accountNumber);

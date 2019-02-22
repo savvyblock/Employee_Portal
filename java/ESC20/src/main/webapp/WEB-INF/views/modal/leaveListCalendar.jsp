@@ -54,14 +54,11 @@ function initialLeaveCalendarModal(){
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'month,agendaWeek,agendaDay,listMonth'
+                    right: 'month'
                 },
                 buttonText: {
                     today: 'Today',
                     month: 'Month',
-                    agendaWeek: 'AgendaWeek',
-                    agendaDay: 'AgendaDay',
-                    listMonth: 'ListMonth'
                 },
                 timeFormat: 'hh:mm A',
                 displayEventEnd: true,

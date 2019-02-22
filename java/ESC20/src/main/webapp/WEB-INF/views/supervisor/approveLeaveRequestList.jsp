@@ -15,11 +15,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <section class="content">
                             <h2 class="clearfix section-title">
                                     <span data-localize="title.approveLeaveRequests"></span>
-                                <a class="btn btn-primary pull-right"
-                                    onclick="showCalendarModal()"
+                                <button class="btn btn-primary pull-right" onclick="showCalendarModal()"
+                                data-toggle="modal" data-target="#leaveListCalendarModal"
                                     data-localize="label.switchToCalendarView" data-localize-location="title">
                                     <i class="fa fa-calendar"></i>
-                                </a>
+                                </button>
                             </h2>
                             <div class="container-fluid">
                                     <form
@@ -268,9 +268,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $("#nextLevel").addClass("disabled").attr('disabled',"true");
             }
         }
-        
         function showCalendarModal(){
-            $("#leaveListCalendarModal").modal("show")
             setTimeout("initialLeaveCalendarModal()",100)
             
         }
