@@ -80,6 +80,31 @@ public class BankService {
 		return bankDao.deleteAccountRequest(employeeNumber, frequency, accountInfo,
 				accountInfoPending);
 	}
+	
+	public boolean checkSameBank(Bank oldBank, Bank newBank) {
+		
+		boolean banksSame = true;
+		
+		if(!oldBank.getAccountNumber().equals(newBank.getAccountNumber()))
+		{
+			banksSame = false;
+		}
+		if(!oldBank.getAccountType().getCode().equals(newBank.getAccountType().getCode()))
+		{
+			banksSame = false;
+		}
+		if(oldBank.getDepositAmount().getAmount() != (newBank.getDepositAmount().getAmount()))
+		{
+			banksSame = false;
+		}
+		if(!oldBank.getCode().getCode().equals(newBank.getCode().getCode()))
+		{
+			banksSame = false;
+		}
+			
+		return banksSame;
+		
+	}
 
 	public int insertAccountApprove(String employeeNumber, String frequency, Bank payrollAccountInfo) {
 
