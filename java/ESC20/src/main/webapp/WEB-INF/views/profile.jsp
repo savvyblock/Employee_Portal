@@ -2238,7 +2238,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'nameFNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             notEmpty: {
@@ -2247,7 +2247,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'nameLNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             notEmpty: {
@@ -2271,7 +2271,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'no': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             notEmpty: {
@@ -2295,7 +2295,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'driversLicNbrNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             stringLength: {
                                 max: 19,
@@ -2319,7 +2319,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'no': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             notEmpty: {
@@ -2342,7 +2342,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'emailNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             notEmpty: {
                                 message: 'validator.requiredField'
@@ -2353,7 +2353,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'hmEmailNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             emailAddress: {
                                 message: 'validator.pleaseEnterCorrectFormat'
@@ -2376,14 +2376,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'emerContactNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         stringLength: {
                                 max: 26,
                                 message: 'validator.maxLength26'
                             },
                     },
                     'emerPhoneAcNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             notEmpty: {
                                 message: 'validator.requiredField'
@@ -2395,7 +2395,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'emerPhoneNbrNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             notEmpty: {
@@ -2408,7 +2408,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'emerPhoneExtNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             regexp: {
                                 regexp: /^[\d]{0,4}$/,
@@ -2417,14 +2417,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'emerRelNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         stringLength: {
                                 max: 25,
                                 message: 'validator.maxLength25'
                             },
                     },
                     'emerNoteNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         stringLength: {
                                 max: 25,
                                 message: 'validator.maxLength25'
@@ -2446,7 +2446,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'addrNbrNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9]\d{0,7}$/,
@@ -2455,7 +2455,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'addrStrNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             stringLength: {
                                 max: 20,
@@ -2464,7 +2464,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'addrAptNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             stringLength: {
                                 max: 7,
@@ -2473,7 +2473,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'addrCityNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             stringLength: {
                                 max: 20,
@@ -2482,7 +2482,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'addrZipNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             notEmpty: {
                                 message: 'validator.requiredField'
@@ -2494,7 +2494,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'addrZip4New': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9][\d]{3}$/,
@@ -2517,7 +2517,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'smrAddrNbrNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9]\d{0,7}$/,
@@ -2526,7 +2526,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'smrAddrStrNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             stringLength: {
                                 max: 20,
@@ -2535,7 +2535,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'smrAddrAptNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             stringLength: {
                                 max: 7,
@@ -2544,7 +2544,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'smrAddrCityNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             stringLength: {
                                 max: 20,
@@ -2553,7 +2553,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'smrAddrZipNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             notEmpty: {
                                 message: 'validator.requiredField'
@@ -2565,7 +2565,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'smrAddrZip4New': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9][\d]{3}$/,
@@ -2588,7 +2588,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'phoneAreaNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9]\d{2}$/,
@@ -2597,7 +2597,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'phoneNbrNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
@@ -2606,7 +2606,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'phoneAreaCellNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9]\d{2}$/,
@@ -2615,7 +2615,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'phoneNbrCellNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
@@ -2624,7 +2624,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'phoneAreaBusNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9]\d{2}$/,
@@ -2633,7 +2633,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'phoneNbrBusNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         validators: {
                             regexp: {
                                 regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
@@ -2642,7 +2642,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'busPhoneExtNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             regexp: {
@@ -2667,7 +2667,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'maritalStatTaxNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             notEmpty: {
@@ -2676,7 +2676,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'nbrTaxExemptsNew': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             notEmpty: {
@@ -2705,7 +2705,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     },
                     fields: {
                         'description': {
-                            trigger: 'change',
+                            trigger: 'blur keyup',
                             validators: {
                                 notEmpty: {
                                     message: 'validator.requiredField'
@@ -2713,7 +2713,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             }
                         },
                         'subCode': {
-                            trigger: 'change',
+                            trigger: 'blur keyup',
                             validators: {
                                 notEmpty: {
                                     message: 'validator.requiredField'
@@ -2721,7 +2721,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             }
                         },
                         'accountNumber': {
-                            trigger: 'change',
+                            trigger: 'blur keyup',
                             validators: {
                                 notEmpty: {
                                     message: 'validator.requiredField'
@@ -2733,7 +2733,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             }
                         },
                         'displayLabel': {
-                            trigger: 'change',
+                            trigger: 'blur keyup',
                             validators: {
                                 notEmpty: {
                                     message: 'validator.requiredField'
@@ -2741,7 +2741,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             }
                         },
                         'displayAmount': {
-                            trigger: 'change',
+                            trigger: 'blur keyup',
                             validators: {
                                 regexp: {
                                     regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
@@ -2767,7 +2767,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 },
                 fields: {
                     'accountInfo[0].code.description': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             notEmpty: {
@@ -2776,7 +2776,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'accountInfo[0].code.subCode': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             notEmpty: {
@@ -2785,7 +2785,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'accountInfo[0].accountNumber': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             notEmpty: {
@@ -2798,7 +2798,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'accountInfo[0].accountType.displayLabel': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             notEmpty: {
@@ -2807,7 +2807,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         }
                     },
                     'accountInfo[0].depositAmount.displayAmount': {
-                        trigger: 'change',
+                        trigger: 'blur keyup',
                         
                         validators: {
                             regexp: {
