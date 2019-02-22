@@ -153,14 +153,15 @@ public class LeaveRequestModel implements Serializable {
 	public JSONObject toJSON(List<Code> leaveStatus, List<Code> leaveTypes) {
 		JSONObject jo = new JSONObject();
 		jo.put("id", this.getId());
-		String title = "Leave";
+		String typeDesc= "";
 		if (!CollectionUtils.isEmpty(leaveTypes)) {
 			for (Code type : leaveTypes) {
 				if (!StringUtils.isEmpty(type.code) && type.getCode().equals(this.getLeaveType())) {
-					title = type.getDescription();
+					typeDesc = " ("+type.getDescription()+")" ;
 				}
 			}
 		}
+		String title = this.getFirstName()+" "+this.getLastName()+ typeDesc;
 		jo.put("title", title);
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
 		jo.put("LeaveType", this.getLeaveType());

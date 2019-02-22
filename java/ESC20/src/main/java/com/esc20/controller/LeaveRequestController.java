@@ -73,8 +73,12 @@ public class LeaveRequestController {
 				List<Code> leaveStatus = this.referenceService.getLeaveStatus();
 				LeaveRequestModel model;
 				JSONArray json = new JSONArray();
+				AppLeaveRequest temp;
 				for (int i = 0; i < requests.size(); i++) {
-					model = new LeaveRequestModel(requests.get(i));
+					temp = requests.get(i);
+					temp.setFirstName(demo.getNameF());
+					temp.setLastName(demo.getNameL());
+					model = new LeaveRequestModel(temp);
 					requestModels.add(model);
 				}
 				List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
@@ -152,8 +156,12 @@ public class LeaveRequestController {
 				List<AppLeaveRequest> requests = this.service.getLeaveRequests(request, demo.getEmpNbr(), freq);
 				List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
 				LeaveRequestModel model;
+				AppLeaveRequest temp;
 				for (int i = 0; i < requests.size(); i++) {
-					model = new LeaveRequestModel(requests.get(i));
+					temp = requests.get(i);
+					temp.setFirstName(demo.getNameF());
+					temp.setLastName(demo.getNameL());
+					model = new LeaveRequestModel(temp);
 					requestModels.add(model);
 				}
 				List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
@@ -173,8 +181,12 @@ public class LeaveRequestController {
 			List<AppLeaveRequest> requests = this.service.getLeaveRequests(request, demo.getEmpNbr(), freq);
 			List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
 			LeaveRequestModel model;
+			AppLeaveRequest temp;
 			for (int i = 0; i < requests.size(); i++) {
-				model = new LeaveRequestModel(requests.get(i));
+				temp = requests.get(i);
+				temp.setFirstName(demo.getNameF());
+				temp.setLastName(demo.getNameL());
+				model = new LeaveRequestModel(temp);
 				requestModels.add(model);
 			}
 			List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
