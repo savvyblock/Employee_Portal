@@ -270,7 +270,7 @@
   function startCountTime(){
     var intervalId = setInterval(function(){
       time--;
-      if(time <= 10) {
+      if(time <= 30) {
         $("#logoutModal").modal("show")
         $("#timeCounter").text(time)
         // clearInterval(intervalId);

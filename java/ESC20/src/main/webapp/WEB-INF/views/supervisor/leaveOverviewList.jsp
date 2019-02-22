@@ -17,10 +17,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <span data-localize="title.leaveOverview"></span>
                                 <div class="pull-right right-btn">
 					                <button class="btn btn-primary" id="new-btn" data-toggle="modal" data-target="#requestModal" onclick="showRequestForm()">Add</button>
-                                    <a class="btn btn-primary pull-right" style="height:35px;display:flex;align-items:center;"
-                                    data-toggle="modal" data-target="#leaveOverviewCalendarModal" >
-                                    <span data-localize="label.switchToCalendarView" ></span> <i class="fa fa-calendar"></i>
-                                </a>
+                                    <button class="btn btn-primary pull-right" style="height:35px;display:flex;align-items:center;"
+                                        onclick="showOverviewCalendar()" >
+                                        <span data-localize="label.switchToCalendarView" ></span> <i class="fa fa-calendar"></i>
+                                    </button>
                                 </div>
                                 </h2>
                             <div class="container-fluid">
@@ -427,5 +427,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 			let dateArry = date.split("-")
 			return dateArry[0]
 		}
+        function showOverviewCalendar(){
+            $("#leaveOverviewCalendarModal").modal("show")
+            setTimeout("initialLeaveCalendarStaticModal()",100)
+        }
     </script>
 </html>
