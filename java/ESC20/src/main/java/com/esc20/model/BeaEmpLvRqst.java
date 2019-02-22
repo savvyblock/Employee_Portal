@@ -23,8 +23,8 @@ import javax.persistence.TemporalType;
 @Table(name = "BEA_EMP_LV_RQST", schema = "rsccc", catalog = "rsccc")
 public class BeaEmpLvRqst implements java.io.Serializable {
 	private static final long serialVersionUID = 6715142900654758429L;
-	private int id;
-	private char payFreq;
+	private Integer id;
+	private Character payFreq;
 	private String empNbr;
 	private Date datetimeSubmitted;
 	private Date datetimeFrom;
@@ -33,7 +33,7 @@ public class BeaEmpLvRqst implements java.io.Serializable {
 	private BigDecimal lvUnitsUsed;
 	private String lvTyp;
 	private String absRsn;
-	private char statusCd;
+	private Character statusCd;
 	private String dtOfPay;
 	private Set<BeaEmpLvComments> beaEmpLvCommentses = new HashSet<BeaEmpLvComments>(0);
 	private Set<BeaEmpLvWorkflow> beaEmpLvWorkflows = new HashSet<BeaEmpLvWorkflow>(0);
@@ -41,8 +41,8 @@ public class BeaEmpLvRqst implements java.io.Serializable {
 	public BeaEmpLvRqst() {
 	}
 
-	public BeaEmpLvRqst(int id, char payFreq, String empNbr, Date datetimeSubmitted, Date datetimeFrom, Date datetimeTo,
-			BigDecimal lvUnitsDaily, BigDecimal lvUnitsUsed, String lvTyp, String absRsn, char statusCd,
+	public BeaEmpLvRqst(Integer id, Character payFreq, String empNbr, Date datetimeSubmitted, Date datetimeFrom, Date datetimeTo,
+			BigDecimal lvUnitsDaily, BigDecimal lvUnitsUsed, String lvTyp, String absRsn, Character statusCd,
 			String dtOfPay) {
 		this.id = id;
 		this.payFreq = payFreq;
@@ -58,8 +58,8 @@ public class BeaEmpLvRqst implements java.io.Serializable {
 		this.dtOfPay = dtOfPay;
 	}
 
-	public BeaEmpLvRqst(int id, char payFreq, String empNbr, Date datetimeSubmitted, Date datetimeFrom, Date datetimeTo,
-			BigDecimal lvUnitsDaily, BigDecimal lvUnitsUsed, String lvTyp, String absRsn, char statusCd, String dtOfPay,
+	public BeaEmpLvRqst(Integer id, Character payFreq, String empNbr, Date datetimeSubmitted, Date datetimeFrom, Date datetimeTo,
+			BigDecimal lvUnitsDaily, BigDecimal lvUnitsUsed, String lvTyp, String absRsn, Character statusCd, String dtOfPay,
 			Set<BeaEmpLvComments> beaEmpLvCommentses, Set<BeaEmpLvWorkflow> beaEmpLvWorkflows) {
 		this.id = id;
 		this.payFreq = payFreq;
@@ -80,20 +80,20 @@ public class BeaEmpLvRqst implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false)
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	@Column(name = "PAY_FREQ", nullable = false, length = 1)
-	public char getPayFreq() {
+	public Character getPayFreq() {
 		return this.payFreq;
 	}
 
-	public void setPayFreq(char payFreq) {
+	public void setPayFreq(Character payFreq) {
 		this.payFreq = payFreq;
 	}
 
@@ -173,11 +173,11 @@ public class BeaEmpLvRqst implements java.io.Serializable {
 	}
 
 	@Column(name = "STATUS_CD", nullable = false, length = 1)
-	public char getStatusCd() {
+	public Character getStatusCd() {
 		return this.statusCd;
 	}
 
-	public void setStatusCd(char statusCd) {
+	public void setStatusCd(Character statusCd) {
 		this.statusCd = statusCd;
 	}
 

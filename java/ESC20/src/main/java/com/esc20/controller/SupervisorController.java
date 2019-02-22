@@ -469,12 +469,12 @@ public class SupervisorController {
 		BeaEmpLvRqst request;
 		if (leaveId == null || ("").equals(leaveId)) {
 			request = new BeaEmpLvRqst();
-			// if create new leave, route to the current login user's view
-			empNbr = demo.getEmpNbr();
 		} else
 			request = this.service.getleaveRequestById(Integer.parseInt(leaveId + ""));
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.ENGLISH);
-		request.setEmpNbr(empNbr);
+		if (leaveId == null || ("").equals(leaveId)) {
+			request.setEmpNbr(empNbr);
+		}
 		request.setPayFreq(freq.charAt(0));
 		request.setLvTyp(leaveType);
 		request.setAbsRsn(absenseReason);
@@ -484,7 +484,7 @@ public class SupervisorController {
 		request.setLvUnitsDaily(BigDecimal.valueOf(Double.parseDouble(lvUnitsDaily)));
 		request.setLvUnitsUsed(BigDecimal.valueOf(Double.parseDouble(lvUnitsUsed)));
 		request.setDtOfPay(request.getDtOfPay() == null ? "" : request.getDtOfPay());
-		request.setStatusCd('P');
+		request.setStatusCd('A');
 		BeaEmpLvRqst res = this.service.saveLeaveRequest(request, (leaveId != null && !("").equals(leaveId)));
 		// Create Comments
 		if (Remarks != null && !("").equals(Remarks)) {
@@ -495,20 +495,6 @@ public class SupervisorController {
 			comments.setLvComment(Remarks);
 			comments.setLvCommentTyp('C');
 			this.service.saveLvComments(comments);
-		}
-		// Create Workflow
-		if ((leaveId == null || ("").equals(leaveId))) {
-			LeaveParameters params = this.service.getLeaveParameters();
-			String supervisorEmpNbr = this.service.getFirstLineSupervisor(empNbr, params.isUsePMIS());
-			if (!StringUtils.isEmpty(supervisorEmpNbr)) {
-				BeaEmpLvWorkflow flow = new BeaEmpLvWorkflow();
-				flow.setBeaEmpLvRqst(res);
-				flow.setInsertDatetime(DateUtil.getUTCTime());
-				flow.setSeqNum(1);
-				flow.setApprvrEmpNbr(supervisorEmpNbr == null ? "" : supervisorEmpNbr);
-				flow.setTmpApprvrExpDatetime(null);
-				this.service.saveLvWorkflow(flow, demo);
-			}
 		}
 		mav = this.getLeaveOverviewList(req, empNbr, null, freq, startDate, endDate, false);
 		mav.addObject("chain", levels);
