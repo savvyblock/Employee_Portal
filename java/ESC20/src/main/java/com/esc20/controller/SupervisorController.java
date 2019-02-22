@@ -496,7 +496,7 @@ public class SupervisorController {
 			comments.setLvCommentTyp('C');
 			this.service.saveLvComments(comments);
 		}
-		mav = this.getLeaveOverviewList(req, empNbr, null, freq, startDate, endDate, false);
+		mav = this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false);
 		mav.addObject("chain", levels);
 		return mav;
 	}

@@ -304,6 +304,7 @@ public class LeaveRequestDao {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT LV.id.payFreq, LV.id.lvTyp, LV.lvBeginBal, LV.lvEarned, LV.lvUsed, ");
 		sql.append("		DES.longDescr, DES.postAgnstZeroBal, TP.daysHrs, TP.addSubtractBal, ");
+		//PENDING_EARNED
 		sql.append("		(SELECT SUM(ISNULL(xmi.lvUnitsEarned,0)) ");
 		sql.append("			FROM BhrEmpLvXmital xmi ");
 		sql.append("			WHERE xmi.id.cyrNyrFlg = 'C' AND ");
@@ -311,21 +312,21 @@ public class LeaveRequestDao {
 		sql.append("				xmi.id.payFreq = LV.id.payFreq AND ");
 		sql.append("				xmi.lvTyp = LV.id.lvTyp AND ");
 		sql.append("				xmi.processDt is null), ");
-
+		//PENDING_APPROVAL
 		sql.append("		(SELECT SUM(ISNULL(req.lvUnitsUsed,0)) ");
 		sql.append("			FROM BeaEmpLvRqst req ");
 		sql.append("			WHERE req.statusCd = 'P' AND ");
 		sql.append("				req.empNbr = :employeeNumber AND ");
 		sql.append("				req.payFreq = LV.id.payFreq AND ");
 		sql.append("				req.lvTyp = LV.id.lvTyp), ");
-
+		//PENDING_PAYROLL
 		sql.append("		(SELECT SUM(ISNULL(req2.lvUnitsUsed,0)) ");
 		sql.append("			FROM BeaEmpLvRqst req2 ");
 		sql.append("			WHERE req2.statusCd IN ('A','L') AND ");
 		sql.append("				req2.empNbr = :employeeNumber AND ");
 		sql.append("				req2.payFreq = LV.id.payFreq AND ");
 		sql.append("				req2.lvTyp = LV.id.lvTyp), ");
-
+		//PENDING_USED
 		sql.append("		(SELECT SUM(ISNULL(xmi2.lvUnitsUsed,0))");
 		sql.append("			FROM BhrEmpLvXmital xmi2 ");
 		sql.append("			WHERE xmi2.id.cyrNyrFlg = 'C' AND  ");
