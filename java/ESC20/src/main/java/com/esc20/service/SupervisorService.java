@@ -144,7 +144,8 @@ public class SupervisorService {
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a E");
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
 		String message = sdf.format(new Date())+": "+ demo.getNameF()+" " + demo.getNameL() +
-						 " had approved your leave request from "+sdf1.format(rqst.getDatetimeFrom())+" to " + sdf1.format(rqst.getDatetimeTo());
+						 " had approved your leave request from "+sdf1.format(DateUtil.getLocalTime(rqst.getDatetimeFrom()))+
+						 " to " + sdf1.format(DateUtil.getLocalTime(rqst.getDatetimeTo()));
 		alertDao.createAlert(demo.getEmpNbr(), rqst.getEmpNbr(), message);
 	}
 
@@ -165,7 +166,7 @@ public class SupervisorService {
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a E");
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
 		String message = sdf.format(new Date())+": "+ demo.getNameF()+" " + demo.getNameL() +" disapproved your leave from "+
-						 sdf1.format(rqst.getDatetimeFrom())+" to " + sdf1.format(rqst.getDatetimeTo()) +" with comment: " + disapproveComment;
+						 sdf1.format(DateUtil.getLocalTime(rqst.getDatetimeFrom()))+" to " + sdf1.format(DateUtil.getLocalTime(rqst.getDatetimeTo())) +" with comment: " + disapproveComment;
 		alertDao.createAlert(demo.getEmpNbr(), rqst.getEmpNbr(), message);
 	}
 
