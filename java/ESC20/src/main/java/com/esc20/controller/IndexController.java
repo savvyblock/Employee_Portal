@@ -386,6 +386,9 @@ public class IndexController {
         
        
         
+        //TODO check if it is the same request, if yes, update the request
+        // this.bankService.checkSameBank
+        // 
         
         this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
         
