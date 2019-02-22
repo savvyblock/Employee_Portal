@@ -94,8 +94,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                           $("#disIdStatic").attr("value", leaveRequest.id+"");
                           $("#appIdStatic").attr("value", leaveRequest.id+"");
                           $("#employeeStatic").text(leaveRequest.lastName)
-                          $("#startDateStatic").html(start)
-                          $("#endDateStatic").html(end)
+                          $("#startDateStatic").html(leaveRequest.start._i)
+                          $("#endDateStatic").html(leaveRequest.end._i)
                           $("#leaveTypeStatic").html(type)
                           $("#absenceReasonStatic").html(reason)
                           $("#leaveRequestedStatic").html(leaveRequest.lvUnitsUsed)
