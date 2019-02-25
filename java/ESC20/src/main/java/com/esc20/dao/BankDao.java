@@ -144,7 +144,11 @@ public class BankDao {
 			tempBank.setAccountNumberNew(StringUtil.trim(item[8]));
 			tempBank.setAccountTypeNew(getDdAccountType(StringUtil.trim(item[9])));
 			tempBank.setDepositAmountNew(new Money(new Double (item[11].toString()).doubleValue(), Currency.getInstance(Locale.US)));
-			
+			if(tempBank.getAccountNumberNew().equals("") && tempBank.getAccountTypeNew().getCode().equals("") 
+					&& tempBank.getCodeNew().getCode().equals("") && tempBank.getDepositAmountNew().getAmount() == 0)
+			{
+				tempBank.setIsDelete(true);
+			}
 			bankList.add(tempBank);
 			
 		}

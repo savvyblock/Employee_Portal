@@ -2038,7 +2038,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             console.log("delete="+index)
             
             var freq = $('#freq').val();
-	       	var code = $('#codeNew_'+index).val();
+	       	var code = $('#code_'+index).val();
 	       	var accountNumber = $('#accountNumber_'+index).text();
 	       	var accountType = $('#accountType_'+index).text();
 	       	var displayAmount = $('#displayAmount_'+index).text();

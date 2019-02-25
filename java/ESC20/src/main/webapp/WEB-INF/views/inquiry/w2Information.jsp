@@ -27,7 +27,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </h2>
                             <div class="content-white EMP-detail w-2">
-                                <c:if test="${isSuccess}">
+                                <c:if test="${isSuccess && isUpdate}">
                                     <div id="updateMsg" class="no-print">
                                         <span class="error-hint">
                                             <b data-localize="validator.updateWasSuccessful"></b>

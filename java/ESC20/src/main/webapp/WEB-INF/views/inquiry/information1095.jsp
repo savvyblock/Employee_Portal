@@ -26,9 +26,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </h2>
                             <div class="content-white EMP-detail info-1095">
-                                <c:if test="${not empty message}">
+                                <c:if test="${isUpdate && isSuccess}">
+                                    <span class="error-hint">
+                                            <b data-localize="validator.updateWasSuccessful"></b>
+                                        </span>
                                     <br/>
-                                    <p class="topMsg">${message}</p>
                                     <br/>
                                 </c:if>
                                 <form
@@ -406,7 +408,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <div class="form-group">
                                 <label for="customMessage" data-localize="label.customMessageHere"></label>
                                 <div class="form-control form-text static">
-                                    ${consent}
+                                    ${message}
                                 </div>
                             </div>
                             <div class="form-group">
