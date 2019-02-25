@@ -318,17 +318,17 @@ public class IndexController {
         Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
         
         Bank payrollAccountInfo = new Bank();
-        
+        Code c = new Code();
+        c.setDisplayLabel(displayLabel);
         payrollAccountInfo.setAccountNumber(accountNumber);
-        payrollAccountInfo.setAccountType(this.bankService.getDdAccountType(displayLabel));
+        payrollAccountInfo.setAccountType(c);
         payrollAccountInfo.setCode(this.bankService.getBank(code));
         payrollAccountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
         payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
         
         Bank accountInfo = new Bank();
-        
         accountInfo.setAccountNumber(accountNumber);
-        accountInfo.setAccountType(this.bankService.getDdAccountType(displayLabel));
+        accountInfo.setAccountType(c);
         accountInfo.setCode(this.bankService.getBank(code));
         accountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
         accountInfo.setFrequency(Frequency.getFrequency(freq));
@@ -375,16 +375,15 @@ public class IndexController {
         accountInfo.setAccountNumber(accountNumber);
         Code c = new Code();
         c.setDisplayLabel(displayLabel);
-        accountInfo.setAccountType(this.bankService.getDdAccountType(c.getCode()));
+        accountInfo.setAccountType(c);
         accountInfo.setCode(this.bankService.getBank(code));
         accountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
         accountInfo.setFrequency(Frequency.getFrequency(freq));
         
         Bank payrollAccountInfo = new Bank();
-        
         c.setDisplayLabel(displayLabelNew);
         payrollAccountInfo.setAccountNumber(accountNumberNew);
-        payrollAccountInfo.setAccountType(this.bankService.getDdAccountType(c.getCode()));
+        payrollAccountInfo.setAccountType(c);
         payrollAccountInfo.setCode(this.bankService.getBank(codeNew));
         payrollAccountInfo.setDepositAmount(new Money(new Double (displayAmountNew).doubleValue(), Currency.getInstance(Locale.US)));
         payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
