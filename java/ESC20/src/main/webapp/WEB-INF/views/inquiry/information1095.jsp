@@ -412,6 +412,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group">
+                                    <input hidden="hidden" type="text" name="consent" id="elecConsnt1095" value="${consent}" title="" data-localize="accessHint.consent">
                                     <div class="checkbox mb-2">
                                         <label for="consent">
                                             <input class="icheck" type="radio" name="electronicConsent" id="consent"> 
@@ -448,6 +449,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             $("#selectCalendar")[0].submit()
         }
         $(function(){
+            let consentVal = $("#elecConsnt1095").val()
+            if (consentVal == 'Y') {
+                $('#consent').iCheck('check');
+            } else if (consentVal == 'N') {
+                $('#notConsent').iCheck('check');
+            } 
             $('#consent').on('ifChecked', function(event) {
                 toggleOptions('Y')
             })
