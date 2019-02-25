@@ -163,6 +163,9 @@
 }
 .content-wrapper {
     min-height: calc(100vh - 117px) !important;
+    &:focus{
+        outline: none;
+    }
 }
 
 .main-footer {
@@ -1311,4 +1314,15 @@
 }
 .fc-day-grid-event .fc-content{
     white-space: normal;
+}
+#skipNav{
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: -9999px;
+    background: none;
+    border:0;
+    &:focus{
+        left: 0;
+    }
 }

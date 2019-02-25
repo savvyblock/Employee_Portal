@@ -11,7 +11,7 @@
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
 		<%@ include file="../commons/bar.jsp"%>
-		<main class="content-wrapper">
+		<main class="content-wrapper" tabindex="-1">
 		<section class="content">
 			<h2 class="clearfix section-title">
 					<span data-localize="title.leaveRequest"></span>

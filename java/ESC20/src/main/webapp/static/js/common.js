@@ -5,6 +5,11 @@ var pathPrefix = "/"+ctx+"/js/lang"; //language json location
 console.log(pathPrefix);
 var name = 'somoveLanguage';
 $(function() {
+    $("#skipNav").on("click",function(){
+        console.log($(".content-wrapper"))
+        $(".content-wrapper").focus()
+        $(document).scrollTop(0)
+    })
     $('.icheck').iCheck({
         checkboxClass: 'icheckbox_square-green',
         radioClass: 'iradio_square-green',

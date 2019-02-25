@@ -11,7 +11,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <div class="wrapper">
             <%@ include file="../commons/bar.jsp"%>
 
-            <main class="content-wrapper" id="content">
+            <main class="content-wrapper" id="content" tabindex="-1">
                 <section class="content body-1095">
                             <h2 class="clearfix no-print section-title">
                                 <span data-localize="title.info1095"></span>

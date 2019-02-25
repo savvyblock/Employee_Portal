@@ -11,7 +11,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <div class="wrapper">
             <%@ include file="../commons/bar.jsp"%>
 			
-            <main class="content-wrapper">
+            <main class="content-wrapper" tabindex="-1">
                 <section class="content">
                     <h2 class="clearfix section-title">
                         <span data-localize="title.leaveRequest"></span>
@@ -120,12 +120,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     $(this).click()
                                 }
                             })
+                            $(".fc-event").attr("data-toggle","modal")
+                            $(".fc-event").attr("data-target","#requestModal")
                             $(".fc-day-top").each(function(){
                                 let title = $(this).attr("data-date")
                                 // let newBtn = `<button class="btn btn-primary xs"  data-title="${title}" title="Add a new request" onclick="newEvent(this)">Add</button>`
                                 let newBtn = `<button class="btn btn-primary xs" data-title="`
                                                 + title +
-                                                `" title="" data-localize="label.add" onclick="newEvent(this)"></button>`
+                                                `" title="" data-localize="label.add" onclick="newEvent(this)"  data-toggle="modal" data-target="#requestModal"></button>`
                                 $(this).prepend(newBtn)
                             })
                             initLocalize(initialLocaleCode)//Initialize multilingual function
@@ -161,7 +163,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $("#deleteLeave").hide();
             $(".edit-title").hide();
             $(".new-title").show();
-            $('#requestModal').modal('show')
             $("#startDate").val(date);
             $("#endDate").val(date);
             $("#commentList").html("")

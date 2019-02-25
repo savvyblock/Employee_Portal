@@ -1,3 +1,4 @@
+<button id="skipNav" data-localize="label.skipNav"></button>
 <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-light clearfix">
   	
@@ -258,7 +259,6 @@
   </aside>
 
    <%@ include file="../modal/logoutModal.jsp"%>
-
    <script>
    var maxTime = 300; // seconds
    var time = maxTime;

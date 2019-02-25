@@ -11,7 +11,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <div class="wrapper">
             <%@ include file="../commons/bar.jsp"%>
 			
-            <main class="content-wrapper">
+            <main class="content-wrapper" tabindex="-1">
                     <section class="content">
                     <h2 class="clearfix section-title">
                         <span data-localize="title.setTemporaryApprovers"></span>

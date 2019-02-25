@@ -11,7 +11,7 @@
     <%@ include file="commons/bar.jsp"%>
    
   
-    <main  class="content-wrapper">
+    <main  class="content-wrapper" tabindex="-1">
     	<section class="content">
     		<div class="container-fluid">
         		<span data-localize="label.welcome"></span>  ${userDetail.nameF} ${userDetail.nameL} 
