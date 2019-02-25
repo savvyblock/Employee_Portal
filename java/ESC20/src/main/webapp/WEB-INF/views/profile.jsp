@@ -1321,6 +1321,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                 class="btn btn-secondary xs getBank"
                                                 type="button"
+                                                data-toggle= "modal"
+                                                data-target="#selectBankModal"
                                             >
                                                 <span class="hide" data-localize="profile.chooseBank"></span>
                                                 <i class="fa fa-ellipsis-h"></i>
@@ -1493,6 +1495,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <button
                                                     class="btn btn-secondary xs getBank"
                                                     type="button"
+                                                    data-toggle= "modal"
+                                                    data-target="#selectBankModal"
                                                 >
                                                     <span class="hide" data-localize="profile.chooseBank"></span>
                                                     <i
@@ -1823,21 +1827,26 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             })
             
             $('#saveNewBank').click(function() {
-            	 var freq = $('#freq').val();
-            	 var saveBankDescription = $('#saveBankDescription').val();
-            	 var saveBankCode = $('#saveBankCode').val();
-            	 var saveBankAccountNumber = $('#saveBankAccountNumber').val();
-            	 var saveBankDisplayLabel = $('#saveBankDisplayLabel').val();
-            	 var saveBankDisplayAmount = $('#saveBankDisplayAmount').val();
-            	 
-            	 $('#hiddenfreq').val(freq);
-            	 $('#hiddendescription').val(saveBankDescription);
-            	 $('#hiddensubCode').val(saveBankCode);
-            	 $('#hiddenaccountNumber').val(saveBankAccountNumber);
-            	 $('#hiddendisplayLabel').val(saveBankDisplayLabel);
-            	 $('#hiddendisplayAmount').val(saveBankDisplayAmount);
+                let bankAccountValidator = $("#addBankAccountForm").data('bootstrapValidator')
+                bankAccountValidator.validate()
+                console.log(bankAccountValidator.isValid())
+                if (bankAccountValidator.isValid()) {
+                    var freq = $('#freq').val();
+                    var saveBankDescription = $('#saveBankDescription').val();
+                    var saveBankCode = $('#saveBankCode').val();
+                    var saveBankAccountNumber = $('#saveBankAccountNumber').val();
+                    var saveBankDisplayLabel = $('#saveBankDisplayLabel').val();
+                    var saveBankDisplayAmount = $('#saveBankDisplayAmount').val();
+                    
+                    $('#hiddenfreq').val(freq);
+                    $('#hiddendescription').val(saveBankDescription);
+                    $('#hiddensubCode').val(saveBankCode);
+                    $('#hiddenaccountNumber').val(saveBankAccountNumber);
+                    $('#hiddendisplayLabel').val(saveBankDisplayLabel);
+                    $('#hiddendisplayAmount').val(saveBankDisplayAmount);
 
-            	 $('#saveBankHidden').submit();
+                    $('#saveBankHidden').submit();
+                }
 
             })
             
@@ -1866,7 +1875,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     		 $("#bankTable").append(bankTr);
                     	 }
                     	 
-                    	    $('#selectBankModal').modal('show')
+                    	    // $('#selectBankModal').modal('show')
                             bankInputName = $(that)
                                 .parent()
                                 .find('.form-control.name');
@@ -2738,7 +2747,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         function bankAccountAddValidator() {
             $('#addBankAccountForm').bootstrapValidator({
                 live: 'enable',
-               // submitButtons: '#saveNewBank',
+               submitButtons: '#saveNewBank',
                 feedbackIcons: {
                     valid: 'fa fa-check ',
                     // invalid: 'fa fa-times',
