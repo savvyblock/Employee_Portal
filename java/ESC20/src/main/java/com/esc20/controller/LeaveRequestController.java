@@ -92,6 +92,9 @@ public class LeaveRequestController {
 				for (int i = 0; i < leaveTypes.size(); i++) {
 					leaveTypesJson.add(leaveTypes.get(i).toJSON());
 				}
+				for (int i = 0; i < requestModels.size(); i++) {
+					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
+				}
 				mav.addObject("selectedFreq", freq);
 				mav.addObject("absRsns", absRsnsJson);
 				mav.addObject("leaveTypes", leaveTypesJson);
@@ -118,6 +121,9 @@ public class LeaveRequestController {
 			JSONArray leaveTypesJson = new JSONArray();
 			for (int i = 0; i < leaveTypes.size(); i++) {
 				leaveTypesJson.add(leaveTypes.get(i).toJSON());
+			}
+			for (int i = 0; i < requestModels.size(); i++) {
+				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
 			}
 			mav.addObject("selectedFreq", freq);
 			mav.addObject("absRsns", absRsnsJson);
