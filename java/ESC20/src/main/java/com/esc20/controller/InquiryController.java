@@ -336,7 +336,10 @@ public class InquiryController {
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		Boolean isSuccess = this.service.updateW2ElecConsent(employeeNumber, consent);
-		return this.getW2InformationByYear(req, year, isSuccess);
+		mav = this.getW2InformationByYear(req, year, isSuccess);
+		mav.addObject("isUpdate", true);
+		mav.addObject("isSuccess", isSuccess);
+		return mav;
 	}
 
 	@RequestMapping("information1095")
@@ -364,6 +367,7 @@ public class InquiryController {
 		Boolean isSuccess = this.service.update1095ElecConsent(employeeNumber, consent);
 		mav.setViewName("/inquiry/information1095");
 		mav = init1095(mav, session, year, 1, 1, null, null, null);
+		mav.addObject("isUpdate", true);
 		mav.addObject("isSuccess", isSuccess);
 		return mav;
 	}
