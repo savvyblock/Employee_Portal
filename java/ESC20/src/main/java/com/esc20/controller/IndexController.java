@@ -426,7 +426,9 @@ public class IndexController {
         Bank payrollAccountInfo = new Bank();
         
         payrollAccountInfo.setAccountNumber(accountNumber);
-        payrollAccountInfo.setAccountType(this.bankService.getDdAccountType(displayLabel));
+        Code c = new Code();
+        c.setDisplayLabel(displayLabel);
+        payrollAccountInfo.setAccountType(c);
         payrollAccountInfo.setCode(this.bankService.getBank(code));
         payrollAccountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
         payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
@@ -733,6 +735,7 @@ public class IndexController {
         			ab.setAccountTypeNew(b.getAccountTypeNew());
         			ab.setDepositAmountNew(b.getDepositAmountNew());
         			ab.setCodeNew(b.getCodeNew());
+        			ab.setIsDelete(b.getIsDelete());
         			isNewBank= false;
         		}
         	}
