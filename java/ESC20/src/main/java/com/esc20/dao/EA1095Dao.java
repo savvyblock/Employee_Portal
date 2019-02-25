@@ -38,17 +38,21 @@ public class EA1095Dao {
 		String retrieveSQL = "SELECT elecConsnt1095 FROM BhrEmpEmply A WHERE A.empNbr = :employeeNumber";
         Query q = session.createQuery(retrieveSQL);
         q.setParameter("employeeNumber", employeeNumber);
-        String result = (String) q.uniqueResult();
-        
-        return result;
+		Character result = ((Character)q.uniqueResult());
+		String res = result==null?"N":result.toString();
+		
+		if(res!=null)
+			return res.trim();
+		else
+			return "";
 	}
 
 	public boolean update1095ElecConsent(String employeeNumber, String elecConsnt1095) {
 		Session session = this.getSession();
-		String updateW2ElecConsntSql = "UPDATE BhrEmpEmply SET elecConsnt1095 =:elecConsnt1095, module = 'Employee Access' WHERE empNbr =:employeeNumber";
-		Query q = session.createQuery(updateW2ElecConsntSql);
+		String update1095ElecConsntSql = "UPDATE BhrEmpEmply SET elecConsnt1095 =:elecConsnt1095, module = 'Employee Access' WHERE empNbr =:employeeNumber";
+		Query q = session.createQuery(update1095ElecConsntSql);
 		q.setParameter("employeeNumber", employeeNumber);
-		q.setParameter("elecConsntW2", elecConsnt1095.charAt(0));
+		q.setParameter("elecConsnt1095", elecConsnt1095.charAt(0));
 		Integer res = q.executeUpdate();
 		session.flush();
 		return res>0;
