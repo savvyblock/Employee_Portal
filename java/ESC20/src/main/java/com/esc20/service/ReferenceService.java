@@ -71,4 +71,8 @@ public class ReferenceService {
 		
 		return payrollFrequencies;
 	}
+
+	public List<Code> getDdAccountTypes() {
+		return referenceDao.getDdAccountTypes();
+	}
 }
