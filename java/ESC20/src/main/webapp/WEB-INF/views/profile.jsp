@@ -1362,10 +1362,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                  id="accountTypeNew_${count.index}"
                                                 data-localize="profile.bankAcctType"
                                                 name="displayLabel"
-                                                value="${bank.accountTypeNew.displayLabel}"
                                             >
                                             <c:forEach var="bankType" items="${bankAccountTypes}" varStatus="countBank">
-                                                <option value="${bankType.code}" <c:if test="${bankType.code == bank.accountType.code}">selected</c:if>>${bankType.displayLabel}</option>
+                                                <option value="${bankType.code}" <c:if test="${bankType.code == bank.accountTypeNew.code}">selected</c:if>>${bankType.displayLabel}</option>
                                             </c:forEach>
   
                                             </select>
@@ -2074,8 +2073,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         	 
  	   		var codeNew = $('#codeNew_'+index).val();
                 console.log("codeNew" + codeNew)
-	       	var accountNumberNew = $('#accountNumberNew_'+index).val();
-	       	var accountTypeNew = $('#accountTypeNew_'+index).val();
+               var accountNumberNew = $('#accountNumberNew_'+index).val();
+              
+               var accountTypeNew = $('#accountTypeNew_'+index).val();
+               console.log(accountTypeNew)
 	       	var displayAmountNew = $('#displayAmountNew_'+index).val();
  	       	
              $('#hidden_freq_update').val(freq);

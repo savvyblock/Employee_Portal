@@ -250,7 +250,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $('.approveValidator').hide()
             $('.commentValidator').hide()
             $('.supervisorComment').hide()
-            $('#approveModal').modal('show')
+            // $('#approveModal').modal('show')
             initLocalize(initialLocaleCode)
         }
         function changeLevel(){

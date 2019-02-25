@@ -1121,10 +1121,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     <div class="modal-body">
                         <form >
                             <div class="form-group">
-                                <label for="customMessage" data-localize="label.customMessageHere"></label>
-                                <textarea class="form-control form-text" name="customMessage" id="customMessage" cols="30" rows="6" title="" placeholder="" data-localize="label.customMessageHere" disabled>
+                                <label data-localize="label.customMessageHere"></label>
+                                <div class="form-control form-text static">
                                     ${elecConsntMsgW2}
-                                </textarea>
+                                </div>
                             </div>
                             <div class="form-group">
                                     <div class="checkbox mb-2">

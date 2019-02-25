@@ -308,6 +308,11 @@ input {
     &.form-text{
         height: auto;
         resize: none;
+        &.static{
+            height: 115px;
+            overflow: hidden;
+            overflow-y: auto;
+        }
     }
     &:focus {
         color: #495057;

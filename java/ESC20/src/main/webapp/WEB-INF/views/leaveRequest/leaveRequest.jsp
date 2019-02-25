@@ -140,7 +140,7 @@
 										<button class="btn btn-primary sm edit-btn" id="editLeave" data-toggle="modal" data-target="#requestModal" 
 										onClick='editLeave("${leave.id}","${leave.LeaveType}","${leave.AbsenseReason}","${leave.start}",
 										"${leave.end}", "${leave.lvUnitsDaily}","${leave.lvUnitsUsed}")' data-localize="label.edit"></button>
-										<button class="btn btn-secondary sm" onClick="deleteLeave(${leave.id})" data-localize="label.delete"></button>
+										<button class="btn btn-secondary sm"  data-toggle="modal" data-target="#deleteModal"  onClick="deleteLeave(${leave.id})" data-localize="label.delete"></button>
 									</td>
 								</tr>
 							</c:forEach>
@@ -280,7 +280,6 @@
 		function deleteLeave(id){
 			// currentChooseId = id
 			$("#deleteId").val(id);
-			$("#deleteModal").modal("show")
 		}
 
 		function changeMMDDFormat(date){

@@ -118,7 +118,7 @@ function initialLeaveCalendarModal(){
                     }
                     $("infoEmpNameStatic").html(leaveRequest.empNbr + ":" +leaveRequest.firstName+ ","+leaveRequest.firstName)
                     $("#infoDetailStatic").html("")
-                    $('#EventDetailModal').modal('show')
+                    // $('#EventDetailModal').modal('show')
                     initLocalize(initialLocaleCode)
                 },
                 viewRender:function(){
@@ -130,6 +130,8 @@ function initialLeaveCalendarModal(){
                             $(this).click()
                         }
                     })
+                    $(".fc-event").attr("data-toggle","modal")
+                    $(".fc-event").attr("data-target","#EventDetailModal")
                 }
             })
         }

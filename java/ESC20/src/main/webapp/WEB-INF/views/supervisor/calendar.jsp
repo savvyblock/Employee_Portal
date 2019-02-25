@@ -109,7 +109,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                           }
                           $("infoEmpNameStatic").html(leaveRequest.empNbr + ":" +leaveRequest.firstName+ ","+leaveRequest.firstName)
                           $("#infoDetailStatic").html("")
-                          $('#EventDetailModal').modal('show')
+                        //   $('#EventDetailModal').modal('show')
                           initLocalize(initialLocaleCode)
                         },
                         viewRender:function(){
@@ -121,6 +121,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     $(this).click()
                                 }
                             })
+                            $(".fc-event").attr("data-toggle","modal")
+                            $(".fc-event").attr("data-target","#EventDetailModal")
                         }
                     })
                 },

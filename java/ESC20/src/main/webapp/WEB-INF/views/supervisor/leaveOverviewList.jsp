@@ -17,7 +17,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <span data-localize="title.leaveOverview"></span>
                                 <div class="pull-right right-btn">
 					                <button class="btn btn-primary" id="new-btn" data-toggle="modal" data-target="#requestModal" onclick="showRequestForm()">Add</button>
-                                    <button class="btn btn-primary pull-right" style="height:35px;display:flex;align-items:center;"
+                                    <button class="btn btn-primary pull-right" style="height:35px;display:flex;align-items:center;"  data-toggle="modal" data-target="#leaveOverviewCalendarModal" 
                                         onclick="showOverviewCalendar()" >
                                         <span data-localize="label.switchToCalendarView" ></span> <i class="fa fa-calendar"></i>
                                     </button>
@@ -175,12 +175,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                     <td style="width:150px;" data-localize="approveRequest.supervisorAction" data-localize-location="scope">
                                                                         
                                                                             <c:if test="${leave.statusCd =='P'}">
-                                                                            <button class="btn btn-primary sm edit-btn" id="editLeave" data-toggle="modal" data-target="#requestModal" 
-                                                                            onClick='editLeave("${item.id}","${item.LeaveType}","${item.AbsenseReason}","${item.start}",
-                                                                            "${item.end}", "${item.lvUnitsDaily}","${item.lvUnitsUsed}")'' data-localize="label.edit"></button>
-                                                                            <button class="btn btn-secondary sm delete-btn" id="deleteLeave" 
-                                                                            onClick="deleteLeave('${item.id}')" data-localize="label.delete"></button>
+                                                                                <button class="btn btn-primary sm edit-btn" id="editLeave" data-toggle="modal" data-target="#requestModal" 
+                                                                                onClick='editLeave("${item.id}","${item.LeaveType}","${item.AbsenseReason}","${item.start}",
+                                                                                "${item.end}", "${item.lvUnitsDaily}","${item.lvUnitsUsed}")'' data-localize="label.edit"></button>
+                                                                                <button class="btn btn-secondary sm delete-btn" id="deleteLeave"   data-toggle="modal" data-target="#deleteModal" 
+                                                                                onClick="deleteLeave('${item.id}')" data-localize="label.delete"></button>
                                                                             </c:if>
+                                                                            
                                                                     
                                                                 </td>
                                                             </tr>
@@ -421,14 +422,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     
 		function deleteLeave(id){
             $("#deleteId").val(id);
-            $("#deleteModal").modal("show")
         }
         function changeMMDDFormat(date){
 			let dateArry = date.split("-")
 			return dateArry[0]
 		}
         function showOverviewCalendar(){
-            $("#leaveOverviewCalendarModal").modal("show")
             setTimeout("initialLeaveCalendarStaticModal()",100)
         }
     </script>
