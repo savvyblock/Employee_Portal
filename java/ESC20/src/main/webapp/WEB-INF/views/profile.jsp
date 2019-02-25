@@ -1364,7 +1364,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 name="displayLabel"
                                             >
                                             <c:forEach var="bankType" items="${bankAccountTypes}" varStatus="countBank">
-                                                <option value="${bankType.code}" <c:if test="${bankType.code == bank.accountTypeNew.code}">selected</c:if>>${bankType.displayLabel}</option>
+                                                <option value="${bankType.displayLabel}" <c:if test="${bankType.code == bank.accountTypeNew.code}">selected</c:if>>${bankType.displayLabel}</option>
                                             </c:forEach>
   
                                             </select>
@@ -1530,7 +1530,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="saveBankDisplayLabel"
                                                 >
                                                 <c:forEach var="bankType" items="${bankAccountTypes}" varStatus="count">
-                                                    <option value="${bankType.code}">${bankType.displayLabel}</option>
+                                                    <option value="${bankType.displayLabel}">${bankType.displayLabel}</option>
                                                 </c:forEach>
                                                 </select>
                                             </div>
@@ -1887,13 +1887,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 console.log(number)
                                 console.log(name)
                                 console.log(code)
-                                bankInputName.val(name)
+                                bankInputName.val(name).change()
                                 bankInputBankCode.val(code)
-                                bankInputCode.val(number)
+                                bankInputCode.val(number).change()
                                 bankInputNewCode.val(code)
                                 $('#selectBankModal').modal('hide')
-                                bankInputName.change()
-                                bankInputCode.change()
                             })
                     	 
                      },
@@ -1957,12 +1955,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 console.log(number)
                                 console.log(name)
                                 console.log(code)
-                                bankInputName.val(name)
+                                bankInputName.val(name).change()
                                 bankInputBankCode.val(code)
-                                bankInputCode.val(number)
+                                bankInputCode.val(number).change()
                                 $('#selectBankModal').modal('hide')
-                                bankInputName.change()
-                                bankInputCode.change()
                             })
                          }else{
                             $("#bankTable tbody").empty()
@@ -2722,9 +2718,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         'displayLabel': {
                             trigger: 'blur keyup',
                             validators: {
-                                notEmpty: {
-                                    message: 'validator.requiredField'
-                                }
                             }
                         },
                         'displayAmount': {
@@ -2746,34 +2739,30 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $('#addBankAccountForm').bootstrapValidator({
                 live: 'enable',
                // submitButtons: '#saveNewBank',
-                
                 feedbackIcons: {
                     valid: 'fa fa-check ',
                     // invalid: 'fa fa-times',
                     validating: 'fa fa-refresh'
                 },
                 fields: {
-                    'accountInfo[0].code.description': {
+                    'description': {
                         trigger: 'blur keyup',
-                        
                         validators: {
                             notEmpty: {
                                 message: 'validator.requiredField'
                             }
                         }
                     },
-                    'accountInfo[0].code.subCode': {
+                    'subCode': {
                         trigger: 'blur keyup',
-                        
                         validators: {
                             notEmpty: {
                                 message: 'validator.requiredField'
                             }
                         }
                     },
-                    'accountInfo[0].accountNumber': {
+                    'accountNumber': {
                         trigger: 'blur keyup',
-                        
                         validators: {
                             notEmpty: {
                                 message: 'validator.requiredField'
@@ -2784,18 +2773,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             }
                         }
                     },
-                    'accountInfo[0].accountType.displayLabel': {
+                    'displayLabel': {
                         trigger: 'blur keyup',
-                        
                         validators: {
                             notEmpty: {
                                 message: 'validator.requiredField'
                             }
                         }
                     },
-                    'accountInfo[0].depositAmount.displayAmount': {
+                    'displayAmount': {
                         trigger: 'blur keyup',
-                        
                         validators: {
                             regexp: {
                                 regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
