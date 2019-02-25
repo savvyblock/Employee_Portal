@@ -110,6 +110,9 @@ public class ReferenceDao {
 		Code code;
 		for(Object[] item: res) {
 			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),((Character)item[1]==null?"":((Character)item[1]).toString()),(String)item[2]);
+			if(code.getCode().equals("")) {
+				code = new Code();
+			}
 			result.add(code);		
 		}
 		return result;	
