@@ -1430,6 +1430,14 @@
   }
 }
 
+.profile .bankAccountBlock.isDelete {
+  background: #e28088 !important;
+}
+
+.profile .bankAccountBlock.isDelete .profile-btn .saveOrCancel .save-btn, .profile .bankAccountBlock.isDelete .profile-btn .saveOrCancel .undo-btn {
+  display: none;
+}
+
 #selectBank .form-group {
   padding: 5px 10px;
 }
@@ -1493,4 +1501,9 @@
 
 .yesPrimary .fa {
   line-height: 20px;
+}
+
+.icheckRadioBank {
+  width: 22px;
+  height: 22px;
 }

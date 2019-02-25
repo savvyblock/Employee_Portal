@@ -1248,7 +1248,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 							
 							
 						<form
-                            	class="profile-item border-0 bankAccountBlock"
+                            	class="profile-item border-0 bankAccountBlock <c:if test="${bank.isDelete == true}">isDelete</c:if>"
                                 id="bankAccountForm_${count.index}"
                                 method="POST"
                         		>
@@ -1257,17 +1257,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-title" data-localize="profile.primary"></div>
                                     <div class="profile-desc">
                                         <span class="haveValue">
-                                            <label>
+                                            <!-- <label>
                                                 <div class="noPrimary"></div>
                                                 <div class="yesPrimary">
                                                     <i class="fa fa-check"></i>
                                                 </div>
-                                            </label>
+                                            </label> -->
                                         </span>
                                         <div class="form-group valueInput">
                                             <label for="primary_${count.index}">
                                                 <input
-                                                    class="icheck icheckRadioBank"
+                                                    class="icheckRadioBank"
                                                     id="primary_${count.index}"
                                                     type="radio"
                                                     title="" 
@@ -1400,7 +1400,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                             type="button"
                                             id="undoBank_${count.index}"
-                                            class="btn btn-secondary"  data-localize="label.undo"
+                                            class="btn btn-secondary undo-btn"  data-localize="label.undo"
                                             onclick="undoBank(${count.index})"
                                         >
                                         
@@ -1754,13 +1754,28 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             bankAccountValidator()
             //add
             bankAccountAddValidator()
-            $(".icheckRadioBank").on('ifChecked', function(event) {
-                let  indexBank = $(".icheckRadioBank").index(this);
-                $('.icheckRadioBank').each(function(index){
-                    if(index!=indexBank){
-                        $(this).iCheck('uncheck');
-                    }
-                })
+            $(".icheckRadioBank").on('click', function(event) {
+                if($(this).is(':checked')){
+                    let  indexBank = $(".icheckRadioBank").index(this);
+                    $('.icheckRadioBank').each(function(index){
+                        if(index!=indexBank){
+                            $(this).prop('checked',false);
+                        }
+                    })
+                }
+            })
+            $(".icheckRadioBank").keypress(function(e){
+                console.log(e)
+                var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
+                if (eCode == 13){
+                    $(this).click()
+                    let  indexBank = $(".icheckRadioBank").index(this);
+                    $('.icheckRadioBank').each(function(index){
+                        if(index!=indexBank){
+                            $(this).prop('checked',false);
+                        }
+                    })
+                }
             })
             let bankInputName, bankInputCode
             $('.edit-btn').click(function() {
