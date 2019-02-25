@@ -99,8 +99,10 @@ public class IndexController {
             String uName = param.get("userName");
             BeaUsers user = this.indexService.getUserPwd(uName);
             String plainTextPwd = param.get("userPwd");
-            
+            System.out.println("User plain input "+plainTextPwd);
             plainTextPwd = encoder.encodePassword(plainTextPwd,null);
+            System.out.println("After SHA256 encoding "+plainTextPwd);
+            System.out.println("User password from DB "+user.getUsrpswd());
             if(user != null && user.getUsrpswd().equals(plainTextPwd)){
                 res.put("isSuccess","true");
                 res.put("userName", uName);
@@ -371,15 +373,18 @@ public class IndexController {
         Bank accountInfo = new Bank();
         
         accountInfo.setAccountNumber(accountNumber);
-        accountInfo.setAccountType(this.bankService.getDdAccountType(displayLabel));
+        Code c = new Code();
+        c.setDisplayLabel(displayLabel);
+        accountInfo.setAccountType(this.bankService.getDdAccountType(c.getCode()));
         accountInfo.setCode(this.bankService.getBank(code));
         accountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
         accountInfo.setFrequency(Frequency.getFrequency(freq));
         
         Bank payrollAccountInfo = new Bank();
         
+        c.setDisplayLabel(displayLabelNew);
         payrollAccountInfo.setAccountNumber(accountNumberNew);
-        payrollAccountInfo.setAccountType(this.bankService.getDdAccountType(displayLabelNew));
+        payrollAccountInfo.setAccountType(this.bankService.getDdAccountType(c.getCode()));
         payrollAccountInfo.setCode(this.bankService.getBank(codeNew));
         payrollAccountInfo.setDepositAmount(new Money(new Double (displayAmountNew).doubleValue(), Currency.getInstance(Locale.US)));
         payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
@@ -745,7 +750,7 @@ public class IndexController {
         	
         }
         
-        
+        List<Code> bankAccountTypes = this.referenceService.getDdAccountTypes();
         mav.setViewName("profile");
         
         mav.addObject("nameRequest", nameRequest);
@@ -770,6 +775,7 @@ public class IndexController {
        
         mav.addObject("banks", allBanks);
         mav.addObject("w4Request", w4Request);
+        mav.addObject("bankAccountTypes",bankAccountTypes);
 	}
 
     @RequestMapping("saveName")
