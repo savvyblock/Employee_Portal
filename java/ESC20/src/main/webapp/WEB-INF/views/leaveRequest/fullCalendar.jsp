@@ -102,7 +102,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             $(".new-title").hide();
                             $(".firstSubmit").hide();
 				            $(".secondSubmit").show();
-                            $('#requestModal').modal('show')
+                            // $('#requestModal').modal('show')
                             $("[name='leaveType']").val(calEvent.LeaveType);
 				            $("[name='absenseReason']").val(calEvent.AbsenseReason);
 							$("#leaveId").attr("value", calEvent.id+"");

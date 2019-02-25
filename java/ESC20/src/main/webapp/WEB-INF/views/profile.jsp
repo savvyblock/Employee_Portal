@@ -1364,17 +1364,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 name="displayLabel"
                                                 value="${bank.accountTypeNew.displayLabel}"
                                             >
-                                                <option value=""></option>
-                                                <option
-                                                    value="2 - Checking account"
-                                                    selected="selected"
-                                                    >2 - Checking
-                                                    account</option
-                                                >
-                                                <option
-                                                    value="3 - Savings account"
-                                                    >3 - Savings account</option
-                                                >
+                                            <c:forEach var="bankType" items="${bankAccountTypes}" varStatus="countBank">
+                                                <option value="${bankType.code}" <c:if test="${bankType.code == bank.accountType.code}">selected</c:if>>${bankType.displayLabel}</option>
+                                            </c:forEach>
+  
                                             </select>
                                         </div>
                                     </div>
@@ -1537,17 +1530,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     name="displayLabel"
                                                     id="saveBankDisplayLabel"
                                                 >
-                                                    <option value=""></option>
-                                                    <option
-                                                        value="2 - Checking account"
-                                                        >2 - Checking
-                                                        account</option
-                                                    >
-                                                    <option
-                                                        value="3 - Savings account"
-                                                        >3 - Savings
-                                                        account</option
-                                                    >
+                                                <c:forEach var="bankType" items="${bankAccountTypes}" varStatus="count">
+                                                    <option value="${bankType.code}">${bankType.displayLabel}</option>
+                                                </c:forEach>
                                                 </select>
                                             </div>
                                         </div>
@@ -1591,8 +1576,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <button
                                 type="button"
                                 class="btn btn-primary add-bank-btn"
-                                data-localize-location="title"
-                                data-localize="profile.addANewBankAccount"
                             >
                             <span data-localize="label.add"></span>
                             </button>
@@ -2075,11 +2058,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             willSubmitFormDelete = $('#deleteBankHidden')
         }
         function updateBank(index){
-        	 console.log("delete="+index)
-             var bootstrapValidator = $('#bankAccountForm_'+index).data('bootstrapValidator')
-            bootstrapValidator.validate()
-            console.log(bootstrapValidator.isValid())
-            if (bootstrapValidator.isValid()) {
+             console.log("updateBank="+index)
+             let bankAccountForm = '#bankAccountForm_'+index
+             let bankAccountValidator = $(bankAccountForm).data('bootstrapValidator')
+             console.log( $(bankAccountForm))
+             console.log(bankAccountValidator)
+             bankAccountValidator.validate()
+            console.log(bankAccountValidator.isValid())
+            if (bankAccountValidator.isValid()) {
                 var freq = $('#freq').val();
  	       	var code = $('#code_'+index).val();
  	       	var accountNumber = $('#accountNumber_'+index).text();
