@@ -137,10 +137,13 @@
 									</td>
 									<td data-localize="leaveRequest.status" data-localize-location="scope">${leave.statusDescr}</td>
 									<td style="width:150px;">
-										<button class="btn btn-primary sm edit-btn" id="editLeave" data-toggle="modal" data-target="#requestModal" 
-										onClick='editLeave("${leave.id}","${leave.LeaveType}","${leave.AbsenseReason}","${leave.start}",
-										"${leave.end}", "${leave.lvUnitsDaily}","${leave.lvUnitsUsed}")' data-localize="label.edit"></button>
-										<button class="btn btn-secondary sm"  data-toggle="modal" data-target="#deleteModal"  onClick="deleteLeave(${leave.id})" data-localize="label.delete"></button>
+											<c:if test="${leave.statusCd != 'A'}">
+													<button class="btn btn-primary sm edit-btn" id="editLeave" data-toggle="modal" data-target="#requestModal" 
+													onClick='editLeave("${leave.id}","${leave.LeaveType}","${leave.AbsenseReason}","${leave.start}",
+													"${leave.end}", "${leave.lvUnitsDaily}","${leave.lvUnitsUsed}")' data-localize="label.edit"></button>
+													<button class="btn btn-secondary sm"  data-toggle="modal" data-target="#deleteModal"  onClick="deleteLeave(${leave.id})" data-localize="label.delete"></button>
+											</c:if>
+										
 									</td>
 								</tr>
 							</c:forEach>

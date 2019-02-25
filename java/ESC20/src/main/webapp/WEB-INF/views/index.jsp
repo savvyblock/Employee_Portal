@@ -19,8 +19,8 @@
                             <img src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="" data-localize="logoName.esc">
                         </div>
                         <form id="loginForm" class="card" method="get">
-                        <h1 class="title" data-localize="label.pleaseSignIn"></h1>
-                        <div class="form-group">
+                            <h1 class="title" data-localize="label.pleaseSignIn"></h1>
+                            <div class="form-group">
                                 <label class="form-title" for="inputEmail" data-localize="label.username"></label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-user left-icon"></i>

@@ -1257,17 +1257,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-title" data-localize="profile.primary"></div>
                                     <div class="profile-desc">
                                         <span class="haveValue">
-                                            <label for="primaryStatic_${count.index}">
-                                                <input
-                                                    class="icheck"
-                                                    id="primaryStatic_${count.index}"
-                                                    type="radio"
-                                                    name="primaryAccount"
-                                                    title="" 
-                                                    data-localize="accessHint.primaryAccountCheckbox"
-                                                    disabled
-                                                />
-                                                <span class="hide" data-localize="accessHint.primaryAccountCheckbox"></span>
+                                            <label>
+                                                <div class="noPrimary"></div>
+                                                <div class="yesPrimary">
+                                                    <i class="fa fa-check"></i>
+                                                </div>
                                             </label>
                                         </span>
                                         <div class="form-group valueInput">

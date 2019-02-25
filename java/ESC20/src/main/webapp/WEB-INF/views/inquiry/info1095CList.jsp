@@ -14,7 +14,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 <span class="print-check-disabled">
                     <i class="fa fa-times"></i>
                 </span>
-                <input class="checkBoxOld" type="checkbox" />
+                <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
             </td>
         </tr>
         <tr>
@@ -67,7 +67,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </span>
                             </c:if>
                             <c:if test="${itemC.monAll=='N'}">
-                                    <input class="checkBoxOld" type="checkbox" />
+                                    <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                             </c:if>
                     </td>
                     <td data-localize="info1095Table.Jan" data-localize-location="scope">
@@ -77,7 +77,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </span>
                             </c:if>
                             <c:if test="${itemC.mon01=='N'}">
-                                    <input class="checkBoxOld" type="checkbox" />
+                                    <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                             </c:if>
                     </td>
                     <td data-localize="info1095Table.Feb" data-localize-location="scope">
@@ -87,7 +87,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </span>
                             </c:if>
                             <c:if test="${itemC.mon02=='N'}">
-                                    <input class="checkBoxOld" type="checkbox" />
+                                    <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                             </c:if>
                     </td>
                     <td data-localize="info1095Table.Mar" data-localize-location="scope">
@@ -97,7 +97,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </span>
                             </c:if>
                             <c:if test="${itemC.mon03=='N'}">
-                                    <input class="checkBoxOld" type="checkbox" />
+                                    <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                             </c:if>
                     </td>
                     <td data-localize="info1095Table.Apr" data-localize-location="scope">
@@ -107,7 +107,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </span>
                             </c:if>
                             <c:if test="${itemC.mon04=='N'}">
-                                    <input class="checkBoxOld" type="checkbox" />
+                                    <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                             </c:if>
                     </td>
                     <td data-localize="info1095Table.May" data-localize-location="scope">
@@ -117,7 +117,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </span>
                             </c:if>
                             <c:if test="${itemC.mon05=='N'}">
-                                    <input class="checkBoxOld" type="checkbox" />
+                                    <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                             </c:if>
                     </td>
                     <td data-localize="info1095Table.Jun" data-localize-location="scope">
@@ -127,7 +127,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </span>
                             </c:if>
                             <c:if test="${itemC.mon06=='N'}">
-                                    <input class="checkBoxOld" type="checkbox" />
+                                    <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                             </c:if>
                     </td>
                     <td data-localize="info1095Table.Jul" data-localize-location="scope">
@@ -137,7 +137,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </span>
                             </c:if>
                             <c:if test="${itemC.mon07=='N'}">
-                                    <input class="checkBoxOld" type="checkbox" />
+                                    <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                             </c:if>
                     </td>
                     <td data-localize="info1095Table.Aug" data-localize-location="scope">
@@ -147,7 +147,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </span>
                             </c:if>
                             <c:if test="${itemC.mon08=='N'}">
-                                    <input class="checkBoxOld" type="checkbox" />
+                                    <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                             </c:if>
                     </td>
                     <td data-localize="info1095Table.Sep" data-localize-location="scope">
@@ -157,7 +157,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </span>
                     </c:if>
                     <c:if test="${itemC.mon09=='N'}">
-                            <input class="checkBoxOld" type="checkbox" />
+                            <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                     </c:if>
                     </td>
                     <td data-localize="info1095Table.Oct" data-localize-location="scope">
@@ -167,7 +167,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </span>
                     </c:if>
                     <c:if test="${itemC.mon10=='N'}">
-                            <input class="checkBoxOld" type="checkbox" />
+                            <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                     </c:if>
                     </td>
                     <td data-localize="info1095Table.Nov" data-localize-location="scope">
@@ -177,7 +177,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </span>
                     </c:if>
                     <c:if test="${itemC.mon11=='N'}">
-                            <input class="checkBoxOld" type="checkbox" />
+                            <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                     </c:if>
                     </td>
                     <td data-localize="info1095Table.Dec" data-localize-location="scope">
@@ -187,7 +187,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </span>
                     </c:if>
                     <c:if test="${itemC.mon12=='N'}">
-                            <input class="checkBoxOld" type="checkbox" />
+                            <input class="checkBoxOld" type="checkbox" title=""  data-localize="label.checkbox" />
                     </c:if>
                     </td>
                 </tr>
@@ -195,13 +195,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             <tr>
                         <td colspan="17">
                                 <div class="pageGroup">
-                                        <button class="pageBtn firstPate" title="" data-localize="label.firstPage" onclick="changePage(1)"  data-localize-location="title"
+                                        <button class="pageBtn firstPate"  onclick="changePage(1)" 
                                                 <c:if test="${ CPageNo ==1 }">disabled</c:if>>
                                                 <i class="fa fa-angle-double-left "></i>
+                                                <span class="hide" data-localize="label.firstPage"></span>
                                         </button>  
-                                        <button class="pageBtn prevPage" title="" data-localize="label.prevPage" onclick="changePage(${CPageNo - 1})"  data-localize-location="title"
+                                        <button class="pageBtn prevPage" onclick="changePage(${CPageNo - 1})"
                                                 <c:if test="${ CPageNo ==1  }">disabled</c:if>>
                                                 <i class="fa fa-angle-left "></i>
+                                                <span class="hide" data-localize="label.prevPage"></span>
                                         </button>
                                         <select class="selectPage" name="page" id="pageNow" title="" data-localize="label.choosePage" onchange="changePage()"  data-localize-location="title">
                                                 <c:forEach  var="page"  begin="1" end="${CTotal}">
@@ -212,13 +214,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <span class="slash">/</span>
                                                 <span class="totalPate">${CTotal}</span>
                                         </div>
-                                        <button class="pageBtn nextPate" title="" data-localize="label.nextPage"  onclick="changePage(${CPageNo + 1})"  data-localize-location="title"
+                                        <button class="pageBtn nextPate"  onclick="changePage(${CPageNo + 1})"
                                                 <c:if test="${CPageNo == CTotal  }">disabled</c:if>>
                                                         <i class="fa fa-angle-right "></i>
+                                                        <span class="hide" data-localize="label.nextPage"></span>
                                         </button>
-                                        <button class="pageBtn lastPate" title="" data-localize="label.lastPage"  onclick="changePage(${CTotal})"  data-localize-location="title"
+                                        <button class="pageBtn lastPate" onclick="changePage(${CTotal})"
                                                 <c:if test="${CPageNo == CTotal   }">disabled</c:if>>
                                                         <i class="fa fa-angle-double-right"></i>
+                                                        <span class="hide" data-localize="label.lastPage"></span>
                                         </button>
                                 </div>
                         </td>

@@ -105,6 +105,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <input
                                                             type="checkbox"
                                                             name="void"
+                                                            id="void"
                                                         />
                                                         <span data-localize="info1095Table.void"></span>
                                                     </label>
@@ -115,6 +116,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <input
                                                             type="checkbox"
                                                             name="corrected"
+                                                            id="corrected"
                                                         />
                                                         <span data-localize="info1095Table.corrected"></span>
                                                     </label>

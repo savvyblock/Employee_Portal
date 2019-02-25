@@ -26,13 +26,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         </div>
         <%@ include file="../commons/footer.jsp"%>
         <%@ include file="../modal/eventModal.jsp"%>
+        <%@ include file="../modal/eventModalStatic.jsp"%>
         <%@ include file="../modal/deleteModal.jsp"%>
     </body>
     <script>
+        var leaveTypes = eval(${leaveTypes});
+        var absRsns = eval(${absRsns});
         $(document).ready(function() {
             $("#requestForm").attr("action", "submitLeaveRequestFromCalendar");
 			var leaveList = eval(${leaves});
-			console.log(leaveList)
             initThemeChooser({
                 init: function(themeSystem) {
                     $('#calendar').fullCalendar({
@@ -57,61 +59,121 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         events: leaveList,
                         locale: initialLocaleCode,
                         eventClick: function(calEvent, jsEvent, view) {
-                            console.log(calEvent)
-                            $('.dateValidator').hide()
-                            $('#requestForm')
-                                .data('bootstrapValidator')
-                                .destroy()
-                            $('#requestForm').data('bootstrapValidator', null)
-                            formValidator()
-                            $('.dateValidator').hide()
-                            let leaveStartDate = calEvent.start._i
-                            let leaveEndDate = calEvent.end._i
+                            if(calEvent.statusCd != 'A'){
+                                $('.dateValidator').hide()
+                                $('#requestForm')
+                                    .data('bootstrapValidator')
+                                    .destroy()
+                                $('#requestForm').data('bootstrapValidator', null)
+                                formValidator()
+                                $('.dateValidator').hide()
+                                let leaveStartDate = calEvent.start._i
+                                let leaveEndDate = calEvent.end._i
 
-                            let start_arry = leaveStartDate.split(" ")
-                            let end_arry = leaveEndDate.split(" ")
-                            let startTime = start_arry[1].split(":")
-                            let endTime = end_arry[1].split(":")
-                            console.log(startTime)
-                            console.log(endTime)
-                            let startH = parseInt(startTime[0])
-                            let endH = parseInt(endTime[0])
-                            let startAMOrPM,endAMOrPM;
-                            startH = startTime[0].trim();
-            				startAMOrPM = start_arry[2].trim();
-            				endH = endTime[0].trim();
-            				endAMOrPM = end_arry[2].trim();
-            				$("#startHour").val(startH);
-            				$("#endHour").val(endH);
-                            $("#startAmOrPm").val(startAMOrPM)
-                            $("#endAmOrPm").val(endAMOrPM)
-                            let startTimeValue = startH + ":" + startTime[1] + " " + startAMOrPM
-                            let endTimeValue = endH + ":" + endTime[1] + " " + endAMOrPM
-                            $("#startTimeValue").val(startTimeValue)
-                            $("#endTimeValue").val(endTimeValue)
-                            $("#startMinute").val(startTime[1])
-                            $("#endMinute").val(endTime[1])
-                            $("#commentList").html("")
-                            for(let i=0;i<calEvent.comments.length;i++){
-                                    let html = '<p>'+calEvent.comments[i].detail+'</p>'
-                                    $("#commentList").append(html)
+                                let start_arry = leaveStartDate.split(" ")
+                                let end_arry = leaveEndDate.split(" ")
+                                let startTime = start_arry[1].split(":")
+                                let endTime = end_arry[1].split(":")
+                                let startH = parseInt(startTime[0])
+                                let endH = parseInt(endTime[0])
+                                let startAMOrPM,endAMOrPM;
+                                startH = startTime[0].trim();
+                                startAMOrPM = start_arry[2].trim();
+                                endH = endTime[0].trim();
+                                endAMOrPM = end_arry[2].trim();
+                                $("#startHour").val(startH);
+                                $("#endHour").val(endH);
+                                $("#startAmOrPm").val(startAMOrPM)
+                                $("#endAmOrPm").val(endAMOrPM)
+                                let startTimeValue = startH + ":" + startTime[1] + " " + startAMOrPM
+                                let endTimeValue = endH + ":" + endTime[1] + " " + endAMOrPM
+                                $("#startTimeValue").val(startTimeValue)
+                                $("#endTimeValue").val(endTimeValue)
+                                $("#startMinute").val(startTime[1])
+                                $("#endMinute").val(endTime[1])
+                                $("#commentList").html("")
+                                for(let i=0;i<calEvent.comments.length;i++){
+                                        let html = '<p>'+calEvent.comments[i].detail+'</p>'
+                                        $("#commentList").append(html)
+                                }
+                                $("#cancelAdd").hide();
+                                $("#deleteLeave").show();
+                                $(".edit-title").show();
+                                $(".new-title").hide();
+                                $(".firstSubmit").hide();
+                                $(".secondSubmit").show();
+                                // $('#requestModal').modal('show')
+                                $("[name='leaveType']").val(calEvent.LeaveType);
+                                $("[name='absenseReason']").val(calEvent.AbsenseReason);
+                                $("#leaveId").attr("value", calEvent.id+"");
+                                $("#startDate").val(calEvent.LeaveStartDate);
+                                $("#endDate").val(calEvent.LeaveEndDate);
+                                calcTime()
+                                //Initializes the time control when edit event modal show
+                            }else{
+                                let leaveRequest = calEvent;
+                                console.log(leaveRequest)
+                                let type
+                                leaveTypes.forEach(element => {
+                                    if(element.code == leaveRequest.LeaveType){
+                                        type = element.description
+                                    }
+                                });
+                                let reason
+                                absRsns.forEach(element => {
+                                    if(element.code == leaveRequest.AbsenseReason){
+                                        reason = element.description
+                                    }
+                                });
+                                let leaveStartDate = leaveRequest.start._i
+                                let leaveEndDate = leaveRequest.end._i
+
+                                let start_arry = leaveStartDate.split(" ")
+                                let end_arry = leaveEndDate.split(" ")
+
+                                let startTime = changeFormatTimeAm(start_arry[1])
+                                let endTime = changeFormatTimeAm(end_arry[1])
+
+                                let startDate = changeMMDDFormat(start_arry[0])
+                                let endDate = changeMMDDFormat(end_arry[0])
+
+                                let start = startDate + " " + startTime
+                                let end = endDate + " " +endTime
+
+                                // $("#leaveIdStatic").attr("value", leaveRequest.id+"");
+                                $("#disIdStatic").attr("value", leaveRequest.id+"");
+                                $("#appIdStatic").attr("value", leaveRequest.id+"");
+                                $("#employeeStatic").text(leaveRequest.lastName)
+                                $("#startDateStatic").html(leaveRequest.start._i)
+                                $("#endDateStatic").html(leaveRequest.end._i)
+                                $("#leaveTypeStatic").html(type)
+                                $("#absenceReasonStatic").html(reason)
+                                $("#leaveRequestedStatic").html(leaveRequest.lvUnitsUsed)
+                                $("#commentLogStatic").html("")
+                                $("#leaveStatusStatic").text(leaveRequest.statusDescr)
+                                $("#leaveApproverStatic").text(leaveRequest.approver)
+                                let comments = leaveRequest.comments
+                                for(let i=0;i<comments.length;i++){
+                                        let html = '<p>'+comments[i].detail+'</p>'
+                                        $("#commentLogStatic").append(html)
+                                }
+                                $("infoEmpNameStatic").html(leaveRequest.empNbr + ":" +leaveRequest.firstName+ ","+leaveRequest.firstName)
+                                $("#infoDetailStatic").html("")
+                                //   $('#EventDetailModal').modal('show')
+                                initLocalize(initialLocaleCode)
                             }
-							$("#cancelAdd").hide();
-                            $("#deleteLeave").show();
-                            $(".edit-title").show();
-                            $(".new-title").hide();
-                            $(".firstSubmit").hide();
-				            $(".secondSubmit").show();
-                            // $('#requestModal').modal('show')
-                            $("[name='leaveType']").val(calEvent.LeaveType);
-				            $("[name='absenseReason']").val(calEvent.AbsenseReason);
-							$("#leaveId").attr("value", calEvent.id+"");
-                            $("#startDate").val(calEvent.LeaveStartDate);
-                            $("#endDate").val(calEvent.LeaveEndDate);
-                            calcTime()
-                            //Initializes the time control when edit event modal show
+                            
                         },
-                        viewRender:function(){
+                        eventRender:function(event, element, view){
+                            if(event.statusCd != 'A'){
+                                element.attr("data-toggle","modal")
+                                element.attr("data-target","#requestModal")
+                            }else{
+                                element.attr("data-toggle","modal")
+                                element.attr("data-target","#EventDetailModal")
+                            }
+                        },
+                        viewRender:function(view,element){
                             $(".fc-event").attr("tabindex",0);
                             $(".fc-event").keypress(function(e){
                                 console.log(e)
@@ -120,8 +182,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     $(this).click()
                                 }
                             })
-                            $(".fc-event").attr("data-toggle","modal")
-                            $(".fc-event").attr("data-target","#requestModal")
                             $(".fc-day-top").each(function(){
                                 let title = $(this).attr("data-date")
                                 // let newBtn = `<button class="btn btn-primary xs"  data-title="${title}" title="Add a new request" onclick="newEvent(this)">Add</button>`

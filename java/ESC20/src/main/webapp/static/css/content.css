@@ -1461,3 +1461,36 @@
 #skipNav:focus {
   left: 0;
 }
+
+.noPrimary {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.yesPrimary {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border: 1px solid #3ab34a;
+  background: #3ab34a;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  text-align: center;
+}
+
+.yesPrimary .fa {
+  line-height: 20px;
+}
