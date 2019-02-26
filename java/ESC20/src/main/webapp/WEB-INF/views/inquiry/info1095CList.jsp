@@ -233,8 +233,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="PageNext"></div>
 <jsp:include page="../report-1095/1095C-${selectedYear}.jsp"></jsp:include>
 <form id="changePageForm" hidden="hidden" action="sortOrChangePageForTypeC" method="POST">
-        <input type="text" name="year" id="yearNow" value="${selectedYear}">
-        <input type="text" name="CPageNo" id="selectPageNow">
+        <input type="text" name="year" id="yearNow" value="${selectedYear}" title="" data-localize="accessHint.year">
+        <input type="text" name="CPageNo" id="selectPageNow" title="" data-localize="accessHint.currentPage">
 </form>
 <script>
 function changePage(page){

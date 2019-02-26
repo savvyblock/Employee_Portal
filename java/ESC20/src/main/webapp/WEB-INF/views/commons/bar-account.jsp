@@ -1,3 +1,4 @@
+<button id="skipNav" data-localize="label.skipNav"></button>
 <div class="account-header">
     <a href="/<%=request.getContextPath().split("/")[1]%>/">
             <img class="logo logo-lg" src="/<%=request.getContextPath().split("/")[1]%>/images/logo.png" alt="" data-localize="logoName.esc"/>

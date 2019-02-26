@@ -9,7 +9,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     </head>
     <body class="account-wrap">
         <%@ include file="commons/bar-account.jsp"%>
-        <div class="account-top">
+        <div class="account-top content-body" tabindex="-1">
             <div class="account-inner sm">
                 <form id="updatePassword" action="updatePassword" method="post">
                     <div class="form-group">

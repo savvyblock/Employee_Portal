@@ -50,7 +50,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     name="namePreNew"
                                                     id="titleString"
                                                     value="${nameRequest.namePreNew}"
-                                                    autofocus
+                                                    
                                                 >
                                                 <c:forEach var="title" items="${titleOptions}" varStatus="count">
                                                     <option value="${title.code}" <c:if test="${title.code == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
@@ -199,7 +199,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 class="form-control"
                                                 title=""
                                                 data-localize="profile.local"
-                                                autofocus
+                                                
                                             >
                                             <c:forEach var="marital" items="${maritalOptions}" varStatus="count">
                                                     <option value="${marital.code}" <c:if test="${marital.code == mrtlRequest.maritalStatNew }">selected</c:if>>${marital.description}</option>
@@ -263,7 +263,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 id="driversLicenseNumber"
                                                 data-localize="profile.driverLicenseNum"
                                                 title=""
-                                                autofocus
+                                                
                                             />
                                         </div>
                                     </div>
@@ -346,7 +346,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 class="form-control"
                                                 title=""
                                                 data-localize="profile.restrictionCodesLocal"
-                                                autofocus
+                                                
                                             >
                                             <c:forEach var="restrictions" items="${restrictionsOptions}" varStatus="count">
                                                     <option value="${restrictions.code}" <c:if test="${restrictions.code == restrictRequest.restrictCdNew }">selected</c:if>>${restrictions.code} - ${restrictions.description}</option>
@@ -433,7 +433,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 class="form-control"
                                                 title=""
                                                 data-localize="profile.workEmail"
-                                                autofocus
+                                                
                                             />
                                         </div>
                                     </div>
@@ -511,7 +511,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 value="${emerRequest.emerContactNew}"
                                                 title=""
                                                 data-localize="profile.emergencyContactName"
-                                                autofocus
+                                                
                                             />
                                         </div>
                                     </div>
@@ -657,7 +657,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 title=""
                                                 data-localize="profile.mailingAddressNumber"
                                                 value="${mailAddrRequest.addrNbrNew}"
-                                                autofocus
+                                                
                                             />
                                         </div>
                                     </div>
@@ -829,7 +829,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 title=""
                                                 data-localize="profile.altAddrNumber"
                                                 value="${altMailAddrRequest.smrAddrNbrNew}"
-                                                autofocus
+                                                
                                             />
                                         </div>
                                     </div>
@@ -1003,7 +1003,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     title=""
                                                     data-localize="profile.homePhoneAreaCode"
                                                     value="${hmRequest.phoneAreaNew}"
-                                                    autofocus
+                                                    
                                                 />
                                             </div>
                                             <div class="form-group">
@@ -1173,7 +1173,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 value="${w4Request.maritalStatTaxNew}"
                                                 title=""
                                                 data-localize="profile.MaritalStatus"
-                                                autofocus
+                                                
                                             >
                                                 <c:forEach var="maritalTax" items="${maritalTaxOptions}" varStatus="count">
                                                     <option value="${maritalTax.code}" <c:if test="${maritalTax.code == w4Request.maritalStatTaxNew }">selected</c:if>>${maritalTax.description}</option>
@@ -1248,7 +1248,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 							
 							
 						<form
-                            	class="profile-item border-0 bankAccountBlock <c:if test="${bank.isDelete == true}">isDelete</c:if>"
+                            	class="profile-item border-0 bankAccountBlock  <c:if test="${bank.isDelete == false}">usedBank</c:if>  <c:if test="${bank.isDelete == true}">isDelete</c:if>"
                                 id="bankAccountForm_${count.index}"
                                 method="POST"
                         		>
@@ -1824,7 +1824,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $('.add-bank-btn').show()
             })
             $('.add-bank-btn').click(function() {
-                let arrayBankLength = $('.bankAccountBlock').length
+                let arrayBankLength = $('.usedBank').length
                 $('.profile-item').removeClass('activeEdit')
                 $('.addBankForm').addClass('activeEdit')
                 if (arrayBankLength >= 2) {

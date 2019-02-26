@@ -751,7 +751,8 @@
 		"sessionPassword":"session Password",
 		"userName":"user Name",
 		"file":"file",
-		"fileName":"file Name"
+		"fileName":"file Name",
+		"currentPage":"current Page"
 	},
 	"w2Notice":{
 		"box":"Box ",

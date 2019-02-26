@@ -1470,6 +1470,10 @@
   left: 0;
 }
 
+.content-body:focus {
+  outline: none;
+}
+
 .noPrimary {
   display: inline-block;
   vertical-align: middle;

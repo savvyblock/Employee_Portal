@@ -8,6 +8,7 @@ $(function() {
     $("#skipNav").on("click",function(){
         console.log($(".content-wrapper"))
         $(".content-wrapper").focus()
+        $(".content-body").focus()
         $(document).scrollTop(0)
     })
     $('.icheck').iCheck({

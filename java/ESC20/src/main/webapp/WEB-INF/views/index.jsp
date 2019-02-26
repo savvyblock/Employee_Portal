@@ -9,7 +9,7 @@
     </head>
     <body class="account-wrap">
             <%@ include file="commons/bar-account.jsp"%>
-            <div class="account-top">
+            <div class="account-top content-body"  tabindex="-1">
                 <div class="account-inner">
                     <div class="account-left">
                         <img src="/<%=request.getContextPath().split("/")[1]%>/images/ascender_pecan_logo.jpg" alt="" data-localize="logoName.esc">
@@ -24,7 +24,7 @@
                                 <label class="form-title" for="inputEmail" data-localize="label.username"></label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-user left-icon"></i>
-                                    <input type="text" id="inputEmail" class="form-control" placeholder="" data-localize="label.username" name="username" autofocus>
+                                    <input type="text" id="inputEmail" class="form-control" placeholder="" data-localize="label.username" name="username">
                                 </div>
                                 
                             </div>

@@ -9,7 +9,7 @@
     </head>
     <body class="account-wrap">
         <%@ include file="commons/bar-account.jsp"%>
-         <div class="notFoundBox">
+         <div class="notFoundBox content-body"  tabindex="-1">
             <div class="inner">
               <img src="/<%=request.getContextPath().split("/")[1]%>/images/error.png" alt="">
               <p class="word" data-localize="label.pleaseTryAgain"></p>
