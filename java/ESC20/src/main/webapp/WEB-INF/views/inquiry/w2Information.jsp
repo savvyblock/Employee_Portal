@@ -1102,6 +1102,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             role="dialog"
             aria-labelledby="electronicConsent"
             aria-hidden="true"
+            data-backdrop="static"
         >
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -1129,13 +1130,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <div class="form-group">
                                     <div class="checkbox mb-2">
                                         <label for="consent">
-                                            <input class="icheck" type="radio" name="consent" id="consent"> 
+                                            <input class="consentRadio" type="radio" name="consent" id="consent"> 
                                             <span data-localize="label.w2Yes"></span>
                                         </label>
                                     </div>
                                     <div class="checkbox">
                                             <label for="notConsent">
-                                                <input class="icheck" type="radio" name="consent" id="notConsent"> 
+                                                <input class="consentRadio" type="radio" name="consent" id="notConsent"> 
                                                 <span data-localize="label.w2No"></span>
                                             </label>
                                     </div>
@@ -1148,8 +1149,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <input type="text" name="consent" id="elecConsntW2Flag" value="${consent}" title="" data-localize="accessHint.consent">
                             <input type="text"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}" title="" data-localize="accessHint.enableElecConsntW2"/>
                         </form>
+                        <p class="error-hint hide" id="noChooseError" data-localize="validator.pleaseSelectAgreeWay"></p>
                     </div>
                     <div class="modal-footer">
+                        <button
+                            id="saveConsent"
+                            type="button"
+                            class="btn btn-primary"
+                            data-dismiss="modal"
+                            aria-hidden="true"
+                            data-localize="label.save"
+                        ></button>
                         <button
                             class="btn btn-secondary"
                             data-dismiss="modal"
@@ -1173,10 +1183,28 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         $(function(){
             let consentVal = $("#elecConsntW2Flag").val()
             if (consentVal == 'Y') {
-                $('#consent').iCheck('check');
+                $("#consent").prop('checked',true);
             } else if (consentVal == 'N') {
-                $('#notConsent').iCheck('check');
-            } 
+                $("#notConsent").prop('checked',true);
+            }
+            $(".consentRadio") .on('keypress', function(e) {
+                console.log(e)
+                var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
+                if (eCode == 13){
+                    $(this).click()
+                }
+            })
+
+            $("#consent").on('click', function(event) {
+                if($(this).is(':checked')){
+                    toggleOptions('Y')
+                }
+            })
+            $("#notConsent").on('click', function(event) {
+                if($(this).is(':checked')){
+                    toggleOptions('N')
+                }
+            })
             if(consentVal==''&& $('#enableElecConsntW2').val() == 'true'){
                 $("#updateMsg").addClass("hidden");
                 if ($("#elecConsntMsgW2").val() != null) {
@@ -1188,17 +1216,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     $('#electronicConsent').modal('show')
                 }
             }
-            
-            $('#consent').on('ifChecked', function(event) {
-                toggleOptions('Y')
-            })
-            $('#notConsent').on('ifChecked', function(event) {
-                toggleOptions('N')
+            $("#saveConsent").on('click', function(event) {
+                let year = $("#consentYear").val()
+                let consentOption = $("#elecConsntW2Flag").val()
+                
+                if(year && year!='' && consentOption && consentOption!=''){
+                    $("#noChooseError").hide()
+                    $("#consentForm")[0].submit()
+                }else{
+                    if(!consentOption || consentOption==''){
+                        $("#noChooseError").show()
+                    }
+                }
             })
         })
         function toggleOptions(value){
             $("#elecConsntW2Flag").val(value)
-            $("#consentForm")[0].submit()
         }
     </script>
 </html>

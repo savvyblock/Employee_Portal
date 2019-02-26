@@ -1494,8 +1494,8 @@
   vertical-align: middle;
   margin: 0;
   padding: 0;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border: none;
   border: 1px solid #ddd;
   border-radius: 50%;
@@ -1507,8 +1507,8 @@
   vertical-align: middle;
   margin: 0;
   padding: 0;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border: none;
   border: 1px solid #3ab34a;
   background: #3ab34a;
@@ -1519,10 +1519,15 @@
 }
 
 .yesPrimary .fa {
-  line-height: 20px;
+  line-height: 18px;
 }
 
-.icheckRadioBank {
-  width: 22px;
-  height: 22px;
+.icheckRadioBank, .consentRadio {
+  width: 20px;
+  height: 20px;
+}
+
+.consentRadio {
+  position: relative;
+  top: 5px;
 }

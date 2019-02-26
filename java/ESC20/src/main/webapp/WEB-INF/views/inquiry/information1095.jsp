@@ -385,6 +385,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             role="dialog"
             aria-labelledby="electronicConsent"
             aria-hidden="true"
+            data-backdrop="static"
         >
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -415,20 +416,29 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <input hidden="hidden" type="text" name="consent" id="elecConsnt1095" value="${consent}" title="" data-localize="accessHint.consent">
                                     <div class="checkbox mb-2">
                                         <label for="consent">
-                                            <input class="icheck" type="radio" name="electronicConsent" id="consent"> 
+                                            <input class="consentRadio" type="radio" name="electronicConsent" id="consent"> 
                                             <span data-localize="label.consentElectronicAccess"></span>
                                         </label>
                                     </div>
                                     <div class="checkbox">
                                             <label for="notConsent">
-                                                <input class="icheck" type="radio" name="electronicConsent" id="notConsent"> 
+                                                <input class="consentRadio" type="radio" name="electronicConsent" id="notConsent"> 
                                                 <span data-localize="label.donotConsentElectronicAccess"></span>
                                             </label>
                                     </div>
                             </div>
+                            <p class="error-hint hide" id="noChooseError" data-localize="validator.pleaseSelectAgreeWay"></p>
                         </form>
                     </div>
                     <div class="modal-footer">
+                            <button
+                                id="saveConsent"
+                                type="button"
+                                class="btn btn-primary"
+                                data-dismiss="modal"
+                                aria-hidden="true"
+                                data-localize="label.save"
+                            ></button>
                         <button
                             type="button"
                             class="btn btn-secondary"
@@ -451,25 +461,44 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         $(function(){
             let consentVal = $("#elecConsnt1095").val()
             if (consentVal == 'Y') {
-                $('#consent').iCheck('check');
+                $("#consent").prop('checked',true);
             } else if (consentVal == 'N') {
-                $('#notConsent').iCheck('check');
-            } 
-            $('#consent').on('ifChecked', function(event) {
-                toggleOptions('Y')
+                $("#notConsent").prop('checked',true);
+            }
+            $(".consentRadio") .on('keypress', function(e) {
+                console.log(e)
+                var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
+                if (eCode == 13){
+                    $(this).click()
+                }
             })
-            $('#notConsent').on('ifChecked', function(event) {
-                toggleOptions('N')
+
+            $("#consent").on('click', function(event) {
+                if($(this).is(':checked')){
+                    toggleOptions('Y')
+                }
+            })
+            $("#notConsent").on('click', function(event) {
+                if($(this).is(':checked')){
+                    toggleOptions('N')
+                }
+            })
+            $("#saveConsent").on('click', function(event) {
+                let year = $("#consentYear").val()
+                let consentOption = $("#consentModal").val()
+                
+                if(year && year!='' && consentOption && consentOption!=''){
+                    $("#noChooseError").hide()
+                    $("#update1095Consent")[0].submit()
+                }else{
+                    if(!consentOption || consentOption==''){
+                        $("#noChooseError").show()
+                    }
+                }
             })
         })
     function toggleOptions(value){
-            $("#consentModal").val(value)
-            let year = $("#consentYear").val()
-            console.log("year" + year)
-            if(year&&year!=''){
-                $("#update1095Consent")[0].submit()
-            }
-            
+            $("#consentModal").val(value)            
         }
     </script>
 </html>

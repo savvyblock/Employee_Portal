@@ -1875,7 +1875,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                      success: function (result) {
                     	 console.log(result);
                     	 //$('#bankTable').find('tr').remove();
-                    	 $("#bankTable  tr:not(:first)").empty(""); 
+                    	 $("#bankTable  tbody").empty(); 
                     	 var res = result.result;
                     	 for (var p in res) {
                     		 var bankTr= "<tr><td data-localize='profile.routingNumber' data-localize-location='scope'>";
@@ -1945,7 +1945,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                      contentType: 'application/json;charset=UTF-8',
                      success: function (result) {
                     	 console.log(result);
-                         $("#bankTable  tr:not(:first)").empty(""); 
+                         $("#bankTable  tbody").empty(); 
                          if(result.result&&result.result.length>0){
                             var res = result.result;
                     	 for (var p in res) {
