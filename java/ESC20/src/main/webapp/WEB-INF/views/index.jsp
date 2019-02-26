@@ -52,14 +52,14 @@
                                 </div> -->
                                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&entry.372715739=Employee+Access+(TxEIS)" target="_blank" data-localize="label.contactUs"></a>
                                 <div class="pull-right">
-                                    <a href="/<%=request.getContextPath().split("/")[1]%>/forgetPassword" data-localize="label.forgotPassword"></a>
+                                    <a href="/<%=request.getContextPath().split("/")[1]%>/resetPassword/forgetPassword" data-localize="label.forgotPassword"></a>
                                 </div>
                             </div>
                             <div class="form-group account-btn">
                                 <button id="signin" type="submit" class="btn btn-primary" name="signin" data-localize="label.login"></button>
                             </div>
                             <div class="text-center">
-                                <a class="a-line" href="/<%=request.getContextPath().split("/")[1]%>/searchUser" data-localize="label.newUser">
+                                <a class="a-line" href="/<%=request.getContextPath().split("/")[1]%>/createUser/searchUser" data-localize="label.newUser">
                                     
                                 </a>
                             </div>
