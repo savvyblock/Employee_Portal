@@ -19,7 +19,10 @@
 					<button class="btn btn-primary"  onclick="showRequestForm()" id="new-btn" data-toggle="modal" data-target="#requestModal">
 						<span data-localize="label.add"></span>
 					</button>
-					<a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/eventCalendar" data-localize="label.switchToCalendarView"></a>
+					<a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/eventCalendar">
+						<span class="hide" data-localize="label.switchToCalendarView" ></span>
+						<i class="fa fa-calendar"></i>
+					</a>
 				</div>
 				
 				

@@ -694,6 +694,7 @@
 		"pictureTooLarge":"This picture is too large!",
 		"noResultError":"Employee does not exist!",
 		"repeatError":"The employee has already been added",
+		"pleaseSelectAgreeWay":"Please Select Way You Agreed!",
 		"":""
 	},
 	"accessHint":{
@@ -751,7 +752,8 @@
 		"sessionPassword":"session Password",
 		"userName":"user Name",
 		"file":"file",
-		"fileName":"file Name"
+		"fileName":"file Name",
+		"currentPage":"current Page"
 	},
 	"w2Notice":{
 		"box":"Box ",

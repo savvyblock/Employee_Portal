@@ -262,7 +262,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 let  trLen = $('.setApprovers-list tbody tr').length
                 let  approverLen = $('.setApprovers-list tbody tr.approver_tr').length
                 let length = trLen
-                console.log(approverJson)
                 let newRow = `<tr class="approver_tr">
                                             <td class="countIndex" data-localize="setTemporaryApprovers.rowNbr"
                                                 data-localize-location="scope">`+ length +`</td>
@@ -303,8 +302,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </td>
                                         </tr>
                     `
-                console.log("add noEmpty:" +noEmpty)
-                if(noEmpty == approverLen){
+                console.log("tr that have empty field" + approverEmptyJson)
+                if(!approverEmptyJson || approverEmptyJson.length<1){
                     $('.setApprovers-list tbody tr:last-child').before(newRow)
                     initialCompleteList()
                     $("#errorComplete").hide()
@@ -316,7 +315,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 initDateControl()
             })
 	        $("#reset").click(function(){
-		        
 		        $("#resetForm")[0].submit();
 	        });
             $("#saveSet").click(function(){
@@ -324,12 +322,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 $("#chainString").val(chainString)
                 $("#empNbrForm").val(empNbr)
                 let length = $(".approver_tr").length
-                console.log("approverEmptyJson"+approverEmptyJson)
+                console.log("tr that have empty field"+approverEmptyJson)
                 if(approverEmptyJson&&approverEmptyJson.length>0){
                     $("#errorComplete").show()
                 }else{   
-                    console.log(approverJson)
-                    console.log(addedApprover)
                     addedApprover.forEach((item,index)=>{
                         let approver = {
                             id:'',
@@ -342,17 +338,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     console.log(approverJson)
                     $("#approverJson").val(JSON.stringify(approverJson))
                     $("#errorComplete").hide()
-                    $("#saveTempApprovers")[0].submit()
+                    if(!$("#noResultError").is(":visible")){
+                        $("#saveTempApprovers")[0].submit()
+                    }
+                    
                 }
                 return
                 
             })
             
             $(document).on('blur', '.empControl', function(){
-                console.log(this)
-                thisTrIndex = $(this).parents(".approver_tr").index() - 1
-                let empArry = $(this).val().split("-")
-                currentInputNbr = empArry[0]
                 verifyRepeat()
                 judgeContent()
             });
@@ -362,30 +357,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 addedApprover = addedApprover.filter((value) => {
                     return value.tmpApprvrEmpNbr!=id;
                 })
+                // console.log("approver saved")
+                // console.log(addedApprover)
                 verifyRepeat()
             })
             
         })
         function verifyRepeat(){
-            repeat = 0
-            console.log(approverJson)
-            console.log(addedApprover)
-            console.log(currentInputNbr)
+            repeat = 0            
             addedApprover.forEach((item,index)=>{
-                console.log("come in saved")
-            if(item.tmpApprvrEmpNbr == currentInputNbr && thisTrIndex != 'no'){
-                console.log(item.tmpApprvrEmpNbr)
-                repeat++
-            }
+                approverJson.forEach((emp,index)=>{
+                    if(emp.empNbr && emp.empNbr == item.tmpApprvrEmpNbr){   
+                        console.log(emp.empNbr) 
+                        console.log(item.tmpApprvrEmpNbr)
+                        repeat++
+                    }
+                })
             })
-            approverJson.forEach((item,index)=>{
-                console.log("come in adding")
-            if(item.empNbr&&item.empNbr == currentInputNbr &&thisTrIndex!=item.domId){   
-                console.log(thisTrIndex) 
-                console.log(item.domId)
-                console.log(item.empNbr)                
-                repeat++
-            }
+            approverJson.forEach((emp,index)=>{
+                approverJson.forEach((item,index)=>{
+                    if(emp.empNbr && item.empNbr && emp.empNbr == item.empNbr && emp.domId != item.domId ){   
+                        console.log(emp.empNbr) 
+                        console.log(item.empNbr)
+                        repeat++
+                    }
+                })
             })
             console.log("repeat"+repeat)
             if(repeat>0){
@@ -438,11 +434,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             $(dom)
                 .parents('.approver_tr')
                 .removeClass("approver_tr").addClass("redTd")
-            let inputApproverLine = $('.approver_tr').length
-            thisTrIndex = thisTrIndex -1
-            if(!inputApproverLine||inputApproverLine<1){
-                thisTrIndex = 'no'
-            }
             judgeContent()
             verifyRepeat()
             
@@ -532,14 +523,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 let obj
                 if(empNbr==''||from==''||to==''){
                 }else{
-                    obj = {
+                    noEmpty += 1
+                }
+                obj = {
                         id:'',
                         domId:index,
                         empNbr:empArry[0],
                         from:from,
                         to:to
-                    }
-                    noEmpty += 1
                 }
                 if(obj && obj!=''){
                     approverJson.push(obj)
@@ -548,9 +539,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 }else{
                     approverEmptyJson.push(index)
                 }
-                
             })
-            console.log(approverJson)
+            // console.log("just added +++ have empty field  tr")
+            // console.log(approverJson)
+            // console.log(approverEmptyJson)
         }
     </script>
 </html>
