@@ -282,6 +282,21 @@
 
 .content-wrapper > .content .section-title .btn {
   margin: 3px;
+  height: 35px;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 35px;
+}
+
+.content-wrapper > .content .section-title .btn .fa {
+  line-height: 35px;
+}
+
+.content-wrapper > .content .section-title .right-btn .btn {
+  height: 35px;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 35px;
 }
 
 @media (max-width: 500px) {
@@ -1434,7 +1449,7 @@
   background: #e28088 !important;
 }
 
-.profile .bankAccountBlock.isDelete .profile-btn .saveOrCancel .save-btn, .profile .bankAccountBlock.isDelete .profile-btn .saveOrCancel .undo-btn {
+.profile .bankAccountBlock.isDelete .profile-btn .saveOrCancel .save-btn, .profile .bankAccountBlock.isDelete .profile-btn .saveOrCancel .delete-btn {
   display: none;
 }
 

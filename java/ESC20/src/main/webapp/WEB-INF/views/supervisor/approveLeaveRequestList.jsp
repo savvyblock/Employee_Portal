@@ -16,8 +16,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <h2 class="clearfix section-title">
                                     <span data-localize="title.approveLeaveRequests"></span>
                                 <button class="btn btn-primary pull-right" onclick="showCalendarModal()"
-                                data-toggle="modal" data-target="#leaveListCalendarModal"
-                                    data-localize="label.switchToCalendarView" data-localize-location="title">
+                                data-toggle="modal" data-target="#leaveListCalendarModal">
+                                    <span class="hide" data-localize="label.switchToCalendarView" ></span>
                                     <i class="fa fa-calendar"></i>
                                 </button>
                             </h2>
