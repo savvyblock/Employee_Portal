@@ -108,7 +108,7 @@
             <ul class="nav nav-treeview">
               <c:if test="${sessionScope.options.enableCalendarYearToDate}">
                 <li class="nav-item">
-                  <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/calendarYearToDate" class="nav-link" id="calendarYearToDate">
+                  <a href="/<%=request.getContextPath().split("/")[1]%>/calendarYearToDate/calendarYearToDate" class="nav-link" id="calendarYearToDate">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p data-localize="nav.calendarYearToDate"></p>
                   </a>
@@ -116,7 +116,7 @@
               </c:if>
               <c:if test="${sessionScope.options.enableCurrentPayInformation}">
               <li class="nav-item" >
-                <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/currentPayInformation" class="nav-link" id="currentPayInformation">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/currentPayInformation/currentPayInformation" class="nav-link" id="currentPayInformation">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.currentPayInfo"></p>
                 </a>
@@ -124,7 +124,7 @@
             </c:if>
               <c:if test="${sessionScope.options.enableDeductions}">
               <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/deductions" class="nav-link" id="deductions">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/deductions/deductions" class="nav-link" id="deductions">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.deductions"></p>
                 </a>
@@ -132,7 +132,7 @@
             </c:if>
               <c:if test="${sessionScope.options.enableEarnings}">
               <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/earnings" class="nav-link" id="earnings">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/earnings/earnings" class="nav-link" id="earnings">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.earning"></p>
                 </a>
@@ -140,7 +140,7 @@
             </c:if>
               <c:if test="${sessionScope.options.enableW2}">
               <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/w2Information" class="nav-link" id="w2Information">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/w2Information/w2Information" class="nav-link" id="w2Information">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.w2Info"></p>
                 </a>
@@ -148,7 +148,7 @@
             </c:if>
               <c:if test="${sessionScope.options.enable1095}">
               <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/information1095" class="nav-link" id="information1095">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/information1095/information1095" class="nav-link" id="information1095">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.info1095"></p>
                 </a>
@@ -157,7 +157,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/leaveBalance" class="nav-link" id="leaveBalance">
+            <a href="/<%=request.getContextPath().split("/")[1]%>/leaveBalance/leaveBalance" class="nav-link" id="leaveBalance">
               <i class="nav-icon fa fa-hourglass-start text-info"></i>
               <p data-localize="nav.leaveBalances"></p>
             </a>
@@ -181,25 +181,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/supervisor/approveLeaveRequestList" class="nav-link" id="approveLeaveRequestList">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/approveLeaveRequest/approveLeaveRequestList" class="nav-link" id="approveLeaveRequestList">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.approveLeaveRequests"></p>
                 </a>
               </li>
               <li class="nav-item">
-                <a  href="/<%=request.getContextPath().split("/")[1]%>/supervisor/leaveOverviewList" class="nav-link" id="leaveOverviewList">
+                <a  href="/<%=request.getContextPath().split("/")[1]%>/leaveOverview/leaveOverviewList" class="nav-link" id="leaveOverviewList">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.leaveOverview"></p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/supervisor/calendarView" class="nav-link" id="calendarView">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/supervisorCalendar/calendarView" class="nav-link" id="calendarView">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.calendar"></p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/supervisor/leaveRequestTemporaryApprovers" class="nav-link" id="leaveRequestTemporaryApprovers">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/leaveRequestTemporaryApprovers/leaveRequestTemporaryApprovers" class="nav-link" id="leaveRequestTemporaryApprovers">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.setTemporary"></p>
                 </a>
