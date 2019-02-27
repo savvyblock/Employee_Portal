@@ -21,14 +21,14 @@ private static final long serialVersionUID = -1023249528812172648L;
 	private BigDecimal tydContrib;
 	
 	public EarningsOther(String dedCd, String shortDescr, BigDecimal dedAmt, Character cafeFlg,
-			BigDecimal emplrContrib, Integer depCareOverMax, Integer hsaEmplrOverMax) {
+			BigDecimal emplrContrib, Short depCareOverMax, Short hsaEmplrOverMax) {
 		this.setDescription(StringUtil.trim(shortDescr));
 		this.setCode(StringUtil.trim(dedCd));
 		this.setAmt(NumberUtil.value(dedAmt));
 		this.setCafe_flg(StringUtil.trim(cafeFlg.toString()));
 		this.setContrib(NumberUtil.value(emplrContrib));
-		this.setDepCareMax(depCareOverMax);
-		this.setHsaCareMax(hsaEmplrOverMax);
+		this.setDepCareMax(depCareOverMax.intValue());
+		this.setHsaCareMax(hsaEmplrOverMax.intValue());
 	}
 	public String getDescription() {
 		return description;
