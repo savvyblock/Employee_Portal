@@ -83,3 +83,7 @@ function initLocalize(language){
 function clearDate(e){
     $(e).parent().find(".form-control").val("")
 }
+
+function doPrint() {
+    window.print()
+}

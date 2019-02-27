@@ -1531,3 +1531,14 @@
   position: relative;
   top: 5px;
 }
+
+.fc-more {
+  border: 0;
+  background: none;
+  color: #666;
+  text-decoration: underline;
+}
+
+.fc-more:hover {
+  text-decoration: underline;
+}

@@ -236,16 +236,4 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <input type="text" name="year" id="yearNow" value="${selectedYear}" title="" data-localize="accessHint.year">
         <input type="text" name="CPageNo" id="selectPageNow" title="" data-localize="accessHint.currentPage">
 </form>
-<script>
-function changePage(page){
-        if(page){
-                $("#selectPageNow").val(page)
-        }else{
-                let pageNow = $("#pageNow").val();
-                $("#selectPageNow").val(pageNow)
-
-        }
-        $("#changePageForm")[0].submit()
-        
-}
-</script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/inquiry/info1095CList.js"></script>

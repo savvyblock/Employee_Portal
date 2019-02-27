@@ -10,34 +10,36 @@
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/button.css">
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/bar.css">
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/content.css">
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/jquery.min.js"></script>
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/bootstrap.min.js"></script>
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/icheck.min.js"></script>
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/foundation-datepicker.js"></script>
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/jquery.autocomplete.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.min.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bootstrap.min.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/icheck.min.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/foundation-datepicker.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.autocomplete.js"></script>
 <%--foundation datepicker control language package --start --%>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/locales/foundation-datepicker.en.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/locales/foundation-datepicker.es.js"></script>
 <!-- foundation datepicker control language package  --end -->
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/jquery.localize.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.localize.js"></script>
 
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/mobiscroll.js"></script>
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/adminlte.js"></script>
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/moment.min.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/mobiscroll.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/adminlte.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/moment.min.js"></script>
 
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/fullcalendar.min.js"></script>
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/theme-chooser.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/fullcalendar.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/theme-chooser.js"></script>
 <!-- fullcalendar language package --start -->
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/locale-all.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/locale-all.js"></script>
 <!-- sha256 -->
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/sha256.js"></script>
 <script>
+	var urlMain = '<%=request.getContextPath()%>'
+	console.log('url'+urlMain)
 	var ctx = "<%=request.getContextPath().split("/")[1]%>";
 	console.log("ctx:"+ctx)
 </script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/common.js"></script>
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/bootstrapValidator.js"></script>
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/autoAdvance.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bootstrapValidator.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/autoAdvance.js"></script>
 <c:if test="${sessionScope.companyId == 1}">
 <style>
 .main-sidebar{

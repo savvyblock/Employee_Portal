@@ -40,6 +40,11 @@ body {
         overflow: hidden;
     }
 }
+div{
+    &:focus{
+        outline: none;
+    }
+}
 .hide{
     display: none;
 }
@@ -687,6 +692,9 @@ input {
     display: none;
     overflow: hidden;
     outline: 0;
+    &#logoutModal{
+        z-index: 1060;
+    }
     .table{
         font-size: 12px;
         border:1px solid #dee2e6;

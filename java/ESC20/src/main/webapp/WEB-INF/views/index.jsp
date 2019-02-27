@@ -70,63 +70,6 @@
                 </div>
             </div>
     </body>
-    <script type="text/javascript">
-        $(function(){
-          $('#loginForm').bootstrapValidator({
-  //        live: 'disabled',
-          message: 'This value is not valid',
-        //   feedbackIcons: {
-        //       valid: 'fa fa-check ',
-        //       invalid: 'fa fa-times',
-        //       validating: 'fa fa-refresh'
-        //   },
-          fields: {
-              username: {
-                  validators: {
-                      notEmpty: {
-                          message: 'validator.usernameCannotBeEmpty'
-                      }
-                  }
-              },
-              password: {
-                  validators: {
-                      notEmpty: {
-                          message: 'validator.passwordCannotBeEmpty'
-                      }
-                  }
-              }
-          },
-  
-      });
-            $('#signin').on('click',function(){
-                var userName = $('#inputEmail').val();
-                var userPwd = $('#inputPassword').val();
-                var bootstrapValidator = $('#loginForm').data('bootstrapValidator');
-                bootstrapValidator.validate();
-                if(bootstrapValidator.isValid()){
-                    
-                    $.ajax({
-                        type:'POST',
-                        url:'<%=request.getContextPath()%>/login',
-                        dataType:'JSON',
-                        contentType:'application/json;charset=UTF-8',
-                        data:JSON.stringify({
-                            userName: userName,
-                            userPwd: userPwd
-                        }),
-                        success : function (res) {
-                            if(res.isSuccess == "true"){
-                                document.location = '<%=request.getContextPath()%>/home'
-                            } else {
-                            	$("#incorrectMessage").show();
-                            }
-                        },
-                        error:function(res){
-                            $("#errorMessage").show();
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/index.js"></script>
+
 </html>

@@ -46,6 +46,10 @@ body.hidden {
   overflow: hidden;
 }
 
+div:focus {
+  outline: none;
+}
+
 .hide {
   display: none;
 }
@@ -763,6 +767,10 @@ input:focus {
   display: none;
   overflow: hidden;
   outline: 0;
+}
+
+.modal#logoutModal {
+  z-index: 1060;
 }
 
 .modal .table {

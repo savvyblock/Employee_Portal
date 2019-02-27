@@ -39,10 +39,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         </div>
         <%@ include file="commons/footer.jsp"%>
     </body>
-    <script>
-        function markRead(id){
-            $("#noteId").val(id)
-            $("#markAsReadForm")[0].submit()
-        }
-    </script>
+    <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/notifications.js"></script>
+
 </html>

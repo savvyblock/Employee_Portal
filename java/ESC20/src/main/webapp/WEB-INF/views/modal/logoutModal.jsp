@@ -26,7 +26,7 @@
                     aria-hidden="true"
                     id="cancelAdd"
                     data-localize="label.cancel"
-                    onclick="startCountTime()"
+                    onclick="setCountTime()"
                 >
                 </button>
             </div>             
@@ -35,3 +35,5 @@
     </div>
     <!-- /.modal -->
 </div>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/logoutModal.js"></script>
+
