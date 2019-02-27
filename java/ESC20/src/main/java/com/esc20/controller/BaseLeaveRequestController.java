@@ -37,6 +37,7 @@ import com.esc20.util.DateUtil;
 import net.sf.json.JSONArray;
 
 @Controller
+@RequestMapping("/baseLeaveRequest")
 public class BaseLeaveRequestController extends IndexController {
 
 	@Autowired

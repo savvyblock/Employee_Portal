@@ -41,6 +41,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @Controller
+@RequestMapping("/baseSupervisor")
 public class BaseSupervisorController extends IndexController {
 
 	@Autowired
