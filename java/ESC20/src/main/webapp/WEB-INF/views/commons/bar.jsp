@@ -36,7 +36,7 @@
         </div>
       </li>
       <li class="nav-item">
-      <a class="nav-link" href="/<%=request.getContextPath().split("/")[1]%>/profile">
+      <a class="nav-link" href="/<%=request.getContextPath().split("/")[1]%>/profile/profile">
         <span class="hide" data-localize="accessHint.goMyAccount"></span>
         <i class="fa fa-user"></i>
       </a>
@@ -58,12 +58,12 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
             <c:if test="${sessionScope.userDetail.avatar!=null}" >
-                <a href="/<%=request.getContextPath().split("/")[1]%>/profile" class="d-block"  style="background-image:url(${sessionScope.userDetail.avatar})">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" class="d-block"  style="background-image:url(${sessionScope.userDetail.avatar})">
                   <span class="hide" data-localize="accessHint.goMyAccount"></span>
               </a>
             </c:if>
             <c:if test="${sessionScope.userDetail.avatar==null}">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/profile" class="d-block noImage">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" class="d-block noImage">
                   <span class="hide" data-localize="accessHint.goMyAccount"></span>
                   <i class="fa fa-user"></i>
                 </a>
@@ -71,7 +71,7 @@
        		
         </div>
         <div class="info">
-          <a href="/<%=request.getContextPath().split("/")[1]%>/profile" class="d-block">${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameL}</a>
+          <a href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" class="d-block">${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameL}</a>
         </div>
       </div>
 
@@ -128,23 +128,6 @@
               </li>
             </ul>
           </li>
-          <!-- <li class="nav-item has-treeview" id="selfService">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-address-book-o"></i>
-              <p>
-                <span data-localize="nav.selfService"></span>
-                <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/selfService/changePassword" class="nav-link" id="changePassword">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p data-localize="nav.changePassword"></p>
-                </a>
-              </li>
-            </ul>
-          </li> -->
           <li class="nav-item">
             <a href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/leaveBalance" class="nav-link" id="leaveBalance">
               <i class="nav-icon fa fa-hourglass-start text-info"></i>
@@ -157,12 +140,6 @@
               <p data-localize="nav.leaveRequests"></p>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/eventCalendar" class="nav-link">
-              <i class="nav-icon fa  fa-pencil-square-o text-info"></i>
-              <p>Calendar</p>
-            </a>
-          </li>  -->
           <li class="nav-item has-treeview" id="supervisor">
             <a href="#" class="nav-link" > <!--  active -->
               <i class="nav-icon fa fa-users"></i>
@@ -205,7 +182,7 @@
     </div>
     <!-- /.sidebar -->
     <ul class="sidebar-btm">
-        <li><a href="/<%=request.getContextPath().split("/")[1]%>/profile">
+        <li><a href="/<%=request.getContextPath().split("/")[1]%>/profile/profile">
           <span class="hide" data-localize="accessHint.goMyAccount"></span>
           <i class="fa fa-user"></i>
         </a></li>
