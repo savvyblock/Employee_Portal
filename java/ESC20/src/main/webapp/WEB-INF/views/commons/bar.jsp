@@ -181,19 +181,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/approveLeaveRequest/approveLeaveRequestList" class="nav-link" id="approveLeaveRequestList">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/approveLeaveRequest/approveLeaveRequestList" class="nav-link" id="approveLeaveRequest">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.approveLeaveRequests"></p>
                 </a>
               </li>
               <li class="nav-item">
-                <a  href="/<%=request.getContextPath().split("/")[1]%>/leaveOverview/leaveOverviewList" class="nav-link" id="leaveOverviewList">
+                <a  href="/<%=request.getContextPath().split("/")[1]%>/leaveOverview/leaveOverviewList" class="nav-link" id="leaveOverview">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.leaveOverview"></p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/supervisorCalendar/calendarView" class="nav-link" id="calendarView">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/supervisorCalendar/calendarView" class="nav-link" id="supervisorCalendar">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.calendar"></p>
                 </a>
@@ -230,43 +230,6 @@
           <span class="hide" data-localize="accessHint.logout"></span>
           <i class="fa fa-sign-out "></i></a></li>
     </ul>
-    <script>
-    $(document).ready(function() {
-        var path = (window.location+"").split("/");
-        var menuItem = path[path.length-2];
-        var item = path[path.length -1];
-        console.log(path)
-        console.log(menuItem)
-        console.log(item)
-        if(item=='eventCalendar'){
-          item = 'leaveRequest'
-        }
-        if(item=='getCalendarYearToDateByYear'){
-            item = 'calendarYearToDate';
-        }
-        if(item=='earningsByPayDate'){
-            item = 'earnings';
-        }
-        if(item=='w2InformationByYear'){
-            item = 'w2Information';
-        }
-        if(item=='information1095ByYear'){
-            item = 'information1095';
-        }
-        var menuElement = $("#"+menuItem);
-        var itemElement = $("#"+item);
-        console.log(itemElement)
-        if(menuElement){
-            menuElement.addClass("menu-open");
-            menuElement.children("ul").attr("style","display: block;");
-        }
-        if(itemElement)
-        	itemElement.addClass("active");
-        //update budgeCount and info every second
-        getBudgeDetail();
-    	updateBudgeCountAndInfo();
-    });
-    </script>
   </aside>
 
    <%@ include file="../modal/logoutModal.jsp"%>
