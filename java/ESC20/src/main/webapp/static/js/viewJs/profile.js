@@ -133,7 +133,7 @@ $(function() {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: 'getAllBanks',
+            url: '/profile/getAllBanks',
             data: JSON.stringify(page),
             contentType: 'application/json;charset=UTF-8',
             success: function(result) {
@@ -213,7 +213,7 @@ $(function() {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: 'searchBanks',
+            url: '/profile/searchBanks',
             data: JSON.stringify(searchCriteria),
             contentType: 'application/json;charset=UTF-8',
             success: function(result) {

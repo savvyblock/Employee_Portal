@@ -27,7 +27,7 @@ var maxTime = 300; // seconds
 	function getBudgeDetail(){
 		$.ajax({
 			type: "post",
-			url: "/txeisDemo/getBudgeCount",
+			url: urlMain + "/notifications/getBudgeCount",
 			cache: false,
 			dataType: "json",
 			success: function(data){
@@ -44,7 +44,7 @@ var maxTime = 300; // seconds
 					$("#navBadge").html(budgeCount);
 					$.ajax({
 						type: "post",
-						url: "/txeisDemo/getTop5Alerts",
+						url: urlMain + "/notifications/getTop5Alerts",
 						cache: false,
 						dataType: "json",
 						success: function(data){
