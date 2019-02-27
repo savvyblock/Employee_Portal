@@ -16,11 +16,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <h2 class="clearfix no-print section-title">
                                 <span data-localize="title.info1095"></span>
                                 <div class="right-btn pull-right">
-                                    <button
-                                        class="btn btn-primary"
-                                        data-toggle="modal"
-                                        data-target="#electronicConsent"
-                                        data-localize="label.consent1095"></button>
+                                    <c:if test="${sessionScope.options.enableElecConsnt1095 == true}">
+                                            <button
+                                            class="btn btn-primary"
+                                            data-toggle="modal"
+                                            data-target="#electronicConsent"
+                                            data-localize="label.consent1095"></button>
+                                    </c:if>
+                                    <c:if test="${sessionScope.options.enableElecConsnt1095 == false}">
+                                            <button
+                                            class="btn btn-primary disabled"
+                                            disabled
+                                            data-localize="label.consent1095"></button>
+                                    </c:if>
+                                    
                                     <button class="btn btn-primary" onclick="doPrint()" data-localize="label.print">
                                     </button>
                                 </div>
@@ -378,78 +387,80 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             </main>
         </div>
         <%@ include file="../commons/footer.jsp"%>
-        <div
-            class="modal fade"
-            id="electronicConsent"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="electronicConsent"
-            aria-hidden="true"
-            data-backdrop="static"
-        >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-hidden="true"
-                        >
-                        <span class="hide" data-localize="label.closeModal"></span>
-                            &times;
-                        </button>
-                        <h4 class="modal-title new-title" data-localize="label.electronic1095Consent">
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="update1095Consent" id="update1095Consent" method="POST">
-                                <input hidden="hidden" type="text" name="year" id="consentYear" value="${selectedYear}" title="" data-localize="accessHint.year">
-                                <input hidden="hidden" type="text" name="consent" id="consentModal" value="" title="" data-localize="accessHint.consent">
-                            <div class="form-group">
-                                <label for="customMessage" data-localize="label.customMessageHere"></label>
-                                <div class="form-control form-text static">
-                                    ${message}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                    <input hidden="hidden" type="text" name="consent" id="elecConsnt1095" value="${consent}" title="" data-localize="accessHint.consent">
-                                    <div class="checkbox mb-2">
-                                        <label for="consent">
-                                            <input class="consentRadio" type="radio" name="electronicConsent" id="consent"> 
-                                            <span data-localize="label.consentElectronicAccess"></span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                            <label for="notConsent">
-                                                <input class="consentRadio" type="radio" name="electronicConsent" id="notConsent"> 
-                                                <span data-localize="label.donotConsentElectronicAccess"></span>
-                                            </label>
-                                    </div>
-                            </div>
-                            <p class="error-hint hide" id="noChooseError" data-localize="validator.pleaseSelectAgreeWay"></p>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
+        <c:if test="${sessionScope.options.enableElecConsnt1095 == true}">
+            <div
+                class="modal fade"
+                id="electronicConsent"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="electronicConsent"
+                aria-hidden="true"
+                data-backdrop="static"
+            >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
                             <button
-                                id="saveConsent"
                                 type="button"
-                                class="btn btn-primary"
+                                class="close"
                                 data-dismiss="modal"
                                 aria-hidden="true"
-                                data-localize="label.save"
+                            >
+                            <span class="hide" data-localize="label.closeModal"></span>
+                                &times;
+                            </button>
+                            <h4 class="modal-title new-title" data-localize="label.electronic1095Consent">
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="update1095Consent" id="update1095Consent" method="POST">
+                                    <input hidden="hidden" type="text" name="year" id="consentYear" value="${selectedYear}" title="" data-localize="accessHint.year">
+                                    <input hidden="hidden" type="text" name="consent" id="consentModal" value="" title="" data-localize="accessHint.consent">
+                                <div class="form-group">
+                                    <label for="customMessage" data-localize="label.customMessageHere"></label>
+                                    <div class="form-control form-text static">
+                                        ${message}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <input hidden="hidden" type="text" name="consent" id="elecConsnt1095" value="${consent}" title="" data-localize="accessHint.consent">
+                                        <div class="checkbox mb-2">
+                                            <label for="consent">
+                                                <input class="consentRadio" type="radio" name="electronicConsent" id="consent"> 
+                                                <span data-localize="label.consentElectronicAccess"></span>
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                                <label for="notConsent">
+                                                    <input class="consentRadio" type="radio" name="electronicConsent" id="notConsent"> 
+                                                    <span data-localize="label.donotConsentElectronicAccess"></span>
+                                                </label>
+                                        </div>
+                                </div>
+                                <p class="error-hint hide" id="noChooseError" data-localize="validator.pleaseSelectAgreeWay"></p>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                                <button
+                                    id="saveConsent"
+                                    type="button"
+                                    class="btn btn-primary"
+                                    data-dismiss="modal"
+                                    aria-hidden="true"
+                                    data-localize="label.save"
+                                ></button>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                                aria-hidden="true"
+                                data-localize="label.cancel"
                             ></button>
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
-                            aria-hidden="true"
-                            data-localize="label.cancel"
-                        ></button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </c:if>
     </body>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/inquiry/information1095.js"></script>
 </html>

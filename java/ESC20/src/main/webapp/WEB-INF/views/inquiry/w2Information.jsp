@@ -20,6 +20,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <c:if test="${sessionScope.options.enableElecConsntW2}">
                                         <button class="btn btn-primary" data-toggle="modal" data-target="#electronicConsent" data-localize="label.w-2Consent"></button>
                                     </c:if>
+                                    <c:if test="${sessionScope.options.enableElecConsntW2 == false}">
+                                            <button class="btn btn-primary disabled" data-localize="label.w-2Consent" disabled></button>
+                                    </c:if>
                                     <c:if test="${selectedYear >= '2009' && selectedYear <= sessionScope.options.w2Latest}">
                                         <button class="btn btn-primary" onclick="doPrint()" data-localize="label.print">
                                         </button>
@@ -1095,83 +1098,85 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             </main>
         </div>
         <%@ include file="../commons/footer.jsp"%>
-        <div
-            class="modal fade"
-            id="electronicConsent"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="electronicConsent"
-            aria-hidden="true"
-            data-backdrop="static"
-        >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-hidden="true"
-                        >
-                            <span class="hide" data-localize="label.closeModal"></span>
-                            &times;
-                        </button>
-                        <h4 class="modal-title new-title" data-localize="label.w2ElectronicConsent">
-                        </h4>
-                    </div>
-                    <div class="modal-body">
-                        <form >
-                            <div class="form-group">
-                                <label data-localize="label.customMessageHere"></label>
-                                <div class="form-control form-text static">
-                                    ${elecConsntMsgW2}
+        <c:if test="${sessionScope.options.enableElecConsntW2 == true}">
+            <div
+                class="modal fade"
+                id="electronicConsent"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="electronicConsent"
+                aria-hidden="true"
+                data-backdrop="static"
+            >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-hidden="true"
+                            >
+                                <span class="hide" data-localize="label.closeModal"></span>
+                                &times;
+                            </button>
+                            <h4 class="modal-title new-title" data-localize="label.w2ElectronicConsent">
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <form >
+                                <div class="form-group">
+                                    <label data-localize="label.customMessageHere"></label>
+                                    <div class="form-control form-text static">
+                                        ${elecConsntMsgW2}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                    <div class="checkbox mb-2">
-                                        <label for="consent">
-                                            <input class="consentRadio" type="radio" name="consent" id="consent"> 
-                                            <span data-localize="label.w2Yes"></span>
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                            <label for="notConsent">
-                                                <input class="consentRadio" type="radio" name="consent" id="notConsent"> 
-                                                <span data-localize="label.w2No"></span>
+                                <div class="form-group">
+                                        <div class="checkbox mb-2">
+                                            <label for="consent">
+                                                <input class="consentRadio" type="radio" name="consent" id="consent"> 
+                                                <span data-localize="label.w2Yes"></span>
                                             </label>
-                                    </div>
-                            </div>
-                        </form>
-                        <form hidden="hidden" id="consentForm" action="updateW2Consent" method="POST">
-                            <input type="text" name="year" id="consentYear" value="${selectedYear}" title="" data-localize="accessHint.year">
-                            <input type="hidden" id="w2Latest" value="${sessionScope.options.w2Latest}" title="" data-localize="accessHint.w2Latest"/>
-                            <input type="text" name="consentMsg" id="elecConsntMsgW2" value="${elecConsntMsgW2}" title="" data-localize="accessHint.elecConsntMsgW2">
-                            <input type="text" name="consent" id="elecConsntW2Flag" value="${consent}" title="" data-localize="accessHint.consent">
-                            <input type="text"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}" title="" data-localize="accessHint.enableElecConsntW2"/>
-                        </form>
-                        <p class="error-hint hide" id="noChooseError" data-localize="validator.pleaseSelectAgreeWay"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                            id="saveConsent"
-                            type="button"
-                            class="btn btn-primary"
-                            data-dismiss="modal"
-                            aria-hidden="true"
-                            data-localize="label.save"
-                        ></button>
-                        <button
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
-                            aria-hidden="true"
-                            title=""
-                            data-localize="label.cancel"
-                        >
-                        </button>
+                                        </div>
+                                        <div class="checkbox">
+                                                <label for="notConsent">
+                                                    <input class="consentRadio" type="radio" name="consent" id="notConsent"> 
+                                                    <span data-localize="label.w2No"></span>
+                                                </label>
+                                        </div>
+                                </div>
+                            </form>
+                            <form hidden="hidden" id="consentForm" action="updateW2Consent" method="POST">
+                                <input type="text" name="year" id="consentYear" value="${selectedYear}" title="" data-localize="accessHint.year">
+                                <input type="hidden" id="w2Latest" value="${sessionScope.options.w2Latest}" title="" data-localize="accessHint.w2Latest"/>
+                                <input type="text" name="consentMsg" id="elecConsntMsgW2" value="${elecConsntMsgW2}" title="" data-localize="accessHint.elecConsntMsgW2">
+                                <input type="text" name="consent" id="elecConsntW2Flag" value="${consent}" title="" data-localize="accessHint.consent">
+                                <input type="text"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}" title="" data-localize="accessHint.enableElecConsntW2"/>
+                            </form>
+                            <p class="error-hint hide" id="noChooseError" data-localize="validator.pleaseSelectAgreeWay"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                id="saveConsent"
+                                type="button"
+                                class="btn btn-primary"
+                                data-dismiss="modal"
+                                aria-hidden="true"
+                                data-localize="label.save"
+                            ></button>
+                            <button
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                                aria-hidden="true"
+                                title=""
+                                data-localize="label.cancel"
+                            >
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </c:if>
     </body>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/inquiry/w2Information.js"></script>
 </html>

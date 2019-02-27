@@ -36,7 +36,11 @@
         </div>
       </li>
       <li class="nav-item">
-      <a class="nav-link" href="/<%=request.getContextPath().split("/")[1]%>/profile/profile">
+      <a class="nav-link" 
+      <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
+          href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
+        </c:if>
+      >
         <span class="hide" data-localize="accessHint.goMyAccount"></span>
         <i class="fa fa-user"></i>
       </a>
@@ -58,12 +62,20 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
             <c:if test="${sessionScope.userDetail.avatar!=null}" >
-                <a href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" class="d-block"  style="background-image:url(${sessionScope.userDetail.avatar})">
+                <a 
+                <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
+                    href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
+                  </c:if>
+                class="d-block"  style="background-image:url(${sessionScope.userDetail.avatar})">
                   <span class="hide" data-localize="accessHint.goMyAccount"></span>
               </a>
             </c:if>
             <c:if test="${sessionScope.userDetail.avatar==null}">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" class="d-block noImage">
+                <a 
+                <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
+                    href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
+                  </c:if>
+                class="d-block noImage">
                   <span class="hide" data-localize="accessHint.goMyAccount"></span>
                   <i class="fa fa-user"></i>
                 </a>
@@ -71,7 +83,11 @@
        		
         </div>
         <div class="info">
-          <a href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" class="d-block">${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameL}</a>
+          <a 
+          <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
+            href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
+          </c:if>
+            class="d-block">${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameL}</a>
         </div>
       </div>
 
@@ -90,42 +106,54 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/calendarYearToDate" class="nav-link" id="calendarYearToDate">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p data-localize="nav.calendarYearToDate"></p>
-                </a>
-              </li>
+              <c:if test="${sessionScope.options.enableCalendarYearToDate}">
+                <li class="nav-item">
+                  <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/calendarYearToDate" class="nav-link" id="calendarYearToDate">
+                    <i class="fa fa-circle-o nav-icon"></i>
+                    <p data-localize="nav.calendarYearToDate"></p>
+                  </a>
+                </li>
+              </c:if>
+              <c:if test="${sessionScope.options.enableCurrentPayInformation}">
               <li class="nav-item" >
                 <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/currentPayInformation" class="nav-link" id="currentPayInformation">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.currentPayInfo"></p>
                 </a>
               </li>
+            </c:if>
+              <c:if test="${sessionScope.options.enableDeductions}">
               <li class="nav-item">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/deductions" class="nav-link" id="deductions">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.deductions"></p>
                 </a>
               </li>
+            </c:if>
+              <c:if test="${sessionScope.options.enableEarnings}">
               <li class="nav-item">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/earnings" class="nav-link" id="earnings">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.earning"></p>
                 </a>
               </li>
+            </c:if>
+              <c:if test="${sessionScope.options.enableW2}">
               <li class="nav-item">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/w2Information" class="nav-link" id="w2Information">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.w2Info"></p>
                 </a>
               </li>
+            </c:if>
+              <c:if test="${sessionScope.options.enable1095}">
               <li class="nav-item">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/inquiry/information1095" class="nav-link" id="information1095">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p data-localize="nav.info1095"></p>
                 </a>
               </li>
+            </c:if>
             </ul>
           </li>
           <li class="nav-item">
@@ -134,12 +162,15 @@
               <p data-localize="nav.leaveBalances"></p>
             </a>
           </li>
+          <c:if test="${sessionScope.options.enableLeaveReq}">
           <li class="nav-item">
             <a id="leaveRequest" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/leaveRequest" class="nav-link">
               <i class="nav-icon fa  fa-pencil-square-o text-info"></i>
               <p data-localize="nav.leaveRequests"></p>
             </a>
           </li>
+        </c:if>
+        <c:if test="${sessionScope.isSupervisor || sessionScope.isTempApprover}">
           <li class="nav-item has-treeview" id="supervisor">
             <a href="#" class="nav-link" > <!--  active -->
               <i class="nav-icon fa fa-users"></i>
@@ -176,16 +207,19 @@
               
             </ul>
           </li>
+        </c:if>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
     <ul class="sidebar-btm">
+        <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
         <li><a href="/<%=request.getContextPath().split("/")[1]%>/profile/profile">
           <span class="hide" data-localize="accessHint.goMyAccount"></span>
           <i class="fa fa-user"></i>
         </a></li>
+        </c:if>
         <!-- <li><a href="/" title="Full Screen"><i class="fa fa-arrows-alt"></i></a></li> -->
         <li><a href="https://tcc-help.net/txeis/employeeaccess/doku.php/leave/supervisor/settemporaryapprovers?version=3.3" 
           title=""  target="_blank">
