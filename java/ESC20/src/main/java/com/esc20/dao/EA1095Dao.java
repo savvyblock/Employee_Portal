@@ -24,10 +24,9 @@ public class EA1095Dao {
     
 	public List<String> getAvailableYears(String employeeNumber) {
 		Session session = this.getSession();
-		String sql = "SELECT DISTINCT bHist.id.calYr FROM BhrAca1095bEmpHist bHist WHERE bHist.id.empNbr = :employeeNumber "
-				+ "UNION SELECT DISTINCT cHist.id.calYr FROM BhrAca1095cEmpHist cHist WHERE cHist.id.empNbr = :employeeNumber ORDER BY cHist.id.calYr DESC ";
-        Query q = session.createQuery(sql);
-        q.setParameter("employeeNumber", employeeNumber);
+		String sql = "SELECT DISTINCT CAL_YR FROM BHR_ACA_1095B_EMP_HIST WHERE EMP_NBR = :empNbr UNION SELECT DISTINCT CAL_YR FROM BHR_ACA_1095C_EMP_HIST WHERE EMP_NBR = :empNbr ORDER BY CAL_YR DESC ";
+        Query q = session.createSQLQuery(sql);
+        q.setParameter("empNbr", employeeNumber);
         List<String> years = (List<String>) q.list();
         
         return years;

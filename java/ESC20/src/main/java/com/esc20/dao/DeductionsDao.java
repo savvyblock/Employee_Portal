@@ -25,14 +25,14 @@ public class DeductionsDao {
 	{
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT deduct.id.payFreq FROM BhrEmpDeduct deduct");
-		sql.append(" WHERE deduct.id.cyrNyrFlg = 'C'");
-		sql.append(" AND deduct.id.empNbr = :employeeNumber");
+		sql.append("SELECT DISTINCT PAY_FREQ FROM BHR_EMP_DEDUCT");
+		sql.append(" WHERE CYR_NYR_FLG = 'C'");
+		sql.append(" AND EMP_NBR = :employeeNumber");
 		sql.append(" UNION ");
-		sql.append("SELECT DISTINCT pay.id.payFreq FROM BhrEmpPay pay");
-		sql.append(" WHERE pay.id.cyrNyrFlg = 'C'");
-		sql.append(" AND pay.id.empNbr = :employeeNumber");
-		Query q = session.createQuery(sql.toString());
+		sql.append("SELECT DISTINCT PAY_FREQ FROM BHR_EMP_PAY");
+		sql.append(" WHERE CYR_NYR_FLG = 'C'");
+		sql.append(" AND EMP_NBR = :employeeNumber");
+		Query q = session.createSQLQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
 		List<Character> res = q.list();
 		List<Frequency> result = new ArrayList<Frequency>();

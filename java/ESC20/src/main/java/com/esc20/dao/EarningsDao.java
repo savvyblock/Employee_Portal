@@ -140,37 +140,38 @@ public class EarningsDao {
 	public List<EarningsOther> getEarningsOther(String employeeNumber, PayDate payDate, String checkNumber) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT deduct.id.dedCd, (CASE WHEN deduct.id.dedCd = '0CE' THEN 'HSA Employer Contrib' WHEN deduct.id.dedCd = '0CA' THEN 'Emplr Annuity Contrib' ");
-		sql.append("WHEN deduct.id.dedCd = '0CD' THEN 'Emplr Dependent Care' WHEN deduct.id.dedCd = '0CH' THEN 'TEA Health Insurance Contribution' ");
-        sql.append("WHEN deduct.id.dedCd = '0CN' THEN 'Emplr Non-Annuity Contrib' ELSE isnull(deducCd.shortDescr,'Not in file') end), ");
-        sql.append("(CASE WHEN deduct.refundFlg = 'Y' THEN (deduct.dedAmt*-1) ELSE deduct.dedAmt end), deduct.cafeFlg, ");
-        sql.append("(CASE WHEN deduct.refundFlg = 'Y' THEN (deduct.emplrAmt*-1) ELSE deduct.emplrAmt end), 0, 0 ");
-		sql.append("FROM BhrPayDeductHist deduct, BthrDeducCd deducCd where deduct.id.dedCd = deducCd.dedCd AND ");
-		sql.append("deduct.id.empNbr=:employeeNumber AND deduct.id.payFreq = :frequency AND deduct.id.dtOfPay = :dtOfPay AND  deduct.id.chkNbr = :chkNbr AND deduct.id.voidOrIss = :voidOrIss AND deduct.id.adjNbr = :adjNbr  ");
-		sql.append("UNION SELECT distinct '', '', 0.00, '', 0.00, 1, 0 ");
-		sql.append("FROM BhrCalYtd cal1 ");
-		sql.append("WHERE ( cal1.id.empNbr = :employeeNumber ) AND( cal1.id.cyrNyrFlg = 'C' ) AND ");
-		sql.append("( cal1.id.payFreq = :frequency ) AND ( cal1.id.calYr = substr(:dtOfPay,1,4) ) AND ");
-		sql.append("( cal1.dependCare + cal1.emplrDependCare) > 5000.00 ");
-		sql.append("union SELECT distinct '', '', 0.00, '', 0.00, 0, 1 ");
-		sql.append("FROM BhrCalYtd cal2  ");
-		sql.append("WHERE ( cal2.id.empNbr = :employeeNumber ) AND( cal2.id.cyrNyrFlg = 'C' ) AND ");
-		sql.append("( cal2.id.payFreq = :frequency ) AND ( cal2.id.calYr = substr(:dtOfPay,1,4) ) AND ");
-		sql.append("( cal2.hsaEmplrContrib) > 3000.00");
-		Query q = session.createQuery(sql.toString());
+		sql.append("SELECT bhr_pay_deduct_hist.ded_cd, CASE WHEN bhr_pay_deduct_hist.ded_cd = '0CE' THEN 'HSA Employer Contrib' WHEN bhr_pay_deduct_hist.ded_cd = '0CA' THEN 'Emplr Annuity Contrib' ");
+		sql.append("WHEN bhr_pay_deduct_hist.ded_cd = '0CD' THEN 'Emplr Dependent Care' WHEN bhr_pay_deduct_hist.ded_cd = '0CH' THEN 'TEA Health Insurance Contribution' ");
+        sql.append("WHEN bhr_pay_deduct_hist.ded_cd = '0CN' THEN 'Emplr Non-Annuity Contrib' ELSE isnull(bthr_deduc_cd.short_descr,'Not in file') end as short_descr, ");
+        sql.append("CASE WHEN refund_flg = 'Y' THEN ded_amt * -1 ELSE ded_amt end as ded_amt, cafe_flg, ");
+        sql.append("CASE WHEN bhr_pay_deduct_hist.refund_flg = 'Y' THEN bhr_pay_deduct_hist.emplr_amt * -1 ELSE bhr_pay_deduct_hist.emplr_amt end as emplr_contrib, dep_care_over_max = 0, hsa_emplr_over_max = 0 ");
+		sql.append("FROM bhr_pay_deduct_hist ");
+		sql.append("LEFT JOIN bthr_deduc_cd ON bhr_pay_deduct_hist.ded_cd = bthr_deduc_cd.ded_cd ");
+		sql.append("WHERE bhr_pay_deduct_hist.emp_nbr=:is_emp_nbr AND bhr_pay_deduct_hist.pay_freq = :is_pay_freq AND bhr_pay_deduct_hist.dt_of_pay = :is_dt_of_pay AND  bhr_pay_deduct_hist.chk_nbr = :is_chk_nbr AND  bhr_pay_deduct_hist.void_or_iss = :is_void AND  bhr_pay_deduct_hist.adj_nbr = :is_adj_nbr  ");
+		sql.append("UNION SELECT distinct '', '', 0.00, '', 0.00, dep_care_over_max = 1, hsa_emplr_over_max = 0 ");
+		sql.append("FROM bhr_cal_ytd  ");
+		sql.append("WHERE ( bhr_cal_ytd.emp_nbr = :is_emp_nbr ) AND( bhr_cal_ytd.cyr_nyr_flg = 'C' ) AND ");
+		sql.append("( bhr_cal_ytd.pay_freq = :is_pay_freq ) AND ( bhr_cal_ytd.cal_yr = substr(:is_dt_of_pay,1,4) ) AND ");
+		sql.append("( bhr_cal_ytd.depend_care + bhr_cal_ytd.emplr_depend_care) > 5000.00 ");
+		sql.append("union SELECT distinct '', '', 0.00, '', 0.00, dep_care_over_max = 0, hsa_emplr_over_max = 1 ");
+		sql.append("FROM bhr_cal_ytd  ");
+		sql.append("WHERE ( bhr_cal_ytd.emp_nbr = :is_emp_nbr ) AND( bhr_cal_ytd.cyr_nyr_flg = 'C' ) AND ");
+		sql.append("( bhr_cal_ytd.pay_freq = :is_pay_freq ) AND ( bhr_cal_ytd.cal_yr = substr(:is_dt_of_pay,1,4) ) AND ");
+		sql.append("( bhr_cal_ytd.hsa_emplr_contrib) > 3000.00");
+		Query q = session.createSQLQuery(sql.toString());
 		String tempFreq = StringUtil.right(payDate.getDateFreq(), 1);
 		String tempDate = StringUtil.left(payDate.getDateFreq(), payDate.getDateFreq().length()-1);
-        q.setParameter("employeeNumber", employeeNumber);
-        q.setParameter("frequency", tempFreq.charAt(0));
-        q.setParameter("dtOfPay", tempDate);
-        q.setParameter("voidOrIss", payDate.getVoidIssue().charAt(0));
-        q.setParameter("adjNbr", Short.parseShort(payDate.getAdjNumber()));
-        q.setParameter("chkNbr", payDate.getCheckNumber());
+        q.setParameter("is_emp_nbr", employeeNumber);
+        q.setParameter("is_pay_freq", tempFreq.charAt(0));
+        q.setParameter("is_dt_of_pay", tempDate);
+        q.setParameter("is_void", payDate.getVoidIssue().charAt(0));
+        q.setParameter("is_adj_nbr", Short.parseShort(payDate.getAdjNumber()));
+        q.setParameter("is_chk_nbr", payDate.getCheckNumber());
         List<Object[]> res = q.list();
         List<EarningsOther> result = new ArrayList<EarningsOther>();
         EarningsOther other;
         for(Object[] item : res) {
-        	other = new EarningsOther((String) item[0], (String) item[1], (BigDecimal) item[2], (Character) item[3], (BigDecimal) item[4], (Integer) item[5], (Integer) item[6]);
+        	other = new EarningsOther((String) item[0], (String) item[1], (BigDecimal) item[2], (Character) item[3], (BigDecimal) item[4], (Short) item[5], (Short) item[6]);
         	result.add(other);
         }
         
@@ -180,50 +181,56 @@ public class EarningsDao {
 	public List<EarningsJob> getEarningsJob(String employeeNumber, PayDate payDate, String checkNumber) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT hist.id.jobCd, hist.payRate, hist.regHrsWrk, " +
-				"hist.xmitalHrsWrk, hist.payType, cd.jobCdDescr ");
-		sql.append("FROM BhrEmpJobHist hist, BthrJobCd cd where hist.id.jobCd = cd.id.jobCd and " +
-					"hist.id.cyrNyrFlg = cd.id.cyrNyrFlg ");
-		sql.append("AND hist.id.empNbr=:employeeNumber AND hist.id.payFreq = :frequency AND hist.id.dtOfPay = :dtOfPay AND hist.id.chkNbr = :chkNbr AND hist.id.voidOrIss = :voidOrIss AND hist.id.adjNbr = :adjNbr AND  ");
-		sql.append("((hist.payRate <> 0 AND hist.payType in ('1','2')) OR (hist.payRate <> 0 AND hist.payType in ('3', '4') ");
-		sql.append("AND (hist.regHrsWrk <> 0 OR hist.xmitalHrsWrk <>  0))) " +
-				   " Union all select distinct case when suppl.extraDutyCd = '' then suppl.jobCd else suppl.extraDutyCd end, " +
-				   "	sum(suppl.supplAmt), 0, 0," +
-				   "    hist1.payType,  " +
-								"case when suppl.extraDutyCd = '' then  " +
-							     "  (select cd1.jobCdDescr  " +
-									"    from BthrJobCd cd1  " +
-									"    WHERE cd1.id.cyrNyrFlg = 'C' and  " +
-									"          trim(cd1.id.jobCd) <> '' and  " +
-									"          cd1.id.jobCd = suppl.jobCd)  " +
-							       " else (select duty.extraDutyDescr  " + 
-							    	"	from BthrExtraDuty duty  " +
-							    	"	WHERE duty.id.cyrNyrFlg = 'C' and   " +
-							    	"	      trim(duty.id.extraDutyCd) <> '' and  " +
-							    	"	      duty.id.extraDutyCd = suppl.extraDutyCd)  " +
+		sql.append("SELECT DISTINCT bhr_emp_job_hist.job_cd, bhr_emp_job_hist.pay_rate, bhr_emp_job_hist.reg_hrs_wrk, " +
+				"bhr_emp_job_hist.xmital_hrs_wrk, bhr_emp_job_hist.pay_type, bthr_job_cd.job_cd_descr ");
+		sql.append("FROM bhr_emp_job_hist ");
+		sql.append("LEFT JOIN bthr_job_cd ON bhr_emp_job_hist.job_cd = bthr_job_cd.job_cd and " +
+					"bhr_emp_job_hist.cyr_nyr_flg = bthr_job_cd.cyr_nyr_flg ");
+		sql.append("WHERE bhr_emp_job_hist.emp_nbr=:is_emp_nbr AND bhr_emp_job_hist.pay_freq = :is_pay_freq AND bhr_emp_job_hist.dt_of_pay = :is_dt_of_pay AND bhr_emp_job_hist.chk_nbr = :is_chk_nbr AND bhr_emp_job_hist.void_or_iss = :is_void AND bhr_emp_job_hist.adj_nbr = :is_adj_nbr AND  ");
+		sql.append("((bhr_emp_job_hist.pay_rate <> 0 AND bhr_emp_job_hist.pay_type in ('1','2')) OR(bhr_emp_job_hist.pay_rate <> 0 AND bhr_emp_job_hist.pay_type in ('3', '4') ");
+		sql.append("AND (bhr_emp_job_hist.reg_hrs_wrk <> 0 OR bhr_emp_job_hist.xmital_hrs_wrk <>  0))) " +
+				   " Union all select distinct case when bhr_suppl_xmital.extra_duty_cd = '' then bhr_suppl_xmital.job_cd else bhr_suppl_xmital.extra_duty_cd end, " +
+				   "	sum(bhr_suppl_xmital.suppl_amt), 0, 0," +
+				   "    bhr_emp_job_hist.pay_type,  " +
+								"case when bhr_suppl_xmital.extra_duty_cd = '' then  " +
+							     "  (select bthr_job_cd.job_cd_descr  " +
+									"    from bthr_job_cd  " +
+									"    WHERE bthr_job_cd.cyr_nyr_flg = 'C' and  " +
+									"          trim(bthr_job_cd.job_cd) <> '' and  " +
+									"          bthr_job_cd.job_cd = bhr_suppl_xmital.job_cd)  " +
+							       " else (select bthr_extra_duty.extra_duty_descr  " + 
+							    	"	from bthr_extra_duty  " +
+							    	"	WHERE bthr_extra_duty.cyr_nyr_flg = 'C' and   " +
+							    	"	      trim(bthr_extra_duty.extra_duty_cd) <> '' and  " +
+							    	"	      bthr_extra_duty.extra_duty_cd = bhr_suppl_xmital.extra_duty_cd)  " +
 							       " end as display " +
-							"  from BhrSupplXmital suppl, BhrEmpJobHist hist1 " +
-							" where hist1.id.empNbr=:employeeNumber AND hist1.id.payFreq = :frequency AND hist1.id.dtOfPay = :dtOfPay AND hist1.id.chkNbr = :chkNbr AND hist1.id.voidOrIss = :voidOrIss AND hist1.id.adjNbr = :adjNbr AND" +
-							"       0 = :adjNbr and " +
-							"       suppl.id.payFreq = hist1.id.payFreq and " +
-							"       suppl.id.dtOfPay = hist1.id.dtOfPay and " +
-							"       suppl.id.empNbrr = hist1.id.empNbr and " +
-							"       suppl.jobCd = hist1.id.jobCd and " +
-							"       suppl.addStdGrossCd = 'Y' and " +
-							"       suppl.nonTrsPymtTyp = '' " +
-							" group by suppl.jobCd,  " +
-							"         hist1.id.jobCd, " +
-							"	 hist1.payType, " +
-							"	 suppl.extraDutyCd");
-		Query q = session.createQuery(sql.toString());
+							"  from bhr_suppl_xmital, bhr_emp_job_hist " +
+							" where bhr_emp_job_hist.pay_freq = :is_pay_freq  and " +
+							"       bhr_emp_job_hist.emp_nbr = :is_emp_nbr and " +
+							"       bhr_emp_job_hist.dt_of_pay = :is_dt_of_pay and " +
+							"       bhr_emp_job_hist.chk_nbr = :is_chk_nbr and " +
+							"       bhr_emp_job_hist.void_or_iss = :is_void and " +
+							"       bhr_emp_job_hist.adj_nbr = :is_adj_nbr and " +
+							"       0 = :is_adj_nbr and " +
+							"       bhr_suppl_xmital.pay_freq = bhr_emp_job_hist.pay_freq and " +
+							"       bhr_suppl_xmital.dt_of_pay = bhr_emp_job_hist.dt_of_pay and " +
+							"       bhr_suppl_xmital.emp_nbr = bhr_emp_job_hist.emp_nbr and " +
+							"       bhr_suppl_xmital.job_cd = bhr_emp_job_hist.job_cd and " +
+							"       bhr_suppl_xmital.add_std_gross_cd = 'Y' and " +
+							"       bhr_suppl_xmital.non_trs_pymt_typ = '' " +
+							" group by bhr_suppl_xmital.job_cd,  " +
+							"         bhr_emp_job_hist.job_cd, " +
+							"	 bhr_emp_job_hist.pay_type, " +
+							"	 bhr_suppl_xmital.extra_duty_cd");
+		Query q = session.createSQLQuery(sql.toString());
 		String tempFreq = StringUtil.right(payDate.getDateFreq(), 1);
 		String tempDate = StringUtil.left(payDate.getDateFreq(), payDate.getDateFreq().length()-1);
-        q.setParameter("employeeNumber", employeeNumber);
-        q.setParameter("frequency", tempFreq.charAt(0));
-        q.setParameter("dtOfPay", tempDate);
-        q.setParameter("voidOrIss", payDate.getVoidIssue().charAt(0));
-        q.setParameter("adjNbr", Short.parseShort(payDate.getAdjNumber()));
-        q.setParameter("chkNbr", payDate.getCheckNumber());
+        q.setParameter("is_emp_nbr", employeeNumber);
+        q.setParameter("is_pay_freq", tempFreq.charAt(0));
+        q.setParameter("is_dt_of_pay", tempDate);
+        q.setParameter("is_void", payDate.getVoidIssue().charAt(0));
+        q.setParameter("is_adj_nbr", Short.parseShort(payDate.getAdjNumber()));
+        q.setParameter("is_chk_nbr", payDate.getCheckNumber());
         List<Object[]> res = q.list();
         List<EarningsJob> result = new ArrayList<EarningsJob>();
         EarningsJob job;
