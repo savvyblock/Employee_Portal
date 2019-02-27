@@ -20,7 +20,7 @@ import com.esc20.service.ReferenceService;
 
 @Controller
 @RequestMapping("/createUser")
-public class CreateUserController extends IndexController{
+public class CreateUserController extends IndexController {
 
 	private static String key = "D3n!m!23R3gi0n20";
 	

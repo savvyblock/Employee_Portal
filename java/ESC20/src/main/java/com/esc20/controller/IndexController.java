@@ -80,6 +80,7 @@ public class IndexController {
                 Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr());
                 Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
                 session.setAttribute("isSupervisor", isSupervisor);
+                session.setAttribute("isTempApprover", isTempApprover);
                 session.setAttribute("user", user);
                 session.setAttribute("userDetail", userDetail);
                 session.setAttribute("companyId", user.getCmpId());
