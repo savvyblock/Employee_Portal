@@ -330,5 +330,11 @@ public class IndexService {
 		 userDao.updateEmailEmployee(employeeNumber,workEmail,hmEmail);
 		
 	}
+	public Boolean isSupervisor(String empNbr) {
+		return userDao.isSupervisor(empNbr);
+	}
+	public Boolean isTempApprover(String empNbr) {
+		return userDao.isTempApprover(empNbr);
+	}
 	
 }

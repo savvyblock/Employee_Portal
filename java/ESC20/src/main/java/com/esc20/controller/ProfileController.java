@@ -15,7 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,7 +70,7 @@ public class ProfileController extends IndexController{
     @Autowired
     private BankService bankService;
     
-    private static ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
+    private static PasswordEncoder encoder = new StandardPasswordEncoder("SHA-256");
     
     @RequestMapping("profile")
     public ModelAndView getProfile(HttpServletRequest req,String freq){
@@ -407,7 +408,7 @@ public class ProfileController extends IndexController{
         	mav = new ModelAndView("redirect:/profile");
         	return mav;
         }
-    	user.setUsrpswd(encoder.encodePassword(password,null));
+    	user.setUsrpswd(encoder.encode(password));
     	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
     	this.indexService.updateUser(user);
     	session.removeAttribute("user");

@@ -702,5 +702,26 @@ public class AppUserDao {
 		Integer res = q.executeUpdate();
     	session.flush();
 	}
+
+	public Boolean isSupervisor(String empNbr) {
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT COUNT(*) FROM BhrEapEmpToSpvsr E2S2 WHERE E2S2.spvsrEmpNbr=:empNbr");
+		Query q = session.createQuery(sql.toString());
+		q.setParameter("empNbr", empNbr);
+		Long result = (Long) q.uniqueResult();
+		return result>0L;
+	}
+
+	public Boolean isTempApprover(String empNbr) {
+		Session session = this.getSession();
+		String sql = "SELECT ISNULL((SELECT DISTINCT 1 FROM BEA_EMP_LV_TMP_APPROVERS WHERE TMP_APPRVR_EMP_NBR=:employeeNumber AND GETDATE() >= DATETIME_FROM AND GETDATE() <= DATETIME_TO), " +
+				"(SELECT COUNT(*) FROM BEA_EMP_LV_RQST ELR,  BEA_EMP_LV_WORKFLOW ELW WHERE ELW.APPRVR_EMP_NBR=:employeeNumber AND ELW.LV_ID = ELR.ID  AND ELR.STATUS_CD = 'P' " + 
+					"AND ELW.INSERT_DATETIME = (SELECT MAX(ELW2.INSERT_DATETIME) FROM BEA_EMP_LV_WORKFLOW ELW2 WHERE ELW2.LV_ID=ELW.LV_ID) )) AS ACCESS";
+		Query q = session.createSQLQuery(sql);
+		q.setParameter("employeeNumber", empNbr);
+		Integer result = (Integer) q.uniqueResult();
+		return result>0;
+	}
 	
 }

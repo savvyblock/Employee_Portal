@@ -5,7 +5,8 @@ import java.text.ParseException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,7 +23,7 @@ public class ResetPasswordController extends IndexController{
     @Autowired
     private IndexService indexService;
     
-    private static ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
+    private static PasswordEncoder encoder = new StandardPasswordEncoder("SHA-256");
 	
     @RequestMapping("retrieveUserName")
     public ModelAndView retrieveUserName(HttpServletRequest req){
@@ -70,7 +71,7 @@ public class ResetPasswordController extends IndexController{
 		
 		try {
 	    	BeaUsers user = this.indexService.getUserByEmpNbr(id);
-	    	user.setUsrpswd(encoder.encodePassword(password,null));
+	    	user.setUsrpswd(encoder.encode(password));
 	    	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
 	    	this.indexService.updateUser(user);
 	    	

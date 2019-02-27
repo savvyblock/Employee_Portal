@@ -3,7 +3,8 @@ package com.esc20.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,7 +33,7 @@ public class CreateUserController extends IndexController{
     @Autowired
     private BankService bankService;
     
-    private static ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
+    private static PasswordEncoder encoder = new StandardPasswordEncoder("SHA-256");
 	
     @RequestMapping("searchUser")
     public ModelAndView searchUser(HttpServletRequest req){
@@ -52,13 +53,12 @@ public class CreateUserController extends IndexController{
     public ModelAndView saveNewUser(HttpServletRequest req){
     	ModelAndView mav = new ModelAndView();
     	BeaUsers newUser=new BeaUsers();
-    	ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
     	newUser.setEmpNbr(req.getParameter("empNumber"));
     	newUser.setUsrname(req.getParameter("username"));//username
     	newUser.setHint(req.getParameter("hintQuestion"));//hintQuestion
-    	newUser.setHintAns(encoder.encodePassword(req.getParameter("hintAnswer"),null));//  hintAnswer
+    	newUser.setHintAns(encoder.encode(req.getParameter("hintAnswer")));//  hintAnswer
     	//newUser.setUserEmail(req.getParameter("workEmail"));//workEmail
-    	newUser.setUsrpswd(encoder.encodePassword(req.getParameter("password"),null));
+    	newUser.setUsrpswd(encoder.encode(req.getParameter("password")));
     	
     	newUser.setLkPswd('N');
     	newUser.setPswdCnt(0);
