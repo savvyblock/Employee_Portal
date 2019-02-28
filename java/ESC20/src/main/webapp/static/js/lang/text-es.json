@@ -563,6 +563,7 @@
 		"firstname":"First Name",
 		"lastname":"Last Name",
 		"pleaseEnterInformation":"Please enter the security information and click the save button.",
+		"pleaseAnswerYourHintQuestion":"Please answer your hint question (answer is case sensitive) and select the email address to send password.",
 		"workEmail":"Work E-mail",
 		"homeEmail":"Home E-mail",
 		"hintQuestion":"Hint Question",
@@ -650,6 +651,7 @@
 		"createNewUser":"TxEIS : Employee Access -  Create New User"
 	},
 	"validator":{
+		"answerError":"The answer is wrong!",
 		"requiredField":"This field is required!",
 		"notValid":"This value is not valid",
 		"pleaseEnterCorrectMailFormat":"Please enter the correct mail format.",
