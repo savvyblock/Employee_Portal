@@ -24,7 +24,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     method="POST"
                                 >
                                 <span hidden="hidden" id="chainValue">${chain}</span>
-                                    <input hidden="hidden" id="chain" class="chain" name="chain" type="text" value="" title="" data-localize="accessHint.chain">
+                                    <input hidden="hidden" id="chain" class="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
                                     <div class="form-group in-line flex-auto">
                                         <label class="form-title" for="selectEmpNbr"><span data-localize="label.directReportSupervisor"></span>:</label>
                                         <select  class="form-control" name="selectEmpNbr" onchange="changeLevel()"
@@ -48,8 +48,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                 </form>
                                 <form hidden="hidden" action="previousLevelFromTempApprovers" id="previousLevel" method="POST">
-                                        <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" title="" data-localize="accessHint.level">
-                                        <input hidden="hidden" name="chain" type="text" value="" id="preChain" title="" data-localize="accessHint.chain">
+                                        <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="" data-localize="accessHint.level">
+                                        <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
                                 </form>
                                 <div class="showSelectSupervisor">
                                         <label class="form-title"><span data-localize="label.supervisorHierarchy"></span>: </label>
@@ -70,9 +70,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 >
                             </div>
                             <form action="saveTempApprovers" id="saveTempApprovers" method="POST">
-                                    <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="" title="" data-localize="accessHint.chain">
-                                    <input hidden="hidden" id="empNbrForm" name="empNbr" type="text" value="" title="" data-localize="accessHint.employeeNumber">
-                                    <input hidden="hidden" id="approverJson" name="approverJson" type="text" value="" title="" data-localize="accessHint.approverJson">
+                                    <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
+                                    <input hidden="hidden" id="empNbrForm" name="empNbr" type="text" value="" aria-label="" data-localize="accessHint.employeeNumber">
+                                    <input hidden="hidden" id="approverJson" name="approverJson" type="text" value="" aria-label="" data-localize="accessHint.approverJson">
                                 <table
                                     class="table border-table setApprovers-list responsive-table"
                                 >
@@ -97,7 +97,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             <td class="empNumber"
                                                             data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope"
                                                             >
-                                                            <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}" title="" data-localize="accessHint.employeeId">
+                                                            <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}" aria-label="" data-localize="accessHint.employeeId">
                                                             ${tem.tmpApprvrEmpNbr}-${tem.approverName}
                                                         </td>
                                                             <td class="empFrom" data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope">${tem.datetimeFrom}</td>
@@ -106,8 +106,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                 <button
                                                                     type="button"
                                                                     class="a-btn deleteApprover"
+                                                                    aria-label="" data-localize="label.delete" data-localize-location="aria-label" data-localize-notText="true"
                                                                 >
-                                                                    <span class="hide" data-localize="label.delete"></span>
                                                                     <i
                                                                         class="fa fa-trash"
                                                                     ></i>
@@ -129,7 +129,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input
                                                         class="form-control empControl"
                                                         type="text"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="setTemporaryApprovers.temporaryApprover"
                                                         name=""
                                                         id="name_01"
@@ -140,7 +140,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="form-group">
                                                     <input
                                                         class="form-control date-control dateFromControl"
-                                                        title=""
+                                                        aria-label=""
                                                         data-title="from"
                                                         data-localize="setTemporaryApprovers.fromDate"
                                                         type="text"
@@ -154,7 +154,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="form-group">
                                                     <input
                                                         class="form-control  date-control dateToControl"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="setTemporaryApprovers.toDate"
                                                         type="text"
                                                         data-title="to"
@@ -169,8 +169,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     type="button"
                                                     class="a-btn"
                                                     onclick="deleteRow(this)"
+                                                    aria-label="" data-localize="label.delete" data-localize-location="aria-label" data-localize-notText="true"
                                                 >
-                                                    <span class="hide" data-localize="label.delete"></span>
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </td>
@@ -180,9 +180,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <button
                                                     type="button"
                                                     class="a-btn add-new-row"
+                                                    aria-label="" data-localize="label.add" data-localize-location="aria-label" data-localize-notText="true"
                                                 >
                                                     <i class="fa fa-plus"></i>
-                                                    <span data-localize="label.add"></span>
                                                 </button>
                                             </td>
                                         </tr>
@@ -195,7 +195,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                         type="button"
                                         class="btn btn-primary"
-                                        title=""
+                                        aria-label=""
                                         id="saveSet"
                                         data-localize="label.save"
                                     >
@@ -203,7 +203,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                         type="button"
                                         class="btn btn-secondary"
-                                        title=""
+                                        aria-label=""
                                         id="reset"
                                         data-localize="label.reset"
                                     >
@@ -218,7 +218,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             </main>
         </div>
         <form hidden="hidden" action="" id="">
-            <input type="text" id="deleteEmpID" title="" data-localize="accessHint.employeeId">
+            <input type="text" id="deleteEmpID" aria-label="" data-localize="accessHint.employeeId">
         </form>
         <%@ include file="../commons/footer.jsp"%>
     </body>

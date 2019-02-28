@@ -5,7 +5,9 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><span class="hide" data-localize="accessHint.collapseOrExpand"></span> <i class="fa fa-bars"></i></a>
+        <button class="nav-link nobtn-style" data-widget="pushmenu" aria-label="" data-localize="accessHint.collapseOrExpand" data-localize-location="aria-label" data-localize-notText="true">
+          <i class="fa fa-bars"></i>
+        </button>
       </li>
     </ul>
 
@@ -16,8 +18,7 @@
     <ul class="navbar-nav nav-right">
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-        <button class="nav-link nobtn-style" data-toggle="dropdown">
-          <span class="hide" data-localize="accessHint.showOrHideNote"></span>
+        <button class="nav-link nobtn-style" data-toggle="dropdown" aria-label="" data-localize="accessHint.showOrHideNote" data-localize-location="aria-label" data-localize-notText="true">
           <i class="fa fa-bell-o"></i>
           <span id="navBadge" class="navbar-badge"></span>
         </button>
@@ -40,8 +41,8 @@
       <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
           href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
         </c:if>
+        aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label" data-localize-notText="true"
       >
-        <span class="hide" data-localize="accessHint.goMyAccount"></span>
         <i class="fa fa-user"></i>
       </a>
       </li>
@@ -66,8 +67,8 @@
                 <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
                     href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
                   </c:if>
+                  aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label" data-localize-notText="true"
                 class="d-block"  style="background-image:url(${sessionScope.userDetail.avatar})">
-                  <span class="hide" data-localize="accessHint.goMyAccount"></span>
               </a>
             </c:if>
             <c:if test="${sessionScope.userDetail.avatar==null}">
@@ -75,8 +76,8 @@
                 <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
                     href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
                   </c:if>
+                  aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label" data-localize-notText="true"
                 class="d-block noImage">
-                  <span class="hide" data-localize="accessHint.goMyAccount"></span>
                   <i class="fa fa-user"></i>
                 </a>
             </c:if>
@@ -215,19 +216,24 @@
     <!-- /.sidebar -->
     <ul class="sidebar-btm">
         <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
-        <li><a href="/<%=request.getContextPath().split("/")[1]%>/profile/profile">
-          <span class="hide" data-localize="accessHint.goMyAccount"></span>
+        <li>
+          <a href="/<%=request.getContextPath().split("/")[1]%>/profile/profile"
+            aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label" data-localize-notText="true"
+          >
           <i class="fa fa-user"></i>
         </a></li>
         </c:if>
         <!-- <li><a href="/" title="Full Screen"><i class="fa fa-arrows-alt"></i></a></li> -->
-        <li><a href="https://tcc-help.net/txeis/employeeaccess/doku.php/leave/supervisor/settemporaryapprovers?version=3.3" 
-          title=""  target="_blank">
-          <span class="hide" data-localize="accessHint.goHelp"></span>
+        <li>
+          <a href="https://tcc-help.net/txeis/employeeaccess/doku.php/leave/supervisor/settemporaryapprovers?version=3.3" target="_blank"
+          aria-label="" data-localize="accessHint.goHelp" data-localize-location="aria-label" data-localize-notText="true"
+          >
           <i class="fa fa-question-circle"></i>
         </a></li>
-        <li><a href="/<%=request.getContextPath().split("/")[1]%>/logout">
-          <span class="hide" data-localize="accessHint.logout"></span>
+        <li>
+          <a href="/<%=request.getContextPath().split("/")[1]%>/logout"
+            aria-label="" data-localize="accessHint.logout" data-localize-location="aria-label" data-localize-notText="true"
+            >
           <i class="fa fa-sign-out "></i></a></li>
     </ul>
   </aside>

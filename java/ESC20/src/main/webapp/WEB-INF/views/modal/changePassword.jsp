@@ -14,16 +14,17 @@
                     type="button"
                     class="close"
                     data-dismiss="modal"
-                    aria-hidden="true">
-                    <span class="hide" data-localize="label.closeModal"></span>
+                    aria-hidden="true"
+                    aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
+                    >
                     &times;
                 </button>
                 <h4 class="modal-title" data-localize="label.changePassword"></h4>
             </div>
               
                   <form id="updatePassword" action="updatePassword" method="post" style="max-width:350px;">
-                    <input type="text" id="sessionPsd" value="${decryptedPwd}" style = "display:none" title="" data-localize="accessHint.sessionPassword"> 
-                    <input type="text" name="id" id="userId" value="${sessionScope.user.empNbr}" style = "display:none" title="" data-localize="accessHint.employeeNumber"> 
+                    <input type="text" id="sessionPsd" value="${decryptedPwd}" style = "display:none" aria-label="" data-localize="accessHint.sessionPassword"> 
+                    <input type="text" name="id" id="userId" value="${sessionScope.user.empNbr}" style = "display:none" aria-label="" data-localize="accessHint.employeeNumber"> 
                     <div class="modal-body">
                       <div class="form-group">
                           <label class="form-title" for="oldPassword" data-localize="label.oldPassword"></label>

@@ -16,8 +16,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <h2 class="clearfix section-title">
                                     <span data-localize="title.approveLeaveRequests"></span>
                                 <button class="btn btn-primary pull-right" onclick="showCalendarModal()"
-                                data-toggle="modal" data-target="#leaveListCalendarModal">
-                                    <span class="hide" data-localize="label.switchToCalendarView" ></span>
+                                data-toggle="modal" data-target="#leaveListCalendarModal" aria-label="" data-localize="label.switchToCalendarView" data-localize-location="aria-label" data-localize-notText="true">
                                     <i class="fa fa-calendar"></i>
                                 </button>
                             </h2>
@@ -29,7 +28,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     method="POST"
                                 >
                                 <span hidden="hidden" id="chainValue">${chain}</span>
-                                    <input hidden="hidden" id="chain" name="chain" type="text" value="" title="" data-localize="accessHint.chain">
+                                    <input hidden="hidden" id="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
                                     <div class="form-group in-line flex-auto">
                                         <label class="form-title" for="selectEmpNbr"><span data-localize="label.directReportSupervisor"></span>:</label>
                                         <select  class="form-control" name="selectEmpNbr" onchange="changeLevel()"
@@ -53,8 +52,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                 </form>
                                 <form hidden="hidden" action="previousLevelFromApproveLeave" id="previousLevel" method="POST">
-                                        <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" title="" data-localize="accessHint.level">
-                                        <input hidden="hidden" name="chain" type="text" value="" id="preChain" title="" data-localize="accessHint.chain">
+                                        <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="" data-localize="accessHint.level">
+                                        <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
                                 </form>
                                 <div class="showSelectSupervisor">
                                         <label class="form-title"><span data-localize="label.supervisorHierarchy"></span>: </label>

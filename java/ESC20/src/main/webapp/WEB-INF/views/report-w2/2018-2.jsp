@@ -47,40 +47,40 @@
                        
                     </div>
                     <div>
-                        <b>A</b>-<span data-localize="w2Notice.2018.A"></span>
+                        <b data-localize="w2Notice.A"></b>-<span data-localize="w2Notice.2018.A"></span>
                     </div>
                     <div>
-                        <b>B</b>-<span data-localize="w2Notice.2018.B"></span>
+                        <b data-localize="w2Notice.B"></b>-<span data-localize="w2Notice.2018.B"></span>
                     </div>
                     <div>
-                        <b>C</b>-<span data-localize="w2Notice.2018.C"></span>
+                        <b data-localize="w2Notice.C"></b>-<span data-localize="w2Notice.2018.C"></span>
                     </div>
                     
             </td>
             <td style="width: 50%" valign="top">
                     <div>
-                            <b>D</b>-<span data-localize="w2Notice.2018.D"></span>
+                            <b data-localize="w2Notice.D"></b>-<span data-localize="w2Notice.2018.D"></span>
                         </div>
                         <div>
-                            <b>E</b>-<span data-localize="w2Notice.2018.E"></span>
+                            <b data-localize="w2Notice.E"></b>-<span data-localize="w2Notice.2018.E"></span>
                         </div>
-                    <div><b>F</b><span data-localize="w2Notice.2018.F"></span></div>
-                    <div><b>G</b><span data-localize="w2Notice.2018.G"></span></div>
-                    <div><b>H</b><span data-localize="w2Notice.2018.H"></span></div>
-                    <div><b>J</b><span data-localize="w2Notice.2018.J"></span></div>
-                    <div><b>K</b><span data-localize="w2Notice.2018.K"></span></div>
-                    <div><b>L</b><span data-localize="w2Notice.2018.L"></span></div>
-                    <div><b>M</b><span data-localize="w2Notice.2018.M"></span></div>
-                    <div><b>N</b><span data-localize="w2Notice.2018.N"></span></div>
-                    <div><b>P</b><span data-localize="w2Notice.2018.P"></span></div>
-                    <div><b>Q</b><span data-localize="w2Notice.2018.Q"></span></div>
-                    <div><b>R</b><span data-localize="w2Notice.2018.R"></span></div>
-                    <div><b>S</b><span data-localize="w2Notice.2018.S"></span></div>
-                    <div><b>T</b><span data-localize="w2Notice.2018.T"></span></div>
-                    <div><b>V</b><span data-localize="w2Notice.2018.V"></span></div>
-                    <div><b>W</b><span data-localize="w2Notice.2018.W"></span></div>
-                    <div><b>Y</b><span data-localize="w2Notice.2018.Y"></span></div>
-                    <div><b>Z</b><span data-localize="w2Notice.2018.Z"></span></div>
+                    <div><b data-localize="w2Notice.F"></b><span data-localize="w2Notice.2018.F"></span></div>
+                    <div><b data-localize="w2Notice.G"></b><span data-localize="w2Notice.2018.G"></span></div>
+                    <div><b data-localize="w2Notice.H"></b><span data-localize="w2Notice.2018.H"></span></div>
+                    <div><b data-localize="w2Notice.J"></b><span data-localize="w2Notice.2018.J"></span></div>
+                    <div><b data-localize="w2Notice.K"></b><span data-localize="w2Notice.2018.K"></span></div>
+                    <div><b data-localize="w2Notice.L"></b><span data-localize="w2Notice.2018.L"></span></div>
+                    <div><b data-localize="w2Notice.M"></b><span data-localize="w2Notice.2018.M"></span></div>
+                    <div><b data-localize="w2Notice.N"></b><span data-localize="w2Notice.2018.N"></span></div>
+                    <div><b data-localize="w2Notice.P"></b><span data-localize="w2Notice.2018.P"></span></div>
+                    <div><b data-localize="w2Notice.Q"></b><span data-localize="w2Notice.2018.Q"></span></div>
+                    <div><b data-localize="w2Notice.R"></b><span data-localize="w2Notice.2018.R"></span></div>
+                    <div><b data-localize="w2Notice.S"></b><span data-localize="w2Notice.2018.S"></span></div>
+                    <div><b data-localize="w2Notice.T"></b><span data-localize="w2Notice.2018.T"></span></div>
+                    <div><b data-localize="w2Notice.V"></b><span data-localize="w2Notice.2018.V"></span></div>
+                    <div><b data-localize="w2Notice.W"></b><span data-localize="w2Notice.2018.W"></span></div>
+                    <div><b data-localize="w2Notice.Y"></b><span data-localize="w2Notice.2018.Y"></span></div>
+                    <div><b data-localize="w2Notice.Z"></b><span data-localize="w2Notice.2018.Z"></span></div>
                     <div><b data-localize="w2Notice.AA"></b><span data-localize="w2Notice.2018.AA"></span></div>
                     <div><b data-localize="w2Notice.BB"></b><span data-localize="w2Notice.2018.BB"></span></div>
                     <div><b data-localize="w2Notice.DD"></b><span data-localize="w2Notice.2018.DD"></span></div>

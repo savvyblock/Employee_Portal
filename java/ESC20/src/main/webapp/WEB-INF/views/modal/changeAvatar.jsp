@@ -14,17 +14,18 @@
                     type="button"
                     class="close"
                     data-dismiss="modal"
-                    aria-hidden="true">
-                    <span class="hide" data-localize="label.closeModal"></span>
+                    aria-hidden="true"
+                    aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
+                    >
                     &times;
                 </button>
                 <h4 class="modal-title" data-localize="label.changeAvatar"></h4>
             </div>
             <form id="changeAvatar" action="changeAvatar" method="POST">
                       <div class="modal-body">
-                        <input id="userName" hidden="hidden" type="text" value="${sessionScope.userDetail.nameF}" title="" data-localize="accessHint.userName">
-                        <input id="avatarImg" hidden="hidden" type="text" name="file" title="" data-localize="accessHint.file">
-                        <input id="avatarImgName" hidden="hidden" type="text" name="fileName" title="" data-localize="accessHint.fileName">
+                        <input id="userName" hidden="hidden" type="text" value="${sessionScope.userDetail.nameF}" aria-label="" data-localize="accessHint.userName">
+                        <input id="avatarImg" hidden="hidden" type="text" name="file" aria-label="" data-localize="accessHint.file">
+                        <input id="avatarImgName" hidden="hidden" type="text" name="fileName" aria-label="" data-localize="accessHint.fileName">
                         <p>
                             <label data-localize="label.chooseImageSize" for="imgUpFile"></label>
                         </p>

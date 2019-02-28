@@ -14,8 +14,9 @@
                     type="button"
                     class="close"
                     data-dismiss="modal"
-                    aria-hidden="true">
-                    <span class="hide" data-localize="label.closeModal"></span>
+                    aria-hidden="true"
+                    aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
+                    >
                     &times;
                 </button>
                 <h4 class="modal-title" data-localize="label.approveLeaveRequests"></h4>

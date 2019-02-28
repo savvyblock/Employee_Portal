@@ -405,8 +405,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 class="close"
                                 data-dismiss="modal"
                                 aria-hidden="true"
+                                aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
                             >
-                            <span class="hide" data-localize="label.closeModal"></span>
                                 &times;
                             </button>
                             <h4 class="modal-title new-title" data-localize="label.electronic1095Consent">
@@ -414,8 +414,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         </div>
                         <div class="modal-body">
                             <form action="update1095Consent" id="update1095Consent" method="POST">
-                                    <input hidden="hidden" type="text" name="year" id="consentYear" value="${selectedYear}" title="" data-localize="accessHint.year">
-                                    <input hidden="hidden" type="text" name="consent" id="consentModal" value="" title="" data-localize="accessHint.consent">
+                                    <input hidden="hidden" type="text" name="year" id="consentYear" value="${selectedYear}" aria-label="" data-localize="accessHint.year">
+                                    <input hidden="hidden" type="text" name="consent" id="consentModal" value="" aria-label="" data-localize="accessHint.consent">
                                 <div class="form-group">
                                     <label for="customMessage" data-localize="label.customMessageHere"></label>
                                     <div class="form-control form-text static">
@@ -423,7 +423,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                        <input hidden="hidden" type="text" name="consent" id="elecConsnt1095" value="${consent}" title="" data-localize="accessHint.consent">
+                                        <input hidden="hidden" type="text" name="consent" id="elecConsnt1095" value="${consent}" aria-label="" data-localize="accessHint.consent">
                                         <div class="checkbox mb-2">
                                             <label for="consent">
                                                 <input class="consentRadio" type="radio" name="electronicConsent" id="consent"> 

@@ -32,7 +32,7 @@
 			</form>
 	  <%@ include file="../commons/leaveBalanceTable.jsp"%>
 				<form class="no-print searchForm" id="SearchForm" action="leaveBalance" method="post">
-						<input type="text" name="freq" hidden="hidden" value="${selectedFreq}" title="" data-localize="accessHint.id">
+						<input type="text" name="freq" hidden="hidden" value="${selectedFreq}" aria-label="" data-localize="accessHint.id">
 					<div class="form-group type-group">
 						<label class="form-title" for="SearchType"><span data-localize="leaveBalance.type"></span>:</label> 
 						<select id="SearchType"
@@ -48,8 +48,7 @@
 							<input
 								class="form-control" type="text" name="SearchStart"
 								id="SearchStartDate" readonly value="${SearchStart}" />
-								<button class="clear-btn" type="button" onclick="clearDate(this)" >
-									<span class="hide" data-localize="label.removeContent"></span>
+								<button class="clear-btn" type="button" onclick="clearDate(this)" aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
 									<i class="fa fa-times"></i>
 								</button>
 							</div>
@@ -60,8 +59,7 @@
 							<input
 								class="form-control" type="text" name="SearchEnd"
 								id="SearchEndDate" readonly value="${SearchEnd}"/>
-								<button class="clear-btn" type="button" onclick="clearDate(this)"  tabindex="0">
-									<span class="hide" data-localize="label.removeContent"></span>
+								<button class="clear-btn" type="button" onclick="clearDate(this)" aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true" tabindex="0">
 									<i class="fa fa-times"></i>
 								</button>
 							</div>
@@ -126,7 +124,7 @@
 			</div>
 		</section>
 			<form hidden="true" id="deleteForm" action="deleteLeaveRequest" method="post">
-				<input type="text" id="deleteId" name="id" title="" data-localize="accessHint.id"/>
+				<input type="text" id="deleteId" name="id" aria-label="" data-localize="accessHint.id"/>
 			</form>
 		</main>
 	</div>

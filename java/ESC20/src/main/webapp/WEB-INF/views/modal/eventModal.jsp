@@ -15,17 +15,17 @@
                     class="close"
                     data-dismiss="modal"
                     aria-hidden="true"
+                    aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
                     >
-                    <span class="hide" data-localize="label.closeModal"></span>
                     &times;
                 </button>
                 <h4 class="modal-title new-title" data-localize="label.newRequest"></h4>
                 <h4 class="modal-title edit-title" data-localize="label.editRequest"></h4>
             </div>
             <form id="requestForm" action="submitLeaveRequest" method="post">
-                <input type="text" hidden="hidden" name="chain" id="chainModal" title="" data-localize="accessHint.chain">
-                <input type="text" hidden="hidden" name="empNbr" id="empNbrModal" title="" data-localize="accessHint.employeeNumber">
-                <input type="text" name="freq" hidden="hidden" value="${selectedFreq}" title="" data-localize="accessHint.frequency">
+                <input type="text" hidden="hidden" name="chain" id="chainModal" aria-label="" data-localize="accessHint.chain">
+                <input type="text" hidden="hidden" name="empNbr" id="empNbrModal" aria-label="" data-localize="accessHint.employeeNumber">
+                <input type="text" name="freq" hidden="hidden" value="${selectedFreq}" aria-label="" data-localize="accessHint.frequency">
                 <div class="modal-body requestForm">
                     <input type="hidden" name="leaveId" id="leaveId" />
                     <div class="line-2-flex">
@@ -88,15 +88,15 @@
                                     <input class="form-control timeControl" type="text" name="startHour" 
                                     id="startHour" onchange="calcTime()" 
                                     onkeypress="return isHourKey(event)"
-                                    title="" data-localize="accessHint.startHour"
+                                    aria-label="" data-localize="accessHint.startHour"
                                     >
                                     <span class="oclock-colon">:</span>
                                     <input class="form-control timeControl" type="text" name="startMinute" 
                                     id="startMinute" onchange="calcTime()" 
                                     onkeypress="return isMinuteKey(event)"
-                                    title="" data-localize="accessHint.startMinute"
+                                    aria-label="" data-localize="accessHint.startMinute"
                                     >
-                                    <select class="form-control toAmPm" name="startAmOrPm" id="startAmOrPm" onchange="calcTime()" title="" data-localize="accessHint.startAmOrPm">
+                                    <select class="form-control toAmPm" name="startAmOrPm" id="startAmOrPm" onchange="calcTime()" aria-label="" data-localize="accessHint.startAmOrPm">
                                             <option value="AM" data-localize="leaveRequest.AM"></option>
                                             <option value="PM" data-localize="leaveRequest.PM"></option>
                                     </select>
@@ -110,15 +110,15 @@
                                 <input class="form-control timeControl" type="text" name="endHour" 
                                 id="endHour" onchange="calcTime()" 
                                 onkeypress="return isHourKey(event)"
-                                title="" data-localize="accessHint.endHour"
+                                aria-label="" data-localize="accessHint.endHour"
                                 >
                                 <span class="oclock-colon">:</span>
                                 <input class="form-control timeControl" type="text" name="endMinute" 
                                 id="endMinute" onchange="calcTime()" 
                                 onkeypress="return isMinuteKey(event)"
-                                title="" data-localize="accessHint.endMinute"
+                                aria-label="" data-localize="accessHint.endMinute"
                                 >
-                                <select class="form-control toAmPm" name="endAmOrPm" id="endAmOrPm" onchange="calcTime()" title="" data-localize="accessHint.endAmOrPm">
+                                <select class="form-control toAmPm" name="endAmOrPm" id="endAmOrPm" onchange="calcTime()" aria-label="" data-localize="accessHint.endAmOrPm">
                                     <option value="AM" data-localize="leaveRequest.AM"></option>
                                     <option value="PM" data-localize="leaveRequest.PM"></option>
                                 </select>

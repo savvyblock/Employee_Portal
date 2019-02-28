@@ -11,7 +11,7 @@
         <%@ include file="commons/bar-account.jsp"%>
          <div class="notFoundBox content-body"  tabindex="-1">
             <div class="inner">
-              <img src="/<%=request.getContextPath().split("/")[1]%>/images/404.png" alt="">
+              <img src="/<%=request.getContextPath().split("/")[1]%>/images/404.png" alt="" data-localize="label.errorImg">
               <p class="word"></p>
               <a href="#" onClick="javascript :history.back(-1);">
                 <button class="btn btn-primary" data-localize="label.back"></button>

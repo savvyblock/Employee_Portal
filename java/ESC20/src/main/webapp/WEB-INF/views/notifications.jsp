@@ -22,8 +22,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	                               <i class="fa fa-envelope left-fa"></i> 
                                    <div class="msg">${notification.msgContent}</div>
                                    <c:if test="${notification.status == 'UR' }">
-                                    <button class="note-btn" onclick="markRead('${notification.id}')">
-                                    <span class="hide" data-localize="accessHint.markAsRead"></span>
+                                    <button class="note-btn" onclick="markRead('${notification.id}')" aria-label="" data-localize="accessHint.markAsRead" data-localize-location="aria-label" data-localize-notText="true">
                                             <i class="fa fa-eye"></i>
                                     </button>
                                     </c:if>
@@ -34,7 +33,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 </section>
             </main>
             <form id="markAsReadForm" hidden="hidden" action="markAsRead" method="POST">
-                <input type="text" id="noteId" name="id" title="" data-localize="accessHint.selectId">
+                <input type="text" id="noteId" name="id" aria-label="" data-localize="accessHint.selectId">
             </form>
         </div>
         <%@ include file="commons/footer.jsp"%>

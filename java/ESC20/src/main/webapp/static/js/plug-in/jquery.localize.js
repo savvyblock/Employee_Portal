@@ -113,6 +113,7 @@ http://keith-wood.name/localisation.html
 
     localizeElement = function(elem, key, value) {
       let locationAttr = elem.attr("data-localize-location")
+      let locationNotText = elem.attr("data-localize-notText")
       let locationArry = []
       if(locationAttr && locationAttr!=''){
         locationArry = elem.attr("data-localize-location").split(',');
@@ -121,22 +122,26 @@ http://keith-wood.name/localisation.html
         localizeInputElement(elem, locationArry, value);
       } else if (elem.is('select')) {
         localizeInputElement(elem, locationArry, value);
-      } else if (elem.is('textarea')) {
+      }else if (elem.is('textarea')) {
         localizeInputElement(elem, locationArry, value);
       } else if (elem.is('img')) {
         localizeImageElement(elem, locationArry, value);
       }else if(elem.is('td')&&!elem.hasClass("td-title")){
         localizeTdElement(elem, locationArry, value)
       }else if (!$.isPlainObject(value)) {
-        localizeTextElement(elem,locationArry,value)
+        localizeTextElement(elem,locationArry,locationNotText,value)
       }
       if ($.isPlainObject(value)) {
         return localizeForSpecialKeys(elem, value);
       }
     };
-    localizeTextElement = function(elem,locationArry,value){
-      localizeAttrElement(elem,locationArry,value)
-      elem.html(value);
+    localizeTextElement = function(elem,locationArry,locationNotText,value){
+      if(locationNotText == 'true'){
+        localizeAttrElement(elem, locationArry, value);
+      }else{
+        localizeAttrElement(elem,locationArry,value)
+        elem.html(value);
+      }
     };
 
     localizeInputElement = function(elem, locationArry, value) {
@@ -164,6 +169,9 @@ http://keith-wood.name/localisation.html
       }
       if(elem.is("[placeholder]")){
         elem.attr("placeholder", value);
+      }
+      if(elem.is("[aria-label]")){
+        elem.attr("aria-label", value);
       }
       if(elem.is("[title]")){
         elem.attr("title", value);

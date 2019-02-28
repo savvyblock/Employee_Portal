@@ -680,7 +680,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.statemp=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" title="" data-localize="accessHint.statutoryEmployeeCheckbox" />
+                                                                        <input class="checkBoxOld" type="checkbox" aria-label="" data-localize="accessHint.statutoryEmployeeCheckbox" />
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -694,7 +694,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.retplan=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox"  title="" data-localize="accessHint.retirementPlanCheckbox"/>
+                                                                        <input class="checkBoxOld" type="checkbox"  aria-label="" data-localize="accessHint.retirementPlanCheckbox"/>
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -708,7 +708,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.thrdsick=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox"   title="" data-localize="accessHint.thirdPartySickPayCheckbox"/>
+                                                                        <input class="checkBoxOld" type="checkbox"   aria-label="" data-localize="accessHint.thirdPartySickPayCheckbox"/>
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -1033,7 +1033,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.statemp=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" title="" data-localize="accessHint.statutoryEmployeeCheckbox" />
+                                                                        <input class="checkBoxOld" type="checkbox" aria-label="" data-localize="accessHint.statutoryEmployeeCheckbox" />
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -1047,7 +1047,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.retplan=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox" title="" data-localize="accessHint.retirementPlanCheckbox"/>
+                                                                        <input class="checkBoxOld" type="checkbox" aria-label="" data-localize="accessHint.retirementPlanCheckbox"/>
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -1061,7 +1061,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             </span>
                                                                 </c:if>
                                                                 <c:if test="${w2Print.thrdsick=='uncheckedbox'}">
-                                                                        <input class="checkBoxOld" type="checkbox"   title="" data-localize="accessHint.thirdPartySickPayCheckbox"/>
+                                                                        <input class="checkBoxOld" type="checkbox"   aria-label="" data-localize="accessHint.thirdPartySickPayCheckbox"/>
                                                                 </c:if>
                                                             </div>
                                                         </td>
@@ -1116,8 +1116,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 class="close"
                                 data-dismiss="modal"
                                 aria-hidden="true"
+                                aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
                             >
-                                <span class="hide" data-localize="label.closeModal"></span>
                                 &times;
                             </button>
                             <h4 class="modal-title new-title" data-localize="label.w2ElectronicConsent">
@@ -1147,11 +1147,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </form>
                             <form hidden="hidden" id="consentForm" action="updateW2Consent" method="POST">
-                                <input type="text" name="year" id="consentYear" value="${selectedYear}" title="" data-localize="accessHint.year">
-                                <input type="hidden" id="w2Latest" value="${sessionScope.options.w2Latest}" title="" data-localize="accessHint.w2Latest"/>
-                                <input type="text" name="consentMsg" id="elecConsntMsgW2" value="${elecConsntMsgW2}" title="" data-localize="accessHint.elecConsntMsgW2">
-                                <input type="text" name="consent" id="elecConsntW2Flag" value="${consent}" title="" data-localize="accessHint.consent">
-                                <input type="text"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}" title="" data-localize="accessHint.enableElecConsntW2"/>
+                                <input type="text" name="year" id="consentYear" value="${selectedYear}" aria-label="" data-localize="accessHint.year">
+                                <input type="hidden" id="w2Latest" value="${sessionScope.options.w2Latest}" aria-label="" data-localize="accessHint.w2Latest"/>
+                                <input type="text" name="consentMsg" id="elecConsntMsgW2" value="${elecConsntMsgW2}" aria-label="" data-localize="accessHint.elecConsntMsgW2">
+                                <input type="text" name="consent" id="elecConsntW2Flag" value="${consent}" aria-label="" data-localize="accessHint.consent">
+                                <input type="text"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}" aria-label="" data-localize="accessHint.enableElecConsntW2"/>
                             </form>
                             <p class="error-hint hide" id="noChooseError" data-localize="validator.pleaseSelectAgreeWay"></p>
                         </div>
@@ -1168,7 +1168,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 class="btn btn-secondary"
                                 data-dismiss="modal"
                                 aria-hidden="true"
-                                title=""
                                 data-localize="label.cancel"
                             >
                             </button>

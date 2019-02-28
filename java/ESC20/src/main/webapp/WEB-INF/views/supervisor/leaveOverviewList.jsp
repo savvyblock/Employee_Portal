@@ -16,10 +16,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <h2 class="clearfix section-title">
                                     <span data-localize="title.leaveOverview"></span>
                                 <div class="pull-right right-btn">
-					                <button class="btn btn-primary" id="new-btn" data-toggle="modal" data-target="#requestModal" onclick="showRequestForm()">Add</button>
+					                <button class="btn btn-primary" id="new-btn" data-toggle="modal" data-target="#requestModal" onclick="showRequestForm()" data-localize="label.add"></button>
                                     <button class="btn btn-primary pull-right" style="height:35px;display:flex;align-items:center;"  data-toggle="modal" data-target="#leaveOverviewCalendarModal" 
-                                        onclick="showOverviewCalendar()" >
-                                        <span class="hide" data-localize="label.switchToCalendarView" ></span> <i class="fa fa-calendar"></i>
+                                        onclick="showOverviewCalendar()"  aria-label="" data-localize="label.switchToCalendarView" data-localize-location="aria-label" data-localize-notText="true">
+                                        <i class="fa fa-calendar"></i>
                                     </button>
                                 </div>
                                 </h2>
@@ -38,9 +38,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     method="POST"
                                 >
                                 <span hidden="hidden" id="chainValue">${chain}</span>
-                                    <input hidden="hidden" type="text" value="${level}" name="level" id="level" title="" data-localize="accessHint.level">
-                                    <input hidden="hidden" id="chain" name="chain" type="text" value="" title="" data-localize="accessHint.chain">
-                                    <input hidden="hidden" type="text" name="isChangeLevel" class="isChangeLevel"  title="" data-localize="accessHint.whetherChangeLevel">
+                                    <input hidden="hidden" type="text" value="${level}" name="level" id="level" aria-label="" data-localize="accessHint.level">
+                                    <input hidden="hidden" id="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
+                                    <input hidden="hidden" type="text" name="isChangeLevel" class="isChangeLevel"  aria-label="" data-localize="accessHint.whetherChangeLevel">
                                     <div class="form-group in-line flex-auto">
                                         <label class="form-title" for="selectEmpNbr"><span data-localize="label.directReportEmployees"></span>:</label>
                                         <select  class="form-control"name="selectEmpNbr" onchange="changeEmployee()"
@@ -64,8 +64,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                 </form>
                                 <form hidden="hidden" action="previousLevelFromLeaveOverview" id="previousLevel" method="POST">
-                                        <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel"  title="" data-localize="accessHint.level">
-                                        <input hidden="hidden" name="chain" type="text" value="" id="preChain" title="" data-localize="accessHint.chain">
+                                        <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel"  aria-label="" data-localize="accessHint.level">
+                                        <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
                                 </form>
                                 <div class="content-white">
                                         
@@ -75,9 +75,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         id="changeFreqForm"
                                         method="POST"
                                             >
-                                            <input hidden="hidden" type="text" name="empNbr" class="employeeNum" value="${selectedEmployee}" title="" data-localize="accessHint.employeeNumber">
-                                            <input hidden="hidden" class="chain" name="chain" type="text" value="" title="" data-localize="accessHint.chain">
-                                            <input hidden="hidden" type="text" name="isChangeLevel" class="isChangeLevel" value="false" title="" data-localize="accessHint.whetherChangeLevel">
+                                            <input hidden="hidden" type="text" name="empNbr" class="employeeNum" value="${selectedEmployee}" aria-label="" data-localize="accessHint.employeeNumber">
+                                            <input hidden="hidden" class="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
+                                            <input hidden="hidden" type="text" name="isChangeLevel" class="isChangeLevel" value="false" aria-label="" data-localize="accessHint.whetherChangeLevel">
                                         <div class="form-group type-group">
                                                 <label class="form-title"  for="freq"  data-localize="label.payrollFreq"></label>
                                                 <select class="form-control" name="freq" id="freq" onchange="changeFreq()">
@@ -92,8 +92,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <input
                                                     class="form-control" type="text" name="startDate"
                                                     id="SearchStartDate" readonly value="${startDate}" />
-                                                    <button class="clear-btn" type="button" onclick="clearDate(this)"  tabindex="0">
-                                                    <span class="hide" data-localize="label.removeContent"></span>
+                                                    <button class="clear-btn" type="button" onclick="clearDate(this)"  tabindex="0"   aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
                                                         <i class="fa fa-times"></i>
                                                     </button>
                                                 </div>
@@ -104,8 +103,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <input
                                                     class="form-control" type="text" name="endDate"
                                                     id="SearchEndDate" value="${endDate}" readonly />
-                                                    <button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0">
-                                                    <span class="hide" data-localize="label.removeContent"></span>
+                                                    <button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0"   aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
                                                         <i class="fa fa-times"></i>
                                                     </button>
                                                 </div>
@@ -135,7 +133,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             <th data-localize="approveRequest.leaveRequested"></th>
                                                             <th data-localize="approveRequest.commentLog"></th>
                                                             <th data-localize="approveRequest.status"></th>
-                                                            <th><span class="hide" data-localize="approveRequest.supervisorAction"></span></th>
+                                                            <th aria-label="" data-localize="approveRequest.supervisorAction" data-localize-location="aria-label" data-localize-notText="true"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -201,7 +199,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </div>
                         </section>
                         <form hidden="hidden" id="deleteForm" action="" method="POST">
-                            <input type="text" name="" id="deleteId" title="" data-localize="accessHint.id">
+                            <input type="text" name="" id="deleteId" aria-label="" data-localize="accessHint.id">
                         </form>
             </main>
         </div>

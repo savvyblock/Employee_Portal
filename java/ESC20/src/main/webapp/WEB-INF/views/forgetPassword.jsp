@@ -62,13 +62,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <label class="form-title"><span data-localize="label.dateOfBirth"></span>	(<span data-localize="label.mmddyyyy"></span>)</label>
                                         <div class="valid-wrap inline">
                                                 <div class="form-group">
-                                            <input type="text" id="autoAdvance_2" class="form-control autoAdvance" placeholder="" title="" value="${user.dateMonth}" name="dateMonth" data-localize="label.month" maxlength="2">
+                                            <input type="text" id="autoAdvance_2" class="form-control autoAdvance" placeholder="" aria-label="" value="${user.dateMonth}" name="dateMonth" data-localize="label.month" maxlength="2">
                                         </div>
                                             <div class="form-group">
-                                            <input type="text" id="autoAdvance_3" class="form-control autoAdvance" placeholder="" title="" value="${user.dateDay}" name="dateDay" data-localize="label.day" maxlength="2">
+                                            <input type="text" id="autoAdvance_3" class="form-control autoAdvance" placeholder="" aria-label="" value="${user.dateDay}" name="dateDay" data-localize="label.day" maxlength="2">
                                         </div>
                                             <div class="form-group">
-                                            <input type="text" id="autoAdvance_4" class="form-control autoAdvance" placeholder="" title="" value="${user.dateYear}" name="dateYear" data-localize="label.year" maxlength="4">
+                                            <input type="text" id="autoAdvance_4" class="form-control autoAdvance" placeholder="" aria-label="" value="${user.dateYear}" name="dateYear" data-localize="label.year" maxlength="4">
                                         </div>
                                         </div>
                                     </div>

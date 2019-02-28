@@ -45,11 +45,6 @@
 		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswFaild"></div>
 		                    </c:if>
                             <div class="form-group clearfix">
-                                <!-- <div class="checkbox pull-left">
-                                    <label>
-                                        <input class="icheck" type="checkbox"> Remember Me
-                                    </label>
-                                </div> -->
                                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&entry.372715739=Employee+Access+(TxEIS)" target="_blank" data-localize="label.contactUs"></a>
                                 <div class="pull-right">
                                     <a href="/<%=request.getContextPath().split("/")[1]%>/resetPassword/forgetPassword" data-localize="label.forgotPassword"></a>

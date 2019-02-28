@@ -21,7 +21,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 </section>
             </main>
             <form hidden="true" id="deleteForm" action="deleteLeaveRequestFromCalendar" method="post">
-                    <input type="text" id="deleteId" name="id"  title="" data-localize="accessHint.id"/>
+                    <input type="text" id="deleteId" name="id"  aria-label="" data-localize="accessHint.id"/>
             </form>
         </div>
         <%@ include file="../commons/footer.jsp"%>

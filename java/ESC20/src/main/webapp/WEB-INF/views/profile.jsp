@@ -41,12 +41,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <span class="haveValue"
                                                         >${sessionScope.userDetail.namePre}</span
                                                     >
-                                                    <input hidden="hidden" type="text" name="empNbr" value="${nameRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
-                                                    <input hidden="hidden" type="text" name="reqDts" value="${nameRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
+                                                    <input hidden="hidden" type="text" name="empNbr" value="${nameRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                                    <input hidden="hidden" type="text" name="reqDts" value="${nameRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                                     <div class="form-group valueInput">
                                                         <select
                                                             class="form-control"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.title"
                                                             name="namePreNew"
                                                             id="titleString"
@@ -71,7 +71,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control"
                                                             type="text"
                                                             value="${nameRequest.nameFNew}"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.firstname"
                                                             name="nameFNew"
                                                             id="firstName"
@@ -92,7 +92,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control"
                                                             type="text"
                                                             value="${nameRequest.nameLNew}"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.lastname"
                                                             name="nameLNew"
                                                             id="lastName"
@@ -113,7 +113,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control"
                                                             type="text"
                                                             value="${nameRequest.nameMNew}"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.middleName"
                                                             name="nameMNew"
                                                             id="middleName"
@@ -133,7 +133,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <select
                                                             class="form-control"
                                                             value="${nameRequest.nameGenNew}"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.generation"
                                                             name="nameGenNew"
                                                             id="generation"
@@ -191,14 +191,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <span class="haveValue">
                                                     ${sessionScope.userDetail.maritalStat}</span
                                                 >
-                                                <input hidden="hidden" type="text" name="empNbr" value="${mrtlRequest.id.empNbr}"  title="" data-localize="accessHint.employeeNumber">
-                                                    <input hidden="hidden" type="text" name="reqDts" value="${mrtlRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
+                                                <input hidden="hidden" type="text" name="empNbr" value="${mrtlRequest.id.empNbr}"  aria-label="" data-localize="accessHint.employeeNumber">
+                                                    <input hidden="hidden" type="text" name="reqDts" value="${mrtlRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                                 <div class="form-group valueInput">
                                                     <select
                                                         id="maritalStatus"
                                                         name="maritalStatNew"
                                                         class="form-control"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.local"
                                                         
                                                     >
@@ -246,8 +246,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteMaritalRequest" id="deleteMaritalRequest" method="POST"></form>
                                 <p class="sub-title" data-localize="profile.driversLicense"></p>
                                 <form class="profile-item" id="driverLicenseForm" action="saveDriversLicense" method="POST">
-                                    <input hidden="hidden" type="text" name="empNbr" value="${licRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
-                                    <input hidden="hidden" type="text" name="reqDts" value="${licRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
+                                    <input hidden="hidden" type="text" name="empNbr" value="${licRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                    <input hidden="hidden" type="text" name="reqDts" value="${licRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.number"></div>
@@ -263,7 +263,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="driversLicNbrNew"
                                                         id="driversLicenseNumber"
                                                         data-localize="profile.driverLicenseNum"
-                                                        title=""
+                                                        aria-label=""
                                                         
                                                     />
                                                 </div>
@@ -330,8 +330,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteDriversLicenseRequest" id="deleteDriversLicense" method="POST"></form>
                                 <p class="sub-title" data-localize="profile.restrictionCodes"></p>
                                 <form class="profile-item" id="restrictionCodeForm" action="saveRestrictionCodes" method="POST">
-                                    <input hidden="hidden" type="text" name="empNbr" value="${restrictRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
-                                    <input hidden="hidden" type="text" name="reqDts" value="${restrictRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
+                                    <input hidden="hidden" type="text" name="empNbr" value="${restrictRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                    <input hidden="hidden" type="text" name="reqDts" value="${restrictRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.local"></div>
@@ -345,7 +345,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="restrictionCodesLocalRestriction"
                                                         name="restrictCdNew"
                                                         class="form-control"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.restrictionCodesLocal"
                                                         
                                                     >
@@ -368,7 +368,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="restrictionCodesPublicRestriction"
                                                         name="restrictCdPublicNew"
                                                         class="form-control"
-                                                        title=""
+                                                        aria-label=""
                                                         style="width:188px"
                                                         data-localize="profile.restrictionCodesPublic"
                                                     >
@@ -416,8 +416,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteRestrictionCodesRequest" id="deleteRestrictionCodesRequest" method="POST"></form>
                                 <p class="sub-title" data-localize="profile.email"></p>
                                 <form class="profile-item" id="emailForm" action="saveEmail" method="POST">
-                                        <input hidden="hidden" type="text" name="empNbr" value="${emailRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
-                                        <input hidden="hidden" type="text" name="reqDts" value="${emailRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
+                                        <input hidden="hidden" type="text" name="empNbr" value="${emailRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                        <input hidden="hidden" type="text" name="reqDts" value="${emailRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.workEmail"></div>
@@ -432,7 +432,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         value="${emailRequest.emailNew}"
                                                         id="emailWorkEmail"
                                                         class="form-control"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.workEmail"
                                                         
                                                     />
@@ -450,7 +450,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="hmEmailNew"
                                                         id="emailHomeEmail"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.homeEmail"
                                                         value="${emailRequest.hmEmailNew}"
                                                     />
@@ -494,8 +494,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteEmail" id="deleteEmail" method="POST"></form>
                                 <p class="sub-title" data-localize="profile.emergenceContactInfo"></p>
                                 <form class="profile-item" id="emergencyContactForm" action="saveEmergencyContact" method="POST">
-                                        <input hidden="hidden" type="text" name="empNbr" value="${emerRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
-                                        <input hidden="hidden" type="text" name="reqDts" value="${emerRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
+                                        <input hidden="hidden" type="text" name="empNbr" value="${emerRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                        <input hidden="hidden" type="text" name="reqDts" value="${emerRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.name"></div>
@@ -510,7 +510,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="emergencyContactName"
                                                         name="emerContactNew"
                                                         value="${emerRequest.emerContactNew}"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.emergencyContactName"
                                                         
                                                     />
@@ -534,7 +534,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode"
                                                             name="emerPhoneAcNew"
                                                             id="emergencyContactAreaCode"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.emergencyContactAreaCode"
                                                             value="${emerRequest.emerPhoneAcNew}"
                                                         />
@@ -544,7 +544,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control"
                                                             name="emerPhoneNbrNew"
                                                             id="emergencyContactPhoneNumber"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.emergencyContactPhoneNumber"
                                                             value="${emerRequest.emerPhoneNbrNew}"
                                                         />
@@ -556,7 +556,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode"
                                                             name="emerPhoneExtNew"
                                                             id="emergencyContactExtention"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.emergencyContactExtention"
                                                             value="${emerRequest.emerPhoneExtNew}"
                                                         />
@@ -577,7 +577,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="emerRelNew"
                                                         id="emergencyContactRelationship"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.relationship"
                                                         value="${emerRequest.emerRelNew}"
                                                     />
@@ -597,7 +597,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="emerNoteNew"
                                                         id="emergencyContactEmergencyNotes"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.emergencyNotes"
                                                         value="${emerRequest.emerNoteNew}"
                                                     />
@@ -641,8 +641,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteEmergencyContact" id="deleteEmergencyContact" method="POST"></form>
                                 <p class="sub-title" data-localize="profile.mailingAddress"></p>
                                 <form class="profile-item" id="mailingAddressForm" action="saveMailAddr" method="POST">
-                                        <input hidden="hidden" type="text" name="empNbr" value="${mailAddrRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
-                                        <input hidden="hidden" type="text" name="reqDts" value="${mailAddrRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
+                                        <input hidden="hidden" type="text" name="empNbr" value="${mailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                        <input hidden="hidden" type="text" name="reqDts" value="${mailAddrRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.number"></div>
@@ -655,7 +655,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="addrNbrNew"
                                                         id="mailAddrNumber"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.mailingAddressNumber"
                                                         value="${mailAddrRequest.addrNbrNew}"
                                                         
@@ -676,7 +676,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="addrStrNew"
                                                         id="mailAddrStr"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.streetBox"
                                                         value="${mailAddrRequest.addrStrNew}"
                                                     />
@@ -694,7 +694,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="addrAptNew"
                                                         id="mailAddrApartment"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.apt"
                                                         value="${mailAddrRequest.addrAptNew}"
                                                     />
@@ -712,7 +712,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="addrCityNew"
                                                         id="mailAddrCity"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.city"
                                                         value="${mailAddrRequest.addrCityNew}"
                                                     />
@@ -729,7 +729,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <select
                                                         id="mailAddrState"
                                                         name="addrStNew"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.state"
                                                         class="form-control"
                                                     >
@@ -751,7 +751,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="addrZipNew"
                                                         id="mailAddrZip"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.zip"
                                                         value="${mailAddrRequest.addrZipNew}"
                                                     />
@@ -769,7 +769,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="addrZip4New"
                                                         id="mailAddrZipPlusFour"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.zip4"
                                                         value="${mailAddrRequest.addrZip4New}"
                                                     />
@@ -813,8 +813,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteMailAddr" id="deleteMailAddr" method="POST"></form>
                                 <p class="sub-title" data-localize="profile.altAddr"></p>
                                 <form class="profile-item" id="alternativeAddressForm" action="saveAltMailAddr" method="POST">
-                                        <input hidden="hidden" type="text" name="empNbr" value="${altMailAddrRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
-                                        <input hidden="hidden" type="text" name="reqDts" value="${altMailAddrRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
+                                        <input hidden="hidden" type="text" name="empNbr" value="${altMailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                        <input hidden="hidden" type="text" name="reqDts" value="${altMailAddrRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.number"></div>
@@ -827,7 +827,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="smrAddrNbrNew"
                                                         id="altAddrNumber"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.altAddrNumber"
                                                         value="${altMailAddrRequest.smrAddrNbrNew}"
                                                         
@@ -848,7 +848,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="smrAddrStrNew"
                                                         id="altAddrStr"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.streetBox"
                                                         value="${altMailAddrRequest.smrAddrStrNew}"
                                                     />
@@ -866,7 +866,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="smrAddrAptNew"
                                                         id="altAddrApartment"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.apt"
                                                         value="${altMailAddrRequest.smrAddrAptNew}"
                                                     />
@@ -884,7 +884,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="smrAddrCityNew"
                                                         id="altAddrCity"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.city"
                                                         value="${altMailAddrRequest.smrAddrCityNew}"
                                                     />
@@ -901,7 +901,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <select
                                                         id="altAddrState"
                                                         name="smrAddrStNew"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.state"
                                                         class="form-control"
                                                     >
@@ -923,7 +923,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="smrAddrZipNew"
                                                         id="altAddrZip"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.zip"
                                                         value="${altMailAddrRequest.smrAddrZipNew}"
                                                     />
@@ -941,7 +941,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control"
                                                         name="smrAddrZip4New"
                                                         id="altAddrZipPlusFour"
-                                                        title=""
+                                                        aria-label=""
                                                         data-localize="profile.zip4"
                                                         value="${altMailAddrRequest.smrAddrZip4New}"
                                                     />
@@ -985,8 +985,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteAltMailAddr" id="deleteAltMailAddr" method="POST"></form>
                                 <p class="sub-title" data-localize="profile.phoneNumbers"></p>
                                 <form class="profile-item" id="phoneForm" action="savePhone" method="POST">
-                                        <input hidden="hidden" type="text" name="empNbr" value="${hmRequest.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
-                                        <input hidden="hidden" type="text" name="reqDts" value="${hmRequest.id.reqDts}" title="" data-localize="accessHint.reqDts">
+                                        <input hidden="hidden" type="text" name="empNbr" value="${hmRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                        <input hidden="hidden" type="text" name="reqDts" value="${hmRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.home"></div>
@@ -1001,7 +1001,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode"
                                                             name="phoneAreaNew"
                                                             id="homePhoneAreaCode"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.homePhoneAreaCode"
                                                             value="${hmRequest.phoneAreaNew}"
                                                             
@@ -1012,7 +1012,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control"
                                                             name="phoneNbrNew"
                                                             id="homePhonePhoneNumber"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.homePhonePhoneNumber"
                                                             value="${hmRequest.phoneNbrNew}"
                                                         />
@@ -1033,7 +1033,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode"
                                                             name="phoneAreaCellNew"
                                                             id="cellPhoneAreaCode"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.cellPhoneAreaCode"
                                                             value="${cellRequest.phoneAreaCellNew}"
                                                         />
@@ -1044,7 +1044,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control"
                                                             name="phoneNbrCellNew"
                                                             id="cellPhonePhoneNumber"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.cellPhonePhoneNumber"
                                                             value="${cellRequest.phoneNbrCellNew}"
                                                         />
@@ -1067,7 +1067,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode"
                                                             name="phoneAreaBusNew"
                                                             id="workPhoneAreaCode"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.workPhoneAreaCode"
                                                             value="${busRequest.phoneAreaBusNew}"
                                                         />
@@ -1078,7 +1078,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control"
                                                             name="phoneNbrBusNew"
                                                             id="workPhonePhoneNumber"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.workPhonePhoneNumber"
                                                             value="${busRequest.phoneNbrBusNew}"
                                                         />
@@ -1090,7 +1090,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode"
                                                             name="busPhoneExtNew"
                                                             id="workPhoneExtention"
-                                                            title=""
+                                                            aria-label=""
                                                             data-localize="profile.workPhoneExtention"
                                                             value="${busRequest.busPhoneExtNew}"
                                                         />
@@ -1155,11 +1155,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </form>
                             <form class="profile-item" id="w4InfoForm" action="saveW4" method="POST">
-                                <input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
-                                <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}" title="" data-localize="accessHint.reqDts">
-                                <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}"  title="" data-localize="accessHint.payFreq">
-                                <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}" title="" data-localize="accessHint.maritalStatTax">
-                                <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" title="" data-localize="accessHint.nbrTaxExempts">
+                                <input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}"  aria-label="" data-localize="accessHint.payFreq">
+                                <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}" aria-label="" data-localize="accessHint.maritalStatTax">
+                                <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" aria-label="" data-localize="accessHint.nbrTaxExempts">
                                 <div class="profile-left">
                                     <div class="profile-item-line form-line">
                                         <div class="profile-title" data-localize="profile.MaritalStatus">
@@ -1175,7 +1175,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     name="maritalStatTaxNew"
                                                     class="form-control"
                                                     value="${w4Request.maritalStatTaxNew}"
-                                                    title=""
+                                                    aria-label=""
                                                     data-localize="profile.MaritalStatus"
                                                     
                                                 >
@@ -1199,7 +1199,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control"
                                                     id="nbrTaxExemptsNew"
                                                     name="nbrTaxExemptsNew"
-                                                    title=""  data-localize="profile.NbrOfExemptions"
+                                                    aria-label=""  data-localize="profile.NbrOfExemptions"
                                                     value="${w4Request.nbrTaxExemptsNew}"
                                                 />
                                             </div>
@@ -1240,11 +1240,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </form>
                             <form hidden="hidden" action="deleteW4" id="deleteW4" method="POST">
-                                <input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}" title="" data-localize="accessHint.employeeNumber">
-                                <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}" title="" data-localize="accessHint.reqDts">
-                                <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}" title="" data-localize="accessHint.payFreq">
-                                <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}" title="" data-localize="accessHint.maritalStatTax">
-                                <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" title="" data-localize="accessHint.nbrTaxExempts">
+                                <input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}" aria-label="" data-localize="accessHint.payFreq">
+                                <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}" aria-label="" data-localize="accessHint.maritalStatTax">
+                                <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" aria-label="" data-localize="accessHint.nbrTaxExempts">
                             </form>
                             <p class="sub-title" data-localize="profile.directDepositBankAccounts"></p>
                             
@@ -1274,7 +1274,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="icheckRadioBank"
                                                         id="primary_${count.index}"
                                                         type="radio"
-                                                        title="" 
+                                                        aria-label="" 
                                                         data-localize="accessHint.primaryAccountCheckbox"
                                                         name="primaryAccount"
                                                     />
@@ -1290,8 +1290,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >${bank.code.description}</span
                                             >
                                             
-                                            <input type="hidden"  class="form-control bankcode bankNewCode"  id="codeNew_${count.index}" value="${bank.codeNew.code}"  title="" data-localize="accessHint.bankCodeNew"/>
-                                            <input type="hidden" id="code_${count.index}" value="${bank.code.code}"  title="" data-localize="accessHint.bankCode"/>
+                                            <input type="hidden"  class="form-control bankcode bankNewCode"  id="codeNew_${count.index}" value="${bank.codeNew.code}"  aria-label="" data-localize="accessHint.bankCodeNew"/>
+                                            <input type="hidden" id="code_${count.index}" value="${bank.code.code}"  aria-label="" data-localize="accessHint.bankCode"/>
                                             
                                             <div class="valueInput group-line">
                                                 <div class="form-group inputDisabled">
@@ -1299,7 +1299,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control name"
                                                         type="text"
                                                         name="description"
-                                                        title="" 
+                                                        aria-label="" 
                                                         data-localize="accessHint.description"
                                                         value="${bank.codeNew.description}"
                                                     />
@@ -1310,7 +1310,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control code"
                                                         type="text"
                                                         name="subCode"
-                                                        title="" 
+                                                        aria-label="" 
                                                         data-localize="accessHint.bankCode"
                                                         value="${bank.codeNew.subCode}"
                                                     />
@@ -1321,8 +1321,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     type="button"
                                                     data-toggle= "modal"
                                                     data-target="#selectBankModal"
+                                                    aria-label="" data-localize="profile.chooseBank" data-localize-location="aria-label" data-localize-notText="true"
                                                 >
-                                                    <span class="hide" data-localize="profile.chooseBank"></span>
                                                     <i class="fa fa-ellipsis-h"></i>
                                                 </button>
                                             </div>
@@ -1339,7 +1339,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <input
                                                     class="form-control"
                                                     type="text"
-                                                    title=""
+                                                    aria-label=""
                                                     data-localize="profile.bankAcctNbr"
                                                     name="accountNumber"
                                                     id="accountNumberNew_${count.index}"
@@ -1358,7 +1358,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="form-group valueInput">
                                                 <select
                                                     class="form-control"
-                                                    title=""
+                                                    aria-label=""
                                                     id="accountTypeNew_${count.index}"
                                                     data-localize="profile.bankAcctType"
                                                     name="displayLabel"
@@ -1383,7 +1383,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control amount_2"
                                                     id="displayAmountNew_${count.index}"
                                                     type="text"
-                                                    title="" data-localize="profile.bankAcctAmt"
+                                                    aria-label="" data-localize="profile.bankAcctAmt"
                                                     name="displayAmount"
                                                     value="${bank.depositAmountNew.displayAmount}"
                                                 />
@@ -1424,38 +1424,38 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                             <div>
                                 <form hidden="hidden" action="updateBank" id="updateBankHidden" method="POST">
-                                    <input type="hidden" name="freq" id="hidden_freq_update"   title="" data-localize="accessHint.reqDts"/>
-                                    <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_update"   title="" data-localize="accessHint.accountNumberNew"/>
-                                    <input type="hidden" name="accountNumber" id="hidden_accountNumber_update"   title="" data-localize="accessHint.accountNumber"/>
+                                    <input type="hidden" name="freq" id="hidden_freq_update"   aria-label="" data-localize="accessHint.reqDts"/>
+                                    <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_update"   aria-label="" data-localize="accessHint.accountNumberNew"/>
+                                    <input type="hidden" name="accountNumber" id="hidden_accountNumber_update"   aria-label="" data-localize="accessHint.accountNumber"/>
                                     <input type="hidden" name="code" id="hidden_code_update" />
-                                    <input type="hidden" name="codeNew" id="hidden_codeNew_update"   title="" data-localize="accessHint.reqDts"/>
+                                    <input type="hidden" name="codeNew" id="hidden_codeNew_update"   aria-label="" data-localize="accessHint.reqDts"/>
                                     
-                                    <input type="hidden" name="accountType" id="hidden_accountType_update"   title="" data-localize="accessHint.accountType"/>
-                                    <input type="hidden" name="accountTypeNew" id="hidden_accountTypeNew_update"   title="" data-localize="accessHint.accountTypeNew"/>
-                                    <input type="hidden" name="displayAmount" id="hidden_displayAmount_update"   title="" data-localize="accessHint.displayAmount"/>
-                                    <input type="hidden" name="displayAmountNew" id="hidden_displayAmountNew_update"   title="" data-localize="accessHint.displayAmountNew"/>
+                                    <input type="hidden" name="accountType" id="hidden_accountType_update"   aria-label="" data-localize="accessHint.accountType"/>
+                                    <input type="hidden" name="accountTypeNew" id="hidden_accountTypeNew_update"   aria-label="" data-localize="accessHint.accountTypeNew"/>
+                                    <input type="hidden" name="displayAmount" id="hidden_displayAmount_update"   aria-label="" data-localize="accessHint.displayAmount"/>
+                                    <input type="hidden" name="displayAmountNew" id="hidden_displayAmountNew_update"   aria-label="" data-localize="accessHint.displayAmountNew"/>
                                 </form>
                                 <form hidden="hidden" action="undoBank" id="undoBankHidden" method="POST">
-                                    <input type="hidden" name="freq" id="hidden_freq_undo"   title="" data-localize="accessHint.frequency"/>
-                                    <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_undo"   title="" data-localize="accessHint.accountNumberNew"/>
-                                    <input type="hidden" name="accountNumber" id="hidden_accountNumber_undo"   title="" data-localize="accessHint.accountNumber"/>
-                                    <input type="hidden" name="code" id="hidden_code_undo"   title="" data-localize="accessHint.bankCode"/>
-                                    <input type="hidden" name="codeNew" id="hidden_codeNew_undo"   title="" data-localize="accessHint.bankCodeNew"/>
+                                    <input type="hidden" name="freq" id="hidden_freq_undo"   aria-label="" data-localize="accessHint.frequency"/>
+                                    <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_undo"   aria-label="" data-localize="accessHint.accountNumberNew"/>
+                                    <input type="hidden" name="accountNumber" id="hidden_accountNumber_undo"   aria-label="" data-localize="accessHint.accountNumber"/>
+                                    <input type="hidden" name="code" id="hidden_code_undo"   aria-label="" data-localize="accessHint.bankCode"/>
+                                    <input type="hidden" name="codeNew" id="hidden_codeNew_undo"   aria-label="" data-localize="accessHint.bankCodeNew"/>
                                 </form>
                                 <form hidden="hidden" action="deleteBank"  id="deleteBankHidden" method="POST">
-                                    <input type="hidden" name="freq" id="hidden_freq_delete"   title="" data-localize="accessHint.frequency"/>
-                                    <input type="hidden" name="accountNumber" id="hidden_accountNumber_delete"   title="" data-localize="accessHint.accountNumber"/>
-                                    <input type="hidden" name="code" id="hidden_code_delete"  title="" data-localize="accessHint.bankCode"/>
-                                    <input type="hidden" name="accountType" id="hidden_accountType_delete"   title="" data-localize="accessHint.accountType"/>
-                                    <input type="hidden" name="displayAmount" id="hidden_displayAmount_delete"   title="" data-localize="accessHint.displayAmount"/>
+                                    <input type="hidden" name="freq" id="hidden_freq_delete"   aria-label="" data-localize="accessHint.frequency"/>
+                                    <input type="hidden" name="accountNumber" id="hidden_accountNumber_delete"   aria-label="" data-localize="accessHint.accountNumber"/>
+                                    <input type="hidden" name="code" id="hidden_code_delete"  aria-label="" data-localize="accessHint.bankCode"/>
+                                    <input type="hidden" name="accountType" id="hidden_accountType_delete"   aria-label="" data-localize="accessHint.accountType"/>
+                                    <input type="hidden" name="displayAmount" id="hidden_displayAmount_delete"   aria-label="" data-localize="accessHint.displayAmount"/>
                                 </form>
                                 <form hidden="hidden" action="saveBank" id="saveBankHidden" method="POST">
-                                    <input type="hidden" name="freq" id="hiddenfreq"   title="" data-localize="accessHint.frequency"/>
-                                    <input type="hidden" name="displayAmount" id="hiddendisplayAmount"  title="" data-localize="accessHint.displayAmount"/>
-                                    <input type="hidden" name="displayLabel" id="hiddendisplayLabel"   title="" data-localize="accessHint.displayLabel"/>
-                                    <input type="hidden" name="accountNumber" id="hiddenaccountNumber"   title="" data-localize="accessHint.accountNumber"/>
-                                    <input type="hidden" name="subCode" id="hiddensubCode"   title="" data-localize="accessHint.bankCode"/>
-                                    <input type="hidden" name="description" id="hiddendescription"   title="" data-localize="accessHint.bankName"/>
+                                    <input type="hidden" name="freq" id="hiddenfreq"   aria-label="" data-localize="accessHint.frequency"/>
+                                    <input type="hidden" name="displayAmount" id="hiddendisplayAmount"  aria-label="" data-localize="accessHint.displayAmount"/>
+                                    <input type="hidden" name="displayLabel" id="hiddendisplayLabel"   aria-label="" data-localize="accessHint.displayLabel"/>
+                                    <input type="hidden" name="accountNumber" id="hiddenaccountNumber"   aria-label="" data-localize="accessHint.accountNumber"/>
+                                    <input type="hidden" name="subCode" id="hiddensubCode"   aria-label="" data-localize="accessHint.bankCode"/>
+                                    <input type="hidden" name="description" id="hiddendescription"   aria-label="" data-localize="accessHint.bankName"/>
                                 </form>
                                 <form
                                     class="profile-item border-0 activeEdit addBankForm"
@@ -1474,7 +1474,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             type="text"
                                                             name="description"
                                                             id="saveBankDescription"
-                                                            title="" data-localize="accessHint.bankName"
+                                                            aria-label="" data-localize="accessHint.bankName"
                                                             value=""
                                                         />
                                                     </div>
@@ -1485,7 +1485,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             type="text"
                                                             name="subCode"
                                                             id="saveBankCode"
-                                                            title="" data-localize="accessHint.bankCode"
+                                                            aria-label="" data-localize="accessHint.bankCode"
                                                             value=""
                                                         />
                                                     </div>
@@ -1495,8 +1495,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         type="button"
                                                         data-toggle= "modal"
                                                         data-target="#selectBankModal"
+                                                        aria-label="" data-localize="profile.chooseBank" data-localize-location="aria-label" data-localize-notText="true"
                                                     >
-                                                        <span class="hide" data-localize="profile.chooseBank"></span>
                                                         <i
                                                             class="fa fa-ellipsis-h"
                                                         ></i>
@@ -1512,7 +1512,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input
                                                         class="form-control"
                                                         type="text"
-                                                        title="" data-localize="profile.bankAcctNbr"
+                                                        aria-label="" data-localize="profile.bankAcctNbr"
                                                         name="accountNumber"
                                                         id="saveBankAccountNumber"
                                                         value=""
@@ -1527,7 +1527,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="form-group valueInput">
                                                     <select
                                                         class="form-control"
-                                                        title="" data-localize="profile.bankAcctType"
+                                                        aria-label="" data-localize="profile.bankAcctType"
                                                         name="displayLabel"
                                                         id="saveBankDisplayLabel"
                                                     >
@@ -1546,7 +1546,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input
                                                         class="form-control amount_2"
                                                         type="text"
-                                                        title="" data-localize="profile.bankAcctType"
+                                                        aria-label="" data-localize="profile.bankAcctType"
                                                         name="displayAmount"
                                                         id="saveBankDisplayAmount"
                                                         value=""
@@ -1609,8 +1609,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         class="close"
                         data-dismiss="modal"
                         aria-hidden="true"
+                        aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
                         >
-                        <span class="hide" data-localize="label.closeModal"></span>
                             &times;
                         </button>
                         <h4 class="modal-title" data-localize="profile.selectABank"></h4>
@@ -1688,13 +1688,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <td colspan="2">
                                                 <div class="flex">
                                                         <div class="pageGroup">
-                                                                <button class="pageBtn firstPate" title="" data-localize="label.firstPage" data-localize-location="title">
+                                                                <button class="pageBtn firstPate" aria-label="" data-localize="label.firstPage" data-localize-location="title">
                                                                         <i class="fa fa-angle-double-left "></i>
                                                                 </button>  
-                                                                <button class="pageBtn prevPage" title="" data-localize="label.prevPage" data-localize-location="title">
+                                                                <button class="pageBtn prevPage" aria-label="" data-localize="label.prevPage" data-localize-location="title">
                                                                         <i class="fa fa-angle-left "></i>
                                                                 </button>
-                                                                <select class="selectPage" name="page" id="pageNow" title="" data-localize="label.choosePage" onchange="changePage()"  data-localize-location="title">
+                                                                <select class="selectPage" name="page" id="pageNow" aria-label="" data-localize="label.choosePage" onchange="changePage()"  data-localize-location="title">
                                                                         <option value="1">1</option>
                                                                         <option value="2">2</option>
                                                                 </select>
@@ -1702,10 +1702,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                         <span class="slash">/</span>
                                                                         <span class="totalPate">2</span>
                                                                 </div>
-                                                                <button class="pageBtn nextPate" title="" data-localize="label.nextPage" data-localize-location="title">
+                                                                <button class="pageBtn nextPate" aria-label="" data-localize="label.nextPage" data-localize-location="title">
                                                                                 <i class="fa fa-angle-right "></i>
                                                                 </button>
-                                                                <button class="pageBtn lastPate" title="" data-localize="label.lastPage" data-localize-location="title">
+                                                                <button class="pageBtn lastPate" aria-label="" data-localize="label.lastPage" data-localize-location="title">
                                                                     <i class="fa fa-angle-double-right"></i>
                                                                 </button>
                                                         </div>

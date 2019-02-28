@@ -11,7 +11,7 @@
         <%@ include file="commons/bar-account.jsp"%>
          <div class="notFoundBox content-body"  tabindex="-1">
             <div class="inner">
-              <img src="/<%=request.getContextPath().split("/")[1]%>/images/error.png" alt="">
+              <img src="/<%=request.getContextPath().split("/")[1]%>/images/error.png"  alt="" data-localize="label.errorImg">
               <p class="word" data-localize="label.pleaseTryAgain"></p>
             </div>
          </div>

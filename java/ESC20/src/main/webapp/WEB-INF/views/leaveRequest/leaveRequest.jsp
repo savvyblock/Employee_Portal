@@ -19,8 +19,7 @@
 					<button class="btn btn-primary"  onclick="showRequestForm()" id="new-btn" data-toggle="modal" data-target="#requestModal">
 						<span data-localize="label.add"></span>
 					</button>
-					<a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/eventCalendar">
-						<span class="hide" data-localize="label.switchToCalendarView" ></span>
+					<a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/eventCalendar"  aria-label="" data-localize="label.switchToCalendarView" data-localize-location="aria-label" data-localize-notText="true">
 						<i class="fa fa-calendar"></i>
 					</a>
 				</div>
@@ -49,7 +48,7 @@
 					id="changeFreqForm"
 					method="POST"
 						>
-						<input type="text" name="freq" hidden="hidden" value="${selectedFreq}" title="" data-localize="accessHint.frequency">
+						<input type="text" name="freq" hidden="hidden" value="${selectedFreq}" aria-label="" data-localize="accessHint.frequency">
 					<div class="form-group type-group">
 						<label class="form-title" for="SearchType"><span data-localize="label.type"></span>:</label> 
 						<select id="SearchType"
@@ -65,8 +64,7 @@
 							<input
 								class="form-control" type="text" name="SearchStart"
 								id="SearchStartDate" readonly value="${SearchStart}" />
-								<button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0">
-									<span class="hide" data-localize="label.removeContent"></span>
+								<button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0"  aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
 									<i class="fa fa-times"></i>
 								</button>
 							</div>
@@ -77,8 +75,7 @@
 							<input
 								class="form-control" type="text" name="SearchEnd"
 								id="SearchEndDate" value="${SearchEnd}" readonly />
-								<button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0">
-									<span class="hide" data-localize="label.removeContent"></span>
+								<button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0"  aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
 									<i class="fa fa-times"></i>
 								</button>
 							</div>
@@ -161,7 +158,7 @@
 			</div>
 		</section>
 			<form hidden="true" id="deleteForm" action="deleteLeaveRequest" method="post">
-				<input type="text" id="deleteId" name="id" title="" data-localize="accessHint.id"/>
+				<input type="text" id="deleteId" name="id" aria-label="" data-localize="accessHint.id"/>
 			</form>
 		</main>
 	</div>
