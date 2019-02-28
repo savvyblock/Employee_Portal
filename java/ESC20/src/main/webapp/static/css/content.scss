@@ -1405,3 +1405,10 @@
         text-decoration: underline;
     }
 }
+.chooseEmailGroup{
+    display: flex;
+    align-items: center;
+    .emailType{
+        margin-left: 15px;
+    }
+}

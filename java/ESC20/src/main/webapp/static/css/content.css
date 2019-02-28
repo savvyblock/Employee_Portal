@@ -1542,3 +1542,12 @@
 .fc-more:hover {
   text-decoration: underline;
 }
+
+.chooseEmailGroup {
+  display: flex;
+  align-items: center;
+}
+
+.chooseEmailGroup .emailType {
+  margin-left: 15px;
+}

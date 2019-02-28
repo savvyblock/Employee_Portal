@@ -4,7 +4,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <table class="table border-table responsive-table no-thead print-table middle-td-table">
     <thead>
         <tr>
-            <td class="no-border-td" colspan="14">
+            <td class="no-border-td" colspan="15">
                 <span class="sub-title" data-localize="info1095Table.partIIICoverIndividuals"></span>
                 <div>
                         <span data-localize="info1095Table.ifEmployerProvidedSelfInsurance02"></span>
