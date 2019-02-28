@@ -1551,3 +1551,7 @@
 .chooseEmailGroup .emailType {
   margin-left: 15px;
 }
+
+.bankAccountBlock.asPrimary .bankAmount {
+  display: none !important;
+}

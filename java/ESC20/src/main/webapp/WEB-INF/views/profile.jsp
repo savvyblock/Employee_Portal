@@ -1374,7 +1374,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-item-line form-line">
                                         <div class="profile-title" data-localize="profile.bankAcctAmt">
                                         </div>
-                                        <div class="profile-desc">
+                                        <div class="profile-desc bankAmount">
                                             <span class="haveValue" id="displayAmount_${count.index}"
                                                 >${bank.depositAmount.displayAmount}</span
                                             >

@@ -20,6 +20,8 @@ $(function() {
     bankAccountAddValidator()
     $('.icheckRadioBank').on('click', function(event) {
         if ($(this).is(':checked')) {
+            $(".bankAccountBlock").removeClass("asPrimary")
+            $(this).parents(".bankAccountBlock").addClass("asPrimary")
             let indexBank = $('.icheckRadioBank').index(this)
             $('.icheckRadioBank').each(function(index) {
                 if (index != indexBank) {
@@ -133,7 +135,7 @@ $(function() {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/profile/getAllBanks',
+            url: urlMain +'/profile/getAllBanks',
             data: JSON.stringify(page),
             contentType: 'application/json;charset=UTF-8',
             success: function(result) {
@@ -213,7 +215,7 @@ $(function() {
         $.ajax({
             type: 'POST',
             dataType: 'json',
-            url: '/profile/searchBanks',
+            url: urlMain + '/profile/searchBanks',
             data: JSON.stringify(searchCriteria),
             contentType: 'application/json;charset=UTF-8',
             success: function(result) {
