@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"
+    <bean id="dataSource1" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"
           p:driverClass="com.sybase.jdbc4.jdbc.SybDriver"
           p:jdbcUrl="jdbc:sybase:Tds:127.0.0.1:2638/rsccc"
           p:user="rsccc"
@@ -20,6 +20,25 @@
           p:initialPoolSize="2"
           p:maxIdleTime="30"
     />
+    <bean id="dataSource2" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"
+          p:driverClass="com.sybase.jdbc4.jdbc.SybDriver"
+          p:jdbcUrl="jdbc:sybase:Tds:127.0.0.1:2639/demo"
+          p:user="dba"
+          p:password="sql"
+          p:maxPoolSize="40"
+          p:minPoolSize="2"
+          p:initialPoolSize="2"
+          p:maxIdleTime="30"
+    />
+    <bean class="com.esc20.util.DynamicDataSource" id="dataSource">
+		<property name="targetDataSources">
+		<map key-type="java.lang.String">
+		  <entry value-ref="dataSource1" key="rsccc"></entry>
+		  <entry value-ref="dataSource2" key="demo"></entry>
+		</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dataSource1"></property>
+	</bean>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <!--<property name="configLocation" value="classpath:hibernate.cfg.xml"/>-->

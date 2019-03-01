@@ -4,6 +4,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.esc20.model.AppUser;
@@ -25,6 +26,8 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPayId;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.SearchUser;
+import com.esc20.util.DataSourceContextHolder;
+import com.esc20.util.DynamicDataSource;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,13 +35,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 @Repository
-public class AppUserDao {
+public class AppUserDao extends HibernateDaoSupport{
     @Autowired
     private SessionFactory sessionFactory;
     
+    @Resource  
+    public void setSessionFacotry(SessionFactory sessionFacotry) {
+        super.setSessionFactory(sessionFacotry);  
+    }
+    
     private Session getSession(){
-        return sessionFactory.getCurrentSession();
+        return super.getSessionFactory().getCurrentSession();
     }
 
 	public BeaUsers getUserByName(String name) throws ParseException{
@@ -722,6 +732,13 @@ public class AppUserDao {
 		q.setParameter("employeeNumber", empNbr);
 		Integer result = (Integer) q.uniqueResult();
 		return result>0;
+	}
+
+	public Object TestDemo(String empNbr) {
+		Session session = this.getSession();
+        Query query = session.createSQLQuery("select * from Contacts");
+        List<Object[]> res = query.list();
+		return null;
 	}
 	
 }

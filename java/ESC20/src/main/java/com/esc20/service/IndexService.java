@@ -336,5 +336,8 @@ public class IndexService {
 	public Boolean isTempApprover(String empNbr) {
 		return userDao.isTempApprover(empNbr);
 	}
+	public void TestDemo(String empNbr) {
+		userDao.TestDemo(empNbr);
+	}
 	
 }

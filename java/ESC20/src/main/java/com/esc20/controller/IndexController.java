@@ -4,7 +4,9 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import com.esc20.nonDBModels.Options;
 import com.esc20.service.BankService;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
+import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
 import com.esc20.util.PasswordEncoderFactories;
 import com.esc20.util.StringUtil;
@@ -36,12 +39,6 @@ public class IndexController {
 	
     @Autowired
     private IndexService indexService;
-
-    @Autowired
-    private ReferenceService referenceService;
-    
-    @Autowired
-    private BankService bankService;
     
     PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     
@@ -69,6 +66,11 @@ public class IndexController {
             if(user != null /*&& user.getUsrpswd().equals(plainTextPwd)*/){
                 res.put("isSuccess","true");
                 res.put("userName", uName);
+                
+
+                DataSourceContextHolder.setDataSourceType("demo");
+                this.indexService.TestDemo(user.getEmpNbr());
+                DataSourceContextHolder.setDataSourceType("rsccc");
                 HttpSession session = req.getSession();
                 BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
                 Options options = this.indexService.getOptions();
@@ -95,7 +97,7 @@ public class IndexController {
     }
     
     @RequestMapping("home")
-    public ModelAndView getHome(HttpServletRequest req){
+    public ModelAndView getHome(HttpServletRequest req,HttpServletResponse response){
         HttpSession session = req.getSession();
         BeaUsers user = (BeaUsers)session.getAttribute("user");
         BhrEmpDemo userDetail = (BhrEmpDemo)session.getAttribute("userDetail");
@@ -111,7 +113,7 @@ public class IndexController {
     }
     
     @RequestMapping("logout")
-    public ModelAndView logout(HttpServletRequest req, String Id){
+    public ModelAndView logout(HttpServletRequest req, String Id,HttpServletResponse response){
         HttpSession session = req.getSession();
         session.invalidate();
         ModelAndView mav = new ModelAndView();
