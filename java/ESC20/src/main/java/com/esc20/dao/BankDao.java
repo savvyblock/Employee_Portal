@@ -68,10 +68,10 @@ public class BankDao {
         String hql = "from BthrBankCodes where 1=1 ";
         
         if(c.getSearchCode() !=null && !c.getSearchCode().isEmpty()) {
-        	hql = hql + " and transitRoute='" + c.getSearchCode()+"'";
+        	hql = hql + " and transitRoute like '%" + c.getSearchCode()+"%'";
         }
         if(c.getSearchDescription() !=null && !c.getSearchDescription().isEmpty()) {
-        	hql = hql + " and bankName='" + c.getSearchDescription()+"'";
+        	hql = hql + " and bankName like '%" + c.getSearchDescription()+"%'";
         }
         
         hql = hql +" order by bankName ASC" ;

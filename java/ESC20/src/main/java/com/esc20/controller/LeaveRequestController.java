@@ -77,15 +77,24 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 					requestModels.add(model);
 				}
 				List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
-				List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
+				List<Code> leaveTypes = new ArrayList<Code>();
+				List<Code> leaveTypesforSearch = new ArrayList<Code>();
+				Code empty = new Code();
+				empty.setDescription("ALL");
+				leaveTypesforSearch.add(empty);
+				leaveTypes.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
+				leaveTypesforSearch.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
 				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
 				JSONArray json = new JSONArray();
+
+				leaveTypes.add(empty);
 				for (int i = 0; i < requestModels.size(); i++) {
 					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
 				}
 				mav.addObject("selectedFreq", freq);
 				mav.addObject("absRsns", absRsns);
 				mav.addObject("leaveTypes", leaveTypes);
+				mav.addObject("leaveTypesforSearch", leaveTypesforSearch);
 				mav.addObject("leaveInfo", leaveInfo);
 				mav.addObject("leaves", json);
 			}
@@ -102,7 +111,13 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 				requestModels.add(model);
 			}
 			List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
-			List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
+			List<Code> leaveTypes = new ArrayList<Code>();
+			List<Code> leaveTypesforSearch = new ArrayList<Code>();
+			Code empty = new Code();
+			empty.setDescription("ALL");
+			leaveTypesforSearch.add(empty);
+			leaveTypes.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
+			leaveTypesforSearch.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
 			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
 			JSONArray json = new JSONArray();
 			for (int i = 0; i < requestModels.size(); i++) {
@@ -112,6 +127,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			mav.addObject("leaves", json);
 			mav.addObject("absRsns", absRsns);
 			mav.addObject("leaveTypes", leaveTypes);
+			mav.addObject("leaveTypesforSearch", leaveTypesforSearch);
 			mav.addObject("leaveInfo", leaveInfo);
 
 		}

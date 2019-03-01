@@ -20,6 +20,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <i class="fa fa-calendar"></i>
                                 </button>
                             </h2>
+                            <div class="showSelectSupervisor">
+                                <label class="form-title"><span data-localize="label.supervisorHierarchy"></span>: </label>
+                                <c:forEach var="item" items="${chain}" varStatus="status">
+                                    <b> ${item.employeeNumber}:${item.lastName},${item.firstName}</b>
+                                 <c:if test="${!status.last}"> ➝ </c:if>
+                                </c:forEach>
+                            </div>
+                            <br/>
                             <div class="container-fluid">
                                     <form
                                     class="no-print searchForm"
@@ -55,13 +63,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="" data-localize="accessHint.level">
                                         <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
                                 </form>
-                                <div class="showSelectSupervisor">
-                                        <label class="form-title"><span data-localize="label.supervisorHierarchy"></span>: </label>
-                                        <c:forEach var="item" items="${chain}" varStatus="status">
-                                                <b> ${item.employeeNumber}:${item.lastName},${item.firstName}</b>
-                                                <c:if test="${!status.last}"> ➝ </c:if>
-                                        </c:forEach>
-                                </div>
                                 <br>
                                 <div class="content-white">
                                     <table class="table request-list responsive-table">

@@ -63,12 +63,12 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 					requestModels.add(model);
 				}
 				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
-				List<Code> absRsns = this.referenceService.getAbsRsns();
+				List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
 				JSONArray absRsnsJson = new JSONArray();
 				for (int i = 0; i < absRsns.size(); i++) {
 					absRsnsJson.add(absRsns.get(i).toJSON());
 				}
-				List<Code> leaveTypes = this.referenceService.getLeaveTypes();
+				List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
 				JSONArray leaveTypesJson = new JSONArray();
 				for (int i = 0; i < leaveTypes.size(); i++) {
 					leaveTypesJson.add(leaveTypes.get(i).toJSON());
@@ -93,12 +93,12 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 				requestModels.add(model);
 			}
 			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
-			List<Code> absRsns = this.referenceService.getAbsRsns();
+			List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
 			JSONArray absRsnsJson = new JSONArray();
 			for (int i = 0; i < absRsns.size(); i++) {
 				absRsnsJson.add(absRsns.get(i).toJSON());
 			}
-			List<Code> leaveTypes = this.referenceService.getLeaveTypes();
+			List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
 			JSONArray leaveTypesJson = new JSONArray();
 			for (int i = 0; i < leaveTypes.size(); i++) {
 				leaveTypesJson.add(leaveTypes.get(i).toJSON());
