@@ -19,7 +19,7 @@
 					<button class="btn btn-primary"  onclick="showRequestForm()" id="new-btn" data-toggle="modal" data-target="#requestModal">
 						<span data-localize="label.add"></span>
 					</button>
-					<a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/eventCalendar"  aria-label="" data-localize="label.switchToCalendarView" data-localize-location="aria-label" data-localize-notText="true">
+					<a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequestCalendar/eventCalendar"  aria-label="" data-localize="label.switchToCalendarView" data-localize-location="aria-label" data-localize-notText="true">
 						<i class="fa fa-calendar"></i>
 					</a>
 				</div>
@@ -53,7 +53,7 @@
 						<label class="form-title" for="SearchType"><span data-localize="label.type"></span>:</label> 
 						<select id="SearchType"
 							class="form-control" name="SearchType" autocomplete="off">
-							<c:forEach var="type" items="${leaveTypes}" varStatus="count">
+							<c:forEach var="type" items="${leaveTypesforSearch}" varStatus="count">
 									<option value="${type.code}" <c:if test="${type.code == SearchType }">selected</c:if>>${type.description}</option>
 							</c:forEach>
 						</select>
