@@ -515,6 +515,12 @@ input {
         &.td-content{
             text-align: right;
         }
+        &.text-left{
+            text-align: left!important;
+        }
+        &.text-center{
+            text-align: center!important;
+        }
         .focused-value{
             margin-top: 5px;
             font-size: 13px;
@@ -536,6 +542,8 @@ input {
             font-weight: bold;
             border-right: 1px solid #dee2e6;
             text-align: left!important;
+            max-width: 200px;
+            width: 200px;
         }
         &.td-content{
             border-right: 1px solid #dee2e6;

@@ -524,19 +524,34 @@ function personalValidator() {
         fields: {
             nameFNew: {
                 trigger: 'blur keyup',
-
                 validators: {
                     notEmpty: {
                         message: 'validator.requiredField'
+                    },
+                    stringLength: {
+                        max: 25,
+                        message: 'validator.maxLength25'
                     }
                 }
             },
             nameLNew: {
                 trigger: 'blur keyup',
-
                 validators: {
                     notEmpty: {
                         message: 'validator.requiredField'
+                    },
+                    stringLength: {
+                        max: 25,
+                        message: 'validator.maxLength25'
+                    }
+                }
+            },
+            nameMNew: {
+                trigger: 'blur keyup',
+                validators: {
+                    stringLength: {
+                        max: 25,
+                        message: 'validator.maxLength25'
                     }
                 }
             }
@@ -548,7 +563,6 @@ function maritalStatusValidator() {
     $('#maritalStatusForm').bootstrapValidator({
         live: 'enable',
         submitButtons: '#saveMarital',
-
         feedbackIcons: {
             valid: 'fa fa-check ',
             // invalid: 'fa fa-times',
@@ -596,7 +610,6 @@ function restrictionCodeFormValidator() {
     $('#restrictionCodeForm').bootstrapValidator({
         live: 'enable',
         submitButtons: '#saveRestrict',
-
         feedbackIcons: {
             valid: 'fa fa-check ',
             // invalid: 'fa fa-times',

@@ -322,11 +322,17 @@
         &.in-line {
             display: flex;
             align-items: center;
+            &.p-l-0{
+                padding-left: 0;
+            }
             .form-title {
                 flex: 0 0 auto;
             }
             .form-control {
                 max-width: 200px;
+                &#year{
+                    width: 100px;
+                }
             }
         }
         &.btn-group {
@@ -1045,15 +1051,28 @@
     }
 }
 .profile {
-    .profile-item{
+    .profile-top{
+        width: 100%;
+        display: flex;
+        border-bottom: 1px solid #eee;
+        .profile-item{
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
         @media (max-width: 1150px){
             &.first-child{
-                .profile-title{
+                display: block;
+                .profile-avatar{
                     padding-bottom: 25px;
                     border-bottom: 1px solid #eee;
                     margin-bottom: 25px;
                 }
             }
+        }
+        .profile-avatar{
+            padding-right: 10px;
+            display: flex;
+            align-items: center;
         }
     }
     .avatar {
@@ -1135,43 +1154,8 @@
         }
         .profile-item-line .profile-title{
             align-items: flex-start;
-        }
-        .profile-desc {
-            flex: 1;
-            display: flex;
-            .profile-content {
-                flex: 1;
-            }
-            .profile-desc-item {
-                display: flex;
-                margin-bottom: 5px;
-                .desc-title {
-                    flex: 0 0 120px;
-                    @media (max-width:1365px){
-                        flex: 0 0 80px;
-                    }
-                    @media (max-width:1150px){
-                        flex: 0 0 100px;
-                    }
-                }
-                .desc-content {
-                    color: #000;
-                    display: flex;
-                    @media (max-width:630px){
-                        display: block;
-                    }
-                    .haveValue{
-                        flex: 0 0 200px;
-                        white-space: normal;
-                        word-break: break-word;
-                        margin-right: 10px;
-                    }
-                    .valueInput{
-                        display: flex;
-                        flex-wrap: wrap;
-                    }
-                }
-            }
+            line-height: 1.2;
+            font-size: 13px;
         }
         .profile-item-line {
             display: flex;
@@ -1179,7 +1163,8 @@
             .profile-desc {
                 color: #000;
                 display: flex;
-                @media (max-width:630px){
+                flex: 1;
+                @media (max-width:490px){
                     display: block;
                 }
                 .haveValue{
@@ -1187,6 +1172,14 @@
                     white-space: normal;
                     word-break: break-word;
                     margin-right: 10px;
+                    @media (max-width:630px){
+                        flex: 0 0 160px;
+                    }
+                    @media (max-width:490px){
+                        min-height: 25px;
+                        margin-bottom: 5px;
+                        display: block;
+                    }
                 }
                 .valueInput{
                     display: flex;
@@ -1224,18 +1217,23 @@
                 }
             }
         }
-        .haveValue{
-            display: block
-        }
         .valueInput{
             // display: none!important;
             .form-control{
                 height: 25px;
                 padding: 0 5px;
                 min-width: 150px;
+                width: 190px;
+                @media (max-width:530px){
+                    width: 160px;
+                }
+                &.phone-input{
+                   max-width: 70px;
+                   min-width: initial;
+                }
                 &.phoneAreaCode{
-                    width: 60px;
-                    min-width: 60px;
+                    width: 45px;
+                    min-width: 45px;
                 }
             }
             .btn{
@@ -1321,6 +1319,35 @@
                     }
                 }
             }
+        }
+    }
+    .profileTitle{
+        display: flex;
+        font-size: 13px;
+        font-weight: bold;
+        color: #6c757d;
+        margin-bottom: 15px;
+        @media(max-width:490px){
+            display: none;
+        }
+        &.profileInfo{
+            padding-left: 110px;
+            @media (min-width: 1366px){
+                padding-left: 200px;
+            }
+            @media (max-width: 680px){
+                padding-left: 100px;
+            }
+        }
+        .currentTitle{
+            flex: 0 0 200px;
+            margin-right: 10px;
+            @media (max-width:630px){
+                flex: 0 0 160px;
+            }
+        }
+        .newTitle{
+            flex: 0 0 180px;
         }
     }
 }
@@ -1418,4 +1445,10 @@
             display: none!important;
         }
     }
+}
+.calendarYTDTable{
+    max-width: 1060px;
+}
+.deductionTable{
+    max-width: 1000px;
 }

@@ -404,12 +404,20 @@
   align-items: center;
 }
 
+.searchForm .form-group.in-line.p-l-0 {
+  padding-left: 0;
+}
+
 .searchForm .form-group.in-line .form-title {
   flex: 0 0 auto;
 }
 
 .searchForm .form-group.in-line .form-control {
   max-width: 200px;
+}
+
+.searchForm .form-group.in-line .form-control#year {
+  width: 100px;
 }
 
 .searchForm .form-group.btn-group {
@@ -1129,12 +1137,32 @@
   max-width: 150px;
 }
 
+.profile .profile-top {
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.profile .profile-top .profile-item {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
 @media (max-width: 1150px) {
-  .profile .profile-item.first-child .profile-title {
+  .profile .profile-top.first-child {
+    display: block;
+  }
+  .profile .profile-top.first-child .profile-avatar {
     padding-bottom: 25px;
     border-bottom: 1px solid #eee;
     margin-bottom: 25px;
   }
+}
+
+.profile .profile-top .profile-avatar {
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .profile .avatar {
@@ -1235,59 +1263,8 @@
 
 .profile .profile-item .profile-item-line .profile-title {
   align-items: flex-start;
-}
-
-.profile .profile-item .profile-desc {
-  flex: 1;
-  display: flex;
-}
-
-.profile .profile-item .profile-desc .profile-content {
-  flex: 1;
-}
-
-.profile .profile-item .profile-desc .profile-desc-item {
-  display: flex;
-  margin-bottom: 5px;
-}
-
-.profile .profile-item .profile-desc .profile-desc-item .desc-title {
-  flex: 0 0 120px;
-}
-
-@media (max-width: 1365px) {
-  .profile .profile-item .profile-desc .profile-desc-item .desc-title {
-    flex: 0 0 80px;
-  }
-}
-
-@media (max-width: 1150px) {
-  .profile .profile-item .profile-desc .profile-desc-item .desc-title {
-    flex: 0 0 100px;
-  }
-}
-
-.profile .profile-item .profile-desc .profile-desc-item .desc-content {
-  color: #000;
-  display: flex;
-}
-
-@media (max-width: 630px) {
-  .profile .profile-item .profile-desc .profile-desc-item .desc-content {
-    display: block;
-  }
-}
-
-.profile .profile-item .profile-desc .profile-desc-item .desc-content .haveValue {
-  flex: 0 0 200px;
-  white-space: normal;
-  word-break: break-word;
-  margin-right: 10px;
-}
-
-.profile .profile-item .profile-desc .profile-desc-item .desc-content .valueInput {
-  display: flex;
-  flex-wrap: wrap;
+  line-height: 1.2;
+  font-size: 13px;
 }
 
 .profile .profile-item .profile-item-line {
@@ -1298,9 +1275,10 @@
 .profile .profile-item .profile-item-line .profile-desc {
   color: #000;
   display: flex;
+  flex: 1;
 }
 
-@media (max-width: 630px) {
+@media (max-width: 490px) {
   .profile .profile-item .profile-item-line .profile-desc {
     display: block;
   }
@@ -1311,6 +1289,20 @@
   white-space: normal;
   word-break: break-word;
   margin-right: 10px;
+}
+
+@media (max-width: 630px) {
+  .profile .profile-item .profile-item-line .profile-desc .haveValue {
+    flex: 0 0 160px;
+  }
+}
+
+@media (max-width: 490px) {
+  .profile .profile-item .profile-item-line .profile-desc .haveValue {
+    min-height: 25px;
+    margin-bottom: 5px;
+    display: block;
+  }
 }
 
 .profile .profile-item .profile-item-line .profile-desc .valueInput {
@@ -1354,19 +1346,27 @@
   display: inline-block;
 }
 
-.profile .profile-item .haveValue {
-  display: block;
-}
-
 .profile .profile-item .valueInput .form-control {
   height: 25px;
   padding: 0 5px;
   min-width: 150px;
+  width: 190px;
+}
+
+@media (max-width: 530px) {
+  .profile .profile-item .valueInput .form-control {
+    width: 160px;
+  }
+}
+
+.profile .profile-item .valueInput .form-control.phone-input {
+  max-width: 70px;
+  min-width: initial;
 }
 
 .profile .profile-item .valueInput .form-control.phoneAreaCode {
-  width: 60px;
-  min-width: 60px;
+  width: 45px;
+  min-width: 45px;
 }
 
 .profile .profile-item .valueInput .btn {
@@ -1451,6 +1451,51 @@
 
 .profile .bankAccountBlock.isDelete .profile-btn .saveOrCancel .save-btn, .profile .bankAccountBlock.isDelete .profile-btn .saveOrCancel .delete-btn {
   display: none;
+}
+
+.profile .profileTitle {
+  display: flex;
+  font-size: 13px;
+  font-weight: bold;
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 490px) {
+  .profile .profileTitle {
+    display: none;
+  }
+}
+
+.profile .profileTitle.profileInfo {
+  padding-left: 110px;
+}
+
+@media (min-width: 1366px) {
+  .profile .profileTitle.profileInfo {
+    padding-left: 200px;
+  }
+}
+
+@media (max-width: 680px) {
+  .profile .profileTitle.profileInfo {
+    padding-left: 100px;
+  }
+}
+
+.profile .profileTitle .currentTitle {
+  flex: 0 0 200px;
+  margin-right: 10px;
+}
+
+@media (max-width: 630px) {
+  .profile .profileTitle .currentTitle {
+    flex: 0 0 160px;
+  }
+}
+
+.profile .profileTitle .newTitle {
+  flex: 0 0 180px;
 }
 
 #selectBank .form-group {
@@ -1554,4 +1599,12 @@
 
 .bankAccountBlock.asPrimary .bankAmount {
   display: none !important;
+}
+
+.calendarYTDTable {
+  max-width: 1060px;
+}
+
+.deductionTable {
+  max-width: 1000px;
 }

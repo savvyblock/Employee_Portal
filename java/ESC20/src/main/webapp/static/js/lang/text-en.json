@@ -537,6 +537,8 @@
 		"lastPage":"Last Page",
 		"undo":"Undo",
 		"ok":"OK",
+		"current":"Current",
+		"new":"New",
 		"areYouQuit":"Are you sure to want to quit?",
 		"areYouRescind":"Are you sure you want to rescind the request?",
 		"update":"Update",

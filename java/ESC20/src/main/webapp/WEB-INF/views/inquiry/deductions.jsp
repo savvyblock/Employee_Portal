@@ -41,23 +41,23 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <table class="table border-table responsive-table print-table deductionTable">
                                             <thead>
                                                 <tr>
-                                                    <th data-localize="deductionsTable.deductionCode"></th>
-                                                    <th data-localize="deductionsTable.description"></th>
-                                                    <th data-localize="deductionsTable.amount"></th>
-                                                    <th data-localize="deductionsTable.cafeteriaFlag"></th>
-                                                    <th data-localize="deductionsTable.employerContributionAmount"></th>
+                                                    <th class="text-center" data-localize="deductionsTable.deductionCode"></th>
+                                                    <th class="text-center" data-localize="deductionsTable.description"></th>
+                                                    <th class="text-center" data-localize="deductionsTable.amount"></th>
+                                                    <th class="text-center" data-localize="deductionsTable.cafeteriaFlag"></th>
+                                                    <th class="text-center" data-localize="deductionsTable.employerContributionAmount"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <c:forEach items="${deductions[frequency]}" var="deduct" varStatus="counter">
                                                         <tr>
-                                                            <td data-localize="deductionsTable.deductionCode" data-localize-location="scope">${deduct.dedCd}</td>
-                                                            <td data-localize="deductionsTable.description" data-localize-location="scope">${deduct.dedCdDesc}</td>
-                                                            <td data-localize="deductionsTable.amount" data-localize-location="scope">
+                                                            <td data-localize="deductionsTable.deductionCode" data-localize-location="scope,data-title">${deduct.dedCd}</td>
+                                                            <td data-localize="deductionsTable.description" data-localize-location="scope,data-title">${deduct.dedCdDesc}</td>
+                                                            <td data-localize="deductionsTable.amount" data-localize-location="scope,data-title">
                                                                 <fmt:formatNumber value="${deduct.empAmt}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="deductionsTable.cafeteriaFlag" data-localize-location="scope">${deduct.cafeFlgStr}</td>
-                                                            <td data-localize="deductionsTable.employerContributionAmount" data-localize-location="scope">
+                                                            <td class="text-center" data-localize="deductionsTable.cafeteriaFlag" data-localize-location="scope,data-title">${deduct.cafeFlgStr}</td>
+                                                            <td data-localize="deductionsTable.employerContributionAmount" data-localize-location="scope,data-title">
                                                                 <fmt:formatNumber value="${deduct.emplrAmt}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>

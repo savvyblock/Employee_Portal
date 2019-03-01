@@ -43,7 +43,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <b data-localize="label.employeeInformation"></b>
                         </p>
                         <table
-                            class="table border-table responsive-table no-thead print-table"
+                            class="table border-table responsive-table no-thead print-table noNumTable"
                         >
                             <tbody>
                                 <tr>
@@ -174,7 +174,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <b><span data-localize="label.frequency"></span>: ${frequency}</b>
                                 </p>
                                 <table
-                                    class="table border-table responsive-table no-thead print-table"
+                                    class="table border-table responsive-table no-thead print-table noNumTable"
                                 >
                                     <tbody>
                                         <tr>
@@ -215,14 +215,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </tbody>
                                 </table>
                                 <p class="table-top-title">
-                                    <b><span data-localize="label.positions"></span>:</b>
+                                    <b><span data-localize="label.positions"></span></b>
                                 </p>
-                                <c:forEach var="job" items="${jobs[frequency]}">
-                                    <table class="table border-table responsive-table no-thead print-table">
+                                
+                                    <table class="table border-table responsive-table no-thead print-table" style="border:0;">
                                         <tbody>
+                                                <c:forEach var="job" items="${jobs[frequency]}" varStatus="jobCount">
                                             <tr>
                                                 <td class="td-title" data-localize="currentPayTable.title"></td>
-                                                <td class="td-content" data-title="Title" data-localize="currentPayTable.title">
+                                                <td class="td-content text-left" data-title="Title" data-localize="currentPayTable.title">
                                                     <b>
                                                             ${job.jobCdDescription}
                                                     </b>
@@ -258,13 +259,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <fmt:formatNumber value="${job.ovtmRate}" pattern="#,##0.00"/>
                                                 </td>
                                             </tr>
+                                            <c:if test="${jobCount.index < fn:length(jobs[frequency]) - 1}">
+                                                <tr>
+                                                    <td colspan="8" style="border:0;"></td>
+                                                </tr>
+                                            </c:if>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
-                                </c:forEach>
+                                
                                 
                                 <c:if test="${fn:length(accounts[frequency]) > 0}">
                                         <p class="table-top-title">
-                                                <b><span data-localize="label.bankCardInfo"></span> :</b>
+                                                <b><span data-localize="label.bankCardInfo"></span></b>
                                             </p>
                                     <table class="table border-table responsive-table print-table">
                                         <thead>
@@ -279,19 +286,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <tbody>
                                                 <c:forEach items="${accounts[frequency]}" var="account" varStatus="counter">
                                                     <tr>
-                                                        <td data-title="Bank Code" data-localize="currentPayTable.bankCode" data-localize-location="scope">
+                                                        <td data-title="" data-localize="currentPayTable.bankCode" data-localize-location="scope">
                                                                 ${account.bankCd}
                                                         </td>
-                                                        <td data-title="Bank Name" data-localize="currentPayTable.bankName" data-localize-location="scope">
+                                                        <td class="text-left" data-title="" data-localize="currentPayTable.bankName" data-localize-location="scope">
                                                             ${account.bankName}
                                                         </td>
-                                                        <td data-title="Account Type" data-localize="currentPayTable.accountType" data-localize-location="scope">
+                                                        <td class="text-left" data-title="" data-localize="currentPayTable.accountType" data-localize-location="scope">
                                                                 ${account.bankAccountType} - ${account.bankAccountTypeDescription}
                                                         </td>
-                                                        <td data-title="Account Number" data-localize="currentPayTable.acctNbr" data-localize-location="scope">
+                                                        <td class="text-left" data-title="" data-localize="currentPayTable.acctNbr" data-localize-location="scope">
                                                                 ${account.bankAccountNumber}
                                                         </td>
-                                                        <td data-title="Deposit Amount" data-localize="currentPayTable.depAmt" data-localize-location="scope">
+                                                        <td data-title="" data-localize="currentPayTable.depAmt" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${account.bankAccountAmount.amount}" pattern="#,##0.00"/> ${account.bankAccountAmount.currency}
                                                         </td>
                                                     </tr>

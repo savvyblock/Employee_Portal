@@ -82,7 +82,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <b><span data-localize="label.frequency"></span>: ${freq}</b>
                         </p>
                         <table
-                            class="table border-table responsive-table no-thead print-table"
+                            class="table border-table responsive-table no-thead print-table calendarYTDTable"
                         >
                             <tbody>
                                 <tr>

@@ -1,17 +1,29 @@
 $(document).ready(function() {
-		var path = (window.location + '').split('/')
-		var menuItem
+    var path = (window.location + '').split('/')
+    var menuItem
     var item = path[path.length - 2]
     // var item = path[path.length - 1]
     console.log(path)
     console.log(menuItem)
-		console.log(item)
-		if(item=='calendarYearToDate'||item=='currentPayInformation'||item=='deductions'||item=='earnings'||item=='w2Information'||item=='information1095'){
-			menuItem = 'inquiry'
-		}
-		if(item=='approveLeaveRequest'||item=='leaveOverview'||item=='supervisorCalendar'||item=='leaveRequestTemporaryApprovers'){
-			menuItem = 'supervisor'
-		}
+    console.log(item)
+    if (
+        item == 'calendarYearToDate' ||
+        item == 'currentPayInformation' ||
+        item == 'deductions' ||
+        item == 'earnings' ||
+        item == 'w2Information' ||
+        item == 'information1095'
+    ) {
+        menuItem = 'inquiry'
+    }
+    if (
+        item == 'approveLeaveRequest' ||
+        item == 'leaveOverview' ||
+        item == 'supervisorCalendar' ||
+        item == 'leaveRequestTemporaryApprovers'
+    ) {
+        menuItem = 'supervisor'
+    }
     var menuElement = $('#' + menuItem)
     var itemElement = $('#' + item)
     console.log(itemElement)

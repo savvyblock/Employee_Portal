@@ -13,8 +13,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 <section class="content">
                     <div class="content-white no-title profile">
                             <c:if test="${sessionScope.options.enableSelfServiceDemographic == true}">
-                                <div class="profile-item first-child">
-                                    <div class="profile-title" >
+                                <div class="profile-top first-child">
+                                    <div class="profile-avatar" >
                                         <div>
                                                 <div
                                                 class="avatar"
@@ -33,11 +33,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         
                                     </div>
-                                    <form class="profile-desc" id="personalForm" action="saveName" method="POST">
-                                        <div class="profile-content">
-                                            <div class="profile-desc-item form-line">
-                                                <label class="desc-title" data-localize="profile.title"></label>
-                                                <div class="desc-content">
+                                    <form class="profile-item" id="personalForm" action="saveName" method="POST">
+                                        <div class="profile-left">
+                                            <div class="profileTitle form-line profileInfo">
+                                                <span class="currentTitle" data-localize="label.current"></span>
+                                                <div class="newTitle" data-localize="label.new"></div>
+                                            </div>
+                                            <div class="profile-item-line form-line">
+                                                <label class="profile-title" data-localize="profile.title"></label>
+                                                <div class="profile-desc">
                                                     <span class="haveValue"
                                                         >${sessionScope.userDetail.namePre}</span
                                                     >
@@ -60,9 +64,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="profile-desc-item form-line">
-                                                <label class="desc-title"  data-localize="profile.firstname"></label>
-                                                <div class="desc-content">
+                                            <div class="profile-item-line form-line">
+                                                <label class="profile-title"  data-localize="profile.firstname"></label>
+                                                <div class="profile-desc">
                                                     <span class="haveValue"
                                                         >${sessionScope.userDetail.nameF}</span
                                                     >
@@ -75,36 +79,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             data-localize="profile.firstname"
                                                             name="nameFNew"
                                                             id="firstName"
+                                                            maxlength="17"
                                                         />
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="profile-desc-item form-line">
-                                                <label class="desc-title" data-localize="profile.lastname"
+                                            <div class="profile-item-line form-line">
+                                                <label class="profile-title" data-localize="profile.middleName"
                                                     ></label
                                                 >
-                                                <div class="desc-content">
-                                                    <span class="haveValue"
-                                                        >${sessionScope.userDetail.nameL}</span
-                                                    >
-                                                    <div class="form-group valueInput">
-                                                        <input
-                                                            class="form-control"
-                                                            type="text"
-                                                            value="${nameRequest.nameLNew}"
-                                                            aria-label=""
-                                                            data-localize="profile.lastname"
-                                                            name="nameLNew"
-                                                            id="lastName"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="profile-desc-item form-line">
-                                                <label class="desc-title" data-localize="profile.middleName"
-                                                    ></label
-                                                >
-                                                <div class="desc-content">
+                                                <div class="profile-desc">
                                                     <span class="haveValue"
                                                         >${sessionScope.userDetail.nameM}</span
                                                     >
@@ -117,15 +101,39 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             data-localize="profile.middleName"
                                                             name="nameMNew"
                                                             id="middleName"
+                                                            maxlength="14"
                                                         />
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="profile-desc-item form-line">
-                                                <label class="desc-title" data-localize="profile.generation"
+                                            <div class="profile-item-line form-line">
+                                                <label class="profile-title" data-localize="profile.lastname"
                                                     ></label
                                                 >
-                                                <div class="desc-content">
+                                                <div class="profile-desc">
+                                                    <span class="haveValue"
+                                                        >${sessionScope.userDetail.nameL}</span
+                                                    >
+                                                    <div class="form-group valueInput">
+                                                        <input
+                                                            class="form-control"
+                                                            type="text"
+                                                            value="${nameRequest.nameLNew}"
+                                                            aria-label=""
+                                                            data-localize="profile.lastname"
+                                                            name="nameLNew"
+                                                            id="lastName"
+                                                            maxlength="25"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="profile-item-line form-line">
+                                                <label class="profile-title" data-localize="profile.generation"
+                                                    ></label
+                                                >
+                                                <div class="profile-desc">
                                                     <span class="haveValue"
                                                         >${sessionScope.userDetail.nameGen}</span
                                                     >
@@ -185,12 +193,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <p class="sub-title" data-localize="profile.MaritalStatus"></p>
                                 <form class="profile-item" id="maritalStatusForm" action="saveMarital" method="POST">
                                     <div class="profile-left">
+                                            <div class="profileTitle form-line profileInfo">
+                                                    <span class="currentTitle" data-localize="label.current"></span>
+                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                </div>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.local"></div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
-                                                    ${sessionScope.userDetail.maritalStat}</span
-                                                >
+                                                    <c:forEach var="marital" items="${maritalOptions}" varStatus="count">
+                                                        <c:if test="${marital.code == sessionScope.userDetail.maritalStat }">${marital.displayLabel}</c:if>
+                                                    </c:forEach>
+                                                </span>
                                                 <input hidden="hidden" type="text" name="empNbr" value="${mrtlRequest.id.empNbr}"  aria-label="" data-localize="accessHint.employeeNumber">
                                                     <input hidden="hidden" type="text" name="reqDts" value="${mrtlRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                                 <div class="form-group valueInput">
@@ -202,10 +216,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         data-localize="profile.local"
                                                         
                                                     >
-                                                    <c:forEach var="marital" items="${maritalOptions}" varStatus="count">
-                                                            <option value="${marital.code}" <c:if test="${marital.code == mrtlRequest.maritalStatNew }">selected</c:if>>${marital.description}</option>
+                                                        <c:forEach var="marital" items="${maritalOptions}" varStatus="count">
+                                                            <option value="${marital.code}" <c:if test="${marital.code == mrtlRequest.maritalStatNew }">selected</c:if>>${marital.displayLabel}</option>
                                                         </c:forEach>
-                                                        </select>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -249,6 +263,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <input hidden="hidden" type="text" name="empNbr" value="${licRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                     <input hidden="hidden" type="text" name="reqDts" value="${licRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
+                                            <div class="profileTitle form-line profileInfo">
+                                                    <span class="currentTitle" data-localize="label.current"></span>
+                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                </div>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.number"></div>
                                             <div class="profile-desc">
@@ -272,9 +290,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.state"></div>
                                             <div class="profile-desc">
-                                                <span class="haveValue"
-                                                    >${sessionScope.userDetail.driversLicSt}</span
-                                                >
+                                                <span class="haveValue">
+                                                    <c:forEach var="states" items="${statesOptions}" varStatus="count">
+                                                            <c:if test="${states.code == sessionScope.userDetail.driversLicSt }">${states.displayLabel}</c:if>
+                                                    </c:forEach>
+                                                </span>
                                                 
                                                 <div class="form-group valueInput">
                                                     <select
@@ -282,7 +302,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="driversLicStNew"
                                                         value="${licRequest.driversLicStNew}"                                                
                                                         class="form-control"
-                                                        title="driver state"
+                                                        aria-label=""
                                                         data-localize="profile.driversLicenseState"
                                                     >
                                                     <c:forEach var="states" items="${statesOptions}" varStatus="count">
@@ -333,12 +353,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <input hidden="hidden" type="text" name="empNbr" value="${restrictRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                     <input hidden="hidden" type="text" name="reqDts" value="${restrictRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
+                                            <div class="profileTitle form-line profileInfo">
+                                                    <span class="currentTitle" data-localize="label.current"></span>
+                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                </div>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.local"></div>
                                             <div class="profile-desc">
-                                                <span class="haveValue"
-                                                    >${sessionScope.userDetail.restrictCd}</span
-                                                >
+                                                <span class="haveValue">
+                                                    <c:forEach var="restrictions" items="${restrictionsOptions}" varStatus="count">
+                                                        <c:if test="${restrictions.code == sessionScope.userDetail.restrictCd }">${restrictions.displayLabel}</c:if>
+                                                    </c:forEach>
+                                                </span>
                                                 
                                                 <div class="form-group valueInput">
                                                     <select
@@ -350,7 +376,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         
                                                     >
                                                     <c:forEach var="restrictions" items="${restrictionsOptions}" varStatus="count">
-                                                            <option value="${restrictions.code}" <c:if test="${restrictions.code == restrictRequest.restrictCdNew }">selected</c:if>>${restrictions.code} - ${restrictions.description}</option>
+                                                            <option value="${restrictions.code}" <c:if test="${restrictions.code == restrictRequest.restrictCdNew }">selected</c:if>>${restrictions.displayLabel}</option>
                                                         </c:forEach>
                                                         </select>
                                                 </div>
@@ -359,9 +385,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.public"></div>
                                             <div class="profile-desc">
-                                                <span class="haveValue"
-                                                    >${sessionScope.userDetail.restrictCdPublic}</span
-                                                >
+                                                <span class="haveValue">
+                                                        <c:forEach var="restriction" items="${restrictionsOptions}" varStatus="count">
+                                                                <c:if test="${restriction.code == sessionScope.userDetail.restrictCdPublic }">${restriction.displayLabel}</c:if>
+                                                    </c:forEach>
+                                                </span>
                                             
                                                 <div class="form-group valueInput">
                                                     <select
@@ -369,11 +397,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="restrictCdPublicNew"
                                                         class="form-control"
                                                         aria-label=""
-                                                        style="width:188px"
                                                         data-localize="profile.restrictionCodesPublic"
                                                     >
                                                     <c:forEach var="restriction" items="${restrictionsOptions}" varStatus="count">
-                                                            <option value="${restriction.code}" <c:if test="${restriction.code == restrictRequest.restrictCdPublicNew }">selected</c:if>>${restriction.code} - ${restriction.description}</option>
+                                                            <option value="${restriction.code}" <c:if test="${restriction.code == restrictRequest.restrictCdPublicNew }">selected</c:if>>${restriction.displayLabel}</option>
                                                         </c:forEach>
                                                         </select>
                                                 </div>
@@ -419,6 +446,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input hidden="hidden" type="text" name="empNbr" value="${emailRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                         <input hidden="hidden" type="text" name="reqDts" value="${emailRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
+                                            <div class="profileTitle form-line profileInfo">
+                                                    <span class="currentTitle" data-localize="label.current"></span>
+                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                </div>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.workEmail"></div>
                                             <div class="profile-desc">
@@ -497,6 +528,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input hidden="hidden" type="text" name="empNbr" value="${emerRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                         <input hidden="hidden" type="text" name="reqDts" value="${emerRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
+                                            <div class="profileTitle form-line profileInfo">
+                                                    <span class="currentTitle" data-localize="label.current"></span>
+                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                </div>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.name"></div>
                                             <div class="profile-desc">
@@ -512,7 +547,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         value="${emerRequest.emerContactNew}"
                                                         aria-label=""
                                                         data-localize="profile.emergencyContactName"
-                                                        
+                                                        maxlength="26"
                                                     />
                                                 </div>
                                             </div>
@@ -541,7 +576,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </div>
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control"
+                                                            class="form-control phone-input"
                                                             name="emerPhoneNbrNew"
                                                             id="emergencyContactPhoneNumber"
                                                             aria-label=""
@@ -550,7 +585,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         />
                                                     </div>
 
-                                                    <span data-localize="profile.ext"></span>
+                                                    &nbsp;&nbsp;<span data-localize="profile.ext"></span>
                                                     <div class="form-group">
                                                         <input
                                                             class="form-control phoneAreaCode"
@@ -580,6 +615,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         aria-label=""
                                                         data-localize="profile.relationship"
                                                         value="${emerRequest.emerRelNew}"
+                                                        maxlength="25"
                                                     />
                                                 </div>
                                             </div>
@@ -600,6 +636,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         aria-label=""
                                                         data-localize="profile.emergencyNotes"
                                                         value="${emerRequest.emerNoteNew}"
+                                                        maxlength="25"
                                                     />
                                                 </div>
                                             </div>
@@ -644,6 +681,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input hidden="hidden" type="text" name="empNbr" value="${mailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                         <input hidden="hidden" type="text" name="reqDts" value="${mailAddrRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
+                                            <div class="profileTitle form-line profileInfo">
+                                                    <span class="currentTitle" data-localize="label.current"></span>
+                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                </div>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.number"></div>
                                             <div class="profile-desc">
@@ -704,9 +745,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.city"></div>
                                             <div class="profile-desc">
-                                                <span class="haveValue"
-                                                    >${sessionScope.userDetail.addrCity}</span
-                                                >
+                                                <span class="haveValue">
+                                                        <c:forEach var="states" items="${statesOptions}" varStatus="count">
+                                                                <c:if test="${states.code == sessionScope.userDetail.addrCity}">${states.displayLabel}</c:if>
+                                                    </c:forEach>
+                                                </span>
                                                 <div class="form-group valueInput">
                                                     <input
                                                         class="form-control"
@@ -722,9 +765,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.state"></div>
                                             <div class="profile-desc">
-                                                <span class="haveValue"
-                                                    >${sessionScope.userDetail.addrSt}</span
-                                                >
+                                                <span class="haveValue">
+                                                        <c:forEach var="states" items="${statesOptions}" varStatus="count">
+                                                                <c:if test="${states.code == sessionScope.userDetail.addrSt }">${states.displayLabel}</c:if>
+                                                        </c:forEach>
+                                                </span>
                                                 <div class="form-group valueInput">
                                                     <select
                                                         id="mailAddrState"
@@ -816,6 +861,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input hidden="hidden" type="text" name="empNbr" value="${altMailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                         <input hidden="hidden" type="text" name="reqDts" value="${altMailAddrRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
+                                            <div class="profileTitle form-line profileInfo">
+                                                    <span class="currentTitle" data-localize="label.current"></span>
+                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                </div>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.number"></div>
                                             <div class="profile-desc">
@@ -894,9 +943,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.state"></div>
                                             <div class="profile-desc">
-                                                <span class="haveValue"
-                                                    >${sessionScope.userDetail.smrAddrSt}</span
-                                                >
+                                                <span class="haveValue">
+                                                        <c:forEach var="states" items="${statesOptions}" varStatus="count">
+                                                            <c:if test="${states.code == sessionScope.userDetail.smrAddrSt }">${states.displayLabel}</c:if>
+                                                        </c:forEach>
+                                                </span>
                                                 <div class="form-group valueInput">
                                                     <select
                                                         id="altAddrState"
@@ -988,6 +1039,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input hidden="hidden" type="text" name="empNbr" value="${hmRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                         <input hidden="hidden" type="text" name="reqDts" value="${hmRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
+                                            <div class="profileTitle form-line profileInfo">
+                                                    <span class="currentTitle" data-localize="label.current"></span>
+                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                </div>
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.home"></div>
                                             <div class="profile-desc">
@@ -1009,7 +1064,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </div>
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control"
+                                                            class="form-control phone-input"
                                                             name="phoneNbrNew"
                                                             id="homePhonePhoneNumber"
                                                             aria-label=""
@@ -1041,7 +1096,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control"
+                                                            class="form-control phone-input"
                                                             name="phoneNbrCellNew"
                                                             id="cellPhonePhoneNumber"
                                                             aria-label=""
@@ -1075,7 +1130,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control"
+                                                            class="form-control phone-input"
                                                             name="phoneNbrBusNew"
                                                             id="workPhonePhoneNumber"
                                                             aria-label=""
@@ -1084,7 +1139,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         />
                                                     </div>
 
-                                                    <span data-localize="profile.ext"></span>
+                                                    &nbsp;&nbsp;<span data-localize="profile.ext"></span>
                                                     <div class="form-group">
                                                         <input
                                                             class="form-control phoneAreaCode"
@@ -1161,14 +1216,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}" aria-label="" data-localize="accessHint.maritalStatTax">
                                 <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" aria-label="" data-localize="accessHint.nbrTaxExempts">
                                 <div class="profile-left">
+                                        <div class="profileTitle form-line profileInfo">
+                                                <span class="currentTitle" data-localize="label.current"></span>
+                                                <div class="newTitle" data-localize="label.new"></div>
+                                            </div>
                                     <div class="profile-item-line form-line">
                                         <div class="profile-title" data-localize="profile.MaritalStatus">
                                         
                                         </div>
                                         <div class="profile-desc">
-                                            <span class="haveValue"
-                                                >${payInfo.maritalStatTax}</span
-                                            >
+                                            <span class="haveValue">
+                                                    <c:forEach var="maritalTax" items="${maritalTaxOptions}" varStatus="count">
+                                                            <c:if test="${maritalTax.code == payInfo.maritalStatTax }">${maritalTax.displayLabel}</c:if>
+                                                        </c:forEach>
+                                            </span>
                                             <div class="form-group valueInput">
                                                 <select
                                                     id="maritalStatusLabel"
@@ -1180,7 +1241,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     
                                                 >
                                                     <c:forEach var="maritalTax" items="${maritalTaxOptions}" varStatus="count">
-                                                        <option value="${maritalTax.code}" <c:if test="${maritalTax.code == w4Request.maritalStatTaxNew }">selected</c:if>>${maritalTax.description}</option>
+                                                        <option value="${maritalTax.code}" <c:if test="${maritalTax.code == w4Request.maritalStatTaxNew }">selected</c:if>>${maritalTax.displayLabel}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -1257,6 +1318,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     method="POST"
                                     >
                                 <div class="profile-left">
+                                        <c:if test="${count.index == 0}">
+                                        <div class="profileTitle form-line profileInfo">
+                                                <span class="currentTitle" data-localize="label.current"></span>
+                                                <div class="newTitle" data-localize="label.new"></div>
+                                            </div>
+                                            </c:if>
                                     <div class="profile-item-line form-line">
                                         <div class="profile-title" data-localize="profile.primary"></div>
                                         <div class="profile-desc">
