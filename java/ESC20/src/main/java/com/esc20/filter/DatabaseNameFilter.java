@@ -26,7 +26,7 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 			{
 				String distid = request.getParameter("distid");
 				String sessionValue = (String)request.getSession().getAttribute("districtId");
-				if(sessionValue == null) {
+				if(sessionValue == null || !sessionValue.equals(distid)) {
 					if(distid != null && distid.matches("\\d{6}")){
 						Cookie cookie = new Cookie("districtId",distid);
 						response.addCookie(cookie);
@@ -44,14 +44,13 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 						}
 						
 					}
+					DataSourceContextHolder.setDataSourceType("DB"+(String)request.getSession().getAttribute("districtId"));
 				}
-				DataSourceContextHolder.setDataSourceType("db"+(String)request.getSession().getAttribute("districtId"));
+				
 				String database = (String)request.getSession().getAttribute("districtId");
 				
-				DataSourceContextHolder.setDataSourceType("rsccc");
-				
 				// This should only occur if setting the County District fails.  If so, clear the database context and throw a Program Error. 
-				if (database == null || !"rsccc".equals(DataSourceContextHolder.getDataSourceType())) {
+				if (database == null || "".equals(DataSourceContextHolder.getDataSourceType())) {
 					DataSourceContextHolder.clearDataSourceType();
 					logger.error("Unable to set county district.");
 				}
