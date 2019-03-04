@@ -66,11 +66,6 @@ public class IndexController {
             if(user != null /*&& user.getUsrpswd().equals(plainTextPwd)*/){
                 res.put("isSuccess","true");
                 res.put("userName", uName);
-                
-
-                DataSourceContextHolder.setDataSourceType("demo");
-                this.indexService.TestDemo(user.getEmpNbr());
-                DataSourceContextHolder.setDataSourceType("rsccc");
                 HttpSession session = req.getSession();
                 BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
                 Options options = this.indexService.getOptions();
