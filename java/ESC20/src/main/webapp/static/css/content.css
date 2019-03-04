@@ -571,6 +571,14 @@
   padding: 3px 5px;
 }
 
+.EMP-detail .earning-title-table td.td-title {
+  width: 160px;
+}
+
+.EMP-detail .earning-title-table td.td-title.column1 {
+  width: 130px;
+}
+
 .EMP-detail.w-2 .boxtitle {
   font-weight: bold;
 }
@@ -606,6 +614,9 @@
   }
   .EMP-detail .info-flex-item .info-title {
     flex: 1;
+  }
+  .EMP-detail .text-left .info-flex-item .info-title {
+    flex: 0 0 auto;
   }
   .EMP-detail .info-flex-item .info-content {
     flex: 0 0 auto;
@@ -644,6 +655,52 @@
   .EMP-detail .table td {
     padding: 3px;
   }
+}
+
+.earning-table .earning-table-thisPeriod {
+  width: 150px;
+}
+
+.earning-table .earning-table-calendarYTD {
+  width: 150px;
+}
+
+@media (max-width: 1300px) {
+  .earning-table .earning-table-thisPeriod {
+    width: 100px;
+  }
+  .earning-table .earning-table-calendarYTD {
+    width: 100px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .earning-table .earning-table-thisPeriod {
+    width: 80px;
+  }
+  .earning-table .earning-table-calendarYTD {
+    width: 80px;
+  }
+}
+
+.earning-detail .earning-detail-titleTd {
+  width: 40%;
+}
+
+.earning-detail .earning-detail-units {
+  width: 20%;
+}
+
+.earning-detail .earning-detail-payRate {
+  width: 20%;
+}
+
+.earning-detail .earning-detail-thisPeriod {
+  width: 20%;
+}
+
+.earning-left-table .sameWidth20 {
+  width: 20%;
 }
 
 .note-list .note-item {
@@ -897,7 +954,21 @@
   text-align: left;
 }
 
+.print-show {
+  display: none;
+}
+
 @media print {
+  .print-show {
+    display: inline-block;
+  }
+  .print-hide {
+    display: none !important;
+  }
+  .content-wrapper > .content .content-white {
+    margin-bottom: 0;
+    padding: 0;
+  }
   .print-block-table {
     display: table;
   }
@@ -951,6 +1022,9 @@
     padding: 3px 5px;
     display: table-cell !important;
   }
+  .EMP-detail .employee-info-table td.print-hide, .EMP-detail .employee-info-table th.print-hide {
+    display: none !important;
+  }
   .EMP-detail .earning-line {
     display: table-row;
   }
@@ -969,6 +1043,9 @@
   .EMP-detail .deduction-table {
     display: block !important;
     margin-top: 75px;
+  }
+  .EMP-detail .print-hide {
+    display: none !important;
   }
   .EMP-detail .total-table {
     width: 45%;
@@ -1601,10 +1678,35 @@
   display: none !important;
 }
 
+.max-900 {
+  max-width: 900px;
+}
+
+.max-1000 {
+  max-width: 1000px;
+}
+
 .calendarYTDTable {
   max-width: 1060px;
 }
 
 .deductionTable {
   max-width: 1000px;
+}
+
+.earning-body {
+  max-width: 1050px;
+}
+
+.groupWrapTable .table {
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.groupWrapTable .table thead th {
+  border-bottom: 0;
+}
+
+.calendarAddBtn {
+  opacity: 0;
 }

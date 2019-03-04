@@ -470,7 +470,16 @@ input {
             }
         }
     }
-   
+   &.table-striped{
+       tbody{
+        tr{
+            &:nth-of-type(odd) {
+                background-color: #f9f9f9;
+            }
+           }
+       }
+       
+   }
     &.noNumTable{
         tbody{
             td{
@@ -517,6 +526,9 @@ input {
         }
         &.text-left{
             text-align: left!important;
+        }
+        &.text-right{
+            text-align: right!important;
         }
         &.text-center{
             text-align: center!important;

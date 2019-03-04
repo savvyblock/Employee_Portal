@@ -46,8 +46,8 @@
 							<label class="form-title" for="SearchStartDate"><span data-localize="label.from"></span>:</label> 
 							<div class="button-group">
 							<input
-								class="form-control" type="text" name="SearchStart"
-								id="SearchStartDate" readonly value="${SearchStart}" />
+								class="form-control dateInput" type="text" name="SearchStart"
+								id="SearchStartDate" value="${SearchStart}" />
 								<button class="clear-btn" type="button" onclick="clearDate(this)" aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
 									<i class="fa fa-times"></i>
 								</button>
@@ -57,8 +57,8 @@
 							<label class="form-title" for="SearchEndDate"> <span data-localize="label.to"></span>: </label> 
 							<div class="button-group">
 							<input
-								class="form-control" type="text" name="SearchEnd"
-								id="SearchEndDate" readonly value="${SearchEnd}"/>
+								class="form-control dateInput" type="text" name="SearchEnd"
+								id="SearchEndDate" value="${SearchEnd}"/>
 								<button class="clear-btn" type="button" onclick="clearDate(this)" aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true" tabindex="0">
 									<i class="fa fa-times"></i>
 								</button>
@@ -83,8 +83,8 @@
 								<th data-localize="leaveBalance.dateOfPay"></th>
 								<th data-localize="leaveBalance.dateOfLeave"></th>
 								<th data-localize="leaveBalance.leaveUsed"></th>
-								<th data-localize="leaveBalance.leaveEarned"></th>
-								<th data-localize="leaveBalance.status"></th>
+								<th class="text-right" data-localize="leaveBalance.leaveEarned"></th>
+								<th class="text-center" data-localize="leaveBalance.status"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -102,8 +102,8 @@
 									<td data-localize="leaveBalance.leaveUsed" data-localize-location="scope">${leave.lvUnitsUsed} 
 										<span data-localize="label.days"></span>
 									</td>
-									<td data-localize="leaveBalance.leaveEarned" data-localize-location="scope">${leave.lvUnitsEarned}</td>
-									<td data-localize="leaveBalance.status" data-localize-location="scope">
+									<td class="text-right" data-localize="leaveBalance.leaveEarned" data-localize-location="scope">${leave.lvUnitsEarned}</td>
+									<td class="text-center" data-localize="leaveBalance.status" data-localize-location="scope">
 											<c:if test="${leave.processDt && leave.processDt != ''}">
 												<span data-localize="label.processed"></span>
 											</c:if>

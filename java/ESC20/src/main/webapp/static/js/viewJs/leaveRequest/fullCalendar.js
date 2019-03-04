@@ -76,7 +76,7 @@ $(document).ready(function() {
                         $('#leaveId').attr('value', calEvent.id + '')
                         $('#startDate').val(calEvent.LeaveStartDate)
                         $('#endDate').val(calEvent.LeaveEndDate)
-                        calcTime()
+                        
                         //Initializes the time control when edit event modal show
                     } else {
                         let leaveRequest = calEvent
@@ -139,6 +139,15 @@ $(document).ready(function() {
                         initLocalize(initialLocaleCode)
                     }
                 },
+                dayClick: function(date, allDay, jsEvent, view) {
+                    newEvent($(this))
+                    $("#requestModal").modal("show")
+                },
+                // eventMouseover: function (calEvent, jsEvent, view) {   
+                //     console.log(calEvent)
+                //     console.log(jsEvent)
+                //     console.log(view)
+                // },
                 eventRender: function(event, element, view) {
                     if (event.statusCd != 'A') {
                         element.attr('data-toggle', 'modal')
@@ -166,9 +175,11 @@ $(document).ready(function() {
                         let title = $(this).attr('data-date')
                         // let newBtn = `<button class="btn btn-primary xs"  data-title="${title}" title="Add a new request" onclick="newEvent(this)">Add</button>`
                         let newBtn =
-                            `<button class="btn btn-primary xs" data-title="` +
+                            `<button class="btn btn-primary xs calendarAddBtn" data-title="` +
                             title +
-                            `" title="" data-localize="label.add" onclick="newEvent(this)"  data-toggle="modal" data-target="#requestModal"></button>`
+                            `" onclick="newEvent(this)"  data-toggle="modal" data-target="#requestModal">
+                            <span data-localize="label.add"></span>
+                            </button>`
                         $(this).prepend(newBtn)
                     })
                     initLocalize(initialLocaleCode) //Initialize multilingual function
@@ -188,7 +199,9 @@ $(document).ready(function() {
 function newEvent(dom) {
     $('.dateValidator').hide()
     console.log(dom)
-    let date = changeMMDDFormat($(dom).attr('data-title'))
+    console.log($(dom).attr('data-title'))
+    console.log($(dom).attr('data-date'))
+    let date = changeMMDDFormat($(dom).attr('data-title')?$(dom).attr('data-title'):$(dom).attr('data-date'))
     console.log(date)
     $('#leaveId').attr('value', '')
     $("[name='Remarks']").text('')
@@ -207,7 +220,6 @@ function newEvent(dom) {
     $('#commentList').html('')
     $('.firstSubmit').show()
     $('.secondSubmit').hide()
-    calcTime()
     //Initializes the time control when new event modal show
 }
 

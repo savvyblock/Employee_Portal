@@ -474,6 +474,14 @@
         th {
             padding: 3px 5px;
         }
+        td{
+            &.td-title{
+                width: 160px;
+                &.column1{
+                    width: 130px;
+                }
+            }
+        }
     }
     &.w-2{
         .boxtitle{
@@ -508,6 +516,9 @@
         }
         .info-flex-item .info-title {
             flex: 1;
+        }
+        .text-left .info-flex-item .info-title {
+            flex: 0 0 auto;
         }
         .info-flex-item .info-content {
             flex: 0 0 auto;
@@ -546,6 +557,49 @@
         .table td {
             padding: 3px;
         }
+    }
+}
+.earning-table{
+    .earning-table-thisPeriod{
+        width: 150px;
+    }
+    .earning-table-calendarYTD{
+        width: 150px;
+    }
+    @media (max-width:1300px){
+        .earning-table-thisPeriod{
+            width: 100px;
+        }
+        .earning-table-calendarYTD{
+            width: 100px;
+        }
+    }
+    @media (max-width:1040px){
+        .earning-table-thisPeriod{
+            width: 80px;
+        }
+        .earning-table-calendarYTD{
+            width: 80px;
+        }
+    }
+}
+.earning-detail{
+    .earning-detail-titleTd{
+        width: 40%;
+    }
+    .earning-detail-units{
+        width: 20%;
+    }
+    .earning-detail-payRate{
+        width: 20%;
+    }
+    .earning-detail-thisPeriod{
+        width: 20%;
+    }
+}
+.earning-left-table{
+    .sameWidth20{
+        width: 20%;
     }
 }
 .note-list{
@@ -773,7 +827,23 @@
         text-align: left
     }
 }
+.print-show{
+    display: none;
+}
+.print-hide{
+
+}
 @media print {
+    .print-show{
+        display: inline-block;
+    }
+    .print-hide{
+        display: none!important;
+    }
+    .content-wrapper > .content .content-white{
+        margin-bottom: 0;
+        padding: 0;
+    }
     .print-block-table{
         display: table;
     }
@@ -847,6 +917,9 @@
                 line-height: 1;
                 padding: 3px 5px;
                 display: table-cell !important;
+                &.print-hide{
+                    display: none!important;
+                }
             }
         }
         .earning-line {
@@ -869,6 +942,9 @@
         .deduction-table {
             display: block!important;
             margin-top: 75px;
+        }
+        .print-hide{
+            display: none!important;
         }
         .total-table {
             width: 45%;
@@ -1446,9 +1522,32 @@
         }
     }
 }
+.max-900{
+    max-width: 900px;
+}
+.max-1000{
+    max-width: 1000px;
+}
 .calendarYTDTable{
     max-width: 1060px;
 }
 .deductionTable{
     max-width: 1000px;
+}
+.earning-body{
+    max-width:1050px;;
+}
+.groupWrapTable{
+    .table{
+        margin-bottom: 0;
+        border-bottom: 0;
+        thead{
+            th{
+                border-bottom: 0;
+            }
+        }
+    }
+}
+.calendarAddBtn{
+    opacity: 0;
 }

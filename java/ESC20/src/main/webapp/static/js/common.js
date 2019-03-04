@@ -5,6 +5,7 @@ var pathPrefix = "/"+ctx+"/js/lang"; //language json location
 console.log(pathPrefix);
 var name = 'somoveLanguage';
 $(function() {
+    // $(".dateInput").inputmask("mm/dd/yyyy", { "placeholder": "mm/dd/yyyy" });
     $("#skipNav").on("click",function(){
         console.log($(".content-wrapper"))
         $(".content-wrapper").focus()

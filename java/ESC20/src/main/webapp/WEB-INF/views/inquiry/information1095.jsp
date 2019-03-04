@@ -14,7 +14,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             <main class="content-wrapper" id="content" tabindex="-1">
                 <section class="content body-1095">
                             <h2 class="clearfix no-print section-title">
-                                <span data-localize="title.info1095"></span>
+                                <span data-localize="nav.info1095"></span>
                                 <div class="right-btn pull-right">
                                     <c:if test="${sessionScope.options.enableElecConsnt1095 == true}">
                                             <button
@@ -258,83 +258,86 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <tbody>
                                             <tr>
                                                 <td class="tr-title">
-                                                    14 <span data-localize="info1095Table.offerOfCoverage"></span>
+                                                    <div class="print-show">14 <span data-localize="info1095Table.offerOfCoverage"></span></div>
+                                                    <span class="print-hide" data-localize="info1095Table.offerOfCoverageSimple"></span>
                                                 </td>
-                                                <td data-localize="info1095Table.allMonths" data-localize-location="scope">2C</td>
-                                                <td data-localize="info1095Table.Jan" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Feb" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Mar" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Apr" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.May" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Jun" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Jul" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Aug" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Sep" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Oct" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Nov" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Dec" data-localize-location="scope"></td>
+                                                <td data-localize="info1095Table.allMonths" data-localize-location="scope,data-title">2C</td>
+                                                <td data-localize="info1095Table.Jan" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Feb" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Mar" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Apr" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.May" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Jun" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Jul" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Aug" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Sep" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Oct" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Nov" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Dec" data-localize-location="scope,data-title"></td>
                                             </tr>
                                             <tr>
                                                 <td class="tr-title">
-                                                    15 <span data-localize="info1095Table.employeeRequiredContribution"></span>
+                                                    <div class="print-show">15 <span data-localize="info1095Table.employeeRequiredContribution"></span></div>
+                                                    <span class="print-hide" data-localize="info1095Table.employeeShare"></span>
                                                 </td>
-                                                <td data-localize="info1095Table.allMonths" data-localize-location="scope">
+                                                <td data-localize="info1095Table.allMonths" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
-                                                <td data-localize="info1095Table.Jan" data-localize-location="scope">
+                                                <td data-localize="info1095Table.Jan" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
-                                                <td data-localize="info1095Table.Feb" data-localize-location="scope">
+                                                <td data-localize="info1095Table.Feb" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
-                                                <td data-localize="info1095Table.Mar" data-localize-location="scope">
+                                                <td data-localize="info1095Table.Mar" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
-                                                <td data-localize="info1095Table.Apr" data-localize-location="scope">
+                                                <td data-localize="info1095Table.Apr" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
-                                                <td data-localize="info1095Table.May" data-localize-location="scope">
+                                                <td data-localize="info1095Table.May" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
-                                                <td data-localize="info1095Table.Jun" data-localize-location="scope">
+                                                <td data-localize="info1095Table.Jun" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
-                                                <td data-localize="info1095Table.Jul" data-localize-location="scope">
+                                                <td data-localize="info1095Table.Jul" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
-                                                <td data-localize="info1095Table.Aug" data-localize-location="scope">
+                                                <td data-localize="info1095Table.Aug" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
-                                                <td data-localize="info1095Table.Sep" data-localize-location="scope">
+                                                <td data-localize="info1095Table.Sep" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
-                                                <td data-localize="info1095Table.Oct" data-localize-location="scope">
+                                                <td data-localize="info1095Table.Oct" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
-                                                <td data-localize="info1095Table.Nov" data-localize-location="scope">
+                                                <td data-localize="info1095Table.Nov" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
-                                                <td data-localize="info1095Table.Dec" data-localize-location="scope">
+                                                <td data-localize="info1095Table.Dec" data-localize-location="scope,data-title">
                                                         <span class="unit-dollar" data-localize="info1095Table.dollar">$</span> 0.00
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="tr-title">
-                                                    16 <span data-localize="info1095Table.section4980HSafeHarbor"></span>
+                                                    <div class="print-show">16 <span data-localize="info1095Table.section4980HSafeHarbor"></span></div>
+                                                    <span class="print-hide" data-localize="info1095Table.SafeHarbor"></span>
                                                 </td>
-                                                <td data-localize="info1095Table.allMonths" data-localize-location="scope">2C</td>
-                                                <td data-localize="info1095Table.Jan" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Feb" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Mar" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Apr" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.May" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Jun" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Jul" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Aug" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Sep" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Oct" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Nov" data-localize-location="scope"></td>
-                                                <td data-localize="info1095Table.Dec" data-localize-location="scope"></td>
+                                                <td data-localize="info1095Table.allMonths" data-localize-location="scope,data-title">2C</td>
+                                                <td data-localize="info1095Table.Jan" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Feb" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Mar" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Apr" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.May" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Jun" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Jul" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Aug" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Sep" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Oct" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Nov" data-localize-location="scope,data-title"></td>
+                                                <td data-localize="info1095Table.Dec" data-localize-location="scope,data-title"></td>
                                             </tr>
                                         </tbody>
                                     </table>

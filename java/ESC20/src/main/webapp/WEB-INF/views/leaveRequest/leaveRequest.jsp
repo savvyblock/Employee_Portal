@@ -98,11 +98,11 @@
 					<table class="table request-list responsive-table">
 						<thead>
 							<tr>
-								<th data-localize="leaveRequest.sno"></th>
+								<!-- <th data-localize="leaveRequest.sno"></th> -->
 								<th data-localize="leaveRequest.leaveType"></th>
 								<th data-localize="leaveRequest.absenceReason"></th>
-								<th data-localize="leaveRequest.startDate"></th>
-								<th data-localize="leaveRequest.endDate"></th>
+								<th class="text-center" data-localize="leaveRequest.startDate"></th>
+								<th class="text-center" data-localize="leaveRequest.endDate"></th>
 								<!-- <th data-localize="leaveRequest.startTime"></th>
 								<th data-localize="leaveRequest.endTime"></th> -->
 								<th data-localize="leaveRequest.leaveRequested"></th>
@@ -114,7 +114,7 @@
 						<tbody>
 							<c:forEach var="leave" items="${leaves}" varStatus="leaves">
 								<tr>
-									<td  data-localize="leaveRequest.sno" data-localize-location="scope">${leaves.index + 1}</td>
+									<!-- <td  data-localize="leaveRequest.sno" data-localize-location="scope">${leaves.index + 1}</td> -->
 									<td data-localize="leaveRequest.leaveType" data-localize-location="scope">
 											<c:forEach var="type" items="${leaveTypes}" varStatus="count">
 													<c:if test="${type.code == leave.LeaveType}">${type.description}</c:if>
@@ -125,8 +125,8 @@
 													<c:if test="${abs.code == leave.AbsenseReason }">${abs.description}</c:if>
 											</c:forEach>
 									</td>
-									<td data-localize="leaveRequest.startDate" data-localize-location="scope">${leave.start}</td>
-									<td data-localize="leaveRequest.endDate" data-localize-location="scope">${leave.end}</td>
+									<td class="text-center" data-localize="leaveRequest.startDate" data-localize-location="scope">${leave.start}</td>
+									<td class="text-center" data-localize="leaveRequest.endDate" data-localize-location="scope">${leave.end}</td>
 									<td data-localize="leaveRequest.leaveRequested" data-localize-location="scope">${leave.lvUnitsUsed} 
 											<span data-localize="label.days"></span>
 									</td>

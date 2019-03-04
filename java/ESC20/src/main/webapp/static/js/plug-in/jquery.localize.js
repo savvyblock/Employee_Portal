@@ -177,7 +177,7 @@ http://keith-wood.name/localisation.html
         elem.attr("title", value);
       }
       if(elem.is("[data-title]")){
-        elem.attr("title", value);
+        elem.attr("data-title", value);
       }
       if(elem.is("[scope]")){
         elem.attr("scope", value);
