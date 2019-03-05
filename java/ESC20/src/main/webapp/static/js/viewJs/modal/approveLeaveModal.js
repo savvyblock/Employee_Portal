@@ -1,17 +1,19 @@
 var showInfo = false
 function showDetail(dom){
-            $(dom).toggleClass("active");
-            if(showInfo){
-                $("#leaveBalanceSummary").removeClass("active");
-                showInfo = false
-            }else{
-                $("#leaveBalanceSummary").addClass("active");
-                showInfo = true
-            }
-            
-        }
+    $(dom).toggleClass("active");
+    if(showInfo){
+        $("#leaveBalanceSummary").removeClass("active");
+        showInfo = false
+    }else{
+        $("#leaveBalanceSummary").addClass("active");
+        showInfo = true
+    }
+    
+}
+function closeFistModal(){
+    $("body").addClass("modal-open")
+}
 $(function(){
-        
         let comment = false
         let action = false;
         let approve = false;

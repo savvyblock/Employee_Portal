@@ -434,6 +434,7 @@
 		"action":"Action",
 		"ESC20":"ESC20",
 		"back":"Go Back",
+		"currentMonth":"Current Month",
 		"errorImg":"error image",
 		"pleaseTryAgain":"Please try again later",
 		"allRightReserved":"All rights reserved.",

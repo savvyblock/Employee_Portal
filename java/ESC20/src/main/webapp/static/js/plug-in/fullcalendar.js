@@ -12587,6 +12587,7 @@ var Toolbar = /** @class */ (function () {
                     var buttonClasses;
                     var buttonEl;
                     var buttonAriaAttr;
+                    var buttonDataLocalize;
                     if (buttonName === 'title') {
                         groupChildren = groupChildren.add($('<h2>&nbsp;</h2>')); // we always want it to take up height
                         isOnlyButtons = false;
@@ -12627,8 +12628,13 @@ var Toolbar = /** @class */ (function () {
                                 theme.getClass('stateDefault')
                             ];
                             if (buttonText) {
-                                buttonInnerHtml = util_1.htmlEscape(buttonText);
                                 buttonAriaAttr = '';
+                                if(buttonName == 'today'){
+                                    buttonDataLocalize = 'data-localize="label.currentMonth"';
+                                    buttonInnerHtml = '';
+                                }else{
+                                    buttonInnerHtml = util_1.htmlEscape(buttonText);
+                                }
                             }
                             else if (buttonIcon) {
                                 buttonInnerHtml = "<span class='" + buttonIcon + "'></span>";
@@ -12636,7 +12642,7 @@ var Toolbar = /** @class */ (function () {
                             }
                             buttonEl = $(// type="button" so that it doesn't submit a form
                             '<button type="button" class="' + buttonClasses.join(' ') + '"' +
-                                buttonAriaAttr +
+                                buttonAriaAttr + buttonDataLocalize +
                                 '>' + buttonInnerHtml + '</button>')
                                 .click(function (ev) {
                                 // don't process clicks for disabled buttons
@@ -12676,6 +12682,7 @@ var Toolbar = /** @class */ (function () {
                                     .removeClass(theme.getClass('stateDown')); // if mouseleave happens before mouseup
                             });
                             groupChildren = groupChildren.add(buttonEl);
+                            setGlobal();
                         }
                     }
                 });

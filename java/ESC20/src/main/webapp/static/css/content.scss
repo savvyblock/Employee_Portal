@@ -1311,6 +1311,9 @@
                     width: 45px;
                     min-width: 45px;
                 }
+                &.active{
+                    background: #fdfda5;
+                }
             }
             .btn{
                 height: 25px;
@@ -1550,4 +1553,13 @@
 }
 .calendarAddBtn{
     opacity: 0;
+}
+.fc-day-grid-event{
+    cursor: pointer;
+}
+.modal{
+    background: rgba(0,0,0,.5);
+}
+.modal-backdrop{
+    background: none;
 }

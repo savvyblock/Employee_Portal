@@ -12,7 +12,7 @@
             <div class="modal-header">
                 <button
                     type="button"
-                    class="close"
+                    class="close closeModal"
                     data-dismiss="modal"
                     aria-hidden="true"
                     aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
@@ -104,7 +104,7 @@
                   </button>
                   <button
                   type="button"
-                      class="btn btn-secondary"
+                      class="btn btn-secondary closeModal"
                       data-dismiss="modal"
                       aria-hidden="true"
                       id="cancelAdd"

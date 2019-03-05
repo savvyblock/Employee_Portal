@@ -49,16 +49,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input hidden="hidden" type="text" name="reqDts" value="${nameRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                                     <div class="form-group valueInput">
                                                         <select
-                                                            class="form-control"
+                                                            class="form-control <c:if test="${sessionScope.userDetail.namePre != nameRequest.namePreNew }">active</c:if>"
                                                             aria-label=""
                                                             data-localize="profile.title"
                                                             name="namePreNew"
                                                             id="titleString"
-                                                            value="${nameRequest.namePreNew}"
-                                                            
                                                         >
                                                         <c:forEach var="title" items="${titleOptions}" varStatus="count">
-                                                            <option value="${title.code}" <c:if test="${title.code == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
+                                                            <option value="${title.description}" <c:if test="${title.description == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
                                                         </c:forEach>
                                                         </select>
                                                     </div>
@@ -72,7 +70,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     >
                                                     <div class="form-group valueInput">
                                                         <input
-                                                            class="form-control"
+                                                            class="form-control <c:if test="${sessionScope.userDetail.nameF != nameRequest.nameFNew}">active</c:if>"
                                                             type="text"
                                                             value="${nameRequest.nameFNew}"
                                                             aria-label=""
@@ -94,7 +92,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     >
                                                     <div class="form-group valueInput">
                                                         <input
-                                                            class="form-control"
+                                                            class="form-control <c:if test="${sessionScope.userDetail.nameM != nameRequest.nameMNew}">active</c:if>"
                                                             type="text"
                                                             value="${nameRequest.nameMNew}"
                                                             aria-label=""
@@ -116,7 +114,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     >
                                                     <div class="form-group valueInput">
                                                         <input
-                                                            class="form-control"
+                                                            class="form-control <c:if test="${sessionScope.userDetail.nameL != nameRequest.nameLNew}">active</c:if>"
                                                             type="text"
                                                             value="${nameRequest.nameLNew}"
                                                             aria-label=""
@@ -139,7 +137,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     >
                                                     <div class="form-group valueInput">
                                                         <select
-                                                            class="form-control"
+                                                            class="form-control <c:if test="${sessionScope.userDetail.nameGen != nameRequest.nameGenNew}">active</c:if>"
                                                             value="${nameRequest.nameGenNew}"
                                                             aria-label=""
                                                             data-localize="profile.generation"
@@ -174,7 +172,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <button
                                                     type="button"
                                                     id="undoNameRequest"
-                                                    class="btn btn-secondary"  data-localize="label.undo"
+                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
@@ -211,7 +209,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <select
                                                         id="maritalStatus"
                                                         name="maritalStatNew"
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.maritalStat != mrtlRequest.maritalStatNew }">active</c:if>"
                                                         aria-label=""
                                                         data-localize="profile.local"
                                                         
@@ -244,7 +242,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                     type="button"
                                                     id="undoMaritalRequest"
-                                                    class="btn btn-secondary"  data-localize="label.undo"
+                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
@@ -276,7 +274,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="form-group valueInput">
                                                     <input
                                                         type="text"
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.driversLicNbr != licRequest.driversLicNbrNew }">active</c:if>"
                                                         value="${licRequest.driversLicNbrNew}"
                                                         name="driversLicNbrNew"
                                                         id="driversLicenseNumber"
@@ -301,7 +299,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="driversState"
                                                         name="driversLicStNew"
                                                         value="${licRequest.driversLicStNew}"                                                
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.driversLicSt != licRequest.driversLicStNew }">active</c:if>"
                                                         aria-label=""
                                                         data-localize="profile.driversLicenseState"
                                                     >
@@ -334,7 +332,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                     type="button"
                                                     id="undoDriverLicense"
-                                                    class="btn btn-secondary"  data-localize="label.undo"
+                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
@@ -370,7 +368,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <select
                                                         id="restrictionCodesLocalRestriction"
                                                         name="restrictCdNew"
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.restrictCd != restrictRequest.restrictCdNew }">active</c:if>"
                                                         aria-label=""
                                                         data-localize="profile.restrictionCodesLocal"
                                                         
@@ -395,7 +393,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <select
                                                         id="restrictionCodesPublicRestriction"
                                                         name="restrictCdPublicNew"
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.restrictCdPublic != restrictRequest.restrictCdPublicNew }">active</c:if>"
                                                         aria-label=""
                                                         data-localize="profile.restrictionCodesPublic"
                                                     >
@@ -427,7 +425,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                     type="button"
                                                     id="undoRestriction"
-                                                    class="btn btn-secondary"  data-localize="label.undo"
+                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
@@ -462,7 +460,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="emailNew"
                                                         value="${emailRequest.emailNew}"
                                                         id="emailWorkEmail"
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.email != emailRequest.emailNew}">active</c:if>"
                                                         aria-label=""
                                                         data-localize="profile.workEmail"
                                                         
@@ -478,7 +476,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.hmEmail != emailRequest.hmEmailNew}">active</c:if>"
                                                         name="hmEmailNew"
                                                         id="emailHomeEmail"
                                                         aria-label=""
@@ -509,7 +507,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                     type="button"
                                                     id="undoEmail"
-                                                    class="btn btn-secondary"  data-localize="label.undo"
+                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
@@ -540,7 +538,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.emerContact != emerRequest.emerContactNew}">active</c:if>"
                                                         type="text"
                                                         id="emergencyContactName"
                                                         name="emerContactNew"
@@ -566,7 +564,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="valueInput flex">
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phoneAreaCode"
+                                                            class="form-control phoneAreaCode <c:if test="${sessionScope.userDetail.emerPhoneAc != emerRequest.emerPhoneAcNew}">active</c:if>"
                                                             name="emerPhoneAcNew"
                                                             id="emergencyContactAreaCode"
                                                             aria-label=""
@@ -576,7 +574,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </div>
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phone-input"
+                                                            class="form-control phone-input <c:if test="${sessionScope.userDetail.emerPhoneNbr != emerRequest.emerPhoneNbrNew}">active</c:if>"
                                                             name="emerPhoneNbrNew"
                                                             id="emergencyContactPhoneNumber"
                                                             aria-label=""
@@ -588,7 +586,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     &nbsp;&nbsp;<span data-localize="profile.ext"></span>
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phoneAreaCode"
+                                                            class="form-control phoneAreaCode <c:if test="${sessionScope.userDetail.emerPhoneExt != emerRequest.emerPhoneExtNew}">active</c:if>"
                                                             name="emerPhoneExtNew"
                                                             id="emergencyContactExtention"
                                                             aria-label=""
@@ -609,7 +607,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.emerRel != emerRequest.emerRelNew}">active</c:if>"
                                                         name="emerRelNew"
                                                         id="emergencyContactRelationship"
                                                         aria-label=""
@@ -630,7 +628,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.emerNote != emerRequest.emerNoteNew}">active</c:if>"
                                                         name="emerNoteNew"
                                                         id="emergencyContactEmergencyNotes"
                                                         aria-label=""
@@ -662,7 +660,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                     type="button"
                                                     id="undoEmergencyContact"
-                                                    class="btn btn-secondary"  data-localize="label.undo"
+                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
@@ -693,7 +691,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.addrNbr != mailAddrRequest.addrNbrNew}">active</c:if>"
                                                         name="addrNbrNew"
                                                         id="mailAddrNumber"
                                                         aria-label=""
@@ -714,7 +712,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.addrStr != mailAddrRequest.addrStrNew}">active</c:if>"
                                                         name="addrStrNew"
                                                         id="mailAddrStr"
                                                         aria-label=""
@@ -732,7 +730,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.addrApt != mailAddrRequest.addrAptNew}">active</c:if>"
                                                         name="addrAptNew"
                                                         id="mailAddrApartment"
                                                         aria-label=""
@@ -746,13 +744,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="profile-title" data-localize="profile.city"></div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
-                                                        <c:forEach var="states" items="${statesOptions}" varStatus="count">
-                                                                <c:if test="${states.code == sessionScope.userDetail.addrCity}">${states.displayLabel}</c:if>
-                                                    </c:forEach>
+                                                    ${sessionScope.userDetail.addrCity}
                                                 </span>
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.addrCity != mailAddrRequest.addrCityNew}">active</c:if>"
                                                         name="addrCityNew"
                                                         id="mailAddrCity"
                                                         aria-label=""
@@ -776,7 +772,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="addrStNew"
                                                         aria-label=""
                                                         data-localize="profile.state"
-                                                        class="form-control"
+                                                        class="form-control  <c:if test="${sessionScope.userDetail.addrSt != mailAddrRequest.addrStNew}">active</c:if>"
                                                     >
                                                         <c:forEach var="states" items="${statesOptions}" varStatus="count">
                                                             <option value="${states.code}" <c:if test="${states.code == mailAddrRequest.addrStNew }">selected</c:if>>${states.displayLabel}</option>
@@ -793,7 +789,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control  <c:if test="${sessionScope.userDetail.addrZip != mailAddrRequest.addrZipNew}">active</c:if>"
                                                         name="addrZipNew"
                                                         id="mailAddrZip"
                                                         aria-label=""
@@ -811,7 +807,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.addrZip4 != mailAddrRequest.addrZip4New}">active</c:if>"
                                                         name="addrZip4New"
                                                         id="mailAddrZipPlusFour"
                                                         aria-label=""
@@ -842,7 +838,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                     type="button"
                                                     id="undoMailingAddress"
-                                                    class="btn btn-secondary"  data-localize="label.undo"
+                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
@@ -873,7 +869,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.smrAddrNbr != altMailAddrRequest.smrAddrNbrNew}">active</c:if>"
                                                         name="smrAddrNbrNew"
                                                         id="altAddrNumber"
                                                         aria-label=""
@@ -894,7 +890,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.smrAddrStr != altMailAddrRequest.smrAddrStrNew}">active</c:if>"
                                                         name="smrAddrStrNew"
                                                         id="altAddrStr"
                                                         aria-label=""
@@ -912,7 +908,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.smrAddrApt != altMailAddrRequest.smrAddrAptNew}">active</c:if>"
                                                         name="smrAddrAptNew"
                                                         id="altAddrApartment"
                                                         aria-label=""
@@ -930,7 +926,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.smrAddrCity != altMailAddrRequest.smrAddrCityNew}">active</c:if>"
                                                         name="smrAddrCityNew"
                                                         id="altAddrCity"
                                                         aria-label=""
@@ -954,7 +950,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="smrAddrStNew"
                                                         aria-label=""
                                                         data-localize="profile.state"
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.smrAddrSt != altMailAddrRequest.smrAddrStNew}">active</c:if>"
                                                     >
                                                     <c:forEach var="states" items="${statesOptions}" varStatus="count">
                                                             <option value="${states.code}" <c:if test="${states.code == altMailAddrRequest.smrAddrStNew }">selected</c:if>>${states.displayLabel}</option>
@@ -971,7 +967,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.smrAddrZip != altMailAddrRequest.smrAddrZipNew}">active</c:if>"
                                                         name="smrAddrZipNew"
                                                         id="altAddrZip"
                                                         aria-label=""
@@ -989,7 +985,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control"
+                                                        class="form-control <c:if test="${sessionScope.userDetail.smrAddrZip4 != altMailAddrRequest.smrAddrZip4New}">active</c:if>"
                                                         name="smrAddrZip4New"
                                                         id="altAddrZipPlusFour"
                                                         aria-label=""
@@ -1020,7 +1016,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                     type="button"
                                                     id="undoAlternative"
-                                                    class="btn btn-secondary"  data-localize="label.undo"
+                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
@@ -1053,7 +1049,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="valueInput flex">
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phoneAreaCode"
+                                                            class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.phoneArea != hmRequest.phoneAreaNew}">active</c:if>"
                                                             name="phoneAreaNew"
                                                             id="homePhoneAreaCode"
                                                             aria-label=""
@@ -1064,7 +1060,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </div>
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phone-input"
+                                                            class="form-control phone-input  <c:if test="${sessionScope.userDetail.phoneNbr != hmRequest.phoneNbrNew}">active</c:if>"
                                                             name="phoneNbrNew"
                                                             id="homePhonePhoneNumber"
                                                             aria-label=""
@@ -1085,7 +1081,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="valueInput flex">
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phoneAreaCode"
+                                                            class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.phoneAreaCell != cellRequest.phoneAreaCellNew}">active</c:if>"
                                                             name="phoneAreaCellNew"
                                                             id="cellPhoneAreaCode"
                                                             aria-label=""
@@ -1096,7 +1092,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phone-input"
+                                                            class="form-control phone-input  <c:if test="${sessionScope.userDetail.phoneNbrCell != cellRequest.phoneNbrCellNew}">active</c:if>"
                                                             name="phoneNbrCellNew"
                                                             id="cellPhonePhoneNumber"
                                                             aria-label=""
@@ -1119,7 +1115,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="valueInput flex">
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phoneAreaCode"
+                                                            class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.phoneAreaBus != busRequest.phoneAreaBusNew}">active</c:if>"
                                                             name="phoneAreaBusNew"
                                                             id="workPhoneAreaCode"
                                                             aria-label=""
@@ -1130,7 +1126,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phone-input"
+                                                            class="form-control phone-input  <c:if test="${sessionScope.userDetail.phoneNbrBus != busRequest.phoneNbrBusNew}">active</c:if>"
                                                             name="phoneNbrBusNew"
                                                             id="workPhonePhoneNumber"
                                                             aria-label=""
@@ -1142,7 +1138,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     &nbsp;&nbsp;<span data-localize="profile.ext"></span>
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phoneAreaCode"
+                                                            class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.busPhoneExt != busRequest.busPhoneExtNew}">active</c:if>"
                                                             name="busPhoneExtNew"
                                                             id="workPhoneExtention"
                                                             aria-label=""
@@ -1174,7 +1170,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                     type="button"
                                                     id="undoPhoneNumber"
-                                                    class="btn btn-secondary"  data-localize="label.undo"
+                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
@@ -1234,7 +1230,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <select
                                                     id="maritalStatusLabel"
                                                     name="maritalStatTaxNew"
-                                                    class="form-control"
+                                                    class="form-control  <c:if test="${payInfo.maritalStatTax != w4Request.maritalStatTaxNew}">active</c:if>"
                                                     value="${w4Request.maritalStatTaxNew}"
                                                     aria-label=""
                                                     data-localize="profile.MaritalStatus"
@@ -1257,7 +1253,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             >
                                             <div class="form-group valueInput">
                                                 <input
-                                                    class="form-control"
+                                                    class="form-control <c:if test="${payInfo.nbrTaxExempts != w4Request.nbrTaxExemptsNew}">active</c:if>"
                                                     id="nbrTaxExemptsNew"
                                                     name="nbrTaxExemptsNew"
                                                     aria-label=""  data-localize="profile.NbrOfExemptions"
@@ -1287,7 +1283,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <button
                                                 type="button"
                                                 id="undoW4"
-                                                class="btn btn-secondary"  data-localize="label.undo"
+                                                class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                             >
                                             
                                             </button>
@@ -1363,7 +1359,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="valueInput group-line">
                                                 <div class="form-group inputDisabled">
                                                     <input
-                                                        class="form-control name"
+                                                        class="form-control name <c:if test="${bank.code.description != bank.codeNew.description}">active</c:if>"
                                                         type="text"
                                                         name="description"
                                                         aria-label="" 
@@ -1374,7 +1370,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                                                 <div class="form-group inputDisabled">
                                                     <input
-                                                        class="form-control code"
+                                                        class="form-control code <c:if test="${bank.code.subCode != bank.codeNew.subCode}">active</c:if>"
                                                         type="text"
                                                         name="subCode"
                                                         aria-label="" 
@@ -1404,7 +1400,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             >
                                             <div class="form-group valueInput">
                                                 <input
-                                                    class="form-control"
+                                                    class="form-control <c:if test="${bank.accountNumber != bank.accountNumberNew}">active</c:if>"
                                                     type="text"
                                                     aria-label=""
                                                     data-localize="profile.bankAcctNbr"
@@ -1424,7 +1420,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             >
                                             <div class="form-group valueInput">
                                                 <select
-                                                    class="form-control"
+                                                    class="form-control <c:if test="${bank.accountType.code != bank.accountTypeNew.code}">active</c:if>"
                                                     aria-label=""
                                                     id="accountTypeNew_${count.index}"
                                                     data-localize="profile.bankAcctType"
@@ -1447,7 +1443,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             >
                                             <div class="form-group valueInput">
                                                 <input
-                                                    class="form-control amount_2"
+                                                    class="form-control amount_2 <c:if test="${bank.depositAmount.displayAmount != bank.depositAmountNew.displayAmount}">active</c:if>"
                                                     id="displayAmountNew_${count.index}"
                                                     type="text"
                                                     aria-label="" data-localize="profile.bankAcctAmt"
@@ -1471,18 +1467,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <button
                                                 type="button"
                                                 id="undoBank_${count.index}"
-                                                class="btn btn-secondary undo-btn"  data-localize="label.undo"
+                                                class="btn btn-secondary undo-btn"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 onclick="undoBank(${count.index})"
                                             >
                                             
                                         </button>
-                                        <button
-                                            type="button"
-                                            id="deleteBank_${count.index}"
-                                            class="btn btn-secondary delete-btn"  data-localize="label.delete" onclick="deleteBankAmount(${count.index})"
-                                        >
-                                        
-                                        </button>
+                                        <c:if test="${bank.code.subCode!=''}">
+                                            <button
+                                                type="button"
+                                                id="deleteBank_${count.index}"
+                                                class="btn btn-secondary delete-btn"  data-localize="label.delete" onclick="deleteBankAmount(${count.index})"
+                                                data-toggle="modal" data-target="#deleteModal"
+                                            >
+                                            
+                                            </button>
+                                        </c:if>
                                     </div>
                                 </div>
                             </form>

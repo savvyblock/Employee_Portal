@@ -26,6 +26,9 @@ $(function() {
         let val = $(this).val();
         $(this).val(Number(val).toFixed(3));
     });
+    $(".closeModal").click(function(){
+        hideBody()
+    })
 
     console.log(language);
     if (language.indexOf('en') > -1) {
@@ -87,4 +90,14 @@ function clearDate(e){
 
 function doPrint() {
     window.print()
+}
+
+function hideBody(){
+    setTimeout(() => {
+        $(".modal").each(function(){
+            if($(this).is(':visible')){
+                $("body").addClass("modal-open")
+            }
+        })
+    }, 200);
 }

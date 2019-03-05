@@ -285,49 +285,50 @@ $(function() {
     })
 
     $('#undoNameRequest').click(function() {
-        $('#undoModal').modal('show')
+        // $('#undoModal').modal('show')
         formSelect = $('#deleteNameRequest')
     })
     $('#undoMaritalRequest').click(function(e) {
         e.preventDefault()
-        $('#undoModal').modal('show')
+        // $('#undoModal').modal('show')
         formSelect = $('#deleteMaritalRequest')
     })
     $('#undoDriverLicense').click(function() {
-        $('#undoModal').modal('show')
+        // $('#undoModal').modal('show')
         formSelect = $('#deleteDriversLicense')
     })
     $('#undoRestriction').click(function() {
-        $('#undoModal').modal('show')
+        // $('#undoModal').modal('show')
         formSelect = $('#deleteRestrictionCodesRequest')
     })
     $('#undoEmail').click(function() {
-        $('#undoModal').modal('show')
+        // $('#undoModal').modal('show')
         formSelect = $('#deleteEmail')
     })
     $('#undoEmergencyContact').click(function() {
-        $('#undoModal').modal('show')
+        // $('#undoModal').modal('show')
         formSelect = $('#deleteEmergencyContact')
     })
     $('#undoMailingAddress').click(function() {
-        $('#undoModal').modal('show')
+        // $('#undoModal').modal('show')
         formSelect = $('#deleteMailAddr')
     })
     $('#undoAlternative').click(function() {
-        $('#undoModal').modal('show')
+        // $('#undoModal').modal('show')
         formSelect = $('#deleteAltMailAddr')
     })
     $('#undoPhoneNumber').click(function() {
-        $('#undoModal').modal('show')
+        // $('#undoModal').modal('show')
         formSelect = $('#deletePhone')
     })
     $('#undoW4').click(function() {
-        $('#undoModal').modal('show')
+        // $('#undoModal').modal('show')
         formSelect = $('#deleteW4')
     })
     $('.sureUndo').click(function() {
         console.log('modal -- undo')
         formSelect.submit()
+        
     })
     $('.sureDelete').click(function() {
         console.log('modal -- delete')
@@ -335,7 +336,7 @@ $(function() {
     })
 })
 function deleteBankAmount(index) {
-    $('#deleteModal').modal('show')
+    // $('#deleteModal').modal('show')
     console.log('delete=' + index)
 
     var freq = $('#freq').val()
@@ -405,7 +406,7 @@ function undoBank(index) {
     $('#hidden_accountNumber_undo').val(accountNumber)
     $('#hidden_accountNumberNew_undo').val(accountNumberNew)
 
-    $('#undoModal').modal('show')
+    // $('#undoModal').modal('show')
     formSelect = $('#undoBankHidden')
 }
 

@@ -30,11 +30,7 @@ function initialLeaveCalendarStaticModal(){
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'month'
-                },
-                buttonText: {
-                    today: 'Today',
-                    month: 'Month'
+                    right: ''
                 },
                 timeFormat: 'hh:mm A',
                 displayEventEnd: true,
@@ -115,8 +111,12 @@ function initialLeaveCalendarStaticModal(){
                     initLocalize(initialLocaleCode)
                 },
                 viewRender:function(){
+                    $(".fc-today-button").html('<span data-localize="label.currentMonth"></span>')
+                    initLocalize(initialLocaleCode) //Initialize multilingual function
                 }
             })
         }
     })
+    $(".fc-today-button").html('<span data-localize="label.currentMonth"></span>')
+    initLocalize(initialLocaleCode) //Initialize multilingual function
 }

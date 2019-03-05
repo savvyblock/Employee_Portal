@@ -7,12 +7,8 @@ $(document).ready(function() {
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'month'
+                    right: ''
                     // right: 'month,agendaWeek,agendaDay,listMonth'
-                },
-                buttonText: {
-                    today: 'Today',
-                    month: 'Month'
                 },
                 timeFormat: 'hh:mm A',
                 displayEventEnd: true,
@@ -182,15 +178,17 @@ $(document).ready(function() {
                             </button>`
                         $(this).prepend(newBtn)
                     })
+                    $(".fc-today-button").html('<span data-localize="label.currentMonth"></span>')
                     initLocalize(initialLocaleCode) //Initialize multilingual function
                 }
             })
         },
         change: function(themeSystem) {
-            console.log('111111111')
             $('#calendar').fullCalendar('option', 'themeSystem', themeSystem)
         }
     })
+    
+    
 
     $('.sureDelete').click(function() {
         $('#deleteForm')[0].submit()

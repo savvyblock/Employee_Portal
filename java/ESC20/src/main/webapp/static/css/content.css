@@ -1446,6 +1446,10 @@
   min-width: 45px;
 }
 
+.profile .profile-item .valueInput .form-control.active {
+  background: #fdfda5;
+}
+
 .profile .profile-item .valueInput .btn {
   height: 25px;
 }
@@ -1709,4 +1713,16 @@
 
 .calendarAddBtn {
   opacity: 0;
+}
+
+.fc-day-grid-event {
+  cursor: pointer;
+}
+
+.modal {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-backdrop {
+  background: none;
 }

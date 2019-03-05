@@ -7,11 +7,7 @@ function initialLeaveCalendarModal(){
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'month'
-                },
-                buttonText: {
-                    today: 'Today',
-                    month: 'Month',
+                    right: ''
                 },
                 timeFormat: 'hh:mm A',
                 displayEventEnd: true,
@@ -91,10 +87,15 @@ function initialLeaveCalendarModal(){
                     initLocalize(initialLocaleCode)
                 },
                 viewRender:function(){
+                    $(".fc-today-button").html('<span data-localize="label.currentMonth"></span>')
+                    initLocalize(initialLocaleCode) //Initialize multilingual function
                 }
             })
         }
     })
+    $(".fc-today-button").attr("data-localize","label.currentMonth")
+    initLocalize(initialLocaleCode)
+
 }
 function changeMMDDFormat(date){
     let dateArry = date.split("-")

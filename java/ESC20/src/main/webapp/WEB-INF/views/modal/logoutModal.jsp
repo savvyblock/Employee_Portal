@@ -21,7 +21,7 @@
                 </a>
                 <button
                     type="button"
-                    class="btn btn-secondary"
+                    class="btn btn-secondary closeModal"
                     data-dismiss="modal"
                     aria-hidden="true"
                     id="cancelAdd"
