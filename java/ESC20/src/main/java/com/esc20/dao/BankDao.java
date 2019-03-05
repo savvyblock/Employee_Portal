@@ -417,10 +417,6 @@ public class BankDao {
 		sql.append(employeeNumber);
 		sql.append("' AND bnk_acct_nbr = '");
 		sql.append(accountInfo.getAccountNumber());
-		sql.append("' AND bnk_cd_new = '");
-		sql.append(accountInfoPending.getCode().getCode());
-		sql.append("' AND bnk_acct_nbr_new = '");
-		sql.append(accountInfoPending.getAccountNumber());
 		sql.append("' AND stat_cd = 'P' ");
 		
 

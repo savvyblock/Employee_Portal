@@ -142,10 +142,7 @@ public class ProfileController extends IndexController{
         String displayAmount = req.getParameter("displayAmount");
         String displayLabel = req.getParameter("displayLabel");
         String accountNumber = req.getParameter("accountNumber");
-        String code = req.getParameter("code");
-        String subCode = req.getParameter("subCode");
-        
-        String description = req.getParameter("description");
+        String code = req.getParameter("subCode");
         
         String employeeNumber = demo.getEmpNbr();
         
@@ -162,9 +159,9 @@ public class ProfileController extends IndexController{
         payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
         
         Bank accountInfo = new Bank();
-        accountInfo.setAccountNumber(accountNumber);
-        accountInfo.setAccountType(c);
-        accountInfo.setCode(this.bankService.getBank(code));
+        accountInfo.setAccountNumber("");
+        accountInfo.setAccountType(new Code());
+        accountInfo.setCode(new Code());
         accountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
         accountInfo.setFrequency(Frequency.getFrequency(freq));
         
@@ -268,21 +265,23 @@ public class ProfileController extends IndexController{
         payrollAccountInfo.setDepositAmount(new Money(new Double (displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
         payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
         
-        Bank accountInfo = new Bank();
-        
-        accountInfo.setAccountNumber("");
-        accountInfo.setAccountType(new Code());
-        accountInfo.setCode(new Code());
-        accountInfo.setDepositAmount(new Money(0d, Currency.getInstance(Locale.US)));
-        accountInfo.setFrequency(Frequency.getFrequency(freq));
-        
-        
-        this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq,accountInfo , payrollAccountInfo );
-        
-        if(autoApprove) {
-        	 this.bankService.deleteAccountApprove(employeeNumber, freq, payrollAccountInfo);
+        Bank accountInfo;
+
+        if(("").equals(payrollAccountInfo.getCode().getCode())) {
+        	this.bankService.deleteAccountRequest(employeeNumber, freq, payrollAccountInfo, null);
         }
-        
+        else {
+            accountInfo = new Bank();
+            accountInfo.setAccountNumber("");
+            accountInfo.setAccountType(new Code());
+            accountInfo.setCode(new Code());
+            accountInfo.setDepositAmount(new Money(0d, Currency.getInstance(Locale.US)));
+            accountInfo.setFrequency(Frequency.getFrequency(freq));
+        	this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq,accountInfo , payrollAccountInfo );
+	        if(autoApprove) {
+	        	 this.bankService.deleteAccountApprove(employeeNumber, freq, payrollAccountInfo);
+	        }
+        }
         getProfileDetails(session, mav,freq);
         
         mav.setViewName("profile");
@@ -318,33 +317,14 @@ public class ProfileController extends IndexController{
         
         payrollAccountInfo.setAccountNumber(accountNumber);
         payrollAccountInfo.setCode(this.bankService.getBank(code));
-        payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
-        
-        Bank accountInfo = new Bank();
-        
-        accountInfo.setAccountNumber(accountNumberNew);
-        accountInfo.setCode(this.bankService.getBank(codeNew));
-        accountInfo.setFrequency(Frequency.getFrequency(freq));
-        
-        
-        this.bankService.deleteAccountRequest(employeeNumber, freq, payrollAccountInfo, accountInfo);
+        payrollAccountInfo.setFrequency(Frequency.getFrequency(freq)); 
+        this.bankService.deleteAccountRequest(employeeNumber, freq, payrollAccountInfo, null);
         //insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
         
         getProfileDetails(session, mav,freq);
         
 //        mav.setViewName("profile");
         return mav;
-    }
-    
-    @RequestMapping("updateAccount")
-    @ResponseBody
-    public JSONObject updateAccount(HttpServletRequest req){
-    	
-    	Boolean auto = bankService.getAutoApproveAccountInfo("frequency");
-    	JSONObject result=new JSONObject();
-	    result.put("isSuccess", "true");
-	    
-        return result;
     }
     
     @RequestMapping("getBankLimit")
@@ -1016,6 +996,7 @@ public class ProfileController extends IndexController{
         	w4Request = this.indexService.getBeaW4(demo,freq);
         }
         else {
+        	mav.addObject("selectedFreq", payRollFrequenciesOptions.get(0).getCode());
         	payInfo = this.indexService.getPayInfo(demo,payRollFrequenciesOptions.get(0).getDescription());
         	w4Request = this.indexService.getBeaW4(demo,payRollFrequenciesOptions.get(0).getDescription());
         }
@@ -1095,7 +1076,7 @@ public class ProfileController extends IndexController{
         mav.addObject("restrictionsOptions", restrictionsOptions);
         mav.addObject("payRollFrequenciesOptions", payRollFrequenciesOptions);
         mav.addObject("payInfo",payInfo);
-       
+
         mav.addObject("banks", allBanks);
         mav.addObject("w4Request", w4Request);
         mav.addObject("bankAccountTypes",bankAccountTypes);

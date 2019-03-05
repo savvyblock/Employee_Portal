@@ -142,14 +142,14 @@ public class ReferenceDao {
 	{
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT STAT, '', DESCR FROM BTHR_MARITAL_ACTUAL_STATUS");
-		Query q = session.createSQLQuery(sql.toString()).addScalar("STAT", CharacterType.INSTANCE).addScalar("DESCR", StringType.INSTANCE);
+		sql.append("SELECT DISTINCT STAT, DESCR FROM BTHR_MARITAL_ACTUAL_STATUS");
+		Query q = session.createSQLQuery(sql.toString());
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
-			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),((Character)item[1]==null?"":((Character)item[1]).toString()),(String)item[2]);
+			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),"",(String)item[1]);
 			result.add(code);		
 		}
 		return result;
