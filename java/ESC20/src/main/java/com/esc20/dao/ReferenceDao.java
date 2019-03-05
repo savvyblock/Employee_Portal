@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.type.CharacterType;
+import org.hibernate.type.StringType;
+import org.hibernate.type.Type;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -139,8 +142,8 @@ public class ReferenceDao {
 	{
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT stat, '', descr FROM BthrMaritalActualStatus");
-		Query q = session.createQuery(sql.toString());
+		sql.append("SELECT DISTINCT STAT, '', DESCR FROM BTHR_MARITAL_ACTUAL_STATUS");
+		Query q = session.createSQLQuery(sql.toString()).addScalar("STAT", CharacterType.INSTANCE).addScalar("DESCR", StringType.INSTANCE);
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
