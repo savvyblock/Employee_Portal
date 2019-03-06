@@ -68,3 +68,13 @@ $(function() {
         }
     })
 })
+
+function downloadPDF() {
+    $('.exportPDFBox').show()
+    $('.exportPDFBox').append($('.needToClone').clone())
+    var shareContent = $('.exportPDFBox')[0]
+
+    let pdfDom = '.exportPDFBox .needToClone'
+    let fileName = 'earning'
+    convert2canvasDownload(shareContent,pdfDom,fileName)
+}

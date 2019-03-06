@@ -269,8 +269,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	</tr>
 </c:if>
 </table>
-<div class="PageNext"></div>
-<jsp:include page="../report-1095/1095C-${selectedYear}.jsp"></jsp:include>
 <form id="changePageForm" hidden="hidden" action="sortOrChangePageForTypeC" method="POST">
         <input type="text" name="year" id="yearNow" value="${selectedYear}" aria-label="" data-localize="accessHint.year">
         <input type="text" name="CPageNo" id="selectPageNow" aria-label="" data-localize="accessHint.currentPage">
