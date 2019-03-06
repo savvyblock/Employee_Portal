@@ -138,7 +138,6 @@ public class ProfileController extends IndexController{
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         
         String freq = req.getParameter("freq");
-        
         String displayAmount = req.getParameter("displayAmount");
         String displayLabel = req.getParameter("displayLabel");
         String accountNumber = req.getParameter("accountNumber");
@@ -308,12 +307,12 @@ public class ProfileController extends IndexController{
         
         Bank payrollAccountInfo = new Bank();
         
-        if(code ==null || code.isEmpty()) {
-        	code = codeNew;
-        }
-        if(accountNumber ==null || accountNumber.isEmpty()) {
-        	accountNumber = accountNumberNew;
-        }
+//        if(code ==null || code.isEmpty()) {
+//        	code = codeNew;
+//        }
+//        if(accountNumber ==null || accountNumber.isEmpty()) {
+//        	accountNumber = accountNumberNew;
+//        }
         
         payrollAccountInfo.setAccountNumber(accountNumber);
         payrollAccountInfo.setCode(this.bankService.getBank(code));
