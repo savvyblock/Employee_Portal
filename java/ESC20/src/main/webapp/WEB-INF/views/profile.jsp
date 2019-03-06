@@ -1555,7 +1555,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             value=""
                                                         />
                                                     </div>
-
+                                                    <input hidden="hidden" type="text" id="newBankCode" aria-label="" data-localize="accessHint.bankCode">
                                                     <button
                                                         class="btn btn-secondary xs getBank"
                                                         type="button"

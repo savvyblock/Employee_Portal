@@ -110,11 +110,12 @@ $(function() {
         if (bankAccountValidator.isValid()) {
             var freq = $('#freq').val()
             var saveBankDescription = $('#saveBankDescription').val()
-            var saveBankCode = $('#saveBankCode').val()
+            var saveBankCode = $('#newBankCode').val()
             var saveBankAccountNumber = $('#saveBankAccountNumber').val()
             var saveBankDisplayLabel = $('#saveBankDisplayLabel').val()
             var saveBankDisplayAmount = $('#saveBankDisplayAmount').val()
 
+            console.log(saveBankCode)
             $('#hiddenfreq').val(freq)
             $('#hiddendescription').val(saveBankDescription)
             $('#hiddensubCode').val(saveBankCode)
@@ -176,6 +177,8 @@ $(function() {
                 bankInputNewCode = $(that)
                     .parents('.profile-desc')
                     .find('.bankNewCode')
+                newBankCode = $(that).parent().find("#newBankCode")
+                console.log(newBankCode)
 
                 $('.bankNumberBtn').click(function() {
                     let number = $(this).text()
@@ -184,6 +187,7 @@ $(function() {
                     console.log(number)
                     console.log(name)
                     console.log(code)
+                    newBankCode.val(code).change()
                     bankInputName.val(name).change()
                     bankInputBankCode.val(code)
                     bankInputCode.val(number).change()
@@ -253,6 +257,8 @@ $(function() {
                     bankInputCode = $(that)
                         .parent()
                         .find('.form-control.code')
+                    newBankCode = $(that).parent().find("#newBankCode")
+                    console.log(newBankCode)
 
                     $('.bankNumberBtn').click(function() {
                         let number = $(this).text()
@@ -261,6 +267,7 @@ $(function() {
                         console.log(number)
                         console.log(name)
                         console.log(code)
+                        newBankCode.val(code).change()
                         bankInputName.val(name).change()
                         bankInputBankCode.val(code)
                         bankInputCode.val(number).change()
