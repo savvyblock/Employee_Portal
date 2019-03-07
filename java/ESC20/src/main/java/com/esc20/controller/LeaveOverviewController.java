@@ -37,7 +37,7 @@ import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/leaveOverview")
-public class LeaveOverviewController extends BaseSupervisorController {
+public class LeaveOverviewController extends BaseLeaveRequestController {
 
 	@Autowired
 	private LeaveRequestService service;
@@ -287,6 +287,22 @@ public class LeaveOverviewController extends BaseSupervisorController {
 			comments.setLvCommentTyp('C');
 			this.service.saveLvComments(comments);
 		}
+		mav = this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false);
+		mav.addObject("chain", levels);
+		return mav;
+	}
+	
+	@RequestMapping("deleteLeaveFromLeaveOverview")
+	public ModelAndView deleteLeaveFromLeaveOverview(HttpServletRequest req, String level, String chain, String leaveId,
+			String empNbr, String freq, String startDate, String endDate) throws ParseException {
+		HttpSession session = req.getSession();
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		ModelAndView mav = new ModelAndView();
+		if (null == user) {
+			return this.getIndexPage(mav);
+		}
+		JSONArray levels = JSONArray.fromObject(chain);
+		deleteLeaveRequest(leaveId);
 		mav = this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false);
 		mav.addObject("chain", levels);
 		return mav;
