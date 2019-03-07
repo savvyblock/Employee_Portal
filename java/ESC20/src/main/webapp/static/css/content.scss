@@ -833,7 +833,89 @@
 .print-hide{
 
 }
+.exportPDFBox{
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    display: none;
+    padding: 0 80px;
+    font-size: 16px;
+    left: 0;
+    .flex-line .left-title{
+        flex: 0 0 180px;
+    }
+    table{
+        font-size: 16px!important;
+    }
+    .table{
+        font-size: 16px!important;
+        th, td{
+            font-size: 16px;
+            &.td-title{
+                width: 270px;
+            }
+        }
+    }
+    .pdfPage{
+        margin: 0 auto;
+    }
+    .needToClone{
+        max-width: initial;
+        width: 100%;
+    }
+    .calendarYTDTable{
+        max-width: initial;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .hr-black {
+        display: none;
+    }
+    .print-block{
+        display: block;
+    }
+    .print-block-table{
+        display: table;
+    }
+    .no-print{
+        display: none;
+    }
+    .print-show{
+        display: inline-block;
+    }
+    .print-hide{
+        display: none!important;
+    }
+    .employee-info-table{
+        td,th{
+            &.print-hide{
+                display: none!important;
+            }
+        }
+    }
+}
 @media print {
+    .exportPDFBox{
+        position: static;
+        display: block;
+        font-size: 12px;
+        padding: 0;
+        .flex-line .left-title{
+            flex: 0 0 125px;
+        }
+        table{
+            font-size: 12px!important;
+        }
+        .table{
+            font-size: 12px!important;
+            th, td{
+                font-size: 12px;
+                &.td-title{
+                    width: 270px;
+                }
+            }
+        }
+    }
     .print-show{
         display: inline-block;
     }

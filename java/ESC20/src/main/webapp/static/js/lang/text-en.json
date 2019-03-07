@@ -434,6 +434,7 @@
 		"action":"Action",
 		"ESC20":"ESC20",
 		"back":"Go Back",
+		"exportPDF":"Export to PDF format",
 		"currentMonth":"Current Month",
 		"errorImg":"error image",
 		"pleaseTryAgain":"Please try again later",

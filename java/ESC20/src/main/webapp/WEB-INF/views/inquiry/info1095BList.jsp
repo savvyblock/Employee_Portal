@@ -232,51 +232,49 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 		</tr>
 	</c:if>
 	<c:if test="${fn:length(bList) > 0}">
-	<tr>
-		<td>
-			<table class="table border-table responsive-table no-thead print-table middle-td-table">
-				<tr>
-					<td colspan="19">
-						<div class="pageGroup">
-								<button class="pageBtn firstPate" onclick="changePage(1)"
-								aria-label="" data-localize="label.firstPage" data-localize-location="aria-label" data-localize-notText="true"
-										<c:if test="${ BPageNo ==1 }">disabled</c:if>>
-										<i class="fa fa-angle-double-left "></i>
-								</button>  
-								<button class="pageBtn prevPage" onclick="changePage(${BPageNo - 1})" 
-								aria-label="" data-localize="label.prevPage" data-localize-location="aria-label" data-localize-notText="true"
-										<c:if test="${ BPageNo ==1  }">disabled</c:if>>
-										<i class="fa fa-angle-left "></i>
-								</button>
-								<select class="selectPage" name="page" id="pageNow" aria-label="" data-localize="label.choosePage" onchange="changePage()"  data-localize-location="title">
-										<c:forEach  var="page"  begin="1" end="${BTotal}">
-										<option value="${page}" <c:if test="${page == BPageNo }">selected</c:if>>${page}</option>
-										</c:forEach>
-								</select>
-								<div class="page-list">
-										<span class="slash">/</span>
-										<span class="totalPate">${BTotal}</span>
-								</div>
-								<button class="pageBtn nextPate"  onclick="changePage(${BPageNo + 1})" 
-								aria-label="" data-localize="label.nextPage" data-localize-location="aria-label" data-localize-notText="true"
-										<c:if test="${BPageNo == BTotal  }">disabled</c:if>>
-												<i class="fa fa-angle-right "></i>
-								</button>
-								<button class="pageBtn lastPate"  onclick="changePage(${BTotal})" 
-								aria-label="" data-localize="label.lastPage" data-localize-location="aria-label" data-localize-notText="true"
-										<c:if test="${BPageNo == BTotal   }">disabled</c:if>>
-												<i class="fa fa-angle-double-right"></i>
-								</button>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</c:if>
+		<tr>
+			<td>
+				<table class="table border-table responsive-table no-thead print-table middle-td-table">
+					<tr>
+						<td colspan="19">
+							<div class="pageGroup">
+									<button class="pageBtn firstPate" onclick="changePage(1)"
+										aria-label="" data-localize="label.firstPage" data-localize-location="aria-label" data-localize-notText="true"
+											<c:if test="${ BPageNo ==1 }">disabled</c:if>>
+											<i class="fa fa-angle-double-left "></i>
+									</button>  
+									<button class="pageBtn prevPage" onclick="changePage(${BPageNo - 1})" 
+									aria-label="" data-localize="label.prevPage" data-localize-location="aria-label" data-localize-notText="true"
+											<c:if test="${ BPageNo ==1  }">disabled</c:if>>
+											<i class="fa fa-angle-left "></i>
+									</button>
+									<select class="selectPage" name="page" id="pageNow" aria-label="" data-localize="label.choosePage" onchange="changePage()"  data-localize-location="title">
+											<c:forEach  var="page"  begin="1" end="${BTotal}">
+											<option value="${page}" <c:if test="${page == BPageNo }">selected</c:if>>${page}</option>
+											</c:forEach>
+									</select>
+									<div class="page-list">
+											<span class="slash">/</span>
+											<span class="totalPate">${BTotal}</span>
+									</div>
+									<button class="pageBtn nextPate"  onclick="changePage(${BPageNo + 1})" 
+									aria-label="" data-localize="label.nextPage" data-localize-location="aria-label" data-localize-notText="true"
+											<c:if test="${BPageNo == BTotal  }">disabled</c:if>>
+													<i class="fa fa-angle-right "></i>
+									</button>
+									<button class="pageBtn lastPate"  onclick="changePage(${BTotal})" 
+									aria-label="" data-localize="label.lastPage" data-localize-location="aria-label" data-localize-notText="true"
+											<c:if test="${BPageNo == BTotal   }">disabled</c:if>>
+													<i class="fa fa-angle-double-right"></i>
+									</button>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</c:if>
 </table>
-<div class="PageNext"></div>
-<jsp:include page="../report-1095/1095B-${selectedYear}.jsp"></jsp:include>
 <form id="changePageForm" hidden="hidden" action="sortOrChangePageForTypeB" method="POST">
         <input type="text" name="year" id="yearNow" value="${selectedYear}" aria-label="" data-localize="accessHint.year">
         <input type="text" name="BPageNo" id="selectPageNow" aria-label="" data-localize="accessHint.currentPage">

@@ -42,3 +42,12 @@ document.getElementById('date-now').innerHTML = now
 function submitCalendarForm() {
     $('#selectCalendar')[0].submit()
 }
+function downloadPDF() {
+    $('.exportPDFBox').show()
+    $('.exportPDFBox').append($('.calendarYTDTable').clone())
+    var shareContent = $('.exportPDFBox')[0]
+
+    let pdfDom = '.exportPDFBox .calendarYTDTable'
+    let fileName = 'calendarYearToDate'
+    convert2canvasDownload(shareContent,pdfDom,fileName)
+}

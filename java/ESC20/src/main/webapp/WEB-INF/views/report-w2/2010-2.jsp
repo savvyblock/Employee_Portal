@@ -1,4 +1,4 @@
-<table cellpadding="15"  class="table no-border-table print-block word-table">
+<table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
         <tr>
                 <td style="width: 50%" valign="top">
                     <h1 data-localize="w2Notice.2010.instructionsForEmployee">
@@ -59,7 +59,7 @@
     </tr>
 </table>
 <div class="PageNext"></div>
-<table cellpadding="15"  class="table no-border-table print-block word-table">
+<table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
         <tr>
             <td style="width: 50%" valign="top">
                     <h1 data-localize="w2Notice.2010.instructionsForEmployee">

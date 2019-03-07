@@ -24,12 +24,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <button class="btn btn-primary disabled" data-localize="label.w-2Consent" disabled></button>
                                     </c:if>
                                     <c:if test="${selectedYear >= '2009' && selectedYear <= sessionScope.options.w2Latest}">
+                                        <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="" data-localize="label.exportPDF" data-localize-notText="true">
+                                            <i class="fa fa-file-pdf-o"></i>
+                                        </button>    
                                         <button class="btn btn-primary" onclick="doPrint()" data-localize="label.print">
                                         </button>
                                     </c:if>
                                 </div>
                             </h2>
                             <div class="content-white EMP-detail w-2">
+                                <div class="exportPDFBox">
+
+                                </div>
+
                                 <c:if test="${isSuccess && isUpdate}">
                                     <div id="updateMsg" class="no-print">
                                         <span class="error-hint">
@@ -54,7 +61,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </select>
                                     </div>
                                 </form>
-                                <div class="max-900">
+                                <div class="max-900 needToClone">
                                     <table
                                         class="table border-table responsive-table no-thead print-table no-print"
                                     >
@@ -394,7 +401,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </c:forEach>
 
                                     
-                                    <table class="table border-table mb-5 print-block-table noNumTable">
+                                    <table class="table border-table mb-5 print-block-table noNumTable pdfPage">
                                         <tr>
                                             <td class="header" colspan="3" valign="top">
                                                 <span data-localize="w2InformationTable.formW2WageAndTaxStatement"></span>
@@ -750,7 +757,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     
                                     <div class="PageNext"></div>
                                 
-                                    <table class="table border-table mb-5 print-block-table noNumTable">
+                                    <table class="table border-table mb-5 print-block-table noNumTable  pdfPage">
                                             <tr>
                                                 <td class="header" colspan="3" valign="top">
                                                     <span data-localize="w2InformationTable.formW2WageAndTaxStatement"></span>

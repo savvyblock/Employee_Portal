@@ -958,7 +958,101 @@
   display: none;
 }
 
+.exportPDFBox {
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  display: none;
+  padding: 0 80px;
+  font-size: 16px;
+  left: 0;
+}
+
+.exportPDFBox .flex-line .left-title {
+  flex: 0 0 180px;
+}
+
+.exportPDFBox table {
+  font-size: 16px !important;
+}
+
+.exportPDFBox .table {
+  font-size: 16px !important;
+}
+
+.exportPDFBox .table th, .exportPDFBox .table td {
+  font-size: 16px;
+}
+
+.exportPDFBox .table th.td-title, .exportPDFBox .table td.td-title {
+  width: 270px;
+}
+
+.exportPDFBox .pdfPage {
+  margin: 0 auto;
+}
+
+.exportPDFBox .needToClone {
+  max-width: initial;
+  width: 100%;
+}
+
+.exportPDFBox .calendarYTDTable {
+  max-width: initial;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.exportPDFBox .hr-black {
+  display: none;
+}
+
+.exportPDFBox .print-block {
+  display: block;
+}
+
+.exportPDFBox .print-block-table {
+  display: table;
+}
+
+.exportPDFBox .no-print {
+  display: none;
+}
+
+.exportPDFBox .print-show {
+  display: inline-block;
+}
+
+.exportPDFBox .print-hide {
+  display: none !important;
+}
+
+.exportPDFBox .employee-info-table td.print-hide, .exportPDFBox .employee-info-table th.print-hide {
+  display: none !important;
+}
+
 @media print {
+  .exportPDFBox {
+    position: static;
+    display: block;
+    font-size: 12px;
+    padding: 0;
+  }
+  .exportPDFBox .flex-line .left-title {
+    flex: 0 0 125px;
+  }
+  .exportPDFBox table {
+    font-size: 12px !important;
+  }
+  .exportPDFBox .table {
+    font-size: 12px !important;
+  }
+  .exportPDFBox .table th, .exportPDFBox .table td {
+    font-size: 12px;
+  }
+  .exportPDFBox .table th.td-title, .exportPDFBox .table td.td-title {
+    width: 270px;
+  }
   .print-show {
     display: inline-block;
   }

@@ -1,4 +1,4 @@
-<table cellpadding="15"  class="table no-border-table print-block word-table">
+<table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
   <tr>
       <td style="width: 50%" valign="top">
         <h1 data-localize="Form1095.InstructionsForRecipient"></h1>

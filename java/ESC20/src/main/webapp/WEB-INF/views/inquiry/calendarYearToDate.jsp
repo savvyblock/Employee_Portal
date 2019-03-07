@@ -16,51 +16,59 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 <section class="content">
                     <h2 class="clearfix no-print section-title">
                         <span data-localize="title.calendarYearToDate"></span>
-                        <button
-                            class="btn btn-primary pull-right"
-                            onclick="doPrint()"
-                            data-localize="label.print"
-                        >
-                        </button>
+                        <div class="pull-right right-btn">
+                            <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="" data-localize="label.exportPDF" data-localize-notText="true">
+                                <i class="fa fa-file-pdf-o"></i>
+                            </button>
+                            <button
+                                class="btn btn-primary pull-right"
+                                onclick="doPrint()"
+                                data-localize="label.print"
+                            >
+                            </button>
+                        </div>
                     </h2>
                     <div class="content-white EMP-detail">
-                        <div class="print-block print-title">
-                            <div style="text-align:center;margin-bottom:10px;">
-                                ${sessionScope.district.name}<br />${sessionScope.district.address}<br />
-                                ${sessionScope.district.city},
-                                ${sessionScope.district.state} ${sessionScope.district.phone}
-                            </div>
-                            <div style="text-align:center;">
-                                    <span data-localize="label.currentPayInfo"></span><br />
-                                <div id="date-now"></div>
-                            </div>
+                        <div class="exportPDFBox">
+                                <div class="print-block print-title">
+                                        <div style="text-align:center;margin-bottom:10px;">
+                                            ${sessionScope.district.name}<br />${sessionScope.district.address}<br />
+                                            ${sessionScope.district.city},
+                                            ${sessionScope.district.state} ${sessionScope.district.phone}
+                                        </div>
+                                        <div style="text-align:center;">
+                                                <span data-localize="label.currentPayInfo"></span><br />
+                                            <div id="date-now"></div>
+                                        </div>
+                                    </div>
+                                    <div class="print-block print-table-header">
+                                        <div class="flex-line">
+                                            <div class="left-title"><span data-localize="label.employeeName"></span>:</div>
+                                            <div class="right-conent">
+                                                ${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameM} ${sessionScope.userDetail.nameL}
+                                            </div>
+                                        </div>
+                                        <div class="flex-line">
+                                            <div class="left-title"><span data-localize="label.employeeId"></span>:</div>
+                                            <div class="right-conent">${sessionScope.userDetail.empNbr}</div>
+                                        </div>
+                                        <div class="flex-line">
+                                            <div class="left-title"><span data-localize="label.calendarYear"></span>:</div>
+                                            <div class="right-conent">${selectedYear}</div>
+                                        </div>
+                                        <div class="flex-line">
+                                            <div class="left-title" ><span data-localize="label.frequency"></span>:</div>
+                                            <div class="right-conent">${freq}</div>
+                                        </div>
+                                        <div class="flex-line">
+                                            <div class="left-title">
+                                                <span data-localize="label.lastPostedPayDate"></span>:
+                                            </div>
+                                            <div class="right-conent">${latestPayDate}</div>
+                                        </div>
+                                    </div>
                         </div>
-                        <div class="print-block print-table-header">
-                            <div class="flex-line">
-                                <div class="left-title"><span data-localize="label.employeeName"></span>:</div>
-                                <div class="right-conent">
-                                    ${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameM} ${sessionScope.userDetail.nameL}
-                                </div>
-                            </div>
-                            <div class="flex-line">
-                                <div class="left-title"><span data-localize="label.employeeId"></span>:</div>
-                                <div class="right-conent">${sessionScope.userDetail.empNbr}</div>
-                            </div>
-                            <div class="flex-line">
-                                <div class="left-title"><span data-localize="label.calendarYear"></span>:</div>
-                                <div class="right-conent">${selectedYear}</div>
-                            </div>
-                            <div class="flex-line">
-                                <div class="left-title" ><span data-localize="label.frequency"></span>:</div>
-                                <div class="right-conent">${freq}</div>
-                            </div>
-                            <div class="flex-line">
-                                <div class="left-title">
-                                    <span data-localize="label.lastPostedPayDate"></span>:
-                                </div>
-                                <div class="right-conent">${latestPayDate}</div>
-                            </div>
-                        </div>
+                        
                         <form
                             class="no-print searchForm"
                             action="getCalendarYearToDateByYear"
@@ -425,4 +433,5 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <%@ include file="../commons/footer.jsp"%>
     </body>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/inquiry/calendarYearToDate.js"></script>
+
 </html>
