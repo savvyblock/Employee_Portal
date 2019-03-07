@@ -167,7 +167,8 @@ http://keith-wood.name/localisation.html
           elem.attr(locationArry[i], value);
         }
       }
-      if(elem.is("[placeholder]")){
+
+      if(elem.is("[placeholder]")&&elem.attr("placeholder")==''){
         elem.attr("placeholder", value);
       }
       if(elem.is("[aria-label]")){

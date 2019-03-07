@@ -46,6 +46,7 @@ function toggleOptions(value){
 var pdf
 function downloadPDF() {
     $('.exportPDFBox').show()
+    $('.exportPDFBox').addClass("printStatus")
     $('.exportPDFBox').append($('.needToClone').clone())
     let size = $(".exportPDFBox .pdfPage").length;
     console.log(size)
@@ -109,5 +110,6 @@ function save(){
     let fileName = '1095'
     pdf.save(`${fileName}-${name}.pdf`)
     $('.exportPDFBox').hide()
+    $('.exportPDFBox').removeClass("printStatus")
     $(pdfDom).remove()
 }

@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/bar.css">
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/content.css">
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.min.js"></script>
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.inputmask.bundle.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/html2canvas.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jspdf.debug.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bootstrap.min.js"></script>

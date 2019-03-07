@@ -63,7 +63,12 @@
 							<div class="button-group">
 							<input
 								class="form-control" type="text" name="SearchStart"
-								id="SearchStartDate" readonly value="${SearchStart}" />
+								data-date-format="mm/dd/yyyy"  autocomplete="off"
+								aria-label=""
+								data-localize="label.mmddyyyyFormat"
+								placeholder=""
+								title=""
+								id="SearchStartDate"  value="${SearchStart}" />
 								<button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0"  aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
 									<i class="fa fa-times"></i>
 								</button>
@@ -74,7 +79,12 @@
 							<div class="button-group">
 							<input
 								class="form-control" type="text" name="SearchEnd"
-								id="SearchEndDate" value="${SearchEnd}" readonly />
+								data-date-format="mm/dd/yyyy"  autocomplete="off"
+								aria-label=""
+								data-localize="label.mmddyyyyFormat"
+								placeholder=""
+								title=""
+								id="SearchEndDate" value="${SearchEnd}" />
 								<button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0"  aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
 									<i class="fa fa-times"></i>
 								</button>

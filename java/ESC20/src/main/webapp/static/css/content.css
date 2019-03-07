@@ -126,6 +126,17 @@
   display: none;
 }
 
+.account-wrap .account-top .account-inner.logBackBox {
+  width: 360px;
+  display: block;
+  padding: 15px;
+}
+
+.account-wrap .account-top .account-inner.logBackBox .card {
+  box-shadow: none;
+  background: #fff;
+}
+
 @media (max-width: 1100px) {
   .account-wrap .account-top .account-inner {
     width: 100%;
@@ -1033,6 +1044,18 @@
 
 .exportPDFBox .employee-info-table td.print-hide, .exportPDFBox .employee-info-table th.print-hide {
   display: none !important;
+}
+
+.exportPDFBox.printStatus {
+  width: 1400px;
+}
+
+.exportPDFBox.printStatus .earning-body {
+  max-width: initial;
+}
+
+.exportPDFBox.printStatus .table.responsive-table.no-thead.border-table {
+  border-right: 2px solid #dee2e6;
 }
 
 @media print {

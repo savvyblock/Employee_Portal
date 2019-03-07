@@ -49,12 +49,13 @@ startCountTime()
 function startCountTime() {
     var intervalId = setInterval(function() {
         time--
+        // console.log(time)
         if (time <= 30) {
-            $('#logoutModal').modal('show')
-            $('#timeCounter').text(time)
+            // $('#logoutModal').modal('show')
+            // $('#timeCounter').text(time)
             // clearInterval(intervalId);
             if (time == 0) {
-                window.location = urlMain + '/logout'
+                window.location = urlMain + '/logBackIn'
             }
         }
     }, 1000)

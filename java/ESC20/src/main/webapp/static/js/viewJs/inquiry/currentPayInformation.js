@@ -47,6 +47,7 @@ function displayAccountNumber(num) {
 
 function downloadPDF() {
     $('.exportPDFBox').show()
+    $('.exportPDFBox').addClass("printStatus")
     $('.exportPDFBox').append($('.needToClone').clone())
     var shareContent = $('.exportPDFBox')[0]
 

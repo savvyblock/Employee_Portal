@@ -55,20 +55,20 @@ $(function() {
                                                     <div class="form-group">
                                                         <input class="form-control date-control dateFromControl"
                                                         title=""
-                                                        data-title="from"
+                                                        data-title=""
                                                         data-localize="setTemporaryApprovers.fromDate" type="text" 
-                                                        name="" 
-                                                        id="fromDate_01" readonly>
+                                                        name=""  autocomplete="off"
+                                                        id="fromDate_01" placeholder="mm/dd/yyyy">
                                                     </div>
                                             </td>
                                             <td data-localize="setTemporaryApprovers.toDate" data-localize-location="scope">
                                                 <div class="form-group">
                                                     <input class="form-control  date-control dateToControl"
                                                     title=""
-                                                    data-title="to"
+                                                    data-title=""
                                                     data-localize="setTemporaryApprovers.toDate" type="text" 
-                                                    name="" 
-                                                    id="toDate_01" readonly>
+                                                    name=""  autocomplete="off"
+                                                    id="toDate_01" placeholder="mm/dd/yyyy">
                                                 </div>
                                             </td>
                                             <td  data-localize="setTemporaryApprovers.delete" data-localize-location="scope">

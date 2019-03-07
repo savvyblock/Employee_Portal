@@ -5,7 +5,6 @@ var pathPrefix = "/"+ctx+"/js/lang"; //language json location
 console.log(pathPrefix);
 var name = 'somoveLanguage';
 $(function() {
-    // $(".dateInput").inputmask("mm/dd/yyyy", { "placeholder": "mm/dd/yyyy" });
     $("#skipNav").on("click",function(){
         console.log($(".content-wrapper"))
         $(".content-wrapper").focus()
@@ -121,8 +120,7 @@ function convert2canvasDownload(shareContent,pdfDom,fileName){
         pdf.internal.scaleFactor = 1.33
         //There are two heights to distinguish, one is the actual height of the HTML page, and the height of the page that generates the PDF (841.89).
         //No pagination is required when the content does not exceed the range shown on a PDF page
-        console.log("未生成pdf的html页面高度:"+leftHeight)
-        console.log("一页pdf显示html页面生成的canvas高度:"+pageHeight)
+
         if (leftHeight < pageHeight) {
             pdf.addImage(pageData, 'JPEG', 0, 40, imgWidth, imgHeight)
         } else {
@@ -137,8 +135,6 @@ function convert2canvasDownload(shareContent,pdfDom,fileName){
                 )
                 leftHeight -= pageHeight
                 position -= 841.89
-                console.log("未生成pdf的html页面高度:"+leftHeight)
-                console.log("一页pdf显示html页面生成的canvas高度:"+pageHeight)
                 console.log("position:"+position)
                 //Avoid adding blank pages
                 if (leftHeight > 0) {
@@ -149,6 +145,7 @@ function convert2canvasDownload(shareContent,pdfDom,fileName){
         let name = (new Date()).valueOf()
         pdf.save(`${fileName}-${name}.pdf`)
         $('.exportPDFBox').hide()
+        $('.exportPDFBox').removeClass("printStatus")
         $(pdfDom).remove()
     })
 }

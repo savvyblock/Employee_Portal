@@ -361,8 +361,10 @@
 	"setTemporaryApprovers":{
 		"rowNbr":"Row Nbr",
 		"temporaryApprover":"Temporary Approver",
-		"fromDate":"From Date",
-		"toDate":"To Date",
+		"from":"From Date",
+		"to":"To Date",
+		"fromDate":"Please input start Date,the format must be 'mm/dd/yyyy'!",
+		"toDate":"Please input end Date,the format must be 'mm/dd/yyyy'!",
 		"delete":"Delete",
 		"":""
 	},
@@ -592,6 +594,9 @@
 		"for":"for",
 		"skipNav":"Skip to main content",
 		"checkbox":"checkbox",
+		"sessionTimeOut":"Session Timeout",
+		"sessionTimeOutWord":"You have exceeded the maximum time allowed for an online session.For your security, your session has been terminated",
+		"mmddyyyyFormat":"mm/dd/yyyy",
 		"":""
 	},
 	"language":{

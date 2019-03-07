@@ -62,7 +62,11 @@
                                     type="text"
                                     name="LeaveStartDate"
                                     id="startDate"
-                                    readonly
+                                    data-date-format="mm/dd/yyyy"  autocomplete="off"
+                                    aria-label=""
+                                    data-localize="label.mmddyyyyFormat"
+                                    placeholder=""
+                                    title=""
                                     value=""
                                 />
                             </div>
@@ -77,7 +81,11 @@
                                         name="LeaveEndDate"
                                         value=""
                                         id="endDate"
-                                        readonly
+                                        data-date-format="mm/dd/yyyy"  autocomplete="off"
+                                        aria-label=""
+                                        data-localize="label.mmddyyyyFormat"
+                                        placeholder=""
+                                        title=""
                                     />
                                 </div>
                             

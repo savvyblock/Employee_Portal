@@ -148,37 +148,20 @@ function editLeave(
         .destroy()
     $('#requestForm').data('bootstrapValidator', null)
     formValidator()
-    let start_arry = leaveStartDate.split(' ')
-    let end_arry = leaveEndDate.split(' ')
-    let startTime = start_arry[1].split(':')
-    let endTime = end_arry[1].split(':')
-    console.log(startTime)
-    console.log(endTime)
+    console.log(leaveStartDate)
+    console.log(leaveEndDate)
+    let start_arry = leaveStartDate.split(" ")
+    let end_arry = leaveEndDate.split(" ")
+    let startTime = start_arry[1].split(":")
+    let endTime = end_arry[1].split(":")
     let startH = parseInt(startTime[0])
     let endH = parseInt(endTime[0])
-    let startAMOrPM, endAMOrPM
-    if (startH >= 12) {
-        startAMOrPM = 'PM'
-        if (startH == 12) {
-            startH = 12
-        } else {
-            startH = startH - 12
-        }
-    } else {
-        startAMOrPM = 'AM'
-        startH = startH
-    }
-    if (endH >= 12) {
-        endAMOrPM = 'PM'
-        if (endH == 12) {
-            endH = 12
-        } else {
-            endH = endH - 12
-        }
-    } else {
-        endAMOrPM = 'AM'
-        endH = endH
-    }
+    let startAMOrPM,endAMOrPM;
+    startH = startTime[0].trim();
+    startAMOrPM = start_arry[2].trim();
+    endH = endTime[0].trim();
+    endAMOrPM = end_arry[2].trim();
+
     let chain = $('#chainValue').text()
     let searchStart = $("#SearchStartDate").val()
     let searchEnd = $("#SearchEndDate").val()
@@ -189,25 +172,16 @@ function editLeave(
     $('#searchEndModal').val(searchEnd)
     $('#chainModal').val(chain)
     $("#freqModal").val(currentFreq)
-    if (startH >= 10) {
-        $('#startHour').val(startH)
-    } else {
-        $('#startHour').val('0' + startH)
-    }
-
-    if (endH >= 10) {
-        $('#endHour').val(endH)
-    } else {
-        $('#endHour').val('0' + endH)
-    }
-    $('#startAmOrPm').val(startAMOrPM)
-    $('#endAmOrPm').val(endAMOrPM)
+    $("#startHour").val(startH);
+    $("#endHour").val(endH);
+    $("#startAmOrPm").val(startAMOrPM)
+    $("#endAmOrPm").val(endAMOrPM)
     let startTimeValue = startH + ':' + startTime[1] + ' ' + startAMOrPM
     let endTimeValue = endH + ':' + endTime[1] + ' ' + endAMOrPM
-    $('#startTimeValue').val(startTimeValue)
-    $('#endTimeValue').val(endTimeValue)
-    $('#startMinute').val(startTime[1])
-    $('#endMinute').val(endTime[1])
+    $("#startTimeValue").val(startTimeValue)
+    $("#endTimeValue").val(endTimeValue)
+    $("#startMinute").val(startTime[1])
+    $("#endMinute").val(endTime[1])
     $('#cancelAdd').hide()
     $('#deleteLeave').show()
     $('.edit-title').show()

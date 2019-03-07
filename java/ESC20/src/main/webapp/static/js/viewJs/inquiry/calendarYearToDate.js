@@ -44,6 +44,7 @@ function submitCalendarForm() {
 }
 function downloadPDF() {
     $('.exportPDFBox').show()
+    $('.exportPDFBox').addClass("printStatus")
     $('.exportPDFBox').append($('.calendarYTDTable').clone())
     var shareContent = $('.exportPDFBox')[0]
 

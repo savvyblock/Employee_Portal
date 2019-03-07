@@ -80,8 +80,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <tr>
                                             <th data-localize="setTemporaryApprovers.rowNbr"></th>
                                             <th data-localize="setTemporaryApprovers.temporaryApprover"></th>
-                                            <th data-localize="setTemporaryApprovers.fromDate"></th>
-                                            <th data-localize="setTemporaryApprovers.toDate"></th>
+                                            <th data-localize="setTemporaryApprovers.from"></th>
+                                            <th data-localize="setTemporaryApprovers.to"></th>
                                             <th data-localize="setTemporaryApprovers.delete"></th>
                                         </tr>
                                     </thead>
@@ -145,8 +145,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         data-localize="setTemporaryApprovers.fromDate"
                                                         type="text"
                                                         name="temporaryApprovers[${row.index}].fromDateString"
-                                                        id="fromDate_01"
-                                                        readonly
+                                                        id="fromDate_01" autocomplete="off"
+                                                        placeholder="mm/dd/yyyy"
                                                     />
                                                 </div>
                                             </td>
@@ -159,8 +159,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         type="text"
                                                         data-title="to"
                                                         name="temporaryApprovers[${row.index}].toDateString"
-                                                        id="toDate_01"
-                                                        readonly
+                                                        id="toDate_01" autocomplete="off"
+                                                        placeholder="mm/dd/yyyy"
                                                     />
                                                 </div>
                                             </td>

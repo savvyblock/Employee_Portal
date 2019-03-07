@@ -91,7 +91,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="button-group">
                                                 <input
                                                     class="form-control" type="text" name="startDate"
-                                                    id="SearchStartDate" readonly value="${startDate}" />
+                                                    data-date-format="mm/dd/yyyy"  autocomplete="off"
+                                                    aria-label=""
+                                                    data-localize="label.mmddyyyyFormat"
+                                                    placeholder=""
+                                                    title=""
+                                                    id="SearchStartDate" value="${startDate}" />
                                                     <button class="clear-btn" type="button" onclick="clearDate(this)"  tabindex="0"   aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
                                                         <i class="fa fa-times"></i>
                                                     </button>
@@ -101,8 +106,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <label class="form-title" for="SearchEndDate"> <span data-localize="label.to"></span>: </label> 
                                                 <div class="button-group">
                                                 <input
-                                                    class="form-control" type="text" name="endDate"
-                                                    id="SearchEndDate" value="${endDate}" readonly />
+                                                    class="form-control" type="text" name="endDate" data-date-format="mm/dd/yyyy"  autocomplete="off"
+                                                    aria-label=""
+                                                    data-localize="label.mmddyyyyFormat"
+                                                    placeholder=""
+                                                    title=""
+                                                    id="SearchEndDate" value="${endDate}" />
                                                     <button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0"   aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
                                                         <i class="fa fa-times"></i>
                                                     </button>

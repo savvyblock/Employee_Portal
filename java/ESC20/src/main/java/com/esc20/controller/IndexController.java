@@ -47,7 +47,16 @@ public class IndexController {
         mav.setViewName("index");
         return mav;
     }
-
+    
+    @RequestMapping("logBackIn")
+    public ModelAndView getLogBackIn(HttpServletRequest req, String Id,HttpServletResponse response){
+    	HttpSession session = req.getSession();
+        session.invalidate();
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("logBackIn");
+        return mav;
+    }
+    
     @RequestMapping(value = "login", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, String> login(@RequestBody Map<String, String> param, HttpServletRequest req) throws ParseException{
