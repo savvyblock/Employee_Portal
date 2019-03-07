@@ -172,7 +172,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                     </td>
                                                                     <td style="width:150px;" data-localize="approveRequest.supervisorAction" data-localize-location="scope">
                                                                         
-                                                                            <c:if test="${leave.statusCd =='P'}">
+                                                                            <c:if test="${item.statusCd =='P'||item.statusCd =='D'}">
                                                                                 <button class="btn btn-primary sm edit-btn" id="editLeave" data-toggle="modal" data-target="#requestModal" 
                                                                                 onClick='editLeave("${item.id}","${item.LeaveType}","${item.AbsenseReason}","${item.start}",
                                                                                 "${item.end}", "${item.lvUnitsDaily}","${item.lvUnitsUsed}")'' data-localize="label.edit"></button>
@@ -198,8 +198,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                             </div>
                         </section>
-                        <form hidden="hidden" id="deleteForm" action="" method="POST">
-                            <input type="text" name="" id="deleteId" aria-label="" data-localize="accessHint.id">
+                        <form hidden="hidden" id="deleteForm" action="deleteLeaveFromLeaveOverview" method="POST">
+                            <input type="text" name="empNbr" id="empNbrDelete">
+                            <input type="text" name="startDate" id="searchStartDelete">
+                            <input type="text" name="endDate" id="searchEndDelete">
+                            <input type="text" name="chain" id="chainDelete">
+                            <input type="text" name="freq" id="freqDelete">
+                            <input type="text" name="leaveId" id="deleteId" aria-label="" data-localize="accessHint.id">
                         </form>
             </main>
         </div>

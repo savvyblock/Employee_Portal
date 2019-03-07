@@ -109,5 +109,5 @@ function save(){
     let fileName = '1095'
     pdf.save(`${fileName}-${name}.pdf`)
     $('.exportPDFBox').hide()
-    // $(pdfDom).remove()
+    $(pdfDom).remove()
 }

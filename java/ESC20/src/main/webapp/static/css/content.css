@@ -973,19 +973,23 @@
 }
 
 .exportPDFBox table {
-  font-size: 16px !important;
+  font-size: 18px !important;
 }
 
 .exportPDFBox .table {
-  font-size: 16px !important;
+  font-size: 18px !important;
 }
 
 .exportPDFBox .table th, .exportPDFBox .table td {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .exportPDFBox .table th.td-title, .exportPDFBox .table td.td-title {
   width: 270px;
+}
+
+.exportPDFBox .table th .focused-value, .exportPDFBox .table td .focused-value {
+  font-size: 16px;
 }
 
 .exportPDFBox .pdfPage {
@@ -1052,6 +1056,9 @@
   }
   .exportPDFBox .table th.td-title, .exportPDFBox .table td.td-title {
     width: 270px;
+  }
+  .exportPDFBox .table th .focused-value, .exportPDFBox .table td .focused-value {
+    font-size: 13px;
   }
   .print-show {
     display: inline-block;

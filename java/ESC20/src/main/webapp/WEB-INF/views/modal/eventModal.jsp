@@ -25,7 +25,9 @@
             <form id="requestForm" action="submitLeaveRequest" method="post">
                 <input type="text" hidden="hidden" name="chain" id="chainModal" aria-label="" data-localize="accessHint.chain">
                 <input type="text" hidden="hidden" name="empNbr" id="empNbrModal" aria-label="" data-localize="accessHint.employeeNumber">
-                <input type="text" name="freq" hidden="hidden" value="${selectedFreq}" aria-label="" data-localize="accessHint.frequency">
+                <input type="text" name="freq" hidden="hidden" id="freqModal" value="${selectedFreq}" aria-label="" data-localize="accessHint.frequency">
+                <input type="text" name="startDate" id="searchStartModal" hidden="hidden">
+                <input type="text" name="endDate" id="searchEndModal" hidden="hidden">
                 <div class="modal-body requestForm">
                     <input type="hidden" name="leaveId" id="leaveId" />
                     <div class="line-2-flex">

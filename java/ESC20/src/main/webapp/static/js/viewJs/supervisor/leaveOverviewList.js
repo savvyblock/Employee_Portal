@@ -179,7 +179,16 @@ function editLeave(
         endAMOrPM = 'AM'
         endH = endH
     }
-
+    let chain = $('#chainValue').text()
+    let searchStart = $("#SearchStartDate").val()
+    let searchEnd = $("#SearchEndDate").val()
+    let empNbr = $('#selectEmpNbr').val()
+    let currentFreq=$("#freq").val()
+    $('#empNbrModal').val(empNbr)
+    $('#searchStartModal').val(searchStart)
+    $('#searchEndModal').val(searchEnd)
+    $('#chainModal').val(chain)
+    $("#freqModal").val(currentFreq)
     if (startH >= 10) {
         $('#startHour').val(startH)
     } else {
@@ -220,6 +229,16 @@ function editLeave(
 }
 
 function deleteLeave(id) {
+    let chain = $('#chainValue').text()
+    let searchStart = $("#SearchStartDate").val()
+    let searchEnd = $("#SearchEndDate").val()
+    let empNbr = $('#selectEmpNbr').val()
+    let currentFreq=$("#freq").val()
+    $('#empNbrDelete').val(empNbr)
+    $('#searchStartDelete').val(searchStart)
+    $('#searchEndDelete').val(searchEnd)
+    $('#chainDelete').val(chain)
+    $("#freqDelete").val(currentFreq)
     $('#deleteId').val(id)
 }
 function changeMMDDFormat(date) {
