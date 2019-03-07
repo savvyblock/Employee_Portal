@@ -99,6 +99,14 @@ $(function() {
         $('#chainString').val(chainString)
         $('#empNbrForm').val(empNbr)
         let length = $('.approver_tr').length
+        let resultApprover = []
+        approverJson.forEach((item) => {
+            console.log(item)
+            if(item.empNbr&&item.from&&item.to&&item.empNbr!=''&&item.from!=''&&item.to!=''){
+                resultApprover.push(item)
+            }
+        })
+        console.log(resultApprover)
         console.log('tr that have empty field' + approverEmptyJson)
         if (approverEmptyJson && approverEmptyJson.length > 0) {
             $('#errorComplete').show()
@@ -110,16 +118,15 @@ $(function() {
                     from: item.datetimeFrom,
                     to: item.datetimeTo
                 }
-                approverJson.push(approver)
+                resultApprover.push(approver)
             })
-            console.log(approverJson)
-            $('#approverJson').val(JSON.stringify(approverJson))
+            console.log(resultApprover)
+            $('#approverJson').val(JSON.stringify(resultApprover))
             $('#errorComplete').hide()
             if (!$('#noResultError').is(':visible')) {
                 $('#saveTempApprovers')[0].submit()
             }
         }
-        return
     })
 
     $(document).on('blur', '.empControl', function() {
@@ -374,7 +381,7 @@ function judgeContent() {
             approverEmptyJson.push(index)
         }
     })
-    // console.log("just added +++ have empty field  tr")
-    // console.log(approverJson)
-    // console.log(approverEmptyJson)
+    console.log("just added +++ have empty field  tr")
+    console.log(approverJson)
+    console.log(approverEmptyJson)
 }
