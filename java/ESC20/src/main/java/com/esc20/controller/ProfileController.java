@@ -291,38 +291,19 @@ public class ProfileController extends IndexController{
     public ModelAndView undoBank(HttpServletRequest req) {
         HttpSession session = req.getSession();
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
-        
         String freq = req.getParameter("freq");
-        
-        
         String code = req.getParameter("code");
         String codeNew = req.getParameter("codeNew");
         String accountNumber = req.getParameter("accountNumber");
         String accountNumberNew = req.getParameter("accountNumberNew");
-        
         String employeeNumber = demo.getEmpNbr();
-        
         ModelAndView mav = new ModelAndView();
-//        Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
-        
         Bank payrollAccountInfo = new Bank();
-        
-//        if(code ==null || code.isEmpty()) {
-//        	code = codeNew;
-//        }
-//        if(accountNumber ==null || accountNumber.isEmpty()) {
-//        	accountNumber = accountNumberNew;
-//        }
-        
         payrollAccountInfo.setAccountNumber(accountNumber);
         payrollAccountInfo.setCode(this.bankService.getBank(code));
         payrollAccountInfo.setFrequency(Frequency.getFrequency(freq)); 
-        this.bankService.deleteAccountRequest(employeeNumber, freq, payrollAccountInfo, null);
-        //insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
-        
+        this.bankService.deleteAccountRequest(employeeNumber, freq, payrollAccountInfo, null);       
         getProfileDetails(session, mav,freq);
-        
-//        mav.setViewName("profile");
         return mav;
     }
     
