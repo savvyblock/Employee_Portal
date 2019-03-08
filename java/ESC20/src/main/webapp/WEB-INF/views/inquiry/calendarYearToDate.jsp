@@ -34,10 +34,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <div style="text-align:center;margin-bottom:10px;">
                                             ${sessionScope.district.name}<br />${sessionScope.district.address}<br />
                                             ${sessionScope.district.city},
-                                            ${sessionScope.district.state} ${sessionScope.district.phone}
+                                            ${sessionScope.district.state} ${sessionScope.district.zip}-${sessionScope.district.zip4}
                                         </div>
                                         <div style="text-align:center;">
-                                                <span data-localize="label.currentPayInfo"></span><br />
+                                                <span data-localize="title.calendarYearToDate"></span><br />
                                             <div id="date-now"></div>
                                         </div>
                                     </div>
@@ -88,6 +88,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         </form>
                         <p class="no-print table-top-title">
                             <b><span data-localize="label.frequency"></span>: ${freq}</b>
+                        </p>
+                        <p class="no-print">
+                            <span data-localize="label.lastPostedPayDate"></span>:${latestPayDate}
                         </p>
                         <table
                             class="table border-table responsive-table no-thead print-table calendarYTDTable"

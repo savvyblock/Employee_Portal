@@ -12,11 +12,11 @@
           <div data-localize="Form1095.C2016.youAreReceiving"></div>
           <div data-localize="Form1095.C2016.inAdditionIfYou"></div>
           <div data-localize="Form1095.C2016.ifYourEmployer"></div>
-          <div><img src="" alt="TIP"><span data-localize="Form1095.C2016.employersAreRequired"></span></div>
+          <div><div class="wordTipIcon"><span data-localize="Form1095.tip"></span></div><span data-localize="Form1095.C2016.employersAreRequired"></span></div>
           <h2 data-localize="Form1095.C2016.partIEmployee"></h2>
           <div><b data-localize="Form1095.C2016.lines1-6"></b> <span data-localize="Form1095.C2016.partIReports"></span> </div>
           <div><b><span data-localize="Form1095.line"></span> 2.</b> <span data-localize="Form1095.C2016.Line2"></span> </div>
-          <div><img src="" alt="CAUTION"><span data-localize="Form1095.C2016.ifYouDoNot"></span></div>
+          <div><div class="cautionIcon"><i class="fa fa-exclamation-triangle"></i><span data-localize="Form1095.caution"></span></div><span data-localize="Form1095.C2016.ifYouDoNot"></span></div>
           <div data-localize="Form1095.C2016.partIATaxpayer"></div>
           <div data-localize="Form1095.C2016.partIApplicable"></div>
           <div><b data-localize="Form1095.C2016.lines7-13"></b> <span data-localize="Form1095.C2016.partILines7-13Reports"></span> </div>

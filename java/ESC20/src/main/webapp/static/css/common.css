@@ -405,6 +405,10 @@ input:focus {
   margin-bottom: 10px;
 }
 
+.error-vertical {
+  display: block;
+}
+
 .error-vertical.has-error .help-block {
   position: relative;
   display: block;
@@ -525,10 +529,6 @@ input:focus {
   border: 1px solid #dee2e6;
 }
 
-.table.border-table thead th, .table.border-table thead td {
-  border-bottom-width: 2px;
-}
-
 .table.border-table tr.redTd {
   background: #e28088 !important;
 }
@@ -645,6 +645,7 @@ input:focus {
 
 .table th.no-border-td, .table td.no-border-td {
   border: 0;
+  border-bottom: 1px solid #dee2e6;
 }
 
 .table th.doubleborder, .table td.doubleborder {

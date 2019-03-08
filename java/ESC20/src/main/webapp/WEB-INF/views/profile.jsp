@@ -454,7 +454,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.email}</span
                                                 >
-                                                <div class="form-group valueInput">
+                                                <div class="form-group valueInput error-vertical">
                                                     <input
                                                         class="form-control"
                                                         name="emailNew"
@@ -469,12 +469,29 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
+                                            <div class="profile-title" data-localize="profile.verifyEmail"></div>
+                                            <div class="profile-desc">
+                                                <span class="haveValue"></span>
+                                                <div class="form-group valueInput error-vertical">
+                                                    <input
+                                                        class="form-control"
+                                                        name="emailNewVerify"
+                                                        value=""
+                                                        id="emailVerifyWorkEmail"
+                                                        class="form-control"
+                                                        aria-label=""
+                                                        data-localize="profile.verifyEmail"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.homeEmail"></div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.hmEmail}</span
                                                 >
-                                                <div class="form-group valueInput">
+                                                <div class="form-group valueInput error-vertical">
                                                     <input
                                                         class="form-control <c:if test="${sessionScope.userDetail.hmEmail != emailRequest.hmEmailNew}">active</c:if>"
                                                         name="hmEmailNew"
@@ -482,6 +499,23 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         aria-label=""
                                                         data-localize="profile.homeEmail"
                                                         value="${emailRequest.hmEmailNew}"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="profile-item-line form-line">
+                                            <div class="profile-title" data-localize="profile.verifyEmail"></div>
+                                            <div class="profile-desc">
+                                                <span class="haveValue"></span>
+                                                <div class="form-group valueInput error-vertical">
+                                                    <input
+                                                        class="form-control"
+                                                        name="hmEmailVerifyNew"
+                                                        value=""
+                                                        id="emailVerifyHomeEmail"
+                                                        class="form-control"
+                                                        aria-label=""
+                                                        data-localize="profile.verifyEmail"
                                                     />
                                                 </div>
                                             </div>

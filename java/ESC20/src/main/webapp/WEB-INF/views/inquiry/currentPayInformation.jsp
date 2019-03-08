@@ -34,7 +34,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <div style="text-align:center;margin-bottom:10px;">
                                                 ${sessionScope.district.name}<br />${sessionScope.district.address}<br />
                                                 ${sessionScope.district.city},
-                                                ${sessionScope.district.state} ${sessionScope.district.phone}
+                                                ${sessionScope.district.state} ${sessionScope.district.zip}-${sessionScope.district.zip4}
                                             </div>
                                         <div style="text-align:center;">
                                                 <span data-localize="label.currentPayInfo"></span><br />

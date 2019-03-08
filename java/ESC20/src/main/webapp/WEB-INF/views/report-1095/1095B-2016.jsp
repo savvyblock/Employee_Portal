@@ -11,7 +11,7 @@
       <td style="width: 50%" valign="top">
           <div data-localize="Form1095.B2016.thisForm"></div>
           <div data-localize="Form1095.B2016.minimumEssential"></div>
-          <div><img src="" alt="TIP"><span data-localize="Form1095.B2016.providersOfMinimum"></span> </div>
+          <div><div class="wordTipIcon"><span data-localize="Form1095.tip"></span></div><span data-localize="Form1095.B2016.providersOfMinimum"></span> </div>
           <div data-localize="Form1095.B2016.shouldProvide"></div>
           <div>
             <b data-localize="Form1095.B2016.partIResponsible"></b>
@@ -28,7 +28,7 @@
           <div><b data-localize="Form1095.D"></b> <span data-localize="Form1095.B2016.D"></span> </div>
           <div><b data-localize="Form1095.E"></b> <span data-localize="Form1095.B2016.E"></span> </div>
           <div><b data-localize="Form1095.F"></b> <span data-localize="Form1095.B2016.F"></span> </div>
-          <div><img src="" alt="TIP"> <span data-localize="Form1095.B2016.ifYourOrAnother"></span> </div>
+          <div><div class="wordTipIcon"><span data-localize="Form1095.tip"></span></div> <span data-localize="Form1095.B2016.ifYourOrAnother"></span> </div>
           <div data-localize="Form1095.B2016.1095-AratherThan"></span> </div>
           <div><b><span data-localize="Form1095.line"></span> 9.</b> <span data-localize="Form1095.B2016.Reserved"></span> </div>
          

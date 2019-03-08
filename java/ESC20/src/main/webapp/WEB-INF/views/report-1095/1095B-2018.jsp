@@ -11,7 +11,7 @@
       <td style="width: 50%" valign="top">
           <div data-localize="Form1095.B2018.thisForm"></div>
           <div data-localize="Form1095.B2018.minimumEssential"></div>
-          <div><img src="" alt="TIP"><span data-localize="Form1095.B2018.providersOfMinimum"></span> </div>
+          <div><div class="wordTipIcon"><span data-localize="Form1095.tip"></span></div><span data-localize="Form1095.B2018.providersOfMinimum"></span> </div>
           <div data-localize="Form1095.B2018.shouldProvide"></div>
           <div>
             <b data-localize="Form1095.B2018.partIResponsible"></b>
@@ -21,7 +21,7 @@
           <div><b data-localize="Form1095.B2018.lines2And3"></b> <span data-localize="Form1095.B2018.line2Reports"></span> </div>
           <div data-localize="Form1095.B2018.ifYouDont"></div>
           <div data-localize="Form1095.B2018.determineThat"></div>
-          <div><img src="" alt="CAUTION"><b data-localize="Form1095.B2018.additionalInfo"></b><span data-localize="Form1095.B2018.forAdditionalInfo"></span> </div>
+          <div><div class="cautionIcon"><i class="fa fa-exclamation-triangle"></i><span data-localize="Form1095.caution"></span></div><b data-localize="Form1095.B2018.additionalInfo"></b><span data-localize="Form1095.B2018.forAdditionalInfo"></span> </div>
           <div><b><span data-localize="Form1095.line"></span> 8.</b> <span data-localize="Form1095.B2018.thisIsTheCode"></span> </div>
           <div data-localize="Form1095.B2018.coveredIndividuals"></div>
           <div><b data-localize="Form1095.A"></b> <span data-localize="Form1095.B2018.A"></span> </div>
@@ -30,7 +30,7 @@
           <div><b data-localize="Form1095.D"></b> <span data-localize="Form1095.B2018.D"></span> </div>
           <div><b data-localize="Form1095.E"></b> <span data-localize="Form1095.B2018.E"></span> </div>
           <div><b data-localize="Form1095.F"></b> <span data-localize="Form1095.B2018.F"></span> </div>
-          <div><img src="" alt="TIP"> <span data-localize="Form1095.B2018.1095-AratherThan"></span> </div>
+          <div><div class="wordTipIcon"><span data-localize="Form1095.tip"></span></div> <span data-localize="Form1095.B2018.1095-AratherThan"></span> </div>
           <div><b><span data-localize="Form1095.line"></span> 9.</b> <span data-localize="Form1095.B2018.Reserved"></span> </div>
          
       </td>

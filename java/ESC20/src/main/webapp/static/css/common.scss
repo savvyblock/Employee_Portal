@@ -343,6 +343,7 @@ input {
     }
 }
 .error-vertical{
+    display: block;
     &.has-error .help-block{
         position: relative;
         display: block;
@@ -447,7 +448,7 @@ input {
         border: 1px solid #dee2e6;
         thead{
             th,td{
-                border-bottom-width: 2px;
+                // border-bottom-width: 2px;
             }
         }
         tr{
@@ -563,6 +564,7 @@ input {
         }
         &.no-border-td{
             border:0;
+            border-bottom: 1px solid #dee2e6;
         }
         &.doubleborder{
             border-width: 2px;

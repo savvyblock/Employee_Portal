@@ -12,12 +12,12 @@
           <div data-localize="Form1095.C2018.youAreReceiving"></div>
           <div data-localize="Form1095.C2018.inAdditionIfYou"></div>
           <div data-localize="Form1095.C2018.ifYourEmployer"></div>
-          <div><img src="" alt="TIP"><span data-localize="Form1095.C2018.employersAreRequired"></span></div>
+          <div><div class="wordTipIcon"><span data-localize="Form1095.tip"></span></div><span data-localize="Form1095.C2018.employersAreRequired"></span></div>
           <div><b data-localize="Form1095.C2018.additionalInfo"></b> <span data-localize="Form1095.C2018.forAdditionalInfo"></span> </div>
           <h2 data-localize="Form1095.C2018.partIEmployee"></h2>
           <div><b data-localize="Form1095.C2018.lines1-6"></b> <span data-localize="Form1095.C2018.partIReports"></span> </div>
           <div><b><span data-localize="Form1095.line"></span> 2.</b> <span data-localize="Form1095.C2018.Line2"></span> </div>
-          <div><img src="" alt="CAUTION"><span data-localize="Form1095.C2018.ifYouDoNot"></span></div>
+          <div><div class="cautionIcon"><i class="fa fa-exclamation-triangle"></i><span data-localize="Form1095.caution"></span></div><span data-localize="Form1095.C2018.ifYouDoNot"></span></div>
           <div data-localize="Form1095.C2018.partIApplicable"></div>
           <div><b data-localize="Form1095.C2018.lines7-13"></b> <span data-localize="Form1095.C2018.partILines7-13Reports"></span> </div>
           <div><b><span data-localize="Form1095.line"></span> 10.</b> <span data-localize="Form1095.C2018.Line10"></span> </div>

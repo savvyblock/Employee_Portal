@@ -28,7 +28,7 @@
           <div><b data-localize="Form1095.D"></b> <span data-localize="Form1095.B2015.D"></span> </div>
           <div><b data-localize="Form1095.E"></b> <span data-localize="Form1095.B2015.E"></span> </div>
           <div><b data-localize="Form1095.F"></b> <span data-localize="Form1095.B2015.F"></span> </div>
-          <div><img src="" alt="TIP"> <span data-localize="Form1095.B2015.ifYourOrAnother"></span> </div>
+          <div><div class="wordTipIcon"><span data-localize="Form1095.tip"></span></div> <span data-localize="Form1095.B2015.ifYourOrAnother"></span> </div>
           <div data-localize="Form1095.B2015.ratherThan"></span> </div>
           <div><b><span data-localize="Form1095.line"></span> 9.</b> <span data-localize="Form1095.B2015.line9"></span> </div>
          

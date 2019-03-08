@@ -646,9 +646,11 @@ function emailFormValidator() {
             // invalid: 'fa fa-times',
             validating: 'fa fa-refresh'
         },
+        verbose : true,
         fields: {
             emailNew: {
                 trigger: 'blur keyup',
+                verbose : true,
                 validators: {
                     notEmpty: {
                         message: 'validator.requiredField'
@@ -658,9 +660,36 @@ function emailFormValidator() {
                     }
                 }
             },
+            emailNewVerify: {
+                trigger: 'blur keyup',
+                validators: {
+                    notEmpty: {
+                        message: 'validator.requiredField'
+                    },
+                    identical: {
+                        field: 'emailNew',
+                        message:'validator.emailNotMatch'
+                    },
+                    emailAddress: {
+                        message: 'validator.pleaseEnterCorrectFormat'
+                    }
+                }
+            },
             hmEmailNew: {
                 trigger: 'blur keyup',
                 validators: {
+                    emailAddress: {
+                        message: 'validator.pleaseEnterCorrectFormat'
+                    }
+                }
+            },
+            hmEmailVerifyNew: {
+                trigger: 'blur keyup',
+                validators: {
+                    identical: {
+                        field: 'hmEmailNew',
+                        message:'validator.emailNotMatch'
+                    },
                     emailAddress: {
                         message: 'validator.pleaseEnterCorrectFormat'
                     }
