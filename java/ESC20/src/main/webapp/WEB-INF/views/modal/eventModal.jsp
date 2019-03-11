@@ -36,7 +36,9 @@
                             <div class="valid-wrap">
                                 <select class="form-control" name="leaveType" id="modalLeaveType">
                                         <c:forEach var="type" items="${leaveTypes}" varStatus="count">
+                                            <c:if test="${type.description !='ALL'}">
                                                 <option value="${type.code}">${type.description}</option>
+                                            </c:if>
                                         </c:forEach>
                                 </select>
                             </div>
@@ -91,18 +93,21 @@
                             
                         </div>
                     </div>
+                    <div class="form-group has-error dateValidator01">
+                        <small class="help-block" data-localize="validator.startNotBeGreaterThanEndDate"></small>
+                    </div>
                     <div class="date-group">
                         <div class="form-group calendar-left">
                                 <label class="form-title" for="startTimeValue"><span data-localize="leaveRequest.startTime"></span>: </label>
                                 <div class="valid-wrap flex-middle">
                                     <input class="form-control timeControl" type="text" name="startHour" 
-                                    id="startHour" onchange="calcTime()" 
+                                    id="startHour" onchange="calcTime()"  autocomplete="off"
                                     onkeypress="return isHourKey(event)"
                                     aria-label="" data-localize="accessHint.startHour"
                                     >
                                     <span class="oclock-colon">:</span>
                                     <input class="form-control timeControl" type="text" name="startMinute" 
-                                    id="startMinute" onchange="calcTime()" 
+                                    id="startMinute" onchange="calcTime()"  autocomplete="off"
                                     onkeypress="return isMinuteKey(event)"
                                     aria-label="" data-localize="accessHint.startMinute"
                                     >
@@ -118,13 +123,13 @@
                             <label class="form-title" for="endTimeValue"><span data-localize="leaveRequest.endTime"></span>: </label>
                             <div class="valid-wrap flex-middle">
                                 <input class="form-control timeControl" type="text" name="endHour" 
-                                id="endHour" onchange="calcTime()" 
+                                id="endHour" onchange="calcTime()"  autocomplete="off"
                                 onkeypress="return isHourKey(event)"
                                 aria-label="" data-localize="accessHint.endHour"
                                 >
                                 <span class="oclock-colon">:</span>
                                 <input class="form-control timeControl" type="text" name="endMinute" 
-                                id="endMinute" onchange="calcTime()" 
+                                id="endMinute" onchange="calcTime()"  autocomplete="off"
                                 onkeypress="return isMinuteKey(event)"
                                 aria-label="" data-localize="accessHint.endMinute"
                                 >

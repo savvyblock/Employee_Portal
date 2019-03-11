@@ -101,41 +101,43 @@ function hideBody(){
     }, 200);
 }
 
-function convert2canvasDownload(shareContent,pdfDom,fileName){
+function convert2canvasDownload(shareContent,pdfDom,fileName,title){
 
-    html2canvas(shareContent, { scale: 2 }).then(function(canvas) {
+    html2canvas(shareContent, { scale: 4 ,background: "#fff"}).then(function(canvas) {
         var contentWidth = canvas.width
         var contentHeight = canvas.height
-        var pageHeight = (contentWidth / 592.28) * 841.89
+        var pageHeight = (contentWidth / 595.28) * 841.89
         var leftHeight = contentHeight
         //page offset
         var position = 0
         //a4 paper size [595.28,841.89], width of canvas in pdf
         var imgWidth = 595.28
-        var imgHeight = (595.28 / contentWidth) * contentHeight
+        var imgHeight = (imgWidth / contentWidth) * contentHeight
 
         var pageData = canvas.toDataURL('image/jpeg', 1.0)
-        var pdf = new jsPDF('', 'pt', 'a4')
+        var pdf = new jsPDF('p', 'pt', 'a4')
 
-        pdf.internal.scaleFactor = 1.33
+        pdf.internal.scaleFactor = 2
         //There are two heights to distinguish, one is the actual height of the HTML page, and the height of the page that generates the PDF (841.89).
         //No pagination is required when the content does not exceed the range shown on a PDF page
-
+       console.log(title)
+       pdf.setFontSize(8);
         if (leftHeight < pageHeight) {
+            pdf.text( title,300 ,10,'center');
             pdf.addImage(pageData, 'JPEG', 0, 40, imgWidth, imgHeight)
         } else {
             while (leftHeight > 0) {
+                pdf.text( title,300 ,10,'center');
                 pdf.addImage(
                     pageData,
                     'JPEG',
                     0,
-                    position + 80,
+                    position + 40,
                     imgWidth,
                     imgHeight
                 )
                 leftHeight -= pageHeight
                 position -= 841.89
-                console.log("position:"+position)
                 //Avoid adding blank pages
                 if (leftHeight > 0) {
                     pdf.addPage()

@@ -687,6 +687,7 @@
 		"newRequest":"New Request",
 		"editRequest":"Edit Request",
 		"startNotBeGreaterThanEndTime":"The end time must be greater than the start time!",
+		"startNotBeGreaterThanEndDate":"The start date can not be later than the end date!",
 		"startDateCannotBeEmpty":"The start date cannot be empty",
 		"endDateCannotBeEmpty":"The end date cannot be empty",
 		"startTimeCannotBeEmpty":"The start time cannot be empty",

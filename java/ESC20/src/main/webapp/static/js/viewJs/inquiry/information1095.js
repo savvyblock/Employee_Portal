@@ -44,7 +44,9 @@ function toggleOptions(value){
     $("#consentModal").val(value)            
 }
 var pdf
+
 function downloadPDF() {
+    var title = $(document).attr("title")
     $('.exportPDFBox').show()
     $('.exportPDFBox').addClass("printStatus")
     $('.exportPDFBox').append($('.needToClone').clone())
@@ -54,7 +56,7 @@ function downloadPDF() {
     pdf = new jsPDF('', 'pt', 'a4')
     $(".exportPDFBox .pdfPage").each(function(index){
         let that = $(this)[0]
-        html2canvas(that, { scale: 2 }).then(function(canvas) {
+        html2canvas(that, { scale: 4 ,background: "#fff"}).then(function(canvas) {
             var contentWidth = canvas.width
             var contentHeight = canvas.height
             var pageHeight = (contentWidth / 592.28) * 841.89
@@ -69,13 +71,16 @@ function downloadPDF() {
             var pageData = canvas.toDataURL('image/jpeg', 1.0)
             
     
-            pdf.internal.scaleFactor = 1.33
+            pdf.internal.scaleFactor = 2
+            pdf.setFontSize(8);
             //There are two heights to distinguish, one is the actual height of the HTML page, and the height of the page that generates the PDF (841.89).
             //No pagination is required when the content does not exceed the range shown on a PDF page
             if (leftHeight < pageHeight) {
+                pdf.text( title,300 ,10,'center');
                 pdf.addImage(pageData, 'JPEG', 27, 40, imgWidth, imgHeight)
             } else {
                 while (leftHeight > 0) {
+                    pdf.text( title,300 ,10,'center');
                     pdf.addImage(
                         pageData,
                         'JPEG',

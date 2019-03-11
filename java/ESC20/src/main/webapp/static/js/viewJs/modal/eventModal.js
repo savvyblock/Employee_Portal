@@ -142,7 +142,17 @@ function formValidator() {
 }
 
  $("#endDate").change(function(){
-        calcDays()
+        let leaveFrom = changeDateYMD($("#startDate").val())
+        let leaveTo = changeDateYMD($("#endDate").val())
+        if(leaveFrom && leaveTo){
+            if( leaveFrom<=leaveTo){
+                $('.dateValidator01').hide()
+                calcDays()
+            }else{
+                $('.dateValidator01').show()
+            }
+        }
+        
     });
 
     $("#leaveHoursDaily").change(function(){
@@ -350,4 +360,8 @@ function formValidator() {
             }
         } else return
     })
-    
+    function changeDateYMD(date){
+		let dateArry = date.split("/")
+		let DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
+		return DateFormat
+	}

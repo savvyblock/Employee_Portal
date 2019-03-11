@@ -352,7 +352,7 @@
   margin: 0;
 }
 
-.requestForm .dateValidator {
+.requestForm .dateValidator, .requestForm .dateValidator01 {
   display: none;
 }
 
@@ -978,6 +978,8 @@
   font-size: 16px;
   left: 0;
   color: #000 !important;
+  background: #fff;
+  border: 0;
 }
 
 .exportPDFBox .flex-line .left-title {

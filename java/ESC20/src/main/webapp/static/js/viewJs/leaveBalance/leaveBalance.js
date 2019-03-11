@@ -47,10 +47,27 @@ $(document).ready(function() {
         })
         .data('datepicker')
     setGlobal()
+    $("#retrieve").click(function(){
+        let fromInput = changeDateYMD($("#SearchStartDate").val())
+        let toInput = changeDateYMD($("#SearchEndDate").val())
+        console.log(fromInput)
+        console.log(toInput)
+        if(fromInput && toInput && fromInput<=toInput){
+            $("#timeErrorMessage").addClass("hide")
+            $("#changeFreqForm")[0].submit();
+        }else{
+            $("#timeErrorMessage").removeClass("hide")
+        }
+    })
 })
 
 function changeMMYYDDFormat(date) {
     let string = date.split('/')
     console.log(string[2] + string[0] + string[1])
     return string[2] + string[0] + string[1]
+}
+function changeDateYMD(date){
+    let dateArry = date.split("/")
+    let DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
+    return DateFormat
 }

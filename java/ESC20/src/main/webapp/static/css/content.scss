@@ -286,7 +286,7 @@
     margin: 0;
 }
 .requestForm {
-    .dateValidator {
+    .dateValidator,.dateValidator01 {
         display: none;
     }
     .btm-button {
@@ -851,6 +851,8 @@
     font-size: 16px;
     left: 0;
     color: #000!important;
+    background: #fff;
+    border:0;
     .flex-line .left-title{
         flex: 0 0 180px;
     }

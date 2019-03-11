@@ -50,5 +50,6 @@ function downloadPDF() {
 
     let pdfDom = '.exportPDFBox .calendarYTDTable'
     let fileName = 'calendarYearToDate'
-    convert2canvasDownload(shareContent,pdfDom,fileName)
+    let title = $(document).attr("title")
+    convert2canvasDownload(shareContent,pdfDom,fileName,title)
 }

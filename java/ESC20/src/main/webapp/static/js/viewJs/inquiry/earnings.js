@@ -77,5 +77,6 @@ function downloadPDF() {
 
     let pdfDom = '.exportPDFBox .needToClone'
     let fileName = 'earning'
-    convert2canvasDownload(shareContent,pdfDom,fileName)
+    let title = $(document).attr("title")
+    convert2canvasDownload(shareContent,pdfDom,fileName,title)
 }
