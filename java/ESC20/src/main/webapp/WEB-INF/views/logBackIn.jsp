@@ -14,7 +14,8 @@
                     <h1 class="logBackTitle" data-localize="label.sessionTimeOut"></h1>
                     <div class="logBackWord" data-localize="label.sessionTimeOutWord"> </div>
                     <div class="account-box">
-                        <form class="card" method="post" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
+                        <form class="card" method="post" action="/<%=request.getContextPath().split("/")[1]%>/logBackInEA">
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <h1 class="title" data-localize="label.pleaseSignIn"></h1>
                             <div class="form-group">
                                 <label class="form-title" for="inputEmail" data-localize="label.username"></label>
@@ -41,7 +42,7 @@
 		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswFaild"></div>
 		                    </c:if>
                             <div class="form-group account-btn">
-                                <button id="signin" type="submit" class="btn btn-primary" name="signin" data-localize="label.login"></button>
+                                <button id="signin" type="submit" class="btn btn-primary" data-localize="label.login"></button>
                             </div>
                             
                         </form>
