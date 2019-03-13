@@ -3,6 +3,7 @@ function submitYear(){
 }
 $(function(){
     let consentVal = $("#elecConsnt1095").val()
+    $("#consentModal").val(consentVal)
     if (consentVal == 'Y') {
         $("#consent").prop('checked',true);
     } else if (consentVal == 'N') {
@@ -29,7 +30,6 @@ $(function(){
     $("#saveConsent").on('click', function(event) {
         let year = $("#consentYear").val()
         let consentOption = $("#consentModal").val()
-        
         if(year && year!='' && consentOption && consentOption!=''){
             $("#noChooseError").hide()
             $("#update1095Consent")[0].submit()

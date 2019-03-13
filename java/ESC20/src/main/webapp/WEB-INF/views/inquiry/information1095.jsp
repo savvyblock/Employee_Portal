@@ -454,8 +454,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     id="saveConsent"
                                     type="button"
                                     class="btn btn-primary"
-                                    data-dismiss="modal"
-                                    aria-hidden="true"
                                     data-localize="label.save"
                                 ></button>
                             <button

@@ -18,7 +18,7 @@
                         <div class="account-logo">
                             <img src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="" data-localize="logoName.esc">
                         </div>
-                        <form method="post" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
+                        <form method="post" class="card bv-form" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
                             <h1 class="title" data-localize="label.pleaseSignIn"></h1>
                             <div class="form-group">
                                 <label class="form-title" for="inputEmail" data-localize="label.username"></label>

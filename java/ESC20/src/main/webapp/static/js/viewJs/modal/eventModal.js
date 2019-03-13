@@ -169,7 +169,7 @@ function formValidator() {
     //     }
     // });
     var timeError = false
-    function calcTime(){
+    function calcTime(){console.log("000000000000000000")
         $('#requestForm').bootstrapValidator('disableSubmitButtons', false);  
         let startH = $("#startHour").val()
         let startM = $("#startMinute").val()
