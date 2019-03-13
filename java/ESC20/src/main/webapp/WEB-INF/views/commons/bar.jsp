@@ -240,6 +240,9 @@
         </li>
     </ul>
   </aside>
+  <form id="sessionOutForm" action="/<%=request.getContextPath().split("/")[1]%>/logoutEA" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  </form>
   <input type="hidden" id="csrfmiddlewaretoken" name="${_csrf.parameterName}" value="${_csrf.token}"/>
    <%@ include file="../modal/logoutModal.jsp"%>
    <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/commons/bar.js"></script>

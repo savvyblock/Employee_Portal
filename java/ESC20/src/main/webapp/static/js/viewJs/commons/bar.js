@@ -55,7 +55,7 @@ function startCountTime() {
             // $('#timeCounter').text(time)
             // clearInterval(intervalId);
             if (time == 0) {
-                window.location = urlMain + '/logBackIn'
+                $("#sessionOutForm")[0].submit();
             }
         }
     }, 1000)
