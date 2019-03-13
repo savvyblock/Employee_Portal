@@ -24,7 +24,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 							 authentication-failure-url="/login?error"
                 			 username-parameter="username"
                 			 password-parameter="password"/>
-        <security:logout logout-url="/logoutEA" logout-success-url="/login" invalidate-session="true" />
+        <security:logout logout-url="/logoutEA" success-handler-ref="customSuccessLogoutHandler" invalidate-session="true" />
         <security:custom-filter before="CHANNEL_FILTER" ref="databaseFilter"/>
 	</security:http>
 	
@@ -43,4 +43,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
  	<bean id="customSHA256Encoder" class="com.esc20.security.CustomSHA256Encoder" />
  
  	<bean id="customSuccessHandler" class="com.esc20.security.CustomSuccessHandler" />
+ 	
+ 	<bean id="customSuccessLogoutHandler" class="com.esc20.security.CustomSuccessLogoutHandler" />
 </beans>

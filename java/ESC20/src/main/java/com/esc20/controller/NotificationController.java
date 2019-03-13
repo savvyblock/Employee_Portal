@@ -24,7 +24,7 @@ import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/notifications")
-public class NotificationController extends IndexController{
+public class NotificationController{
 
     @Autowired
     private IndexService indexService;
@@ -32,11 +32,8 @@ public class NotificationController extends IndexController{
 	@RequestMapping("notifications")
     public ModelAndView getNotifications(HttpServletRequest req){
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
+        BeaUsers user = (BeaUsers)session.getAttribute("user");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         List<BeaAlert> unReadList = this.indexService.getUnReadAlert(demo.getEmpNbr());
         mav.setViewName("notifications");
@@ -50,10 +47,6 @@ public class NotificationController extends IndexController{
         HttpSession session = req.getSession();
         BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
-        Long alertId = Long.parseLong(id);
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteAlert(id);
         List<BeaAlert> unReadList = this.indexService.getUnReadAlert(demo.getEmpNbr());

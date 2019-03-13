@@ -46,12 +46,7 @@ public class TempApproverController extends BaseSupervisorController {
 	@RequestMapping("leaveRequestTemporaryApprovers")
 	public ModelAndView getLeaveRequestTemporaryApprovers(HttpServletRequest req, String empNbr) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
-
 		mav.setViewName("/supervisor/leaveRequestTemporaryApprovers");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		LeaveParameters params = this.service.getLeaveParameters();
@@ -99,11 +94,7 @@ public class TempApproverController extends BaseSupervisorController {
 	public ModelAndView nextLevelFromTempApprovers(HttpServletRequest req, String level, String chain,
 			String selectEmpNbr) throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/supervisor/leaveRequestTemporaryApprovers");
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer currentLevel = levels.size() - 1;
@@ -135,11 +126,7 @@ public class TempApproverController extends BaseSupervisorController {
 	public ModelAndView previousLevelFromTempApprovers(HttpServletRequest req, String level, String chain)
 			throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer prevLevel = levels.size() - 2;
@@ -154,11 +141,7 @@ public class TempApproverController extends BaseSupervisorController {
 	public ModelAndView saveTempApprovers(HttpServletRequest req, String level, String chain, String empNbr,
 			String approverJson) throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		JSONArray levels = JSONArray.fromObject(chain);
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));

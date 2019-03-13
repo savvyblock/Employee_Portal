@@ -36,11 +36,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 	@RequestMapping("eventCalendar")
 	public ModelAndView getEventCalendar(HttpServletRequest req, String freq) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/leaveRequest/fullCalendar");
 		AppLeaveRequest request = new AppLeaveRequest();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
@@ -121,11 +117,6 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq)
 			throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
-		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate,
 				endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo);
@@ -134,12 +125,6 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 	
 	@RequestMapping("deleteLeaveRequestFromCalendar")
 	public ModelAndView deleteLeaveRequestFromCalendar(HttpServletRequest req, String id, String freq) {
-		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
-		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		deleteLeaveRequest(id);
 		return this.getEventCalendar(req, freq);
 	}

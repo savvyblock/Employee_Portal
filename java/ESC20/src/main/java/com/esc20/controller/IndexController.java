@@ -36,9 +36,6 @@ import com.esc20.util.StringUtil;
 public class IndexController {
 
 	private static String key = "D3n!m!23R3gi0n20";
-	
-    @Autowired
-    private IndexService indexService;
     
     PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     
@@ -57,70 +54,13 @@ public class IndexController {
         return mav;
     }
     
-//    @RequestMapping(value = "login", method = RequestMethod.POST)
-//    @ResponseBody
-//    public Map<String, String> login(@RequestBody Map<String, String> param, HttpServletRequest req) throws ParseException{
-//        Map<String, String> res = new HashMap<>();
-//        res.put("isSuccess","false");
-//        if(param != null){
-//            String uName = param.get("userName");
-//            BeaUsers user = this.indexService.getUserPwd(uName);
-//            String plainTextPwd = param.get("userPwd");
-//            System.out.println("User plain input "+plainTextPwd);
-//            //plainTextPwd = passwordEncoder.encode(plainTextPwd);
-//            String userPwd = "{sha256}"+user.getUsrpswd();
-//            System.out.println("After SHA256 encoding "+plainTextPwd);
-//            System.out.println("User password from DB "+user.getUsrpswd());
-//            System.out.println("Match? "+ passwordEncoder);
-//            if(user != null /*&& user.getUsrpswd().equals(plainTextPwd)*/){
-//                res.put("isSuccess","true");
-//                res.put("userName", uName);
-//                HttpSession session = req.getSession();
-//                BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-//                Options options = this.indexService.getOptions();
-//                District districtInfo = this.indexService.getDistrict();
-//                userDetail.setEmpNbr(user.getEmpNbr());
-//                userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-//                String phone = districtInfo.getPhone();
-//                districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.left(phone, 4));
-//                Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr());
-//                Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
-//                session.setAttribute("isSupervisor", isSupervisor);
-//                session.setAttribute("isTempApprover", isTempApprover);
-//                session.setAttribute("user", user);
-//                session.setAttribute("userDetail", userDetail);
-//                session.setAttribute("companyId", user.getCmpId());
-//                session.setAttribute("options", options);
-//                session.setAttribute("district", districtInfo);
-//            }else {
-//            	  res.put("isSuccess","false");
-//                  res.put("userName", uName);
-//            }
-//        }
-//        return res;
-//    }
-    
     @RequestMapping("home")
     public ModelAndView getHome(HttpServletRequest req,HttpServletResponse response){
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         BhrEmpDemo userDetail = (BhrEmpDemo)session.getAttribute("userDetail");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
-        
         mav.setViewName("home");
         mav.addObject("userDetail", userDetail);
-        
         return mav;
     }
-    
-//    @RequestMapping("logout")
-//    public ModelAndView logout(HttpServletRequest req, String Id,HttpServletResponse response){
-//        HttpSession session = req.getSession();
-//        session.invalidate();
-//        ModelAndView mav = new ModelAndView();
-//        return this.getIndexPage(mav);
-//    }
 }

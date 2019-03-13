@@ -42,7 +42,7 @@ import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/baseSupervisor")
-public class BaseSupervisorController extends IndexController {
+public class BaseSupervisorController{
 
 	@Autowired
 	private LeaveRequestService service;

@@ -14,16 +14,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.SearchUser;
+import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.IndexService;
 
 @Controller
 @RequestMapping("/resetPassword")
-public class ResetPasswordController extends IndexController{
+public class ResetPasswordController{
 	
     @Autowired
     private IndexService indexService;
     
-    private static PasswordEncoder encoder = new StandardPasswordEncoder("SHA-256");
+    private static PasswordEncoder encoder = new CustomSHA256Encoder();
 	
     @RequestMapping("retrieveUserName")
     public ModelAndView retrieveUserName(HttpServletRequest req){

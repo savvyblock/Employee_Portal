@@ -20,7 +20,7 @@ import com.esc20.service.InquiryService;
 
 @Controller
 @RequestMapping("/deductions")
-public class DeductionsController extends IndexController {
+public class DeductionsController{
 
 	@Autowired
 	private InquiryService service;
@@ -28,11 +28,7 @@ public class DeductionsController extends IndexController {
 	@RequestMapping("deductions")
 	public ModelAndView getDeductions(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		List<Frequency> frequencies = this.service.getAvailableFrequencies(employeeNumber);

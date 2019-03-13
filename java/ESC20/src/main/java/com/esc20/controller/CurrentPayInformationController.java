@@ -24,7 +24,7 @@ import com.esc20.service.InquiryService;
 
 @Controller
 @RequestMapping("/currentPayInformation")
-public class CurrentPayInformationController extends IndexController {
+public class CurrentPayInformationController{
 	
 	@Autowired
 	private InquiryService service;
@@ -32,11 +32,7 @@ public class CurrentPayInformationController extends IndexController {
 	@RequestMapping("currentPayInformation")
 	public ModelAndView getCurrentPayInformation(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		Map<Frequency, List<CurrentPayInformation>> jobs = this.service.getJob(employeeNumber);

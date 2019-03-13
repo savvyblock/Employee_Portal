@@ -38,7 +38,7 @@ import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/baseLeaveRequest")
-public class BaseLeaveRequestController extends IndexController {
+public class BaseLeaveRequestController{
 
 	@Autowired
 	private LeaveRequestService service;

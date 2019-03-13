@@ -24,7 +24,7 @@ import com.esc20.util.DateUtil;
 
 @Controller
 @RequestMapping("/leaveBalance")
-public class LeaveBalanceController extends IndexController{
+public class LeaveBalanceController{
 
 	@Autowired
 	private LeaveRequestService service;
@@ -36,11 +36,7 @@ public class LeaveBalanceController extends IndexController{
 	public ModelAndView leaveBalance(HttpServletRequest req, String SearchType, String SearchStart, String SearchEnd,
 			String freq) throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
 		String start = SearchStart;

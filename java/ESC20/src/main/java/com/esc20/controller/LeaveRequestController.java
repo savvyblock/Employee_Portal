@@ -39,11 +39,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	public ModelAndView leaveRequest(HttpServletRequest req, String SearchType, String SearchStart, String SearchEnd,
 			String freq) throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		mav.setViewName("/leaveRequest/leaveRequest");
 		AppLeaveRequest request = new AppLeaveRequest();
@@ -151,11 +147,6 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq)
 			throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
-		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate,
 				endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo);
@@ -165,11 +156,6 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	@RequestMapping("deleteLeaveRequest")
 	public ModelAndView deleteLeaveRequest(HttpServletRequest req, String id) throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
-		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		deleteLeaveRequest(id);
 		return this.leaveRequest(req, null, null, null, null);
 	}

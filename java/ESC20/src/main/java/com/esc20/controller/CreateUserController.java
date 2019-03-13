@@ -14,26 +14,19 @@ import com.esc20.model.BeaEmail;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.SearchUser;
+import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.BankService;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
 
 @Controller
 @RequestMapping("/createUser")
-public class CreateUserController extends IndexController {
-
-	private static String key = "D3n!m!23R3gi0n20";
+public class CreateUserController{
 	
     @Autowired
     private IndexService indexService;
-
-    @Autowired
-    private ReferenceService referenceService;
     
-    @Autowired
-    private BankService bankService;
-    
-    private static PasswordEncoder encoder = new StandardPasswordEncoder("SHA-256");
+    private static PasswordEncoder encoder = new CustomSHA256Encoder();
 	
     @RequestMapping("searchUser")
     public ModelAndView searchUser(HttpServletRequest req){
