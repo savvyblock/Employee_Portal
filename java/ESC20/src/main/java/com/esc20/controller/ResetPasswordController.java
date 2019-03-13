@@ -24,7 +24,8 @@ public class ResetPasswordController{
     @Autowired
     private IndexService indexService;
     
-    private static PasswordEncoder encoder = new CustomSHA256Encoder();
+    @Autowired
+    private CustomSHA256Encoder encoder;
 	
     @RequestMapping("retrieveUserName")
     public ModelAndView retrieveUserName(HttpServletRequest req){
@@ -68,7 +69,7 @@ public class ResetPasswordController{
 	@RequestMapping("updatePassword")
 	public ModelAndView updatePassword(HttpServletRequest req,String password, String id){
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("index");
+		mav.setViewName("login");
 		
 		try {
 	    	BeaUsers user = this.indexService.getUserByEmpNbr(id);

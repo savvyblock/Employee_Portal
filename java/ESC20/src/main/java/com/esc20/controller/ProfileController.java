@@ -69,7 +69,8 @@ public class ProfileController{
     @Autowired
     private BankService bankService;
     
-    private static PasswordEncoder encoder = new CustomSHA256Encoder();
+    @Autowired
+    private CustomSHA256Encoder encoder;
     
     @RequestMapping("profile")
     public ModelAndView getProfile(HttpServletRequest req,String freq){

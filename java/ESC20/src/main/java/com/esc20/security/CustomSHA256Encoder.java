@@ -16,7 +16,7 @@ public class CustomSHA256Encoder implements PasswordEncoder{
     
 	@Override
     public boolean matches(CharSequence password, String encoded) {
-    	return encoder.matches(password, encoded);
+    	return encoder.matches(password, encoded)||BCrypt.checkpw(password.toString(), encoded);
     }
 
 }

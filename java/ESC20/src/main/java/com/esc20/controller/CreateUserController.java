@@ -25,8 +25,9 @@ public class CreateUserController{
 	
     @Autowired
     private IndexService indexService;
-    
-    private static PasswordEncoder encoder = new CustomSHA256Encoder();
+
+    @Autowired
+    private CustomSHA256Encoder encoder;
 	
     @RequestMapping("searchUser")
     public ModelAndView searchUser(HttpServletRequest req){
@@ -70,7 +71,7 @@ public class CreateUserController{
     	}else {
     		this.indexService.updateEmailEmployee(newUser.getEmpNbr(),req.getParameter("workEmail"),req.getParameter("homeEmail"));
     		indexService.saveBeaUsers(newUser);
-    		mav.setViewName("index");
+    		mav.setViewName("login");
     	    mav.addObject("user", user);
     	    mav.addObject("newUser", newUser);
     	    mav.addObject("isSuccess", "true");
