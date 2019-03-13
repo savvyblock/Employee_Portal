@@ -13,6 +13,7 @@
         <div class="account-top content-body"  tabindex="-1">
                 <div class="account-inner sm">
                         <form id="retrieveUser" action="retrieveEmployee" method="post" >
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <p>
                                     <b data-localize="label.pleaseEnterEmpBirthZipCode"></b>
                             </p>

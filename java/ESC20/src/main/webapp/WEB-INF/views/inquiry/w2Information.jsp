@@ -52,6 +52,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     id="selectCalendar"
                                     method="POST"
                                 >
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="form-group in-line">
                                         <label class="form-title"  for="year"  data-localize="label.pleaseSelectYear"></label>
                                         <select class="form-control" name="year" id="year" onchange="submitCalendarForm()">
@@ -1143,6 +1144,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         </div>
                         <div class="modal-body">
                             <form >
+                            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <div class="form-group">
                                     <label data-localize="label.customMessageHere"></label>
                                     <div class="form-control form-text static">
@@ -1165,6 +1167,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </form>
                             <form hidden="hidden" id="consentForm" action="updateW2Consent" method="POST">
+                            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <input type="text" name="year" id="consentYear" value="${selectedYear}" aria-label="" data-localize="accessHint.year">
                                 <input type="hidden" id="w2Latest" value="${sessionScope.options.w2Latest}" aria-label="" data-localize="accessHint.w2Latest"/>
                                 <input type="text" name="consentMsg" id="elecConsntMsgW2" value="${elecConsntMsgW2}" aria-label="" data-localize="accessHint.elecConsntMsgW2">

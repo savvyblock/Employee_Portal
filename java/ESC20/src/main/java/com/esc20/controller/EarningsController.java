@@ -30,11 +30,7 @@ public class EarningsController extends IndexController {
 	@RequestMapping("earnings")
 	public ModelAndView getEarnings(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		Integer days = ((Options) session.getAttribute("options")).getMaxDays();
@@ -79,11 +75,7 @@ public class EarningsController extends IndexController {
 	@RequestMapping("earningsByPayDate")
 	public ModelAndView getEarningsByPayDate(HttpServletRequest req, String payDateString) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		Integer days = ((Options) session.getAttribute("options")).getMaxDays();

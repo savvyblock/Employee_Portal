@@ -34,6 +34,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         
                                     </div>
                                     <form class="profile-item" id="personalForm" action="saveName" method="POST">
+                                    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                 <span class="currentTitle" data-localize="label.current"></span>
@@ -185,11 +186,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                     </form>
-                                    <form hidden="hidden" action="deleteNameRequest" id="deleteNameRequest" method="POST"></form>
+                                    <form hidden="hidden" action="deleteNameRequest" id="deleteNameRequest" method="POST">
+                                    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    </form>
                                 </div>
 
                                 <p class="sub-title" data-localize="profile.MaritalStatus"></p>
                                 <form class="profile-item" id="maritalStatusForm" action="saveMarital" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle" data-localize="label.current"></span>
@@ -255,9 +259,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                 </form>
-                                <form hidden="hidden" action="deleteMaritalRequest" id="deleteMaritalRequest" method="POST"></form>
+                                <form hidden="hidden" action="deleteMaritalRequest" id="deleteMaritalRequest" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
                                 <p class="sub-title" data-localize="profile.driversLicense"></p>
                                 <form class="profile-item" id="driverLicenseForm" action="saveDriversLicense" method="POST">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input hidden="hidden" type="text" name="empNbr" value="${licRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                     <input hidden="hidden" type="text" name="reqDts" value="${licRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
@@ -345,9 +352,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                 </form>
-                                <form hidden="hidden" action="deleteDriversLicenseRequest" id="deleteDriversLicense" method="POST"></form>
+                                <form hidden="hidden" action="deleteDriversLicenseRequest" id="deleteDriversLicense" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
                                 <p class="sub-title" data-localize="profile.restrictionCodes"></p>
                                 <form class="profile-item" id="restrictionCodeForm" action="saveRestrictionCodes" method="POST">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input hidden="hidden" type="text" name="empNbr" value="${restrictRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                     <input hidden="hidden" type="text" name="reqDts" value="${restrictRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
@@ -438,9 +448,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                 </form>
-                                <form hidden="hidden" action="deleteRestrictionCodesRequest" id="deleteRestrictionCodesRequest" method="POST"></form>
+                                <form hidden="hidden" action="deleteRestrictionCodesRequest" id="deleteRestrictionCodesRequest" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
                                 <p class="sub-title" data-localize="profile.email"></p>
                                 <form class="profile-item" id="emailForm" action="saveEmail" method="POST">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" name="empNbr" value="${emailRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                         <input hidden="hidden" type="text" name="reqDts" value="${emailRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
@@ -554,9 +567,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                 </form>
-                                <form hidden="hidden" action="deleteEmail" id="deleteEmail" method="POST"></form>
+                                <form hidden="hidden" action="deleteEmail" id="deleteEmail" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
                                 <p class="sub-title" data-localize="profile.emergenceContactInfo"></p>
                                 <form class="profile-item" id="emergencyContactForm" action="saveEmergencyContact" method="POST">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" name="empNbr" value="${emerRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                         <input hidden="hidden" type="text" name="reqDts" value="${emerRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
@@ -707,9 +723,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                 </form>
-                                <form hidden="hidden" action="deleteEmergencyContact" id="deleteEmergencyContact" method="POST"></form>
+                                <form hidden="hidden" action="deleteEmergencyContact" id="deleteEmergencyContact" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
                                 <p class="sub-title" data-localize="profile.mailingAddress"></p>
                                 <form class="profile-item" id="mailingAddressForm" action="saveMailAddr" method="POST">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" name="empNbr" value="${mailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                         <input hidden="hidden" type="text" name="reqDts" value="${mailAddrRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
@@ -885,9 +904,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                 </form>
-                                <form hidden="hidden" action="deleteMailAddr" id="deleteMailAddr" method="POST"></form>
+                                <form hidden="hidden" action="deleteMailAddr" id="deleteMailAddr" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
                                 <p class="sub-title" data-localize="profile.altAddr"></p>
                                 <form class="profile-item" id="alternativeAddressForm" action="saveAltMailAddr" method="POST">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" name="empNbr" value="${altMailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                         <input hidden="hidden" type="text" name="reqDts" value="${altMailAddrRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
@@ -1063,9 +1085,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                 </form>
-                                <form hidden="hidden" action="deleteAltMailAddr" id="deleteAltMailAddr" method="POST"></form>
+                                <form hidden="hidden" action="deleteAltMailAddr" id="deleteAltMailAddr" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
                                 <p class="sub-title" data-localize="profile.phoneNumbers"></p>
                                 <form class="profile-item" id="phoneForm" action="savePhone" method="POST">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" name="empNbr" value="${hmRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                         <input hidden="hidden" type="text" name="reqDts" value="${hmRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
@@ -1217,7 +1242,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                 </form>
-                                <form hidden="hidden" action="deletePhone" id="deletePhone" method="POST"></form>
+                                <form hidden="hidden" action="deletePhone" id="deletePhone" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                </form>
                         </c:if>
                         
                         <c:if test="${sessionScope.options.enableSelfServicePayroll == true}">
@@ -1228,7 +1255,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 id="changeFreqForm"
                                 method="POST"
                                             >
-                                            
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>           
                                 <div class="form-group in-line p-l-0">
                                     <label class="form-title"  for="freq"  data-localize="label.payrollFreq"></label>
                                     
@@ -1240,6 +1267,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </form>
                             <form class="profile-item" id="w4InfoForm" action="saveW4" method="POST">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                 <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                 <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}"  aria-label="" data-localize="accessHint.payFreq">
@@ -1331,6 +1359,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </form>
                             <form hidden="hidden" action="deleteW4" id="deleteW4" method="POST">
+                            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
                                 <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                 <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}" aria-label="" data-localize="accessHint.payFreq">
@@ -1347,6 +1376,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     id="bankAccountForm_${count.index}"
                                     method="POST"
                                     >
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <div class="profile-left">
                                         <c:if test="${count.index == 0}">
                                         <div class="profileTitle form-line profileInfo">
@@ -1524,6 +1554,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                             <div>
                                 <form hidden="hidden" action="updateBank" id="updateBankHidden" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input type="hidden" name="freq" id="hidden_freq_update"   aria-label="" data-localize="accessHint.reqDts"/>
                                     <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_update"   aria-label="" data-localize="accessHint.accountNumberNew"/>
                                     <input type="hidden" name="accountNumber" id="hidden_accountNumber_update"   aria-label="" data-localize="accessHint.accountNumber"/>
@@ -1536,6 +1567,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <input type="hidden" name="displayAmountNew" id="hidden_displayAmountNew_update"   aria-label="" data-localize="accessHint.displayAmountNew"/>
                                 </form>
                                 <form hidden="hidden" action="undoBank" id="undoBankHidden" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input type="hidden" name="freq" id="hidden_freq_undo"   aria-label="" data-localize="accessHint.frequency"/>
                                     <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_undo"   aria-label="" data-localize="accessHint.accountNumberNew"/>
                                     <input type="hidden" name="accountNumber" id="hidden_accountNumber_undo"   aria-label="" data-localize="accessHint.accountNumber"/>
@@ -1543,6 +1575,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <input type="hidden" name="codeNew" id="hidden_codeNew_undo"   aria-label="" data-localize="accessHint.bankCodeNew"/>
                                 </form>
                                 <form hidden="hidden" action="deleteBank"  id="deleteBankHidden" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input type="hidden" name="freq" id="hidden_freq_delete"   aria-label="" data-localize="accessHint.frequency"/>
                                     <input type="hidden" name="accountNumber" id="hidden_accountNumber_delete"   aria-label="" data-localize="accessHint.accountNumber"/>
                                     <input type="hidden" name="code" id="hidden_code_delete"  aria-label="" data-localize="accessHint.bankCode"/>
@@ -1550,6 +1583,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <input type="hidden" name="displayAmount" id="hidden_displayAmount_delete"   aria-label="" data-localize="accessHint.displayAmount"/>
                                 </form>
                                 <form hidden="hidden" action="saveBank" id="saveBankHidden" method="POST">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input type="hidden" name="freq" id="hiddenfreq"   aria-label="" data-localize="accessHint.frequency"/>
                                     <input type="hidden" name="displayAmount" id="hiddendisplayAmount"  aria-label="" data-localize="accessHint.displayAmount"/>
                                     <input type="hidden" name="displayLabel" id="hiddendisplayLabel"   aria-label="" data-localize="accessHint.displayLabel"/>
@@ -1562,6 +1596,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     id="addBankAccountForm"
                                     method="POST"
                                 >
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="profile-left">
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title" data-localize="profile.bankName">
@@ -1722,6 +1757,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             method="post"
                             class="flex"
                         >
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="form-group">
                                 <label class="form-title" for="codeCriteriaSearchCode"
                                     ><span data-localize="profile.routingNumber"></span>:</label

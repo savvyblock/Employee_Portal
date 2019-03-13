@@ -51,6 +51,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     id="selectCalendar"
                                     method="POST"
                                 >
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="form-group in-line">
                                         <label class="form-title" data-localize="label.pleaseSelectYear" for="year"></label
                                         >
@@ -423,6 +424,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         </div>
                         <div class="modal-body">
                             <form action="update1095Consent" id="update1095Consent" method="POST">
+                            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input hidden="hidden" type="text" name="year" id="consentYear" value="${selectedYear}" aria-label="" data-localize="accessHint.year">
                                     <input hidden="hidden" type="text" name="consent" id="consentModal" value="" aria-label="" data-localize="accessHint.consent">
                                 <div class="form-group">

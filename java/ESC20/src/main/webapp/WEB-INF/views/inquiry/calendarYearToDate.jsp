@@ -75,6 +75,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             id="selectCalendar"
                             method="POST"
                         >
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="form-group in-line">
                                 <label class="form-title" for="year" data-localize="label.pleaseSelectYear"
                                     ></label

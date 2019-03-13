@@ -194,6 +194,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     id="selectEarnings"
                                     method="POST"
                                 >
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="form-group in-line">
                                         <label class="form-title" for="payDateString"><span data-localize="label.payDates"></span>:</label>
                                         <select class="form-control" name="payDateString" id="payDateString" onchange="submitEarning()" style="max-width:280px;">

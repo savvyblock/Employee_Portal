@@ -21,6 +21,7 @@
 					id="changeFreqForm"
 					method="POST"
 								>
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 								<div class="form-group in-line">
 								<label class="form-title"  for="freq"  data-localize="label.pleaseSelectFre"></label>
 				<select class="form-control" name="freq" id="freq" onchange="changeFreq()">
@@ -32,6 +33,7 @@
 			</form>
 	  <%@ include file="../commons/leaveBalanceTable.jsp"%>
 				<form class="no-print searchForm" id="SearchForm" action="leaveBalance" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="text" name="freq" hidden="hidden" value="${selectedFreq}" aria-label="" data-localize="accessHint.id">
 					<div class="form-group type-group">
 						<label class="form-title" for="SearchType"><span data-localize="leaveBalance.type"></span>:</label> 
@@ -134,6 +136,7 @@
 			</div>
 		</section>
 			<form hidden="true" id="deleteForm" action="deleteLeaveRequest" method="post">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<input type="text" id="deleteId" name="id" aria-label="" data-localize="accessHint.id"/>
 			</form>
 		</main>

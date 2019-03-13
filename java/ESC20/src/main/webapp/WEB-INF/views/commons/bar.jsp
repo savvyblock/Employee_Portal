@@ -231,7 +231,7 @@
           <i class="fa fa-question-circle"></i>
         </a></li>
         <li>
-          <a href="/<%=request.getContextPath().split("/")[1]%>/logout"
+          <a href="/<%=request.getContextPath().split("/")[1]%>/logoutEA"
             aria-label="" data-localize="accessHint.logout" data-localize-location="aria-label" data-localize-notText="true"
             >
           <i class="fa fa-sign-out "></i></a></li>

@@ -116,11 +116,11 @@ public class IndexController {
         return mav;
     }
     
-    @RequestMapping("logout")
-    public ModelAndView logout(HttpServletRequest req, String Id,HttpServletResponse response){
-        HttpSession session = req.getSession();
-        session.invalidate();
-        ModelAndView mav = new ModelAndView();
-        return this.getIndexPage(mav);
-    }
+//    @RequestMapping("logout")
+//    public ModelAndView logout(HttpServletRequest req, String Id,HttpServletResponse response){
+//        HttpSession session = req.getSession();
+//        session.invalidate();
+//        ModelAndView mav = new ModelAndView();
+//        return this.getIndexPage(mav);
+//    }
 }

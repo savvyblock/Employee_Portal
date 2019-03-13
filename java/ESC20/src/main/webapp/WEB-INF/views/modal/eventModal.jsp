@@ -23,6 +23,7 @@
                 <h4 class="modal-title edit-title" data-localize="label.editRequest"></h4>
             </div>
             <form id="requestForm" action="submitLeaveRequest" method="post">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <input type="text" hidden="hidden" name="chain" id="chainModal" aria-label="" data-localize="accessHint.chain">
                 <input type="text" hidden="hidden" name="empNbr" id="empNbrModal" aria-label="" data-localize="accessHint.employeeNumber">
                 <input type="text" name="freq" hidden="hidden" id="freqModal" value="${selectedFreq}" aria-label="" data-localize="accessHint.frequency">
