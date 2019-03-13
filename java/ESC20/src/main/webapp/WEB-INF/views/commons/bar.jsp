@@ -237,6 +237,6 @@
           <i class="fa fa-sign-out "></i></a></li>
     </ul>
   </aside>
-
+  <input type="hidden" id="csrfmiddlewaretoken" name="${_csrf.parameterName}" value="${_csrf.token}"/>
    <%@ include file="../modal/logoutModal.jsp"%>
    <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/commons/bar.js"></script>

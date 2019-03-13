@@ -18,7 +18,7 @@
                         <div class="account-logo">
                             <img src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="" data-localize="logoName.esc">
                         </div>
-                        <form id="loginForm" class="card" method="get">
+                        <form method="post" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
                             <h1 class="title" data-localize="label.pleaseSignIn"></h1>
                             <div class="form-group">
                                 <label class="form-title" for="inputEmail" data-localize="label.username"></label>
@@ -51,20 +51,21 @@
                                 </div>
                             </div>
                             <div class="form-group account-btn">
-                                <button id="signin" type="submit" class="btn btn-primary" name="signin" data-localize="label.login"></button>
+                                <button id="signin" type="submit" class="btn btn-primary" data-localize="label.login"></button>
                             </div>
                             <div class="text-center">
                                 <a class="a-line" href="/<%=request.getContextPath().split("/")[1]%>/createUser/searchUser" data-localize="label.newUser">
                                     
                                 </a>
                             </div>
-                            
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </form>
                         
                     </div>
                 </div>
             </div>
     </body>
+    
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/index.js"></script>
 
 </html>

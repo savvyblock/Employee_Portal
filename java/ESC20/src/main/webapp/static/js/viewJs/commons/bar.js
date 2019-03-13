@@ -71,6 +71,7 @@ function getBudgeDetail() {
         type: 'post',
         url: urlMain + '/notifications/getBudgeCount',
         cache: false,
+        data: {csrfmiddlewaretoken: $("#csrfmiddlewaretoken").val()},
         dataType: 'json',
         success: function(data) {
             if (budgeCount == data.count) {

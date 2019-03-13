@@ -1,4 +1,5 @@
-
+<meta name="_csrf" content="${_csrf.token}" />
+<meta name="_csrf_header" content="${_csrf.headerName}" />
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/font-awesome.min.css">
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/animate.css" />
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/jquery.autocomplete.css">
@@ -38,6 +39,12 @@
 	console.log('url'+urlMain)
 	var ctx = "<%=request.getContextPath().split("/")[1]%>";
 	console.log("ctx:"+ctx)
+	
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
 </script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/common.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bootstrapValidator.js"></script>
