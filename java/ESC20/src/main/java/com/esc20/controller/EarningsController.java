@@ -22,7 +22,7 @@ import com.esc20.util.StringUtil;
 
 @Controller
 @RequestMapping("/earnings")
-public class EarningsController extends IndexController {
+public class EarningsController{
 
 	@Autowired
 	private InquiryService service;

@@ -20,7 +20,7 @@ import com.esc20.util.DateUtil;
 
 @Controller
 @RequestMapping("/calendarYearToDate")
-public class CalendarYearToDateController extends IndexController {
+public class CalendarYearToDateController {
 
 	@Autowired
 	private InquiryService service;
@@ -28,11 +28,7 @@ public class CalendarYearToDateController extends IndexController {
 	@RequestMapping("calendarYearToDate")
 	public ModelAndView getCalendarYearToDate(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		List<String> years = service.getAvailableYears(employeeNumber);
@@ -54,11 +50,7 @@ public class CalendarYearToDateController extends IndexController {
 	@RequestMapping("getCalendarYearToDateByYear")
 	public ModelAndView getCalendarYearToDateByYear(HttpServletRequest req, String year) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		BhrCalYtd calYTD = service.getCalenderYTD(employeeNumber, year);

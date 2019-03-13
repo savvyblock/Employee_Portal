@@ -48,11 +48,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 	@RequestMapping("approveLeaveRequestList")
 	public ModelAndView getApproveLeaveRequestList(HttpServletRequest req, String empNbr) throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		LeaveParameters params = this.service.getLeaveParameters();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
@@ -122,11 +118,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 	public ModelAndView nextLevelFromApproveLeave(HttpServletRequest req, String level, String chain,
 			String selectEmpNbr) throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer currentLevel = levels.size() - 1;
@@ -158,11 +150,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 	public ModelAndView previousLevelFromApproveLeave(HttpServletRequest req, String level, String chain)
 			throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer prevLevel = levels.size() - 2;
@@ -178,11 +166,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 	public ModelAndView approveLeave(HttpServletRequest req, String level, String chain, String id, String comment)
 			throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer currentLevel = levels.size() - 1;
 		String currentSupervisorEmployeeNumber = ((JSONObject) levels.get(currentLevel)).getString("employeeNumber");
@@ -205,11 +189,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 	public ModelAndView disapproveLeave(HttpServletRequest req, String level, String chain, String id, String comment)
 			throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer currentLevel = levels.size() - 1;
 		String currentSupervisorEmployeeNumber = ((JSONObject) levels.get(currentLevel)).getString("employeeNumber");

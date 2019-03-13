@@ -24,7 +24,7 @@ import com.esc20.util.NumberUtil;
 
 @Controller
 @RequestMapping("/w2Information")
-public class W2InformationController extends IndexController {
+public class W2InformationController{
 
 	@Autowired
 	private InquiryService service;
@@ -32,11 +32,7 @@ public class W2InformationController extends IndexController {
 	@RequestMapping("w2Information")
 	public ModelAndView getW2Information(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		List<String> years = this.service.getW2Years(employeeNumber);
@@ -50,11 +46,7 @@ public class W2InformationController extends IndexController {
 	@RequestMapping("w2InformationByYear")
 	public ModelAndView getW2InformationByYear(HttpServletRequest req, String year, Boolean isSuccess) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		BhrW2 w2Info = this.service.getW2Info(employeeNumber, year);
@@ -115,11 +107,7 @@ public class W2InformationController extends IndexController {
 	@RequestMapping("updateW2Consent")
 	public ModelAndView updateW2Consent(HttpServletRequest req, String year, String consent) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		Boolean isSuccess = this.service.updateW2ElecConsent(employeeNumber, consent);

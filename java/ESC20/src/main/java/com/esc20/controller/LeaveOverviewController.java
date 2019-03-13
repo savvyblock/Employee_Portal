@@ -55,11 +55,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	public ModelAndView getLeaveOverviewList(HttpServletRequest req, String empNbr, String chain, String freq,
 			String startDate, String endDate, Boolean isChangeLevel) throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		LeaveParameters params = this.service.getLeaveParameters();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
@@ -193,11 +189,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	public ModelAndView nextLevelFromLeaveOverview(HttpServletRequest req, String level, String chain,
 			String selectEmpNbr) throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/supervisor/leaveOverviewList");
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer currentLevel = levels.size() - 1;
@@ -229,11 +221,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	public ModelAndView previousLevelFromLeaveOverview(HttpServletRequest req, String level, String chain)
 			throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer prevLevel = levels.size() - 2;
@@ -250,11 +238,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String empNbr, String freq,
 			String startDate, String endDate) throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		JSONArray levels = JSONArray.fromObject(chain);
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		BeaEmpLvRqst request;
@@ -296,11 +280,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	public ModelAndView deleteLeaveFromLeaveOverview(HttpServletRequest req, String level, String chain, String leaveId,
 			String empNbr, String freq, String startDate, String endDate) throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		JSONArray levels = JSONArray.fromObject(chain);
 		deleteLeaveRequest(leaveId);
 		mav = this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false);

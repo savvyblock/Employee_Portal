@@ -47,6 +47,7 @@ import com.esc20.nonDBModels.Money;
 import com.esc20.nonDBModels.Page;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.SearchCriteria;
+import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.BankService;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
@@ -57,10 +58,8 @@ import sun.misc.BASE64Decoder;
 
 @Controller
 @RequestMapping("/profile")
-public class ProfileController extends IndexController{
+public class ProfileController{
 
-	private static String key = "D3n!m!23R3gi0n20";
-	
     @Autowired
     private IndexService indexService;
 
@@ -70,16 +69,13 @@ public class ProfileController extends IndexController{
     @Autowired
     private BankService bankService;
     
-    private static PasswordEncoder encoder = new StandardPasswordEncoder("SHA-256");
+    private static PasswordEncoder encoder = new CustomSHA256Encoder();
     
     @RequestMapping("profile")
     public ModelAndView getProfile(HttpServletRequest req,String freq){
         HttpSession session = req.getSession();
         BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         getProfileDetails(session, mav,freq);
         mav.addObject("decryptedPwd",user.getUsrpswd());
         return mav;
@@ -361,9 +357,6 @@ public class ProfileController extends IndexController{
         HttpSession session = req.getSession();
         BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         if(StringUtils.isEmpty(password)) {
         	mav = new ModelAndView("redirect:/profile");
         	return mav;
@@ -381,11 +374,7 @@ public class ProfileController extends IndexController{
     public ModelAndView saveName(HttpServletRequest req, 
     		String empNbr, String reqDts, String namePreNew, String nameFNew, String nameLNew, String nameMNew, String nameGenNew) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaLglName nameRequest;
@@ -414,11 +403,7 @@ public class ProfileController extends IndexController{
     @RequestMapping("deleteNameRequest")
     public ModelAndView deleteNameRequest(HttpServletRequest req) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteNameRequest(demo.getEmpNbr());
@@ -429,11 +414,7 @@ public class ProfileController extends IndexController{
     @RequestMapping("changeAvatar")
     public ModelAndView changeAvatar(HttpServletRequest req, String file, String fileName) {
     	 HttpSession session = req.getSession();
-         BeaUsers user = (BeaUsers)session.getAttribute("user");
          ModelAndView mav = new ModelAndView();
-         if(null == user){
-         	return this.getIndexPage(mav);
-         }
          BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
          BASE64Decoder decoder = new BASE64Decoder();
          file = file.replace("data:image/jpeg;base64,", "");
@@ -471,11 +452,7 @@ public class ProfileController extends IndexController{
     public ModelAndView saveMarital(HttpServletRequest req, 
     		String empNbr, String reqDts, String maritalStatNew) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaMrtlStat maritalStatusRequest;
@@ -499,11 +476,7 @@ public class ProfileController extends IndexController{
     @RequestMapping("deleteMaritalRequest")
     public ModelAndView deleteMaritalRequest(HttpServletRequest req) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteMaritalRequest(demo.getEmpNbr());
@@ -515,11 +488,7 @@ public class ProfileController extends IndexController{
     public ModelAndView saveDriversLicense(HttpServletRequest req, 
     		String empNbr, String reqDts, String driversLicNbrNew, String driversLicStNew) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaDrvsLic driversLicenseRequest;
@@ -544,11 +513,7 @@ public class ProfileController extends IndexController{
     @RequestMapping("deleteDriversLicenseRequest")
     public ModelAndView deleteDriversLicenseRequest(HttpServletRequest req) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteDirversLicenseRequest(demo.getEmpNbr());
@@ -560,11 +525,7 @@ public class ProfileController extends IndexController{
     public ModelAndView saveRestrictionCodes(HttpServletRequest req, 
     		String empNbr, String reqDts, String restrictCdNew, String restrictCdPublicNew) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaRestrict restrictionCodesRequest;
@@ -589,11 +550,7 @@ public class ProfileController extends IndexController{
     @RequestMapping("deleteRestrictionCodesRequest")
     public ModelAndView deleteRestrictionCodesRequest(HttpServletRequest req) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteRestrictionCodesRequest(demo.getEmpNbr());
@@ -605,11 +562,7 @@ public class ProfileController extends IndexController{
     public ModelAndView saveEmail(HttpServletRequest req, 
     		String empNbr, String reqDts, String emailNew, String hmEmailNew) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaEmail emailRequest;
@@ -635,11 +588,7 @@ public class ProfileController extends IndexController{
     @RequestMapping("deleteEmail")
     public ModelAndView deleteEmail(HttpServletRequest req) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteEmailRequest(demo.getEmpNbr());
@@ -652,11 +601,7 @@ public class ProfileController extends IndexController{
     		String empNbr, String reqDts, String emerContactNew, String emerPhoneAcNew
     		, String emerPhoneNbrNew, String emerPhoneExtNew, String emerRelNew, String emerNoteNew) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaEmerContact emergencyContactRequest;
@@ -686,11 +631,7 @@ public class ProfileController extends IndexController{
     @RequestMapping("deleteEmergencyContact")
     public ModelAndView deleteEmergencyContact(HttpServletRequest req) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteEmergencyContactRequest(demo.getEmpNbr());
@@ -703,11 +644,7 @@ public class ProfileController extends IndexController{
     		String empNbr, String reqDts, String addrNbrNew, String addrStrNew,String addrAptNew,
 			String addrCityNew, String addrStNew, String addrZipNew,String addrZip4New) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaMailAddr mailingAddressRequest;
@@ -738,11 +675,7 @@ public class ProfileController extends IndexController{
     @RequestMapping("deleteMailAddr")
     public ModelAndView deleteMailAddr(HttpServletRequest req) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteMailAddrRequest(demo.getEmpNbr());
@@ -755,11 +688,7 @@ public class ProfileController extends IndexController{
     		String empNbr, String reqDts, String smrAddrNbrNew, String smrAddrStrNew,String smrAddrAptNew,
 			String smrAddrCityNew, String smrAddrStNew, String smrAddrZipNew,String smrAddrZip4New) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaAltMailAddr altMailingAddressRequest;
@@ -790,11 +719,7 @@ public class ProfileController extends IndexController{
     @RequestMapping("deleteAltMailAddr")
     public ModelAndView deleteAltMailAddr(HttpServletRequest req) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteAltMailAddrRequest(demo.getEmpNbr());
@@ -807,11 +732,7 @@ public class ProfileController extends IndexController{
     		String empNbr, String reqDts, String phoneAreaNew, String phoneNbrNew,String phoneAreaCellNew,
 			String phoneNbrCellNew, String phoneAreaBusNew, String phoneNbrBusNew,String busPhoneExtNew) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         
@@ -871,11 +792,7 @@ public class ProfileController extends IndexController{
     @RequestMapping("deletePhone")
     public ModelAndView deletePhone(HttpServletRequest req) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteHomePhoneRequest(demo.getEmpNbr());
@@ -889,11 +806,7 @@ public class ProfileController extends IndexController{
     public ModelAndView saveW4(HttpServletRequest req,String empNbr, String reqDts,  String payFreq,Character maritalStatTax, Character maritalStatTaxNew, Integer nbrTaxExempts, Integer nbrTaxExemptsNew) {
     	
     	 HttpSession session = req.getSession();
-         BeaUsers user = (BeaUsers)session.getAttribute("user");
          ModelAndView mav = new ModelAndView();
-         if(null == user){
-         	return this.getIndexPage(mav);
-         }
          mav.setViewName("profile");
          BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
          BhrEmpPay pay = new BhrEmpPay();
@@ -922,11 +835,7 @@ public class ProfileController extends IndexController{
     @RequestMapping("deleteW4")
     public ModelAndView deleteW4(HttpServletRequest req,String empNbr, String reqDts,  String payFreq,Character maritalStatTax, Integer nbrTaxExempts) {
         HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
-        if(null == user){
-        	return this.getIndexPage(mav);
-        }
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteW4Request(demo.getEmpNbr(), payFreq, maritalStatTax, nbrTaxExempts);
@@ -943,9 +852,6 @@ public class ProfileController extends IndexController{
        HttpSession session = req.getSession();
        BeaUsers user = (BeaUsers)session.getAttribute("user");
        ModelAndView mav = new ModelAndView();
-       if(null == user){
-       	return this.getIndexPage(mav);
-       }
        BeaUsers users = this.indexService.getUserPwd(user.getUsrname());
        mav.setViewName("changePassword");
        mav.addObject("id", users.getEmpNbr());

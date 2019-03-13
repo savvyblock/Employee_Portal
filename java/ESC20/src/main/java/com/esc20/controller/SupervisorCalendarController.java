@@ -37,11 +37,7 @@ public class SupervisorCalendarController extends BaseSupervisorController {
 	@RequestMapping("calendarView")
 	public ModelAndView getCalendarView(HttpServletRequest req) throws ParseException {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/supervisor/calendar");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> absRsns = this.referenceService.getAbsRsns();

@@ -40,7 +40,7 @@ import com.esc20.util.StringUtil;
 
 @Controller
 @RequestMapping("/information1095")
-public class Information1095Controller extends IndexController {
+public class Information1095Controller{
 
 	@Autowired
 	private InquiryService service;
@@ -48,11 +48,7 @@ public class Information1095Controller extends IndexController {
 	@RequestMapping("information1095")
 	public ModelAndView getInformation1095(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav = init1095(mav, session, null, 1, 1, null, null, null);
 		return mav;
 	}
@@ -60,11 +56,7 @@ public class Information1095Controller extends IndexController {
 	@RequestMapping("update1095Consent")
 	public ModelAndView update1095Consent(HttpServletRequest req, String year, String consent) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		Boolean isSuccess = this.service.update1095ElecConsent(employeeNumber, consent);
@@ -78,11 +70,7 @@ public class Information1095Controller extends IndexController {
 	@RequestMapping("information1095ByYear")
 	public ModelAndView getInformation1095ByYear(HttpServletRequest req, String year) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/inquiry/information1095");
 		mav = init1095(mav, session, year, 1, 1, null, null, null);
 		return mav;
@@ -92,16 +80,8 @@ public class Information1095Controller extends IndexController {
 	public ModelAndView sortOrChangePageForTypeB(HttpServletRequest req, String year, String BPageNo, String sortBy,
 			String sortOrder) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/inquiry/information1095");
-		Options options = ((Options) session.getAttribute("options"));
-		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
-		String employeeNumber = userDetail.getEmpNbr();
-		List<String> years = this.service.retrieveAvailable1095CalYrs(employeeNumber);
 		mav = init1095(mav, session, year, Integer.parseInt(BPageNo), 1, sortBy, sortOrder, "B");
 		return mav;
 	}
@@ -110,11 +90,7 @@ public class Information1095Controller extends IndexController {
 	public ModelAndView sortOrChangePageForTypeC(HttpServletRequest req, String year, String CPageNo, String sortBy,
 			String sortOrder) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView();
-		if (null == user) {
-			return this.getIndexPage(mav);
-		}
 		mav.setViewName("/inquiry/information1095");
 		mav = init1095(mav, session, year, 1, Integer.parseInt(CPageNo), sortBy, sortOrder, "C");
 		return mav;
