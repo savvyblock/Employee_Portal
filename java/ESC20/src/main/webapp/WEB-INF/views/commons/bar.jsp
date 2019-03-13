@@ -231,10 +231,12 @@
           <i class="fa fa-question-circle"></i>
         </a></li>
         <li>
-          <a href="/<%=request.getContextPath().split("/")[1]%>/logoutEA"
-            aria-label="" data-localize="accessHint.logout" data-localize-location="aria-label" data-localize-notText="true"
-            >
-          <i class="fa fa-sign-out "></i></a></li>
+        <form action="/<%=request.getContextPath().split("/")[1]%>/logoutEA" method="post">
+          <input type="submit" value="Log out" data-localize="accessHint.logout" data-localize-location="aria-label" data-localize-notText="true">
+          	<i class="fa fa-sign-out "></i></input>
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+         </form>
+        </li>
     </ul>
   </aside>
   <input type="hidden" id="csrfmiddlewaretoken" name="${_csrf.parameterName}" value="${_csrf.token}"/>
