@@ -1,9 +1,17 @@
 var language = (
     navigator.language || navigator.browserLanguage
 ).toLowerCase();
+if (language.indexOf('en') > -1) {
+    language = 'en'
+}
+if (language.indexOf('zh') > -1) {
+    language = 'en'
+}
+console.log(language);
 var pathPrefix = "/"+ctx+"/js/lang"; //language json location
 console.log(pathPrefix);
 var name = 'somoveLanguage';
+var initialLocaleCode;
 $(function() {
     $("#skipNav").on("click",function(){
         console.log($(".content-wrapper"))
@@ -29,15 +37,7 @@ $(function() {
         hideBody()
     })
 
-    console.log(language);
-    if (language.indexOf('en') > -1) {
-    	language = 'en'
-        initLocalize(language)
-    }
-    if (language.indexOf('zh') > -1) {
-        language = 'en'
-        initLocalize(language)
-    }
+    // initLocalize(language)
     setGlobal();
 })
 
