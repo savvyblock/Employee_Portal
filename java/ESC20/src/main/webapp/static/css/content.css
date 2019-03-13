@@ -4,6 +4,10 @@
   background: #f4f6f9;
 }
 
+.account-wrap.loginPage .header-btn {
+  visibility: hidden;
+}
+
 .account-wrap .account-header {
   display: flex;
   align-items: center;
@@ -982,6 +986,18 @@
   border: 0;
 }
 
+.exportPDFBox .font-20 {
+  font-size: 32px;
+}
+
+.exportPDFBox .font-24 {
+  font-size: 40px;
+}
+
+.exportPDFBox .sub-title {
+  font-size: 26px;
+}
+
 .exportPDFBox .flex-line .left-title {
   flex: 0 0 180px;
 }
@@ -992,6 +1008,10 @@
 
 .exportPDFBox .table {
   font-size: 18px !important;
+}
+
+.exportPDFBox .table .print-tr {
+  display: table-row;
 }
 
 .exportPDFBox .table th, .exportPDFBox .table td {
@@ -1005,6 +1025,10 @@
 
 .exportPDFBox .table th .focused-value, .exportPDFBox .table td .focused-value {
   font-size: 16px;
+}
+
+.exportPDFBox .table th.sub-title, .exportPDFBox .table td.sub-title {
+  font-size: 26px;
 }
 
 .exportPDFBox .table.border-table {
@@ -1062,6 +1086,18 @@
   width: 18px;
   height: 18px;
   border: 1px solid #000;
+}
+
+.exportPDFBox .tableHead1095 tr td:first-child {
+  width: 300px !important;
+}
+
+.exportPDFBox .tableHead1095 tr td:last-child {
+  width: 200px !important;
+}
+
+.exportPDFBox td.no-padding div {
+  padding: 0 5px;
 }
 
 .exportPDFBox.printStatus {

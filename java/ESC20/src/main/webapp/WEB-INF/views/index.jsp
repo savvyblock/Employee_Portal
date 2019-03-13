@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <%@ include file="commons/header.jsp"%>
     </head>
-    <body class="account-wrap">
+    <body class="account-wrap loginPage">
             <%@ include file="commons/bar-account.jsp"%>
             <div class="account-top content-body"  tabindex="-1">
                 <div class="account-inner">

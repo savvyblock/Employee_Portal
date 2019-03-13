@@ -2,6 +2,11 @@
     min-height: 100vh;
     padding-top: 0;
     background: #f4f6f9;
+    &.loginPage{
+        .header-btn{
+            visibility: hidden;
+        }
+    }
     .account-header {
         display: flex;
         align-items: center;
@@ -853,6 +858,15 @@
     color: #000!important;
     background: #fff;
     border:0;
+    .font-20{
+        font-size: 32px
+    }
+    .font-24{
+        font-size: 40px
+    }
+    .sub-title{
+        font-size: 26px;
+    }
     .flex-line .left-title{
         flex: 0 0 180px;
     }
@@ -861,6 +875,9 @@
     }
     .table{
         font-size: 18px!important;
+        .print-tr{
+            display: table-row;
+        }
         th, td{
             font-size: 18px;
             color: #000!important;
@@ -869,6 +886,9 @@
             }
             .focused-value{
                 font-size: 16px;
+            }
+            &.sub-title{
+                font-size: 26px;
             }
         }
         &.border-table {
@@ -919,6 +939,21 @@
         width: 18px;
         height: 18px;
         border: 1px solid #000;
+    }
+    .tableHead1095{
+        tr{
+            td:first-child{
+                width: 300px!important;
+            }
+            td:last-child{
+                width: 200px!important;
+            }
+        }
+    }
+    td.no-padding{
+        div{
+            padding: 0 5px;
+        }
     }
     &.printStatus{
         width: 1400px;

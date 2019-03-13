@@ -32,7 +32,7 @@ data-backdrop="static"
             data-dismiss="modal"
             aria-hidden="true"
             id="cancelAddCalendar"
-            data-localize="label.cancel"
+            data-localize="label.close"
         >
         </button>
     </div>

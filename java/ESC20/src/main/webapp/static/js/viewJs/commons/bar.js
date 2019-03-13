@@ -76,9 +76,9 @@ function getBudgeDetail() {
             if (budgeCount == data.count) {
                 return
             } else {
-                console.log('data', data)
+                // console.log('data', data)
                 budgeCount = data.count
-                console.log(budgeCount)
+                // console.log(budgeCount)
                 if (budgeCount > 0) {
                     $('#navBadge').show()
                 }
@@ -90,13 +90,13 @@ function getBudgeDetail() {
                     cache: false,
                     dataType: 'json',
                     success: function(data) {
-                        console.log('list', data)
+                        // console.log('list', data)
                         var list = '<ul>'
                         var items = data.list
                         var content
                         for (var s in items) {
                             content = items[s].msgContent + ''
-                            console.log(content)
+                            // console.log(content)
                             if (content.length >= 20) {
                                 content = content.substring(0, 80) + '...'
                             }

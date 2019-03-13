@@ -99,7 +99,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </b>
                                                 </p>
                                                 <table
-                                                    class="table border-table middle-td-table mb-0 print-block-table"
+                                                    class="table border-table middle-td-table mb-0 print-block-table tableHead1095"
                                                 >
                                                     <tr>
                                                         <td width="160">
@@ -138,7 +138,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </label>
                                                             </div>
                                                         </td>
-                                                        <td class="no-padding">
+                                                        <td class="no-padding text-center">
                                                             <div class="border-btm-black">
                                                                 <span data-localize="info1095Table.OMBNo"></span> 1545-2251<br /><br />
                                                             </div>

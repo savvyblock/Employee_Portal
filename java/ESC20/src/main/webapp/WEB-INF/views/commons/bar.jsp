@@ -26,14 +26,14 @@
           <div class="dropdown-header">
             <span id="budgeCount">0</span> <span data-localize="label.notification"></span>
           </div>
-          	  <a href="/<%=request.getContextPath().split("/")[1]%>/notifications">
+          	  <a href="/<%=request.getContextPath().split("/")[1]%>/notifications/notifications">
 		          <div class="dropdown-divider"></div>
 		          <div class="dropdown-item">
 		            <div id="top5Alert"></div>
 		          </div>
 		          <div class="dropdown-divider"></div>
 	          </a>
-          <a data-localize="label.seeAllNote" href="/<%=request.getContextPath().split("/")[1]%>/notifications" class="dropdown-footer"></a>
+          <a data-localize="label.seeAllNote" href="/<%=request.getContextPath().split("/")[1]%>/notifications/notifications" class="dropdown-footer"></a>
         </div>
       </li>
       <li class="nav-item">

@@ -56,7 +56,7 @@ function downloadPDF() {
     pdf = new jsPDF('', 'pt', 'a4')
     $(".exportPDFBox .pdfPage").each(function(index){
         let that = $(this)[0]
-        html2canvas(that, { scale: 4 ,background: "#fff"}).then(function(canvas) {
+        html2canvas(that, { scale: 6 ,background: "#fff"}).then(function(canvas) {
             var contentWidth = canvas.width
             var contentHeight = canvas.height
             var pageHeight = (contentWidth / 592.28) * 841.89
