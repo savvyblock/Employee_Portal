@@ -7,12 +7,8 @@ $(document).ready(function() {
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'month'
+                    right: ''
                     // right: 'month,agendaWeek,agendaDay,listMonth'
-                },
-                buttonText: {
-                    today: 'Today',
-                    month: 'Month'
                 },
                 timeFormat: 'hh:mm A',
                 displayEventEnd: true,

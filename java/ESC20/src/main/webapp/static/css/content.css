@@ -4,6 +4,10 @@
   background: #f4f6f9;
 }
 
+.account-wrap.loginPage .header-btn {
+  visibility: hidden;
+}
+
 .account-wrap .account-header {
   display: flex;
   align-items: center;
@@ -352,7 +356,7 @@
   margin: 0;
 }
 
-.requestForm .dateValidator {
+.requestForm .dateValidator, .requestForm .dateValidator01 {
   display: none;
 }
 
@@ -978,6 +982,20 @@
   font-size: 16px;
   left: 0;
   color: #000 !important;
+  background: #fff;
+  border: 0;
+}
+
+.exportPDFBox .font-20 {
+  font-size: 32px;
+}
+
+.exportPDFBox .font-24 {
+  font-size: 40px;
+}
+
+.exportPDFBox .sub-title {
+  font-size: 26px;
 }
 
 .exportPDFBox .flex-line .left-title {
@@ -992,6 +1010,10 @@
   font-size: 18px !important;
 }
 
+.exportPDFBox .table .print-tr {
+  display: table-row;
+}
+
 .exportPDFBox .table th, .exportPDFBox .table td {
   font-size: 18px;
   color: #000 !important;
@@ -1003,6 +1025,10 @@
 
 .exportPDFBox .table th .focused-value, .exportPDFBox .table td .focused-value {
   font-size: 16px;
+}
+
+.exportPDFBox .table th.sub-title, .exportPDFBox .table td.sub-title {
+  font-size: 26px;
 }
 
 .exportPDFBox .table.border-table {
@@ -1060,6 +1086,18 @@
   width: 18px;
   height: 18px;
   border: 1px solid #000;
+}
+
+.exportPDFBox .tableHead1095 tr td:first-child {
+  width: 300px !important;
+}
+
+.exportPDFBox .tableHead1095 tr td:last-child {
+  width: 200px !important;
+}
+
+.exportPDFBox td.no-padding div {
+  padding: 0 5px;
 }
 
 .exportPDFBox.printStatus {

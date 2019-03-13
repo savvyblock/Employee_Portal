@@ -92,7 +92,7 @@
 						</div>
 						<div class="form-group btn-group">
 							<div style="margin-top:20px;">
-									<button id="retrieve" type="submit" class="btn btn-primary" data-localize="leaveBalance.retrieve">
+									<button id="retrieve" type="button" class="btn btn-primary" data-localize="leaveBalance.retrieve">
 										</button>
 							</div>
 						</div>

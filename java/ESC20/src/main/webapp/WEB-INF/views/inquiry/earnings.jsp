@@ -29,7 +29,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </h2>
                             <div class="content-white EMP-detail earningPage">
-                                <div class="exportPDFBox">
+                                <div class="exportPDFBox" id="exportPDFBox">
                                         <div class="print-block print-title">
                                                 <div style="text-align:center;margin-bottom:10px;">
                                                         ${sessionScope.district.name}<br />

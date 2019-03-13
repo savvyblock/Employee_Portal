@@ -6,7 +6,7 @@
     </a>
     <div class="header-btn">
         <a href="/<%=request.getContextPath().split("/")[1]%>/index">
-                <button type="submit" class="btn btn-primary"  data-localize="label.login">
+                <button type="submit" class="btn btn-primary"  data-localize="label.returnLogin">
                     </button>
         </a>
     </div>

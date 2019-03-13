@@ -652,9 +652,9 @@ function emailFormValidator() {
                 trigger: 'blur keyup',
                 verbose : true,
                 validators: {
-                    notEmpty: {
-                        message: 'validator.requiredField'
-                    },
+                    // notEmpty: {
+                    //     message: 'validator.requiredField'
+                    // },
                     emailAddress: {
                         message: 'validator.pleaseEnterCorrectFormat'
                     }
@@ -663,9 +663,6 @@ function emailFormValidator() {
             emailNewVerify: {
                 trigger: 'blur keyup',
                 validators: {
-                    notEmpty: {
-                        message: 'validator.requiredField'
-                    },
                     identical: {
                         field: 'emailNew',
                         message:'validator.emailNotMatch'
