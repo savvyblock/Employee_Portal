@@ -121,12 +121,14 @@
     <input type="text" name="id" id="disId"  aria-label="" data-localize="accessHint.id">
     <input type="text" name="chain" id="disChain"  aria-label="" data-localize="accessHint.chain">
     <input type="text" name="comment" id="disComment"  aria-label="" data-localize="accessHint.comment">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 
 <form hidden="hidden" action="approveLeave" id="approveLeave" method="POST">
         <input type="text" name="id" id="appId"  aria-label="" data-localize="accessHint.id">
         <input type="text" name="chain" id="appChain"  aria-label="" data-localize="accessHint.chain">
         <input type="text" name="comment" id="appComment"  aria-label="" data-localize="accessHint.comment">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
 
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/approveLeaveModal.js"></script>

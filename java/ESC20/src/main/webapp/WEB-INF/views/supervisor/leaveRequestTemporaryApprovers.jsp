@@ -30,6 +30,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     id="filterSupervisor"
                                     method="POST"
                                 >
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <span hidden="hidden" id="chainValue">${chain}</span>
                                     <input hidden="hidden" id="chain" class="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
                                     <div class="form-group in-line flex-auto">
@@ -55,6 +56,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                 </form>
                                 <form hidden="hidden" action="previousLevelFromTempApprovers" id="previousLevel" method="POST">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="" data-localize="accessHint.level">
                                         <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
                                 </form>
@@ -70,6 +72,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 >
                             </div>
                             <form action="saveTempApprovers" id="saveTempApprovers" method="POST">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
                                     <input hidden="hidden" id="empNbrForm" name="empNbr" type="text" value="" aria-label="" data-localize="accessHint.employeeNumber">
                                     <input hidden="hidden" id="approverJson" name="approverJson" type="text" value="" aria-label="" data-localize="accessHint.approverJson">
@@ -211,6 +214,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </form>
                              <form hidden="hidden" action="leaveRequestTemporaryApprovers" id="resetForm" method="POST">
+                             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                              </form>
                         </div>
                     </div>
@@ -218,6 +222,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             </main>
         </div>
         <form hidden="hidden" action="" id="">
+        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <input type="text" id="deleteEmpID" aria-label="" data-localize="accessHint.employeeId">
         </form>
         <%@ include file="../commons/footer.jsp"%>

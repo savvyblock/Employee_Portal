@@ -12,6 +12,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <div class="account-top content-body" tabindex="-1">
             <div class="account-inner sm">
                 <form id="updatePassword" action="updatePassword" method="post">
+                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="form-group">
                         <input type="hidden" name="id" value="${id}" />
                         <label class="form-title" data-localize="label.password"></label>

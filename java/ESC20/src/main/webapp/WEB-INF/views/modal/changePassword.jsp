@@ -23,6 +23,7 @@
             </div>
               
                   <form id="updatePassword" action="updatePassword" method="post" style="max-width:350px;">
+                  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="text" id="sessionPsd" value="${decryptedPwd}" style = "display:none" aria-label="" data-localize="accessHint.sessionPassword"> 
                     <input type="text" name="id" id="userId" value="${sessionScope.user.empNbr}" style = "display:none" aria-label="" data-localize="accessHint.employeeNumber"> 
                     <div class="modal-body">

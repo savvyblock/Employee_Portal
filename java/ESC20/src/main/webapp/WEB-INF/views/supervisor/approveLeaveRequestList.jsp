@@ -35,6 +35,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     id="filterSupervisor"
                                     method="POST"
                                 >
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <span hidden="hidden" id="chainValue">${chain}</span>
                                     <input hidden="hidden" id="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
                                     <div class="form-group in-line flex-auto">
@@ -60,6 +61,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                 </form>
                                 <form hidden="hidden" action="previousLevelFromApproveLeave" id="previousLevel" method="POST">
+                                		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="" data-localize="accessHint.level">
                                         <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
                                 </form>

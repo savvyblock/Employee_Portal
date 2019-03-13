@@ -37,6 +37,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     id="filterSupervisor"
                                     method="POST"
                                 >
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <span hidden="hidden" id="chainValue">${chain}</span>
                                     <input hidden="hidden" type="text" value="${level}" name="level" id="level" aria-label="" data-localize="accessHint.level">
                                     <input hidden="hidden" id="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
@@ -64,6 +65,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                 </form>
                                 <form hidden="hidden" action="previousLevelFromLeaveOverview" id="previousLevel" method="POST">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel"  aria-label="" data-localize="accessHint.level">
                                         <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
                                 </form>
@@ -75,6 +77,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         id="changeFreqForm"
                                         method="POST"
                                             >
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                             <input hidden="hidden" type="text" name="empNbr" class="employeeNum" value="${selectedEmployee}" aria-label="" data-localize="accessHint.employeeNumber">
                                             <input hidden="hidden" class="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
                                             <input hidden="hidden" type="text" name="isChangeLevel" class="isChangeLevel" value="false" aria-label="" data-localize="accessHint.whetherChangeLevel">
@@ -208,6 +211,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </div>
                         </section>
                         <form hidden="hidden" id="deleteForm" action="deleteLeaveFromLeaveOverview" method="POST">
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <input type="text" name="empNbr" id="empNbrDelete">
                             <input type="text" name="startDate" id="searchStartDelete">
                             <input type="text" name="endDate" id="searchEndDelete">

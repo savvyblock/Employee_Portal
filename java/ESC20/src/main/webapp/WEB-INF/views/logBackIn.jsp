@@ -14,7 +14,7 @@
                     <h1 class="logBackTitle" data-localize="label.sessionTimeOut"></h1>
                     <div class="logBackWord" data-localize="label.sessionTimeOutWord"> </div>
                     <div class="account-box">
-                        <form id="loginForm" class="card" method="get">
+                        <form class="card" method="post" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
                             <h1 class="title" data-localize="label.pleaseSignIn"></h1>
                             <div class="form-group">
                                 <label class="form-title" for="inputEmail" data-localize="label.username"></label>

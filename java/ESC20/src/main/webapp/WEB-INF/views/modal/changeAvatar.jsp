@@ -22,6 +22,7 @@
                 <h4 class="modal-title" data-localize="label.changeAvatar"></h4>
             </div>
             <form id="changeAvatar" action="changeAvatar" method="POST">
+            		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                       <div class="modal-body">
                         <input id="userName" hidden="hidden" type="text" value="${sessionScope.userDetail.nameF}" aria-label="" data-localize="accessHint.userName">
                         <input id="avatarImg" hidden="hidden" type="text" name="file" aria-label="" data-localize="accessHint.file">

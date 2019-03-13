@@ -37,6 +37,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     action="retrieveUserName"
                     method="post"
                 >
+                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <!-- 
                     <div class="form-group">
                         <label class="form-title" data-localize="label.emailAddress"></label>
@@ -92,6 +93,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 </form>
 
                 <form id="resetPassword" action="resetPassword" method="post">
+                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="form-group">
                         <label class="form-title" data-localize="label.username" for="resetUsername"></label>
                         <div class="valid-wrap">

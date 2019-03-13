@@ -270,6 +270,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 </c:if>
 </table>
 <form id="changePageForm" hidden="hidden" action="sortOrChangePageForTypeC" method="POST">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <input type="text" name="year" id="yearNow" value="${selectedYear}" aria-label="" data-localize="accessHint.year">
         <input type="text" name="CPageNo" id="selectPageNow" aria-label="" data-localize="accessHint.currentPage">
 </form>

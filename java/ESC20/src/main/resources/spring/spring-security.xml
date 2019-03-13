@@ -12,16 +12,17 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		<security:intercept-url pattern="/js/**" access="permitAll"/>
 		<security:intercept-url pattern="/login**" access="permitAll"/>
 		<security:intercept-url pattern="/loginEA" access="permitAll"/>
+		<security:intercept-url pattern="/logoutEA" access="permitAll"/>
 		<security:intercept-url pattern="/createUser*" access="permitAll"/>
 		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
-		<security:form-login login-page="/txeisDemo/login"
+		<security:form-login login-page="/login"
 							 authentication-success-handler-ref="customSuccessHandler"
 							 authentication-success-forward-url="/home"
 							 login-processing-url="/loginEA"
 							 authentication-failure-url="/login?error"
                 			 username-parameter="username"
                 			 password-parameter="password"/>
-        <security:logout logout-success-url="/home"/>
+        <security:logout logout-url="/logoutEA" logout-success-url="/login" invalidate-session="true" />
         <security:custom-filter before="CHANNEL_FILTER" ref="databaseFilter"/>
 	</security:http>
 	
@@ -36,8 +37,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	</security:authentication-manager>
     
     <bean id="databaseFilter" class="com.esc20.filter.DatabaseNameFilter" />
-    
- 	<bean id="customAuthenticationProvider" class="com.esc20.security.CustomAuthenticationProvider" />
  	
  	<bean id="customSHA256Encoder" class="com.esc20.security.CustomSHA256Encoder" />
  

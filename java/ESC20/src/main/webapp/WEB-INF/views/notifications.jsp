@@ -33,6 +33,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 </section>
             </main>
             <form id="markAsReadForm" hidden="hidden" action="markAsRead" method="POST">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <input type="text" id="noteId" name="id" aria-label="" data-localize="accessHint.selectId">
             </form>
         </div>
