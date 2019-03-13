@@ -218,7 +218,7 @@
         <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
         <li>
           <a href="/<%=request.getContextPath().split("/")[1]%>/profile/profile"
-            aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label" data-localize-notText="true"
+            aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label,title" data-localize-notText="true"
           >
           <i class="fa fa-user"></i>
         </a></li>
@@ -226,14 +226,15 @@
         <!-- <li><a href="/" title="Full Screen"><i class="fa fa-arrows-alt"></i></a></li> -->
         <li>
           <a href="https://tcc-help.net/txeis/employeeaccess/doku.php/leave/supervisor/settemporaryapprovers?version=3.3" target="_blank"
-          aria-label="" data-localize="accessHint.goHelp" data-localize-location="aria-label" data-localize-notText="true"
+          aria-label="" data-localize="accessHint.goHelp" data-localize-location="aria-label,title" data-localize-notText="true"
           >
           <i class="fa fa-question-circle"></i>
         </a></li>
         <li>
         <form action="/<%=request.getContextPath().split("/")[1]%>/logoutEA" method="post">
-          <input type="submit" value="Log out" data-localize="accessHint.logout" data-localize-location="aria-label" data-localize-notText="true">
-          	<i class="fa fa-sign-out "></i></input>
+          <button class="logoutBtn" type="submit" data-localize="accessHint.logout" data-localize-location="aria-label,title" data-localize-notText="true">
+            <i class="fa fa-sign-out "></i>
+          </button>
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
          </form>
         </li>

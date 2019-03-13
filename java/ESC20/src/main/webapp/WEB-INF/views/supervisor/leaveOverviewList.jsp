@@ -39,9 +39,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 >
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <span hidden="hidden" id="chainValue">${chain}</span>
-                                    <input hidden="hidden" type="text" value="${level}" name="level" id="level" aria-label="" data-localize="accessHint.level">
-                                    <input hidden="hidden" id="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
-                                    <input hidden="hidden" type="text" name="isChangeLevel" class="isChangeLevel"  aria-label="" data-localize="accessHint.whetherChangeLevel">
+                                    <input type="hidden" type="text" value="${level}" name="level" id="level" aria-label="" data-localize="accessHint.level">
+                                    <input type="hidden" id="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
+                                    <input type="hidden" type="text" name="isChangeLevel" class="isChangeLevel"  aria-label="" data-localize="accessHint.whetherChangeLevel">
                                     <div class="form-group in-line flex-auto">
                                         <label class="form-title" for="selectEmpNbr"><span data-localize="label.directReportEmployees"></span>:</label>
                                         <select  class="form-control"name="selectEmpNbr" onchange="changeEmployee()"
@@ -66,8 +66,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </form>
                                 <form hidden="hidden" action="previousLevelFromLeaveOverview" id="previousLevel" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel"  aria-label="" data-localize="accessHint.level">
-                                        <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
+                                        <input type="hidden" type="text" value="${level}" name="level" id="preLevel"  aria-label="" data-localize="accessHint.level">
+                                        <input type="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
                                 </form>
                                 <div class="content-white">
                                         
@@ -78,9 +78,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         method="POST"
                                             >
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                            <input hidden="hidden" type="text" name="empNbr" class="employeeNum" value="${selectedEmployee}" aria-label="" data-localize="accessHint.employeeNumber">
-                                            <input hidden="hidden" class="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
-                                            <input hidden="hidden" type="text" name="isChangeLevel" class="isChangeLevel" value="false" aria-label="" data-localize="accessHint.whetherChangeLevel">
+                                            <input type="hidden" type="text" name="empNbr" class="employeeNum" value="${selectedEmployee}" aria-label="" data-localize="accessHint.employeeNumber">
+                                            <input type="hidden" class="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
+                                            <input type="hidden" type="text" name="isChangeLevel" class="isChangeLevel" value="false" aria-label="" data-localize="accessHint.whetherChangeLevel">
                                         <div class="form-group type-group">
                                                 <label class="form-title"  for="freq"  data-localize="label.payrollFreq"></label>
                                                 <select class="form-control" name="freq" id="freq" onchange="changeFreq()">
@@ -145,7 +145,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             <th data-localize="approveRequest.leaveRequested"></th>
                                                             <th data-localize="approveRequest.commentLog"></th>
                                                             <th data-localize="approveRequest.status"></th>
-                                                            <th aria-label="" data-localize="approveRequest.supervisorAction" data-localize-location="aria-label" data-localize-notText="true"></th>
+                                                            <th aria-label="" data-localize="approveRequest.supervisorAction" data-localize-location="aria-label"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -212,12 +212,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         </section>
                         <form hidden="hidden" id="deleteForm" action="deleteLeaveFromLeaveOverview" method="POST">
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            <input type="text" name="empNbr" id="empNbrDelete">
-                            <input type="text" name="startDate" id="searchStartDelete">
-                            <input type="text" name="endDate" id="searchEndDelete">
-                            <input type="text" name="chain" id="chainDelete">
-                            <input type="text" name="freq" id="freqDelete">
-                            <input type="text" name="leaveId" id="deleteId" aria-label="" data-localize="accessHint.id">
+                            <input type="hidden" name="empNbr" id="empNbrDelete">
+                            <input type="hidden" name="startDate" id="searchStartDelete">
+                            <input type="hidden" name="endDate" id="searchEndDelete">
+                            <input type="hidden" name="chain" id="chainDelete">
+                            <input type="hidden" name="freq" id="freqDelete">
+                            <input type="hidden" name="leaveId" id="deleteId" aria-label="" data-localize="accessHint.id">
                         </form>
             </main>
         </div>

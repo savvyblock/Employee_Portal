@@ -554,6 +554,16 @@
   text-align: center;
 }
 
+.main-sidebar .sidebar-btm li form {
+  margin: 0;
+}
+
+.main-sidebar .sidebar-btm li form button {
+  background: none;
+  border: 0;
+  color: #fff;
+}
+
 .main-sidebar .sidebar-btm a {
   color: #fff;
 }

@@ -467,6 +467,14 @@
         li{
             flex: 1;
             text-align: center;
+            form{
+                margin: 0;
+                button{
+                    background: none;
+                    border:0;
+                    color: #fff;
+                }
+            }
         }
         a{
             color: #fff;
