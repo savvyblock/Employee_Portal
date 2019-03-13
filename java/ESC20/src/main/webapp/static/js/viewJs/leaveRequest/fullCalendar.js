@@ -20,6 +20,7 @@ $(document).ready(function() {
                 events: leaveList,
                 locale: initialLocaleCode,
                 eventClick: function(calEvent, jsEvent, view) {
+                    console.log(calEvent)
                     if (calEvent.statusCd != 'A') {
                         $('.dateValidator').hide()
                         $('#requestForm')
@@ -72,6 +73,10 @@ $(document).ready(function() {
                         $('#leaveId').attr('value', calEvent.id + '')
                         $('#startDate').val(calEvent.LeaveStartDate)
                         $('#endDate').val(calEvent.LeaveEndDate)
+                        console.log(calEvent.lvUnitsDaily)
+                        console.log(calEvent.lvUnitsUsed)
+                        $("#leaveHoursDaily").val(Number(calEvent.lvUnitsDaily).toFixed(3));
+		                $("#totalRequested").val(Number(calEvent.lvUnitsUsed).toFixed(3));
                         
                         //Initializes the time control when edit event modal show
                     } else {
