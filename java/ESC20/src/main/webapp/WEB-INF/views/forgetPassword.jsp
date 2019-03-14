@@ -54,7 +54,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     </div>
                      -->
                     <div class="form-group">
-                                        <label class="form-title" for="autoAdvance_1"><span data-localize="label.employeeNumber"></span>(<span data-localize="label.noDashes"></span>)</label>
+                                        <label class="form-title" for="autoAdvance_1"><span data-localize="label.employeeNumber"></span>&nbsp;(<span data-localize="label.noDashes"></span>)</label>
                                         <div class="valid-wrap">
                                             <input type="text" id="autoAdvance_1" class="form-control autoAdvance" placeholder="" value="${user.empNumber}" name="empNumber" maxlength="6">
                                         </div>

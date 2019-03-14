@@ -225,7 +225,7 @@
         </c:if>
         <!-- <li><a href="/" title="Full Screen"><i class="fa fa-arrows-alt"></i></a></li> -->
         <li>
-          <a href="https://tcc-help.net/txeis/employeeaccess/doku.php/leave/supervisor/settemporaryapprovers?version=3.3" target="_blank"
+          <a href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank"
           aria-label="" data-localize="accessHint.goHelp" data-localize-location="aria-label,title" data-localize-notText="true"
           >
           <i class="fa fa-question-circle"></i>
