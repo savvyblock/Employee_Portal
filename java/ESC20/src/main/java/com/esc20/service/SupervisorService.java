@@ -114,7 +114,10 @@ public class SupervisorService {
 				if(employeeResult.get(i).getStatusCd()=='P')
 					employeeResult.get(i).setInfo(leaveRequestDao.getLeaveInfo(employeeResult.get(i).getEmpNbr(), employeeResult.get(i).getPayFreq().toString()));
 				employeeResult.get(i).setComments(leaveRequestDao.getLeaveComments(employeeResult.get(i).getId()));
-				employeeResult.get(i).setApprover(supervisorDao.getApprover(employeeResult.get(i).getId()));
+				if(employeeResult.get(i).getStatusCd()=='A')
+					employeeResult.get(i).setApprover(supervisorDao.getApprover(employeeResult.get(i).getId()));
+				else
+					employeeResult.get(i).setApprover("");
 			}
 			result.addAll(employeeResult);
 		}

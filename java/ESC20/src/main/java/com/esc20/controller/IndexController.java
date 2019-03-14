@@ -31,6 +31,8 @@ import com.esc20.util.DateUtil;
 import com.esc20.util.PasswordEncoderFactories;
 import com.esc20.util.StringUtil;
 
+import net.sf.json.JSONObject;
+
 @Controller
 @RequestMapping("/")
 public class IndexController {
@@ -40,18 +42,20 @@ public class IndexController {
     PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     
     @RequestMapping(value="login", method=RequestMethod.GET)
-    public ModelAndView getIndexPage(ModelAndView mav){
+    public ModelAndView getIndexPage(HttpServletRequest req, String Id,HttpServletResponse response){
+    	ModelAndView mav = new ModelAndView();
         mav.setViewName("login");
         return mav;
     }
     
-    @RequestMapping("logBackIn")
-    public ModelAndView getLogBackIn(HttpServletRequest req, String Id,HttpServletResponse response){
+    @RequestMapping("markTimeout")
+    @ResponseBody
+    public JSONObject markTimeout(HttpServletRequest req, String Id,HttpServletResponse response){
     	HttpSession session = req.getSession();
-        session.invalidate();
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("logBackIn");
-        return mav;
+    	JSONObject result=new JSONObject();
+        session.setAttribute("isTimeOut", true);
+        result.put("isSuccess", "true");
+        return result;
     }
     
     @RequestMapping("home")
