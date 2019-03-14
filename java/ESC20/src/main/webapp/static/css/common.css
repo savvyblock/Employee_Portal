@@ -64,6 +64,22 @@ div:focus {
   align-items: center;
 }
 
+.flex-middle .form-control {
+  width: 33%;
+}
+
+@media (max-width: 600px) {
+  .flex-middle .form-control {
+    width: 32%;
+  }
+}
+
+@media (max-width: 390px) {
+  .flex-middle .form-control {
+    width: 28%;
+  }
+}
+
 .oclock-colon {
   padding: 0 5px;
 }

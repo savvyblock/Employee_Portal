@@ -55,6 +55,15 @@ div{
 .flex-middle{
     display: flex;
     align-items: center;
+    .form-control{
+        width: 33%;
+        @media (max-width:600px){
+            width: 32%;
+        }
+        @media (max-width:390px){
+            width: 28%;
+        }
+    }
 }
 .oclock-colon{
     padding: 0 5px;
