@@ -18,6 +18,25 @@ $(function(){
         },
 
     });
+    $('#loginBackForm').bootstrapValidator({
+        fields: {
+            username: {
+                validators: {
+                    notEmpty: {
+                        message: 'validator.usernameCannotBeEmpty'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: 'validator.passwordCannotBeEmpty'
+                    }
+                }
+            }
+        },
+
+    });
     let url = window.location.href
     let urlParams = url.split("?"); 
     console.log(urlParams)
@@ -25,6 +44,17 @@ $(function(){
         $("#authenticateFailed").show()
     }else{
         $("#authenticateFailed").hide()
+    }
+    let isTimeoutArry = urlParams[1]?urlParams[1].split("&"):false;
+    let isTimeout = isTimeoutArry[1]?isTimeoutArry[1].split("="):false;
+    if(isTimeout[1]){
+        console.log("session end")
+        $(".loginPage .account-inner.loginBox").hide()
+        $(".loginPage .account-inner.logBackBox").show()
+    }else{
+        console.log("login ")
+        $(".loginPage .account-inner.loginBox").show()
+        $(".loginPage .account-inner.logBackBox").hide()
     }
 //    $('#signin').on('click',function(){
 //        var userName = $('#inputEmail').val();

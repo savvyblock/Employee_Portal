@@ -45,7 +45,7 @@ $('#retrieveUserName').bootstrapValidator({
                         message: 'validator.requiredField'
                     },
                     regexp: {
-                        regexp: /[0-2]\d|3[0-1]/,
+                        regexp: /0[1-9]|[1-2][0-9]|3[0-1]/,
                         message: 'validator.pleaseEnterCorrectFormat'
                     }
             }
@@ -56,7 +56,7 @@ $('#retrieveUserName').bootstrapValidator({
                         message: 'validator.requiredField'
                     },
                     regexp: {
-                        regexp: /^[0-9]\d{3}$/,
+                        regexp: /^[1-2]\d{3}$/,
                         message: 'validator.pleaseEnterCorrectFormat'
                     }
             }

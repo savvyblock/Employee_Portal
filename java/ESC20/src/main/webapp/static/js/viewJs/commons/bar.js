@@ -49,7 +49,6 @@ startCountTime()
 function startCountTime() {
     var intervalId = setInterval(function() {
         time--
-        // console.log(time)
         if (time <= 30) {
             // $('#logoutModal').modal('show')
             // $('#timeCounter').text(time)

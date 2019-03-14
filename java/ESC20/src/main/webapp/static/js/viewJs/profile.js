@@ -646,15 +646,17 @@ function emailFormValidator() {
             // invalid: 'fa fa-times',
             validating: 'fa fa-refresh'
         },
-        verbose : true,
         fields: {
             emailNew: {
                 trigger: 'blur keyup',
-                verbose : true,
                 validators: {
                     // notEmpty: {
                     //     message: 'validator.requiredField'
                     // },
+                    identical: {
+                        field: 'emailNewVerify',
+                        message:'validator.emailNotMatch'
+                    },
                     emailAddress: {
                         message: 'validator.pleaseEnterCorrectFormat'
                     }
