@@ -444,7 +444,8 @@ public class LeaveRequestDao {
 	public BeaEmpLvRqst getBeaEmpLvRqstById(int id) {
 		Session session = this.getSession();
 		BeaEmpLvRqst res = (BeaEmpLvRqst) session.get(BeaEmpLvRqst.class, id);
-		
+		if(res.getDtOfPay()==null)
+			res.setDtOfPay("");
 		return res;
 	}
 

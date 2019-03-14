@@ -31,7 +31,10 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 				if (database == null || "".equals(database)) {
 					logger.error("Unable to set county district.");
 				}
-				
+				Boolean isTimeOut = (Boolean)request.getSession().getAttribute("isTimeOut");
+				if(isTimeOut==null)
+					isTimeOut = false;
+				DataSourceContextHolder.setIstimeout(isTimeOut);
 			}
 			catch(ClassCastException ex)
 			{

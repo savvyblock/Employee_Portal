@@ -17,11 +17,14 @@ public class CustomSuccessLogoutHandler implements LogoutSuccessHandler{
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
 		String database = DataSourceContextHolder.getDataSourceType();
 		database = database.split("/")[1];
 		database = database.substring(2);
-        String returnURL= "/"+request.getContextPath().split("/")[1]+"/login?distid=" + database;
+		Boolean isTimeOut = DataSourceContextHolder.getIstimeout();
+		
+        String returnURL = "/"+request.getContextPath().split("/")[1]+"/login?distid=" + database;
+        if(isTimeOut)
+        	returnURL += "&isTimeOut=true";
         request.getSession().setAttribute("districtId", database);
         response.sendRedirect(returnURL);
 	}

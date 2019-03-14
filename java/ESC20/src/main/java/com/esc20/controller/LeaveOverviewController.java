@@ -158,12 +158,20 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 					employee.add(requestModels.get(i).toJSON(leaveStatus, null));
 			}
 		}
-		List<Code> absRsns = this.referenceService.getAbsRsns();
+		List<Code> absRsns;
+		if(!initialLoad) 
+			absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
+		else
+			absRsns = this.referenceService.getAbsRsns();
 		JSONArray absRsnsJson = new JSONArray();
 		for (int i = 0; i < absRsns.size(); i++) {
 			absRsnsJson.add(absRsns.get(i).toJSON());
 		}
-		List<Code> leaveTypes = this.referenceService.getLeaveTypes();
+		List<Code> leaveTypes;
+		if(!initialLoad) 
+			leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
+		else
+			leaveTypes = this.referenceService.getLeaveTypes();
 		JSONArray leaveTypesJson = new JSONArray();
 		for (int i = 0; i < leaveTypes.size(); i++) {
 			leaveTypesJson.add(leaveTypes.get(i).toJSON());

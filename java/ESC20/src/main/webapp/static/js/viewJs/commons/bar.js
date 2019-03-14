@@ -55,7 +55,13 @@ function startCountTime() {
             // $('#timeCounter').text(time)
             // clearInterval(intervalId);
             if (time == 0) {
-                $("#sessionOutForm")[0].submit();
+                $.ajax({
+                    type: 'post',
+                    url: urlMain + '/markTimeout',
+                    success: function(data) {
+                    	$("#sessionOutForm")[0].submit();
+                    }
+                });
             }
         }
     }, 1000)
