@@ -84,8 +84,12 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 			List<Code> leaveStatus = this.referenceService.getLeaveStatus();
 			LeaveRequestModel model;
 			JSONArray json = new JSONArray();
+			AppLeaveRequest temp;
 			for (int i = 0; i < requests.size(); i++) {
-				model = new LeaveRequestModel(requests.get(i));
+				temp = requests.get(i);
+				temp.setFirstName(demo.getNameF());
+				temp.setLastName(demo.getNameL());
+				model = new LeaveRequestModel(temp);
 				requestModels.add(model);
 			}
 			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
