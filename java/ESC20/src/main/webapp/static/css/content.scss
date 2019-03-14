@@ -228,6 +228,9 @@
 }
 .main-header .navbar-nav .nav-item {
     margin: 0;
+    .form-control{
+        width: 100%;
+    }
 }
 .main-header .nav-link {
     position: relative;

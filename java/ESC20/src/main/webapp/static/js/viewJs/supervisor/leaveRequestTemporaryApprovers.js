@@ -48,7 +48,7 @@ $(function() {
                                                     title=""
                                                     data-localize="setTemporaryApprovers.temporaryApprover"
                                                     name="" 
-                                                    id="name_01">
+                                                    id="name_0${length}">
                                                 </div>
                                             </td>
                                             <td data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope">
@@ -58,7 +58,7 @@ $(function() {
                                                         data-title=""
                                                         data-localize="setTemporaryApprovers.fromDate" type="text" 
                                                         name=""  autocomplete="off"
-                                                        id="fromDate_01" placeholder="mm/dd/yyyy">
+                                                        id="fromDate_0${length}" placeholder="mm/dd/yyyy">
                                                     </div>
                                             </td>
                                             <td data-localize="setTemporaryApprovers.toDate" data-localize-location="scope">
@@ -68,7 +68,7 @@ $(function() {
                                                     data-title=""
                                                     data-localize="setTemporaryApprovers.toDate" type="text" 
                                                     name=""  autocomplete="off"
-                                                    id="toDate_01" placeholder="mm/dd/yyyy">
+                                                    id="toDate_0${length}" placeholder="mm/dd/yyyy">
                                                 </div>
                                             </td>
                                             <td  data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
@@ -81,9 +81,12 @@ $(function() {
                     `
         console.log('tr that have empty field' + approverEmptyJson)
         if (!approverEmptyJson || approverEmptyJson.length < 1) {
-            $('.setApprovers-list tbody tr:last-child').before(newRow)
-            initialCompleteList()
             $('#errorComplete').hide()
+            let errorLength = veryIfError()
+            if (errorLength==0) {
+                $('.setApprovers-list tbody tr:last-child').before(newRow)
+                initialCompleteList()
+            }
         } else {
             $('#errorComplete').show()
         }
@@ -123,7 +126,8 @@ $(function() {
             console.log(resultApprover)
             $('#approverJson').val(JSON.stringify(resultApprover))
             $('#errorComplete').hide()
-            if (!$('#noResultError').is(':visible')) {
+            let errorLength = veryIfError()
+            if (errorLength==0) {
                 $('#saveTempApprovers')[0].submit()
             }
         }
@@ -149,7 +153,68 @@ $(function() {
         // console.log(addedApprover)
         verifyRepeat()
     })
+    $(document).on('blur','.dateToControl', function() {
+        let fromValue=$(this).parents('.approver_tr').find('.dateFromControl').val()
+        let toValue=$(this).val()
+        let fromInput = changeDateYMD(fromValue)
+        let toInput = changeDateYMD(toValue)
+        console.log(fromInput)
+        console.log(toInput)
+        if(fromValue && toValue&&fromValue.length>=10&&toValue.length>=10){
+            if(fromInput<=toInput){
+                $("#errorDate").hide()
+            }else{
+                $("#errorDate").show()
+            }
+        }
+    })
+    $(document).on('input','.dateToControl', function() {
+        let fromValue=$(this).parents('.approver_tr').find('.dateFromControl').val()
+        let toValue=$(this).val()
+        let fromInput = changeDateYMD(fromValue)
+        let toInput = changeDateYMD(toValue)
+        if(fromValue && toValue&&fromValue.length>=10&&toValue.length>=10){
+            if(fromInput<=toInput){
+                $("#errorDate").hide()
+            }else{
+                $("#errorDate").show()
+            }
+        }
+    })
+    $(document).on('blur','.dateFromControl', function() {
+        let toValue=$(this).parents('.approver_tr').find('.dateToControl').val()
+        let fromValue=$(this).val()
+        let fromInput = changeDateYMD(fromValue)
+        let toInput = changeDateYMD(toValue)
+        console.log(fromInput)
+        console.log(toInput)
+        if(fromValue && toValue&&fromValue.length>=10&&toValue.length>=10){
+            if(fromInput<=toInput){
+                $("#errorDate").hide()
+            }else{
+                $("#errorDate").show()
+            }
+        }
+    })
+    $(document).on('input','.dateFromControl', function() {
+        let toValue=$(this).parents('.approver_tr').find('.dateToControl').val()
+        let fromValue=$(this).val()
+        let fromInput = changeDateYMD(fromValue)
+        let toInput = changeDateYMD(toValue)
+        if(fromValue && toValue&&fromValue.length>=10&&toValue.length>=10){
+            if(fromInput<=toInput){
+                $("#errorDate").hide()
+            }else{
+                $("#errorDate").show()
+            }
+        }
+    })
 })
+function changeDateYMD(date){
+    let dateArry = date.split("/")
+    let DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
+    return DateFormat
+}
 function verifyRepeat() {
     repeat = 0
     addedApprover.forEach((item, index) => {
@@ -251,12 +316,22 @@ function initialCompleteList() {
     })
 }
 
+function veryIfError(){
+    let i = 0
+    $(".errorList .error-hint").each(function(){
+        if($(this).is(':visible')){
+            i++
+        }
+    });
+    return i
+}
 function deleteRow(dom) {
     let length = $('.setApprovers-list tbody .approver_tr').length
     $(dom)
         .parents('.approver_tr')
         .removeClass('approver_tr')
         .addClass('redTd')
+    $("#errorDate").hide()
     judgeContent()
     verifyRepeat()
 }
@@ -264,11 +339,10 @@ var checkin = []
 var checkout = []
 var haveEndDate = []
 function initDateControl() {
-    let nowTemp = new Date()
     $('.approver_tr').each(function(index) {
         haveEndDate[index] = false
-        let fromCalendar = $(this).find('.date-control[data-title="from"]')
-        let toCalendar = $(this).find('.date-control[data-title="to"]')
+        let fromCalendar = $(this).find('.dateFromControl')
+        let toCalendar = $(this).find('.dateToControl')
         checkin[index] = fromCalendar
             .fdatepicker({
                 format: 'mm/dd/yyyy',
@@ -280,6 +354,7 @@ function initDateControl() {
                 }
             })
             .on('changeDate', function(ev) {
+                console.log(ev)
                 let endDate = toCalendar.val()
                 let startDate = fromCalendar.val()
                 if (

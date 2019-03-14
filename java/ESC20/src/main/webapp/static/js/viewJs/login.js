@@ -18,6 +18,14 @@ $(function(){
         },
 
     });
+    let url = window.location.href
+    let urlParams = url.split("?"); 
+    console.log(urlParams)
+    if(urlParams[1]=='error'){
+        $("#authenticateFailed").show()
+    }else{
+        $("#authenticateFailed").hide()
+    }
 //    $('#signin').on('click',function(){
 //        var userName = $('#inputEmail').val();
 //        var userPwd = $('#inputPassword').val();

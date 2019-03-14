@@ -51,13 +51,15 @@ $(document).ready(
 				$("#deleteForm")[0].submit();
 			})
 			$("#retrieve").click(function(){
-				let fromInput = changeDateYMD($("#SearchStartDate").val())
-				let toInput = changeDateYMD($("#SearchEndDate").val())
+				let fromValue = $("#SearchStartDate").val()
+				let toValue = $("#SearchEndDate").val()
+				let fromInput = changeDateYMD(fromValue)
+				let toInput = changeDateYMD(toValue)
 				console.log(fromInput)
 				console.log(toInput)
-				if(fromInput && toInput && fromInput<=toInput){
+				if((!fromValue || !toValue) || (fromInput && toInput && fromInput<=toInput)){
 					$("#timeErrorMessage").addClass("hide")
-					$("#changeFreqForm")[0].submit();
+					$("#SearchForm")[0].submit();
 				}else{
 					$("#timeErrorMessage").removeClass("hide")
 				}

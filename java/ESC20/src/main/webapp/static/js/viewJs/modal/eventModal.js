@@ -140,19 +140,65 @@ function formValidator() {
     })
     // setGlobal()
 }
-
+$("#startDate").change(function(){
+    let fromValue = $("#startDate").val()
+    let toValue = $("#endDate").val()
+    let leaveFrom = changeDateYMD(fromValue)
+    let leaveTo = changeDateYMD(toValue)
+    if(fromValue && toValue){
+        if( leaveFrom<=leaveTo){
+            $('.dateValidator01').hide()
+            calcDays()
+        }else{
+            $('.dateValidator01').show()
+        }
+    }
+    
+});
+$('#startDate').keyup(function() {
+    let fromValue = $("#startDate").val()
+    let toValue = $("#endDate").val()
+    let leaveFrom = changeDateYMD(fromValue)
+    let leaveTo = changeDateYMD(toValue)
+    if(fromValue && toValue){
+        if( leaveFrom<=leaveTo){
+            $('.dateValidator01').hide()
+            
+        }else{
+            $('.dateValidator01').show()
+        }
+        calcDays()
+    }
+});
  $("#endDate").change(function(){
-        let leaveFrom = changeDateYMD($("#startDate").val())
-        let leaveTo = changeDateYMD($("#endDate").val())
-        if(leaveFrom && leaveTo){
+    let fromValue = $("#startDate").val()
+    let toValue = $("#endDate").val()
+    let leaveFrom = changeDateYMD(fromValue)
+    let leaveTo = changeDateYMD(toValue)
+    if(fromValue && toValue){
             if( leaveFrom<=leaveTo){
                 $('.dateValidator01').hide()
-                calcDays()
             }else{
                 $('.dateValidator01').show()
             }
+            calcDays()
         }
         
+    });
+    $('#endDate').keyup(function() {
+        let fromValue = $("#startDate").val()
+    let toValue = $("#endDate").val()
+    let leaveFrom = changeDateYMD(fromValue)
+    let leaveTo = changeDateYMD(toValue)
+    if(fromValue && toValue){
+            if( leaveFrom<=leaveTo){
+                $('.dateValidator01').hide()
+                
+            }else{
+                $('.dateValidator01').show()
+            }
+            calcDays()
+        }
     });
 
     $("#leaveHoursDaily").change(function(){
@@ -169,7 +215,7 @@ function formValidator() {
     //     }
     // });
     var timeError = false
-    function calcTime(){console.log("000000000000000000")
+    function calcTime(){
         $('#requestForm').bootstrapValidator('disableSubmitButtons', false);  
         let startH = $("#startHour").val()
         let startM = $("#startMinute").val()
@@ -242,7 +288,17 @@ function formValidator() {
             }
             
         }
-        $("#totalRequested").val(Number(days).toFixed(3));
+        console.log(dayDate)
+        if(dayDate>=0){
+            $("#requestModal .save").removeAttr("disabled")
+        }else{
+            $("#requestModal .save").attr("disabled","disabled")
+        }
+        if(days>0){
+            $("#totalRequested").val(Number(days).toFixed(3));
+        }else{
+            $("#totalRequested").val(Number(0).toFixed(3));
+        }
     }
     
     function calValueTime(){
@@ -347,6 +403,7 @@ function formValidator() {
             let endDate = $('#endDate').val()
             let start = new Date(startDate)
             let end = new Date(endDate)
+            let dateTotal = $("#totalRequested").val()
             console.log(start)
             console.log(end)
             // if (start.valueOf() > end.valueOf()) {
@@ -354,9 +411,15 @@ function formValidator() {
                 $('.dateValidator').show()
                 return false
             } else {
-                console.log("yes")
                 $('.dateValidator').hide()
-                $('#requestForm')[0].submit()
+                console.log(parseInt(dateTotal))
+                if(parseInt(dateTotal)>0){
+                    $(".dateValidator01").hide()
+                    $('#requestForm')[0].submit()
+                }else{
+                    $(".dateValidator01").show()
+                }
+                
             }
         } else return
     })

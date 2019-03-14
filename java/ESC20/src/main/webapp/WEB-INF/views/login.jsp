@@ -18,7 +18,7 @@
                         <div class="account-logo">
                             <img src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="" data-localize="logoName.esc">
                         </div>
-                        <form method="post" class="card bv-form" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
+                        <form id="loginForm" method="post" class="card bv-form" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
                             <h1 class="title" data-localize="label.pleaseSignIn"></h1>
                             <div class="form-group">
                                 <label class="form-title" for="inputEmail" data-localize="label.username"></label>
@@ -38,6 +38,7 @@
                             </div>
                             <p class="error-hint hide" id="errorMessage" data-localize="validator.usernameOrPasswordError"></p>
                             <p class="error-hint hide" id="incorrectMessage" data-localize="validator.usernameOrPasswordIncorrect"></p>
+                            <p class="error-hint hide" id="authenticateFailed" data-localize="validator.authenticateFailed"></p>
                             <c:if test="${resetPsw!=null && resetPsw=='resetPswSuccess'}">
 		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswSuccess"></div>
 		                    </c:if>
@@ -66,6 +67,6 @@
             </div>
     </body>
     
-    <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/index.js"></script>
+    <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/login.js"></script>
 
 </html>

@@ -278,6 +278,10 @@
   margin: 0;
 }
 
+.main-header .navbar-nav .nav-item .form-control {
+  width: 100%;
+}
+
 .main-header .nav-link {
   position: relative;
 }

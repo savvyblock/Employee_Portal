@@ -84,6 +84,7 @@ function initialLeaveCalendarStaticModal(){
                     $("#leaveRequestedStatic").html(leaveRequest.lvUnitsUsed)
                     $("#commentLogStatic").html("")
                     $("#leaveStatusStatic").text(leaveRequest.statusDescr)
+                    $("#leaveApproverStatic").text(leaveRequest.approver)
                     let comments = leaveRequest.comments
                     for(let i=0;i<comments.length;i++){
                             let html = '<p>'+comments[i].detail+'</p>'

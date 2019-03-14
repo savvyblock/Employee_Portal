@@ -191,9 +191,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p class="error-hint hide" id="repeatError" data-localize="validator.repeatError"></p>
-                                <p class="error-hint hide" id="noResultError" data-localize="validator.noResultError"></p>
-                                <p class="error-hint hide" id="errorComplete" data-localize="validator.pleaseCompleteForm"></p>
+                                <div class="errorList">
+                                    <p class="error-hint hide" id="repeatError" data-localize="validator.repeatError"></p>
+                                    <p class="error-hint hide" id="noResultError" data-localize="validator.noResultError"></p>
+                                    <p class="error-hint hide" id="errorComplete" data-localize="validator.pleaseCompleteForm"></p>
+                                    <p class="error-hint hide" id="errorDate" data-localize="validator.startNotBeGreaterThanEndDate"></p>
+    
+                                </div>
                                 <div class="text-right mt-3">
                                     <button
                                         type="button"

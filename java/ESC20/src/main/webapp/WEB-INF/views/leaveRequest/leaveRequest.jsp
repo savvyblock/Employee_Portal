@@ -46,7 +46,7 @@
 					<form
 					class="no-print searchForm"
 					action="leaveRequest"
-					id="changeFreqForm"
+					id="SearchForm"
 					method="POST"
 						>
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

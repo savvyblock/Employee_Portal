@@ -42,16 +42,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <thead>
                                                 <tr>
                                                     <th class="text-center" data-localize="deductionsTable.deductionCode"></th>
-                                                    <th class="text-center" data-localize="deductionsTable.description"></th>
-                                                    <th class="text-center" data-localize="deductionsTable.amount"></th>
+                                                    <th data-localize="deductionsTable.description"></th>
+                                                    <th class="text-right" data-localize="deductionsTable.amount"></th>
                                                     <th class="text-center" data-localize="deductionsTable.cafeteriaFlag"></th>
-                                                    <th class="text-center" data-localize="deductionsTable.employerContributionAmount"></th>
+                                                    <th class="text-right" data-localize="deductionsTable.employerContributionAmount"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <c:forEach items="${deductions[frequency]}" var="deduct" varStatus="counter">
                                                         <tr>
-                                                            <td data-localize="deductionsTable.deductionCode" data-localize-location="scope,data-title">${deduct.dedCd}</td>
+                                                            <td class="text-center" data-localize="deductionsTable.deductionCode" data-localize-location="scope,data-title">${deduct.dedCd}</td>
                                                             <td data-localize="deductionsTable.description" data-localize-location="scope,data-title">${deduct.dedCdDesc}</td>
                                                             <td data-localize="deductionsTable.amount" data-localize-location="scope,data-title">
                                                                 <fmt:formatNumber value="${deduct.empAmt}" pattern="#,##0.00"/>
