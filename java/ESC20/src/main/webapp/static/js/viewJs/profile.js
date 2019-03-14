@@ -653,10 +653,10 @@ function emailFormValidator() {
                     // notEmpty: {
                     //     message: 'validator.requiredField'
                     // },
-                    identical: {
-                        field: 'emailNewVerify',
-                        message:'validator.emailNotMatch'
-                    },
+                    // identical: {
+                    //     field: 'emailNewVerify',
+                    //     message:'validator.emailNotMatch'
+                    // },
                     emailAddress: {
                         message: 'validator.pleaseEnterCorrectFormat'
                     }
