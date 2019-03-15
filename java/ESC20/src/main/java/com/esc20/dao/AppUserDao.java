@@ -682,7 +682,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		String sql= "select email,nameF,nameL,hmEmail from BhrEmpDemo where empNbr =:empNbr and dob =:dob  and addrZip =:addrZip";
         q = session.createQuery(sql);
         q.setParameter("empNbr", searchUser.getEmpNumber());
-        q.setParameter("dob", searchUser.getSearchFormattedDateofBirth());
+        q.setParameter("dob", searchUser.getDateYear()+searchUser.getDateMonth()+searchUser.getDateDay());
         q.setParameter("addrZip", searchUser.getZipCode());
         Object[] res = (Object[]) q.uniqueResult();
         if(res==null)

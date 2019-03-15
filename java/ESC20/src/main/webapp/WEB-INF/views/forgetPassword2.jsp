@@ -11,37 +11,39 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <%@ include file="commons/bar-account.jsp"%>
         <div class="account-top content-body"  tabindex="-1">
                 <div class="account-inner sm">
-                        <form id="createNewUserForm" action="" method="post">
+                        <form action="answerHintQuestion" method="post">
+                        	<input type="hidden" name="count" value="${count}"/>
+                        	<input type="hidden" name="empNbr" value="${user.empNumber}"/>
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.employeeNumber"></label>
                                 <div class="valid-wrap">
-                                   ${newUser.empNumber}
+                                   ${user.empNumber}
                                 </div>
                                 <input type="hidden" name="empNumber" value="${newUser.empNumber}" />
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.dateOfBirth"></label>
                                 <div class="valid-wrap">
-                                   ${ newUser.searchFormattedDateofBirth}
+                                   ${ user.searchFormattedDateofBirth}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.zipCode"></label>
                                 <div class="valid-wrap">
-                                    ${newUser.zipCode}
+                                    ${user.zipCode}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.lastname"></label>
                                 <div class="valid-wrap">
-                                    ${newUser.nameL}
+                                    ${user.nameL}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.firstname"></label>
                                 <div class="valid-wrap">
-                                    ${newUser.nameF}
+                                    ${user.nameF}
                                 </div>
                             </div>
                             <p>
@@ -49,7 +51,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </p>
                             <div class="form-group">
                                 <label class="form-title" for="answerQuestion">
-                                  what's your name?
+                                 	${user.hintQuestion}
                                 </label>
                                 <div class="valid-wrap">
                                     <input
@@ -60,19 +62,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     />
                                 </div>
                             </div>
-                            <div class="form-group">
-                              <label class="chooseEmailGroup" for="workEmail">
-                                <input type="radio" name="sendEmail" id="workEmail" checked value="" aria-label="" data-localize="label.workEmail">
-                                <span class="emailAddress">werwe@fsdf.com</span>
-                                <span class="emailType" data-localize="label.workEmail"></span>
-                              </label>
-                              <label class="chooseEmailGroup" for="homeEmail">
-                                  <input type="radio" name="sendEmail" id="homeEmail" value="" aria-label="" data-localize="label.homeEmail">
-                                  <span class="emailAddress">werwe@fsdf.com</span>
-                                  <span class="emailType" data-localize="label.homeEmail"></span>
-                                </label>
-                            </div>
-                            <p class="error-hint" id="noUserError" data-localize="validator.answerError"></p>
+                            
+                            <c:if test="${errorMessage!=null && errorMessage!=''}">
+                            	<p class="error-hint" id="noUserError" data-localize="validator.answerError"></p>
+                            </c:if>
                             <div class="form-group account-btn">
                                 <button type="submit" class="btn btn-primary" data-localize="label.submit">
                                 </button>

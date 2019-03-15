@@ -134,7 +134,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                              	<p class="error-hint" id="saveUserSuccess" data-localize="validator.saveUserSuccess"></p>
                             </c:if>
                             <div class="form-group account-btn">
-                                <button type="submit" class="btn btn-primary" data-localize="label.submit">
+                                <button type="submit" class="btn btn-primary" data-localize="label.save">
                                 </button>
                             </div> 
                     </form>
