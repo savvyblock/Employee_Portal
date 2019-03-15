@@ -97,6 +97,10 @@ public class SupervisorService {
 		for(int i=0;i<supervisorPending.size();i++) {
 			if(supervisorPending.get(i).getStatusCd()=='P')
 				supervisorPending.get(i).setInfo(leaveRequestDao.getLeaveInfo(supervisorPending.get(i).getEmpNbr(), supervisorPending.get(i).getPayFreq().toString()));
+			if(supervisorPending.get(i).getStatusCd()=='A')
+				supervisorPending.get(i).setApprover(supervisorDao.getApprover(supervisorPending.get(i).getId()));
+			else
+				supervisorPending.get(i).setApprover("");
 			supervisorPending.get(i).setComments(leaveRequestDao.getLeaveComments(supervisorPending.get(i).getId()));
 		}
 		result.addAll(supervisorPending);
