@@ -412,8 +412,9 @@ $('#startDate').keyup(function() {
                 return false
             } else {
                 $('.dateValidator').hide()
-                console.log(parseInt(dateTotal))
-                if(parseInt(dateTotal)>0){
+                console.log(dateTotal)
+                console.log(parseFloat(dateTotal))
+                if(parseFloat(dateTotal)>0){
                     $(".dateValidator01").hide()
                     $('#requestForm')[0].submit()
                 }else{

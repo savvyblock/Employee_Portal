@@ -18,6 +18,41 @@ $(function() {
     bankAccountValidator()
     //add
     bankAccountAddValidator()
+    $("#saveEmail").on('click',function(){
+        let workE = $("#emailWorkEmail").val()
+        let workEV = $("#emailVerifyWorkEmail").val()
+        let homeE = $("#emailHomeEmail").val()
+        let homeEV = $("#emailVerifyHomeEmail").val()
+        let emailFormValidator = $('#emailForm').data(
+            'bootstrapValidator'
+        )
+        emailFormValidator.validate()
+        console.log(emailFormValidator.isValid())
+        if (emailFormValidator.isValid()) {
+            if(workE===workEV && homeE===homeEV){
+                $("#emailForm")[0].submit()
+            }else{
+                if(workE!=workEV){
+                    $("#emailWorkEmail").parents(".form-group").addClass("has-error").removeClass('has-success')
+                    $("#emailVerifyWorkEmail").parents(".form-group")
+                    .addClass("has-error")
+                    .removeClass('has-success')
+                    .find(".help-block[data-bv-validator='identical']")
+                    .show()
+                }
+                if(homeE!=homeEV){
+                    $("#emailHomeEmail").parents(".form-group").addClass("has-error").removeClass('has-success')
+                    $("#emailVerifyHomeEmail")
+                    .parents(".form-group")
+                    .addClass("has-error")
+                    .removeClass('has-success')
+                    .find(".help-block[data-bv-validator='identical']")
+                    .show()
+                }
+            }
+            
+        }
+    })
     $('.icheckRadioBank').on('click', function(event) {
         if ($(this).is(':checked')) {
             $(".bankAccountBlock").removeClass("asPrimary")
@@ -80,11 +115,6 @@ $(function() {
             .removeClass('activeEdit')
         clearValidator()
     })
-    // $('.save-btn').click(function() {
-    //     $(this)
-    //         .parents('.profile-item')
-    //         .removeClass('activeEdit')
-    // })
     $('.cancel-add-btn').click(function() {
         $('.addBankForm').hide()
         $('.add-bank-btn').show()
@@ -341,6 +371,7 @@ $(function() {
         console.log('modal -- delete')
         willSubmitFormDelete.submit()
     })
+    
 })
 function deleteBankAmount(index) {
     // $('#deleteModal').modal('show')
@@ -640,30 +671,17 @@ function restrictionCodeFormValidator() {
 function emailFormValidator() {
     $('#emailForm').bootstrapValidator({
         live: 'enable',
-        submitButtons: '#saveEmail',
-        feedbackIcons: {
-            valid: 'fa fa-check ',
-            // invalid: 'fa fa-times',
-            validating: 'fa fa-refresh'
-        },
         fields: {
             emailNew: {
-                trigger: 'blur keyup',
+                trigger: 'blur keyup change',
                 validators: {
-                    // notEmpty: {
-                    //     message: 'validator.requiredField'
-                    // },
-                    // identical: {
-                    //     field: 'emailNewVerify',
-                    //     message:'validator.emailNotMatch'
-                    // },
                     emailAddress: {
                         message: 'validator.pleaseEnterCorrectFormat'
                     }
                 }
             },
             emailNewVerify: {
-                trigger: 'blur keyup',
+                trigger: 'blur keyup change',
                 validators: {
                     identical: {
                         field: 'emailNew',
@@ -675,7 +693,7 @@ function emailFormValidator() {
                 }
             },
             hmEmailNew: {
-                trigger: 'blur keyup',
+                trigger: 'blur keyup change',
                 validators: {
                     emailAddress: {
                         message: 'validator.pleaseEnterCorrectFormat'
@@ -683,7 +701,7 @@ function emailFormValidator() {
                 }
             },
             hmEmailVerifyNew: {
-                trigger: 'blur keyup',
+                trigger: 'blur keyup change',
                 validators: {
                     identical: {
                         field: 'hmEmailNew',
@@ -1068,7 +1086,11 @@ function bankAccountValidator() {
                 },
                 displayLabel: {
                     trigger: 'blur keyup',
-                    validators: {}
+                    validators: {
+                        notEmpty: {
+                            message: 'validator.requiredField'
+                        },
+                    }
                 },
                 displayAmount: {
                     trigger: 'blur keyup',
@@ -1132,6 +1154,9 @@ function bankAccountAddValidator() {
             displayAmount: {
                 trigger: 'blur keyup',
                 validators: {
+                    notEmpty: {
+                        message: 'validator.requiredField'
+                    },
                     regexp: {
                         regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
                         message: 'validator.pleaseEnterCorrectFormat'

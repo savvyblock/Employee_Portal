@@ -97,7 +97,6 @@ $('#retrieveBtn').click(function () {
              },
              error : function(e) {
                  console.log(e);
-                 alert("异常！");
              }
          });
 })

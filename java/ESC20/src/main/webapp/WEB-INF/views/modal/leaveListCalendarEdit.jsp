@@ -44,5 +44,6 @@ var leaveList = eval(${leavesCalendar});
 var status = eval(${leaveStatus})
 var leaveTypes = eval(${leaveTypes});
 var absRsns = eval(${absRsns});
+console.log(leaveList)
 </script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/leaveListCalendarEdit.js"></script>

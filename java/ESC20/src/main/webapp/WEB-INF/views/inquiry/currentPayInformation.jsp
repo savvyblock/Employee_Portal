@@ -67,9 +67,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="td-title"><b data-localize="currentPayTable.address"></b></td>
-                                        <td class="td-content" data-title="Address" data-localize="currentPayTable.address">
-                                            ${sessionScope.district.address}
+                                        <td class="td-title" rowspan="2"><b data-localize="currentPayTable.address"></b></td>
+                                        <td class="td-content" data-title="Address" data-localize="currentPayTable.address" rowspan="2">
+                                            ${sessionScope.district.address}<br>
+                                            ${sessionScope.district.city},
+                                            ${sessionScope.district.state} ${sessionScope.district.zip}
                                         </td>
                                         <td class="td-title"><b data-localize="currentPayTable.employeeId"></b></td>
                                         <td
@@ -81,11 +83,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="td-title"></td>
-                                        <td class="td-content" data-title="">
-                                            ${sessionScope.district.city},
-                                        ${sessionScope.district.state} ${sessionScope.district.zip}
-                                        </td>
+                                        
                                         <td class="td-title">
                                             <b data-localize="currentPayTable.dateOfBirth"></b>
                                         </td>

@@ -545,7 +545,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit"
+                                                type="button"
                                                 class="btn btn-primary save-btn" data-localize="label.update"
                                                 id="saveEmail"
                                             >
@@ -1427,7 +1427,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         type="text"
                                                         name="description"
                                                         aria-label="" 
-                                                        data-localize="accessHint.description"
+                                                        data-localize="profile.bankName"
                                                         value="${bank.codeNew.description}"
                                                     />
                                                 </div>

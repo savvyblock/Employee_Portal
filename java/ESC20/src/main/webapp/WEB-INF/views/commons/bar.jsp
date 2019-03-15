@@ -24,7 +24,7 @@
         </button>
         <div class="dropdown-menu dropdown-menu-right note-dropdown">
           <div class="dropdown-header">
-            <span id="budgeCount">0</span> <span data-localize="label.notification"></span>
+            <label id="budgeCount">0</label> <label data-localize="label.notification"></label>
           </div>
           	  <a href="/<%=request.getContextPath().split("/")[1]%>/notifications/notifications">
 		          <div class="dropdown-divider"></div>

@@ -1,7 +1,6 @@
 $(document).ready(function() { 
 
 	var oldPos = 0;
-
 	$(".autoAdvance").keyup(function(event) {
 		var length = $(this).val().length;
 		var maxlength = $(this).attr("maxlength");
