@@ -5,6 +5,7 @@ import java.text.ParseException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -40,6 +41,8 @@ public class ResetPasswordController{
     	BhrEmpDemo bed= this.indexService.retrieveEmployee(searchUser);
     	if(bed == null) {
     		mav.addObject("retrieve", "false");
+    		mav.setViewName("forgetPassword");
+    		return mav;
     	}else {
     		
     		BeaUsers user = this.indexService.getUserByEmpNbr(searchUser.getEmpNumber());
@@ -49,14 +52,62 @@ public class ResetPasswordController{
         	}else {
         		searchUser.setUsername(user.getUsrname());
         		searchUser.setUserEmail(bed.getEmail());
+        		searchUser.setNameF(bed.getNameF());
+        		searchUser.setNameL(bed.getNameL());
+        		searchUser.setHintQuestion(user.getHint());
         		mav.addObject("retrieve", "true");
         	}
         	
     	}
     	
-        mav.setViewName("forgetPassword");
+        mav.setViewName("forgetPassword2");
         mav.addObject("user", searchUser);
+        
         return mav;
+    }
+    
+    @RequestMapping("answerHintQuestion")
+    public ModelAndView answerHintQuestion(HttpServletRequest req, String answer, String empNbr, Integer count) {
+    	ModelAndView mav = new ModelAndView();
+    	SearchUser searchUser=new SearchUser();
+    	if(count==null)
+    		count=0;
+    	if(empNbr==null) {
+    		return this.forgetPassword(req);
+    	}
+    	BeaUsers user = this.indexService.getUserByEmpNbr(empNbr);
+    	BhrEmpDemo bed = this.indexService.getUserDetail(empNbr);
+    	searchUser.setDateDay(bed.getDob().substring(6, 8));
+    	searchUser.setDateMonth(bed.getDob().substring(4, 6));
+    	searchUser.setDateYear(bed.getDob().substring(0, 4));
+		searchUser.setEmpNumber(empNbr);
+		searchUser.setUsername(user.getUsrname());
+		searchUser.setUserEmail(bed.getEmail());
+		searchUser.setNameF(bed.getNameF());
+		searchUser.setNameL(bed.getNameL());
+		searchUser.setHintQuestion(user.getHint());
+		searchUser.setHintQuestion(user.getHint());
+    	boolean match=false;
+    	try {
+    		match = encoder.matches(answer, user.getHintAns())||BCrypt.checkpw(answer, user.getHintAns());
+		}catch(IllegalArgumentException e) {
+			match = false;
+		}
+    	if(match) {
+    		mav.setViewName("resetPassword");
+    	}else {
+    		count++;
+    		if(count>=3) {
+    			mav.setViewName("login");
+    			mav.addObject("3times", true);
+    			return mav;
+    		}
+    		mav.setViewName("forgetPassword2");
+    		mav.addObject("errorMessage", "The answer is wrong!");
+    		mav.addObject("count", count);
+    	}
+    	mav.addObject("user", searchUser);
+    	return mav;
     }
     
 	@RequestMapping("forgetPassword")

@@ -11,8 +11,21 @@ public class SearchUser {
 	private String nameL;
 	private String username;
 	private String userEmail;
+	private String hintQuestion;
+	private String hintAnswer;
 	
-	
+	public String getHintQuestion() {
+		return hintQuestion;
+	}
+	public void setHintQuestion(String hintQuestion) {
+		this.hintQuestion = hintQuestion;
+	}
+	public String getHintAnswer() {
+		return hintAnswer;
+	}
+	public void setHintAnswer(String hintAnswer) {
+		this.hintAnswer = hintAnswer;
+	}
 	public String getEmpNumber() {
 		return empNumber;
 	}
@@ -45,7 +58,7 @@ public class SearchUser {
 	}
 	
 	public String getSearchFormattedDateofBirth() {
-		return dateYear+dateMonth+dateDay;
+		return dateMonth+"/"+dateDay+"/"+dateYear;
 	}
 	public String getNameF() {
 		return nameF;
