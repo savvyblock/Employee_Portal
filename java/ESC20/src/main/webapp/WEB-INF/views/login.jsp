@@ -89,6 +89,9 @@
                             </div>
                             <p class="error-hint hide" id="errorMessage" data-localize="validator.usernameOrPasswordError"></p>
                             <p class="error-hint hide" id="incorrectMessage" data-localize="validator.usernameOrPasswordIncorrect"></p>
+                            <c:if test="${times3}">
+                                <p class="error-hint" id="haveEnteredThree" data-localize="validator.haveEnteredThree"></p>
+                            </c:if>
                             <c:if test="${resetPsw!=null && resetPsw=='resetPswSuccess'}">
 		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswSuccess"></div>
 		                    </c:if>

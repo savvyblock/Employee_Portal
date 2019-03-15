@@ -582,8 +582,8 @@
 		"lastname":"Last Name",
 		"pleaseEnterInformation":"Please enter the security information and click the save button.",
 		"pleaseAnswerYourHintQuestion":"Please answer your hint question (answer is case sensitive) and select the email address to send password.",
-		"workEmail":"Work E-mail",
-		"homeEmail":"Home E-mail",
+		"workEmail":"Work E-mail Address",
+		"homeEmail":"Home E-mail Address",
 		"hintQuestion":"Hint Question",
 		"hintAnswer":"Hint Answer",
 		"pleaseEnterEmpBirthZipCode":"Please enter your employee number, date of birth, and zip and click Retrieve.",
@@ -722,6 +722,7 @@
 		"noResultError":"Employee does not exist!",
 		"repeatError":"The employee has already been added",
 		"pleaseSelectAgreeWay":"Please Select Way You Agreed!",
+		"haveEnteredThree":"You have entered the wrong answer three times.Please contact your personnel office or create a new user.",
 		"":""
 	},
 	"accessHint":{

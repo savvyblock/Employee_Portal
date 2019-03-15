@@ -12,7 +12,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <div class="account-top content-body"  tabindex="-1">
             <div class="account-inner sm">
                 <div class="tab-head">
-                    <span data-localize="label.retrieveUsername"></span>
+                    <p>
+                        <b data-localize="label.pleaseEnterEmpBirthZipCode"></b>
+                </p>
                 </div>
                 <form
                     id="retrieveUserName"
@@ -50,7 +52,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         <div class="valid-wrap error-hint" data-localize="validator.userNotExist"></div>
                     </c:if>
                     <div class="form-group account-btn">
-                        <button type="submit" class="btn btn-primary" data-localize="label.retrieveUsername">
+                        <button type="submit" class="btn btn-primary" data-localize="label.retrieve">
                         </button>
                     </div>
 				

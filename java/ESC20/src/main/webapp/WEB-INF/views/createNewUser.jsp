@@ -93,6 +93,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="form-title" data-localize="profile.verifyEmail" for="workEmail"></label>
+                                <div class="valid-wrap">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="workEmailVerify"
+                                        id="verifyWorkEmail"
+                                        value="${emailShowRequest.emailNew}"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="form-title" data-localize="label.homeEmail" for="homeEmail"></label>
                                 <div class="valid-wrap">
                                     <input
@@ -100,6 +112,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="form-control"
                                         name="homeEmail"
                                         id="homeEmail"
+                                        value="${emailShowRequest.hmEmailNew}"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-title" data-localize="profile.verifyEmail" for="homeEmail"></label>
+                                <div class="valid-wrap">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="homeEmailVerify"
+                                        id="verifyHomeEmail"
                                         value="${emailShowRequest.hmEmailNew}"
                                     />
                                 </div>
@@ -134,7 +158,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                              	<p class="error-hint" id="saveUserSuccess" data-localize="validator.saveUserSuccess"></p>
                             </c:if>
                             <div class="form-group account-btn">
-                                <button type="submit" class="btn btn-primary" data-localize="label.save">
+                                <button type="button" id="saveNewUser" class="btn btn-primary" data-localize="label.save">
                                 </button>
                             </div> 
                     </form>

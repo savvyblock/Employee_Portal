@@ -46,9 +46,33 @@ $('#createNewUserForm').bootstrapValidator({
                 }
             }
         },
+        workEmailVerify: {
+            trigger: 'blur keyup change',
+            validators: {
+                identical: {
+                    field: 'workEmail',
+                    message:'validator.emailNotMatch'
+                },
+                emailAddress: {
+                    message: 'validator.pleaseEnterCorrectFormat'
+                }
+            }
+        },
         homeEmail: {
             validators: {
               emailAddress: {
+                    message: 'validator.pleaseEnterCorrectFormat'
+                }
+            }
+        },
+        homeEmailVerify: {
+            trigger: 'blur keyup change',
+            validators: {
+                identical: {
+                    field: 'homeEmail',
+                    message:'validator.emailNotMatch'
+                },
+                emailAddress: {
                     message: 'validator.pleaseEnterCorrectFormat'
                 }
             }
@@ -69,4 +93,42 @@ $('#createNewUserForm').bootstrapValidator({
         },
       
   }
+})
+
+$(function(){
+    $("#saveNewUser").on('click',function(){
+        let workE = $("#workEmail").val()
+        let workEV = $("#verifyWorkEmail").val()
+        let homeE = $("#homeEmail").val()
+        let homeEV = $("#verifyHomeEmail").val()
+        let newUserFormValidator = $('#createNewUserForm').data(
+            'bootstrapValidator'
+        )
+        newUserFormValidator.validate()
+        console.log(newUserFormValidator.isValid())
+        if (newUserFormValidator.isValid()) {
+            if(workE===workEV && homeE===homeEV){
+                $("#createNewUserForm")[0].submit()
+            }else{
+                if(workE!=workEV){
+                    $("#workEmail").parents(".form-group").addClass("has-error").removeClass('has-success')
+                    $("#verifyWorkEmail").parents(".form-group")
+                    .addClass("has-error")
+                    .removeClass('has-success')
+                    .find(".help-block[data-bv-validator='identical']")
+                    .show()
+                }
+                if(homeE!=homeEV){
+                    $("#homeEmail").parents(".form-group").addClass("has-error").removeClass('has-success')
+                    $("#verifyHomeEmail")
+                    .parents(".form-group")
+                    .addClass("has-error")
+                    .removeClass('has-success')
+                    .find(".help-block[data-bv-validator='identical']")
+                    .show()
+                }
+            }
+            
+        }
+    })
 })

@@ -100,7 +100,7 @@ public class ResetPasswordController{
     		count++;
     		if(count>=3) {
     			mav.setViewName("login");
-    			mav.addObject("3times", true);
+    			mav.addObject("times3", true);
     			return mav;
     		}
     		mav.setViewName("forgetPassword2");
