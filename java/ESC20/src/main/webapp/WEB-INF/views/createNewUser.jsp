@@ -47,7 +47,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <div>
                                 <b data-localize="label.pleaseEnterInformation"></b>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group error-vertical">
                                 <label class="form-title" data-localize="label.username" for="username"></label>
                                 <div class="valid-wrap">
                                     <input
@@ -58,7 +58,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group error-vertical">
                                 <label class="form-title" data-localize="label.password" for="password"></label>
                                 <div class="valid-wrap">
                                     <input
@@ -69,7 +69,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group error-vertical">
                                 <label class="form-title" data-localize="label.newPassword" for="newPassword"></label>
                                 <div class="valid-wrap">
                                     <input
@@ -80,7 +80,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group error-vertical">
                                 <label class="form-title" data-localize="label.workEmail" for="workEmail"></label>
                                 <div class="valid-wrap">
                                     <input
@@ -92,7 +92,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group error-vertical">
                                 <label class="form-title" data-localize="profile.verifyEmail" for="workEmail"></label>
                                 <div class="valid-wrap">
                                     <input
@@ -104,7 +104,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group error-vertical">
                                 <label class="form-title" data-localize="label.homeEmail" for="homeEmail"></label>
                                 <div class="valid-wrap">
                                     <input
@@ -116,7 +116,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     />
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group error-vertical">
                                 <label class="form-title" data-localize="profile.verifyEmail" for="homeEmail"></label>
                                 <div class="valid-wrap">
                                     <input

@@ -9,19 +9,28 @@ $('#createNewUserForm').bootstrapValidator({
       username: {
             validators: {
                 notEmpty: {
-                        message: 'validator.requiredField'
-                    },
+                    message: 'validator.requiredField'
+                },
+                regexp: {
+                    regexp: /^[^\s]*$/,
+                    message: 'validator.haveNotSpace'
+                },
+                stringLength: {
+                    min: 6,
+                    min: 8,
+                    message:'validator.lengthNotLessThan6_8'
+                }
             }
         },
         password: {
             validators: {
-              notEmpty: {
-                message: 'validator.requiredField'
-            },
-            stringLength: {
-                min: 6,
-                message:'validator.passwordLengthNotLessThan6'
-            }
+                notEmpty: {
+                    message: 'validator.requiredField'
+                },
+                stringLength: {
+                    min: 6,
+                    message:'validator.passwordLengthNotLessThan6'
+                }
             }
         },
         newPassword: {

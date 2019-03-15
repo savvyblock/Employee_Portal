@@ -678,6 +678,8 @@
 		"pleaseEnterCorrectMailFormat":"Please enter the correct mail format.",
 		"twoPasswordsNotMatch":"The two passwords you entered did not match.",
 		"passwordLengthNotLessThan6":"Password length should not be less than 6 bits.",
+		"lengthNotLessThan6_9":"The length should not be less than 6 bits and not be more than 9.",
+		"lengthNotLessThan6_8":"The length should not be less than 6 bits and not be more than 8.",
 		"usernameCannotBeEmpty":"The username is required and cannot be empty",
 		"passwordCannotBeEmpty":"The password is required and cannot be empty",
 		"passwordNotMatch":"The two passwords you entered did not match.",
@@ -723,6 +725,7 @@
 		"repeatError":"The employee has already been added",
 		"pleaseSelectAgreeWay":"Please Select Way You Agreed!",
 		"haveEnteredThree":"You have entered the wrong answer three times.Please contact your personnel office or create a new user.",
+		"haveNotSpace":"User names are not allowed to have Spaces",
 		"":""
 	},
 	"accessHint":{
