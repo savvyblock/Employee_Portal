@@ -95,6 +95,7 @@ public class ResetPasswordController{
 		}
     	if(match) {
     		mav.setViewName("resetPassword");
+    		mav.addObject("id", empNbr);
     	}else {
     		count++;
     		if(count>=3) {
