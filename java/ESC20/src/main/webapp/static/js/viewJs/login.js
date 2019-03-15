@@ -41,9 +41,9 @@ $(function(){
     let urlParams = url.split("?"); 
     console.log(urlParams)
     if(urlParams[1]=='error'){
-        $("#authenticateFailed").show()
+        $(".authenticateFailed").show()
     }else{
-        $("#authenticateFailed").hide()
+        $(".authenticateFailed").hide()
     }
     let isTimeoutArry = urlParams[1]?urlParams[1].split("&"):false;
     let isTimeout = isTimeoutArry[1]?isTimeoutArry[1].split("="):false;
