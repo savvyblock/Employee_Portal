@@ -86,7 +86,7 @@ public class ResetPasswordController{
 		searchUser.setNameF(bed.getNameF());
 		searchUser.setNameL(bed.getNameL());
 		searchUser.setHintQuestion(user.getHint());
-		searchUser.setHintQuestion(user.getHint());
+		searchUser.setZipCode(bed.getAddrZip());
     	boolean match=false;
     	try {
     		match = encoder.matches(answer, user.getHintAns())||BCrypt.checkpw(answer, user.getHintAns());

@@ -47,7 +47,7 @@ public class CreateUserController{
     public ModelAndView saveNewUser(HttpServletRequest req){
     	ModelAndView mav = new ModelAndView();
     	BeaUsers newUser=new BeaUsers();
-    	newUser.setEmpNbr(req.getParameter("empNumber"));
+    	newUser.setEmpNbr(req.getParameter("empNbr"));
     	newUser.setUsrname(req.getParameter("username"));//username
     	newUser.setHint(req.getParameter("hintQuestion"));//hintQuestion
     	newUser.setHintAns(encoder.encode(req.getParameter("hintAnswer")));//  hintAnswer
@@ -62,10 +62,21 @@ public class CreateUserController{
     	newUser.setHintCnt(0);
     	newUser.setCmpId(0);
     	
+    	BhrEmpDemo bed = this.indexService.getUserDetail(req.getParameter("empNbr"));
+    	SearchUser searchUser=new SearchUser();
+    	searchUser.setDateDay(bed.getDob().substring(6, 8));
+    	searchUser.setDateMonth(bed.getDob().substring(4, 6));
+    	searchUser.setDateYear(bed.getDob().substring(0, 4));
+		searchUser.setEmpNumber(req.getParameter("empNbr"));
+		searchUser.setUserEmail(bed.getEmail());
+		searchUser.setNameF(bed.getNameF());
+		searchUser.setNameL(bed.getNameL());
+		searchUser.setHintQuestion(req.getParameter("hintQuestion"));
+		searchUser.setZipCode(bed.getAddrZip());
     	BeaUsers user=indexService.getUserByUsername(req.getParameter("username"));
     	if(user!=null) {
     		mav.setViewName("createNewUser");
-    	    mav.addObject("user", user);
+    	    mav.addObject("user", searchUser);
     	    mav.addObject("newUser", newUser);
     	    mav.addObject("isUserExist", "true");
     	}else {
@@ -108,7 +119,7 @@ public class CreateUserController{
         		searchUser.setNameF(bed.getNameF());
         		searchUser.setNameL(bed.getNameL());
         		mav.setViewName("createNewUser");
-            	mav.addObject("newUser", searchUser);
+            	mav.addObject("user", searchUser);
             	mav.addObject("emailShowRequest", emailRequest);
         	}
     	}

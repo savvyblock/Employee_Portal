@@ -16,32 +16,32 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.employeeNumber"></label>
                                 <div class="valid-wrap">
-                                   ${newUser.empNumber}
+                                   ${user.empNumber}
                                 </div>
-                                <input type="hidden" name="empNumber" value="${newUser.empNumber}" />
+                                <input type="hidden" name="empNbr" value="${user.empNumber}" />
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.dateOfBirth"></label>
                                 <div class="valid-wrap">
-                                   ${ newUser.searchFormattedDateofBirth}
+                                   ${user.searchFormattedDateofBirth}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.zipCode"></label>
                                 <div class="valid-wrap">
-                                    ${newUser.zipCode}
+                                    ${user.zipCode}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.lastname"></label>
                                 <div class="valid-wrap">
-                                    ${newUser.nameL}
+                                    ${user.nameL}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-title" data-localize="label.firstname"></label>
                                 <div class="valid-wrap">
-                                    ${newUser.nameF}
+                                    ${user.nameF}
                                 </div>
                             </div>
                             <div>
