@@ -12,7 +12,6 @@
             <div class="account-top content-body"  tabindex="-1">
                 <div class="account-inner loginBox">
                     <div class="account-left">
-                        <img src="/<%=request.getContextPath().split("/")[1]%>/images/ascender_pecan_logo.jpg" alt="" data-localize="logoName.esc">
                     </div>
                     <div class="account-box">
                         <div class="account-logo">

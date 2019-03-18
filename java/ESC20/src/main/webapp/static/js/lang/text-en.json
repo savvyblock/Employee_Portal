@@ -724,7 +724,7 @@
 		"noResultError":"Employee does not exist!",
 		"repeatError":"The employee has already been added",
 		"pleaseSelectAgreeWay":"Please Select Way You Agreed!",
-		"haveEnteredThree":"You have entered the wrong answer three times.Please contact your personnel office or create a new user.",
+		"haveEnteredThree":"You have entered the wrong answer three times.Please contact your personnel office for your password.",
 		"haveNotSpace":"User names are not allowed to have Spaces",
 		"":""
 	},

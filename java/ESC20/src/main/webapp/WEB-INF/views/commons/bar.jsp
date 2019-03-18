@@ -5,15 +5,12 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <button class="nav-link nobtn-style" data-widget="pushmenu" aria-label="" data-localize="accessHint.collapseOrExpand" data-localize-location="aria-label" data-localize-notText="true">
+        <button class="nav-link nobtn-style bars-btn" data-widget="pushmenu" aria-label="" data-localize="accessHint.collapseOrExpand" data-localize-location="aria-label" data-localize-notText="true">
           <i class="fa fa-bars"></i>
         </button>
       </li>
     </ul>
-
-    
     <%@ include file="logo.jsp"%>
-    
     <!-- Right navbar links -->
     <ul class="navbar-nav nav-right">
       <!-- Notifications Dropdown Menu -->
@@ -55,12 +52,12 @@
   
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary">
-  
+    <%@ include file="logo.jsp"%>
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <%@ include file="logo.jsp"%>
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      
+      <div class="user-panel">
         <div class="image">
             <c:if test="${sessionScope.userDetail.avatar!=null}" >
                 <a 

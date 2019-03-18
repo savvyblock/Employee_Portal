@@ -82,11 +82,15 @@
             }
             .account-left {
                 flex: 0 0 700px;
-                height: 400px;
                 overflow: hidden;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                background-position: center bottom;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-image: url(../images/ascender_pecan_logo.jpg);
+                background-color: #ddd;
                 img {
                     height: 100%;
                     // width: auto;
@@ -155,6 +159,10 @@
             max-height: 100%;
         }
     }
+    #loginForm{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
     .card {
         background: #fbfbfb;
         width: 100%;
@@ -176,9 +184,14 @@
     }
 }
 .content-wrapper {
+    width: calc(100% - 300px);
     min-height: calc(100vh - 117px) !important;
+    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
     &:focus{
         outline: none;
+    }
+    @media (max-width: 991.98px) {
+        width: 100%;
     }
 }
 

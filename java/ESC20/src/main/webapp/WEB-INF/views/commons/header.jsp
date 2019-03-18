@@ -57,6 +57,9 @@
 .navbar-badge{
 	background-color: #a93439;
 }
+.main-header .bars-btn{
+	color: #a93439;
+}
 </style>
 </c:if>
 <c:if test="${sessionScope.companyId == 2}">
@@ -66,6 +69,9 @@
 }
 .navbar-badge{
 	background-color: #00529b;
+}
+.main-header .bars-btn{
+	color: #00529b;
 }
 </style>
 </c:if>

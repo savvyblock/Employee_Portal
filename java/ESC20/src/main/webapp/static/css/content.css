@@ -104,11 +104,15 @@
 
 .account-wrap .account-top .account-inner .account-left {
   flex: 0 0 700px;
-  height: 400px;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../images/ascender_pecan_logo.jpg);
+  background-color: #ddd;
 }
 
 .account-wrap .account-top .account-inner .account-left img {
@@ -189,6 +193,11 @@
   max-height: 100%;
 }
 
+.account-box #loginForm {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .account-box .card {
   background: #fbfbfb;
   width: 100%;
@@ -212,11 +221,19 @@
 }
 
 .content-wrapper {
+  width: calc(100% - 300px);
   min-height: calc(100vh - 117px) !important;
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
 .content-wrapper:focus {
   outline: none;
+}
+
+@media (max-width: 991.98px) {
+  .content-wrapper {
+    width: 100%;
+  }
 }
 
 .main-footer {
