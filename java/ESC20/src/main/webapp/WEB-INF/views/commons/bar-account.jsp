@@ -10,7 +10,13 @@
                     </button>
         </a>
     </div>
+    
     <div class="global-wrap">
             <%@ include file="global-select.jsp"%>
     </div>
+    <a class="a-line help" href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank"
+          aria-label="" data-localize="accessHint.goHelp" data-localize-location="aria-label,title" data-localize-notText="true"
+          >
+          <i class="fa fa-question-circle"></i>
+        </a>
 </div>

@@ -14,6 +14,7 @@
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.min.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/html2canvas.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jspdf.debug.js"></script>
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bluebird.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bootstrap.min.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/icheck.min.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/foundation-datepicker.js"></script>

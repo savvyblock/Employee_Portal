@@ -21,6 +21,15 @@
         .logo {
             max-height: 40px;
         }
+        @media (max-width:486px){
+            .logo-sm {
+                display: block;
+                width: 40px;
+            }
+            .logo-lg {
+                display: none;
+            }
+        }
         img {
             max-height: 100%;
         }
@@ -29,10 +38,16 @@
             text-align: right;
             padding-right: 15px;
         }
+        .help{
+            margin-left: 15px;
+        }
         #globalSet{
             height: 23px;
             padding: 3px 5px;
             font-size: 12px;
+        }
+        @media (max-width:486px){
+            padding: 0 5px;
         }
     }
     .account-top {
@@ -185,7 +200,7 @@
 }
 .content-wrapper {
     width: calc(100% - 300px);
-    min-height: calc(100vh - 117px) !important;
+    min-height: calc(100vh - 98px) !important;
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
     &:focus{
         outline: none;

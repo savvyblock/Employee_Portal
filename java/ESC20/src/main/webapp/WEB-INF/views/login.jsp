@@ -58,7 +58,6 @@
                             </div>
                             <div class="text-center">
                                 <a class="a-line" href="/<%=request.getContextPath().split("/")[1]%>/createUser/searchUser" data-localize="label.newUser">
-                                    
                                 </a>
                             </div>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
