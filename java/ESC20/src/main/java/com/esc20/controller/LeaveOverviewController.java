@@ -176,9 +176,18 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 		for (int i = 0; i < leaveTypes.size(); i++) {
 			leaveTypesJson.add(leaveTypes.get(i).toJSON());
 		}
-
+		List<String[]> map = this.service.mapReasonsAndLeaveTypes();
+		JSONArray mapJson = new JSONArray();
+		JSONObject tempMap;
+		for (int i = 0; i < map.size(); i++) {
+			tempMap = new JSONObject();
+			tempMap.put("absRsn", map.get(i)[0]);
+			tempMap.put("leaveType", map.get(i)[1]);
+			mapJson.add(tempMap);
+		}
 		mav.addObject("absRsns", absRsnsJson);
 		mav.addObject("leaveTypes", leaveTypesJson);
+		mav.addObject("leaveTypesAbsrsnsMap", mapJson);
 		mav.addObject("directReportEmployee", employeeDataJSON);
 		mav.addObject("selectedEmployee", empNbr);
 		mav.addObject("availableFreqs", availableFreqs);

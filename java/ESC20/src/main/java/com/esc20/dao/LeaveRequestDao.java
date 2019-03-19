@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -511,5 +513,22 @@ public class LeaveRequestDao {
 		List<BhrEmpLvXmital> res = q.list();
 		
 		return res;
+	}
+
+	public List<String[]> getAbsrsnsLeaveTypesMap() {
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder("");
+		sql.append("select ABS_RSN, LV_TYP from BTHR_ABS_RSN_TO_LV_TYP");
+		Query q = session.createSQLQuery(sql.toString());
+		List<Object[]> res = q.list();
+		List<String[]> result = new ArrayList<String[]>();
+		String[] temp;
+		for(int i=0;i<res.size();i++) {
+			temp = new String[2];
+			temp[0] = (String)(res.get(i)[0]);
+			temp[1] = (String)(res.get(i)[1]);
+			result.add(temp);
+		}
+		return result;
 	}
 }

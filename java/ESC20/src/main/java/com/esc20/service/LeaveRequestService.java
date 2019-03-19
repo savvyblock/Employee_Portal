@@ -169,4 +169,9 @@ public class LeaveRequestService {
 		}
 		return balances;
 	}
+
+	public List<String[]> mapReasonsAndLeaveTypes() {
+		List<String[]> map = leaveRequestDao.getAbsrsnsLeaveTypesMap();
+		return map;
+	}
 }

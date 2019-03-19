@@ -24,6 +24,7 @@ import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/leaveRequest")
@@ -87,9 +88,20 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 				for (int i = 0; i < requestModels.size(); i++) {
 					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
 				}
+				
+				List<String[]> map = this.service.mapReasonsAndLeaveTypes();
+				JSONArray mapJson = new JSONArray();
+				JSONObject tempMap;
+				for (int i = 0; i < map.size(); i++) {
+					tempMap = new JSONObject();
+					tempMap.put("absRsn", map.get(i)[0]);
+					tempMap.put("leaveType", map.get(i)[1]);
+					mapJson.add(tempMap);
+				}
 				mav.addObject("selectedFreq", freq);
 				mav.addObject("absRsns", absRsns);
 				mav.addObject("leaveTypes", leaveTypes);
+				mav.addObject("leaveTypesAbsrsnsMap", mapJson);
 				mav.addObject("leaveTypesforSearch", leaveTypesforSearch);
 				mav.addObject("leaveInfo", leaveInfo);
 				mav.addObject("leaves", json);
@@ -119,10 +131,20 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			for (int i = 0; i < requestModels.size(); i++) {
 				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
 			}
+			List<String[]> map = this.service.mapReasonsAndLeaveTypes();
+			JSONArray mapJson = new JSONArray();
+			JSONObject tempMap;
+			for (int i = 0; i < map.size(); i++) {
+				tempMap = new JSONObject();
+				tempMap.put("absRsn", map.get(i)[0]);
+				tempMap.put("leaveType", map.get(i)[1]);
+				mapJson.add(tempMap);
+			}
 			mav.addObject("selectedFreq", freq);
 			mav.addObject("leaves", json);
 			mav.addObject("absRsns", absRsns);
 			mav.addObject("leaveTypes", leaveTypes);
+			mav.addObject("leaveTypesAbsrsnsMap", mapJson);
 			mav.addObject("leaveTypesforSearch", leaveTypesforSearch);
 			mav.addObject("leaveInfo", leaveInfo);
 
@@ -155,7 +177,6 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	
 	@RequestMapping("deleteLeaveRequest")
 	public ModelAndView deleteLeaveRequest(HttpServletRequest req, String id) throws ParseException {
-		HttpSession session = req.getSession();
 		deleteLeaveRequest(id);
 		return this.leaveRequest(req, null, null, null, null);
 	}
