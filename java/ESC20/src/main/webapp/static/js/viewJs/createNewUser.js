@@ -17,7 +17,7 @@ $('#createNewUserForm').bootstrapValidator({
                 },
                 stringLength: {
                     min: 6,
-                    min: 8,
+                    max: 8,
                     message:'validator.lengthNotLessThan6_8'
                 }
             }

@@ -1,5 +1,12 @@
 $(function(){
     $('#loginForm').bootstrapValidator({
+        live: 'enable',
+        trigger: 'blur keyup',
+        feedbackIcons: {
+            valid: 'fa fa-check ',
+            // invalid: 'fa fa-times',
+            validating: 'fa fa-refresh'
+        },
         fields: {
             username: {
                 validators: {
@@ -19,6 +26,13 @@ $(function(){
 
     });
     $('#loginBackForm').bootstrapValidator({
+        live: 'enable',
+        trigger: 'blur keyup',
+        feedbackIcons: {
+            valid: 'fa fa-check ',
+            // invalid: 'fa fa-times',
+            validating: 'fa fa-refresh'
+        },
         fields: {
             username: {
                 validators: {

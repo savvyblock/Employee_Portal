@@ -40,6 +40,18 @@ $(function() {
     // initLocalize(language)
     setGlobal();
 })
+function setGlobal(){
+    if (getCookie(name)&&getCookie(name) != '') {
+        $('#globalSet').val(getCookie(name))
+        initialLocaleCode = getCookie(name)
+        initLocalize(getCookie(name))
+    }else{
+        $('#globalSet').val(language)
+        initialLocaleCode = language
+        initLocalize(language)
+    }
+    // console.log(initialLocaleCode)
+}
 
 function chgLang() {
     var value = $('#globalSet')
@@ -62,18 +74,7 @@ function getCookie(name) {
     if (arr != null) return unescape(arr[2]);
     return null;
 }
-function setGlobal(){
-    if (getCookie(name)&&getCookie(name) != '') {
-        $('#globalSet').val(getCookie(name))
-        initialLocaleCode = getCookie(name)
-        initLocalize(getCookie(name))
-    }else{
-        $('#globalSet').val(language)
-        initialLocaleCode = language
-        initLocalize(language)
-    }
-    // console.log(initialLocaleCode)
-}
+
 
 function initLocalize(language){
     $('[data-localize]').localize('text', {
@@ -93,7 +94,7 @@ function doPrint() {
 }
 
 function hideBody(){
-    setTimeout(() => {
+    setTimeout(function(){
         $(".modal").each(function(){
             if($(this).is(':visible')){
                 $("body").addClass("modal-open")
@@ -146,7 +147,7 @@ function convert2canvasDownload(shareContent,pdfDom,fileName,title){
                 }
             }
             let name = (new Date()).valueOf()
-            pdf.save(`${fileName}-${name}.pdf`)
+            pdf.save(fileName + '-'+name+'.pdf')
             $('.exportPDFBox').hide()
             $('.exportPDFBox').removeClass("printStatus")
             $(pdfDom).remove()

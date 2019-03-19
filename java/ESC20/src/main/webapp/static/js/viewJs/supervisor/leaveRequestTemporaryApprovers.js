@@ -103,7 +103,7 @@ $(function() {
         $('#empNbrForm').val(empNbr)
         let length = $('.approver_tr').length
         let resultApprover = []
-        approverJson.forEach((item) => {
+        approverJson.forEach(function(item) {
             console.log(item)
             if(item.empNbr&&item.from&&item.to&&item.empNbr!=''&&item.from!=''&&item.to!=''){
                 resultApprover.push(item)
@@ -114,7 +114,7 @@ $(function() {
         if (approverEmptyJson && approverEmptyJson.length > 0) {
             $('#errorComplete').show()
         } else {
-            addedApprover.forEach((item, index) => {
+            addedApprover.forEach(function(item, index){
                 let approver = {
                     id: '',
                     empNbr: item.tmpApprvrEmpNbr,
@@ -146,7 +146,7 @@ $(function() {
             .parents('.listTr')
             .removeClass('listTr')
             .addClass('redTd')
-        addedApprover = addedApprover.filter((value) => {
+        addedApprover = addedApprover.filter(function(value {
             return value.tmpApprvrEmpNbr != id
         })
         // console.log("approver saved")
@@ -217,8 +217,8 @@ function changeDateYMD(date){
 }
 function verifyRepeat() {
     repeat = 0
-    addedApprover.forEach((item, index) => {
-        approverJson.forEach((emp, index) => {
+    addedApprover.forEach(function(item, index) {
+        approverJson.forEach(function(emp, index){
             if (emp.empNbr && emp.empNbr == item.tmpApprvrEmpNbr) {
                 console.log(emp.empNbr)
                 console.log(item.tmpApprvrEmpNbr)
@@ -226,8 +226,8 @@ function verifyRepeat() {
             }
         })
     })
-    approverJson.forEach((emp, index) => {
-        approverJson.forEach((item, index) => {
+    approverJson.forEach(function(emp, index){
+        approverJson.forEach(function(item, index) {
             if (
                 emp.empNbr &&
                 item.empNbr &&
@@ -396,7 +396,7 @@ function initDateControl() {
 function changeLevel() {
     let selectNum = $('#selectEmpNbr').val()
     let numDirect = 0
-    directReportEmployee.forEach((element) => {
+    directReportEmployee.forEach(function(element) {
         if (element.employeeNumber == selectNum) {
             numDirect = element.numDirectReports
         }

@@ -68,7 +68,7 @@ $(document).ready(
 
 	function editLeave(id,leaveType,absenceReason,leaveStartDate,leaveEndDate,lvUnitsDaily,lvUnitsUsed){
 		let comments;
-		leaveList.forEach(element => {
+		leaveList.forEach(function(element) {
 			if(element.id == id){
 				console.log(element)
 				comments = element.comments

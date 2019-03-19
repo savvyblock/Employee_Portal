@@ -73,7 +73,7 @@ function initList() {
 function changeLevel() {
     let selectNum = $('#selectEmpNbr').val()
     let numDirect = 0
-    directReportEmployee.forEach((element) => {
+    directReportEmployee.forEach(function(element) {
         if (element.employeeNumber == selectNum) {
             numDirect = element.numDirectReports
         }
@@ -137,7 +137,7 @@ function editLeave(
 ) {
     $('#requestForm').attr('action', 'updateLeaveFromLeaveOverview')
     let comments
-    leaveList.forEach((element) => {
+    leaveList.forEach(function(element) {
         if (element.id == id) {
             console.log(element)
             comments = element.comments

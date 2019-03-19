@@ -113,7 +113,7 @@ function save(){
     let name = (new Date()).valueOf()
     let pdfDom = '.exportPDFBox .needToClone'
     let fileName = '1095'
-    pdf.save(`${fileName}-${name}.pdf`)
+    pdf.save(fileName + '-'+name+'.pdf')
     $('.exportPDFBox').hide()
     $('.exportPDFBox').removeClass("printStatus")
     $(pdfDom).remove()

@@ -23,13 +23,13 @@ function initialLeaveCalendarModal(){
                     let leaveRequest = calEvent;
                     console.log(leaveRequest)
                     let type
-                    leaveTypes.forEach(element => {
+                    leaveTypes.forEach(function(element) {
                         if(element.code == leaveRequest.LeaveType){
                             type = element.description
                         }
                     });
                     let reason
-                    absRsns.forEach(element => {
+                    absRsns.forEach(function(element) {
                         if(element.code == leaveRequest.AbsenseReason){
                             reason = element.description
                         }

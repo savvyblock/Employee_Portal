@@ -672,7 +672,7 @@
 		"createNewUser":"TxEIS : Employee Access -  Create New User"
 	},
 	"validator":{
-		"answerError":"The answer is wrong!",
+		"answerError":"Hint Answer entered is incorrect. Please re-enter.",
 		"requiredField":"This field is required!",
 		"notValid":"This value is not valid",
 		"pleaseEnterCorrectMailFormat":"Please enter the correct mail format.",

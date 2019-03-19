@@ -25,20 +25,20 @@ $(function(){
 })
 function actionLeave(id){
     let leaveRequest;
-    leaves.forEach(element => {
+    leaves.forEach(function(element) {
         if(element.id == id){
             leaveRequest = element
         }
     });
     console.log(leaveRequest)
     let type
-    leaveTypes.forEach(element => {
+    leaveTypes.forEach(function(element) {
         if(element.code == leaveRequest.LeaveType){
             type = element.description
         }
     });
     let reason
-    absRsns.forEach(element => {
+    absRsns.forEach(function(element) {
         if(element.code == leaveRequest.AbsenseReason){
             reason = element.description
         }
@@ -110,7 +110,7 @@ function actionLeave(id){
 function changeLevel(){
     let selectNum = $("#selectEmpNbr").val()
     let numDirect = 0 ;
-    directReportEmployee.forEach(element => {
+    directReportEmployee.forEach(function(element) {
         if(element.employeeNumber == selectNum){
             numDirect = element.numDirectReports
         }
