@@ -1,3 +1,4 @@
+console.log(leaveTypesAbsrsnsMap)
 $(function() {
     formValidator()
     let nowTemp = new Date()
@@ -54,6 +55,18 @@ $(function() {
         .data('datepicker')
         setGlobal()
 })
+function changeLeaveType(){
+    let leaveType = $("#modalLeaveType").val()
+    console.log(leaveType)
+    let reason = leaveTypesAbsrsnsMap.filter(function(item){
+        return item.leaveType == leaveType
+    })
+    // $("#absenceReason").html('')
+    // reason.forEach(function(item){
+    //     $("#absenceReason").append("<option value='"+item.absRsn +"'>" + item.description +"</option>")
+    // })
+
+}
 
 function changeFormatTime(value) {
     let array = value.split(/[,: ]/)

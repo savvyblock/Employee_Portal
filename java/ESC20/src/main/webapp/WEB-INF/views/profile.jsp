@@ -469,7 +469,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput error-vertical">
                                                     <input
-                                                        class="form-control"
                                                         name="emailNew"
                                                         value="${emailRequest.emailNew}"
                                                         id="emailWorkEmail"

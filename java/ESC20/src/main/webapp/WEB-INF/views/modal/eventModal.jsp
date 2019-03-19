@@ -35,7 +35,7 @@
                         <div class="form-group line-left">
                             <label class="form-title" for="modalLeaveType"> <span data-localize="leaveRequest.leaveType"></span>: </label>
                             <div class="valid-wrap">
-                                <select class="form-control" name="leaveType" id="modalLeaveType">
+                                <select class="form-control" name="leaveType" id="modalLeaveType" onchange="changeLeaveType()">
                                         <c:forEach var="type" items="${leaveTypes}" varStatus="count">
                                             <c:if test="${type.description !='ALL'}">
                                                 <option value="${type.code}">${type.description}</option>
@@ -227,5 +227,8 @@
     </div>
     <!-- /.modal -->
 </div>
+<script>
+var leaveTypesAbsrsnsMap = eval(${leaveTypesAbsrsnsMap});
+</script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/eventModal.js"></script>
 

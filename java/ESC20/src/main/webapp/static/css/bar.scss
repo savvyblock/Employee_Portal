@@ -178,7 +178,7 @@
     padding: 5px 5px 5px 10px;
     align-items: center;
     a{
-        width: 145px;
+        width: 175px;
         white-space: normal;
         word-wrap: break-word;
     }
@@ -435,7 +435,8 @@
     .nav-logo{
         text-align: center;
         padding: 5px 10px;
-        background: rgba(255,255,255,.6);
+        background: #fff;
+        box-shadow: -2px -1px 4px rgba(0, 0, 0,.2) inset;
         height: 53px;
         display: flex;
         justify-content: center;

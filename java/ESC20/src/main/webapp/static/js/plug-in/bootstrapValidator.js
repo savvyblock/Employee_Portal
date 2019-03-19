@@ -269,6 +269,8 @@
                             .css('display', 'none')
                             .addClass('help-block')
                             .attr('data-bv-validator', validatorName)
+                            .attr('role', 'alert')
+                            .attr('aria-atomic', 'true')
                             .attr('data-bv-for', field)
                             .attr('data-localize',this._getMessage(field, validatorName))
                             .attr('data-bv-result', this.STATUS_NOT_VALIDATED)
@@ -804,6 +806,8 @@
                 // console.log(message)
                 $(this).data('bv.messages').
                 find('.help-block[data-bv-validator="' + validator + '"][data-bv-for="' + field + '"]')
+                .attr('role', 'alert')
+                .attr('aria-atomic', 'true')
                 .attr('data-localize',message)
                 .html(message);
                 setGlobal()

@@ -727,6 +727,8 @@
 		"pleaseSelectAgreeWay":"Please Select Way You Agreed!",
 		"haveEnteredThree":"You have entered the wrong answer three times.Please contact your personnel office for your password.",
 		"haveNotSpace":"User names are not allowed to have Spaces",
+		"resetLocked":"User account is locked. Please contact your personnel office.",
+		"userNotRegistered":"User account does not exist. Please create a new user.",
 		"":""
 	},
 	"accessHint":{

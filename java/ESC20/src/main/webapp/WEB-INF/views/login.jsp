@@ -39,13 +39,19 @@
                             <p class="error-hint hide incorrectMessage" id="incorrectMessage" data-localize="validator.usernameOrPasswordIncorrect"></p>
                             <p class="error-hint hide authenticateFailed" id="authenticateFailed" data-localize="validator.authenticateFailed"></p>
                             <c:if test="${times3}">
-                                <p class="error-hint" data-localize="validator.haveEnteredThree"></p>
+                                <p class="error-hint" data-localize="validator.haveEnteredThree"  role="alert" aria-atomic="true"></p>
+                            </c:if>
+                            <c:if test="${resetLocked}">
+                                <p class="error-hint" data-localize="validator.resetLocked" role="alert" aria-atomic="true"></p>
+                            </c:if>
+                            <c:if test="${userNotRegistered}">
+                                <p class="error-hint" data-localize="validator.userNotRegistered" role="alert" aria-atomic="true"></p>
                             </c:if>
                             <c:if test="${resetPsw!=null && resetPsw=='resetPswSuccess'}">
-		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswSuccess"></div>
+		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswSuccess" role="alert" aria-atomic="true"></div>
 		                    </c:if>
 		                    <c:if test="${resetPsw!=null && resetPsw=='resetPswFaild'}">
-		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswFaild"></div>
+		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswFaild" role="alert" aria-atomic="true"></div>
 		                    </c:if>
                             <div class="form-group clearfix">
                                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&entry.372715739=Employee+Access+(TxEIS)" target="_blank" data-localize="label.contactUs"></a>
@@ -92,13 +98,19 @@
                             <p class="error-hint hide incorrectMessage" id="incorrectMessage" data-localize="validator.usernameOrPasswordIncorrect"></p>
                             <p class="error-hint hide authenticateFailed" id="authenticateFailed" data-localize="validator.authenticateFailed"></p>
                             <c:if test="${times3}">
-                                <p class="error-hint" id="haveEnteredThree" data-localize="validator.haveEnteredThree"></p>
+                                <p class="error-hint" id="haveEnteredThree" data-localize="validator.haveEnteredThree" role="alert" aria-atomic="true"></p>
+                            </c:if>
+                            <c:if test="${resetLocked}">
+                                <p class="error-hint" data-localize="validator.resetLocked" role="alert" aria-atomic="true"></p>
+                            </c:if>
+                            <c:if test="${userNotRegistered}">
+                                <p class="error-hint" data-localize="validator.userNotRegistered" role="alert" aria-atomic="true"></p>
                             </c:if>
                             <c:if test="${resetPsw!=null && resetPsw=='resetPswSuccess'}">
-		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswSuccess"></div>
+		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswSuccess" role="alert" aria-atomic="true"></div>
 		                    </c:if>
 		                    <c:if test="${resetPsw!=null && resetPsw=='resetPswFaild'}">
-		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswFaild"></div>
+		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswFaild" role="alert" aria-atomic="true"></div>
 		                    </c:if>
                             <div class="form-group account-btn">
                                 <button id="signin" type="submit" class="btn btn-primary" data-localize="label.login"></button>
