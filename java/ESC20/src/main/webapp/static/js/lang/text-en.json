@@ -686,6 +686,7 @@
 		"emailNotMatch":"The two email you entered did not match.",
 		"maximumBankAmmount":"Maximum allowed number of Direct Deposit accounts reached. Unable to add new account.",
 		"pleaseEnterCorrectFormat":"Please enter correct format",
+		"pleaseEnterCorrectFormatBankAmount":"Please enter correct format,and the bank account amount cannot exceed 9,999,999.99.",
 		"pleaseSelectOne":"Please select one at least.",
 		"pleaseEnterComment":"Please enter supervisor comment.",
 		"newRequest":"New Request",

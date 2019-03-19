@@ -1096,8 +1096,8 @@ function bankAccountValidator() {
                     trigger: 'blur keyup',
                     validators: {
                         regexp: {
-                            regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
-                            message: 'validator.pleaseEnterCorrectFormat'
+                            regexp: /^\d{1,7}$|^\d{1,7}[\.]{1}\d{1,2}$/,
+                            message: 'validator.pleaseEnterCorrectFormatBankAmount'
                         }
                     }
                 }
@@ -1158,8 +1158,8 @@ function bankAccountAddValidator() {
                         message: 'validator.requiredField'
                     },
                     regexp: {
-                        regexp: /^\d+$|^\d+[\.]{1}\d{1,2}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        regexp: /^\d{1,7}$|^\d{1,7}[\.]{1}\d{1,2}$/,
+                        message: 'validator.pleaseEnterCorrectFormatBankAmount'
                     }
                 }
             }
