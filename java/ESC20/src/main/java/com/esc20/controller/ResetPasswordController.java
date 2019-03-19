@@ -48,8 +48,16 @@ public class ResetPasswordController{
     		BeaUsers user = this.indexService.getUserByEmpNbr(searchUser.getEmpNumber());
     		if(user == null) {
     			mav.addObject("retrieve", "false");
-        		mav.addObject("retrieveUserNameErrorMessage", "Email Does not exist");
-        	}else {
+    			mav.setViewName("forgetPassword");
+        		mav.addObject("userNotRegistered", true);
+        		return mav;
+        	}else if(user.getLkHint()=='Y') {
+    			mav.addObject("retrieve", "false");
+    			mav.setViewName("forgetPassword");
+        		mav.addObject("resetLocked", true);
+        		return mav;
+        	}
+    		else {
         		searchUser.setUsername(user.getUsrname());
         		searchUser.setUserEmail(bed.getEmail());
         		searchUser.setNameF(bed.getNameF());
@@ -67,11 +75,11 @@ public class ResetPasswordController{
     }
     
     @RequestMapping("answerHintQuestion")
-    public ModelAndView answerHintQuestion(HttpServletRequest req, String answer, String empNbr, Integer count) {
+    public ModelAndView answerHintQuestion(HttpServletRequest req, String answer, String empNbr) {
     	ModelAndView mav = new ModelAndView();
     	SearchUser searchUser=new SearchUser();
-    	if(count==null)
-    		count=0;
+    	BeaUsers beaUser = this.indexService.getUserByEmpNbr(empNbr);
+    	Integer count = beaUser.getTmpCnt();
     	if(empNbr==null) {
     		return this.forgetPassword(req);
     	}
@@ -98,9 +106,14 @@ public class ResetPasswordController{
     		mav.addObject("id", empNbr);
     	}else {
     		count++;
+	    	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
+	    	user.setTmpCnt(count);
+	    	this.indexService.updateUser(user);
     		if(count>=3) {
     			mav.setViewName("login");
     			mav.addObject("times3", true);
+    			user.setLkHint('Y');
+    			this.indexService.updateUser(user);
     			return mav;
     		}
     		mav.setViewName("forgetPassword2");
@@ -127,6 +140,9 @@ public class ResetPasswordController{
 	    	BeaUsers user = this.indexService.getUserByEmpNbr(id);
 	    	user.setUsrpswd(encoder.encode(password));
 	    	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
+	    	user.setTmpCnt(0);
+	    	user.setLkHint('N');
+	    	user.setHintCnt(0);
 	    	this.indexService.updateUser(user);
 	    	
 		}catch(Exception e) {
