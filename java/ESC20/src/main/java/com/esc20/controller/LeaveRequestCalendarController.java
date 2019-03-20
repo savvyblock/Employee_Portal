@@ -80,6 +80,11 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 				for (int i = 0; i < map.size(); i++) {
 					tempMap = new JSONObject();
 					tempMap.put("absRsn", map.get(i)[0]);
+					for(int j=0;j<absRsns.size();j++) {
+						if(absRsns.get(j).getCode().equals(map.get(i)[0])) {
+							tempMap.put("absRsnDescrption", absRsns.get(j).getDescription());
+						}
+					}
 					tempMap.put("leaveType", map.get(i)[1]);
 					mapJson.add(tempMap);
 				}
