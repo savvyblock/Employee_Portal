@@ -65,8 +65,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="" data-localize="accessHint.level">
                                         <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
                                 </form>
-                                <br>
+                                <p id="approveTableTitle" style="padding:0 10px;">
+                                    <b>
+                                        <span data-localize="approveRequest.leavePendingActionBy"></span>
+                                        <span>
+                                                <c:forEach var="item" items="${chain}" varStatus="status">
+                                                     <c:if test="${status.last}"> 
+                                                            ${item.employeeNumber}:${item.lastName},${item.firstName}     
+                                                    </c:if>
+                                                    </c:forEach>
+                                        </span>
+                                    </b>
+                                     </p>
                                 <div class="content-white">
+                                    
                                     <table class="table request-list responsive-table">
                                             <thead>
                                                 <tr>

@@ -1512,6 +1512,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     aria-label="" data-localize="profile.bankAcctAmt"
                                                     name="displayAmount"
                                                     value="${bank.depositAmountNew.displayAmount}"
+                                                    oninput="clearNoNum(this)"
                                                 />
                                             </div>
                                         </div>
@@ -1684,6 +1685,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="displayAmount"
                                                         id="saveBankDisplayAmount"
                                                         value=""
+                                                        oninput="clearNoNum(this)"
                                                     />
                                                 </div>
                                             </div>

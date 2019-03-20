@@ -36,7 +36,7 @@ $(document).ready(function() {
     getBudgeDetail()
     updateBudgeCountAndInfo()
 })
-var maxTime = 300 // seconds
+var maxTime = 1800 // seconds
 var time = maxTime
 var budgeCount = 0
 $('.main-header,.main-sidebar,.content-wrapper').on(

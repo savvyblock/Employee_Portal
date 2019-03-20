@@ -1,4 +1,6 @@
+var reasonOption
 $(document).ready(function() {
+    reasonOption = $("#absenceReason").html()
     $('#requestForm').attr('action', 'submitLeaveRequestFromCalendar')
     initThemeChooser({
         init: function(themeSystem) {
@@ -69,6 +71,7 @@ $(document).ready(function() {
                         $('.secondSubmit').show()
                         // $('#requestModal').modal('show')
                         $("[name='leaveType']").val(calEvent.LeaveType)
+                        changeLeaveType()
                         $("[name='absenseReason']").val(calEvent.AbsenseReason)
                         $('#leaveId').attr('value', calEvent.id + '')
                         $('#startDate').val(calEvent.LeaveStartDate)
@@ -143,6 +146,7 @@ $(document).ready(function() {
                 dayClick: function(date, allDay, jsEvent, view) {
                     newEvent($(this))
                     $("#requestModal").modal("show")
+                    $("#absenceReason").html(reasonOption)
                 },
                 // eventMouseover: function (calEvent, jsEvent, view) {   
                 //     console.log(calEvent)

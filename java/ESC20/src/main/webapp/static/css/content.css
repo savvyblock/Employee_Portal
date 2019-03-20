@@ -2008,3 +2008,8 @@
   font-size: 40px;
   display: block;
 }
+
+#leaveModalTitle {
+  font-size: 14px;
+  margin: 0;
+}

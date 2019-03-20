@@ -1,5 +1,7 @@
+var reasonOption
 $(document).ready(
 		function() {
+			reasonOption = $("#absenceReason").html()
 			console.log(initialLocaleCode)
 			var formDate = $('#SearchStartDate').fdatepicker({
 				format:'mm/dd/yyyy',
@@ -117,6 +119,7 @@ $(document).ready(
 		}
 		$("[name='leaveId']").attr("value", id+"");
 		$("[name='leaveType']").val(leaveType);
+		changeLeaveType()
 		$("#absenceReason").val(absenceReason);
 		$("#startDate").val(start_arry[0]);
 		$("#endDate").val(end_arry[0]);
@@ -141,6 +144,7 @@ $(document).ready(
 				.destroy()
 			$('#requestForm').data('bootstrapValidator', null)
 			formValidator()
+			$("#absenceReason").html(reasonOption)
 			$('#cancelAdd').show()
 			$('#deleteLeave').hide()
 			$(".edit-title").hide();

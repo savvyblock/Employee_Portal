@@ -45,7 +45,10 @@
     var header = $("meta[name='_csrf_header']").attr("content");
     $(document).ajaxSend(function(e, xhr, options) {
         xhr.setRequestHeader(header, token);
-    });
+		});
+		
+var sessionTime="<%=session.getMaxInactiveInterval()%>";
+console.log(sessionTime) 
 </script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/common.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bootstrapValidator.js"></script>

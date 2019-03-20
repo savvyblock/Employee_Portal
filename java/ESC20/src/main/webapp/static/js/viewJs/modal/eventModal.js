@@ -61,10 +61,10 @@ function changeLeaveType(){
     let reason = leaveTypesAbsrsnsMap.filter(function(item){
         return item.leaveType == leaveType
     })
-    // $("#absenceReason").html('')
-    // reason.forEach(function(item){
-    //     $("#absenceReason").append("<option value='"+item.absRsn +"'>" + item.description +"</option>")
-    // })
+    $("#absenceReason").html('')
+    reason.forEach(function(item){
+        $("#absenceReason").append("<option value='"+item.absRsn +"'>" + item.absRsnDescrption +"</option>")
+    })
 
 }
 

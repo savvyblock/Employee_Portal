@@ -1,6 +1,8 @@
 let chainString = JSON.stringify(chain)
+var reasonOption
 console.log(chainString)
 $(function() {
+    reasonOption = $("#absenceReason").html()
     changeLevel()
     $('.chain').val(chainString)
     let level = $('#level').val()
@@ -40,6 +42,16 @@ $(function() {
     initList()
 
     $('.sureDelete').click(function() {
+        let chain = $('#chainValue').text()
+        let searchStart = $("#SearchStartDate").val()
+        let searchEnd = $("#SearchEndDate").val()
+        let empNbr = $('#selectEmpNbr').val()
+        let currentFreq=$("#freq").val()
+        $('#empNbrDelete').val(empNbr)
+        $('#searchStartDelete').val(searchStart)
+        $('#searchEndDelete').val(searchEnd)
+        $('#chainDelete').val(chain)
+        $("#freqDelete").val(currentFreq)
         $('#deleteForm')[0].submit()
     })
 })
@@ -65,9 +77,11 @@ function initList() {
     if (requester && requester != '') {
         $('#forWord').removeClass('hide')
         $('#currentLeaveRequests').text(requester)
+        $('#currentEmpModal').text(requester)
     } else {
         $('#forWord').addClass('hide')
         $('#currentLeaveRequests').text('')
+        $('#currentEmpModal').text('')
     }
 }
 function changeLevel() {
@@ -98,15 +112,18 @@ function showRequestForm() {
         .destroy()
     $('#requestForm').data('bootstrapValidator', null)
     formValidator()
+    $("#absenceReason").html(reasonOption)
     $('#cancelAdd').show()
     $('#deleteLeave').hide()
-    $('.edit-title').hide()
-    $('.new-title').show()
+    $('.modal-title').hide()
     $('.firstSubmit').show()
     $('.secondSubmit').hide()
     $('#chainModal').val(chainString)
     let empNbr = $('#selectEmpNbr').val()
     $('#empNbrModal').val(empNbr)
+    $("#leaveModalTitle").show()
+    $("#leaveModalTitle .editSpan").hide()
+    $("#leaveModalTitle .addSpan").show()
     $('#requestForm').attr('action', 'updateLeaveFromLeaveOverview')
 }
 function changeFreq() {
@@ -184,10 +201,12 @@ function editLeave(
     $("#endMinute").val(endTime[1])
     $('#cancelAdd').hide()
     $('#deleteLeave').show()
-    $('.edit-title').show()
-    $('.new-title').hide()
+    $('.modal-title').hide()
     $('.firstSubmit').hide()
     $('.secondSubmit').show()
+    $("#leaveModalTitle").show()
+    $("#leaveModalTitle .editSpan").show()
+    $("#leaveModalTitle .addSpan").hide()
     $('#commentList').html('')
     for (let i = 0; i < comments.length; i++) {
         let html = '<p>' + comments[i].detail + '</p>'
@@ -195,6 +214,7 @@ function editLeave(
     }
     $("[name='leaveId']").attr('value', id + '')
     $("[name='leaveType']").val(leaveType)
+    changeLeaveType()
     $('#absenceReason').val(absenceReason)
     $('#startDate').val(changeMMDDFormat(start_arry[0]))
     $('#endDate').val(changeMMDDFormat(end_arry[0]))

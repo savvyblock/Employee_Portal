@@ -35,9 +35,9 @@
                                 </div>
                                 
                             </div>
-                            <p class="error-hint hide errorMessage" id="errorMessage" data-localize="validator.usernameOrPasswordError"></p>
-                            <p class="error-hint hide incorrectMessage" id="incorrectMessage" data-localize="validator.usernameOrPasswordIncorrect"></p>
-                            <p class="error-hint hide authenticateFailed" id="authenticateFailed" data-localize="validator.authenticateFailed"></p>
+                            <p class="error-hint hide errorMessage" id="errorMessage" data-localize="validator.usernameOrPasswordError"  role="alert" aria-atomic="true"></p>
+                            <p class="error-hint hide incorrectMessage" id="incorrectMessage" data-localize="validator.usernameOrPasswordIncorrect"  role="alert" aria-atomic="true"></p>
+                            <p class="error-hint hide authenticateFailed" id="authenticateFailed" data-localize="validator.authenticateFailed"  role="alert" aria-atomic="true"></p>
                             <c:if test="${times3}">
                                 <p class="error-hint" data-localize="validator.haveEnteredThree"  role="alert" aria-atomic="true"></p>
                             </c:if>
@@ -94,9 +94,9 @@
                                 </div>
                                 
                             </div>
-                            <p class="error-hint hide errorMessage" id="errorMessage" data-localize="validator.usernameOrPasswordError"></p>
-                            <p class="error-hint hide incorrectMessage" id="incorrectMessage" data-localize="validator.usernameOrPasswordIncorrect"></p>
-                            <p class="error-hint hide authenticateFailed" id="authenticateFailed" data-localize="validator.authenticateFailed"></p>
+                            <p class="error-hint hide errorMessage" id="errorMessage" data-localize="validator.usernameOrPasswordError"  role="alert" aria-atomic="true"></p>
+                            <p class="error-hint hide incorrectMessage" id="incorrectMessage" data-localize="validator.usernameOrPasswordIncorrect"  role="alert" aria-atomic="true"></p>
+                            <p class="error-hint hide authenticateFailed" id="authenticateFailed" data-localize="validator.authenticateFailed"  role="alert" aria-atomic="true"></p>
                             <c:if test="${times3}">
                                 <p class="error-hint" id="haveEnteredThree" data-localize="validator.haveEnteredThree" role="alert" aria-atomic="true"></p>
                             </c:if>

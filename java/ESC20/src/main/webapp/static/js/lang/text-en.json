@@ -343,7 +343,9 @@
 		"totalRequested":"Total Requested",
 		"hourDayRequested":"Hours/Day Requested",
 		"AM":"AM",
-		"PM":"PM"
+		"PM":"PM",
+		"editLeaveRequestFor":"Edit Leave Requests for Employee",
+		"addLeaveRequestFor":"Add Leave Requests for Employee"
 	},
 	"approveRequest":{
 		"employee":"Employee",
@@ -356,7 +358,8 @@
 		"leaveRequested":"Leave Requested",
 		"commentLog":"Comment Log",
 		"status":"Status",
-		"supervisorAction":"Supervisor Action"
+		"supervisorAction":"Supervisor Action",
+		"leavePendingActionBy":"Leave Requests Pending Action by"
 	},
 	"setTemporaryApprovers":{
 		"rowNbr":"Row Nbr",

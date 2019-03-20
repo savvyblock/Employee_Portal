@@ -146,7 +146,7 @@ $(function() {
             .parents('.listTr')
             .removeClass('listTr')
             .addClass('redTd')
-        addedApprover = addedApprover.filter(function(value {
+        addedApprover = addedApprover.filter(function(value) {
             return value.tmpApprvrEmpNbr != id
         })
         // console.log("approver saved")

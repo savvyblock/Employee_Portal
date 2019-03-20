@@ -188,7 +188,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                                 <button class="btn btn-primary sm edit-btn" id="editLeave" data-toggle="modal" data-target="#requestModal" 
                                                                                 onClick='editLeave("${item.id}","${item.LeaveType}","${item.AbsenseReason}","${item.start}",
                                                                                 "${item.end}", "${item.lvUnitsDaily}","${item.lvUnitsUsed}")'' data-localize="label.edit"></button>
-                                                                                <button class="btn btn-secondary sm delete-btn" id="deleteLeave"   data-toggle="modal" data-target="#deleteModal" 
+                                                                                <button class="btn btn-secondary sm delete-btn" id="deleteLeaveTable"   data-toggle="modal" data-target="#deleteModal" 
                                                                                 onClick="deleteLeave('${item.id}')" data-localize="label.delete"></button>
                                                                             </c:if>
                                                                             

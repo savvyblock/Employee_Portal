@@ -21,6 +21,11 @@
                 </button>
                 <h4 class="modal-title new-title" data-localize="label.newRequest"></h4>
                 <h4 class="modal-title edit-title" data-localize="label.editRequest"></h4>
+                <h3 class="hide" id="leaveModalTitle">
+                        <span class="editSpan hide" data-localize="leaveRequest.editLeaveRequestFor"></span>
+                        <span class="addSpan hide" data-localize="leaveRequest.addLeaveRequestFor"></span>
+                        <b id="currentEmpModal"></b>
+                    </h3>
             </div>
             <form id="requestForm" action="submitLeaveRequest" method="post">
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -31,6 +36,7 @@
                 <input type="text" name="endDate" id="searchEndModal" hidden="hidden" aria-label="" data-localize="leaveRequest.endDate">
                 <div class="modal-body requestForm">
                     <input type="hidden" name="leaveId" id="leaveId" />
+                    
                     <div class="line-2-flex">
                         <div class="form-group line-left">
                             <label class="form-title" for="modalLeaveType"> <span data-localize="leaveRequest.leaveType"></span>: </label>
