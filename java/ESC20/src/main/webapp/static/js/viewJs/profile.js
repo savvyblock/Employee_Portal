@@ -156,13 +156,14 @@ $(function() {
             $('#saveBankHidden').submit()
         }
     })
-
+    let getBankBtn
     $('.getBank').click(function() {
         var page = {
             currentPage: 1,
             perPageRows: 10
         }
         let that = this
+        getBankBtn = this
         $.ajax({
             type: 'POST',
             dataType: 'json',
@@ -209,14 +210,15 @@ $(function() {
                     .find('.bankNewCode')
                 newBankCode = $(that).parent().find("#newBankCode")
                 console.log(newBankCode)
-
-                $('.bankNumberBtn').click(function() {
+                console.log(bankInputName)
+                $('.bankNumberBtn').on('click',function() {
                     let number = $(this).text()
                     let code = $(this).val()
                     let name = $(this).attr('data-title')
                     console.log(number)
                     console.log(name)
                     console.log(code)
+                    console.log(bankInputName)
                     newBankCode.val(code).change()
                     bankInputName.val(name).change()
                     bankInputBankCode.val(code)
@@ -224,13 +226,15 @@ $(function() {
                     bankInputNewCode.val(code)
                     $('#selectBankModal').modal('hide')
                 })
+
+                
             },
             error: function(e) {
                 console.log(e)
             }
         })
     })
-    $('#searchBankBtn').click(function() {
+    $('#searchBankBtn').on('click',function() {
         var page = {
             currentPage: 1,
             perPageRows: 10
@@ -245,7 +249,7 @@ $(function() {
         }
 
         var searchCriteria = { page: page, criteria: criteria }
-        let that = this
+        let that = getBankBtn
         $.ajax({
             type: 'POST',
             dataType: 'json',
@@ -288,19 +292,19 @@ $(function() {
                         .parent()
                         .find('.form-control.code')
                     newBankCode = $(that).parent().find("#newBankCode")
-                    console.log(newBankCode)
-
-                    $('.bankNumberBtn').click(function() {
+                    $('.bankNumberBtn').on('click',function() {
                         let number = $(this).text()
                         let code = $(this).val()
                         let name = $(this).attr('data-title')
                         console.log(number)
                         console.log(name)
                         console.log(code)
+                        console.log(bankInputName)
                         newBankCode.val(code).change()
                         bankInputName.val(name).change()
                         bankInputBankCode.val(code)
                         bankInputCode.val(number).change()
+                        bankInputNewCode.val(code)
                         $('#selectBankModal').modal('hide')
                     })
                 } else {
@@ -320,7 +324,7 @@ $(function() {
             }
         })
     })
-
+    
     $('#undoNameRequest').click(function() {
         // $('#undoModal').modal('show')
         formSelect = $('#deleteNameRequest')
