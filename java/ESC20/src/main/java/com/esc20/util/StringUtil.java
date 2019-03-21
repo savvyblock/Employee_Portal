@@ -989,4 +989,14 @@ public class StringUtil {
 		
 		throw new IllegalArgumentException("A boolean string equivalent must be 'Y' or 'N'. (" + clean + ")");
 	}
+	
+	public static Character convertToCharacter(Object object) {
+		try {
+			if(object==null)
+				return null;
+			return (Character) object;
+		} catch (Exception e){
+			return ((String) object).trim().charAt(0);
+		}
+	}
 }

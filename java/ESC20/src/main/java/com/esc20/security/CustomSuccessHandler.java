@@ -37,7 +37,8 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
 			BeaUsers user = this.indexService.getUserPwd(userName);
 			BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
             Options options = this.indexService.getOptions();
-            District districtInfo = this.indexService.getDistrict();
+            String district = (String)session.getAttribute("districtId");
+            District districtInfo = this.indexService.getDistrict(district);
             userDetail.setEmpNbr(user.getEmpNbr());
             userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
             String phone = districtInfo.getPhone();

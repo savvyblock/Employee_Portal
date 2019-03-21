@@ -28,7 +28,6 @@ import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
-import com.esc20.util.PasswordEncoderFactories;
 import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONObject;
@@ -36,10 +35,6 @@ import net.sf.json.JSONObject;
 @Controller
 @RequestMapping("/")
 public class IndexController {
-
-	private static String key = "D3n!m!23R3gi0n20";
-    
-    PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     
     @RequestMapping(value="login", method=RequestMethod.GET)
     public ModelAndView getIndexPage(HttpServletRequest req, String Id,HttpServletResponse response){

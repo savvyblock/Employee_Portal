@@ -90,8 +90,8 @@ public class IndexService {
 	public Options getOptions() {
 		return optionsDao.getOptions();
 	}
-	public District getDistrict() {
-		return userDao.getDistrict();
+	public District getDistrict(String district) {
+		return userDao.getDistrict(district);
 	}
 	public BeaLglName getBeaLglName(BhrEmpDemo demo) {
 		BeaLglName result = userDao.getBeaLglName(demo.getEmpNbr());

@@ -32,14 +32,14 @@ public class ReferenceDao {
 	{
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT id.genCd, '', genDescr FROM EtC012Gen");
+		sql.append("SELECT DISTINCT id.genCd,  genDescr FROM EtC012Gen");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
-			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),((Character)item[1]==null?"":((Character)item[1]).toString()),(String)item[2]);
+			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),"",(String)item[1]);
 			if(code.getDescription().equals("default")) {
 				code.setCode("");
 				code.setSubCode("");
@@ -54,14 +54,14 @@ public class ReferenceDao {
 	{
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT abbrev, '',state FROM BthrStateAbbrev");
+		sql.append("SELECT DISTINCT abbrev, state FROM BthrStateAbbrev");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
-			code = new Code((item[0]==null?"":(item[0]).toString()),(item[1]==null?"":(item[1]).toString()),(String)item[2]);
+			code = new Code((item[0]==null?"":(item[0]).toString()),"",(String)item[1]);
 			result.add(code);		
 		}
 		return result;		
@@ -71,14 +71,14 @@ public class ReferenceDao {
 	{
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT type, '', descr FROM BthrRestrictTyp");
+		sql.append("SELECT DISTINCT type, descr FROM BthrRestrictTyp");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
-			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),((Character)item[1]==null?"":((Character)item[1]).toString()),(String)item[2]);
+			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),"",(String)item[1]);
 			result.add(code);		
 		}
 		return result;	
@@ -88,14 +88,14 @@ public class ReferenceDao {
 	{
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT stat,'',descr as subCode FROM BthrMaritalTaxStat");
+		sql.append("SELECT DISTINCT stat,descr as subCode FROM BthrMaritalTaxStat");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
-			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),((Character)item[1]==null?"":((Character)item[1]).toString()),(String)item[2]);
+			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),"",(String)item[1]);
 			result.add(code);		
 		}
 		return result;		
@@ -105,14 +105,14 @@ public class ReferenceDao {
 	{
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT bankAcctTyp, '',bankAcctTypDescr FROM BthrBankAcctTyp");
+		sql.append("SELECT DISTINCT bankAcctTyp, bankAcctTypDescr FROM BthrBankAcctTyp");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
-			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),((Character)item[1]==null?"":((Character)item[1]).toString()),(String)item[2]);
+			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),"",(String)item[1]);
 			if(code.getCode().equals("")) {
 				code = new Code();
 			}
@@ -158,14 +158,14 @@ public class ReferenceDao {
 	public List<Code> getAbsRsns() {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT absRsn, '', absDescr FROM BthrAbsRsn");
+		sql.append("SELECT DISTINCT absRsn, absDescr FROM BthrAbsRsn");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
-			code = new Code((String)item[0],((Character)item[1]==null?"":((Character)item[1]).toString()),(String)item[2]);
+			code = new Code((String)item[0],"",(String)item[1]);
 			result.add(code);		
 		}
 		return result;
@@ -190,14 +190,14 @@ public class ReferenceDao {
 	public List<Code> getLeaveStatus() {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT cd, '', descr FROM BteaEmpLvStatusCodes");
+		sql.append("SELECT DISTINCT cd, descr FROM BteaEmpLvStatusCodes");
 		Query q = session.createQuery(sql.toString());
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
-			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),((Character)item[1]==null?"":((Character)item[1]).toString()),(String)item[2]);
+			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),"",(String)item[1]);
 			result.add(code);		
 		}
 		return result;

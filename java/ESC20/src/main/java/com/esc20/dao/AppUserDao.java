@@ -162,14 +162,16 @@ public class AppUserDao extends HibernateDaoSupport{
         return userInfo;
 	}
 	
-	public District getDistrict() {
+	public District getDistrict(String district) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT dr.distName, dr.strNbrDist, dr.strNameDist, ");
 		sql.append("dr.cityNameDist, dr.stateCd, dr.zipDist, dr.zip4Dist, dr.areaCdDist, dr.phoneNbrDist ");
 		sql.append(" FROM DrDemo dr");
-		sql.append(" WHERE dr.id.schYr = (SELECT MAX(dr2.id.schYr) from DrDemo dr2)");
+		sql.append(" WHERE dr.id.schYr = (SELECT MAX(dr2.id.schYr) from DrDemo dr2 where dr2.id.distId =:district) AND");
+		sql.append(" dr.id.distId =:district");
         Query q = session.createQuery(sql.toString());
+        q.setParameter("district", district);
         Object[] res =  (Object[]) q.uniqueResult();
         District dis = new District(res[0],res[1],res[2],res[3],res[4],res[5],res[6],res[7],res[8]);
         

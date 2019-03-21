@@ -147,7 +147,7 @@ public class LeaveRequestDao {
 	public List<Code> getAvailableFrequencies(String empNbr) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT el.id.payFreq, '', PF.payFreqDescr ");
+		sql.append("SELECT DISTINCT el.id.payFreq, PF.payFreqDescr ");
 		sql.append("FROM BhrEmpLv el, BthrPayFreq PF ");
 		sql.append("WHERE el.id.cyrNyrFlg='C' AND el.id.empNbr=:employeeNumber AND el.id.payFreq=PF.payFreq ");
 		sql.append("	AND EXISTS (SELECT 1 ");
@@ -165,8 +165,8 @@ public class LeaveRequestDao {
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for (Object[] item : res) {
-			code = new Code(((Character) item[0] == null ? "" : ((Character) item[0]).toString()),
-					((Character) item[1] == null ? "" : ((Character) item[1]).toString()), (String) item[2]);
+			code = new Code((StringUtil.convertToCharacter(item[0]) == null ? "" : (StringUtil.convertToCharacter(item[0])).toString()),
+					"", (String) item[1]);
 			result.add(code);
 		}
 		return result;
