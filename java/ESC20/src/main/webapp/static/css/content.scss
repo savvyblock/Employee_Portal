@@ -56,6 +56,25 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        height: calc(100vh - 60px);
+        overflow: hidden;
+        overflow-y: auto;
+        @media (max-height:530px){
+            align-items:flex-start;
+        }
+        &.answerQuestion{
+            @media (max-height:655px){
+                align-items:flex-start;
+            }
+        }
+        &.sessionEnd{
+            @media (max-height:580px){
+                align-items:flex-start;
+            }
+        }
+        &.createUser{
+            align-items: flex-start;
+        }
         .account-inner {
             background: #fff;
             display: flex;
@@ -271,6 +290,11 @@
     margin: 0 15px;
     .section-title {
         color: #000;
+        margin: 20px 0;
+        .pageTitle{
+            display: inline-block;
+            margin: 0;
+        }
         .btn {
             margin: 3px;
             height: 35px;
@@ -754,6 +778,9 @@
     margin-bottom: 15px;
 }
 .table {
+    &.print-show-table{
+        display: none;
+    }
     &.print-table {
         font-size: 12px;
         td,
@@ -998,6 +1025,10 @@
     }
 }
 @media print {
+    html{
+        height: auto;
+        overflow: initial;
+    }
     .exportPDFBox{
         position: static;
         display: block!important;
@@ -1285,6 +1316,9 @@
         }
         &.no-print{
             display: none;
+        }
+        &.print-show-table{
+            display: table;
         }
     }
     .icheck{

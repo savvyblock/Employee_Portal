@@ -14,8 +14,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
             <main class="content-wrapper" id="content" tabindex="-1">
                     <section class="content">
-                            <h2 class="clearfix no-print section-title">
-                                <span data-localize="title.earnings"></span>
+                            <div class="clearfix no-print section-title">
+                                <h1 class="pageTitle" data-localize="title.earnings"></h1>
                                 <div class="pull-right right-btn">
                                     <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="" data-localize="label.exportPDF" data-localize-notText="true">
                                         <i class="fa fa-file-pdf-o"></i>
@@ -27,7 +27,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     >
                                     </button>
                                 </div>
-                            </h2>
+                            </div>
                             <div class="content-white EMP-detail earningPage">
                                 <div class="exportPDFBox" id="exportPDFBox">
                                         <div class="print-block print-title">
@@ -272,9 +272,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     
                                         <div class="clearfix">
                                             <div class="total-table  pull-left">
-                                                <p class="no-print table-top-title">
+                                                <h2 class="no-print table-top-title">
                                                     <b data-localize="label.earningAndDeductions"></b>
-                                                </p>
+                                                </h2>
                                                 <table
                                                     class="table border-table no-thead print-table earning-table"
                                                 >

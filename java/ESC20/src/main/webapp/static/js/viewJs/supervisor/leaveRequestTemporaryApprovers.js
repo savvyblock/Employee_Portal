@@ -72,7 +72,7 @@ $(function() {
                                                 </div>
                                             </td>
                                             <td  data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
-                                                    <button type="button" class="a-btn" onclick="deleteRow(this)">
+                                                    <button type="button" role="button" class="a-btn" onclick="deleteRow(this)">
                                                      <span class="hide" data-localize="label.delete"></span>
                                                         <i class="fa fa-trash"></i>
                                                     </button>

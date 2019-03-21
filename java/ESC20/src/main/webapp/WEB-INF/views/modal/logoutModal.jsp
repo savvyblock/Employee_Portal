@@ -16,14 +16,13 @@
             </div>
             <div class="modal-footer">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/logout">
-                    <button type="button"  class="btn btn-primary" data-localize="label.ok">
+                    <button type="button" role="button"  class="btn btn-primary" data-localize="label.ok">
                     </button>
                 </a>
                 <button
-                    type="button"
+                    type="button" role="button"
                     class="btn btn-secondary closeModal"
                     data-dismiss="modal"
-                    aria-hidden="true"
                     id="cancelAdd"
                     data-localize="label.cancel"
                     onclick="setCountTime()"

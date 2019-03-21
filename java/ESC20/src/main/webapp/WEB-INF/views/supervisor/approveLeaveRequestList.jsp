@@ -13,13 +13,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 			
             <main class="content-wrapper" tabindex="-1">
                     <section class="content">
-                            <h2 class="clearfix section-title">
-                                    <span data-localize="title.approveLeaveRequests"></span>
+                            <div class="clearfix section-title">
+                                    <h1 class="pageTitle" data-localize="title.approveLeaveRequests"></h1>
                                 <button class="btn btn-primary pull-right" onclick="showCalendarModal()"
                                 data-toggle="modal" data-target="#leaveListCalendarModal" aria-label="" data-localize="label.switchToCalendarView" data-localize-location="aria-label" data-localize-notText="true">
                                     <i class="fa fa-calendar"></i>
                                 </button>
-                            </h2>
+                            </div>
                             <div class="showSelectSupervisor">
                                 <label class="form-title"><span data-localize="label.supervisorHierarchy"></span>: </label>
                                 <c:forEach var="item" items="${chain}" varStatus="status">
@@ -48,12 +48,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </select>
                                     </div>
                                     <div class="form-group in-line flex-auto">
-                                            <button type="button" class="btn btn-primary disabled" 
+                                            <button type="button" role="button" class="btn btn-primary disabled" 
                                                 id="prevLevel" 
                                                 data-localize="label.previousLevel"
                                                 disabled
                                                 ></button>
-                                            <button type="button" class="btn btn-primary  disabled" 
+                                            <button type="button" role="button" class="btn btn-primary  disabled" 
                                             id="nextLevel" 
                                             data-localize="label.nextLevel"
                                             disabled
@@ -65,7 +65,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="" data-localize="accessHint.level">
                                         <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
                                 </form>
-                                <p id="approveTableTitle" style="padding:0 10px;">
+                                <h2 id="approveTableTitle" style="padding:0 10px;">
                                     <b>
                                         <span data-localize="approveRequest.leavePendingActionBy"></span>
                                         <span>
@@ -76,7 +76,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </c:forEach>
                                         </span>
                                     </b>
-                                     </p>
+                                </h2>
                                 <div class="content-white">
                                     
                                     <table class="table request-list responsive-table">

@@ -13,8 +13,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 			
             <main class="content-wrapper" tabindex="-1">
                     <section class="content">
-                            <h2 class="clearfix section-title">
-                                    <span data-localize="title.leaveOverview"></span>
+                            <div class="clearfix section-title">
+                                    <h1 class="pageTitle" data-localize="title.leaveOverview"></h1>
                                 <div class="pull-right right-btn">
 					                <button class="btn btn-primary" id="new-btn" data-toggle="modal" data-target="#requestModal" onclick="showRequestForm()" data-localize="label.add"></button>
                                     <button class="btn btn-primary pull-right" style="height:35px;display:flex;align-items:center;"  data-toggle="modal" data-target="#leaveOverviewCalendarModal" 
@@ -22,7 +22,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <i class="fa fa-calendar"></i>
                                     </button>
                                 </div>
-                                </h2>
+                            </div>
                             <div class="container-fluid">
                                     <div class="showSelectSupervisor">
                                             <label class="form-title"><span data-localize="label.supervisorHierarchy"></span>: </label>
@@ -52,12 +52,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </select>
                                     </div>
                                     <div class="form-group in-line flex-auto">
-                                            <button type="button" class="btn btn-primary disabled" 
+                                            <button type="button" role="button" class="btn btn-primary disabled" 
                                                 id="prevLevel" 
                                                 data-localize="label.previousLevel"
                                                 disabled
                                                 ></button>
-                                            <button type="button" class="btn btn-primary  disabled" 
+                                            <button type="button" role="button" class="btn btn-primary  disabled" 
                                             id="nextLevel" 
                                             data-localize="label.nextLevel"
                                             disabled
@@ -100,7 +100,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     placeholder=""
                                                     title=""
                                                     id="SearchStartDate" value="${startDate}" />
-                                                    <button class="clear-btn" type="button" onclick="clearDate(this)"  tabindex="0"   aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
+                                                    <button class="clear-btn" type="button" role="button" onclick="clearDate(this)"  tabindex="0"   aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
                                                         <i class="fa fa-times"></i>
                                                     </button>
                                                 </div>
@@ -115,23 +115,23 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     placeholder=""
                                                     title=""
                                                     id="SearchEndDate" value="${endDate}" />
-                                                    <button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0"   aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
+                                                    <button class="clear-btn" type="button" role="button" onclick="clearDate(this)" tabindex="0"   aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
                                                         <i class="fa fa-times"></i>
                                                     </button>
                                                 </div>
                                             </div>
                                             <div class="form-group btn-group">
                                                 <div style="margin-top:20px;">
-                                                        <button type="submit" class="btn btn-primary" data-localize="leaveBalance.retrieve">
+                                                        <button type="submit" role="submitButton" class="btn btn-primary" data-localize="leaveBalance.retrieve">
                                                             </button>
                                                 </div>
                                             </div>
                                         </form>
-                                        <p>
+                                        <h2>
                                             <span data-localize="label.LeaveRequests"></span>
                                             <span id="forWord" class="hide" data-localize="label.for"></span>
                                             <span id="currentLeaveRequests"></span>
-                                        </p>
+                                        </h2>
                                         <table class="table request-list responsive-table" id="leaveOverviewList">
                                                 <thead>
                                                     <tr>

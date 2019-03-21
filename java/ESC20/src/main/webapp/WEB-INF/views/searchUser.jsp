@@ -44,13 +44,13 @@
                                             </div>
                                         </div>
                                          <c:if test="${isExistUser!=null && isExistUser=='true'}">
-                                         <p class="error-hint" id="noUserError" data-localize="validator.noUserAccountAssociated"></p>
+                                         <p class="error-hint" role="alert" aria-atomic="true" id="noUserError" data-localize="validator.noUserAccountAssociated"></p>
                                          </c:if>
                                          <c:if test="${isSuccess!=null && isSuccess=='false'}">
-                                        <p class="error-hint" id="noEmployeeError" data-localize="validator.noEmployeeAccountAssociated"></p>
+                                        <p class="error-hint" role="alert" aria-atomic="true" id="noEmployeeError" data-localize="validator.noEmployeeAccountAssociated"></p>
                                          </c:if>
                                         <div class="form-group account-btn">
-                                            <button type="submit" id="retrieveBtn" class="btn btn-primary" data-localize="label.retrieve"></button>
+                                            <button type="submit" role="submitButton" id="retrieveBtn" class="btn btn-primary" data-localize="label.retrieve"></button>
                                         </div>
                                
                             </form>

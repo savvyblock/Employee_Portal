@@ -9,7 +9,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     </head>
     <body class="account-wrap">
         <%@ include file="commons/bar-account.jsp"%>
-        <div class="account-top content-body"  tabindex="-1">
+        <div class="account-top content-body createUser"  tabindex="-1">
                 <div class="account-inner sm">
                         <form id="createNewUserForm" action="saveNewUser" method="post">
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -65,6 +65,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         type="text"
                                         class="form-control"
                                         name="password"
+                                        type="password"
                                         id="password"
                                     />
                                 </div>
@@ -76,6 +77,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         type="text"
                                         class="form-control"
                                         name="newPassword"
+                                        type="password"
                                         id="newPassword"
                                     />
                                 </div>
@@ -152,13 +154,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
 
  							<c:if test="${isUserExist!=null && isUserExist=='true'}">
-                             	<p class="error-hint" id="noUserError" data-localize="validator.userExist"></p>
+                             	<p class="error-hint"  role="alert" aria-atomic="true" id="noUserError" data-localize="validator.userExist"></p>
                             </c:if>
                             <c:if test="${isSuccess!=null && isSuccess=='true'}">
-                             	<p class="error-hint" id="saveUserSuccess" data-localize="validator.saveUserSuccess"></p>
+                             	<p class="error-hint"  role="alert" aria-atomic="true" id="saveUserSuccess" data-localize="validator.saveUserSuccess"></p>
                             </c:if>
                             <div class="form-group account-btn">
-                                <button type="button" id="saveNewUser" class="btn btn-primary" data-localize="label.save">
+                                <button type="button" role="button" id="saveNewUser" class="btn btn-primary" data-localize="label.save">
                                 </button>
                             </div> 
                     </form>

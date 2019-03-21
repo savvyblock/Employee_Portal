@@ -13,8 +13,8 @@
 		<%@ include file="../commons/bar.jsp"%>
 		<main class="content-wrapper" tabindex="-1">
 		<section class="content">
-			<h2 class="clearfix section-title">
-					<span data-localize="title.leaveRequest"></span>
+			<div class="clearfix section-title">
+					<h1 class="pageTitle" data-localize="title.leaveRequest"></h1>
 				<div class="pull-right right-btn">
 					<button class="btn btn-primary"  onclick="showRequestForm()" id="new-btn" data-toggle="modal" data-target="#requestModal">
 						<span data-localize="label.add"></span>
@@ -25,7 +25,7 @@
 				</div>
 				
 				
-			</h2>
+			</div>
 			<div class="content-white">
 					<form
                             class="no-print searchForm"
@@ -71,7 +71,7 @@
 								placeholder=""
 								title=""
 								id="SearchStartDate"  value="${SearchStart}" />
-								<button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0"  aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
+								<button class="clear-btn" type="button" role="button" onclick="clearDate(this)" tabindex="0"  aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
 									<i class="fa fa-times"></i>
 								</button>
 							</div>
@@ -87,24 +87,24 @@
 								placeholder=""
 								title=""
 								id="SearchEndDate" value="${SearchEnd}" />
-								<button class="clear-btn" type="button" onclick="clearDate(this)" tabindex="0"  aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
+								<button class="clear-btn" type="button" role="button" onclick="clearDate(this)" tabindex="0"  aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
 									<i class="fa fa-times"></i>
 								</button>
 							</div>
 						</div>
 						<div class="form-group btn-group">
 							<div style="margin-top:20px;">
-									<button id="retrieve" type="button" class="btn btn-primary" data-localize="leaveBalance.retrieve">
+									<button id="retrieve" type="button" role="button" class="btn btn-primary" data-localize="leaveBalance.retrieve">
 										</button>
 							</div>
 						</div>
 					</form>
 					<div class="form-group">
-						<p class="error-hint hide" id="timeErrorMessage" data-localize="validator.fromDateNotGreaterToDate"></p>
+						<p class="error-hint hide" role="alert" aria-atomic="true" id="timeErrorMessage" data-localize="validator.fromDateNotGreaterToDate"></p>
 					</div>
-					<p class="table-top-title">
+					<h2 class="table-top-title">
 						<b data-localize="label.unprocessedLeaveRequest"></b>
-					</p>
+					</h2>
 					<div class="hr-black"></div>
 				<c:if test="${fn:length(leaves) > 0}">
 					<table class="table request-list responsive-table">

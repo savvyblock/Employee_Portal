@@ -30,7 +30,7 @@
 		          </div>
 		          <div class="dropdown-divider"></div>
 	          </a>
-          <a data-localize="label.seeAllNote" href="/<%=request.getContextPath().split("/")[1]%>/notifications/notifications" class="dropdown-footer"></a>
+          <a data-localize="label.seeAllNote" href="/<%=request.getContextPath().split("/")[1]%>/notifications/notifications" class="dropdown-footer"  role="link"></a>
         </div>
       </li>
       <li class="nav-item">
@@ -38,7 +38,7 @@
       <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
           href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
         </c:if>
-        aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label" data-localize-notText="true"
+        aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label" data-localize-notText="true"  role="link"
       >
         <i class="fa fa-user"></i>
       </a>
@@ -229,7 +229,7 @@
         </a></li>
         <li>
         <form action="/<%=request.getContextPath().split("/")[1]%>/logoutEA" method="post">
-          <button class="logoutBtn" type="submit" data-localize="accessHint.logout" data-localize-location="aria-label,title" data-localize-notText="true">
+          <button class="logoutBtn" type="submit" role="submitButton" data-localize="accessHint.logout" data-localize-location="aria-label,title" data-localize-notText="true">
             <i class="fa fa-sign-out "></i>
           </button>
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

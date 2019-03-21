@@ -10,15 +10,7 @@
     <div class="modal-dialog requestFormDialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button
-                    type="button"
-                    class="close closeModal"
-                    data-dismiss="modal"
-                    aria-hidden="true"
-                    aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
-                    >
-                    &times;
-                </button>
+                
                 <h4 class="modal-title new-title" data-localize="label.newRequest"></h4>
                 <h4 class="modal-title edit-title" data-localize="label.editRequest"></h4>
                 <h3 class="hide" id="leaveModalTitle">
@@ -26,6 +18,14 @@
                         <span class="addSpan hide" data-localize="leaveRequest.addLeaveRequestFor"></span>
                         <b id="currentEmpModal"></b>
                     </h3>
+                    <button
+                    type="button" role="button"
+                    class="close closeModal"
+                    data-dismiss="modal"
+                    aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
+                    >
+                    &times;
+                </button>
             </div>
             <form id="requestForm" action="submitLeaveRequest" method="post">
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     <div class="form-group has-error dateValidator01">
-                        <small class="help-block" data-localize="validator.startNotBeGreaterThanEndDate"></small>
+                        <small class="help-block" role="alert" aria-atomic="true" data-localize="validator.startNotBeGreaterThanEndDate"></small>
                     </div>
                     <div class="date-group">
                         <div class="form-group calendar-left">
@@ -149,7 +149,7 @@
                         </div>
                     </div>
                     <div class="form-group has-error dateValidator">
-                        <small class="help-block" data-localize="validator.startNotBeGreaterThanEndTime"></small>
+                        <small class="help-block" role="alert" aria-atomic="true" data-localize="validator.startNotBeGreaterThanEndTime"></small>
                     </div>
                     <div class="date-group">
                             <div class="form-group calendar-left">
@@ -200,19 +200,19 @@
                 </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary firstSubmit save" 
-                        type="button"
+                        type="button" role="button"
                         id="saveCreate"
                         name="save" 
                         data-localize="leaveBalance.submitForApproval"></button>
                         <button class="btn btn-primary secondSubmit save" 
-                        type="button"
+                        type="button" role="button"
                         id="saveEdit"
                         name="save" 
                         data-localize="leaveBalance.reSubmitForApproval"></button>
                         <button
                             class="btn btn-secondary"
                             id="deleteLeave"
-                            type="button"
+                            type="button" role="button"
                             onclick="deleteRequest()"
                             data-localize="label.delete"
                         >
@@ -220,7 +220,6 @@
                         <button
                             class="btn btn-secondary closeModal"
                             data-dismiss="modal"
-                            aria-hidden="true"
                             id="cancelAdd"
                             data-localize="label.cancel"
                             onclick="closeRequestForm()"

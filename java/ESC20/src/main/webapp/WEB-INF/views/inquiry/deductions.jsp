@@ -14,7 +14,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
             <main class="content-wrapper" id="content" tabindex="-1">
                 <section class="content">
-                    <h2 class="clearfix no-print section-title" data-localize="title.deductions"></h2>
+                    <h1 class="clearfix no-print section-title" data-localize="title.deductions"></h1>
                     <div class="content-white EMP-detail">
                             <c:if test="${not empty message}">
                                 <br/>

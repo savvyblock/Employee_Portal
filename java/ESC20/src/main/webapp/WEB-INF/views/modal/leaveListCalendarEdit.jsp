@@ -11,26 +11,25 @@ data-backdrop="static"
 <div class="modal-dialog leaveListCalendarForm">
 <div class="modal-content">
     <div class="modal-header">
+        
+        <h4 class="modal-title"><span class="hide" data-localize="accessHint.calendarView"></span></h4>
         <button
-            type="button"
+            type="button" role="button"
             class="close closeModal"
             data-dismiss="modal"
-            aria-hidden="true"
             aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
             >
             &times;
         </button>
-        <h4 class="modal-title"><span class="hide" data-localize="accessHint.calendarView"></span></h4>
     </div>
     <div class="modal-body">
         <div id="calendar"></div>
     </div>
     <div class="modal-footer">
         <button
-          type="button"
+          type="button" role="button"
             class="btn btn-secondary closeModal"
             data-dismiss="modal"
-            aria-hidden="true"
             id="cancelAddCalendar"
             data-localize="label.close"
         >

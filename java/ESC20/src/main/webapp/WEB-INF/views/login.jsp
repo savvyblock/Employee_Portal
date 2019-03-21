@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="form-group account-btn">
-                                <button id="signin" type="submit" class="btn btn-primary" data-localize="label.login"></button>
+                                <button id="signin" type="submit" role="submitButton" class="btn btn-primary" data-localize="label.login"></button>
                             </div>
                             <div class="text-center">
                                 <a class="a-line" href="/<%=request.getContextPath().split("/")[1]%>/createUser/searchUser" data-localize="label.newUser">
@@ -113,7 +113,7 @@
 		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswFaild" role="alert" aria-atomic="true"></div>
 		                    </c:if>
                             <div class="form-group account-btn">
-                                <button id="signin" type="submit" class="btn btn-primary" data-localize="label.login"></button>
+                                <button id="signin" type="submit" role="submitButton" class="btn btn-primary" data-localize="label.login"></button>
                             </div>
                             
                         </form>

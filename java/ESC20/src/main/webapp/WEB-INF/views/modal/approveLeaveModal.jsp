@@ -10,16 +10,15 @@
     <div class="modal-dialog approveForm">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" data-localize="label.approveLeaveRequests"></h4>
                 <button
-                    type="button"
+                    type="button" role="button"
                     class="close closeModal"
                     data-dismiss="modal"
-                    aria-hidden="true"
                     aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
                     >
                     &times;
                 </button>
-                <h4 class="modal-title" data-localize="label.approveLeaveRequests"></h4>
             </div>
               <div class="modal-body">
                   <input type="hidden" name="leaveId" id="leaveId" aria-label="" data-localize="accessHint.id" />
@@ -28,7 +27,7 @@
                       <tr>
                         <td><b data-localize="label.employee"></b></td>
                         <td data-localize="label.employee" data-localize-location="title">
-                            <button class="showBalanceBtn pull-right a-btn" type="button" onclick="showDetail(this)" aria-label="" data-localize="label.showLeaveBalanceSummary" data-localize-location="aria-label" data-localize-notText="true">
+                            <button class="showBalanceBtn pull-right a-btn" type="button" role="button" onclick="showDetail(this)" aria-label="" data-localize="label.showLeaveBalanceSummary" data-localize-location="aria-label" data-localize-notText="true">
                                 <i class="fa fa-angle-double-down"></i>
                                 <i class="fa fa-angle-double-up"></i>
                             </button>
@@ -90,12 +89,12 @@
                       <label for="supervisorComment" data-localize="label.supervisorComment"></label>
                       <textarea class="form-control form-text" name="supervisorComment" id="supervisorComment" cols="30" rows="4"></textarea>
                   </div>
-                  <p class="approveValidator error-hint" data-localize="validator.pleaseSelectOne"></p>
-                  <p class="commentValidator error-hint" data-localize="validator.pleaseEnterComment"></p>
+                  <p class="approveValidator error-hint" role="alert" aria-atomic="true" data-localize="validator.pleaseSelectOne"></p>
+                  <p class="commentValidator error-hint" role="alert" aria-atomic="true" data-localize="validator.pleaseEnterComment"></p>
               </div>
               <div class="modal-footer">
                   <button
-                      type="submit"
+                      type="submit" role="submitButton"
                       class="btn btn-primary"
                       id="save"
                       name="save"
@@ -103,10 +102,9 @@
                   >
                   </button>
                   <button
-                  type="button"
+                  type="button" role="button"
                       class="btn btn-secondary closeModal"
                       data-dismiss="modal"
-                      aria-hidden="true"
                       id="cancelAdd"
                       data-localize="label.cancel"
                   >

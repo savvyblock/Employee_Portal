@@ -14,8 +14,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
             <main class="content-wrapper" id="content" tabindex="-1">
                 <section class="content">
-                    <h2 class="clearfix no-print section-title">
-                        <span data-localize="title.currentPayInfo"></span>
+                    <div class="clearfix no-print section-title">
+                        <h1 class="pageTitle" data-localize="title.currentPayInfo"></h1>
                         <div class="pull-right right-btn">
                                 <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="" data-localize="label.exportPDF" data-localize-notText="true">
                                     <i class="fa fa-file-pdf-o"></i>
@@ -27,7 +27,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 >
                                 </button>
                             </div>
-                    </h2>
+                    </div>
                     <div class="content-white EMP-detail">
                         <div class="exportPDFBox">
                                 <div class="print-block print-title">
@@ -49,9 +49,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <br/>
                         </c:if>
                         <div class="needToClone">
-                            <p class="table-top-title">
+                            <h2 class="table-top-title">
                                 <b data-localize="label.employeeInformation"></b>
-                            </p>
+                            </h2>
                             <table
                                 class="table border-table responsive-table no-thead print-table noNumTable"
                             >
@@ -178,9 +178,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </c:if>
                             <c:if test="${fn:length(frequencies) > 0}">
                                 <c:forEach var="frequency" items="${frequencies}">
-                                    <p class="table-top-title">
+                                    <h2 class="table-top-title">
                                         <b><span data-localize="label.frequency"></span>: ${frequency}</b>
-                                    </p>
+                                    </h2>
                                     <table
                                         class="table border-table responsive-table no-thead print-table noNumTable"
                                     >
@@ -222,9 +222,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <p class="table-top-title">
+                                    <h2 class="table-top-title">
                                         <b><span data-localize="label.positions"></span></b>
-                                    </p>
+                                    </h2>
                                     
                                         <table class="table border-table responsive-table no-thead print-table" style="border:0;">
                                             <tbody>
@@ -278,9 +278,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     
                                     
                                     <c:if test="${fn:length(accounts[frequency]) > 0}">
-                                            <p class="table-top-title">
+                                            <h2 class="table-top-title">
                                                     <b><span data-localize="label.bankCardInfo"></span></b>
-                                                </p>
+                                            </h2>
                                         <table class="table border-table responsive-table print-table">
                                             <thead>
                                                 <tr>
@@ -316,17 +316,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </c:if>
 
                                     <c:if test="${fn:length(stipends[frequency]) > 0}">
-                                            <p class="table-top-title">
-                                                    <b><span data-localize="label.stipendInfo"></span> :</b>
-                                            </p>
+                                            <h2 class="table-top-title">
+                                                    <b><span data-localize="label.stipendInfo"></span> </b>
+                                            </h2>
                                         <table class="table border-table responsive-table print-table">
                                             <thead>
                                                 <tr>
                                                     <th data-localize="currentPayTable.extraDuty"></th>
-                                                    <th data-localize="currentPayTable.type"></th>
-                                                    <th data-localize="currentPayTable.amount"></th>
-                                                    <th data-localize="currentPayTable.remainAmount"></th>
-                                                    <th data-localize="currentPayTable.remainPayments"></th>
+                                                    <th class="text-center" data-localize="currentPayTable.type"></th>
+                                                    <th class="text-right" data-localize="currentPayTable.amount"></th>
+                                                    <th class="text-right" data-localize="currentPayTable.remainAmount"></th>
+                                                    <th class="text-right" data-localize="currentPayTable.remainPayments"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -335,7 +335,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             <td data-title="" data-localize="currentPayTable.extraDuty" data-localize-location="scope">
                                                                     ${stipend.extraDutyDescription}
                                                             </td>
-                                                            <td data-title="" data-localize="currentPayTable.type" data-localize-location="scope">
+                                                            <td class="text-center" data-title="" data-localize="currentPayTable.type" data-localize-location="scope">
                                                                     ${stipend.defaultAccountType}
                                                             </td>
                                                             <td data-title="" data-localize="currentPayTable.amount" data-localize-location="scope">

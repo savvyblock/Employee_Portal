@@ -13,8 +13,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
             <main class="content-wrapper" id="content" tabindex="-1">
                 <section class="content body-1095">
-                            <h2 class="clearfix no-print section-title">
-                                <span data-localize="nav.info1095"></span>
+                            <div class="clearfix no-print section-title">
+                                <h1 class="pageTitle" data-localize="nav.info1095"></h1>
                                 <div class="right-btn pull-right">
                                     <c:if test="${sessionScope.options.enableElecConsnt1095 == true}">
                                             <button
@@ -35,11 +35,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <button class="btn btn-primary" onclick="doPrint()" data-localize="label.print">
                                     </button>
                                 </div>
-                            </h2>
+                            </div>
                             <div class="content-white EMP-detail info-1095">
                                 <div class="exportPDFBox"></div>
                                 <c:if test="${isUpdate && isSuccess}">
-                                    <span class="error-hint">
+                                    <span class="error-hint" role="alert" aria-atomic="true">
                                             <b data-localize="validator.updateWasSuccessful"></b>
                                         </span>
                                     <br/>
@@ -93,12 +93,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <div class="needToClone">                                
                                         <c:if test="${fn:length(years) > 0}">
                                             <div class="pdfPage">
-                                                <p class="table-top-title no-print">
+                                                <h2 class="table-top-title no-print">
                                                     <b>
                                                         1095-${type}
                                                         <span data-localize="label.information"></span>
                                                     </b>
-                                                </p>
+                                                </h2>
                                                 <table
                                                     class="table border-table middle-td-table mb-0 print-block-table tableHead1095"
                                                 >
@@ -347,9 +347,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                                <p class="table-top-title no-print">
+                                                <h2 class="table-top-title no-print">
                                                     <b data-localize="info1095Table.coverIndividuals"></b>
-                                                </p>
+                                                </h2>
                                                 <div class="flex self-insured-flex no-print">
                                                     <div class="self-insured-tips">
                                                         <span data-localize="info1095Table.ifEmployerProvidedSelfInsurance"></span>
@@ -410,17 +410,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
+                            
+                            <h4 class="modal-title new-title" data-localize="label.electronic1095Consent">
+                            </h4>
                             <button
-                                type="button"
+                                type="button" role="button"
                                 class="close"
                                 data-dismiss="modal"
-                                aria-hidden="true"
                                 aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
                             >
                                 &times;
                             </button>
-                            <h4 class="modal-title new-title" data-localize="label.electronic1095Consent">
-                            </h4>
                         </div>
                         <div class="modal-body">
                             <form action="update1095Consent" id="update1095Consent" method="POST">
@@ -437,32 +437,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <input hidden="hidden" type="text" name="consent" id="elecConsnt1095" value="${consent}" aria-label="" data-localize="accessHint.consent">
                                         <div class="checkbox mb-2">
                                             <label for="consent">
-                                                <input class="consentRadio" type="radio" name="electronicConsent" id="consent"> 
+                                                <input class="consentRadio" type="radio" role="radio" name="electronicConsent" id="consent"> 
                                                 <span data-localize="label.consentElectronicAccess"></span>
                                             </label>
                                         </div>
                                         <div class="checkbox">
                                                 <label for="notConsent">
-                                                    <input class="consentRadio" type="radio" name="electronicConsent" id="notConsent"> 
+                                                    <input class="consentRadio" type="radio" role="radio" name="electronicConsent" id="notConsent"> 
                                                     <span data-localize="label.donotConsentElectronicAccess"></span>
                                                 </label>
                                         </div>
                                 </div>
-                                <p class="error-hint hide" id="noChooseError" data-localize="validator.pleaseSelectAgreeWay"></p>
+                                <p class="error-hint hide" role="alert" aria-atomic="true" id="noChooseError" data-localize="validator.pleaseSelectAgreeWay"></p>
                             </form>
                         </div>
                         <div class="modal-footer">
                                 <button
                                     id="saveConsent"
-                                    type="button"
+                                    type="button" role="button"
                                     class="btn btn-primary"
                                     data-localize="label.save"
                                 ></button>
                             <button
-                                type="button"
+                                type="button" role="button"
                                 class="btn btn-secondary"
                                 data-dismiss="modal"
-                                aria-hidden="true"
                                 data-localize="label.cancel"
                             ></button>
                         </div>

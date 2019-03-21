@@ -14,8 +14,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
             <main class="content-wrapper" id="content" tabindex="-1">
                 <section class="content">
-                    <h2 class="clearfix no-print section-title">
-                        <span data-localize="title.calendarYearToDate"></span>
+                    <div class="clearfix no-print section-title">
+                        <h1 class="pageTitle" data-localize="title.calendarYearToDate"></h1>
                         <div class="pull-right right-btn">
                             <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="" data-localize="label.exportPDF" data-localize-notText="true">
                                 <i class="fa fa-file-pdf-o"></i>
@@ -27,7 +27,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             >
                             </button>
                         </div>
-                    </h2>
+                    </div>
                     <div class="content-white EMP-detail">
                         <div class="exportPDFBox">
                                 <div class="print-block print-title">

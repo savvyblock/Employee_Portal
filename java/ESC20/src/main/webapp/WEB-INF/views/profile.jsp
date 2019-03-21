@@ -25,9 +25,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <input id="avatarImg" hidden="hidden" type="text" name="file">
                                                 <input id="avatarImgName" hidden="hidden" type="text" name="fileName">
                                                 <input class="avatar-file" type="file" name="file"  id="imgUpFile"  onchange="startRead()"  accept="image/*"/> -->
-                                                <button type="button" class="avatar-word" data-localize="profile.change" data-toggle="modal" data-target="#changeAvatarModal"></button>
+                                                <button type="button" role="button" class="avatar-word" data-localize="profile.change" data-toggle="modal" data-target="#changeAvatarModal"></button>
                                             </div>
-                                            <button type="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal" data-localize="label.changePassword" data-localize-location="title">
+                                            <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal" data-localize="label.changePassword" data-localize-location="title">
                                                     <span data-localize="label.changePassword"></span>
                                                 </button>
                                             </div>
@@ -156,7 +156,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="profile-btn">
                                             <div class="edit">
                                                 <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     class="btn btn-primary edit-btn" data-localize="label.edit"
                                                 >
                                                 </button>
@@ -164,21 +164,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                                             <div class="saveOrCancel">
                                                 <button
-                                                    type="submit"
+                                                    type="submit" role="submitButton"
                                                     class="btn btn-primary save-btn" data-localize="label.update"
                                                     id="savePersonal"
                                                 >
                                                 
                                                 </button>
                                                 <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     id="undoNameRequest"
                                                     class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
                                                 <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
                                                 >
                                                 
@@ -191,7 +191,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </form>
                                 </div>
 
-                                <p class="sub-title" data-localize="profile.MaritalStatus"></p>
+                                <h2 class="sub-title" data-localize="profile.MaritalStatus"></h2>
                                 <form class="profile-item" id="maritalStatusForm" action="saveMarital" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="profile-left">
@@ -229,7 +229,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary edit-btn" data-localize="label.edit"
                                             >
                                             
@@ -237,21 +237,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit"
+                                                type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn" data-localize="label.update"
                                                 id="saveMarital"
                                             >
                                             
                                             </button>
                                             <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     id="undoMaritalRequest"
                                                     class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
                                             >
                                             
@@ -262,7 +262,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteMaritalRequest" id="deleteMaritalRequest" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <p class="sub-title" data-localize="profile.driversLicense"></p>
+                                <h2 class="sub-title" data-localize="profile.driversLicense"></h2>
                                 <form class="profile-item" id="driverLicenseForm" action="saveDriversLicense" method="POST">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input hidden="hidden" type="text" name="empNbr" value="${licRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
@@ -322,7 +322,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary edit-btn" data-localize="label.edit"
                                             >
                                             
@@ -330,21 +330,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit"
+                                                type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn" data-localize="label.update"
                                                 id="saveDriver"
                                             >
                                             
                                             </button>
                                             <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     id="undoDriverLicense"
                                                     class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
                                             >
                                             
@@ -355,7 +355,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteDriversLicenseRequest" id="deleteDriversLicense" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <p class="sub-title" data-localize="profile.restrictionCodes"></p>
+                                <h2 class="sub-title" data-localize="profile.restrictionCodes"></h2>
                                 <form class="profile-item" id="restrictionCodeForm" action="saveRestrictionCodes" method="POST">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input hidden="hidden" type="text" name="empNbr" value="${restrictRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
@@ -418,7 +418,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary edit-btn" data-localize="label.edit"
                                             >
                                             
@@ -426,21 +426,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit"
+                                                type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn" data-localize="label.update"
                                                 id="saveRestrict"
                                             >
                                             
                                             </button>
                                             <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     id="undoRestriction"
                                                     class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
                                             >
                                             
@@ -451,7 +451,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteRestrictionCodesRequest" id="deleteRestrictionCodesRequest" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <p class="sub-title" data-localize="profile.email"></p>
+                                <h2 class="sub-title" data-localize="profile.email"></h2>
                                 <form class="profile-item" id="emailForm" action="saveEmail" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" name="empNbr" value="${emailRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
@@ -536,7 +536,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary edit-btn" data-localize="label.edit"
                                             >
                                             
@@ -544,21 +544,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary save-btn" data-localize="label.update"
                                                 id="saveEmail"
                                             >
                                             
                                             </button>
                                             <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     id="undoEmail"
                                                     class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
                                             >
                                             
@@ -569,7 +569,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteEmail" id="deleteEmail" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <p class="sub-title" data-localize="profile.emergenceContactInfo"></p>
+                                <h2 class="sub-title" data-localize="profile.emergenceContactInfo"></h2>
                                 <form class="profile-item" id="emergencyContactForm" action="saveEmergencyContact" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" name="empNbr" value="${emerRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
@@ -692,7 +692,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary edit-btn" data-localize="label.edit"
                                             >
                                             
@@ -700,21 +700,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit"
+                                                type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn" data-localize="label.update"
                                                 id="saveEmergency"
                                             >
                                             
                                             </button>
                                             <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     id="undoEmergencyContact"
                                                     class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
                                             >
                                             
@@ -725,7 +725,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteEmergencyContact" id="deleteEmergencyContact" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <p class="sub-title" data-localize="profile.mailingAddress"></p>
+                                <h2 class="sub-title" data-localize="profile.mailingAddress"></h2>
                                 <form class="profile-item" id="mailingAddressForm" action="saveMailAddr" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" name="empNbr" value="${mailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
@@ -873,7 +873,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary edit-btn" data-localize="label.edit"
                                             >
                                             
@@ -881,21 +881,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit"
+                                                type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn" data-localize="label.update"
                                                 id="saveMailingAddress"
                                             >
                                             
                                             </button>
                                             <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     id="undoMailingAddress"
                                                     class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
                                             >
                                             
@@ -906,7 +906,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteMailAddr" id="deleteMailAddr" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <p class="sub-title" data-localize="profile.altAddr"></p>
+                                <h2 class="sub-title" data-localize="profile.altAddr"></h2>
                                 <form class="profile-item" id="alternativeAddressForm" action="saveAltMailAddr" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" name="empNbr" value="${altMailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
@@ -1054,7 +1054,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary edit-btn" data-localize="label.edit"
                                             >
                                             
@@ -1062,21 +1062,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit"
+                                                type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn" data-localize="label.update"
                                                 id="saveAltAddress"
                                             >
                                             
                                             </button>
                                             <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     id="undoAlternative"
                                                     class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
                                             >
                                             
@@ -1087,7 +1087,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteAltMailAddr" id="deleteAltMailAddr" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <p class="sub-title" data-localize="profile.phoneNumbers"></p>
+                                <h2 class="sub-title" data-localize="profile.phoneNumbers"></h2>
                                 <form class="profile-item" id="phoneForm" action="savePhone" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input hidden="hidden" type="text" name="empNbr" value="${hmRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
@@ -1211,7 +1211,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary edit-btn" data-localize="label.edit"
                                             >
                                             
@@ -1219,21 +1219,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit"
+                                                type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn" data-localize="label.update"
                                                 id="savePhone"
                                             >
                                             
                                             </button>
                                             <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     id="undoPhoneNumber"
                                                     class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 
                                                 </button>
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
                                             >
                                             
@@ -1247,7 +1247,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         </c:if>
                         
                         <c:if test="${sessionScope.options.enableSelfServicePayroll == true}">
-                            <p class="sub-title" data-localize="profile.W4MaritalStatusInfo"></p>
+                            <h2 class="sub-title" data-localize="profile.W4MaritalStatusInfo"></h2>
                             <form
                                 class="no-print searchForm"
                                 action="profile"
@@ -1327,7 +1327,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <div class="profile-btn">
                                     <div class="edit">
                                         <button
-                                            type="button"
+                                            type="button" role="button"
                                             class="btn btn-primary edit-btn" data-localize="label.edit"
                                         >
                                         
@@ -1335,21 +1335,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                     <div class="saveOrCancel">
                                         <button
-                                            type="submit"
+                                            type="submit" role="submitButton"
                                             class="btn btn-primary save-btn" data-localize="label.update"
                                             id="saveW4"
                                         >
                                         
                                         </button>
                                         <button
-                                                type="button"
+                                                type="button" role="button"
                                                 id="undoW4"
                                                 class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                             >
                                             
                                             </button>
                                         <button
-                                            type="button"
+                                            type="button" role="button"
                                             class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
                                         >
                                         
@@ -1365,7 +1365,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}" aria-label="" data-localize="accessHint.maritalStatTax">
                                 <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" aria-label="" data-localize="accessHint.nbrTaxExempts">
                             </form>
-                            <p class="sub-title" data-localize="profile.directDepositBankAccounts"></p>
+                            <h2 class="sub-title" data-localize="profile.directDepositBankAccounts"></h2>
                             
                             <c:forEach var="bank" items="${banks}" varStatus="count">
                                 
@@ -1444,7 +1444,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                                                 <button
                                                     class="btn btn-secondary xs getBank"
-                                                    type="button"
+                                                    type="button" role="button"
                                                     data-toggle= "modal"
                                                     data-target="#selectBankModal"
                                                     aria-label="" data-localize="profile.chooseBank" data-localize-location="aria-label" data-localize-notText="true"
@@ -1521,7 +1521,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <div class="profile-btn">
                                     <div class="saveOrCancel">
                                         <button
-                                            type="button"
+                                            type="button" role="button"
                                             class="btn btn-primary save-btn saveUpdateBankBtn" data-localize="label.update"
                                             id="saveBank_${count.index}"
                                             onclick="updateBank(${count.index})"
@@ -1529,7 +1529,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         
                                         </button>
                                         <button
-                                                type="button"
+                                                type="button" role="button"
                                                 id="undoBank_${count.index}"
                                                 class="btn btn-secondary undo-btn"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 onclick="undoBank(${count.index})"
@@ -1538,7 +1538,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </button>
                                         <c:if test="${bank.code.subCode!=''}">
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 id="deleteBank_${count.index}"
                                                 class="btn btn-secondary delete-btn"  data-localize="label.delete" onclick="deleteBankAmount(${count.index})"
                                                 data-toggle="modal" data-target="#deleteModal"
@@ -1627,7 +1627,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input hidden="hidden" type="text" id="newBankCode" aria-label="" data-localize="accessHint.bankCode">
                                                     <button
                                                         class="btn btn-secondary xs getBank"
-                                                        type="button"
+                                                        type="button" role="button"
                                                         data-toggle= "modal"
                                                         data-target="#selectBankModal"
                                                         aria-label="" data-localize="profile.chooseBank" data-localize-location="aria-label" data-localize-notText="true"
@@ -1694,14 +1694,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-btn">
                                         <div class="saveOrCancel flex-line">
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary save-btn" data-localize="label.save"
                                                 id="saveNewBank"
                                             >
                                             
                                             </button>
                                             <button
-                                                type="button"
+                                                type="button" role="button"
                                                 class="btn btn-secondary cancel-add-btn"
                                                 data-localize="label.cancel"
                                             >
@@ -1711,12 +1711,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                 </form>
                                 <button
-                                    type="button"
+                                    type="button" role="button"
                                     class="btn btn-primary add-bank-btn"
                                 >
                                 <span data-localize="label.add"></span>
                                 </button>
-                                <p class="error-hint hide bankSizeError" data-localize="validator.maximumBankAmmount">
+                                <p class="error-hint hide bankSizeError" role="alert" aria-atomic="true" data-localize="validator.maximumBankAmmount">
                                 </p>
                             </div>
                         </c:if>
@@ -1741,7 +1741,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 <div class="modal-content">
                     <div class="modal-header">
                         <button
-                        type="button"
+                        type="button" role="button"
                         class="close"
                         data-dismiss="modal"
                         aria-hidden="true"
@@ -1790,7 +1790,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <div class="form-group btn-group">
                                 <div style="margin-top:20px;">
                                     <button
-                                        type="button" id="searchBankBtn"
+                                        type="button" role="button" id="searchBankBtn"
                                         class="btn btn-primary"
                                         data-localize="label.search"
                                     ></button>
@@ -1811,7 +1811,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <td data-localize="profile.routingNumber" data-localize-location="scope">
                                             <button
                                                 class="a-btn bankNumberBtn"
-                                                type="button"
+                                                type="button" role="button"
                                                 value="220483972"
                                                 data-title="A+ FEDERAL CREDIT UNION"
                                             >
@@ -1860,7 +1860,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     </div>
                     <div class="modal-footer">
                         <button
-                            type="button"
+                            type="button" role="button"
                             class="btn btn-secondary"
                             data-dismiss="modal"
                             aria-hidden="true"

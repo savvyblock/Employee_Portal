@@ -4,10 +4,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <table class="groupWrapTable" style="border:0;margin: 0;width:100%;" cellspacing="0" cellpadding="0">
 	<tr>
 		<td>
-			<table class="table border-table responsive-table no-thead print-table middle-td-table">
+			<table class="table border-table responsive-table no-thead print-table middle-td-table print-show-table">
 				<tr>
 					<td class="no-border-td" colspan="16">
-						<span class="sub-title" data-localize="info1095Table.partIIICoverIndividuals"></span>
+						<h2 class="sub-title" data-localize="info1095Table.partIIICoverIndividuals"></h2>
 						<div>
 								<span data-localize="info1095Table.ifEmployerProvidedSelfInsurance02"></span>
 						</div>

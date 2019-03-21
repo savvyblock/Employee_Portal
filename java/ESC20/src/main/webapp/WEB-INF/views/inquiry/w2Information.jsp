@@ -14,8 +14,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
             <main class="content-wrapper" id="content" tabindex="-1">
                     <section class="content">
-                            <h2 class="clearfix no-print section-title">
-                                <span data-localize="title.w2Info"></span>
+                            <div class="clearfix no-print section-title">
+                                <h1 class="pageTitle" data-localize="title.w2Info"></h1>
                                 <div class="right-btn pull-right">
                                     <c:if test="${sessionScope.options.enableElecConsntW2}">
                                         <button class="btn btn-primary" data-toggle="modal" data-target="#electronicConsent" data-localize="label.w-2Consent"></button>
@@ -31,7 +31,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </button>
                                     </c:if>
                                 </div>
-                            </h2>
+                            </div>
                             <div class="content-white EMP-detail w-2">
                                 <div class="exportPDFBox">
 
@@ -39,7 +39,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
                                 <c:if test="${isSuccess && isUpdate}">
                                     <div id="updateMsg" class="no-print">
-                                        <span class="error-hint">
+                                        <span class="error-hint" role="alert" aria-atomic="true">
                                             <b data-localize="validator.updateWasSuccessful"></b>
                                         </span>
                                         <br/>
@@ -1124,23 +1124,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 tabindex="-1"
                 role="dialog"
                 aria-labelledby="electronicConsent"
-                aria-hidden="true"
                 data-backdrop="static"
             >
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button
-                                type="button"
-                                class="close"
-                                data-dismiss="modal"
-                                aria-hidden="true"
-                                aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
-                            >
-                                &times;
-                            </button>
+                           
                             <h4 class="modal-title new-title" data-localize="label.w2ElectronicConsent">
                             </h4>
+                            <button
+                            type="button" role="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
+                        >
+                            &times;
+                        </button>
                         </div>
                         <div class="modal-body">
                             <form >
@@ -1154,13 +1153,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <div class="form-group">
                                         <div class="checkbox mb-2">
                                             <label for="consent">
-                                                <input class="consentRadio" type="radio" name="consent" id="consent"> 
+                                                <input class="consentRadio" type="radio" role="radio" name="consent" id="consent"> 
                                                 <span data-localize="label.w2Yes"></span>
                                             </label>
                                         </div>
                                         <div class="checkbox">
                                                 <label for="notConsent">
-                                                    <input class="consentRadio" type="radio" name="consent" id="notConsent"> 
+                                                    <input class="consentRadio" type="radio" role="radio" name="consent" id="notConsent"> 
                                                     <span data-localize="label.w2No"></span>
                                                 </label>
                                         </div>
@@ -1174,21 +1173,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <input type="text" name="consent" id="elecConsntW2Flag" value="${consent}" aria-label="" data-localize="accessHint.consent">
                                 <input type="text"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}" aria-label="" data-localize="accessHint.enableElecConsntW2"/>
                             </form>
-                            <p class="error-hint hide" id="noChooseError" data-localize="validator.pleaseSelectAgreeWay"></p>
+                            <p class="error-hint hide" role="alert" aria-atomic="true" id="noChooseError" data-localize="validator.pleaseSelectAgreeWay"></p>
                         </div>
                         <div class="modal-footer">
                             <button
                                 id="saveConsent"
-                                type="button"
+                                type="button" role="button"
                                 class="btn btn-primary"
                                 data-dismiss="modal"
-                                aria-hidden="true"
                                 data-localize="label.save"
                             ></button>
                             <button
                                 class="btn btn-secondary"
                                 data-dismiss="modal"
-                                aria-hidden="true"
                                 data-localize="label.cancel"
                             >
                             </button>

@@ -10,16 +10,15 @@
     <div class="modal-dialog approveForm" style="max-width:350px;">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" data-localize="label.changePassword"></h4>
                 <button
-                    type="button"
+                    type="button" role="button"
                     class="close closeModal"
                     data-dismiss="modal"
-                    aria-hidden="true"
                     aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
                     >
                     &times;
                 </button>
-                <h4 class="modal-title" data-localize="label.changePassword"></h4>
             </div>
               
                   <form id="updatePassword" action="updatePassword" method="post" style="max-width:350px;">
@@ -41,7 +40,7 @@
                           </div>
                       </div>  
                       <div class="form-group has-error oldPsdValidator" style = "display:none">
-                            <small class="help-block" data-localize="validator.oldPasswordWrong"></small>
+                            <small class="help-block" role="alert" aria-atomic="true" data-localize="validator.oldPasswordWrong"></small>
                         </div>
                     <div class="form-group">
                           <label class="form-title" for="newPassword" data-localize="label.newPassword"></label>
@@ -71,13 +70,12 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="changePsd" class="btn btn-primary" data-localize="label.submit">
+                        <button type="button" role="button" id="changePsd" class="btn btn-primary" data-localize="label.submit">
                           </button>
                         <button
-                        type="button"
+                        type="button" role="button"
                             class="btn btn-secondary closeModal"
                             data-dismiss="modal"
-                            aria-hidden="true"
                             id="cancelAdd"
                             data-localize="label.cancel"
                         >

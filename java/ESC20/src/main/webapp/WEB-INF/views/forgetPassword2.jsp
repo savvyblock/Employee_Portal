@@ -9,7 +9,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     </head>
     <body class="account-wrap">
         <%@ include file="commons/bar-account.jsp"%>
-        <div class="account-top content-body"  tabindex="-1">
+        <div class="account-top content-body answerQuestion"  tabindex="-1">
                 <div class="account-inner sm">
                         <form action="answerHintQuestion" method="post">
                         	<input type="hidden" name="count" value="${count}"/>
@@ -64,10 +64,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                             
                             <c:if test="${errorMessage!=null && errorMessage!=''}">
-                            	<p class="error-hint" id="noUserError" data-localize="validator.answerError"></p>
+                            	<p class="error-hint" role="alert" aria-atomic="true" id="noUserError" data-localize="validator.answerError"></p>
                             </c:if>
                             <div class="form-group account-btn">
-                                <button type="submit" class="btn btn-primary" data-localize="label.submit">
+                                <button type="submit" role="submitButton" class="btn btn-primary" data-localize="label.submit">
                                 </button>
                             </div> 
                     </form>

@@ -10,16 +10,16 @@
     <div class="modal-dialog approveForm">
         <div class="modal-content">
             <div class="modal-header">
+                
+                <h4 class="modal-title" data-localize="label.approveLeaveRequests"></h4>
                 <button
-                    type="button"
+                    type="button" role="button"
                     class="close closeModal"
                     data-dismiss="modal"
-                    aria-hidden="true"
                     aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
                     >
                     &times;
                 </button>
-                <h4 class="modal-title" data-localize="label.approveLeaveRequests"></h4>
             </div>
               <div class="modal-body">
                   <table class="table border-table no-thead">
@@ -27,7 +27,7 @@
                       <tr>
                         <td><b data-localize="label.employee"></b></td>
                         <td data-localize="label.employee" data-localize-location="title">
-                            <!-- <button class="showBalanceBtn pull-right a-btn" data-localize="label.showLeaveBalanceSummary" data-localize-location="title" type="button" onclick="showDetailStatic(this)">
+                            <!-- <button class="showBalanceBtn pull-right a-btn" data-localize="label.showLeaveBalanceSummary" data-localize-location="title" type="button" role="button" onclick="showDetailStatic(this)">
                                 <i class="fa fa-angle-double-down"></i>
                                 <i class="fa fa-angle-double-up"></i>
                             </button> -->
@@ -84,10 +84,9 @@
               </div>
               <div class="modal-footer">
                   <button
-                  type="button"
+                  type="button" role="button"
                       class="btn btn-secondary closeModal"
                       data-dismiss="modal"
-                      aria-hidden="true"
                       id="cancelAddStatic"
                       data-localize="label.cancel"
                   >

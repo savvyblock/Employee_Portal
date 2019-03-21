@@ -13,9 +13,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 			
             <main class="content-wrapper" tabindex="-1">
                     <section class="content">
-                    <h2 class="clearfix section-title">
+                    <h1 class="clearfix section-title">
                         <span data-localize="title.setTemporaryApprovers"></span>
-                    </h2>
+                    </h1>
                     <div class="showSelectSupervisor">
                         <label class="form-title"><span data-localize="label.supervisorHierarchy"></span>: </label>
                         <c:forEach var="item" items="${chain}" varStatus="status">
@@ -43,12 +43,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </select>
                                     </div>
                                     <div class="form-group in-line flex-auto">
-                                            <button type="button" class="btn btn-primary disabled" 
+                                            <button type="button" role="button" class="btn btn-primary disabled" 
                                                 id="prevLevel" 
                                                 data-localize="label.previousLevel"
                                                 disabled
                                                 ></button>
-                                            <button type="button" class="btn btn-primary  disabled" 
+                                            <button type="button" role="button" class="btn btn-primary  disabled" 
                                             id="nextLevel" 
                                             data-localize="label.nextLevel"
                                             disabled
@@ -62,7 +62,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </form>
                         <br />
                         <div class="content-white EMP-detail">
-                            <div class="mb-3">
+                            <h2 class="mb-3" style="font-size: 14px;">
                                 <span data-localize="label.temporaryApproversFor"></span>
                                 <b class="highlight">
                                         <c:forEach var="item" items="${chain}" varStatus="status">
@@ -70,7 +70,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </c:forEach>
                                     </b
                                 >
-                            </div>
+                                    </h2>
                             <form action="saveTempApprovers" id="saveTempApprovers" method="POST">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
@@ -107,7 +107,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             <td class="empTo" data-localize="setTemporaryApprovers.toDate" data-localize-location="scope">${tem.datetimeTo}</td>
                                                             <td data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
                                                                 <button
-                                                                    type="button"
+                                                                    type="button" role="button"
                                                                     class="a-btn deleteApprover"
                                                                     aria-label="" data-localize="label.delete" data-localize-location="aria-label" data-localize-notText="true"
                                                                 >
@@ -169,7 +169,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </td>
                                             <td data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
                                                 <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     class="a-btn"
                                                     onclick="deleteRow(this)"
                                                     aria-label="" data-localize="label.delete" data-localize-location="aria-label" data-localize-notText="true"
@@ -181,7 +181,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <tr>
                                             <td class="no-title" colspan="5" data-localize="label.add" data-localize-location="scope">
                                                 <button
-                                                    type="button"
+                                                    type="button" role="button"
                                                     class="a-btn add-new-row"
                                                     aria-label="" data-localize="label.add" data-localize-location="aria-label" data-localize-notText="true"
                                                 >
@@ -192,15 +192,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </tbody>
                                 </table>
                                 <div class="errorList">
-                                    <p class="error-hint hide" id="repeatError" data-localize="validator.repeatError"></p>
-                                    <p class="error-hint hide" id="noResultError" data-localize="validator.noResultError"></p>
-                                    <p class="error-hint hide" id="errorComplete" data-localize="validator.pleaseCompleteForm"></p>
-                                    <p class="error-hint hide" id="errorDate" data-localize="validator.startNotBeGreaterThanEndDate"></p>
+                                    <p class="error-hint hide" role="alert" aria-atomic="true" id="repeatError" data-localize="validator.repeatError"></p>
+                                    <p class="error-hint hide" role="alert" aria-atomic="true" id="noResultError" data-localize="validator.noResultError"></p>
+                                    <p class="error-hint hide" role="alert" aria-atomic="true" id="errorComplete" data-localize="validator.pleaseCompleteForm"></p>
+                                    <p class="error-hint hide" role="alert" aria-atomic="true" id="errorDate" data-localize="validator.startNotBeGreaterThanEndDate"></p>
     
                                 </div>
                                 <div class="text-right mt-3">
                                     <button
-                                        type="button"
+                                        type="button" role="button"
                                         class="btn btn-primary"
                                         aria-label=""
                                         id="saveSet"
@@ -208,7 +208,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     >
                                     </button>
                                     <button
-                                        type="button"
+                                        type="button" role="button"
                                         class="btn btn-secondary"
                                         aria-label=""
                                         id="reset"

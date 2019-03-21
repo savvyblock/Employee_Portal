@@ -39,7 +39,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         </div>
                     </div>
                     <div class="form-group account-btn">
-                        <button type="submit" class="btn btn-primary" data-localize="label.submit">
+                        <button type="submit" role="submitButton" class="btn btn-primary" data-localize="label.submit">
                         </button>
                     </div>
                 </form>

@@ -33,16 +33,16 @@
                                 </div>
                                 
                             </div>
-                            <p class="error-hint hide" id="errorMessage" data-localize="validator.usernameOrPasswordError"></p>
-                            <p class="error-hint hide" id="incorrectMessage" data-localize="validator.usernameOrPasswordIncorrect"></p>
+                            <p class="error-hint hide" role="alert" aria-atomic="true" id="errorMessage" data-localize="validator.usernameOrPasswordError"></p>
+                            <p class="error-hint hide" role="alert" aria-atomic="true" id="incorrectMessage" data-localize="validator.usernameOrPasswordIncorrect"></p>
                             <c:if test="${resetPsw!=null && resetPsw=='resetPswSuccess'}">
-		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswSuccess"></div>
+		                        <div class="valid-wrap error-hint" role="alert" aria-atomic="true" data-localize="validator.resetPswSuccess"></div>
 		                    </c:if>
 		                    <c:if test="${resetPsw!=null && resetPsw=='resetPswFaild'}">
-		                        <div class="valid-wrap error-hint" data-localize="validator.resetPswFaild"></div>
+		                        <div class="valid-wrap error-hint" role="alert" aria-atomic="true" data-localize="validator.resetPswFaild"></div>
 		                    </c:if>
                             <div class="form-group account-btn">
-                                <button id="signin" type="submit" class="btn btn-primary" data-localize="label.login"></button>
+                                <button id="signin" type="submit" role="submitButton" class="btn btn-primary" data-localize="label.login"></button>
                             </div>
                             
                         </form>

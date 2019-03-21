@@ -14,13 +14,12 @@
                 <p data-localize="label.areYouDelete"></p>
             </div>
             <div class="modal-footer">
-                <button type="button"  class="btn btn-primary sureDelete" data-localize="label.ok">
+                <button type="button" role="button"  class="btn btn-primary sureDelete" data-localize="label.ok">
                 </button>
                 <button
-                    type="button"
+                    type="button" role="button"
                     class="btn btn-secondary closeModal"
                     data-dismiss="modal"
-                    aria-hidden="true"
                     data-localize="label.cancel"
                 >
                 </button>

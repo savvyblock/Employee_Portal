@@ -65,10 +65,12 @@ $(function(){
         console.log("session end")
         $(".loginPage .account-inner.loginBox").hide()
         $(".loginPage .account-inner.logBackBox").show()
+        $(".loginPage .account-top").addClass("sessionEnd")
     }else{
         console.log("login ")
         $(".loginPage .account-inner.loginBox").show()
         $(".loginPage .account-inner.logBackBox").hide()
+        $(".loginPage .account-top").removeClass("sessionEnd")
     }
 //    $('#signin').on('click',function(){
 //        var userName = $('#inputEmail').val();

@@ -13,10 +13,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 			
             <main class="content-wrapper" tabindex="-1">
                 <section class="content">
-                    <h2 class="clearfix section-title">
-                        <span data-localize="title.leaveRequest"></span>
+                    <div class="clearfix section-title">
+                        <h1 class="pageTitle" data-localize="title.leaveRequest"></h1>
                         <a class="btn btn-primary pull-right" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/leaveRequest" data-localize="label.switchToTableView"></a>
-                    </h2>
+                    </div>
                     <div class="content-white"><div id="calendar"></div></div>
                 </section>
             </main>
