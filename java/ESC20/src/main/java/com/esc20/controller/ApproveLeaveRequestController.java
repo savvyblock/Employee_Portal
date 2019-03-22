@@ -45,6 +45,8 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 	@Autowired
 	private ReferenceService referenceService;
 	
+	private final String module = "Approve Leave Request";
+	
 	@RequestMapping("approveLeaveRequestList")
 	public ModelAndView getApproveLeaveRequestList(HttpServletRequest req, String empNbr) throws ParseException {
 		HttpSession session = req.getSession();
@@ -167,6 +169,13 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 			throws ParseException {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(id==null||chain==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Approve Leave");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer currentLevel = levels.size() - 1;
 		String currentSupervisorEmployeeNumber = ((JSONObject) levels.get(currentLevel)).getString("employeeNumber");
@@ -190,6 +199,13 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 			throws ParseException {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(id==null||chain==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Disapprove Leave");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer currentLevel = levels.size() - 1;
 		String currentSupervisorEmployeeNumber = ((JSONObject) levels.get(currentLevel)).getString("employeeNumber");
