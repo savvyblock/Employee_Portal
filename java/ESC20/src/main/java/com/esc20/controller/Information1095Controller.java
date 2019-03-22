@@ -45,6 +45,8 @@ public class Information1095Controller{
 	@Autowired
 	private InquiryService service;
 
+	private final String module = "1095 Information";
+	
 	@RequestMapping("information1095")
 	public ModelAndView getInformation1095(HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -57,6 +59,13 @@ public class Information1095Controller{
 	public ModelAndView update1095Consent(HttpServletRequest req, String year, String consent) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(consent==null||year==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Update 1095 consent");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		Boolean isSuccess = this.service.update1095ElecConsent(employeeNumber, consent);
@@ -71,6 +80,13 @@ public class Information1095Controller{
 	public ModelAndView getInformation1095ByYear(HttpServletRequest req, String year) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(year==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Get 1095 information by year");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		mav.setViewName("/inquiry/information1095");
 		mav = init1095(mav, session, year, 1, 1, null, null, null);
 		return mav;
@@ -81,6 +97,13 @@ public class Information1095Controller{
 			String sortOrder) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(year==null||BPageNo==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Get 1095-B information");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		mav.setViewName("/inquiry/information1095");
 		mav = init1095(mav, session, year, Integer.parseInt(BPageNo), 1, sortBy, sortOrder, "B");
 		return mav;
@@ -91,6 +114,13 @@ public class Information1095Controller{
 			String sortOrder) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(year==null||CPageNo==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Get 1095-C information");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		mav.setViewName("/inquiry/information1095");
 		mav = init1095(mav, session, year, 1, Integer.parseInt(CPageNo), sortBy, sortOrder, "C");
 		return mav;

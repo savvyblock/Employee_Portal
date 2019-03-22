@@ -29,6 +29,8 @@ public class CreateUserController{
     @Autowired
     private CustomSHA256Encoder encoder;
 	
+    private final String module = "Create New User";
+    
     @RequestMapping("searchUser")
     public ModelAndView searchUser(HttpServletRequest req){
     	ModelAndView mav = new ModelAndView();
@@ -46,6 +48,14 @@ public class CreateUserController{
     @RequestMapping("saveNewUser")
     public ModelAndView saveNewUser(HttpServletRequest req){
     	ModelAndView mav = new ModelAndView();
+		if(req.getParameter("empNbr")==null||req.getParameter("username")==null||req.getParameter("hintQuestion")==null
+				||req.getParameter("hintAnswer")==null||req.getParameter("password")==null) {
+			mav.setViewName("visitFailedUnAuth");
+			mav.addObject("module", module);
+			mav.addObject("action", "Save Users");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
     	BeaUsers newUser=new BeaUsers();
     	newUser.setEmpNbr(req.getParameter("empNbr"));
     	newUser.setUsrname(req.getParameter("username"));//username
@@ -94,7 +104,14 @@ public class CreateUserController{
     @RequestMapping(value="retrieveEmployee",method=RequestMethod.POST)
     public ModelAndView retrieveEmployee(HttpServletRequest req){
     	ModelAndView mav = new ModelAndView();
-    	
+		if(req.getParameter("dateDay")==null||req.getParameter("dateMonth")==null||req.getParameter("dateYear")==null
+				||req.getParameter("empNumber")==null||req.getParameter("zipCode")==null) {
+			mav.setViewName("visitFailedUnAuth");
+			mav.addObject("module", module);
+			mav.addObject("action", "Retrieve employee information");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
     	SearchUser searchUser=new SearchUser();
     	searchUser.setDateDay(req.getParameter("dateDay"));
     	searchUser.setDateMonth(req.getParameter("dateMonth"));

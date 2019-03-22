@@ -25,6 +25,8 @@ public class CalendarYearToDateController {
 	@Autowired
 	private InquiryService service;
 	
+	private final String module = "Calendar Year to Date";
+	
 	@RequestMapping("calendarYearToDate")
 	public ModelAndView getCalendarYearToDate(HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -51,6 +53,13 @@ public class CalendarYearToDateController {
 	public ModelAndView getCalendarYearToDateByYear(HttpServletRequest req, String year) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(year==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Get calendar year to date information by year");
+			mav.addObject("errorMsg", "Year not provided.");
+			return mav;
+		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		BhrCalYtd calYTD = service.getCalenderYTD(employeeNumber, year);

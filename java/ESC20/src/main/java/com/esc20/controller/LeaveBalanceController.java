@@ -32,6 +32,8 @@ public class LeaveBalanceController{
 	@Autowired
 	private ReferenceService referenceService;
 	
+	private final String module = "Leave Balance";
+	
 	@RequestMapping("leaveBalance")
 	public ModelAndView leaveBalance(HttpServletRequest req, String SearchType, String SearchStart, String SearchEnd,
 			String freq) throws ParseException {
@@ -91,7 +93,15 @@ public class LeaveBalanceController{
 
 	@RequestMapping("leaveBalanceByFreqency")
 	public ModelAndView leaveBalanceByFreqency(HttpServletRequest req, String freq) throws ParseException {
-		ModelAndView mav = this.leaveBalance(req, null, null, null, freq);
+		ModelAndView mav = new ModelAndView();
+		if(freq==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Get leave balance by frequency");
+			mav.addObject("errorMsg", "No frequency selected.");
+			return mav;
+		}
+		mav = this.leaveBalance(req, null, null, null, freq);
 		mav.setViewName("/leaveBalance/leaveBalance");
 		return mav;
 	}

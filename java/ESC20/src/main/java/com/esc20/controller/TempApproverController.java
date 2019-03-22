@@ -39,9 +39,8 @@ public class TempApproverController extends BaseSupervisorController {
 
 	@Autowired
 	private IndexService indexService;
-
-	@Autowired
-	private ReferenceService referenceService;
+	
+	private final String module = "Set Temp Approvers";
 	
 	@RequestMapping("leaveRequestTemporaryApprovers")
 	public ModelAndView getLeaveRequestTemporaryApprovers(HttpServletRequest req, String empNbr) {
@@ -93,8 +92,14 @@ public class TempApproverController extends BaseSupervisorController {
 	@RequestMapping("nextLevelFromTempApprovers")
 	public ModelAndView nextLevelFromTempApprovers(HttpServletRequest req, String level, String chain,
 			String selectEmpNbr) throws ParseException {
-		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(chain==null||selectEmpNbr==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Next level from set temp approvers");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		mav.setViewName("/supervisor/leaveRequestTemporaryApprovers");
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer currentLevel = levels.size() - 1;
@@ -125,8 +130,14 @@ public class TempApproverController extends BaseSupervisorController {
 	@RequestMapping("previousLevelFromTempApprovers")
 	public ModelAndView previousLevelFromTempApprovers(HttpServletRequest req, String level, String chain)
 			throws ParseException {
-		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(chain==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Previous level from set temp approvers");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer prevLevel = levels.size() - 2;
@@ -142,6 +153,13 @@ public class TempApproverController extends BaseSupervisorController {
 			String approverJson) throws ParseException {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(chain==null||approverJson==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Save temp approvers");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		JSONArray levels = JSONArray.fromObject(chain);
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));

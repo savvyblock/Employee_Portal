@@ -14,6 +14,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		<security:intercept-url pattern="/logBackIn**" access="permitAll"/>
 		<security:intercept-url pattern="/loginEA" access="permitAll"/>
 		<security:intercept-url pattern="/logoutEA" access="permitAll"/>
+		<security:intercept-url pattern="/visitFailedUnAuth" access="permitAll"/>
 		<security:intercept-url pattern="/createUser/**" access="permitAll"/>
 		<security:intercept-url pattern="/resetPassword/**" access="permitAll"/>
 		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />

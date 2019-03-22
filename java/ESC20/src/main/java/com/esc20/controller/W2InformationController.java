@@ -29,6 +29,8 @@ public class W2InformationController{
 	@Autowired
 	private InquiryService service;
 	
+	private final String module = "W2 Information";
+	
 	@RequestMapping("w2Information")
 	public ModelAndView getW2Information(HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -47,6 +49,13 @@ public class W2InformationController{
 	public ModelAndView getW2InformationByYear(HttpServletRequest req, String year, Boolean isSuccess) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(year==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Get W2 information by year");
+			mav.addObject("errorMsg", "Year is not provided.");
+			return mav;
+		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		BhrW2 w2Info = this.service.getW2Info(employeeNumber, year);
@@ -108,6 +117,13 @@ public class W2InformationController{
 	public ModelAndView updateW2Consent(HttpServletRequest req, String year, String consent) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(year==null||consent==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Update W2 consent");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		Boolean isSuccess = this.service.updateW2ElecConsent(employeeNumber, consent);

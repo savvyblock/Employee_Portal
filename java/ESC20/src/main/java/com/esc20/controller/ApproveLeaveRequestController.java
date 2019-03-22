@@ -119,8 +119,14 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 	@RequestMapping("nextLevelFromApproveLeave")
 	public ModelAndView nextLevelFromApproveLeave(HttpServletRequest req, String level, String chain,
 			String selectEmpNbr) throws ParseException {
-		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(chain==null||selectEmpNbr==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Next level from approve leave");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer currentLevel = levels.size() - 1;
@@ -151,8 +157,14 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 	@RequestMapping("previousLevelFromApproveLeave")
 	public ModelAndView previousLevelFromApproveLeave(HttpServletRequest req, String level, String chain)
 			throws ParseException {
-		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(chain==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Previous level from approve leave");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer prevLevel = levels.size() - 2;
@@ -172,7 +184,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		if(id==null||chain==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
-			mav.addObject("action", "Approve Leave");
+			mav.addObject("action", "Approve leave");
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
 		}
@@ -202,7 +214,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		if(id==null||chain==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
-			mav.addObject("action", "Disapprove Leave");
+			mav.addObject("action", "Disapprove leave");
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
 		}

@@ -27,6 +27,8 @@ public class EarningsController{
 	@Autowired
 	private InquiryService service;
 	
+	private final String module="Earnings";
+	
 	@RequestMapping("earnings")
 	public ModelAndView getEarnings(HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -76,6 +78,13 @@ public class EarningsController{
 	public ModelAndView getEarningsByPayDate(HttpServletRequest req, String payDateString) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(payDateString==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Get Earnings by pay date");
+			mav.addObject("errorMsg", "No pay date selected.");
+			return mav;
+		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		Integer days = ((Options) session.getAttribute("options")).getMaxDays();

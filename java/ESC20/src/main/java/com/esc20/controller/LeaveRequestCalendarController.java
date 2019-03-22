@@ -34,6 +34,8 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 	@Autowired
 	private ReferenceService referenceService;
 	
+	private final String module = "Leave Request Calendar View";
+	
 	@RequestMapping("eventCalendar")
 	public ModelAndView getEventCalendar(HttpServletRequest req, String freq) {
 		HttpSession session = req.getSession();
@@ -139,6 +141,15 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 			throws ParseException {
 		HttpSession session = req.getSession();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		ModelAndView mav = new ModelAndView();
+		if(leaveType==null||absenseReason==null||LeaveStartDate==null||startTimeValue==null||
+				LeaveEndDate==null||endTimeValue==null||lvUnitsDaily==null||lvUnitsUsed==null||freq==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Create or update leave information from leave request calendar view");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate,
 				endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo);
 		return this.getEventCalendar(req, freq);
@@ -146,6 +157,14 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 	
 	@RequestMapping("deleteLeaveRequestFromCalendar")
 	public ModelAndView deleteLeaveRequestFromCalendar(HttpServletRequest req, String id, String freq) {
+		ModelAndView mav = new ModelAndView();
+		if(id==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Delete leave information from leave overview");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		deleteLeaveRequest(id);
 		return this.getEventCalendar(req, freq);
 	}

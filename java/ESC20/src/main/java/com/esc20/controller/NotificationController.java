@@ -29,6 +29,8 @@ public class NotificationController{
     @Autowired
     private IndexService indexService;
 	
+    private final String module = "Notifications";
+    
 	@RequestMapping("notifications")
     public ModelAndView getNotifications(HttpServletRequest req){
         HttpSession session = req.getSession();
@@ -46,7 +48,14 @@ public class NotificationController{
     public ModelAndView markAsRead(HttpServletRequest req,String id){
         HttpSession session = req.getSession();
         BeaUsers user = (BeaUsers)session.getAttribute("user");
-        ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
+		if(id==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Mark as Read");
+			mav.addObject("errorMsg", "No id provided.");
+			return mav;
+		}
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteAlert(id);
         List<BeaAlert> unReadList = this.indexService.getUnReadAlert(demo.getEmpNbr());

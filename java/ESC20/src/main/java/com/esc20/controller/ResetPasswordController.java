@@ -28,9 +28,20 @@ public class ResetPasswordController{
     @Autowired
     private CustomSHA256Encoder encoder;
 	
+    private final String module = "Reset Password";
+    
     @RequestMapping("retrieveUserName")
     public ModelAndView retrieveUserName(HttpServletRequest req){
     	ModelAndView mav = new ModelAndView();
+		if(req.getParameter("dateDay")==null||req.getParameter("dateMonth")==null||req.getParameter("dateYear")==null
+				||req.getParameter("empNumber")==null||req.getParameter("zipCode")==null) {
+			mav.setViewName("visitFailedUnAuth");
+			mav.addObject("module", module);
+			mav.addObject("action", "Retrieve user information");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
+    	
     	SearchUser searchUser=new SearchUser();
     	searchUser.setDateDay(req.getParameter("dateDay"));
     	searchUser.setDateMonth(req.getParameter("dateMonth"));
@@ -77,6 +88,13 @@ public class ResetPasswordController{
     @RequestMapping("answerHintQuestion")
     public ModelAndView answerHintQuestion(HttpServletRequest req, String answer, String empNbr) {
     	ModelAndView mav = new ModelAndView();
+		if(answer==null||empNbr==null) {
+			mav.setViewName("visitFailedUnAuth");
+			mav.addObject("module", module);
+			mav.addObject("action", "Answer hint question");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
     	SearchUser searchUser=new SearchUser();
     	BeaUsers beaUser = this.indexService.getUserByEmpNbr(empNbr);
     	Integer count = beaUser.getTmpCnt();
@@ -134,6 +152,13 @@ public class ResetPasswordController{
 	@RequestMapping("updatePassword")
 	public ModelAndView updatePassword(HttpServletRequest req,String password, String id){
 		ModelAndView mav = new ModelAndView();
+		if(password==null||id==null) {
+			mav.setViewName("visitFailedUnAuth");
+			mav.addObject("module", module);
+			mav.addObject("action", "Update user password");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		mav.setViewName("login");
 		
 		try {
@@ -150,29 +175,5 @@ public class ResetPasswordController{
 		}
 		mav.addObject("resetPsw", "resetPswSuccess");
 	    return mav;
-	}
-	
-    @RequestMapping("resetPassword")
-    public ModelAndView resetPassword(HttpServletRequest req, String userName, String email) throws ParseException{
-    	ModelAndView mav = new ModelAndView();
-    	BeaUsers user = this.indexService.getUserPwd(userName);
-    	if(user!=null) {
-    		
-    		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-    		if(email.endsWith(userDetail.getEmail())) {
-    			mav.setViewName("resetPassword");
-        		mav.addObject("id", user.getEmpNbr());
-        		return mav;
-    		}else {
-    			 mav.setViewName("forgetPassword");
-    		     mav.addObject("errorMessage", "User Does not exist");
-    		}
-    		
-    	}
-        mav.setViewName("forgetPassword");
-        mav.addObject("errorMessage", "User Does not exist");
-        return mav;
-    }
-    
-    
+	}   
 }

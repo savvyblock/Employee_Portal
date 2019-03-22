@@ -76,6 +76,8 @@ public class ProfileController{
     @Autowired
     private CustomSHA256Encoder encoder;
     
+    private final String module = "Profile";
+    
     @RequestMapping("profile")
     public ModelAndView getProfile(HttpServletRequest req,String freq){
         HttpSession session = req.getSession();
@@ -136,7 +138,18 @@ public class ProfileController{
     @RequestMapping("saveBank")
     public ModelAndView saveBank(HttpServletRequest req) {
         HttpSession session = req.getSession();
+        ModelAndView mav = new ModelAndView();
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        
+		if(req.getParameter("freq")==null||req.getParameter("displayAmount")==null||
+				req.getParameter("displayLabel")==null || req.getParameter("accountNumber")==null || 
+				req.getParameter("subCode")==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Save bank account request information");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         
         String freq = req.getParameter("freq");
         String displayAmount = req.getParameter("displayAmount");
@@ -146,7 +159,7 @@ public class ProfileController{
         
         String employeeNumber = demo.getEmpNbr();
         
-        ModelAndView mav = new ModelAndView();
+        
         Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
         
         Bank payrollAccountInfo = new Bank();
@@ -186,6 +199,17 @@ public class ProfileController{
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         
         String freq = req.getParameter("freq");
+        ModelAndView mav = new ModelAndView();
+		if(req.getParameter("displayAmount")==null||req.getParameter("accountType")==null||
+				req.getParameter("accountNumber")==null || req.getParameter("code")==null || 
+				req.getParameter("displayAmountNew")==null || req.getParameter("accountTypeNew")==null
+				|| req.getParameter("accountNumberNew")==null || req.getParameter("codeNew")==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Update bank account reuqest information");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         
         String displayAmount = req.getParameter("displayAmount");
         String displayLabel = req.getParameter("accountType");
@@ -199,7 +223,7 @@ public class ProfileController{
         
         String employeeNumber = demo.getEmpNbr();
         
-        ModelAndView mav = new ModelAndView();
+        
         Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
         
         Bank accountInfo = new Bank();
@@ -243,8 +267,20 @@ public class ProfileController{
         HttpSession session = req.getSession();
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         
-        String freq = req.getParameter("freq");
         
+        
+        ModelAndView mav = new ModelAndView();
+		if(req.getParameter("freq")==null||req.getParameter("displayAmount")==null||
+				req.getParameter("accountType")==null || req.getParameter("accountNumber")==null || 
+				req.getParameter("code")==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Delete bank account");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
+        
+		String freq = req.getParameter("freq");
         String displayAmount = req.getParameter("displayAmount");
         String displayLabel = req.getParameter("accountType");
         String accountNumber = req.getParameter("accountNumber");
@@ -252,7 +288,7 @@ public class ProfileController{
         
         String employeeNumber = demo.getEmpNbr();
         
-        ModelAndView mav = new ModelAndView();
+        
         Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
         
         Bank payrollAccountInfo = new Bank();
@@ -292,13 +328,19 @@ public class ProfileController{
     public ModelAndView undoBank(HttpServletRequest req) {
         HttpSession session = req.getSession();
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        ModelAndView mav = new ModelAndView();
+		if(req.getParameter("freq")==null||req.getParameter("accountNumber")==null || req.getParameter("code")==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Undo bank account request");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         String freq = req.getParameter("freq");
         String code = req.getParameter("code");
-        String codeNew = req.getParameter("codeNew");
         String accountNumber = req.getParameter("accountNumber");
-        String accountNumberNew = req.getParameter("accountNumberNew");
         String employeeNumber = demo.getEmpNbr();
-        ModelAndView mav = new ModelAndView();
+
         Bank payrollAccountInfo = new Bank();
         payrollAccountInfo.setAccountNumber(accountNumber);
         payrollAccountInfo.setCode(this.bankService.getBank(code));
@@ -358,10 +400,17 @@ public class ProfileController{
     }
 
     @RequestMapping("updatePassword")
-    public ModelAndView updatePassword(HttpServletRequest req, String password, String id){
+    public ModelAndView updatePassword(HttpServletRequest req, String password){
         HttpSession session = req.getSession();
         BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
+		if(password==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Update Password");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         if(StringUtils.isEmpty(password)) {
         	mav = new ModelAndView("redirect:/profile");
         	return mav;
@@ -380,6 +429,14 @@ public class ProfileController{
     		String empNbr, String reqDts, String namePreNew, String nameFNew, String nameLNew, String nameMNew, String nameGenNew) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
+        
+		if(empNbr==null||reqDts==null||namePreNew==null||nameFNew==null||nameLNew==null||nameMNew==null||nameGenNew==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Save Name Request");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaLglName nameRequest;
@@ -420,6 +477,13 @@ public class ProfileController{
     public ModelAndView changeAvatar(HttpServletRequest req, String file, String fileName) {
     	 HttpSession session = req.getSession();
          ModelAndView mav = new ModelAndView();
+ 		if(file==null||fileName==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Change user profile picture");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
          BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
          BASE64Decoder decoder = new BASE64Decoder();
          file = file.replace("data:image/jpeg;base64,", "");
@@ -458,6 +522,13 @@ public class ProfileController{
     		String empNbr, String reqDts, String maritalStatNew) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
+ 		if(empNbr==null||reqDts==null||maritalStatNew==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Save marital status request");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaMrtlStat maritalStatusRequest;
@@ -494,6 +565,13 @@ public class ProfileController{
     		String empNbr, String reqDts, String driversLicNbrNew, String driversLicStNew) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
+ 		if(empNbr==null||reqDts==null||driversLicNbrNew==null||driversLicStNew==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Save marital status request");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaDrvsLic driversLicenseRequest;
@@ -531,6 +609,13 @@ public class ProfileController{
     		String empNbr, String reqDts, String restrictCdNew, String restrictCdPublicNew) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
+ 		if(empNbr==null||reqDts==null||restrictCdNew==null||restrictCdPublicNew==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Save restriction codes request");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaRestrict restrictionCodesRequest;
@@ -568,6 +653,13 @@ public class ProfileController{
     		String empNbr, String reqDts, String emailNew, String hmEmailNew) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
+ 		if(empNbr==null||reqDts==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Save user email address request");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaEmail emailRequest;
@@ -607,6 +699,13 @@ public class ProfileController{
     		, String emerPhoneNbrNew, String emerPhoneExtNew, String emerRelNew, String emerNoteNew) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
+ 		if(empNbr==null||reqDts==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Save user emergency contact request");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaEmerContact emergencyContactRequest;
@@ -650,6 +749,13 @@ public class ProfileController{
 			String addrCityNew, String addrStNew, String addrZipNew,String addrZip4New) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
+ 		if(empNbr==null||reqDts==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Save user mailing address request");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaMailAddr mailingAddressRequest;
@@ -694,6 +800,13 @@ public class ProfileController{
 			String smrAddrCityNew, String smrAddrStNew, String smrAddrZipNew,String smrAddrZip4New) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
+ 		if(empNbr==null||reqDts==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Save user alternative mailing address request");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaAltMailAddr altMailingAddressRequest;
@@ -738,6 +851,13 @@ public class ProfileController{
 			String phoneNbrCellNew, String phoneAreaBusNew, String phoneNbrBusNew,String busPhoneExtNew) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
+ 		if(empNbr==null||reqDts==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Save user phone number request");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         
@@ -812,6 +932,13 @@ public class ProfileController{
     	
     	 HttpSession session = req.getSession();
          ModelAndView mav = new ModelAndView();
+  		if(empNbr==null||reqDts==null) {
+ 			mav.setViewName("visitFailed");
+ 			mav.addObject("module", module);
+ 			mav.addObject("action", "Save user W4 martial status request");
+ 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+ 			return mav;
+ 		}
          mav.setViewName("profile");
          BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
          BhrEmpPay pay = new BhrEmpPay();

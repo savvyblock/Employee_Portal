@@ -51,6 +51,8 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	@Autowired
 	private ReferenceService referenceService;
 	
+	private final String module = "Leave Overview";
+	
 	@RequestMapping("leaveOverviewList")
 	public ModelAndView getLeaveOverviewList(HttpServletRequest req, String empNbr, String chain, String freq,
 			String startDate, String endDate, Boolean isChangeLevel) throws ParseException {
@@ -210,8 +212,14 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	@RequestMapping("nextLevelFromLeaveOverview")
 	public ModelAndView nextLevelFromLeaveOverview(HttpServletRequest req, String level, String chain,
 			String selectEmpNbr) throws ParseException {
-		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(chain==null||selectEmpNbr==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Next level from leave overview");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		mav.setViewName("/supervisor/leaveOverviewList");
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer currentLevel = levels.size() - 1;
@@ -242,8 +250,14 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	@RequestMapping("previousLevelFromLeaveOverview")
 	public ModelAndView previousLevelFromLeaveOverview(HttpServletRequest req, String level, String chain)
 			throws ParseException {
-		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(chain==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Previous level from leave overview");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer prevLevel = levels.size() - 2;
@@ -261,8 +275,15 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 			String startDate, String endDate) throws ParseException {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(chain==null||leaveType==null||absenseReason==null||LeaveStartDate==null||startTimeValue==null||
+				LeaveEndDate==null||endTimeValue==null||lvUnitsDaily==null||lvUnitsUsed==null||empNbr==null||freq==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Create or update leave information from leave overview");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		JSONArray levels = JSONArray.fromObject(chain);
-		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		BeaEmpLvRqst request;
 		if (leaveId == null || ("").equals(leaveId)) {
 			request = new BeaEmpLvRqst();
@@ -301,8 +322,14 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	@RequestMapping("deleteLeaveFromLeaveOverview")
 	public ModelAndView deleteLeaveFromLeaveOverview(HttpServletRequest req, String level, String chain, String leaveId,
 			String empNbr, String freq, String startDate, String endDate) throws ParseException {
-		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
+		if(chain==null||leaveId==null||empNbr==null||freq==null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", module);
+			mav.addObject("action", "Delete leave from leave overview");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
 		JSONArray levels = JSONArray.fromObject(chain);
 		deleteLeaveRequest(leaveId);
 		mav = this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false);
