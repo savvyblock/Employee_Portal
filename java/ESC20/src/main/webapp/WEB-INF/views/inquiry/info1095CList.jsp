@@ -214,22 +214,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 							</tr>
 						</c:forEach>
 					</c:if>
+					<c:if test="${fn:length(cList) == 0}">
+						<tr class="no-print">
+								<td colspan="19" style="text-align: center;" data-localize="label.noRows">No Rows</td>
+						</tr>
+						<tr class="print-tr">
+								<td colspan="16" style="text-align: center;" data-localize="label.noRows">No Rows</td>
+						</tr>
+					</c:if>
 				</tbody>
 			</table>
 		</td>
 	</tr>
-	<c:if test="${fn:length(cList) == 0}">
-	<tr>
-		<td>
-			<table class="table border-table responsive-table no-thead print-table middle-td-table">
-				<tr>
-					<td colspan="19" style="text-align: center;" data-localize="label.noRows">No Rows</td>
-				</tr>
-						
-			</table>
-		</td>
-	</tr>
-</c:if>
+	
 <c:if test="${fn:length(cList) > 0}">
 	<tr>
 		<td>

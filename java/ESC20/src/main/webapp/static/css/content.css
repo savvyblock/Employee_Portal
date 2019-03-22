@@ -1144,7 +1144,7 @@
 }
 
 .exportPDFBox .no-print {
-  display: none;
+  display: none !important;
 }
 
 .exportPDFBox .print-show {
@@ -1386,6 +1386,9 @@
   .table.print-table tr {
     margin: 0;
     display: table-row;
+  }
+  .table.print-table tr.no-print {
+    display: none;
   }
   .table.print-table th, .table.print-table td {
     padding: 3px 5px;

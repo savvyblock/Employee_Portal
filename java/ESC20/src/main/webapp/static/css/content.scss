@@ -979,7 +979,7 @@
         display: table;
     }
     .no-print{
-        display: none;
+        display: none!important;
     }
     .print-show{
         display: inline-block;
@@ -1250,6 +1250,9 @@
             tr {
                 margin: 0;
                 display: table-row;
+                &.no-print{
+                    display: none;
+                }
             }
             th,td{
                 padding: 3px 5px;
