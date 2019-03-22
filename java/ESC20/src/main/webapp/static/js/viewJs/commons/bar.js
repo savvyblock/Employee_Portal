@@ -40,7 +40,7 @@ var maxTime = sessionTimeOut // seconds
 console.log("timeout config: " + sessionTimeOut);
 var time = maxTime
 var budgeCount = 0
-$('.main-header,.main-sidebar,.content-wrapper').on(
+$('body').on(
     'keydown mousedown',
     function(e) {
         time = maxTime // reset

@@ -98,7 +98,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         >
                             <tbody>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.contractPay"></td>
+                                    <td id="contractPay" class="td-title" data-localize="calendarTable.contractPay"></td>
                                     <td
                                         class="td-content"
                                         data-localize="calendarTable.contractPay"

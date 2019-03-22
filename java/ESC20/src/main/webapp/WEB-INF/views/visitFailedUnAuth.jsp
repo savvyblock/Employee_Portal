@@ -14,18 +14,21 @@
               <div class="noFoundPage">
                 <div>
                   <h2 data-localize="label.exceptionOccurred"></h2>
-                  <p><span data-localize="label.fromModule"></span>: <span>${module}</span></p>
-                  <p><span data-localize="label.actionInvoked"></span>: <span>${action}</span></p>
-                  <p><span data-localize="label.message"></span>: <span>${errorMsg}</span></p>
+                  <div class="formModule">
+                    <p><span data-localize="label.fromModule"></span>: <b>${module}</b></p>
+                    <p><span data-localize="label.actionInvoked"></span>: <b>${action}</b></p>
+                    <p><span data-localize="label.message"></span>: <b>${errorMsg}</b></p>
+        
+                  </div>
                   <br/><br/>
-                  <p data-localize="label.ifYouHaveBookMarked">
-                    
+                  <p data-localize="label.ifYouHaveBookMarked" class="btm-p">
+                  
                   </p>
                 </div>
-              </div> 
-              <a href="#" onClick="javascript :history.back(-1);">
+                </div> 
+              <!-- <a href="#" onClick="javascript :history.back(-1);">
                 <button class="btn btn-primary" data-localize="label.back"></button>
-              </a>
+              </a> -->
             </div>
          </div>
     </body>
