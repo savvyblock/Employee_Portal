@@ -15,7 +15,16 @@
     	<section class="content">
     		<div class="container-fluid">
           <div class="noFoundPage">
-              <img src="/<%=request.getContextPath().split("/")[1]%>/images/opps.png" alt="" data-localize="label.errorImg">
+          	<div>
+          		<h2>Exception occurred</h2>
+          		<p><span>From Module: </span> <span>${module}</span></p>
+          		<p><span>Action invoked: </span> <span>${action}</span></p>
+          		<p><span>Message: </span> <span>${errorMsg}</span></p>
+          		<br/><br/>
+          		<p>
+          			If you have book-marked this URL, please remove it as this is related to submissions, necessary parameters will need to be provided in order for the method to function.
+          		</p>
+          	</div>
           </div>        
       	</div>
         </section>
