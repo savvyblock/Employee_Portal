@@ -7,8 +7,10 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Currency;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,9 +22,11 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.esc20.model.BeaAlert;
 import com.esc20.model.BeaAltMailAddr;
 import com.esc20.model.BeaBusPhone;
 import com.esc20.model.BeaCellPhone;
@@ -968,4 +972,17 @@ public class ProfileController{
         mav.addObject("w4Request", w4Request);
         mav.addObject("bankAccountTypes",bankAccountTypes);
 	}
+	
+    @RequestMapping(value = "validatePassword", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Boolean> validatePassword(HttpServletRequest req,String password) throws Exception{
+    	HttpSession session = req.getSession();
+    	Map<String, Boolean> result = new HashMap<>();
+    	BeaUsers user = (BeaUsers) session.getAttribute("user");
+    	if(encoder.matches(password, user.getUsrpswd()))
+    		result.put("success", true);
+    	else
+    		result.put("success", false);
+        return result;
+    }
 }

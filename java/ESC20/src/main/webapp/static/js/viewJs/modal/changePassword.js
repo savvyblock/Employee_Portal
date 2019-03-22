@@ -65,19 +65,23 @@
         	var bootstrapValidator = $("#updatePassword").data('bootstrapValidator');
         	bootstrapValidator.validate();
             if (bootstrapValidator.isValid()) {
-                let old = sessionStorage.getItem("sessionPws");
-                let currentOld = sha256_digest($("#oldPassword").val());
-                console.log("old", old);
-                
-                console.log("currentOld", currentOld);
-                if(old == currentOld){
-                    $('.oldPsdValidator').hide()
-                    $('#updatePassword')[0].submit()
-                    sessionStorage.setItem("sessionPws",$("#newPassword").val());
-                }else{
-                    $('.oldPsdValidator').show()
-                    return false
+                $.ajax({
+                    type: 'post',
+                    url: urlMain + '/profile/validatePassword',
+                    cache: false,
+                    data: {csrfmiddlewaretoken: $("#csrfmiddlewaretoken").val(), password: $("#oldPassword").val()},
+                    dataType: 'json',
+                    success: function(data) {
+                    	if(data.success){
+		                    $('.oldPsdValidator').hide()
+		                    $('#updatePassword')[0].submit()
+		                    sessionStorage.setItem("sessionPws",$("#newPassword").val());
+                    	}else{
+                            $('.oldPsdValidator').show()
+                            return false
+                        }
                 }
+                });
             }
         })
     })
