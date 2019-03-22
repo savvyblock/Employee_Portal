@@ -603,6 +603,12 @@
 		"sessionTimeOut":"Session Timeout",
 		"sessionTimeOutWord":"You have exceeded the maximum time allowed for an online session.For your security, your session has been terminated",
 		"mmddyyyyFormat":"mm/dd/yyyy",
+		"ifYouHaveBookMarked":"If you have book-marked this URL, please remove it as this is related to submissions, necessary parameters will need to be provided in order for the method to function.",
+		"exceptionOccurred":"Exception occurred",
+		"fromModule":"From Module",
+		"actionInvoked":"Action invoked",
+		"message":"Message",
+		"":"",
 		"":""
 	},
 	"language":{
