@@ -1,4 +1,12 @@
 <button id="skipNav" data-localize="label.skipNav"></button>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.ResourceBundle" %>
+<%ResourceBundle res = ResourceBundle.getBundle("system"); %>  
+<%
+    String sessionTimeOut = res.getString("sessionTimeOut");
+%>
+<script>
+	var sessionTimeOut = "<%=sessionTimeOut%>";
+</script>
 <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-light clearfix">
   	

@@ -33,8 +33,6 @@
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/theme-chooser.js"></script>
 <!-- fullcalendar language package --start -->
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/locale-all.js"></script>
-<!-- sha256 -->
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/sha256.js"></script>
 <script>
 	var urlMain = '<%=request.getContextPath()%>'
 	console.log('url'+urlMain)
