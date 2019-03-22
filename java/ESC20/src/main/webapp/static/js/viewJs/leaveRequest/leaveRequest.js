@@ -111,6 +111,7 @@ $(document).ready(
 		$(".secondSubmit").show();
 		$(".edit-title").show();
 		$(".new-title").hide();
+		$(".availableError").hide()
 		$("#commentList").html("")
 		console.log(comments)
 		for(let i=0;i<comments.length;i++){
@@ -153,6 +154,7 @@ $(document).ready(
 			$(".new-title").show();
 			$(".firstSubmit").show();
 			$(".secondSubmit").hide();
+			$(".availableError").hide()
 	//Initializes the time control when edit event modal show
 			$("#commentList").html("")
 }

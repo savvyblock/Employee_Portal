@@ -69,6 +69,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input type="hidden" type="text" value="${level}" name="level" id="preLevel"  aria-label="" data-localize="accessHint.level">
                                         <input type="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
                                 </form>
+                                <h2 class="tableTitle" style="padding:0;">
+                                    <span data-localize="label.LeaveRequests"></span>
+                                    <span id="forWord" class="hide" data-localize="label.for"></span>
+                                    <span id="currentLeaveRequests"></span>
+                                </h2>
                                 <div class="content-white">
                                         
                                         <form
@@ -127,11 +132,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </div>
                                         </form>
-                                        <h2>
-                                            <span data-localize="label.LeaveRequests"></span>
-                                            <span id="forWord" class="hide" data-localize="label.for"></span>
-                                            <span id="currentLeaveRequests"></span>
-                                        </h2>
+                                        
                                         <table class="table request-list responsive-table" id="leaveOverviewList">
                                                 <thead>
                                                     <tr>

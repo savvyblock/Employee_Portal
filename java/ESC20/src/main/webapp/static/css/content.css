@@ -1512,6 +1512,7 @@
   padding-right: 10px;
   display: flex;
   align-items: center;
+  flex: 0 0 140px;
 }
 
 .profile .avatar {
@@ -2054,4 +2055,32 @@
 #leaveModalTitle {
   font-size: 14px;
   margin: 0;
+}
+
+.tableTitle {
+  font-size: 14px;
+  padding: 0 10px;
+}
+
+.noFoundPage {
+  width: 100%;
+  height: calc(100% - 150px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+@media (max-height: 590px) {
+  .noFoundPage {
+    display: block;
+    text-align: center;
+    height: auto;
+  }
+}
+
+.noFoundPage img {
+  max-width: 400px;
+  width: 100%;
+  max-height: 100%;
 }

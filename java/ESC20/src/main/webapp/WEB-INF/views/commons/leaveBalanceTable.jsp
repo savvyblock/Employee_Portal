@@ -22,7 +22,9 @@
                 <td class="text-right" data-localize="leaveBalance.pendingEarned" data-localize-location="scope">${leave.pendingEarnedLabel}</td>
                 <td class="text-right" data-localize="leaveBalance.used" data-localize-location="scope">${leave.usedLabel}</td>
                 <td class="text-right" data-localize="leaveBalance.pendingUsed" data-localize-location="scope">${leave.totalPendingUsedLabel}</td>
-                <td class="text-right" data-localize="leaveBalance.available" data-localize-location="scope">${leave.availableBalanceLabel}</td>
+                <td class="text-right" data-localize="leaveBalance.available" data-localize-location="scope">
+                    <span id="available${leave.type.code}">${leave.availableBalanceLabel}</span>
+                </td>
                 <td class="text-center" data-localize="leaveBalance.units" data-localize-location="scope">
                         <c:if test="${leave.daysHrs == 'D'}">													
                         	<span data-localize="label.days"></span>

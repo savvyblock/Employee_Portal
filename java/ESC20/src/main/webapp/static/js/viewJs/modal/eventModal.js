@@ -110,6 +110,16 @@ function formValidator() {
             validating: 'fa fa-refresh'
         },
         fields: {
+            leaveType:{
+                notEmpty: {
+                    message: 'validator.requiredField'
+                }
+            },
+            absenseReason:{
+                notEmpty: {
+                    message: 'validator.requiredField'
+                }
+            },
             LeaveStartDate: {
                 trigger: 'change',
                 validators: {
@@ -417,19 +427,22 @@ $('#startDate').keyup(function() {
             let start = new Date(startDate)
             let end = new Date(endDate)
             let dateTotal = $("#totalRequested").val()
-            console.log(start)
-            console.log(end)
+            let typeCode = $("#modalLeaveType").val()
+            let balanceAvailable = $("#available"+typeCode+"").text()
             // if (start.valueOf() > end.valueOf()) {
             if (timeError) {
                 $('.dateValidator').show()
                 return false
             } else {
                 $('.dateValidator').hide()
-                console.log(dateTotal)
-                console.log(parseFloat(dateTotal))
                 if(parseFloat(dateTotal)>0){
                     $(".dateValidator01").hide()
-                    $('#requestForm')[0].submit()
+                    if(parseFloat(dateTotal)<parseFloat(balanceAvailable)){
+                        $(".availableError").hide()
+                        $('#requestForm')[0].submit()
+                    }else{
+                        $(".availableError").show()
+                    }
                 }else{
                     $(".dateValidator01").show()
                 }

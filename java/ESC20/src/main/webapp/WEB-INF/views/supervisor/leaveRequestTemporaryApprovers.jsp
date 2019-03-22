@@ -60,17 +60,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="" data-localize="accessHint.level">
                                         <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
                                 </form>
-                        <br />
+                                <h2 class="mb-3 tableTitle">
+                                    <span data-localize="label.temporaryApproversFor"></span>
+                                    <b class="highlight">
+                                            <c:forEach var="item" items="${chain}" varStatus="status">
+                                                    <c:if test="${status.last}"><span id="currentEmployee">${item.employeeNumber}</span>:${item.lastName},${item.firstName} </c:if>
+                                            </c:forEach>
+                                        </b
+                                    >
+                                        </h2>
                         <div class="content-white EMP-detail">
-                            <h2 class="mb-3" style="font-size: 14px;">
-                                <span data-localize="label.temporaryApproversFor"></span>
-                                <b class="highlight">
-                                        <c:forEach var="item" items="${chain}" varStatus="status">
-                                                <c:if test="${status.last}"><span id="currentEmployee">${item.employeeNumber}</span>:${item.lastName},${item.firstName} </c:if>
-                                        </c:forEach>
-                                    </b
-                                >
-                                    </h2>
+                            
                             <form action="saveTempApprovers" id="saveTempApprovers" method="POST">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">

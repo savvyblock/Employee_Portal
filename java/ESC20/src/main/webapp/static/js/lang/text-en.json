@@ -732,6 +732,8 @@
 		"haveNotSpace":"User names are not allowed to have Spaces",
 		"resetLocked":"User account is locked. Please contact your personnel office.",
 		"userNotRegistered":"User account does not exist. Please create a new user.",
+		"pictureChoose":"Please upload images in '.jpg','.jpeg' or '.png' format",
+		"availableError":"Total Leave requested for this leave type exceeds the available balance.",
 		"":""
 	},
 	"accessHint":{

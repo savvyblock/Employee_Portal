@@ -196,6 +196,7 @@
                             ></textarea>
                         </div>
                     </div>
+                    <p class="error-hint hide availableError" data-localize="validator.availableError"  role="alert" aria-atomic="true"></p>
                     <%@ include file="../commons/leaveBalanceTable.jsp"%>
                 </div>
                     <div class="modal-footer">

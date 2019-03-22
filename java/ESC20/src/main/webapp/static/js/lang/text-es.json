@@ -343,7 +343,9 @@
 		"totalRequested":"Total Requested",
 		"hourDayRequested":"Hours/Day Requested",
 		"AM":"AM",
-		"PM":"PM"
+		"PM":"PM",
+		"editLeaveRequestFor":"Edit Leave Requests for Employee",
+		"addLeaveRequestFor":"Add Leave Requests for Employee"
 	},
 	"approveRequest":{
 		"employee":"Employee",
@@ -356,7 +358,8 @@
 		"leaveRequested":"Leave Requested",
 		"commentLog":"Comment Log",
 		"status":"Status",
-		"supervisorAction":"Supervisor Action"
+		"supervisorAction":"Supervisor Action",
+		"leavePendingActionBy":"Leave Requests Pending Action by"
 	},
 	"setTemporaryApprovers":{
 		"rowNbr":"Row Nbr",
@@ -729,6 +732,8 @@
 		"haveNotSpace":"User names are not allowed to have Spaces",
 		"resetLocked":"User account is locked. Please contact your personnel office.",
 		"userNotRegistered":"User account does not exist. Please create a new user.",
+		"pictureChoose":"Please upload images in '.jpg','.jpeg' or '.png' format",
+		"availableError":"Total Leave requested for this leave type exceeds the available balance.",
 		"":""
 	},
 	"accessHint":{

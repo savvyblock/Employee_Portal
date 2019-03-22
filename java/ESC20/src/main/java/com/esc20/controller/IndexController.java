@@ -62,4 +62,5 @@ public class IndexController {
         mav.addObject("userDetail", userDetail);
         return mav;
     }
+
 }

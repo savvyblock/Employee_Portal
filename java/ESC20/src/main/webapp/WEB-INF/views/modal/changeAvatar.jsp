@@ -29,10 +29,11 @@
                         <p>
                             <label data-localize="label.chooseImageSize" for="imgUpFile"></label>
                         </p>
-                        <input class="avatar-file" type="file" name="file"  id="imgUpFile"  onchange="startRead()" accept=".jpg, .jpeg, .png"/>
+                        <input class="avatar-file" type="file" name="file"  id="imgUpFile"  onchange="startRead()" accept="image/jpeg,image/jpg,image/png"/>
                         <p class="error-hint hide" role="alert" aria-atomic="true" id="pictureError" data-localize="validator.pictureTooLarge"></p>
+                        <p class="error-hint hide" role="alert" aria-atomic="true" id="notPictureError" data-localize="validator.pictureChoose"></p>
                         <br>
-                        <img class="showUploadImg" src="${sessionScope.userDetail.avatar}" alt="">
+                        <img class="showUploadImg hide" src="${sessionScope.userDetail.avatar}" alt="">
                       </div>
                     <div class="modal-footer">
                         <button type="button" role="button" id="saveAvatar"  class="btn btn-primary disabled" data-localize="label.ok" disabled>
