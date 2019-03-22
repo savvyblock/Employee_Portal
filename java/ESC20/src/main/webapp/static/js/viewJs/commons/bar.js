@@ -36,7 +36,8 @@ $(document).ready(function() {
     getBudgeDetail()
     updateBudgeCountAndInfo()
 })
-var maxTime = 1800 // seconds
+var maxTime = sessionTimeOut // seconds
+console.log("timeout config: " + sessionTimeOut);
 var time = maxTime
 var budgeCount = 0
 $('.main-header,.main-sidebar,.content-wrapper').on(
