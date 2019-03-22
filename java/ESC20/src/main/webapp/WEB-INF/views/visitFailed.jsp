@@ -14,18 +14,21 @@
     <main  class="content-wrapper" tabindex="-1">
     	<section class="content">
     		<div class="container-fluid">
-          <div class="noFoundPage">
-          	<div>
-          		<h2>Exception occurred</h2>
-          		<p><span>From Module: </span> <span>${module}</span></p>
-          		<p><span>Action invoked: </span> <span>${action}</span></p>
-          		<p><span>Message: </span> <span>${errorMsg}</span></p>
-          		<br/><br/>
-          		<p>
-          			If you have book-marked this URL, please remove it as this is related to submissions, necessary parameters will need to be provided in order for the method to function.
-          		</p>
-          	</div>
-          </div>        
+				<div class="noFoundPage">
+					<div>
+						<h2 data-localize="label.exceptionOccurred"></h2>
+						<div class="formModule">
+							<p><span data-localize="label.fromModule"></span>: <b>${module}</b></p>
+							<p><span data-localize="label.actionInvoked"></span>: <b>${action}</b></p>
+							<p><span data-localize="label.message"></span>: <b>${errorMsg}</b></p>
+	
+						</div>
+					  <br/><br/>
+					  <p data-localize="label.ifYouHaveBookMarked" class="btm-p">
+						
+					  </p>
+					</div>
+				  </div>       
       	</div>
         </section>
     </main>

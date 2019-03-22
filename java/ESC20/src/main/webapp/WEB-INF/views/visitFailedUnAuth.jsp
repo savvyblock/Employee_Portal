@@ -13,13 +13,13 @@
             <div class="inner">
               <div class="noFoundPage">
                 <div>
-                  <h2>Exception occurred</h2>
-                  <p><span>From Module: </span> <span>${module}</span></p>
-                  <p><span>Action invoked: </span> <span>${action}</span></p>
-                  <p><span>Message: </span> <span>${errorMsg}</span></p>
+                  <h2 data-localize="label.exceptionOccurred"></h2>
+                  <p><span data-localize="label.fromModule"></span>: <span>${module}</span></p>
+                  <p><span data-localize="label.actionInvoked"></span>: <span>${action}</span></p>
+                  <p><span data-localize="label.message"></span>: <span>${errorMsg}</span></p>
                   <br/><br/>
-                  <p>
-                    If you have book-marked this URL, please remove it as this is related to submissions, necessary parameters will need to be provided in order for the method to function.
+                  <p data-localize="label.ifYouHaveBookMarked">
+                    
                   </p>
                 </div>
               </div> 
