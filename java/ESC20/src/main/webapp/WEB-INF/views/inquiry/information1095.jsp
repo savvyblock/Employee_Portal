@@ -29,11 +29,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             disabled
                                             data-localize="label.consent1095"></button>
                                     </c:if>
+                                    <c:if test="${sessionScope.options.enable1095 == true && selectedYear <= sessionScope.options.w2Latest }">
                                     <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="" data-localize="label.exportPDF" data-localize-notText="true">
                                             <i class="fa fa-file-pdf-o"></i>
                                         </button>    
                                     <button class="btn btn-primary" onclick="doPrint()" data-localize="label.print">
                                     </button>
+                                </c:if>
                                 </div>
                             </div>
                             <div class="content-white EMP-detail info-1095">
