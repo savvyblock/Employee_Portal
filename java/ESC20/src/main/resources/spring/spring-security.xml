@@ -18,6 +18,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		<security:intercept-url pattern="/createUser/**" access="permitAll"/>
 		<security:intercept-url pattern="/resetPassword/**" access="permitAll"/>
 		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+		<security:access-denied-handler ref="accessDeniedHandler"/>
 		<security:form-login login-page="/login"
 							 authentication-success-handler-ref="customSuccessHandler"
 							 authentication-success-forward-url="/home"
@@ -46,4 +47,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
  	<bean id="customSuccessHandler" class="com.esc20.security.CustomSuccessHandler" />
  	
  	<bean id="customSuccessLogoutHandler" class="com.esc20.security.CustomSuccessLogoutHandler" />
+ 	
+ 	<bean id="accessDeniedHandler" class="com.esc20.security.CustomAccessDeniedHandler" >
+ 	</bean>
 </beans>
