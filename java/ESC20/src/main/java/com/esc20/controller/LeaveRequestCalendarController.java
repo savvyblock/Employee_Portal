@@ -125,9 +125,24 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 			for (int i = 0; i < requestModels.size(); i++) {
 				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
 			}
+			List<String[]> map = this.service.mapReasonsAndLeaveTypes();
+			JSONArray mapJson = new JSONArray();
+			JSONObject tempMap;
+			for (int i = 0; i < map.size(); i++) {
+				tempMap = new JSONObject();
+				tempMap.put("absRsn", map.get(i)[0]);
+				for(int j=0;j<absRsns.size();j++) {
+					if(absRsns.get(j).getCode().equals(map.get(i)[0])) {
+						tempMap.put("absRsnDescrption", absRsns.get(j).getDescription());
+					}
+				}
+				tempMap.put("leaveType", map.get(i)[1]);
+				mapJson.add(tempMap);
+			}
 			mav.addObject("selectedFreq", freq);
 			mav.addObject("absRsns", absRsnsJson);
 			mav.addObject("leaveTypes", leaveTypesJson);
+			mav.addObject("leaveTypesAbsrsnsMap", mapJson);
 			mav.addObject("leaveInfo", leaveInfo);
 			mav.addObject("leaves", json);
 		}
