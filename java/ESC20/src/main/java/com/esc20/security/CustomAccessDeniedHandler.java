@@ -21,7 +21,7 @@ public class CustomAccessDeniedHandler extends AccessDeniedHandlerImpl {
     @Override
     public void handle(HttpServletRequest req, HttpServletResponse res, AccessDeniedException exception) throws IOException, ServletException {
         if (exception instanceof MissingCsrfTokenException && isSessionInvalid(req)) {
-        	res.sendRedirect(loginPage);
+        	res.sendRedirect("/"+req.getContextPath().split("/")[1]+"/login");
         }
         super.handle(req, res, exception);
     }
