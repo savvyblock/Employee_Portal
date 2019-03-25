@@ -16,8 +16,7 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import com.esc20.util.DataSourceContextHolder;
 
 public class CustomAccessDeniedHandler extends AccessDeniedHandlerImpl {
-    private RequestCache requestCache = new HttpSessionRequestCache();
-    private String loginPage = "/login";
+	
     @Override
     public void handle(HttpServletRequest req, HttpServletResponse res, AccessDeniedException exception) throws IOException, ServletException {
         if (exception instanceof MissingCsrfTokenException && isSessionInvalid(req)) {
