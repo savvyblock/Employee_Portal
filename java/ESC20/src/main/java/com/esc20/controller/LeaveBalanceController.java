@@ -52,7 +52,7 @@ public class LeaveBalanceController{
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
 		List<Code> leaveTypesWithAll = new ArrayList<>();
-		Code code = new Code("", "All");
+		Code code = new Code("", "ALL");
 		leaveTypesWithAll.add(code);
 		if (freq == null || ("").equals(freq)) {
 			if (availableFreqs.size() > 0) {
