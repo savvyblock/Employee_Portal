@@ -210,8 +210,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     >
                                         <tbody>
                                             <tr>
-                                                <td class="td-title column1"><span data-localize="earningTable.campus"></span>:</td>
-                                                <td
+                                                <td id="campus" class="td-title column1"><span data-localize="earningTable.campus"></span>:</td>
+                                                <td headers="campus"
                                                     class="td-content text-left" data-title=""
                                                     data-localize="earningTable.campus"
                                                     
@@ -221,17 +221,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td colspan="2"></td>
                                             </tr>
                                             <tr>
-                                                <td class="td-title column1"><span data-localize="earningTable.checkNumber"></span>:</td>
-                                                <td
+                                                <td id="checkNumber" class="td-title column1"><span data-localize="earningTable.checkNumber"></span>:</td>
+                                                <td headers="checkNumber"
                                                     class="td-content" data-title=""
                                                     data-localize="earningTable.checkNumber"
                                                 >
                                                 ${earnings.info.checkNumber}
                                                 </td>
-                                                <td class="td-title">
+                                                <td id="periodEndingDate" class="td-title">
                                                         <span data-localize="earningTable.periodEndingDate"></span>:
                                                 </td>
-                                                <td
+                                                <td headers="periodEndingDate"
                                                     class="td-content" data-title=""
                                                     data-localize="earningTable.periodEndingDate"
                                                 >
@@ -239,10 +239,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="td-title column1">
+                                                <td id="withholdingStatus" class="td-title column1">
                                                         <span data-localize="earningTable.withholdingStatus"></span>:
                                                 </td>
-                                                <td
+                                                <td headers="withholdingStatus"
                                                 data-title=""
                                                     class="td-content"
                                                     data-localize="earningTable.withholdingStatus"
@@ -254,10 +254,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             <span data-localize="label.single"></span>
                                                     </c:if>
                                                 </td>
-                                                <td class="td-title">
+                                                <td id="numberOfExemptions" class="td-title">
                                                         <span data-localize="earningTable.numberOfExemptions"></span>:
                                                 </td>
-                                                <td
+                                                <td headers="numberOfExemptions"
                                                     class="td-content" data-title=""
                                                     data-localize="earningTable.numberOfExemptions"
                                                 >
@@ -280,9 +280,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 >
                                                     <thead>
                                                         <tr>
-                                                            <th data-localize="earningTable.earningDeductions"></th>
-                                                            <th class="text-right earning-table-thisPeriod" data-localize="earningTable.thisPeriod"></th>
-                                                            <th class="text-right earning-table-calendarYTD" class="print-td">
+                                                            <th id="earningDeductionsTitle01" data-localize="earningTable.earningDeductions"></th>
+                                                            <th id="thisPeriodTitle01" class="text-right earning-table-thisPeriod" data-localize="earningTable.thisPeriod"></th>
+                                                            <th id="calendarYTDTitle01" class="text-right earning-table-calendarYTD" class="print-td">
                                                                 <span data-localize="earningTable.calendarYTD"></span> ${year}
                                                             </th>
                                                         </tr>
@@ -290,234 +290,234 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <tbody>
                                                     <c:if test="${not empty earnings}">
                                                         <tr>
-                                                            <td><span data-localize="earningTable.standardGross"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="standardGross"><span data-localize="earningTable.standardGross"></span></td>
+                                                            <td headers="thisPeriodTitle01 standardGross" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.standardGross}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 standardGross" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${YTDEarnings.deductions.standardGross}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td><span data-localize="earningTable.supplementalPay"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="supplementalPay"><span data-localize="earningTable.supplementalPay"></span></td>
+                                                            <td headers="thisPeriodTitle01 supplementalPay" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.supplementalPay}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 supplementalPay" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.supplementalPay}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td><span data-localize="earningTable.overtimePay"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="overtimePay"><span data-localize="earningTable.overtimePay"></span></td>
+                                                            <td headers="thisPeriodTitle01 overtimePay" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.overtimePay}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 overtimePay" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.overtimePay}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td><span data-localize="earningTable.absenceRefund"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="absenceRefund"><span data-localize="earningTable.absenceRefund"></span></td>
+                                                            <td headers="thisPeriodTitle01 absenceRefund" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.absenceRefund}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 absenceRefund" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.absenceRefund}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td><span data-localize="earningTable.taxedFringeBenefits"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="taxedFringeBenefits"><span data-localize="earningTable.taxedFringeBenefits"></span></td>
+                                                            <td headers="thisPeriodTitle01 taxedFringeBenefits" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.taxedFringe}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 taxedFringeBenefits" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.taxedFringe}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td><span data-localize="earningTable.earnedIncomeCredit"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="earnedIncomeCredit"><span data-localize="earningTable.earnedIncomeCredit"></span></td>
+                                                            <td headers="thisPeriodTitle01 earnedIncomeCredit" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.earnedIncomeCred}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 earnedIncomeCredit" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.earnedIncomeCred}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td><span data-localize="earningTable.nonTRSTax"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="nonTRSTax"><span data-localize="earningTable.nonTRSTax"></span></td>
+                                                            <td headers="thisPeriodTitle01 nonTRSTax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.nonTrsTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 nonTRSTax" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.nonTrsTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td><span data-localize="earningTable.nonTRSNonTax"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="nonTRSNonTax"><span data-localize="earningTable.nonTRSNonTax"></span></td>
+                                                            <td headers="thisPeriodTitle01 nonTRSNonTax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.nonTrsNonTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 nonTRSNonTax" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.nonTrsNonTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td><span data-localize="earningTable.TRSSupp"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="TRSSupp"><span data-localize="earningTable.TRSSupp"></span></td>
+                                                            <td headers="thisPeriodTitle01 TRSSupp" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.trsSupplemental}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 TRSSupp" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.trsSupplemental}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="total-tr totalEarningTr">
-                                                            <td>--- <span data-localize="earningTable.totalEarnings"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="totalEarnings">--- <span data-localize="earningTable.totalEarnings"></span></td>
+                                                            <td headers="thisPeriodTitle01 totalEarnings" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.totalEarnings}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 totalEarnings" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.totalEarnings}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td><span data-localize="earningTable.absenceDeductions"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="absenceDeductions"><span data-localize="earningTable.absenceDeductions"></span></td>
+                                                            <td headers="thisPeriodTitle01 absenceDeductions" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.absenceDed}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 absenceDeductions" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.absenceDed}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td><span data-localize="earningTable.withTax"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="withTax"><span data-localize="earningTable.withTax"></span></td>
+                                                            <td headers="thisPeriodTitle01 withTax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.withholdingTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 withTax" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.withholdingTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td><span data-localize="earningTable.FICATax"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="FICATax"><span data-localize="earningTable.FICATax"></span></td>
+                                                            <td headers="thisPeriodTitle01 FICATax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.ficaTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 FICATax" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.ficaTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td><span data-localize="earningTable.medicareTax"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="medicareTax"><span data-localize="earningTable.medicareTax"></span></td>
+                                                            <td headers="thisPeriodTitle01 medicareTax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.medicareTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 medicareTax" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.medicareTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                 
                                                         <tr>
-                                                            <td><span data-localize="earningTable.TRSSalaryRed"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="TRSSalaryRed"><span data-localize="earningTable.TRSSalaryRed"></span></td>
+                                                            <td headers="thisPeriodTitle01 TRSSalaryRed" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.trsSalaryRed}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 TRSSalaryRed" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.trsSalaryRed}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                 
                                                         <tr>
-                                                            <td><span data-localize="earningTable.TRSInsurance"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="TRSInsurance"><span data-localize="earningTable.TRSInsurance"></span></td>
+                                                            <td headers="thisPeriodTitle01 TRSInsurance" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.trsInsurance}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 TRSInsurance" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.trsInsurance}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                 
                                                         <tr class="totalDeductionsTr">
-                                                            <td><span data-localize="earningTable.totalOtherDeductions"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="totalOtherDeductions"><span data-localize="earningTable.totalOtherDeductions"></span></td>
+                                                            <td headers="thisPeriodTitle01 totalOtherDeductions" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.totOtherDed}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 totalOtherDeductions" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.totOtherDed}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                 
                                                         <tr class="total-tr">
-                                                            <td>--- <span data-localize="earningTable.totalDeductions"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="totalDeductions">--- <span data-localize="earningTable.totalDeductions"></span></td>
+                                                            <td headers="thisPeriodTitle01 totalDeductions" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.totDed}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 totalDeductions" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.totDed}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="total-tr">
-                                                            <td>--- <span data-localize="earningTable.netPay"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="netPay">--- <span data-localize="earningTable.netPay"></span></td>
+                                                            <td headers="thisPeriodTitle01 netPay" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.netPay}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 netPay" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.netPay}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td>
+                                                            <td id="nonTRSnonPayTaxable">
                                                                     <span data-localize="earningTable.nonTRSnonPayTaxable"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td headers="thisPeriodTitle01 nonTRSnonPayTaxable" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.nonTrsNonPayTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 nonTRSnonPayTaxable" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.nonTrsNonPayTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td>
+                                                            <td id="nonTRSnonPayNonTaxable">
                                                                     <span data-localize="earningTable.nonTRSnonPayNonTaxable"></span>
                                                             </td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td headers="thisPeriodTitle01 nonTRSnonPayNonTaxable" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${earnings.deductions.nonTrsNonPayNonTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 nonTRSnonPayNonTaxable" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.nonTrsNonPayNonTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr bold-tr">
-                                                            <td><span data-localize="earningTable.taxableWages"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="taxableWages"><span data-localize="earningTable.taxableWages"></span></td>
+                                                            <td headers="thisPeriodTitle01 taxableWages" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${earnings.deductions.taxableWage}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 taxableWages" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.taxableWage}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td><span data-localize="earningTable.FICAGross"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="FICAGross"><span data-localize="earningTable.FICAGross"></span></td>
+                                                            <td headers="thisPeriodTitle01 FICAGross" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${earnings.deductions.ficaWage}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 FICAGross" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.ficaWage}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td><span data-localize="earningTable.medicareGross"></span></td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="medicareGross"><span data-localize="earningTable.medicareGross"></span></td>
+                                                            <td headers="thisPeriodTitle01 medicareGross" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${earnings.deductions.medGross}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 medicareGross" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.medGross}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td>
+                                                            <td id="emplrSponsoredHealth">
                                                                 <span data-localize="earningTable.emplrSponsoredHealth"></span>
                                                             </td>
-                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope"></td>
-                                                            <td data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="thisPeriodTitle01 emplrSponsoredHealth" data-localize="earningTable.thisPeriod" data-localize-location="scope"></td>
+                                                            <td headers="calendarYTDTitle01 emplrSponsoredHealth" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                 <fmt:formatNumber value="${YTDEarnings.emplrPrvdHlthcare}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
@@ -530,34 +530,34 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <table class="table border-table">
                                                         <thead>
                                                             <tr>
-                                                                <th class="earning-detail-titleTd" data-localize="earningTable.jobDescription"></th>
-                                                                <th class="earning-detail-units text-right" data-localize="earningTable.units"></th>
-                                                                <th class="earning-detail-payRate text-right" data-localize="earningTable.payRate"></th>
-                                                                <th class="earning-detail-thisPeriod text-right" data-localize="earningTable.thisPeriod"></th>
+                                                                <th id="jobDescriptionTitle01" class="earning-detail-titleTd" data-localize="earningTable.jobDescription"></th>
+                                                                <th id="units01" class="earning-detail-units text-right" data-localize="earningTable.units"></th>
+                                                                <th id="payRate01" class="earning-detail-payRate text-right" data-localize="earningTable.payRate"></th>
+                                                                <th id="thisPeriod01" class="earning-detail-thisPeriod text-right" data-localize="earningTable.thisPeriod"></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <c:forEach items="${earnings.job}" var="job" varStatus="counter">
                                                                 <tr>
-                                                                    <td data-localize="earningTable.jobDescription" data-localize-location="scope">
+                                                                    <td id="jobDescription01_${counter.index}" data-localize="earningTable.jobDescription" data-localize-location="scope">
                                                                             ${job.code} - ${job.description}
                                                                     </td>
-                                                                    <td data-localize="earningTable.units" data-localize-location="scope">
+                                                                    <td headers="units01 jobDescription01_${counter.index}" data-localize="earningTable.units" data-localize-location="scope">
                                                                             <fmt:formatNumber value="${job.units}" pattern="#,##0.00"/>
                                                                     </td>
-                                                                    <td data-localize="earningTable.payRate" data-localize-location="scope">
+                                                                    <td headers="payRate01 jobDescription01_${counter.index}" data-localize="earningTable.payRate" data-localize-location="scope">
                                                                             <fmt:formatNumber value="${job.payRate}" pattern="#,##0.00"/>
                                                                     </td>
-                                                                    <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                    <td headers="thisPeriod01 jobDescription01_${counter.index}" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                             <fmt:formatNumber value="${job.amt}" pattern="#,##0.00"/>
                                                                     </td>
                                                                 </tr>
                                                             </c:forEach>
                                                             <tr class="total-tr">
-                                                                <td colspan="3" data-localize="earningTable.totalStandardGross" data-localize-location="scope">
+                                                                <td  id="totalStandardGross" colspan="3" data-localize="earningTable.totalStandardGross" data-localize-location="scope">
                                                                     <b data-localize="earningTable.totalStandardGross"></b>
                                                                 </td>
-                                                                <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                <td headers="thisPeriod01 totalStandardGross" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                     <b>
                                                                         <fmt:formatNumber value="${earnings.earningsJobTotal}" pattern="#,##0.00"/>
                                                                     </b>
@@ -568,34 +568,34 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <table class="table border-table no-print">
                                                         <thead>
                                                             <tr>
-                                                                <th class="earning-detail-titleTd" data-localize="earningTable.jobDescription"></th>
-                                                                <th class="text-right earning-detail-units" data-localize="earningTable.units"></th>
-                                                                <th class="text-right earning-detail-payRate" data-localize="earningTable.payRate"></th>
-                                                                <th class="text-right earning-detail-thisPeriod" data-localize="earningTable.thisPeriod"></th>
+                                                                <th id="jobDescriptionTitle02" class="earning-detail-titleTd" data-localize="earningTable.jobDescription"></th>
+                                                                <th id="units02" class="text-right earning-detail-units" data-localize="earningTable.units"></th>
+                                                                <th id="payRate02" class="text-right earning-detail-payRate" data-localize="earningTable.payRate"></th>
+                                                                <th id="thisPeriod02" class="text-right earning-detail-thisPeriod" data-localize="earningTable.thisPeriod"></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                                 <c:forEach items="${earnings.overtime}" var="overtime" varStatus="counter">
                                                                     <tr>
-                                                                            <td data-localize="earningTable.jobDescription" data-localize-location="scope">
+                                                                            <td id="jobDescription02_${counter.index}" data-localize="earningTable.jobDescription" data-localize-location="scope">
                                                                                     ${overtime.jobCd} - ${overtime.description}
                                                                             </td> 
-                                                                            <td data-localize="earningTable.units" data-localize-location="scope">
+                                                                            <td headers="units02 jobDescription02_${counter.index}" data-localize="earningTable.units" data-localize-location="scope">
                                                                                     <fmt:formatNumber value="${overtime.overtimeUnits}" pattern="#,##0.00"/>
                                                                             </td> 
-                                                                            <td data-localize="earningTable.payRate" data-localize-location="scope">
+                                                                            <td headers="payRate02 jobDescription02_${counter.index}" data-localize="earningTable.payRate" data-localize-location="scope">
                                                                                     <fmt:formatNumber value="${overtime.overtimeRate}" pattern="#,##0.00"/>
                                                                             </td> 
-                                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                            <td headers="thisPeriod02 jobDescription02_${counter.index}" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                                     <fmt:formatNumber value="${overtime.thisPeriod}" pattern="#,##0.00"/>
                                                                             </td>
                                                                     </tr>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
-                                                                <td colspan="3" data-localize="earningTable.totalOvertimePay" data-localize-location="scope">
+                                                                <td id="totalOvertimePay" colspan="3" data-localize="earningTable.totalOvertimePay" data-localize-location="scope">
                                                                     <span data-localize="earningTable.totalOvertimePay"></span>
                                                                 </td>
-                                                                <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                <td headers="thisPeriod02 totalOvertimePay" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                         <fmt:formatNumber value="${earnings.earningsOvertimeTotal}" pattern="#,##0.00"/>
                                                                 </td>
                                                             </tr>
@@ -604,14 +604,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <table class="table border-table no-print">
                                                         <thead>
                                                             <tr>
-                                                                <th data-localize="earningTable.supType"></th>
-                                                                <th class="text-right earning-detail-thisPeriod" data-localize="earningTable.thisPeriod"></th>
+                                                                <th id="supType" data-localize="earningTable.supType"></th>
+                                                                <th id="thisPeriod03" class="text-right earning-detail-thisPeriod" data-localize="earningTable.thisPeriod"></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                                 <c:forEach items="${earnings.supplemental}" var="supplemental" varStatus="counter">
                                                                     <tr>
-                                                                            <td data-localize="earningTable.supType" data-localize-location="scope">
+                                                                            <td id="description03_${counter.index}" data-localize="earningTable.supType" data-localize-location="scope">
                                                                                 <c:if test="${supplemental.description != 'ZZZ - default'}"> 
                                                                                         ${supplemental.description}
                                                                                 </c:if>
@@ -619,16 +619,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                                     <span data-localize="label.otherSupplemental"></span>
                                                                                 </c:if>
                                                                             </td> 
-                                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                            <td headers="thisPeriod03 description03_${counter.index}" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                                     <fmt:formatNumber value="${supplemental.amt}" pattern="#,##0.00"/>
                                                                             </td> 
                                                                     </tr>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
-                                                                <td data-localize="earningTable.totalSupPay" data-localize-location="scope">
+                                                                <td id="totalSupPay" data-localize="earningTable.totalSupPay" data-localize-location="scope">
                                                                     <span data-localize="earningTable.totalSupPay"></span>
                                                                 </td>
-                                                                <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                <td headers="thisPeriod03 totalSupPay" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                         <fmt:formatNumber value="${earnings.earningsSupplementalTotal}" pattern="#,##0.00"/>
                                                                 </td>
                                                             </tr>
@@ -637,29 +637,29 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <table class="table border-table no-print">
                                                         <thead>
                                                             <tr>
-                                                                <th data-localize="earningTable.nonTRSTaxType" ></th>
-                                                                <th class="text-right earning-detail-thisPeriod" data-localize="earningTable.thisPeriod"></th>
+                                                                <th id="nonTRSTaxType" data-localize="earningTable.nonTRSTaxType" ></th>
+                                                                <th id="thisPeriod04" class="text-right earning-detail-thisPeriod" data-localize="earningTable.thisPeriod"></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                                 <c:forEach items="${earnings.nonTrsTax}" var="nontrstax" varStatus="counter">
                                                                     <tr>
-                                                                            <td data-localize="earningTable.nonTRSTaxType" data-localize-location="scope">
+                                                                            <td id="nonTRSTaxType_${counter.index}" data-localize="earningTable.nonTRSTaxType" data-localize-location="scope">
                                                                                     <c:if test="${nontrstax.description != 'ZZZ - default'}"> ${nontrstax.description}</c:if>
                                                                                     <c:if test="${nontrstax.description == 'ZZZ - default'}"> 
                                                                                         <span data-localize="label.otherNonTRSTax"></span>
                                                                                     </c:if>
                                                                             </td> 
-                                                                            <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                            <td headers="thisPeriod04 nonTRSTaxType_${counter.index}" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                                     <fmt:formatNumber value="${nontrstax.amt}" pattern="#,##0.00"/>
                                                                             </td> 
                                                                     </tr>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
-                                                                <td data-localize="earningTable.totalNonTRSTax" data-localize-location="scope">
+                                                                <td id="totalNonTRSTax" data-localize="earningTable.totalNonTRSTax" data-localize-location="scope">
                                                                     <span data-localize="earningTable.totalNonTRSTax"></span>
                                                                 </td>
-                                                                <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                <td headers="thisPeriod04 totalNonTRSTax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                         <fmt:formatNumber value="${earnings.earningsNonTrsTaxTotal}" pattern="#,##0.00"/>
                                                                 </td>
                                                             </tr>
@@ -668,14 +668,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <table class="table border-table no-print">
                                                         <thead>
                                                             <tr>
-                                                                <th data-localize="earningTable.nonTRSNonTaxType"></th>
-                                                                <th class="text-right earning-detail-thisPeriod" data-localize="earningTable.thisPeriod"></th>
+                                                                <th id="nonTRSNonTaxType" data-localize="earningTable.nonTRSNonTaxType"></th>
+                                                                <th id="thisPeriod05" class="text-right earning-detail-thisPeriod" data-localize="earningTable.thisPeriod"></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                                 <c:forEach items="${earnings.nonTrsNonTax}" var="nontax" varStatus="counter">
                                                                     <tr>
-                                                                        <td data-localize="earningTable.nonTRSNonTaxType" data-localize-location="scope">
+                                                                        <td id="nonTRSNonTaxType_${counter.index}" data-localize="earningTable.nonTRSNonTaxType" data-localize-location="scope">
                                                                                 <c:if test="${nontax.description != 'ZZZ - default'}"> 
                                                                                         ${nontax.description}
                                                                                 </c:if>
@@ -683,16 +683,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                                     <span data-localize="label.otherNonTRSNonTax"></span>
                                                                                 </c:if>
                                                                         </td> 
-                                                                        <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                        <td headers="thisPeriod05 nonTRSNonTaxType_${counter.index}" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                                 <fmt:formatNumber value="${nontax.amt}" pattern="#,##0.00"/>
                                                                         </td> 
                                                                     </tr>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
-                                                                <td data-localize="earningTable.totalNonTRSNonTax" data-localize-location="scope">
+                                                                <td id="totalNonTRSNonTax" data-localize="earningTable.totalNonTRSNonTax" data-localize-location="scope">
                                                                     <span data-localize="earningTable.totalNonTRSNonTax"></span>
                                                                 </td>
-                                                                <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                <td headers="thisPeriod05 totalNonTRSNonTax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                         <fmt:formatNumber value="${earnings.earningsNonTrsNonTaxTotal}" pattern="#,##0.00"/>
                                                                 </td>
                                                             </tr>
@@ -705,11 +705,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     >
                                                         <thead>
                                                             <tr>
-                                                                <th data-localize="earningTable.otherDeductions"></th>
-                                                                <th data-localize="earningTable.cafe"></th>
-                                                                <th class="text-right sameWidth20" data-localize="earningTable.thisPeriod"></th>
-                                                                <th class="text-right sameWidth20" data-localize="earningTable.employerContribution"></th>
-                                                                <th class="print-td text-right sameWidth20">
+                                                                <th id="otherDeductionsTitle" data-localize="earningTable.otherDeductions"></th>
+                                                                <th id="cafeTitle" data-localize="earningTable.cafe"></th>
+                                                                <th id="thisPeriod06" class="text-right sameWidth20" data-localize="earningTable.thisPeriod"></th>
+                                                                <th id="employerContribution" class="text-right sameWidth20" data-localize="earningTable.employerContribution"></th>
+                                                                <th id="calendarYTD" class="print-td text-right sameWidth20">
                                                                     <span data-localize="earningTable.calendarYTD"></span> ${year}
                                                                 </th>
                                                             </tr>
@@ -717,19 +717,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <tbody>
                                                             <c:forEach items="${earnings.other}" var="other" varStatus="counter">
                                                                 <tr>
-                                                                    <td data-localize="earningTable.otherDeductions" data-localize-location="scope">
+                                                                    <td id="otherDeductionsDesc_${counter.index}" data-localize="earningTable.otherDeductions" data-localize-location="scope">
                                                                             ${other.code} - ${other.description}
                                                                     </td>
-                                                                    <td class="text-center" data-localize="earningTable.cafe" data-localize-location="scope">
+                                                                    <td headers="cafeTitle otherDeductionsDesc_${counter.index}" class="text-center" data-localize="earningTable.cafe" data-localize-location="scope">
                                                                             ${other.cafe_flg}
                                                                     </td>
-                                                                    <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                    <td headers="thisPeriod06 otherDeductionsDesc_${counter.index}" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                             <fmt:formatNumber value="${other.amt}" pattern="#,##0.00"/>
                                                                     </td>
-                                                                    <td data-localize="earningTable.employerContribution" data-localize-location="scope">
+                                                                    <td headers="employerContribution otherDeductionsDesc_${counter.index}" data-localize="earningTable.employerContribution" data-localize-location="scope">
                                                                             <fmt:formatNumber value="${other.contrib}" pattern="#,##0.00"/>
                                                                     </td>
-                                                                    <td class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                                    <td headers="calendarYTD otherDeductionsDesc_${counter.index}" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                             <fmt:formatNumber value="${other.tydAmt}" pattern="#,##0.00"/>
                                                                     </td>
                                                                 </tr>
@@ -751,16 +751,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </c:if>
                                                             </c:if>
                                                             <tr class="total-tr">
-                                                                <td colspan="2" data-localize="earningTable.totalOtherDeductions" data-localize-location="scope">
+                                                                <td id="totalOtherDeductions" colspan="2" data-localize="earningTable.totalOtherDeductions" data-localize-location="scope">
                                                                     <b data-localize="earningTable.totalOtherDeductions"></b>
                                                                 </td>
-                                                                <td data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                <td headers="thisPeriod06 totalOtherDeductions" data-localize="earningTable.thisPeriod" data-localize-location="scope">
                                                                         <fmt:formatNumber value="${earnings.earningsOtherTotal}" pattern="#,##0.00"/>
                                                                 </td>
-                                                                <td data-localize="earningTable.employerContribution" data-localize-location="scope">
+                                                                <td headers="employerContribution totalOtherDeductions" data-localize="earningTable.employerContribution" data-localize-location="scope">
                                                                         <fmt:formatNumber value="${earnings.earningsOtherContribTotal}" pattern="#,##0.00"/>
                                                                 </td>
-                                                                <td class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                                <td headers="calendarYTD totalOtherDeductions" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
                                                                         <fmt:formatNumber value="${YTDEarnings.earningsOtherTydTotal}" pattern="#,##0.00"/>
                                                                 </td>
                                                             </tr>

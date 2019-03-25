@@ -68,36 +68,36 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     >
                                         <tbody>
                                             <tr>
-                                                <td class="td-title" data-localize="w2InformationTable.taxableGrossPay"></td>
+                                                <td id="taxableGrossPay" class="td-title" data-localize="w2InformationTable.taxableGrossPay"></td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="taxableGrossPay" 
                                                     data-localize="w2InformationTable.taxableGrossPay"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.whGross}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.withholdingTax"></td>
+                                                <td id="withholdingTax" class="td-title" data-localize="w2InformationTable.withholdingTax"></td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="withholdingTax" 
                                                     data-localize="w2InformationTable.withholdingTax"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.whTax}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.pension"></td>
-                                                <td class="td-content" data-localize="w2InformationTable.pension">
+                                                <td id="pension" class="td-title" data-localize="w2InformationTable.pension"></td>
+                                                <td class="td-content" data-localize-location="data-title"  headers="pension"  data-localize="w2InformationTable.pension">
                                                         ${w2Info.pension}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="td-title" data-localize="w2InformationTable.FICAGross"></td>
+                                                <td id="FICAGross" class="td-title" data-localize="w2InformationTable.FICAGross"></td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="FICAGross" 
                                                     data-localize="w2InformationTable.FICAGross"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.ficaGross}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.FICATax"></td>
+                                                <td id="FICATax" class="td-title" data-localize="w2InformationTable.FICATax"></td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="FICATax" 
                                                     data-localize="w2InformationTable.FICATax"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.ficaTax}" pattern="#,##0.00"/>
@@ -107,16 +107,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="td-title" data-localize="w2InformationTable.medicareGross"></td>
+                                                <td id="medicareGross" class="td-title" data-localize="w2InformationTable.medicareGross"></td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="medicareGross" 
                                                     data-localize="w2InformationTable.medicareGross"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.medGross}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.medicareTax"></td>
+                                                <td id="medicareTax" class="td-title" data-localize="w2InformationTable.medicareTax"></td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="medicareTax" 
                                                     data-localize="w2InformationTable.medicareTax"
                                                     
                                                 >
@@ -127,17 +127,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="td-title" data-localize="w2InformationTable.earnedIncomeCredit">
+                                                <td id="earnedIncomeCredit" class="td-title" data-localize="w2InformationTable.earnedIncomeCredit">
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="earnedIncomeCredit" 
                                                     data-localize="w2InformationTable.earnedIncomeCredit"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.eicAmt}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.dependentCare"></td>
+                                                <td id="dependentCare" class="td-title" data-localize="w2InformationTable.dependentCare"></td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="dependentCare" 
                                                     data-localize="w2InformationTable.dependentCare"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.dependCare}" pattern="#,##0.00"/>
@@ -148,41 +148,41 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td colspan="6">&nbsp;</td>
                                             </tr>
                                             <tr>
-                                                <td class="td-title" data-localize="w2InformationTable.annuityDeduction"></td>
+                                                <td id="annuityDeduction" class="td-title" data-localize="w2InformationTable.annuityDeduction"></td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="annuityDeduction" 
                                                     data-localize="w2InformationTable.annuityDeduction"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.annuityDed}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.457withdraw"></td>
+                                                <td id="457withdraw" class="td-title" data-localize="w2InformationTable.457withdraw"></td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="457withdraw" 
                                                     data-localize="w2InformationTable.457withdraw"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.withdraw457}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.457Annuities">
+                                                <td id="457Annuities" class="td-title" data-localize="w2InformationTable.457Annuities">
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="457Annuities" 
                                                     data-localize="w2InformationTable.457Annuities"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.emp457Contrib + w2Info.emplrContrib457}" pattern="#,##0.00"/>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="td-title" data-localize="w2InformationTable.cafeteria125"></td>
+                                                <td id="cafeteria125" class="td-title" data-localize="w2InformationTable.cafeteria125"></td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="cafeteria125" 
                                                     data-localize="w2InformationTable.cafeteria125"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.cafeAmt}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.roth403BAfterTax">
+                                                <td id="roth403BAfterTax" class="td-title" data-localize="w2InformationTable.roth403BAfterTax">
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="roth403BAfterTax" 
                                                     data-localize="w2InformationTable.roth403BAfterTax"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.annuityRoth}" pattern="#,##0.00"/>
@@ -193,60 +193,60 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td colspan="6">&nbsp;</td>
                                             </tr>
                                             <tr>
-                                                <td class="td-title" data-localize="w2InformationTable.nonTrsBusinessExpense">
+                                                <td id="nonTrsBusinessExpense" class="td-title" data-localize="w2InformationTable.nonTrsBusinessExpense">
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="nonTrsBusinessExpense" 
                                                     data-localize="w2InformationTable.nonTrsBusinessExpense"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.nontrsNontaxBusAllow}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.taxableAllowance"></td>
+                                                <td id="taxableAllowance" class="td-title" data-localize="w2InformationTable.taxableAllowance"></td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="taxableAllowance" 
                                                     data-localize="w2InformationTable.taxableAllowance"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.nontrsBusAllow}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.empBusinessExpense">
+                                                <td id="empBusinessExpense" class="td-title" data-localize="w2InformationTable.empBusinessExpense">
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="empBusinessExpense" 
                                                     data-localize="w2InformationTable.empBusinessExpense"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.empBusinessExpense}" pattern="#,##0.00"/>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="td-title" data-localize="w2InformationTable.movingExpenseReimbursement">
+                                                <td id="movingExpenseReimbursement" class="td-title" data-localize="w2InformationTable.movingExpenseReimbursement">
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="movingExpenseReimbursement" 
                                                     data-localize="w2InformationTable.movingExpenseReimbursement"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.movingExpReimbr}" pattern="#,##0.00"/>
                                                 </td>
                                                 <c:choose>
                                                     <c:when test="${selectedYear >= '2012'}">
-                                                        <td class="td-title" data-localize="w2InformationTable.empSponsoredHealthCoverage">
+                                                        <td id="empSponsoredHealthCoverage" class="td-title" data-localize="w2InformationTable.empSponsoredHealthCoverage">
                                                         </td>
                                                         <td
-                                                            class="td-content"
+                                                            class="td-content" data-localize-location="data-title"  headers="empSponsoredHealthCoverage" 
                                                             data-localize="w2InformationTable.empSponsoredHealthCoverage"
                                                         >
                                                         <fmt:formatNumber value="${w2Info.emplrPrvdHlthcare}" pattern="#,##0.00"/>
                                                         </td>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <td class="td-title"></td>
-                                                        <td class="td-content"></td>
+                                                        <td id="" class="td-title"></td>
+                                                        <td class="td-content" data-localize-location="data-title"  headers="" ></td>
                                                     </c:otherwise>
                                                 </c:choose>
                                                 <c:choose>
                                                     <c:when test="${selectedYear >= '2016'}">
-                                                        <td class="td-title" data-localize="w2InformationTable.annuityRoth"></td>
+                                                        <td id="annuityRoth" class="td-title" data-localize="w2InformationTable.annuityRoth"></td>
                                                         <td
-                                                            class="td-content"
+                                                            class="td-content" data-localize-location="data-title"  headers="annuityRoth" 
                                                             data-localize="w2InformationTable.annuityRoth"
                                                         >
                                                         <fmt:formatNumber value="${w2Info.annuityRoth457b}" pattern="#,##0.00"/>
@@ -254,7 +254,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <td class="td-title"></td>
-                                                        <td class="td-content"></td>
+                                                        <td class="td-content" data-localize-location="data-title"  ></td>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </tr>
@@ -262,10 +262,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td colspan="6">&nbsp;</td>
                                             </tr>
                                             <tr>
-                                                <td class="td-title" data-localize="w2InformationTable.TRSSalaryReduction">
+                                                <td id="TRSSalaryReduction" class="td-title" data-localize="w2InformationTable.TRSSalaryReduction">
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="TRSSalaryReduction" 
                                                     data-localize="w2InformationTable.TRSSalaryReduction"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.trsDeposit}" pattern="#,##0.00"/>
@@ -276,26 +276,26 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td colspan="6">&nbsp;</td>
                                             </tr>
                                             <tr>
-                                                <td class="td-title" data-localize="w2InformationTable.taxedLifeContribution">
+                                                <td id="taxedLifeContribution" class="td-title" data-localize="w2InformationTable.taxedLifeContribution">
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="taxedLifeContribution" 
                                                     data-localize="w2InformationTable.taxedLifeContribution"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.taxEmplrLifeGrp}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.healthInsuranceDeduction">
+                                                <td id="healthInsuranceDeduction" class="td-title" data-localize="w2InformationTable.healthInsuranceDeduction">
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="healthInsuranceDeduction" 
                                                     data-localize="w2InformationTable.healthInsuranceDeduction"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.hlthInsDed}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.taxableFringeBenefits">
+                                                <td id="taxableFringeBenefits" class="td-title" data-localize="w2InformationTable.taxableFringeBenefits">
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="taxableFringeBenefits" 
                                                     data-localize="w2InformationTable.taxableFringeBenefits"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.taxedBenefits}" pattern="#,##0.00"/>
@@ -305,26 +305,26 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td colspan="6">&nbsp;</td>
                                             </tr>
                                             <tr>
-                                                <td class="td-title" data-localize="w2InformationTable.healthSavingsAccount">
+                                                <td id="healthSavingsAccount" class="td-title" data-localize="w2InformationTable.healthSavingsAccount">
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="healthSavingsAccount" 
                                                     data-localize="w2InformationTable.healthSavingsAccount"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.hsaContrib}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td class="td-title" data-localize="w2InformationTable.nonTaxSickPay"></td>
+                                                <td id="nonTaxSickPay" class="td-title" data-localize="w2InformationTable.nonTaxSickPay"></td>
                                                 <td
-                                                    class="td-content"
+                                                    class="td-content" data-localize-location="data-title"  headers="nonTaxSickPay" 
                                                     data-localize="w2InformationTable.nonTaxSickPay"
                                                 >
                                                 <fmt:formatNumber value="${w2Info.sickPayNontax}" pattern="#,##0.00"/>
                                                 </td>
                                                 <c:choose>
                                                     <c:when test="${selectedYear >= '2010'}">
-                                                        <td class="td-title" data-localize="w2InformationTable.hireExemptWages"></td>
+                                                        <td id="hireExemptWages" class="td-title" data-localize="w2InformationTable.hireExemptWages"></td>
                                                         <td
-                                                            class="td-content"
+                                                            class="td-content" data-localize-location="data-title"  headers="hireExemptWages" 
                                                             data-localize="w2InformationTable.hireExemptWages"
                                                         >
                                                         <fmt:formatNumber value="${w2Info.hireExemptWgs}" pattern="#,##0.00"/>
@@ -332,69 +332,69 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </c:when>
                                                     <c:otherwise>
                                                             <td class="td-title"></td>
-                                                            <td class="td-content"></td>
+                                                            <td class="td-content" data-localize-location="data-title"  ></td>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </tr>
                                         </tbody>
                                     </table> 
 
-                                    <c:forEach var="sick" items="${thirdPartyPay}">
+                                    <c:forEach var="sick" items="${thirdPartyPay}"  varStatus="counter">
                                             <div class="groupTitle no-print">
                                                 <span data-localize="label.thirdPartySickPayW2Amounts"></span> - 
                                                 ${sick.frequency.label}
                                             </div>
                                             <table class="table border-table responsive-table no-thead print-table no-print">
                                                 <tr>
-                                                    <td class="td-title" data-localize="w2InformationTable.withholdingGross">
+                                                    <td id="withholdingGross_${counter.index}" class="td-title" data-localize="w2InformationTable.withholdingGross">
                                                     </td>
-                                                    <td class="td-content" data-localize="w2InformationTable.withholdingGross">
+                                                    <td class="td-content" data-localize-location="data-title"  headers="withholdingGross_${counter.index}"  data-localize="w2InformationTable.withholdingGross">
                                                             <fmt:formatNumber value="${sick.sickPayWhGross}" pattern="#,##0.00"/>
                                                     </td>
-                                                    <td class="td-title" data-localize="w2InformationTable.withholdingTax">
+                                                    <td id="sickWithholdingTax_${counter.index}" class="td-title" data-localize="w2InformationTable.withholdingTax">
                                                     </td>
-                                                    <td class="td-content" data-localize="w2InformationTable.withholdingTax">
+                                                    <td class="td-content" data-localize-location="data-title"  headers="sickWithholdingTax_${counter.index}"  data-localize="w2InformationTable.withholdingTax">
                                                             <fmt:formatNumber value="${sick.sickPayWhTax}" pattern="#,##0.00"/>
                                                     </td>
                                                     <td class="td-title"></td>
-                                                    <td class="td-content"></td>
+                                                    <td class="td-content" data-localize-location="data-title"  ></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="td-title" data-localize="w2InformationTable.FICAGross">
+                                                    <td id="sickFICAGross_${counter.index}" class="td-title" data-localize="w2InformationTable.FICAGross">
                                                     </td>
-                                                    <td class="td-content" data-localize="w2InformationTable.FICAGross">
+                                                    <td class="td-content" data-localize-location="data-title"  headers="sickFICAGross_${counter.index}"  data-localize="w2InformationTable.FICAGross">
                                                             <fmt:formatNumber value="${sick.sickPayFicaGross}" pattern="#,##0.00"/>
                                                     </td>
-                                                    <td class="td-title" data-localize="w2InformationTable.FICATax">
+                                                    <td id="sickFICATax_${counter.index}" class="td-title" data-localize="w2InformationTable.FICATax">
                                                     </td>
-                                                    <td class="td-content" data-localize="w2InformationTable.FICATax">
+                                                    <td class="td-content" data-localize-location="data-title"  headers="sickFICATax_${counter.index}"  data-localize="w2InformationTable.FICATax">
                                                             <fmt:formatNumber value="${sick.sickPayFicaTax}" pattern="#,##0.00"/>
                                                     </td>
                                                     <td class="td-title"></td>
-                                                    <td class="td-content"></td>
+                                                    <td class="td-content" data-localize-location="data-title"  ></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="td-title" data-localize="w2InformationTable.medicareGross">
+                                                    <td id="sickMedicareGross_${counter.index}" class="td-title" data-localize="w2InformationTable.medicareGross">
                                                     </td>
-                                                    <td class="td-content" data-localize="w2InformationTable.medicareGross">
+                                                    <td class="td-content" data-localize-location="data-title"  headers="sickMedicareGross_${counter.index}"  data-localize="w2InformationTable.medicareGross">
                                                             <fmt:formatNumber value="${sick.sickPayMedGross}" pattern="#,##0.00"/>
                                                     </td>
-                                                    <td class="td-title" data-localize="w2InformationTable.medicareTax">
+                                                    <td id="sickMedicareTax_${counter.index}" class="td-title" data-localize="w2InformationTable.medicareTax">
                                                     </td>
-                                                    <td class="td-content" data-localize="w2InformationTable.medicareTax">
+                                                    <td class="td-content" data-localize-location="data-title"  headers="sickMedicareTax_${counter.index}"  data-localize="w2InformationTable.medicareTax">
                                                             <fmt:formatNumber value="${sick.sickPayMedTax}" pattern="#,##0.00"/>
                                                     </td>
-                                                    <td class="td-title"></td>
-                                                    <td class="td-content"></td>
+                                                    <td  class="td-title"></td>
+                                                    <td class="td-content" data-localize-location="data-title"  ></td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="td-title" data-localize="w2InformationTable.nontaxablePay">
+                                                    <td id="nontaxablePay_${counter.index}" class="td-title" data-localize="w2InformationTable.nontaxablePay">
                                                     </td>
-                                                    <td class="td-content" data-localize="w2InformationTable.nontaxablePay">
+                                                    <td class="td-content" data-localize-location="data-title"  headers="nontaxablePay_${counter.index}"  data-localize="w2InformationTable.nontaxablePay">
                                                             <fmt:formatNumber value="${sick.sickNontax}" pattern="#,##0.00"/>
                                                     </td>
                                                     <td class="td-title"></td>
-                                                    <td class="td-content"></td>
+                                                    <td class="td-content" ></td>
                                                     <td class="td-title"></td>
                                                     <td class="td-content"></td>
                                                 </tr>

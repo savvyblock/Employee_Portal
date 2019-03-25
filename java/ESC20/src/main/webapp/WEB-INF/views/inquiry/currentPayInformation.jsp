@@ -57,9 +57,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             >
                                 <tbody>
                                     <tr>
-                                        <td class="td-title"><b data-localize="currentPayTable.name"></b></td>
+                                        <td id="userDetailName" class="td-title" ><b data-localize="currentPayTable.name"></b></td>
                                         <td
-                                            class="td-content"
+                                            headers="userDetailName" class="td-content"
                                             data-localize="currentPayTable.name"
                                             colspan="3"
                                         >
@@ -67,15 +67,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="td-title" rowspan="2"><b data-localize="currentPayTable.address"></b></td>
-                                        <td class="td-content" data-title="Address" data-localize="currentPayTable.address" rowspan="2">
+                                        <td id="userDetailAddress" class="td-title"  rowspan="2"><b data-localize="currentPayTable.address"></b></td>
+                                        <td headers="userDetailAddress" class="td-content" data-title="Address" data-localize="currentPayTable.address" rowspan="2">
                                             ${sessionScope.district.address}<br>
                                             ${sessionScope.district.city},
                                             ${sessionScope.district.state} ${sessionScope.district.zip}
                                         </td>
-                                        <td class="td-title"><b data-localize="currentPayTable.employeeId"></b></td>
+                                        <td id="employeeId" class="td-title" ><b data-localize="currentPayTable.employeeId"></b></td>
                                         <td
-                                            class="td-content"
+                                            headers="employeeId" class="td-content"
                                             data-title="Employee ID"
                                             data-localize="currentPayTable.employeeId"
                                         >
@@ -84,11 +84,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </tr>
                                     <tr>
                                         
-                                        <td class="td-title">
+                                        <td id="dateOfBirth" class="td-title" >
                                             <b data-localize="currentPayTable.dateOfBirth"></b>
                                         </td>
                                         <td
-                                            class="td-content"
+                                            headers="dateOfBirth" class="td-content"
                                             data-title="Date of Birth"
                                             data-localize="currentPayTable.dateOfBirth"
                                         >
@@ -96,18 +96,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="td-title">
+                                        <td id="phoneNumber" class="td-title" >
                                             <b data-localize="currentPayTable.phoneNumber"></b>
                                         </td>
                                         <td
-                                            class="td-content"
+                                            headers="phoneNumber" class="td-content"
                                             data-title="Phone Number"
                                             data-localize="currentPayTable.phoneNumber"
                                         >
                                         ${sessionScope.district.phone}
                                         </td>
-                                        <td class="td-title"><b data-localize="currentPayTable.gender"></b></td>
-                                        <td class="td-content" data-title="Gender" data-localize="currentPayTable.gender">
+                                        <td id="gender" class="td-title" ><b data-localize="currentPayTable.gender"></b></td>
+                                        <td headers="gender" class="td-content" data-title="Gender" data-localize="currentPayTable.gender">
                                             <c:if test="${sessionScope.userDetail.sex =='F'}">
                                                 <span data-localize="label.female"></span>
                                             </c:if>
@@ -117,9 +117,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="td-title"><b data-localize="currentPayTable.degree"></b></td>
+                                        <td id="degree" class="td-title" ><b data-localize="currentPayTable.degree"></b></td>
                                         <td
-                                            class="td-content"
+                                            headers="degree" class="td-content"
                                             data-title="Degree"
                                             colspan="3"
                                             data-localize="currentPayTable.degree"
@@ -128,21 +128,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="td-title">
+                                        <td id="professionalYearsExp" class="td-title" >
                                             <b data-localize="currentPayTable.professionalYearsExp"></b>
                                         </td>
                                         <td
-                                            class="td-content"
+                                            headers="professionalYearsExp" class="td-content"
                                             data-title="Professional Years Experience"
                                             data-localize="currentPayTable.professionalYearsExp"
                                         >
                                         ${employeeInfo.yrsProExper}
                                         </td>
-                                        <td class="td-title">
+                                        <td id="professionalDistrictExp" class="td-title" >
                                             <b data-localize="currentPayTable.professionalDistrictExp"></b>
                                         </td>
                                         <td
-                                            class="td-content"
+                                            headers="professionalDistrictExp" class="td-content"
                                             data-title="Professional District Experience"
                                             data-localize="currentPayTable.professionalDistrictExp"
                                         >
@@ -150,21 +150,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="td-title">
+                                        <td id="nonProfessionalYearExp" class="td-title" >
                                             <b data-localize="currentPayTable.nonProfessionalYearExp"></b>
                                         </td>
                                         <td
-                                            class="td-content"
+                                            headers="nonProfessionalYearExp" class="td-content"
                                             data-title="Non Professional Years Experience"
                                             data-localize="currentPayTable.nonProfessionalYearExp"
                                         >
                                         ${employeeInfo.yrsProExperLoc}
                                         </td>
-                                        <td class="td-title">
+                                        <td id="noneProfessionalDistrictExp" class="td-title" >
                                             <b data-localize="currentPayTable.noneProfessionalDistrictExp"></b>
                                         </td>
                                         <td
-                                            class="td-content"
+                                            headers="noneProfessionalDistrictExp" class="td-content"
                                             data-title="Non Professional District Experience"
                                             data-localize="currentPayTable.noneProfessionalDistrictExp"
                                         >
@@ -177,7 +177,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <p data-localize="label.noCrrentPay"></p>
                             </c:if>
                             <c:if test="${fn:length(frequencies) > 0}">
-                                <c:forEach var="frequency" items="${frequencies}">
+                                <c:forEach var="frequency" items="${frequencies}"  varStatus="count">
                                     <h2 class="table-top-title">
                                         <b><span data-localize="label.frequency"></span>: ${frequency}</b>
                                     </h2>
@@ -186,11 +186,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     >
                                         <tbody>
                                             <tr>
-                                                <td class="td-title">
+                                                <td id="martialStatus_${count.index}" class="td-title" >
                                                     <b data-localize="currentPayTable.martialStatus"></b>
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    headers="martialStatus_${count.index}" class="td-content"
                                                     data-title="Marital Status"
                                                     data-localize="currentPayTable.martialStatus"
                                                 >
@@ -201,19 +201,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             <span data-localize="label.single"></span>
                                                     </c:if>
                                                 </td>
-                                                <td class="td-title">
+                                                <td id="numOfExemptions_${count.index}" class="td-title" >
                                                     <b data-localize="currentPayTable.numOfExemptions"></b>
                                                 </td>
                                                 <td
-                                                    class="td-content"
+                                                    headers="numOfExemptions_${count.index}" class="td-content"
                                                     data-title="Number of Exemptions"
                                                     data-localize="currentPayTable.numOfExemptions"
                                                 >
                                                     ${payInfos[frequency].nbrTaxExempts}
                                                 </td>
-                                                <td class="td-title"><b data-localize="currentPayTable.payCampus"></b></td>
+                                                <td id="payCampus_${count.index}" class="td-title" ><b data-localize="currentPayTable.payCampus"></b></td>
                                                 <td
-                                                    class="td-content"
+                                                    headers="payCampus" class="td-content"
                                                     data-title="Pay Campus"
                                                     data-localize="currentPayTable.payCampus"
                                                 >
@@ -230,40 +230,40 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <tbody>
                                                     <c:forEach var="job" items="${jobs[frequency]}" varStatus="jobCount">
                                                 <tr>
-                                                    <td class="td-title" data-localize="currentPayTable.title"></td>
-                                                    <td class="td-content text-left" data-title="Title" data-localize="currentPayTable.title">
+                                                    <td id="jobCdDescription_${jobCount.index}" class="td-title"  data-localize="currentPayTable.title"></td>
+                                                    <td headers="jobCdDescription_${jobCount.index}" class="td-content text-left" data-title="Title" data-localize="currentPayTable.title">
                                                         <b>
                                                                 ${job.jobCdDescription}
                                                         </b>
                                                     </td>
-                                                    <td class="td-title" data-localize="currentPayTable.annualPayments"></td>
-                                                    <td class="td-content" data-title="Annual Payments" data-localize="currentPayTable.annualPayments">
+                                                    <td id="annualPayments_${jobCount.index}" class="td-title"  data-localize="currentPayTable.annualPayments"></td>
+                                                    <td headers="annualPayments_${jobCount.index}" class="td-content" data-title="Annual Payments" data-localize="currentPayTable.annualPayments">
                                                             ${job.nbrAnnualPymts}
                                                     </td>
-                                                    <td class="td-title" data-localize="currentPayTable.regularHour"></td>
-                                                    <td class="td-content" data-title="Regular Hours" data-localize="currentPayTable.regularHour">
+                                                    <td id="regularHour_${jobCount.index}" class="td-title"  data-localize="currentPayTable.regularHour"></td>
+                                                    <td headers="regularHour_${jobCount.index}" class="td-content" data-title="Regular Hours" data-localize="currentPayTable.regularHour">
                                                             <fmt:formatNumber value="${job.regHrsWrk}" pattern="#,##0.00"/>
                                                     </td>
-                                                    <td class="td-title" data-localize="currentPayTable.remailPayments"></td>
-                                                    <td class="td-content" data-title="Remain Payments" data-localize="currentPayTable.remailPayments">
+                                                    <td id="remailPayments_${jobCount.index}" class="td-title"  data-localize="currentPayTable.remailPayments"></td>
+                                                    <td headers="remailPayments_${jobCount.index}" class="td-content" data-title="Remain Payments" data-localize="currentPayTable.remailPayments">
                                                             ${job.nbrRemainPymts}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="td-title" data-localize="currentPayTable.annualSalary"></td>
-                                                    <td class="td-content" data-title="Annual Salary" data-localize="currentPayTable.annualSalary">
+                                                    <td id="annualSalary_${jobCount.index}" class="td-title"  data-localize="currentPayTable.annualSalary"></td>
+                                                    <td headers="annualSalary_${jobCount.index}" class="td-content" data-title="Annual Salary" data-localize="currentPayTable.annualSalary">
                                                             <fmt:formatNumber value="${job.contrAmt}" pattern="#,##0.00"/>
                                                     </td>
-                                                    <td class="td-title" data-localize="currentPayTable.dailyRate"></td>
-                                                    <td class="td-content" data-title="Daily Rate" data-localize="currentPayTable.dailyRate">
+                                                    <td id="dailyRate_${jobCount.index}" class="td-title"  data-localize="currentPayTable.dailyRate"></td>
+                                                    <td headers="dailyRate_${jobCount.index}" class="td-content" data-title="Daily Rate" data-localize="currentPayTable.dailyRate">
                                                             <fmt:formatNumber value="${job.dlyRateofPay}" pattern="#,##0.00"/>
                                                     </td>
-                                                    <td class="td-title" data-localize="currentPayTable.payRate"></td>
-                                                    <td class="td-content" data-title="Pay Rate" data-localize="currentPayTable.payRate">
+                                                    <td id="payRate_${jobCount.index}" class="td-title"  data-localize="currentPayTable.payRate"></td>
+                                                    <td headers="payRate_${jobCount.index}" class="td-content" data-title="Pay Rate" data-localize="currentPayTable.payRate">
                                                             <fmt:formatNumber value="${job.payRate}" pattern="#,##0.00"/>
                                                     </td>
-                                                    <td class="td-title" data-localize="currentPayTable.overtimeRate"></td>
-                                                    <td class="td-content" data-title="Overtime Rate" data-localize="currentPayTable.overtimeRate">
+                                                    <td id="overtimeRate_${jobCount.index}" class="td-title"  data-localize="currentPayTable.overtimeRate"></td>
+                                                    <td headers="overtimeRate_${jobCount.index}" class="td-content" data-title="Overtime Rate" data-localize="currentPayTable.overtimeRate">
                                                             <fmt:formatNumber value="${job.ovtmRate}" pattern="#,##0.00"/>
                                                     </td>
                                                 </tr>
@@ -284,29 +284,29 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <table class="table border-table responsive-table print-table">
                                             <thead>
                                                 <tr>
-                                                    <th data-localize="currentPayTable.bankCode"></th>
-                                                    <th data-localize="currentPayTable.bankName"></th>
-                                                    <th data-localize="currentPayTable.accountType"></th>
-                                                    <th data-localize="currentPayTable.acctNbr"></th>
-                                                    <th data-localize="currentPayTable.depAmt"></th>
+                                                    <th id="bankCode" data-localize="currentPayTable.bankCode"></th>
+                                                    <th id="bankName" data-localize="currentPayTable.bankName"></th>
+                                                    <th id="accountType" data-localize="currentPayTable.accountType"></th>
+                                                    <th id="acctNbr" data-localize="currentPayTable.acctNbr"></th>
+                                                    <th id="depAmt" data-localize="currentPayTable.depAmt"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <c:forEach items="${accounts[frequency]}" var="account" varStatus="counter">
                                                         <tr>
-                                                            <td data-title="" data-localize="currentPayTable.bankCode" data-localize-location="scope">
+                                                            <td headers="bankCode" data-title="" data-localize="currentPayTable.bankCode" data-localize-location="scope">
                                                                     ${account.bankCd}
                                                             </td>
-                                                            <td class="text-left" data-title="" data-localize="currentPayTable.bankName" data-localize-location="scope">
+                                                            <td headers="bankName" class="text-left" data-title="" data-localize="currentPayTable.bankName" data-localize-location="scope">
                                                                 ${account.bankName}
                                                             </td>
-                                                            <td class="text-left" data-title="" data-localize="currentPayTable.accountType" data-localize-location="scope">
+                                                            <td headers="accountType" class="text-left" data-title="" data-localize="currentPayTable.accountType" data-localize-location="scope">
                                                                     ${account.bankAccountType} - ${account.bankAccountTypeDescription}
                                                             </td>
-                                                            <td class="text-left" data-title="" data-localize="currentPayTable.acctNbr" data-localize-location="scope">
+                                                            <td headers="acctNbr" class="text-left" data-title="" data-localize="currentPayTable.acctNbr" data-localize-location="scope">
                                                                     ${account.bankAccountNumber}
                                                             </td>
-                                                            <td data-title="" data-localize="currentPayTable.depAmt" data-localize-location="scope">
+                                                            <td headers="depAmt" data-title="" data-localize="currentPayTable.depAmt" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${account.bankAccountAmount.amount}" pattern="#,##0.00"/> ${account.bankAccountAmount.currency}
                                                             </td>
                                                         </tr>
@@ -322,29 +322,29 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <table class="table border-table responsive-table print-table">
                                             <thead>
                                                 <tr>
-                                                    <th data-localize="currentPayTable.extraDuty"></th>
-                                                    <th class="text-center" data-localize="currentPayTable.type"></th>
-                                                    <th class="text-right" data-localize="currentPayTable.amount"></th>
-                                                    <th class="text-right" data-localize="currentPayTable.remainAmount"></th>
-                                                    <th class="text-right" data-localize="currentPayTable.remainPayments"></th>
+                                                    <th id="extraDuty" data-localize="currentPayTable.extraDuty"></th>
+                                                    <th id="defaultAccountType" class="text-center" data-localize="currentPayTable.type"></th>
+                                                    <th id="extraDutyAmt" class="text-right" data-localize="currentPayTable.amount"></th>
+                                                    <th id="remainAmt" class="text-right" data-localize="currentPayTable.remainAmount"></th>
+                                                    <th id="remainPayments" class="text-right" data-localize="currentPayTable.remainPayments"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <c:forEach items="${stipends[frequency]}" var="stipend" varStatus="counter">
                                                         <tr>
-                                                            <td data-title="" data-localize="currentPayTable.extraDuty" data-localize-location="scope">
+                                                            <td headers="extraDuty" data-title="" data-localize="currentPayTable.extraDuty" data-localize-location="scope">
                                                                     ${stipend.extraDutyDescription}
                                                             </td>
-                                                            <td class="text-center" data-title="" data-localize="currentPayTable.type" data-localize-location="scope">
+                                                            <td headers="defaultAccountType" class="text-center" data-title="" data-localize="currentPayTable.type" data-localize-location="scope">
                                                                     ${stipend.defaultAccountType}
                                                             </td>
-                                                            <td data-title="" data-localize="currentPayTable.amount" data-localize-location="scope">
+                                                            <td headers="extraDutyAmt" data-title="" data-localize="currentPayTable.amount" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${stipend.extraDutyAmt}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-title="" data-localize="currentPayTable.remainAmount" data-localize-location="scope">
+                                                            <td headers="remainAmt" data-title="" data-localize="currentPayTable.remainAmount" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${stipend.remainAmt}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td data-title="" data-localize="currentPayTable.remainPayments" data-localize-location="scope">
+                                                            <td headers="remainPayments" data-title="" data-localize="currentPayTable.remainPayments" data-localize-location="scope">
                                                                     <fmt:formatNumber value="${stipend.remainPayments}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
