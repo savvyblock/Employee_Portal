@@ -430,6 +430,8 @@ $('#startDate').keyup(function() {
             let typeCode = $("#modalLeaveType").val()
             let balanceAvailable = $("#available"+typeCode+"").text()
             // if (start.valueOf() > end.valueOf()) {
+                console.log(startDate)
+                console.log(endDate)
             if (timeError) {
                 $('.dateValidator').show()
                 return false
@@ -437,8 +439,12 @@ $('#startDate').keyup(function() {
                 $('.dateValidator').hide()
                 if(parseFloat(dateTotal)>0){
                     $(".dateValidator01").hide()
-                    if(parseFloat(dateTotal)<parseFloat(balanceAvailable)){
+                    // console.log(parseFloat(dateTotal))
+                    // console.log(parseFloat(balanceAvailable))
+
+                    if(parseFloat(dateTotal)<=parseFloat(balanceAvailable)){
                         $(".availableError").hide()
+                        // return false
                         $('#requestForm')[0].submit()
                     }else{
                         $(".availableError").show()
