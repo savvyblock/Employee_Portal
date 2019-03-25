@@ -89,8 +89,9 @@ function clearDate(e){
 }
 
 function doPrint() {
+    window.focus()
     window.print()
-    window.alert=function(){};
+    // window.close()    
 }
 
 function hideBody(){
