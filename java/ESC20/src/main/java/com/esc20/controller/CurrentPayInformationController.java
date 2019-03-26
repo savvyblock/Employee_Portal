@@ -1,9 +1,12 @@
 package com.esc20.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,10 @@ import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.Stipend;
 import com.esc20.service.InquiryService;
+import com.esc20.util.PDFUtils;
+import com.esc20.util.ServletUtils;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.tool.xml.exceptions.CssResolverException;
 
 @Controller
 @RequestMapping("/currentPayInformation")
@@ -53,5 +60,17 @@ public class CurrentPayInformationController{
 		mav.addObject("payCampuses", payCampuses);
 		mav.addObject("employeeInfo", employeeInfo);
 		return mav;
+	}
+	
+	@RequestMapping("exportPDF")
+	public void exportPDF(HttpServletRequest request, HttpServletResponse response) throws IOException, DocumentException, CssResolverException {
+		String html = ServletUtils.forward(request,response,"/currentPayInformation/currentPayInformation");
+		byte[] pdf = PDFUtils.html2pdf(html);
+		response.reset();
+		response.setHeader("Content-Disposition", "attachment; filename=\"download.pdf\"");
+		response.setContentType("application/octet-stream;charset=UTF-8");
+		OutputStream out = response.getOutputStream();
+		out.write(pdf);
+		out.flush();
 	}
 }
