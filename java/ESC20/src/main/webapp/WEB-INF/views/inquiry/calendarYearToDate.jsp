@@ -100,62 +100,62 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <tr>
                                     <td id="contractPay" class="td-title" data-localize="calendarTable.contractPay"></td>
                                     <td
-                                        class="td-content"
+                                        headers="contractPay" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.contractPay"
                                     >
                                     <fmt:formatNumber value="${calendar.contrAmt}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.nonContractPay"></td>
+                                    <td id="nonContractPay" class="td-title" data-localize="calendarTable.nonContractPay"></td>
                                     <td
-                                        class="td-content"
+                                        headers="nonContractPay" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.nonContractPay"
                                     >
                                     <fmt:formatNumber value="${calendar.noncontrAmt}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.supplementalPay"></td>
+                                    <td id="supplementalPay" class="td-title" data-localize="calendarTable.supplementalPay"></td>
                                     <td
-                                        class="td-content"
+                                        headers="supplementalPay" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.supplementalPay"
                                     >
                                     <fmt:formatNumber value="${calendar.supplPayAmt}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.withholdingGross"></td>
+                                    <td id="withholdingGross" class="td-title" data-localize="calendarTable.withholdingGross"></td>
                                     <td
-                                        class="td-content"
+                                        headers="withholdingGross" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.withholdingGross"
                                     >
                                     <fmt:formatNumber value="${calendar.whGross}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.withholdingTax"></td>
+                                    <td id="withholdingTax" class="td-title" data-localize="calendarTable.withholdingTax"></td>
                                     <td
-                                        class="td-content"
+                                        headers="withholdingTax" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.withholdingTax"
                                     >
                                     <fmt:formatNumber value="${calendar.whTax}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.earnedIncomeCredit">
+                                    <td id="earnedIncomeCredit" class="td-title" data-localize="calendarTable.earnedIncomeCredit">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="earnedIncomeCredit" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.earnedIncomeCredit"
                                     >
                                     <fmt:formatNumber value="${calendar.eicAmt}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.ficaGross"></td>
+                                    <td id="ficaGross" class="td-title" data-localize="calendarTable.ficaGross"></td>
                                     <td
-                                        class="td-content"
+                                        headers="ficaGross" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.ficaGross"
                                     >
                                     <fmt:formatNumber value="${calendar.ficaGross}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.ficaTax"></td>
+                                    <td id="ficaTax" class="td-title" data-localize="calendarTable.ficaTax"></td>
                                     <td
-                                        class="td-content"
+                                        headers="ficaTax" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.ficaTax"
                                     >
                                     <fmt:formatNumber value="${calendar.ficaTax}" pattern="#,##0.00"/>
@@ -163,45 +163,45 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <td class="td-title" colspan="2"></td>
                                 </tr>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.dependentCare">
+                                    <td id="dependentCare" class="td-title" data-localize="calendarTable.dependentCare">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="dependentCare" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.dependentCare"
                                     >
                                     <fmt:formatNumber value="${calendar.dependCare}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.dependentCareEmployer">
+                                    <td id="dependentCareEmployer" class="td-title" data-localize="calendarTable.dependentCareEmployer">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="dependentCareEmployer" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.dependentCareEmployer"
                                     >
                                     <fmt:formatNumber value="${calendar.emplrDependCare}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.dependentCareExceeds">
+                                    <td id="dependentCareExceeds" class="td-title" data-localize="calendarTable.dependentCareExceeds">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="dependentCareExceeds" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.dependentCareExceeds"
                                     >
                                     <fmt:formatNumber value="${calendar.emplrDependCareTax}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.medicareGross"></td>
+                                    <td id="medicareGross" class="td-title" data-localize="calendarTable.medicareGross"></td>
                                     <td
-                                        class="td-content"
+                                        headers="medicareGross" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.medicareGross"
                                     >
                                     <fmt:formatNumber value="${calendar.medGross}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.medicareTax"></td>
+                                    <td id="medicareTax" class="td-title" data-localize="calendarTable.medicareTax"></td>
                                     <td
-                                        class="td-content"
+                                        headers="medicareTax" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.medicareTax"
                                     >
                                     <fmt:formatNumber value="${calendar.medTax}" pattern="#,##0.00"/>
@@ -212,52 +212,52 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <td colspan="6">&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.annuityDeduction"></td>
+                                    <td id="annuityDeduction" class="td-title" data-localize="calendarTable.annuityDeduction"></td>
                                     <td
-                                        class="td-content"
+                                        headers="annuityDeduction" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.annuityDeduction"
                                     >
                                     <fmt:formatNumber value="${calendar.annuityDed}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.roth403BAfterTax">
+                                    <td id="roth403BAfterTax" class="td-title" data-localize="calendarTable.roth403BAfterTax">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="roth403BAfterTax" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.roth403BAfterTax"
                                     >
                                     <fmt:formatNumber value="${calendar.annuityRoth}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.taxableBenefits"></td>
+                                    <td id="taxableBenefits" class="td-title" data-localize="calendarTable.taxableBenefits"></td>
                                     <td
-                                        class="td-content"
+                                        headers="taxableBenefits" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.taxableBenefits"
                                     >
                                     <fmt:formatNumber value="${calendar.taxedBenefits}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.annuity457Employee">
+                                    <td id="annuity457Employee" class="td-title" data-localize="calendarTable.annuity457Employee">
                                        
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="annuity457Employee" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.annuity457Employee"
                                     >
                                     <fmt:formatNumber value="${calendar.emp457Contrib}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.annuity457Employer">
+                                    <td id="annuity457Employer" class="td-title" data-localize="calendarTable.annuity457Employer">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="annuity457Employer" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.annuity457Employer"
                                     >
                                     <fmt:formatNumber value="${calendar.emplr457Contrib}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.annuity457Withdraw"></td>
+                                    <td id="annuity457Withdraw" class="td-title" data-localize="calendarTable.annuity457Withdraw"></td>
                                     <td
-                                        class="td-content"
+                                        headers="annuity457Withdraw" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.annuity457Withdraw"
                                     >
                                     <fmt:formatNumber value="${calendar.withdraw457}" pattern="#,##0.00"/>
@@ -267,58 +267,58 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <td colspan="6">&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.nonTrsBusinessExpense">
+                                    <td id="nonTrsBusinessExpense" class="td-title" data-localize="calendarTable.nonTrsBusinessExpense">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="nonTrsBusinessExpense" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.nonTrsBusinessExpense"
                                     >
                                     <fmt:formatNumber value="${calendar.nontrsBusAllow}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.nonTrsReimbursementBase">
+                                    <td id="nonTrsReimbursementBase" class="td-title" data-localize="calendarTable.nonTrsReimbursementBase">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="nonTrsReimbursementBase" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.nonTrsReimbursementBase"
                                     >
                                     <fmt:formatNumber value="${calendar.nontrsReimbrBase}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.nonTrsReimbursementExcess">
+                                    <td id="nonTrsReimbursementExcess" class="td-title" data-localize="calendarTable.nonTrsReimbursementExcess">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="nonTrsReimbursementExcess" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.nonTrsReimbursementExcess"
                                     >
                                     <fmt:formatNumber value="${calendar.nontrsReimbrExcess}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.movingExpenseReimbursement">
+                                    <td id="movingExpenseReimbursement" class="td-title" data-localize="calendarTable.movingExpenseReimbursement">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="movingExpenseReimbursement" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.movingExpenseReimbursement"
                                     >
                                     <fmt:formatNumber value="${calendar.movingExpReimbr}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.nonTrsNonTaxBusinessAllow">
+                                    <td id="nonTrsNonTaxBusinessAllow" class="td-title" data-localize="calendarTable.nonTrsNonTaxBusinessAllow">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="nonTrsNonTaxBusinessAllow" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.nonTrsNonTaxBusinessAllow"
                                     >
                                     <fmt:formatNumber value="${calendar.nontrsNontaxBusAllow}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.nonTrsNonTaxNonPayAllow">
+                                    <td id="nonTrsNonTaxNonPayAllow" class="td-title" data-localize="calendarTable.nonTrsNonTaxNonPayAllow">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="nonTrsNonTaxNonPayAllow" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.nonTrsNonTaxNonPayAllow"
                                     >
                                     <fmt:formatNumber value="${calendar.nontrsNontaxNonpayAllow}" pattern="#,##0.00"/>
@@ -328,18 +328,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <td colspan="6">&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.salaryReduction">
+                                    <td id="salaryReduction" class="td-title" data-localize="calendarTable.salaryReduction">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="salaryReduction" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.salaryReduction"
                                     >
                                     <fmt:formatNumber value="${calendar.trsSalaryRed}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.trsInsurance"></td>
+                                    <td id="trsInsurance" class="td-title" data-localize="calendarTable.trsInsurance"></td>
                                     <td
-                                        class="td-content"
+                                        headers="trsInsurance" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.trsInsurance"
                                     >
                                     <fmt:formatNumber value="${trsIns}" pattern="#,##0.00"/>
@@ -347,56 +347,56 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <td class="td-title" colspan="2"></td>
                                 </tr>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.hsaEmployerContribution">
+                                    <td id="hsaEmployerContribution" class="td-title" data-localize="calendarTable.hsaEmployerContribution">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="hsaEmployerContribution" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.hsaEmployerContribution"
                                     >
                                     <fmt:formatNumber value="${calendar.hsaEmplrContrib}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.hsaEmployeeSalaryReductionContribution">
+                                    <td id="hsaEmployeeSalaryReductionContribution" class="td-title" data-localize="calendarTable.hsaEmployeeSalaryReductionContribution">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="hsaEmployeeSalaryReductionContribution" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.hsaEmployeeSalaryReductionContribution"
                                     >
                                     <fmt:formatNumber value="${calendar.hsaEmpSalRedctnContrib}" pattern="#,##0.00"/>
                                     </td>
 
-                                    <td class="td-title" data-localize="calendarTable.hireExemptWgs"></td>
+                                    <td id="hireExemptWgs" class="td-title" data-localize="calendarTable.hireExemptWgs"></td>
                                     <td
-                                        class="td-content"
+                                        headers="hireExemptWgs" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.hireExemptWgs"
                                     >
                                     <fmt:formatNumber value="${calendar.hireExemptWgs}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.taxedLifeContribution">
+                                    <td id="taxedLifeContribution" class="td-title" data-localize="calendarTable.taxedLifeContribution">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="taxedLifeContribution" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.taxedLifeContribution"
                                     >
                                     <fmt:formatNumber value="${calendar.taxEmplrLife}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.taxedGroupContribution">
+                                    <td id="taxedGroupContribution" class="td-title" data-localize="calendarTable.taxedGroupContribution">
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="taxedGroupContribution" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.taxedGroupContribution"
                                     >
                                     <fmt:formatNumber value="${calendar.taxEmplrLifeGrp}" pattern="#,##0.00"/>
                                     </td>
-                                    <td class="td-title" data-localize="calendarTable.healthInsuranceDeduction">
+                                    <td id="healthInsuranceDeduction" class="td-title" data-localize="calendarTable.healthInsuranceDeduction">
                                        
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="healthInsuranceDeduction" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.healthInsuranceDeduction"
                                     >
                                     <fmt:formatNumber value="${calendar.hlthInsDed}" pattern="#,##0.00"/>
@@ -407,19 +407,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <td colspan="6">&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td class="td-title" data-localize="calendarTable.emplrPrvdHlthcare">
+                                    <td id="emplrPrvdHlthcare" class="td-title" data-localize="calendarTable.emplrPrvdHlthcare">
                                         
                                     </td>
                                     <td
-                                        class="td-content"
+                                        headers="emplrPrvdHlthcare" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.emplrPrvdHlthcare"
                                     >
                                     <fmt:formatNumber value="${calendar.emplrPrvdHlthcare}" pattern="#,##0.00"/>
                                     </td>
 
-                                    <td class="td-title" data-localize="calendarTable.annuityRoth457b"></td>
+                                    <td id="annuityRoth457b" class="td-title" data-localize="calendarTable.annuityRoth457b"></td>
                                     <td
-                                        class="td-content"
+                                        headers="annuityRoth457b" class="td-content" data-localize-location="data-title" 
                                         data-localize="calendarTable.annuityRoth457b"
                                     >
                                     <fmt:formatNumber value="${calendar.annuityRoth457b}" pattern="#,##0.00"/>

@@ -6275,10 +6275,11 @@ var DayTableMixin = /** @class */ (function (_super) {
         else {
             classNames.push('fc-' + util_1.dayIDs[date.day()]); // only add the day-of-week class
         }
+        // console.log(util_1.dayIDs[date.day()])
         return '' +
-            '<th class="' + classNames.join(' ') + '"' +
+            '<th id="fc-'+ util_1.dayIDs[date.day()]+'" class="' + classNames.join(' ') + '"' +
             ((isDateValid && t.rowCnt) === 1 ?
-                ' data-date="' + date.format('YYYY-MM-DD') + '"' :
+                ' data-date="' + date.format('YYYY-MM-DD') + '" aria-label="' + date.format('YYYY-MM-DD') + '"' :
                 '') +
             (colspan > 1 ?
                 ' colspan="' + colspan + '"' :
@@ -6325,7 +6326,7 @@ var DayTableMixin = /** @class */ (function (_super) {
         classes.unshift('fc-day', view.calendar.theme.getClass('widgetContent'));
         return '<td class="' + classes.join(' ') + '"' +
             (isDateValid ?
-                ' data-date="' + date.format('YYYY-MM-DD') + '"' : // if date has a time, won't format it
+                ' data-date="' + date.format('YYYY-MM-DD') + '" aria-label="' + date.format('YYYY-MM-DD') + ',"' : // if date has a time, won't format it
                 '') +
             (otherAttrs ?
                 ' ' + otherAttrs :
@@ -6836,7 +6837,11 @@ var DayGrid = /** @class */ (function (_super) {
     // Generates the HTML for the <td>s of the "number" row in the DayGrid's content skeleton.
     // The number row will only exist if either day numbers or week numbers are turned on.
     DayGrid.prototype.renderNumberCellHtml = function (date) {
+        var t = this
         var view = this.view;
+        var calendar = view.calendar;
+        var optionsManager = calendar.optionsManager;
+        var calendarButtonText = optionsManager.get('buttonText') || {};
         var html = '';
         var isDateValid = this.dateProfile.activeUnzonedRange.containsDate(date); // TODO: called too frequently. cache somehow.
         var isDayNumberVisible = this.getIsDayNumbersVisible() && isDateValid;
@@ -6861,9 +6866,15 @@ var DayGrid = /** @class */ (function (_super) {
                 weekCalcFirstDoW = date._locale.firstDayOfWeek();
             }
         }
+       
+        let weekDayCurrent = util_1.htmlEscape(date.format(t.colHeadFormat))
+        let mark = '';
+        if((classes[(classes.length - 1)] && classes[(classes.length - 1)] =='fc-today')||(classes[(classes.length - 2)] && classes[(classes.length - 2)] =='fc-today')){
+            mark = "," + calendarButtonText["today"]
+        }
         html += '<td class="' + classes.join(' ') + '"' +
             (isDateValid ?
-                ' data-date="' + date.format() + '"' :
+                ' data-date="' + date.format() + '" aria-label="' + date.format('YYYY-MM-DD') + ','+ weekDayCurrent +''+ mark +'"' :
                 '') +
             '>';
         if (this.cellWeekNumbersVisible && (date.day() === weekCalcFirstDoW)) {
@@ -6871,7 +6882,7 @@ var DayGrid = /** @class */ (function (_super) {
             );
         }
         if (isDayNumberVisible) {
-            html += view.buildGotoAnchorHtml(date, { 'class': 'fc-day-number' }, date.format('D') // inner HTML
+            html += view.buildGotoAnchorHtml(date, { 'class': 'fc-day-number','aria-hidden':'true' }, date.format('D') // inner HTML
             );
         }
         html += '</td>';
@@ -7159,9 +7170,7 @@ var DayGrid = /** @class */ (function (_super) {
     };
     // Reveals the popover that displays all events within a cell
     DayGrid.prototype.showSegPopover = function (row, col, moreLink, segs) {
-        console.log(moreLink)
         var _this = this;
-        console.log(_this)
         var view = this.view;
         var moreWrap = moreLink.parent(); // the <div> wrapper around the <a>
         var topEl; // the element we want to match the top coordinate of
@@ -9200,6 +9209,7 @@ var DateComponent = /** @class */ (function (_super) {
             classes.push('fc-disabled-day'); // TODO: jQuery UI theme?
         }
         else {
+            // console.log(date.day())
             classes.push('fc-' + util_1.dayIDs[date.day()]);
             if (view.isDateInOtherMonth(date, this.dateProfile)) {
                 classes.push('fc-other-month');
@@ -12349,7 +12359,7 @@ var ListView = /** @class */ (function (_super) {
     ListView.prototype.dayHeaderHtml = function (dayDate) {
         var mainFormat = this.opt('listDayFormat');
         var altFormat = this.opt('listDayAltFormat');
-        return '<tr class="fc-list-heading" data-date="' + dayDate.format('YYYY-MM-DD') + '">' +
+        return '<tr class="fc-list-heading" data-date="' + dayDate.format('YYYY-MM-DD') + '" aria-label="' + date.format('YYYY-MM-DD') + '">' +
             '<td class="' + (this.calendar.theme.getClass('tableListHeading') ||
             this.calendar.theme.getClass('widgetHeader')) + '" colspan="3">' +
             (mainFormat ?
@@ -12572,6 +12582,7 @@ var Toolbar = /** @class */ (function () {
         var calendarCustomButtons = optionsManager.get('customButtons') || {};
         var calendarButtonTextOverrides = optionsManager.overrides.buttonText || {};
         var calendarButtonText = optionsManager.get('buttonText') || {};
+
         if (buttonStr) {
             $.each(buttonStr.split(' '), function (i, buttonGroupStr) {
                 var groupChildren = $();
@@ -12640,6 +12651,7 @@ var Toolbar = /** @class */ (function () {
                                 buttonInnerHtml = "<span class='" + buttonIcon + "'></span>";
                                 buttonAriaAttr = ' aria-label="' + buttonName + '"';
                             }
+
                             buttonEl = $(// type="button" so that it doesn't submit a form
                             '<button type="button" class="' + buttonClasses.join(' ') + '"' +
                                 buttonAriaAttr + buttonDataLocalize +
