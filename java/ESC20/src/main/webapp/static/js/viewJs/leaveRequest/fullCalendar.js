@@ -145,6 +145,10 @@ $(document).ready(function() {
                     }
                 },
                 dayClick: function(date, allDay, jsEvent, view) {
+                    console.log(date)
+                    console.log(allDay)
+                    console.log(jsEvent)
+                    console.log(view)
                     newEvent($(this))
                     $("#requestModal").modal("show")
                     $("#absenceReason").html(reasonOption)
