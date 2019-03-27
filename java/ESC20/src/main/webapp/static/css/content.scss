@@ -426,6 +426,10 @@
     padding: 0 10px;
     margin-bottom: 15px;
 }
+.table-top-title {
+    font-size: 14px;
+    color: #2a3f54;
+}
 .EMP-detail {
     font-size: 12px;
     .setApprovers-list{
@@ -451,7 +455,7 @@
         }
     }
     .table-top-title {
-        font-size: 15px;
+        font-size: 14px;
         color: #2a3f54;
     }
     .sub-title {
@@ -1854,6 +1858,7 @@
 .tableTitle{
     font-size: 14px;
     padding: 0 10px;
+    color: #2a3f54;
 }
 .noFoundPage{
     width: 100%;

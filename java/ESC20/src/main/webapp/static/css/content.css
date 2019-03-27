@@ -533,6 +533,11 @@
   margin-bottom: 15px;
 }
 
+.table-top-title {
+  font-size: 14px;
+  color: #2a3f54;
+}
+
 .EMP-detail {
   font-size: 12px;
 }
@@ -559,7 +564,7 @@
 }
 
 .EMP-detail .table-top-title {
-  font-size: 15px;
+  font-size: 14px;
   color: #2a3f54;
 }
 
@@ -2063,6 +2068,7 @@
 .tableTitle {
   font-size: 14px;
   padding: 0 10px;
+  color: #2a3f54;
 }
 
 .noFoundPage {
