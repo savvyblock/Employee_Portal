@@ -61,16 +61,4 @@ public class CurrentPayInformationController{
 		mav.addObject("employeeInfo", employeeInfo);
 		return mav;
 	}
-	
-	@RequestMapping("exportPDF")
-	public void exportPDF(HttpServletRequest request, HttpServletResponse response) throws IOException, DocumentException, CssResolverException {
-		String html = ServletUtils.forward(request,response,"/currentPayInformation/currentPayInformation");
-		byte[] pdf = PDFUtils.html2pdf(html);
-		response.reset();
-		response.setHeader("Content-Disposition", "attachment; filename=\"download.pdf\"");
-		response.setContentType("application/octet-stream;charset=UTF-8");
-		OutputStream out = response.getOutputStream();
-		out.write(pdf);
-		out.flush();
-	}
 }
