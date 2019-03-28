@@ -81,6 +81,11 @@ $(document).ready(function() {
                 eventRender: function(event, element, view) {
                     element.attr('data-toggle', 'modal')
                     element.attr('data-target', '#EventDetailModal')
+                    let startEv = changeYMDFormat(event.LeaveStartDate)
+                    let endEv = changeYMDFormat(event.LeaveEndDate)
+                    // let ariaLabel = "from " + startEv + " to " + endEv
+                    let ariaLabel = startEv + " / " + endEv
+                    element.attr('aria-label', ariaLabel)
                     element.attr('tabindex', 0)
                     element.bind('keypress', function(e)  {
                         var eCode = e.keyCode
@@ -103,6 +108,10 @@ $(document).ready(function() {
 function changeMMDDFormat(date) {
     let dateArry = date.split('-')
     return dateArry[0]
+}
+function changeYMDFormat(date) {
+    let dateArry = date.split('/')
+    return dateArry[2] + '-' + dateArry[0] + '-' + dateArry[1]
 }
 function changeFormatTimeAm(value) {
     let array = value.split(/[,: ]/)

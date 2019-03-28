@@ -71,7 +71,7 @@
                         
                     </div>
                 </div>
-                <div class="account-inner logBackBox">
+                <div class="account-inner logBackBox hide">
                     <h1 class="logBackTitle" data-localize="label.sessionTimeOut"></h1>
                     <div class="logBackWord" data-localize="label.sessionTimeOutWord"> </div>
                     <div class="account-box">

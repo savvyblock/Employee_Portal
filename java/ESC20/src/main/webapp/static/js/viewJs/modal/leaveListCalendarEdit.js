@@ -98,6 +98,12 @@ function initialLeaveCalendarStaticModal(){
                 eventRender: function(event, element, view) {
                     element.attr('data-toggle', 'modal')
                     element.attr('data-target', '#EventDetailModal')
+                    let startEv = changeYMDFormat(event.LeaveStartDate)
+                    let endEv = changeYMDFormat(event.LeaveEndDate)
+                    let time = element.find(".fc-time").text()
+                    // let ariaLabel = "from " + startEv + " to " + endEv
+                    let ariaLabel = startEv + " / " + endEv +" " + time + " " + event.title
+                    element.attr('aria-label', ariaLabel)
                     element.attr('tabindex', 0)
                     element.bind('keypress', function(e)  {
                         var eCode = e.keyCode
@@ -120,4 +126,9 @@ function initialLeaveCalendarStaticModal(){
     })
     $(".fc-today-button").html('<span data-localize="label.currentMonth"></span>')
     initLocalize(initialLocaleCode) //Initialize multilingual function
+}
+
+function changeYMDFormat(date) {
+    let dateArry = date.split('/')
+    return dateArry[2] + '-' + dateArry[0] + '-' + dateArry[1]
 }

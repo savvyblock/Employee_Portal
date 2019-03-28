@@ -6279,7 +6279,7 @@ var DayTableMixin = /** @class */ (function (_super) {
         return '' +
             '<th id="fc-'+ util_1.dayIDs[date.day()]+'" class="' + classNames.join(' ') + '"' +
             ((isDateValid && t.rowCnt) === 1 ?
-                ' data-date="' + date.format('YYYY-MM-DD') + '" aria-label="' + date.format('YYYY-MM-DD') + '"' :
+                ' data-date="' + date.format('YYYY-MM-DD') + '"' :
                 '') +
             (colspan > 1 ?
                 ' colspan="' + colspan + '"' :
@@ -6326,7 +6326,7 @@ var DayTableMixin = /** @class */ (function (_super) {
         classes.unshift('fc-day', view.calendar.theme.getClass('widgetContent'));
         return '<td class="' + classes.join(' ') + '"' +
             (isDateValid ?
-                ' data-date="' + date.format('YYYY-MM-DD') + '" aria-label="' + date.format('YYYY-MM-DD') + ',"' : // if date has a time, won't format it
+                ' data-date="' + date.format('YYYY-MM-DD') + '" aria-hidden="true"' : // if date has a time, won't format it
                 '') +
             (otherAttrs ?
                 ' ' + otherAttrs :
@@ -6872,16 +6872,22 @@ var DayGrid = /** @class */ (function (_super) {
         if((classes[(classes.length - 1)] && classes[(classes.length - 1)] =='fc-today')||(classes[(classes.length - 2)] && classes[(classes.length - 2)] =='fc-today')){
             mark = "," + calendarButtonText["today"]
         }
-        html += '<td class="' + classes.join(' ') + '"' +
+        
+        if (this.cellWeekNumbersVisible && (date.day() === weekCalcFirstDoW)) {
+            html += '<td class="' + classes.join(' ') + '"' +
             (isDateValid ?
-                ' data-date="' + date.format() + '" aria-label="' + date.format('YYYY-MM-DD') + ','+ weekDayCurrent +''+ mark +'"' :
+                ' data-date="' + date.format() + '"' :
                 '') +
             '>';
-        if (this.cellWeekNumbersVisible && (date.day() === weekCalcFirstDoW)) {
             html += view.buildGotoAnchorHtml({ date: date, type: 'week' }, { 'class': 'fc-week-number' }, date.format('w') // inner HTML
             );
         }
         if (isDayNumberVisible) {
+            html += '<td class="' + classes.join(' ') + '"' +
+            (isDateValid ?
+                ' data-date="' + date.format() + '" aria-label="' + date.format('YYYY-MM-DD') + ','+ weekDayCurrent +''+ mark +'"' :
+                '') +
+            '>';
             html += view.buildGotoAnchorHtml(date, { 'class': 'fc-day-number','aria-hidden':'true' }, date.format('D') // inner HTML
             );
         }
@@ -7040,6 +7046,10 @@ var DayGrid = /** @class */ (function (_super) {
     // `levelLimit` is a number for the maximum (inclusive) number of levels allowed.
     DayGrid.prototype.limitRow = function (row, levelLimit) {
         var _this = this;
+        var view = this.view;
+        var calendar = view.calendar;
+        var optionsManager = calendar.optionsManager;
+        var calendarButtonText = optionsManager.get('buttonText') || {};
         var rowStruct = this.eventRenderer.rowStructs[row];
         var moreNodes = []; // array of "more" <a> links and <td> DOM nodes
         var col = 0; // col #, left-to-right (not chronologically)
@@ -7132,7 +7142,12 @@ var DayGrid = /** @class */ (function (_super) {
     DayGrid.prototype.renderMoreLink = function (row, col, hiddenSegs) {
         var _this = this;
         var view = this.view;
-        return $('<button class="fc-more" tabindex="0"/>')
+        let dateBtn = _this.getCellDate(row, col);
+        let year = dateBtn._d.getFullYear()
+        let month = parseInt(dateBtn._d.getMonth())>9?dateBtn._d.getMonth():"0"+dateBtn._d.getMonth()
+        let dayC = parseInt(dateBtn._d.getDate())>9?dateBtn._d.getDate():"0"+dateBtn._d.getDate()
+        let ariaLabel = year +"-"+month+"-"+dayC + " " + this.getMoreLinkText(hiddenSegs.length)
+        return $('<button class="fc-more" tabindex="0" aria-label="'+ariaLabel+'"/>')
             .text(this.getMoreLinkText(hiddenSegs.length))
             .on('click', function (ev) {
             var clickOption = _this.opt('eventLimitClick');
@@ -7140,9 +7155,11 @@ var DayGrid = /** @class */ (function (_super) {
             var moreEl = $(ev.currentTarget);
             var dayEl = _this.getCellEl(row, col);
             var allSegs = _this.getCellSegs(row, col);
+           
             // rescope the segments to be within the cell's date
             var reslicedAllSegs = _this.resliceDaySegs(allSegs, date);
             var reslicedHiddenSegs = _this.resliceDaySegs(hiddenSegs, date);
+            
             if (typeof clickOption === 'function') {
                 // the returned value can be an atomic option
                 clickOption = _this.publiclyTrigger('eventLimitClick', {
