@@ -36,7 +36,12 @@ $(function() {
     $(".closeModal").click(function(){
         hideBody()
     })
-
+    $("input.form-control").each(function(){   
+        let inputVal = $(this).val()     
+        if($.trim(inputVal).length==0){
+            $(this).val('')
+        }
+    })
     // initLocalize(language)
     setGlobal();
 })

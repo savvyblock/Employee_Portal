@@ -146,7 +146,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             id="generation"
                                                         >
                                                             <c:forEach var="gen" items="${generationOptions}" varStatus="count">
-                                                                <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                                <c:if test="${count.index<=2}">
+                                                                    <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                            <c:forEach var="gen" items="${generationOptions}" varStatus="count">
+                                                                <c:if test="${gen.code=='A'}">
+                                                                    <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                            <c:forEach var="gen" items="${generationOptions}" varStatus="count">
+                                                                <c:if test="${count.index>2&&gen.code!='A'}">
+                                                                    <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                                </c:if>
                                                             </c:forEach>
                                                         </select>
                                                     </div>
@@ -619,6 +631,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label=""
                                                             data-localize="profile.emergencyContactAreaCode"
                                                             value="${emerRequest.emerPhoneAcNew}"
+                                                            oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>
                                                     <div class="form-group">
@@ -629,6 +642,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label=""
                                                             data-localize="profile.emergencyContactPhoneNumber"
                                                             value="${emerRequest.emerPhoneNbrNew}"
+                                                            oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>
 
@@ -641,6 +655,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label=""
                                                             data-localize="profile.emergencyContactExtention"
                                                             value="${emerRequest.emerPhoneExtNew}"
+                                                            oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>
                                                 </div>
@@ -1113,6 +1128,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label=""
                                                             data-localize="profile.homePhoneAreaCode"
                                                             value="${hmRequest.phoneAreaNew}"
+                                                            oninput="value=value.replace(/[^\d]/g,'')"
                                                             
                                                         />
                                                     </div>
@@ -1124,6 +1140,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label=""
                                                             data-localize="profile.homePhonePhoneNumber"
                                                             value="${hmRequest.phoneNbrNew}"
+                                                            oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>
                                                 </div>
@@ -1145,6 +1162,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label=""
                                                             data-localize="profile.cellPhoneAreaCode"
                                                             value="${cellRequest.phoneAreaCellNew}"
+                                                            oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>
 
@@ -1156,6 +1174,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label=""
                                                             data-localize="profile.cellPhonePhoneNumber"
                                                             value="${cellRequest.phoneNbrCellNew}"
+                                                            oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>
                                                 </div>
@@ -1179,6 +1198,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label=""
                                                             data-localize="profile.workPhoneAreaCode"
                                                             value="${busRequest.phoneAreaBusNew}"
+                                                            oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>
 
@@ -1190,6 +1210,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label=""
                                                             data-localize="profile.workPhonePhoneNumber"
                                                             value="${busRequest.phoneNbrBusNew}"
+                                                            oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>
 
@@ -1202,6 +1223,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label=""
                                                             data-localize="profile.workPhoneExtention"
                                                             value="${busRequest.busPhoneExtNew}"
+                                                            oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>
                                                 </div>
