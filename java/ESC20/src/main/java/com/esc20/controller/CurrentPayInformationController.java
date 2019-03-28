@@ -24,8 +24,6 @@ import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.Stipend;
 import com.esc20.service.InquiryService;
-import com.esc20.util.PDFUtils;
-import com.esc20.util.ServletUtils;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.tool.xml.exceptions.CssResolverException;
 
