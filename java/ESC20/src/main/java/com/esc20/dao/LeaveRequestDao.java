@@ -240,7 +240,7 @@ public class LeaveRequestDao {
 	public List<Code> getAbsenceReasons(String empNbr, String freq, String leaveType) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT AR2LT.id.absRsn, '', AR.absDescr ");
+		sql.append("SELECT DISTINCT AR2LT.id.absRsn, AR.absDescr ");
 		sql.append("FROM BthrAbsRsnToLvTyp AR2LT, BthrLvTyp LT, BthrAbsRsn AR, BhrEmpLv EL ");
 		sql.append(
 				"WHERE LT.id.lvTyp=AR2LT.id.lvTyp AND LT.stat='A' AND LT.id.payFreq = :payFrequency AND AR.absRsn=AR2LT.id.absRsn AND AR.stat='A' ");
@@ -262,8 +262,7 @@ public class LeaveRequestDao {
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for (Object[] item : res) {
-			code = new Code((String) item[0], ((Character) item[1] == null ? "" : ((Character) item[1]).toString()),
-					(String) item[2]);
+			code = new Code((String) item[0], "", (String) item[1]);
 			result.add(code);
 		}
 		return result;

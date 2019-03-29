@@ -1074,7 +1074,7 @@ public class ProfileController{
         
         List<Code> bankAccountTypes = this.referenceService.getDdAccountTypes();
         mav.setViewName("profile");
-        
+        System.out.println("New name request person's title: "+ nameRequest.getNamePreNew());
         mav.addObject("nameRequest", nameRequest);
         mav.addObject("mrtlRequest", mrtlRequest);
         mav.addObject("licRequest", licRequest);

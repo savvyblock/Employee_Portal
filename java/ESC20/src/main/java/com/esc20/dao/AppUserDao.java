@@ -185,7 +185,12 @@ public class AppUserDao extends HibernateDaoSupport{
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaLglName res = (BeaLglName) q.uniqueResult();
-        
+        if(res!=null) {
+        	if(res.getNamePre()!=null)
+        		res.setNamePre(res.getNamePre().trim());
+        	if(res.getNamePreNew()!=null)
+        		res.setNamePreNew(res.getNamePreNew().trim());
+        }
         return res;
 	}
 

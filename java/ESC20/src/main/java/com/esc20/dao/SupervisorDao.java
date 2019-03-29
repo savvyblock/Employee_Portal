@@ -52,7 +52,7 @@ public class SupervisorDao {
 	}
 	public List<LeaveEmployeeData> getSupervisorDirectReports(String empNbr) {
 		Session session = this.getSession();
-		String sql = "SELECT E2S.empEmpNbr, '', ED.nameF, ED.nameL, ED.nameM, " +
+		String sql = "SELECT E2S.empEmpNbr, ED.nameF, ED.nameL, ED.nameM, " +
 				"(SELECT COUNT(*) FROM BhrEapEmpToSpvsr E2S2 WHERE E2S2.spvsrEmpNbr=ED.empNbr) " +
 				"FROM BhrEapEmpToSpvsr E2S, BhrEmpDemo ED WHERE E2S.spvsrEmpNbr=:empNbr AND E2S.empEmpNbr=ED.empNbr ORDER BY ED.nameL ASC, ED.nameF ASC, ED.nameM ASC";
         Query q = session.createQuery(sql);
@@ -62,7 +62,7 @@ public class SupervisorDao {
         List<LeaveEmployeeData> result = new ArrayList<LeaveEmployeeData>();
         LeaveEmployeeData data;
         for(Object[] item: res) {
-        	data = new LeaveEmployeeData((String) item[0], (Character) item[1], (String) item[2] ,(String) item[3],(String)item[4],(Long)item[5]);
+        	data = new LeaveEmployeeData((String) item[0], '\0', (String) item[1] ,(String) item[2],(String)item[3],(Long)item[4]);
         	result.add(data);
         }
 		return result;
