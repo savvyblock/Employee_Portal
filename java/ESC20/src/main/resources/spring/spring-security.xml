@@ -17,6 +17,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		<security:intercept-url pattern="/visitFailedUnAuth" access="permitAll"/>
 		<security:intercept-url pattern="/createUser/**" access="permitAll"/>
 		<security:intercept-url pattern="/resetPassword/**" access="permitAll"/>
+		<security:intercept-url pattern="/currentPayInformation/currentPayInformationUnprotectedPDF" access="permitAll"/>
 		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 		<security:access-denied-handler ref="accessDeniedHandler"/>
 		<security:form-login login-page="/login"
@@ -28,6 +29,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
                 			 password-parameter="password"/>
         <security:logout logout-url="/logoutEA" success-handler-ref="customSuccessLogoutHandler" invalidate-session="true" />
         <security:custom-filter before="CHANNEL_FILTER" ref="databaseFilter"/>
+        <security:csrf request-matcher-ref="csrfSecurityRequestMatcher" />
 	</security:http>
 	
 	<security:authentication-manager alias="authenticationManager">
@@ -49,5 +51,8 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
  	<bean id="customSuccessLogoutHandler" class="com.esc20.security.CustomSuccessLogoutHandler" />
  	
  	<bean id="accessDeniedHandler" class="com.esc20.security.CustomAccessDeniedHandler" >
+ 	</bean>
+ 	
+ 	<bean id="csrfSecurityRequestMatcher" class="com.esc20.security.CustomCsrfSecurityRequestMatcher" >
  	</bean>
 </beans>
