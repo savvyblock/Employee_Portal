@@ -67,25 +67,14 @@
       
       <div class="user-panel">
         <div class="image">
-            <c:if test="${sessionScope.userDetail.avatar!=null}" >
-                <a 
-                <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
-                    href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
-                  </c:if>
-                  aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label" data-localize-notText="true"
-                class="d-block"  style="background-image:url(${sessionScope.userDetail.avatar})">
-              </a>
+          <a 
+            <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
+              href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
             </c:if>
-            <c:if test="${sessionScope.userDetail.avatar==null}">
-                <a 
-                <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
-                    href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
-                  </c:if>
-                  aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label" data-localize-notText="true"
-                class="d-block noImage">
-                  <i class="fa fa-user"></i>
-                </a>
-            </c:if>
+            aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label" data-localize-notText="true"
+            class="d-block noImage">
+            <i class="fa fa-user"></i>
+          </a>
        		
         </div>
         <div class="info">

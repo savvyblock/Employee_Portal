@@ -14,17 +14,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <div class="content-white no-title profile">
                             <c:if test="${sessionScope.options.enableSelfServiceDemographic == true}">
                                 <div class="profile-top first-child">
-                                    <div class="profile-avatar" >
+                                    <!-- <div class="profile-avatar" >
                                         <div>
                                                 <div
                                                 class="avatar"
                                                 id="imgContentImg"
                                                 style="background-image:url(${sessionScope.userDetail.avatar})"
                                             >
-                                                <!-- <input id="userName" hidden="hidden" type="text" value="${sessionScope.userDetail.nameF}">
-                                                <input id="avatarImg" hidden="hidden" type="text" name="file">
-                                                <input id="avatarImgName" hidden="hidden" type="text" name="fileName">
-                                                <input class="avatar-file" type="file" name="file"  id="imgUpFile"  onchange="startRead()"  accept="image/*"/> -->
                                                 <button type="button" role="button" class="avatar-word" data-localize="profile.change" data-toggle="modal" data-target="#changeAvatarModal"></button>
                                             </div>
                                             <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal" data-localize="label.changePassword" data-localize-location="title">
@@ -32,7 +28,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </button>
                                             </div>
                                         
-                                    </div>
+                                    </div> -->
                                     <form class="profile-item" id="personalForm" action="saveName" method="POST">
                                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <div class="profile-left">

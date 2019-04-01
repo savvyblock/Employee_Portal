@@ -147,26 +147,26 @@
 
 .user-panel .image,.sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel .image {
     display: inline-block;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: #d8d0ce;
     overflow: hidden;
-    flex: 0 0 80px;
+    flex: 0 0 60px;
     a{
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         color: #2a3f54!important;
         display: block;
-        line-height: 80px;
+        line-height: 60px;
         text-align: center;
-        font-size: 42px;
+        font-size: 38px;
         .fa{
-            line-height: 80px;
+            line-height: 60px;
         }
     }
 }

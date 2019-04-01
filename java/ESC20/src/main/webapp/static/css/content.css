@@ -1619,15 +1619,20 @@
   }
 }
 
+@media (max-width: 490px) {
+  .profile .profile-item .profile-title {
+    align-items: center;
+  }
+}
+
 .profile .profile-item .profile-item-line .profile-title {
-  align-items: flex-start;
   line-height: 1.2;
   font-size: 13px;
 }
 
 .profile .profile-item .profile-item-line {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .profile .profile-item .profile-item-line .profile-desc {
@@ -1674,6 +1679,10 @@
 
 .profile .profile-item .profile-item-line .profile-desc .valueInput.error-vertical .help-block {
   top: initial;
+}
+
+.profile .profile-item .profile-item-line .profile-desc .form-group {
+  margin-bottom: 0;
 }
 
 .profile .profile-item .profile-item-line .profile-left {

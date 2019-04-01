@@ -24,6 +24,9 @@
                   <p data-localize="label.ifYouHaveBookMarked" class="btm-p">
                   
                   </p>
+                  <a href="#" onclick="javascript :history.back(-1);">
+                    <button class="btn btn-primary" data-localize="label.back"></button>
+                  </a>
                 </div>
                 </div> 
               <!-- <a href="#" onClick="javascript :history.back(-1);">
