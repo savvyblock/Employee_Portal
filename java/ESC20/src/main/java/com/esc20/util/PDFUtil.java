@@ -18,16 +18,7 @@ public class PDFUtil {
 	    HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter(serverIP, port);
 	    htmlToPdfConverter.httpPostFields().add("empNbr", ((BhrEmpDemo) request.getSession().getAttribute("userDetail")).getEmpNbr());
 	    htmlToPdfConverter.httpPostFields().add("districtId", (String)request.getSession().getAttribute("districtId"));
-	    
-		Cookie[] params = request.getCookies();
-		String language ="";
-		for(Cookie item: params) {
-			if(item.getName().equals("somoveLanguage"));
-				language = item.getValue();
-		}
-		System.out.println("language from session: "+language);
-		htmlToPdfConverter.httpPostFields().add("language",language);
-	    //htmlToPdfConverter.setRenderedHtmlElementSelector("needToClone");
+		htmlToPdfConverter.httpPostFields().add("language",(String)request.getSession().getAttribute("language"));
 	    htmlToPdfConverter.setMediaType("print");
 	    htmlToPdfConverter.setLicenseKey("B4mYiJubiJiInoaYiJuZhpmahpGRkZGImg==");
 	    htmlToPdfConverter.setRenderedHtmlElementSelector(".toPrint");

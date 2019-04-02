@@ -8,9 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.esc20.util.DataSourceContextHolder;
+
+import net.sf.json.JSONObject;
 
 
 public class DatabaseNameFilter extends OncePerRequestFilter {
@@ -20,6 +23,8 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 			HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
 			String database = (String)request.getSession().getAttribute("districtId");
+			//added for multi-language change
+			String language = (String)request.getSession().getAttribute("language");
 			try
 			{
 				String distid = request.getParameter("distid");
@@ -37,6 +42,16 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 				if(isTimeOut==null)
 					isTimeOut = false;
 				DataSourceContextHolder.setIstimeout(isTimeOut);
+				//added for multi-language change
+				if(language==null||("").equals(language)) {
+					language="en";
+					request.getSession().setAttribute("language",language);
+					String path = request.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
+					File file = new File(path);
+					String input = FileUtils.readFileToString(file, "UTF-8");
+					JSONObject jsonObject = JSONObject.fromObject(input);
+					request.getSession().setAttribute("languageJSON", jsonObject);
+				}
 			}
 			catch(ClassCastException ex)
 			{

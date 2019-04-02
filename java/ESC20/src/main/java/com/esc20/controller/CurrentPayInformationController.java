@@ -59,18 +59,6 @@ public class CurrentPayInformationController{
 		Map<Frequency, String> payCampuses = this.service.retrievePayCampuses(employeeNumber);
 		EmployeeInfo employeeInfo = this.service.getEmployeeInfo(employeeNumber);
 		String message = ((Options) session.getAttribute("options")).getMessageCurrentPayInformation();
-		Cookie[] params = req.getCookies();
-		String language ="";
-		for(Cookie item: params) {
-			if(item.getName().equals("somoveLanguage"));
-				language = item.getValue();
-		}
-		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-en.json";
-		System.out.println("path >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "+ path);
-		File file = new File(path);
-		String input = FileUtils.readFileToString(file, "UTF-8");
-		JSONObject jsonObject = JSONObject.fromObject(input);
-		System.out.println(jsonObject);
 		mav.setViewName("/inquiry/currentPayInformation");
 		mav.addObject("jobs", jobs);
 		mav.addObject("stipends", stipends);
@@ -81,8 +69,6 @@ public class CurrentPayInformationController{
 		mav.addObject("payCampuses", payCampuses);
 		mav.addObject("employeeInfo", employeeInfo);
 		mav.addObject("isPrintPDF", true);
-		mav.addObject("language", language);
-		session.setAttribute("languageJSON", jsonObject);
 		return mav;
 	}
 	
@@ -114,14 +100,12 @@ public class CurrentPayInformationController{
 		Map<Frequency, PayInfo> payInfos = this.service.retrievePayInfo(employeeNumber, frequencies);
 		Map<Frequency, String> payCampuses = this.service.retrievePayCampuses(employeeNumber);
 		EmployeeInfo employeeInfo = this.service.getEmployeeInfo(employeeNumber);
+		mav.setViewName("/inquiry/currentPayInformation");
 		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
-		System.out.println("path >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "+ path);
 		File file = new File(path);
 		String input = FileUtils.readFileToString(file, "UTF-8");
 		JSONObject jsonObject = JSONObject.fromObject(input);
-		System.out.println(jsonObject);
-		session.setAttribute("languageJSON", jsonObject);
-		mav.setViewName("/inquiry/currentPayInformation");
+		req.getSession().setAttribute("languageJSON", jsonObject);
 		mav.addObject("jobs", jobs);
 		mav.addObject("stipends", stipends);
 		mav.addObject("isPrintPDF", true);
@@ -130,7 +114,6 @@ public class CurrentPayInformationController{
 		mav.addObject("payInfos", payInfos);
 		mav.addObject("payCampuses", payCampuses);
 		mav.addObject("employeeInfo", employeeInfo);
-		mav.addObject("language", language);
 		return mav;
 	}
 	
