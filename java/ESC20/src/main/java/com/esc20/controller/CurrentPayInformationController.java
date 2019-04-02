@@ -65,7 +65,7 @@ public class CurrentPayInformationController{
 			if(item.getName().equals("somoveLanguage"));
 				language = item.getValue();
 		}
-		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
+		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-en.json";
 		System.out.println("path >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "+ path);
 		File file = new File(path);
 		String input = FileUtils.readFileToString(file, "UTF-8");

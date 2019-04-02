@@ -63,7 +63,7 @@ public class LeaveInfo {
 		this.pendingUsed = NumberUtil.value(pendingUsed==null?BigDecimal.valueOf(0L):pendingUsed).setScale(3, BigDecimal.ROUND_HALF_UP);
 		this.pendingApproval = NumberUtil.value(pendingApproval==null?BigDecimal.valueOf(0L):pendingApproval).setScale(3, BigDecimal.ROUND_HALF_UP);
 		this.pendingPayroll = NumberUtil.value(pendingPayroll==null?BigDecimal.valueOf(0L):pendingPayroll).setScale(3, BigDecimal.ROUND_HALF_UP);
-		this.daysHrs = daysHrs;
+		this.daysHrs = daysHrs==null?"":daysHrs.trim();
 		this.subtractFromBalanceValue = addSubtractBal.toString().trim().toUpperCase();
 		this.subtractFromBalance = addSubtractBal.toString().toUpperCase().equals("S")?true:false;
 		this.postAgainstZeroBalanceValue = postAgnstZeroBal.toString().trim().toUpperCase();

@@ -16,15 +16,16 @@
         http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         http://www.springframework.org/schema/tx 
         http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-
-    <jee:jndi-lookup id="DB001904" jndi-name="java:jboss/DB001904"/> 
+        
+        
+    <jee:jndi-lookup id="DBNEW001904" jndi-name="java:jboss/DBNEW001904"/> 
     <bean class="com.esc20.util.DynamicDataSource" id="dataSource">
 		<property name="targetDataSources">
 		<map key-type="java.lang.String">
-		  <entry value-ref="DB001904" key="DB001904"></entry>
+		  <entry value-ref="DBNEW001904" key="DBNEW001904"></entry>
 		</map>
 		</property>
-		<property name="defaultTargetDataSource" ref="DB001904"></property>
+		<property name="defaultTargetDataSource" ref="DBNEW001904"></property>
 	</bean>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>

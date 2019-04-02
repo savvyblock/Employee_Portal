@@ -19,7 +19,7 @@ public class CustomSuccessLogoutHandler implements LogoutSuccessHandler{
 			throws IOException, ServletException {
 		String database = DataSourceContextHolder.getDataSourceType();
 		database = database.split("/")[1];
-		database = database.substring(2);
+		database = database.substring(5);
 		Boolean isTimeOut = DataSourceContextHolder.getIstimeout();
 		
         String returnURL = "/"+request.getContextPath().split("/")[1]+"/login?distid=" + database;
