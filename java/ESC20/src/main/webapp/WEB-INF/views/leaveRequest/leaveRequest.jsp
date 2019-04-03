@@ -17,9 +17,9 @@
 					<h1 class="pageTitle" data-localize="title.leaveRequest"></h1>
 				<div class="pull-right right-btn">
 					<button class="btn btn-primary"  onclick="showRequestForm()" id="new-btn" data-toggle="modal" data-target="#requestModal">
-						<span data-localize="label.add"></span>
+						<span>${sessionScope.languageJSON.label.add}</span>
 					</button>
-					<a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequestCalendar/eventCalendar"  aria-label="" data-localize="label.switchToCalendarView" data-localize-location="aria-label" data-localize-notText="true">
+					<a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequestCalendar/eventCalendar"  aria-label="${sessionScope.languageJSON.label.switchToCalendarView}">
 						<i class="fa fa-calendar"></i>
 					</a>
 				</div>
@@ -35,11 +35,11 @@
 										>
 										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 										<div class="form-group in-line">
-										<label class="form-title"  for="freq"  data-localize="label.payrollFreq"></label>
-						<select class="form-control" name="freq" id="freq" onchange="changeFreq()">
-	                                    <c:forEach var="freq" items="${availableFreqs}" varStatus="count">
-	                                        <option value="${freq.code}" <c:if test="${freq.code == selectedFreq }">selected</c:if>>${freq.description}</option>
-	                                    </c:forEach>
+										<label class="form-title"  for="freq">${sessionScope.languageJSON.label.payrollFreq}</label>
+											<select class="form-control" name="freq" id="freq" onchange="changeFreq()">
+			                                    <c:forEach var="freq" items="${availableFreqs}" varStatus="count">
+			                                        <option value="${freq.code}" <c:if test="${freq.code == selectedFreq }">selected</c:if>>${freq.description}</option>
+			                                    </c:forEach>
 											</select>
 										</div>
 					</form>
@@ -50,9 +50,9 @@
 					method="POST"
 						>
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-						<input type="text" name="freq" hidden="hidden" value="${selectedFreq}" aria-label="" data-localize="accessHint.frequency">
+						<input type="text" name="freq" hidden="hidden" value="${selectedFreq}" aria-label="${sessionScope.languageJSON.accessHint.frequency}"/>
 					<div class="form-group type-group">
-						<label class="form-title" for="SearchType"><span data-localize="label.type"></span>:</label> 
+						<label class="form-title" for="SearchType"><span>${sessionScope.languageJSON.label.type}</span>:</label> 
 						<select id="SearchType"
 							class="form-control" name="SearchType" autocomplete="off">
 							<c:forEach var="type" items="${leaveTypesforSearch}" varStatus="count">
@@ -61,33 +61,31 @@
 						</select>
 					</div>
 					<div class="form-group">
-							<label class="form-title" for="SearchStartDate"><span data-localize="label.from"></span>:</label> 
+							<label class="form-title" for="SearchStartDate"><span>${sessionScope.languageJSON.label.from}</span>:</label> 
 							<div class="button-group">
 							<input
 								class="form-control" type="text" name="SearchStart"
 								data-date-format="mm/dd/yyyy"  autocomplete="off"
-								aria-label=""
-								data-localize="label.mmddyyyyFormat"
-								placeholder=""
-								title=""
+								aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+								placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+								title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
 								id="SearchStartDate"  value="${SearchStart}" />
-								<button class="clear-btn" type="button" role="button" onclick="clearDate(this)" tabindex="0"  aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
+								<button class="clear-btn" type="button" role="button" onclick="clearDate(this)" tabindex="0"  aria-label="${sessionScope.languageJSON.label.removeContent}">
 									<i class="fa fa-times"></i>
 								</button>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="form-title" for="SearchEndDate"> <span data-localize="label.to"></span>: </label> 
+							<label class="form-title" for="SearchEndDate"> <span>${sessionScope.languageJSON.label.to}</span>:</label> 
 							<div class="button-group">
 							<input
 								class="form-control" type="text" name="SearchEnd"
 								data-date-format="mm/dd/yyyy"  autocomplete="off"
-								aria-label=""
-								data-localize="label.mmddyyyyFormat"
-								placeholder=""
-								title=""
+								aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+								placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+								title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
 								id="SearchEndDate" value="${SearchEnd}" />
-								<button class="clear-btn" type="button" role="button" onclick="clearDate(this)" tabindex="0"  aria-label="" data-localize="label.removeContent" data-localize-location="aria-label" data-localize-notText="true">
+								<button class="clear-btn" type="button" role="button" onclick="clearDate(this)" tabindex="0"  aria-label="${sessionScope.languageJSON.label.removeContent}">
 									<i class="fa fa-times"></i>
 								</button>
 							</div>
@@ -95,65 +93,68 @@
 						<div class="form-group btn-group">
 							<div style="margin-top:20px;">
 									<button id="retrieve" type="button" role="button" class="btn btn-primary" data-localize="leaveBalance.retrieve">
-										</button>
+										${sessionScope.languageJSON.leaveBalance.retrieve}
+									</button>
 							</div>
 						</div>
 					</form>
 					<div class="form-group">
-						<p class="error-hint hide" role="alert" aria-atomic="true" id="timeErrorMessage" data-localize="validator.fromDateNotGreaterToDate"></p>
+						<p class="error-hint hide" role="alert" aria-atomic="true" id="timeErrorMessage">
+							${sessionScope.languageJSON.validator.fromDateNotGreaterToDate}
+						</p>
 					</div>
 					<h2 class="table-top-title">
-						<b data-localize="label.unprocessedLeaveRequest"></b>
+						<b>${sessionScope.languageJSON.label.unprocessedLeaveRequest}</b>
 					</h2>
 					<div class="hr-black"></div>
 				<c:if test="${fn:length(leaves) > 0}">
 					<table class="table request-list responsive-table">
 						<thead>
 							<tr>
-								<!-- <th data-localize="leaveRequest.sno"></th> -->
-								<th data-localize="leaveRequest.leaveType"></th>
-								<th data-localize="leaveRequest.absenceReason"></th>
-								<th class="text-center" data-localize="leaveRequest.startDate"></th>
-								<th class="text-center" data-localize="leaveRequest.endDate"></th>
-								<!-- <th data-localize="leaveRequest.startTime"></th>
-								<th data-localize="leaveRequest.endTime"></th> -->
-								<th data-localize="leaveRequest.leaveRequested"></th>
-								<th data-localize="leaveRequest.commentLog"></th>
-								<th data-localize="leaveRequest.status"></th>
+								<th>${sessionScope.languageJSON.leaveRequest.leaveType}</th>
+								<th>${sessionScope.languageJSON.leaveRequest.absenceReason}</th>
+								<th class="text-center">${sessionScope.languageJSON.leaveRequest.startDate}</th>
+								<th class="text-center">${sessionScope.languageJSON.leaveRequest.endDate}</th>
+								<th>${sessionScope.languageJSON.leaveRequest.leaveRequested}</th>
+								<th>${sessionScope.languageJSON.leaveRequest.commentLog}</th>
+								<th>${sessionScope.languageJSON.leaveRequest.status}</th>
 								<td></td>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="leave" items="${leaves}" varStatus="leaves">
 								<tr>
-									<!-- <td  data-localize="leaveRequest.sno" data-localize-location="scope">${leaves.index + 1}</td> -->
-									<td data-localize="leaveRequest.leaveType" data-localize-location="scope">
+									<td scope="${sessionScope.languageJSON.leaveRequest.leaveType}">
 											<c:forEach var="type" items="${leaveTypes}" varStatus="count">
 													<c:if test="${type.code == leave.LeaveType}">${type.description}</c:if>
 											</c:forEach>
 									</td>
-									<td data-localize="leaveRequest.absenceReason" data-localize-location="scope">
+									<td scope="${sessionScope.languageJSON.leaveRequest.absenceReason}">
 										<c:forEach var="abs" items="${absRsns}" varStatus="count">
 													<c:if test="${abs.code == leave.AbsenseReason }">${abs.description}</c:if>
 											</c:forEach>
 									</td>
-									<td class="text-center" data-localize="leaveRequest.startDate" data-localize-location="scope">${leave.start}</td>
-									<td class="text-center" data-localize="leaveRequest.endDate" data-localize-location="scope">${leave.end}</td>
-									<td data-localize="leaveRequest.leaveRequested" data-localize-location="scope">${leave.lvUnitsUsed} 
-											<span data-localize="label.days"></span>
+									<td class="text-center" scope="${sessionScope.languageJSON.leaveRequest.startDate}">${leave.start}</td>
+									<td class="text-center" scope="${sessionScope.languageJSON.leaveRequest.endDate}">${leave.end}</td>
+									<td scope="${sessionScope.languageJSON.leaveRequest.leaveRequested}">${leave.lvUnitsUsed} 
+											<span>${sessionScope.languageJSON.label.days}</span>
 									</td>
-									<td data-localize="leaveRequest.commentLog" data-localize-location="scope">
+									<td scope="${sessionScope.languageJSON.leaveRequest.commentLog}">
 										<c:forEach var="comment" items="${leave.comments}" varStatus="count">
-													${comment.detail}<br>
+													${comment.detail}<br/>
 											</c:forEach>
 									</td>
-									<td data-localize="leaveRequest.status" data-localize-location="scope">${leave.statusDescr}</td>
+									<td scope="${sessionScope.languageJSON.leaveRequest.status}">${leave.statusDescr}</td>
 									<td style="width:150px;">
 											<c:if test="${leave.statusCd != 'A'}">
 													<button class="btn btn-primary sm edit-btn" id="editLeave" data-toggle="modal" data-target="#requestModal" 
 													onClick='editLeave("${leave.id}","${leave.LeaveType}","${leave.AbsenseReason}","${leave.start}",
-													"${leave.end}", "${leave.lvUnitsDaily}","${leave.lvUnitsUsed}")' data-localize="label.edit"></button>
-													<button class="btn btn-secondary sm"  data-toggle="modal" data-target="#deleteModal"  onClick="deleteLeave(${leave.id})" data-localize="label.delete"></button>
+													"${leave.end}", "${leave.lvUnitsDaily}","${leave.lvUnitsUsed}")'>
+														${sessionScope.languageJSON.label.edit}
+													</button>
+													<button class="btn btn-secondary sm"  data-toggle="modal" data-target="#deleteModal"  onClick="deleteLeave(${leave.id})">
+														${sessionScope.languageJSON.label.delete}
+													</button>
 											</c:if>
 										
 									</td>
@@ -164,14 +165,15 @@
 					</table>
 				</c:if>
 				<c:if test="${fn:length(leaves) == 0}">
-					<div data-localize="label.noData">
 					<div>
+						${sessionScope.languageJSON.label.noData}
+					</div>
 				</c:if>
 			</div>
 		</section>
 			<form hidden="true" id="deleteForm" action="deleteLeaveRequest" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				<input type="text" id="deleteId" name="id" aria-label="" data-localize="accessHint.id"/>
+				<input type="text" id="deleteId" name="id" aria-label="${sessionScope.languageJSON.accessHint.id}"/>
 			</form>
 		</main>
 	</div>
