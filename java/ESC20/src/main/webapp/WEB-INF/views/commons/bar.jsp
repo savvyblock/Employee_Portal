@@ -13,7 +13,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <button class="nav-link nobtn-style bars-btn" data-widget="pushmenu" aria-label="" data-localize="accessHint.collapseOrExpand" data-localize-location="aria-label" data-localize-notText="true">
+        <button class="nav-link nobtn-style bars-btn" data-widget="pushmenu" aria-label="${sessionScope.languageJSON.accessHint.collapseOrExpand}">
           <i class="fa fa-bars"></i>
         </button>
       </li>
@@ -23,13 +23,13 @@
     <ul class="navbar-nav nav-right">
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-        <button class="nav-link nobtn-style" data-toggle="dropdown" aria-label="" data-localize="accessHint.showOrHideNote" data-localize-location="aria-label" data-localize-notText="true">
+        <button class="nav-link nobtn-style" data-toggle="dropdown" aria-label="${sessionScope.languageJSON.accessHint.showOrHideNote}">
           <i class="fa fa-bell-o"></i>
           <span id="navBadge" class="navbar-badge"></span>
         </button>
         <div class="dropdown-menu dropdown-menu-right note-dropdown">
           <div class="dropdown-header">
-            <label id="budgeCount">0</label> <label data-localize="label.notification"></label>
+            <label id="budgeCount">0</label> <label>${sessionScope.languageJSON.label.notification}</label>
           </div>
           	  <a href="/<%=request.getContextPath().split("/")[1]%>/notifications/notifications">
 		          <div class="dropdown-divider"></div>
@@ -38,7 +38,7 @@
 		          </div>
 		          <div class="dropdown-divider"></div>
 	          </a>
-          <a data-localize="label.seeAllNote" href="/<%=request.getContextPath().split("/")[1]%>/notifications/notifications" class="dropdown-footer"  role="link"></a>
+          <a href="/<%=request.getContextPath().split("/")[1]%>/notifications/notifications" class="dropdown-footer"  role="link">${sessionScope.languageJSON.label.seeAllNote}</a>
         </div>
       </li>
       <li class="nav-item">
@@ -46,8 +46,7 @@
       <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
           href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
         </c:if>
-        aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label" data-localize-notText="true"  role="link"
-      >
+        aria-label="${sessionScope.languageJSON.accessHint.goMyAccount}" role="link">
         <i class="fa fa-user"></i>
       </a>
       </li>
@@ -71,8 +70,7 @@
             <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
               href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
             </c:if>
-            aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label" data-localize-notText="true"
-            class="d-block noImage">
+            aria-label="${sessionScope.languageJSON.accessHint.goMyAccount}" class="d-block noImage">
             <i class="fa fa-user"></i>
           </a>
        		
@@ -96,7 +94,7 @@
             <a href="#" class="nav-link"><!--  active -->
               <i class="nav-icon fa fa-list"></i>
               <p>
-                <span data-localize="nav.inquiry"></span>
+                <span>${sessionScope.languageJSON.nav.inquiry}</span>
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
@@ -105,7 +103,7 @@
                 <li class="nav-item">
                   <a href="/<%=request.getContextPath().split("/")[1]%>/calendarYearToDate/calendarYearToDate" class="nav-link" id="calendarYearToDate">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p data-localize="nav.calendarYearToDate"></p>
+                    <p>${sessionScope.languageJSON.nav.calendarYearToDate}</p>
                   </a>
                 </li>
               </c:if>
@@ -113,7 +111,7 @@
               <li class="nav-item" >
                 <a href="/<%=request.getContextPath().split("/")[1]%>/currentPayInformation/currentPayInformation" class="nav-link" id="currentPayInformation">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p data-localize="nav.currentPayInfo"></p>
+                  <p>${sessionScope.languageJSON.nav.currentPayInfo}</p>
                 </a>
               </li>
             </c:if>
@@ -121,7 +119,7 @@
               <li class="nav-item">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/deductions/deductions" class="nav-link" id="deductions">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p data-localize="nav.deductions"></p>
+                  <p>${sessionScope.languageJSON.nav.deductions}</p>
                 </a>
               </li>
             </c:if>
@@ -129,7 +127,7 @@
               <li class="nav-item">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/earnings/earnings" class="nav-link" id="earnings">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p data-localize="nav.earning"></p>
+                  <p>${sessionScope.languageJSON.nav.earning}</p>
                 </a>
               </li>
             </c:if>
@@ -137,7 +135,7 @@
               <li class="nav-item">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/w2Information/w2Information" class="nav-link" id="w2Information">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p data-localize="nav.w2Info"></p>
+                  <p>${sessionScope.languageJSON.nav.w2Info}</p>
                 </a>
               </li>
             </c:if>
@@ -145,7 +143,7 @@
               <li class="nav-item">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/information1095/information1095" class="nav-link" id="information1095">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p data-localize="nav.info1095"></p>
+                  <p>${sessionScope.languageJSON.nav.info1095}</p>
                 </a>
               </li>
             </c:if>
@@ -154,14 +152,14 @@
           <li class="nav-item">
             <a href="/<%=request.getContextPath().split("/")[1]%>/leaveBalance/leaveBalance" class="nav-link" id="leaveBalance">
               <i class="nav-icon fa fa-hourglass-start text-info"></i>
-              <p data-localize="nav.leaveBalances"></p>
+              <p>${sessionScope.languageJSON.nav.leaveBalances}</p>
             </a>
           </li>
           <c:if test="${sessionScope.options.enableLeaveReq}">
           <li class="nav-item">
             <a id="leaveRequest" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/leaveRequest" class="nav-link">
               <i class="nav-icon fa  fa-pencil-square-o text-info"></i>
-              <p data-localize="nav.leaveRequests"></p>
+              <p>${sessionScope.languageJSON.nav.leaveRequests}</p>
             </a>
           </li>
         </c:if>
@@ -170,7 +168,7 @@
             <a href="#" class="nav-link" > <!--  active -->
               <i class="nav-icon fa fa-users"></i>
               <p>
-                <span data-localize="nav.supervisor"></span>
+                <span>${sessionScope.languageJSON.nav.supervisor}</span>
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
@@ -178,25 +176,25 @@
               <li class="nav-item">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/approveLeaveRequest/approveLeaveRequestList" class="nav-link" id="approveLeaveRequest">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p data-localize="nav.approveLeaveRequests"></p>
+                  <p>${sessionScope.languageJSON.nav.approveLeaveRequests}</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a  href="/<%=request.getContextPath().split("/")[1]%>/leaveOverview/leaveOverviewList" class="nav-link" id="leaveOverview">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p data-localize="nav.leaveOverview"></p>
+                  <p>${sessionScope.languageJSON.nav.leaveOverview}</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/supervisorCalendar/calendarView" class="nav-link" id="supervisorCalendar">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p data-localize="nav.calendar"></p>
+                  <p>${sessionScope.languageJSON.nav.calendar}</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/leaveRequestTemporaryApprovers/leaveRequestTemporaryApprovers" class="nav-link" id="leaveRequestTemporaryApprovers">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p data-localize="nav.setTemporary"></p>
+                  <p>${sessionScope.languageJSON.nav.setTemporary}</p>
                 </a>
               </li>
               
@@ -212,21 +210,19 @@
         <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
         <li>
           <a href="/<%=request.getContextPath().split("/")[1]%>/profile/profile"
-            aria-label="" data-localize="accessHint.goMyAccount" data-localize-location="aria-label,title" data-localize-notText="true"
-          >
+            aria-label="${sessionScope.languageJSON.accessHint.goMyAccount}" title="${sessionScope.languageJSON.accessHint.goMyAccount}">
           <i class="fa fa-user"></i>
         </a></li>
         </c:if>
         <!-- <li><a href="/" title="Full Screen"><i class="fa fa-arrows-alt"></i></a></li> -->
         <li>
           <a href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank"
-          aria-label="" data-localize="accessHint.goHelp" data-localize-location="aria-label,title" data-localize-notText="true"
-          >
+          aria-label="${sessionScope.languageJSON.accessHint.goHelp}" title="${sessionScope.languageJSON.accessHint.goHelp}">
           <i class="fa fa-question-circle"></i>
         </a></li>
         <li>
         <form action="/<%=request.getContextPath().split("/")[1]%>/logoutEA" method="post">
-          <button class="logoutBtn" type="submit" role="submitButton" data-localize="accessHint.logout" data-localize-location="aria-label,title" data-localize-notText="true">
+          <button class="logoutBtn" type="submit" role="submitButton" aria-label="${sessionScope.languageJSON.accessHint.logout}" title="${sessionScope.languageJSON.accessHint.logout}">
             <i class="fa fa-sign-out "></i>
           </button>
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
