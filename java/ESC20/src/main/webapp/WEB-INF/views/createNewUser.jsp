@@ -3,7 +3,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="en">
     <head>
-        <title data-localize="headTitle.createNewUser"></title>
+        <title>${sessionScope.languageJSON.headTitle.createNewUser}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <%@ include file="commons/header.jsp"%>
     </head>
@@ -14,41 +14,41 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         <form id="createNewUserForm" action="saveNewUser" method="post">
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="form-group">
-                                <label class="form-title" data-localize="label.employeeNumber"></label>
+                                <label class="form-title">${sessionScope.languageJSON.label.employeeNumber}</label>
                                 <div class="valid-wrap">
                                    ${user.empNumber}
                                 </div>
                                 <input type="hidden" name="empNbr" value="${user.empNumber}" />
                             </div>
                             <div class="form-group">
-                                <label class="form-title" data-localize="label.dateOfBirth"></label>
+                                <label class="form-title">${sessionScope.languageJSON.label.dateOfBirth}</label>
                                 <div class="valid-wrap">
                                    ${user.searchFormattedDateofBirth}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title" data-localize="label.zipCode"></label>
+                                <label class="form-title">${sessionScope.languageJSON.label.zipCode}</label>
                                 <div class="valid-wrap">
                                     ${user.zipCode}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title" data-localize="label.lastname"></label>
+                                <label class="form-title">${sessionScope.languageJSON.label.lastname}</label>
                                 <div class="valid-wrap">
                                     ${user.nameL}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title" data-localize="label.firstname"></label>
+                                <label class="form-title">${sessionScope.languageJSON.label.firstname}</label>
                                 <div class="valid-wrap">
                                     ${user.nameF}
                                 </div>
                             </div>
                             <div>
-                                <b data-localize="label.pleaseEnterInformation"></b>
+                                <b>${sessionScope.languageJSON.label.pleaseEnterInformation}</b>
                             </div>
                             <div class="form-group error-vertical">
-                                <label class="form-title" data-localize="label.username" for="username"></label>
+                                <label class="form-title" for="username">${sessionScope.languageJSON.label.username}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -59,7 +59,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group error-vertical">
-                                <label class="form-title" data-localize="label.password" for="password"></label>
+                                <label class="form-title" for="password">${sessionScope.languageJSON.label.password}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -71,7 +71,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group error-vertical">
-                                <label class="form-title" data-localize="label.newPassword" for="newPassword"></label>
+                                <label class="form-title" for="newPassword">${sessionScope.languageJSON.label.newPassword}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -83,7 +83,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group error-vertical">
-                                <label class="form-title" data-localize="label.workEmail" for="workEmail"></label>
+                                <label class="form-title" for="workEmail">${sessionScope.languageJSON.label.workEmail}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -95,7 +95,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group error-vertical">
-                                <label class="form-title" data-localize="profile.verifyEmail" for="workEmail"></label>
+                                <label class="form-title" for="workEmail">${sessionScope.languageJSON.profile.verifyEmail}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -107,7 +107,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group error-vertical">
-                                <label class="form-title" data-localize="label.homeEmail" for="homeEmail"></label>
+                                <label class="form-title" for="homeEmail">${sessionScope.languageJSON.label.homeEmail}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -119,7 +119,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group error-vertical">
-                                <label class="form-title" data-localize="profile.verifyEmail" for="homeEmail"></label>
+                                <label class="form-title" for="homeEmail">${sessionScope.languageJSON.profile.verifyEmail}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -131,7 +131,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title" data-localize="label.hintQuestion" for="hintQuestion"></label>
+                                <label class="form-title" for="hintQuestion">${sessionScope.languageJSON.label.hintQuestion}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -142,7 +142,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title" data-localize="label.hintAnswer" for="hintAnswer"></label>
+                                <label class="form-title" for="hintAnswer">${sessionScope.languageJSON.label.hintAnswer}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -154,13 +154,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
 
  							<c:if test="${isUserExist!=null && isUserExist=='true'}">
-                             	<p class="error-hint"  role="alert" aria-atomic="true" id="noUserError" data-localize="validator.userExist"></p>
+                             	<p class="error-hint"  role="alert" aria-atomic="true" id="noUserError">${sessionScope.languageJSON.validator.userExist}</p>
                             </c:if>
                             <c:if test="${isSuccess!=null && isSuccess=='true'}">
-                             	<p class="error-hint"  role="alert" aria-atomic="true" id="saveUserSuccess" data-localize="validator.saveUserSuccess"></p>
+                             	<p class="error-hint"  role="alert" aria-atomic="true" id="saveUserSuccess">${sessionScope.languageJSON.validator.saveUserSuccess}</p>
                             </c:if>
                             <div class="form-group account-btn">
-                                <button type="button" role="button" id="saveNewUser" class="btn btn-primary" data-localize="label.save">
+                                <button type="button" role="button" id="saveNewUser" class="btn btn-primary">
+                                        ${sessionScope.languageJSON.label.save}
                                 </button>
                             </div> 
                     </form>

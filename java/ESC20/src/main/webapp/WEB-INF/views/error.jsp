@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
     <head>
-        <title data-localize="headTitle.notFound"></title>
+        <title>${sessionScope.languageJSON.headTitle.notFound}</title>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <%@ include file="commons/header.jsp"%>
@@ -11,8 +11,10 @@
         <%@ include file="commons/bar-account.jsp"%>
          <div class="notFoundBox content-body"  tabindex="-1">
             <div class="inner">
-              <img src="/<%=request.getContextPath().split("/")[1]%>/images/error.png"  alt="" data-localize="label.errorImg">
-              <p class="word" data-localize="label.pleaseTryAgain"></p>
+              <img src="/<%=request.getContextPath().split("/")[1]%>/images/error.png"  alt="${sessionScope.languageJSON.label.errorImg}">
+              <p class="word">
+                    ${sessionScope.languageJSON.label.pleaseTryAgain}
+              </p>
             </div>
          </div>
     </body>

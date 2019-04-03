@@ -3,7 +3,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="en">
     <head>
-        <title data-localize="headTitle.resetPassword"></title>
+        <title>${sessionScope.languageJSON.headTitle.resetPassword}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <%@ include file="commons/header.jsp"%>
     </head>
@@ -15,31 +15,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="form-group">
                         <input type="hidden" name="id" value="${id}" />
-                        <label class="form-title" data-localize="label.password"></label>
+                        <label class="form-title">${sessionScope.languageJSON.label.password}</label>
                         <div class="valid-wrap">
                             <input
                                 type="password"
                                 class="form-control"
-                                placeholder="Password"
-                                data-localize="label.newPassword"
+                                placeholder="${sessionScope.languageJSON.label.newPassword}"
+                               
                                 name="password"
                             />
                         </div>
                     </div>
                     <div class="form-group error-vertical">
-                        <label class="form-title"data-localize="label.confirmPassword"></label>
+                        <label class="form-title"data-localize="label.confirmPassword">${sessionScope.languageJSON.label.confirmPassword}</label>
                         <div class="valid-wrap">
                             <input
                                 type="password"
                                 class="form-control"
-                                placeholder=""
-                                data-localize="label.confirmPassword"
+                                placeholder="${sessionScope.languageJSON.label.confirmPassword}"
                                 name="newPassword"
                             />
                         </div>
                     </div>
                     <div class="form-group account-btn">
-                        <button type="submit" role="submitButton" class="btn btn-primary" data-localize="label.submit">
+                        <button type="submit" role="submitButton" class="btn btn-primary">
+                                ${sessionScope.languageJSON.label.submit}
                         </button>
                     </div>
                 </form>
