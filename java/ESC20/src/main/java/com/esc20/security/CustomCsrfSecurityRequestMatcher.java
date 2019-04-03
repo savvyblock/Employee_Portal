@@ -11,7 +11,6 @@ public class CustomCsrfSecurityRequestMatcher implements RequestMatcher {
    
     @Override  
     public boolean matches(HttpServletRequest request) {
-    	System.out.println("Request method: "+ request.getRequestURI());
     	if (request.getRequestURI().endsWith("UnprotectedPDF"))
     		return false;
         return !allowedMethods.matcher(request.getMethod()).matches();

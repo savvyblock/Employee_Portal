@@ -8,6 +8,6 @@
 	<div class="footer-logo">
 		<img
 			src="/<%=request.getContextPath().split("/")[1]%>/images/logo.png"
-			alt="" data-localize="logoName.esc" />
+			alt="${sessionScope.languageJSON.logoName.esc}"/>
 	</div>
 </footer>
