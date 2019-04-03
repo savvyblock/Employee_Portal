@@ -16,7 +16,8 @@
             </div>
             <div class="modal-footer">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/logout">
-                    <button type="button" role="button"  class="btn btn-primary" data-localize="label.ok">
+                    <button type="button" role="button"  class="btn btn-primary">
+                    	${sessionScope.languageJSON.label.ok}
                     </button>
                 </a>
                 <button
@@ -24,9 +25,9 @@
                     class="btn btn-secondary closeModal"
                     data-dismiss="modal"
                     id="cancelAdd"
-                    data-localize="label.cancel"
                     onclick="setCountTime()"
                 >
+                	${sessionScope.languageJSON.label.cancel}
                 </button>
             </div>             
         </div>
