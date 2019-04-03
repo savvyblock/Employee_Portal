@@ -4,7 +4,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
     <head>
-        <title data-localize="headTitle.deductions"></title>
+        <title>${sessionScope.languageJSON.headTitle.deductions}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <%@ include file="../commons/header.jsp"%>
     </head>
@@ -14,7 +14,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
             <main class="content-wrapper" id="content" tabindex="-1">
                 <section class="content">
-                    <h1 class="clearfix no-print section-title" data-localize="title.deductions"></h1>
+                    <h1 class="clearfix no-print section-title">${sessionScope.languageJSON.title.deductions}</h1>
                     <div class="content-white EMP-detail">
                             <c:if test="${not empty message}">
                                 <br/>
@@ -22,42 +22,42 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <br/>
                             </c:if>
                             <c:if test="${fn:length(frequencies) == 0}">
-                                <div class="error" data-localize="label.noDeductions"></div>
+                                <div class="error">${sessionScope.languageJSON.label.noDeductions}</div>
                             </c:if>
                             <c:if test="${fn:length(frequencies) > 0}">
                                     <c:forEach items="${frequencies}" var="frequency">
-                                        <p class="no-print table-top-title"><b><span data-localize="label.frequency"></span>: ${frequency}</b></p>
+                                        <p class="no-print table-top-title"><b><span>${sessionScope.languageJSON.label.frequency}</span>: ${frequency}</b></p>
                                         <div>
-                                                <span data-localize="label.maritalStatus"></span>:  
+                                                <span>${sessionScope.languageJSON.label.maritalStatus}</span>:  
                                                 <c:if test="${payInfos[frequency].maritalStatTax =='M'}">
-                                                        <span data-localize="label.married"></span>
+                                                        <span>${sessionScope.languageJSON.label.married}</span>
                                                 </c:if>
                                                 <c:if test="${payInfos[frequency].maritalStatTax =='S'}">
-                                                        <span data-localize="label.single"></span>
+                                                        <span>${sessionScope.languageJSON.label.single}</span>
                                                 </c:if>
                                                 <br>
-                                                <span data-localize="label.numOfExemptions"></span>: ${payInfos[frequency].nbrTaxExempts}<br>
+                                                <span>${sessionScope.languageJSON.label.numOfExemptions}</span>: ${payInfos[frequency].nbrTaxExempts}<br>
                                         </div>
                                         <table class="table border-table responsive-table print-table deductionTable">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center" data-localize="deductionsTable.deductionCode"></th>
-                                                    <th data-localize="deductionsTable.description"></th>
-                                                    <th class="text-right" data-localize="deductionsTable.amount"></th>
-                                                    <th class="text-center" data-localize="deductionsTable.cafeteriaFlag"></th>
-                                                    <th class="text-right" data-localize="deductionsTable.employerContributionAmount"></th>
+                                                    <th class="text-center">${sessionScope.languageJSON.deductionsTable.deductionCode}</th>
+                                                    <th>${sessionScope.languageJSON.deductionsTable.description}</th>
+                                                    <th class="text-right">${sessionScope.languageJSON.deductionsTable.amount}</th>
+                                                    <th class="text-center">${sessionScope.languageJSON.deductionsTable.cafeteriaFlag}</th>
+                                                    <th class="text-right">${sessionScope.languageJSON.deductionsTable.employerContributionAmount}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <c:forEach items="${deductions[frequency]}" var="deduct" varStatus="counter">
                                                         <tr>
-                                                            <td class="text-center" data-localize="deductionsTable.deductionCode" data-localize-location="scope,data-title">${deduct.dedCd}</td>
-                                                            <td data-localize="deductionsTable.description" data-localize-location="scope,data-title">${deduct.dedCdDesc}</td>
-                                                            <td data-localize="deductionsTable.amount" data-localize-location="scope,data-title">
+                                                            <td class="text-center" scope="${sessionScope.languageJSON.deductionsTable.deductionCode}" data-title="${sessionScope.languageJSON.deductionsTable.deductionCode}">${deduct.dedCd}</td>
+                                                            <td scope="${sessionScope.languageJSON.deductionsTable.description}" data-title="${sessionScope.languageJSON.deductionsTable.description}">${deduct.dedCdDesc}</td>
+                                                            <td scope="${sessionScope.languageJSON.deductionsTable.amount}" data-title="${sessionScope.languageJSON.deductionsTable.amount}">
                                                                 <fmt:formatNumber value="${deduct.empAmt}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td class="text-center" data-localize="deductionsTable.cafeteriaFlag" data-localize-location="scope,data-title">${deduct.cafeFlgStr}</td>
-                                                            <td data-localize="deductionsTable.employerContributionAmount" data-localize-location="scope,data-title">
+                                                            <td class="text-center" scope="${sessionScope.languageJSON.deductionsTable.cafeteriaFlag}" data-title="${sessionScope.languageJSON.deductionsTable.cafeteriaFlag}">${deduct.cafeFlgStr}</td>
+                                                            <td scope="${sessionScope.languageJSON.deductionsTable.employerContributionAmount}" data-title="${sessionScope.languageJSON.deductionsTable.employerContributionAmount}">
                                                                 <fmt:formatNumber value="${deduct.emplrAmt}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>

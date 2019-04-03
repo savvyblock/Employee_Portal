@@ -4,7 +4,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
     <head>
-        <title data-localize="headTitle.currentPayInfo"></title>
+        <title >${sessionScope.languageJSON.headTitle.currentPayInfo}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <%@ include file="../commons/header.jsp"%>
         <script>
@@ -18,16 +18,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             <main class="content-wrapper" id="content" tabindex="-1">
                 <section class="content">
                     <div class="clearfix no-print section-title">
-                        <h1 class="pageTitle" data-localize="title.currentPayInfo"></h1>
+                        <h1 class="pageTitle" >${sessionScope.languageJSON.title.currentPayInfo}</h1>
                         <div class="pull-right right-btn">
-                                <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="" data-localize="label.exportPDF" data-localize-notText="true">
+                                <button class="btn btn-primary download-pdf" onclick="downloadPDF()" aria-label="${sessionScope.languageJSON.label.exportPDF}" >
                                     <i class="fa fa-file-pdf-o"></i>
                                 </button>
                                 <button
                                     class="btn btn-primary pull-right"
                                     onclick="doPrint()"
-                                    data-localize="label.print"
-                                >
+                                    
+                                >${sessionScope.languageJSON.label.print}
                                 </button>
                             </div>
                     </div>
@@ -35,7 +35,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 						<input type="hidden" name="${_csrf.parameterName}"
 							value="${_csrf.token}" />
 						<button type="submit" role="button" class="btn btn-primary"
-							data-localize="label.submit"></button>
+							>${sessionScope.languageJSON.label.submit}</button>
 					</form>
                     <div class="toPrint content-white EMP-detail">
                         <div class="exportPDFBox">
@@ -46,7 +46,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 ${sessionScope.district.state} ${sessionScope.district.zip}-${sessionScope.district.zip4}
                                             </div>
                                         <div style="text-align:center;">
-                                                <span data-localize="label.currentPayInfo"></span><br />
+                                                <span >${sessionScope.languageJSON.label.currentPayInfo}</span><br />
                                             <div id="date-now"></div>
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         	<input type="hidden" id="isPrintPDF" value="${isPrintPDF}" />
                         	<input type="hidden" id="language" value="${language}" />
                             <h2 class="table-top-title">
-                                <b data-localize="label.employeeInformation"></b>
+                                <b >${sessionScope.languageJSON.label.employeeInformation}</b>
                             </h2>
                             <table
                                 class="table border-table responsive-table no-thead print-table noNumTable"
@@ -78,7 +78,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </tr>
                                     <tr>
                                         <td id="userDetailAddress" class="td-title"  rowspan="2"><b>${sessionScope.languageJSON.currentPayTable.address}</b></td>
-                                        <td headers="userDetailAddress" class="td-content" data-title="Address" rowspan="2">
+                                        <td headers="userDetailAddress" class="td-content" data-title="${sessionScope.languageJSON.currentPayTable.address}" rowspan="2">
                                             ${sessionScope.district.address}<br/>
                                             ${sessionScope.district.city},
                                             ${sessionScope.district.state} ${sessionScope.district.zip}
@@ -86,7 +86,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <td id="employeeId" class="td-title" ><b>${sessionScope.languageJSON.currentPayTable.employeeId}</b></td>
                                         <td
                                             headers="employeeId" class="td-content"
-                                            data-title="Employee ID"
+                                            data-title="${sessionScope.languageJSON.currentPayTable.employeeId}"
                                         >
                                         ${sessionScope.userDetail.empNbr}
                                         </td>
@@ -98,7 +98,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                         <td
                                             headers="dateOfBirth" class="td-content"
-                                            data-title="Date of Birth"
+                                            data-title="${sessionScope.languageJSON.currentPayTable.dateOfBirth}"
                                         >
                                         ${sessionScope.userDetail.dob}
                                         </td>
@@ -109,17 +109,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                         <td
                                             headers="phoneNumber" class="td-content"
-                                            data-title="Phone Number"
+                                            data-title="${sessionScope.languageJSON.currentPayTable.phoneNumber}"
                                         >
                                         ${sessionScope.district.phone}
                                         </td>
                                         <td id="gender" class="td-title" ><b>${sessionScope.languageJSON.currentPayTable.gender}</b></td>
                                         <td headers="gender" class="td-content" data-title="Gender">
                                             <c:if test="${sessionScope.userDetail.sex =='F'}">
-                                                <span data-localize="label.female"></span>
+                                                <span >${sessionScope.languageJSON.label.female}</span>
                                             </c:if>
                                             <c:if test="${sessionScope.userDetail.sex =='M'}">
-                                                    <span data-localize="label.male"></span>
+                                                    <span >${sessionScope.languageJSON.label.male}</span>
                                             </c:if>
                                         </td>
                                     </tr>
@@ -127,7 +127,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <td id="degree" class="td-title" ><b>${sessionScope.languageJSON.currentPayTable.degree}</b></td>
                                         <td
                                             headers="degree" class="td-content"
-                                            data-title="Degree"
+                                            data-title="${sessionScope.languageJSON.currentPayTable.degree}"
                                             colspan="3"
                                         >
                                             ${employeeInfo.highDegreeDescription}
@@ -139,7 +139,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                         <td
                                             headers="professionalYearsExp" class="td-content"
-                                            data-title="Professional Years Experience"
+                                            data-title="${sessionScope.languageJSON.currentPayTable.professionalYearsExp}"
                                         >
                                         ${employeeInfo.yrsProExper}
                                         </td>
@@ -148,7 +148,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                         <td
                                             headers="professionalDistrictExp" class="td-content"
-                                            data-title="Professional District Experience"
+                                            data-title="${sessionScope.languageJSON.currentPayTable.professionalDistrictExp}"
                                         >
                                         ${employeeInfo.yrsExpDist}
                                         </td>
@@ -159,7 +159,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                         <td
                                             headers="nonProfessionalYearExp" class="td-content"
-                                            data-title="Non Professional Years Experience"
+                                            data-title="${sessionScope.languageJSON.currentPayTable.nonProfessionalYearExp}"
                                         >
                                         ${employeeInfo.yrsProExperLoc}
                                         </td>
@@ -168,7 +168,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </td>
                                         <td
                                             headers="noneProfessionalDistrictExp" class="td-content"
-                                            data-title="Non Professional District Experience"
+                                            data-title="${sessionScope.languageJSON.currentPayTable.noneProfessionalDistrictExp}"
                                         >
                                         ${employeeInfo.yrsExpDistLoc}
                                         </td>
@@ -176,7 +176,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </tbody>
                             </table>
                             <c:if test="${fn:length(frequencies) == 0}">
-                                <p data-localize="label.noCrrentPay"></p>
+                                <p >${sessionScope.languageJSON.label.noCrrentPay}</p>
                             </c:if>
                             <c:if test="${fn:length(frequencies) > 0}">
                                 <c:forEach var="frequency" items="${frequencies}"  varStatus="count">
@@ -193,8 +193,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </td>
                                                 <td
                                                     headers="martialStatus_${count.index}" class="td-content"
-                                                    data-title="Marital Status"
-                                                    data-localize="currentPayTable.martialStatus"
+                                                    data-title="${sessionScope.languageJSON.currentPayTable.martialStatus}"
+                                                    
                                                 >
                                                     <c:if test="${payInfos[frequency].maritalStatTax =='M'}">
                                                             <span>${sessionScope.languageJSON.label.married}</span>
@@ -208,14 +208,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </td>
                                                 <td
                                                     headers="numOfExemptions_${count.index}" class="td-content"
-                                                    data-title="Number of Exemptions"
+                                                    data-title="${sessionScope.languageJSON.currentPayTable.numOfExemptions}"
                                                 >
                                                     ${payInfos[frequency].nbrTaxExempts}
                                                 </td>
                                                 <td id="payCampus_${count.index}" class="td-title" ><b>${sessionScope.languageJSON.currentPayTable.payCampus}</b></td>
                                                 <td
                                                     headers="payCampus" class="td-content"
-                                                    data-title="Pay Campus"
+                                                    data-title="${sessionScope.languageJSON.currentPayTable.payCampus}"
                                                 >
                                                 ${payCampuses[frequency]}
                                                 </td>
@@ -231,39 +231,39 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <c:forEach var="job" items="${jobs[frequency]}" varStatus="jobCount">
                                                 <tr>
                                                     <td id="jobCdDescription_${jobCount.index}" class="td-title">${sessionScope.languageJSON.currentPayTable.title}</td>
-                                                    <td headers="jobCdDescription_${jobCount.index}" class="td-content text-left" data-title="Title">
+                                                    <td headers="jobCdDescription_${jobCount.index}" class="td-content text-left" data-title="${sessionScope.languageJSON.currentPayTable.title}">
                                                         <b>
                                                                 ${job.jobCdDescription}
                                                         </b>
                                                     </td>
                                                     <td id="annualPayments_${jobCount.index}" class="td-title">${sessionScope.languageJSON.currentPayTable.annualPayments}</td>
-                                                    <td headers="annualPayments_${jobCount.index}" class="td-content" data-title="Annual Payments">
+                                                    <td headers="annualPayments_${jobCount.index}" class="td-content" data-title="${sessionScope.languageJSON.currentPayTable.annualPayments}">
                                                             ${job.nbrAnnualPymts}
                                                     </td>
                                                     <td id="regularHour_${jobCount.index}" class="td-title">${sessionScope.languageJSON.currentPayTable.regularHour}</td>
-                                                    <td headers="regularHour_${jobCount.index}" class="td-content" data-title="Regular Hours" data-localize="currentPayTable.regularHour">
+                                                    <td headers="regularHour_${jobCount.index}" class="td-content" data-title="${sessionScope.languageJSON.currentPayTable.regularHour}">
                                                             <fmt:formatNumber value="${job.regHrsWrk}" pattern="#,##0.00"/>
                                                     </td>
                                                     <td id="remailPayments_${jobCount.index}" class="td-title">${sessionScope.languageJSON.currentPayTable.remailPayments}</td>
-                                                    <td headers="remailPayments_${jobCount.index}" class="td-content" data-title="Remain Payments">
+                                                    <td headers="remailPayments_${jobCount.index}" class="td-content" data-title="${sessionScope.languageJSON.currentPayTable.remailPayments}">
                                                             ${job.nbrRemainPymts}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td id="annualSalary_${jobCount.index}" class="td-title">${sessionScope.languageJSON.currentPayTable.annualSalary}</td>
-                                                    <td headers="annualSalary_${jobCount.index}" class="td-content" data-title="Annual Salary">
+                                                    <td headers="annualSalary_${jobCount.index}" class="td-content" data-title="${sessionScope.languageJSON.currentPayTable.annualSalary}">
                                                             <fmt:formatNumber value="${job.contrAmt}" pattern="#,##0.00"/>
                                                     </td>
                                                     <td id="dailyRate_${jobCount.index}" class="td-title">${sessionScope.languageJSON.currentPayTable.dailyRate}</td>
-                                                    <td headers="dailyRate_${jobCount.index}" class="td-content" data-title="Daily Rate">
+                                                    <td headers="dailyRate_${jobCount.index}" class="td-content" data-title="${sessionScope.languageJSON.currentPayTable.dailyRate}">
                                                             <fmt:formatNumber value="${job.dlyRateofPay}" pattern="#,##0.00"/>
                                                     </td>
                                                     <td id="payRate_${jobCount.index}" class="td-title">${sessionScope.languageJSON.currentPayTable.payRate}</td>
-                                                    <td headers="payRate_${jobCount.index}" class="td-content" data-title="Pay Rate">
+                                                    <td headers="payRate_${jobCount.index}" class="td-content" data-title="${sessionScope.languageJSON.currentPayTable.payRate}">
                                                             <fmt:formatNumber value="${job.payRate}" pattern="#,##0.00"/>
                                                     </td>
                                                     <td id="overtimeRate_${jobCount.index}" class="td-title">${sessionScope.languageJSON.currentPayTable.overtimeRate}</td>
-                                                    <td headers="overtimeRate_${jobCount.index}" class="td-content" data-title="Overtime Rate">
+                                                    <td headers="overtimeRate_${jobCount.index}" class="td-content" data-title="${sessionScope.languageJSON.currentPayTable.overtimeRate}">
                                                             <fmt:formatNumber value="${job.ovtmRate}" pattern="#,##0.00"/>
                                                     </td>
                                                 </tr>
@@ -294,19 +294,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <tbody>
                                                     <c:forEach items="${accounts[frequency]}" var="account" varStatus="counter">
                                                         <tr>
-                                                            <td headers="bankCode" data-title="">
+                                                            <td headers="bankCode" data-title="${sessionScope.languageJSON.currentPayTable.bankCode}">
                                                                     ${account.bankCd}
                                                             </td>
-                                                            <td headers="bankName" class="text-left" data-title="">
+                                                            <td headers="bankName" class="text-left" data-title="${sessionScope.languageJSON.currentPayTable.bankName}">
                                                                 ${account.bankName}
                                                             </td>
-                                                            <td headers="accountType" class="text-left" data-title="">
+                                                            <td headers="accountType" class="text-left" data-title="${sessionScope.languageJSON.currentPayTable.accountType}">
                                                                     ${account.bankAccountType} - ${account.bankAccountTypeDescription}
                                                             </td>
-                                                            <td headers="acctNbr" class="text-left" data-title="">
+                                                            <td headers="acctNbr" class="text-left" data-title="${sessionScope.languageJSON.currentPayTable.acctNbr}">
                                                                     ${account.bankAccountNumber}
                                                             </td>
-                                                            <td headers="depAmt" data-title="">
+                                                            <td headers="depAmt" data-title="${sessionScope.languageJSON.currentPayTable.depAmt}">
                                                                     <fmt:formatNumber value="${account.bankAccountAmount.amount}" pattern="#,##0.00"/> ${account.bankAccountAmount.currency}
                                                             </td>
                                                         </tr>
@@ -332,19 +332,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <tbody>
                                                     <c:forEach items="${stipends[frequency]}" var="stipend" varStatus="counter">
                                                         <tr>
-                                                            <td headers="extraDuty" data-title="">
+                                                            <td headers="extraDuty" data-title="${sessionScope.languageJSON.currentPayTable.extraDuty}">
                                                                     ${stipend.extraDutyDescription}
                                                             </td>
-                                                            <td headers="defaultAccountType" class="text-center" data-title="">
+                                                            <td headers="defaultAccountType" class="text-center" data-title="${sessionScope.languageJSON.currentPayTable.type}">
                                                                     ${stipend.defaultAccountType}
                                                             </td>
-                                                            <td headers="extraDutyAmt" data-title="">
+                                                            <td headers="extraDutyAmt" data-title="${sessionScope.languageJSON.currentPayTable.amount}">
                                                                     <fmt:formatNumber value="${stipend.extraDutyAmt}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="remainAmt" data-title="">
+                                                            <td headers="remainAmt" data-title="${sessionScope.languageJSON.currentPayTable.remainAmount}">
                                                                     <fmt:formatNumber value="${stipend.remainAmt}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="remainPayments" data-title="">
+                                                            <td headers="remainPayments" data-title="${sessionScope.languageJSON.currentPayTable.remainPayments}">
                                                                     <fmt:formatNumber value="${stipend.remainPayments}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
