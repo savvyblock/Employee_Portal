@@ -7,7 +7,7 @@
     <div class="header-btn">
         <a href="/<%=request.getContextPath().split("/")[1]%>/login" role="link">
                 <button type="submit" role="submitButton" class="btn btn-primary">
-                        ${sessionScope.languageJSON.label.returnLogin}
+                	${sessionScope.languageJSON.label.returnLogin}
                 </button>
         </a>
     </div>
@@ -16,8 +16,7 @@
             <%@ include file="global-select.jsp"%>
     </div>
     <a class="a-line help" href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank" role="link"
-          aria-label="${sessionScope.languageJSON.accessHint.goHelp}"
-          >
-          <i class="fa fa-question-circle"></i>
-        </a>
+          aria-label="${sessionScope.languageJSON.accessHint.goHelp}" title="${sessionScope.languageJSON.accessHint.goHelp}">
+		<i class="fa fa-question-circle"></i>
+    </a>
 </div>
