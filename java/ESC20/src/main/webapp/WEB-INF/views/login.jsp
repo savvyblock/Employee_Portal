@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
     <head>
-        <title data-localize="headTitle.login"></title>
+        <title>${sessionScope.languageJSON.headTitle.login}</title>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <%@ include file="commons/header.jsp"%>
@@ -15,7 +15,7 @@
                     </div>
                     <div class="account-box">
                         <div class="account-logo">
-                            <img src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="">
+                            <img src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="${sessionScope.languageJSON.logoName.esc}">
                         </div>
                         <form id="loginForm" method="post" class="card bv-form" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
                             <h1 class="title">${sessionScope.languageJSON.label.pleaseSignIn}</h1>
@@ -23,7 +23,7 @@
                                 <label class="form-title" for="inputEmail">${sessionScope.languageJSON.label.username}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-user left-icon"></i>
-                                    <input type="text" id="inputEmail" class="form-control" placeholder=""name="username"/>
+                                    <input type="text" id="inputEmail" class="form-control" placeholder="${sessionScope.languageJSON.label.username}"name="username"/>
                                 </div>
                                 
                             </div>
@@ -31,7 +31,7 @@
                                 <label  class="form-title" for="inputPassword">${sessionScope.languageJSON.label.password}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-lock left-icon"></i>
-                                    <input type="password" id="inputPassword" class="form-control" placeholder="" name="password"/>
+                                    <input type="password" id="inputPassword" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password"/>
                                 </div>
                                 
                             </div>
@@ -79,18 +79,18 @@
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <h1 class="title">${sessionScope.languageJSON.label.pleaseSignIn}</h1>
                             <div class="form-group">
-                                <label class="form-title" for="inputEmail">${sessionScope.languageJSON.label.username}</label>
+                                <label class="form-title" for="inputEmailSession">${sessionScope.languageJSON.label.username}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-user left-icon"></i>
-                                    <input type="text" id="inputEmail" class="form-control" placeholder="" name="username"/>
+                                    <input type="text" id="inputEmailSession" class="form-control" placeholder="${sessionScope.languageJSON.label.username}" name="username"/>
                                 </div>
                                 
                             </div>
                             <div class="form-group">
-                                <label  class="form-title" for="inputPassword">${sessionScope.languageJSON.label.password}</label>
+                                <label  class="form-title" for="inputPasswordSession">${sessionScope.languageJSON.label.password}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-lock left-icon"></i>
-                                    <input type="password" id="inputPassword" class="form-control" placeholder="" name="password">
+                                    <input type="password" id="inputPasswordSession" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password">
                                 </div>
                                 
                             </div>

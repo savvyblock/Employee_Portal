@@ -1,13 +1,14 @@
-<button id="skipNav" data-localize="label.skipNav"></button>
+<button id="skipNav" data-localize="label.skipNav">${sessionScope.languageJSON.label.skipNav}</button>
 <div class="account-header">
     <a href="/<%=request.getContextPath().split("/")[1]%>/login" role="link">
-            <img class="logo logo-lg" src="/<%=request.getContextPath().split("/")[1]%>/images/logo.png" alt="" data-localize="logoName.esc"/>
-            <img class="logo logo-sm" src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="" data-localize="logoName.esc"/>
+            <img class="logo logo-lg" src="/<%=request.getContextPath().split("/")[1]%>/images/logo.png" alt="${sessionScope.languageJSON.logoName.esc}"/>
+            <img class="logo logo-sm" src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="${sessionScope.languageJSON.logoName.esc}"/>
     </a>
     <div class="header-btn">
         <a href="/<%=request.getContextPath().split("/")[1]%>/login" role="link">
-                <button type="submit" role="submitButton" class="btn btn-primary"  data-localize="label.returnLogin">
-                    </button>
+                <button type="submit" role="submitButton" class="btn btn-primary">
+                        ${sessionScope.languageJSON.label.returnLogin}
+                </button>
         </a>
     </div>
     
@@ -15,7 +16,7 @@
             <%@ include file="global-select.jsp"%>
     </div>
     <a class="a-line help" href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank" role="link"
-          aria-label="" data-localize="accessHint.goHelp" data-localize-location="aria-label,title" data-localize-notText="true"
+          aria-label="${sessionScope.languageJSON.accessHint.goHelp}"
           >
           <i class="fa fa-question-circle"></i>
         </a>

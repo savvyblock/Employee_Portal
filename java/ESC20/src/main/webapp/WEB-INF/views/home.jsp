@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
-    <title data-localize="headTitle.home"></title>
+    <title>${sessionScope.languageJSON.headTitle.home}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%@ include file="commons/header.jsp"%>
 </head>
@@ -14,7 +14,7 @@
     <main  class="content-wrapper" tabindex="-1">
     	<section class="content">
     		<div class="container-fluid">
-        		<span data-localize="label.welcome"></span>  ${userDetail.nameF} ${userDetail.nameL} 
+        		<span>${sessionScope.languageJSON.label.welcome}</span>  ${userDetail.nameF} ${userDetail.nameL} 
         	</div>
         </section>
     </main>

@@ -2,7 +2,7 @@
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
     <head>
-        <title data-localize="headTitle.profile"></title>
+        <title data-localize="headTitle.profile">${sessionScope.languageJSON.}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <%@ include file="commons/header.jsp"%>
     </head>
@@ -33,21 +33,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
-                                                <span class="currentTitle" data-localize="label.current"></span>
-                                                <div class="newTitle" data-localize="label.new"></div>
+                                                <span class="currentTitle" data-localize="label.current">${sessionScope.languageJSON.}</span>
+                                                <div class="newTitle" data-localize="label.new">${sessionScope.languageJSON.}</div>
                                             </div>
                                             <div class="profile-item-line form-line">
-                                                <label class="profile-title" data-localize="profile.title"></label>
+                                                <label class="profile-title" data-localize="profile.title">${sessionScope.languageJSON.}</label>
                                                 <div class="profile-desc">
                                                     <span class="haveValue"
                                                         >${sessionScope.userDetail.namePre}</span
                                                     >
-                                                    <input hidden="hidden" type="text" name="empNbr" value="${nameRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                                    <input hidden="hidden" type="text" name="reqDts" value="${nameRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                                    <input type="hidden" name="empNbr" value="${nameRequest.id.empNbr}">
+                                                    <input type="hidden" name="reqDts" value="${nameRequest.id.reqDts}">
                                                     <div class="form-group valueInput">
                                                         <select
                                                             class="form-control <c:if test="${sessionScope.userDetail.namePre != nameRequest.namePreNew }">active</c:if>"
-                                                            aria-label=""
+                                                            aria-label="${sessionScope.languageJSON.}"
                                                             data-localize="profile.title"
                                                             name="namePreNew"
                                                             id="titleString"
@@ -60,7 +60,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </div>
                                             <div class="profile-item-line form-line">
-                                                <label class="profile-title"  data-localize="profile.firstname"></label>
+                                                <label class="profile-title"  data-localize="profile.firstname">${sessionScope.languageJSON.}</label>
                                                 <div class="profile-desc">
                                                     <span class="haveValue"
                                                         >${sessionScope.userDetail.nameF}</span
@@ -70,7 +70,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control <c:if test="${sessionScope.userDetail.nameF != nameRequest.nameFNew}">active</c:if>"
                                                             type="text"
                                                             value="${nameRequest.nameFNew}"
-                                                            aria-label=""
+                                                            aria-label="${sessionScope.languageJSON.}"
                                                             data-localize="profile.firstname"
                                                             name="nameFNew"
                                                             id="firstName"
@@ -80,9 +80,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </div>
                                             <div class="profile-item-line form-line">
-                                                <label class="profile-title" data-localize="profile.middleName"
-                                                    ></label
-                                                >
+                                                <label class="profile-title" data-localize="profile.middleName">
+                                                        ${sessionScope.languageJSON.}
+                                                </label>
                                                 <div class="profile-desc">
                                                     <span class="haveValue"
                                                         >${sessionScope.userDetail.nameM}</span
@@ -92,7 +92,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control <c:if test="${sessionScope.userDetail.nameM != nameRequest.nameMNew}">active</c:if>"
                                                             type="text"
                                                             value="${nameRequest.nameMNew}"
-                                                            aria-label=""
+                                                            aria-label="${sessionScope.languageJSON.}"
                                                             data-localize="profile.middleName"
                                                             name="nameMNew"
                                                             id="middleName"
@@ -103,7 +103,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                             <div class="profile-item-line form-line">
                                                 <label class="profile-title" data-localize="profile.lastname"
-                                                    ></label
+                                                    >${sessionScope.languageJSON.}</label
                                                 >
                                                 <div class="profile-desc">
                                                     <span class="haveValue"
@@ -114,7 +114,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control <c:if test="${sessionScope.userDetail.nameL != nameRequest.nameLNew}">active</c:if>"
                                                             type="text"
                                                             value="${nameRequest.nameLNew}"
-                                                            aria-label=""
+                                                            aria-label="${sessionScope.languageJSON.}"
                                                             data-localize="profile.lastname"
                                                             name="nameLNew"
                                                             id="lastName"
@@ -126,7 +126,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             
                                             <div class="profile-item-line form-line">
                                                 <label class="profile-title" data-localize="profile.generation"
-                                                    ></label
+                                                    >${sessionScope.languageJSON.}</label
                                                 >
                                                 <div class="profile-desc">
                                                     <span class="haveValue"
@@ -136,7 +136,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <select
                                                             class="form-control <c:if test="${sessionScope.userDetail.nameGen != nameRequest.nameGenNew}">active</c:if>"
                                                             value="${nameRequest.nameGenNew}"
-                                                            aria-label=""
+                                                            aria-label="${sessionScope.languageJSON.}"
                                                             data-localize="profile.generation"
                                                             name="nameGenNew"
                                                             id="generation"
@@ -199,30 +199,30 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </form>
                                 </div>
 
-                                <h2 class="sub-title" data-localize="profile.MaritalStatus"></h2>
+                                <h2 class="sub-title" data-localize="profile.MaritalStatus">${sessionScope.languageJSON.}</h2>
                                 <form class="profile-item" id="maritalStatusForm" action="saveMarital" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
-                                                    <span class="currentTitle" data-localize="label.current"></span>
-                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                    <span class="currentTitle" data-localize="label.current">${sessionScope.languageJSON.}</span>
+                                                    <div class="newTitle" data-localize="label.new">${sessionScope.languageJSON.}</div>
                                                 </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.local"></div>
+                                            <div class="profile-title" data-localize="profile.local">${sessionScope.languageJSON.}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     <c:forEach var="marital" items="${maritalOptions}" varStatus="count">
                                                         <c:if test="${marital.code == sessionScope.userDetail.maritalStat }">${marital.displayLabel}</c:if>
                                                     </c:forEach>
                                                 </span>
-                                                <input hidden="hidden" type="text" name="empNbr" value="${mrtlRequest.id.empNbr}"  aria-label="" data-localize="accessHint.employeeNumber">
-                                                    <input hidden="hidden" type="text" name="reqDts" value="${mrtlRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                                <input type="hidden" name="empNbr" value="${mrtlRequest.id.empNbr}" >
+                                                    <input type="hidden" name="reqDts" value="${mrtlRequest.id.reqDts}">
                                                 <div class="form-group valueInput">
                                                     <select
                                                         id="maritalStatus"
                                                         name="maritalStatNew"
                                                         class="form-control <c:if test="${sessionScope.userDetail.maritalStat != mrtlRequest.maritalStatNew }">active</c:if>"
-                                                        aria-label=""
+                                                        aria-label="${sessionScope.languageJSON.}"
                                                         data-localize="profile.local"
                                                         
                                                     >
@@ -240,7 +240,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 type="button" role="button"
                                                 class="btn btn-primary edit-btn" data-localize="label.edit"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.}
                                             </button>
                                         </div>
                                         <div class="saveOrCancel">
@@ -249,20 +249,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 class="btn btn-primary save-btn" data-localize="label.update"
                                                 id="saveMarital"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.}
                                             </button>
                                             <button
                                                     type="button" role="button"
                                                     id="undoMaritalRequest"
                                                     class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
                                                 >
-                                                
+                                                ${sessionScope.languageJSON.}
                                                 </button>
                                             <button
                                                 type="button" role="button"
                                                 class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.}
                                             </button>
                                         </div>
                                     </div>
@@ -270,11 +270,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteMaritalRequest" id="deleteMaritalRequest" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <h2 class="sub-title" data-localize="profile.driversLicense"></h2>
+                                <h2 class="sub-title" data-localize="profile.driversLicense">${sessionScope.languageJSON.}</h2>
                                 <form class="profile-item" id="driverLicenseForm" action="saveDriversLicense" method="POST">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input hidden="hidden" type="text" name="empNbr" value="${licRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                    <input hidden="hidden" type="text" name="reqDts" value="${licRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                    <input type="hidden" name="empNbr" value="${licRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                    <input type="hidden" name="reqDts" value="${licRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle" data-localize="label.current"></span>
@@ -366,8 +366,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <h2 class="sub-title" data-localize="profile.restrictionCodes"></h2>
                                 <form class="profile-item" id="restrictionCodeForm" action="saveRestrictionCodes" method="POST">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input hidden="hidden" type="text" name="empNbr" value="${restrictRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                    <input hidden="hidden" type="text" name="reqDts" value="${restrictRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                    <input type="hidden" name="empNbr" value="${restrictRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                    <input type="hidden" name="reqDts" value="${restrictRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle" data-localize="label.current"></span>
@@ -462,8 +462,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <h2 class="sub-title" data-localize="profile.email"></h2>
                                 <form class="profile-item" id="emailForm" action="saveEmail" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input hidden="hidden" type="text" name="empNbr" value="${emailRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                        <input hidden="hidden" type="text" name="reqDts" value="${emailRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                        <input type="hidden" name="empNbr" value="${emailRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                        <input type="hidden" name="reqDts" value="${emailRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle" data-localize="label.current"></span>
@@ -580,8 +580,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <h2 class="sub-title" data-localize="profile.emergenceContactInfo"></h2>
                                 <form class="profile-item" id="emergencyContactForm" action="saveEmergencyContact" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input hidden="hidden" type="text" name="empNbr" value="${emerRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                        <input hidden="hidden" type="text" name="reqDts" value="${emerRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                        <input type="hidden" name="empNbr" value="${emerRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                        <input type="hidden" name="reqDts" value="${emerRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle" data-localize="label.current"></span>
@@ -739,8 +739,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <h2 class="sub-title" data-localize="profile.mailingAddress"></h2>
                                 <form class="profile-item" id="mailingAddressForm" action="saveMailAddr" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input hidden="hidden" type="text" name="empNbr" value="${mailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                        <input hidden="hidden" type="text" name="reqDts" value="${mailAddrRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                        <input type="hidden" name="empNbr" value="${mailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                        <input type="hidden" name="reqDts" value="${mailAddrRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle" data-localize="label.current"></span>
@@ -920,8 +920,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <h2 class="sub-title" data-localize="profile.altAddr"></h2>
                                 <form class="profile-item" id="alternativeAddressForm" action="saveAltMailAddr" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input hidden="hidden" type="text" name="empNbr" value="${altMailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                        <input hidden="hidden" type="text" name="reqDts" value="${altMailAddrRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                        <input type="hidden" name="empNbr" value="${altMailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                        <input type="hidden" name="reqDts" value="${altMailAddrRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle" data-localize="label.current"></span>
@@ -1101,8 +1101,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <h2 class="sub-title" data-localize="profile.phoneNumbers"></h2>
                                 <form class="profile-item" id="phoneForm" action="savePhone" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input hidden="hidden" type="text" name="empNbr" value="${hmRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                        <input hidden="hidden" type="text" name="reqDts" value="${hmRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                        <input type="hidden" name="empNbr" value="${hmRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                        <input type="hidden" name="reqDts" value="${hmRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle" data-localize="label.current"></span>
@@ -1285,11 +1285,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </form>
                             <form class="profile-item" id="w4InfoForm" action="saveW4" method="POST">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
-                                <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}"  aria-label="" data-localize="accessHint.payFreq">
-                                <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}" aria-label="" data-localize="accessHint.maritalStatTax">
-                                <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" aria-label="" data-localize="accessHint.nbrTaxExempts">
+                                <input type="hidden" name="empNbr" value="${w4Request.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                <input type="hidden" name="reqDts" value="${w4Request.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                <input type="hidden" name="payFreq" value="${w4Request.id.payFreq}"  aria-label="" data-localize="accessHint.payFreq">
+                                <input type="hidden" name="maritalStatTax" value="${payInfo.maritalStatTax}" aria-label="" data-localize="accessHint.maritalStatTax">
+                                <input type="hidden" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" aria-label="" data-localize="accessHint.nbrTaxExempts">
                                 <div class="profile-left">
                                         <div class="profileTitle form-line profileInfo">
                                                 <span class="currentTitle" data-localize="label.current"></span>
@@ -1377,11 +1377,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </form>
                             <form hidden="hidden" action="deleteW4" id="deleteW4" method="POST">
                             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <input hidden="hidden" type="text" name="empNbr" value="${w4Request.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                <input hidden="hidden" type="text" name="reqDts" value="${w4Request.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
-                                <input hidden="hidden" type="text" name="payFreq" value="${w4Request.id.payFreq}" aria-label="" data-localize="accessHint.payFreq">
-                                <input hidden="hidden" type="text" name="maritalStatTax" value="${payInfo.maritalStatTax}" aria-label="" data-localize="accessHint.maritalStatTax">
-                                <input hidden="hidden" type="text" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" aria-label="" data-localize="accessHint.nbrTaxExempts">
+                                <input type="hidden" name="empNbr" value="${w4Request.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
+                                <input type="hidden" name="reqDts" value="${w4Request.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                <input type="hidden" name="payFreq" value="${w4Request.id.payFreq}" aria-label="" data-localize="accessHint.payFreq">
+                                <input type="hidden" name="maritalStatTax" value="${payInfo.maritalStatTax}" aria-label="" data-localize="accessHint.maritalStatTax">
+                                <input type="hidden" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" aria-label="" data-localize="accessHint.nbrTaxExempts">
                             </form>
                             <h2 class="sub-title" data-localize="profile.directDepositBankAccounts"></h2>
                             
@@ -1642,7 +1642,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             value=""
                                                         />
                                                     </div>
-                                                    <input hidden="hidden" type="text" id="newBankCode" aria-label="" data-localize="accessHint.bankCode">
+                                                    <input type="hidden" id="newBankCode" aria-label="" data-localize="accessHint.bankCode">
                                                     <button
                                                         class="btn btn-secondary xs getBank"
                                                         type="button" role="button"

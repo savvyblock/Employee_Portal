@@ -85,7 +85,7 @@ public class CurrentPayInformationController{
 	
 	@RequestMapping("currentPayInformationUnprotectedPDF")
 	public ModelAndView getCurrentPayInformation(HttpServletRequest req, String empNbr, String districtId,String language) throws IOException {
-		DataSourceContextHolder.setDataSourceType("java:jboss/DB"+districtId);
+		DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+districtId);
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
 		String employeeNumber = empNbr;
