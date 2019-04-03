@@ -14,15 +14,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             <main class="content-wrapper" tabindex="-1">
                 <section class="content">
                     <div class="clearfix section-title">
-                        <h1 class="pageTitle" data-localize="title.leaveRequest"></h1>
-                        <a class="btn btn-primary pull-right" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/leaveRequest" data-localize="label.switchToTableView"></a>
+                        <h1 class="pageTitle">${sessionScope.languageJSON.title.leaveRequest}</h1>
+                        <a class="btn btn-primary pull-right" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequest/leaveRequest">
+                        	${sessionScope.languageJSON.label.switchToTableView}
+                        </a>
                     </div>
                     <div class="content-white"><div id="calendar"></div></div>
                 </section>
             </main>
             <form hidden="true" id="deleteForm" action="deleteLeaveRequestFromCalendar" method="post">
             		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <input type="text" id="deleteId" name="id"  aria-label="" data-localize="accessHint.id"/>
+                    <input type="text" id="deleteId" name="id" aria-label="${sessionScope.languageJSON.accessHint.id}"/>
             </form>
         </div>
         <%@ include file="../commons/footer.jsp"%>
