@@ -2,7 +2,7 @@
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
     <head>
-        <title data-localize="headTitle.profile">${sessionScope.languageJSON.}</title>
+        <title>${sessionScope.languageJSON.headTitle.profile}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <%@ include file="commons/header.jsp"%>
     </head>
@@ -33,11 +33,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
-                                                <span class="currentTitle" data-localize="label.current">${sessionScope.languageJSON.}</span>
-                                                <div class="newTitle" data-localize="label.new">${sessionScope.languageJSON.}</div>
+                                                <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                                <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                             </div>
                                             <div class="profile-item-line form-line">
-                                                <label class="profile-title" data-localize="profile.title">${sessionScope.languageJSON.}</label>
+                                                <label class="profile-title">${sessionScope.languageJSON.profile.title}</label>
                                                 <div class="profile-desc">
                                                     <span class="haveValue"
                                                         >${sessionScope.userDetail.namePre}</span
@@ -47,8 +47,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <div class="form-group valueInput">
                                                         <select
                                                             class="form-control <c:if test="${sessionScope.userDetail.namePre != nameRequest.namePreNew }">active</c:if>"
-                                                            aria-label="${sessionScope.languageJSON.}"
-                                                            data-localize="profile.title"
+                                                            aria-label="${sessionScope.languageJSON.profile.title}"
+                                                           
                                                             name="namePreNew"
                                                             id="titleString"
                                                         >
@@ -60,7 +60,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </div>
                                             <div class="profile-item-line form-line">
-                                                <label class="profile-title"  data-localize="profile.firstname">${sessionScope.languageJSON.}</label>
+                                                <label class="profile-title" >${sessionScope.languageJSON.profile.firstname}</label>
                                                 <div class="profile-desc">
                                                     <span class="haveValue"
                                                         >${sessionScope.userDetail.nameF}</span
@@ -70,8 +70,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control <c:if test="${sessionScope.userDetail.nameF != nameRequest.nameFNew}">active</c:if>"
                                                             type="text"
                                                             value="${nameRequest.nameFNew}"
-                                                            aria-label="${sessionScope.languageJSON.}"
-                                                            data-localize="profile.firstname"
+                                                            aria-label="${sessionScope.languageJSON.profile.firstname}"
+                                                           
                                                             name="nameFNew"
                                                             id="firstName"
                                                             maxlength="17"
@@ -80,8 +80,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </div>
                                             <div class="profile-item-line form-line">
-                                                <label class="profile-title" data-localize="profile.middleName">
-                                                        ${sessionScope.languageJSON.}
+                                                <label class="profile-title">
+                                                        ${sessionScope.languageJSON.profile.middleName}
                                                 </label>
                                                 <div class="profile-desc">
                                                     <span class="haveValue"
@@ -92,8 +92,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control <c:if test="${sessionScope.userDetail.nameM != nameRequest.nameMNew}">active</c:if>"
                                                             type="text"
                                                             value="${nameRequest.nameMNew}"
-                                                            aria-label="${sessionScope.languageJSON.}"
-                                                            data-localize="profile.middleName"
+                                                            aria-label="${sessionScope.languageJSON.profile.middleName}"
+                                                           
                                                             name="nameMNew"
                                                             id="middleName"
                                                             maxlength="14"
@@ -102,8 +102,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </div>
                                             <div class="profile-item-line form-line">
-                                                <label class="profile-title" data-localize="profile.lastname"
-                                                    >${sessionScope.languageJSON.}</label
+                                                <label class="profile-title"
+                                                    >${sessionScope.languageJSON.profile.lastname}</label
                                                 >
                                                 <div class="profile-desc">
                                                     <span class="haveValue"
@@ -114,8 +114,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control <c:if test="${sessionScope.userDetail.nameL != nameRequest.nameLNew}">active</c:if>"
                                                             type="text"
                                                             value="${nameRequest.nameLNew}"
-                                                            aria-label="${sessionScope.languageJSON.}"
-                                                            data-localize="profile.lastname"
+                                                            aria-label="${sessionScope.languageJSON.profile.lastname}"
+                                                           
                                                             name="nameLNew"
                                                             id="lastName"
                                                             maxlength="25"
@@ -125,8 +125,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                             
                                             <div class="profile-item-line form-line">
-                                                <label class="profile-title" data-localize="profile.generation"
-                                                    >${sessionScope.languageJSON.}</label
+                                                <label class="profile-title"
+                                                    >${sessionScope.languageJSON.profile.generation}</label
                                                 >
                                                 <div class="profile-desc">
                                                     <span class="haveValue"
@@ -136,8 +136,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <select
                                                             class="form-control <c:if test="${sessionScope.userDetail.nameGen != nameRequest.nameGenNew}">active</c:if>"
                                                             value="${nameRequest.nameGenNew}"
-                                                            aria-label="${sessionScope.languageJSON.}"
-                                                            data-localize="profile.generation"
+                                                            aria-label="${sessionScope.languageJSON.profile.generation}"
+                                                           
                                                             name="nameGenNew"
                                                             id="generation"
                                                         >
@@ -165,31 +165,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="edit">
                                                 <button
                                                     type="button" role="button"
-                                                    class="btn btn-primary edit-btn" data-localize="label.edit"
-                                                >
+                                                    class="btn btn-primary edit-btn"
+                                                >${sessionScope.languageJSON.label.edit}
                                                 </button>
                                             </div>
 
                                             <div class="saveOrCancel">
                                                 <button
                                                     type="submit" role="submitButton"
-                                                    class="btn btn-primary save-btn" data-localize="label.update"
+                                                    class="btn btn-primary save-btn"
                                                     id="savePersonal"
                                                 >
-                                                
+                                                ${sessionScope.languageJSON.label.update}
                                                 </button>
                                                 <button
                                                     type="button" role="button"
                                                     id="undoNameRequest"
-                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
+                                                    class="btn btn-secondary" data-toggle="modal" data-target="#undoModal" 
                                                 >
-                                                
+                                                ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                                 <button
                                                     type="button" role="button"
-                                                    class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
+                                                    class="btn btn-secondary cancel-btn" 
                                                 >
-                                                
+                                                ${sessionScope.languageJSON.label.cancel}
                                                 </button>
                                             </div>
                                         </div>
@@ -199,16 +199,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </form>
                                 </div>
 
-                                <h2 class="sub-title" data-localize="profile.MaritalStatus">${sessionScope.languageJSON.}</h2>
+                                <h2 class="sub-title">${sessionScope.languageJSON.profile.MaritalStatus}</h2>
                                 <form class="profile-item" id="maritalStatusForm" action="saveMarital" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
-                                                    <span class="currentTitle" data-localize="label.current">${sessionScope.languageJSON.}</span>
-                                                    <div class="newTitle" data-localize="label.new">${sessionScope.languageJSON.}</div>
+                                                    <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                                    <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                                 </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.local">${sessionScope.languageJSON.}</div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.local}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     <c:forEach var="marital" items="${maritalOptions}" varStatus="count">
@@ -222,8 +222,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="maritalStatus"
                                                         name="maritalStatNew"
                                                         class="form-control <c:if test="${sessionScope.userDetail.maritalStat != mrtlRequest.maritalStatNew }">active</c:if>"
-                                                        aria-label="${sessionScope.languageJSON.}"
-                                                        data-localize="profile.local"
+                                                        aria-label="${sessionScope.languageJSON.profile.local}"
+                                                       
                                                         
                                                     >
                                                         <c:forEach var="marital" items="${maritalOptions}" varStatus="count">
@@ -238,31 +238,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="edit">
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-primary edit-btn" data-localize="label.edit"
+                                                class="btn btn-primary edit-btn"
                                             >
-                                            ${sessionScope.languageJSON.}
+                                            ${sessionScope.languageJSON.label.edit}
                                             </button>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="submitButton"
-                                                class="btn btn-primary save-btn" data-localize="label.update"
+                                                class="btn btn-primary save-btn"
                                                 id="saveMarital"
                                             >
-                                            ${sessionScope.languageJSON.}
+                                            ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
                                                     id="undoMaritalRequest"
-                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
+                                                    class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
-                                                ${sessionScope.languageJSON.}
+                                                ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
+                                                class="btn btn-secondary cancel-btn" 
                                             >
-                                            ${sessionScope.languageJSON.}
+                                            ${sessionScope.languageJSON.label.cancel}
                                             </button>
                                         </div>
                                     </div>
@@ -270,18 +270,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteMaritalRequest" id="deleteMaritalRequest" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <h2 class="sub-title" data-localize="profile.driversLicense">${sessionScope.languageJSON.}</h2>
+                                <h2 class="sub-title">${sessionScope.languageJSON.profile.driversLicense}</h2>
                                 <form class="profile-item" id="driverLicenseForm" action="saveDriversLicense" method="POST">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="hidden" name="empNbr" value="${licRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                    <input type="hidden" name="reqDts" value="${licRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                    <input type="hidden" name="empNbr" value="${licRequest.id.empNbr}">
+                                    <input type="hidden" name="reqDts" value="${licRequest.id.reqDts}">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
-                                                    <span class="currentTitle" data-localize="label.current"></span>
-                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                    <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                                    <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                                 </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.number"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.number}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.driversLicNbr}</span
@@ -293,15 +293,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         value="${licRequest.driversLicNbrNew}"
                                                         name="driversLicNbrNew"
                                                         id="driversLicenseNumber"
-                                                        data-localize="profile.driverLicenseNum"
-                                                        aria-label=""
+                                                       
+                                                        aria-label="${sessionScope.languageJSON.profile.driverLicenseNum}"
                                                         
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.state"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.state}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     <c:forEach var="states" items="${statesOptions}" varStatus="count">
@@ -315,8 +315,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="driversLicStNew"
                                                         value="${licRequest.driversLicStNew}"                                                
                                                         class="form-control <c:if test="${sessionScope.userDetail.driversLicSt != licRequest.driversLicStNew }">active</c:if>"
-                                                        aria-label=""
-                                                        data-localize="profile.driversLicenseState"
+                                                        aria-label="${sessionScope.languageJSON.profile.driversLicenseState}"
+                                                       
                                                     >
                                                     <c:forEach var="states" items="${statesOptions}" varStatus="count">
                                                             <option value="${states.code}" <c:if test="${states.code == licRequest.driversLicStNew }">selected</c:if>>${states.displayLabel}</option>
@@ -331,31 +331,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="edit">
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-primary edit-btn" data-localize="label.edit"
-                                            >
+                                                class="btn btn-primary edit-btn"
+                                            >${sessionScope.languageJSON.label.edit}
                                             
                                             </button>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="submitButton"
-                                                class="btn btn-primary save-btn" data-localize="label.update"
+                                                class="btn btn-primary save-btn"
                                                 id="saveDriver"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
                                                     id="undoDriverLicense"
-                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
+                                                    class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
-                                                
+                                                ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
+                                                class="btn btn-secondary cancel-btn" 
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.cancel}
                                             </button>
                                         </div>
                                     </div>
@@ -363,18 +363,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteDriversLicenseRequest" id="deleteDriversLicense" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <h2 class="sub-title" data-localize="profile.restrictionCodes"></h2>
+                                <h2 class="sub-title">${sessionScope.languageJSON.profile.restrictionCodes}</h2>
                                 <form class="profile-item" id="restrictionCodeForm" action="saveRestrictionCodes" method="POST">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="hidden" name="empNbr" value="${restrictRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                    <input type="hidden" name="reqDts" value="${restrictRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                    <input type="hidden" name="empNbr" value="${restrictRequest.id.empNbr}">
+                                    <input type="hidden" name="reqDts" value="${restrictRequest.id.reqDts}">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
-                                                    <span class="currentTitle" data-localize="label.current"></span>
-                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                    <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                                    <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                                 </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.local"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.local}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     <c:forEach var="restrictions" items="${restrictionsOptions}" varStatus="count">
@@ -387,8 +387,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="restrictionCodesLocalRestriction"
                                                         name="restrictCdNew"
                                                         class="form-control <c:if test="${sessionScope.userDetail.restrictCd != restrictRequest.restrictCdNew }">active</c:if>"
-                                                        aria-label=""
-                                                        data-localize="profile.restrictionCodesLocal"
+                                                        aria-label="${sessionScope.languageJSON.profile.restrictionCodesLocal}"
+                                                       
                                                         
                                                     >
                                                     <c:forEach var="restrictions" items="${restrictionsOptions}" varStatus="count">
@@ -399,7 +399,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.public"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.public}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                         <c:forEach var="restriction" items="${restrictionsOptions}" varStatus="count">
@@ -412,8 +412,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="restrictionCodesPublicRestriction"
                                                         name="restrictCdPublicNew"
                                                         class="form-control <c:if test="${sessionScope.userDetail.restrictCdPublic != restrictRequest.restrictCdPublicNew }">active</c:if>"
-                                                        aria-label=""
-                                                        data-localize="profile.restrictionCodesPublic"
+                                                        aria-label="${sessionScope.languageJSON.profile.restrictionCodesPublic}"
+                                                       
                                                     >
                                                     <c:forEach var="restriction" items="${restrictionsOptions}" varStatus="count">
                                                             <option value="${restriction.code}" <c:if test="${restriction.code == restrictRequest.restrictCdPublicNew }">selected</c:if>>${restriction.displayLabel}</option>
@@ -427,31 +427,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="edit">
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-primary edit-btn" data-localize="label.edit"
+                                                class="btn btn-primary edit-btn"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.edit}
                                             </button>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="submitButton"
-                                                class="btn btn-primary save-btn" data-localize="label.update"
+                                                class="btn btn-primary save-btn"
                                                 id="saveRestrict"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
                                                     id="undoRestriction"
-                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
+                                                    class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
-                                                
+                                                ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
+                                                class="btn btn-secondary cancel-btn" 
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.cancel}
                                             </button>
                                         </div>
                                     </div>
@@ -459,18 +459,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteRestrictionCodesRequest" id="deleteRestrictionCodesRequest" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <h2 class="sub-title" data-localize="profile.email"></h2>
+                                <h2 class="sub-title">${sessionScope.languageJSON.profile.email}</h2>
                                 <form class="profile-item" id="emailForm" action="saveEmail" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input type="hidden" name="empNbr" value="${emailRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                        <input type="hidden" name="reqDts" value="${emailRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                        <input type="hidden" name="empNbr" value="${emailRequest.id.empNbr}">
+                                        <input type="hidden" name="reqDts" value="${emailRequest.id.reqDts}">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
-                                                    <span class="currentTitle" data-localize="label.current"></span>
-                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                    <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                                    <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                                 </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.workEmail"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.workEmail}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.email}</span
@@ -481,15 +481,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         value="${emailRequest.emailNew}"
                                                         id="emailWorkEmail"
                                                         class="form-control <c:if test="${sessionScope.userDetail.email != emailRequest.emailNew}">active</c:if>"
-                                                        aria-label=""
-                                                        data-localize="profile.workEmail"
+                                                        aria-label="${sessionScope.languageJSON.profile.workEmail}"
+                                                       
                                                         
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.verifyEmail"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.verifyEmail}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"></span>
                                                 <div class="form-group valueInput error-vertical">
@@ -499,14 +499,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         value=""
                                                         id="emailVerifyWorkEmail"
                                                         class="form-control"
-                                                        aria-label=""
-                                                        data-localize="profile.verifyEmail"
+                                                        aria-label="${sessionScope.languageJSON.profile.verifyEmail}"
+                                                       
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.homeEmail"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.homeEmail}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.hmEmail}</span
@@ -516,15 +516,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.hmEmail != emailRequest.hmEmailNew}">active</c:if>"
                                                         name="hmEmailNew"
                                                         id="emailHomeEmail"
-                                                        aria-label=""
-                                                        data-localize="profile.homeEmail"
+                                                        aria-label="${sessionScope.languageJSON.profile.homeEmail}"
+                                                       
                                                         value="${emailRequest.hmEmailNew}"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.verifyEmail"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.verifyEmail}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"></span>
                                                 <div class="form-group valueInput error-vertical">
@@ -534,8 +534,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         value=""
                                                         id="emailVerifyHomeEmail"
                                                         class="form-control"
-                                                        aria-label=""
-                                                        data-localize="profile.verifyEmail"
+                                                        aria-label="${sessionScope.languageJSON.profile.verifyEmail}"
+                                                       
                                                     />
                                                 </div>
                                             </div>
@@ -545,31 +545,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="edit">
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-primary edit-btn" data-localize="label.edit"
+                                                class="btn btn-primary edit-btn"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.edit}
                                             </button>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-primary save-btn" data-localize="label.update"
+                                                class="btn btn-primary save-btn"
                                                 id="saveEmail"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
                                                     id="undoEmail"
-                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
+                                                    class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
-                                                
+                                                ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
+                                                class="btn btn-secondary cancel-btn" 
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.cancel}
                                             </button>
                                         </div>
                                     </div>
@@ -577,18 +577,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteEmail" id="deleteEmail" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <h2 class="sub-title" data-localize="profile.emergenceContactInfo"></h2>
+                                <h2 class="sub-title">${sessionScope.languageJSON.profile.emergenceContactInfo}</h2>
                                 <form class="profile-item" id="emergencyContactForm" action="saveEmergencyContact" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input type="hidden" name="empNbr" value="${emerRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                        <input type="hidden" name="reqDts" value="${emerRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                        <input type="hidden" name="empNbr" value="${emerRequest.id.empNbr}">
+                                        <input type="hidden" name="reqDts" value="${emerRequest.id.reqDts}">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
-                                                    <span class="currentTitle" data-localize="label.current"></span>
-                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                    <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                                    <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                                 </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.name"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.name}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.emerContact}</span
@@ -600,22 +600,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="emergencyContactName"
                                                         name="emerContactNew"
                                                         value="${emerRequest.emerContactNew}"
-                                                        aria-label=""
-                                                        data-localize="profile.emergencyContactName"
+                                                        aria-label="${sessionScope.languageJSON.profile.emergencyContactName}"
+                                                       
                                                         maxlength="26"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.phoneNumber">
-                                                
+                                            <div class="profile-title">
+                                                    ${sessionScope.languageJSON.profile.phoneNumber}
                                             </div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     (${sessionScope.userDetail.emerPhoneAc})
                                                     ${sessionScope.userDetail.emerPhoneNbr}
-                                                    &nbsp;&nbsp; <span data-localize="profile.ext"></span>
+                                                    &nbsp;&nbsp; <span>${sessionScope.languageJSON.profile.ext}</span>
                                                     ${sessionScope.userDetail.emerPhoneExt}
                                                 </span>
                                                 <div class="valueInput flex">
@@ -624,8 +624,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode <c:if test="${sessionScope.userDetail.emerPhoneAc != emerRequest.emerPhoneAcNew}">active</c:if>"
                                                             name="emerPhoneAcNew"
                                                             id="emergencyContactAreaCode"
-                                                            aria-label=""
-                                                            data-localize="profile.emergencyContactAreaCode"
+                                                            aria-label="${sessionScope.languageJSON.profile.emergencyContactAreaCode}"
+                                                           
                                                             value="${emerRequest.emerPhoneAcNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
@@ -635,21 +635,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phone-input <c:if test="${sessionScope.userDetail.emerPhoneNbr != emerRequest.emerPhoneNbrNew}">active</c:if>"
                                                             name="emerPhoneNbrNew"
                                                             id="emergencyContactPhoneNumber"
-                                                            aria-label=""
-                                                            data-localize="profile.emergencyContactPhoneNumber"
+                                                            aria-label="${sessionScope.languageJSON.profile.emergencyContactPhoneNumber}"
+                                                           
                                                             value="${emerRequest.emerPhoneNbrNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>
 
-                                                    &nbsp;&nbsp;<span data-localize="profile.ext"></span>
+                                                    &nbsp;&nbsp;<span>${sessionScope.languageJSON.profile.ext}</span>
                                                     <div class="form-group">
                                                         <input
                                                             class="form-control phoneAreaCode <c:if test="${sessionScope.userDetail.emerPhoneExt != emerRequest.emerPhoneExtNew}">active</c:if>"
                                                             name="emerPhoneExtNew"
                                                             id="emergencyContactExtention"
-                                                            aria-label=""
-                                                            data-localize="profile.emergencyContactExtention"
+                                                            aria-label="${sessionScope.languageJSON.profile.emergencyContactExtention}"
+                                                           
                                                             value="${emerRequest.emerPhoneExtNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
@@ -658,8 +658,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.relationship">
-                                                
+                                            <div class="profile-title">
+                                                    ${sessionScope.languageJSON.profile.relationship}
                                             </div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
@@ -670,8 +670,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.emerRel != emerRequest.emerRelNew}">active</c:if>"
                                                         name="emerRelNew"
                                                         id="emergencyContactRelationship"
-                                                        aria-label=""
-                                                        data-localize="profile.relationship"
+                                                        aria-label="${sessionScope.languageJSON.profile.relationship}"
+                                                       
                                                         value="${emerRequest.emerRelNew}"
                                                         maxlength="25"
                                                     />
@@ -679,8 +679,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.emergencyNotes">
-                                                
+                                            <div class="profile-title">
+                                                    ${sessionScope.languageJSON.profile.emergencyNotes}
                                             </div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
@@ -691,8 +691,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.emerNote != emerRequest.emerNoteNew}">active</c:if>"
                                                         name="emerNoteNew"
                                                         id="emergencyContactEmergencyNotes"
-                                                        aria-label=""
-                                                        data-localize="profile.emergencyNotes"
+                                                        aria-label="${sessionScope.languageJSON.profile.emergencyNotes}"
+                                                       
                                                         value="${emerRequest.emerNoteNew}"
                                                         maxlength="25"
                                                     />
@@ -704,31 +704,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="edit">
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-primary edit-btn" data-localize="label.edit"
+                                                class="btn btn-primary edit-btn"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.edit}
                                             </button>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="submitButton"
-                                                class="btn btn-primary save-btn" data-localize="label.update"
+                                                class="btn btn-primary save-btn"
                                                 id="saveEmergency"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
                                                     id="undoEmergencyContact"
-                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
+                                                    class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
-                                                
+                                                ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
+                                                class="btn btn-secondary cancel-btn" 
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.cancel}
                                             </button>
                                         </div>
                                     </div>
@@ -736,18 +736,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteEmergencyContact" id="deleteEmergencyContact" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <h2 class="sub-title" data-localize="profile.mailingAddress"></h2>
+                                <h2 class="sub-title">${sessionScope.languageJSON.profile.mailingAddress}</h2>
                                 <form class="profile-item" id="mailingAddressForm" action="saveMailAddr" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input type="hidden" name="empNbr" value="${mailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                        <input type="hidden" name="reqDts" value="${mailAddrRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                        <input type="hidden" name="empNbr" value="${mailAddrRequest.id.empNbr}">
+                                        <input type="hidden" name="reqDts" value="${mailAddrRequest.id.reqDts}">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
-                                                    <span class="currentTitle" data-localize="label.current"></span>
-                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                    <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                                    <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                                 </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.number"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.number}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.addrNbr}</span
@@ -757,8 +757,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.addrNbr != mailAddrRequest.addrNbrNew}">active</c:if>"
                                                         name="addrNbrNew"
                                                         id="mailAddrNumber"
-                                                        aria-label=""
-                                                        data-localize="profile.mailingAddressNumber"
+                                                        aria-label="${sessionScope.languageJSON.profile.mailingAddressNumber}"
+                                                       
                                                         value="${mailAddrRequest.addrNbrNew}"
                                                         
                                                     />
@@ -766,8 +766,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.streetBox">
-                                                
+                                            <div class="profile-title">
+                                                    ${sessionScope.languageJSON.profile.streetBox}
                                             </div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
@@ -778,15 +778,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.addrStr != mailAddrRequest.addrStrNew}">active</c:if>"
                                                         name="addrStrNew"
                                                         id="mailAddrStr"
-                                                        aria-label=""
-                                                        data-localize="profile.streetBox"
+                                                        aria-label="${sessionScope.languageJSON.profile.streetBox}"
+                                                       
                                                         value="${mailAddrRequest.addrStrNew}"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.apt"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.apt}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.addrApt}</span
@@ -796,15 +796,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.addrApt != mailAddrRequest.addrAptNew}">active</c:if>"
                                                         name="addrAptNew"
                                                         id="mailAddrApartment"
-                                                        aria-label=""
-                                                        data-localize="profile.apt"
+                                                        aria-label="${sessionScope.languageJSON.profile.apt}"
+                                                       
                                                         value="${mailAddrRequest.addrAptNew}"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.city"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.city}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     ${sessionScope.userDetail.addrCity}
@@ -814,15 +814,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.addrCity != mailAddrRequest.addrCityNew}">active</c:if>"
                                                         name="addrCityNew"
                                                         id="mailAddrCity"
-                                                        aria-label=""
-                                                        data-localize="profile.city"
+                                                        aria-label="${sessionScope.languageJSON.profile.city}"
+                                                       
                                                         value="${mailAddrRequest.addrCityNew}"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.state"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.state}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                         <c:forEach var="states" items="${statesOptions}" varStatus="count">
@@ -833,8 +833,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <select
                                                         id="mailAddrState"
                                                         name="addrStNew"
-                                                        aria-label=""
-                                                        data-localize="profile.state"
+                                                        aria-label="${sessionScope.languageJSON.profile.state}"
+                                                       
                                                         class="form-control  <c:if test="${sessionScope.userDetail.addrSt != mailAddrRequest.addrStNew}">active</c:if>"
                                                     >
                                                         <c:forEach var="states" items="${statesOptions}" varStatus="count">
@@ -845,7 +845,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.zip"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.zip}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.addrZip}</span
@@ -855,15 +855,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control  <c:if test="${sessionScope.userDetail.addrZip != mailAddrRequest.addrZipNew}">active</c:if>"
                                                         name="addrZipNew"
                                                         id="mailAddrZip"
-                                                        aria-label=""
-                                                        data-localize="profile.zip"
+                                                        aria-label="${sessionScope.languageJSON.profile.zip}"
+                                                       
                                                         value="${mailAddrRequest.addrZipNew}"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.zip4"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.zip4}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.addrZip4}</span
@@ -873,8 +873,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.addrZip4 != mailAddrRequest.addrZip4New}">active</c:if>"
                                                         name="addrZip4New"
                                                         id="mailAddrZipPlusFour"
-                                                        aria-label=""
-                                                        data-localize="profile.zip4"
+                                                        aria-label="${sessionScope.languageJSON.profile.zip4}"
+                                                       
                                                         value="${mailAddrRequest.addrZip4New}"
                                                     />
                                                 </div>
@@ -885,30 +885,30 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="edit">
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-primary edit-btn" data-localize="label.edit"
+                                                class="btn btn-primary edit-btn"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.edit}
                                             </button>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="submitButton"
-                                                class="btn btn-primary save-btn" data-localize="label.update"
+                                                class="btn btn-primary save-btn"
                                                 id="saveMailingAddress"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
                                                     id="undoMailingAddress"
-                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
+                                                    class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
-                                                
+                                                ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
-                                            >
+                                                class="btn btn-secondary cancel-btn" 
+                                            >${sessionScope.languageJSON.label.cancel}
                                             
                                             </button>
                                         </div>
@@ -917,18 +917,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteMailAddr" id="deleteMailAddr" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <h2 class="sub-title" data-localize="profile.altAddr"></h2>
+                                <h2 class="sub-title">${sessionScope.languageJSON.profile.altAddr}</h2>
                                 <form class="profile-item" id="alternativeAddressForm" action="saveAltMailAddr" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input type="hidden" name="empNbr" value="${altMailAddrRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                        <input type="hidden" name="reqDts" value="${altMailAddrRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                        <input type="hidden" name="empNbr" value="${altMailAddrRequest.id.empNbr}">
+                                        <input type="hidden" name="reqDts" value="${altMailAddrRequest.id.reqDts}">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
-                                                    <span class="currentTitle" data-localize="label.current"></span>
-                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                    <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                                    <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                                 </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.number"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.number}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.smrAddrNbr}</span
@@ -938,8 +938,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrNbr != altMailAddrRequest.smrAddrNbrNew}">active</c:if>"
                                                         name="smrAddrNbrNew"
                                                         id="altAddrNumber"
-                                                        aria-label=""
-                                                        data-localize="profile.altAddrNumber"
+                                                        aria-label="${sessionScope.languageJSON.profile.altAddrNumber}"
+                                                       
                                                         value="${altMailAddrRequest.smrAddrNbrNew}"
                                                         
                                                     />
@@ -947,8 +947,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.streetBox">
-                                                
+                                            <div class="profile-title">
+                                                    ${sessionScope.languageJSON.profile.streetBox}
                                             </div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
@@ -959,15 +959,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrStr != altMailAddrRequest.smrAddrStrNew}">active</c:if>"
                                                         name="smrAddrStrNew"
                                                         id="altAddrStr"
-                                                        aria-label=""
-                                                        data-localize="profile.streetBox"
+                                                        aria-label="${sessionScope.languageJSON.profile.streetBox}"
+                                                       
                                                         value="${altMailAddrRequest.smrAddrStrNew}"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.apt"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.apt}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.smrAddrApt}</span
@@ -977,15 +977,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrApt != altMailAddrRequest.smrAddrAptNew}">active</c:if>"
                                                         name="smrAddrAptNew"
                                                         id="altAddrApartment"
-                                                        aria-label=""
-                                                        data-localize="profile.apt"
+                                                        aria-label="${sessionScope.languageJSON.profile.apt}"
+                                                       
                                                         value="${altMailAddrRequest.smrAddrAptNew}"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.city"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.city}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.smrAddrCity}</span
@@ -995,15 +995,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrCity != altMailAddrRequest.smrAddrCityNew}">active</c:if>"
                                                         name="smrAddrCityNew"
                                                         id="altAddrCity"
-                                                        aria-label=""
-                                                        data-localize="profile.city"
+                                                        aria-label="${sessionScope.languageJSON.profile.city}"
+                                                       
                                                         value="${altMailAddrRequest.smrAddrCityNew}"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.state"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.state}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                         <c:forEach var="states" items="${statesOptions}" varStatus="count">
@@ -1014,8 +1014,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <select
                                                         id="altAddrState"
                                                         name="smrAddrStNew"
-                                                        aria-label=""
-                                                        data-localize="profile.state"
+                                                        aria-label="${sessionScope.languageJSON.profile.state}"
+                                                       
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrSt != altMailAddrRequest.smrAddrStNew}">active</c:if>"
                                                     >
                                                     <c:forEach var="states" items="${statesOptions}" varStatus="count">
@@ -1026,7 +1026,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.zip"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.zip}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.smrAddrZip}</span
@@ -1036,15 +1036,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrZip != altMailAddrRequest.smrAddrZipNew}">active</c:if>"
                                                         name="smrAddrZipNew"
                                                         id="altAddrZip"
-                                                        aria-label=""
-                                                        data-localize="profile.zip"
+                                                        aria-label="${sessionScope.languageJSON.profile.zip}"
+                                                       
                                                         value="${altMailAddrRequest.smrAddrZipNew}"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.zip4"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.zip4}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue"
                                                     >${sessionScope.userDetail.smrAddrZip4}</span
@@ -1054,8 +1054,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrZip4 != altMailAddrRequest.smrAddrZip4New}">active</c:if>"
                                                         name="smrAddrZip4New"
                                                         id="altAddrZipPlusFour"
-                                                        aria-label=""
-                                                        data-localize="profile.zip4"
+                                                        aria-label="${sessionScope.languageJSON.profile.zip4}"
+                                                       
                                                         value="${altMailAddrRequest.smrAddrZip4New}"
                                                     />
                                                 </div>
@@ -1066,31 +1066,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="edit">
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-primary edit-btn" data-localize="label.edit"
+                                                class="btn btn-primary edit-btn"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.edit}
                                             </button>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="submitButton"
-                                                class="btn btn-primary save-btn" data-localize="label.update"
+                                                class="btn btn-primary save-btn"
                                                 id="saveAltAddress"
-                                            >
+                                            >${sessionScope.languageJSON.label.update}
                                             
                                             </button>
                                             <button
                                                     type="button" role="button"
                                                     id="undoAlternative"
-                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
+                                                    class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
-                                                
+                                                ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
+                                                class="btn btn-secondary cancel-btn" 
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.cancel}
                                             </button>
                                         </div>
                                     </div>
@@ -1098,18 +1098,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <form hidden="hidden" action="deleteAltMailAddr" id="deleteAltMailAddr" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
-                                <h2 class="sub-title" data-localize="profile.phoneNumbers"></h2>
+                                <h2 class="sub-title">${sessionScope.languageJSON.profile.phoneNumbers}</h2>
                                 <form class="profile-item" id="phoneForm" action="savePhone" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input type="hidden" name="empNbr" value="${hmRequest.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                        <input type="hidden" name="reqDts" value="${hmRequest.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
+                                        <input type="hidden" name="empNbr" value="${hmRequest.id.empNbr}">
+                                        <input type="hidden" name="reqDts" value="${hmRequest.id.reqDts}">
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
-                                                    <span class="currentTitle" data-localize="label.current"></span>
-                                                    <div class="newTitle" data-localize="label.new"></div>
+                                                    <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                                    <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                                 </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.home"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.home}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     (${sessionScope.userDetail.phoneArea})
@@ -1121,8 +1121,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.phoneArea != hmRequest.phoneAreaNew}">active</c:if>"
                                                             name="phoneAreaNew"
                                                             id="homePhoneAreaCode"
-                                                            aria-label=""
-                                                            data-localize="profile.homePhoneAreaCode"
+                                                            aria-label="${sessionScope.languageJSON.profile.homePhoneAreaCode}"
+                                                           
                                                             value="${hmRequest.phoneAreaNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                             
@@ -1133,8 +1133,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phone-input  <c:if test="${sessionScope.userDetail.phoneNbr != hmRequest.phoneNbrNew}">active</c:if>"
                                                             name="phoneNbrNew"
                                                             id="homePhonePhoneNumber"
-                                                            aria-label=""
-                                                            data-localize="profile.homePhonePhoneNumber"
+                                                            aria-label="${sessionScope.languageJSON.profile.homePhonePhoneNumber}"
+                                                           
                                                             value="${hmRequest.phoneNbrNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
@@ -1143,7 +1143,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.cell"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.cell}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     (${sessionScope.userDetail.phoneAreaCell})
@@ -1155,8 +1155,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.phoneAreaCell != cellRequest.phoneAreaCellNew}">active</c:if>"
                                                             name="phoneAreaCellNew"
                                                             id="cellPhoneAreaCode"
-                                                            aria-label=""
-                                                            data-localize="profile.cellPhoneAreaCode"
+                                                            aria-label="${sessionScope.languageJSON.profile.cellPhoneAreaCode}"
+                                                           
                                                             value="${cellRequest.phoneAreaCellNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
@@ -1167,8 +1167,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phone-input  <c:if test="${sessionScope.userDetail.phoneNbrCell != cellRequest.phoneNbrCellNew}">active</c:if>"
                                                             name="phoneNbrCellNew"
                                                             id="cellPhonePhoneNumber"
-                                                            aria-label=""
-                                                            data-localize="profile.cellPhonePhoneNumber"
+                                                            aria-label="${sessionScope.languageJSON.profile.cellPhonePhoneNumber}"
+                                                           
                                                             value="${cellRequest.phoneNbrCellNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
@@ -1177,12 +1177,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.business"></div>
+                                            <div class="profile-title">${sessionScope.languageJSON.profile.business}</div>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     (${sessionScope.userDetail.phoneAreaBus})
                                                     ${sessionScope.userDetail.phoneNbrBus}&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <span data-localize="profile.ext"></span>
+                                                    <span>${sessionScope.languageJSON.profile.ext}</span>
                                                     ${sessionScope.userDetail.busPhoneExt}
                                                 </span>
                                                 <div class="valueInput flex">
@@ -1191,8 +1191,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.phoneAreaBus != busRequest.phoneAreaBusNew}">active</c:if>"
                                                             name="phoneAreaBusNew"
                                                             id="workPhoneAreaCode"
-                                                            aria-label=""
-                                                            data-localize="profile.workPhoneAreaCode"
+                                                            aria-label="${sessionScope.languageJSON.profile.workPhoneAreaCode}"
+                                                           
                                                             value="${busRequest.phoneAreaBusNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
@@ -1203,21 +1203,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phone-input  <c:if test="${sessionScope.userDetail.phoneNbrBus != busRequest.phoneNbrBusNew}">active</c:if>"
                                                             name="phoneNbrBusNew"
                                                             id="workPhonePhoneNumber"
-                                                            aria-label=""
-                                                            data-localize="profile.workPhonePhoneNumber"
+                                                            aria-label="${sessionScope.languageJSON.profile.workPhonePhoneNumber}"
+                                                           
                                                             value="${busRequest.phoneNbrBusNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>
 
-                                                    &nbsp;&nbsp;<span data-localize="profile.ext"></span>
+                                                    &nbsp;&nbsp;<span>${sessionScope.languageJSON.profile.ext}</span>
                                                     <div class="form-group">
                                                         <input
                                                             class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.busPhoneExt != busRequest.busPhoneExtNew}">active</c:if>"
                                                             name="busPhoneExtNew"
                                                             id="workPhoneExtention"
-                                                            aria-label=""
-                                                            data-localize="profile.workPhoneExtention"
+                                                            aria-label="${sessionScope.languageJSON.profile.workPhoneExtention}"
+                                                           
                                                             value="${busRequest.busPhoneExtNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
@@ -1230,31 +1230,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="edit">
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-primary edit-btn" data-localize="label.edit"
+                                                class="btn btn-primary edit-btn"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.edit}
                                             </button>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="submitButton"
-                                                class="btn btn-primary save-btn" data-localize="label.update"
+                                                class="btn btn-primary save-btn"
                                                 id="savePhone"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
                                                     id="undoPhoneNumber"
-                                                    class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
+                                                    class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
-                                                
+                                                ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
+                                                class="btn btn-secondary cancel-btn" 
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.cancel}
                                             </button>
                                         </div>
                                     </div>
@@ -1265,7 +1265,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         </c:if>
                         
                         <c:if test="${sessionScope.options.enableSelfServicePayroll == true}">
-                            <h2 class="sub-title" data-localize="profile.W4MaritalStatusInfo"></h2>
+                            <h2 class="sub-title">${sessionScope.languageJSON.profile.W4MaritalStatusInfo}</h2>
                             <form
                                 class="no-print searchForm"
                                 action="profile"
@@ -1274,7 +1274,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             >
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>           
                                 <div class="form-group in-line p-l-0">
-                                    <label class="form-title"  for="freq"  data-localize="label.payrollFreq"></label>
+                                    <label class="form-title"  for="freq" >${sessionScope.languageJSON.label.payrollFreq}</label>
                                     
                                     <select class="form-control" name="freq" id="freq" onchange="changeFreq()">
                                         <c:forEach var="freq" items="${payRollFrequenciesOptions}" varStatus="count">
@@ -1285,19 +1285,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </form>
                             <form class="profile-item" id="w4InfoForm" action="saveW4" method="POST">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <input type="hidden" name="empNbr" value="${w4Request.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                <input type="hidden" name="reqDts" value="${w4Request.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
-                                <input type="hidden" name="payFreq" value="${w4Request.id.payFreq}"  aria-label="" data-localize="accessHint.payFreq">
-                                <input type="hidden" name="maritalStatTax" value="${payInfo.maritalStatTax}" aria-label="" data-localize="accessHint.maritalStatTax">
-                                <input type="hidden" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" aria-label="" data-localize="accessHint.nbrTaxExempts">
+                                <input type="hidden" name="empNbr" value="${w4Request.id.empNbr}">
+                                <input type="hidden" name="reqDts" value="${w4Request.id.reqDts}">
+                                <input type="hidden" name="payFreq" value="${w4Request.id.payFreq}">
+                                <input type="hidden" name="maritalStatTax" value="${payInfo.maritalStatTax}">
+                                <input type="hidden" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}">
                                 <div class="profile-left">
                                         <div class="profileTitle form-line profileInfo">
-                                                <span class="currentTitle" data-localize="label.current"></span>
-                                                <div class="newTitle" data-localize="label.new"></div>
+                                                <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                                <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                             </div>
                                     <div class="profile-item-line form-line">
-                                        <div class="profile-title" data-localize="profile.MaritalStatus">
-                                        
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.MaritalStatus}
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue">
@@ -1311,8 +1311,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     name="maritalStatTaxNew"
                                                     class="form-control  <c:if test="${payInfo.maritalStatTax != w4Request.maritalStatTaxNew}">active</c:if>"
                                                     value="${w4Request.maritalStatTaxNew}"
-                                                    aria-label=""
-                                                    data-localize="profile.MaritalStatus"
+                                                    aria-label="${sessionScope.languageJSON.profile.MaritalStatus}"
+                                                   
                                                     
                                                 >
                                                     <c:forEach var="maritalTax" items="${maritalTaxOptions}" varStatus="count">
@@ -1323,8 +1323,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                     <div class="profile-item-line form-line">
-                                        <div class="profile-title" data-localize="profile.NbrOfExemptions">
-                                        
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.NbrOfExemptions}
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue"
@@ -1335,7 +1335,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control <c:if test="${payInfo.nbrTaxExempts != w4Request.nbrTaxExemptsNew}">active</c:if>"
                                                     id="nbrTaxExemptsNew"
                                                     name="nbrTaxExemptsNew"
-                                                    aria-label=""  data-localize="profile.NbrOfExemptions"
+                                                    aria-label="${sessionScope.languageJSON.profile.NbrOfExemptions}" 
                                                     value="${w4Request.nbrTaxExemptsNew}"
                                                 />
                                             </div>
@@ -1346,44 +1346,44 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="edit">
                                         <button
                                             type="button" role="button"
-                                            class="btn btn-primary edit-btn" data-localize="label.edit"
+                                            class="btn btn-primary edit-btn"
                                         >
-                                        
+                                        ${sessionScope.languageJSON.label.edit}
                                         </button>
                                     </div>
                                     <div class="saveOrCancel">
                                         <button
                                             type="submit" role="submitButton"
-                                            class="btn btn-primary save-btn" data-localize="label.update"
+                                            class="btn btn-primary save-btn"
                                             id="saveW4"
                                         >
-                                        
+                                        ${sessionScope.languageJSON.label.update}
                                         </button>
                                         <button
                                                 type="button" role="button"
                                                 id="undoW4"
-                                                class="btn btn-secondary"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
+                                                class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.undo}
                                             </button>
                                         <button
                                             type="button" role="button"
-                                            class="btn btn-secondary cancel-btn"  data-localize="label.cancel"
+                                            class="btn btn-secondary cancel-btn" 
                                         >
-                                        
+                                        ${sessionScope.languageJSON.label.cancel}
                                         </button>
                                     </div>
                                 </div>
                             </form>
                             <form hidden="hidden" action="deleteW4" id="deleteW4" method="POST">
                             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <input type="hidden" name="empNbr" value="${w4Request.id.empNbr}" aria-label="" data-localize="accessHint.employeeNumber">
-                                <input type="hidden" name="reqDts" value="${w4Request.id.reqDts}" aria-label="" data-localize="accessHint.reqDts">
-                                <input type="hidden" name="payFreq" value="${w4Request.id.payFreq}" aria-label="" data-localize="accessHint.payFreq">
-                                <input type="hidden" name="maritalStatTax" value="${payInfo.maritalStatTax}" aria-label="" data-localize="accessHint.maritalStatTax">
-                                <input type="hidden" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}" aria-label="" data-localize="accessHint.nbrTaxExempts">
+                                <input type="hidden" name="empNbr" value="${w4Request.id.empNbr}">
+                                <input type="hidden" name="reqDts" value="${w4Request.id.reqDts}">
+                                <input type="hidden" name="payFreq" value="${w4Request.id.payFreq}">
+                                <input type="hidden" name="maritalStatTax" value="${payInfo.maritalStatTax}">
+                                <input type="hidden" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}">
                             </form>
-                            <h2 class="sub-title" data-localize="profile.directDepositBankAccounts"></h2>
+                            <h2 class="sub-title">${sessionScope.languageJSON.profile.directDepositBankAccounts}</h2>
                             
                             <c:forEach var="bank" items="${banks}" varStatus="count">
                                 
@@ -1397,12 +1397,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <div class="profile-left">
                                         <c:if test="${count.index == 0}">
                                         <div class="profileTitle form-line profileInfo">
-                                                <span class="currentTitle" data-localize="label.current"></span>
-                                                <div class="newTitle" data-localize="label.new"></div>
+                                                <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                                <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                             </div>
                                             </c:if>
                                     <div class="profile-item-line form-line">
-                                        <div class="profile-title" data-localize="profile.primary"></div>
+                                        <div class="profile-title">${sessionScope.languageJSON.profile.primary}</div>
                                         <div class="profile-desc">
                                             <span class="haveValue">
                                                 <!-- <label>
@@ -1418,24 +1418,23 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="icheckRadioBank"
                                                         id="primary_${count.index}"
                                                         type="radio"
-                                                        aria-label="" 
-                                                        data-localize="accessHint.primaryAccountCheckbox"
+                                                        aria-label="${sessionScope.languageJSON.accessHint.primaryAccountCheckbox}" 
+                                                       
                                                         name="primaryAccount"
                                                     />
-                                                    <span class="hide" data-localize="accessHint.primaryAccountCheckbox"></span>
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="profile-item-line form-line">
-                                        <div class="profile-title" data-localize="profile.bankName"></div>
+                                        <div class="profile-title">${sessionScope.languageJSON.profile.bankName}</div>
                                         <div class="profile-desc">
                                             <span class="haveValue"
                                                 >${bank.code.description}</span
                                             >
                                             
-                                            <input type="hidden"  class="form-control bankcode bankNewCode"  id="codeNew_${count.index}" value="${bank.codeNew.code}"  aria-label="" data-localize="accessHint.bankCodeNew"/>
-                                            <input type="hidden" id="code_${count.index}" value="${bank.code.code}"  aria-label="" data-localize="accessHint.bankCode"/>
+                                            <input type="hidden"  class="form-control bankcode bankNewCode"  id="codeNew_${count.index}" value="${bank.codeNew.code}" />
+                                            <input type="hidden" id="code_${count.index}" value="${bank.code.code}" />
                                             
                                             <div class="valueInput group-line">
                                                 <div class="form-group inputDisabled">
@@ -1443,8 +1442,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control name <c:if test="${bank.code.description != bank.codeNew.description}">active</c:if>"
                                                         type="text"
                                                         name="description"
-                                                        aria-label="" 
-                                                        data-localize="profile.bankName"
+                                                        aria-label="${sessionScope.languageJSON.profile.bankName}" 
+                                                       
                                                         value="${bank.codeNew.description}"
                                                     />
                                                 </div>
@@ -1454,8 +1453,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control code <c:if test="${bank.code.subCode != bank.codeNew.subCode}">active</c:if>"
                                                         type="text"
                                                         name="subCode"
-                                                        aria-label="" 
-                                                        data-localize="accessHint.bankCode"
+                                                        aria-label="${sessionScope.languageJSON.accessHint.bankCode}" 
+                                                       
                                                         value="${bank.codeNew.subCode}"
                                                     />
                                                 </div>
@@ -1465,7 +1464,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     type="button" role="button"
                                                     data-toggle= "modal"
                                                     data-target="#selectBankModal"
-                                                    aria-label="" data-localize="profile.chooseBank" data-localize-location="aria-label" data-localize-notText="true"
+                                                    aria-label="${sessionScope.languageJSON.profile.chooseBank}"
                                                 >
                                                     <i class="fa fa-ellipsis-h"></i>
                                                 </button>
@@ -1473,7 +1472,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                     <div class="profile-item-line form-line">
-                                        <div class="profile-title" data-localize="profile.bankAcctNbr">
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.bankAcctNbr}
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue" id="accountNumber_${count.index}"
@@ -1483,8 +1483,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <input
                                                     class="form-control <c:if test="${bank.accountNumber != bank.accountNumberNew}">active</c:if>"
                                                     type="text"
-                                                    aria-label=""
-                                                    data-localize="profile.bankAcctNbr"
+                                                    aria-label="${sessionScope.languageJSON.profile.bankAcctNbr}"
+                                                   
                                                     name="accountNumber"
                                                     id="accountNumberNew_${count.index}"
                                                     value="${bank.accountNumberNew}"
@@ -1493,7 +1493,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                     <div class="profile-item-line form-line">
-                                        <div class="profile-title" data-localize="profile.bankAcctType">
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.bankAcctType}
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue"  id="accountType_${count.index}"
@@ -1502,9 +1503,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="form-group valueInput">
                                                 <select
                                                     class="form-control <c:if test="${bank.accountType.code != bank.accountTypeNew.code}">active</c:if>"
-                                                    aria-label=""
+                                                    aria-label="${sessionScope.languageJSON.profile.bankAcctType}"
                                                     id="accountTypeNew_${count.index}"
-                                                    data-localize="profile.bankAcctType"
+                                                   
                                                     name="displayLabel"
                                                 >
                                                 <c:forEach var="bankType" items="${bankAccountTypes}" varStatus="countBank">
@@ -1516,7 +1517,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                     <div class="profile-item-line form-line">
-                                        <div class="profile-title" data-localize="profile.bankAcctAmt">
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.bankAcctAmt}
                                         </div>
                                         <div class="profile-desc bankAmount">
                                             <span class="haveValue" id="displayAmount_${count.index}"
@@ -1527,7 +1529,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control amount_2 <c:if test="${bank.depositAmount.displayAmount != bank.depositAmountNew.displayAmount}">active</c:if>"
                                                     id="displayAmountNew_${count.index}"
                                                     type="text"
-                                                    aria-label="" data-localize="profile.bankAcctAmt"
+                                                    aria-label="${sessionScope.languageJSON.profile.bankAcctAmt}"
                                                     name="displayAmount"
                                                     value="${bank.depositAmountNew.displayAmount}"
                                                     oninput="clearNoNum(this)"
@@ -1540,28 +1542,28 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="saveOrCancel">
                                         <button
                                             type="button" role="button"
-                                            class="btn btn-primary save-btn saveUpdateBankBtn" data-localize="label.update"
+                                            class="btn btn-primary save-btn saveUpdateBankBtn"
                                             id="saveBank_${count.index}"
                                             onclick="updateBank(${count.index})"
                                         >
-                                        
+                                        ${sessionScope.languageJSON.label.update}
                                         </button>
                                         <button
                                                 type="button" role="button"
                                                 id="undoBank_${count.index}"
-                                                class="btn btn-secondary undo-btn"  data-localize="label.undo"  data-toggle="modal" data-target="#undoModal" 
+                                                class="btn btn-secondary undo-btn"   data-toggle="modal" data-target="#undoModal" 
                                                 onclick="undoBank(${count.index})"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.undo}
                                         </button>
                                         <c:if test="${bank.code.subCode!=''}">
                                             <button
                                                 type="button" role="button"
                                                 id="deleteBank_${count.index}"
-                                                class="btn btn-secondary delete-btn"  data-localize="label.delete" onclick="deleteBankAmount(${count.index})"
+                                                class="btn btn-secondary delete-btn"  onclick="deleteBankAmount(${count.index})"
                                                 data-toggle="modal" data-target="#deleteModal"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.delete}
                                             </button>
                                         </c:if>
                                     </div>
@@ -1573,41 +1575,41 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <div>
                                 <form hidden="hidden" action="updateBank" id="updateBankHidden" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="hidden" name="freq" id="hidden_freq_update"   aria-label="" data-localize="accessHint.reqDts"/>
-                                    <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_update"   aria-label="" data-localize="accessHint.accountNumberNew"/>
-                                    <input type="hidden" name="accountNumber" id="hidden_accountNumber_update"   aria-label="" data-localize="accessHint.accountNumber"/>
+                                    <input type="hidden" name="freq" id="hidden_freq_update" />
+                                    <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_update" />
+                                    <input type="hidden" name="accountNumber" id="hidden_accountNumber_update"/>
                                     <input type="hidden" name="code" id="hidden_code_update" />
-                                    <input type="hidden" name="codeNew" id="hidden_codeNew_update"   aria-label="" data-localize="accessHint.reqDts"/>
+                                    <input type="hidden" name="codeNew" id="hidden_codeNew_update"/>
                                     
-                                    <input type="hidden" name="accountType" id="hidden_accountType_update"   aria-label="" data-localize="accessHint.accountType"/>
-                                    <input type="hidden" name="accountTypeNew" id="hidden_accountTypeNew_update"   aria-label="" data-localize="accessHint.accountTypeNew"/>
-                                    <input type="hidden" name="displayAmount" id="hidden_displayAmount_update"   aria-label="" data-localize="accessHint.displayAmount"/>
-                                    <input type="hidden" name="displayAmountNew" id="hidden_displayAmountNew_update"   aria-label="" data-localize="accessHint.displayAmountNew"/>
+                                    <input type="hidden" name="accountType" id="hidden_accountType_update"/>
+                                    <input type="hidden" name="accountTypeNew" id="hidden_accountTypeNew_update"/>
+                                    <input type="hidden" name="displayAmount" id="hidden_displayAmount_update" />
+                                    <input type="hidden" name="displayAmountNew" id="hidden_displayAmountNew_update" />
                                 </form>
                                 <form hidden="hidden" action="undoBank" id="undoBankHidden" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="hidden" name="freq" id="hidden_freq_undo"   aria-label="" data-localize="accessHint.frequency"/>
-                                    <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_undo"   aria-label="" data-localize="accessHint.accountNumberNew"/>
-                                    <input type="hidden" name="accountNumber" id="hidden_accountNumber_undo"   aria-label="" data-localize="accessHint.accountNumber"/>
-                                    <input type="hidden" name="code" id="hidden_code_undo"   aria-label="" data-localize="accessHint.bankCode"/>
-                                    <input type="hidden" name="codeNew" id="hidden_codeNew_undo"   aria-label="" data-localize="accessHint.bankCodeNew"/>
+                                    <input type="hidden" name="freq" id="hidden_freq_undo"   aria-label="" />
+                                    <input type="hidden" name="accountNumberNew" id="hidden_accountNumberNew_undo"/>
+                                    <input type="hidden" name="accountNumber" id="hidden_accountNumber_undo" />
+                                    <input type="hidden" name="code" id="hidden_code_undo"  />
+                                    <input type="hidden" name="codeNew" id="hidden_codeNew_undo"/>
                                 </form>
                                 <form hidden="hidden" action="deleteBank"  id="deleteBankHidden" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="hidden" name="freq" id="hidden_freq_delete"   aria-label="" data-localize="accessHint.frequency"/>
-                                    <input type="hidden" name="accountNumber" id="hidden_accountNumber_delete"   aria-label="" data-localize="accessHint.accountNumber"/>
-                                    <input type="hidden" name="code" id="hidden_code_delete"  aria-label="" data-localize="accessHint.bankCode"/>
-                                    <input type="hidden" name="accountType" id="hidden_accountType_delete"   aria-label="" data-localize="accessHint.accountType"/>
-                                    <input type="hidden" name="displayAmount" id="hidden_displayAmount_delete"   aria-label="" data-localize="accessHint.displayAmount"/>
+                                    <input type="hidden" name="freq" id="hidden_freq_delete"  />
+                                    <input type="hidden" name="accountNumber" id="hidden_accountNumber_delete"  />
+                                    <input type="hidden" name="code" id="hidden_code_delete" />
+                                    <input type="hidden" name="accountType" id="hidden_accountType_delete" />
+                                    <input type="hidden" name="displayAmount" id="hidden_displayAmount_delete" />
                                 </form>
                                 <form hidden="hidden" action="saveBank" id="saveBankHidden" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="hidden" name="freq" id="hiddenfreq"   aria-label="" data-localize="accessHint.frequency"/>
-                                    <input type="hidden" name="displayAmount" id="hiddendisplayAmount"  aria-label="" data-localize="accessHint.displayAmount"/>
-                                    <input type="hidden" name="displayLabel" id="hiddendisplayLabel"   aria-label="" data-localize="accessHint.displayLabel"/>
-                                    <input type="hidden" name="accountNumber" id="hiddenaccountNumber"   aria-label="" data-localize="accessHint.accountNumber"/>
-                                    <input type="hidden" name="subCode" id="hiddensubCode"   aria-label="" data-localize="accessHint.bankCode"/>
-                                    <input type="hidden" name="description" id="hiddendescription"   aria-label="" data-localize="accessHint.bankName"/>
+                                    <input type="hidden" name="freq" id="hiddenfreq"   aria-label=""/>
+                                    <input type="hidden" name="displayAmount" id="hiddendisplayAmount"/>
+                                    <input type="hidden" name="displayLabel" id="hiddendisplayLabel" />
+                                    <input type="hidden" name="accountNumber" id="hiddenaccountNumber" />
+                                    <input type="hidden" name="subCode" id="hiddensubCode"  />
+                                    <input type="hidden" name="description" id="hiddendescription" />
                                 </form>
                                 <form
                                     class="profile-item border-0 activeEdit addBankForm"
@@ -1617,7 +1619,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="profile-left">
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.bankName">
+                                            <div class="profile-title">
+                                                    ${sessionScope.languageJSON.profile.bankName}
                                             </div>
                                             <div class="profile-desc">
                                                 <div class="valueInput group-line">
@@ -1627,7 +1630,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             type="text"
                                                             name="description"
                                                             id="saveBankDescription"
-                                                            aria-label="" data-localize="accessHint.bankName"
+                                                            aria-label="${sessionScope.languageJSON.accessHint.bankName}"
                                                             value=""
                                                         />
                                                     </div>
@@ -1638,17 +1641,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             type="text"
                                                             name="subCode"
                                                             id="saveBankCode"
-                                                            aria-label="" data-localize="accessHint.bankCode"
+                                                            aria-label="${sessionScope.languageJSON.accessHint.bankCode}"
                                                             value=""
                                                         />
                                                     </div>
-                                                    <input type="hidden" id="newBankCode" aria-label="" data-localize="accessHint.bankCode">
+                                                    <input type="hidden" id="newBankCode" aria-label="${sessionScope.languageJSON.accessHint.bankCode}">
                                                     <button
                                                         class="btn btn-secondary xs getBank"
                                                         type="button" role="button"
                                                         data-toggle= "modal"
                                                         data-target="#selectBankModal"
-                                                        aria-label="" data-localize="profile.chooseBank" data-localize-location="aria-label" data-localize-notText="true"
+                                                        aria-label="${sessionScope.languageJSON.profile.chooseBank}"
                                                     >
                                                         <i
                                                             class="fa fa-ellipsis-h"
@@ -1658,14 +1661,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.bankAcctNbr">
+                                            <div class="profile-title">
+                                                    ${sessionScope.languageJSON.profile.bankAcctNbr}
                                             </div>
                                             <div class="profile-desc">
                                                 <div class="form-group valueInput">
                                                     <input
                                                         class="form-control"
                                                         type="text"
-                                                        aria-label="" data-localize="profile.bankAcctNbr"
+                                                        aria-label="${sessionScope.languageJSON.profile.bankAcctNbr}"
                                                         name="accountNumber"
                                                         id="saveBankAccountNumber"
                                                         value=""
@@ -1674,13 +1678,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.bankAcctType">
+                                            <div class="profile-title">
+                                                    ${sessionScope.languageJSON.profile.bankAcctType}
                                             </div>
                                             <div class="profile-desc">
                                                 <div class="form-group valueInput">
                                                     <select
                                                         class="form-control"
-                                                        aria-label="" data-localize="profile.bankAcctType"
+                                                        aria-label="${sessionScope.languageJSON.profile.bankAcctType}"
                                                         name="displayLabel"
                                                         id="saveBankDisplayLabel"
                                                     >
@@ -1692,14 +1697,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                         <div class="profile-item-line form-line">
-                                            <div class="profile-title" data-localize="profile.bankAcctAmt">
+                                            <div class="profile-title">
+                                                    ${sessionScope.languageJSON.profile.bankAcctAmt}
                                             </div>
                                             <div class="profile-desc">
                                                 <div class="form-group valueInput">
                                                     <input
                                                         class="form-control amount_2"
                                                         type="text"
-                                                        aria-label="" data-localize="profile.bankAcctType"
+                                                        aria-label="${sessionScope.languageJSON.profile.bankAcctType}"
                                                         name="displayAmount"
                                                         id="saveBankDisplayAmount"
                                                         value=""
@@ -1713,17 +1719,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="saveOrCancel flex-line">
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-primary save-btn" data-localize="label.save"
+                                                class="btn btn-primary save-btn"
                                                 id="saveNewBank"
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.save}
                                             </button>
                                             <button
                                                 type="button" role="button"
                                                 class="btn btn-secondary cancel-add-btn"
-                                                data-localize="label.cancel"
+                                               
                                             >
-                                            
+                                            ${sessionScope.languageJSON.label.cancel}
                                             </button>
                                         </div>
                                     </div>
@@ -1732,9 +1738,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     type="button" role="button"
                                     class="btn btn-primary add-bank-btn"
                                 >
-                                <span data-localize="label.add"></span>
+                                <span>${sessionScope.languageJSON.label.add}</span>
                                 </button>
-                                <p class="error-hint hide bankSizeError" role="alert" aria-atomic="true" data-localize="validator.maximumBankAmmount">
+                                <p class="error-hint hide bankSizeError" role="alert" aria-atomic="true">
+                                        ${sessionScope.languageJSON.validator.maximumBankAmmount}
                                 </p>
                             </div>
                         </c:if>
@@ -1763,11 +1770,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         class="close"
                         data-dismiss="modal"
                         aria-hidden="true"
-                        aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
+                        aria-label="${sessionScope.languageJSON.label.closeModal}"
                         >
                             &times;
                         </button>
-                        <h4 class="modal-title" data-localize="profile.selectABank"></h4>
+                        <h4 class="modal-title">${sessionScope.languageJSON.profile.selectABank}</h4>
                     </div>
                     <div class="modal-body">
                         <form
@@ -1779,7 +1786,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="form-group">
                                 <label class="form-title" for="codeCriteriaSearchCode"
-                                    ><span data-localize="profile.routingNumber"></span>:</label
+                                    ><span>${sessionScope.languageJSON.profile.routingNumber}</span>:</label
                                 >
                                 <div class="button-group">
                                     <input
@@ -1793,7 +1800,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </div>
                             <div class="form-group">
                                 <label class="form-title" for="codeCriteriaSearchDescription"
-                                    ><span data-localize="profile.bankName"></span>:</label
+                                    ><span>${sessionScope.languageJSON.profile.bankName}</span>:</label
                                 >
                                 <div class="button-group">
                                     <input
@@ -1810,8 +1817,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button
                                         type="button" role="button" id="searchBankBtn"
                                         class="btn btn-primary"
-                                        data-localize="label.search"
-                                    ></button>
+                                       
+                                    >${sessionScope.languageJSON.label.search}</button>
                                 </div>
                             </div>
                         </form>
@@ -1819,59 +1826,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <table class="table border-table" id="bankTable">
                                 <thead>
                                     <tr>
-                                        <th data-localize="profile.routingNumber"></th>
-                                        <th data-localize="profile.bankName"></th>
+                                        <th>${sessionScope.languageJSON.profile.routingNumber}</th>
+                                        <th>${sessionScope.languageJSON.profile.bankName}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 <!-- 
-                                    <tr>
-                                        <td data-localize="profile.routingNumber" data-localize-location="scope">
-                                            <button
-                                                class="a-btn bankNumberBtn"
-                                                type="button" role="button"
-                                                value="220483972"
-                                                data-title="A+ FEDERAL CREDIT UNION"
-                                            >
-                                                220483972
-                                            </button>
-                                        </td>
-                                        <td data-localize="profile.bankName" data-localize-location="scope">A+ FEDERAL CREDIT UNION</td>
-                                    </tr>
-                                   
-                                    <tr>
-                                            <td colspan="2">
-                                                <div class="flex">
-                                                        <div class="pageGroup">
-                                                                <button class="pageBtn firstPate" aria-label="" data-localize="label.firstPage" data-localize-location="title">
-                                                                        <i class="fa fa-angle-double-left "></i>
-                                                                </button>  
-                                                                <button class="pageBtn prevPage" aria-label="" data-localize="label.prevPage" data-localize-location="title">
-                                                                        <i class="fa fa-angle-left "></i>
-                                                                </button>
-                                                                <select class="selectPage" name="page" id="pageNow" aria-label="" data-localize="label.choosePage" onchange="changePage()"  data-localize-location="title">
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                </select>
-                                                                <div class="page-list">
-                                                                        <span class="slash">/</span>
-                                                                        <span class="totalPate">2</span>
-                                                                </div>
-                                                                <button class="pageBtn nextPate" aria-label="" data-localize="label.nextPage" data-localize-location="title">
-                                                                                <i class="fa fa-angle-right "></i>
-                                                                </button>
-                                                                <button class="pageBtn lastPate" aria-label="" data-localize="label.lastPage" data-localize-location="title">
-                                                                    <i class="fa fa-angle-double-right"></i>
-                                                                </button>
-                                                        </div>
-                                                        <b class="totalRows">
-                                                            <span data-localize="label.rows"></span>: 100
-                                                        </b>
-                                                </div>
-                                                    
-                                            </td>
-                                    </tr>
-                                     -->
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -1882,9 +1842,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             class="btn btn-secondary"
                             data-dismiss="modal"
                             aria-hidden="true"
-                            data-localize="label.cancel"
+                           
                         >
-                        
+                        ${sessionScope.languageJSON.label.cancel}
                         </button>
                     </div>
                 </div>
