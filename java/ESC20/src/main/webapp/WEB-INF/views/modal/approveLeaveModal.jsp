@@ -10,24 +10,23 @@
     <div class="modal-dialog approveForm">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" data-localize="label.approveLeaveRequests"></h4>
+                <h4 class="modal-title">${sessionScope.languageJSON.label.approveLeaveRequests}</h4>
                 <button
                     type="button" role="button"
                     class="close closeModal"
                     data-dismiss="modal"
-                    aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
-                    >
+                    aria-label="${sessionScope.languageJSON.label.closeModal}">
                     &times;
                 </button>
             </div>
               <div class="modal-body">
-                  <input type="hidden" name="leaveId" id="leaveId" aria-label="" data-localize="accessHint.id" />
+                  <input type="hidden" name="leaveId" id="leaveId" aria-label="${sessionScope.languageJSON.accessHint.id}"/>
                   <table class="table border-table no-thead leftTdTable">
                     <tbody>
                       <tr>
                         <td><b data-localize="label.employee"></b></td>
-                        <td data-localize="label.employee" data-localize-location="title">
-                            <button class="showBalanceBtn pull-right a-btn" type="button" role="button" onclick="showDetail(this)" aria-label="" data-localize="label.showLeaveBalanceSummary" data-localize-location="aria-label" data-localize-notText="true">
+                        <td title="${sessionScope.languageJSON.label.employee}">
+                            <button class="showBalanceBtn pull-right a-btn" type="button" role="button" onclick="showDetail(this)" aria-label="${sessionScope.languageJSON.label.showLeaveBalanceSummary}">
                                 <i class="fa fa-angle-double-down"></i>
                                 <i class="fa fa-angle-double-up"></i>
                             </button>
@@ -35,62 +34,58 @@
                         </td>
                       </tr>
                       <tr>
-                        <td colspan="2" data-localize-location="title" data-localize="label.leaveBalanceSummary" id="leaveBalanceSummary">
-                            <div><span data-localize="label.leaveBalanceSummaryFor"></span> 
+                        <td colspan="2" title="${sessionScope.languageJSON.label.leaveBalanceSummary}" id="leaveBalanceSummary">
+                            <div><span>${sessionScope.languageJSON.label.leaveBalanceSummaryFor}</span> 
                                 <span id="infoEmpName"></span>
                             </div>
                             <div id="infoDetail"></div>
                         </td>
                       </tr>
                       <tr>
-                        <td><b data-localize="leaveRequest.startDate"></b></td>
-                        <td data-localize="leaveRequest.startDate" data-localize-location="title"><div id="startDate"></div></td>
+                        <td><b>${sessionScope.languageJSON.leaveRequest.startDate}</b></td>
+                        <td title="${sessionScope.languageJSON.leaveRequest.startDate}"><div id="startDate"></div></td>
                       </tr>
                       <tr>
-                        <td><b data-localize="leaveRequest.endDate"></b></td>
-                        <td data-localize="leaveRequest.endDate" data-localize-location="title"><div id="endDate"></div></td>
+                        <td><b>${sessionScope.languageJSON.leaveRequest.endDate}</b></td>
+                        <td title="${sessionScope.languageJSON.leaveRequest.endDate}"><div id="endDate"></div></td>
                       </tr>
                       <tr>
-                        <td><b data-localize="leaveRequest.leaveType"></b></td>
-                        <td data-localize="leaveRequest.leaveType" data-localize-location="title"><div id="leaveType"></div></td>
+                        <td><b>${sessionScope.languageJSON.leaveRequest.leaveType}</b></td>
+                        <td title="${sessionScope.languageJSON.leaveRequest.leaveType}"><div id="leaveType"></div></td>
                       </tr>
                       <tr>
-                        <td><b data-localize="leaveRequest.absenceReason"></b></td>
-                        <td data-localize="leaveRequest.absenceReason" data-localize-location="title"><div id="absenceReason"></div></td>
+                        <td><b>${sessionScope.languageJSON.leaveRequest.absenceReason}</b></td>
+                        <td title="${sessionScope.languageJSON.leaveRequest.absenceReason}"><div id="absenceReason"></div></td>
                       </tr>
                       <tr>
-                        <td><b data-localize="leaveRequest.leaveRequested"></b></td>
-                        <td data-localize="leaveRequest.leaveRequested" data-localize-location="title">
+                        <td><b>${sessionScope.languageJSON.leaveRequest.leaveRequested}</b></td>
+                        <td title="${sessionScope.languageJSON.leaveRequest.leaveRequested}">
                             <span id="leaveRequested"></span>
-                            <span data-localize="label.days"></span>
+                            <span>${sessionScope.languageJSON.label.days}</span>
                         </td>
                       </tr>
                       <tr>
-                        <td><b data-localize="leaveRequest.commentLog"></b></td>
-                        <td data-localize="leaveRequest.commentLog" data-localize-location="title"><div id="commentLog"></div></td>
+                        <td><b>${sessionScope.languageJSON.leaveRequest.commentLog}</b></td>
+                        <td title="${sessionScope.languageJSON.leaveRequest.commentLog}"><div id="commentLog"></div></td>
                       </tr>
                     </tbody>
                   </table>
                   <div class="form-group action-group">
                         <label for="approve">
                             <input class="icheck" type="radio" name="approve" id="approve" value="Approve">
-                            <span data-localize="label.approve"></span>
+                            <span>${sessionScope.languageJSON.label.approve}</span>
                         </label>
                         <label for="disApprove">
                             <input class="icheck" type="radio" name="approve" id="disApprove" value="Disapprove">
-                            <span data-localize="label.disapprove"></span>
+                            <span>${sessionScope.languageJSON.label.disapprove}</span>
                         </label>
-                        <!-- <label for="noAction">
-                            <input class="icheck" type="radio" name="approve" id="noAction" value="NoAction">
-                            <span data-localize="label.noAction"></span>
-                        </label> -->
                   </div>
                   <div class="form-group supervisorComment">
-                      <label for="supervisorComment" data-localize="label.supervisorComment"></label>
+                      <label for="supervisorComment">${sessionScope.languageJSON.label.supervisorComment}</label>
                       <textarea class="form-control form-text" name="supervisorComment" id="supervisorComment" cols="30" rows="4"></textarea>
                   </div>
-                  <p class="approveValidator error-hint" role="alert" aria-atomic="true" data-localize="validator.pleaseSelectOne"></p>
-                  <p class="commentValidator error-hint" role="alert" aria-atomic="true" data-localize="validator.pleaseEnterComment"></p>
+                  <p class="approveValidator error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.pleaseSelectOne}</p>
+                  <p class="commentValidator error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.pleaseEnterComment}</p>
               </div>
               <div class="modal-footer">
                   <button
@@ -98,16 +93,16 @@
                       class="btn btn-primary"
                       id="save"
                       name="save"
-                      data-localize="label.save"
                   >
+                  	${sessionScope.languageJSON.label.save}
                   </button>
                   <button
                   type="button" role="button"
                       class="btn btn-secondary closeModal"
                       data-dismiss="modal"
                       id="cancelAdd"
-                      data-localize="label.cancel"
                   >
+                  	${sessionScope.languageJSON.label.cancel}
                   </button>
               </div>
         </div>
@@ -116,16 +111,16 @@
     <!-- /.modal -->
 </div>
 <form hidden="hidden" action="disapproveLeave" id="disapproveLeave" method="POST">
-    <input type="text" name="id" id="disId"  aria-label="" data-localize="accessHint.id">
-    <input type="text" name="chain" id="disChain"  aria-label="" data-localize="accessHint.chain">
-    <input type="text" name="comment" id="disComment"  aria-label="" data-localize="accessHint.comment">
+    <input type="text" name="id" id="disId" aria-label="${sessionScope.languageJSON.accessHint.id}"/>
+    <input type="text" name="chain" id="disChain" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
+    <input type="text" name="comment" id="disComment" aria-label="${sessionScope.languageJSON.accessHint.comment}"/>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 
 <form hidden="hidden" action="approveLeave" id="approveLeave" method="POST">
-        <input type="text" name="id" id="appId"  aria-label="" data-localize="accessHint.id">
-        <input type="text" name="chain" id="appChain"  aria-label="" data-localize="accessHint.chain">
-        <input type="text" name="comment" id="appComment"  aria-label="" data-localize="accessHint.comment">
+        <input type="text" name="id" id="appId" aria-label="${sessionScope.languageJSON.accessHint.id}"/>
+        <input type="text" name="chain" id="appChain" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
+        <input type="text" name="comment" id="appComment" aria-label="${sessionScope.languageJSON.accessHint.comment}"/>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
 

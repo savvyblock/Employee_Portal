@@ -12,13 +12,12 @@ data-backdrop="static"
 <div class="modal-content">
     <div class="modal-header">
         
-        <h4 class="modal-title"><span class="hide" data-localize="accessHint.calendarView"></span></h4>
+        <h4 class="modal-title"><span class="hide">${sessionScope.languageJSON.accessHint.calendarView}</span></h4>
         <button
             type="button" role="button"
             class="close closeModal"
             data-dismiss="modal"
-            aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
-            >
+            aria-label="${sessionScope.languageJSON.label.closeModal}">
             &times;
         </button>
     </div>
@@ -30,9 +29,8 @@ data-backdrop="static"
           type="button" role="button"
             class="btn btn-secondary closeModal"
             data-dismiss="modal"
-            id="cancelAddCalendar"
-            data-localize="label.close"
-        >
+            id="cancelAddCalendar">
+        	${sessionScope.languageJSON.label.close}
         </button>
     </div>
     </div>
