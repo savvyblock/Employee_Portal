@@ -11,18 +11,19 @@
         <div class="modal-content text-center">
             <div class="modal-body">
                 <i class="fa fa-exclamation-circle warn-icon"></i>
-                <p data-localize="label.areYouRescind"></p>
+                <p>${sessionScope.languageJSON.label.areYouRescind}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" role="button"  class="btn btn-primary sureUndo" data-localize="label.ok">
+                <button type="button" role="button"  class="btn btn-primary sureUndo">
+                	${sessionScope.languageJSON.label.ok}
                 </button>
                 <button
                     type="button" role="button"
                     class="btn btn-secondary closeModal"
                     data-dismiss="modal"
                     id="cancelAdd"
-                    data-localize="label.cancel"
                 >
+                	${sessionScope.languageJSON.label.cancel}
                 </button>
             </div>              
         </div>

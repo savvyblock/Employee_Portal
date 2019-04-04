@@ -11,17 +11,18 @@
         <div class="modal-content text-center">  
             <div class="modal-body text-center">
                 <i class="fa fa-exclamation-circle warn-icon"></i>
-                <p data-localize="label.areYouDelete"></p>
+                <p>${sessionScope.languageJSON.label.areYouDelete}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" role="button"  class="btn btn-primary sureDelete" data-localize="label.ok">
+                <button type="button" role="button"  class="btn btn-primary sureDelete">
+                	${sessionScope.languageJSON.label.ok}
                 </button>
                 <button
                     type="button" role="button"
                     class="btn btn-secondary closeModal"
                     data-dismiss="modal"
-                    data-localize="label.cancel"
                 >
+                	${sessionScope.languageJSON.label.cancel}
                 </button>
             </div>
                 
