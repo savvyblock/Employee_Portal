@@ -14,10 +14,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             <main class="content-wrapper" tabindex="-1">
                     <section class="content">
                     <h1 class="clearfix section-title">
-                        <span data-localize="title.setTemporaryApprovers"></span>
+                        <span>${sessionScope.languageJSON.title.setTemporaryApprovers}</span>
                     </h1>
                     <div class="showSelectSupervisor">
-                        <label class="form-title"><span data-localize="label.supervisorHierarchy"></span>: </label>
+                        <label class="form-title"><span>${sessionScope.languageJSON.label.supervisorHierarchy}</span>: </label>
                         <c:forEach var="item" items="${chain}" varStatus="status">
                              <b> ${item.employeeNumber}:${item.lastName},${item.firstName}</b>
                              <c:if test="${!status.last}"> ➝ </c:if>
@@ -32,9 +32,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 >
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <span hidden="hidden" id="chainValue">${chain}</span>
-                                    <input hidden="hidden" id="chain" class="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
+                                    <input hidden="hidden" id="chain" class="chain" name="chain" type="text" value="" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
                                     <div class="form-group in-line flex-auto">
-                                        <label class="form-title" for="selectEmpNbr"><span data-localize="label.directReportSupervisor"></span>:</label>
+                                        <label class="form-title" for="selectEmpNbr"><span>${sessionScope.languageJSON.label.directReportSupervisor}</span>:</label>
                                         <select  class="form-control" name="selectEmpNbr" onchange="changeLevel()"
                                             id="selectEmpNbr">
                                             <c:forEach var="item" items="${directReportEmployee}" varStatus="count">
@@ -45,23 +45,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="form-group in-line flex-auto">
                                             <button type="button" role="button" class="btn btn-primary disabled" 
                                                 id="prevLevel" 
-                                                data-localize="label.previousLevel"
                                                 disabled
-                                                ></button>
+                                                >${sessionScope.languageJSON.label.previousLevel}</button>
                                             <button type="button" role="button" class="btn btn-primary  disabled" 
                                             id="nextLevel" 
-                                            data-localize="label.nextLevel"
                                             disabled
-                                            ></button>
+                                            >${sessionScope.languageJSON.label.nextLevel}</button>
                                     </div>
                                 </form>
                                 <form hidden="hidden" action="previousLevelFromTempApprovers" id="previousLevel" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="" data-localize="accessHint.level">
-                                        <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="" data-localize="accessHint.chain">
+                                        <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="${sessionScope.languageJSON.accessHint.level}"/>
+                                        <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
                                 </form>
                                 <h2 class="mb-3 tableTitle">
-                                    <span data-localize="label.temporaryApproversFor"></span>
+                                    <span>${sessionScope.languageJSON.label.temporaryApproversFor}</span>
                                     <b class="highlight">
                                             <c:forEach var="item" items="${chain}" varStatus="status">
                                                     <c:if test="${status.last}"><span id="currentEmployee">${item.employeeNumber}</span>:${item.lastName},${item.firstName} </c:if>
@@ -73,19 +71,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             
                             <form action="saveTempApprovers" id="saveTempApprovers" method="POST">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="" aria-label="" data-localize="accessHint.chain">
-                                    <input hidden="hidden" id="empNbrForm" name="empNbr" type="text" value="" aria-label="" data-localize="accessHint.employeeNumber">
-                                    <input hidden="hidden" id="approverJson" name="approverJson" type="text" value="" aria-label="" data-localize="accessHint.approverJson">
+                                    <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
+                                    <input hidden="hidden" id="empNbrForm" name="empNbr" type="text" value="" aria-label="${sessionScope.languageJSON.accessHint.employeeNumber}"/>
+                                    <input hidden="hidden" id="approverJson" name="approverJson" type="text" value="" aria-label="${sessionScope.languageJSON.accessHint.approverJson}"/>
                                 <table
                                     class="table border-table setApprovers-list responsive-table"
                                 >
                                     <thead>
                                         <tr>
-                                            <th data-localize="setTemporaryApprovers.rowNbr"></th>
-                                            <th data-localize="setTemporaryApprovers.temporaryApprover"></th>
-                                            <th data-localize="setTemporaryApprovers.from"></th>
-                                            <th data-localize="setTemporaryApprovers.to"></th>
-                                            <th data-localize="setTemporaryApprovers.delete"></th>
+                                            <th>${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}</th>
+                                            <th>${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}</th>
+                                            <th>${sessionScope.languageJSON.setTemporaryApprovers.from}</th>
+                                            <th>${sessionScope.languageJSON.setTemporaryApprovers.to}</th>
+                                            <th>${sessionScope.languageJSON.setTemporaryApprovers.delete}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -93,24 +91,23 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <tr class="listTr">
                                                             <td
                                                                 class="countIndex"
-                                                                data-localize="setTemporaryApprovers.rowNbr" data-localize-location="scope"
+                                                                scope="${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}"
                                                             >
                                                                 ${status.index + 1}
                                                             </td>
                                                             <td class="empNumber"
-                                                            data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope"
+                                                            scope="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}"
                                                             >
-                                                            <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}" aria-label="" data-localize="accessHint.employeeId">
+                                                            <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}" aria-label="${sessionScope.languageJSON.accessHint.employeeId}">
                                                             ${tem.tmpApprvrEmpNbr}-${tem.approverName}
                                                         </td>
-                                                            <td class="empFrom" data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope">${tem.datetimeFrom}</td>
-                                                            <td class="empTo" data-localize="setTemporaryApprovers.toDate" data-localize-location="scope">${tem.datetimeTo}</td>
-                                                            <td data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
+                                                            <td class="empFrom" scope="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}">${tem.datetimeFrom}</td>
+                                                            <td class="empTo" scope="${sessionScope.languageJSON.setTemporaryApprovers.toDate}">${tem.datetimeTo}</td>
+                                                            <td scope="${sessionScope.languageJSON.setTemporaryApprovers.delete}">
                                                                 <button
                                                                     type="button" role="button"
                                                                     class="a-btn deleteApprover"
-                                                                    aria-label="" data-localize="label.delete" data-localize-location="aria-label" data-localize-notText="true"
-                                                                >
+                                                                    aria-label="${sessionScope.languageJSON.label.delete}">
                                                                     <i
                                                                         class="fa fa-trash"
                                                                     ></i>
@@ -122,30 +119,26 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <tr class="approver_tr">
                                             <td
                                                 class="countIndex"
-                                                data-localize="setTemporaryApprovers.rowNbr"
-                                                data-localize-location="scope"
-                                            >
+                                                scope="${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}">
                                                 <span id="firstRow"></span>
                                             </td>
-                                            <td data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope">
+                                            <td scope="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}">
                                                 <div class="form-group">
                                                     <input
                                                         class="form-control empControl"
                                                         type="text"
-                                                        aria-label=""
-                                                        data-localize="setTemporaryApprovers.temporaryApprover"
+                                                        aria-label="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}"
                                                         name=""
                                                         id="name_01"
                                                     />
                                                 </div>
                                             </td>
-                                            <td data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope">
+                                            <td scope="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}">
                                                 <div class="form-group">
                                                     <input
                                                         class="form-control date-control dateFromControl"
-                                                        aria-label=""
+                                                        aria-label="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}"
                                                         data-title="from"
-                                                        data-localize="setTemporaryApprovers.fromDate"
                                                         type="text"
                                                         name="temporaryApprovers[${row.index}].fromDateString"
                                                         id="fromDate_01" autocomplete="off"
@@ -153,12 +146,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     />
                                                 </div>
                                             </td>
-                                            <td data-localize="setTemporaryApprovers.toDate" data-localize-location="scope">
+                                            <td scope="${sessionScope.languageJSON.setTemporaryApprovers.toDate}">
                                                 <div class="form-group">
                                                     <input
                                                         class="form-control  date-control dateToControl"
-                                                        aria-label=""
-                                                        data-localize="setTemporaryApprovers.toDate"
+                                                        aria-label="${sessionScope.languageJSON.setTemporaryApprovers.toDate}"
                                                         type="text"
                                                         data-title="to"
                                                         name="temporaryApprovers[${row.index}].toDateString"
@@ -167,24 +159,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     />
                                                 </div>
                                             </td>
-                                            <td data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
+                                            <td scope="${sessionScope.languageJSON.setTemporaryApprovers.delete}">
                                                 <button
                                                     type="button" role="button"
                                                     class="a-btn"
                                                     onclick="deleteRow(this)"
-                                                    aria-label="" data-localize="label.delete" data-localize-location="aria-label" data-localize-notText="true"
-                                                >
+                                                    aria-label="${sessionScope.languageJSON.setTemporaryApprovers.delete}">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="no-title" colspan="5" data-localize="label.add" data-localize-location="scope">
+                                            <td class="no-title" colspan="5" scope="${sessionScope.languageJSON.label.add}">
                                                 <button
                                                     type="button" role="button"
                                                     class="a-btn add-new-row"
-                                                    aria-label="" data-localize="label.add" data-localize-location="aria-label" data-localize-notText="true"
-                                                >
+                                                    aria-label="${sessionScope.languageJSON.label.add}">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </td>
@@ -192,28 +182,26 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </tbody>
                                 </table>
                                 <div class="errorList">
-                                    <p class="error-hint hide" role="alert" aria-atomic="true" id="repeatError" data-localize="validator.repeatError"></p>
-                                    <p class="error-hint hide" role="alert" aria-atomic="true" id="noResultError" data-localize="validator.noResultError"></p>
-                                    <p class="error-hint hide" role="alert" aria-atomic="true" id="errorComplete" data-localize="validator.pleaseCompleteForm"></p>
-                                    <p class="error-hint hide" role="alert" aria-atomic="true" id="errorDate" data-localize="validator.startNotBeGreaterThanEndDate"></p>
+                                    <p class="error-hint hide" role="alert" aria-atomic="true" id="repeatError">${sessionScope.languageJSON.validator.repeatError}</p>
+                                    <p class="error-hint hide" role="alert" aria-atomic="true" id="noResultError">${sessionScope.languageJSON.validator.noResultError}</p>
+                                    <p class="error-hint hide" role="alert" aria-atomic="true" id="errorComplete">${sessionScope.languageJSON.validator.pleaseCompleteForm}</p>
+                                    <p class="error-hint hide" role="alert" aria-atomic="true" id="errorDate">${sessionScope.languageJSON.validator.startNotBeGreaterThanEndDate}</p>
     
                                 </div>
                                 <div class="text-right mt-3">
                                     <button
                                         type="button" role="button"
                                         class="btn btn-primary"
-                                        aria-label=""
-                                        id="saveSet"
-                                        data-localize="label.save"
-                                    >
+                                        aria-label="${sessionScope.languageJSON.label.save}"
+                                        id="saveSet">
+                                    	${sessionScope.languageJSON.label.save}
                                     </button>
                                     <button
                                         type="button" role="button"
                                         class="btn btn-secondary"
-                                        aria-label=""
-                                        id="reset"
-                                        data-localize="label.reset"
-                                    >
+                                        aria-label="${sessionScope.languageJSON.label.reset}"
+                                        id="reset">
+                                    	${sessionScope.languageJSON.label.reset}
                                     </button>
                                 </div>
                             </form>
@@ -227,7 +215,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         </div>
         <form hidden="hidden" action="" id="">
         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <input type="text" id="deleteEmpID" aria-label="" data-localize="accessHint.employeeId">
+            <input type="text" id="deleteEmpID" aria-label="${sessionScope.languageJSON.accessHint.employeeId}">
         </form>
         <%@ include file="../commons/footer.jsp"%>
     </body>
