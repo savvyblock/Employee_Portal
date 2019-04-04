@@ -4,7 +4,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
     <head>
-        <title data-localize="headTitle.earnings"></title>
+        <title>${sessionScope.languageJSON.headTitle.earnings}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <%@ include file="../commons/header.jsp"%>
     </head>
@@ -15,16 +15,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             <main class="content-wrapper" id="content" tabindex="-1">
                     <section class="content">
                             <div class="clearfix no-print section-title">
-                                <h1 class="pageTitle" data-localize="title.earnings"></h1>
+                                <h1 class="pageTitle">${sessionScope.languageJSON.title.earnings}</h1>
                                 <div class="pull-right right-btn">
-                                    <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="" data-localize="label.exportPDF" data-localize-notText="true">
+                                    <button class="btn btn-primary download-pdf" onclick="downloadPDF()" aria-label="${sessionScope.languageJSON.label.exportPDF}">
                                         <i class="fa fa-file-pdf-o"></i>
                                     </button>
                                     <button
                                         class="btn btn-primary pull-right"
                                         onclick="doPrint()"
-                                        data-localize="label.print"
-                                    >
+                                       
+                                    >${sessionScope.languageJSON.label.print}
                                     </button>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <div class="print-block print-title">
                                                 <div style="text-align:center;margin-bottom:10px;">
                                                         ${sessionScope.district.name}<br />
-                                                        <span data-localize="title.earnings"></span>
+                                                        <span>${sessionScope.languageJSON.title.earnings}</span>
                                                     <div id="date-now"></div>
                                                 </div>
                                             </div>
@@ -43,7 +43,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <td>
                                                             <div class="info-flex-item">
                                                                 <div class="info-title">
-                                                                    <b><span data-localize="earningTable.empNbr"></span>:</b>
+                                                                    <b><span>${sessionScope.languageJSON.earningTable.empNbr}</span>:</b>
                                                                 </div>
                                                                 <div class="info-content">
                                                                     ${sessionScope.userDetail.empNbr}
@@ -53,7 +53,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <td>
                                                             <div class="info-flex-item">
                                                                 <div class="info-title">
-                                                                    <b><span data-localize="earningTable.frequency"></span>:</b>
+                                                                    <b><span>${sessionScope.languageJSON.earningTable.frequency}</span>:</b>
                                                                 </div>
                                                                 <div class="info-content">
                                                                     ${freq}
@@ -63,7 +63,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <td>
                                                             <div class="info-flex-item">
                                                                 <div class="info-title">
-                                                                    <b><span data-localize="earningTable.primaryCampus"></span>:</b>
+                                                                    <b><span>${sessionScope.languageJSON.earningTable.primaryCampus}</span>:</b>
                                                                 </div>
                                                                 <div class="info-content">
                                                                     ${earnings.info.campusId} ${earnings.info.campusName}
@@ -75,7 +75,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <td class="text-left" colspan="2">
                                                             <div class="info-flex-item">
                                                                 <div class="info-title">
-                                                                    <b><span data-localize="earningTable.employeeName"></span>:</b>
+                                                                    <b><span>${sessionScope.languageJSON.earningTable.employeeName}</span>:</b>
                                                                 </div>
                                                                 <div class="info-content">
                                                                     ${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameM} ${sessionScope.userDetail.nameL}
@@ -85,7 +85,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <td>
                                                             <div class="info-flex-item">
                                                                 <div class="info-title">
-                                                                    <b><span data-localize="earningTable.payCampus"></span>:</b>
+                                                                    <b><span>${sessionScope.languageJSON.earningTable.payCampus}</span>:</b>
                                                                 </div>
                                                                 <div class="info-content">
                                                                     ${earnings.info.campusId} ${earnings.info.campusName}
@@ -97,7 +97,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <td>
                                                             <div class="info-flex-item">
                                                                 <div class="info-title">
-                                                                    <b><span data-localize="earningTable.checkNbr"></span>:</b>
+                                                                    <b><span>${sessionScope.languageJSON.earningTable.checkNbr}</span>:</b>
                                                                 </div>
                                                                 <div class="info-content">
                                                                     ${earnings.info.checkNumber}
@@ -107,14 +107,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <td>
                                                             <div class="info-flex-item">
                                                                 <div class="info-title">
-                                                                    <b><span data-localize="earningTable.withholdStat"></span>:</b>
+                                                                    <b><span>${sessionScope.languageJSON.earningTable.withholdStat}</span>:</b>
                                                                 </div>
                                                                 <div class="info-content">
                                                                     <c:if test="${earnings.info.withholdingStatus =='M'}">
-                                                                        <span data-localize="label.married"></span>
+                                                                        <span>${sessionScope.languageJSON.label.married}</span>
                                                                     </c:if>
                                                                     <c:if test="${earnings.info.withholdingStatus =='S'}">
-                                                                            <span data-localize="label.single"></span>
+                                                                            <span>${sessionScope.languageJSON.label.single}</span>
                                                                     </c:if>
                                                                 </div>
                                                             </div>
@@ -122,7 +122,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <td>
                                                             <div class="info-flex-item">
                                                                 <div class="info-title">
-                                                                    <b><span data-localize="earningTable.exempt"></span>:</b>
+                                                                    <b><span>${sessionScope.languageJSON.earningTable.exempt}</span>:</b>
                                                                 </div>
                                                                 <div class="info-content">
                                                                     ${earnings.info.numExceptions}
@@ -134,7 +134,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <td>
                                                             <div class="info-flex-item">
                                                                 <div class="info-title">
-                                                                    <b><span data-localize="earningTable.payDate"></span>:</b>
+                                                                    <b><span>${sessionScope.languageJSON.earningTable.payDate}</span>:</b>
                                                                 </div>
                                                                 <div class="info-content">
                                                                     ${selectedPayDate.formatedDate}
@@ -144,7 +144,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <td>
                                                             <div class="info-flex-item">
                                                                 <div class="info-title">
-                                                                    <b ><span data-localize="earningTable.periodBegin"></span>:</b>
+                                                                    <b ><span>${sessionScope.languageJSON.earningTable.periodBegin}</span>:</b>
                                                                 </div>
                                                                 <div class="info-content">
                                                                     ${earnings.info.periodBeginningDate}
@@ -154,7 +154,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <td>
                                                             <div class="info-flex-item">
                                                                 <div class="info-title">
-                                                                    <b><span data-localize="earningTable.periodEnd"></span>:</b>
+                                                                    <b><span>${sessionScope.languageJSON.earningTable.periodEnd}</span>:</b>
                                                                 </div>
                                                                 <div class="info-content">
                                                                     ${earnings.info.periodEndingDate}
@@ -175,9 +175,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </div>
                                                 <p
                                                     style="text-align:right;padding-right: 20px;margin: 0;"
-                                                    data-localize="label.noteEarning"
+                                                   
                                                 >
-                                                    
+                                                ${sessionScope.languageJSON.label.noteEarning}
                                                 </p>
                                                 <div class="print-block hr-black"></div>
                                             </div>
@@ -196,7 +196,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 >
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="form-group in-line">
-                                        <label class="form-title" for="payDateString"><span data-localize="label.payDates"></span>:</label>
+                                        <label class="form-title" for="payDateString"><span>${sessionScope.languageJSON.label.payDates}</span>:</label>
                                         <select class="form-control" name="payDateString" id="payDateString" onchange="submitEarning()" style="max-width:280px;">
                                             <c:forEach var="payDate" items="${payDates}" varStatus="counter">
                                                 <option value="${payDate.dateFreqVoidAdjChk}" <c:if test="${payDate.dateFreq == selectedPayDate.dateFreq }">selected</c:if>>${payDate.label}</option>
@@ -210,10 +210,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     >
                                         <tbody>
                                             <tr>
-                                                <td id="campus" class="td-title column1"><span data-localize="earningTable.campus"></span>:</td>
+                                                <td id="campus" class="td-title column1"><span>${sessionScope.languageJSON.earningTable.campus}</span>:</td>
                                                 <td headers="campus"
-                                                    class="td-content text-left" data-title=""
-                                                    data-localize="earningTable.campus"
+                                                    class="td-content text-left" data-title="${sessionScope.languageJSON.earningTable.campus}"
+                                                   
                                                     
                                                 >
                                                 ${earnings.info.campusId} ${earnings.info.campusName}
@@ -221,45 +221,45 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td colspan="2"></td>
                                             </tr>
                                             <tr>
-                                                <td id="checkNumber" class="td-title column1"><span data-localize="earningTable.checkNumber"></span>:</td>
+                                                <td id="checkNumber" class="td-title column1"><span>${sessionScope.languageJSON.earningTable.checkNumber}</span>:</td>
                                                 <td headers="checkNumber"
-                                                    class="td-content" data-title=""
-                                                    data-localize="earningTable.checkNumber"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.earningTable.checkNumber}"
+                                                   
                                                 >
                                                 ${earnings.info.checkNumber}
                                                 </td>
                                                 <td id="periodEndingDate" class="td-title">
-                                                        <span data-localize="earningTable.periodEndingDate"></span>:
+                                                        <span>${sessionScope.languageJSON.earningTable.periodEndingDate}</span>:
                                                 </td>
                                                 <td headers="periodEndingDate"
-                                                    class="td-content" data-title=""
-                                                    data-localize="earningTable.periodEndingDate"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.earningTable.periodEndingDate}"
+                                                   
                                                 >
                                                 ${earnings.info.periodEndingDate}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td id="withholdingStatus" class="td-title column1">
-                                                        <span data-localize="earningTable.withholdingStatus"></span>:
+                                                        <span>${sessionScope.languageJSON.earningTable.withholdingStatus}</span>:
                                                 </td>
                                                 <td headers="withholdingStatus"
-                                                data-title=""
+                                                data-title="${sessionScope.languageJSON.earningTable.withholdingStatus}"
                                                     class="td-content"
-                                                    data-localize="earningTable.withholdingStatus"
+                                                   
                                                 >
                                                     <c:if test="${earnings.info.withholdingStatus =='M'}">
-                                                        <span data-localize="label.married"></span>
+                                                        <span>${sessionScope.languageJSON.label.married}</span>
                                                     </c:if>
                                                     <c:if test="${earnings.info.withholdingStatus =='S'}">
-                                                            <span data-localize="label.single"></span>
+                                                            <span>${sessionScope.languageJSON.label.single}</span>
                                                     </c:if>
                                                 </td>
                                                 <td id="numberOfExemptions" class="td-title">
-                                                        <span data-localize="earningTable.numberOfExemptions"></span>:
+                                                        <span>${sessionScope.languageJSON.earningTable.numberOfExemptions}</span>:
                                                 </td>
                                                 <td headers="numberOfExemptions"
-                                                    class="td-content" data-title=""
-                                                    data-localize="earningTable.numberOfExemptions"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.earningTable.numberOfExemptions}"
+                                                   
                                                 >
                                                 ${earnings.info.numExceptions}
                                                 </td>
@@ -273,251 +273,251 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <div class="clearfix">
                                             <div class="total-table  pull-left">
                                                 <h2 class="no-print table-top-title">
-                                                    <b data-localize="label.earningAndDeductions"></b>
+                                                    <b>${sessionScope.languageJSON.label.earningAndDeductions}</b>
                                                 </h2>
                                                 <table
                                                     class="table border-table no-thead print-table earning-table"
                                                 >
                                                     <thead>
                                                         <tr>
-                                                            <th id="earningDeductionsTitle01" data-localize="earningTable.earningDeductions"></th>
-                                                            <th id="thisPeriodTitle01" class="text-right earning-table-thisPeriod" data-localize="earningTable.thisPeriod"></th>
+                                                            <th id="earningDeductionsTitle01">${sessionScope.languageJSON.earningTable.earningDeductions}</th>
+                                                            <th id="thisPeriodTitle01" class="text-right earning-table-thisPeriod">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
                                                             <th id="calendarYTDTitle01" class="text-right earning-table-calendarYTD" class="print-td">
-                                                                <span data-localize="earningTable.calendarYTD"></span> ${year}
+                                                                <span>${sessionScope.languageJSON.earningTable.calendarYTD}</span> ${year}
                                                             </th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                     <c:if test="${not empty earnings}">
                                                         <tr>
-                                                            <td id="standardGross"><span data-localize="earningTable.standardGross"></span></td>
-                                                            <td headers="thisPeriodTitle01 standardGross" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="standardGross"><span>${sessionScope.languageJSON.earningTable.standardGross}</span></td>
+                                                            <td headers="thisPeriodTitle01 standardGross" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.standardGross}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 standardGross" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 standardGross" class="print-td" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                     <fmt:formatNumber value="${YTDEarnings.deductions.standardGross}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td id="supplementalPay"><span data-localize="earningTable.supplementalPay"></span></td>
-                                                            <td headers="thisPeriodTitle01 supplementalPay" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="supplementalPay"><span>${sessionScope.languageJSON.earningTable.supplementalPay}</span></td>
+                                                            <td headers="thisPeriodTitle01 supplementalPay" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.supplementalPay}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 supplementalPay" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 supplementalPay" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.supplementalPay}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td id="overtimePay"><span data-localize="earningTable.overtimePay"></span></td>
-                                                            <td headers="thisPeriodTitle01 overtimePay" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="overtimePay"><span>${sessionScope.languageJSON.earningTable.overtimePay}</span></td>
+                                                            <td headers="thisPeriodTitle01 overtimePay" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.overtimePay}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 overtimePay" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 overtimePay" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.overtimePay}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td id="absenceRefund"><span data-localize="earningTable.absenceRefund"></span></td>
-                                                            <td headers="thisPeriodTitle01 absenceRefund" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="absenceRefund"><span>${sessionScope.languageJSON.earningTable.absenceRefund}</span></td>
+                                                            <td headers="thisPeriodTitle01 absenceRefund" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.absenceRefund}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 absenceRefund" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 absenceRefund" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.absenceRefund}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td id="taxedFringeBenefits"><span data-localize="earningTable.taxedFringeBenefits"></span></td>
-                                                            <td headers="thisPeriodTitle01 taxedFringeBenefits" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="taxedFringeBenefits"><span>${sessionScope.languageJSON.earningTable.taxedFringeBenefits}</span></td>
+                                                            <td headers="thisPeriodTitle01 taxedFringeBenefits" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.taxedFringe}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 taxedFringeBenefits" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 taxedFringeBenefits" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.taxedFringe}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td id="earnedIncomeCredit"><span data-localize="earningTable.earnedIncomeCredit"></span></td>
-                                                            <td headers="thisPeriodTitle01 earnedIncomeCredit" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="earnedIncomeCredit"><span>${sessionScope.languageJSON.earningTable.earnedIncomeCredit}</span></td>
+                                                            <td headers="thisPeriodTitle01 earnedIncomeCredit" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.earnedIncomeCred}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 earnedIncomeCredit" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 earnedIncomeCredit" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.earnedIncomeCred}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td id="nonTRSTax"><span data-localize="earningTable.nonTRSTax"></span></td>
-                                                            <td headers="thisPeriodTitle01 nonTRSTax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="nonTRSTax"><span>${sessionScope.languageJSON.earningTable.nonTRSTax}</span></td>
+                                                            <td headers="thisPeriodTitle01 nonTRSTax" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.nonTrsTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 nonTRSTax" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 nonTRSTax" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.nonTrsTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td id="nonTRSNonTax"><span data-localize="earningTable.nonTRSNonTax"></span></td>
-                                                            <td headers="thisPeriodTitle01 nonTRSNonTax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="nonTRSNonTax"><span>${sessionScope.languageJSON.earningTable.nonTRSNonTax}</span></td>
+                                                            <td headers="thisPeriodTitle01 nonTRSNonTax" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.nonTrsNonTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 nonTRSNonTax" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 nonTRSNonTax" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.nonTrsNonTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td id="TRSSupp"><span data-localize="earningTable.TRSSupp"></span></td>
-                                                            <td headers="thisPeriodTitle01 TRSSupp" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="TRSSupp"><span>${sessionScope.languageJSON.earningTable.TRSSupp}</span></td>
+                                                            <td headers="thisPeriodTitle01 TRSSupp" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.trsSupplemental}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 TRSSupp" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 TRSSupp" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.trsSupplemental}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="total-tr totalEarningTr">
-                                                            <td id="totalEarnings">--- <span data-localize="earningTable.totalEarnings"></span></td>
-                                                            <td headers="thisPeriodTitle01 totalEarnings" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="totalEarnings">--- <span>${sessionScope.languageJSON.earningTable.totalEarnings}</span></td>
+                                                            <td headers="thisPeriodTitle01 totalEarnings" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.totalEarnings}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 totalEarnings" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 totalEarnings" class="print-td" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.totalEarnings}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td id="absenceDeductions"><span data-localize="earningTable.absenceDeductions"></span></td>
-                                                            <td headers="thisPeriodTitle01 absenceDeductions" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="absenceDeductions"><span>${sessionScope.languageJSON.earningTable.absenceDeductions}</span></td>
+                                                            <td headers="thisPeriodTitle01 absenceDeductions" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.absenceDed}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 absenceDeductions" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 absenceDeductions" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.absenceDed}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td id="withTax"><span data-localize="earningTable.withTax"></span></td>
-                                                            <td headers="thisPeriodTitle01 withTax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="withTax"><span>${sessionScope.languageJSON.earningTable.withTax}</span></td>
+                                                            <td headers="thisPeriodTitle01 withTax" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.withholdingTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 withTax" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 withTax" class="print-td" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.withholdingTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td id="FICATax"><span data-localize="earningTable.FICATax"></span></td>
-                                                            <td headers="thisPeriodTitle01 FICATax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="FICATax"><span>${sessionScope.languageJSON.earningTable.FICATax}</span></td>
+                                                            <td headers="thisPeriodTitle01 FICATax" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.ficaTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 FICATax" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 FICATax" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.ficaTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td id="medicareTax"><span data-localize="earningTable.medicareTax"></span></td>
-                                                            <td headers="thisPeriodTitle01 medicareTax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="medicareTax"><span>${sessionScope.languageJSON.earningTable.medicareTax}</span></td>
+                                                            <td headers="thisPeriodTitle01 medicareTax" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.medicareTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 medicareTax" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 medicareTax" class="print-td" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.medicareTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                 
                                                         <tr>
-                                                            <td id="TRSSalaryRed"><span data-localize="earningTable.TRSSalaryRed"></span></td>
-                                                            <td headers="thisPeriodTitle01 TRSSalaryRed" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="TRSSalaryRed"><span>${sessionScope.languageJSON.earningTable.TRSSalaryRed}</span></td>
+                                                            <td headers="thisPeriodTitle01 TRSSalaryRed" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.trsSalaryRed}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 TRSSalaryRed" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 TRSSalaryRed" class="print-td" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.trsSalaryRed}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                 
                                                         <tr>
-                                                            <td id="TRSInsurance"><span data-localize="earningTable.TRSInsurance"></span></td>
-                                                            <td headers="thisPeriodTitle01 TRSInsurance" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="TRSInsurance"><span>${sessionScope.languageJSON.earningTable.TRSInsurance}</span></td>
+                                                            <td headers="thisPeriodTitle01 TRSInsurance" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.trsInsurance}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 TRSInsurance" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 TRSInsurance" class="print-td" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.trsInsurance}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                 
                                                         <tr class="totalDeductionsTr">
-                                                            <td id="totalOtherDeductions"><span data-localize="earningTable.totalOtherDeductions"></span></td>
-                                                            <td headers="thisPeriodTitle01 totalOtherDeductions" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="totalOtherDeductions"><span>${sessionScope.languageJSON.earningTable.totalOtherDeductions}</span></td>
+                                                            <td headers="thisPeriodTitle01 totalOtherDeductions" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.totOtherDed}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 totalOtherDeductions" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 totalOtherDeductions" class="print-td" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.totOtherDed}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                 
                                                         <tr class="total-tr">
-                                                            <td id="totalDeductions">--- <span data-localize="earningTable.totalDeductions"></span></td>
-                                                            <td headers="thisPeriodTitle01 totalDeductions" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="totalDeductions">--- <span>${sessionScope.languageJSON.earningTable.totalDeductions}</span></td>
+                                                            <td headers="thisPeriodTitle01 totalDeductions" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.totDed}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 totalDeductions" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 totalDeductions" class="print-td" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.totDed}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="total-tr">
-                                                            <td id="netPay">--- <span data-localize="earningTable.netPay"></span></td>
-                                                            <td headers="thisPeriodTitle01 netPay" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="netPay">--- <span>${sessionScope.languageJSON.earningTable.netPay}</span></td>
+                                                            <td headers="thisPeriodTitle01 netPay" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.netPay}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 netPay" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 netPay" class="print-td" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.netPay}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
                                                             <td id="nonTRSnonPayTaxable">
-                                                                    <span data-localize="earningTable.nonTRSnonPayTaxable"></span></td>
-                                                            <td headers="thisPeriodTitle01 nonTRSnonPayTaxable" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                    <span>${sessionScope.languageJSON.earningTable.nonTRSnonPayTaxable}</span></td>
+                                                            <td headers="thisPeriodTitle01 nonTRSnonPayTaxable" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.nonTrsNonPayTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 nonTRSnonPayTaxable" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 nonTRSnonPayTaxable" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.nonTrsNonPayTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
                                                             <td id="nonTRSnonPayNonTaxable">
-                                                                    <span data-localize="earningTable.nonTRSnonPayNonTaxable"></span>
+                                                                    <span>${sessionScope.languageJSON.earningTable.nonTRSnonPayNonTaxable}</span>
                                                             </td>
-                                                            <td headers="thisPeriodTitle01 nonTRSnonPayNonTaxable" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td headers="thisPeriodTitle01 nonTRSnonPayNonTaxable" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <fmt:formatNumber value="${earnings.deductions.nonTrsNonPayNonTax}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 nonTRSnonPayNonTaxable" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 nonTRSnonPayNonTaxable" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.nonTrsNonPayNonTax}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr bold-tr">
-                                                            <td id="taxableWages"><span data-localize="earningTable.taxableWages"></span></td>
-                                                            <td headers="thisPeriodTitle01 taxableWages" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="taxableWages"><span>${sessionScope.languageJSON.earningTable.taxableWages}</span></td>
+                                                            <td headers="thisPeriodTitle01 taxableWages" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                 <fmt:formatNumber value="${earnings.deductions.taxableWage}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 taxableWages" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 taxableWages" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.taxableWage}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td id="FICAGross"><span data-localize="earningTable.FICAGross"></span></td>
-                                                            <td headers="thisPeriodTitle01 FICAGross" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="FICAGross"><span>${sessionScope.languageJSON.earningTable.FICAGross}</span></td>
+                                                            <td headers="thisPeriodTitle01 FICAGross" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                 <fmt:formatNumber value="${earnings.deductions.ficaWage}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 FICAGross" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 FICAGross" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.ficaWage}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
-                                                            <td id="medicareGross"><span data-localize="earningTable.medicareGross"></span></td>
-                                                            <td headers="thisPeriodTitle01 medicareGross" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                            <td id="medicareGross"><span>${sessionScope.languageJSON.earningTable.medicareGross}</span></td>
+                                                            <td headers="thisPeriodTitle01 medicareGross" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                 <fmt:formatNumber value="${earnings.deductions.medGross}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td headers="calendarYTDTitle01 medicareGross" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="calendarYTDTitle01 medicareGross" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.deductions.medGross}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
                                                             <td id="emplrSponsoredHealth">
-                                                                <span data-localize="earningTable.emplrSponsoredHealth"></span>
+                                                                <span>${sessionScope.languageJSON.earningTable.emplrSponsoredHealth}</span>
                                                             </td>
-                                                            <td headers="thisPeriodTitle01 emplrSponsoredHealth" data-localize="earningTable.thisPeriod" data-localize-location="scope"></td>
-                                                            <td headers="calendarYTDTitle01 emplrSponsoredHealth" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                            <td headers="thisPeriodTitle01 emplrSponsoredHealth" scope="${sessionScope.languageJSON.earningTable.thisPeriod}"></td>
+                                                            <td headers="calendarYTDTitle01 emplrSponsoredHealth" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                 <fmt:formatNumber value="${YTDEarnings.emplrPrvdHlthcare}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
@@ -530,34 +530,34 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <table class="table border-table">
                                                         <thead>
                                                             <tr>
-                                                                <th id="jobDescriptionTitle01" class="earning-detail-titleTd" data-localize="earningTable.jobDescription"></th>
-                                                                <th id="units01" class="earning-detail-units text-right" data-localize="earningTable.units"></th>
-                                                                <th id="payRate01" class="earning-detail-payRate text-right" data-localize="earningTable.payRate"></th>
-                                                                <th id="thisPeriod01" class="earning-detail-thisPeriod text-right" data-localize="earningTable.thisPeriod"></th>
+                                                                <th id="jobDescriptionTitle01" class="earning-detail-titleTd">${sessionScope.languageJSON.earningTable.jobDescription}</th>
+                                                                <th id="units01" class="earning-detail-units text-right">${sessionScope.languageJSON.earningTable.units}</th>
+                                                                <th id="payRate01" class="earning-detail-payRate text-right">${sessionScope.languageJSON.earningTable.payRate}</th>
+                                                                <th id="thisPeriod01" class="earning-detail-thisPeriod text-right">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <c:forEach items="${earnings.job}" var="job" varStatus="counter">
                                                                 <tr>
-                                                                    <td id="jobDescription01_${counter.index}" data-localize="earningTable.jobDescription" data-localize-location="scope">
+                                                                    <td id="jobDescription01_${counter.index}" scope="${sessionScope.languageJSON.earningTable.jobDescription}">
                                                                             ${job.code} - ${job.description}
                                                                     </td>
-                                                                    <td headers="units01 jobDescription01_${counter.index}" data-localize="earningTable.units" data-localize-location="scope">
+                                                                    <td headers="units01 jobDescription01_${counter.index}" scope="${sessionScope.languageJSON.earningTable.units}">
                                                                             <fmt:formatNumber value="${job.units}" pattern="#,##0.00"/>
                                                                     </td>
-                                                                    <td headers="payRate01 jobDescription01_${counter.index}" data-localize="earningTable.payRate" data-localize-location="scope">
+                                                                    <td headers="payRate01 jobDescription01_${counter.index}" scope="${sessionScope.languageJSON.earningTable.payRate}">
                                                                             <fmt:formatNumber value="${job.payRate}" pattern="#,##0.00"/>
                                                                     </td>
-                                                                    <td headers="thisPeriod01 jobDescription01_${counter.index}" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                    <td headers="thisPeriod01 jobDescription01_${counter.index}" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                             <fmt:formatNumber value="${job.amt}" pattern="#,##0.00"/>
                                                                     </td>
                                                                 </tr>
                                                             </c:forEach>
                                                             <tr class="total-tr">
-                                                                <td  id="totalStandardGross" colspan="3" data-localize="earningTable.totalStandardGross" data-localize-location="scope">
-                                                                    <b data-localize="earningTable.totalStandardGross"></b>
+                                                                <td  id="totalStandardGross" colspan="3" scope="${sessionScope.languageJSON.earningTable.totalStandardGross}">
+                                                                    <b>${sessionScope.languageJSON.earningTable.totalStandardGross}</b>
                                                                 </td>
-                                                                <td headers="thisPeriod01 totalStandardGross" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                <td headers="thisPeriod01 totalStandardGross" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                     <b>
                                                                         <fmt:formatNumber value="${earnings.earningsJobTotal}" pattern="#,##0.00"/>
                                                                     </b>
@@ -568,34 +568,34 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <table class="table border-table no-print">
                                                         <thead>
                                                             <tr>
-                                                                <th id="jobDescriptionTitle02" class="earning-detail-titleTd" data-localize="earningTable.jobDescription"></th>
-                                                                <th id="units02" class="text-right earning-detail-units" data-localize="earningTable.units"></th>
-                                                                <th id="payRate02" class="text-right earning-detail-payRate" data-localize="earningTable.payRate"></th>
-                                                                <th id="thisPeriod02" class="text-right earning-detail-thisPeriod" data-localize="earningTable.thisPeriod"></th>
+                                                                <th id="jobDescriptionTitle02" class="earning-detail-titleTd">${sessionScope.languageJSON.earningTable.jobDescription}</th>
+                                                                <th id="units02" class="text-right earning-detail-units">${sessionScope.languageJSON.earningTable.units}</th>
+                                                                <th id="payRate02" class="text-right earning-detail-payRate">${sessionScope.languageJSON.earningTable.payRate}</th>
+                                                                <th id="thisPeriod02" class="text-right earning-detail-thisPeriod">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                                 <c:forEach items="${earnings.overtime}" var="overtime" varStatus="counter">
                                                                     <tr>
-                                                                            <td id="jobDescription02_${counter.index}" data-localize="earningTable.jobDescription" data-localize-location="scope">
+                                                                            <td id="jobDescription02_${counter.index}" scope="${sessionScope.languageJSON.earningTable.jobDescription}">
                                                                                     ${overtime.jobCd} - ${overtime.description}
                                                                             </td> 
-                                                                            <td headers="units02 jobDescription02_${counter.index}" data-localize="earningTable.units" data-localize-location="scope">
+                                                                            <td headers="units02 jobDescription02_${counter.index}" scope="${sessionScope.languageJSON.earningTable.units}">
                                                                                     <fmt:formatNumber value="${overtime.overtimeUnits}" pattern="#,##0.00"/>
                                                                             </td> 
-                                                                            <td headers="payRate02 jobDescription02_${counter.index}" data-localize="earningTable.payRate" data-localize-location="scope">
+                                                                            <td headers="payRate02 jobDescription02_${counter.index}" scope="${sessionScope.languageJSON.earningTable.payRate}">
                                                                                     <fmt:formatNumber value="${overtime.overtimeRate}" pattern="#,##0.00"/>
                                                                             </td> 
-                                                                            <td headers="thisPeriod02 jobDescription02_${counter.index}" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                            <td headers="thisPeriod02 jobDescription02_${counter.index}" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                                     <fmt:formatNumber value="${overtime.thisPeriod}" pattern="#,##0.00"/>
                                                                             </td>
                                                                     </tr>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
-                                                                <td id="totalOvertimePay" colspan="3" data-localize="earningTable.totalOvertimePay" data-localize-location="scope">
-                                                                    <span data-localize="earningTable.totalOvertimePay"></span>
+                                                                <td id="totalOvertimePay" colspan="3" scope="${sessionScope.languageJSON.earningTable.totalOvertimePay}">
+                                                                    <span>${sessionScope.languageJSON.earningTable.totalOvertimePay}</span>
                                                                 </td>
-                                                                <td headers="thisPeriod02 totalOvertimePay" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                <td headers="thisPeriod02 totalOvertimePay" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                         <fmt:formatNumber value="${earnings.earningsOvertimeTotal}" pattern="#,##0.00"/>
                                                                 </td>
                                                             </tr>
@@ -604,31 +604,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <table class="table border-table no-print">
                                                         <thead>
                                                             <tr>
-                                                                <th id="supType" data-localize="earningTable.supType"></th>
-                                                                <th id="thisPeriod03" class="text-right earning-detail-thisPeriod" data-localize="earningTable.thisPeriod"></th>
+                                                                <th id="supType">${sessionScope.languageJSON.earningTable.supType}</th>
+                                                                <th id="thisPeriod03" class="text-right earning-detail-thisPeriod">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                                 <c:forEach items="${earnings.supplemental}" var="supplemental" varStatus="counter">
                                                                     <tr>
-                                                                            <td id="description03_${counter.index}" data-localize="earningTable.supType" data-localize-location="scope">
+                                                                            <td id="description03_${counter.index}" scope="${sessionScope.languageJSON.earningTable.supType}">
                                                                                 <c:if test="${supplemental.description != 'ZZZ - default'}"> 
                                                                                         ${supplemental.description}
                                                                                 </c:if>
                                                                                 <c:if test="${supplemental.description == 'ZZZ - default'}"> 
-                                                                                    <span data-localize="label.otherSupplemental"></span>
+                                                                                    <span>${sessionScope.languageJSON.label.otherSupplemental}</span>
                                                                                 </c:if>
                                                                             </td> 
-                                                                            <td headers="thisPeriod03 description03_${counter.index}" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                            <td headers="thisPeriod03 description03_${counter.index}" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                                     <fmt:formatNumber value="${supplemental.amt}" pattern="#,##0.00"/>
                                                                             </td> 
                                                                     </tr>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
-                                                                <td id="totalSupPay" data-localize="earningTable.totalSupPay" data-localize-location="scope">
-                                                                    <span data-localize="earningTable.totalSupPay"></span>
+                                                                <td id="totalSupPay" scope="${sessionScope.languageJSON.earningTable.totalSupPay}">
+                                                                    <span>${sessionScope.languageJSON.earningTable.totalSupPay}</span>
                                                                 </td>
-                                                                <td headers="thisPeriod03 totalSupPay" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                <td headers="thisPeriod03 totalSupPay" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                         <fmt:formatNumber value="${earnings.earningsSupplementalTotal}" pattern="#,##0.00"/>
                                                                 </td>
                                                             </tr>
@@ -637,29 +637,29 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <table class="table border-table no-print">
                                                         <thead>
                                                             <tr>
-                                                                <th id="nonTRSTaxType" data-localize="earningTable.nonTRSTaxType" ></th>
-                                                                <th id="thisPeriod04" class="text-right earning-detail-thisPeriod" data-localize="earningTable.thisPeriod"></th>
+                                                                <th id="nonTRSTaxType" >${sessionScope.languageJSON.earningTable.nonTRSTaxType}</th>
+                                                                <th id="thisPeriod04" class="text-right earning-detail-thisPeriod">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                                 <c:forEach items="${earnings.nonTrsTax}" var="nontrstax" varStatus="counter">
                                                                     <tr>
-                                                                            <td id="nonTRSTaxType_${counter.index}" data-localize="earningTable.nonTRSTaxType" data-localize-location="scope">
+                                                                            <td id="nonTRSTaxType_${counter.index}" scope="${sessionScope.languageJSON.earningTable.nonTRSTaxType}">
                                                                                     <c:if test="${nontrstax.description != 'ZZZ - default'}"> ${nontrstax.description}</c:if>
                                                                                     <c:if test="${nontrstax.description == 'ZZZ - default'}"> 
-                                                                                        <span data-localize="label.otherNonTRSTax"></span>
+                                                                                        <span>${sessionScope.languageJSON.label.otherNonTRSTax}</span>
                                                                                     </c:if>
                                                                             </td> 
-                                                                            <td headers="thisPeriod04 nonTRSTaxType_${counter.index}" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                            <td headers="thisPeriod04 nonTRSTaxType_${counter.index}" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                                     <fmt:formatNumber value="${nontrstax.amt}" pattern="#,##0.00"/>
                                                                             </td> 
                                                                     </tr>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
-                                                                <td id="totalNonTRSTax" data-localize="earningTable.totalNonTRSTax" data-localize-location="scope">
-                                                                    <span data-localize="earningTable.totalNonTRSTax"></span>
+                                                                <td id="totalNonTRSTax" scope="${sessionScope.languageJSON.earningTable.totalNonTRSTax}">
+                                                                    <span>${sessionScope.languageJSON.earningTable.totalNonTRSTax}</span>
                                                                 </td>
-                                                                <td headers="thisPeriod04 totalNonTRSTax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                <td headers="thisPeriod04 totalNonTRSTax" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                         <fmt:formatNumber value="${earnings.earningsNonTrsTaxTotal}" pattern="#,##0.00"/>
                                                                 </td>
                                                             </tr>
@@ -668,31 +668,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <table class="table border-table no-print">
                                                         <thead>
                                                             <tr>
-                                                                <th id="nonTRSNonTaxType" data-localize="earningTable.nonTRSNonTaxType"></th>
-                                                                <th id="thisPeriod05" class="text-right earning-detail-thisPeriod" data-localize="earningTable.thisPeriod"></th>
+                                                                <th id="nonTRSNonTaxType">${sessionScope.languageJSON.earningTable.nonTRSNonTaxType}</th>
+                                                                <th id="thisPeriod05" class="text-right earning-detail-thisPeriod">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                                 <c:forEach items="${earnings.nonTrsNonTax}" var="nontax" varStatus="counter">
                                                                     <tr>
-                                                                        <td id="nonTRSNonTaxType_${counter.index}" data-localize="earningTable.nonTRSNonTaxType" data-localize-location="scope">
+                                                                        <td id="nonTRSNonTaxType_${counter.index}" scope="${sessionScope.languageJSON.earningTable.nonTRSNonTaxType}">
                                                                                 <c:if test="${nontax.description != 'ZZZ - default'}"> 
                                                                                         ${nontax.description}
                                                                                 </c:if>
                                                                                 <c:if test="${nontax.description == 'ZZZ - default'}"> 
-                                                                                    <span data-localize="label.otherNonTRSNonTax"></span>
+                                                                                    <span>${sessionScope.languageJSON.label.otherNonTRSNonTax}</span>
                                                                                 </c:if>
                                                                         </td> 
-                                                                        <td headers="thisPeriod05 nonTRSNonTaxType_${counter.index}" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                        <td headers="thisPeriod05 nonTRSNonTaxType_${counter.index}" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                                 <fmt:formatNumber value="${nontax.amt}" pattern="#,##0.00"/>
                                                                         </td> 
                                                                     </tr>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
-                                                                <td id="totalNonTRSNonTax" data-localize="earningTable.totalNonTRSNonTax" data-localize-location="scope">
-                                                                    <span data-localize="earningTable.totalNonTRSNonTax"></span>
+                                                                <td id="totalNonTRSNonTax" scope="${sessionScope.languageJSON.earningTable.totalNonTRSNonTax}">
+                                                                    <span>${sessionScope.languageJSON.earningTable.totalNonTRSNonTax}</span>
                                                                 </td>
-                                                                <td headers="thisPeriod05 totalNonTRSNonTax" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                <td headers="thisPeriod05 totalNonTRSNonTax" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                         <fmt:formatNumber value="${earnings.earningsNonTrsNonTaxTotal}" pattern="#,##0.00"/>
                                                                 </td>
                                                             </tr>
@@ -705,31 +705,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     >
                                                         <thead>
                                                             <tr>
-                                                                <th id="otherDeductionsTitle" data-localize="earningTable.otherDeductions"></th>
-                                                                <th id="cafeTitle" data-localize="earningTable.cafe"></th>
-                                                                <th id="thisPeriod06" class="text-right sameWidth20" data-localize="earningTable.thisPeriod"></th>
-                                                                <th id="employerContribution" class="text-right sameWidth20" data-localize="earningTable.employerContribution"></th>
+                                                                <th id="otherDeductionsTitle">${sessionScope.languageJSON.earningTable.otherDeductions}</th>
+                                                                <th id="cafeTitle">${sessionScope.languageJSON.earningTable.cafe}</th>
+                                                                <th id="thisPeriod06" class="text-right sameWidth20">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
+                                                                <th id="employerContribution" class="text-right sameWidth20">${sessionScope.languageJSON.earningTable.employerContribution}</th>
                                                                 <th id="calendarYTD" class="print-td text-right sameWidth20">
-                                                                    <span data-localize="earningTable.calendarYTD"></span> ${year}
+                                                                    <span>${sessionScope.languageJSON.earningTable.calendarYTD}</span> ${year}
                                                                 </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <c:forEach items="${earnings.other}" var="other" varStatus="counter">
                                                                 <tr>
-                                                                    <td id="otherDeductionsDesc_${counter.index}" data-localize="earningTable.otherDeductions" data-localize-location="scope">
+                                                                    <td id="otherDeductionsDesc_${counter.index}" scope="${sessionScope.languageJSON.earningTable.otherDeductions}">
                                                                             ${other.code} - ${other.description}
                                                                     </td>
-                                                                    <td headers="cafeTitle otherDeductionsDesc_${counter.index}" class="text-center" data-localize="earningTable.cafe" data-localize-location="scope">
+                                                                    <td headers="cafeTitle otherDeductionsDesc_${counter.index}" class="text-center" scope="${sessionScope.languageJSON.earningTable.cafe}">
                                                                             ${other.cafe_flg}
                                                                     </td>
-                                                                    <td headers="thisPeriod06 otherDeductionsDesc_${counter.index}" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                    <td headers="thisPeriod06 otherDeductionsDesc_${counter.index}" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                             <fmt:formatNumber value="${other.amt}" pattern="#,##0.00"/>
                                                                     </td>
-                                                                    <td headers="employerContribution otherDeductionsDesc_${counter.index}" data-localize="earningTable.employerContribution" data-localize-location="scope">
+                                                                    <td headers="employerContribution otherDeductionsDesc_${counter.index}" scope="${sessionScope.languageJSON.earningTable.employerContribution}">
                                                                             <fmt:formatNumber value="${other.contrib}" pattern="#,##0.00"/>
                                                                     </td>
-                                                                    <td headers="calendarYTD otherDeductionsDesc_${counter.index}" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                                    <td headers="calendarYTD otherDeductionsDesc_${counter.index}" class="print-td" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                             <fmt:formatNumber value="${other.tydAmt}" pattern="#,##0.00"/>
                                                                     </td>
                                                                 </tr>
@@ -737,30 +737,30 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             <c:if test="${fn:length(earnings.other) > 0}">   
                                                                 <c:if test="${earnings.other[0].depCareMax == 1}">
                                                                     <tr>
-                                                                        <td colspan="4" data-localize="label.dependentCareTotal" data-localize-location="scope">
-                                                                            <span data-localize="label.dependentCareTotalExceed"></span>
+                                                                        <td colspan="4" scope="${sessionScope.languageJSON.label.dependentCareTotal}">
+                                                                            <span>${sessionScope.languageJSON.label.dependentCareTotalExceed}</span>
                                                                         </td>
                                                                     </tr>
                                                                 </c:if>
                                                                 <c:if test="${earnings.other[0].hsaCareMax == 1}">
                                                                     <tr>
-                                                                        <td colspan="4" data-localize="label.HSAEmployerTotal" data-localize-location="scope">
-                                                                            <span data-localize="label.HSAEmployerTotalExceed"></span>
+                                                                        <td colspan="4" scope="${sessionScope.languageJSON.label.HSAEmployerTotal}">
+                                                                            <span>${sessionScope.languageJSON.label.HSAEmployerTotalExceed}</span>
                                                                         </td>
                                                                     </tr>
                                                                 </c:if>
                                                             </c:if>
                                                             <tr class="total-tr">
-                                                                <td id="totalOtherDeductions" colspan="2" data-localize="earningTable.totalOtherDeductions" data-localize-location="scope">
-                                                                    <b data-localize="earningTable.totalOtherDeductions"></b>
+                                                                <td id="totalOtherDeductions" colspan="2" scope="${sessionScope.languageJSON.earningTable.totalOtherDeductions}">
+                                                                    <b>${sessionScope.languageJSON.earningTable.totalOtherDeductions}</b>
                                                                 </td>
-                                                                <td headers="thisPeriod06 totalOtherDeductions" data-localize="earningTable.thisPeriod" data-localize-location="scope">
+                                                                <td headers="thisPeriod06 totalOtherDeductions" scope="${sessionScope.languageJSON.earningTable.thisPeriod}">
                                                                         <fmt:formatNumber value="${earnings.earningsOtherTotal}" pattern="#,##0.00"/>
                                                                 </td>
-                                                                <td headers="employerContribution totalOtherDeductions" data-localize="earningTable.employerContribution" data-localize-location="scope">
+                                                                <td headers="employerContribution totalOtherDeductions" scope="${sessionScope.languageJSON.earningTable.employerContribution}">
                                                                         <fmt:formatNumber value="${earnings.earningsOtherContribTotal}" pattern="#,##0.00"/>
                                                                 </td>
-                                                                <td headers="calendarYTD totalOtherDeductions" class="print-td" data-localize="earningTable.calendarYTD" data-localize-location="scope">
+                                                                <td headers="calendarYTD totalOtherDeductions" class="print-td" scope="${sessionScope.languageJSON.earningTable.calendarYTD}">
                                                                         <fmt:formatNumber value="${YTDEarnings.earningsOtherTydTotal}" pattern="#,##0.00"/>
                                                                 </td>
                                                             </tr>
@@ -775,30 +775,30 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         >
                                             <thead>
                                                 <tr>
-                                                    <th data-localize="earningTable.leaveType"></th>
-                                                    <th class="text-right" data-localize="earningTable.unitsUsedThisPeriod"></th>
-                                                    <th class="text-right" data-localize="earningTable.balance"></th>
-                                                    <th class="print-td text-right" data-localize="earningTable.unitsUsedYearToDate"></th>
+                                                    <th>${sessionScope.languageJSON.earningTable.leaveType}</th>
+                                                    <th class="text-right">${sessionScope.languageJSON.earningTable.unitsUsedThisPeriod}</th>
+                                                    <th class="text-right">${sessionScope.languageJSON.earningTable.balance}</th>
+                                                    <th class="print-td text-right">${sessionScope.languageJSON.earningTable.unitsUsedYearToDate}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <c:if test="${fn:length(earnings.leave) > 0}">
                                                     <c:forEach items="${earnings.leave}" var="leave" varStatus="counter">
                                                     <tr>
-                                                        <td class="text-left" data-title="" data-localize="earningTable.leaveType" data-localize-location="scope">
+                                                        <td class="text-left" data-title="${sessionScope.languageJSON.earningTable.leaveType}" scope="${sessionScope.languageJSON.earningTable.leaveType}">
                                                                 ${leave.code} - ${leave.description}
                                                         </td>
-                                                        <td class="text-right" data-title="" data-localize="earningTable.unitsUsedThisPeriod" data-localize-location="scope">
+                                                        <td class="text-right" data-title="${sessionScope.languageJSON.earningTable.unitsUsedThisPeriod}" scope="${sessionScope.languageJSON.earningTable.unitsUsedThisPeriod}">
                                                                 <fmt:formatNumber value="${leave.unitsPrior}" pattern="#,##0.000"/>
                                                         </td>
-                                                        <td class="text-right" data-title="" data-localize="earningTable.balance" data-localize-location="scope">
+                                                        <td class="text-right" data-title="${sessionScope.languageJSON.earningTable.balance}" scope="${sessionScope.languageJSON.earningTable.balance}">
                                                                 <fmt:formatNumber value="${leave.balance}" pattern="#,##0.000"/>
                                                         </td>
                                                         <td
                                                             class="print-td text-right"
-                                                            data-title=""
-                                                            data-localize="earningTable.unitsUsedYearToDate"
-                                                            data-localize-location="scope"
+                                                            data-title="${sessionScope.languageJSON.earningTable.unitsUsedYearToDate}"
+                                                           
+                                                            scope="${sessionScope.languageJSON.earningTable.unitsUsedYearToDate}"
                                                         >
                                                             1.500
                                                         </td>
@@ -808,7 +808,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <c:if test="${fn:length(earnings.leave) == 0}">
                                                 <tr>
                                                     <td colspan="4" class="text-center">
-                                                        <span data-localize="earningTable.noData"></span>
+                                                        <span>${sessionScope.languageJSON.earningTable.noData}</span>
                                                     </td>
                                                 </tr>
                                             </c:if>
@@ -820,31 +820,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         >
                                             <thead>
                                                 <tr>
-                                                    <th data-localize="currentPayTable.bankName"></th>
-                                                    <th data-localize="currentPayTable.accountType"></th>
-                                                    <th data-localize="currentPayTable.acctNbr"></th>
-                                                    <th class="text-right" data-localize="currentPayTable.depAmt"></th>
+                                                    <th>${sessionScope.languageJSON.currentPayTable.bankName}</th>
+                                                    <th>${sessionScope.languageJSON.currentPayTable.accountType}</th>
+                                                    <th>${sessionScope.languageJSON.currentPayTable.acctNbr}</th>
+                                                    <th class="text-right">${sessionScope.languageJSON.currentPayTable.depAmt}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                     <c:forEach items="${earnings.bank}" var="bank" varStatus="counter">
                                                 <tr>
-                                                    <td class="text-left" data-title="Bank Name"  data-localize="currentPayTable.bankName" data-localize-location="scope">
+                                                    <td class="text-left" data-title="Bank Name"  scope="${sessionScope.languageJSON.currentPayTable.bankName}">
                                                             ${bank.name} (${bank.code})
                                                     </td>
-                                                    <td class="text-left" data-title="Account Type" data-localize="currentPayTable.accountType" data-localize-location="scope">
+                                                    <td class="text-left" data-title="Account Type" scope="${sessionScope.languageJSON.currentPayTable.accountType}">
                                                             ${bank.acctTypeCode} - ${bank.acctType}
                                                     </td>
-                                                    <td class="text-left" data-title="Acct Nbr" data-localize="currentPayTable.acctNbr" data-localize-location="scope">
+                                                    <td class="text-left" data-title="Acct Nbr" scope="${sessionScope.languageJSON.currentPayTable.acctNbr}">
                                                             ${bank.acctNumLabel}
                                                     </td>
-                                                    <td  class="text-right" data-title="Dep Amt" data-localize="currentPayTable.depAmt" data-localize-location="scope">
+                                                    <td  class="text-right" data-title="Dep Amt" scope="${sessionScope.languageJSON.currentPayTable.depAmt}">
                                                             <fmt:formatNumber value="${bank.amt}" pattern="#,##0.00"/>
                                                     </td>
                                                 </tr>
                                                 <tr class="total-tr">
                                                     <td colspan="3" style="text-align:right">
-                                                        <b><span data-localize="earningTable.total"></span>:</b>
+                                                        <b><span>${sessionScope.languageJSON.earningTable.total}</span>:</b>
                                                     </td>
                                                     <td  class="text-right"><b>
                                                             <fmt:formatNumber value="${earnings.earningsBankTotal}" pattern="#,##0.00"/>

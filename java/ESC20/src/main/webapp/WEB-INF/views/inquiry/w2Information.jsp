@@ -4,7 +4,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
     <head>
-        <title data-localize="headTitle.w2Info"></title>
+        <title >${sessionScope.languageJSON.headTitle.w2Info}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <%@ include file="../commons/header.jsp"%>
     </head>
@@ -15,19 +15,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             <main class="content-wrapper" id="content" tabindex="-1">
                     <section class="content">
                             <div class="clearfix no-print section-title">
-                                <h1 class="pageTitle" data-localize="title.w2Info"></h1>
+                                <h1 class="pageTitle" >${sessionScope.languageJSON.title.w2Info}</h1>
                                 <div class="right-btn pull-right">
                                     <c:if test="${sessionScope.options.enableElecConsntW2}">
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#electronicConsent" data-localize="label.w-2Consent"></button>
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#electronicConsent" >${sessionScope.languageJSON.label.w-2Consent}</button>
                                     </c:if>
                                     <c:if test="${sessionScope.options.enableElecConsntW2 == false}">
-                                            <button class="btn btn-primary disabled" data-localize="label.w-2Consent" disabled></button>
+                                            <button class="btn btn-primary disabled"  disabled>${sessionScope.languageJSON.label.w-2Consent}</button>
                                     </c:if>
                                     <c:if test="${selectedYear >= '2009' && selectedYear <= sessionScope.options.w2Latest}">
-                                        <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="" data-localize="label.exportPDF" data-localize-notText="true">
+                                        <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="${sessionScope.languageJSON.label.exportPDF}" aria-label="${sessionScope.languageJSON.label.exportPDF}">
                                             <i class="fa fa-file-pdf-o"></i>
                                         </button>    
-                                        <button class="btn btn-primary" onclick="doPrint()" data-localize="label.print">
+                                        <button class="btn btn-primary" onclick="doPrint()" >
+                                                ${sessionScope.languageJSON.label.print}
                                         </button>
                                     </c:if>
                                 </div>
@@ -40,7 +41,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <c:if test="${isSuccess && isUpdate}">
                                     <div id="updateMsg" class="no-print">
                                         <span class="error-hint" role="alert" aria-atomic="true">
-                                            <b data-localize="validator.updateWasSuccessful"></b>
+                                            <b >${sessionScope.languageJSON.validator.updateWasSuccessful}</b>
                                         </span>
                                         <br/>
                                         <br/>
@@ -54,7 +55,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 >
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="form-group in-line">
-                                        <label class="form-title"  for="year"  data-localize="label.pleaseSelectYear"></label>
+                                        <label class="form-title"  for="year"  >${sessionScope.languageJSON.label.pleaseSelectYear}</label>
                                         <select class="form-control" name="year" id="year" onchange="submitCalendarForm()">
                                             <c:forEach var="year" items="${years}" varStatus="years">
                                                 <option value="${year}" <c:if test="${year == selectedYear }">selected</c:if>>${year}</option>
@@ -68,37 +69,37 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     >
                                         <tbody>
                                             <tr>
-                                                <td id="taxableGrossPay" class="td-title" data-localize="w2InformationTable.taxableGrossPay"></td>
+                                                <td id="taxableGrossPay" class="td-title" >${sessionScope.languageJSON.w2InformationTable.taxableGrossPay}</td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="taxableGrossPay" 
-                                                    data-localize="w2InformationTable.taxableGrossPay"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.taxableGrossPay}"  headers="taxableGrossPay" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.whGross}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="withholdingTax" class="td-title" data-localize="w2InformationTable.withholdingTax"></td>
+                                                <td id="withholdingTax" class="td-title" >${sessionScope.languageJSON.w2InformationTable.withholdingTax}</td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="withholdingTax" 
-                                                    data-localize="w2InformationTable.withholdingTax"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.withholdingTax}"  headers="withholdingTax" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.whTax}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="pension" class="td-title" data-localize="w2InformationTable.pension"></td>
-                                                <td class="td-content" data-localize-location="data-title"  headers="pension"  data-localize="w2InformationTable.pension">
+                                                <td id="pension" class="td-title" >${sessionScope.languageJSON.w2InformationTable.pension}</td>
+                                                <td class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.pension}"  headers="pension"  >
                                                         ${w2Info.pension}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td id="FICAGross" class="td-title" data-localize="w2InformationTable.FICAGross"></td>
+                                                <td id="FICAGross" class="td-title" >${sessionScope.languageJSON.w2InformationTable.FICAGross}</td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="FICAGross" 
-                                                    data-localize="w2InformationTable.FICAGross"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.FICAGross}"  headers="FICAGross" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.ficaGross}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="FICATax" class="td-title" data-localize="w2InformationTable.FICATax"></td>
+                                                <td id="FICATax" class="td-title" >${sessionScope.languageJSON.w2InformationTable.FICATax}</td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="FICATax" 
-                                                    data-localize="w2InformationTable.FICATax"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.FICATax}"  headers="FICATax" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.ficaTax}" pattern="#,##0.00"/>
                                                 </td>
@@ -107,17 +108,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td id="medicareGross" class="td-title" data-localize="w2InformationTable.medicareGross"></td>
+                                                <td id="medicareGross" class="td-title" >${sessionScope.languageJSON.w2InformationTable.medicareGross}</td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="medicareGross" 
-                                                    data-localize="w2InformationTable.medicareGross"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.medicareGross}"  headers="medicareGross" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.medGross}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="medicareTax" class="td-title" data-localize="w2InformationTable.medicareTax"></td>
+                                                <td id="medicareTax" class="td-title" >${sessionScope.languageJSON.w2InformationTable.medicareTax}</td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="medicareTax" 
-                                                    data-localize="w2InformationTable.medicareTax"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.medicareTax}"  headers="medicareTax" 
+                                                    
                                                     
                                                 >
                                                 <fmt:formatNumber value="${w2Info.medTax}" pattern="#,##0.00"/>
@@ -127,18 +128,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td id="earnedIncomeCredit" class="td-title" data-localize="w2InformationTable.earnedIncomeCredit">
+                                                <td id="earnedIncomeCredit" class="td-title" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.earnedIncomeCredit}
                                                 </td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="earnedIncomeCredit" 
-                                                    data-localize="w2InformationTable.earnedIncomeCredit"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.earnedIncomeCredit}"  headers="earnedIncomeCredit" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.eicAmt}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="dependentCare" class="td-title" data-localize="w2InformationTable.dependentCare"></td>
+                                                <td id="dependentCare" class="td-title" >${sessionScope.languageJSON.w2InformationTable.dependentCare}</td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="dependentCare" 
-                                                    data-localize="w2InformationTable.dependentCare"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.dependentCare}"  headers="dependentCare" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.dependCare}" pattern="#,##0.00"/>
                                                 </td>
@@ -148,42 +150,42 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td colspan="6">&nbsp;</td>
                                             </tr>
                                             <tr>
-                                                <td id="annuityDeduction" class="td-title" data-localize="w2InformationTable.annuityDeduction"></td>
+                                                <td id="annuityDeduction" class="td-title" >${sessionScope.languageJSON.w2InformationTable.annuityDeduction}</td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="annuityDeduction" 
-                                                    data-localize="w2InformationTable.annuityDeduction"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.annuityDeduction}"  headers="annuityDeduction" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.annuityDed}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="457withdraw" class="td-title" data-localize="w2InformationTable.457withdraw"></td>
+                                                <td id="457withdraw" class="td-title" >${sessionScope.languageJSON.w2InformationTable.457withdraw}</td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="457withdraw" 
-                                                    data-localize="w2InformationTable.457withdraw"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.457withdraw}"  headers="457withdraw" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.withdraw457}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="457Annuities" class="td-title" data-localize="w2InformationTable.457Annuities">
+                                                <td id="457Annuities" class="td-title" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.457Annuities}
                                                 </td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="457Annuities" 
-                                                    data-localize="w2InformationTable.457Annuities"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.457Annuities}"  headers="457Annuities" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.emp457Contrib + w2Info.emplrContrib457}" pattern="#,##0.00"/>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td id="cafeteria125" class="td-title" data-localize="w2InformationTable.cafeteria125"></td>
+                                                <td id="cafeteria125" class="td-title" >${sessionScope.languageJSON.w2InformationTable.cafeteria125}</td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="cafeteria125" 
-                                                    data-localize="w2InformationTable.cafeteria125"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.cafeteria125}"  headers="cafeteria125" 
                                                 >
                                                 <fmt:formatNumber value="${w2Info.cafeAmt}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="roth403BAfterTax" class="td-title" data-localize="w2InformationTable.roth403BAfterTax">
+                                                <td id="roth403BAfterTax" class="td-title" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.roth403BAfterTax}
                                                 </td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="roth403BAfterTax" 
-                                                    data-localize="w2InformationTable.roth403BAfterTax"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.roth403BAfterTax}"  headers="roth403BAfterTax" 
                                                 >
                                                 <fmt:formatNumber value="${w2Info.annuityRoth}" pattern="#,##0.00"/>
                                                 </td>
@@ -193,68 +195,69 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td colspan="6">&nbsp;</td>
                                             </tr>
                                             <tr>
-                                                <td id="nonTrsBusinessExpense" class="td-title" data-localize="w2InformationTable.nonTrsBusinessExpense">
+                                                <td id="nonTrsBusinessExpense" class="td-title" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.nonTrsBusinessExpense}
                                                 </td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="nonTrsBusinessExpense" 
-                                                    data-localize="w2InformationTable.nonTrsBusinessExpense"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.nonTrsBusinessExpense}"  headers="nonTrsBusinessExpense" 
                                                 >
                                                 <fmt:formatNumber value="${w2Info.nontrsNontaxBusAllow}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="taxableAllowance" class="td-title" data-localize="w2InformationTable.taxableAllowance"></td>
+                                                <td id="taxableAllowance" class="td-title" >${sessionScope.languageJSON.w2InformationTable.taxableAllowance}</td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="taxableAllowance" 
-                                                    data-localize="w2InformationTable.taxableAllowance"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.taxableAllowance}"  headers="taxableAllowance" 
                                                 >
                                                 <fmt:formatNumber value="${w2Info.nontrsBusAllow}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="empBusinessExpense" class="td-title" data-localize="w2InformationTable.empBusinessExpense">
+                                                <td id="empBusinessExpense" class="td-title" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.empBusinessExpense}
                                                 </td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="empBusinessExpense" 
-                                                    data-localize="w2InformationTable.empBusinessExpense"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.empBusinessExpense}"  headers="empBusinessExpense" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.empBusinessExpense}" pattern="#,##0.00"/>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td id="movingExpenseReimbursement" class="td-title" data-localize="w2InformationTable.movingExpenseReimbursement">
+                                                <td id="movingExpenseReimbursement" class="td-title" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.movingExpenseReimbursement}
                                                 </td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="movingExpenseReimbursement" 
-                                                    data-localize="w2InformationTable.movingExpenseReimbursement"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.movingExpenseReimbursement}"  headers="movingExpenseReimbursement" 
                                                 >
                                                 <fmt:formatNumber value="${w2Info.movingExpReimbr}" pattern="#,##0.00"/>
                                                 </td>
                                                 <c:choose>
                                                     <c:when test="${selectedYear >= '2012'}">
-                                                        <td id="empSponsoredHealthCoverage" class="td-title" data-localize="w2InformationTable.empSponsoredHealthCoverage">
+                                                        <td id="empSponsoredHealthCoverage" class="td-title" >
+                                                                ${sessionScope.languageJSON.w2InformationTable.empSponsoredHealthCoverage}
                                                         </td>
                                                         <td
-                                                            class="td-content" data-localize-location="data-title"  headers="empSponsoredHealthCoverage" 
-                                                            data-localize="w2InformationTable.empSponsoredHealthCoverage"
+                                                            class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.empSponsoredHealthCoverage}"  headers="empSponsoredHealthCoverage" 
+                                                            
                                                         >
                                                         <fmt:formatNumber value="${w2Info.emplrPrvdHlthcare}" pattern="#,##0.00"/>
                                                         </td>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <td id="" class="td-title"></td>
-                                                        <td class="td-content" data-localize-location="data-title"  headers="" ></td>
+                                                        <td class="td-title"></td>
+                                                        <td class="td-content"></td>
                                                     </c:otherwise>
                                                 </c:choose>
                                                 <c:choose>
                                                     <c:when test="${selectedYear >= '2016'}">
-                                                        <td id="annuityRoth" class="td-title" data-localize="w2InformationTable.annuityRoth"></td>
+                                                        <td id="annuityRoth" class="td-title" >${sessionScope.languageJSON.w2InformationTable.annuityRoth}</td>
                                                         <td
-                                                            class="td-content" data-localize-location="data-title"  headers="annuityRoth" 
-                                                            data-localize="w2InformationTable.annuityRoth"
+                                                            class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.annuityRoth}"  headers="annuityRoth" 
+                                                            
                                                         >
                                                         <fmt:formatNumber value="${w2Info.annuityRoth457b}" pattern="#,##0.00"/>
                                                         </td>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <td class="td-title"></td>
-                                                        <td class="td-content" data-localize-location="data-title"  ></td>
+                                                        <td class="td-content"></td>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </tr>
@@ -262,11 +265,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td colspan="6">&nbsp;</td>
                                             </tr>
                                             <tr>
-                                                <td id="TRSSalaryReduction" class="td-title" data-localize="w2InformationTable.TRSSalaryReduction">
+                                                <td id="TRSSalaryReduction" class="td-title" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.TRSSalaryReduction}
                                                 </td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="TRSSalaryReduction" 
-                                                    data-localize="w2InformationTable.TRSSalaryReduction"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.TRSSalaryReduction}"  headers="TRSSalaryReduction" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.trsDeposit}" pattern="#,##0.00"/>
                                                 </td>
@@ -276,27 +280,30 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td colspan="6">&nbsp;</td>
                                             </tr>
                                             <tr>
-                                                <td id="taxedLifeContribution" class="td-title" data-localize="w2InformationTable.taxedLifeContribution">
+                                                <td id="taxedLifeContribution" class="td-title" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.taxedLifeContribution}
                                                 </td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="taxedLifeContribution" 
-                                                    data-localize="w2InformationTable.taxedLifeContribution"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.taxedLifeContribution}"  headers="taxedLifeContribution" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.taxEmplrLifeGrp}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="healthInsuranceDeduction" class="td-title" data-localize="w2InformationTable.healthInsuranceDeduction">
+                                                <td id="healthInsuranceDeduction" class="td-title" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.healthInsuranceDeduction}
                                                 </td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="healthInsuranceDeduction" 
-                                                    data-localize="w2InformationTable.healthInsuranceDeduction"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.healthInsuranceDeduction}"  headers="healthInsuranceDeduction" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.hlthInsDed}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="taxableFringeBenefits" class="td-title" data-localize="w2InformationTable.taxableFringeBenefits">
+                                                <td id="taxableFringeBenefits" class="td-title" >
+                                                    ${sessionScope.languageJSON.w2InformationTable.taxableFringeBenefits}
                                                 </td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="taxableFringeBenefits" 
-                                                    data-localize="w2InformationTable.taxableFringeBenefits"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.taxableFringeBenefits}"  headers="taxableFringeBenefits" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.taxedBenefits}" pattern="#,##0.00"/>
                                                 </td>
@@ -305,34 +312,39 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td colspan="6">&nbsp;</td>
                                             </tr>
                                             <tr>
-                                                <td id="healthSavingsAccount" class="td-title" data-localize="w2InformationTable.healthSavingsAccount">
+                                                <td id="healthSavingsAccount" class="td-title" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.healthSavingsAccount}
                                                 </td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="healthSavingsAccount" 
-                                                    data-localize="w2InformationTable.healthSavingsAccount"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.healthSavingsAccount}"  headers="healthSavingsAccount" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.hsaContrib}" pattern="#,##0.00"/>
                                                 </td>
-                                                <td id="nonTaxSickPay" class="td-title" data-localize="w2InformationTable.nonTaxSickPay"></td>
+                                                <td id="nonTaxSickPay" class="td-title" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.nonTaxSickPay}
+                                                </td>
                                                 <td
-                                                    class="td-content" data-localize-location="data-title"  headers="nonTaxSickPay" 
-                                                    data-localize="w2InformationTable.nonTaxSickPay"
+                                                    class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.nonTaxSickPay}"  headers="nonTaxSickPay" 
+                                                    
                                                 >
                                                 <fmt:formatNumber value="${w2Info.sickPayNontax}" pattern="#,##0.00"/>
                                                 </td>
                                                 <c:choose>
                                                     <c:when test="${selectedYear >= '2010'}">
-                                                        <td id="hireExemptWages" class="td-title" data-localize="w2InformationTable.hireExemptWages"></td>
+                                                        <td id="hireExemptWages" class="td-title" >
+                                                                ${sessionScope.languageJSON.w2InformationTable.hireExemptWages}
+                                                        </td>
                                                         <td
-                                                            class="td-content" data-localize-location="data-title"  headers="hireExemptWages" 
-                                                            data-localize="w2InformationTable.hireExemptWages"
+                                                            class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.hireExemptWages}"  headers="hireExemptWages" 
+                                                            
                                                         >
                                                         <fmt:formatNumber value="${w2Info.hireExemptWgs}" pattern="#,##0.00"/>
                                                         </td>
                                                     </c:when>
                                                     <c:otherwise>
                                                             <td class="td-title"></td>
-                                                            <td class="td-content" data-localize-location="data-title"  ></td>
+                                                            <td class="td-content"></td>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </tr>
@@ -341,56 +353,63 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
                                     <c:forEach var="sick" items="${thirdPartyPay}"  varStatus="counter">
                                             <div class="groupTitle no-print">
-                                                <span data-localize="label.thirdPartySickPayW2Amounts"></span> - 
+                                                <span >${sessionScope.languageJSON.label.thirdPartySickPayW2Amounts}</span> - 
                                                 ${sick.frequency.label}
                                             </div>
                                             <table class="table border-table responsive-table no-thead print-table no-print">
                                                 <tr>
-                                                    <td id="withholdingGross_${counter.index}" class="td-title" data-localize="w2InformationTable.withholdingGross">
+                                                    <td id="withholdingGross_${counter.index}" class="td-title" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.withholdingGross}
                                                     </td>
-                                                    <td class="td-content" data-localize-location="data-title"  headers="withholdingGross_${counter.index}"  data-localize="w2InformationTable.withholdingGross">
+                                                    <td class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.withholdingGross}"  headers="withholdingGross_${counter.index}"  >
                                                             <fmt:formatNumber value="${sick.sickPayWhGross}" pattern="#,##0.00"/>
                                                     </td>
-                                                    <td id="sickWithholdingTax_${counter.index}" class="td-title" data-localize="w2InformationTable.withholdingTax">
+                                                    <td id="sickWithholdingTax_${counter.index}" class="td-title" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.withholdingTax}
                                                     </td>
-                                                    <td class="td-content" data-localize-location="data-title"  headers="sickWithholdingTax_${counter.index}"  data-localize="w2InformationTable.withholdingTax">
+                                                    <td class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.withholdingTax}"  headers="sickWithholdingTax_${counter.index}"  >
                                                             <fmt:formatNumber value="${sick.sickPayWhTax}" pattern="#,##0.00"/>
                                                     </td>
                                                     <td class="td-title"></td>
-                                                    <td class="td-content" data-localize-location="data-title"  ></td>
+                                                    <td class="td-content"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td id="sickFICAGross_${counter.index}" class="td-title" data-localize="w2InformationTable.FICAGross">
+                                                    <td id="sickFICAGross_${counter.index}" class="td-title" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.FICAGross}
                                                     </td>
-                                                    <td class="td-content" data-localize-location="data-title"  headers="sickFICAGross_${counter.index}"  data-localize="w2InformationTable.FICAGross">
+                                                    <td class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.FICAGross}"  headers="sickFICAGross_${counter.index}"  >
                                                             <fmt:formatNumber value="${sick.sickPayFicaGross}" pattern="#,##0.00"/>
                                                     </td>
-                                                    <td id="sickFICATax_${counter.index}" class="td-title" data-localize="w2InformationTable.FICATax">
+                                                    <td id="sickFICATax_${counter.index}" class="td-title" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.FICATax}
                                                     </td>
-                                                    <td class="td-content" data-localize-location="data-title"  headers="sickFICATax_${counter.index}"  data-localize="w2InformationTable.FICATax">
+                                                    <td class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.FICATax}"  headers="sickFICATax_${counter.index}"  >
                                                             <fmt:formatNumber value="${sick.sickPayFicaTax}" pattern="#,##0.00"/>
                                                     </td>
                                                     <td class="td-title"></td>
-                                                    <td class="td-content" data-localize-location="data-title"  ></td>
+                                                    <td class="td-content"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td id="sickMedicareGross_${counter.index}" class="td-title" data-localize="w2InformationTable.medicareGross">
+                                                    <td id="sickMedicareGross_${counter.index}" class="td-title" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.medicareGross}
                                                     </td>
-                                                    <td class="td-content" data-localize-location="data-title"  headers="sickMedicareGross_${counter.index}"  data-localize="w2InformationTable.medicareGross">
+                                                    <td class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.medicareGross}"  headers="sickMedicareGross_${counter.index}"  >
                                                             <fmt:formatNumber value="${sick.sickPayMedGross}" pattern="#,##0.00"/>
                                                     </td>
-                                                    <td id="sickMedicareTax_${counter.index}" class="td-title" data-localize="w2InformationTable.medicareTax">
+                                                    <td id="sickMedicareTax_${counter.index}" class="td-title" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.medicareTax}
                                                     </td>
-                                                    <td class="td-content" data-localize-location="data-title"  headers="sickMedicareTax_${counter.index}"  data-localize="w2InformationTable.medicareTax">
+                                                    <td class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.medicareTax}"  headers="sickMedicareTax_${counter.index}">
                                                             <fmt:formatNumber value="${sick.sickPayMedTax}" pattern="#,##0.00"/>
                                                     </td>
                                                     <td  class="td-title"></td>
-                                                    <td class="td-content" data-localize-location="data-title"  ></td>
+                                                    <td class="td-content"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td id="nontaxablePay_${counter.index}" class="td-title" data-localize="w2InformationTable.nontaxablePay">
+                                                    <td id="nontaxablePay_${counter.index}" class="td-title" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.nontaxablePay}
                                                     </td>
-                                                    <td class="td-content" data-localize-location="data-title"  headers="nontaxablePay_${counter.index}"  data-localize="w2InformationTable.nontaxablePay">
+                                                    <td class="td-content" data-title="${sessionScope.languageJSON.w2InformationTable.nontaxablePay}"  headers="nontaxablePay_${counter.index}">
                                                             <fmt:formatNumber value="${sick.sickNontax}" pattern="#,##0.00"/>
                                                     </td>
                                                     <td class="td-title"></td>
@@ -405,12 +424,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <table class="table border-table mb-5 print-block-table noNumTable pdfPage">
                                         <tr>
                                             <td class="header" colspan="3" valign="top">
-                                                <span data-localize="w2InformationTable.formW2WageAndTaxStatement"></span>
+                                                <span >${sessionScope.languageJSON.w2InformationTable.formW2WageAndTaxStatement}</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="boxtitle" data-localize="w2InformationTable.aEmployeeSocial">
+                                                <div class="boxtitle" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.aEmployeeSocial}
                                                 </div>
                                                 <div class="boxvalue">
                                                     ${w2Print.ssn}
@@ -420,7 +440,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </div>
                                             </td>
                                             <td class="doubleborder">
-                                                <div class="boxtitle" data-localize="w2InformationTable.1WagesTipsOtherCompensation">
+                                                <div class="boxtitle" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.1WagesTipsOtherCompensation}
                                                 </div>
                                                 <div class="boxvalue">
                                                     ${w2Print.tgross}
@@ -430,7 +451,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </div>
                                             </td>
                                             <td class="doubleborder">
-                                                <div class="boxtitle" data-localize="w2InformationTable.2FederalIncomeTaxWithheld">
+                                                <div class="boxtitle" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.2FederalIncomeTaxWithheld}
                                                 </div>
                                                 <div class="boxvalue">
                                                     ${w2Print.whold}
@@ -442,7 +464,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="boxtitle" data-localize="w2InformationTable.bEIN">
+                                                <div class="boxtitle" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.bEIN}
                                                 </div>
                                                 <div class="boxvalue">
                                                     ${w2Print.ein}
@@ -452,7 +475,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="boxtitle" data-localize="w2InformationTable.3SocialSecurityWages">
+                                                <div class="boxtitle" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.3SocialSecurityWages}
                                                 </div>
                                                 <div class="boxvalue">
                                                     ${w2Print.fgross}
@@ -462,7 +486,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="boxtitle" data-localize="w2InformationTable.4SocialSecurityTaxWithheld">
+                                                <div class="boxtitle" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.4SocialSecurityTaxWithheld}
                                                 </div>
                                                 <div class="boxvalue">
                                                     ${w2Print.ftax}
@@ -474,7 +499,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </tr>
                                         <tr>
                                             <td rowspan="2">
-                                                <div class="boxtitle" data-localize="w2InformationTable.cEmployerNameAddressZip">
+                                                <div class="boxtitle" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.cEmployerNameAddressZip}
                                                 </div>
                                                 <div class="boxvalue">
                                                     ${w2Print.ename}
@@ -487,7 +513,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="boxtitle" data-localize="w2InformationTable.5MedicareWagesAndTips">
+                                                <div class="boxtitle" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.5MedicareWagesAndTips}
                                                 </div>
                                                 <div class="boxvalue">
                                                     ${w2Print.mgross}
@@ -497,7 +524,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="boxtitle" data-localize="w2InformationTable.6MedicareTaxWithheld">
+                                                <div class="boxtitle" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.6MedicareTaxWithheld}
                                                 </div>
                                                 <div class="boxvalue">
                                                     ${w2Print.mtax}
@@ -509,7 +537,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </tr>
                                         <tr>
                                             <td class="doubleborder">
-                                                <div class="boxtitle" data-localize="w2InformationTable.9AdvancedEICpayment">
+                                                <div class="boxtitle" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.9AdvancedEICpayment}
                                                 </div>
                                                 <div class="boxvalue">
                                                     ${w2Print.eic}
@@ -519,7 +548,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </div>
                                             </td>
                                             <td class="doubleborder">
-                                                <div class="boxtitle" data-localize="w2InformationTable.10dependentCareBenefits">
+                                                <div class="boxtitle" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.10dependentCareBenefits}
                                                 </div>
                                                 <div class="boxvalue">
                                                     ${w2Print.dcare}
@@ -531,7 +561,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </tr>
                                         <tr>
                                             <td rowspan="2">
-                                                <div class="boxtitle" data-localize="w2InformationTable.eEmployeeName">
+                                                <div class="boxtitle" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.eEmployeeName}
                                                 </div>
                                                 <div class="boxvalue">
                                                     ${w2Print.empname}
@@ -547,7 +578,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <table class="table no-border-table">
                                                         <tr>
                                                             <td class="boxtitle" colspan="2">
-                                                                <span data-localize="w2InformationTable.12seeInstrs"></span>
+                                                                <span >${sessionScope.languageJSON.w2InformationTable.12seeInstrs}</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -612,7 +643,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <table class="table no-border-table">
                                                         <tr>
                                                             <td class="boxtitle" colspan="2">
-                                                                <span data-localize="w2InformationTable.14seeInstrs"></span>
+                                                                <span >${sessionScope.languageJSON.w2InformationTable.14seeInstrs}</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -685,7 +716,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </div>
                                                             </td>
                                                             <td valign="top">
-                                                                <div class="boxtitle" data-localize="w2InformationTable.statutoryEmployee">
+                                                                <div class="boxtitle" >
+                                                                        ${sessionScope.languageJSON.w2InformationTable.statutoryEmployee}
                                                                 </div>
                                                                 <div class="boximage">
                                                                     <c:if test="${w2Print.statemp == 'checkedbox'}">
@@ -694,12 +726,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                                 </span>
                                                                     </c:if>
                                                                     <c:if test="${w2Print.statemp=='uncheckedbox'}">
-                                                                            <input class="checkBoxOld" type="checkbox" aria-label="" data-localize="accessHint.statutoryEmployeeCheckbox" />
+                                                                            <input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.accessHint.statutoryEmployeeCheckbox}"  />
                                                                     </c:if>
                                                                 </div>
                                                             </td>
                                                             <td valign="top">
-                                                                <div class="boxtitle" data-localize="w2InformationTable.retirementPlan">
+                                                                <div class="boxtitle" >
+                                                                        ${sessionScope.languageJSON.w2InformationTable.retirementPlan}
                                                                 </div>
                                                                 <div class="boximage">
                                                                     <c:if test="${w2Print.retplan == 'checkedbox'}">
@@ -708,12 +741,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                                 </span>
                                                                     </c:if>
                                                                     <c:if test="${w2Print.retplan=='uncheckedbox'}">
-                                                                            <input class="checkBoxOld" type="checkbox"  aria-label="" data-localize="accessHint.retirementPlanCheckbox"/>
+                                                                            <input class="checkBoxOld" type="checkbox"  aria-label="${sessionScope.languageJSON.accessHint.retirementPlanCheckbox}" />
                                                                     </c:if>
                                                                 </div>
                                                             </td>
                                                             <td valign="top">
-                                                                <div class="boxtitle" data-localize="w2InformationTable.thirdPartySickPay">
+                                                                <div class="boxtitle" >
+                                                                        ${sessionScope.languageJSON.w2InformationTable.thirdPartySickPay}
                                                                 </div>
                                                                 <div class="boximage">
                                                                     <c:if test="${w2Print.thrdsick == 'checkedbox'}">
@@ -722,7 +756,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                                 </span>
                                                                     </c:if>
                                                                     <c:if test="${w2Print.thrdsick=='uncheckedbox'}">
-                                                                            <input class="checkBoxOld" type="checkbox"   aria-label="" data-localize="accessHint.thirdPartySickPayCheckbox"/>
+                                                                            <input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.accessHint.thirdPartySickPayCheckbox}" />
                                                                     </c:if>
                                                                 </div>
                                                             </td>
@@ -736,10 +770,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <tr>
                                             <td colspan="3" class="no-border-td">
                                                 <div class="footer-left pull-left">
-                                                    <span data-localize="w2InformationTable.copyB">
+                                                    <span >
+                                                            ${sessionScope.languageJSON.w2InformationTable.copyB}
                                                     </span>
                                                 </div>
-                                                <div class="footer-right pull-right" data-localize="w2InformationTable.departmentOfTheTreasury">
+                                                <div class="footer-right pull-right" >
+                                                        ${sessionScope.languageJSON.w2InformationTable.departmentOfTheTreasury}
                                                 </div>
                                             </td>
                                         </tr>
@@ -761,12 +797,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <table class="table border-table mb-5 print-block-table noNumTable  pdfPage">
                                             <tr>
                                                 <td class="header" colspan="3" valign="top">
-                                                    <span data-localize="w2InformationTable.formW2WageAndTaxStatement"></span>
+                                                    <span >${sessionScope.languageJSON.w2InformationTable.formW2WageAndTaxStatement}</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="boxtitle" data-localize="w2InformationTable.aEmployeeSocial">
+                                                    <div class="boxtitle" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.aEmployeeSocial}
                                                     </div>
                                                     <div class="boxvalue">
                                                         ${w2Print.ssn}
@@ -776,7 +813,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </div>
                                                 </td>
                                                 <td class="doubleborder">
-                                                    <div class="boxtitle" data-localize="w2InformationTable.1WagesTipsOtherCompensation">
+                                                    <div class="boxtitle" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.1WagesTipsOtherCompensation}
                                                     </div>
                                                     <div class="boxvalue">
                                                         ${w2Print.tgross}
@@ -786,7 +824,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </div>
                                                 </td>
                                                 <td class="doubleborder">
-                                                    <div class="boxtitle" data-localize="w2InformationTable.2FederalIncomeTaxWithheld">
+                                                    <div class="boxtitle" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.2FederalIncomeTaxWithheld}
                                                     </div>
                                                     <div class="boxvalue">
                                                         ${w2Print.whold}
@@ -798,7 +837,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <div class="boxtitle" data-localize="w2InformationTable.bEIN">
+                                                    <div class="boxtitle" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.bEIN}
                                                     </div>
                                                     <div class="boxvalue">
                                                         ${w2Print.ein}
@@ -808,7 +848,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="boxtitle" data-localize="w2InformationTable.3SocialSecurityWages">
+                                                    <div class="boxtitle" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.3SocialSecurityWages}
                                                     </div>
                                                     <div class="boxvalue">
                                                         ${w2Print.fgross}
@@ -818,7 +859,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="boxtitle" data-localize="w2InformationTable.4SocialSecurityTaxWithheld">
+                                                    <div class="boxtitle" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.4SocialSecurityTaxWithheld}
                                                     </div>
                                                     <div class="boxvalue">
                                                         ${w2Print.ftax}
@@ -830,7 +872,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </tr>
                                             <tr>
                                                 <td rowspan="2">
-                                                    <div class="boxtitle" data-localize="w2InformationTable.cEmployerNameAddressZip">
+                                                    <div class="boxtitle" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.cEmployerNameAddressZip}
                                                     </div>
                                                     <div class="boxvalue">
                                                         ${w2Print.ename}
@@ -843,7 +886,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="boxtitle" data-localize="w2InformationTable.5MedicareWagesAndTips">
+                                                    <div class="boxtitle" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.5MedicareWagesAndTips}
                                                     </div>
                                                     <div class="boxvalue">
                                                         ${w2Print.mgross}
@@ -853,7 +897,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="boxtitle" data-localize="w2InformationTable.6MedicareTaxWithheld">
+                                                    <div class="boxtitle" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.6MedicareTaxWithheld}
                                                     </div>
                                                     <div class="boxvalue">
                                                         ${w2Print.mtax}
@@ -865,7 +910,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </tr>
                                             <tr>
                                                 <td class="doubleborder">
-                                                    <div class="boxtitle" data-localize="w2InformationTable.9AdvancedEICpayment">
+                                                    <div class="boxtitle" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.9AdvancedEICpayment}
                                                     </div>
                                                     <div class="boxvalue">
                                                         ${w2Print.eic}
@@ -875,7 +921,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </div>
                                                 </td>
                                                 <td class="doubleborder">
-                                                    <div class="boxtitle" data-localize="w2InformationTable.10dependentCareBenefits">
+                                                    <div class="boxtitle" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.10dependentCareBenefits}
                                                     </div>
                                                     <div class="boxvalue">
                                                         ${w2Print.dcare}
@@ -887,7 +934,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </tr>
                                             <tr>
                                                 <td rowspan="2">
-                                                    <div class="boxtitle" data-localize="w2InformationTable.eEmployeeName">
+                                                    <div class="boxtitle" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.eEmployeeName}
                                                     </div>
                                                     <div class="boxvalue">
                                                         ${w2Print.empname}
@@ -903,7 +951,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <table class="table no-border-table">
                                                             <tr>
                                                                 <td class="boxtitle" colspan="2">
-                                                                    <span data-localize="w2InformationTable.12seeInstrs"></span>
+                                                                    <span >${sessionScope.languageJSON.w2InformationTable.12seeInstrs}</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -968,7 +1016,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <table class="table no-border-table">
                                                             <tr>
                                                                 <td class="boxtitle" colspan="2">
-                                                                    <span data-localize="w2InformationTable.14seeInstrs"></span>
+                                                                    <span >${sessionScope.languageJSON.w2InformationTable.14seeInstrs}</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1041,7 +1089,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </div>
                                                             </td>
                                                             <td valign="top">
-                                                                <div class="boxtitle" data-localize="w2InformationTable.statutoryEmployee">
+                                                                <div class="boxtitle" >
+                                                                        ${sessionScope.languageJSON.w2InformationTable.statutoryEmployee}
                                                                 </div>
                                                                 <div class="boximage">
                                                                     <c:if test="${w2Print.statemp == 'checkedbox'}">
@@ -1050,12 +1099,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                                 </span>
                                                                     </c:if>
                                                                     <c:if test="${w2Print.statemp=='uncheckedbox'}">
-                                                                            <input class="checkBoxOld" type="checkbox" aria-label="" data-localize="accessHint.statutoryEmployeeCheckbox" />
+                                                                            <input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.accessHint.statutoryEmployeeCheckbox}"  />
                                                                     </c:if>
                                                                 </div>
                                                             </td>
                                                             <td valign="top">
-                                                                <div class="boxtitle" data-localize="w2InformationTable.retirementPlan">
+                                                                <div class="boxtitle" >
+                                                                        ${sessionScope.languageJSON.w2InformationTable.retirementPlan}
                                                                 </div>
                                                                 <div class="boximage">
                                                                     <c:if test="${w2Print.retplan == 'checkedbox'}">
@@ -1064,12 +1114,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                                 </span>
                                                                     </c:if>
                                                                     <c:if test="${w2Print.retplan=='uncheckedbox'}">
-                                                                            <input class="checkBoxOld" type="checkbox" aria-label="" data-localize="accessHint.retirementPlanCheckbox"/>
+                                                                            <input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.accessHint.retirementPlanCheckbox}" />
                                                                     </c:if>
                                                                 </div>
                                                             </td>
                                                             <td valign="top">
-                                                                <div class="boxtitle" data-localize="w2InformationTable.thirdPartySickPay">
+                                                                <div class="boxtitle" >
+                                                                        ${sessionScope.languageJSON.w2InformationTable.thirdPartySickPay}
                                                                 </div>
                                                                 <div class="boximage">
                                                                     <c:if test="${w2Print.thrdsick == 'checkedbox'}">
@@ -1078,7 +1129,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                                 </span>
                                                                     </c:if>
                                                                     <c:if test="${w2Print.thrdsick=='uncheckedbox'}">
-                                                                            <input class="checkBoxOld" type="checkbox"   aria-label="" data-localize="accessHint.thirdPartySickPayCheckbox"/>
+                                                                            <input class="checkBoxOld" type="checkbox"   aria-label="${sessionScope.languageJSON.accessHint.thirdPartySickPayCheckbox}" />
                                                                     </c:if>
                                                                 </div>
                                                             </td>
@@ -1092,10 +1143,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <tr>
                                                 <td colspan="3" class="no-border-td">
                                                     <div class="footer-left pull-left">
-                                                        <span data-localize="w2InformationTable.copyC">
+                                                        <span >
+                                                                ${sessionScope.languageJSON.w2InformationTable.copyC}
                                                         </span>
                                                     </div>
-                                                    <div class="footer-right pull-right" data-localize="w2InformationTable.departmentOfTheTreasury">
+                                                    <div class="footer-right pull-right" >
+                                                            ${sessionScope.languageJSON.w2InformationTable.departmentOfTheTreasury}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -1130,13 +1183,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     <div class="modal-content">
                         <div class="modal-header">
                            
-                            <h4 class="modal-title new-title" data-localize="label.w2ElectronicConsent">
+                            <h4 class="modal-title new-title" >
+                                    ${sessionScope.languageJSON.label.w2ElectronicConsent}
                             </h4>
                             <button
                             type="button" role="button"
                             class="close"
                             data-dismiss="modal"
-                            aria-label="" data-localize="label.closeModal" data-localize-location="aria-label" data-localize-notText="true"
+                            aria-label="${sessionScope.languageJSON.label.closeModal}"
                         >
                             &times;
                         </button>
@@ -1145,7 +1199,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <form >
                             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <div class="form-group">
-                                    <label data-localize="label.customMessageHere"></label>
+                                    <label >${sessionScope.languageJSON.label.customMessageHere}</label>
                                     <div class="form-control form-text static">
                                         ${elecConsntMsgW2}
                                     </div>
@@ -1154,26 +1208,28 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <div class="checkbox mb-2">
                                             <label for="consent">
                                                 <input class="consentRadio" type="radio" role="radio" name="consent" id="consent"> 
-                                                <span data-localize="label.w2Yes"></span>
+                                                <span >${sessionScope.languageJSON.label.w2Yes}</span>
                                             </label>
                                         </div>
                                         <div class="checkbox">
                                                 <label for="notConsent">
                                                     <input class="consentRadio" type="radio" role="radio" name="consent" id="notConsent"> 
-                                                    <span data-localize="label.w2No"></span>
+                                                    <span >${sessionScope.languageJSON.label.w2No}</span>
                                                 </label>
                                         </div>
                                 </div>
                             </form>
                             <form hidden="hidden" id="consentForm" action="updateW2Consent" method="POST">
                             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <input type="text" name="year" id="consentYear" value="${selectedYear}" aria-label="" data-localize="accessHint.year">
-                                <input type="hidden" id="w2Latest" value="${sessionScope.options.w2Latest}" aria-label="" data-localize="accessHint.w2Latest"/>
-                                <input type="text" name="consentMsg" id="elecConsntMsgW2" value="${elecConsntMsgW2}" aria-label="" data-localize="accessHint.elecConsntMsgW2">
-                                <input type="text" name="consent" id="elecConsntW2Flag" value="${consent}" aria-label="" data-localize="accessHint.consent">
-                                <input type="text"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}" aria-label="" data-localize="accessHint.enableElecConsntW2"/>
+                                <input type="hidden" name="year" id="consentYear" value="${selectedYear}">
+                                <input type="hidden" id="w2Latest" value="${sessionScope.options.w2Latest}"/>
+                                <input type="hidden" name="consentMsg" id="elecConsntMsgW2" value="${elecConsntMsgW2}">
+                                <input type="hidden" name="consent" id="elecConsntW2Flag" value="${consent}">
+                                <input type="hidden"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}"/>
                             </form>
-                            <p class="error-hint hide" role="alert" aria-atomic="true" id="noChooseError" data-localize="validator.pleaseSelectAgreeWay"></p>
+                            <p class="error-hint hide" role="alert" aria-atomic="true" id="noChooseError" >
+                                    ${sessionScope.languageJSON.validator.pleaseSelectAgreeWay}
+                            </p>
                         </div>
                         <div class="modal-footer">
                             <button
@@ -1181,13 +1237,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 type="button" role="button"
                                 class="btn btn-primary"
                                 data-dismiss="modal"
-                                data-localize="label.save"
-                            ></button>
+                                
+                            >${sessionScope.languageJSON.label.save}</button>
                             <button
                                 class="btn btn-secondary"
                                 data-dismiss="modal"
-                                data-localize="label.cancel"
-                            >
+                                
+                            >${sessionScope.languageJSON.label.cancel}
                             </button>
                         </div>
                     </div>
