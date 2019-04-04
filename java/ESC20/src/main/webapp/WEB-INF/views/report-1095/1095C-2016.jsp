@@ -1,45 +1,54 @@
 <table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
   <tr>
       <td style="width: 50%" valign="top">
-        <h1 data-localize="Form1095.InstructionsForRecipient"></h1>
+        <h1>${sessionScope.languageJSON.Form1095.InstructionsForRecipient}
+          </h1>
       </td>
       <td style="width: 50%" valign="top">
-        <h2 data-localize="Form1095.C2016.partIIEmployer"></h2> 
+        <h2>${sessionScope.languageJSON.Form1095.C2016.partIIEmployer}
+          </h2> 
       </td>
   </tr>
   <tr>
       <td style="width: 50%" valign="top">
-          <div data-localize="Form1095.C2016.youAreReceiving"></div>
-          <div data-localize="Form1095.C2016.inAdditionIfYou"></div>
-          <div data-localize="Form1095.C2016.ifYourEmployer"></div>
-          <div><div class="wordTipIcon"><span data-localize="Form1095.tip"></span></div><span data-localize="Form1095.C2016.employersAreRequired"></span></div>
-          <h2 data-localize="Form1095.C2016.partIEmployee"></h2>
-          <div><b data-localize="Form1095.C2016.lines1-6"></b> <span data-localize="Form1095.C2016.partIReports"></span> </div>
-          <div><b><span data-localize="Form1095.line"></span> 2.</b> <span data-localize="Form1095.C2016.Line2"></span> </div>
-          <div><div class="cautionIcon"><i class="fa fa-exclamation-triangle"></i><span data-localize="Form1095.caution"></span></div><span data-localize="Form1095.C2016.ifYouDoNot"></span></div>
-          <div data-localize="Form1095.C2016.partIATaxpayer"></div>
-          <div data-localize="Form1095.C2016.partIApplicable"></div>
-          <div><b data-localize="Form1095.C2016.lines7-13"></b> <span data-localize="Form1095.C2016.partILines7-13Reports"></span> </div>
-          <div><b><span data-localize="Form1095.line"></span> 10.</b> <span data-localize="Form1095.C2016.Line10"></span> </div>
+          <div>${sessionScope.languageJSON.Form1095.C2016.youAreReceiving}</div>
+          <div>${sessionScope.languageJSON.Form1095.C2016.inAdditionIfYou}</div>
+          <div>${sessionScope.languageJSON.Form1095.C2016.ifYourEmployer}</div>
+          <div><div class="wordTipIcon"><span>${sessionScope.languageJSON.Form1095.tip}</span></div>
+          <span>${sessionScope.languageJSON.Form1095.C2016.employersAreRequired}</span></div>
+          <h2>${sessionScope.languageJSON.Form1095.C2016.partIEmployee}</h2>
+          <div><b>${sessionScope.languageJSON.Form1095.C2016.lines16}</b> 
+            <span>${sessionScope.languageJSON.Form1095.C2016.partIReports}</span> </div>
+          <div><b><span>${sessionScope.languageJSON.Form1095.line}</span> 2.</b> 
+            <span>${sessionScope.languageJSON.Form1095.C2016.Line2}</span> </div>
+          <div><div class="cautionIcon"><i class="fa fa-exclamation-triangle"></i>
+            <span>${sessionScope.languageJSON.Form1095.caution}</span></div>
+            <span>${sessionScope.languageJSON.Form1095.C2016.ifYouDoNot}</span></div>
+          <div>${sessionScope.languageJSON.Form1095.C2016.partIATaxpayer}</div>
+          <div>${sessionScope.languageJSON.Form1095.C2016.partIApplicable}</div>
+          <div><b>${sessionScope.languageJSON.Form1095.C2016.lines713}</b> 
+            <span>${sessionScope.languageJSON.Form1095.C2016.partILines713Reports}</span> </div>
+          <div><b><span>${sessionScope.languageJSON.Form1095.line}</span> 10.</b> 
+            <span>${sessionScope.languageJSON.Form1095.C2016.Line10}</span> </div>
       </td>
       <td style="width: 50%" valign="top">
         
-        <div><b><span data-localize="Form1095.line"></span> 14.</b> <span data-localize="Form1095.C2016.Line14"></span> </div>
-        <div><b>1<span data-localize="Form1095.A"></span></b> <span data-localize="Form1095.C2016.1A"></span> </div>
-        <div><b>1<span data-localize="Form1095.B"></span></b> <span data-localize="Form1095.C2016.1B"></span> </div>
-        <div><b>1<span data-localize="Form1095.C"></span></b> <span data-localize="Form1095.C2016.1C"></span> </div>
-        <div><b>1<span data-localize="Form1095.D"></span></b> <span data-localize="Form1095.C2016.1D"></span> </div>
-        <div><b>1<span data-localize="Form1095.E"></span></b> <span data-localize="Form1095.C2016.1E"></span> </div>
-        <div><b>1<span data-localize="Form1095.F"></span></b> <span data-localize="Form1095.C2016.1F"></span> </div>
-        <div><b>1<span data-localize="Form1095.G"></span></b> <span data-localize="Form1095.C2016.1G"></span> </div>
-        <div><b>1<span data-localize="Form1095.H"></span></b> <span data-localize="Form1095.C2016.1H"></span> </div>
-        <div><b>1<span data-localize="Form1095.I"></span></b> <span data-localize="Form1095.C2016.1I"></span> </div>
-        <div><b>1<span data-localize="Form1095.J"></span></b> <span data-localize="Form1095.C2016.1J"></span> </div>
-        <div><b>1<span data-localize="Form1095.K"></span></b> <span data-localize="Form1095.C2016.1K"></span> </div>
-        <div><b>1<span data-localize="Form1095.line"></span> 15.</b> <span data-localize="Form1095.C2016.Line15"></span> </div>
-        <div><b>1<span data-localize="Form1095.line"></span> 16.</b> <span data-localize="Form1095.C2016.Line16"></span> </div>
-        <div data-localize="Form1095.C2016.partIIICoveredIndividuals"></div>
-        <div data-localize="Form1095.C2016.partIIIReportsTheSame"></div>
+        <div><b><span>${sessionScope.languageJSON.Form1095.line}</span> 14.</b> <span>${sessionScope.languageJSON.Form1095.C2016.Line14}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.A}</span></b> <span>${sessionScope.languageJSON.Form1095.C2016.oneA}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.B}</span></b> <span>${sessionScope.languageJSON.Form1095.C2016.oneB}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.C}</span></b> <span>${sessionScope.languageJSON.Form1095.C2016.oneC}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.D}</span></b> <span>${sessionScope.languageJSON.Form1095.C2016.oneD}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.E}</span></b> <span>${sessionScope.languageJSON.Form1095.C2016.oneE}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.F}</span></b> <span>${sessionScope.languageJSON.Form1095.C2016.oneF}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.G}</span></b> <span>${sessionScope.languageJSON.Form1095.C2016.oneG}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.H}</span></b> <span>${sessionScope.languageJSON.Form1095.C2016.oneH}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.I}</span></b> <span>${sessionScope.languageJSON.Form1095.C2016.oneI}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.J}</span></b> <span>${sessionScope.languageJSON.Form1095.C2016.oneJ}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.K}</span></b> <span>${sessionScope.languageJSON.Form1095.C2016.oneK}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.line}</span> 15.</b> <span>${sessionScope.languageJSON.Form1095.C2016.Line15}</span> </div>
+        <div><b>1<span>${sessionScope.languageJSON.Form1095.line}</span> 16.</b> <span>${sessionScope.languageJSON.Form1095.C2016.Line16}</span> </div>
+        <div>${sessionScope.languageJSON.Form1095.C2016.partIIICoveredIndividuals}</div>
+        <div>${sessionScope.languageJSON.Form1095.C2016.partIIIReportsTheSame}</div>
       </td>
   </tr>
 </table>

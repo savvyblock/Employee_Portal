@@ -1,7 +1,7 @@
 <table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
         <tr>
             <td style="width: 50%" valign="top">
-                    <h1 data-localize="w2Notice.2009.noticeToEmployee"></h1>
+                    <h1>${sessionScope.languageJSON.w2Notice.w2009.noticeToEmployee}</h1>
             </td>
             <td style="width: 50%" valign="top">
                     
@@ -11,36 +11,36 @@
             
                 <td style="width: 50%" valign="top">
                     <div>
-                    <b data-localize="w2Notice.2009.refund"></b> 
-                    <span data-localize="w2Notice.2009.box01-line-EvenIf"></span> 
+                    <b>${sessionScope.languageJSON.w2Notice.w2009.refund}</b> 
+                    <span>${sessionScope.languageJSON.w2Notice.w2009.box01lineEvenIf}</span> 
                 </div>
                 <div>
-                    <b data-localize="w2Notice.2009.box01-line-EarnedIncome"></b> 
-                    <span data-localize="w2Notice.2009.box01-line-YouMust"></span> 
+                    <b>${sessionScope.languageJSON.w2Notice.w2009.box01lineEarnedIncome}</b> 
+                    <span>${sessionScope.languageJSON.w2Notice.w2009.box01lineYouMust}</span> 
                 </div>
                 <div>
-                    <span data-localize="w2Notice.2009.box01-line-YouMay"></span> 
-                    <span data-localize="w2Notice.2009.box01-line-AnyEIC"></span> 
-                    <span data-localize="w2Notice.2009.box01-line-IfYouHaveAtLeastOne"></span> 
+                    <span>${sessionScope.languageJSON.w2Notice.w2009.box01lineYouMay}</span> 
+                    <span>${sessionScope.languageJSON.w2Notice.w2009.box01lineAnyEIC}</span> 
+                    <span>${sessionScope.languageJSON.w2Notice.w2009.box01lineIfYouHaveAtLeastOne}</span> 
                 </div>
                 <div>
-                    <b data-localize="w2Notice.2009.box01-line-ClergyAndReligious"></b>
-                    <span data-localize="w2Notice.2009.box01-line-IfYouAreNot"></span> 
+                    <b>${sessionScope.languageJSON.w2Notice.w2009.box01lineClergyAndReligious}</b>
+                    <span>${sessionScope.languageJSON.w2Notice.w2009.box01lineIfYouAreNot}</span> 
                 </div>
             </td>
             <td style="width: 50%" valign="top">
                     <div>
-                            <b data-localize="w2Notice.2009.corrections"></b>
-                            <span data-localize="w2Notice.2009.box01-line-IfYourName"></span> 
+                            <b>${sessionScope.languageJSON.w2Notice.w2009.corrections}</b>
+                            <span>${sessionScope.languageJSON.w2Notice.w2009.box01lineIfYourName}</span> 
                         </div>
         
                         <div>
-                            <b data-localize="w2Notice.2009.box01-line-CreditForExcessTaxes"></b> 
-                            <span data-localize="w2Notice.2009.box01-line-IfYouHad"></span> 
+                            <b>${sessionScope.languageJSON.w2Notice.w2009.box01lineCreditForExcessTaxes}</b> 
+                            <span>${sessionScope.languageJSON.w2Notice.w2009.box01lineIfYouHad}</span> 
                         </div>
                         
                         <div>
-                                <i data-localize="w2Notice.2009.box01-line-AlsoSeeInstructions"></i> 
+                                <i>${sessionScope.languageJSON.w2Notice.w2009.box01lineAlsoSeeInstructions}</i> 
                         </div>
             </td>
         </tr>

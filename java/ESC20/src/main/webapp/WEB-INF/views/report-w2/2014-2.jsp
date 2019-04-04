@@ -4,9 +4,9 @@
 <table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
         <tr>
             <td style="width: 50%" valign="top">
-                <h1 data-localize="w2Notice.2014.instructionsForEmployee">
-                </h1>
-                (<i data-localize="w2Notice.2014.alsoSeeNoticeToEmployee"></i>)
+                <h1 data-localize="w2Notice.w2014.instructionsForEmployee">
+               ${sessionScope.languageJSON.} </h1>
+                (<i data-localize="w2Notice.w2014.alsoSeeNoticeToEmployee">${sessionScope.languageJSON.}</i>)
             </td>
             <td style="width: 50%" valign="top">
                 &nbsp;
@@ -14,56 +14,56 @@
         </tr>
         <tr>
             <td style="width: 50%" valign="top">
-                    <div><b><span data-localize="w2Notice.box"></span>1</b>. 
-                        <span data-localize="w2Notice.2014.box-1"></span>
+                    <div><b><span data-localize="w2Notice.box">${sessionScope.languageJSON.}</span>1</b>. 
+                        <span data-localize="w2Notice.w2014.box1">${sessionScope.languageJSON.}</span>
                         </div>
-                    <div><b><span data-localize="w2Notice.box"></span>2</b>. 
-                        <span data-localize="w2Notice.2014.box-2"></span>
+                    <div><b><span data-localize="w2Notice.box">${sessionScope.languageJSON.}</span>2</b>. 
+                        <span data-localize="w2Notice.w2014.box2">${sessionScope.languageJSON.}</span>
                         </div>
-                    <div><b><span data-localize="w2Notice.box"></span>5</b>. 
-                        <span data-localize="w2Notice.2014.box-5"></span>
+                    <div><b><span data-localize="w2Notice.box">${sessionScope.languageJSON.}</span>5</b>. 
+                        <span data-localize="w2Notice.w2014.box5">${sessionScope.languageJSON.}</span>
                         </div>
-                    <div><b><span data-localize="w2Notice.box"></span>6</b>. 
-                        <span data-localize="w2Notice.2014.box-6"></span>
+                    <div><b><span data-localize="w2Notice.box">${sessionScope.languageJSON.}</span>6</b>. 
+                        <span data-localize="w2Notice.w2014.box6">${sessionScope.languageJSON.}</span>
                         </div>
-                    <div><b><span data-localize="w2Notice.box"></span>8</b>. 
-                        <span data-localize="w2Notice.2014.box-8"></span>
+                    <div><b><span data-localize="w2Notice.box">${sessionScope.languageJSON.}</span>8</b>. 
+                        <span data-localize="w2Notice.w2014.box8">${sessionScope.languageJSON.}</span>
                         </div>
-                    <div><span data-localize="w2Notice.2014.youMustFile"></span>
+                    <div><span data-localize="w2Notice.w2014.youMustFile">${sessionScope.languageJSON.}</span>
                             </div>
-                    <div><b><span data-localize="w2Notice.box"></span>10</b>.
-                        <span data-localize="w2Notice.2014.box-10"></span> 
+                    <div><b><span data-localize="w2Notice.box">${sessionScope.languageJSON.}</span>10</b>.
+                        <span data-localize="w2Notice.w2014.box10">${sessionScope.languageJSON.}</span> 
                         </div>
-                    <div><b><span data-localize="w2Notice.box"></span>11</b>.
-                        <span data-localize="w2Notice.2014.box-11"></span> 
+                    <div><b><span data-localize="w2Notice.box">${sessionScope.languageJSON.}</span>11</b>.
+                        <span data-localize="w2Notice.w2014.box11">${sessionScope.languageJSON.}</span> 
                         </div>
                     
             </td>
             <td style="width: 50%" valign="top">
-                    <div><b><span data-localize="w2Notice.box"></span>12</b>. 
-                        <span data-localize="w2Notice.2014.box-12"></span>
+                    <div><b><span data-localize="w2Notice.box">${sessionScope.languageJSON.}</span>12</b>. 
+                        <span data-localize="w2Notice.w2014.box12">${sessionScope.languageJSON.}</span>
                         </div>
-                    <div data-localize="w2Notice.2014.howeverIfYouWere"> </div>
-                    <div><b data-localize="w2Notice.note"></b>. 
-                        <span data-localize="w2Notice.2014.ifAYearFollows"></span>
+                    <div data-localize="w2Notice.w2014.howeverIfYouWere">${sessionScope.languageJSON.}</div>
+                    <div><b data-localize="w2Notice.note">${sessionScope.languageJSON.}</b>. 
+                        <span data-localize="w2Notice.w2014.ifAYearFollows">${sessionScope.languageJSON.}</span>
                        
                     </div>
                     <div>
-                        <b data-localize="w2Notice.A"></b>-<span data-localize="w2Notice.2014.A"></span>
+                        <b data-localize="w2Notice.A">${sessionScope.languageJSON.}</b>-<span data-localize="w2Notice.w2014.A">${sessionScope.languageJSON.}</span>
                     </div>
                     <div>
-                        <b data-localize="w2Notice.B"></b>-<span data-localize="w2Notice.2014.B"></span>
+                        <b data-localize="w2Notice.B">${sessionScope.languageJSON.}</b>-<span data-localize="w2Notice.w2014.B">${sessionScope.languageJSON.}</span>
                     </div>
                     <div>
-                        <b data-localize="w2Notice.C"></b>-<span data-localize="w2Notice.2014.C"></span>
+                        <b data-localize="w2Notice.C">${sessionScope.languageJSON.}</b>-<span data-localize="w2Notice.w2014.C">${sessionScope.languageJSON.}</span>
                     </div>
                     <div>
-                        <b data-localize="w2Notice.D"></b>-<span data-localize="w2Notice.2014.D"></span>
+                        <b data-localize="w2Notice.D">${sessionScope.languageJSON.}</b>-<span data-localize="w2Notice.w2014.D">${sessionScope.languageJSON.}</span>
                     </div>
                     <div>
-                        <b data-localize="w2Notice.E"></b>-<span data-localize="w2Notice.2014.E"></span>
+                        <b data-localize="w2Notice.E">${sessionScope.languageJSON.}</b>-<span data-localize="w2Notice.w2014.E">${sessionScope.languageJSON.}</span>
                     </div>
-                    (<i data-localize="w2Notice.2014.continuedOnBackOfCopy"></i>)
+                    (<i data-localize="w2Notice.w2014.continuedOnBackOfCopy">${sessionScope.languageJSON.}</i>)
             </td>
         </tr>
     </table>
@@ -73,9 +73,9 @@
     <table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
         <tr>
             <td style="width: 50%" valign="top">
-                    <h1 data-localize="w2Notice.2014.instructionsForEmployee">
-                        </h1>
-                        (<i data-localize="w2Notice.2014.continuedFromBackOfCopy"></i>)
+                    <h1 data-localize="w2Notice.w2014.instructionsForEmployee">
+                       ${sessionScope.languageJSON.} </h1>
+                        (<i data-localize="w2Notice.w2014.continuedFromBackOfCopy">${sessionScope.languageJSON.}</i>)
             </td>
             <td style="width: 50%" valign="top">
                 &nbsp;
@@ -83,39 +83,39 @@
         </tr>
         <tr>
                 <td style="width: 50%" valign="top">
-                    <div><b data-localize="w2Notice.F"></b><span data-localize="w2Notice.2014.F"></span></div>
-                    <div><b data-localize="w2Notice.G"></b><span data-localize="w2Notice.2014.G"></span></div>
-                    <div><b data-localize="w2Notice.H"></b><span data-localize="w2Notice.2014.H"></span></div>
-                    <div><b data-localize="w2Notice.J"></b><span data-localize="w2Notice.2014.J"></span></div>
-                    <div><b data-localize="w2Notice.K"></b><span data-localize="w2Notice.2014.K"></span></div>
-                    <div><b data-localize="w2Notice.L"></b><span data-localize="w2Notice.2014.L"></span></div>
-                    <div><b data-localize="w2Notice.M"></b><span data-localize="w2Notice.2014.M"></span></div>
-                    <div><b data-localize="w2Notice.N"></b><span data-localize="w2Notice.2014.N"></span></div>
-                    <div><b data-localize="w2Notice.P"></b><span data-localize="w2Notice.2014.P"></span></div>
-                    <div><b data-localize="w2Notice.Q"></b><span data-localize="w2Notice.2014.Q"></span></div>
-                    <div><b data-localize="w2Notice.R"></b><span data-localize="w2Notice.2014.R"></span></div>
-                    <div><b data-localize="w2Notice.S"></b><span data-localize="w2Notice.2014.S"></span></div>
-                    <div><b data-localize="w2Notice.T"></b><span data-localize="w2Notice.2014.T"></span></div>
-                    <div><b data-localize="w2Notice.V"></b><span data-localize="w2Notice.2014.V"></span></div>
-                    <div><b data-localize="w2Notice.W"></b><span data-localize="w2Notice.2014.W"></span></div>
+                    <div><b data-localize="w2Notice.F">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.F">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.G">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.G">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.H">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.H">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.J">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.J">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.K">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.K">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.L">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.L">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.M">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.M">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.N">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.N">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.P">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.P">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.Q">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.Q">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.R">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.R">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.S">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.S">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.T">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.T">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.V">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.V">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.W">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.W">${sessionScope.languageJSON.}</span></div>
                 </td>
                 <td style="width: 50%" valign="top">
-                    <div><b data-localize="w2Notice.Y"></b><span data-localize="w2Notice.2014.Y"></span></div>
-                    <div><b data-localize="w2Notice.Z"></b><span data-localize="w2Notice.2014.Z"></span></div>
-                    <div><b data-localize="w2Notice.AA"></b><span data-localize="w2Notice.2014.AA"></span></div>
-                    <div><b data-localize="w2Notice.BB"></b><span data-localize="w2Notice.2014.BB"></span></div>
-                    <div><b data-localize="w2Notice.DD"></b><span data-localize="w2Notice.2014.DD"></span></div>
-                    <div><b data-localize="w2Notice.EE"></b><span data-localize="w2Notice.2014.EE"></span></div>
-                    <div><b><span data-localize="w2Notice.box"></span>13</b>.<span data-localize="w2Notice.2014.box-13"></span></div>
-                    <div><b><span data-localize="w2Notice.box"></span>14</b>.</div>
-                    <div><b data-localize="w2Notice.HEALTH"></b> – <span data-localize="w2Notice.2014.HEALTH"></span></div>
-                    <div><b data-localize="w2Notice.NTA"></b> – <span data-localize="w2Notice.2014.NTA"></span></div>
-                    <div><b data-localize="w2Notice.TXA"></b> – <span data-localize="w2Notice.2014.TXA"></span></div>
-                    <div><b data-localize="w2Notice.CAF"></b> – <span data-localize="w2Notice.2014.CAF"></span></div>
-                    <div><b data-localize="w2Notice.TRS"></b> – <span data-localize="w2Notice.2014.TRS"></span></div>
-                    <div><b data-localize="w2Notice.401A"></b> – <span data-localize="w2Notice.2014.401A"></span></div>
-                    <div><b data-localize="w2Notice.TFB"></b> – <span data-localize="w2Notice.2014.TFB"></span></div>
-                    <div><b data-localize="w2Notice.note"></b>. <span data-localize="w2Notice.2014.keepCopyC"></span></div>
+                    <div><b data-localize="w2Notice.Y">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.Y">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.Z">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.Z">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.AA">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.AA">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.BB">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.BB">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.DD">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.DD">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.EE">${sessionScope.languageJSON.}</b><span data-localize="w2Notice.w2014.EE">${sessionScope.languageJSON.}</span></div>
+                    <div><b><span data-localize="w2Notice.box">${sessionScope.languageJSON.}</span>13</b>.<span data-localize="w2Notice.w2014.box13">${sessionScope.languageJSON.}</span></div>
+                    <div><b><span data-localize="w2Notice.box">${sessionScope.languageJSON.}</span>14</b>.</div>
+                    <div><b data-localize="w2Notice.HEALTH">${sessionScope.languageJSON.}</b> – <span data-localize="w2Notice.w2014.HEALTH">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.NTA">${sessionScope.languageJSON.}</b> – <span data-localize="w2Notice.w2014.NTA">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.TXA">${sessionScope.languageJSON.}</b> – <span data-localize="w2Notice.w2014.TXA">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.CAF">${sessionScope.languageJSON.}</b> – <span data-localize="w2Notice.w2014.CAF">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.TRS">${sessionScope.languageJSON.}</b> – <span data-localize="w2Notice.w2014.TRS">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.A401">${sessionScope.languageJSON.}</b> – <span data-localize="w2Notice.w2014.A401">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.TFB">${sessionScope.languageJSON.}</b> – <span data-localize="w2Notice.w2014.TFB">${sessionScope.languageJSON.}</span></div>
+                    <div><b data-localize="w2Notice.note">${sessionScope.languageJSON.}</b>. <span data-localize="w2Notice.w2014.keepCopyC">${sessionScope.languageJSON.}</span></div>
                 </td>
             </tr>
     </table>

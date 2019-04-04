@@ -1,7 +1,7 @@
 <table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
         <tr>
             <td style="width: 50%" valign="top">
-                    <h1 data-localize="w2Notice.2012.noticeToEmployee"></h1>
+                    <h1 data-localize="w2Notice.w2012.noticeToEmployee">${sessionScope.languageJSON.}</h1>
             </td>
             <td style="width: 50%" valign="top">
                     
@@ -11,37 +11,37 @@
             
                 <td style="width: 50%" valign="top">
                     <div>
-                    <b data-localize="w2Notice.2012.refund"></b>. 
-                    <span data-localize="w2Notice.2012.box01-line-EvenIf"></span> 
+                    <b data-localize="w2Notice.w2012.refund">${sessionScope.languageJSON.}</b>. 
+                    <span data-localize="w2Notice.w2012.box01lineEvenIf">${sessionScope.languageJSON.}</span> 
                 </div>
                 <div>
-                    <b data-localize="w2Notice.2012.box01-line-EarnedIncome"></b>. 
-                    <span data-localize="w2Notice.2012.box01-line-YouMay"></span> 
-                    <span data-localize="w2Notice.2012.box01-line-AnyEIC"></span> 
+                    <b data-localize="w2Notice.w2012.box01lineEarnedIncome">${sessionScope.languageJSON.}</b>. 
+                    <span data-localize="w2Notice.w2012.box01lineYouMay">${sessionScope.languageJSON.}</span> 
+                    <span data-localize="w2Notice.w2012.box01lineAnyEIC">${sessionScope.languageJSON.}</span> 
                 </div>
                 <div>
-                    <b data-localize="w2Notice.2012.box01-line-ClergyAndReligious"></b>. 
-                    <span data-localize="w2Notice.2012.box01-line-IfYouAreNot"></span> 
+                    <b data-localize="w2Notice.w2012.box01lineClergyAndReligious">${sessionScope.languageJSON.}</b>. 
+                    <span data-localize="w2Notice.w2012.box01lineIfYouAreNot">${sessionScope.languageJSON.}</span> 
                 </div>
             </td>
             <td style="width: 50%" valign="top">
                     <div>
-                            <b data-localize="w2Notice.2012.corrections"></b>. 
-                            <span data-localize="w2Notice.2012.box01-line-IfYourName"></span> 
-                            <i data-localize="w2Notice.2012.box01-line-socialSecurity"></i> 
+                            <b data-localize="w2Notice.w2012.corrections">${sessionScope.languageJSON.}</b>. 
+                            <span data-localize="w2Notice.w2012.box01lineIfYourName">${sessionScope.languageJSON.}</span> 
+                            <i data-localize="w2Notice.w2012.box01linesocialSecurity">${sessionScope.languageJSON.}</i> 
                         </div>
                         <div>
-                                <b data-localize="w2Notice.2012.box01-line-costOfEmployer"></b>. 
-                                <span data-localize="w2Notice.2012.box01-line-theReportInBox12"></span> 
-                                <span data-localize="w2Notice.2012.box01-line-theAmountReported"></span>
+                                <b data-localize="w2Notice.w2012.box01linecostOfEmployer">${sessionScope.languageJSON.}</b>. 
+                                <span data-localize="w2Notice.w2012.box01linetheReportInBox12">${sessionScope.languageJSON.}</span> 
+                                <span data-localize="w2Notice.w2012.box01linetheAmountReported">${sessionScope.languageJSON.}</span>
                             </div>
                         <div>
-                            <b data-localize="w2Notice.2012.box01-line-CreditForExcessTaxes"></b>. 
-                            <span data-localize="w2Notice.2012.box01-line-IfYouHad"></span> 
+                            <b data-localize="w2Notice.w2012.box01lineCreditForExcessTaxes">${sessionScope.languageJSON.}</b>. 
+                            <span data-localize="w2Notice.w2012.box01lineIfYouHad">${sessionScope.languageJSON.}</span> 
                         </div>
                         
                         <div>
-                                <i data-localize="w2Notice.2012.box01-line-AlsoSeeInstructions"></i> 
+                                <i data-localize="w2Notice.w2012.box01lineAlsoSeeInstructions">${sessionScope.languageJSON.}</i> 
                         </div>
             </td>
         </tr>
