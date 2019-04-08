@@ -43,7 +43,7 @@ $(function() {
         }
     })
     // initLocalize(language)
-    setGlobal();
+    // setGlobal();
 })
 function setGlobal(){
     if (getCookie(name)&&getCookie(name) != '') {
@@ -62,7 +62,18 @@ function chgLang() {
     var value = $('#globalSet')
         .children('option:selected')
         .val();
-    SetCookie(name, value);
+    //SetCookie(name, value);
+    $.ajax({
+        type: 'post',
+        url: urlMain + '/changeLanguage',
+        cache: false,
+        data: {csrfmiddlewaretoken: $("#csrfmiddlewaretoken").val(), language:value},
+        dataType: 'json',
+        success: function(data) {
+        	alert('data success');
+        	location.reload(true);
+        }
+   });
 }
 function SetCookie(name, value) {
     var Days = 30; // cookie will stay 30 days

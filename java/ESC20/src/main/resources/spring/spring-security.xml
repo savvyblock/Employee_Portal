@@ -22,6 +22,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		<security:intercept-url pattern="/earnings/earningsUnprotectedPDF" access="permitAll"/>
 		<security:intercept-url pattern="/w2Information/w2InformationUnprotectedPDF" access="permitAll"/>
 		<security:intercept-url pattern="/information1095/information1095UnprotectedPDF" access="permitAll"/>
+		<security:intercept-url pattern="/changeLanguage" access="permitAll"/>
 		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 		<security:access-denied-handler ref="accessDeniedHandler"/>
 		<security:form-login login-page="/login"
