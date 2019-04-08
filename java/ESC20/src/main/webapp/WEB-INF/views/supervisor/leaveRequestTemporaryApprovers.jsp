@@ -91,19 +91,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <tr class="listTr">
                                                             <td
                                                                 class="countIndex"
+                                                                data-title="${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}"
                                                                 scope="${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}"
                                                             >
                                                                 ${status.index + 1}
                                                             </td>
                                                             <td class="empNumber"
+                                                            data-title="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}"
                                                             scope="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}"
                                                             >
                                                             <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}" aria-label="${sessionScope.languageJSON.accessHint.employeeId}">
                                                             ${tem.tmpApprvrEmpNbr}-${tem.approverName}
                                                         </td>
-                                                            <td class="empFrom" scope="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}">${tem.datetimeFrom}</td>
-                                                            <td class="empTo" scope="${sessionScope.languageJSON.setTemporaryApprovers.toDate}">${tem.datetimeTo}</td>
-                                                            <td scope="${sessionScope.languageJSON.setTemporaryApprovers.delete}">
+                                                            <td class="empFrom" data-title="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}" scope="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}">${tem.datetimeFrom}</td>
+                                                            <td class="empTo" data-title="${sessionScope.languageJSON.setTemporaryApprovers.toDate}" scope="${sessionScope.languageJSON.setTemporaryApprovers.toDate}">${tem.datetimeTo}</td>
+                                                            <td data-title="${sessionScope.languageJSON.setTemporaryApprovers.delete}" scope="${sessionScope.languageJSON.setTemporaryApprovers.delete}">
                                                                 <button
                                                                     type="button" role="button"
                                                                     class="a-btn deleteApprover"
