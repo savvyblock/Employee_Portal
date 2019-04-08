@@ -124,6 +124,7 @@ var userNotRegisteredValidator = "${sessionScope.languageJSON.validator.userNotR
 var pictureChooseValidator = "${sessionScope.languageJSON.validator.pictureChoose}";
 var availableErrorValidator = "${sessionScope.languageJSON.validator.availableError}";
 
+var languageSet = "${sessionScope.language}"
 </script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/icheck.min.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/foundation-datepicker.js"></script>

@@ -15,7 +15,6 @@ $(function() {
         format: 'mm/dd/yyyy',
         language: initialLocaleCode
     })
-    setGlobal()
     if (chain && chain != '' && chain.length > 1) {
         $('#prevLevel')
             .removeClass('disabled')
@@ -69,7 +68,6 @@ function initList() {
                             '</td>'+
                         '</tr>'
         $('#leaveOverviewList tbody').html(noResult)
-        setGlobal()
     } else {
         $('#leaveOverviewList tbody tr').removeClass('hide')
     }

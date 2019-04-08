@@ -48,7 +48,6 @@ $(document).ready(
 				console.log(ev)
 			})
 			.data('datepicker')
-			setGlobal()
 			$(".sureDelete").click(function(){
 				$("#deleteForm")[0].submit();
 			})

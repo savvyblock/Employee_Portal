@@ -12712,7 +12712,7 @@ var Toolbar = /** @class */ (function () {
                                     .removeClass(theme.getClass('stateDown')); // if mouseleave happens before mouseup
                             });
                             groupChildren = groupChildren.add(buttonEl);
-                            setGlobal();
+                            // setGlobal();
                         }
                     }
                 });

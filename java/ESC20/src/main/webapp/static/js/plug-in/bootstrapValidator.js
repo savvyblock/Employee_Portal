@@ -277,7 +277,7 @@
                             .html(this._getMessage(field, validatorName))
                             .appendTo($message);
                             // console.log(this._getMessage(field, validatorName))
-                        setGlobal()
+                        // setGlobal()
                     }
 
                     // Prepare the validator events
@@ -810,7 +810,7 @@
                 .attr('aria-atomic', 'true')
                 // .attr('data-localize',message)
                 .html(message);
-                setGlobal()
+                // setGlobal()
             });
         },
         

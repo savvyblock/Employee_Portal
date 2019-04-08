@@ -46,7 +46,6 @@ $(document).ready(function() {
             }
         })
         .data('datepicker')
-    setGlobal()
     $("#retrieve").click(function(){
         var fromValue = $("#SearchStartDate").val()
         var toValue = $("#SearchEndDate").val()

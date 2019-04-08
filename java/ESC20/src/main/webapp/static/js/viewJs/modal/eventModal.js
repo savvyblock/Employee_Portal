@@ -53,7 +53,6 @@ $(function() {
         })
         .on('changeDate', function(ev) {})
         .data('datepicker')
-        setGlobal()
 })
 function changeLeaveType(){
     var leaveType = $("#modalLeaveType").val()

@@ -42,8 +42,15 @@ $(function() {
             $(this).val('')
         }
     })
-    // initLocalize(language)
-    // setGlobal();
+    console.log(languageSet)
+    if(languageSet&&languageSet!=''){
+        $("#globalSet").val(languageSet)
+        initialLocaleCode = languageSet
+    }else{
+        $("#globalSet").val(language)
+        initialLocaleCode = language
+    }
+    
 })
 function setGlobal(){
     if (getCookie(name)&&getCookie(name) != '') {
@@ -59,9 +66,8 @@ function setGlobal(){
 }
 
 function chgLang() {
-    var value = $('#globalSet')
-        .children('option:selected')
-        .val();
+    var value = $('#globalSet').val();
+    console.log(value)
     //SetCookie(name, value);
     $.ajax({
         type: 'post',
@@ -70,7 +76,7 @@ function chgLang() {
         data: {csrfmiddlewaretoken: $("#csrfmiddlewaretoken").val(), language:value},
         dataType: 'json',
         success: function(data) {
-        	alert('data success');
+        	// alert('data success');
         	location.reload(true);
         }
    });

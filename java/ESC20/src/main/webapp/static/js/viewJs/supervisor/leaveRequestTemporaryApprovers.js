@@ -374,7 +374,6 @@ function initDateControl() {
             })
             .data('datepicker')
     })
-    setGlobal()
 }
 function changeLevel() {
     var selectNum = $('#selectEmpNbr').val()

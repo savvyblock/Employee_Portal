@@ -313,14 +313,12 @@ $(function() {
                     $('#bankTable tbody').append(noResult)
                 }
 
-                setGlobal()
             },
             error: function(e) {
                 console.log(e)
                 $('#bankTable tbody').empty()
                 var noResult = '<tr><td colspan="2"> <span>'+noDataLabel+'</span></td></tr>'
                 $('#bankTable tbody').append(noResult)
-                setGlobal()
             }
         })
     })
