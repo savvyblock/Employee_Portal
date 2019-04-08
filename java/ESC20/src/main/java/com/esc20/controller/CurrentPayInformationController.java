@@ -74,9 +74,11 @@ public class CurrentPayInformationController{
 	
 	@RequestMapping("exportPDF")
 	public void exportPDF(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		byte[] pdf = PDFUtil.convertHtmlToPdf("http://localhost:8080/txeisDemo/currentPayInformation/currentPayInformationUnprotectedPDF", request);
+		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
+		System.out.println("prefix" + strBackUrl);
+		byte[] pdf = PDFUtil.getCurrentPayInformationPDF(strBackUrl+"/currentPayInformation/currentPayInformationUnprotectedPDF", request);
 		response.reset();
-		response.setHeader("Content-Disposition", "attachment; filename=\"download.pdf\"");
+		response.setHeader("Content-Disposition", "attachment; filename=\"Current Pay Information.pdf\"");
 		response.setContentType("application/octet-stream;charset=UTF-8");
 		OutputStream out = response.getOutputStream();
 		out.write(pdf);

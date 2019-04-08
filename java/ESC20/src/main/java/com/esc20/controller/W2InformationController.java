@@ -1,11 +1,17 @@
 package com.esc20.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,12 +21,23 @@ import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrThirdPartySickPay;
 import com.esc20.model.BhrW2;
+import com.esc20.nonDBModels.Account;
+import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.District;
+import com.esc20.nonDBModels.EmployeeInfo;
+import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.PayInfo;
+import com.esc20.nonDBModels.Stipend;
 import com.esc20.nonDBModels.W2Print;
+import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
+import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
 import com.esc20.util.NumberUtil;
+import com.esc20.util.PDFUtil;
+
+import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/w2Information")
@@ -28,6 +45,9 @@ public class W2InformationController{
 
 	@Autowired
 	private InquiryService service;
+	
+    @Autowired
+    private IndexService indexService;
 	
 	private final String module = "W2 Information";
 	
@@ -130,6 +150,41 @@ public class W2InformationController{
 		mav = this.getW2InformationByYear(req, year, isSuccess);
 		mav.addObject("isUpdate", true);
 		mav.addObject("isSuccess", isSuccess);
+		return mav;
+	}
+	
+	@RequestMapping("exportPDF")
+	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
+		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
+		System.out.println("prefix" + strBackUrl);
+		byte[] pdf = PDFUtil.getW2InformationPDF(strBackUrl+"/w2Information/w2InformationUnprotectedPDF", request, year);
+		response.reset();
+		response.setHeader("Content-Disposition", "attachment; filename=\"W2 Information for "+ year +".pdf\"");
+		response.setContentType("application/octet-stream;charset=UTF-8");
+		OutputStream out = response.getOutputStream();
+		out.write(pdf);
+		out.flush();
+	}
+	
+	@RequestMapping("w2InformationUnprotectedPDF")
+	public ModelAndView w2InformationUnprotectedPDF(HttpServletRequest req, String empNbr, String districtId,String language,String year) throws IOException {
+		DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+districtId);
+		HttpSession session = req.getSession();
+		ModelAndView mav = new ModelAndView();
+		String employeeNumber = empNbr;
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(empNbr);
+		session.setAttribute("userDetail", userDetail);
+		District districtInfo = this.indexService.getDistrict(districtId);
+		session.setAttribute("district", districtInfo);
+		Options options = this.indexService.getOptions();
+		session.setAttribute("options", options);
+		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
+		File file = new File(path);
+		String input = FileUtils.readFileToString(file, "UTF-8");
+		JSONObject jsonObject = JSONObject.fromObject(input);
+		req.getSession().setAttribute("languageJSON", jsonObject);
+		BhrW2 w2Info = this.service.getW2Info(employeeNumber, year);
+		mav = setW2ValuesByCalYr(session, mav, employeeNumber, w2Info, year, false);
 		return mav;
 	}
 }

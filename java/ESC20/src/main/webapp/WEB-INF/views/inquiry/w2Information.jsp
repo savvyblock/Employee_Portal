@@ -24,16 +24,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <button class="btn btn-primary disabled"  disabled>${sessionScope.languageJSON.label.w2Consent}</button>
                                     </c:if>
                                     <c:if test="${selectedYear >= '2009' && selectedYear <= sessionScope.options.w2Latest}">
-                                        <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="${sessionScope.languageJSON.label.exportPDF}" aria-label="${sessionScope.languageJSON.label.exportPDF}">
-                                            <i class="fa fa-file-pdf-o"></i>
-                                        </button>    
-                                        <button class="btn btn-primary" onclick="doPrint()" >
-                                                ${sessionScope.languageJSON.label.print}
-                                        </button>
+                                        <form class="no-print" action="exportPDF" method="POST">
+											<input type="hidden" name="${_csrf.parameterName}"
+												value="${_csrf.token}" />
+											<input type="hidden" name="year"
+												value="${selectedYear}" />
+											<button type="submit" role="button" class="btn btn-primary download-pdf"
+												aria-label="${sessionScope.languageJSON.label.exportPDF}"><i class="fa fa-file-pdf-o"></i></button>
+										</form>
                                     </c:if>
                                 </div>
                             </div>
-                            <div class="content-white EMP-detail w-2">
+                            <div class="toPrint content-white EMP-detail w-2">
                                 <div class="exportPDFBox">
 
                                 </div>

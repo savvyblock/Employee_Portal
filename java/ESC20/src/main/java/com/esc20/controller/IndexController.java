@@ -1,5 +1,7 @@
 package com.esc20.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
@@ -63,4 +66,17 @@ public class IndexController {
         return mav;
     }
 
+    @RequestMapping(value = "changeLanguage", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Boolean> changeLanguage(HttpServletRequest req, String language) throws IOException{
+    	Map<String, Boolean> res = new HashMap<>();
+    	req.getSession().setAttribute("language",language);
+		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
+		File file = new File(path);
+		String input = FileUtils.readFileToString(file, "UTF-8");
+		JSONObject jsonObject = JSONObject.fromObject(input);
+		req.getSession().setAttribute("languageJSON", jsonObject);
+		res.put("success", true);
+	    return res;
+    }
 }
