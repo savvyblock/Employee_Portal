@@ -29,17 +29,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             disabled
                                            >${sessionScope.languageJSON.label.consent1095}</button>
                                     </c:if>
-                                    <c:if test="${sessionScope.options.enable1095 == true && selectedYear <= sessionScope.options.w2Latest }">
-                                    <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="${sessionScope.languageJSON.label.exportPDF}" aria-label="${sessionScope.languageJSON.label.exportPDF}">
-                                            <i class="fa fa-file-pdf-o"></i>
-                                        </button>    
-                                    <button class="btn btn-primary" onclick="doPrint()">
-                                            ${sessionScope.languageJSON.label.print}
-                                    </button>
-                                </c:if>
+                                    <form class="no-print" action="exportPDF" method="POST">
+											<input type="hidden" name="${_csrf.parameterName}"
+												value="${_csrf.token}" />
+											<input type="hidden" name="year" value="${selectedYear}" />
+											<input type="hidden" name="type" value="${type}" />
+											<input type="hidden" name="BPageNo" value="${BPageNo}" />
+											<input type="hidden" name="CPageNo" value="${CPageNo}" />
+											<input type="hidden" name="sortOrder" value="${sortOrder}" />
+											<input type="hidden" name="sortBy" value="${sortBy}" />
+											<button type="submit" role="button" class="btn btn-primary download-pdf"
+												aria-label="${sessionScope.languageJSON.label.exportPDF}"><i class="fa fa-file-pdf-o"></i></button>
+									</form>
                                 </div>
                             </div>
-                            <div class="content-white EMP-detail info-1095">
+                            <div class="toPrint content-white EMP-detail info-1095">
                                 <div class="exportPDFBox"></div>
                                 <c:if test="${isUpdate && isSuccess}">
                                     <span class="error-hint" role="alert" aria-atomic="true">

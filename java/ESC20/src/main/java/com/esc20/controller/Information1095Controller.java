@@ -1,12 +1,17 @@
 package com.esc20.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
@@ -33,10 +38,15 @@ import com.esc20.nonDBModels.PayDate;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.Stipend;
 import com.esc20.nonDBModels.W2Print;
+import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
+import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
 import com.esc20.util.NumberUtil;
+import com.esc20.util.PDFUtil;
 import com.esc20.util.StringUtil;
+
+import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/information1095")
@@ -45,6 +55,9 @@ public class Information1095Controller{
 	@Autowired
 	private InquiryService service;
 
+    @Autowired
+    private IndexService indexService;
+	
 	private final String module = "1095 Information";
 	
 	@RequestMapping("information1095")
@@ -181,6 +194,44 @@ public class Information1095Controller{
 		mav.addObject("CPageNo", CPageNo);
 		mav.addObject("BTotal", BTotal);
 		mav.addObject("CTotal", CTotal);
+		mav.addObject("sortBy", sortBy);
+		mav.addObject("sortOrder", sortOrder);
+		return mav;
+	}
+	
+	@RequestMapping("exportPDF")
+	public void exportPDF(HttpServletRequest request, HttpServletResponse response,  String year, Integer BPageNo, Integer CPageNo,
+			String sortBy, String sortOrder, String type) throws Exception {
+		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
+		System.out.println("prefix" + strBackUrl);
+		byte[] pdf = PDFUtil.get1095InformationPDF(strBackUrl+"/information1095/information1095UnprotectedPDF", request, year,BPageNo,CPageNo,sortBy,sortOrder,type);
+		response.reset();
+		response.setHeader("Content-Disposition", "attachment; filename=\"1095 Information for "+ year +" type "+ type +".pdf\"");
+		response.setContentType("application/octet-stream;charset=UTF-8");
+		OutputStream out = response.getOutputStream();
+		out.write(pdf);
+		out.flush();
+	}
+	
+	@RequestMapping("information1095UnprotectedPDF")
+	public ModelAndView information1095UnprotectedPDF(HttpServletRequest req, String empNbr, String districtId,String language, String year, String BPageNo, String CPageNo,
+			String sortBy, String sortOrder, String type) throws IOException {
+		DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+districtId);
+		HttpSession session = req.getSession();
+		ModelAndView mav = new ModelAndView();
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(empNbr);
+		session.setAttribute("userDetail", userDetail);
+		District districtInfo = this.indexService.getDistrict(districtId);
+		session.setAttribute("district", districtInfo);
+		Options options = this.indexService.getOptions();
+		session.setAttribute("options", options);
+		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
+		File file = new File(path);
+		String input = FileUtils.readFileToString(file, "UTF-8");
+		JSONObject jsonObject = JSONObject.fromObject(input);
+		session.setAttribute("languageJSON", jsonObject);
+		mav.setViewName("/inquiry/information1095");
+		mav = init1095(mav, session, year, Integer.parseInt(BPageNo), Integer.parseInt(CPageNo), sortBy, sortOrder, type);
 		return mav;
 	}
 }

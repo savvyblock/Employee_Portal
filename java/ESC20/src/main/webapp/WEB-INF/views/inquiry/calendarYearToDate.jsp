@@ -17,19 +17,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     <div class="clearfix no-print section-title">
                         <h1 class="pageTitle">${sessionScope.languageJSON.title.calendarYearToDate}</h1>
                         <div class="pull-right right-btn">
-                            <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="${sessionScope.languageJSON.label.exportPDF}">
-                                <i class="fa fa-file-pdf-o"></i>
-                            </button>
-                            <button
-                                class="btn btn-primary pull-right"
-                                onclick="doPrint()"
-                               
-                            >
-                            ${sessionScope.languageJSON.label.print}
-                            </button>
+		                    <form class="no-print" action="exportPDF" method="POST">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+								<input type="hidden" name="year"
+									value="${selectedYear}" />
+								<button type="submit" role="button" class="btn btn-primary download-pdf"
+									aria-label="${sessionScope.languageJSON.label.exportPDF}"><i class="fa fa-file-pdf-o"></i></button>
+							</form>
                         </div>
                     </div>
-                    <div class="content-white EMP-detail">
+                    <div class="toPrint content-white EMP-detail">
                         <div class="exportPDFBox">
                                 <div class="print-block print-title">
                                         <div style="text-align:center;margin-bottom:10px;">

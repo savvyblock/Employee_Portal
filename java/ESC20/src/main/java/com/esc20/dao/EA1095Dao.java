@@ -61,7 +61,7 @@ public class EA1095Dao {
 		Session session = this.getSession();
 		String retrieveSQL = "FROM BhrAca1095bCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";
         Query q = session.createQuery(retrieveSQL);
-        if(sortBy!=null) {
+        if(sortBy!=null && (!("").equals(sortBy))) {
         	retrieveSQL += "order by :=sortBy :=sortOrder";
             q.setParameter("sortBy", sortBy);
             q.setParameter("sortOrder", sortOrder==null?"asc":sortOrder);
@@ -79,7 +79,7 @@ public class EA1095Dao {
 		Session session = this.getSession();
 		String retrieveSQL = "FROM BhrAca1095cCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";
         Query q = session.createQuery(retrieveSQL);
-        if(sortBy!=null) {
+        if(sortBy!=null && (!("").equals(sortBy))) {
         	retrieveSQL += "order by :=sortBy :=sortOrder";
             q.setParameter("sortBy", sortBy);
             q.setParameter("sortOrder", sortOrder==null?"asc":sortOrder);
