@@ -31,16 +31,16 @@ $(document).ready(function() {
                         $('#requestForm').data('bootstrapValidator', null)
                         formValidator()
                         $('.dateValidator').hide()
-                        let leaveStartDate = calEvent.start._i
-                        let leaveEndDate = calEvent.end._i
+                        var leaveStartDate = calEvent.start._i
+                        var leaveEndDate = calEvent.end._i
 
-                        let start_arry = leaveStartDate.split(' ')
-                        let end_arry = leaveEndDate.split(' ')
-                        let startTime = start_arry[1].split(':')
-                        let endTime = end_arry[1].split(':')
-                        let startH = parseInt(startTime[0])
-                        let endH = parseInt(endTime[0])
-                        let startAMOrPM, endAMOrPM
+                        var start_arry = leaveStartDate.split(' ')
+                        var end_arry = leaveEndDate.split(' ')
+                        var startTime = start_arry[1].split(':')
+                        var endTime = end_arry[1].split(':')
+                        var startH = parseInt(startTime[0])
+                        var endH = parseInt(endTime[0])
+                        var startAMOrPM, endAMOrPM
                         startH = startTime[0].trim()
                         startAMOrPM = start_arry[2].trim()
                         endH = endTime[0].trim()
@@ -49,17 +49,17 @@ $(document).ready(function() {
                         $('#endHour').val(endH)
                         $('#startAmOrPm').val(startAMOrPM)
                         $('#endAmOrPm').val(endAMOrPM)
-                        let startTimeValue =
+                        var startTimeValue =
                             startH + ':' + startTime[1] + ' ' + startAMOrPM
-                        let endTimeValue =
+                        var endTimeValue =
                             endH + ':' + endTime[1] + ' ' + endAMOrPM
                         $('#startTimeValue').val(startTimeValue)
                         $('#endTimeValue').val(endTimeValue)
                         $('#startMinute').val(startTime[1])
                         $('#endMinute').val(endTime[1])
                         $('#commentList').html('')
-                        for (let i = 0; i < calEvent.comments.length; i++) {
-                            let html =
+                        for (var i = 0; i < calEvent.comments.length; i++) {
+                            var html =
                                 '<p>' + calEvent.comments[i].detail + '</p>'
                             $('#commentList').append(html)
                         }
@@ -84,34 +84,34 @@ $(document).ready(function() {
                         
                         //Initializes the time control when edit event modal show
                     } else {
-                        let leaveRequest = calEvent
+                        var leaveRequest = calEvent
                         console.log(leaveRequest)
-                        let type
+                        var type
                         leaveTypes.forEach(function(element){
                             if (element.code == leaveRequest.LeaveType) {
                                 type = element.description
                             }
                         })
-                        let reason
+                        var reason
                         absRsns.forEach(function(element) {
                             if (element.code == leaveRequest.AbsenseReason) {
                                 reason = element.description
                             }
                         })
-                        let leaveStartDate = leaveRequest.start._i
-                        let leaveEndDate = leaveRequest.end._i
+                        var leaveStartDate = leaveRequest.start._i
+                        var leaveEndDate = leaveRequest.end._i
 
-                        let start_arry = leaveStartDate.split(' ')
-                        let end_arry = leaveEndDate.split(' ')
+                        var start_arry = leaveStartDate.split(' ')
+                        var end_arry = leaveEndDate.split(' ')
 
-                        let startTime = changeFormatTimeAm(start_arry[1])
-                        let endTime = changeFormatTimeAm(end_arry[1])
+                        var startTime = changeFormatTimeAm(start_arry[1])
+                        var endTime = changeFormatTimeAm(end_arry[1])
 
-                        let startDate = changeMMDDFormat(start_arry[0])
-                        let endDate = changeMMDDFormat(end_arry[0])
+                        var startDate = changeMMDDFormat(start_arry[0])
+                        var endDate = changeMMDDFormat(end_arry[0])
 
-                        let start = startDate + ' ' + startTime
-                        let end = endDate + ' ' + endTime
+                        var start = startDate + ' ' + startTime
+                        var end = endDate + ' ' + endTime
 
                         // $("#leaveIdStatic").attr("value", leaveRequest.id+"");
                         $('#disIdStatic').attr('value', leaveRequest.id + '')
@@ -127,9 +127,9 @@ $(document).ready(function() {
                         $('#commentLogStatic').html('')
                         $('#leaveStatusStatic').text(leaveRequest.statusDescr)
                         $('#leaveApproverStatic').text(leaveRequest.approver)
-                        let comments = leaveRequest.comments
-                        for (let i = 0; i < comments.length; i++) {
-                            let html = '<p>' + comments[i].detail + '</p>'
+                        var comments = leaveRequest.comments
+                        for (var i = 0; i < comments.length; i++) {
+                            var html = '<p>' + comments[i].detail + '</p>'
                             $('#commentLogStatic').append(html)
                         }
                         $('infoEmpNameStatic').html(
@@ -166,11 +166,11 @@ $(document).ready(function() {
                         element.attr('data-toggle', 'modal')
                         element.attr('data-target', '#EventDetailModal')
                     }
-                    let startEv = changeYMDFormat(event.LeaveStartDate)
-                    let endEv = changeYMDFormat(event.LeaveEndDate)
-                    let time = element.find(".fc-time").text()
-                    // let ariaLabel = "from " + startEv + " to " + endEv
-                    let ariaLabel = startEv + " / " + endEv +" " + time + " " + event.title
+                    var startEv = changeYMDFormat(event.LeaveStartDate)
+                    var endEv = changeYMDFormat(event.LeaveEndDate)
+                    var time = element.find(".fc-time").text()
+                    // var ariaLabel = "from " + startEv + " to " + endEv
+                    var ariaLabel = startEv + " / " + endEv +" " + time + " " + event.title
                     element.attr('aria-label', ariaLabel)
                     element.attr('tabindex', 0)
                     element.bind('keypress', function(e)  {
@@ -188,17 +188,18 @@ $(document).ready(function() {
                 },
                 viewRender: function(view, element) {
                     $('.fc-day-top').each(function() {
-                        let title = $(this).attr('data-date')
-                        // let newBtn = `<button class="btn btn-primary xs"  data-title="${title}" title="Add a new request" onclick="newEvent(this)">Add</button>`
-                        let newBtn =
+                        var title = $(this).attr('data-date')
+                        // var newBtn = `<button class="btn btn-primary xs"  data-title="${title}" title="Add a new request" onclick="newEvent(this)">Add</button>`
+                        var newBtn =
                             `<button class="btn btn-primary xs calendarAddBtn" data-title="` +
                             title +
                             `" onclick="newEvent(this)"  data-toggle="modal" data-target="#requestModal">
-                            <span data-localize="label.add"></span>
+                            <span>`+addLabel+`</span>
                             </button>`
                         $(this).prepend(newBtn)
                     })
-                    $(".fc-today-button").html('<span data-localize="label.currentMonth"></span>')
+                    var currentHtml = '<span>' + currentMonthLabel + '</span>'
+                    $(".fc-today-button").html(currentHtml)
                     initLocalize(initialLocaleCode) //Initialize multilingual function
                 }
             })
@@ -219,7 +220,7 @@ function newEvent(dom) {
     console.log(dom)
     console.log($(dom).attr('data-title'))
     console.log($(dom).attr('data-date'))
-    let date = changeMMDDFormat($(dom).attr('data-title')?$(dom).attr('data-title'):$(dom).attr('data-date'))
+    var date = changeMMDDFormat($(dom).attr('data-title')?$(dom).attr('data-title'):$(dom).attr('data-date'))
     console.log(date)
     $('#leaveId').attr('value', '')
     $("[name='Remarks']").text('')
@@ -243,16 +244,16 @@ function newEvent(dom) {
 }
 
 function changeMMDDFormat(date) {
-    let dateArry = date.split('-')
+    var dateArry = date.split('-')
     return dateArry[1] + '/' + dateArry[2] + '/' + dateArry[0]
 }
 function changeYMDFormat(date) {
-    let dateArry = date.split('/')
+    var dateArry = date.split('/')
     return dateArry[2] + '-' + dateArry[0] + '-' + dateArry[1]
 }
 function changeFormatTimeAm(value) {
-    let array = value.split(/[,: ]/)
-    let hour, minute, time
+    var array = value.split(/[,: ]/)
+    var hour, minute, time
     hour = parseInt(array[0])
     minute = parseInt(array[1])
     if (minute >= 0 && minute < 30) {

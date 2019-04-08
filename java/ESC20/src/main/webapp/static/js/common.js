@@ -26,18 +26,18 @@ $(function() {
     });
     
     $('.amount_2').change(function() {
-        let val = $(this).val();
+        var val = $(this).val();
         $(this).val(Number(val).toFixed(2));
     });
     $('.amount_3').change(function() {
-        let val = $(this).val();
+        var val = $(this).val();
         $(this).val(Number(val).toFixed(3));
     });
     $(".closeModal").click(function(){
         hideBody()
     })
     $("input.form-control").each(function(){   
-        let inputVal = $(this).val()     
+        var inputVal = $(this).val()     
         if($.trim(inputVal).length==0){
             $(this).val('')
         }
@@ -152,7 +152,7 @@ function convert2canvasDownload(shareContent,pdfDom,fileName,title){
                     }
                 }
             }
-            let name = (new Date()).valueOf()
+            var name = (new Date()).valueOf()
             pdf.save(fileName + '-'+name+'.pdf')
             $('.exportPDFBox').hide()
             $('.exportPDFBox').removeClass("printStatus")

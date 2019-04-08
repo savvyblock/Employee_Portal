@@ -48,8 +48,8 @@ function downloadPDF() {
     $('.exportPDFBox').append($('.calendarYTDTable').clone())
     var shareContent = $('.exportPDFBox')[0]
 
-    let pdfDom = '.exportPDFBox .calendarYTDTable'
-    let fileName = 'calendarYearToDate'
-    let title = $(document).attr("title")
+    var pdfDom = '.exportPDFBox .calendarYTDTable'
+    var fileName = 'calendarYearToDate'
+    var title = $(document).attr("title")
     convert2canvasDownload(shareContent,pdfDom,fileName,title)
 }

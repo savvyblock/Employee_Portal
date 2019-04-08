@@ -1,4 +1,4 @@
-let bank01, bank02
+var bank01, bank02
 var formSelect
 var formUndoSelect
 var willSubmitFormDelete
@@ -19,11 +19,11 @@ $(function() {
     //add
     bankAccountAddValidator()
     $("#saveEmail").on('click',function(){
-        let workE = $("#emailWorkEmail").val()
-        let workEV = $("#emailVerifyWorkEmail").val()
-        let homeE = $("#emailHomeEmail").val()
-        let homeEV = $("#emailVerifyHomeEmail").val()
-        let emailFormValidator = $('#emailForm').data(
+        var workE = $("#emailWorkEmail").val()
+        var workEV = $("#emailVerifyWorkEmail").val()
+        var homeE = $("#emailHomeEmail").val()
+        var homeEV = $("#emailVerifyHomeEmail").val()
+        var emailFormValidator = $('#emailForm').data(
             'bootstrapValidator'
         )
         emailFormValidator.validate()
@@ -57,7 +57,7 @@ $(function() {
         if ($(this).is(':checked')) {
             $(".bankAccountBlock").removeClass("asPrimary")
             $(this).parents(".bankAccountBlock").addClass("asPrimary")
-            let indexBank = $('.icheckRadioBank').index(this)
+            var indexBank = $('.icheckRadioBank').index(this)
             $('.icheckRadioBank').each(function(index) {
                 if (index != indexBank) {
                     $(this).prop('checked', false)
@@ -70,7 +70,7 @@ $(function() {
         var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode
         if (eCode == 13) {
             $(this).click()
-            let indexBank = $('.icheckRadioBank').index(this)
+            var indexBank = $('.icheckRadioBank').index(this)
             $('.icheckRadioBank').each(function(index) {
                 if (index != indexBank) {
                     $(this).prop('checked', false)
@@ -78,7 +78,7 @@ $(function() {
             })
         }
     })
-    let bankInputName, bankInputCode
+    var bankInputName, bankInputCode
     $('.edit-btn').click(function() {
         $('.addBankForm').hide()
         $('.add-bank-btn').show()
@@ -86,7 +86,7 @@ $(function() {
         $(this)
             .parents('.profile-item')
             .addClass('activeEdit')
-        let groupSize = $(this)
+        var groupSize = $(this)
             .parents('.profile-item')
             .find('.form-line:first-child .form-group').length
         console.log(groupSize)
@@ -120,7 +120,7 @@ $(function() {
         $('.add-bank-btn').show()
     })
     $('.add-bank-btn').click(function() {
-        let arrayBankLength = $('.usedBank').length
+        var arrayBankLength = $('.usedBank').length
         $('.profile-item').removeClass('activeEdit')
         $('.addBankForm').addClass('activeEdit')
         if (arrayBankLength >= 2) {
@@ -132,7 +132,7 @@ $(function() {
     })
 
     $('#saveNewBank').click(function() {
-        let bankAccountValidator = $('#addBankAccountForm').data(
+        var bankAccountValidator = $('#addBankAccountForm').data(
             'bootstrapValidator'
         )
         bankAccountValidator.validate()
@@ -156,13 +156,13 @@ $(function() {
             $('#saveBankHidden').submit()
         }
     })
-    let getBankBtn
+    var getBankBtn
     $('.getBank').click(function() {
         var page = {
             currentPage: 1,
             perPageRows: 10
         }
-        let that = this
+        var that = this
         getBankBtn = this
         $.ajax({
             type: 'POST',
@@ -177,7 +177,7 @@ $(function() {
                 var res = result.result
                 for (var p in res) {
                     var bankTr =
-                        "<tr><td data-localize='profile.routingNumber' data-localize-location='scope'>"
+                        "<tr><td scope='"+routingNumberLabel+"'>"
                     bankTr =
                         bankTr +
                         "<button class='a-btn bankNumberBtn' type='button' value='" +
@@ -189,7 +189,7 @@ $(function() {
                         ' </button> </td>'
                     bankTr =
                         bankTr +
-                        " <td data-localize='profile.bankName' data-localize-location='scope'>" +
+                        " <td scope='"+bankNameLabel+"'>" +
                         res[p].bankName +
                         '</td> </tr>'
                     $('#bankTable').append(bankTr)
@@ -212,9 +212,9 @@ $(function() {
                 console.log(newBankCode)
                 console.log(bankInputName)
                 $('.bankNumberBtn').on('click',function() {
-                    let number = $(this).text()
-                    let code = $(this).val()
-                    let name = $(this).attr('data-title')
+                    var number = $(this).text()
+                    var code = $(this).val()
+                    var name = $(this).attr('data-title')
                     console.log(number)
                     console.log(name)
                     console.log(code)
@@ -249,7 +249,7 @@ $(function() {
         }
 
         var searchCriteria = { page: page, criteria: criteria }
-        let that = getBankBtn
+        var that = getBankBtn
         $.ajax({
             type: 'POST',
             dataType: 'json',
@@ -263,7 +263,7 @@ $(function() {
                     var res = result.result
                     for (var p in res) {
                         var bankTr =
-                            "<tr><td data-localize='profile.routingNumber' data-localize-location='scope'>"
+                            "<tr><td scope='"+routingNumberLabel+"'>"
                         bankTr =
                             bankTr +
                             "<button class='a-btn bankNumberBtn' type='button' value='" +
@@ -275,7 +275,7 @@ $(function() {
                             ' </button> </td>'
                         bankTr =
                             bankTr +
-                            " <td data-localize='profile.bankName' data-localize-location='scope'>" +
+                            " <td scope='"+bankNameLabel+"'>" +
                             res[p].bankName +
                             '</td> </tr>'
                         $('#bankTable').append(bankTr)
@@ -293,9 +293,9 @@ $(function() {
                         .find('.form-control.code')
                     newBankCode = $(that).parent().find("#newBankCode")
                     $('.bankNumberBtn').on('click',function() {
-                        let number = $(this).text()
-                        let code = $(this).val()
-                        let name = $(this).attr('data-title')
+                        var number = $(this).text()
+                        var code = $(this).val()
+                        var name = $(this).attr('data-title')
                         console.log(number)
                         console.log(name)
                         console.log(code)
@@ -309,7 +309,7 @@ $(function() {
                     })
                 } else {
                     $('#bankTable tbody').empty()
-                    let noResult = `<tr><td colspan="2"> <span data-localize="label.noData"></span></td></tr>`
+                    var noResult = '<tr><td colspan="2"> <span>'+noDataLabel+'</span></td></tr>'
                     $('#bankTable tbody').append(noResult)
                 }
 
@@ -318,7 +318,7 @@ $(function() {
             error: function(e) {
                 console.log(e)
                 $('#bankTable tbody').empty()
-                let noResult = `<tr><td colspan="2"> <span data-localize="label.noData"></span></td></tr>`
+                var noResult = '<tr><td colspan="2"> <span>'+noDataLabel+'</span></td></tr>'
                 $('#bankTable tbody').append(noResult)
                 setGlobal()
             }
@@ -408,8 +408,8 @@ function deleteBankAmount(index) {
 }
 function updateBank(index) {
     console.log('updateBank=' + index)
-    let bankAccountForm = '#bankAccountForm_' + index
-    let bankAccountValidator = $(bankAccountForm).data('bootstrapValidator')
+    var bankAccountForm = '#bankAccountForm_' + index
+    var bankAccountValidator = $(bankAccountForm).data('bootstrapValidator')
     console.log($(bankAccountForm))
     console.log(bankAccountValidator)
     bankAccountValidator.validate()
@@ -576,11 +576,11 @@ function personalValidator() {
                 trigger: 'blur keyup',
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     stringLength: {
                         max: 25,
-                        message: 'validator.maxLength25'
+                        message: maxLength25Validator
                     }
                 }
             },
@@ -588,11 +588,11 @@ function personalValidator() {
                 trigger: 'blur keyup',
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     stringLength: {
                         max: 25,
-                        message: 'validator.maxLength25'
+                        message: maxLength25Validator
                     }
                 }
             },
@@ -601,7 +601,7 @@ function personalValidator() {
                 validators: {
                     stringLength: {
                         max: 25,
-                        message: 'validator.maxLength25'
+                        message: maxLength25Validator
                     }
                 }
             }
@@ -624,7 +624,7 @@ function maritalStatusValidator() {
 
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     }
                 }
             }
@@ -648,7 +648,7 @@ function driverLicenseValidator() {
                 validators: {
                     stringLength: {
                         max: 19,
-                        message: 'validator.maxLength19'
+                        message: maxLength19Validator
                     }
                 }
             }
@@ -671,7 +671,7 @@ function restrictionCodeFormValidator() {
 
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     }
                 }
             }
@@ -687,7 +687,7 @@ function emailFormValidator() {
                 trigger: 'blur keyup change',
                 validators: {
                     emailAddress: {
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -696,10 +696,10 @@ function emailFormValidator() {
                 validators: {
                     identical: {
                         field: 'emailNew',
-                        message:'validator.emailNotMatch'
+                        message:emailNotMatchValidator
                     },
                     emailAddress: {
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -707,7 +707,7 @@ function emailFormValidator() {
                 trigger: 'blur keyup change',
                 validators: {
                     emailAddress: {
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -716,10 +716,10 @@ function emailFormValidator() {
                 validators: {
                     identical: {
                         field: 'hmEmailNew',
-                        message:'validator.emailNotMatch'
+                        message:emailNotMatchValidator
                     },
                     emailAddress: {
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             }
@@ -742,18 +742,18 @@ function emergencyContactFormValidator() {
                 trigger: 'blur keyup',
                 stringLength: {
                     max: 26,
-                    message: 'validator.maxLength26'
+                    message: maxLength26Validator
                 }
             },
             emerPhoneAcNew: {
                 trigger: 'blur keyup',
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     regexp: {
                         regexp: /^[0-9]\d{2}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -762,11 +762,11 @@ function emergencyContactFormValidator() {
 
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     regexp: {
                         regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -775,7 +775,7 @@ function emergencyContactFormValidator() {
                 validators: {
                     regexp: {
                         regexp: /^[\d]{0,4}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -783,14 +783,14 @@ function emergencyContactFormValidator() {
                 trigger: 'blur keyup',
                 stringLength: {
                     max: 25,
-                    message: 'validator.maxLength25'
+                    message: maxLength25Validator
                 }
             },
             emerNoteNew: {
                 trigger: 'blur keyup',
                 stringLength: {
                     max: 25,
-                    message: 'validator.maxLength25'
+                    message: maxLength25Validator
                 }
             }
         }
@@ -813,7 +813,7 @@ function mailingAddressValidator() {
                 validators: {
                     regexp: {
                         regexp: /^[0-9]\d{0,7}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -822,7 +822,7 @@ function mailingAddressValidator() {
                 validators: {
                     stringLength: {
                         max: 20,
-                        message: 'validator.maxLength20'
+                        message: maxLength20Validator
                     }
                 }
             },
@@ -831,7 +831,7 @@ function mailingAddressValidator() {
                 validators: {
                     stringLength: {
                         max: 7,
-                        message: 'validator.maxLength7'
+                        message: maxLength7Validator
                     }
                 }
             },
@@ -840,7 +840,7 @@ function mailingAddressValidator() {
                 validators: {
                     stringLength: {
                         max: 20,
-                        message: 'validator.maxLength20'
+                        message: maxLength20Validator
                     }
                 }
             },
@@ -848,11 +848,11 @@ function mailingAddressValidator() {
                 trigger: 'blur keyup',
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     regexp: {
                         regexp: /^[0-9]\d{4}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -861,7 +861,7 @@ function mailingAddressValidator() {
                 validators: {
                     regexp: {
                         regexp: /^[0-9][\d]{3}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             }
@@ -884,7 +884,7 @@ function alternativeAddressValidator() {
                 validators: {
                     regexp: {
                         regexp: /^[0-9]\d{0,7}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -893,7 +893,7 @@ function alternativeAddressValidator() {
                 validators: {
                     stringLength: {
                         max: 20,
-                        message: 'validator.maxLength20'
+                        message: maxLength20Validator
                     }
                 }
             },
@@ -902,7 +902,7 @@ function alternativeAddressValidator() {
                 validators: {
                     stringLength: {
                         max: 7,
-                        message: 'validator.maxLength7'
+                        message: maxLength7Validator
                     }
                 }
             },
@@ -911,7 +911,7 @@ function alternativeAddressValidator() {
                 validators: {
                     stringLength: {
                         max: 20,
-                        message: 'validator.maxLength20'
+                        message: maxLength20Validator
                     }
                 }
             },
@@ -919,11 +919,11 @@ function alternativeAddressValidator() {
                 trigger: 'blur keyup',
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     regexp: {
                         regexp: /^[0-9]\d{4}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -932,7 +932,7 @@ function alternativeAddressValidator() {
                 validators: {
                     regexp: {
                         regexp: /^[0-9][\d]{3}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             }
@@ -955,7 +955,7 @@ function phoneValidator() {
                 validators: {
                     regexp: {
                         regexp: /^[0-9]\d{2}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -964,7 +964,7 @@ function phoneValidator() {
                 validators: {
                     regexp: {
                         regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -973,7 +973,7 @@ function phoneValidator() {
                 validators: {
                     regexp: {
                         regexp: /^[0-9]\d{2}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -982,7 +982,7 @@ function phoneValidator() {
                 validators: {
                     regexp: {
                         regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -991,7 +991,7 @@ function phoneValidator() {
                 validators: {
                     regexp: {
                         regexp: /^[0-9]\d{2}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -1000,7 +1000,7 @@ function phoneValidator() {
                 validators: {
                     regexp: {
                         regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -1010,7 +1010,7 @@ function phoneValidator() {
                 validators: {
                     regexp: {
                         regexp: /^[\d]{0,4}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             }
@@ -1034,7 +1034,7 @@ function w4InfoValidator() {
 
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     }
                 }
             },
@@ -1043,11 +1043,11 @@ function w4InfoValidator() {
 
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     regexp: {
                         regexp: /^[0-9]\d{0,1}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             }
@@ -1056,8 +1056,8 @@ function w4InfoValidator() {
 }
 
 function bankAccountValidator() {
-    let arrayBankLength = $('.bankAccountBlock').length
-    for (let i = 0; i < arrayBankLength; i++) {
+    var arrayBankLength = $('.bankAccountBlock').length
+    for (var i = 0; i < arrayBankLength; i++) {
         $('#bankAccountForm_' + i).bootstrapValidator({
             live: 'enable',
             submitButtons: '.saveUpdateBankBtn',
@@ -1071,7 +1071,7 @@ function bankAccountValidator() {
                     trigger: 'blur keyup change',
                     validators: {
                         notEmpty: {
-                            message: 'validator.requiredField'
+                            message: requiredFieldValidator
                         }
                     }
                 },
@@ -1079,7 +1079,7 @@ function bankAccountValidator() {
                     trigger: 'blur keyup change',
                     validators: {
                         notEmpty: {
-                            message: 'validator.requiredField'
+                            message: requiredFieldValidator
                         }
                     }
                 },
@@ -1087,11 +1087,11 @@ function bankAccountValidator() {
                     trigger: 'blur keyup',
                     validators: {
                         notEmpty: {
-                            message: 'validator.requiredField'
+                            message: requiredFieldValidator
                         },
                         regexp: {
                             regexp: /^[0-9]\d{0,16}$/,
-                            message: 'validator.pleaseEnterCorrectFormat'
+                            message: pleaseEnterCorrectFormatValidator
                         }
                     }
                 },
@@ -1099,7 +1099,7 @@ function bankAccountValidator() {
                     trigger: 'blur keyup',
                     validators: {
                         notEmpty: {
-                            message: 'validator.requiredField'
+                            message: requiredFieldValidator
                         },
                     }
                 },
@@ -1108,7 +1108,7 @@ function bankAccountValidator() {
                     validators: {
                         regexp: {
                             regexp: /^\d{1,7}$|^\d{1,7}[\.]{1}\d{1,2}$/,
-                            message: 'validator.pleaseEnterCorrectFormatBankAmount'
+                            message: pleaseEnterCorrectFormatBankAmountValidator
                         }
                     }
                 }
@@ -1130,7 +1130,7 @@ function bankAccountAddValidator() {
                 trigger: 'blur keyup change',
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     }
                 }
             },
@@ -1138,7 +1138,7 @@ function bankAccountAddValidator() {
                 trigger: 'blur keyup change',
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     }
                 }
             },
@@ -1146,11 +1146,11 @@ function bankAccountAddValidator() {
                 trigger: 'blur keyup',
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     regexp: {
                         regexp: /^[0-9]\d{0,16}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
@@ -1158,7 +1158,7 @@ function bankAccountAddValidator() {
                 trigger: 'blur keyup',
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     }
                 }
             },
@@ -1166,11 +1166,11 @@ function bankAccountAddValidator() {
                 trigger: 'blur keyup',
                 validators: {
                     notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     regexp: {
                         regexp: /^\d{1,7}$|^\d{1,7}[\.]{1}\d{1,2}$/,
-                        message: 'validator.pleaseEnterCorrectFormatBankAmount'
+                        message: pleaseEnterCorrectFormatBankAmountValidator
                     }
                 }
             }

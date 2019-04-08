@@ -14,9 +14,9 @@ function closeFistModal(){
     $("body").addClass("modal-open")
 }
 $(function(){
-        let comment = false
-        let action = false;
-        let approve = false;
+        var comment = false
+        var action = false;
+        var approve = false;
         $('#approve').on('ifChecked', function(event) {
             $('.supervisorComment').show()
             comment = true;
@@ -36,7 +36,7 @@ $(function(){
             action = true;
         })
         $('#save').on('click', function() {
-            let commentValue = $(".supervisorComment .form-control").val()
+            var commentValue = $(".supervisorComment .form-control").val()
             console.log(commentValue)
             if(action){
                 if(!comment){

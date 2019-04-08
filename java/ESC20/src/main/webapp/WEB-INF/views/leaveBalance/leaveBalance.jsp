@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
-<title data-localize="headTitle.leaveBalance"></title>
+<title>${sessionScope.languageJSON.headTitle.leaveBalance}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@ include file="../commons/header.jsp"%>
 </head>
@@ -101,20 +101,20 @@
 						<tbody>
 							<c:forEach var="leave" items="${leaves}" varStatus="count">
 								<tr>
-									<td scope="${sessionScope.languageJSON.leaveBalance.leaveType}">
+									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveType}" scope="${sessionScope.languageJSON.leaveBalance.leaveType}">
 										<c:forEach var="type" items="${leaveTypes}" varStatus="count">
 												<c:if test="${type.code == leave.lvTyp }">${type.description}</c:if>
 										</c:forEach>
 									</td>
-									<td scope="${sessionScope.languageJSON.leaveBalance.dateOfPay}">
+									<td data-title="${sessionScope.languageJSON.leaveBalance.dateOfPay}" scope="${sessionScope.languageJSON.leaveBalance.dateOfPay}">
 											${leave.dtOfPay}
 									</td>
-									<td scope="${sessionScope.languageJSON.leaveBalance.dateOfLeave}">${leave.dtOfAbs}</td>
-									<td scope="${sessionScope.languageJSON.leaveBalance.leaveUsed}">${leave.lvUnitsUsed} 
+									<td data-title="${sessionScope.languageJSON.leaveBalance.dateOfLeave}" scope="${sessionScope.languageJSON.leaveBalance.dateOfLeave}">${leave.dtOfAbs}</td>
+									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveUsed}" scope="${sessionScope.languageJSON.leaveBalance.leaveUsed}">${leave.lvUnitsUsed} 
 										<span>${sessionScope.languageJSON.label.days}</span>
 									</td>
-									<td class="text-right" scope="${sessionScope.languageJSON.leaveBalance.leaveEarned}">${leave.lvUnitsEarned}</td>
-									<td class="text-center" data-localize="leaveBalance.status" data-localize-location="scope">
+									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveEarned}" class="text-right" scope="${sessionScope.languageJSON.leaveBalance.leaveEarned}">${leave.lvUnitsEarned}</td>
+									<td data-title="${sessionScope.languageJSON.leaveBalance.status}" class="text-center" scope="${sessionScope.languageJSON.leaveBalance.status}">
 											<c:if test="${leave.processDt && leave.processDt != ''}">
 												<span>${sessionScope.languageJSON.label.processed}</span>
 											</c:if>

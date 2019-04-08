@@ -7,11 +7,11 @@ $(document).ready(
 				format:'mm/dd/yyyy',
 				language:initialLocaleCode
 			}).on('changeDate', function(ev) {
-				let fromInput = $("#SearchStartDate").val()
-				let toInput = $("#SearchEndDate").val()
+				var fromInput = $("#SearchStartDate").val()
+				var toInput = $("#SearchEndDate").val()
 				if(fromInput&&toInput){
-					let from = ev.date.valueOf()
-					let to = toDate.date.valueOf()
+					var from = ev.date.valueOf()
+					var to = toDate.date.valueOf()
 					if(from>to){
 						$("#timeErrorMessage").removeClass("hide")
 						$("#retrieve").attr("disabled","disabled")
@@ -29,11 +29,11 @@ $(document).ready(
 				language:initialLocaleCode
 			}).on('changeDate', function(ev) {
 				console.log(ev)
-				let fromInput = $("#SearchStartDate").val()
-				let toInput = $("#SearchEndDate").val()
+				var fromInput = $("#SearchStartDate").val()
+				var toInput = $("#SearchEndDate").val()
 				if(fromInput&&toInput){
-					let to = ev.date.valueOf()
-					let from = formDate.date.valueOf()
+					var to = ev.date.valueOf()
+					var from = formDate.date.valueOf()
 					if(from>to){
 						$("#timeErrorMessage").removeClass("hide")
 						$("#retrieve").attr("disabled","disabled")
@@ -53,10 +53,10 @@ $(document).ready(
 				$("#deleteForm")[0].submit();
 			})
 			$("#retrieve").click(function(){
-				let fromValue = $("#SearchStartDate").val()
-				let toValue = $("#SearchEndDate").val()
-				let fromInput = changeDateYMD(fromValue)
-				let toInput = changeDateYMD(toValue)
+				var fromValue = $("#SearchStartDate").val()
+				var toValue = $("#SearchEndDate").val()
+				var fromInput = changeDateYMD(fromValue)
+				var toInput = changeDateYMD(toValue)
 				console.log(fromInput)
 				console.log(toInput)
 				if((!fromValue || !toValue) || (fromInput && toInput && fromInput<=toInput)){
@@ -69,7 +69,7 @@ $(document).ready(
 	});
 
 	function editLeave(id,leaveType,absenceReason,leaveStartDate,leaveEndDate,lvUnitsDaily,lvUnitsUsed){
-		let comments;
+		var comments;
 		leaveList.forEach(function(element) {
 			if(element.id == id){
 				console.log(element)
@@ -82,15 +82,15 @@ $(document).ready(
 			$('#requestForm').data('bootstrapValidator', null)
 			$('.dateValidator').hide()
 		formValidator()
-		let start_arry = leaveStartDate.split(" ")
-		let end_arry = leaveEndDate.split(" ")
-		let startTime = start_arry[1].split(":")
-		let endTime = end_arry[1].split(":")
+		var start_arry = leaveStartDate.split(" ")
+		var end_arry = leaveEndDate.split(" ")
+		var startTime = start_arry[1].split(":")
+		var endTime = end_arry[1].split(":")
 		console.log(startTime)
 		console.log(endTime)
-		let startH = parseInt(startTime[0])
-		let endH = parseInt(endTime[0])
-		let startAMOrPM,endAMOrPM;
+		var startH = parseInt(startTime[0])
+		var endH = parseInt(endTime[0])
+		var startAMOrPM,endAMOrPM;
 		startH = startTime[0].trim();
 		startAMOrPM = start_arry[2].trim();
 		endH = endTime[0].trim();
@@ -99,8 +99,8 @@ $(document).ready(
 		$("#endHour").val(endH);
 		$("#startAmOrPm").val(startAMOrPM)
 		$("#endAmOrPm").val(endAMOrPM)
-		let startTimeValue = startH + ":" + startTime[1] + " " + startAMOrPM
-		let endTimeValue = endH + ":" + endTime[1] + " " + endAMOrPM
+		var startTimeValue = startH + ":" + startTime[1] + " " + startAMOrPM
+		var endTimeValue = endH + ":" + endTime[1] + " " + endAMOrPM
 		$("#startTimeValue").val(startTimeValue)
 		$("#endTimeValue").val(endTimeValue)
 		$("#startMinute").val(startTime[1])
@@ -114,8 +114,8 @@ $(document).ready(
 		$(".availableError").hide()
 		$("#commentList").html("")
 		console.log(comments)
-		for(let i=0;i<comments.length;i++){
-				let html = '<p>'+comments[i].detail+'</p>'
+		for(var i=0;i<comments.length;i++){
+				var html = '<p>'+comments[i].detail+'</p>'
 				$("#commentList").append(html)
 		}
 		$("[name='leaveId']").attr("value", id+"");
@@ -133,7 +133,7 @@ $(document).ready(
 	}
 
 	function changeMMDDFormat(date){
-		let dateArry = date.split("-")
+		var dateArry = date.split("-")
 		return dateArry[1]+"/"+dateArry[2]+"/"+dateArry[0]
 	}
 	function showRequestForm() {
@@ -159,8 +159,8 @@ $(document).ready(
 			$("#commentList").html("")
 }
 	function changeFormatTimeAm(value){
-			let array = value.split(/[,: ]/);
-			let hour,minute,time
+			var array = value.split(/[,: ]/);
+			var hour,minute,time
 			hour = parseInt(array[0])
 			minute = parseInt(array[1])
 			if(minute>=0 && minute <30){
@@ -186,7 +186,7 @@ $(document).ready(
 			$("#changeFreqForm")[0].submit();
 	}
 	function changeDateYMD(date){
-		let dateArry = date.split("/")
-		let DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
+		var dateArry = date.split("/")
+		var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
 		return DateFormat
 	}

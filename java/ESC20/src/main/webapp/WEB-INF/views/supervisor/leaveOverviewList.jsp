@@ -2,7 +2,7 @@
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
     <head>
-        <title data-localize="headTitle.leaveOverview"></title>
+        <title>${sessionScope.languageJSON.headTitle.leaveOverview}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/fullcalendar.min.css" />
         <%@ include file="../commons/header.jsp"%>
@@ -108,7 +108,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-title" for="SearchEndDate"> <span data-localize="label.to"></span>: </label> 
+                                                <label class="form-title" for="SearchEndDate"> <span>${sessionScope.languageJSON.label.to}</span>: </label> 
                                                 <div class="button-group">
                                                 <input
                                                     class="form-control" type="text" name="endDate" data-date-format="mm/dd/yyyy"  autocomplete="off"
@@ -176,7 +176,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                             <c:if test="${item.statusCd =='P'||item.statusCd =='D'}">
                                                                                 <button class="btn btn-primary sm edit-btn" id="editLeave" data-toggle="modal" data-target="#requestModal" 
                                                                                 onClick='editLeave("${item.id}","${item.LeaveType}","${item.AbsenseReason}","${item.start}",
-                                                                                "${item.end}", "${item.lvUnitsDaily}","${item.lvUnitsUsed}")'' data-localize="label.edit"></button>
+                                                                                "${item.end}", "${item.lvUnitsDaily}","${item.lvUnitsUsed}")'>${sessionScope.languageJSON.label.edit}</button>
                                                                                 <button class="btn btn-secondary sm delete-btn" id="deleteLeaveTable" data-toggle="modal" data-target="#deleteModal" 
                                                                                 onClick="deleteLeave('${item.id}')">${sessionScope.languageJSON.label.delete}</button>
                                                                             </c:if>

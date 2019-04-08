@@ -2,7 +2,7 @@
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
     <head>
-        <title data-localize="headTitle.approveLeaveRequest"></title>
+        <title>${sessionScope.languageJSON.headTitle.approveLeaveRequest}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/fullcalendar.min.css" />
         <%@ include file="../commons/header.jsp"%>
@@ -111,7 +111,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             
                                                             <td scope="${sessionScope.languageJSON.approveRequest.leaveRequested}"> 
                                                                     ${item.lvUnitsUsed}
-                                                                <span data-localize="label.days"></span>
+                                                                <span>${sessionScope.languageJSON.label.days}</span>
                                                             </td>
                                                             <td scope="${sessionScope.languageJSON.approveRequest.commentLog}">
                                                                     <c:forEach var="comment" items="${item.comments}" varStatus="statusComment">
@@ -120,7 +120,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             </td>
                                                             <td scope="${sessionScope.languageJSON.approveRequest.supervisorAction}" style="width:150px;">
                                                                 <button class="btn btn-primary sm" id="actionLeave" data-toggle="modal" data-target="#approveModal" 
-                                                                onClick="actionLeave('${item.id}')"><span data-localize="label.action"></span></button>
+                                                                onClick="actionLeave('${item.id}')"><span>${sessionScope.languageJSON.label.action}</span></button>
                                                             </td>
                                                         </tr>
                                                     </c:if>

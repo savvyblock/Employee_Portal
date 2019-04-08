@@ -1,4 +1,4 @@
-<button id="skipNav" data-localize="label.skipNav">${sessionScope.languageJSON.label.skipNav}</button>
+<button id="skipNav">${sessionScope.languageJSON.label.skipNav}</button>
 <div class="account-header">
     <a href="/<%=request.getContextPath().split("/")[1]%>/login" role="link">
             <img class="logo logo-lg" src="/<%=request.getContextPath().split("/")[1]%>/images/logo.png" alt="${sessionScope.languageJSON.logoName.esc}"/>

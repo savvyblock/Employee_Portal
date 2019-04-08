@@ -1,4 +1,4 @@
-<button id="skipNav" data-localize="label.skipNav"></button>
+<button id="skipNav">${sessionScope.languageJSON.label.skipNav}</button>
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.ResourceBundle" %>
 <%ResourceBundle res = ResourceBundle.getBundle("system"); %>  
 <%

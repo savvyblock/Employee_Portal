@@ -51,8 +51,8 @@ function downloadPDF() {
     $('.exportPDFBox').append($('.needToClone').clone())
     var shareContent = $('.exportPDFBox')[0]
 
-    let pdfDom = '.exportPDFBox .needToClone'
-    let fileName = 'currentPayInformation'
-    let title = $(document).attr("title")
+    var pdfDom = '.exportPDFBox .needToClone'
+    var fileName = 'currentPayInformation'
+    var title = $(document).attr("title")
     convert2canvasDownload(shareContent,pdfDom,fileName,title)
 }

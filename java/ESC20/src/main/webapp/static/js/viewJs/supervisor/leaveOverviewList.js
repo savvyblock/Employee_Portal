@@ -1,11 +1,11 @@
-let chainString = JSON.stringify(chain)
+var chainString = JSON.stringify(chain)
 var reasonOption
 console.log(chainString)
 $(function() {
     reasonOption = $("#absenceReason").html()
     changeLevel()
     $('.chain').val(chainString)
-    let level = $('#level').val()
+    var level = $('#level').val()
     console.log(initialLocaleCode)
     $('#SearchStartDate').fdatepicker({
         format: 'mm/dd/yyyy',
@@ -26,14 +26,14 @@ $(function() {
             .attr('disabled', 'true')
     }
     $('#nextLevel').click(function() {
-        let chain = $('#chainValue').text()
+        var chain = $('#chainValue').text()
         console.log(chain)
         $('#chain').val(chain)
         $('.isChangeLevel').val(true)
         $('#filterSupervisor')[0].submit()
     })
     $('#prevLevel').click(function() {
-        let chain = $('#chainValue').text()
+        var chain = $('#chainValue').text()
         console.log(chain)
         $('#preChain').val(chain)
         $('.isChangeLevel').val(true)
@@ -42,11 +42,11 @@ $(function() {
     initList()
 
     $('.sureDelete').click(function() {
-        let chain = $('#chainValue').text()
-        let searchStart = $("#SearchStartDate").val()
-        let searchEnd = $("#SearchEndDate").val()
-        let empNbr = $('#selectEmpNbr').val()
-        let currentFreq=$("#freq").val()
+        var chain = $('#chainValue').text()
+        var searchStart = $("#SearchStartDate").val()
+        var searchEnd = $("#SearchEndDate").val()
+        var empNbr = $('#selectEmpNbr').val()
+        var currentFreq=$("#freq").val()
         $('#empNbrDelete').val(empNbr)
         $('#searchStartDelete').val(searchStart)
         $('#searchEndDelete').val(searchEnd)
@@ -56,24 +56,24 @@ $(function() {
     })
 })
 function initList() {
-    let employeeSelect = $('#selectEmpNbr').val()
+    var employeeSelect = $('#selectEmpNbr').val()
     if (!employeeSelect || employeeSelect == '') {
-        let options = "<option values=''></option>"
+        var options = "<option values=''></option>"
         $('#freq').html('options')
         $('#new-btn')
             .addClass('disabled')
             .attr('disabled', 'disabled')
-        let noResult = `<tr>
-                                                            <td colspan="8">
-                                                                <span data-localize="label.noData"></span>
-                                                            </td>
-                                                        </tr>`
+        var noResult = '<tr>'+
+                            '<td colspan="8">'+
+                                '<span>'+ noDataLabel +'</span>'+
+                            '</td>'+
+                        '</tr>'
         $('#leaveOverviewList tbody').html(noResult)
         setGlobal()
     } else {
         $('#leaveOverviewList tbody tr').removeClass('hide')
     }
-    let requester = $('#selectEmpNbr option:selected').text()
+    var requester = $('#selectEmpNbr option:selected').text()
     if (requester && requester != '') {
         $('#forWord').removeClass('hide')
         $('#currentLeaveRequests').text(requester)
@@ -85,8 +85,8 @@ function initList() {
     }
 }
 function changeLevel() {
-    let selectNum = $('#selectEmpNbr').val()
-    let numDirect = 0
+    var selectNum = $('#selectEmpNbr').val()
+    var numDirect = 0
     directReportEmployee.forEach(function(element) {
         if (element.employeeNumber == selectNum) {
             numDirect = element.numDirectReports
@@ -120,7 +120,7 @@ function showRequestForm() {
     $('.secondSubmit').hide()
     $(".availableError").hide()
     $('#chainModal').val(chainString)
-    let empNbr = $('#selectEmpNbr').val()
+    var empNbr = $('#selectEmpNbr').val()
     $('#empNbrModal').val(empNbr)
     $("#leaveModalTitle").show()
     $("#leaveModalTitle .editSpan").hide()
@@ -128,12 +128,12 @@ function showRequestForm() {
     $('#requestForm').attr('action', 'updateLeaveFromLeaveOverview')
 }
 function changeFreq() {
-    let select = $('#freq').val()
+    var select = $('#freq').val()
     $('.selectFreq').val()
     // $("#changeFreqForm")[0].submit();
 }
 function changeEmployee() {
-    let selectNum = $('#selectEmpNbr').val()
+    var selectNum = $('#selectEmpNbr').val()
     $('#SearchStartDate').val('')
     $('#SearchEndDate').val('')
     $('.employeeNum').val(selectNum)
@@ -154,7 +154,7 @@ function editLeave(
     lvUnitsUsed
 ) {
     $('#requestForm').attr('action', 'updateLeaveFromLeaveOverview')
-    let comments
+    var comments
     leaveList.forEach(function(element) {
         if (element.id == id) {
             console.log(element)
@@ -168,23 +168,23 @@ function editLeave(
     formValidator()
     console.log(leaveStartDate)
     console.log(leaveEndDate)
-    let start_arry = leaveStartDate.split(" ")
-    let end_arry = leaveEndDate.split(" ")
-    let startTime = start_arry[1].split(":")
-    let endTime = end_arry[1].split(":")
-    let startH = parseInt(startTime[0])
-    let endH = parseInt(endTime[0])
-    let startAMOrPM,endAMOrPM;
+    var start_arry = leaveStartDate.split(" ")
+    var end_arry = leaveEndDate.split(" ")
+    var startTime = start_arry[1].split(":")
+    var endTime = end_arry[1].split(":")
+    var startH = parseInt(startTime[0])
+    var endH = parseInt(endTime[0])
+    var startAMOrPM,endAMOrPM;
     startH = startTime[0].trim();
     startAMOrPM = start_arry[2].trim();
     endH = endTime[0].trim();
     endAMOrPM = end_arry[2].trim();
 
-    let chain = $('#chainValue').text()
-    let searchStart = $("#SearchStartDate").val()
-    let searchEnd = $("#SearchEndDate").val()
-    let empNbr = $('#selectEmpNbr').val()
-    let currentFreq=$("#freq").val()
+    var chain = $('#chainValue').text()
+    var searchStart = $("#SearchStartDate").val()
+    var searchEnd = $("#SearchEndDate").val()
+    var empNbr = $('#selectEmpNbr').val()
+    var currentFreq=$("#freq").val()
     $('#empNbrModal').val(empNbr)
     $('#searchStartModal').val(searchStart)
     $('#searchEndModal').val(searchEnd)
@@ -194,8 +194,8 @@ function editLeave(
     $("#endHour").val(endH);
     $("#startAmOrPm").val(startAMOrPM)
     $("#endAmOrPm").val(endAMOrPM)
-    let startTimeValue = startH + ':' + startTime[1] + ' ' + startAMOrPM
-    let endTimeValue = endH + ':' + endTime[1] + ' ' + endAMOrPM
+    var startTimeValue = startH + ':' + startTime[1] + ' ' + startAMOrPM
+    var endTimeValue = endH + ':' + endTime[1] + ' ' + endAMOrPM
     $("#startTimeValue").val(startTimeValue)
     $("#endTimeValue").val(endTimeValue)
     $("#startMinute").val(startTime[1])
@@ -210,8 +210,8 @@ function editLeave(
     $("#leaveModalTitle .editSpan").show()
     $("#leaveModalTitle .addSpan").hide()
     $('#commentList').html('')
-    for (let i = 0; i < comments.length; i++) {
-        let html = '<p>' + comments[i].detail + '</p>'
+    for (var i = 0; i < comments.length; i++) {
+        var html = '<p>' + comments[i].detail + '</p>'
         $('#commentList').append(html)
     }
     $("[name='leaveId']").attr('value', id + '')
@@ -225,11 +225,11 @@ function editLeave(
 }
 
 function deleteLeave(id) {
-    let chain = $('#chainValue').text()
-    let searchStart = $("#SearchStartDate").val()
-    let searchEnd = $("#SearchEndDate").val()
-    let empNbr = $('#selectEmpNbr').val()
-    let currentFreq=$("#freq").val()
+    var chain = $('#chainValue').text()
+    var searchStart = $("#SearchStartDate").val()
+    var searchEnd = $("#SearchEndDate").val()
+    var empNbr = $('#selectEmpNbr').val()
+    var currentFreq=$("#freq").val()
     $('#empNbrDelete').val(empNbr)
     $('#searchStartDelete').val(searchStart)
     $('#searchEndDelete').val(searchEnd)
@@ -238,7 +238,7 @@ function deleteLeave(id) {
     $('#deleteId').val(id)
 }
 function changeMMDDFormat(date) {
-    let dateArry = date.split('-')
+    var dateArry = date.split('-')
     return dateArry[0]
 }
 function showOverviewCalendar() {

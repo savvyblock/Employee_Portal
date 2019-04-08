@@ -7239,7 +7239,7 @@ var DayGrid = /** @class */ (function (_super) {
         var theme = view.calendar.theme;
         var title = this.getCellDate(row, col).format(this.opt('dayPopoverFormat'));
         var content = $('<div class="fc-header ' + theme.getClass('popoverHeader') + '">' +
-            '<button class="fc-close ' + theme.getIconClass('close') + '"><span class="hide" data-localize="label.closeModal"></span></button>' +
+            '<button class="fc-close ' + theme.getIconClass('close') + '" aria-label="'+closeModalLabel+'"></button>' +
             '<span class="fc-title">' +
             util_1.htmlEscape(title) +
             '</span>' +
@@ -12614,8 +12614,8 @@ var Toolbar = /** @class */ (function () {
                     var buttonInnerHtml;
                     var buttonClasses;
                     var buttonEl;
-                    var buttonAriaAttr;
-                    var buttonDataLocalize;
+                    var buttonAriaAttr = '';
+                    var buttonDataLocalize = '';
                     if (buttonName === 'title') {
                         groupChildren = groupChildren.add($('<h2>&nbsp;</h2>')); // we always want it to take up height
                         isOnlyButtons = false;
@@ -12655,11 +12655,12 @@ var Toolbar = /** @class */ (function () {
                                 theme.getClass('button'),
                                 theme.getClass('stateDefault')
                             ];
+
                             if (buttonText) {
                                 buttonAriaAttr = '';
                                 if(buttonName == 'today'){
-                                    buttonDataLocalize = 'data-localize="label.currentMonth"';
-                                    buttonInnerHtml = '';
+                                    buttonDataLocalize = 'aria-label="'+currentMonthLabel+'"';
+                                    buttonInnerHtml = currentMonthLabel;
                                 }else{
                                     buttonInnerHtml = util_1.htmlEscape(buttonText);
                                 }

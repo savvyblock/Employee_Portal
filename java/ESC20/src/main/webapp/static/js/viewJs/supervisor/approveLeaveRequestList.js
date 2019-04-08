@@ -1,43 +1,43 @@
 
 $(function(){
     changeLevel()
-    let level = $("#level").val()
+    var level = $("#level").val()
     if(chain.length>1){
         $("#prevLevel").removeClass("disabled").removeAttr("disabled");
     }else{
         $("#prevLevel").addClass("disabled").attr('disabled',"true");
     }
     $("#nextLevel").click(function(){
-        let chainString = $("#chainValue").text()
+        var chainString = $("#chainValue").text()
         console.log(chainString)
         $("#chain").val(chainString)
         $("#filterSupervisor")[0].submit()  
     })
     $("#prevLevel").click(function(){
-        let chainString = $("#chainValue").text()
+        var chainString = $("#chainValue").text()
         console.log(chainString)
         $("#preChain").val(chainString)
         $("#previousLevel")[0].submit()  
     })
-    let chainSt = $("#chainValue").text()
+    var chainSt = $("#chainValue").text()
     $("#disChain").val(chainSt)
     $("#appChain").val(chainSt)
 })
 function actionLeave(id){
-    let leaveRequest;
+    var leaveRequest;
     leaves.forEach(function(element) {
         if(element.id == id){
             leaveRequest = element
         }
     });
     console.log(leaveRequest)
-    let type
+    var type
     leaveTypes.forEach(function(element) {
         if(element.code == leaveRequest.LeaveType){
             type = element.description
         }
     });
-    let reason
+    var reason
     absRsns.forEach(function(element) {
         if(element.code == leaveRequest.AbsenseReason){
             reason = element.description
@@ -54,50 +54,49 @@ function actionLeave(id){
     $("#absenceReason").html(reason)
     $("#leaveRequested").html(leaveRequest.lvUnitsUsed)
     $("#commentLog").html("")
-    let comments = leaveRequest.comments
-    for(let i=0;i<comments.length;i++){
-            let html = '<p>'+comments[i].detail+'</p>'
-            $("#commentLog").append(html)
+    var comments = leaveRequest.comments
+    for(var i=0;i<comments.length;i++){
+        var htmlC = '<p>'+comments[i].detail+'</p>'
+        $("#commentLog").append(htmlC)
     }
     $("#infoEmpName").html(leaveRequest.empNbr + ":" +leaveRequest.firstName+ ","+leaveRequest.lastName)
     $("#infoDetail").html("")
-    let infoDetail = leaveRequest.infos
-    for(let i=0;i<infoDetail.length;i++){
-        let unit
+    var infoDetail = leaveRequest.infos
+    for(var i=0;i<infoDetail.length;i++){
+        var unit
         if(infoDetail[i].daysHrs=="D"){
-            unit = '<span data-localize="label.days"></span>'
+            unit = '<span>'+daysFreqLabel+'</span>'
         }else{
-            unit = '<span data-localize="label.hours"></span>'
+            unit = '<span>'+hoursLabel+'</span>'
         }
-        let html = `
-            <div><span data-localize="label.payrollFreq"></span>: ` + infoDetail[i].frequency + `</div>
-                <table class="table responsive-table mt-3">
-                    <thead>
-                        <tr>
-                            <th data-localize="leaveBalance.leaveType"></th>
-                            <th data-localize="leaveBalance.beginningBalance"></th>
-                            <th data-localize="leaveBalance.advancedEarned"></th>
-                            <th data-localize="leaveBalance.pendingEarned"></th>
-                            <th data-localize="leaveBalance.used"></th>
-                            <th data-localize="leaveBalance.pendingUsed"> </th>
-                            <th data-localize="leaveBalance.available"></th>
-                            <th data-localize="leaveBalance.units"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-localize="leaveBalance.leaveType" data-localize-location="scope">` + infoDetail[i].lvTyp + infoDetail[i].longDescr +` </td>
-                            <td data-localize="leaveBalance.beginningBalance" data-localize-location="scope">` + infoDetail[i].beginBalance + `</td>
-                            <td data-localize="leaveBalance.advancedEarned" data-localize-location="scope">` + infoDetail[i].advancedEarned + `</td>
-                            <td data-localize="leaveBalance.pendingEarned" data-localize-location="scope"> `+ infoDetail[i].pendingEarned + `</td>
-                            <td data-localize="leaveBalance.used" data-localize-location="scope"> `+ infoDetail[i].used +` </td>
-                            <td data-localize="leaveBalance.pendingUsed" data-localize-location="scope"> `+ infoDetail[i].pendingUsed +` </td>
-                            <td data-localize="leaveBalance.available" data-localize-location="scope"> `+ infoDetail[i].availableBalance +` </td>
-                            <td data-localize="leaveBalance.units" data-localize-location="scope">`+ unit +`</td>
-                        </tr>
-                    </tbody>
-                </table>`
-        $("#infoDetail").append(html)
+        var htmlInfo = '<div><span>'+payrollFreqLabel+'</span>:' + infoDetail[i].frequency + '</div>'+
+                '<table class="table responsive-table mt-3">'+
+                    '<thead>'+
+                        '<tr>'+
+                            '<th>'+leaveTypeLabel+'</th>'+
+                            '<th>'+beginningBalanceLabel+'</th>'+
+                            '<th>'+advancedEarnedLabel+'</th>'+
+                            '<th>'+pendingEarnedLabel+'</th>'+
+                            '<th>'+usedLabel+'</th>'+
+                            '<th>'+pendingUsedLabel +'</th>'+
+                            '<th>'+availableLabel+'</th>'+
+                            '<th>'+unitsLabel+'</th>'+
+                        '</tr>'+
+                    '</thead>'+
+                    '<tbody>'+
+                        '<tr>'+
+                            '<td scope="'+leaveTypeLabel+'">' + infoDetail[i].lvTyp + infoDetail[i].longDescr +'</td>'+
+                            '<td scope="'+beginningBalanceLabel+'">' + infoDetail[i].beginBalance + '</td>'+
+                            '<td scope="'+advancedEarnedLabel+'">' + infoDetail[i].advancedEarned + '</td>'+
+                            '<td scope="'+pendingEarnedLabel+'">' + infoDetail[i].pendingEarned + '</td>'+
+                            '<td scope="'+usedLabel+'">' + infoDetail[i].used +'</td>'+
+                            '<td scope="'+pendingUsedLabel +'">' + infoDetail[i].pendingUsed +'</td>'+
+                            '<td scope="'+availableLabel+'">' + infoDetail[i].availableBalance + '</td>'+
+                            '<td scope="'+unitsLabel+'">'+ unit +'</td>'+
+                        '</tr>'+
+                    '</tbody>'+
+                '</table>'
+        $("#infoDetail").append(htmlInfo)
     }
     $("#supervisorComment").val("")
     $(".icheck[name='approve']").iCheck('uncheck');
@@ -105,11 +104,10 @@ function actionLeave(id){
     $('.commentValidator').hide()
     $('.supervisorComment').hide()
     // $('#approveModal').modal('show')
-    initLocalize(initialLocaleCode)
 }
 function changeLevel(){
-    let selectNum = $("#selectEmpNbr").val()
-    let numDirect = 0 ;
+    var selectNum = $("#selectEmpNbr").val()
+    var numDirect = 0 ;
     directReportEmployee.forEach(function(element) {
         if(element.employeeNumber == selectNum){
             numDirect = element.numDirectReports

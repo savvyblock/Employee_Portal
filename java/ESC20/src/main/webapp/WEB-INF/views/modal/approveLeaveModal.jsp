@@ -24,7 +24,7 @@
                   <table class="table border-table no-thead leftTdTable">
                     <tbody>
                       <tr>
-                        <td><b data-localize="label.employee"></b></td>
+                        <td><b>${sessionScope.languageJSON.label.employee}</b></td>
                         <td title="${sessionScope.languageJSON.label.employee}">
                             <button class="showBalanceBtn pull-right a-btn" type="button" role="button" onclick="showDetail(this)" aria-label="${sessionScope.languageJSON.label.showLeaveBalanceSummary}">
                                 <i class="fa fa-angle-double-down"></i>

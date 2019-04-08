@@ -21,34 +21,34 @@ $(document).ready(function() {
                 locale: initialLocaleCode,
                 eventClick: function(calEvent, jsEvent, view) {
                     console.log(calEvent)
-                    let leaveRequest = calEvent
+                    var leaveRequest = calEvent
                     console.log(leaveRequest)
-                    let type
+                    var type
                     leaveTypes.forEach(function(element) {
                         if (element.code == leaveRequest.LeaveType) {
                             type = element.description
                         }
                     })
-                    let reason
+                    var reason
                     absRsns.forEach(function(element) {
                         if (element.code == leaveRequest.AbsenseReason) {
                             reason = element.description
                         }
                     })
-                    let leaveStartDate = leaveRequest.start._i
-                    let leaveEndDate = leaveRequest.end._i
+                    var leaveStartDate = leaveRequest.start._i
+                    var leaveEndDate = leaveRequest.end._i
 
-                    let start_arry = leaveStartDate.split(' ')
-                    let end_arry = leaveEndDate.split(' ')
+                    var start_arry = leaveStartDate.split(' ')
+                    var end_arry = leaveEndDate.split(' ')
 
-                    let startTime = changeFormatTimeAm(start_arry[1])
-                    let endTime = changeFormatTimeAm(end_arry[1])
+                    var startTime = changeFormatTimeAm(start_arry[1])
+                    var endTime = changeFormatTimeAm(end_arry[1])
 
-                    let startDate = changeMMDDFormat(start_arry[0])
-                    let endDate = changeMMDDFormat(end_arry[0])
+                    var startDate = changeMMDDFormat(start_arry[0])
+                    var endDate = changeMMDDFormat(end_arry[0])
 
-                    let start = startDate + ' ' + startTime
-                    let end = endDate + ' ' + endTime
+                    var start = startDate + ' ' + startTime
+                    var end = endDate + ' ' + endTime
 
                     // $("#leaveIdStatic").attr("value", leaveRequest.id+"");
                     $('#disIdStatic').attr('value', leaveRequest.id + '')
@@ -62,9 +62,9 @@ $(document).ready(function() {
                     $('#commentLogStatic').html('')
                     $('#leaveStatusStatic').text(leaveRequest.statusDescr)
                     $('#leaveApproverStatic').text(leaveRequest.approver)
-                    let comments = leaveRequest.comments
-                    for (let i = 0; i < comments.length; i++) {
-                        let html = '<p>' + comments[i].detail + '</p>'
+                    var comments = leaveRequest.comments
+                    for (var i = 0; i < comments.length; i++) {
+                        var html = '<p>' + comments[i].detail + '</p>'
                         $('#commentLogStatic').append(html)
                     }
                     $('infoEmpNameStatic').html(
@@ -76,15 +76,14 @@ $(document).ready(function() {
                     )
                     $('#infoDetailStatic').html('')
                     //   $('#EventDetailModal').modal('show')
-                    initLocalize(initialLocaleCode)
                 },
                 eventRender: function(event, element, view) {
                     element.attr('data-toggle', 'modal')
                     element.attr('data-target', '#EventDetailModal')
-                    let startEv = changeYMDFormat(event.LeaveStartDate)
-                    let endEv = changeYMDFormat(event.LeaveEndDate)
-                    // let ariaLabel = "from " + startEv + " to " + endEv
-                    let ariaLabel = startEv + " / " + endEv
+                    var startEv = changeYMDFormat(event.LeaveStartDate)
+                    var endEv = changeYMDFormat(event.LeaveEndDate)
+                    // var ariaLabel = "from " + startEv + " to " + endEv
+                    var ariaLabel = startEv + " / " + endEv
                     element.attr('aria-label', ariaLabel)
                     element.attr('tabindex', 0)
                     element.bind('keypress', function(e)  {
@@ -97,7 +96,6 @@ $(document).ready(function() {
                             $(this).click()
                         }
                     })
-                    initLocalize(initialLocaleCode)
                 },
                 viewRender: function() {
                 }
@@ -106,16 +104,16 @@ $(document).ready(function() {
     })
 })
 function changeMMDDFormat(date) {
-    let dateArry = date.split('-')
+    var dateArry = date.split('-')
     return dateArry[0]
 }
 function changeYMDFormat(date) {
-    let dateArry = date.split('/')
+    var dateArry = date.split('/')
     return dateArry[2] + '-' + dateArry[0] + '-' + dateArry[1]
 }
 function changeFormatTimeAm(value) {
-    let array = value.split(/[,: ]/)
-    let hour, minute, time
+    var array = value.split(/[,: ]/)
+    var hour, minute, time
     hour = parseInt(array[0])
     minute = array[1]
 

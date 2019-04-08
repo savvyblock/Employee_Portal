@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <i class="fa fa-exclamation-circle warn-icon"></i>
                 <p style="text-align:center;font-size:20px;margin:10px 0;"><b id="timeCounter"></b></p>
-                <p data-localize="label.areYouQuit"></p>
+                <p>${sessionScope.languageJSON.label.areYouQuit}</p>
             </div>
             <div class="modal-footer">
                 <a href="/<%=request.getContextPath().split("/")[1]%>/logout">

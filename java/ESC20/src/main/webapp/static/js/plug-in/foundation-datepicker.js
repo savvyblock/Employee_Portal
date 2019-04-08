@@ -1382,9 +1382,9 @@
         headTemplate: function(leftArrow, rightArrow) {
             return('<thead>' +
             '<tr>' +
-            '<th class="prev"><span data-localize="accessHint.prev" style="display:none">prev</span>' + leftArrow + '</th>' +
+            '<th class="prev" aria-label="'+prevLabel+'">' + leftArrow + '</th>' +
             '<th colspan="5" class="date-switch"></th>' +
-            '<th class="next"><span data-localize="accessHint.next" style="display:none">next</span>' + rightArrow + '</th>' +
+            '<th class="next" aria-label="'+nextLabel+'">' + rightArrow + '</th>' +
             '</tr>' +
             '</thead>')},
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',

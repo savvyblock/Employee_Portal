@@ -10,65 +10,65 @@ $('#retrieveUserName').bootstrapValidator({
         email: {
             validators: {
                 notEmpty: {
-                    message: 'validator.requiredField'
+                    message: requiredFieldValidator
                 },
                 emailAddress: {
-                    message: 'validator.pleaseEnterCorrectMailFormat'
+                    message: pleaseEnterCorrectMailFormatValidator
                 }
             }
         },
         empNumber: {
             validators: {
                 notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     regexp: {
                         regexp: /^[0-9]\d{5}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
             }
         },
         dateMonth: {
             validators: {
                 notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     regexp: {
                         regexp: /0[1-9]|1[0-2]/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
             }
         },
         dateDay: {
             validators: {
                 notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     regexp: {
                         regexp: /0[1-9]|[1-2][0-9]|3[0-1]/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
             }
         },
         dateYear: {
             validators: {
                 notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     regexp: {
                         regexp: /^[1-2]\d{3}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
             }
         },
         zipCode: {
             validators: {
                 notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
                     regexp: {
                         regexp: /^[0-9]\d{4}$/,
-                        message: 'validator.pleaseEnterCorrectFormat'
+                        message: pleaseEnterCorrectFormatValidator
                     }
             }
         }
@@ -86,17 +86,17 @@ $('#resetPassword').bootstrapValidator({
         userName: {
             validators: {
                 notEmpty: {
-                    message: 'validator.requiredField'
+                    message: requiredFieldValidator
                 }
             }
         },
         email: {
             validators: {
                 notEmpty: {
-                    message: 'validator.requiredField'
+                    message: requiredFieldValidator
                 },
                 emailAddress: {
-                    message: 'validator.pleaseEnterCorrectMailFormat'
+                    message: pleaseEnterCorrectMailFormatValidator
                 }
             }
         }
@@ -112,8 +112,8 @@ $('#reset').on('ifChecked', function(event) {
     $('#retrieveUserName').hide()
     $('#resetPassword').show()
 })
-let paramArry = window.location.href.split("/");
-let len = paramArry.length
+var paramArry = window.location.href.split("/");
+var len = paramArry.length
 console.log(paramArry[len-1])
 if(paramArry[len-1]){
     if(paramArry[len-1]=='resetPassword'){

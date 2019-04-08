@@ -15,26 +15,26 @@ $('#updatePassword').bootstrapValidator({
         password: {
             validators: {
                 notEmpty: {
-                    message: 'validator.requiredField'
+                    message: requiredFieldValidator
                 },
                 stringLength: {
                     min: 6,
-                    message:'validator.passwordLengthNotLessThan6'
+                    message:passwordLengthNotLessThan6Validator
                 }
             }
         },
         newPassword: {
             validators: {
                 notEmpty: {
-                    message: 'validator.requiredField'
+                    message: requiredFieldValidator
                 },
                 identical: {
                     field: 'password',
-                    message:'validator.passwordNotMatch'
+                    message:passwordNotMatchValidator
                 },
                 stringLength: {
                     min: 6,
-                    message: 'validator.passwordLengthNotLessThan6'
+                    message: passwordLengthNotLessThan6Validator
                 }
             }
         }

@@ -6,11 +6,11 @@ $(document).ready(function() {
             language: initialLocaleCode
         })
         .on('changeDate', function(ev) {
-            let fromInput = $('#SearchStartDate').val()
-            let toInput = $('#SearchEndDate').val()
+            var fromInput = $('#SearchStartDate').val()
+            var toInput = $('#SearchEndDate').val()
             if (fromInput && toInput) {
-                let from = ev.date.valueOf()
-                let to = toDate.date.valueOf()
+                var from = ev.date.valueOf()
+                var to = toDate.date.valueOf()
                 if (from > to) {
                     $('#timeErrorMessage').removeClass('hide')
                     $('#retrieve').attr('disabled', 'disabled')
@@ -29,11 +29,11 @@ $(document).ready(function() {
             language: initialLocaleCode
         })
         .on('changeDate', function(ev) {
-            let fromInput = $('#SearchStartDate').val()
-            let toInput = $('#SearchEndDate').val()
+            var fromInput = $('#SearchStartDate').val()
+            var toInput = $('#SearchEndDate').val()
             if (fromInput && toInput) {
-                let to = ev.date.valueOf()
-                let from = formDate.date.valueOf()
+                var to = ev.date.valueOf()
+                var from = formDate.date.valueOf()
                 if (from > to) {
                     $('#timeErrorMessage').removeClass('hide')
                     $('#retrieve').attr('disabled', 'disabled')
@@ -48,10 +48,10 @@ $(document).ready(function() {
         .data('datepicker')
     setGlobal()
     $("#retrieve").click(function(){
-        let fromValue = $("#SearchStartDate").val()
-        let toValue = $("#SearchEndDate").val()
-        let fromInput = changeDateYMD(fromValue)
-        let toInput = changeDateYMD(toValue)
+        var fromValue = $("#SearchStartDate").val()
+        var toValue = $("#SearchEndDate").val()
+        var fromInput = changeDateYMD(fromValue)
+        var toInput = changeDateYMD(toValue)
         console.log(fromInput)
         console.log(toInput)
         if((!fromValue || !toValue) || (fromInput && toInput && fromInput<=toInput)){
@@ -64,12 +64,12 @@ $(document).ready(function() {
 })
 
 function changeMMYYDDFormat(date) {
-    let string = date.split('/')
+    var string = date.split('/')
     console.log(string[2] + string[0] + string[1])
     return string[2] + string[0] + string[1]
 }
 function changeDateYMD(date){
-    let dateArry = date.split("/")
-    let DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
+    var dateArry = date.split("/")
+    var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
     return DateFormat
 }

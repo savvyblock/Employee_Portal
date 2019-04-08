@@ -14,7 +14,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <div class="content-white no-title profile">
                             <c:if test="${sessionScope.options.enableSelfServiceDemographic == true}">
                                 <div class="profile-item">
-                                        <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal" data-localize="label.changePassword" data-localize-location="title">
+                                        <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal">
                                                 <span>${sessionScope.languageJSON.label.changePassword}</span>
                                             </button>
                                 </div>
@@ -26,9 +26,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 id="imgContentImg"
                                                 style="background-image:url(${sessionScope.userDetail.avatar})"
                                             >
-                                                <button type="button" role="button" class="avatar-word" data-localize="profile.change" data-toggle="modal" data-target="#changeAvatarModal"></button>
+                                                <button type="button" role="button" class="avatar-word" data-toggle="modal" data-target="#changeAvatarModal">${sessionScope.languageJSON.profile.change}</button>
                                             </div>
-                                            <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal" data-localize="label.changePassword" data-localize-location="title">
+                                            <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal">
                                                     <span>${sessionScope.languageJSON.label.changePassword}</span>
                                                 </button>
                                             </div>

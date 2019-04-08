@@ -27,7 +27,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         </div>
                     </div>
                     <div class="form-group error-vertical">
-                        <label class="form-title"data-localize="label.confirmPassword">${sessionScope.languageJSON.label.confirmPassword}</label>
+                        <label class="form-title">${sessionScope.languageJSON.label.confirmPassword}</label>
                         <div class="valid-wrap">
                             <input
                                 type="password"

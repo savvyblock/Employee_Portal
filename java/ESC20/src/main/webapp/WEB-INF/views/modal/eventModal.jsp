@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="form-group time-right">
-                                <label class="form-title" for="endDate"><span data-localize="leaveRequest.endDate"></span>: </label>
+                                <label class="form-title" for="endDate"><span>${sessionScope.languageJSON.leaveRequest.endDate}</span>: </label>
                                 <div class="valid-wrap">
                                     <input
                                         class="form-control"

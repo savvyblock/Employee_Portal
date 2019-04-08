@@ -272,7 +272,7 @@
                             .attr('role', 'alert')
                             .attr('aria-atomic', 'true')
                             .attr('data-bv-for', field)
-                            .attr('data-localize',this._getMessage(field, validatorName))
+                            // .attr('data-localize',this._getMessage(field, validatorName))
                             .attr('data-bv-result', this.STATUS_NOT_VALIDATED)
                             .html(this._getMessage(field, validatorName))
                             .appendTo($message);
@@ -808,7 +808,7 @@
                 find('.help-block[data-bv-validator="' + validator + '"][data-bv-for="' + field + '"]')
                 .attr('role', 'alert')
                 .attr('aria-atomic', 'true')
-                .attr('data-localize',message)
+                // .attr('data-localize',message)
                 .html(message);
                 setGlobal()
             });

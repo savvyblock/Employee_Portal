@@ -11,14 +11,14 @@ $(function(){
             username: {
                 validators: {
                     notEmpty: {
-                        message: 'validator.usernameCannotBeEmpty'
+                        message: usernameCannotBeEmptyValidator
                     }
                 }
             },
             password: {
                 validators: {
                     notEmpty: {
-                        message: 'validator.passwordCannotBeEmpty'
+                        message: passwordCannotBeEmptyValidator
                     }
                 }
             }
@@ -37,30 +37,30 @@ $(function(){
             username: {
                 validators: {
                     notEmpty: {
-                        message: 'validator.usernameCannotBeEmpty'
+                        message: usernameCannotBeEmptyValidator
                     }
                 }
             },
             password: {
                 validators: {
                     notEmpty: {
-                        message: 'validator.passwordCannotBeEmpty'
+                        message: passwordCannotBeEmptyValidator
                     }
                 }
             }
         },
 
     });
-    let url = window.location.href
-    let urlParams = url.split("?"); 
+    var url = window.location.href
+    var urlParams = url.split("?"); 
     console.log(urlParams)
     if(urlParams[1]=='error'){
         $(".authenticateFailed").show()
     }else{
         $(".authenticateFailed").hide()
     }
-    let isTimeoutArry = urlParams[1]?urlParams[1].split("&"):false;
-    let isTimeout = isTimeoutArry[1]?isTimeoutArry[1].split("="):false;
+    var isTimeoutArry = urlParams[1]?urlParams[1].split("&"):false;
+    var isTimeout = isTimeoutArry[1]?isTimeoutArry[1].split("="):false;
     if(isTimeout[1]){
         console.log("session end")
         $(".loginPage .account-inner.loginBox").hide()

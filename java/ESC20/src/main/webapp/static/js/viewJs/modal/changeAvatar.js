@@ -17,7 +17,7 @@ if (fileDom && img) {
 }
 function fileHandle(fileDom, img) {
   //read
-  let avatarSize = 0.5*1024*1024
+  var avatarSize = 0.5*1024*1024
   var file = fileDom.files[0]
   var fileName = file.name
   var type = file.type.split("/")

@@ -14,12 +14,12 @@
                   oldPassword: {
                         validators: {
                             notEmpty: {
-                                message: 'validator.requiredField'
+                                message: requiredFieldValidator
                             },
                             stringLength: {
                                 min: 6,
                                 message:
-                                    'validator.passwordLengthNotLessThan6'
+                                    passwordLengthNotLessThan6Validator
                             },
                             password:{
                             	message:''
@@ -29,28 +29,27 @@
                     password: {
                         validators: {
                             notEmpty: {
-                                message: 'validator.requiredField'
+                                message: requiredFieldValidator
                             },
                             stringLength: {
                                 min: 6,
                                 message:
-                                    'validator.passwordLengthNotLessThan6'
+                                    passwordLengthNotLessThan6Validator
                             }
                         }
                     },
                     newPassword: {
                         validators: {
                             notEmpty: {
-                                message: 'validator.requiredField'
+                                message: requiredFieldValidator
                             },
                             identical: {
                                 field: 'password',
-                                message:
-                                    'validator.twoPasswordsNotMatch'
+                                message:twoPasswordsNotMatchValidator
                             },
                             stringLength: {
                                 min: 6,
-                                message: 'validator.passwordLengthNotLessThan6'
+                                message: passwordLengthNotLessThan6Validator
                             }
                         }
                     }

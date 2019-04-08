@@ -2,7 +2,7 @@ function submitYear(){
     $("#selectCalendar")[0].submit()
 }
 $(function(){
-    let consentVal = $("#elecConsnt1095").val()
+    var consentVal = $("#elecConsnt1095").val()
     $("#consentModal").val(consentVal)
     if (consentVal == 'Y') {
         $("#consent").prop('checked',true);
@@ -28,8 +28,8 @@ $(function(){
         }
     })
     $("#saveConsent").on('click', function(event) {
-        let year = $("#consentYear").val()
-        let consentOption = $("#consentModal").val()
+        var year = $("#consentYear").val()
+        var consentOption = $("#consentModal").val()
         if(year && year!='' && consentOption && consentOption!=''){
             $("#noChooseError").hide()
             $("#update1095Consent")[0].submit()
@@ -50,12 +50,12 @@ function downloadPDF() {
     $('.exportPDFBox').show()
     $('.exportPDFBox').addClass("printStatus")
     $('.exportPDFBox').append($('.needToClone').clone())
-    let size = $(".exportPDFBox .pdfPage").length;
+    var size = $(".exportPDFBox .pdfPage").length;
     console.log(size)
 
     pdf = new jsPDF('', 'pt', 'a4')
     $(".exportPDFBox .pdfPage").each(function(index){
-        let that = $(this)[0]
+        var that = $(this)[0]
         html2canvas(that, { scale: 6 ,background: "#fff"}).then(function(canvas) {
             var contentWidth = canvas.width
             var contentHeight = canvas.height
@@ -110,9 +110,9 @@ function downloadPDF() {
     
 }
 function save(){
-    let name = (new Date()).valueOf()
-    let pdfDom = '.exportPDFBox .needToClone'
-    let fileName = '1095'
+    var name = (new Date()).valueOf()
+    var pdfDom = '.exportPDFBox .needToClone'
+    var fileName = '1095'
     pdf.save(fileName + '-'+name+'.pdf')
     $('.exportPDFBox').hide()
     $('.exportPDFBox').removeClass("printStatus")

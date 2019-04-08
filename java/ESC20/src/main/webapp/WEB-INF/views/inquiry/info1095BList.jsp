@@ -235,16 +235,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 						<td colspan="19">
 							<div class="pageGroup">
 									<button class="pageBtn firstPate" onclick="changePage(1)"
-										aria-label="${sessionScope.languageJSON.label.firstPage}" data-localize-location="aria-label" data-localize-notText="true"
+										aria-label="${sessionScope.languageJSON.label.firstPage}"
 											<c:if test="${ BPageNo ==1 }">disabled</c:if>>
 											<i class="fa fa-angle-double-left "></i>
 									</button>  
 									<button class="pageBtn prevPage" onclick="changePage(${BPageNo - 1})" 
-									aria-label="${sessionScope.languageJSON.label.prevPage}" data-localize-location="aria-label" data-localize-notText="true"
+									aria-label="${sessionScope.languageJSON.label.prevPage}"
 											<c:if test="${ BPageNo ==1  }">disabled</c:if>>
 											<i class="fa fa-angle-left "></i>
 									</button>
-									<select class="selectPage" name="page" id="pageNow" aria-label="${sessionScope.languageJSON.label.choosePage}" onchange="changePage()"  data-localize-location="title">
+									<select class="selectPage" name="page" id="pageNow" aria-label="${sessionScope.languageJSON.label.choosePage}" onchange="changePage()">
 											<c:forEach  var="page"  begin="1" end="${BTotal}">
 											<option value="${page}" <c:if test="${page == BPageNo }">selected</c:if>>${page}</option>
 											</c:forEach>
@@ -254,12 +254,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 											<span class="totalPate">${BTotal}</span>
 									</div>
 									<button class="pageBtn nextPate"  onclick="changePage(${BPageNo + 1})" 
-									aria-label="${sessionScope.languageJSON.label.nextPage}" data-localize-location="aria-label" data-localize-notText="true"
+									aria-label="${sessionScope.languageJSON.label.nextPage}"
 											<c:if test="${BPageNo == BTotal  }">disabled</c:if>>
 													<i class="fa fa-angle-right "></i>
 									</button>
 									<button class="pageBtn lastPate"  onclick="changePage(${BTotal})" 
-									aria-label="${sessionScope.languageJSON.label.lastPage}" data-localize-location="aria-label" data-localize-notText="true"
+									aria-label="${sessionScope.languageJSON.label.lastPage}"
 											<c:if test="${BPageNo == BTotal   }">disabled</c:if>>
 													<i class="fa fa-angle-double-right"></i>
 									</button>

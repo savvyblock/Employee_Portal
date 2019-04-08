@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
-<title data-localize="headTitle.leaveRequestList"></title>
+<title>${sessionScope.languageJSON.headTitle.leaveRequestList}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@ include file="../commons/header.jsp"%>
 </head>
@@ -14,7 +14,7 @@
 		<main class="content-wrapper" tabindex="-1">
 		<section class="content">
 			<div class="clearfix section-title">
-					<h1 class="pageTitle" data-localize="title.leaveRequest"></h1>
+					<h1 class="pageTitle">${sessionScope.languageJSON.title.leaveRequest}</h1>
 				<div class="pull-right right-btn">
 					<button class="btn btn-primary"  onclick="showRequestForm()" id="new-btn" data-toggle="modal" data-target="#requestModal">
 						<span>${sessionScope.languageJSON.label.add}</span>
@@ -92,7 +92,7 @@
 						</div>
 						<div class="form-group btn-group">
 							<div style="margin-top:20px;">
-									<button id="retrieve" type="button" role="button" class="btn btn-primary" data-localize="leaveBalance.retrieve">
+									<button id="retrieve" type="button" role="button" class="btn btn-primary">
 										${sessionScope.languageJSON.leaveBalance.retrieve}
 									</button>
 							</div>
@@ -124,27 +124,27 @@
 						<tbody>
 							<c:forEach var="leave" items="${leaves}" varStatus="leaves">
 								<tr>
-									<td scope="${sessionScope.languageJSON.leaveRequest.leaveType}">
+									<td data-title="${sessionScope.languageJSON.leaveRequest.leaveType}" scope="${sessionScope.languageJSON.leaveRequest.leaveType}">
 											<c:forEach var="type" items="${leaveTypes}" varStatus="count">
 													<c:if test="${type.code == leave.LeaveType}">${type.description}</c:if>
 											</c:forEach>
 									</td>
-									<td scope="${sessionScope.languageJSON.leaveRequest.absenceReason}">
+									<td data-title="${sessionScope.languageJSON.leaveRequest.absenceReason}" scope="${sessionScope.languageJSON.leaveRequest.absenceReason}">
 										<c:forEach var="abs" items="${absRsns}" varStatus="count">
 													<c:if test="${abs.code == leave.AbsenseReason }">${abs.description}</c:if>
 											</c:forEach>
 									</td>
-									<td class="text-center" scope="${sessionScope.languageJSON.leaveRequest.startDate}">${leave.start}</td>
-									<td class="text-center" scope="${sessionScope.languageJSON.leaveRequest.endDate}">${leave.end}</td>
-									<td scope="${sessionScope.languageJSON.leaveRequest.leaveRequested}">${leave.lvUnitsUsed} 
+									<td data-title="${sessionScope.languageJSON.leaveRequest.startDate}" class="text-center" scope="${sessionScope.languageJSON.leaveRequest.startDate}">${leave.start}</td>
+									<td data-title="${sessionScope.languageJSON.leaveRequest.endDate}" class="text-center" scope="${sessionScope.languageJSON.leaveRequest.endDate}">${leave.end}</td>
+									<td data-title="${sessionScope.languageJSON.leaveRequest.leaveRequested}" scope="${sessionScope.languageJSON.leaveRequest.leaveRequested}">${leave.lvUnitsUsed} 
 											<span>${sessionScope.languageJSON.label.days}</span>
 									</td>
-									<td scope="${sessionScope.languageJSON.leaveRequest.commentLog}">
+									<td data-title="${sessionScope.languageJSON.leaveRequest.commentLog}" scope="${sessionScope.languageJSON.leaveRequest.commentLog}">
 										<c:forEach var="comment" items="${leave.comments}" varStatus="count">
 													${comment.detail}<br/>
 											</c:forEach>
 									</td>
-									<td scope="${sessionScope.languageJSON.leaveRequest.status}">${leave.statusDescr}</td>
+									<td data-title="${sessionScope.languageJSON.leaveRequest.status}" scope="${sessionScope.languageJSON.leaveRequest.status}">${leave.statusDescr}</td>
 									<td style="width:150px;">
 											<c:if test="${leave.statusCd != 'A'}">
 													<button class="btn btn-primary sm edit-btn" id="editLeave" data-toggle="modal" data-target="#requestModal" 

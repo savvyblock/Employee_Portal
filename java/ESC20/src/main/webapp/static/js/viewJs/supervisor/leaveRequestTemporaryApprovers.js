@@ -5,10 +5,10 @@ $(function() {
     initDateControl()
     judgeContent()
     initialCompleteList()
-    let level = $('#level').val()
-    let chainString = JSON.stringify(chain)
-    let empNbr = $('#currentEmployee').text()
-    let lengthNow = $('.setApprovers-list tbody tr').length
+    var level = $('#level').val()
+    var chainString = JSON.stringify(chain)
+    var empNbr = $('#currentEmployee').text()
+    var lengthNow = $('.setApprovers-list tbody tr').length
     if ($('#firstRow')) {
         $('#firstRow').text(lengthNow - 1)
     }
@@ -33,56 +33,39 @@ $(function() {
     })
     $('.add-new-row').click(function() {
         judgeContent()
-        let trLen = $('.setApprovers-list tbody tr').length
-        let approverLen = $('.setApprovers-list tbody tr.approver_tr').length
-        let length = trLen
-        let newRow =
-            `<tr class="approver_tr">
-                                            <td class="countIndex" data-localize="setTemporaryApprovers.rowNbr"
-                                                data-localize-location="scope">` +
-            length +
-            `</td>
-                                            <td data-localize="setTemporaryApprovers.temporaryApprover" data-localize-location="scope">
-                                                <div class="form-group">
-                                                    <input class="form-control empControl" type="text" 
-                                                    title=""
-                                                    data-localize="setTemporaryApprovers.temporaryApprover"
-                                                    name="" 
-                                                    id="name_0${length}">
-                                                </div>
-                                            </td>
-                                            <td data-localize="setTemporaryApprovers.fromDate" data-localize-location="scope">
-                                                    <div class="form-group">
-                                                        <input class="form-control date-control dateFromControl"
-                                                        title=""
-                                                        data-title=""
-                                                        data-localize="setTemporaryApprovers.fromDate" type="text" 
-                                                        name=""  autocomplete="off"
-                                                        id="fromDate_0${length}" placeholder="mm/dd/yyyy">
-                                                    </div>
-                                            </td>
-                                            <td data-localize="setTemporaryApprovers.toDate" data-localize-location="scope">
-                                                <div class="form-group">
-                                                    <input class="form-control  date-control dateToControl"
-                                                    title=""
-                                                    data-title=""
-                                                    data-localize="setTemporaryApprovers.toDate" type="text" 
-                                                    name=""  autocomplete="off"
-                                                    id="toDate_0${length}" placeholder="mm/dd/yyyy">
-                                                </div>
-                                            </td>
-                                            <td  data-localize="setTemporaryApprovers.delete" data-localize-location="scope">
-                                                    <button type="button" role="button" class="a-btn" onclick="deleteRow(this)">
-                                                     <span class="hide" data-localize="label.delete"></span>
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                            </td>
-                                        </tr>
-                    `
+        var trLen = $('.setApprovers-list tbody tr').length
+        var approverLen = $('.setApprovers-list tbody tr.approver_tr').length
+        var length = trLen
+        var newRow =
+            '<tr class="approver_tr">'
+                '<td class="countIndex" scope="'+rowNbrLabel+'">' +length +
+               '</td>'
+                '<td scope="'+temporaryApproverLabel+'">'
+                    '<div class="form-group">'
+                        '<input class="form-control empControl" type="text" aria-label="'+temporaryApproverLabel+'" id="name_0'+length+'">'
+                    '</div>'
+                '</td>'
+                '<td scope="'+fromDateLabel+'">'
+                        '<div class="form-group">'
+                            '<input class="form-control date-control dateFromControl" aria-label="'+fromDateLabel+'" type="text" autocomplete="off" id="fromDate_0'+length+'" placeholder="mm/dd/yyyy">'
+                        '</div>'
+                '</td>'
+                '<td scope="'+toDateLabel+'">'
+                    '<div class="form-group">'
+                        '<input class="form-control  date-control dateToControl" aria-label="'+toDateLabel+'" type="text" autocomplete="off" id="toDate_0'+length+'" placeholder="mm/dd/yyyy"'>
+                    '</div>'
+                '</td>'
+                '<td scope="'+deleteLabel+'">'
+                        '<button type="button" role="button" class="a-btn" onclick="deleteRow(this)" aria-label="'+deleteBtnLabel+'">'
+                            '<i class="fa fa-trash"></i>'
+                       '</button>'
+               '</td>'
+            '</tr>'
+                    
         console.log('tr that have empty field' + approverEmptyJson)
         if (!approverEmptyJson || approverEmptyJson.length < 1) {
             $('#errorComplete').hide()
-            let errorLength = veryIfError()
+            var errorLength = veryIfError()
             if (errorLength==0) {
                 $('.setApprovers-list tbody tr:last-child').before(newRow)
                 initialCompleteList()
@@ -101,8 +84,8 @@ $(function() {
         initDateControl()
         $('#chainString').val(chainString)
         $('#empNbrForm').val(empNbr)
-        let length = $('.approver_tr').length
-        let resultApprover = []
+        var length = $('.approver_tr').length
+        var resultApprover = []
         approverJson.forEach(function(item) {
             console.log(item)
             if(item.empNbr&&item.from&&item.to&&item.empNbr!=''&&item.from!=''&&item.to!=''){
@@ -115,7 +98,7 @@ $(function() {
             $('#errorComplete').show()
         } else {
             addedApprover.forEach(function(item, index){
-                let approver = {
+                var approver = {
                     id: '',
                     empNbr: item.tmpApprvrEmpNbr,
                     from: item.datetimeFrom,
@@ -126,7 +109,7 @@ $(function() {
             console.log(resultApprover)
             $('#approverJson').val(JSON.stringify(resultApprover))
             $('#errorComplete').hide()
-            let errorLength = veryIfError()
+            var errorLength = veryIfError()
             if (errorLength==0) {
                 $('#saveTempApprovers')[0].submit()
             }
@@ -138,7 +121,7 @@ $(function() {
         judgeContent()
     })
     $('.deleteApprover').click(function() {
-        let id = $(this)
+        var id = $(this)
             .parents('.listTr')
             .find('.empId')
             .val()
@@ -154,10 +137,10 @@ $(function() {
         verifyRepeat()
     })
     $(document).on('blur','.dateToControl', function() {
-        let fromValue=$(this).parents('.approver_tr').find('.dateFromControl').val()
-        let toValue=$(this).val()
-        let fromInput = changeDateYMD(fromValue)
-        let toInput = changeDateYMD(toValue)
+        var fromValue=$(this).parents('.approver_tr').find('.dateFromControl').val()
+        var toValue=$(this).val()
+        var fromInput = changeDateYMD(fromValue)
+        var toInput = changeDateYMD(toValue)
         console.log(fromInput)
         console.log(toInput)
         if(fromValue && toValue&&fromValue.length>=10&&toValue.length>=10){
@@ -169,10 +152,10 @@ $(function() {
         }
     })
     $(document).on('input','.dateToControl', function() {
-        let fromValue=$(this).parents('.approver_tr').find('.dateFromControl').val()
-        let toValue=$(this).val()
-        let fromInput = changeDateYMD(fromValue)
-        let toInput = changeDateYMD(toValue)
+        var fromValue=$(this).parents('.approver_tr').find('.dateFromControl').val()
+        var toValue=$(this).val()
+        var fromInput = changeDateYMD(fromValue)
+        var toInput = changeDateYMD(toValue)
         if(fromValue && toValue&&fromValue.length>=10&&toValue.length>=10){
             if(fromInput<=toInput){
                 $("#errorDate").hide()
@@ -182,10 +165,10 @@ $(function() {
         }
     })
     $(document).on('blur','.dateFromControl', function() {
-        let toValue=$(this).parents('.approver_tr').find('.dateToControl').val()
-        let fromValue=$(this).val()
-        let fromInput = changeDateYMD(fromValue)
-        let toInput = changeDateYMD(toValue)
+        var toValue=$(this).parents('.approver_tr').find('.dateToControl').val()
+        var fromValue=$(this).val()
+        var fromInput = changeDateYMD(fromValue)
+        var toInput = changeDateYMD(toValue)
         console.log(fromInput)
         console.log(toInput)
         if(fromValue && toValue&&fromValue.length>=10&&toValue.length>=10){
@@ -197,10 +180,10 @@ $(function() {
         }
     })
     $(document).on('input','.dateFromControl', function() {
-        let toValue=$(this).parents('.approver_tr').find('.dateToControl').val()
-        let fromValue=$(this).val()
-        let fromInput = changeDateYMD(fromValue)
-        let toInput = changeDateYMD(toValue)
+        var toValue=$(this).parents('.approver_tr').find('.dateToControl').val()
+        var fromValue=$(this).val()
+        var fromInput = changeDateYMD(fromValue)
+        var toInput = changeDateYMD(toValue)
         if(fromValue && toValue&&fromValue.length>=10&&toValue.length>=10){
             if(fromInput<=toInput){
                 $("#errorDate").hide()
@@ -211,8 +194,8 @@ $(function() {
     })
 })
 function changeDateYMD(date){
-    let dateArry = date.split("/")
-    let DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
+    var dateArry = date.split("/")
+    var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
     return DateFormat
 }
 function verifyRepeat() {
@@ -255,7 +238,7 @@ function verifyRepeat() {
 }
 function initialCompleteList() {
     $('.empControl').each(function() {
-        let input = this
+        var input = this
         $(this)
             .autocomplete(employeeList, {
                 max: 10, //
@@ -317,7 +300,7 @@ function initialCompleteList() {
 }
 
 function veryIfError(){
-    let i = 0
+    var i = 0
     $(".errorList .error-hint").each(function(){
         if($(this).is(':visible')){
             i++
@@ -326,7 +309,7 @@ function veryIfError(){
     return i
 }
 function deleteRow(dom) {
-    let length = $('.setApprovers-list tbody .approver_tr').length
+    var length = $('.setApprovers-list tbody .approver_tr').length
     $(dom)
         .parents('.approver_tr')
         .removeClass('approver_tr')
@@ -341,8 +324,8 @@ var haveEndDate = []
 function initDateControl() {
     $('.approver_tr').each(function(index) {
         haveEndDate[index] = false
-        let fromCalendar = $(this).find('.dateFromControl')
-        let toCalendar = $(this).find('.dateToControl')
+        var fromCalendar = $(this).find('.dateFromControl')
+        var toCalendar = $(this).find('.dateToControl')
         checkin[index] = fromCalendar
             .fdatepicker({
                 format: 'mm/dd/yyyy',
@@ -355,8 +338,8 @@ function initDateControl() {
             })
             .on('changeDate', function(ev) {
                 console.log(ev)
-                let endDate = toCalendar.val()
-                let startDate = fromCalendar.val()
+                var endDate = toCalendar.val()
+                var startDate = fromCalendar.val()
                 if (
                     ev.date &&
                     (ev.date.valueOf() >= checkout[index].date.valueOf() ||
@@ -394,8 +377,8 @@ function initDateControl() {
     setGlobal()
 }
 function changeLevel() {
-    let selectNum = $('#selectEmpNbr').val()
-    let numDirect = 0
+    var selectNum = $('#selectEmpNbr').val()
+    var numDirect = 0
     directReportEmployee.forEach(function(element) {
         if (element.employeeNumber == selectNum) {
             numDirect = element.numDirectReports
@@ -421,19 +404,19 @@ function judgeContent() {
     approverJson = []
     approverEmptyJson = []
     noEmpty = 0
-    let length = $('.approver_tr').length
+    var length = $('.approver_tr').length
     $('.approver_tr').each(function(index) {
-        let empNbr = $(this)
+        var empNbr = $(this)
             .find('.empControl')
             .val()
-        let empArry = empNbr.split('-')
-        let from = $(this)
+        var empArry = empNbr.split('-')
+        var from = $(this)
             .find('.dateFromControl')
             .val()
-        let to = $(this)
+        var to = $(this)
             .find('.dateToControl')
             .val()
-        let obj
+        var obj
         if (empNbr == '' || from == '' || to == '') {
         } else {
             noEmpty += 1

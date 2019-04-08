@@ -9,49 +9,49 @@ $('#createNewUserForm').bootstrapValidator({
       username: {
             validators: {
                 notEmpty: {
-                    message: 'validator.requiredField'
+                    message: requiredFieldValidator
                 },
                 regexp: {
                     regexp: /^[^\s]*$/,
-                    message: 'validator.haveNotSpace'
+                    message: haveNotSpaceValidator
                 },
                 stringLength: {
                     min: 6,
                     max: 8,
-                    message:'validator.lengthNotLessThan6_8'
+                    message:lengthNotLessThan6_8Validator
                 }
             }
         },
         password: {
             validators: {
                 notEmpty: {
-                    message: 'validator.requiredField'
+                    message: requiredFieldValidator
                 },
                 stringLength: {
                     min: 6,
-                    message:'validator.passwordLengthNotLessThan6'
+                    message:passwordLengthNotLessThan6Validator
                 }
             }
         },
         newPassword: {
             validators: {
                 notEmpty: {
-                    message: 'validator.requiredField'
+                    message: requiredFieldValidator
                 },
                 identical: {
                     field: 'password',
-                    message:'validator.passwordNotMatch'
+                    message:passwordNotMatchValidator
                 },
                 stringLength: {
                     min: 6,
-                    message: 'validator.passwordLengthNotLessThan6'
+                    message: passwordLengthNotLessThan6Validator
                 }
             }
         },
         workEmail: {
             validators: {
               emailAddress: {
-                    message: 'validator.pleaseEnterCorrectFormat'
+                    message: pleaseEnterCorrectFormatValidator
                 }
             }
         },
@@ -60,17 +60,17 @@ $('#createNewUserForm').bootstrapValidator({
             validators: {
                 identical: {
                     field: 'workEmail',
-                    message:'validator.emailNotMatch'
+                    message:emailNotMatchValidator
                 },
                 emailAddress: {
-                    message: 'validator.pleaseEnterCorrectFormat'
+                    message: pleaseEnterCorrectFormatValidator
                 }
             }
         },
         homeEmail: {
             validators: {
               emailAddress: {
-                    message: 'validator.pleaseEnterCorrectFormat'
+                    message: pleaseEnterCorrectFormatValidator
                 }
             }
         },
@@ -79,24 +79,24 @@ $('#createNewUserForm').bootstrapValidator({
             validators: {
                 identical: {
                     field: 'homeEmail',
-                    message:'validator.emailNotMatch'
+                    message:emailNotMatchValidator
                 },
                 emailAddress: {
-                    message: 'validator.pleaseEnterCorrectFormat'
+                    message: pleaseEnterCorrectFormatValidator
                 }
             }
         },
         hintQuestion: {
             validators: {
                 notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
             }
         },
         hintAnswer: {
             validators: {
                 notEmpty: {
-                        message: 'validator.requiredField'
+                        message: requiredFieldValidator
                     },
             }
         },
@@ -106,11 +106,11 @@ $('#createNewUserForm').bootstrapValidator({
 
 $(function(){
     $("#saveNewUser").on('click',function(){
-        let workE = $("#workEmail").val()
-        let workEV = $("#verifyWorkEmail").val()
-        let homeE = $("#homeEmail").val()
-        let homeEV = $("#verifyHomeEmail").val()
-        let newUserFormValidator = $('#createNewUserForm').data(
+        var workE = $("#workEmail").val()
+        var workEV = $("#verifyWorkEmail").val()
+        var homeE = $("#homeEmail").val()
+        var homeEV = $("#verifyHomeEmail").val()
+        var newUserFormValidator = $('#createNewUserForm').data(
             'bootstrapValidator'
         )
         newUserFormValidator.validate()
