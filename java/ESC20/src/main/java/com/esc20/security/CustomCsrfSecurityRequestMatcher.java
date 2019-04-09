@@ -13,6 +13,8 @@ public class CustomCsrfSecurityRequestMatcher implements RequestMatcher {
     public boolean matches(HttpServletRequest request) {
     	if (request.getRequestURI().endsWith("UnprotectedPDF"))
     		return false;
+    	if (request.getRequestURI().endsWith("loginEA"))
+    		return false;
         return !allowedMethods.matcher(request.getMethod()).matches();
     } 
 }
