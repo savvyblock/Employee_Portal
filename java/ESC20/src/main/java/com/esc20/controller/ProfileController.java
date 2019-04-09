@@ -249,7 +249,7 @@ public class ProfileController{
         //TODO check if it is the same request, if yes, update the request
         // this.bankService.checkSameBank
         // 
-        
+        this.bankService.deleteAccountRequest(employeeNumber, freq, accountInfo, null);
         this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
         
         if(autoApprove) {
