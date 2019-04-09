@@ -38,16 +38,21 @@
           <div><b>${sessionScope.languageJSON.Form1095.D}</b> <span>${sessionScope.languageJSON.Form1095.B2018.D}</span> </div>
           <div><b>${sessionScope.languageJSON.Form1095.E}</b> <span>${sessionScope.languageJSON.Form1095.B2018.E}</span> </div>
           <div><b>${sessionScope.languageJSON.Form1095.F}</b> <span>${sessionScope.languageJSON.Form1095.B2018.F}</span> </div>
-          <div><div class="wordTipIcon"><span>${sessionScope.languageJSON.Form1095.tip}</span></div> 
-          <span>${sessionScope.languageJSON.Form1095.B2018.AratherThan1095}</span> </div>
-          <div><b><span>${sessionScope.languageJSON.Form1095.line}</span> 9.</b> 
-            <span>${sessionScope.languageJSON.Form1095.B2018.Reserved}</span> </div>
+          <div>
+            <div class="wordTipIcon">
+              <span>${sessionScope.languageJSON.Form1095.tip}</span>
+            </div> 
+            <span>${sessionScope.languageJSON.Form1095.B2018.AratherThan1095}</span> 
+          </div>
+          <div>
+            <b><span>${sessionScope.languageJSON.Form1095.line}</span> 9.</b> 
+            <span>${sessionScope.languageJSON.Form1095.B2018.Reserved}</span> 
+          </div>
          
       </td>
       <td style="width: 50%" valign="top">
-        
         <div>${sessionScope.languageJSON.Form1095.B2018.ifYouHadEmployer}</div>
-        <div>${sessionScope.languageJSON.Form1095.B2018.partIIIIssuer}</div>
+        <div><b>${sessionScope.languageJSON.Form1095.B2018.partIIIIssuer}</b></div>
         <div>${sessionScope.languageJSON.Form1095.B2018.thisPartReports}</div>
         <div>${sessionScope.languageJSON.Form1095.B2018.line18report}</div>
         <div>${sessionScope.languageJSON.Form1095.B2018.partIVCovered}</div>

@@ -38,7 +38,7 @@
       <td style="width: 50%" valign="top">
         
         <div>${sessionScope.languageJSON.Form1095.B2016.ifYouHadEmployer}</div>
-        <div>${sessionScope.languageJSON.Form1095.B2016.partIIIIssuer}</div>
+        <div><b>${sessionScope.languageJSON.Form1095.B2016.partIIIIssuer}</b></div>
         <div>${sessionScope.languageJSON.Form1095.B2016.thisPartReports}</div>
         <div>${sessionScope.languageJSON.Form1095.B2016.line18report}</div>
         <div>${sessionScope.languageJSON.Form1095.B2016.partIVCovered}</div>

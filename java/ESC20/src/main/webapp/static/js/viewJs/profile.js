@@ -54,7 +54,9 @@ $(function() {
         }
     })
     $('.icheckRadioBank').on('click', function(event) {
+        console.log($(this).parents(".profile-item").find(".bankAmount .amount_2").val())
         if ($(this).is(':checked')) {
+            $(this).parents(".profile-item").find(".bankAmount .amount_2").val("0.00")
             $(".bankAccountBlock").removeClass("asPrimary")
             $(this).parents(".bankAccountBlock").addClass("asPrimary")
             var indexBank = $('.icheckRadioBank').index(this)

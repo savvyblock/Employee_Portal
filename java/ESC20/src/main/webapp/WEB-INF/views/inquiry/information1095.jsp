@@ -40,7 +40,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 											<input type="hidden" name="sortBy" value="${sortBy}" />
 											<button type="submit" role="button" class="btn btn-primary download-pdf"
 												aria-label="${sessionScope.languageJSON.label.exportPDF}"><i class="fa fa-file-pdf-o"></i></button>
-									</form>
+                                    </form>
+                                    <button
+                                            class="btn btn-primary"
+                                            onclick="doPrint()"
+                                        
+                                        >
+                                        ${sessionScope.languageJSON.label.print}
+                                        </button>
                                 </div>
                             </div>
                             <div class="toPrint content-white EMP-detail info-1095">

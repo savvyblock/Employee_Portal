@@ -1627,7 +1627,7 @@
 			"D":"Individual market insurance",
 			"E":"Multiemployer plan",
 			"F":"Other designated minimum essential coverage",
-			"AratherThan1095":"1095-A rather than a Form 1095-B. If you or another family member received employer-sponsored coverage, that coverage may be reported on a Form 1095-C (Part III) rather than a Form 1095-B. For more information, see <style  >www.irs.gov/Affordable-Care-Act/Questions-and-Answers-About-Health-Care-Information-Forms-for-Individuals.",
+			"AratherThan1095":"1095-A rather than a Form 1095-B. If you or another family member received employer-sponsored coverage, that coverage may be reported on a Form 1095-C (Part III) rather than a Form 1095-B. For more information, see www.irs.gov/Affordable-Care-Act/Questions-and-Answers-About-Health-Care-Information-Forms-for-Individuals.",
 			"Reserved":"Reserved.",
 			"partIIInfo":"Part II. Information About Certain Employer-Sponsored Coverage, lines 10-15.",
 			"ifYouHadEmployer":"If you had employer-sponsored health coverage, this part may provide information about the employer sponsoring the coverage. This part may show only the last four digits of the employer's EIN. This part also may be left blank, even if you had employer-sponsored health coverage. If this part is blank, you do not need to fill in the information or return it to your employer or other coverage provider.",

@@ -25,7 +25,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 										value="${_csrf.token}" />
 									<button type="submit" role="button" class="btn btn-primary download-pdf"
 										><i class="fa fa-file-pdf-o"></i></button>
-								</form>
+                                </form>
+                                <button
+                                class="btn btn-primary"
+                                onclick="doPrint()"
+                               
+                            >
+                            ${sessionScope.languageJSON.label.print}
+                            </button>
                             </div>
                     </div>
                     <div class="toPrint content-white EMP-detail">
