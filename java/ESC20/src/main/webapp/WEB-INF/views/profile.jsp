@@ -1410,12 +1410,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="profile-title">${sessionScope.languageJSON.profile.primary}</div>
                                         <div class="profile-desc">
                                             <span class="haveValue">
-                                                <!-- <label>
+                                                <label>
                                                     <div class="noPrimary"></div>
                                                     <div class="yesPrimary">
                                                         <i class="fa fa-check"></i>
                                                     </div>
-                                                </label> -->
+                                                </label>
                                             </span>
                                             <div class="form-group valueInput">
                                                 <label for="primary_${count.index}">

@@ -1932,6 +1932,7 @@
 
 .yesPrimary {
   display: inline-block;
+  display: none;
   vertical-align: middle;
   margin: 0;
   padding: 0;

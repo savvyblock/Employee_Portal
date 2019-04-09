@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,15 +30,36 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 			{
 				String distid = request.getParameter("distid");
 				if (distid != null && distid.matches("\\d{6}")) {
+					Cookie[] cookies = request.getCookies();
+					Cookie cookie = new Cookie("district",distid);
+					cookie.setMaxAge(60*60*24);
+					response.addCookie(cookie);
+					System.out.println("cookie is set "+ cookie.getValue());
 					request.getSession().setAttribute("districtId", distid);
 					request.getSession().setAttribute("isSwitched", true);
 				}
-
-				DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+(String)request.getSession().getAttribute("districtId"));
 				database = (String)request.getSession().getAttribute("districtId");
+				if (database == null || "".equals(database)) {
+					Cookie[] cookies = request.getCookies();
+					if(cookies != null)
+					{
+					    for(Cookie cookie : cookies) 
+					    { 
+					    	if (cookie.getName().equals("district")) 
+					    	{
+					    		System.out.println("load from cookies "+cookie.getValue());
+					    		request.getSession().setAttribute("districtId", cookie.getValue());
+					    		request.getSession().setAttribute("isSwitched", true);
+					    		database = cookie.getValue();
+					    	}
+					    }
+					}
+				}
+				DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+database);
 				if (database == null || "".equals(database)) {
 					logger.error("Unable to set county district.");
 				}
+				
 				Boolean isTimeOut = (Boolean)request.getSession().getAttribute("isTimeOut");
 				if(isTimeOut==null)
 					isTimeOut = false;

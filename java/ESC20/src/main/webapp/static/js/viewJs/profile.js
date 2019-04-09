@@ -54,9 +54,9 @@ $(function() {
         }
     })
     $('.icheckRadioBank').on('click', function(event) {
-        console.log($(this).parents(".profile-item").find(".bankAmount .amount_2").val())
         if ($(this).is(':checked')) {
             $(this).parents(".profile-item").find(".bankAmount .amount_2").val("0.00")
+            console.log($(this).parents(".profile-item").find(".bankAmount .amount_2").val())
             $(".bankAccountBlock").removeClass("asPrimary")
             $(this).parents(".bankAccountBlock").addClass("asPrimary")
             var indexBank = $('.icheckRadioBank').index(this)
@@ -65,6 +65,18 @@ $(function() {
                     $(this).prop('checked', false)
                 }
             })
+        }
+    })
+    $(".bankAccountBlock").each(function(){
+        var bankAmount = $(this).find(".bankAmount .amount_2").val()
+        console.log(bankAmount)
+        if(bankAmount == '0.00'){
+            $(this).find(".icheckRadioBank").prop('checked', true)
+            $(".bankAccountBlock").removeClass("asPrimary")
+            $(this).addClass("asPrimary")
+            $(this).find(".yesPrimary").show()
+            $(this).find(".noPrimary").hide()
+            return false
         }
     })
     $('.icheckRadioBank').keypress(function(e) {
@@ -428,6 +440,8 @@ function updateBank(index) {
         var accountTypeNew = $('#accountTypeNew_' + index).val()
         console.log(accountTypeNew)
         var displayAmountNew = $('#displayAmountNew_' + index).val()
+        
+        // console.log(parseFloat(parseFloat(displayAmountNew).toFixed(2)))
 
         $('#hidden_freq_update').val(freq)
         $('#hidden_code_update').val(code)
@@ -438,7 +452,7 @@ function updateBank(index) {
         $('#hidden_accountType_update').val(accountType)
         $('#hidden_accountTypeNew_update').val(accountTypeNew)
         $('#hidden_displayAmount_update').val(displayAmount)
-        $('#hidden_displayAmountNew_update').val(displayAmountNew)
+        $('#hidden_displayAmountNew_update').val(parseFloat(displayAmountNew))
         $('#updateBankHidden').submit()
     }
 }
