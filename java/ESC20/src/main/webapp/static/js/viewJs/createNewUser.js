@@ -29,7 +29,8 @@ $('#createNewUserForm').bootstrapValidator({
                 },
                 stringLength: {
                     min: 6,
-                    message:passwordLengthNotLessThan6Validator
+                    max:9,
+                    message:lengthNotLessThan6_9Validator
                 }
             }
         },
@@ -44,7 +45,8 @@ $('#createNewUserForm').bootstrapValidator({
                 },
                 stringLength: {
                     min: 6,
-                    message: passwordLengthNotLessThan6Validator
+                    max:9,
+                    message: lengthNotLessThan6_9Validator
                 }
             }
         },
