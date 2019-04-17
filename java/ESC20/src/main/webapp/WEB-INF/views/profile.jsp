@@ -179,19 +179,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <button
                                                     type="submit" role="submitButton"
                                                     class="btn btn-primary save-btn"
-                                                    id="savePersonal"
+                                                    id="savePersonal"  aria-label = "${sessionScope.languageJSON.label.updatePersonalInfo}"
                                                 >
                                                 ${sessionScope.languageJSON.label.update}
                                                 </button>
                                                 <button
                                                     type="button" role="button"
-                                                    id="undoNameRequest"
+                                                    id="undoNameRequest" aria-label = "${sessionScope.languageJSON.label.undoPersonalInfo}"
                                                     class="btn btn-secondary" data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                                 <button
-                                                    type="button" role="button"
+                                                    type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelPersonalInfo}"
                                                     class="btn btn-secondary cancel-btn" 
                                                 >
                                                 ${sessionScope.languageJSON.label.cancel}
@@ -252,19 +252,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                 type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn"
-                                                id="saveMarital"
+                                                id="saveMarital" aria-label = "${sessionScope.languageJSON.label.updateMaritalStatus}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
-                                                    id="undoMaritalRequest"
+                                                    id="undoMaritalRequest" aria-label = "${sessionScope.languageJSON.label.undoMaritalStatus}"
                                                     class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
-                                                type="button" role="button"
+                                                type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelMaritalStatus}"
                                                 class="btn btn-secondary cancel-btn" 
                                             >
                                             ${sessionScope.languageJSON.label.cancel}
@@ -345,19 +345,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                 type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn"
-                                                id="saveDriver"
+                                                id="saveDriver" aria-label = "${sessionScope.languageJSON.label.updateDriver}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
-                                                    id="undoDriverLicense"
+                                                    id="undoDriverLicense" aria-label = "${sessionScope.languageJSON.label.undoDriver}"
                                                     class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
-                                                type="button" role="button"
+                                                type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelDriver}"
                                                 class="btn btn-secondary cancel-btn" 
                                             >
                                             ${sessionScope.languageJSON.label.cancel}
@@ -441,19 +441,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                 type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn"
-                                                id="saveRestrict"
+                                                id="saveRestrict" aria-label = "${sessionScope.languageJSON.label.updateRestrict}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
-                                                    id="undoRestriction"
+                                                    id="undoRestriction" aria-label = "${sessionScope.languageJSON.label.undoRestrict}"
                                                     class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
-                                                type="button" role="button"
+                                                type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelRestrict}"
                                                 class="btn btn-secondary cancel-btn" 
                                             >
                                             ${sessionScope.languageJSON.label.cancel}
@@ -559,19 +559,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                 type="button" role="button"
                                                 class="btn btn-primary save-btn"
-                                                id="saveEmail"
+                                                id="saveEmail" aria-label = "${sessionScope.languageJSON.label.updateEmail}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
-                                                    id="undoEmail"
+                                                    id="undoEmail" aria-label = "${sessionScope.languageJSON.label.undoEmail}"
                                                     class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
-                                                type="button" role="button"
+                                                type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelEmail}"
                                                 class="btn btn-secondary cancel-btn" 
                                             >
                                             ${sessionScope.languageJSON.label.cancel}
@@ -718,19 +718,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                 type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn"
-                                                id="saveEmergency"
+                                                id="saveEmergency" aria-label = "${sessionScope.languageJSON.label.updateEmergency}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
-                                                    id="undoEmergencyContact"
+                                                    id="undoEmergencyContact" aria-label = "${sessionScope.languageJSON.label.undoEmergency}"
                                                     class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
-                                                type="button" role="button"
+                                                type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelEmergency}"
                                                 class="btn btn-secondary cancel-btn" 
                                             >
                                             ${sessionScope.languageJSON.label.cancel}
@@ -899,19 +899,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                 type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn"
-                                                id="saveMailingAddress"
+                                                id="saveMailingAddress" aria-label = "${sessionScope.languageJSON.label.updateMailingAddress}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
-                                                    id="undoMailingAddress"
+                                                    id="undoMailingAddress" aria-label = "${sessionScope.languageJSON.label.undoMailingAddress}"
                                                     class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
-                                                type="button" role="button"
+                                                type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelMailingAddress}"
                                                 class="btn btn-secondary cancel-btn" 
                                             >${sessionScope.languageJSON.label.cancel}
                                             
@@ -1080,19 +1080,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                 type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn"
-                                                id="saveAltAddress"
+                                                id="saveAltAddress" aria-label = "${sessionScope.languageJSON.label.updateAltAddress}"
                                             >${sessionScope.languageJSON.label.update}
                                             
                                             </button>
                                             <button
                                                     type="button" role="button"
-                                                    id="undoAlternative"
+                                                    id="undoAlternative" aria-label = "${sessionScope.languageJSON.label.undoAltAddress}"
                                                     class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
-                                                type="button" role="button"
+                                                type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelAltAddress}"
                                                 class="btn btn-secondary cancel-btn" 
                                             >
                                             ${sessionScope.languageJSON.label.cancel}
@@ -1244,19 +1244,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <button
                                                 type="submit" role="submitButton"
                                                 class="btn btn-primary save-btn"
-                                                id="savePhone"
+                                                id="savePhone" aria-label = "${sessionScope.languageJSON.label.updatePhone}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
                                             </button>
                                             <button
                                                     type="button" role="button"
-                                                    id="undoPhoneNumber"
+                                                    id="undoPhoneNumber" aria-label = "${sessionScope.languageJSON.label.undoPhone}"
                                                     class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                                 >
                                                 ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                             <button
-                                                type="button" role="button"
+                                                type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelPhone}"
                                                 class="btn btn-secondary cancel-btn" 
                                             >
                                             ${sessionScope.languageJSON.label.cancel}
@@ -1360,19 +1360,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <button
                                             type="submit" role="submitButton"
                                             class="btn btn-primary save-btn"
-                                            id="saveW4"
+                                            id="saveW4" aria-label = "${sessionScope.languageJSON.label.updateW4}"
                                         >
                                         ${sessionScope.languageJSON.label.update}
                                         </button>
                                         <button
                                                 type="button" role="button"
-                                                id="undoW4"
+                                                id="undoW4" aria-label = "${sessionScope.languageJSON.label.undoW4}"
                                                 class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
                                             >
                                             ${sessionScope.languageJSON.label.undo}
                                             </button>
                                         <button
-                                            type="button" role="button"
+                                            type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelW4}"
                                             class="btn btn-secondary cancel-btn" 
                                         >
                                         ${sessionScope.languageJSON.label.cancel}
@@ -1548,14 +1548,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <button
                                             type="button" role="button"
                                             class="btn btn-primary save-btn saveUpdateBankBtn"
-                                            id="saveBank_${count.index}"
+                                            id="saveBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.updateBank}"
                                             onclick="updateBank(${count.index})"
                                         >
                                         ${sessionScope.languageJSON.label.update}
                                         </button>
                                         <button
                                                 type="button" role="button"
-                                                id="undoBank_${count.index}"
+                                                id="undoBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.undoBank}"
                                                 class="btn btn-secondary undo-btn"   data-toggle="modal" data-target="#undoModal" 
                                                 onclick="undoBank(${count.index})"
                                             >
@@ -1564,7 +1564,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <c:if test="${bank.code.subCode!=''}">
                                             <button
                                                 type="button" role="button"
-                                                id="deleteBank_${count.index}"
+                                                id="deleteBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.deleteBank}"
                                                 class="btn btn-secondary delete-btn"  onclick="deleteBankAmount(${count.index})"
                                                 data-toggle="modal" data-target="#deleteModal"
                                             >
@@ -1740,7 +1740,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                 </form>
                                 <button
-                                    type="button" role="button"
+                                    type="button" role="button" aria-label = "${sessionScope.languageJSON.label.addBank}"
                                     class="btn btn-primary add-bank-btn"
                                 >
                                 <span>${sessionScope.languageJSON.label.add}</span>
