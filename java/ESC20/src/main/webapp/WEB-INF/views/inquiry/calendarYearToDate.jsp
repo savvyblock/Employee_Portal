@@ -93,9 +93,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </select>
                             </div>
                         </form>
-                        <p class="no-print table-top-title">
+                        <h2 class="no-print table-top-title">
                             <b><span>${sessionScope.languageJSON.label.frequency}</span>: ${freq}</b>
-                        </p>
+                        </h2>
                         <p class="no-print">
                             <span>${sessionScope.languageJSON.label.lastPostedPayDate}</span>:${latestPayDate}
                         </p>

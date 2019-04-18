@@ -26,7 +26,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </c:if>
                             <c:if test="${fn:length(frequencies) > 0}">
                                     <c:forEach items="${frequencies}" var="frequency">
-                                        <p class="no-print table-top-title"><b><span>${sessionScope.languageJSON.label.frequency}</span>: ${frequency}</b></p>
+                                        <h2 class="no-print table-top-title"><b><span>${sessionScope.languageJSON.label.frequency}</span>: ${frequency}</b></h2>
                                         <div>
                                                 <span>${sessionScope.languageJSON.label.maritalStatus}</span>:  
                                                 <c:if test="${payInfos[frequency].maritalStatTax =='M'}">
