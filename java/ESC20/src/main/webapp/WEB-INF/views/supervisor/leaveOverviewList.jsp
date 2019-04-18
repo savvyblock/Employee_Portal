@@ -98,7 +98,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <input
                                                     class="form-control" type="text" name="startDate"
                                                     data-date-format="mm/dd/yyyy"  autocomplete="off"
-                                                    aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+                                                    aria-label="${sessionScope.languageJSON.label.from}"
                                                     placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                                     title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                                     id="SearchStartDate" value="${startDate}" />
@@ -112,7 +112,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="button-group">
                                                 <input
                                                     class="form-control" type="text" name="endDate" data-date-format="mm/dd/yyyy"  autocomplete="off"
-                                                    aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+                                                    aria-label="${sessionScope.languageJSON.label.to}"
                                                     placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                                     title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                                     id="SearchEndDate" value="${endDate}" />

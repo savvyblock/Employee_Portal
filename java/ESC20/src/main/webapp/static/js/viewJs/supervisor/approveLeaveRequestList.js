@@ -69,7 +69,7 @@ function actionLeave(id){
         }else{
             unit = '<span>'+hoursLabel+'</span>'
         }
-        var htmlInfo = '<div><span>'+payrollFreqLabel+'</span>:' + infoDetail[i].frequency + '</div>'+
+        var htmlInfo = '<div><h5><span>'+payrollFreqLabel+'</span>:' + infoDetail[i].frequency + '</h5></div>'+
                 '<table class="table responsive-table mt-3">'+
                     '<thead>'+
                         '<tr>'+
