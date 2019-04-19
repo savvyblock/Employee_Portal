@@ -37,29 +37,29 @@ $(function() {
         var approverLen = $('.setApprovers-list tbody tr.approver_tr').length
         var length = trLen
         var newRow =
-            '<tr class="approver_tr">'
+            '<tr class="approver_tr">'+
                 '<td class="countIndex" scope="'+rowNbrLabel+'">' +length +
-               '</td>'
-                '<td scope="'+temporaryApproverLabel+'">'
-                    '<div class="form-group">'
-                        '<input class="form-control empControl" type="text" aria-label="'+temporaryApproverLabel+'" id="name_0'+length+'">'
-                    '</div>'
-                '</td>'
-                '<td scope="'+fromDateLabel+'">'
-                        '<div class="form-group">'
-                            '<input class="form-control date-control dateFromControl" aria-label="'+fromDateLabel+'" type="text" autocomplete="off" id="fromDate_0'+length+'" placeholder="mm/dd/yyyy">'
-                        '</div>'
-                '</td>'
-                '<td scope="'+toDateLabel+'">'
-                    '<div class="form-group">'
-                        '<input class="form-control  date-control dateToControl" aria-label="'+toDateLabel+'" type="text" autocomplete="off" id="toDate_0'+length+'" placeholder="mm/dd/yyyy"'>
-                    '</div>'
-                '</td>'
-                '<td scope="'+deleteLabel+'">'
-                        '<button type="button" role="button" class="a-btn" onclick="deleteRow(this)" aria-label="'+deleteBtnLabel+'">'
-                            '<i class="fa fa-trash"></i>'
-                       '</button>'
-               '</td>'
+               '</td>'+
+                '<td scope="'+temporaryApproverLabel+'">'+
+                    '<div class="form-group">'+
+                        '<input class="form-control empControl" type="text" aria-label="'+temporaryApproverLabel+'" id="name_0'+length+'">'+
+                    '</div>'+
+                '</td>'+
+                '<td scope="'+fromDateLabel+'">'+
+                        '<div class="form-group">'+
+                            '<input class="form-control date-control dateFromControl" aria-label="'+fromDateLabel+'" type="text" autocomplete="off" id="fromDate_0'+length+'" placeholder="mm/dd/yyyy">'+
+                        '</div>'+
+                '</td>'+
+                '<td scope="'+toDateLabel+'">'+
+                    '<div class="form-group">'+
+                        '<input class="form-control  date-control dateToControl" aria-label="'+toDateLabel+'" type="text" autocomplete="off" id="toDate_0'+length+'" placeholder="mm/dd/yyyy">'+
+                    '</div>'+
+                '</td>'+
+                '<td scope="'+deleteLabel+'">'+
+                        '<button type="button" role="button" class="a-btn" onclick="deleteRow(this)" aria-label="'+deleteBtnLabel+'">'+
+                            '<i class="fa fa-trash"></i>'+
+                       '</button>'+
+               '</td>'+
             '</tr>'
                     
         console.log('tr that have empty field' + approverEmptyJson)
@@ -67,6 +67,7 @@ $(function() {
             $('#errorComplete').hide()
             var errorLength = veryIfError()
             if (errorLength==0) {
+                console.log(newRow)
                 $('.setApprovers-list tbody tr:last-child').before(newRow)
                 initialCompleteList()
             }
