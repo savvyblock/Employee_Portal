@@ -92,7 +92,7 @@ public class W2InformationController{
 		// For calendar year >= 2010
 		List<String> years = this.service.getW2Years(employeeNumber);
 
-		String elecConsntMsgW2 = ((Options) session.getAttribute("options")).getMessageElecConsentW2();
+		String elecConsntMsgW2 = ((Options) session.getAttribute("options")).getMessageElecConsentW2().trim();
 		String consent = this.service.getW2Consent(employeeNumber);
 
 		List<BhrThirdPartySickPay> thirdPartyPay = this.service.getBhrThirdPartySickPay(employeeNumber, year);

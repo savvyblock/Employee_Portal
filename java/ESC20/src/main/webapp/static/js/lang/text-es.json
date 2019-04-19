@@ -440,6 +440,7 @@
 		"consentElectronicAccess":"Yes, I consent to electronic access. I agree to access my 1095 Form electronically as described above and print my 1095 Form. I do not need a printed copy furnished to me. ",
 		"donotConsentElectronicAccess":"No, I do not consent to electronic access. I am requesting a paper copy furnished to me.",
 		"customMessageHere":"Custom message here",
+		"blankValueForCustomMessage":"blank value for custom message",
 		"cancel":"Cancel",
 		"otherSupplemental":"Other Supplemental",
 		"otherNonTRSTax":"Other Non-TRS Taxable",
