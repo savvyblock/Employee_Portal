@@ -445,9 +445,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <input hidden="hidden" type="hidden" name="consent" id="consentModal" value="">
                                 <div class="form-group">
                                     <label for="customMessage">${sessionScope.languageJSON.label.customMessageHere}</label>
-                                    <div class="form-control form-text static">
-                                        ${message}
-                                    </div>
+                                     <c:if test="${message==''}">
+	                                     <input type="text" class="form-control form-text static" aria-label="${sessionScope.languageJSON.label.blankValueForCustomMessage}" readonly="readonly"/>
+                                    </c:if>
+                                     <c:if test="${message!=''}">
+                                        <textarea class="form-control form-text static" readonly="readonly">${message}</textarea>
+                                    </c:if>
                                 </div>
                                 <div class="form-group">
                                         <input hidden="hidden" type="text" name="consent" id="elecConsnt1095" value="${consent}" aria-label="${sessionScope.languageJSON.accessHint.consent}">

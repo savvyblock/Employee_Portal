@@ -1205,9 +1205,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <div class="form-group">
                                     <label >${sessionScope.languageJSON.label.customMessageHere}</label>
-                                    <div class="form-control form-text static">
-                                        ${elecConsntMsgW2}
-                                    </div>
+                                     <c:if test="${elecConsntMsgW2==''}">
+	                                     <input type="text" class="form-control form-text static" aria-label="${sessionScope.languageJSON.label.blankValueForCustomMessage}" readonly="readonly"/>
+                                    </c:if>
+                                     <c:if test="${elecConsntMsgW2!=''}">
+                                        <textarea class="form-control form-text static"  readonly="readonly">${elecConsntMsgW2}</textarea>
+                                    </c:if>
                                 </div>
                                 <div class="form-group">
                                         <div class="checkbox mb-2">

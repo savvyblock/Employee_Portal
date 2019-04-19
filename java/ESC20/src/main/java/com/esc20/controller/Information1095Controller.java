@@ -154,7 +154,7 @@ public class Information1095Controller{
 		if (year == null)
 			year = DateUtil.getLatestYear(years);
 		Options options = ((Options) session.getAttribute("options"));
-		String message = options.getMessageElecConsent1095();
+		String message = options.getMessageElecConsent1095().trim();
 		String consent = this.service.get1095Consent(employeeNumber);
 		Integer BTotal = this.service.getBInfoTotal(employeeNumber, year);
 		Integer CTotal = this.service.getCInfoTotal(employeeNumber, year);
