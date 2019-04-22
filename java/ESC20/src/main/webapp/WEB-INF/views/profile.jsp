@@ -1398,6 +1398,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     id="bankAccountForm_${count.index}"
                                     method="POST"
                                     >
+                              <div role="main" aria-label="<c:if test="${bank.isDelete == true}">${sessionScope.languageJSON.accessHint.deletedPart}</c:if>" class="profile-item border-0 bankAccountBlock  <c:if test="${bank.isDelete == false}">usedBank</c:if>  <c:if test="${bank.isDelete == true}">isDelete</c:if>">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <div class="profile-left">
                                         <c:if test="${count.index == 0}">
@@ -1573,6 +1574,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </c:if>
                                     </div>
                                 </div>
+							</div>   
                             </form>
                                                     
                             </c:forEach>

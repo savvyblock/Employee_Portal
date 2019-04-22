@@ -789,7 +789,8 @@
 		"userName":"user Name",
 		"file":"file",
 		"fileName":"file Name",
-		"currentPage":"current Page"
+		"currentPage":"current Page",
+		"deletedPart":"Deleted Part"
 	},
 	"w2Notice":{
 		"box":"Box ",
