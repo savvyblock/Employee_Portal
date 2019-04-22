@@ -790,7 +790,8 @@
 		"file":"file",
 		"fileName":"file Name",
 		"currentPage":"current Page",
-		"deletedPart":"Deleted Part"
+		"deletedPart":"Deleted Part",
+		"deletedRowSummary":"Row without delete button in Delete column means that row was deleted."
 	},
 	"w2Notice":{
 		"box":"Box ",
