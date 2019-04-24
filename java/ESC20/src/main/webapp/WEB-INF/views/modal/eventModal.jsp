@@ -63,9 +63,20 @@
 
                     <div class="date-group">
                         <div class="form-group calendar-left">
-                            <label class="form-title" for="startDate"><span>${sessionScope.languageJSON.leaveRequest.startDate}</span>: </label>
+                            <label class="form-title" for="startDateInput"><span>${sessionScope.languageJSON.leaveRequest.startDate}</span>: </label>
                             <div class="valid-wrap">
-                                <input
+                                <div class="fDateGroup date" id="startDate" data-date-format="mm/dd/yyyy">
+										<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
+                                        <input class="form-control dateInput" type="text" 
+                                        name="LeaveStartDate"
+                                        id="startDateInput"
+                                        data-date-format="mm/dd/yyyy"  autocomplete="off"
+                                        aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+                                        placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+                                        title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+                                        value=""/>
+							    </div>
+                                <!-- <input
                                     class="form-control"
                                     type="text"
                                     name="LeaveStartDate"
@@ -75,14 +86,25 @@
                                     placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                     title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                     value=""
-                                />
+                                /> -->
                             </div>
                         </div>
 
                         <div class="form-group time-right">
-                                <label class="form-title" for="endDate"><span>${sessionScope.languageJSON.leaveRequest.endDate}</span>: </label>
+                                <label class="form-title" for="endDateInput"><span>${sessionScope.languageJSON.leaveRequest.endDate}</span>: </label>
                                 <div class="valid-wrap">
-                                    <input
+                                    <div class="fDateGroup date" id="endDate" data-date-format="mm/dd/yyyy">
+                                        <button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
+                                        <input class="form-control dateInput" type="text"
+                                        name="LeaveEndDate"
+                                        value=""
+                                        id="endDateInput"
+                                        data-date-format="mm/dd/yyyy"  autocomplete="off"
+                                        aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+                                        placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+                                        title="${sessionScope.languageJSON.label.mmddyyyyFormat}"/>
+                                    </div>
+                                    <!-- <input
                                         class="form-control"
                                         type="text"
                                         name="LeaveEndDate"
@@ -92,7 +114,7 @@
                                         aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                         placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                         title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
-                                    />
+                                    /> -->
                                 </div>
                             
                         </div>

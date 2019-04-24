@@ -600,6 +600,12 @@
 		"undoBank":"Undo for Direct Deposit Bank Accounts",
 		"deleteBank":"Delete for Direct Deposit Bank Accounts",
 		"addBank":"Add Direct Deposit Bank Accounts",
+		"today":"Today",
+		"selected":"selected",
+		"datepicker":"datepicker",
+		"closeDialog":"close Dialog",
+		"showDatepicker":"show Date picker",
+		"addNewRequestOn":"add new request on",
 		"":""
 	},
 	"language":{
@@ -758,8 +764,8 @@
 		"endHour":"end hour",
 		"endMinute":"end minute",
 		"endAmOrPm":"end AM or PM",
-		"prev":"prev1",
-		"next":"next2",
+		"prev":"previous",
+		"next":"next",
 		"level":"level",
 		"calendarView":"calendar View",
 		"comment":"comment",

@@ -75,8 +75,8 @@ $(document).ready(function() {
                         changeLeaveType()
                         $("[name='absenseReason']").val(calEvent.AbsenseReason)
                         $('#leaveId').attr('value', calEvent.id + '')
-                        $('#startDate').val(calEvent.LeaveStartDate)
-                        $('#endDate').val(calEvent.LeaveEndDate)
+                        $('#startDateInput').val(calEvent.LeaveStartDate)
+                        $('#endDateInput').val(calEvent.LeaveEndDate)
                         console.log(calEvent.lvUnitsDaily)
                         console.log(calEvent.lvUnitsUsed)
                         $("#leaveHoursDaily").val(Number(calEvent.lvUnitsDaily).toFixed(3));
@@ -117,8 +117,8 @@ $(document).ready(function() {
                         $('#disIdStatic').attr('value', leaveRequest.id + '')
                         $('#appIdStatic').attr('value', leaveRequest.id + '')
                         $('#employeeStatic').text(leaveRequest.lastName)
-                        $('#startDateStatic').html(leaveRequest.start._i)
-                        $('#endDateStatic').html(leaveRequest.end._i)
+                        $('#startDateInputStatic').html(leaveRequest.start._i)
+                        $('#endDateInputStatic').html(leaveRequest.end._i)
                         $('#leaveTypeStatic').html(type)
                         $('#absenceReasonStatic').html(reason)
                         $('#leaveRequestedStatic').html(
@@ -162,9 +162,11 @@ $(document).ready(function() {
                     if (event.statusCd != 'A') {
                         element.attr('data-toggle', 'modal')
                         element.attr('data-target', '#requestModal')
+                        element.attr('role','button')
                     } else {
                         element.attr('data-toggle', 'modal')
                         element.attr('data-target', '#EventDetailModal')
+                        element.attr('role','button')
                     }
                     var startEv = changeYMDFormat(event.LeaveStartDate)
                     var endEv = changeYMDFormat(event.LeaveEndDate)
@@ -187,15 +189,14 @@ $(document).ready(function() {
                     initLocalize(initialLocaleCode)
                 },
                 viewRender: function(view, element) {
+                    console.log(view)
                     $('.fc-day-top').each(function() {
                         var title = $(this).attr('data-date')
                         // var newBtn = `<button class="btn btn-primary xs"  data-title="${title}" title="Add a new request" onclick="newEvent(this)">Add</button>`
                         var newBtn =
-                            `<button class="btn btn-primary xs calendarAddBtn" data-title="` +
-                            title +
-                            `" onclick="newEvent(this)"  data-toggle="modal" data-target="#requestModal">
-                            <span>`+addLabel+`</span>
-                            </button>`
+                            '<button class="btn btn-primary xs calendarAddBtn" data-title="'+title+'" aria-label="'+addNewRequestLabel+' ' +title +'" onclick="newEvent(this)"  data-toggle="modal" data-target="#requestModal"><span>'
+                            + addLabel +
+                            '</span></button>'
                         $(this).prepend(newBtn)
                     })
                     var currentHtml = '<span>' + currentMonthLabel + '</span>'
@@ -235,8 +236,8 @@ function newEvent(dom) {
     $('.edit-title').hide()
     $(".availableError").hide()
     $('.new-title').show()
-    $('#startDate').val(date)
-    $('#endDate').val(date)
+    $('#startDateInput').val(date)
+    $('#endDateInput').val(date)
     $('#commentList').html('')
     $('.firstSubmit').show()
     $('.secondSubmit').hide()

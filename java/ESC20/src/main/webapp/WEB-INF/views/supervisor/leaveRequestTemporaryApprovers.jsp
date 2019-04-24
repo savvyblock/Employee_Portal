@@ -137,7 +137,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </td>
                                             <td scope="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}">
                                                 <div class="form-group">
-                                                    <input
+                                                        <div class="fDateGroup date dateFromControl" data-date-format="mm/dd/yyyy">
+                                                            <button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
+                                                            <input class="form-control dateInput date-control"
+                                                            aria-label="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}"
+                                                            data-title="from"
+                                                            type="text"
+                                                            name="temporaryApprovers[${row.index}].fromDateString"
+                                                            id="fromDate_01" autocomplete="off"
+                                                            placeholder="mm/dd/yyyy"
+                                                        />
+                                                    </div>
+                                                    <!-- <input
                                                         class="form-control date-control dateFromControl"
                                                         aria-label="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}"
                                                         data-title="from"
@@ -145,12 +156,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="temporaryApprovers[${row.index}].fromDateString"
                                                         id="fromDate_01" autocomplete="off"
                                                         placeholder="mm/dd/yyyy"
-                                                    />
+                                                    /> -->
                                                 </div>
                                             </td>
                                             <td scope="${sessionScope.languageJSON.setTemporaryApprovers.toDate}">
                                                 <div class="form-group">
-                                                    <input
+                                                        <div class="fDateGroup date dateToControl" data-date-format="mm/dd/yyyy">
+                                                            <button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
+                                                            <input class="form-control dateInput  date-control"
+                                                            aria-label="${sessionScope.languageJSON.setTemporaryApprovers.toDate}"
+                                                            type="text"
+                                                            name="temporaryApprovers[${row.index}].toDateString"
+                                                            id="toDate_01" autocomplete="off"
+                                                            placeholder="mm/dd/yyyy"
+                                                        />
+                                                        </div>
+                                                    <!-- <input
                                                         class="form-control  date-control dateToControl"
                                                         aria-label="${sessionScope.languageJSON.setTemporaryApprovers.toDate}"
                                                         type="text"
@@ -158,7 +179,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="temporaryApprovers[${row.index}].toDateString"
                                                         id="toDate_01" autocomplete="off"
                                                         placeholder="mm/dd/yyyy"
-                                                    />
+                                                    /> -->
                                                 </div>
                                             </td>
                                             <td scope="${sessionScope.languageJSON.setTemporaryApprovers.delete}">

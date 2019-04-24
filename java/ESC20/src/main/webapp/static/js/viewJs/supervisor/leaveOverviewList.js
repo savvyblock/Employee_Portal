@@ -42,8 +42,8 @@ $(function() {
 
     $('.sureDelete').click(function() {
         var chain = $('#chainValue').text()
-        var searchStart = $("#SearchStartDate").val()
-        var searchEnd = $("#SearchEndDate").val()
+        var searchStart = $("#SearchStartInput").val()
+        var searchEnd = $("#SearchEndInput").val()
         var empNbr = $('#selectEmpNbr').val()
         var currentFreq=$("#freq").val()
         $('#empNbrDelete').val(empNbr)
@@ -132,8 +132,8 @@ function changeFreq() {
 }
 function changeEmployee() {
     var selectNum = $('#selectEmpNbr').val()
-    $('#SearchStartDate').val('')
-    $('#SearchEndDate').val('')
+    $('#SearchStartInput').val('')
+    $('#SearchEndInput').val('')
     $('.employeeNum').val(selectNum)
     $('.isChangeLevel').val(false)
     if (selectNum && selectNum != '') {
@@ -179,8 +179,8 @@ function editLeave(
     endAMOrPM = end_arry[2].trim();
 
     var chain = $('#chainValue').text()
-    var searchStart = $("#SearchStartDate").val()
-    var searchEnd = $("#SearchEndDate").val()
+    var searchStart = $("#SearchStartInput").val()
+    var searchEnd = $("#SearchEndInput").val()
     var empNbr = $('#selectEmpNbr').val()
     var currentFreq=$("#freq").val()
     $('#empNbrModal').val(empNbr)
@@ -216,16 +216,16 @@ function editLeave(
     $("[name='leaveType']").val(leaveType)
     changeLeaveType()
     $('#absenceReason').val(absenceReason)
-    $('#startDate').val(changeMMDDFormat(start_arry[0]))
-    $('#endDate').val(changeMMDDFormat(end_arry[0]))
+    $('#startDateInput').val(changeMMDDFormat(start_arry[0]))
+    $('#endDateInput').val(changeMMDDFormat(end_arry[0]))
     $('#leaveHoursDaily').val(lvUnitsDaily)
     $('#totalRequested').val(lvUnitsUsed)
 }
 
 function deleteLeave(id) {
     var chain = $('#chainValue').text()
-    var searchStart = $("#SearchStartDate").val()
-    var searchEnd = $("#SearchEndDate").val()
+    var searchStart = $("#SearchStartInput").val()
+    var searchEnd = $("#SearchEndInput").val()
     var empNbr = $('#selectEmpNbr').val()
     var currentFreq=$("#freq").val()
     $('#empNbrDelete').val(empNbr)

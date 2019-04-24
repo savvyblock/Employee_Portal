@@ -6,8 +6,8 @@ $(document).ready(function() {
             language: initialLocaleCode
         })
         .on('changeDate', function(ev) {
-            var fromInput = $('#SearchStartDate').val()
-            var toInput = $('#SearchEndDate').val()
+            var fromInput = $('#SearchStartInput').val()
+            var toInput = $('#SearchEndInput').val()
             if (fromInput && toInput) {
                 var from = ev.date.valueOf()
                 var to = toDate.date.valueOf()
@@ -29,8 +29,8 @@ $(document).ready(function() {
             language: initialLocaleCode
         })
         .on('changeDate', function(ev) {
-            var fromInput = $('#SearchStartDate').val()
-            var toInput = $('#SearchEndDate').val()
+            var fromInput = $('#SearchStartInput').val()
+            var toInput = $('#SearchEndInput').val()
             if (fromInput && toInput) {
                 var to = ev.date.valueOf()
                 var from = formDate.date.valueOf()
@@ -47,8 +47,8 @@ $(document).ready(function() {
         })
         .data('datepicker')
     $("#retrieve").click(function(){
-        var fromValue = $("#SearchStartDate").val()
-        var toValue = $("#SearchEndDate").val()
+        var fromValue = $("#SearchStartInput").val()
+        var toValue = $("#SearchEndInput").val()
         var fromInput = changeDateYMD(fromValue)
         var toInput = changeDateYMD(toValue)
         console.log(fromInput)

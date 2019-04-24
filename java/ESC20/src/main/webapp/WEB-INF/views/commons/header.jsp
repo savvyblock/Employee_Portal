@@ -46,6 +46,11 @@ var  daysFreqLabel = "${sessionScope.languageJSON.label.days}";
 var  hoursLabel = "${sessionScope.languageJSON.label.hours}";
 var  noDataLabel = "${sessionScope.languageJSON.label.noData}";
 
+var todayLabel = "${sessionScope.languageJSON.label.today}";
+var selectedLabel = "${sessionScope.languageJSON.label.selected}";
+var datepickerLabel = "${sessionScope.languageJSON.label.datepicker}";
+var closeDialogLabel = "${sessionScope.languageJSON.label.closeDialog}";
+
 var  rowNbrLabel = "${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}";
 var  temporaryApproverLabel = "${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}";
 var  fromDateLabel = "${sessionScope.languageJSON.setTemporaryApprovers.fromDate}";
@@ -59,6 +64,8 @@ var  bankNameLabel = "${sessionScope.languageJSON.profile.bankName}";
 var  prevLabel = "${sessionScope.languageJSON.accessHint.prev}";
 var  nextLabel = "${sessionScope.languageJSON.accessHint.next}";
 var  closeModalLabel = "${sessionScope.languageJSON.label.closeModal}";
+var showDatepickerLabel = "${sessionScope.languageJSON.label.showDatepicker}"
+var addNewRequestLabel = "${sessionScope.languageJSON.label.addNewRequestOn}"
 
 var answerErrorValidator = "${sessionScope.languageJSON.validator.answerError}";
 var requiredFieldValidator = "${sessionScope.languageJSON.validator.requiredField}";
@@ -123,6 +130,8 @@ var resetLockedValidator = "${sessionScope.languageJSON.validator.resetLocked}";
 var userNotRegisteredValidator = "${sessionScope.languageJSON.validator.userNotRegistered}";
 var pictureChooseValidator = "${sessionScope.languageJSON.validator.pictureChoose}";
 var availableErrorValidator = "${sessionScope.languageJSON.validator.availableError}";
+
+
 
 var languageSet = "${sessionScope.language}"
 </script>
