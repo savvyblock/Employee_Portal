@@ -63,7 +63,15 @@
 					<div class="form-group">
 							<label class="form-title" for="SearchStartDate"><span>${sessionScope.languageJSON.label.from}</span>:</label> 
 							<div class="button-group">
-							<input
+								<div class="fDateGroup date" id="SearchStartDate" data-date-format="mm/dd/yyyy">
+										<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
+										<input class="form-control dateInput" name="SearchStart" autocomplete="off" type="text" aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+										placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}" id="SearchStartInput" value="${SearchStart}">
+										<button class="clear-btn" type="button" role="button" onclick="clearDate(this)" aria-label="${sessionScope.languageJSON.label.removeContent}">
+											<i class="fa fa-times"></i>
+										</button>
+								</div>
+							<!-- <input
 								class="form-control" type="text" name="SearchStart"
 								data-date-format="mm/dd/yyyy"  autocomplete="off"
 								aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
@@ -72,13 +80,25 @@
 								id="SearchStartDate"  value="${SearchStart}" />
 								<button class="clear-btn" type="button" role="button" onclick="clearDate(this)" tabindex="0"  aria-label="${sessionScope.languageJSON.label.removeContent}">
 									<i class="fa fa-times"></i>
-								</button>
+								</button> -->
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="form-title" for="SearchEndDate"> <span>${sessionScope.languageJSON.label.to}</span>:</label> 
 							<div class="button-group">
-							<input
+									<div class="fDateGroup date" id="SearchEndDate" data-date-format="mm/dd/yyyy">
+										<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
+										<input class="form-control dateInput" type="text" name="SearchEnd"
+										data-date-format="mm/dd/yyyy"  autocomplete="off"
+										aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+										placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+										title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+										id="SearchEndInput" value="${SearchEnd}"/>
+										<button class="clear-btn" type="button" role="button" onclick="clearDate(this)" aria-label="${sessionScope.languageJSON.label.removeContent}" tabindex="0">
+												<i class="fa fa-times"></i>
+											</button>
+							</div>
+							<!-- <input
 								class="form-control" type="text" name="SearchEnd"
 								data-date-format="mm/dd/yyyy"  autocomplete="off"
 								aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
@@ -87,7 +107,7 @@
 								id="SearchEndDate" value="${SearchEnd}" />
 								<button class="clear-btn" type="button" role="button" onclick="clearDate(this)" tabindex="0"  aria-label="${sessionScope.languageJSON.label.removeContent}">
 									<i class="fa fa-times"></i>
-								</button>
+								</button> -->
 							</div>
 						</div>
 						<div class="form-group btn-group">

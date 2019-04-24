@@ -24,8 +24,8 @@ $(function() {
             }
         })
         .on('changeDate', function(ev) {
-            var endDate = $('#endDate').val()
-            var startDate = $('#startDate').val()
+            var endDate = $('#endDateInput').val()
+            var startDate = $('#startDateInput').val()
             if (
                 ev.date &&
                 (ev.date.valueOf() >= checkout.date.valueOf() || !endDate)
@@ -36,7 +36,7 @@ $(function() {
                 startDate.setDate(startDate.getDate())
                 checkout.update(startDate)
                 console.log(startDate)
-                $('#endDate').change()
+                $('#endDateInput').change()
             }
         })
         .data('datepicker')
@@ -53,6 +53,18 @@ $(function() {
         })
         .on('changeDate', function(ev) {})
         .data('datepicker')
+
+        $("input").bind('keypress', function(e)  {
+            var eCode = e.keyCode
+                ? e.keyCode
+                : e.which
+                ? e.which
+                : e.charCode
+            if (eCode == 13) {
+                $(this).click()
+                event.preventDefault();
+            }
+        })
 })
 function changeLeaveType(){
     var leaveType = $("#modalLeaveType").val()
@@ -162,9 +174,9 @@ function formValidator() {
     })
     // setGlobal()
 }
-$("#startDate").change(function(){
-    var fromValue = $("#startDate").val()
-    var toValue = $("#endDate").val()
+$("#startDateInput").change(function(){
+    var fromValue = $("#startDateInput").val()
+    var toValue = $("#endDateInput").val()
     var leaveFrom = changeDateYMD(fromValue)
     var leaveTo = changeDateYMD(toValue)
     if(fromValue && toValue){
@@ -177,9 +189,9 @@ $("#startDate").change(function(){
     }
     
 });
-$('#startDate').keyup(function() {
-    var fromValue = $("#startDate").val()
-    var toValue = $("#endDate").val()
+$('#startDateInput').keyup(function() {
+    var fromValue = $("#startDateInput").val()
+    var toValue = $("#endDateInput").val()
     var leaveFrom = changeDateYMD(fromValue)
     var leaveTo = changeDateYMD(toValue)
     if(fromValue && toValue){
@@ -192,9 +204,9 @@ $('#startDate').keyup(function() {
         calcDays()
     }
 });
- $("#endDate").change(function(){
-    var fromValue = $("#startDate").val()
-    var toValue = $("#endDate").val()
+ $("#endDateInput").change(function(){
+    var fromValue = $("#startDateInput").val()
+    var toValue = $("#endDateInput").val()
     var leaveFrom = changeDateYMD(fromValue)
     var leaveTo = changeDateYMD(toValue)
     if(fromValue && toValue){
@@ -207,9 +219,9 @@ $('#startDate').keyup(function() {
         }
         
     });
-    $('#endDate').keyup(function() {
-        var fromValue = $("#startDate").val()
-    var toValue = $("#endDate").val()
+    $('#endDateInput').keyup(function() {
+        var fromValue = $("#startDateInput").val()
+    var toValue = $("#endDateInput").val()
     var leaveFrom = changeDateYMD(fromValue)
     var leaveTo = changeDateYMD(toValue)
     if(fromValue && toValue){
@@ -271,8 +283,8 @@ $('#startDate').keyup(function() {
         calValueTime()
     }
     function calcDays(duration){
-        var startDate = $('#startDate').val()
-        var endDate = $('#endDate').val()
+        var startDate = $('#startDateInput').val()
+        var endDate = $('#endDateInput').val()
         var leaveHoursDaily = $('#leaveHoursDaily').val()
         var day1 = new Date(startDate);
         var day2 = new Date(endDate);
@@ -310,7 +322,6 @@ $('#startDate').keyup(function() {
             }
             
         }
-        console.log(dayDate)
         if(dayDate>=0){
             $("#requestModal .save").removeAttr("disabled")
         }else{
@@ -417,12 +428,13 @@ $('#startDate').keyup(function() {
         return true;
     }
      $('.save').on('click', function() {
+         $(this).parents(".modal").focus()
         var bootstrapValidator = $('#requestForm').data('bootstrapValidator')
         bootstrapValidator.validate()
         if (bootstrapValidator.isValid()) {
             console.log('success')
-            var startDate = $('#startDate').val()
-            var endDate = $('#endDate').val()
+            var startDate = $('#startDateInput').val()
+            var endDate = $('#endDateInput').val()
             var start = new Date(startDate)
             var end = new Date(endDate)
             var dateTotal = $("#totalRequested").val()

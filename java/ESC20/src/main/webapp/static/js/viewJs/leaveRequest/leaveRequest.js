@@ -7,8 +7,8 @@ $(document).ready(
 				format:'mm/dd/yyyy',
 				language:initialLocaleCode
 			}).on('changeDate', function(ev) {
-				var fromInput = $("#SearchStartDate").val()
-				var toInput = $("#SearchEndDate").val()
+				var fromInput = $("#SearchStartInput").val()
+				var toInput = $("#SearchEndInput").val()
 				if(fromInput&&toInput){
 					var from = ev.date.valueOf()
 					var to = toDate.date.valueOf()
@@ -29,8 +29,8 @@ $(document).ready(
 				language:initialLocaleCode
 			}).on('changeDate', function(ev) {
 				console.log(ev)
-				var fromInput = $("#SearchStartDate").val()
-				var toInput = $("#SearchEndDate").val()
+				var fromInput = $("#SearchStartInput").val()
+				var toInput = $("#SearchEndInput").val()
 				if(fromInput&&toInput){
 					var to = ev.date.valueOf()
 					var from = formDate.date.valueOf()
@@ -52,8 +52,8 @@ $(document).ready(
 				$("#deleteForm")[0].submit();
 			})
 			$("#retrieve").click(function(){
-				var fromValue = $("#SearchStartDate").val()
-				var toValue = $("#SearchEndDate").val()
+				var fromValue = $("#SearchStartInput").val()
+				var toValue = $("#SearchEndInput").val()
 				var fromInput = changeDateYMD(fromValue)
 				var toInput = changeDateYMD(toValue)
 				console.log(fromInput)
@@ -121,8 +121,8 @@ $(document).ready(
 		$("[name='leaveType']").val(leaveType);
 		changeLeaveType()
 		$("#absenceReason").val(absenceReason);
-		$("#startDate").val(start_arry[0]);
-		$("#endDate").val(end_arry[0]);
+		$("#startDateInput").val(start_arry[0]);
+		$("#endDateInput").val(end_arry[0]);
 		$("#leaveHoursDaily").val(lvUnitsDaily);
 		$("#totalRequested").val(lvUnitsUsed);
 	}

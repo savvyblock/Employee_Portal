@@ -46,13 +46,19 @@ $(function() {
                     '</div>'+
                 '</td>'+
                 '<td scope="'+fromDateLabel+'">'+
-                        '<div class="form-group">'+
-                            '<input class="form-control date-control dateFromControl" aria-label="'+fromDateLabel+'" type="text" autocomplete="off" id="fromDate_0'+length+'" placeholder="mm/dd/yyyy">'+
+                    '<div class="form-group">'+
+                        '<div class="fDateGroup date dateFromControl" data-date-format="mm/dd/yyyy">'+
+                            '<button class="prefix" type="button" aria-label="'+showDatepickerLabel+'"><i class="fa fa-calendar"></i></button>'+
+                            '<input class="form-control dateInput date-control" aria-label="'+fromDateLabel+'" type="text" autocomplete="off" id="fromDate_0'+length+'" placeholder="mm/dd/yyyy">'+
                         '</div>'+
+                    '</div>'+
                 '</td>'+
                 '<td scope="'+toDateLabel+'">'+
                     '<div class="form-group">'+
-                        '<input class="form-control  date-control dateToControl" aria-label="'+toDateLabel+'" type="text" autocomplete="off" id="toDate_0'+length+'" placeholder="mm/dd/yyyy">'+
+                        '<div class="fDateGroup date dateToControl" data-date-format="mm/dd/yyyy">'+
+                            '<button class="prefix" type="button" aria-label="'+showDatepickerLabel+'"><i class="fa fa-calendar"></i></button>'+
+                            '<input class="form-control dateInput  date-control" aria-label="'+toDateLabel+'" type="text" autocomplete="off" id="toDate_0'+length+'" placeholder="mm/dd/yyyy">'+
+                        '</div>'+
                     '</div>'+
                 '</td>'+
                 '<td scope="'+deleteLabel+'">'+
@@ -138,7 +144,7 @@ $(function() {
         verifyRepeat()
     })
     $(document).on('blur','.dateToControl', function() {
-        var fromValue=$(this).parents('.approver_tr').find('.dateFromControl').val()
+        var fromValue=$(this).parents('.approver_tr').find('.dateFromControl .date-control').val()
         var toValue=$(this).val()
         var fromInput = changeDateYMD(fromValue)
         var toInput = changeDateYMD(toValue)
@@ -152,8 +158,8 @@ $(function() {
             }
         }
     })
-    $(document).on('input','.dateToControl', function() {
-        var fromValue=$(this).parents('.approver_tr').find('.dateFromControl').val()
+    $(document).on('input','.dateToControl .date-control', function() {
+        var fromValue=$(this).parents('.approver_tr').find('.dateFromControl .date-control').val()
         var toValue=$(this).val()
         var fromInput = changeDateYMD(fromValue)
         var toInput = changeDateYMD(toValue)
@@ -165,8 +171,9 @@ $(function() {
             }
         }
     })
-    $(document).on('blur','.dateFromControl', function() {
-        var toValue=$(this).parents('.approver_tr').find('.dateToControl').val()
+    $(document).on('blur','.dateFromControl .date-control', function() {
+        console.log(">>>>>>>>>>>>")
+        var toValue=$(this).parents('.approver_tr').find('.dateToControl .date-control').val()
         var fromValue=$(this).val()
         var fromInput = changeDateYMD(fromValue)
         var toInput = changeDateYMD(toValue)
@@ -180,8 +187,8 @@ $(function() {
             }
         }
     })
-    $(document).on('input','.dateFromControl', function() {
-        var toValue=$(this).parents('.approver_tr').find('.dateToControl').val()
+    $(document).on('input','.dateFromControl .date-control', function() {
+        var toValue=$(this).parents('.approver_tr').find('.dateToControl .date-control').val()
         var fromValue=$(this).val()
         var fromInput = changeDateYMD(fromValue)
         var toInput = changeDateYMD(toValue)
@@ -327,6 +334,8 @@ function initDateControl() {
         haveEndDate[index] = false
         var fromCalendar = $(this).find('.dateFromControl')
         var toCalendar = $(this).find('.dateToControl')
+        var fromDateDom = $(this).find('.dateFromControl .date-control')
+        var toDateDom = $(this).find('.dateToControl .date-control')
         checkin[index] = fromCalendar
             .fdatepicker({
                 format: 'mm/dd/yyyy',
@@ -339,8 +348,8 @@ function initDateControl() {
             })
             .on('changeDate', function(ev) {
                 console.log(ev)
-                var endDate = toCalendar.val()
-                var startDate = fromCalendar.val()
+                var endDate = toDateDom.val()
+                var startDate = fromDateDom.val()
                 if (
                     ev.date &&
                     (ev.date.valueOf() >= checkout[index].date.valueOf() ||
@@ -350,7 +359,7 @@ function initDateControl() {
                     startDate = new Date(startDate)
                     startDate.setDate(startDate.getDate())
                     checkout[index].update(startDate)
-                    toCalendar.change()
+                    toDateDom.change()
                     judgeContent()
                 }
             })
@@ -411,10 +420,10 @@ function judgeContent() {
             .val()
         var empArry = empNbr.split('-')
         var from = $(this)
-            .find('.dateFromControl')
+            .find('.dateFromControl .date-control')
             .val()
         var to = $(this)
-            .find('.dateToControl')
+            .find('.dateToControl .date-control')
             .val()
         var obj
         if (empNbr == '' || from == '' || to == '') {
