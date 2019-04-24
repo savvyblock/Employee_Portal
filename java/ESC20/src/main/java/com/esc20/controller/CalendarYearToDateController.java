@@ -21,18 +21,27 @@ import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrCalYtd;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Account;
+import com.esc20.nonDBModels.CalYTDPrint;
 import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.EmployeeInfo;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.Stipend;
+import com.esc20.nonDBModels.report.IReport;
+import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
+import com.esc20.service.PDFService;
 import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
 import com.esc20.util.PDFUtil;
 
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.json.JSONObject;
 
 @Controller
@@ -44,6 +53,9 @@ public class CalendarYearToDateController {
 
     @Autowired
     private IndexService indexService;
+    
+    @Autowired
+    private PDFService pDFService;
 	
 	private final String module = "Calendar Year to Date";
 	
@@ -97,17 +109,76 @@ public class CalendarYearToDateController {
 		return mav;
 	}
 	
+//	@RequestMapping("exportPDF")
+//	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
+//		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
+//		System.out.println("prefix" + strBackUrl);
+//		byte[] pdf = PDFUtil.getCalendarYTDPDF(strBackUrl+"/calendarYearToDate/calendarYearToDateUnprotectedPDF", request, year);
+//		response.reset();
+//		response.setHeader("Content-Disposition", "attachment; filename=\"Calender Year to Date "+year+".pdf\"");
+//		response.setContentType("application/octet-stream;charset=UTF-8");
+//		OutputStream out = response.getOutputStream();
+//		out.write(pdf);
+//		out.flush();
+//	}
+	
 	@RequestMapping("exportPDF")
 	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
-		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
-		System.out.println("prefix" + strBackUrl);
-		byte[] pdf = PDFUtil.getCalendarYTDPDF(strBackUrl+"/calendarYearToDate/calendarYearToDateUnprotectedPDF", request, year);
-		response.reset();
-		response.setHeader("Content-Disposition", "attachment; filename=\"Calender Year to Date "+year+".pdf\"");
-		response.setContentType("application/octet-stream;charset=UTF-8");
-		OutputStream out = response.getOutputStream();
-		out.write(pdf);
-		out.flush();
+		
+		response.setContentType("application/x-msdownload;charset=UTF-8");
+		response.setHeader("Content-Disposition",
+				"attachment;filename=CalYTDPrint.pdf");
+		
+		String path = request.getServletContext().getRealPath("/");
+		if (path != null && !path.endsWith("\\")) {
+			path = path.concat("\\");
+		}
+		pDFService.setRealPath(path);
+		
+		BhrEmpDemo userDetail = (BhrEmpDemo) request.getSession().getAttribute("userDetail");
+		District district = (District) request.getSession().getAttribute("district");
+		
+		
+		BhrCalYtd b = pDFService.retrieveCalendar(userDetail.getEmpNbr(), year);
+		
+		List<CalYTDPrint> parameters = pDFService.generateCalYTDPrint(userDetail, district, b);
+		
+		ParameterReport report = new ParameterReport();
+		
+		report.setTitle("Calendar YTD Report");
+		report.setId("calYTDReport");
+		report.setFileName("CalYTDPrint");
+		report.setSortable(false);
+		report.setFilterable(false);
+		
+		IReport ireport = pDFService.setupReport(report, parameters);
+		
+		JasperReport jasperReport;
+	    JasperPrint jasperPrint = null;
+		
+//		ClassLoader cl = this.getClass().getClassLoader();
+//		jasperReport=(JasperReport)JRLoader.loadObjectFromLocation("com/innovated/iris/server/report/n_fbt_final.jasper", cl);
+		
+	    ;
+		jasperPrint = pDFService.buildReport(ireport);
+		
+//		myMap.put("CIN", cin);
+//		myMap.put("PERIOD_START", start);
+//		myMap.put("PERIOD_END", end);
+//		myMap.put("YR_END", Boolean.TRUE);
+		
+    	
+    	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+
+		
+		
+//		byte[] pdf = PDFUtil.getCalendarYTDPDF(strBackUrl+"/calendarYearToDate/calendarYearToDateUnprotectedPDF", request, year);
+//		response.reset();
+//		response.setHeader("Content-Disposition", "attachment; filename=\"Calender Year to Date "+year+".pdf\"");
+//		response.setContentType("application/octet-stream;charset=UTF-8");
+//		OutputStream out = response.getOutputStream();
+//		out.write(pdf);
+//		out.flush();
 	}
 	
 	@RequestMapping("calendarYearToDateUnprotectedPDF")

@@ -1,5 +1,7 @@
 package com.esc20.dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,6 +11,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.SessionFactoryUtils;
 import org.springframework.stereotype.Repository;
 
 import com.esc20.model.BhrCalYtd;
@@ -22,6 +25,10 @@ public class CalendarYearToDateDao {
     private SessionFactory sessionFactory;
     private Session getSession(){
         return sessionFactory.getCurrentSession();
+    }
+    
+    public Connection getConn() throws Exception {
+    	return SessionFactoryUtils.getDataSource(sessionFactory).getConnection();
     }
 
 	public Date getLastPostedPayDate(String employeeNumber, Frequency frequency) throws ParseException

@@ -25,5 +25,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/iText-2.1.7.js1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jasperreports-5.0.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jasperreports-applet-5.0.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jasperreports-fonts-5.0.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jasperreports-javaflow-5.0.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-digester-2.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
