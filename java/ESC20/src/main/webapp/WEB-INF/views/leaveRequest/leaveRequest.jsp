@@ -61,7 +61,7 @@
 						</select>
 					</div>
 					<div class="form-group">
-							<label class="form-title" for="SearchStartDate"><span>${sessionScope.languageJSON.label.from}</span>:</label> 
+							<label class="form-title" for="SearchStartInput"><span>${sessionScope.languageJSON.label.from}</span>:</label> 
 							<div class="button-group">
 								<div class="fDateGroup date" id="SearchStartDate" data-date-format="mm/dd/yyyy">
 										<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
@@ -84,7 +84,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="form-title" for="SearchEndDate"> <span>${sessionScope.languageJSON.label.to}</span>:</label> 
+							<label class="form-title" for="SearchEndInput"> <span>${sessionScope.languageJSON.label.to}</span>:</label> 
 							<div class="button-group">
 									<div class="fDateGroup date" id="SearchEndDate" data-date-format="mm/dd/yyyy">
 										<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
