@@ -49,7 +49,7 @@
 							<div class="button-group">
 								<div class="fDateGroup date" id="SearchStartDate" data-date-format="mm/dd/yyyy">
 											<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
-											<input class="form-control dateInput" name="SearchStart" autocomplete="off" type="text" aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
+											<input class="form-control dateInput" name="SearchStart" autocomplete="off" type="text"
 											placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}" id="SearchStartInput" value="${SearchStart}">
 											<button class="clear-btn" type="button" role="button" onclick="clearDate(this)" aria-label="${sessionScope.languageJSON.label.removeContent}">
 												<i class="fa fa-times"></i>
@@ -74,7 +74,6 @@
 										<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
 										<input class="form-control dateInput" type="text" name="SearchEnd"
 										data-date-format="mm/dd/yyyy"  autocomplete="off"
-										aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
 										placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
 										title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
 										id="SearchEndInput" value="${SearchEnd}"/>
