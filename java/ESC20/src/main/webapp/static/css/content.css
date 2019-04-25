@@ -1907,10 +1907,13 @@
   left: -9999px;
   background: none;
   border: 0;
+  text-indent: -9999px;
 }
 
 #skipNav:focus {
   left: 0;
+  outline: none;
+  box-shadow: none;
 }
 
 .content-body:focus {
