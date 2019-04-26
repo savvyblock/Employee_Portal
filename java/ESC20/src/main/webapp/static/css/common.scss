@@ -641,7 +641,7 @@ input {
             }
             td{
                 &.td-title{
-                    display: none;
+                    display: none!important;
                 }
                 
             }
@@ -654,12 +654,19 @@ input {
         }
 		thead {
 			display: none;
-		}
+        }
+        tbody{
+            display: block!important;
+            width: 100%;
+        }
 		tr,
 		td {
 			display: block;
 		}
 		tr {
+            flex-wrap: wrap;
+            display: flex;
+            width: 100%!important;
             margin-bottom: 25px;
             &.total-tr{
                 td{
@@ -679,8 +686,9 @@ input {
 			white-space: normal;
 			text-align: left;
             font-size: 12px;
-            display: flex;
+            display: flex!important;
             align-items: center;
+            text-align: left!important;
             &.tr-title{
                 padding-left: 0;
                 justify-content: center;
@@ -712,6 +720,8 @@ input {
                 flex: 0 0 130px;
                 white-space: normal;
                 word-wrap: break-word;
+                display: block;
+                float: left;
 			}
 		}
 	}

@@ -727,7 +727,7 @@ input:focus {
     margin-bottom: 0;
   }
   .table.responsive-table.no-thead td.td-title {
-    display: none;
+    display: none !important;
   }
   .table.responsive-table.payRoll-table tr {
     margin-bottom: 0;
@@ -736,11 +736,18 @@ input:focus {
   .table.responsive-table thead {
     display: none;
   }
+  .table.responsive-table tbody {
+    display: block !important;
+    width: 100%;
+  }
   .table.responsive-table tr,
   .table.responsive-table td {
     display: block;
   }
   .table.responsive-table tr {
+    flex-wrap: wrap;
+    display: flex;
+    width: 100% !important;
     margin-bottom: 25px;
   }
   .table.responsive-table tr.total-tr td {
@@ -758,8 +765,9 @@ input:focus {
     white-space: normal;
     text-align: left;
     font-size: 12px;
-    display: flex;
+    display: flex !important;
     align-items: center;
+    text-align: left !important;
   }
   .table.responsive-table td.tr-title {
     padding-left: 0;
@@ -792,6 +800,8 @@ input:focus {
     flex: 0 0 130px;
     white-space: normal;
     word-wrap: break-word;
+    display: block;
+    float: left;
   }
 }
 
