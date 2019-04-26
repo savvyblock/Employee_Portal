@@ -128,7 +128,7 @@ function save(){
     var pdfDom = '.exportPDFBox .needToClone'
     var fileName = 'W2'
     pdf.save(fileName + '-'+name+'.pdf')
-    // $('.exportPDFBox').hide()
-    // $('.exportPDFBox').removeClass("printStatus")
-    // $(pdfDom).remove()
+    $('.exportPDFBox').hide()
+    $('.exportPDFBox').removeClass("printStatus")
+    $(pdfDom).remove()
 }
