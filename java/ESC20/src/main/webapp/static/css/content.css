@@ -1145,11 +1145,11 @@
 }
 
 .exportPDFBox .print-block {
-  display: block;
+  display: block !important;
 }
 
 .exportPDFBox .print-block-table {
-  display: table;
+  display: table !important;
 }
 
 .exportPDFBox .no-print {

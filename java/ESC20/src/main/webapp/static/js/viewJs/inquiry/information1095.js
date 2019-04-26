@@ -52,11 +52,12 @@ function downloadPDF() {
     $('.exportPDFBox').append($('.needToClone').clone())
     var size = $(".exportPDFBox .pdfPage").length;
     console.log(size)
+    // return false
 
     pdf = new jsPDF('', 'pt', 'a4')
     $(".exportPDFBox .pdfPage").each(function(index){
         var that = $(this)[0]
-        html2canvas(that, { scale: 6 ,background: "#fff"}).then(function(canvas) {
+        html2canvas(that, { scale: 6 ,background: "#fff",onrendered: function (canvas) {
             var contentWidth = canvas.width
             var contentHeight = canvas.height
             var pageHeight = (contentWidth / 592.28) * 841.89
@@ -104,8 +105,7 @@ function downloadPDF() {
 
                 save()
             }
-            
-        })
+        }})
     })
     
 }
@@ -114,6 +114,7 @@ function save(){
     var pdfDom = '.exportPDFBox .needToClone'
     var fileName = '1095'
     pdf.save(fileName + '-'+name+'.pdf')
+
     $('.exportPDFBox').hide()
     $('.exportPDFBox').removeClass("printStatus")
     $(pdfDom).remove()

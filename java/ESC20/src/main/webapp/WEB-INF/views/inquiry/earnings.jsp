@@ -17,14 +17,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <div class="clearfix no-print section-title">
                                 <h1 class="pageTitle">${sessionScope.languageJSON.title.earnings}</h1>
                                 <div class="pull-right right-btn">
-		                            <form class="no-print" action="exportPDF" method="POST">
+		                            <%-- <form class="no-print" action="exportPDF" method="POST">
 										<input type="hidden" name="${_csrf.parameterName}"
 											value="${_csrf.token}" />
 										<input type="hidden" name="selectedPayDate"
 											value="${selectedPayDate.dateFreqVoidAdjChk}" />
 										<button type="submit" role="button" class="btn btn-primary download-pdf"
 											aria-label="${sessionScope.languageJSON.label.exportPDF}"><i class="fa fa-file-pdf-o"></i></button>
-                                    </form>
+                                    </form> --%>
+                                    <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="${sessionScope.languageJSON.label.exportPDF}">
+                                <i class="fa fa-file-pdf-o"></i>
+                            </button>
                                     <button
                                             class="btn btn-primary"
                                             onclick="doPrint()"
