@@ -687,6 +687,7 @@ input {
 			text-align: left;
             font-size: 12px;
             display: flex!important;
+            flex-direction:row!important;
             align-items: center;
             text-align: left!important;
             &.tr-title{

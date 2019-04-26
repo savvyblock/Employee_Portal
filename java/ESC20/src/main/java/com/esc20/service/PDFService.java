@@ -342,8 +342,8 @@ public JasperPrint buildReport(IReport report) throws JRException, SQLException 
  */
 private JasperReport loadTemplate(IReport report) throws JRException {
 
-	String path = "F:/setup(1)/setup/Server/wildfly-14.0.0.Final/standalone/deployments/ESC20.war/reports";
-	
+	String path = System.getProperty("EmployeeAccess.root")+"/reports";
+	System.out.println("path: "+ path);
 //	// get the report id and make sure the report is lower case
 	String template = "CalYTDPrint"; // report.getFileName();
 ////
