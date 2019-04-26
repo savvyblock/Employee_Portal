@@ -71,7 +71,6 @@
                                         name="LeaveStartDate"
                                         id="startDateInput"
                                         data-date-format="mm/dd/yyyy"  autocomplete="off"
-                                        aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                         placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                         title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                         value=""/>
@@ -100,7 +99,6 @@
                                         value=""
                                         id="endDateInput"
                                         data-date-format="mm/dd/yyyy"  autocomplete="off"
-                                        aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                         placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                         title="${sessionScope.languageJSON.label.mmddyyyyFormat}"/>
                                     </div>
