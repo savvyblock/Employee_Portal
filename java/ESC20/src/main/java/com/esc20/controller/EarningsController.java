@@ -242,12 +242,14 @@ public class EarningsController {
 		print.setDname(district.getName());
 		print.setBhr_emp_demo_name_l(userDetail.getNameL());
 		print.setBhr_emp_demo_name_gen(userDetail.getNameGen() == null ? "" : userDetail.getNameGen().toString());
-		print.setGen_code_descr(userDetail.getGenDescription());
+		print.setGen_code_descr(userDetail.getNameGen() == null ? "" : userDetail.getGenDescription());
 		print.setBhr_emp_demo_name_f(userDetail.getNameF());
 		print.setBhr_emp_demo_name_m(userDetail.getNameM());
 		PayDate payDate = PayDate.getPaydate(selectedPayDate);
 		Earnings earnings = this.service.retrieveEarnings(userDetail.getEmpNbr(), payDate);
 		print.setBhr_pay_hist_chk_nbr(earnings.getInfo().getCheckNumber());
+		print.setBhr_pay_hist_dt_of_pay(StringUtil.left(selectedPayDate, 8));
+		print.setBhr_pay_hist_dt_of_pay1(StringUtil.left(selectedPayDate, 8));
 		print.setBthr_pay_dates_dt_payper_beg(earnings.getInfo().getPeriodBeginningDate());
 		print.setBthr_pay_dates_dt_payper_end(earnings.getInfo().getPeriodEndingDate());
 		print.setBhr_pay_hist_marital_stat_tax(earnings.getInfo().getWithholdingStatus());
@@ -256,13 +258,18 @@ public class EarningsController {
 		}
 		String primaryCampusId = earnings.getInfo().getCampusId();
 		String primaryCampusName = earnings.getInfo().getCampusName();
-		print.setBhr_emp_demo_addr_nbr(userDetail.getAddrNbr());
+		print.setBhr_emp_pay_pay_freq(StringUtil.right(payDate.getDateFreq(), 1));
+		print.setCal_year(StringUtil.left(payDate.getDateFreq(), 4));
+		print.setBhr_pay_hist_void_or_iss(payDate.getVoidIssue());
+		print.setBhr_pay_hist_adj_nbr(payDate.getAdjNumber());
+		print.setBhr_pay_hist_adj_nbr(StringUtil.mid(selectedPayDate, 11, 1));
+		print.setBhr_emp_demo_addr_nbr("");
 		print.setBhr_emp_demo_addr_str(userDetail.getAddrStr());
-		print.setBhr_emp_demo_addr_apt(userDetail.getAddrApt());
+		print.setBhr_emp_demo_addr_apt("");
 		print.setBhr_emp_demo_addr_city(userDetail.getAddrCity());
 		print.setBhr_emp_demo_addr_st(userDetail.getAddrSt());
 		print.setBhr_emp_demo_addr_zip(userDetail.getAddrZip());
-		print.setBhr_emp_demo_addr_zip4(userDetail.getAddrZip4());
+		print.setBhr_emp_demo_addr_zip4(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4());
 		print.setBhr_emp_pay_pay_campus(earnings.getInfo().getCampusId());
 		print.setBhr_emp_pay_emp_nbr(userDetail.getEmpNbr());
 		print.setBhr_emp_job_campus_id(primaryCampusId);
