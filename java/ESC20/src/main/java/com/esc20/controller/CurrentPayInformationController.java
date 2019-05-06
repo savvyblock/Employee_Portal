@@ -30,7 +30,6 @@ import com.esc20.nonDBModels.Stipend;
 import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.util.DataSourceContextHolder;
-import com.esc20.util.PDFUtil;
 
 import net.sf.json.JSONObject;
 
@@ -72,18 +71,18 @@ public class CurrentPayInformationController{
 		return mav;
 	}
 	
-	@RequestMapping("exportPDF")
-	public void exportPDF(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
-		System.out.println("prefix" + strBackUrl);
-		byte[] pdf = PDFUtil.getCurrentPayInformationPDF(strBackUrl+"/currentPayInformation/currentPayInformationUnprotectedPDF", request);
-		response.reset();
-		response.setHeader("Content-Disposition", "attachment; filename=\"Current Pay Information.pdf\"");
-		response.setContentType("application/octet-stream;charset=UTF-8");
-		OutputStream out = response.getOutputStream();
-		out.write(pdf);
-		out.flush();
-	}
+//	@RequestMapping("exportPDF")
+//	public void exportPDF(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
+//		System.out.println("prefix" + strBackUrl);
+//		byte[] pdf = PDFUtil.getCurrentPayInformationPDF(strBackUrl+"/currentPayInformation/currentPayInformationUnprotectedPDF", request);
+//		response.reset();
+//		response.setHeader("Content-Disposition", "attachment; filename=\"Current Pay Information.pdf\"");
+//		response.setContentType("application/octet-stream;charset=UTF-8");
+//		OutputStream out = response.getOutputStream();
+//		out.write(pdf);
+//		out.flush();
+//	}
 	
 	@RequestMapping("currentPayInformationUnprotectedPDF")
 	public ModelAndView getCurrentPayInformation(HttpServletRequest req, String empNbr, String districtId,String language) throws IOException {

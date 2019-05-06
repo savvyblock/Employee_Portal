@@ -35,7 +35,6 @@ import com.esc20.service.InquiryService;
 import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
 import com.esc20.util.NumberUtil;
-import com.esc20.util.PDFUtil;
 
 import net.sf.json.JSONObject;
 
@@ -153,18 +152,18 @@ public class W2InformationController{
 		return mav;
 	}
 	
-	@RequestMapping("exportPDF")
-	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
-		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
-		System.out.println("prefix" + strBackUrl);
-		byte[] pdf = PDFUtil.getW2InformationPDF(strBackUrl+"/w2Information/w2InformationUnprotectedPDF", request, year);
-		response.reset();
-		response.setHeader("Content-Disposition", "attachment; filename=\"W2 Information for "+ year +".pdf\"");
-		response.setContentType("application/octet-stream;charset=UTF-8");
-		OutputStream out = response.getOutputStream();
-		out.write(pdf);
-		out.flush();
-	}
+//	@RequestMapping("exportPDF")
+//	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
+//		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
+//		System.out.println("prefix" + strBackUrl);
+//		byte[] pdf = PDFUtil.getW2InformationPDF(strBackUrl+"/w2Information/w2InformationUnprotectedPDF", request, year);
+//		response.reset();
+//		response.setHeader("Content-Disposition", "attachment; filename=\"W2 Information for "+ year +".pdf\"");
+//		response.setContentType("application/octet-stream;charset=UTF-8");
+//		OutputStream out = response.getOutputStream();
+//		out.write(pdf);
+//		out.flush();
+//	}
 	
 	@RequestMapping("w2InformationUnprotectedPDF")
 	public ModelAndView w2InformationUnprotectedPDF(HttpServletRequest req, String empNbr, String districtId,String language,String year) throws IOException {

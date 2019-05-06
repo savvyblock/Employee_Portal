@@ -43,7 +43,6 @@ import com.esc20.service.InquiryService;
 import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
 import com.esc20.util.NumberUtil;
-import com.esc20.util.PDFUtil;
 import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONObject;
@@ -199,19 +198,19 @@ public class Information1095Controller{
 		return mav;
 	}
 	
-	@RequestMapping("exportPDF")
-	public void exportPDF(HttpServletRequest request, HttpServletResponse response,  String year, Integer BPageNo, Integer CPageNo,
-			String sortBy, String sortOrder, String type) throws Exception {
-		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
-		System.out.println("prefix" + strBackUrl);
-		byte[] pdf = PDFUtil.get1095InformationPDF(strBackUrl+"/information1095/information1095UnprotectedPDF", request, year,BPageNo,CPageNo,sortBy,sortOrder,type);
-		response.reset();
-		response.setHeader("Content-Disposition", "attachment; filename=\"1095 Information for "+ year +" type "+ type +".pdf\"");
-		response.setContentType("application/octet-stream;charset=UTF-8");
-		OutputStream out = response.getOutputStream();
-		out.write(pdf);
-		out.flush();
-	}
+//	@RequestMapping("exportPDF")
+//	public void exportPDF(HttpServletRequest request, HttpServletResponse response,  String year, Integer BPageNo, Integer CPageNo,
+//			String sortBy, String sortOrder, String type) throws Exception {
+//		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
+//		System.out.println("prefix" + strBackUrl);
+//		byte[] pdf = PDFUtil.get1095InformationPDF(strBackUrl+"/information1095/information1095UnprotectedPDF", request, year,BPageNo,CPageNo,sortBy,sortOrder,type);
+//		response.reset();
+//		response.setHeader("Content-Disposition", "attachment; filename=\"1095 Information for "+ year +" type "+ type +".pdf\"");
+//		response.setContentType("application/octet-stream;charset=UTF-8");
+//		OutputStream out = response.getOutputStream();
+//		out.write(pdf);
+//		out.flush();
+//	}
 	
 	@RequestMapping("information1095UnprotectedPDF")
 	public ModelAndView information1095UnprotectedPDF(HttpServletRequest req, String empNbr, String districtId,String language, String year, String BPageNo, String CPageNo,
