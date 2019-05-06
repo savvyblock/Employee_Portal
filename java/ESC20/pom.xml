@@ -248,12 +248,6 @@
             <version>2.4</version>
             <classifier>jdk15</classifier>
         </dependency>
-        <!--Json array end -->
-		<dependency> 
-	      <groupId>PDFConverter</groupId>
-	      <artifactId>evo</artifactId>
-	      <version>7.5.0</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
 		<dependency>
 		    <groupId>commons-io</groupId>
