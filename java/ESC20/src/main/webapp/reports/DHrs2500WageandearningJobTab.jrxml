@@ -119,8 +119,8 @@ group by bhr_suppl_xmital.job_cd,
 		<variableExpression><![CDATA[($F{pay_type}.equals( "3" ) || $F{pay_type}.equals( "4" ))?
 (
 $F{xmital_hrs_wrk}.doubleValue() != 0 ?
-new Double(net.esc20.txeis.EmployeeAccess.util.NumberUtil.round(($F{xmital_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue()),2)):
-new Double(net.esc20.txeis.EmployeeAccess.util.NumberUtil.round(($F{reg_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue()),2))
+new Double(com.esc20.util.NumberUtil.round(($F{xmital_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue()),2)):
+new Double(com.esc20.util.NumberUtil.round(($F{reg_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue()),2))
 ):
 (
 $F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
@@ -130,8 +130,8 @@ $F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
 		<variableExpression><![CDATA[($F{pay_type}.equals( "3" ) || $F{pay_type}.equals( "4" ))?
 (
 $F{xmital_hrs_wrk}.doubleValue() != 0 ?
-new Double(net.esc20.txeis.EmployeeAccess.util.NumberUtil.round($F{xmital_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue(),2)):
-new Double(net.esc20.txeis.EmployeeAccess.util.NumberUtil.round($F{reg_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue(),2))
+new Double(com.esc20.util.NumberUtil.round($F{xmital_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue(),2)):
+new Double(com.esc20.util.NumberUtil.round($F{reg_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue(),2))
 ):
 (
 $F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
@@ -279,8 +279,8 @@ $F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
 				<textFieldExpression><![CDATA[($F{pay_type}.equals( "3" ) || $F{pay_type}.equals( "4" ))?
 (
 $F{xmital_hrs_wrk}.doubleValue() != 0 ?
-new Double(net.esc20.txeis.EmployeeAccess.util.NumberUtil.round($F{xmital_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue(),2)):
-new Double(net.esc20.txeis.EmployeeAccess.util.NumberUtil.round($F{reg_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue(),2))
+new Double(com.esc20.util.NumberUtil.round($F{xmital_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue(),2)):
+new Double(com.esc20.util.NumberUtil.round($F{reg_hrs_wrk}.doubleValue()*$F{pay_rate}.doubleValue(),2))
 ):
 $F{pay_rate}]]></textFieldExpression>
 			</textField>

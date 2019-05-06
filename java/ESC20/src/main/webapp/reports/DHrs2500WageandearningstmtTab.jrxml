@@ -8,6 +8,13 @@
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="DHrs2500WageandearningEarnTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="DHrs2500WageandearningJobTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="DHrs2500WageandearningSupplTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="DHrs2500WageandearningOvtmTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="DHrs2500WageandearningDedTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="DHrs2500WageandearningBnkTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
+	<parameter name="DHrs2500WageandearningLvTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
 	<parameter name="subRptConnection" class="java.sql.Connection" isForPrompting="false"/>
 	<field name="dname" class="java.lang.String"/>
 	<field name="bhr_emp_demo_name_l" class="java.lang.String"/>
@@ -335,6 +342,10 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 				</textElement>
 				<text><![CDATA[NOTE:  YTD amounts reflect the most recent pay date for the calendar year.]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="45" y="11" width="100" height="20" uuid="5de74290-f646-4891-91ac-f86e2d6962c1"/>
+				<textFieldExpression><![CDATA[$F{dname}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>

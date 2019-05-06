@@ -168,8 +168,21 @@ public class EarningsController {
 
 	@RequestMapping("exportPDF")
 	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String selectedPayDate) throws Exception {
+		HttpSession session = request.getSession();
+		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		String employeeNumber = userDetail.getEmpNbr();
+		Integer days = ((Options) session.getAttribute("options")).getMaxDays();
+		if (days == null)
+			days = 0;
 		response.setContentType("application/x-msdownload;charset=UTF-8");
-		response.setHeader("Content-Disposition", "attachment;filename=DHrs2500WageandearningstmtTab.pdf");
+		PayDate payDate;
+		if(selectedPayDate !=null)
+			payDate = PayDate.getPaydate(selectedPayDate);
+		else {
+			List<PayDate> payDates = this.service.getAvailablePayDates(employeeNumber, days);
+			payDate = this.service.getLatestPayDate(payDates);
+		}
+		response.setHeader("Content-Disposition", "attachment;filename=Earnings for "+payDate.getFormatedDate()+".pdf");
 		
 		String path = request.getServletContext().getRealPath("/");
 		if (path != null && !path.endsWith("\\")) {
