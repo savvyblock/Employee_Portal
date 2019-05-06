@@ -3,6 +3,7 @@ package com.esc20.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,32 +24,43 @@ import com.esc20.nonDBModels.Account;
 import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Earnings;
+import com.esc20.nonDBModels.EarningsPrint;
 import com.esc20.nonDBModels.EmployeeInfo;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayDate;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.Stipend;
+import com.esc20.nonDBModels.report.IReport;
+import com.esc20.nonDBModels.report.ParameterReport;
+import com.esc20.nonDBModels.report.ReportParameterConnection;
 import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
+import com.esc20.service.PDFService;
 import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.PDFUtil;
 import com.esc20.util.StringUtil;
 
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/earnings")
-public class EarningsController{
+public class EarningsController {
 
 	@Autowired
 	private InquiryService service;
-	
+
+	@Autowired
+	private IndexService indexService;
+
     @Autowired
-    private IndexService indexService;
+    private PDFService pDFService;
 	
-	private final String module="Earnings";
-	
+	private final String module = "Earnings";
+
 	@RequestMapping("earnings")
 	public ModelAndView getEarnings(HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -98,7 +110,7 @@ public class EarningsController{
 	public ModelAndView getEarningsByPayDate(HttpServletRequest req, String payDateString) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
-		if(payDateString==null) {
+		if (payDateString == null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Get Earnings by pay date");
@@ -137,24 +149,53 @@ public class EarningsController{
 		mav.addObject("freq", freq);
 		return mav;
 	}
-	
+
+//	@RequestMapping("exportPDF")
+//	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String selectedPayDate)
+//			throws Exception {
+//		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()
+//				+ request.getContextPath();
+//		System.out.println("prefix" + strBackUrl);
+//		byte[] pdf = PDFUtil.getEarningsPDF(strBackUrl + "/earnings/earningsUnprotectedPDF", request, selectedPayDate);
+//		PayDate payDate = PayDate.getPaydate(selectedPayDate);
+//		response.reset();
+//		response.setHeader("Content-Disposition",
+//				"attachment; filename=\"Earnings for " + payDate.getFormatedDate() + ".pdf\"");
+//		response.setContentType("application/octet-stream;charset=UTF-8");
+//		OutputStream out = response.getOutputStream();
+//		out.write(pdf);
+//		out.flush();
+//	}
+
 	@RequestMapping("exportPDF")
 	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String selectedPayDate) throws Exception {
-		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
-		System.out.println("prefix" + strBackUrl);
-		byte[] pdf = PDFUtil.getEarningsPDF(strBackUrl+"/earnings/earningsUnprotectedPDF", request, selectedPayDate);
-		PayDate payDate = PayDate.getPaydate(selectedPayDate);
-		response.reset();
-		response.setHeader("Content-Disposition", "attachment; filename=\"Earnings for "+ payDate.getFormatedDate() +".pdf\"");
-		response.setContentType("application/octet-stream;charset=UTF-8");
-		OutputStream out = response.getOutputStream();
-		out.write(pdf);
-		out.flush();
+		response.setContentType("application/x-msdownload;charset=UTF-8");
+		response.setHeader("Content-Disposition", "attachment;filename=DHrs2500WageandearningstmtTab.pdf");
+		
+		String path = request.getServletContext().getRealPath("/");
+		if (path != null && !path.endsWith("\\")) {
+			path = path.concat("\\");
+		}
+		pDFService.setRealPath(path);
+		
+		ParameterReport report = new ParameterReport();
+		report.setTitle("Earnings Report");
+		report.setId("earningsReport");
+		report.setFileName("DHrs2500WageandearningstmtTab");
+		report.setSortable(false);
+		report.setFilterable(false);
+		
+		EarningsPrint earningsPrint = generateEarningsPrint(request, response, selectedPayDate);
+		IReport ireport = setupReport(report, earningsPrint);
+		
+	    JasperPrint jasperPrint = pDFService.buildReport(ireport);
+    	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 	}
 	
 	@RequestMapping("earningsUnprotectedPDF")
-	public ModelAndView earningsUnprotectedPDF(HttpServletRequest req, String empNbr, String districtId,String language,String selectedPayDate) throws IOException {
-		DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+districtId);
+	public ModelAndView earningsUnprotectedPDF(HttpServletRequest req, String empNbr, String districtId,
+			String language, String selectedPayDate) throws IOException {
+		DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW" + districtId);
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
 		String employeeNumber = empNbr;
@@ -193,4 +234,59 @@ public class EarningsController{
 		mav.addObject("freq", freq);
 		return mav;
 	}
+
+	public EarningsPrint generateEarningsPrint(HttpServletRequest request, HttpServletResponse response,
+			String selectedPayDate) {
+		EarningsPrint print = new EarningsPrint();
+		District district = (District) request.getSession().getAttribute("district");
+		BhrEmpDemo userDetail = (BhrEmpDemo) request.getSession().getAttribute("userDetail");
+		print.setDname(district.getName());
+		print.setBhr_emp_demo_name_l(userDetail.getNameL());
+		print.setBhr_emp_demo_name_gen(userDetail.getNameGen() == null ? "" : userDetail.getNameGen().toString());
+		print.setGen_code_descr(userDetail.getGenDescription());
+		print.setBhr_emp_demo_name_f(userDetail.getNameF());
+		print.setBhr_emp_demo_name_m(userDetail.getNameM());
+		PayDate payDate = PayDate.getPaydate(selectedPayDate);
+		Earnings earnings = this.service.retrieveEarnings(userDetail.getEmpNbr(), payDate);
+		print.setBhr_pay_hist_chk_nbr(earnings.getInfo().getCheckNumber());
+		print.setBthr_pay_dates_dt_payper_beg(earnings.getInfo().getPeriodBeginningDate());
+		print.setBthr_pay_dates_dt_payper_end(earnings.getInfo().getPeriodEndingDate());
+		print.setBhr_pay_hist_marital_stat_tax(earnings.getInfo().getWithholdingStatus());
+		if (!earnings.getInfo().getNumExceptions().equals("")) {
+			print.setBhr_pay_hist_nbr_tax_exempts(Integer.parseInt(earnings.getInfo().getNumExceptions()));
+		}
+		String primaryCampusId = earnings.getInfo().getCampusId();
+		String primaryCampusName = earnings.getInfo().getCampusName();
+		print.setBhr_emp_demo_addr_nbr(userDetail.getAddrNbr());
+		print.setBhr_emp_demo_addr_str(userDetail.getAddrStr());
+		print.setBhr_emp_demo_addr_apt(userDetail.getAddrApt());
+		print.setBhr_emp_demo_addr_city(userDetail.getAddrCity());
+		print.setBhr_emp_demo_addr_st(userDetail.getAddrSt());
+		print.setBhr_emp_demo_addr_zip(userDetail.getAddrZip());
+		print.setBhr_emp_demo_addr_zip4(userDetail.getAddrZip4());
+		print.setBhr_emp_pay_pay_campus(earnings.getInfo().getCampusId());
+		print.setBhr_emp_pay_emp_nbr(userDetail.getEmpNbr());
+		print.setBhr_emp_job_campus_id(primaryCampusId);
+		print.setBhr_emp_job_campus_id_displayvalue(primaryCampusId + " " + primaryCampusName);
+		print.setBhr_emp_pay_pay_campus_displayvalue(primaryCampusId + " " + primaryCampusName);
+		return print;
+	}
+
+	private IReport setupReport(ParameterReport report, EarningsPrint data) throws Exception 
+	{
+		report.getParameters().clear();
+		ReportParameterConnection parameter = new ReportParameterConnection();
+		parameter.setName("subRptConnection");
+		parameter.setConnection(pDFService.getConn());
+		report.getParameters().add(parameter);
+		
+		report.setFileName("DHrs2500WageandearningstmtTab");
+		
+		List<EarningsPrint> forms = new ArrayList<EarningsPrint>();
+		forms.add(data);
+		report.setDataSource(new JRBeanCollectionDataSource(forms));
+		
+		return report;
+	}
+	
 }

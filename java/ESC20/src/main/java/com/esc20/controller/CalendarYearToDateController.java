@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -108,7 +109,8 @@ public class CalendarYearToDateController {
 		mav.addObject("freq", freq);
 		return mav;
 	}
-	
+
+//  Using EVO PDF Converter, html to PDF solution
 //	@RequestMapping("exportPDF")
 //	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
 //		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
@@ -127,7 +129,7 @@ public class CalendarYearToDateController {
 		
 		response.setContentType("application/x-msdownload;charset=UTF-8");
 		response.setHeader("Content-Disposition",
-				"attachment;filename=CalYTDPrint.pdf");
+				"attachment;filename=Calendar Year to Date Report for "+ year+".pdf");
 		
 		String path = request.getServletContext().getRealPath("/");
 		if (path != null && !path.endsWith("\\")) {
@@ -138,77 +140,147 @@ public class CalendarYearToDateController {
 		BhrEmpDemo userDetail = (BhrEmpDemo) request.getSession().getAttribute("userDetail");
 		District district = (District) request.getSession().getAttribute("district");
 		
+		BhrCalYtd b = service.getCalenderYTD(userDetail.getEmpNbr(), year);
 		
-		BhrCalYtd b = pDFService.retrieveCalendar(userDetail.getEmpNbr(), year);
-		
-		List<CalYTDPrint> parameters = pDFService.generateCalYTDPrint(userDetail, district, b);
+		List<CalYTDPrint> parameters = this.generateCalYTDPrint(userDetail, district, b);
 		
 		ParameterReport report = new ParameterReport();
 		
-		report.setTitle("Calendar YTD Report");
+		report.setTitle("Calendar Year to Date Report for "+ year);
 		report.setId("calYTDReport");
-		report.setFileName("CalYTDPrint");
+		report.setFileName("Calendar Year to Date Report for "+ year);
 		report.setSortable(false);
 		report.setFilterable(false);
 		
 		IReport ireport = pDFService.setupReport(report, parameters);
-		
-		JasperReport jasperReport;
 	    JasperPrint jasperPrint = null;
-		
-//		ClassLoader cl = this.getClass().getClassLoader();
-//		jasperReport=(JasperReport)JRLoader.loadObjectFromLocation("com/innovated/iris/server/report/n_fbt_final.jasper", cl);
-		
-	    ;
 		jasperPrint = pDFService.buildReport(ireport);
-		
-//		myMap.put("CIN", cin);
-//		myMap.put("PERIOD_START", start);
-//		myMap.put("PERIOD_END", end);
-//		myMap.put("YR_END", Boolean.TRUE);
-		
-    	
     	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
-
-		
-		
-//		byte[] pdf = PDFUtil.getCalendarYTDPDF(strBackUrl+"/calendarYearToDate/calendarYearToDateUnprotectedPDF", request, year);
-//		response.reset();
-//		response.setHeader("Content-Disposition", "attachment; filename=\"Calender Year to Date "+year+".pdf\"");
-//		response.setContentType("application/octet-stream;charset=UTF-8");
-//		OutputStream out = response.getOutputStream();
-//		out.write(pdf);
-//		out.flush();
 	}
 	
-	@RequestMapping("calendarYearToDateUnprotectedPDF")
-	public ModelAndView calendarYearToDateUnprotectedPDF(HttpServletRequest req, String empNbr, String districtId,String language,String year) throws IOException {
-		DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+districtId);
-		HttpSession session = req.getSession();
-		ModelAndView mav = new ModelAndView();
-		String employeeNumber = empNbr;
-		BhrEmpDemo userDetail = this.indexService.getUserDetail(empNbr);
-		session.setAttribute("userDetail", userDetail);
-		District districtInfo = this.indexService.getDistrict(districtId);
-		session.setAttribute("district", districtInfo);
-		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
-		File file = new File(path);
-		String input = FileUtils.readFileToString(file, "UTF-8");
-		JSONObject jsonObject = JSONObject.fromObject(input);
-		req.getSession().setAttribute("languageJSON", jsonObject);
-		mav.addObject("isPrintPDF", true);
-		List<String> years = service.getAvailableYears(employeeNumber);
-		BhrCalYtd calYTD = service.getCalenderYTD(employeeNumber, year);
-		BigDecimal trsIns = calYTD.getTrsDeposit().subtract(calYTD.getTrsSalaryRed());
-		Frequency freq = Frequency.getFrequency(calYTD.getId().getPayFreq() + "");
-		String latestPayDate = service.getLatestPayDate(employeeNumber, freq);
-		mav.setViewName("/inquiry/calendarYearToDate");
-		mav.addObject("years", years);
-		mav.addObject("selectedYear", year);
-		mav.addObject("calendar", calYTD);
-		mav.addObject("latestPayDate", latestPayDate);
-		mav.addObject("trsIns", trsIns);
-		mav.addObject("freq", freq);
-		return mav;
+	//jf20140110 Print Report on Calendar YTD screen
+	public List<CalYTDPrint> generateCalYTDPrint(BhrEmpDemo user, District district , BhrCalYtd calendar)
+	{
+		String dCitySt = "";
+		
+		dCitySt = district.getCity() + ", " + district.getState() + " " + district.getZip();
+		
+		if(district.getZip4().length() > 0)
+		{
+			dCitySt = dCitySt + "-" + district.getZip4();
+		}
+		
+		String eName = "";
+		String middleName = user.getNameM().trim();
+		if (middleName.length() > 0) {
+			middleName = middleName + " ";
+		} else {
+			middleName = "";
+		}
+		
+		eName = user.getNameF() + " " + middleName + user.getNameL() + " " + (user.getGenDescription()==null?"":user.getGenDescription());   //jf20150113 Display description instead of code fix
+		
+		List<CalYTDPrint> calYTDRpt = new ArrayList<CalYTDPrint>();
+		CalYTDPrint print = null;
+		
+			print = new CalYTDPrint();
+			print.setDname(district.getName());
+			print.setDaddress(district.getAddress());
+			print.setDcityst(dCitySt);
+			
+			print.setEname(eName);
+			print.setEmployeeNumber(user.getEmpNbr());
+			
+			print.setCalYr(calendar.getId().getCalYr());
+			print.setFrequency(String.valueOf(calendar.getId().getPayFreq()));
+		
+			// TODO 
+			// lastPostedPayDate != null ? new SimpleDateFormat("MM-dd-yyyy").format(lastPostedPayDate) : "no pay date";  
+			String postedDate = "no pay date";
+			postedDate = postedDate  == null ? "no pay date": postedDate;
+			print.setLastPostedPayDate(postedDate);
+			
+			print.setContractPay(calendar.getContrAmt());
+			print.setNonContractPay(calendar.getNoncontrAmt());
+			print.setSupplementalPay(calendar.getSupplPayAmt());
+			
+			print.setWithholdingGross(calendar.getWhGross());
+			print.setWithholdingTax(calendar.getWhTax());
+			print.setEarnedIncomeCredit(calendar.getEicAmt());
+			
+			print.setFicaGross(calendar.getFicaGross());
+			print.setFicaTax(calendar.getFicaTax());
+			
+			print.setDependentCare(calendar.getDependCare());
+			print.setDependentCareEmployer(calendar.getEmplrDependCare());
+			print.setDependentCareExceeds(calendar.getEmplrDependCareTax());
+			
+			print.setMedicareGross(calendar.getMedGross());
+			print.setMedicareTax(calendar.getMedTax());
+			
+			print.setAnnuityDeduction(calendar.getAnnuityDed());
+			print.setRoth403BAfterTax(calendar.getAnnuityRoth());
+			print.setTaxableBenefits(calendar.getTaxedBenefits());
+			
+			print.setAnnuity457Employee(calendar.getEmp457Contrib());
+			print.setAnnuity457Employer(calendar.getEmplr457Contrib());
+			print.setAnnuity457Withdraw(calendar.getWithdraw457());
+			
+			print.setNonTrsBusinessExpense(calendar.getNontrsBusAllow());
+			print.setNonTrsReimbursementBase(calendar.getNontrsReimbrBase());
+			print.setNonTrsReimbursementExcess(calendar.getNontrsReimbrExcess());
+			
+			print.setMovingExpenseReimbursement(calendar.getMovingExpReimbr());
+			print.setNonTrsNonTaxBusinessAllow(calendar.getNontrsNontaxBusAllow());
+			print.setNonTrsNonTaxNonPayAllow(calendar.getNontrsNontaxNonpayAllow());
+			
+			print.setSalaryReduction(calendar.getTrsSalaryRed());
+			//TODO 
+//			print.setTrsInsurance(calendar.getTrsInsurance());
+			
+			print.setHsaEmployerContribution(calendar.getHsaEmplrContrib());
+			print.setHsaEmployeeSalaryReductionContribution(calendar.getHsaEmpSalRedctnContrib());
+			print.setHireExemptWgs(calendar.getHireExemptWgs());
+			
+			print.setTaxedLifeContribution(calendar.getTaxEmplrLife());
+			print.setTaxedGroupContribution(calendar.getTaxEmplrLifeGrp());
+			print.setHealthInsuranceDeduction(calendar.getHlthInsDed());
+			
+			print.setEmplrPrvdHlthcare(calendar.getEmplrPrvdHlthcare());
+			print.setAnnuityRoth457b(calendar.getAnnuityRoth457b());
+			calYTDRpt.add(print);
+		
+		return calYTDRpt;
 	}
+	
+//	@RequestMapping("calendarYearToDateUnprotectedPDF")
+//	public ModelAndView calendarYearToDateUnprotectedPDF(HttpServletRequest req, String empNbr, String districtId,String language,String year) throws IOException {
+//		DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+districtId);
+//		HttpSession session = req.getSession();
+//		ModelAndView mav = new ModelAndView();
+//		String employeeNumber = empNbr;
+//		BhrEmpDemo userDetail = this.indexService.getUserDetail(empNbr);
+//		session.setAttribute("userDetail", userDetail);
+//		District districtInfo = this.indexService.getDistrict(districtId);
+//		session.setAttribute("district", districtInfo);
+//		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
+//		File file = new File(path);
+//		String input = FileUtils.readFileToString(file, "UTF-8");
+//		JSONObject jsonObject = JSONObject.fromObject(input);
+//		req.getSession().setAttribute("languageJSON", jsonObject);
+//		mav.addObject("isPrintPDF", true);
+//		List<String> years = service.getAvailableYears(employeeNumber);
+//		BhrCalYtd calYTD = service.getCalenderYTD(employeeNumber, year);
+//		BigDecimal trsIns = calYTD.getTrsDeposit().subtract(calYTD.getTrsSalaryRed());
+//		Frequency freq = Frequency.getFrequency(calYTD.getId().getPayFreq() + "");
+//		String latestPayDate = service.getLatestPayDate(employeeNumber, freq);
+//		mav.setViewName("/inquiry/calendarYearToDate");
+//		mav.addObject("years", years);
+//		mav.addObject("selectedYear", year);
+//		mav.addObject("calendar", calYTD);
+//		mav.addObject("latestPayDate", latestPayDate);
+//		mav.addObject("trsIns", trsIns);
+//		mav.addObject("freq", freq);
+//		return mav;
+//	}
 }

@@ -1,6 +1,7 @@
 package com.esc20.service;
 
 import java.io.File;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,21 +20,13 @@ import com.esc20.model.BhrCalYtd;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.CalYTDPrint;
 import com.esc20.nonDBModels.District;
-import com.esc20.nonDBModels.report.ICustomReport;
+import com.esc20.nonDBModels.EarningsPrint;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.nonDBModels.report.ReportParameter;
+import com.esc20.nonDBModels.report.ReportParameterConnection;
 import com.esc20.nonDBModels.report.ReportParameterDataSource;
-
-import net.sf.jasperreports.engine.JRBand;
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRElement;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRGroup;
-import net.sf.jasperreports.engine.JRParameter;
-import net.sf.jasperreports.engine.JRRuntimeException;
-import net.sf.jasperreports.engine.JRSubreport;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -82,107 +75,6 @@ public class PDFService {
 	public void setRealPath(String realPath) {
 		this.realPath = realPath;
 	}
-
-	public BhrCalYtd retrieveCalendar(String employeeNumber, String year)
-	{
-		return calendarYearToDateDao.getCalenderYTD(employeeNumber, year);
-		//return calendarYearToDateDao.getCalendars(employeeNumber, year);
-	}
-	
-	//jf20140110 Print Report on Calendar YTD screen
-	public List<CalYTDPrint> generateCalYTDPrint(BhrEmpDemo user, District district , BhrCalYtd calendar)
-	{
-		String dCitySt = "";
-		
-		dCitySt = district.getCity() + ", " + district.getState() + " " + district.getZip();
-		
-		if(district.getZip4().length() > 0)
-		{
-			dCitySt = dCitySt + "-" + district.getZip4();
-		}
-		
-		String eName = "";
-		String middleName = user.getNameM().trim();
-		if (middleName.length() > 0) {
-			middleName = middleName + " ";
-		} else {
-			middleName = "";
-		}
-		
-		eName = user.getNameF() + " " + middleName + user.getNameL() + " " + user.getGenDescription();   //jf20150113 Display description instead of code fix
-		
-		List<CalYTDPrint> calYTDRpt = new ArrayList<CalYTDPrint>();
-		CalYTDPrint print = null;
-		
-			print = new CalYTDPrint();
-			print.setDname(district.getName());
-			print.setDaddress(district.getAddress());
-			print.setDcityst(dCitySt);
-			
-			print.setEname(eName);
-			print.setEmployeeNumber(user.getEmpNbr());
-			
-			print.setCalYr(calendar.getId().getCalYr());
-			print.setFrequency(String.valueOf(calendar.getId().getPayFreq()));
-		
-			// TODO 
-			// lastPostedPayDate != null ? new SimpleDateFormat("MM-dd-yyyy").format(lastPostedPayDate) : "no pay date";  
-			String postedDate = "no pay date";
-			postedDate = postedDate  == null ? "no pay date": postedDate;
-			print.setLastPostedPayDate(postedDate);
-			
-			print.setContractPay(calendar.getContrAmt());
-			print.setNonContractPay(calendar.getNoncontrAmt());
-			print.setSupplementalPay(calendar.getSupplPayAmt());
-			
-			print.setWithholdingGross(calendar.getWhGross());
-			print.setWithholdingTax(calendar.getWhTax());
-			print.setEarnedIncomeCredit(calendar.getEicAmt());
-			
-			print.setFicaGross(calendar.getFicaGross());
-			print.setFicaTax(calendar.getFicaTax());
-			
-			print.setDependentCare(calendar.getDependCare());
-			print.setDependentCareEmployer(calendar.getEmplrDependCare());
-			print.setDependentCareExceeds(calendar.getEmplrDependCareTax());
-			
-			print.setMedicareGross(calendar.getMedGross());
-			print.setMedicareTax(calendar.getMedTax());
-			
-			print.setAnnuityDeduction(calendar.getAnnuityDed());
-			print.setRoth403BAfterTax(calendar.getAnnuityRoth());
-			print.setTaxableBenefits(calendar.getTaxedBenefits());
-			
-			print.setAnnuity457Employee(calendar.getEmp457Contrib());
-			print.setAnnuity457Employer(calendar.getEmplr457Contrib());
-			print.setAnnuity457Withdraw(calendar.getWithdraw457());
-			
-			print.setNonTrsBusinessExpense(calendar.getNontrsBusAllow());
-			print.setNonTrsReimbursementBase(calendar.getNontrsReimbrBase());
-			print.setNonTrsReimbursementExcess(calendar.getNontrsReimbrExcess());
-			
-			print.setMovingExpenseReimbursement(calendar.getMovingExpReimbr());
-			print.setNonTrsNonTaxBusinessAllow(calendar.getNontrsNontaxBusAllow());
-			print.setNonTrsNonTaxNonPayAllow(calendar.getNontrsNontaxNonpayAllow());
-			
-			print.setSalaryReduction(calendar.getTrsSalaryRed());
-			//TODO 
-//			print.setTrsInsurance(calendar.getTrsInsurance());
-			
-			print.setHsaEmployerContribution(calendar.getHsaEmplrContrib());
-			print.setHsaEmployeeSalaryReductionContribution(calendar.getHsaEmpSalRedctnContrib());
-			print.setHireExemptWgs(calendar.getHireExemptWgs());
-			
-			print.setTaxedLifeContribution(calendar.getTaxEmplrLife());
-			print.setTaxedGroupContribution(calendar.getTaxEmplrLifeGrp());
-			print.setHealthInsuranceDeduction(calendar.getHlthInsDed());
-			
-			print.setEmplrPrvdHlthcare(calendar.getEmplrPrvdHlthcare());
-			print.setAnnuityRoth457b(calendar.getAnnuityRoth457b());
-			calYTDRpt.add(print);
-		
-		return calYTDRpt;
-	}
 	
 	//jf20140110 Print Report on Current Calendar YTD screen
 	public IReport setupReport(ParameterReport report, List<CalYTDPrint> parameters) 
@@ -200,8 +92,10 @@ public class PDFService {
 
 		return report;
 	}
-	
-public JasperPrint buildReport(IReport report) throws JRException, SQLException {
+    public Connection getConn() throws Exception {
+    	return calendarYearToDateDao.getConn();
+    }
+	public JasperPrint buildReport(IReport report) throws JRException, SQLException {
 		
 		JasperPrint result = null;
 				
@@ -227,7 +121,11 @@ public JasperPrint buildReport(IReport report) throws JRException, SQLException 
 			Map<String, Object> parameters = getParameterMap(report.getParameters()); // moved line here in case preReport() makes changes to parameters
 			
 			try {
-				result = JasperFillManager.fillReport(jasperReport,parameters,report.getDataSource());
+				if (report.getDataSource() != null) {
+					result = JasperFillManager.fillReport(jasperReport,parameters,report.getDataSource());
+				} else {
+					result = JasperFillManager.fillReport(jasperReport,parameters, calendarYearToDateDao.getConn());
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -345,7 +243,8 @@ private JasperReport loadTemplate(IReport report) throws JRException {
 	String path = System.getProperty("EmployeeAccess.root")+"/reports";
 	System.out.println("path: "+ path);
 //	// get the report id and make sure the report is lower case
-	String template = "CalYTDPrint"; // report.getFileName();
+	//String template = "CalYTDPrint"; // report.getFileName();
+	String template = report.getFileName();
 ////
 //	File directoryPath = new File(path);
 //	File jasperFile = null;
@@ -382,12 +281,15 @@ private Map<String, Object> getParameterMap(List<ReportParameter> parameters) {
 	// create the map of parameters
 	Map<String, Object> parameterMap = new HashMap<String, Object>();
 	
+	parameterMap.put("SUBREPORT_DIR", System.getProperty("EmployeeAccess.root") + "/reports/");
+	
 	for (ReportParameter reportParameter : parameters) {
 		logger.debug("adding reportParameter = " + reportParameter.getName());
 		if (reportParameter instanceof ReportParameterDataSource) {
 			parameterMap.put(reportParameter.getName(), ((ReportParameterDataSource)reportParameter).getDataSource());
-		}
-		else {
+		}if (reportParameter instanceof ReportParameterConnection) {
+			parameterMap.put(reportParameter.getName(), ((ReportParameterConnection)reportParameter).getConnection());
+		}else {
 			if (reportParameter.getQuotedValue() != null)
 			{
 				if(reportParameter.isUseLiteralValue())

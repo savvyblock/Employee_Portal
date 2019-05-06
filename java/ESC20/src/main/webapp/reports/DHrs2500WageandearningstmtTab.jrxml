@@ -3,18 +3,11 @@
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="41"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="DHrs2500WageandearningEarnTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
-	<parameter name="DHrs2500WageandearningJobTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
-	<parameter name="DHrs2500WageandearningSupplTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
-	<parameter name="DHrs2500WageandearningOvtmTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
-	<parameter name="DHrs2500WageandearningDedTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
-	<parameter name="DHrs2500WageandearningBnkTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
-	<parameter name="DHrs2500WageandearningLvTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
 	<parameter name="subRptConnection" class="java.sql.Connection" isForPrompting="false"/>
 	<field name="dname" class="java.lang.String"/>
 	<field name="bhr_emp_demo_name_l" class="java.lang.String"/>
@@ -379,7 +372,7 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 					<subreportParameterExpression><![CDATA[$V{vs_directdeposit}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{DHrs2500WageandearningEarnTab}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningEarnTab.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true">
 				<reportElement key="DHrs2500WageandearningJobTab" positionType="Float" x="291" y="2" width="312" height="10" isRemoveLineWhenBlank="true" uuid="a4ab26a3-aab5-4066-98d0-89b41bdf254a"/>
@@ -405,7 +398,7 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 					<subreportParameterExpression><![CDATA[$F{bhr_emp_pay_emp_nbr}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{DHrs2500WageandearningJobTab}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningJobTab.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true">
 				<reportElement key="DHrs2500WageandearningSupplTab" positionType="Float" x="291" y="12" width="312" height="10" isRemoveLineWhenBlank="true" uuid="f7d3b2de-5ccc-4df2-939d-a6cd12515f2e"/>
@@ -434,7 +427,7 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 					<subreportParameterExpression><![CDATA["S"]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{DHrs2500WageandearningSupplTab}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningSupplTab.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true">
 				<reportElement key="DHrs2500WageandearningOvtmTab" positionType="Float" x="291" y="43" width="312" height="10" isRemoveLineWhenBlank="true" uuid="95d804d0-a523-42e5-92f3-5233838e5dc7"/>
@@ -454,7 +447,7 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 					<subreportParameterExpression><![CDATA[$F{bhr_emp_pay_emp_nbr}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{DHrs2500WageandearningOvtmTab}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningOvtmTab.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true">
 				<reportElement key="DHrs2500WageandearningDedTab" positionType="Float" x="291" y="53" width="312" height="10" isRemoveLineWhenBlank="true" uuid="7bc2fe75-ee8e-4ee9-80d4-f9c386e46162"/>
@@ -480,7 +473,7 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 					<subreportParameterExpression><![CDATA[$F{bhr_emp_pay_emp_nbr}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{DHrs2500WageandearningDedTab}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningDedTab.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true">
 				<reportElement key="DHrs2500WageandearningBnkTab" positionType="Float" x="8" y="63" width="595" height="10" isRemoveLineWhenBlank="true" uuid="48397fe7-057b-448b-a94f-34d610a1d9ce"/>
@@ -509,7 +502,7 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 					<subreportParameterExpression><![CDATA[$F{bhr_pay_hist_void_or_iss}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{DHrs2500WageandearningBnkTab}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningBnkTab.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true">
 				<reportElement key="DHrs2500WageandearningLvTab" positionType="Float" x="8" y="73" width="595" height="10" isRemoveLineWhenBlank="true" uuid="b5f1e9c7-cf8e-4235-9fd7-6bd23a33153a"/>
@@ -535,7 +528,7 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 					<subreportParameterExpression><![CDATA[$F{bhr_emp_pay_emp_nbr}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{DHrs2500WageandearningLvTab}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningLvTab.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true">
 				<reportElement key="DHrs2500WageandearningSupplTab" positionType="Float" x="291" y="32" width="312" height="10" isRemoveLineWhenBlank="true" uuid="f00b335f-617b-4243-9109-0e811a13f22e"/>
@@ -564,7 +557,7 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 					<subreportParameterExpression><![CDATA["T"]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{DHrs2500WageandearningSupplTab}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningSupplTab.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true">
 				<reportElement key="DHrs2500WageandearningSupplTab" positionType="Float" x="291" y="22" width="312" height="10" isRemoveLineWhenBlank="true" uuid="864430dd-fe50-446b-941c-2438d89dabe9"/>
@@ -593,7 +586,7 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 					<subreportParameterExpression><![CDATA["B"]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{DHrs2500WageandearningSupplTab}]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningSupplTab.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
