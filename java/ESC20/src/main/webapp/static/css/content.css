@@ -1427,6 +1427,7 @@
   .table.border-table td, .table.border-table th {
     border-color: #000 !important;
     border-width: 1px;
+    border: 1px solid #000 !important;
   }
   .table.border-table tbody td {
     text-align: right;
@@ -1452,6 +1453,12 @@
   }
   .table.print-show-table {
     display: table;
+  }
+  .table.responsive-table tbody {
+    display: table-row-group !important;
+  }
+  .table.responsive-table.payRoll-table tr {
+    border: 0;
   }
   .icheck {
     opacity: 1 !important;

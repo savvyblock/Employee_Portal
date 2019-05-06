@@ -1289,6 +1289,7 @@
             td,th{
                 border-color: #000!important;
                 border-width: 1px;
+                border:1px solid #000!important;
             }
             tbody{
                 td{
@@ -1327,6 +1328,14 @@
         }
         &.print-show-table{
             display: table;
+        }
+        &.responsive-table{
+            tbody{
+                display: table-row-group!important;
+            }
+            &.payRoll-table tr{
+                border:0;
+            }
         }
     }
     .icheck{
