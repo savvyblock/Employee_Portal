@@ -43,6 +43,11 @@ public class IndexController {
     public ModelAndView getIndexPage(HttpServletRequest req, String Id,HttpServletResponse response){
     	ModelAndView mav = new ModelAndView();
         mav.setViewName("login");
+		Boolean isUserLoginFailure = (Boolean) req.getSession().getAttribute("isUserLoginFailure");
+		if(isUserLoginFailure!=null && isUserLoginFailure) {
+			req.getSession().removeAttribute("isUserLoginFailure");
+			mav.addObject("isUserLoginFailure", "true");
+		}
         return mav;
     }
     

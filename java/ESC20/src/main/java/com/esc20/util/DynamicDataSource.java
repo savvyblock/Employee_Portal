@@ -9,9 +9,14 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
+import org.springframework.jdbc.datasource.lookup.DataSourceLookup;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 import org.springframework.util.Assert;
 
 public class DynamicDataSource extends AbstractRoutingDataSource {
+	
+	private DataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
+	
 	@Override
 	protected Object determineCurrentLookupKey() {
 		return DataSourceContextHolder.getDataSourceType();
@@ -20,24 +25,21 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 	@Override
 	protected DataSource determineTargetDataSource() {
 		String lookupKey = (String)DataSourceContextHolder.getDataSourceType();
-		Context ic = null;
 		DataSource dataSource = null;
 		try {
 			if (dataSource == null && (lookupKey == null)) {
-				ic = new InitialContext();
-				dataSource = (DataSource)ic.lookup("java:jboss/DBNEW001904");
+				dataSource = (DataSource)dataSourceLookup.getDataSource("java:jboss/DBNEW001904");
 				return dataSource;
 			}else {
-				ic = new InitialContext();
 				if(lookupKey != null)
-					dataSource = (DataSource)ic.lookup(lookupKey);
+					dataSource = (DataSource)dataSourceLookup.getDataSource(lookupKey);
 
 				if (dataSource == null) {
 					throw new IllegalStateException("Cannot determine target DataSource for lookup key [" + lookupKey + "]");
 				}
 				return dataSource;
 			}
-		} catch (NamingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;

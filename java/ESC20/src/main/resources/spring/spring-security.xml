@@ -29,7 +29,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 							 authentication-success-handler-ref="customSuccessHandler"
 							 authentication-success-forward-url="/home"
 							 login-processing-url="/loginEA"
-							 authentication-failure-url="/login?error"
+							 authentication-failure-handler-ref="customFailureHandler"
                 			 username-parameter="username"
                 			 password-parameter="password"/>
         <security:logout logout-url="/logoutEA" success-handler-ref="customSuccessLogoutHandler" invalidate-session="true" />
@@ -55,9 +55,10 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
  	
  	<bean id="customSuccessLogoutHandler" class="com.esc20.security.CustomSuccessLogoutHandler" />
  	
- 	<bean id="accessDeniedHandler" class="com.esc20.security.CustomAccessDeniedHandler" >
- 	</bean>
+ 	<bean id="accessDeniedHandler" class="com.esc20.security.CustomAccessDeniedHandler" />
  	
- 	<bean id="csrfSecurityRequestMatcher" class="com.esc20.security.CustomCsrfSecurityRequestMatcher" >
- 	</bean>
+ 	<bean id="customFailureHandler" class="com.esc20.security.CustomFailureHandler" />
+ 	
+ 	<bean id="csrfSecurityRequestMatcher" class="com.esc20.security.CustomCsrfSecurityRequestMatcher" />
+
 </beans>

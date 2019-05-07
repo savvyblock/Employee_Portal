@@ -29,13 +29,14 @@
                                 
                             </div>
                             <div class="form-group">
-                                <label  class="form-title" for="inputPassword">${sessionScope.languageJSON.label.password}</label>
+                                <label  class="form-title" for="inputPassword">${sessionScope.languageJSON.label.password} ${isUserLoginFailure}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-lock left-icon"></i>
                                     <input type="password" id="inputPassword" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password"/>
                                 </div>
                                 
                             </div>
+                            
                             <p class="error-hint hide errorMessage" id="errorMessage" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.usernameOrPasswordError}</p>
                             <p class="error-hint hide incorrectMessage" id="incorrectMessage" role="alert" aria-atomic="true">>${sessionScope.languageJSON.validator.usernameOrPasswordIncorrect}</p>
                             <p class="error-hint hide authenticateFailed" id="authenticateFailed" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.authenticateFailed}</p>
@@ -88,7 +89,7 @@
                                 
                             </div>
                             <div class="form-group">
-                                <label  class="form-title" for="inputPasswordSession">${sessionScope.languageJSON.label.password}</label>
+                                <label  class="form-title" for="inputPasswordSession">${sessionScope.languageJSON.label.password} ${isUserLoginFailure}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-lock left-icon"></i>
                                     <input type="password" id="inputPasswordSession" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password">
