@@ -151,7 +151,7 @@ var languageSet = "${sessionScope.language}"
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/common.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bootstrapValidator.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/autoAdvance.js"></script>
-<c:if test="${sessionScope.companyId == 1}">
+<c:if test="${sessionScope.districtId == '123456'}">
 <style>
 .main-sidebar{
 	background-color: #a93439;
@@ -164,7 +164,7 @@ var languageSet = "${sessionScope.language}"
 }
 </style>
 </c:if>
-<c:if test="${sessionScope.companyId == 2}">
+<c:if test="${sessionScope.districtId == '001904'}">
 <style>
 .main-sidebar{
 	background-color: #00529b;

@@ -3,6 +3,7 @@ package com.esc20.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,17 +23,26 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Account;
 import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.District;
+import com.esc20.nonDBModels.EarningsPrint;
 import com.esc20.nonDBModels.EmployeeInfo;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.PayDate;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.PayPrint;
 import com.esc20.nonDBModels.Stipend;
+import com.esc20.nonDBModels.report.IReport;
+import com.esc20.nonDBModels.report.ParameterReport;
+import com.esc20.nonDBModels.report.ReportParameterConnection;
 import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
+import com.esc20.service.PDFService;
 import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.StringUtil;
 
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.json.JSONObject;
 
 @Controller
@@ -44,6 +54,9 @@ public class CurrentPayInformationController{
 	
     @Autowired
     private IndexService indexService;
+    
+    @Autowired
+    private PDFService pDFService;
 	
 	@RequestMapping("currentPayInformation")
 	public ModelAndView getCurrentPayInformation(HttpServletRequest req) throws IOException {
@@ -73,54 +86,31 @@ public class CurrentPayInformationController{
 		return mav;
 	}
 	
-//	@RequestMapping("exportPDF")
-//	public void exportPDF(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
-//		System.out.println("prefix" + strBackUrl);
-//		byte[] pdf = PDFUtil.getCurrentPayInformationPDF(strBackUrl+"/currentPayInformation/currentPayInformationUnprotectedPDF", request);
-//		response.reset();
-//		response.setHeader("Content-Disposition", "attachment; filename=\"Current Pay Information.pdf\"");
-//		response.setContentType("application/octet-stream;charset=UTF-8");
-//		OutputStream out = response.getOutputStream();
-//		out.write(pdf);
-//		out.flush();
-//	}
-	
-	@RequestMapping("currentPayInformationUnprotectedPDF")
-	public ModelAndView getCurrentPayInformation(HttpServletRequest req, String empNbr, String districtId,String language) throws IOException {
-		DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+districtId);
-		HttpSession session = req.getSession();
-		ModelAndView mav = new ModelAndView();
-		String employeeNumber = empNbr;
-		BhrEmpDemo userDetail = this.indexService.getUserDetail(empNbr);
-		session.setAttribute("userDetail", userDetail);
-		District districtInfo = this.indexService.getDistrict(districtId);
-		session.setAttribute("district", districtInfo);
-		Map<Frequency, List<CurrentPayInformation>> jobs = this.service.getJob(employeeNumber);
-		Map<Frequency, List<Stipend>> stipends = this.service.getStipends(employeeNumber);
-		Map<Frequency, List<Account>> accounts = this.service.getAccounts(employeeNumber);
-		List<Frequency> frequencies = this.service.getFrequencies(jobs);
-		Map<Frequency, PayInfo> payInfos = this.service.retrievePayInfo(employeeNumber, frequencies);
-		Map<Frequency, String> payCampuses = this.service.retrievePayCampuses(employeeNumber);
-		EmployeeInfo employeeInfo = this.service.getEmployeeInfo(employeeNumber);
-		mav.setViewName("/inquiry/currentPayInformation");
-		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
-		File file = new File(path);
-		String input = FileUtils.readFileToString(file, "UTF-8");
-		JSONObject jsonObject = JSONObject.fromObject(input);
-		req.getSession().setAttribute("languageJSON", jsonObject);
-		mav.addObject("jobs", jobs);
-		mav.addObject("stipends", stipends);
-		mav.addObject("isPrintPDF", true);
-		mav.addObject("accounts", accounts);
-		mav.addObject("frequencies", frequencies);
-		mav.addObject("payInfos", payInfos);
-		mav.addObject("payCampuses", payCampuses);
-		mav.addObject("employeeInfo", employeeInfo);
-		return mav;
+	@RequestMapping("exportPDF")
+	public void exportPDF(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("application/x-msdownload;charset=UTF-8");
+		response.setHeader("Content-Disposition", "attachment;filename=Current Pay Information.pdf");
+		
+		String path = request.getServletContext().getRealPath("/");
+		if (path != null && !path.endsWith("\\")) {
+			path = path.concat("\\");
+		}
+		pDFService.setRealPath(path);
+		
+		ParameterReport report = new ParameterReport();
+		report.setTitle("Pay Report");
+		report.setId("payReport");
+		report.setFileName("DRptPay");
+		report.setSortable(false);
+		report.setFilterable(false);
+		
+		PayPrint payPrint = generatePayPrint(request, response);
+		IReport ireport = setupReport(report, payPrint);
+		
+	    JasperPrint jasperPrint = pDFService.buildReport(ireport);
+    	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 	}
-	
-	
+		
 	public PayPrint generatePayPrint(HttpServletRequest request, HttpServletResponse response)
 	{
 		PayPrint print = new PayPrint();
@@ -193,5 +183,22 @@ public class CurrentPayInformationController{
 		}
 		
 		return print;
+	}
+	
+	private IReport setupReport(ParameterReport report, PayPrint data) throws Exception 
+	{
+		report.getParameters().clear();
+		ReportParameterConnection parameter = new ReportParameterConnection();
+		parameter.setName("subRptConnection");
+		parameter.setConnection(pDFService.getConn());
+		report.getParameters().add(parameter);
+		
+		report.setFileName("DRptPay");
+		
+		List<PayPrint> forms = new ArrayList<PayPrint>();
+		forms.add(data);
+		report.setDataSource(new JRBeanCollectionDataSource(forms));
+		
+		return report;
 	}
 }

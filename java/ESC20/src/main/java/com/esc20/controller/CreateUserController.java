@@ -70,7 +70,6 @@ public class CreateUserController{
     	newUser.setTmpDts("");
     	newUser.setTmpCnt(0);
     	newUser.setHintCnt(0);
-    	newUser.setCmpId(0);
     	
     	BhrEmpDemo bed = this.indexService.getUserDetail(req.getParameter("empNbr"));
     	SearchUser searchUser=new SearchUser();

@@ -19,7 +19,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 	
 	@Override
 	protected DataSource determineTargetDataSource() {
-		Object lookupKey = DataSourceContextHolder.getDataSourceType();
+		String lookupKey = (String)DataSourceContextHolder.getDataSourceType();
 		Context ic = null;
 		DataSource dataSource = null;
 		try {
@@ -30,7 +30,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 			}else {
 				ic = new InitialContext();
 				if(lookupKey != null)
-					dataSource = (DataSource)ic.lookup((String) lookupKey);
+					dataSource = (DataSource)ic.lookup(lookupKey);
 
 				if (dataSource == null) {
 					throw new IllegalStateException("Cannot determine target DataSource for lookup key [" + lookupKey + "]");

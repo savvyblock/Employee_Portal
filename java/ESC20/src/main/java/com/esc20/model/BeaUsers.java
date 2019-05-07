@@ -25,13 +25,12 @@ public class BeaUsers implements java.io.Serializable {
 	private char lkHint;
 	private Integer hintCnt;
 	private String tmpDts;
-	private Integer cmpId;
 
 	public BeaUsers() {
 	}
 
 	public BeaUsers(String empNbr, String usrname, String usrpswd, String hint, String hintAns, char lkPswd,
-			Integer pswdCnt, char lkFnl, Integer tmpCnt, char lkHint, Integer hintCnt, String tmpDts ,Integer cmpId) {
+			Integer pswdCnt, char lkFnl, Integer tmpCnt, char lkHint, Integer hintCnt, String tmpDts) {
 		this.empNbr = empNbr;
 		this.usrname = usrname;
 		this.usrpswd = usrpswd;
@@ -44,7 +43,6 @@ public class BeaUsers implements java.io.Serializable {
 		this.lkHint = lkHint;
 		this.hintCnt = hintCnt;
 		this.tmpDts = tmpDts;
-		this.cmpId = cmpId;
 	}
 
 	@Id
@@ -155,15 +153,6 @@ public class BeaUsers implements java.io.Serializable {
 
 	public void setTmpDts(String tmpDts) {
 		this.tmpDts = tmpDts;
-	}
-
-	@Column(name = "CMP_ID", nullable = true)
-	public Integer getCmpId() {
-		return cmpId;
-	}
-
-	public void setCmpId(Integer cmpId) {
-		this.cmpId = cmpId;
 	}
 
 }

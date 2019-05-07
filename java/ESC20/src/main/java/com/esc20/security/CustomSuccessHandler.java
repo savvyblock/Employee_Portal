@@ -49,7 +49,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
             session.setAttribute("isTempApprover", isTempApprover);
             session.setAttribute("user", user);
             session.setAttribute("userDetail", userDetail);
-            session.setAttribute("companyId", user.getCmpId());
+            session.setAttribute("companyId", district);
             session.setAttribute("options", options);
             session.setAttribute("district", districtInfo);
             String returnURL= "/"+request.getContextPath().split("/")[1]+"/home";
