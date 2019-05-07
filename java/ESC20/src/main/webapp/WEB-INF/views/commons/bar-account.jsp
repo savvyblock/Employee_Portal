@@ -5,7 +5,7 @@
             <img class="logo logo-sm" src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="${sessionScope.languageJSON.logoName.esc}"/>
     </a>
     <div class="header-btn">
-        <a href="/<%=request.getContextPath().split("/")[1]%>/login" role="link">
+        <a href="/<%=request.getContextPath().split("/")[1]%>/login?distid=${sessionScope.districtId}" role="link">
                 <button type="submit" role="submitButton" class="btn btn-primary">
                 	${sessionScope.languageJSON.label.returnLogin}
                 </button>
