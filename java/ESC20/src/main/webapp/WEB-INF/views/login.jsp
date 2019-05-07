@@ -39,7 +39,9 @@
                             
                             <p class="error-hint hide errorMessage" id="errorMessage" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.usernameOrPasswordError}</p>
                             <p class="error-hint hide incorrectMessage" id="incorrectMessage" role="alert" aria-atomic="true">>${sessionScope.languageJSON.validator.usernameOrPasswordIncorrect}</p>
-                            <p class="error-hint hide authenticateFailed" id="authenticateFailed" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.authenticateFailed}</p>
+                            <c:if test="${isUserLoginFailure=='true'}">
+                                <p class="error-hint authenticateFailed" id="authenticateFailed" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.authenticateFailed}</p>
+                            </c:if>                            
                             <c:if test="${times3}">
                                 <p class="error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.haveEnteredThree}</p>
                             </c:if>
@@ -89,7 +91,7 @@
                                 
                             </div>
                             <div class="form-group">
-                                <label  class="form-title" for="inputPasswordSession">${sessionScope.languageJSON.label.password} ${isUserLoginFailure}</label>
+                                <label  class="form-title" for="inputPasswordSession">${sessionScope.languageJSON.label.password}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-lock left-icon"></i>
                                     <input type="password" id="inputPasswordSession" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password">
@@ -98,7 +100,9 @@
                             </div>
                             <p class="error-hint hide errorMessage" id="errorMessage" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.usernameOrPasswordError}</p>
                             <p class="error-hint hide incorrectMessage" id="incorrectMessage" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.usernameOrPasswordIncorrect}</p>
-                            <p class="error-hint hide authenticateFailed" id="authenticateFailed" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.authenticateFailed}</p>
+                            <c:if test="${isUserLoginFailure=='true'}">
+                                <p class="error-hint authenticateFailed" id="authenticateFailed" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.authenticateFailed}</p>
+                            </c:if>
                             <c:if test="${times3}">
                                 <p class="error-hint" id="haveEnteredThree" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.haveEnteredThree}</p>
                             </c:if>

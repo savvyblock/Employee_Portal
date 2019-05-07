@@ -54,11 +54,11 @@ $(function(){
     var url = window.location.href
     var urlParams = url.split("?"); 
     console.log(urlParams)
-    if(urlParams[1]=='error'){
-        $(".authenticateFailed").show()
-    }else{
-        $(".authenticateFailed").hide()
-    }
+    // if(urlParams[1]=='error'){
+    //     $(".authenticateFailed").show()
+    // }else{
+    //     $(".authenticateFailed").hide()
+    // }
     var isTimeoutArry = urlParams[1]?urlParams[1].split("&"):false;
     var isTimeout = isTimeoutArry[1]?isTimeoutArry[1].split("="):false;
     if(isTimeout[1]){
