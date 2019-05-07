@@ -26,10 +26,12 @@ import com.esc20.nonDBModels.EmployeeInfo;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayInfo;
+import com.esc20.nonDBModels.PayPrint;
 import com.esc20.nonDBModels.Stipend;
 import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.util.DataSourceContextHolder;
+import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONObject;
 
@@ -118,4 +120,78 @@ public class CurrentPayInformationController{
 		return mav;
 	}
 	
+	
+	public PayPrint generatePayPrint(HttpServletRequest request, HttpServletResponse response)
+	{
+		PayPrint print = new PayPrint();
+		District district = (District) request.getSession().getAttribute("district");
+		BhrEmpDemo userDetail = (BhrEmpDemo) request.getSession().getAttribute("userDetail");
+		print.setDname(district.getName());
+		print.setDaddress(district.getAddress());
+		print.setDcityst(district.getCity() + ", " + district.getState() + " " + district.getZip());
+		
+		if(district.getZip4()!=null && district.getZip4().length() > 0)
+		{
+			print.setDcityst(print.getDcityst() + "-" + district.getZip4());
+		}
+		
+		String middleName = userDetail.getNameM();
+		if (middleName!=null && (middleName.trim()).length() > 0) {
+			middleName = middleName.trim() + " ";
+		} else {
+			middleName = "";
+		}
+		
+		print.setEname(userDetail.getNameF() + " " + middleName + userDetail.getNameL() + " " + (userDetail.getGenDescription()==null?"":userDetail.getGenDescription()));
+		print.setEaddress(StringUtil.trim(userDetail.getAddrNbr())+ " "+ StringUtil.trim(userDetail.getAddrStr()));
+		String apt = StringUtil.trim(userDetail.getAddrApt());
+		if(apt.length() > 0)
+		{
+			print.setEaddress(print.getEaddress() + " " + apt);
+		}
+		print.setEcityst(userDetail.getAddrCity() + ", " + userDetail.getAddrSt() + " " + userDetail.getAddrZip());
+		
+		if(userDetail.getAddrZip4()!=null && userDetail.getAddrZip4().length() > 0)
+		{
+			print.setEcityst(print.getEcityst() + "-" + userDetail.getAddrZip4());
+		}
+		
+		print.setPhoneNumber(userDetail.getPhoneNbr());
+		print.setEmployeeNumber(userDetail.getEmpNbr());
+		if(userDetail.getDob()!=null && userDetail.getDob().length()>=8)
+			print.setDateOfBirth(StringUtil.mid(userDetail.getDob(), 5, 2) + "-" + StringUtil.right(userDetail.getDob(), 2) + "-" + StringUtil.left(userDetail.getDob(), 4));
+		else
+			print.setDateOfBirth("");
+		String gender;
+		if (userDetail.getSex() == 'M') {
+			gender = "Male";
+		} else if (userDetail.getSex() == 'F') {
+			gender = "Female";
+		} else {
+			gender = "";
+		}
+		print.setGender(gender);
+		
+		EmployeeInfo employeeInfo = this.service.getEmployeeInfo(userDetail.getEmpNbr());
+		
+		if (employeeInfo.getHighDegree() != null) {
+			if (employeeInfo.getHighDegreeDescription()!= null) {
+				print.setDegree(employeeInfo.getHighDegreeDescription());
+			}
+		}
+		if (employeeInfo.getYrsProExper() != null) {
+			print.setProExperience(employeeInfo.getYrsProExper());
+		}
+		if (employeeInfo.getYrsExpDist() != null) {
+			print.setNonProExperience(employeeInfo.getYrsExpDist());
+		}
+		if (employeeInfo.getYrsProExperLoc() != null) {
+			print.setProExperienceDistrict(employeeInfo.getYrsProExperLoc());
+		}
+		if (employeeInfo.getYrsExpDistLoc() != null) {
+			print.setNonProExperienceDistrict(employeeInfo.getYrsExpDistLoc());
+		}
+		
+		return print;
+	}
 }
