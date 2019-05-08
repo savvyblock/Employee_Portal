@@ -84,7 +84,6 @@ public class CalendarYearToDateDao {
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("year", year);
 		BhrCalYtd res = (BhrCalYtd) q.list().get(0);
-		
 		return res;
 	}
 

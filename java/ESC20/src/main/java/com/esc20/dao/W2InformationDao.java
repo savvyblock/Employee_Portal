@@ -1,5 +1,6 @@
 package com.esc20.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -86,5 +87,31 @@ public class W2InformationDao {
 		Integer res = q.executeUpdate();
 		session.flush();
 		return res>0;
+	}
+	
+	public BigDecimal getThirdPartySickPay(String employeeNumber, String year)
+	{
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("select(ISNULL( sum(bhr_third_party_sick_pay.sick_pay_wh_gross +   ");
+		sql.append("		bhr_third_party_sick_pay.sick_pay_wh_tax +   ");
+		sql.append("		bhr_third_party_sick_pay.sick_pay_fica_gross +   ");
+		sql.append("		bhr_third_party_sick_pay.sick_pay_fica_tax +  ");
+		sql.append("		bhr_third_party_sick_pay.sick_pay_med_gross +  ");
+		sql.append("		bhr_third_party_sick_pay.sick_pay_med_tax +  ");
+		sql.append("		bhr_third_party_sick_pay.sick_nontax ), 0.00))");
+		sql.append("      from bhr_third_party_sick_pay ");
+		sql.append("     where (bhr_third_party_sick_pay.emp_nbr = :as_emp_nbr) AND");
+		//sql.append("		   (bhr_third_party_sick_pay.emp_nbr = bhr_cal_ytd.emp_nbr) AND");
+		//sql.append("           (bhr_third_party_sick_pay.emp_nbr = bhr_emp_pay.emp_nbr) AND");
+		sql.append("           (bhr_third_party_sick_pay.cyr_nyr_flg = :as_cyr_nyr) AND");
+		sql.append("           (bhr_third_party_sick_pay.cal_yr = :as_yr OR TRIM(:as_yr) = '')");
+		//sql.append("           AND ( :an_pay_nbr = 0 OR bhr_third_party_sick_pay.pay_freq IN ( :as_payfreq ) ) )");
+		
+		Query q = session.createSQLQuery(sql.toString());
+		q.setParameter("as_cyr_nyr","C");
+		q.setParameter("as_emp_nbr",employeeNumber);
+		q.setParameter("as_yr",year);
+		return (BigDecimal)q.uniqueResult();
 	}
 }

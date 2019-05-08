@@ -878,6 +878,10 @@ public class InquiryService {
 		}
 	}
 
+	public BigDecimal getThirdPartySickPay(String employeeNumber, String year) {
+		return w2InformationDao.getThirdPartySickPay(employeeNumber, year);
+	}
+	
 	private String toString(BigDecimal b) {
 		if (b != null) {
 			return b.toString();
