@@ -24,6 +24,7 @@ import com.esc20.model.BeaW4;
 import com.esc20.model.BhrEapDemoAssgnGrp;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPayId;
+import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.SearchUser;
 import com.esc20.util.DataSourceContextHolder;
@@ -41,6 +42,9 @@ import javax.annotation.Resource;
 public class AppUserDao extends HibernateDaoSupport{
     @Autowired
     private SessionFactory sessionFactory;
+    
+    @Autowired
+    private ReferenceDao referenceDao;
     
     @Resource  
     public void setSessionFacotry(SessionFactory sessionFacotry) {
@@ -156,9 +160,13 @@ public class AppUserDao extends HibernateDaoSupport{
     			 (String) res[27],(String) res[28],(String) res[29],(String) res[30],(String) res[31],
     			 (Character) res[32],(Character) res[33],(Character) res[34],(String) res[35],(String) res[36],
     			 (String) res[37],(String) res[38],(String) res[39],(String) res[40],(String) res[41],(String) res[42],(String) res[43]);
-        String genDescr = (String) res[18];
-        userInfo.setGenDescription(genDescr);
-        
+        List<Code> gens = referenceDao.getGenerations();
+        userInfo.setGenDescription("");
+        for(Code gen: gens) {
+        	if(userInfo.getNameGen()!=null && gen.getCode().equals(userInfo.getNameGen().toString())) {
+        		userInfo.setGenDescription(gen.getDescription());
+        	}
+        }
         return userInfo;
 	}
 	

@@ -23,30 +23,30 @@ public class BhrAca1095cCovrdHist implements java.io.Serializable {
 	private String nameF;
 	private String nameM;
 	private String nameL;
-	private char nameGen;
+	private Character nameGen;
 	private String ssn;
 	private String dob;
-	private char monAll;
-	private char mon01;
-	private char mon02;
-	private char mon03;
-	private char mon04;
-	private char mon05;
-	private char mon06;
-	private char mon07;
-	private char mon08;
-	private char mon09;
-	private char mon10;
-	private char mon11;
-	private char mon12;
-	private char empFlg;
+	private Character monAll;
+	private Character mon01;
+	private Character mon02;
+	private Character mon03;
+	private Character mon04;
+	private Character mon05;
+	private Character mon06;
+	private Character mon07;
+	private Character mon08;
+	private Character mon09;
+	private Character mon10;
+	private Character mon11;
+	private Character mon12;
+	private Character empFlg;
 
 	public BhrAca1095cCovrdHist() {
 	}
 
-	public BhrAca1095cCovrdHist(BhrAca1095cCovrdHistId id, String nameF, String nameM, String nameL, char nameGen,
-			String ssn, String dob, char monAll, char mon01, char mon02, char mon03, char mon04, char mon05, char mon06,
-			char mon07, char mon08, char mon09, char mon10, char mon11, char mon12, char empFlg) {
+	public BhrAca1095cCovrdHist(BhrAca1095cCovrdHistId id, String nameF, String nameM, String nameL, Character nameGen,
+			String ssn, String dob, Character monAll, Character mon01, Character mon02, Character mon03, Character mon04, Character mon05, Character mon06,
+			Character mon07, Character mon08, Character mon09, Character mon10, Character mon11, Character mon12, Character empFlg) {
 		this.id = id;
 		this.nameF = nameF;
 		this.nameM = nameM;
@@ -112,11 +112,11 @@ public class BhrAca1095cCovrdHist implements java.io.Serializable {
 	}
 
 	@Column(name = "NAME_GEN", nullable = false, length = 1)
-	public char getNameGen() {
+	public Character getNameGen() {
 		return this.nameGen;
 	}
 
-	public void setNameGen(char nameGen) {
+	public void setNameGen(Character nameGen) {
 		this.nameGen = nameGen;
 	}
 
@@ -139,128 +139,128 @@ public class BhrAca1095cCovrdHist implements java.io.Serializable {
 	}
 
 	@Column(name = "MON_ALL", nullable = false, length = 1)
-	public char getMonAll() {
+	public Character getMonAll() {
 		return this.monAll;
 	}
 
-	public void setMonAll(char monAll) {
+	public void setMonAll(Character monAll) {
 		this.monAll = monAll;
 	}
 
 	@Column(name = "MON_01", nullable = false, length = 1)
-	public char getMon01() {
+	public Character getMon01() {
 		return this.mon01;
 	}
 
-	public void setMon01(char mon01) {
+	public void setMon01(Character mon01) {
 		this.mon01 = mon01;
 	}
 
 	@Column(name = "MON_02", nullable = false, length = 1)
-	public char getMon02() {
+	public Character getMon02() {
 		return this.mon02;
 	}
 
-	public void setMon02(char mon02) {
+	public void setMon02(Character mon02) {
 		this.mon02 = mon02;
 	}
 
 	@Column(name = "MON_03", nullable = false, length = 1)
-	public char getMon03() {
+	public Character getMon03() {
 		return this.mon03;
 	}
 
-	public void setMon03(char mon03) {
+	public void setMon03(Character mon03) {
 		this.mon03 = mon03;
 	}
 
 	@Column(name = "MON_04", nullable = false, length = 1)
-	public char getMon04() {
+	public Character getMon04() {
 		return this.mon04;
 	}
 
-	public void setMon04(char mon04) {
+	public void setMon04(Character mon04) {
 		this.mon04 = mon04;
 	}
 
 	@Column(name = "MON_05", nullable = false, length = 1)
-	public char getMon05() {
+	public Character getMon05() {
 		return this.mon05;
 	}
 
-	public void setMon05(char mon05) {
+	public void setMon05(Character mon05) {
 		this.mon05 = mon05;
 	}
 
 	@Column(name = "MON_06", nullable = false, length = 1)
-	public char getMon06() {
+	public Character getMon06() {
 		return this.mon06;
 	}
 
-	public void setMon06(char mon06) {
+	public void setMon06(Character mon06) {
 		this.mon06 = mon06;
 	}
 
 	@Column(name = "MON_07", nullable = false, length = 1)
-	public char getMon07() {
+	public Character getMon07() {
 		return this.mon07;
 	}
 
-	public void setMon07(char mon07) {
+	public void setMon07(Character mon07) {
 		this.mon07 = mon07;
 	}
 
 	@Column(name = "MON_08", nullable = false, length = 1)
-	public char getMon08() {
+	public Character getMon08() {
 		return this.mon08;
 	}
 
-	public void setMon08(char mon08) {
+	public void setMon08(Character mon08) {
 		this.mon08 = mon08;
 	}
 
 	@Column(name = "MON_09", nullable = false, length = 1)
-	public char getMon09() {
+	public Character getMon09() {
 		return this.mon09;
 	}
 
-	public void setMon09(char mon09) {
+	public void setMon09(Character mon09) {
 		this.mon09 = mon09;
 	}
 
 	@Column(name = "MON_10", nullable = false, length = 1)
-	public char getMon10() {
+	public Character getMon10() {
 		return this.mon10;
 	}
 
-	public void setMon10(char mon10) {
+	public void setMon10(Character mon10) {
 		this.mon10 = mon10;
 	}
 
 	@Column(name = "MON_11", nullable = false, length = 1)
-	public char getMon11() {
+	public Character getMon11() {
 		return this.mon11;
 	}
 
-	public void setMon11(char mon11) {
+	public void setMon11(Character mon11) {
 		this.mon11 = mon11;
 	}
 
 	@Column(name = "MON_12", nullable = false, length = 1)
-	public char getMon12() {
+	public Character getMon12() {
 		return this.mon12;
 	}
 
-	public void setMon12(char mon12) {
+	public void setMon12(Character mon12) {
 		this.mon12 = mon12;
 	}
 
 	@Column(name = "EMP_FLG", nullable = false, length = 1)
-	public char getEmpFlg() {
+	public Character getEmpFlg() {
 		return this.empFlg;
 	}
 
-	public void setEmpFlg(char empFlg) {
+	public void setEmpFlg(Character empFlg) {
 		this.empFlg = empFlg;
 	}
 

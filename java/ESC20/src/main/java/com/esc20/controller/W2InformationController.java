@@ -393,16 +393,16 @@ public class W2InformationController{
 			ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 			if (ld_data != 0.00) {
 				row ++;
-				this.populatePrint(print, row, "CC", d2Digit.format(ld_data));   //20130108 print .00, instead of .0
+				this.populatePrint(print, row, "CC", d2Digit.format(ld_data));
 			}
 		}
-		//Employer Provided Healthcare reporting starts 2012   jf20120907
+
 		if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("") && Integer.valueOf(w2Info.getId().getCalYr()) >= 2012) {
 			ld_data = w2Info.getEmplrPrvdHlthcare().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 			ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 			if (ld_data != 0.00) {
 				row ++;
-				this.populatePrint(print, row, "DD", d2Digit.format(ld_data));   //20130108 print .00, instead of .0
+				this.populatePrint(print, row, "DD", d2Digit.format(ld_data));
 				
 			}
 		}
@@ -412,7 +412,7 @@ public class W2InformationController{
 			ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 			if (ld_data != 0.00) {
 				row ++;
-				this.populatePrint(print, row, "EE", d2Digit.format(ld_data));   //20130108 print .00, instead of .0
+				this.populatePrint(print, row, "EE", d2Digit.format(ld_data));
 			}
 		}
 
@@ -423,9 +423,7 @@ public class W2InformationController{
 		box14List.add("Health Ins Ded");
 		box14List.add("Taxable Allowance");
 		box14List.add("Tax Fringe Benefits");
-		box14List.add("Dummy Last Entry");   //jf20130109 the iter14.next does not return Tax Fringe Benefits, 
-		                                     //           because it is last in the list.  if put Dummy Last Entry
-											 //           then Tax Fringe Benefits returned if have amount > 0.00
+		box14List.add("Dummy Last Entry");
 
 		Map<String,BigDecimal> box14Map = new HashMap<String,BigDecimal>();
 		box14Map.put(box14List.get(0),w2Info.getNontrsNontaxBusAllow());
@@ -434,7 +432,7 @@ public class W2InformationController{
 		box14Map.put(box14List.get(3), w2Info.getHlthInsDed());
 		box14Map.put(box14List.get(4), w2Info.getNontrsBusAllow());
 		box14Map.put(box14List.get(5), w2Info.getTaxedBenefits());
-		box14Map.put(box14List.get(6), new BigDecimal(0.00));   //jf20130109 init Dummy Last Entry to zero
+		box14Map.put(box14List.get(6), new BigDecimal(0.00));
 
 		Iterator<String> iter14 = new CodeIterator(box14List,box14Map);
 		print.setCode1401(iter14.next());

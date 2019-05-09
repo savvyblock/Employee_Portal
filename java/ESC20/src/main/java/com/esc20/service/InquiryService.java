@@ -32,7 +32,9 @@ import com.esc20.model.BhrCalYtd;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrThirdPartySickPay;
 import com.esc20.model.BhrW2;
+import com.esc20.model.BrRptngContact;
 import com.esc20.nonDBModels.Account;
+import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.Deduction;
 import com.esc20.nonDBModels.District;
@@ -910,7 +912,7 @@ public class InquiryService {
 		return ea1095Dao.retrieveEA1095CInfo(employeeNumber, year, sortBy, sortOrder, cPageNo);
 	}
 
-	public List<String> retrieveEA1095BEmpInfo(String employeeNumber, String year) {
+	public List<Code> retrieveEA1095BEmpInfo(String employeeNumber, String year) {
 		// TODO Auto-generated method stub
 		return ea1095Dao.retrieveEA1095BEmpInfo(employeeNumber, year);
 	}
@@ -934,5 +936,8 @@ public class InquiryService {
 		// TODO Auto-generated method stub
 		return ea1095Dao.update1095ElecConsent(employeeNumber, consent);
 	}
-
+	
+	public BrRptngContact getReportingContact() {
+		return ea1095Dao.getReportingContact();
+	}
 }

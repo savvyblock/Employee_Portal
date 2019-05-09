@@ -25,6 +25,9 @@ public class District implements Serializable
 		this.setZip4((String) zip4Dist);
 		this.setPhone((String)areaCdDist + (String)phoneNbrDist);
 	}
+	public District() {
+
+	}
 	public String getNumber() {
 		return number;
 	}

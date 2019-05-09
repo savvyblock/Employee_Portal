@@ -1,5 +1,6 @@
 package com.esc20.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import com.esc20.model.BhrAca1095bCovrdHist;
 import com.esc20.model.BhrAca1095cCovrdHist;
 import com.esc20.model.BhrAca1095cEmpHist;
+import com.esc20.model.BrRptngContact;
+import com.esc20.nonDBModels.Code;
 @Repository
 public class EA1095Dao {
 
@@ -93,7 +96,7 @@ public class EA1095Dao {
         return result;
 	}
 
-	public List<String> retrieveEA1095BEmpInfo(String employeeNumber, String year) {
+	public List<Code> retrieveEA1095BEmpInfo(String employeeNumber, String year) {
 		Session session = this.getSession();
 		StringBuilder retrieveSQL = new StringBuilder();
 		retrieveSQL.append("SELECT A.covrgTyp , (SELECT B.covrgTypDesc FROM BthrAca1095bCovrgTyp B WHERE B.id.calYr = :calYr AND B.id.covrgTyp = A.covrgTyp )");
@@ -103,8 +106,13 @@ public class EA1095Dao {
         Query q = session.createQuery(retrieveSQL.toString());
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
-        List<String> result = q.list();
-        
+        List<Object[]> res = q.list();
+		List<Code> result = new ArrayList<Code>();
+		Code code;
+		for(Object[] item: res) {
+			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),"",(String)item[1]);
+			result.add(code);		
+		}
 		return result;
 	}
 
@@ -139,5 +147,15 @@ public class EA1095Dao {
         Integer result = ((Long) q.iterate().next()).intValue();
         
         return result;
+	}
+	
+	public BrRptngContact getReportingContact() {
+		Session session = this.getSession();
+		StringBuffer sql = new StringBuffer();
+		sql.append("FROM BrRptngContact A ");
+		sql.append("WHERE A.type = '1095ELECTRONIC' ");
+		Query q = session.createQuery(sql.toString());
+		BrRptngContact res = (BrRptngContact) q.uniqueResult();
+		return res;
 	}
 }
