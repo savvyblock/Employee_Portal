@@ -446,18 +446,18 @@ public class Information1095Controller{
 		print.setB4_addressline1txt(userDetail.getAddrNbr()+ " "+ userDetail.getAddrStr());
 		print.setB5_citynm(userDetail.getAddrCity());
 		print.setB6_usstatecd(userDetail.getAddrSt());
-		print.setB7_uszipcd(userDetail.getAddrZip());
-		print.setB7_uszipextensioncd(userDetail.getAddrZip4());
+		print.setB7_uszipcd(userDetail.getAddrZip()==null?"":userDetail.getAddrZip());
+		print.setB7_uszipextensioncd(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4());
 	}
 
 	private void fillPartIIBoxesB(Aca1095BPrint print, BrRptngContact reportingContact) {
-			print.setB10_businessnameline1txt(reportingContact.getShopName());
-			print.setB11_ein(reportingContact.getShopEin());
-			print.setB12_addressline1txt(reportingContact.getShopAddr());
-			print.setB13_citynm(reportingContact.getShopCity());
-			print.setB14_usstatecd(reportingContact.getShopSt());
-			print.setB15_uszipcd(reportingContact.getShopZip());
-			print.setB15_uszipextensioncd(reportingContact.getShopZip4());
+			print.setB10_businessnameline1txt(reportingContact.getShopName()==null?"":reportingContact.getShopName());
+			print.setB11_ein(reportingContact.getShopEin()==null?"":reportingContact.getShopAddr());
+			print.setB12_addressline1txt(reportingContact.getShopAddr()==null?"":reportingContact.getShopAddr());
+			print.setB13_citynm(reportingContact.getShopCity()==null?"":reportingContact.getShopCity());
+			print.setB14_usstatecd(reportingContact.getShopSt()==null?"":reportingContact.getShopSt());
+			print.setB15_uszipcd(reportingContact.getShopZip()==null?"":reportingContact.getShopZip());
+			print.setB15_uszipextensioncd(reportingContact.getShopZip4()==null?"":reportingContact.getShopZip4());
 	}
 
 	private void fillPartIIIBoxesB(District district,Aca1095BPrint print) {
@@ -470,8 +470,8 @@ public class Information1095Controller{
 		print.setB19_addressline1txt(StringUtil.trim(StringUtil.upper(district.getAddress())));
 		print.setB20_citynm(StringUtil.trim(StringUtil.upper(district.getCity())));
 		print.setB21_usstatecd(StringUtil.trim(StringUtil.upper(district.getState())));
-		print.setB22_uszipcd(district.getZip());
-		print.setB22_uszipextensioncd(district.getZip4());
+		print.setB22_uszipcd(district.getZip()==null?"":district.getZip());
+		print.setB22_uszipextensioncd(district.getZip4()==null?"":district.getZip4());
 	}
 
    
