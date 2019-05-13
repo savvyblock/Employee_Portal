@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigDecimal;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -43,6 +46,7 @@ import com.esc20.service.PDFService;
 import com.esc20.util.CodeIterator;
 import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
+import com.esc20.util.MailUtil;
 import com.esc20.util.NumberUtil;
 import com.esc20.util.StringUtil;
 
@@ -163,11 +167,44 @@ public class W2InformationController{
 		String employeeNumber = userDetail.getEmpNbr();
 		Boolean isSuccess = this.service.updateW2ElecConsent(employeeNumber, consent);
 		mav = this.getW2InformationByYear(req, year, isSuccess);
+		this.sendEmail(userDetail.getNameF(), userDetail.getNameL(), userDetail.getEmail(), userDetail.getHmEmail(), consent);
 		mav.addObject("isUpdate", true);
 		mav.addObject("isSuccess", isSuccess);
 		return mav;
 	}
 	
+	public Integer sendEmail(String userFirstName, String userLastName, String userWorkEmail, String userHomeEmail, String elecConsntW2) {
+		StringBuilder messageContents = new StringBuilder();
+		messageContents.append(userFirstName + " " +userLastName + ", \n\n");
+		messageContents.append("This receipt confirms you selected ");
+		messageContents.append((elecConsntW2.equals("Y") ? " YES " : " NO "));
+		messageContents.append("in participating in the W-2 Electronic Process. \n");
+		messageContents.append("Effective immediately on ");
+
+		DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		messageContents.append(dateFormat.format(cal.getTime()) + "\n");
+
+		String subject = "A MESSAGE FROM W2 ELECTRONIC CONSENT";
+
+		if (!"".equals(userWorkEmail)) {
+			try{
+				MailUtil.sendEmail(userWorkEmail, subject, messageContents.toString());
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		else if (!"".equals(userHomeEmail)) {
+			try{
+				MailUtil.sendEmail(userHomeEmail, subject, messageContents.toString());
+			} 
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		return 0;
+	}
 //	@RequestMapping("exportPDF")
 //	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
 //		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();

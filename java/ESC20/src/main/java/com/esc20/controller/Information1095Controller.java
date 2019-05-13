@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -53,6 +56,7 @@ import com.esc20.service.PDFService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
+import com.esc20.util.MailUtil;
 import com.esc20.util.NumberUtil;
 import com.esc20.util.StringUtil;
 
@@ -103,9 +107,43 @@ public class Information1095Controller{
 		Boolean isSuccess = this.service.update1095ElecConsent(employeeNumber, consent);
 		mav.setViewName("/inquiry/information1095");
 		mav = init1095(mav, session, year, 1, 1, null, null, null);
+		this.sendEmail(userDetail.getNameF(), userDetail.getNameL(), userDetail.getEmail(), userDetail.getHmEmail(), consent);
 		mav.addObject("isUpdate", true);
 		mav.addObject("isSuccess", isSuccess);
 		return mav;
+	}
+	
+	public Integer sendEmail(String userFirstName, String userLastName, String userWorkEmail, String userHomeEmail, String ea1095ElecConsnt) {
+		StringBuilder messageContents = new StringBuilder();
+		messageContents.append(userFirstName + " " +userLastName + ", \n\n");
+		messageContents.append("This receipt confirms you selected ");
+		messageContents.append((ea1095ElecConsnt.equals("Y") ? " YES " : " NO "));
+		messageContents.append("in participating in the 1095 Electronic Process. \n");
+		messageContents.append("Effective immediately on ");
+
+		DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		messageContents.append(dateFormat.format(cal.getTime()) + "\n");
+
+		String subject = "A MESSAGE FROM 1095 ELECTRONIC CONSENT";
+
+		if (!"".equals(userWorkEmail)) {
+			try{
+				MailUtil.sendEmail(userWorkEmail, subject, messageContents.toString());
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		else if (!"".equals(userHomeEmail)) {
+			try{
+				MailUtil.sendEmail(userHomeEmail, subject, messageContents.toString());
+			} 
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		return 0;
 	}
 	
 	@RequestMapping("information1095ByYear")
