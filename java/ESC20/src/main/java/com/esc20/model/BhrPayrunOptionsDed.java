@@ -20,7 +20,6 @@ import javax.persistence.Table;
 public class BhrPayrunOptionsDed implements java.io.Serializable {
 	private static final long serialVersionUID = 6715142900654758429L;
 	private BhrPayrunOptionsDedId id;
-	private BhrPayrunOptions bhrPayrunOptions;
 	private char dedFlg;
 	private char w2EmplrHlthcare;
 
@@ -30,7 +29,6 @@ public class BhrPayrunOptionsDed implements java.io.Serializable {
 	public BhrPayrunOptionsDed(BhrPayrunOptionsDedId id, BhrPayrunOptions bhrPayrunOptions, char dedFlg,
 			char w2EmplrHlthcare) {
 		this.id = id;
-		this.bhrPayrunOptions = bhrPayrunOptions;
 		this.dedFlg = dedFlg;
 		this.w2EmplrHlthcare = w2EmplrHlthcare;
 	}
@@ -49,20 +47,6 @@ public class BhrPayrunOptionsDed implements java.io.Serializable {
 
 	public void setId(BhrPayrunOptionsDedId id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "DT_OF_PAY", referencedColumnName = "DT_OF_PAY", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "ADJ_NBR", referencedColumnName = "SCH_YR", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "SCH_YR", referencedColumnName = "ADJ_NBR", nullable = false, insertable = false, updatable = false) })
-	public BhrPayrunOptions getBhrPayrunOptions() {
-		return this.bhrPayrunOptions;
-	}
-
-	public void setBhrPayrunOptions(BhrPayrunOptions bhrPayrunOptions) {
-		this.bhrPayrunOptions = bhrPayrunOptions;
 	}
 
 	@Column(name = "DED_FLG", nullable = false, length = 1)

@@ -20,16 +20,14 @@ import javax.persistence.Table;
 public class BhrPermitArea implements java.io.Serializable {
 	private static final long serialVersionUID = 6715142900654758429L;
 	private BhrPermitAreaId id;
-	private BhrPermit bhrPermit;
 	private String nbrHrsSubjArea;
 	private String module;
 
 	public BhrPermitArea() {
 	}
 
-	public BhrPermitArea(BhrPermitAreaId id, BhrPermit bhrPermit, String nbrHrsSubjArea, String module) {
+	public BhrPermitArea(BhrPermitAreaId id, String nbrHrsSubjArea, String module) {
 		this.id = id;
-		this.bhrPermit = bhrPermit;
 		this.nbrHrsSubjArea = nbrHrsSubjArea;
 		this.module = module;
 	}
@@ -51,20 +49,6 @@ public class BhrPermitArea implements java.io.Serializable {
 
 	public void setId(BhrPermitAreaId id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-			@JoinColumn(name = "EMP_NBR", referencedColumnName = "EMP_NBR", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "PRMT_TYP", referencedColumnName = "PRMT_TYP", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "PRMT_ISSUE_DT", referencedColumnName = "PRMT_ISSUE_DT", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "PRMT_ISSUE_STAT", referencedColumnName = "PRMT_ISSUE_STAT", nullable = false, insertable = false, updatable = false) })
-	public BhrPermit getBhrPermit() {
-		return this.bhrPermit;
-	}
-
-	public void setBhrPermit(BhrPermit bhrPermit) {
-		this.bhrPermit = bhrPermit;
 	}
 
 	@Column(name = "NBR_HRS_SUBJ_AREA", nullable = false, length = 2)

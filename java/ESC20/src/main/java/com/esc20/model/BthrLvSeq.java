@@ -57,8 +57,8 @@ public class BthrLvSeq implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({
-			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "LV_TYP", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "LV_ALT_TYP", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false) })
+			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false),
+			@JoinColumn(name = "LV_ALT_TYP", referencedColumnName = "LV_TYP", nullable = false, insertable = false, updatable = false) })
 	public BthrLvTyp getBthrLvTypByFkBthrLvRefLvSeqTyp() {
 		return this.bthrLvTypByFkBthrLvRefLvSeqTyp;
 	}
@@ -69,8 +69,8 @@ public class BthrLvSeq implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({
-			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "LV_TYP", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "BWD_LV_TYP", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false) })
+			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false),
+			@JoinColumn(name = "BWD_LV_TYP", referencedColumnName = "LV_TYP", nullable = false, insertable = false, updatable = false) })
 	public BthrLvTyp getBthrLvTypByFkBthrLvRefBwdLv() {
 		return this.bthrLvTypByFkBthrLvRefBwdLv;
 	}
@@ -81,8 +81,8 @@ public class BthrLvSeq implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({
-			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "LV_TYP", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "LV_TYP", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false) })
+			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false),
+			@JoinColumn(name = "LV_TYP", referencedColumnName = "LV_TYP", nullable = false, insertable = false, updatable = false) })
 	public BthrLvTyp getBthrLvTypByFkBthrLvRefBthrLvTyp() {
 		return this.bthrLvTypByFkBthrLvRefBthrLvTyp;
 	}

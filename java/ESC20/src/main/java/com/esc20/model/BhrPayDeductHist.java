@@ -21,7 +21,6 @@ import javax.persistence.Table;
 public class BhrPayDeductHist implements java.io.Serializable {
 	private static final long serialVersionUID = 6715142900654758429L;
 	private BhrPayDeductHistId id;
-	private BhrPayHist bhrPayHist;
 	private BigDecimal dedAmt;
 	private short dedRemain;
 	private short dedTaken;
@@ -38,12 +37,11 @@ public class BhrPayDeductHist implements java.io.Serializable {
 	public BhrPayDeductHist() {
 	}
 
-	public BhrPayDeductHist(BhrPayDeductHistId id, BhrPayHist bhrPayHist, BigDecimal dedAmt, short dedRemain,
+	public BhrPayDeductHist(BhrPayDeductHistId id, BigDecimal dedAmt, short dedRemain,
 			short dedTaken, char cafeFlg, BigDecimal emplrAmt, boolean emplrContribFactor, char refundFlg,
 			String caseNbr, String causeNbr, BigDecimal teaHealthInsContrib, boolean teaHealthInsContribFactor,
 			char w2EmplrHlthcare) {
 		this.id = id;
-		this.bhrPayHist = bhrPayHist;
 		this.dedAmt = dedAmt;
 		this.dedRemain = dedRemain;
 		this.dedTaken = dedTaken;
@@ -76,23 +74,6 @@ public class BhrPayDeductHist implements java.io.Serializable {
 
 	public void setId(BhrPayDeductHistId id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-			@JoinColumn(name = "CYR_NYR_FLG", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "EMP_NBR", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "EMP_NBR", referencedColumnName = "CYR_NYR_FLG", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "DT_OF_PAY", referencedColumnName = "DT_OF_PAY", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "CHK_NBR", referencedColumnName = "CHK_NBR", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "VOID_OR_ISS", referencedColumnName = "VOID_OR_ISS", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "ADJ_NBR", referencedColumnName = "ADJ_NBR", nullable = false, insertable = false, updatable = false) })
-	public BhrPayHist getBhrPayHist() {
-		return this.bhrPayHist;
-	}
-
-	public void setBhrPayHist(BhrPayHist bhrPayHist) {
-		this.bhrPayHist = bhrPayHist;
 	}
 
 	@Column(name = "DED_AMT", nullable = false, precision = 9)

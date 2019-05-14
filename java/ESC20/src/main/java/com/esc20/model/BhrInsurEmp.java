@@ -23,7 +23,6 @@ public class BhrInsurEmp implements java.io.Serializable {
 	private char planTyp;
 	private String empInsurId;
 	private String module;
-	private Set<BhrInsurCoverage> bhrInsurCoverages = new HashSet<BhrInsurCoverage>(0);
 
 	public BhrInsurEmp() {
 	}
@@ -33,15 +32,6 @@ public class BhrInsurEmp implements java.io.Serializable {
 		this.planTyp = planTyp;
 		this.empInsurId = empInsurId;
 		this.module = module;
-	}
-
-	public BhrInsurEmp(BhrInsurEmpId id, char planTyp, String empInsurId, String module,
-			Set<BhrInsurCoverage> bhrInsurCoverages) {
-		this.id = id;
-		this.planTyp = planTyp;
-		this.empInsurId = empInsurId;
-		this.module = module;
-		this.bhrInsurCoverages = bhrInsurCoverages;
 	}
 
 	@EmbeddedId
@@ -84,15 +74,6 @@ public class BhrInsurEmp implements java.io.Serializable {
 
 	public void setModule(String module) {
 		this.module = module;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bhrInsurEmp")
-	public Set<BhrInsurCoverage> getBhrInsurCoverages() {
-		return this.bhrInsurCoverages;
-	}
-
-	public void setBhrInsurCoverages(Set<BhrInsurCoverage> bhrInsurCoverages) {
-		this.bhrInsurCoverages = bhrInsurCoverages;
 	}
 
 }

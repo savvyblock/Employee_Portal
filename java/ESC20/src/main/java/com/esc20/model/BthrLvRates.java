@@ -58,8 +58,8 @@ public class BthrLvRates implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({
-			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "LV_TYP", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "LV_TYP", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false) })
+			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false),
+			@JoinColumn(name = "LV_TYP", referencedColumnName = "LV_TYP", nullable = false, insertable = false, updatable = false) })
 	public BthrLvTyp getBthrLvTyp() {
 		return this.bthrLvTyp;
 	}

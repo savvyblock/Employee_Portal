@@ -20,7 +20,6 @@ import javax.persistence.Table;
 public class BthrPayDatesStatus implements java.io.Serializable {
 
 	private BthrPayDatesStatusId id;
-	private BthrPayDates bthrPayDates;
 	private String dtPayRun;
 	private char interfaceFlg;
 	private String usrId;
@@ -29,10 +28,9 @@ public class BthrPayDatesStatus implements java.io.Serializable {
 	public BthrPayDatesStatus() {
 	}
 
-	public BthrPayDatesStatus(BthrPayDatesStatusId id, BthrPayDates bthrPayDates, String dtPayRun, char interfaceFlg,
+	public BthrPayDatesStatus(BthrPayDatesStatusId id, String dtPayRun, char interfaceFlg,
 			String usrId, String module) {
 		this.id = id;
-		this.bthrPayDates = bthrPayDates;
 		this.dtPayRun = dtPayRun;
 		this.interfaceFlg = interfaceFlg;
 		this.usrId = usrId;
@@ -51,18 +49,6 @@ public class BthrPayDatesStatus implements java.io.Serializable {
 
 	public void setId(BthrPayDatesStatusId id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "DT_OF_PAY", referencedColumnName = "DT_OF_PAY", nullable = false, insertable = false, updatable = false) })
-	public BthrPayDates getBthrPayDates() {
-		return this.bthrPayDates;
-	}
-
-	public void setBthrPayDates(BthrPayDates bthrPayDates) {
-		this.bthrPayDates = bthrPayDates;
 	}
 
 	@Column(name = "DT_PAY_RUN", nullable = false, length = 8)

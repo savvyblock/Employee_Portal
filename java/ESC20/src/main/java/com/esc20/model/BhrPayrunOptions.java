@@ -63,7 +63,6 @@ public class BhrPayrunOptions implements java.io.Serializable {
 	private BigDecimal eicMaxSal;
 	private BigDecimal emplrFicaRate;
 	private BigDecimal emplrTrsNonOasdiPct;
-	private Set<BhrPayrunOptionsDed> bhrPayrunOptionsDeds = new HashSet<BhrPayrunOptionsDed>(0);
 
 	public BhrPayrunOptions() {
 	}
@@ -121,63 +120,6 @@ public class BhrPayrunOptions implements java.io.Serializable {
 		this.eicMaxSal = eicMaxSal;
 		this.emplrFicaRate = emplrFicaRate;
 		this.emplrTrsNonOasdiPct = emplrTrsNonOasdiPct;
-	}
-
-	public BhrPayrunOptions(BhrPayrunOptionsId id, char zeroSchYtd, char wageEarnOnly, char prtBankCks, String begCkNbr,
-			String begRefNbr, char eft, char supplCalcIncomeTax, char supplCalcSocialSec, char supplCalcTrs,
-			char supplCalcWrkComp, char supplCalcUnempl, String userId, String processDt, char prtVoidCks,
-			char calcTrsSupplComp, char wageEarnBankAcct, char dedRptSsn, char reducFicaGross, char calcAccruSalary,
-			char sumBenefits, BigDecimal maxGross, BigDecimal trsPct, BigDecimal ficaRate, BigDecimal ficaMaxSalary,
-			char expenseUnemployTax, BigDecimal unemployRate, BigDecimal unemployGrossSalary, char emplrTyp,
-			BigDecimal wrkCompNetRateA, BigDecimal wrkCompNetRateB, BigDecimal wrkCompNetRateC,
-			BigDecimal wrkCompNetRateD, String firstPaydateSchYr, char srtCkAlphCampus, BigDecimal wrkCompNetRateE,
-			BigDecimal wrkCompNetRateF, char supplCalc457, BigDecimal trsIrsSalCap, BigDecimal medRate,
-			BigDecimal eicMaxSal, BigDecimal emplrFicaRate, BigDecimal emplrTrsNonOasdiPct,
-			Set<BhrPayrunOptionsDed> bhrPayrunOptionsDeds) {
-		this.id = id;
-		this.zeroSchYtd = zeroSchYtd;
-		this.wageEarnOnly = wageEarnOnly;
-		this.prtBankCks = prtBankCks;
-		this.begCkNbr = begCkNbr;
-		this.begRefNbr = begRefNbr;
-		this.eft = eft;
-		this.supplCalcIncomeTax = supplCalcIncomeTax;
-		this.supplCalcSocialSec = supplCalcSocialSec;
-		this.supplCalcTrs = supplCalcTrs;
-		this.supplCalcWrkComp = supplCalcWrkComp;
-		this.supplCalcUnempl = supplCalcUnempl;
-		this.userId = userId;
-		this.processDt = processDt;
-		this.prtVoidCks = prtVoidCks;
-		this.calcTrsSupplComp = calcTrsSupplComp;
-		this.wageEarnBankAcct = wageEarnBankAcct;
-		this.dedRptSsn = dedRptSsn;
-		this.reducFicaGross = reducFicaGross;
-		this.calcAccruSalary = calcAccruSalary;
-		this.sumBenefits = sumBenefits;
-		this.maxGross = maxGross;
-		this.trsPct = trsPct;
-		this.ficaRate = ficaRate;
-		this.ficaMaxSalary = ficaMaxSalary;
-		this.expenseUnemployTax = expenseUnemployTax;
-		this.unemployRate = unemployRate;
-		this.unemployGrossSalary = unemployGrossSalary;
-		this.emplrTyp = emplrTyp;
-		this.wrkCompNetRateA = wrkCompNetRateA;
-		this.wrkCompNetRateB = wrkCompNetRateB;
-		this.wrkCompNetRateC = wrkCompNetRateC;
-		this.wrkCompNetRateD = wrkCompNetRateD;
-		this.firstPaydateSchYr = firstPaydateSchYr;
-		this.srtCkAlphCampus = srtCkAlphCampus;
-		this.wrkCompNetRateE = wrkCompNetRateE;
-		this.wrkCompNetRateF = wrkCompNetRateF;
-		this.supplCalc457 = supplCalc457;
-		this.trsIrsSalCap = trsIrsSalCap;
-		this.medRate = medRate;
-		this.eicMaxSal = eicMaxSal;
-		this.emplrFicaRate = emplrFicaRate;
-		this.emplrTrsNonOasdiPct = emplrTrsNonOasdiPct;
-		this.bhrPayrunOptionsDeds = bhrPayrunOptionsDeds;
 	}
 
 	@EmbeddedId
@@ -572,14 +514,4 @@ public class BhrPayrunOptions implements java.io.Serializable {
 	public void setEmplrTrsNonOasdiPct(BigDecimal emplrTrsNonOasdiPct) {
 		this.emplrTrsNonOasdiPct = emplrTrsNonOasdiPct;
 	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bhrPayrunOptions")
-	public Set<BhrPayrunOptionsDed> getBhrPayrunOptionsDeds() {
-		return this.bhrPayrunOptionsDeds;
-	}
-
-	public void setBhrPayrunOptionsDeds(Set<BhrPayrunOptionsDed> bhrPayrunOptionsDeds) {
-		this.bhrPayrunOptionsDeds = bhrPayrunOptionsDeds;
-	}
-
 }

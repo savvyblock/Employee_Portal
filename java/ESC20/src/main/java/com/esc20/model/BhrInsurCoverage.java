@@ -20,7 +20,6 @@ import javax.persistence.Table;
 public class BhrInsurCoverage implements java.io.Serializable {
 	private static final long serialVersionUID = 6715142900654758429L;
 	private BhrInsurCoverageId id;
-	private BhrInsurEmp bhrInsurEmp;
 	private String nameF;
 	private String nameM;
 	private String nameL;
@@ -35,11 +34,10 @@ public class BhrInsurCoverage implements java.io.Serializable {
 	public BhrInsurCoverage() {
 	}
 
-	public BhrInsurCoverage(BhrInsurCoverageId id, BhrInsurEmp bhrInsurEmp, String nameF, String nameM, String nameL,
+	public BhrInsurCoverage(BhrInsurCoverageId id, String nameF, String nameM, String nameL,
 			String dtCoverageBeg, String dtCoverageEnd, char relation, String ssn, String dob, String module,
 			char nameGen) {
 		this.id = id;
-		this.bhrInsurEmp = bhrInsurEmp;
 		this.nameF = nameF;
 		this.nameM = nameM;
 		this.nameL = nameL;
@@ -66,20 +64,6 @@ public class BhrInsurCoverage implements java.io.Serializable {
 
 	public void setId(BhrInsurCoverageId id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-			@JoinColumn(name = "CYR_NYR_FLG", referencedColumnName = "EMP_NBR", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "EMP_NBR", referencedColumnName = "CYR_NYR_FLG", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "COMPANY_CD", referencedColumnName = "COMPANY_CD", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "PLAN_NBR", referencedColumnName = "PLAN_NBR", nullable = false, insertable = false, updatable = false) })
-	public BhrInsurEmp getBhrInsurEmp() {
-		return this.bhrInsurEmp;
-	}
-
-	public void setBhrInsurEmp(BhrInsurEmp bhrInsurEmp) {
-		this.bhrInsurEmp = bhrInsurEmp;
 	}
 
 	@Column(name = "NAME_F", nullable = false, length = 17)

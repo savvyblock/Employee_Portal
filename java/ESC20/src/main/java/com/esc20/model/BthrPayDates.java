@@ -28,7 +28,6 @@ public class BthrPayDates implements java.io.Serializable {
 	private String module;
 	private String lvReqCutoffDt;
 	private String lvLastAprvDt;
-	private Set<BthrPayDatesStatus> bthrPayDatesStatuses = new HashSet<BthrPayDatesStatus>(0);
 
 	public BthrPayDates() {
 	}
@@ -44,21 +43,6 @@ public class BthrPayDates implements java.io.Serializable {
 		this.module = module;
 		this.lvReqCutoffDt = lvReqCutoffDt;
 		this.lvLastAprvDt = lvLastAprvDt;
-	}
-
-	public BthrPayDates(BthrPayDatesId id, String dtPayperBeg, String dtPayperEnd, String trsMonth, char twcQtr,
-			char useAltAddr, String module, String lvReqCutoffDt, String lvLastAprvDt,
-			Set<BthrPayDatesStatus> bthrPayDatesStatuses) {
-		this.id = id;
-		this.dtPayperBeg = dtPayperBeg;
-		this.dtPayperEnd = dtPayperEnd;
-		this.trsMonth = trsMonth;
-		this.twcQtr = twcQtr;
-		this.useAltAddr = useAltAddr;
-		this.module = module;
-		this.lvReqCutoffDt = lvReqCutoffDt;
-		this.lvLastAprvDt = lvLastAprvDt;
-		this.bthrPayDatesStatuses = bthrPayDatesStatuses;
 	}
 
 	@EmbeddedId
@@ -145,14 +129,4 @@ public class BthrPayDates implements java.io.Serializable {
 	public void setLvLastAprvDt(String lvLastAprvDt) {
 		this.lvLastAprvDt = lvLastAprvDt;
 	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bthrPayDates")
-	public Set<BthrPayDatesStatus> getBthrPayDatesStatuses() {
-		return this.bthrPayDatesStatuses;
-	}
-
-	public void setBthrPayDatesStatuses(Set<BthrPayDatesStatus> bthrPayDatesStatuses) {
-		this.bthrPayDatesStatuses = bthrPayDatesStatuses;
-	}
-
 }

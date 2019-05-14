@@ -53,8 +53,8 @@ public class BhrCalSchDays implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({
-			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "CAL_CD", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "CAL_CD", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false) })
+			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false),
+			@JoinColumn(name = "CAL_CD", referencedColumnName = "CAL_CD", nullable = false, insertable = false, updatable = false) })
 	public BhrCalSch getBhrCalSch() {
 		return this.bhrCalSch;
 	}

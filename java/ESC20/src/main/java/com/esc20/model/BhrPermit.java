@@ -24,7 +24,6 @@ public class BhrPermit implements java.io.Serializable {
 	private String prmtRenewDt;
 	private String prmtRenewStat;
 	private String module;
-	private Set<BhrPermitArea> bhrPermitAreas = new HashSet<BhrPermitArea>(0);
 
 	public BhrPermit() {
 	}
@@ -35,16 +34,6 @@ public class BhrPermit implements java.io.Serializable {
 		this.prmtRenewDt = prmtRenewDt;
 		this.prmtRenewStat = prmtRenewStat;
 		this.module = module;
-	}
-
-	public BhrPermit(BhrPermitId id, char prmtRenewNbr, String prmtRenewDt, String prmtRenewStat, String module,
-			Set<BhrPermitArea> bhrPermitAreas) {
-		this.id = id;
-		this.prmtRenewNbr = prmtRenewNbr;
-		this.prmtRenewDt = prmtRenewDt;
-		this.prmtRenewStat = prmtRenewStat;
-		this.module = module;
-		this.bhrPermitAreas = bhrPermitAreas;
 	}
 
 	@EmbeddedId
@@ -96,15 +85,6 @@ public class BhrPermit implements java.io.Serializable {
 
 	public void setModule(String module) {
 		this.module = module;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bhrPermit")
-	public Set<BhrPermitArea> getBhrPermitAreas() {
-		return this.bhrPermitAreas;
-	}
-
-	public void setBhrPermitAreas(Set<BhrPermitArea> bhrPermitAreas) {
-		this.bhrPermitAreas = bhrPermitAreas;
 	}
 
 }

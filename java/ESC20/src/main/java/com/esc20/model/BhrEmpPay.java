@@ -76,7 +76,6 @@ public class BhrEmpPay implements java.io.Serializable {
 	private String dtEnd90DayPer;
 	private String module;
 	private Character newPmisEmpFlg;
-	private Set<BhrEmpUnemploy> bhrEmpUnemploys = new HashSet<BhrEmpUnemploy>(0);
 
 	public BhrEmpPay() {
 	}
@@ -149,78 +148,6 @@ public class BhrEmpPay implements java.io.Serializable {
 		this.dtEnd90DayPer = dtEnd90DayPer;
 		this.module = module;
 		this.newPmisEmpFlg = newPmisEmpFlg;
-	}
-
-	public BhrEmpPay(BhrEmpPayId id, Character statCd, String payCampus, Character payDept, Character unempEligFlg,
-			BigDecimal extraDutyAnnual, BigDecimal extraDutyAnnualLocl, Character maritalStatTax, Integer nbrTaxExempts,
-			Character ficaElig, Character taxExempt, BigDecimal minFoundAmt, Short nbrMonContr, Short actDaysContr, Character eic,
-			String dtPayoff, BigDecimal longevityPay, String trsBeginDt, Character trsClassCd, Character trsFeePaidFlg,
-			Character trsStatCd, Character trsNonStdCd, Character trsNonStdZero, Character trsNonStdRpt, BigDecimal trsNonStdGross,
-			BigDecimal trsNonStdDeposit, BigDecimal busAllowanceNontax, String busAllowancePaymntsNontax, Character accruCd,
-			BigDecimal accruRate, BigDecimal accruDaysEarned, String dtLUpdate, String dtLPayrun, String dtLAdj,
-			BigDecimal loclPay, Character catastrophicLvFlg, BigDecimal dockRate, Character frozenFlg, String sickLvBank,
-			String nonInstrParaProCd, Integer stp0Salary, String excPersBusSem, String stOldPayGrd, BigDecimal whollySepAmt,
-			Character eoyAccruFlg, String certMon, BigDecimal busAllowanceTax, String busAllowancePaymntsTax,
-			Character trsActiveCareEligFlg, BigDecimal trsSupplRemainComp, Short trsSupplNbrRemainPymts,
-			boolean trsSupplCompFactor, Character trsSupplEligCd, String dtEnd90DayPer, String module, Character newPmisEmpFlg,
-			Set<BhrEmpUnemploy> bhrEmpUnemploys) {
-		this.id = id;
-		this.statCd = statCd;
-		this.payCampus = payCampus;
-		this.payDept = payDept;
-		this.unempEligFlg = unempEligFlg;
-		this.extraDutyAnnual = extraDutyAnnual;
-		this.extraDutyAnnualLocl = extraDutyAnnualLocl;
-		this.maritalStatTax = maritalStatTax;
-		this.nbrTaxExempts = nbrTaxExempts;
-		this.ficaElig = ficaElig;
-		this.taxExempt = taxExempt;
-		this.minFoundAmt = minFoundAmt;
-		this.nbrMonContr = nbrMonContr;
-		this.actDaysContr = actDaysContr;
-		this.eic = eic;
-		this.dtPayoff = dtPayoff;
-		this.longevityPay = longevityPay;
-		this.trsBeginDt = trsBeginDt;
-		this.trsClassCd = trsClassCd;
-		this.trsFeePaidFlg = trsFeePaidFlg;
-		this.trsStatCd = trsStatCd;
-		this.trsNonStdCd = trsNonStdCd;
-		this.trsNonStdZero = trsNonStdZero;
-		this.trsNonStdRpt = trsNonStdRpt;
-		this.trsNonStdGross = trsNonStdGross;
-		this.trsNonStdDeposit = trsNonStdDeposit;
-		this.busAllowanceNontax = busAllowanceNontax;
-		this.busAllowancePaymntsNontax = busAllowancePaymntsNontax;
-		this.accruCd = accruCd;
-		this.accruRate = accruRate;
-		this.accruDaysEarned = accruDaysEarned;
-		this.dtLUpdate = dtLUpdate;
-		this.dtLPayrun = dtLPayrun;
-		this.dtLAdj = dtLAdj;
-		this.loclPay = loclPay;
-		this.catastrophicLvFlg = catastrophicLvFlg;
-		this.dockRate = dockRate;
-		this.frozenFlg = frozenFlg;
-		this.sickLvBank = sickLvBank;
-		this.nonInstrParaProCd = nonInstrParaProCd;
-		this.stp0Salary = stp0Salary;
-		this.excPersBusSem = excPersBusSem;
-		this.stOldPayGrd = stOldPayGrd;
-		this.whollySepAmt = whollySepAmt;
-		this.eoyAccruFlg = eoyAccruFlg;
-		this.certMon = certMon;
-		this.busAllowanceTax = busAllowanceTax;
-		this.busAllowancePaymntsTax = busAllowancePaymntsTax;
-		this.trsActiveCareEligFlg = trsActiveCareEligFlg;
-		this.trsSupplRemainComp = trsSupplRemainComp;
-		this.trsSupplNbrRemainPymts = trsSupplNbrRemainPymts;
-		this.trsSupplCompFactor = trsSupplCompFactor;
-		this.trsSupplEligCd = trsSupplEligCd;
-		this.dtEnd90DayPer = dtEnd90DayPer;
-		this.module = module;
-		this.newPmisEmpFlg = newPmisEmpFlg;
-		this.bhrEmpUnemploys = bhrEmpUnemploys;
 	}
 
 	@EmbeddedId
@@ -731,14 +658,4 @@ public class BhrEmpPay implements java.io.Serializable {
 	public void setNewPmisEmpFlg(Character newPmisEmpFlg) {
 		this.newPmisEmpFlg = newPmisEmpFlg;
 	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bhrEmpPay")
-	public Set<BhrEmpUnemploy> getBhrEmpUnemploys() {
-		return this.bhrEmpUnemploys;
-	}
-
-	public void setBhrEmpUnemploys(Set<BhrEmpUnemploy> bhrEmpUnemploys) {
-		this.bhrEmpUnemploys = bhrEmpUnemploys;
-	}
-
 }

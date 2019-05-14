@@ -51,8 +51,8 @@ public class BthrAccrualDays implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({
-			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "ACCRU_CD", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "ACCRU_CD", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false) })
+			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false),
+			@JoinColumn(name = "ACCRU_CD", referencedColumnName = "ACCRU_CD", nullable = false, insertable = false, updatable = false) })
 	public BthrAccrualCd getBthrAccrualCd() {
 		return this.bthrAccrualCd;
 	}

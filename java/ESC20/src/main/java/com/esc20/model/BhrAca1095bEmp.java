@@ -24,24 +24,16 @@ public class BhrAca1095bEmp implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 6343783440902197038L;
 	private BhrAca1095bEmpId id;
-	private char covrgTyp;
+	private Character covrgTyp;
 	private String module;
-	private Set<BhrAca1095bCovrd> bhrAca1095bCovrds = new HashSet<BhrAca1095bCovrd>(0);
 
 	public BhrAca1095bEmp() {
 	}
 
-	public BhrAca1095bEmp(BhrAca1095bEmpId id, char covrgTyp, String module) {
+	public BhrAca1095bEmp(BhrAca1095bEmpId id, Character covrgTyp, String module) {
 		this.id = id;
 		this.covrgTyp = covrgTyp;
 		this.module = module;
-	}
-
-	public BhrAca1095bEmp(BhrAca1095bEmpId id, char covrgTyp, String module, Set<BhrAca1095bCovrd> bhrAca1095bCovrds) {
-		this.id = id;
-		this.covrgTyp = covrgTyp;
-		this.module = module;
-		this.bhrAca1095bCovrds = bhrAca1095bCovrds;
 	}
 
 	@EmbeddedId
@@ -58,11 +50,11 @@ public class BhrAca1095bEmp implements java.io.Serializable {
 	}
 
 	@Column(name = "COVRG_TYP", nullable = false, length = 1)
-	public char getCovrgTyp() {
+	public Character getCovrgTyp() {
 		return this.covrgTyp;
 	}
 
-	public void setCovrgTyp(char covrgTyp) {
+	public void setCovrgTyp(Character covrgTyp) {
 		this.covrgTyp = covrgTyp;
 	}
 
@@ -74,14 +66,4 @@ public class BhrAca1095bEmp implements java.io.Serializable {
 	public void setModule(String module) {
 		this.module = module;
 	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bhrAca1095bEmp")
-	public Set<BhrAca1095bCovrd> getBhrAca1095bCovrds() {
-		return this.bhrAca1095bCovrds;
-	}
-
-	public void setBhrAca1095bCovrds(Set<BhrAca1095bCovrd> bhrAca1095bCovrds) {
-		this.bhrAca1095bCovrds = bhrAca1095bCovrds;
-	}
-
 }

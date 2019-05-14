@@ -21,7 +21,6 @@ import javax.persistence.Table;
 public class BhrEmpUnemploy implements java.io.Serializable {
 	private static final long serialVersionUID = 6715142900654758429L;
 	private BhrEmpUnemployId id;
-	private BhrEmpPay bhrEmpPay;
 	private BigDecimal unempGross;
 	private BigDecimal unempInsAmt;
 	private String module;
@@ -29,10 +28,9 @@ public class BhrEmpUnemploy implements java.io.Serializable {
 	public BhrEmpUnemploy() {
 	}
 
-	public BhrEmpUnemploy(BhrEmpUnemployId id, BhrEmpPay bhrEmpPay, BigDecimal unempGross, BigDecimal unempInsAmt,
+	public BhrEmpUnemploy(BhrEmpUnemployId id, BigDecimal unempGross, BigDecimal unempInsAmt,
 			String module) {
 		this.id = id;
-		this.bhrEmpPay = bhrEmpPay;
 		this.unempGross = unempGross;
 		this.unempInsAmt = unempInsAmt;
 		this.module = module;
@@ -52,19 +50,6 @@ public class BhrEmpUnemploy implements java.io.Serializable {
 
 	public void setId(BhrEmpUnemployId id) {
 		this.id = id;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-			@JoinColumn(name = "CYR_NYR_FLG", referencedColumnName = "PAY_FREQ", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "PAY_FREQ", referencedColumnName = "EMP_NBR", nullable = false, insertable = false, updatable = false),
-			@JoinColumn(name = "EMP_NBR", referencedColumnName = "CYR_NYR_FLG", nullable = false, insertable = false, updatable = false) })
-	public BhrEmpPay getBhrEmpPay() {
-		return this.bhrEmpPay;
-	}
-
-	public void setBhrEmpPay(BhrEmpPay bhrEmpPay) {
-		this.bhrEmpPay = bhrEmpPay;
 	}
 
 	@Column(name = "UNEMP_GROSS", nullable = false, precision = 9)
