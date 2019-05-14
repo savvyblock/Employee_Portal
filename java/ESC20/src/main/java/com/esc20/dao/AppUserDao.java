@@ -167,7 +167,7 @@ public class AppUserDao extends HibernateDaoSupport{
         		userInfo.setGenDescription(gen.getDescription());
         	}
         }
-        BhrEmpDemo result = session.get(BhrEmpDemo.class, empNbr);
+        //BhrEmpDemo result = session.get(BhrEmpDemo.class, empNbr);
         return userInfo;
 	}
 	
