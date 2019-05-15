@@ -2,6 +2,8 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DRptPaySubRptFreq" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="13c6483a-eb4b-4d13-8387-4172461499f4">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
+	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -42,18 +44,6 @@ order by 1]]>
 	</columnHeader>
 	<detail>
 		<band height="68">
-			<subreport isUsingCache="false" runToBottom="false">
-				<reportElement key="drptpaysubrptbank" positionType="Float" x="0" y="35" width="612" height="15" isRemoveLineWhenBlank="true" uuid="330ba040-b433-40f9-88c8-ab6766483d21"/>
-				<subreportParameter name="as_payfreq">
-					<subreportParameterExpression><![CDATA[$F{pay_freq}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="as_empnbr">
-					<subreportParameterExpression><![CDATA[$P{as_empnbr}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DRptPaySubRptBank.jasper"
-]]></subreportExpression>
-			</subreport>
 			<subreport runToBottom="false">
 				<reportElement key="drptpaysubrptpay" positionType="Float" x="0" y="1" width="612" height="15" isRemoveLineWhenBlank="true" uuid="30a7dd39-f6bc-44b7-9757-e718b8d9641a"/>
 				<subreportParameter name="as_payfreq">
@@ -80,6 +70,17 @@ order by 1]]>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DRptPaySubRptPositions.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="false" runToBottom="false">
+				<reportElement key="drptpaysubrptbank" positionType="Float" x="0" y="35" width="612" height="15" isRemoveLineWhenBlank="true" uuid="330ba040-b433-40f9-88c8-ab6766483d21"/>
+				<subreportParameter name="as_payfreq">
+					<subreportParameterExpression><![CDATA[$F{pay_freq}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="as_empnbr">
+					<subreportParameterExpression><![CDATA[$P{as_empnbr}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DRptPaySubRptBank.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="false" runToBottom="false">
 				<reportElement key="drptpaysubrptstipend" positionType="Float" x="0" y="52" width="612" height="15" isRemoveLineWhenBlank="true" uuid="09defc84-b651-44fd-b5cc-635c2d2a28ce"/>
 				<subreportParameter name="SUBREPORT_DIR">
 					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
@@ -91,8 +92,7 @@ order by 1]]>
 					<subreportParameterExpression><![CDATA[$P{as_empnbr}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DRptPaySubRptStipend.jasper"
-]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DRptPaySubRptStipend.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
