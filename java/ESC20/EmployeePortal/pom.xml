@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.esc20</groupId>
-  <artifactId>ESC20</artifactId>
+  <artifactId>EmployeePortal</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>ESC20 Maven Webapp</name>
+  <name>EmployeePortal Maven Webapp</name>
   <url>http://54.163.72.244/txeisDemo/home</url>
 
   <properties>
