@@ -272,7 +272,7 @@ private JasperReport loadTemplate(IReport report) throws JRException {
 	File jasperFile = new File(path + "/" + template + ".jasper");
 	
 	// load
-	JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperFile.getPath());
+	JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(jasperFile.getPath());
 
 	return jasperReport;
 }
