@@ -2,7 +2,9 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningLvTab" pageWidth="612" pageHeight="792" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="7cbfce36-a729-4fd9-90f9-dd72cd83067e">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
+	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
@@ -200,71 +202,87 @@ union all SELECT distinct
 			<band/>
 		</groupHeader>
 		<groupFooter>
-			<band height="12">
-				<textField isBlankWhenNull="true">
-					<reportElement key="textField" x="7" y="1" width="158" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="a3b19110-5c3c-4193-ae1c-0fcda63cfb69"/>
-					<box>
-						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-						<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{bhr_emp_lv_lv_typ} + " - " +  $F{bthr_lv_typ_descr_long_descr}
+			<band height="17">
+				<frame>
+					<reportElement x="4" y="1" width="570" height="15" uuid="690a93e6-500b-4fd0-93c2-6ef2c75a33ea">
+						<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement x="1" y="1" width="560" height="14" uuid="e5de083c-1c7e-41a9-a037-a8fe6e7d05a0">
+							<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+						</reportElement>
+						<textField isBlankWhenNull="true">
+							<reportElement key="textField" x="9" y="1" width="158" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5ab243e8-af3d-485b-933a-65cd1fb1e05b">
+								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{bhr_emp_lv_lv_typ} + " - " +  $F{bthr_lv_typ_descr_long_descr}
 /*$F{bhr_emp_lv_lv_typ} + ' - ' +  bthr_lv_typ_descr_long_descr*/]]></textFieldExpression>
-				</textField>
-				<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
-					<reportElement key="textField" x="244" y="1" width="58" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="dd55f0a3-9b6c-44b8-bc52-9cccdacb632b">
-						<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
-$F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false) :  new Boolean(true)]]></printWhenExpression>
-					</reportElement>
-					<box>
-						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
-						<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{bhr_emp_lv_lv_end_bal}]]></textFieldExpression>
-				</textField>
-				<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
-					<reportElement key="textField" x="312" y="1" width="61" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="e150d226-7b6b-4b26-9930-2caca1145ebb">
-						<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
-$F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false) :  new Boolean(true)]]></printWhenExpression>
-					</reportElement>
-					<box>
-						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
-						<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{bhr_emp_lv_lv_used}]]></textFieldExpression>
-				</textField>
-				<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
-					<reportElement key="textField" x="178" y="1" width="59" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="f9d34004-ee42-4eda-a6cb-416c86763ded"/>
-					<box>
-						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
-						<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-						<paragraph lineSpacing="Single"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{sum_bhr_emp_lv_hist_lv_taken_1}
+						</textField>
+						<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
+							<reportElement key="textField" x="173" y="1" width="59" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="b1aa28bc-7cf3-4dcf-990d-b287c3921794">
+								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{sum_bhr_emp_lv_hist_lv_taken_1}
 /*sum( bhr_emp_lv_hist_lv_taken  for group 1)*/]]></textFieldExpression>
-				</textField>
+						</textField>
+						<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
+							<reportElement key="textField" x="244" y="1" width="58" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="6907ee0c-b1a0-459f-aa36-d544f01979d6">
+								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+								<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
+$F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false) :  new Boolean(true)]]></printWhenExpression>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{bhr_emp_lv_lv_end_bal}]]></textFieldExpression>
+						</textField>
+						<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
+							<reportElement key="textField" x="310" y="1" width="61" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="531aeead-f75e-49ab-bcfa-720b2939a618">
+								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+								<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
+$F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false) :  new Boolean(true)]]></printWhenExpression>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{bhr_emp_lv_lv_used}]]></textFieldExpression>
+						</textField>
+					</frame>
+				</frame>
 			</band>
 		</groupFooter>
 	</group>
@@ -275,121 +293,150 @@ $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false
 		<band/>
 	</title>
 	<pageHeader>
-		<band height="22">
-			<staticText>
-				<reportElement key="staticText" x="178" y="0" width="59" height="20" backcolor="#C0C0C0" uuid="5c8c4ef5-2649-42d7-826c-e69f9476d2f7"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Units Used
+		<band height="28">
+			<line>
+				<reportElement x="178" y="23" width="59" height="1" uuid="042533ed-2ee9-4302-bd3e-285ab0164ab3"/>
+			</line>
+			<line>
+				<reportElement x="7" y="23" width="158" height="1" uuid="05d0944a-b07f-4a23-9eab-b3e9d1f47c97"/>
+			</line>
+			<line>
+				<reportElement x="245" y="23" width="59" height="1" uuid="32f9a2ca-fd79-4c06-944b-1b69f2d0e596"/>
+			</line>
+			<line>
+				<reportElement x="312" y="23" width="62" height="1" uuid="c0ffd5eb-5736-44a2-95bf-2c10a84bae37"/>
+			</line>
+			<frame>
+				<reportElement x="4" y="1" width="570" height="24" uuid="ad1e44c4-fe5a-4d5d-84e3-dfacacda1023">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
+				<frame>
+					<reportElement x="1" y="1" width="560" height="23" uuid="089b0d38-b660-40ab-b8c1-9c8e77d99ac3">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="1" y="10" width="158" height="11" backcolor="#C0C0C0" uuid="a84a5da9-7977-4013-bc12-cf40cc46d683">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Bottom" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Leave Type]]></text>
+					</staticText>
+					<staticText>
+						<reportElement key="staticText" x="173" y="2" width="59" height="20" backcolor="#C0C0C0" uuid="a6bf88a6-d113-4e6d-a88b-dbde8fe25da9">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Units Used
 This Period]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="staticText" x="245" y="9" width="59" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="a5f5a72f-bba1-4aca-a880-d308701e4fb8">
-					<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
+					</staticText>
+					<staticText>
+						<reportElement key="staticText" x="240" y="10" width="59" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="9d29894f-93b2-4398-94df-f53664ef2c6c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
 $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false) :  new Boolean(true)]]></printWhenExpression>
-				</reportElement>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Balance]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="staticText" x="312" y="0" width="62" height="20" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="955e297c-d658-407b-8c3d-898dfeb7d147">
-					<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Balance]]></text>
+					</staticText>
+					<staticText>
+						<reportElement key="staticText" x="307" y="1" width="62" height="20" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="ccf13723-9ac6-41cb-bef9-5136af55ce52">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
 $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false) :  new Boolean(true)]]></printWhenExpression>
-				</reportElement>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Units Used
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Units Used
 Year To Date]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="staticText" x="7" y="9" width="158" height="11" backcolor="#C0C0C0" uuid="56f8ff1d-3d6e-4fee-9902-3cde71edeb81"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Left" verticalAlignment="Bottom" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Leave Type]]></text>
-			</staticText>
-			<line>
-				<reportElement x="178" y="20" width="59" height="1" uuid="042533ed-2ee9-4302-bd3e-285ab0164ab3"/>
-			</line>
-			<line>
-				<reportElement x="7" y="20" width="158" height="1" uuid="05d0944a-b07f-4a23-9eab-b3e9d1f47c97"/>
-			</line>
-			<line>
-				<reportElement x="245" y="20" width="59" height="1" uuid="32f9a2ca-fd79-4c06-944b-1b69f2d0e596"/>
-			</line>
-			<line>
-				<reportElement x="312" y="20" width="62" height="1" uuid="c0ffd5eb-5736-44a2-95bf-2c10a84bae37"/>
-			</line>
+					</staticText>
+				</frame>
+			</frame>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band/>
 	</columnHeader>
 	<detail>
-		<band height="12">
+		<band height="15">
 			<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
-			<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
-				<reportElement key="textField" x="178" y="1" width="59" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="52bc4544-90d8-4344-a378-e1af0f2d1702"/>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_emp_lv_hist_lv_taken}]]></textFieldExpression>
-			</textField>
-			<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
-				<reportElement key="textField" x="301" y="1" width="66" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="a1921f50-84e1-4713-87b4-2893d849da4e">
-					<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+			<frame>
+				<reportElement x="4" y="0" width="570" height="14" uuid="625fcf6a-c94f-40d0-beeb-01d618d920cc">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
 				</reportElement>
-				<box>
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{lv_uts_earned}]]></textFieldExpression>
-			</textField>
+				<frame>
+					<reportElement x="1" y="1" width="560" height="13" uuid="56574543-0e1c-4218-a59b-e993f3478e0a">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
+						<reportElement key="textField" x="173" y="0" width="59" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="fe934675-a913-4a01-8cd9-7f5bf925c13c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_emp_lv_hist_lv_taken}]]></textFieldExpression>
+					</textField>
+					<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
+						<reportElement key="textField" x="296" y="0" width="66" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="b03cb65f-b924-4515-99b9-c078f42a54fa">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{lv_uts_earned}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</frame>
 		</band>
 	</detail>
 	<columnFooter>

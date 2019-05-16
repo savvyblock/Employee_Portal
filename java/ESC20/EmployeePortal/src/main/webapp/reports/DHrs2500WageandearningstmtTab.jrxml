@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningstmtTab" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="e8dea437-23f4-4d5c-91ba-8f1027a5424f">
 	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
+	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="33"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
 	</parameter>
@@ -76,7 +78,7 @@
 		</groupFooter>
 	</group>
 	<pageHeader>
-		<band height="200">
+		<band height="201">
 			<line>
 				<reportElement key="line" x="8" y="128" width="594" height="1" backcolor="#C0C0C0" uuid="c0530c76-1f20-44a5-9eab-1d24aaf98797"/>
 				<graphicElement fill="Solid"/>
@@ -85,217 +87,19 @@
 				<reportElement key="line" x="8" y="195" width="595" height="1" backcolor="#C0C0C0" uuid="573396a3-40a1-49da-b3e3-065437678f82"/>
 				<graphicElement fill="Solid"/>
 			</line>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="59" y="164" width="170" height="11" backcolor="#C0C0C0" uuid="8fa4cf99-7907-4898-9032-35357fc55513"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="496" y="1" width="54" height="11" uuid="7874e5f6-b5d1-48a4-83d2-bb765b438fcf"/>
+				<textElement textAlignment="Left">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_emp_demo_addr_city}.trim() +", "+
-$F{bhr_emp_demo_addr_st}.trim() + "  "+
-$F{bhr_emp_demo_addr_zip} +
-($F{bhr_emp_demo_addr_zip4}.trim().length()==0 ? " " : (" "+ $F{bhr_emp_demo_addr_zip4}) )]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Page: " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="59" y="152" width="169" height="11" backcolor="#C0C0C0" uuid="baf07bb5-85ef-4fd7-8d3e-5a293760f3fc"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
+			<textField evaluationTime="Group" evaluationGroup="Variable_GroupName1" isBlankWhenNull="false">
+				<reportElement key="textField" x="550" y="1" width="56" height="11" uuid="7bf926cc-bdbf-4e83-a3cb-18bcc4220b5b"/>
+				<textElement textAlignment="Left">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_emp_demo_addr_nbr}.trim()+ ($F{bhr_emp_demo_addr_nbr}.length() > 0 ? " " : "") +
-$F{bhr_emp_demo_addr_str}.trim() + " "+
-$F{bhr_emp_demo_addr_apt}.trim()]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="59" y="139" width="171" height="11" backcolor="#C0C0C0" uuid="614538e7-9e45-4819-836c-e492a4e5489a"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_emp_demo_name_l}.trim() +
-(!$F{gen_code_descr}.equals("") ? (" " + $F{gen_code_descr}) : "") + ", "  +
- $F{bhr_emp_demo_name_f}.trim()+" "+
- $F{bhr_emp_demo_name_m}.trim()]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement key="staticText" x="19" y="66" width="77" height="11" backcolor="#C0C0C0" uuid="02f3abc0-8cbb-4f71-9bab-b64dadbbca55"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Employee Name:]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="99" y="66" width="167" height="11" backcolor="#C0C0C0" uuid="c2a45f8c-8448-45c3-b57c-9d2e6babb436"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_emp_demo_name_l}.trim() +
-(!$F{gen_code_descr}.equals("") ? (" " + $F{gen_code_descr}) : "") + ", "  +
-$F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement key="staticText" x="19" y="45" width="42" height="11" backcolor="#C0C0C0" uuid="48b04974-1309-47a3-b0fb-5361fc735331"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Emp Nbr:]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="66" y="45" width="49" height="11" backcolor="#C0C0C0" uuid="1cfdce0e-02a5-4387-8eb2-2cb366de8ae0"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_emp_pay_emp_nbr}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement key="staticText" x="19" y="87" width="52" height="11" backcolor="#C0C0C0" uuid="d11f7d34-ee10-4ad4-a739-de996e34ad5a"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Check Nbr:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="staticText" x="19" y="105" width="46" height="11" backcolor="#C0C0C0" uuid="686de4dc-7f96-47c9-8346-dcbc154c2cdc"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Pay Date:]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="76" y="87" width="41" height="11" backcolor="#C0C0C0" uuid="bc75a76b-8ee9-4a41-a285-a3747935f0b9"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_pay_hist_chk_nbr}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="76" y="105" width="52" height="11" backcolor="#C0C0C0" uuid="0891c063-f8da-4c0b-8053-d55d5033b14c"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_pay_hist_dt_of_pay} == null ? "" : ($F{bhr_pay_hist_dt_of_pay}.substring(4,6)+"-"+
-$F{bhr_pay_hist_dt_of_pay}.substring(6,8)+"-"+
-$F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement key="staticText" x="136" y="105" width="74" height="11" backcolor="#C0C0C0" uuid="6ddf8367-78da-4b0a-b922-f4f21c04d84a"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Period Begin:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="staticText" x="268" y="105" width="62" height="11" backcolor="#C0C0C0" uuid="964f2c6a-e1a1-49ce-b2de-177b28e715a1"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Period End:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="staticText" x="136" y="88" width="74" height="11" backcolor="#C0C0C0" uuid="35bb3f66-85c9-40fc-98b6-42a31ebae4b7"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Withhold Stat:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="staticText" x="137" y="45" width="46" height="11" backcolor="#C0C0C0" uuid="aefdb0b9-f0e2-4c27-b4ac-43a1b33c7ef2"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Frequency:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="staticText" x="268" y="88" width="36" height="11" backcolor="#C0C0C0" uuid="23a3c410-202a-4084-a9a7-269f110a1d7b"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Exempt:]]></text>
-			</staticText>
-			<textField pattern="#,###,##0" isBlankWhenNull="true">
-				<reportElement key="textField" x="343" y="88" width="27" height="11" backcolor="#C0C0C0" uuid="463e152b-c2bd-4106-82db-b9ed09074c17"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_pay_hist_nbr_tax_exempts}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="343" y="105" width="53" height="11" backcolor="#C0C0C0" uuid="727d4b4f-1c77-4b49-9257-a2b89c6ae2d4"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bthr_pay_dates_dt_payper_end} == null ? "" : $F{bthr_pay_dates_dt_payper_end}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="210" y="105" width="52" height="11" backcolor="#C0C0C0" uuid="2da9f549-50c2-4b68-a72a-43164446e1aa"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bthr_pay_dates_dt_payper_beg} == null? "":$F{bthr_pay_dates_dt_payper_beg}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="210" y="88" width="13" height="11" backcolor="#C0C0C0" uuid="903b5bee-6095-4344-80dc-0d6dbfcf8b01"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_pay_hist_marital_stat_tax}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement key="staticText" x="268" y="45" width="74" height="11" backcolor="#C0C0C0" uuid="7981899b-0d23-4254-8b56-4b56d3ca6b1f"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Primary Campus:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement key="staticText" x="268" y="66" width="60" height="11" backcolor="#C0C0C0" uuid="d6fa9a92-c9c2-4145-b8e9-86a365c4de3c"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[Pay Campus:]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="343" y="45" width="245" height="11" backcolor="#C0C0C0" uuid="028303e0-ac26-421f-b64f-25ca80e7e01d"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_emp_job_campus_id_displayvalue}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="343" y="66" width="245" height="11" backcolor="#C0C0C0" uuid="98bd8835-aeaa-4f0f-bda9-d949caf4b092"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_emp_pay_pay_campus_displayvalue}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement key="textField" x="184" y="45" width="12" height="11" backcolor="#C0C0C0" uuid="92154855-e687-489d-ac00-bda73ab8a4bd"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{bhr_emp_pay_pay_freq}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["" + $V{PAGE_NUMBER} + ""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement key="textField" x="136" y="1" width="359" height="11" backcolor="#C0C0C0" uuid="9bb64fe9-4328-4c21-9200-c16b7f0f2352"/>
@@ -313,20 +117,6 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 				</textElement>
 				<textFieldExpression><![CDATA["Earnings"]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="false">
-				<reportElement key="textField" x="496" y="1" width="54" height="11" uuid="7874e5f6-b5d1-48a4-83d2-bb765b438fcf"/>
-				<textElement textAlignment="Left">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Page: " + $V{PAGE_NUMBER} + " of "]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Group" evaluationGroup="Variable_GroupName1" isBlankWhenNull="false">
-				<reportElement key="textField" x="550" y="1" width="56" height="11" uuid="7bf926cc-bdbf-4e83-a3cb-18bcc4220b5b"/>
-				<textElement textAlignment="Left">
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
-				</textElement>
-				<textFieldExpression><![CDATA["" + $V{PAGE_NUMBER} + ""]]></textFieldExpression>
-			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement key="textField" x="136" y="25" width="359" height="11" backcolor="#C0C0C0" uuid="0594cb46-5b01-490e-9fa1-67f02fde581e"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
@@ -335,17 +125,319 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("MM-dd-yyyy h:mm a").format(java.util.Calendar.getInstance().getTime())]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="256" y="181" width="345" height="11" uuid="a8b4abbc-5d47-4bd6-9e3a-a9e87db82003"/>
-				<textElement>
-					<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
-				</textElement>
-				<text><![CDATA[NOTE:  YTD amounts reflect the most recent pay date for the calendar year.]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="45" y="11" width="100" height="20" uuid="5de74290-f646-4891-91ac-f86e2d6962c1"/>
-				<textFieldExpression><![CDATA[$F{dname}]]></textFieldExpression>
-			</textField>
+			<frame>
+				<reportElement x="8" y="45" width="598" height="82" uuid="757e0400-2701-43d0-94ab-5507e1dd77d8">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
+				<frame>
+					<reportElement x="12" y="2" width="571" height="12" uuid="1640384f-61b9-4134-ba48-ffbd0ea1452d">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="2" y="1" width="42" height="11" backcolor="#C0C0C0" uuid="4d181a51-149a-42a8-a72c-e27a39ddcae0">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Emp Nbr:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="49" y="1" width="49" height="11" backcolor="#C0C0C0" uuid="437a2511-8f61-4d0e-8b61-613b2a422708">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_emp_pay_emp_nbr}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="120" y="1" width="46" height="11" backcolor="#C0C0C0" uuid="5c5c4a12-d5e1-46c8-bf36-8efc8039d0ab">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Frequency:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="167" y="1" width="12" height="11" backcolor="#C0C0C0" uuid="5b71f361-b109-44e5-9575-ed5293df5524">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_emp_pay_pay_freq}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="251" y="1" width="74" height="11" backcolor="#C0C0C0" uuid="055c2dd1-cc59-4749-a8b7-136d3c17684c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Primary Campus:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="326" y="1" width="245" height="11" backcolor="#C0C0C0" uuid="64d862a7-2fdd-49c7-a80f-f0708724fb39">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_emp_job_campus_id_displayvalue}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="12" y="22" width="571" height="12" uuid="1640384f-61b9-4134-ba48-ffbd0ea1452d">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="0" y="1" width="77" height="11" backcolor="#C0C0C0" uuid="67a5d324-b9d1-4d73-8548-c9fb04e7d767">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Employee Name:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="80" y="1" width="167" height="11" backcolor="#C0C0C0" uuid="ca2f556e-fec8-4735-8c07-9eed8a4a8aae">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_emp_demo_name_l}.trim() +
+(!$F{gen_code_descr}.equals("") ? (" " + $F{gen_code_descr}) : "") + ", "  +
+$F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="249" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="e2b54b1a-d64d-4bef-8623-7a26174f3ea6">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Pay Campus:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="324" y="1" width="245" height="11" backcolor="#C0C0C0" uuid="f795dd70-8960-466a-a980-6f0bbe692b9d">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_emp_pay_pay_campus_displayvalue}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="12" y="42" width="571" height="12" uuid="bb5aa089-bcfa-4b3f-98b4-1e6d2b34f5bd">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="2" y="1" width="52" height="11" backcolor="#C0C0C0" uuid="25ab872b-209c-4b3f-aff3-282e8419bd03">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Check Nbr:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="59" y="1" width="41" height="11" backcolor="#C0C0C0" uuid="5b920f85-8010-4153-815a-39401494de5c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_pay_hist_chk_nbr}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="119" y="1" width="74" height="11" backcolor="#C0C0C0" uuid="09edc5e7-880a-4d46-92ef-966e805add7e">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Withhold Stat:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="193" y="1" width="13" height="11" backcolor="#C0C0C0" uuid="a45101b4-1a6a-4960-837f-cfb54d49bc0c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_pay_hist_marital_stat_tax}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="251" y="1" width="36" height="11" backcolor="#C0C0C0" uuid="cc882753-a902-4161-93eb-43a120f5a2e8">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Exempt:]]></text>
+					</staticText>
+					<textField pattern="#,###,##0" isBlankWhenNull="true">
+						<reportElement key="textField" x="326" y="1" width="27" height="11" backcolor="#C0C0C0" uuid="89b06951-e483-4a9e-b35f-08e15998f8b7">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_pay_hist_nbr_tax_exempts}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="10" y="62" width="571" height="12" uuid="922d2a82-836b-405e-b724-7fc2403aa78d">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="4" y="1" width="46" height="11" backcolor="#C0C0C0" uuid="6272c366-0cc5-4fe7-8bfd-eb0c2cc93658">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Pay Date:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="61" y="1" width="52" height="11" backcolor="#C0C0C0" uuid="adf00976-3009-4d43-a88e-5a0b25393ad2">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_pay_hist_dt_of_pay} == null ? "" : ($F{bhr_pay_hist_dt_of_pay}.substring(4,6)+"-"+
+$F{bhr_pay_hist_dt_of_pay}.substring(6,8)+"-"+
+$F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="121" y="1" width="74" height="11" backcolor="#C0C0C0" uuid="38679108-1032-4f1c-a80f-d314cd820891">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Period Begin:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="195" y="1" width="52" height="11" backcolor="#C0C0C0" uuid="9e20ef6a-ee0e-46e2-834c-d5df328b115c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bthr_pay_dates_dt_payper_beg} == null? "":$F{bthr_pay_dates_dt_payper_beg}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="253" y="1" width="62" height="11" backcolor="#C0C0C0" uuid="d41aebb8-57bb-4fea-81bb-86921215a521">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Period End:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="328" y="1" width="53" height="11" backcolor="#C0C0C0" uuid="9786c850-9b1b-4f26-bcb3-fa96aa78a8df">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bthr_pay_dates_dt_payper_end} == null ? "" : $F{bthr_pay_dates_dt_payper_end}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</frame>
+			<frame>
+				<reportElement x="7" y="135" width="595" height="59" uuid="aacbb8f7-431d-4fc2-944f-bcdb26f6638a">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
+				<frame>
+					<reportElement x="13" y="5" width="571" height="12" uuid="d992bf1f-9b9f-4a9c-a0db-82398286cb80">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="35" y="1" width="171" height="11" backcolor="#C0C0C0" uuid="cfb30ff8-2ca0-4a9b-a007-8daf130abe44"/>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_emp_demo_name_l}.trim() +
+(!$F{gen_code_descr}.equals("") ? (" " + $F{gen_code_descr}) : "") + ", "  +
+ $F{bhr_emp_demo_name_f}.trim()+" "+
+ $F{bhr_emp_demo_name_m}.trim()]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="13" y="18" width="571" height="12" uuid="d992bf1f-9b9f-4a9c-a0db-82398286cb80">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="35" y="1" width="169" height="11" backcolor="#C0C0C0" uuid="0870511e-bbc3-41fb-84d0-1d6f5c60a301"/>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_emp_demo_addr_nbr}.trim()+ ($F{bhr_emp_demo_addr_nbr}.length() > 0 ? " " : "") +
+$F{bhr_emp_demo_addr_str}.trim() + " "+
+$F{bhr_emp_demo_addr_apt}.trim()]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="13" y="31" width="571" height="12" uuid="d992bf1f-9b9f-4a9c-a0db-82398286cb80">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="35" y="1" width="170" height="11" backcolor="#C0C0C0" uuid="365280d3-8a05-4a80-9f3d-c910a85ae734"/>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_emp_demo_addr_city}.trim() +", "+
+$F{bhr_emp_demo_addr_st}.trim() + "  "+
+$F{bhr_emp_demo_addr_zip} +
+($F{bhr_emp_demo_addr_zip4}.trim().length()==0 ? " " : (" "+ $F{bhr_emp_demo_addr_zip4}) )]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="13" y="45" width="571" height="14" uuid="d992bf1f-9b9f-4a9c-a0db-82398286cb80">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="224" y="2" width="345" height="11" uuid="575d3d92-9e66-422d-9275-201b20b4654e"/>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[NOTE:  YTD amounts reflect the most recent pay date for the calendar year.]]></text>
+					</staticText>
+				</frame>
+			</frame>
 		</band>
 	</pageHeader>
 	<columnHeader>
