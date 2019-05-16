@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="W2_2010" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="548" leftMargin="32" rightMargin="32" topMargin="32" bottomMargin="32">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="W2_2010" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="548" leftMargin="32" rightMargin="32" topMargin="32" bottomMargin="32" uuid="f823d206-84ac-4268-81eb-2ab3d29faeaa">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
+	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="192"/>
 	<field name="ssn" class="java.lang.String"/>
 	<field name="tgross" class="java.lang.String"/>
 	<field name="whold" class="java.lang.String"/>
@@ -62,11 +64,11 @@
 		<groupFooter>
 			<band height="728">
 				<frame>
-					<reportElement x="0" y="0" width="548" height="728">
+					<reportElement x="0" y="0" width="548" height="728" uuid="1e216cce-77e7-48a4-8252-f9698d323e36">
 						<printWhenExpression><![CDATA[new java.lang.Boolean($V{PAGE_NUMBER}.intValue() == 2)]]></printWhenExpression>
 					</reportElement>
 					<staticText>
-						<reportElement x="280" y="30" width="248" height="360"/>
+						<reportElement x="280" y="30" width="248" height="360" uuid="89acdf6b-4ce0-4cbe-9c30-10c535c9b760"/>
 						<textElement markup="styled">
 							<font size="10" isBold="false"/>
 						</textElement>
@@ -77,14 +79,14 @@
 (Also see <style isItalic="true" pdfFontName="Helvetica-Oblique">Instructions for Employee</style> on the back of Copy C.) ]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="0" y="0" width="200" height="20"/>
+						<reportElement x="0" y="0" width="200" height="20" uuid="4eac739c-b262-495d-a19d-fa65f4961ebd"/>
 						<textElement>
 							<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
 						</textElement>
 						<text><![CDATA[Notice to Employee]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="0" y="30" width="248" height="385"/>
+						<reportElement x="0" y="30" width="248" height="385" uuid="809a6d0a-ac0c-4015-ae46-491eb5f4fc71"/>
 						<textElement markup="styled">
 							<font size="10" isBold="false"/>
 						</textElement>
@@ -98,18 +100,18 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 					</staticText>
 				</frame>
 				<frame>
-					<reportElement x="0" y="0" width="548" height="728">
+					<reportElement x="0" y="0" width="548" height="728" uuid="2965907b-9bfe-4ec8-b6ff-beb76f789dd1">
 						<printWhenExpression><![CDATA[new java.lang.Boolean($V{PAGE_NUMBER}.intValue() == 4)]]></printWhenExpression>
 					</reportElement>
 					<staticText>
-						<reportElement x="0" y="0" width="248" height="40"/>
+						<reportElement x="0" y="0" width="248" height="40" uuid="9ddd6568-5f86-42d2-9342-8e2b09ccdaa0"/>
 						<textElement markup="styled">
 							<font size="12" isBold="false"/>
 						</textElement>
 						<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Instructions for Employee</style> (Also see <style isItalic="true" pdfFontName="Helvetica-Oblique">Notice to Employee,</style> on the back of Copy B.)]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="0" y="50" width="248" height="465"/>
+						<reportElement x="0" y="50" width="248" height="465" uuid="873d9818-7be8-4ff8-9181-a0164e3fe4b1"/>
 						<textElement markup="styled">
 							<font size="10" isBold="false"/>
 						</textElement>
@@ -122,7 +124,7 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 <style isBold="true" pdfFontName="Helvetica-Bold">Box 12</style>. The following list explains the codes shown in box 12. You may need this information to complete your tax return. Elective deferrals (codes D, E, F, and S) and designated Roth contributions (codes AA and BB) under all plans are generally limited to a total of $16,500 ($11,500 if you only have SIMPLE plans; $19,500 for section 403(b) plans if you qualify for the 15-year rule explained in Pub. 571). Deferrals under code G are limited to $16,500. Deferrals under code H are limited to $7,000.]]></text>
 					</staticText>
 					<staticText>
-						<reportElement x="280" y="50" width="248" height="465"/>
+						<reportElement x="280" y="50" width="248" height="465" uuid="99019651-7f1b-44e2-acb0-34b72c1fd991"/>
 						<textElement markup="styled">
 							<font size="10" isBold="false"/>
 						</textElement>
@@ -154,649 +156,801 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 	<detail>
 		<band height="432">
 			<staticText>
-				<reportElement x="0" y="0" width="548" height="15"/>
+				<reportElement x="0" y="0" width="548" height="15" uuid="ee50e1e1-25c8-4db0-a3e6-2e39084a8695">
+					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
+				</reportElement>
 				<textElement>
 					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Form W-2 Wage and Tax Statement]]></text>
 			</staticText>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="15" width="208" height="40"/>
+				<reportElement x="0" y="15" width="548" height="339" uuid="a3371c5f-bb47-4dc9-b899-7028bda0f6f8">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
 				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
 				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="208" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ a Employee's social security number]]></text>
-				</staticText>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="15" width="200" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{ssn}]]></textFieldExpression>
-				</textField>
+				<frame>
+					<reportElement x="1" y="0" width="547" height="38" uuid="80444f9e-095a-47e0-a60c-f8ff5e61a1be">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="1.0" lineColor="#000000"/>
+						<topPen lineWidth="1.0" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineColor="#000000"/>
+					</box>
+					<staticText>
+						<reportElement x="0" y="0" width="205" height="15" uuid="91883ff3-d77c-410f-8945-d200ed9c7133">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box leftPadding="0" rightPadding="0">
+							<rightPen lineWidth="0.75"/>
+						</box>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ a Employee's social security number]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="0" y="15" width="205" height="23" uuid="daa7777d-2713-4921-bdd9-63ee65fb90e9">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box leftPadding="8"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{ssn}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="205" y="0" width="167" height="15" uuid="b56941cf-f46c-4908-803a-f57df6c39d78">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="2.25"/>
+							<leftPen lineWidth="2.25"/>
+							<rightPen lineWidth="2.25"/>
+						</box>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ 1 Wages, Tips other compensation]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="205" y="15" width="167" height="23" uuid="4f02a1e9-6cd9-4254-87c6-15a0ce161b51">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box leftPadding="7">
+							<leftPen lineWidth="2.25"/>
+							<bottomPen lineWidth="2.25"/>
+							<rightPen lineWidth="2.25"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{tgross}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="372" y="0" width="175" height="15" uuid="b763bc33-38ef-4eae-8097-585c9e6c56cc">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="2.25"/>
+							<leftPen lineWidth="2.25"/>
+							<rightPen lineWidth="2.25"/>
+						</box>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ 2 Federal income tax withheld]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="372" y="15" width="175" height="23" uuid="58cd4865-6452-4842-93e4-c8951a297b6a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box leftPadding="8">
+							<leftPen lineWidth="2.25"/>
+							<bottomPen lineWidth="2.25"/>
+							<rightPen lineWidth="2.25"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{whold}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="38" width="547" height="38" uuid="95428c5d-33d3-4912-bb25-57ba00b2337b">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+						<property name="net.sf.jasperreports.export.pdf.tag.table"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="1.0" lineColor="#000000"/>
+						<topPen lineWidth="1.0" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineColor="#000000"/>
+					</box>
+					<staticText>
+						<reportElement x="0" y="0" width="205" height="15" uuid="f48cb461-3eaf-4a0e-9fb8-2fabf8363e87">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ b Employer identification number (EIN)]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="0" y="15" width="205" height="23" uuid="37321ca5-6e26-41af-8236-5c3190e3a847">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box leftPadding="8"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{ein}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="205" y="0" width="167" height="15" uuid="5231a208-1190-4069-b5e9-6b93efaf6721">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ 3 Social security wages]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="205" y="15" width="167" height="23" uuid="80056f5b-4e66-4d7d-a44e-19a844e97353">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box leftPadding="8">
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{fgross}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="372" y="0" width="175" height="15" uuid="5160426e-6c99-4d06-a92d-a098cf65d8a2">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ 4 Social security tax withheld]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="372" y="15" width="175" height="23" uuid="443bd01d-856f-4e4c-bb5d-68e40d40c4c1">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box leftPadding="8">
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{whold}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="76" width="547" height="60" uuid="bda07445-6b98-498a-bf11-265ba528f6d2">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+						<property name="net.sf.jasperreports.export.pdf.tag.table"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="1.0" lineColor="#000000"/>
+						<topPen lineWidth="1.0" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineColor="#000000"/>
+					</box>
+					<staticText>
+						<reportElement x="0" y="0" width="205" height="15" uuid="f5465aa1-c9f9-42c2-a543-25dbcaeea27b">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ c Employer's name, address and Zip code]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="0" y="15" width="205" height="15" uuid="b509255c-bb5e-4451-9112-e2b1b3d477a7">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box leftPadding="8"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{ename}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="0" y="28" width="205" height="15" uuid="f5b85ab8-b987-454d-b5e8-8e94276fe478">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box leftPadding="8"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{eaddress}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="0" y="43" width="205" height="17" uuid="1df84d7e-9c09-4022-b869-04d109198f8e">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box leftPadding="8"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{ecityst}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="205" y="0" width="167" height="15" uuid="74a7f9b4-44d7-4e56-b595-3f6577830278">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ 5 Medicare wages and tips]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="205" y="15" width="167" height="15" uuid="7ae425a9-b84e-4b58-a780-dae174dfc019">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box leftPadding="8">
+							<leftPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{mgross}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="372" y="0" width="175" height="15" uuid="b7c63679-8e5f-460a-bc5c-5f809fe138e7">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ 6 Medicare tax withheld]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="372" y="15" width="175" height="15" uuid="196f5545-9cd8-41d5-93a2-23c506512cb4">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box leftPadding="8">
+							<leftPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{mtax}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="205" y="30" width="167" height="15" uuid="8e1a3631-4d8f-4c9d-bd17-593a0e19d122">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="2.25"/>
+							<leftPen lineWidth="2.25"/>
+							<rightPen lineWidth="2.25"/>
+						</box>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ 9 Advanced EIC payment]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="205" y="45" width="167" height="15" uuid="5bb631d3-a016-4a42-9a27-6ff05fd010a8">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box leftPadding="7">
+							<leftPen lineWidth="2.25"/>
+							<bottomPen lineWidth="2.25"/>
+							<rightPen lineWidth="2.25"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{eic}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="372" y="30" width="175" height="15" uuid="c5777f5c-22e6-408f-8631-d63e3100e2c1">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="2.25"/>
+							<leftPen lineWidth="2.25"/>
+							<rightPen lineWidth="2.25"/>
+						</box>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ 10 Dependent care benefits]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="372" y="45" width="175" height="15" uuid="cfb84a72-64ad-4b8e-9449-589c3590b3bf">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box leftPadding="8">
+							<leftPen lineWidth="2.25"/>
+							<bottomPen lineWidth="2.25"/>
+							<rightPen lineWidth="2.25"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{dcare}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="136" width="547" height="203" uuid="76308bd1-7fac-4c15-9d69-37e51fac4712">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+						<property name="net.sf.jasperreports.export.pdf.tag.table"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<staticText>
+						<reportElement x="0" y="0" width="205" height="15" uuid="e7b01fb3-e9e4-462b-9812-9f1eb0345c5c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ e Employee's name]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="0" y="15" width="205" height="15" uuid="a3515ac0-7a75-4704-acd6-4160be38c106">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box leftPadding="8">
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{empname}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="0" y="28" width="205" height="15" uuid="92d27b09-4f91-44c8-ab70-15ff0eea8995">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box leftPadding="8">
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{empaddress}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="0" y="43" width="205" height="159" uuid="18b0ae90-38d7-4eab-b8b9-dd03daa9d259">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box leftPadding="8">
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{empcityst}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="205" y="0" width="167" height="15" uuid="eaeb5fb0-716d-40e2-81d9-acd6a3f061ae">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ 12 See Instrs. for box 12]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="215" y="15" width="20" height="15" uuid="02232b31-f1fd-4753-878a-08bb4cd449b7">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1201}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="15" width="57" height="15" uuid="1a6136d8-c2d0-478f-a82e-9bddb0a33790"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1201}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="215" y="28" width="20" height="15" uuid="4b3fa0ff-7ee2-4bb8-aa77-83ceb81238d0"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1202}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="28" width="57" height="15" uuid="bbb26a77-ffe8-4408-ba72-30e864e2756c"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1202}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="215" y="40" width="20" height="15" uuid="618c027c-6972-4cbb-aa99-6575dbe660bf"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1203}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="40" width="57" height="15" uuid="f25f4f3f-4143-436c-b629-ba01f91cc982"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1203}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="215" y="55" width="20" height="15" uuid="ab071d8e-c39b-4cf8-8c38-677468581550"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1204}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="55" width="57" height="15" uuid="7e3267ce-00d0-4fa3-bbfd-5583ca1489be"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1204}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="215" y="69" width="20" height="15" uuid="e414e619-3c85-4ad9-a81b-63f3248aa1be"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1205}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="69" width="57" height="15" uuid="2c950a95-7a67-407c-9486-c2b7be1bb344"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1205}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="84" width="57" height="15" uuid="c150843b-1a3d-4034-82f0-7c08bec59007"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1206}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="215" y="84" width="20" height="15" uuid="ab78e3e2-e61b-4f30-af3e-b5d512ade3c6"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1206}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="215" y="99" width="20" height="15" uuid="61327259-bea5-4424-92fd-d5cb8a8ba00f"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1207}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="99" width="57" height="15" uuid="5117ff1e-d866-493d-bcd9-6a47d4448a46"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1207}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="215" y="113" width="20" height="15" uuid="dfd4b3ad-0592-49e0-8398-c54ee2187b27"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1208}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="113" width="57" height="15" uuid="59ed540c-d6d8-4bf6-ac09-05a9179dc54b">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1208}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="372" y="0" width="175" height="15" uuid="37ebfcce-afad-429e-9678-e27081545db0">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ 6 Medicare tax withheld]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="372" y="15" width="94" height="15" uuid="fd55c221-d0e6-49b6-8e61-1100669cf2fa">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box leftPadding="8">
+							<leftPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1401}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="470" y="15" width="57" height="15" uuid="4fc19c47-9b99-4fa8-8841-8ca4eb7610c3"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1401}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="372" y="28" width="94" height="15" uuid="56b1e16c-d426-4a17-b881-1c46e67cc659"/>
+						<box leftPadding="8">
+							<leftPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1402}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="470" y="28" width="57" height="15" uuid="0ea9cab1-7a16-4dbc-824f-6fdeef641060"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1402}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="372" y="42" width="94" height="15" uuid="b97bd3b2-e73e-4e4d-8c99-0bd4e77b73be"/>
+						<box leftPadding="8">
+							<leftPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1403}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="470" y="42" width="57" height="15" uuid="3d2b881d-77dc-4acb-8708-0de1cc156743"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1403}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="372" y="55" width="94" height="15" uuid="1126ac91-df69-4fdb-90aa-17837973ec63"/>
+						<box leftPadding="8">
+							<leftPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1404}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="470" y="55" width="57" height="15" uuid="dcccf967-7b65-4d6e-8a2c-818206798ae9"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1404}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="372" y="69" width="94" height="15" uuid="5c767a0a-3e47-4c1d-8a7f-cb29d4e48c89"/>
+						<box leftPadding="8">
+							<leftPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1405}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="470" y="69" width="57" height="15" uuid="dc38e57c-ebc3-485c-bd3a-f0cdc1a034bd"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1405}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="372" y="84" width="94" height="15" uuid="f083beb5-7ca8-43f2-a6d5-c7a61ac9e89f"/>
+						<box leftPadding="8">
+							<leftPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1406}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="470" y="84" width="57" height="15" uuid="5ba10c60-6f4c-4813-99df-9215e0a5bae8"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1406}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="372" y="99" width="94" height="15" uuid="0fc3fb7e-bfbd-42bd-b661-3f14a59522dd"/>
+						<box leftPadding="8">
+							<leftPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1407}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="470" y="99" width="57" height="15" uuid="97a8e2b6-cd9d-4058-8b5a-52e7295107a4"/>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1407}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="372" y="113" width="94" height="37" uuid="bfe92e4a-bca5-462a-b404-81c4012ad663"/>
+						<box leftPadding="8">
+							<leftPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1408}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="470" y="113" width="57" height="37" uuid="7948ce4f-672b-4786-a6ef-593c2e71feab">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1408}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="206" y="150" width="112" height="15" uuid="3898fe85-7666-4483-875f-3500d54e7c63">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="1.0"/>
+						</box>
+						<textElement>
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ 13 Statutory Employee]]></text>
+					</staticText>
+					<image>
+						<reportElement x="250" y="175" width="12" height="12" uuid="02f02e2c-fa53-466d-b980-5a3c9fd308c6">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<imageExpression><![CDATA[$F{statemp}]]></imageExpression>
+					</image>
+					<staticText>
+						<reportElement x="317" y="150" width="111" height="15" uuid="7770acd6-76bc-4caf-8bfe-59e6a4ebf767">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="1.0"/>
+						</box>
+						<textElement textAlignment="Center">
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[ Retirement Plan]]></text>
+					</staticText>
+					<image>
+						<reportElement x="360" y="175" width="12" height="12" uuid="31cf4a94-57d3-4ff6-810f-071868e31869">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<imageExpression><![CDATA[$F{retplan}]]></imageExpression>
+					</image>
+					<staticText>
+						<reportElement x="428" y="150" width="119" height="15" uuid="7f513e4a-0d08-40ae-9db8-39d863374a63">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="1.0"/>
+						</box>
+						<textElement textAlignment="Center">
+							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Third party sick pay]]></text>
+					</staticText>
+					<image>
+						<reportElement x="470" y="175" width="12" height="12" uuid="0798a97f-8f07-4a07-aca5-b67122d78e10">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<imageExpression><![CDATA[$F{thrdsick}]]></imageExpression>
+					</image>
+					<textField isBlankWhenNull="true">
+						<reportElement x="240" y="128" width="57" height="15" uuid="270dc498-da97-499d-a381-bb1ef81e7aee">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1209}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="215" y="128" width="20" height="15" uuid="9fb7f840-2663-487b-a333-8d177e8c5eec"/>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1209}]]></textFieldExpression>
+					</textField>
+				</frame>
 			</frame>
-			<frame>
-				<reportElement x="208" y="15" width="167" height="40"/>
-				<box>
-					<topPen lineWidth="3.0" lineStyle="Solid"/>
-					<leftPen lineWidth="3.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="3.0" lineStyle="Solid"/>
-					<rightPen lineWidth="3.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="167" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ 1 Wages, Tips other compensation]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="8" y="15" width="100" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{tgross}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement x="375" y="15" width="167" height="40"/>
-				<box>
-					<topPen lineWidth="3.0" lineStyle="Solid"/>
-					<leftPen lineWidth="3.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="3.0" lineStyle="Solid"/>
-					<rightPen lineWidth="3.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="167" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ 2 Federal income tax withheld]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="8" y="15" width="100" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{whold}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement x="0" y="55" width="208" height="40"/>
-				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="208" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ b Employer identification number (EIN)]]></text>
-				</staticText>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="15" width="200" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{ein}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement x="208" y="55" width="167" height="40"/>
-				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="167" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ 3 Social security wages]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="8" y="15" width="100" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{fgross}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement x="375" y="55" width="167" height="40"/>
-				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="167" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ 4 Social security tax withheld]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="8" y="15" width="100" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{ftax}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement x="0" y="95" width="208" height="80"/>
-				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="208" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ c Employer's name, address and Zip code]]></text>
-				</staticText>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="15" width="200" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{ename}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="30" width="200" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{eaddress}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="45" width="200" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{ecityst}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement x="208" y="95" width="167" height="40"/>
-				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="167" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ 5 Medicare wages and tips]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="8" y="15" width="100" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{mgross}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement x="375" y="95" width="167" height="40"/>
-				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="167" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ 6 Medicare tax withheld]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="8" y="15" width="100" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{mtax}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement x="208" y="135" width="167" height="40"/>
-				<box>
-					<topPen lineWidth="3.0" lineStyle="Solid"/>
-					<leftPen lineWidth="3.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="3.0" lineStyle="Solid"/>
-					<rightPen lineWidth="3.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="167" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ 9 Advanced EIC payment]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="8" y="15" width="100" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{eic}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement x="375" y="135" width="167" height="40"/>
-				<box>
-					<topPen lineWidth="3.0" lineStyle="Solid"/>
-					<leftPen lineWidth="3.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="3.0" lineStyle="Solid"/>
-					<rightPen lineWidth="3.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="167" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ 10 Dependent care benefits]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="8" y="15" width="100" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{dcare}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement x="0" y="175" width="208" height="189"/>
-				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="208" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ e Employee's name]]></text>
-				</staticText>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="30" width="200" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{empaddress}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="15" width="200" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{empname}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="45" width="200" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{empcityst}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement x="208" y="175" width="167" height="155"/>
-				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="167" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ 12 See Instrs. for box 12]]></text>
-				</staticText>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="15" width="20" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1201}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="28" y="15" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1201}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="28" y="30" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1202}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="30" width="20" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1202}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="45" width="20" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1203}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="28" y="45" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1203}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="60" width="20" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1204}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="28" y="60" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1204}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="75" width="20" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1205}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="28" y="75" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1205}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="90" width="20" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1206}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="28" y="90" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1206}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="105" width="20" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1207}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="28" y="105" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1207}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="120" width="20" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1208}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="28" y="120" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1208}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="135" width="20" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1209}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="28" y="135" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1209}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement x="208" y="330" width="334" height="34"/>
-				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="1" width="111" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ 13 Statutory Employee]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="111" y="1" width="111" height="15"/>
-					<textElement textAlignment="Center">
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[ Retirement Plan]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="222" y="1" width="111" height="15"/>
-					<textElement textAlignment="Center">
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[Third party sick pay]]></text>
-				</staticText>
-				<image>
-					<reportElement x="50" y="18" width="12" height="12"/>
-					<imageExpression class="java.lang.String"><![CDATA[$F{statemp}]]></imageExpression>
-				</image>
-				<image>
-					<reportElement x="160" y="18" width="12" height="12"/>
-					<imageExpression class="java.lang.String"><![CDATA[$F{retplan}]]></imageExpression>
-				</image>
-				<image>
-					<reportElement x="270" y="18" width="12" height="12"/>
-					<imageExpression class="java.lang.String"><![CDATA[$F{thrdsick}]]></imageExpression>
-				</image>
-			</frame>
-			<frame>
-				<reportElement x="375" y="175" width="167" height="155"/>
-				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid"/>
-				</box>
-				<staticText>
-					<reportElement x="0" y="0" width="167" height="15"/>
-					<textElement>
-						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
-					</textElement>
-					<text><![CDATA[14 See Instrs. for box 14]]></text>
-				</staticText>
-				<textField isBlankWhenNull="true">
-					<reportElement x="102" y="15" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1401}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="102" y="45" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1403}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="60" width="94" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1404}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="30" width="94" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1402}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="102" y="30" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1402}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="102" y="60" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1404}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="15" width="94" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1401}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="45" width="94" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1403}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="102" y="120" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1408}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="102" y="75" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1405}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="75" width="94" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1405}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="102" y="105" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1407}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="90" width="94" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1406}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="120" width="94" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1408}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="102" y="90" width="57" height="15"/>
-					<textElement textAlignment="Right">
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{amt1406}]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="8" y="105" width="94" height="15"/>
-					<textElement>
-						<font size="9"/>
-					</textElement>
-					<textFieldExpression class="java.lang.String"><![CDATA[$F{code1407}]]></textFieldExpression>
-				</textField>
-			</frame>
+			<textField>
+				<reportElement x="0" y="364" width="325" height="15" uuid="2d5ec3de-78b7-4ce6-9e42-694233fc2ba5"/>
+				<textElement>
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{copy}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="325" y="364" width="217" height="15"/>
+				<reportElement x="325" y="364" width="217" height="15" uuid="5277cc43-f32c-487a-9299-5f27f64b928d"/>
 				<textElement textAlignment="Right">
 					<font size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Department of the Treasury - Internal Revenue Service]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="380" width="542" height="45"/>
+				<reportElement x="0" y="380" width="542" height="45" uuid="6012981b-befd-4874-a8a2-ad1dc5099c99"/>
 				<textElement textAlignment="Center">
 					<font size="24" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[2010]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="0" y="364" width="325" height="15"/>
-				<textElement>
-					<font isBold="true" pdfFontName="Helvetica-Bold"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{copy}]]></textFieldExpression>
-			</textField>
 		</band>
 	</detail>
 	<columnFooter>
@@ -808,16 +962,16 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 	<lastPageFooter>
 		<band height="728">
 			<frame>
-				<reportElement x="0" y="0" width="548" height="728"/>
+				<reportElement x="0" y="0" width="548" height="728" uuid="9e43fa0e-d393-4361-82ea-ced599c6bb39"/>
 				<staticText>
-					<reportElement x="0" y="0" width="248" height="40"/>
+					<reportElement x="0" y="0" width="248" height="40" uuid="fe341c41-015a-4118-be64-d0124d60ce78"/>
 					<textElement markup="styled">
 						<font size="12" isBold="false"/>
 					</textElement>
 					<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Instructions for Employee</style> <style isItalic="true" pdfFontName="Helvetica-Oblique">(continued from back of Copy C)</style>]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="50" width="248" height="560"/>
+					<reportElement x="0" y="50" width="248" height="560" uuid="d05a6acb-8903-4905-9c2e-368e249c68bb"/>
 					<textElement markup="styled">
 						<font size="10" isBold="false"/>
 					</textElement>
@@ -837,7 +991,7 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 <style isBold="true" pdfFontName="Helvetica-Bold">V</style>—Income from exercise of nonstatutory stock option(s) (included in boxes 1, 3 (up to social security wage base), and 5). See Pub. 525 and instructions for Schedule D (Form 1040) for reporting requirements.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="280" y="50" width="248" height="589"/>
+					<reportElement x="280" y="50" width="248" height="589" uuid="98a1d1ea-5cca-422c-b404-a59885808806"/>
 					<textElement markup="styled">
 						<font size="10" isBold="false"/>
 					</textElement>
