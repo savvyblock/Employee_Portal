@@ -263,7 +263,7 @@
         </dependency>
   </dependencies>
   <build>
-    <finalName>ESC20</finalName>
+    <finalName>EmployeePortal</finalName>
     <pluginManagement>
       <plugins>
         <plugin>
