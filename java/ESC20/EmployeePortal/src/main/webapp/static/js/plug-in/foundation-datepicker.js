@@ -1448,9 +1448,9 @@
             // var nextBtn = '<button aria-label="'+nextLabel+'">' + rightArrow + '</button>'
             return('<thead>' +
             '<tr>' +
-            '<th class="prev" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" aria-label="'+prevLabel+'">' + leftArrow + '</th>' +
+            '<th class="prev" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" aria-label="'+prevLabel+'"><span class="forAria">'+prevLabel+'</span>' + leftArrow + '</th>' +
             '<th colspan="'+num+'" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" class="date-switch"></th>' +
-            '<th class="next" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" aria-label="'+nextLabel+'">' + rightArrow + '</th>' +
+            '<th class="next" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" aria-label="'+nextLabel+'"><span class="forAria">'+nextLabel+'</span>' + rightArrow + '</th>' +
             '</tr>' +
             '</thead>')},
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
