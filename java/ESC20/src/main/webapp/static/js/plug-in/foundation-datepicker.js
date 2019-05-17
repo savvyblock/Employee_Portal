@@ -1443,53 +1443,55 @@
 
             return viewMode;
         },
-        headTemplate: function(leftArrow, rightArrow) {
+        headTemplate: function(leftArrow, rightArrow,num) {
             // var preBtn = '<button aria-label="'+prevLabel+'">' + leftArrow + '</button>'
             // var nextBtn = '<button aria-label="'+nextLabel+'">' + rightArrow + '</button>'
             return('<thead>' +
             '<tr>' +
             '<th class="prev" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" aria-label="'+prevLabel+'">' + leftArrow + '</th>' +
-            '<th colspan="5" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" class="date-switch"></th>' +
+            '<th colspan="'+num+'" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" class="date-switch"></th>' +
             '<th class="next" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" aria-label="'+nextLabel+'">' + rightArrow + '</th>' +
             '</tr>' +
             '</thead>')},
         contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
-        footTemplate: '<tfoot><tr><th colspan="7" class="today"></th></tr></tfoot>'
+        footTemplate: function(num) {
+            return ('<tfoot><tr><th colspan="'+num+'" class="today"></th></tr></tfoot>')
+        } 
     };
     DPGlobal.template = function(leftArrow, rightArrow, closeIcon) {return( '<div class="datepicker">' +
         '<div class="datepicker-minutes">' +
         '<table class=" table-condensed">' +
-        DPGlobal.headTemplate(leftArrow, rightArrow) +
+        DPGlobal.headTemplate(leftArrow, rightArrow,1) +
         DPGlobal.contTemplate +
-        DPGlobal.footTemplate +
+        DPGlobal.footTemplate(3) +
         '</table>' +
         '</div>' +
         '<div class="datepicker-hours">' +
         '<table class=" table-condensed">' +
-        DPGlobal.headTemplate(leftArrow, rightArrow) +
+        DPGlobal.headTemplate(leftArrow, rightArrow,1) +
         DPGlobal.contTemplate +
-        DPGlobal.footTemplate +
+        DPGlobal.footTemplate(3) +
         '</table>' +
         '</div>' +
         '<div class="datepicker-days">' +
         '<table class=" table-condensed">' +
-        DPGlobal.headTemplate(leftArrow, rightArrow) +
+        DPGlobal.headTemplate(leftArrow, rightArrow,5) +
         '<tbody></tbody>' +
-        DPGlobal.footTemplate +
+        DPGlobal.footTemplate(7) +
         '</table>' +
         '</div>' +
         '<div class="datepicker-months">' +
         '<table class="table-condensed">' +
-        DPGlobal.headTemplate(leftArrow, rightArrow) +
+        DPGlobal.headTemplate(leftArrow, rightArrow,1) +
         DPGlobal.contTemplate +
-        DPGlobal.footTemplate +
+        DPGlobal.footTemplate(3) +
         '</table>' +
         '</div>' +
         '<div class="datepicker-years">' +
         '<table class="table-condensed">' +
-        DPGlobal.headTemplate(leftArrow, rightArrow) +
+        DPGlobal.headTemplate(leftArrow, rightArrow,1) +
         DPGlobal.contTemplate +
-        DPGlobal.footTemplate +
+        DPGlobal.footTemplate(3) +
         '</table>' +
         '</div>' +
         '<a class="button datepicker-close tiny alert right closeDatepicker" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" style="width:auto;" aria-label="'+closeDialogLabel+'">' + closeIcon + '</a>' +
