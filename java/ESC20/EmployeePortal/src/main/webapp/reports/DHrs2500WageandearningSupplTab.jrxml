@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningSupplTab" pageWidth="612" pageHeight="792" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="fcf27442-f49c-42de-9dee-f711876f8081">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
+	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="4"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="vs_empnbr" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_payfreq" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_dtofpay" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_void_iss" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_chk_nbr" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_adj_nbr" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_acct_typ" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT  distinct sum(bhr_pay_distr_hist.acct_amt) as ed_amt,
+			case when trim(bhr_pay_distr_hist.extra_duty_cd) = ''
+                   then 'ZZZ'
+                   else bhr_pay_distr_hist.extra_duty_cd end as ed_cd,
+			short_descr = ed_cd || ' - ' || isnull(bthr_extra_duty.extra_duty_descr, 'Not in file'),
+         bhr_pay_distr_hist.emp_nbr as bhr_pay_deduct_hist_emp_nbr,
+         bhr_pay_distr_hist.chk_nbr as bhr_pay_distr_hist_chk_nbr,
+         bhr_pay_distr_hist.void_or_iss as bhr_pay_distr_hist_void_or_iss,
+         bhr_pay_distr_hist.adj_nbr as bhr_pay_distr_hist_adj_nbr,
+         bhr_pay_distr_hist.dt_of_pay as bhr_pay_distr_hist_dt_of_pay
+    FROM {oj bhr_pay_distr_hist left outer join bthr_extra_duty
+                                on bhr_pay_distr_hist.cyr_nyr_flg = bthr_extra_duty.cyr_nyr_flg and
+                                   bhr_pay_distr_hist.extra_duty_cd = bthr_extra_duty.extra_duty_cd}
+   where bhr_pay_distr_hist.emp_nbr = $P{vs_empnbr} and
+         bhr_pay_distr_hist.pay_freq = $P{vs_payfreq} and
+         bhr_pay_distr_hist.dt_of_pay = $P{vs_dtofpay} and
+         bhr_pay_distr_hist.void_or_iss = $P{vs_void_iss} and
+         bhr_pay_distr_hist.chk_nbr = $P{vs_chk_nbr} and
+         cast(bhr_pay_distr_hist.adj_nbr as char(3)) = CASE WHEN isnull(TRIM($P{vs_adj_nbr}), '') = ''
+							    THEN cast(bhr_pay_distr_hist.adj_nbr as char(3))
+							    ELSE $P{vs_adj_nbr} END and
+         (bhr_pay_distr_hist.acct_typ = $P{vs_acct_typ} or
+	  (bhr_pay_distr_hist.acct_typ = 'I' and 'B' = $P{vs_acct_typ}))
+group by bhr_pay_distr_hist.pay_freq,
+         bhr_pay_distr_hist.emp_nbr,
+         bhr_pay_distr_hist.cyr_nyr_flg,
+         bhr_pay_distr_hist.dt_of_pay,
+         bhr_pay_distr_hist.chk_nbr,
+         bhr_pay_distr_hist.void_or_iss,
+         bhr_pay_distr_hist.adj_nbr,
+         bhr_pay_distr_hist.extra_duty_cd,
+         bthr_extra_duty.extra_duty_descr]]>
+	</queryString>
+	<field name="ed_amt" class="java.lang.Double"/>
+	<field name="ed_cd" class="java.lang.String"/>
+	<field name="short_descr" class="java.lang.String"/>
+	<field name="bhr_pay_deduct_hist_emp_nbr" class="java.lang.String"/>
+	<field name="bhr_pay_distr_hist_chk_nbr" class="java.lang.String"/>
+	<field name="bhr_pay_distr_hist_void_or_iss" class="java.lang.String"/>
+	<field name="bhr_pay_distr_hist_adj_nbr" class="java.lang.Double"/>
+	<field name="bhr_pay_distr_hist_dt_of_pay" class="java.lang.String"/>
+	<sortField name="bhr_pay_deduct_hist_emp_nbr"/>
+	<sortField name="short_descr"/>
+	<variable name="sum_ed_amt_1" class="java.lang.Double" resetType="Group" resetGroup="ed_cd1" calculation="Sum">
+		<variableExpression><![CDATA[$F{ed_amt}]]></variableExpression>
+	</variable>
+	<variable name="sum_ed_amt" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{ed_amt}]]></variableExpression>
+	</variable>
+	<group name="ed_cd1" minHeightToStartNewPage="60">
+		<groupExpression><![CDATA[$F{ed_cd}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band height="20">
+			<frame>
+				<reportElement x="1" y="1" width="390" height="17" uuid="8811733b-cd10-4c07-8416-514a307bf344">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
+				<frame>
+					<reportElement x="1" y="1" width="380" height="16" uuid="531a219b-aec5-4c21-a8f1-085d4947141b">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="2" y="1" width="136" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="a35c73d5-1cb8-46c7-ba65-68301d107e09">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[This dw used by ytd rept also.]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="4" y="1" width="243" height="11" backcolor="#C0C0C0" uuid="7c253ef0-f10d-456d-a7fb-59e078c13c4c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Center">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<textFieldExpression><![CDATA[($P{vs_acct_typ}.equals( "S" ) ? "Supplemental Type" :
+    ($P{vs_acct_typ}.equals( "B" ) ? "Non-TRS Taxable Type" :
+        "Non-TRS Non-Taxable Type"))]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="251" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="82b6a454-5171-4ca3-92fa-041bcea90fac">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[This Period]]></text>
+					</staticText>
+					<line>
+						<reportElement key="line-1" x="2" y="11" width="245" height="1" uuid="3da62895-d22a-456a-a0c5-c3001a676210"/>
+					</line>
+					<line>
+						<reportElement key="line-2" x="251" y="11" width="60" height="1" uuid="8a16598c-a7be-44dc-8bbb-cafd513b8fe9"/>
+					</line>
+				</frame>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="16">
+			<frame>
+				<reportElement x="1" y="1" width="390" height="15" uuid="883638fe-3d31-4870-a1a7-17af96f1ad4c">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
+				<frame>
+					<reportElement x="1" y="1" width="380" height="14" uuid="a67cb9e9-5dbf-4665-ba66-3cef30bed36d">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="4" y="1" width="243" height="11" backcolor="#C0C0C0" uuid="0436f5ae-af1f-4b58-bd7d-291b512845f9">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{short_descr} != null
+&& !"".equals($F{short_descr}.trim())
+&& $F{short_descr}.length() >= 3
+&& "ZZZ".equals($F{short_descr}.substring(0,3))
+      ? ($P{vs_acct_typ}.equals( "S" )
+            ? "Other Supplemental"
+            : ($P{vs_acct_typ}.equals( "B" )
+              ? "Other Non-TRS Taxable"
+              : "Other Non-TRS Non-Taxable"))
+      : $F{short_descr}]]></textFieldExpression>
+					</textField>
+					<textField pattern="###,###,###.00" isBlankWhenNull="true">
+						<reportElement key="textField" x="256" y="1" width="55" height="11" backcolor="#C0C0C0" uuid="9e45db45-aa8c-4508-a4d1-61fa0ec438e2">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$V{sum_ed_amt_1}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<summary>
+		<band height="33">
+			<frame>
+				<reportElement x="1" y="1" width="390" height="31" uuid="6bc657be-5830-4d03-a1cc-533517dfa6c7">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
+				<frame>
+					<reportElement x="1" y="1" width="380" height="14" uuid="ce375469-e851-4a7d-a234-21e81f57f5cd">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="4" y="1" width="118" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="1f1f875d-f1cf-4f0a-9372-5e692cf02b05">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[($P{vs_acct_typ}.equals( "S" ) ? "Total Supplemental Pay:" :
+    ($P{vs_acct_typ}.equals( "B" ) ? "Total Non-TRS Taxable:" :
+        "Total Non-TRS Non-Taxable:"))]]></textFieldExpression>
+					</textField>
+					<textField pattern="###,###.00" isBlankWhenNull="true">
+						<reportElement key="textField" x="256" y="1" width="55" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="6c566cec-c536-4664-abd2-df1a553342f1">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$V{sum_ed_amt}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="16" width="380" height="14" uuid="4c823acf-46ec-4524-82f7-c150a9572500">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="4" y="1" width="315" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5e6d71d5-d6f5-463b-92c4-cde18cef328b">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[*********************************************************************************************************]]></text>
+					</staticText>
+				</frame>
+			</frame>
+		</band>
+	</summary>
+</jasperReport>

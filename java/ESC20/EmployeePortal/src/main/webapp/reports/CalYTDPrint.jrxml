@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CalYTDPrint" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="293e8560-1632-4a46-9499-be1c136f20b8">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
+	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<field name="dname" class="java.lang.String"/>
+	<field name="daddress" class="java.lang.String"/>
+	<field name="dcityst" class="java.lang.String"/>
+	<field name="ename" class="java.lang.String"/>
+	<field name="employeeNumber" class="java.lang.String"/>
+	<field name="calYr" class="java.lang.String"/>
+	<field name="frequency" class="java.lang.String"/>
+	<field name="lastPostedPayDate" class="java.lang.String"/>
+	<field name="contractPay" class="java.math.BigDecimal"/>
+	<field name="nonContractPay" class="java.math.BigDecimal"/>
+	<field name="supplementalPay" class="java.math.BigDecimal"/>
+	<field name="withholdingGross" class="java.math.BigDecimal"/>
+	<field name="withholdingTax" class="java.math.BigDecimal"/>
+	<field name="earnedIncomeCredit" class="java.math.BigDecimal"/>
+	<field name="ficaGross" class="java.math.BigDecimal"/>
+	<field name="ficaTax" class="java.math.BigDecimal"/>
+	<field name="dependentCare" class="java.math.BigDecimal"/>
+	<field name="dependentCareEmployer" class="java.math.BigDecimal"/>
+	<field name="dependentCareExceeds" class="java.math.BigDecimal"/>
+	<field name="medicareGross" class="java.math.BigDecimal"/>
+	<field name="medicareTax" class="java.math.BigDecimal"/>
+	<field name="annuityDeduction" class="java.math.BigDecimal"/>
+	<field name="roth403BAfterTax" class="java.math.BigDecimal"/>
+	<field name="taxableBenefits" class="java.math.BigDecimal"/>
+	<field name="annuity457Employee" class="java.math.BigDecimal"/>
+	<field name="annuity457Employer" class="java.math.BigDecimal"/>
+	<field name="annuity457Withdraw" class="java.math.BigDecimal"/>
+	<field name="nonTrsBusinessExpense" class="java.math.BigDecimal"/>
+	<field name="nonTrsReimbursementBase" class="java.math.BigDecimal"/>
+	<field name="nonTrsReimbursementExcess" class="java.math.BigDecimal"/>
+	<field name="movingExpenseReimbursement" class="java.math.BigDecimal"/>
+	<field name="nonTrsNonTaxBusinessAllow" class="java.math.BigDecimal"/>
+	<field name="nonTrsNonTaxNonPayAllow" class="java.math.BigDecimal"/>
+	<field name="salaryReduction" class="java.math.BigDecimal"/>
+	<field name="trsInsurance" class="java.math.BigDecimal"/>
+	<field name="hsaEmployerContribution" class="java.math.BigDecimal"/>
+	<field name="hsaEmployeeSalaryReductionContribution" class="java.math.BigDecimal"/>
+	<field name="hireExemptWgs" class="java.math.BigDecimal"/>
+	<field name="taxedLifeContribution" class="java.math.BigDecimal"/>
+	<field name="taxedGroupContribution" class="java.math.BigDecimal"/>
+	<field name="healthInsuranceDeduction" class="java.math.BigDecimal"/>
+	<field name="emplrPrvdHlthcare" class="java.math.BigDecimal"/>
+	<field name="annuityRoth457b" class="java.math.BigDecimal"/>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band height="101">
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="505" y="7" width="73" height="14" backcolor="#C0C0C0" uuid="5e246361-3631-4bd8-ab1f-ea40cb3574bd"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page: " + $V{PAGE_NUMBER} + "    of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="false">
+				<reportElement key="textField" x="580" y="7" width="35" height="14" uuid="d7975a88-eba7-4d39-838b-cdf20894f2e0"/>
+				<textElement>
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="207" y="7" width="200" height="12" backcolor="#C0C0C0" uuid="8438a6cc-fce2-4c7a-b810-2d8cece95578"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="207" y="19" width="200" height="12" backcolor="#C0C0C0" uuid="f769df50-7e27-4cfd-9bd6-a6167c230249"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{daddress}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="207" y="31" width="200" height="12" backcolor="#C0C0C0" uuid="4ee91a5b-4182-4173-926b-4ba177a4ecfc"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dcityst}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="207" y="57" width="200" height="12" backcolor="#C0C0C0" uuid="ef473c66-ab2e-4f6f-a928-8c62d5bb57cc"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Calendar Year to Date"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="207" y="69" width="200" height="12" backcolor="#C0C0C0" uuid="fe010f72-4e5b-4271-8681-136c0102c72b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("MM-dd-yyyy h:mm a").format(java.util.Calendar.getInstance().getTime())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="689">
+			<frame>
+				<reportElement x="11" y="1" width="590" height="77" uuid="99cd78ab-9bbc-4dfb-abd3-7039ca410d8a">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
+				<frame>
+					<reportElement x="1" y="1" width="580" height="12" uuid="c04b3060-8aa5-4ecb-abb1-ce163ac76d35">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="1" y="2" width="100" height="10" backcolor="#C0C0C0" uuid="c5db1c50-b976-4601-af75-03b48ecae479">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Employee Name:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="103" y="2" width="200" height="10" backcolor="#C0C0C0" uuid="9b433979-50f2-45e3-9446-200e626d47a5">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{ename}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="14" width="580" height="12" uuid="632ba7fa-142b-453a-a079-65238aa683e6">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="1" y="1" width="100" height="10" backcolor="#C0C0C0" uuid="4c9fc28d-8298-48f5-80ae-cad470609bdc">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Employee ID:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="103" y="1" width="200" height="10" backcolor="#C0C0C0" uuid="ed2412b1-5f63-43f5-8dd3-32b9c91232fc">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{employeeNumber}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="32" width="580" height="12" uuid="55fdb7a7-e4ec-48a3-bda1-b15b142ba7bc">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="1" y="1" width="100" height="10" backcolor="#C0C0C0" uuid="d38ee377-b177-49bc-a3f1-8091b2e4f4d0"/>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Calendar Year:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="103" y="1" width="200" height="10" backcolor="#C0C0C0" uuid="969daf75-19ab-40d2-b680-85795e9d1eaa"/>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{calYr}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="45" width="580" height="12" uuid="a949c906-23ac-4f64-8626-7104ebdb5d21">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="1" y="1" width="100" height="10" backcolor="#C0C0C0" uuid="031e0bdd-4bed-4e1d-aeb9-f4f579d1a388">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Frequency:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="103" y="1" width="200" height="10" backcolor="#C0C0C0" uuid="a0a7addb-091b-4e17-9245-37990d995a75">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{frequency}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="58" width="580" height="12" uuid="32deefdb-519c-49d9-971d-2b30d20da964">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="1" y="1" width="100" height="10" backcolor="#C0C0C0" uuid="95f1f1fe-4ef9-4fe5-b43a-88e4fd6db32a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Last Posted Pay Date:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="103" y="1" width="200" height="10" backcolor="#C0C0C0" uuid="349a6c72-143c-429f-bc1a-82542ba72b64">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{lastPostedPayDate}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</frame>
+			<frame>
+				<reportElement x="11" y="89" width="600" height="239" uuid="4235faff-60a5-4766-b0e4-3a3ef48ffc85">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
+				<frame>
+					<reportElement x="1" y="1" width="595" height="12" uuid="f0bbada7-1f39-4194-8bd7-3c41923935db">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="1" y="1" width="83" height="10" backcolor="#C0C0C0" uuid="12bdc7d5-8a96-40ad-a96a-a9d164bb0030">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Contract Pay:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="105" y="1" width="70" height="10" uuid="86d34e49-5e6b-4265-b246-aa65e02a3b13">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{contractPay}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="200" y="1" width="83" height="10" backcolor="#C0C0C0" uuid="e2900967-b2ea-4f0a-b429-19f42107aa67">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Non-Contract Pay:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="310" y="1" width="70" height="10" uuid="694e3aee-eaa2-4011-81a8-69b1c341fd13">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{nonContractPay}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="405" y="1" width="83" height="10" backcolor="#C0C0C0" uuid="1fc13320-e5c8-4335-84a3-495eaa788d58">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Supplemental Pay:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="512" y="1" width="70" height="10" uuid="0b5b26c8-3054-4a9d-b8b2-445cc0774ad7">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{supplementalPay}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="14" width="595" height="12" uuid="012c3c8b-b380-47f3-af5c-62be5648aa81">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="1" y="1" width="83" height="10" uuid="041256a1-179b-4620-9187-81d80e21ce3f">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Withholding Gross:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="105" y="1" width="70" height="10" uuid="a0721f31-9967-45ab-aa41-ce1a7a1f043c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{withholdingGross}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="200" y="1" width="83" height="10" backcolor="#C0C0C0" uuid="f52a559e-5760-4b99-ae7e-67be859c7324">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Withholding Tax:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="310" y="1" width="70" height="10" uuid="d281865c-1410-468b-983d-9ec8220c8c97">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{withholdingTax}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="405" y="1" width="136" height="10" backcolor="#C0C0C0" uuid="db14c4bc-ee4d-467d-9560-a75ea6bf3795">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Earned Income Credit:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="541" y="1" width="41" height="10" uuid="920810c8-98e9-458f-a677-4439b8844a88">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{earnedIncomeCredit}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="27" width="595" height="12" uuid="d5703a93-2f71-4891-b9c5-059ccb5ebbd7">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="1" y="1" width="83" height="10" uuid="e5775600-b835-48ae-9848-3820738a6a33">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[FICA Gross:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="105" y="1" width="70" height="10" uuid="5ab7db87-e6c0-4961-8188-1cda89d56056">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{ficaGross}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="200" y="1" width="83" height="10" backcolor="#C0C0C0" uuid="a6a0d426-2fbd-4599-bb9a-911f5c1dfe96">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[FICA Tax:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="310" y="1" width="70" height="10" uuid="b2d6409d-af35-436d-a3b7-56c1a339dd6a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{ficaTax}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="40" width="595" height="22" uuid="d5703a93-2f71-4891-b9c5-059ccb5ebbd7">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="1" y="1" width="133" height="10" uuid="c3b56b96-b280-45c5-8a23-97575053679e">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Employee Dependent Care:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="134" y="1" width="41" height="10" uuid="c9a0b27d-07b8-4872-8ac6-113708d6c1c0">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{dependentCare}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="200" y="1" width="139" height="10" backcolor="#C0C0C0" uuid="c16bce4b-f7ed-41f7-bb51-7514c7e37c85">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Employer Dependent Care:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="339" y="1" width="41" height="10" uuid="2f6de3a3-bac6-4c6c-9e40-e0034ca25bbe">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{dependentCareEmployer}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="405" y="1" width="136" height="19" backcolor="#C0C0C0" uuid="223bded6-4870-46d4-beb2-9d3ed655e83f">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Dependent Care (Employee and Employer) exceeds $5,000:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="541" y="1" width="41" height="10" uuid="053191c7-f31a-4285-a8c7-0384a1b25fa7">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{dependentCareExceeds}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="63" width="595" height="12" uuid="d5703a93-2f71-4891-b9c5-059ccb5ebbd7">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="1" y="1" width="83" height="10" uuid="c0aa033c-65d4-4a8c-8cbb-9c0ad8a104b9">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Medicare Gross:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="105" y="1" width="70" height="10" uuid="61274a0f-9e40-4731-b309-b7f2907b222a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{medicareGross}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="200" y="1" width="83" height="10" backcolor="#C0C0C0" uuid="6b4acdae-8089-48b1-9151-8493f5b87fde">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Medicare Tax:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="310" y="1" width="70" height="10" uuid="3e2a7aa1-125d-46fe-b845-454157afcb51">
+							<property name="net.sf.jasperreports.export.pdf.tag.tr"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{medicareTax}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="76" width="595" height="12" uuid="d5703a93-2f71-4891-b9c5-059ccb5ebbd7">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="1" y="1" width="133" height="10" uuid="d9b4c3a5-1640-4cd0-8aa9-0ba4561539c5">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Annuity Deduction:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="134" y="1" width="41" height="10" uuid="ca9c3442-2471-43fd-90ee-f77d8ab08c3a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{annuityDeduction}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="200" y="1" width="139" height="10" backcolor="#C0C0C0" uuid="99c32f43-2548-4e3d-83c2-e80a6f955fb9">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Roth 403B After Tax:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="339" y="1" width="41" height="10" uuid="06bb4b52-c35e-4221-be75-3b6726091dce">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{roth403BAfterTax}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="405" y="1" width="136" height="10" backcolor="#C0C0C0" uuid="78dcb8dc-d59f-45f4-926e-ca6ed2837b1d">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Taxable Benefits:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="541" y="1" width="41" height="10" uuid="81c5cc65-0474-4938-ace4-b06e2cac2b2e">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{taxableBenefits}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="89" width="595" height="12" uuid="d5703a93-2f71-4891-b9c5-059ccb5ebbd7">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="1" y="1" width="133" height="10" uuid="f9fe6389-8b00-4e56-af8e-6221761c06af">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[457 Employee Contribution:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="134" y="1" width="41" height="10" uuid="a477cc02-fa22-4a79-8df7-108226442acd">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{annuity457Employee}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="200" y="1" width="139" height="10" backcolor="#C0C0C0" uuid="a85153b0-1ff0-47d3-9e22-381bb6853e02">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[457 Employer Contribution:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="339" y="1" width="41" height="10" uuid="feb50c2b-2476-4caa-9cbf-1ffecf76e202">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{annuity457Employer}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="405" y="1" width="136" height="10" backcolor="#C0C0C0" uuid="7fda7d49-3dae-4054-a4ee-cd2893fb2ecb">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[457 Withdraw:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="541" y="1" width="41" height="10" uuid="780ba955-de8c-49c3-a736-a7f387e87fd8">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{annuity457Withdraw}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="102" width="595" height="12" uuid="d5703a93-2f71-4891-b9c5-059ccb5ebbd7">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="1" y="1" width="133" height="10" uuid="084b8b36-300a-459c-930c-bd9b1bf77174">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Non-TRS Business Allowance:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="134" y="1" width="41" height="10" uuid="ea8d7a60-bb85-4598-a047-6c4246f5a881">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{nonTrsBusinessExpense}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="200" y="1" width="139" height="10" backcolor="#C0C0C0" uuid="84f2c9ea-f07c-4436-a393-00359beab1e9">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Non-TRS Reimbursement Base:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="339" y="1" width="41" height="10" uuid="bf74e495-1ef0-4210-b0f8-adc4277b380a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{nonTrsReimbursementBase}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="405" y="1" width="136" height="10" backcolor="#C0C0C0" uuid="41d6c3d5-c9a8-47c7-83ca-c1b4aa2026b8">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Non-TRS Reimbursement Excess:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="541" y="1" width="41" height="10" uuid="fab1b022-914e-4909-b261-eea3a0ccfdd1">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{nonTrsReimbursementExcess}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="115" width="395" height="12" uuid="d5703a93-2f71-4891-b9c5-059ccb5ebbd7">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="1" y="1" width="133" height="10" uuid="4d3d09ff-a17e-4952-8624-07b62d87a91d">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Moving Expense Reimbursement:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="134" y="1" width="41" height="10" uuid="7d38dd14-99a3-4b04-8f8b-0a36ab72e9a3">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{movingExpenseReimbursement}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="200" y="1" width="139" height="10" backcolor="#C0C0C0" uuid="23ba735d-d2ff-4af1-a78f-bfaa7a16fbe5">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Non-TRS Non-Tax Business Allow:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="339" y="1" width="41" height="10" uuid="cbfa2e53-c906-4b64-bdc9-18beb6a72aa5">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{nonTrsNonTaxBusinessAllow}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="396" y="115" width="200" height="25" uuid="d5703a93-2f71-4891-b9c5-059ccb5ebbd7">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="10" y="1" width="136" height="23" backcolor="#C0C0C0" uuid="b6819225-defa-4a4a-bcc5-ad443cc1ee96">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Non-TRS Non-Tax Non-Pay Allow:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="146" y="1" width="41" height="10" uuid="c49b345a-0735-47ad-b6df-da4d032297c5">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{nonTrsNonTaxNonPayAllow}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="128" width="395" height="12" uuid="d5703a93-2f71-4891-b9c5-059ccb5ebbd7">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="1" y="1" width="133" height="10" uuid="287a067c-b04a-465f-ae50-24eca5d4beff">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[TRS Salary Reduction:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="134" y="1" width="41" height="10" uuid="38476210-2ca2-4e94-860f-265b8e98583b">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{salaryReduction}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="200" y="1" width="139" height="10" backcolor="#C0C0C0" uuid="90f4caf7-256b-47f5-bd71-e7b26f3b9158">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[TRS Insurance:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="339" y="1" width="41" height="10" uuid="3c2cc856-4acd-48d4-8b89-d79dab797579">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{trsInsurance}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="141" width="595" height="22" uuid="d5703a93-2f71-4891-b9c5-059ccb5ebbd7">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="1" y="2" width="133" height="10" uuid="b745ea70-bd4d-4c09-8209-19613562c842">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[HSA Employer Contribution:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="134" y="2" width="41" height="10" uuid="d0531d7b-7d46-412e-9f00-f96767271b35">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{hsaEmployerContribution}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="200" y="2" width="139" height="19" backcolor="#C0C0C0" uuid="db8f52a5-08b4-446d-b8d6-ca93da8fdc2e">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[HSA Employee Salary Reduction Contribution:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="339" y="2" width="41" height="10" uuid="e15b70b0-f3e0-44bb-bf2d-8c69530edb3d">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{hsaEmployeeSalaryReductionContribution}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="405" y="2" width="136" height="10" backcolor="#C0C0C0" uuid="accad0d7-c0c5-4369-b08c-b91531581497">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[HIRE Exempt Wages:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="541" y="2" width="41" height="10" uuid="1821b281-7c52-4d84-9378-21518d424e86">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{hireExemptWgs}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="164" width="595" height="22" uuid="d5703a93-2f71-4891-b9c5-059ccb5ebbd7">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="1" y="1" width="133" height="19" backcolor="#C0C0C0" uuid="eb8eade8-d22b-4c86-a5a8-6dd5cd21103f">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Taxed Employer Insurance Contribution:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="134" y="1" width="41" height="10" uuid="62f26d92-dc35-4014-9c4e-4adf3352f797">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{taxedLifeContribution}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="200" y="1" width="139" height="19" backcolor="#C0C0C0" uuid="1bed4321-66f7-4cb4-b4c8-da8e9936887c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Taxed Employer Group Insurance Contribution:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="339" y="1" width="41" height="10" uuid="8f75afea-0c87-4ca4-8fb7-db24d640f0cf">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{taxedGroupContribution}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="405" y="1" width="136" height="10" backcolor="#C0C0C0" uuid="bd9b6d29-42a9-456c-9b25-bd3aaa155714">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Health Insurance Deduction(s):]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="541" y="1" width="41" height="10" uuid="184301ca-7072-4c33-839a-ea5b2fe5d7d5">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{healthInsuranceDeduction}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="187" width="595" height="22" uuid="d5703a93-2f71-4891-b9c5-059ccb5ebbd7">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="1" y="1" width="133" height="19" uuid="5f532574-6fb7-4fd0-92ae-fbfcf484d0d3">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Employer-Sponsored Health Coverage:]]></text>
+					</staticText>
+					<textField pattern="#,##0.00">
+						<reportElement x="339" y="1" width="41" height="10" uuid="bb2678cd-c726-4068-99c4-51bf782bf110">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{annuityRoth457b}]]></textFieldExpression>
+					</textField>
+					<textField pattern="#,##0.00">
+						<reportElement x="134" y="1" width="41" height="10" uuid="9e872f55-87c9-45f0-8d00-4d31233b2fd4">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{emplrPrvdHlthcare}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="200" y="1" width="133" height="19" uuid="729b51c7-e266-4af3-aa9c-02a1a6e5087d">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Annuity Roth 457b:]]></text>
+					</staticText>
+				</frame>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningBnkTab" pageWidth="612" pageHeight="792" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="2e80e945-3fff-4db6-a7bc-996a9f39bbbe">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
+	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="vs_prt_bank_acct" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_payfreq" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_dtofpay" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_empnbr" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_voidiss" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_chknbr" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vs_adj_nbr" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[select isnull(bthr_bank_codes.bank_name, 'Not in File') as bthr_bank_codes_bank_name,
+		 bhr_bank_deposit_hist.bank_cd as bhr_bank_deposit_hist_bank_cd,
+		 bhr_pay_hist.chk_nbr as bhr_pay_hist_chk_nbr,
+		 bhr_bank_deposit_hist.bank_acct_typ as bhr_bank_deposit_hist_bank_acct_typ,
+case when isnull(trim(bhr_bank_deposit_hist.bank_acct_nbr), '') = ''
+          then ''
+     when length(trim(bhr_bank_deposit_hist.bank_acct_nbr)) <= 4
+          then trim(bhr_bank_deposit_hist.bank_acct_nbr)
+     ELSE
+          left('*************', length(trim(bhr_bank_deposit_hist.bank_acct_nbr)) - 4)
+ || right(trim(bhr_bank_deposit_hist.bank_acct_nbr), 4)
+end as bhr_bank_deposit_hist_bank_acct_nbr,
+bhr_bank_deposit_hist.bank_acct_amt as bhr_bank_deposit_hist_bank_acct_amt,
+bthr_bank_acct_typ.bank_acct_typ_descr as bthr_bank_acct_typ_bank_acct_typ_descr
+From  bhr_pay_hist,
+      {oj bhr_bank_deposit_hist left outer join bthr_bank_codes
+                                             on bthr_bank_codes.bank_cd = bhr_bank_deposit_hist.bank_cd},
+      bthr_bank_acct_typ
+Where bhr_pay_hist.cyr_nyr_flg = 'C' and
+		bhr_pay_hist.pay_freq = $P{vs_payfreq} and
+      bhr_bank_deposit_hist.emp_nbr = $P{vs_empnbr} and
+		bhr_pay_hist.emp_nbr = bhr_bank_deposit_hist.emp_nbr and
+		bhr_pay_hist.dt_of_pay = $P{vs_dtofpay} and
+      bhr_bank_deposit_hist.chk_nbr = $P{vs_chknbr} and
+		bhr_pay_hist.chk_nbr = bhr_bank_deposit_hist.chk_nbr and
+		bhr_pay_hist.void_or_iss = bhr_bank_deposit_hist.void_or_iss and
+	   bhr_bank_deposit_hist.pay_freq = $P{vs_payfreq} and
+		bhr_bank_deposit_hist.cyr_nyr_flg = 'C' and
+		bhr_bank_deposit_hist.dt_of_pay = $P{vs_dtofpay} and
+		bhr_bank_deposit_hist.void_or_iss = $P{vs_voidiss} and
+      bthr_bank_acct_typ.bank_acct_typ = bhr_bank_deposit_hist.bank_acct_typ and
+		cast(bhr_pay_hist.adj_nbr as char(3)) = CASE
+												WHEN isnull(TRIM($P{vs_adj_nbr}), '') = ''
+												THEN cast(bhr_pay_hist.adj_nbr as char(3))
+												ELSE $P{vs_adj_nbr}
+											END and
+      bhr_pay_hist.adj_nbr = bhr_bank_deposit_hist.adj_nbr]]>
+	</queryString>
+	<field name="bthr_bank_codes_bank_name" class="java.lang.String"/>
+	<field name="bhr_bank_deposit_hist_bank_cd" class="java.lang.String"/>
+	<field name="bhr_pay_hist_chk_nbr" class="java.lang.String"/>
+	<field name="bhr_bank_deposit_hist_bank_acct_typ" class="java.lang.String"/>
+	<field name="bhr_bank_deposit_hist_bank_acct_nbr" class="java.lang.String"/>
+	<field name="bhr_bank_deposit_hist_bank_acct_amt" class="java.math.BigDecimal"/>
+	<field name="bthr_bank_acct_typ_bank_acct_typ_descr" class="java.lang.String"/>
+	<sortField name="bthr_bank_codes_bank_name"/>
+	<sortField name="bhr_bank_deposit_hist_bank_cd"/>
+	<variable name="sum_bhr_bank_deposit_hist_bank_acct_amt" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{bhr_bank_deposit_hist_bank_acct_amt}]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band height="19">
+			<frame>
+				<reportElement x="4" y="1" width="510" height="17" uuid="b24c3442-998f-402e-8dcc-27823de0e8a2">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
+				<frame>
+					<reportElement x="1" y="1" width="500" height="15" uuid="aa2f5017-13ad-42b8-b658-facae2218289">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="3" y="1" width="210" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="1faacb86-1b91-44fa-95df-b4b69710c44f">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Bank Name]]></text>
+					</staticText>
+					<staticText>
+						<reportElement key="staticText" x="218" y="1" width="93" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="1f2efd5d-6931-47b3-9660-f80ea1adcc48">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Account Type]]></text>
+					</staticText>
+					<staticText>
+						<reportElement key="staticText" x="313" y="1" width="79" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="eac75103-0fde-41b1-beec-7547dafe5ea6">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Account Number]]></text>
+					</staticText>
+					<staticText>
+						<reportElement key="staticText" x="412" y="1" width="41" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="ff6f11a8-44c2-4371-a0c6-68ab45e3408f">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Amount]]></text>
+					</staticText>
+				</frame>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="19">
+			<frame>
+				<reportElement x="4" y="1" width="510" height="17" uuid="1f909d02-2504-4c5f-9525-4e2d8723131a">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
+				<frame>
+					<reportElement x="1" y="1" width="500" height="15" uuid="cc379e87-fb5b-44a2-a572-95d1fd582283">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="1" y="1" width="209" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="94e35568-cfe0-433a-bd81-42e3749ea22a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bthr_bank_codes_bank_name}.trim() + " " + "(" + $F{bhr_bank_deposit_hist_bank_cd}.trim() + ")"]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="218" y="1" width="11" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="dcbf958d-39da-4ffc-a4f8-865f3d500d06">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_bank_deposit_hist_bank_acct_typ}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="230" y="1" width="5" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5a984b86-8c5a-4412-803c-486e2dd12a80">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[-]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="235" y="1" width="74" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="3ae5f05f-6437-4ee2-b598-f91c45a8c500">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bthr_bank_acct_typ_bank_acct_typ_descr}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="312" y="1" width="80" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="24b595f4-3ccb-4650-8e73-6d1350bb1031">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA["Y".equals($P{vs_prt_bank_acct}) ?
+($F{bhr_bank_deposit_hist_bank_acct_nbr}==null?"":$F{bhr_bank_deposit_hist_bank_acct_nbr}):
+"************"]]></textFieldExpression>
+					</textField>
+					<textField pattern="###,##0.00" isBlankWhenNull="true">
+						<reportElement key="textField" x="398" y="1" width="55" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="3ad62969-9dd1-4fb2-9871-510fc604f5a0">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_bank_deposit_hist_bank_acct_amt}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<summary>
+		<band height="33">
+			<frame>
+				<reportElement x="4" y="1" width="580" height="28" uuid="ca78265c-0e93-46a4-b764-1d71a529f929">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
+				<frame>
+					<reportElement x="1" y="1" width="500" height="13" uuid="493cd1f7-1400-4513-8796-e12c3f4a90a1">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="323" y="1" width="70" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="b9dad257-d499-43f6-9299-12a0f109bbad">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Total:]]></text>
+					</staticText>
+					<textField pattern="###,##0.00" isBlankWhenNull="true">
+						<reportElement key="textField" x="398" y="1" width="55" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="62c2f7ec-7b5f-4e3f-90be-5ac85ca0a36c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$V{sum_bhr_bank_deposit_hist_bank_acct_amt}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="1" y="14" width="575" height="12" uuid="9585ab55-503b-4d48-aef4-fdcd8b5fdef5">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText-1" mode="Opaque" x="2" y="1" width="559" height="10" isRemoveLineWhenBlank="true" uuid="db01fb57-9941-4543-960f-5b1d17fa0f89">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[*******************************************************************************************************************************************]]></text>
+					</staticText>
+				</frame>
+			</frame>
+		</band>
+	</summary>
+</jasperReport>
