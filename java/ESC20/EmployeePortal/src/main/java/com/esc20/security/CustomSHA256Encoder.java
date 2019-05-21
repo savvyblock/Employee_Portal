@@ -7,8 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.esc20.service.BankService;
-
+@SuppressWarnings("deprecation")
 public class CustomSHA256Encoder implements PasswordEncoder{
 
 	private Logger logger = LoggerFactory.getLogger(CustomSHA256Encoder.class);

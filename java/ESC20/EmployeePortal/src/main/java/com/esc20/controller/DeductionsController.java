@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Deduction;
 import com.esc20.nonDBModels.Frequency;

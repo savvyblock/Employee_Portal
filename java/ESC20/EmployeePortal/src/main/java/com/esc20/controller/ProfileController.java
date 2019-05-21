@@ -1,11 +1,7 @@
 package com.esc20.controller;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.esc20.model.BeaAlert;
 import com.esc20.model.BeaAltMailAddr;
 import com.esc20.model.BeaBusPhone;
 import com.esc20.model.BeaCellPhone;
@@ -58,7 +51,6 @@ import com.esc20.service.ReferenceService;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import sun.misc.BASE64Decoder;
 
 @Controller
 @RequestMapping("/profile")
@@ -472,50 +464,6 @@ public class ProfileController{
         this.getProfileDetails(session, mav,null);
         return mav;
     } 
-    
-    @RequestMapping("changeAvatar")
-    public ModelAndView changeAvatar(HttpServletRequest req, String file, String fileName) {
-    	 HttpSession session = req.getSession();
-         ModelAndView mav = new ModelAndView();
- 		if(file==null||fileName==null) {
-			mav.setViewName("visitFailed");
-			mav.addObject("module", module);
-			mav.addObject("action", "Change user profile picture");
-			mav.addObject("errorMsg", "Not all mandotary fields provided.");
-			return mav;
-		}
-         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
-         BASE64Decoder decoder = new BASE64Decoder();
-         file = file.replace("data:image/jpeg;base64,", "");
-         file = file.replace("data:image/png;base64,", "");
-         file = file.replace("data:image/gif;base64,", "");
-         file = file.replace("data:image/bmp;base64,", "");
-         try {
-        	 byte[] b = decoder.decodeBuffer(file);
-	         for (int i = 0; i < b.length; ++i) {
-		         if (b[i] < 0) {
-		        	 b[i] += 256;
-		         }
-	         }
-	         //for local path
-	         String path= System.getProperty("user.dir").replace("bin", "standalone/data/images/")+demo.getEmpNbr()+".jpg";
-	         System.out.println(path);
-	         OutputStream out = new FileOutputStream(path);
-	         out.write(b);
-	         out.flush();
-	         out.close();
-	         mav.setViewName("profile");
-	         demo.setAvatar("/uploadFiles/"+demo.getEmpNbr()+".jpg"+"?uploadTime="+Calendar.getInstance().getTimeInMillis());
-	         this.indexService.updateDemoAvatar(demo);
-	         session.removeAttribute("userDetail");
-	         session.setAttribute("userDetail", demo);
-	         this.getProfileDetails(session, mav,null);
-         } catch (IOException e) {
-	         e.printStackTrace();
-         }
-         
-         return mav;
-    }
     
     @RequestMapping("saveMarital")
     public ModelAndView saveMarital(HttpServletRequest req, 

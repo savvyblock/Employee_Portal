@@ -41,7 +41,7 @@ public class BhrEmpDemo implements java.io.Serializable {
 	private Character sex;
 	private String addrNbr;
 	private String addrStr;
-	private String addrApt;
+	private transient String addrApt;
 	private String addrCity;
 	private String addrSt;
 	private String addrZip;

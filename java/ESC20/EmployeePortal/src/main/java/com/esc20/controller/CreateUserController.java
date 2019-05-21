@@ -3,8 +3,6 @@ package com.esc20.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,9 +13,7 @@ import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.SearchUser;
 import com.esc20.security.CustomSHA256Encoder;
-import com.esc20.service.BankService;
 import com.esc20.service.IndexService;
-import com.esc20.service.ReferenceService;
 
 @Controller
 @RequestMapping("/createUser")

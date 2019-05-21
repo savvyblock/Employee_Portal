@@ -1,13 +1,9 @@
 package com.esc20.controller;
 
-import java.text.ParseException;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -98,9 +94,6 @@ public class ResetPasswordController{
     	SearchUser searchUser=new SearchUser();
     	BeaUsers beaUser = this.indexService.getUserByEmpNbr(empNbr);
     	Integer count = beaUser.getTmpCnt();
-    	if(empNbr==null) {
-    		return this.forgetPassword(req);
-    	}
     	BeaUsers user = this.indexService.getUserByEmpNbr(empNbr);
     	BhrEmpDemo bed = this.indexService.getUserDetail(empNbr);
     	searchUser.setDateDay(bed.getDob().substring(6, 8));

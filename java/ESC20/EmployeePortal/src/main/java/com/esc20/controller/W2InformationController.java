@@ -2,7 +2,6 @@ package com.esc20.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -24,18 +23,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrThirdPartySickPay;
 import com.esc20.model.BhrW2;
-import com.esc20.nonDBModels.Account;
-import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.District;
-import com.esc20.nonDBModels.EmployeeInfo;
-import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Options;
-import com.esc20.nonDBModels.PayInfo;
-import com.esc20.nonDBModels.Stipend;
 import com.esc20.nonDBModels.W2Print;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
@@ -205,23 +197,9 @@ public class W2InformationController{
 		}
 		return 0;
 	}
-//	@RequestMapping("exportPDF")
-//	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
-//		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
-//		System.out.println("prefix" + strBackUrl);
-//		byte[] pdf = PDFUtil.getW2InformationPDF(strBackUrl+"/w2Information/w2InformationUnprotectedPDF", request, year);
-//		response.reset();
-//		response.setHeader("Content-Disposition", "attachment; filename=\"W2 Information for "+ year +".pdf\"");
-//		response.setContentType("application/octet-stream;charset=UTF-8");
-//		OutputStream out = response.getOutputStream();
-//		out.write(pdf);
-//		out.flush();
-//	}
 	
 	@RequestMapping("exportPDF")
 	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
-		HttpSession session = request.getSession();
-		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		response.setContentType("application/x-msdownload;charset=UTF-8");
 		response.setHeader("Content-Disposition", "attachment;filename=W-2 Substitute Form for "+year+".pdf");
 		

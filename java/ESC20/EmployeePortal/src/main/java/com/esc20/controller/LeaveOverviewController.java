@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BeaEmpLvComments;
 import com.esc20.model.BeaEmpLvRqst;
-import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
@@ -273,7 +272,6 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 			String leaveType, String absenseReason, String LeaveStartDate, String startTimeValue, String LeaveEndDate,
 			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String empNbr, String freq,
 			String startDate, String endDate) throws ParseException {
-		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
 		if(chain==null||leaveType==null||absenseReason==null||LeaveStartDate==null||startTimeValue==null||
 				LeaveEndDate==null||endTimeValue==null||lvUnitsDaily==null||lvUnitsUsed==null||empNbr==null||freq==null) {
