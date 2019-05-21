@@ -10,10 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.security.web.csrf.MissingCsrfTokenException;
-import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
-import org.springframework.security.web.savedrequest.RequestCache;
-
-import com.esc20.util.DataSourceContextHolder;
 
 public class CustomAccessDeniedHandler extends AccessDeniedHandlerImpl {
 	

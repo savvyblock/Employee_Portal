@@ -2,14 +2,11 @@ package com.esc20.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,35 +15,19 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrAca1095bCovrdHist;
 import com.esc20.model.BhrAca1095cCovrdHist;
 import com.esc20.model.BhrAca1095cEmpHist;
-import com.esc20.model.BhrCalYtd;
 import com.esc20.model.BhrEmpDemo;
-import com.esc20.model.BhrThirdPartySickPay;
-import com.esc20.model.BhrW2;
 import com.esc20.model.BrRptngContact;
 import com.esc20.nonDBModels.Aca1095BPrint;
 import com.esc20.nonDBModels.Aca1095CPrint;
-import com.esc20.nonDBModels.Account;
 import com.esc20.nonDBModels.Code;
-import com.esc20.nonDBModels.CurrentPayInformation;
-import com.esc20.nonDBModels.Deduction;
 import com.esc20.nonDBModels.District;
-import com.esc20.nonDBModels.Earnings;
-import com.esc20.nonDBModels.EmployeeInfo;
-import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Options;
-import com.esc20.nonDBModels.PayDate;
-import com.esc20.nonDBModels.PayInfo;
-import com.esc20.nonDBModels.Stipend;
-import com.esc20.nonDBModels.W2Print;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.nonDBModels.report.ReportParameterConnection;
@@ -57,7 +38,6 @@ import com.esc20.service.ReferenceService;
 import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
 import com.esc20.util.MailUtil;
-import com.esc20.util.NumberUtil;
 import com.esc20.util.StringUtil;
 
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -255,20 +235,6 @@ public class Information1095Controller{
 		mav.addObject("sortOrder", sortOrder);
 		return mav;
 	}
-	
-//	@RequestMapping("exportPDF")
-//	public void exportPDF(HttpServletRequest request, HttpServletResponse response,  String year, Integer BPageNo, Integer CPageNo,
-//			String sortBy, String sortOrder, String type) throws Exception {
-//		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
-//		System.out.println("prefix" + strBackUrl);
-//		byte[] pdf = PDFUtil.get1095InformationPDF(strBackUrl+"/information1095/information1095UnprotectedPDF", request, year,BPageNo,CPageNo,sortBy,sortOrder,type);
-//		response.reset();
-//		response.setHeader("Content-Disposition", "attachment; filename=\"1095 Information for "+ year +" type "+ type +".pdf\"");
-//		response.setContentType("application/octet-stream;charset=UTF-8");
-//		OutputStream out = response.getOutputStream();
-//		out.write(pdf);
-//		out.flush();
-//	}
 	
 	@RequestMapping("exportPDF")
 	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year, String type)

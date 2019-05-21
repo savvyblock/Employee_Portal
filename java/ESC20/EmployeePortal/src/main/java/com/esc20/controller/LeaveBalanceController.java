@@ -13,13 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.LeaveBalance;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.service.LeaveRequestService;
-import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
 
 @Controller
@@ -28,9 +26,6 @@ public class LeaveBalanceController{
 
 	@Autowired
 	private LeaveRequestService service;
-
-	@Autowired
-	private ReferenceService referenceService;
 	
 	private final String module = "Leave Balance";
 	

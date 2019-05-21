@@ -1,48 +1,31 @@
 package com.esc20.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrCalYtd;
 import com.esc20.model.BhrEmpDemo;
-import com.esc20.nonDBModels.Account;
 import com.esc20.nonDBModels.CalYTDPrint;
-import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.District;
-import com.esc20.nonDBModels.EmployeeInfo;
 import com.esc20.nonDBModels.Frequency;
-import com.esc20.nonDBModels.PayInfo;
-import com.esc20.nonDBModels.Stipend;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
-import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
-import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
 
 import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/calendarYearToDate")
@@ -50,9 +33,6 @@ public class CalendarYearToDateController {
 
 	@Autowired
 	private InquiryService service;
-
-    @Autowired
-    private IndexService indexService;
     
     @Autowired
     private PDFService pDFService;
@@ -108,20 +88,6 @@ public class CalendarYearToDateController {
 		mav.addObject("freq", freq);
 		return mav;
 	}
-
-//  Using EVO PDF Converter, html to PDF solution
-//	@RequestMapping("exportPDF")
-//	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
-//		String strBackUrl = "http://" + request.getServerName() + ":" + request.getServerPort()  + request.getContextPath();
-//		System.out.println("prefix" + strBackUrl);
-//		byte[] pdf = PDFUtil.getCalendarYTDPDF(strBackUrl+"/calendarYearToDate/calendarYearToDateUnprotectedPDF", request, year);
-//		response.reset();
-//		response.setHeader("Content-Disposition", "attachment; filename=\"Calender Year to Date "+year+".pdf\"");
-//		response.setContentType("application/octet-stream;charset=UTF-8");
-//		OutputStream out = response.getOutputStream();
-//		out.write(pdf);
-//		out.flush();
-//	}
 	
 	@RequestMapping("exportPDF")
 	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {

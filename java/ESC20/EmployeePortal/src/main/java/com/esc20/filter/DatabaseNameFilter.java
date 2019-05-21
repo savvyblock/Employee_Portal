@@ -54,7 +54,7 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 					    }
 					}
 				}
-				DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+database);
+				DataSourceContextHolder.setDataSourceType("java:jboss/DB"+database);
 				if (database == null || "".equals(database)) {
 					logger.error("Unable to set county district.");
 				}
