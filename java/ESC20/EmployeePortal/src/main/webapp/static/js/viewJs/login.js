@@ -1,7 +1,7 @@
 $(function(){
     $('#loginForm').bootstrapValidator({
         live: 'enable',
-        trigger: 'blur keyup',
+        trigger: 'blur',
         feedbackIcons: {
             valid: 'fa fa-check ',
             // invalid: 'fa fa-times',
@@ -27,7 +27,7 @@ $(function(){
     });
     $('#loginBackForm').bootstrapValidator({
         live: 'enable',
-        trigger: 'blur keyup',
+        trigger: 'blur',
         feedbackIcons: {
             valid: 'fa fa-check ',
             // invalid: 'fa fa-times',
