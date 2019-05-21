@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<table class="groupWrapTable" style="border:0;margin: 0;width:100%;" cellspacing="0" cellpadding="0">
+<table class="groupWrapTable" style="border:0;margin: 0;width:100%;">
 	<tr>
 		<td>
 			<table class="table border-table responsive-table no-thead print-table middle-td-table print-show-table">
@@ -91,7 +91,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td scope="${sessionScope.languageJSON.info1095Table.Jan}"  data-title="${sessionScope.languageJSON.info1095Table.Jan}">
+								<td  data-title="${sessionScope.languageJSON.info1095Table.Jan}">
 										<c:if test="${itemC.mon01 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -101,7 +101,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td scope="${sessionScope.languageJSON.info1095Table.Feb}"  data-title="${sessionScope.languageJSON.info1095Table.Feb}">
+								<td  data-title="${sessionScope.languageJSON.info1095Table.Feb}">
 										<c:if test="${itemC.mon02 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -111,7 +111,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td scope="${sessionScope.languageJSON.info1095Table.Mar}"  data-title="${sessionScope.languageJSON.info1095Table.Mar}">
+								<td  data-title="${sessionScope.languageJSON.info1095Table.Mar}">
 										<c:if test="${itemC.mon03 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -121,7 +121,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td scope="${sessionScope.languageJSON.info1095Table.Apr}"  data-title="${sessionScope.languageJSON.info1095Table.Apr}">
+								<td  data-title="${sessionScope.languageJSON.info1095Table.Apr}">
 										<c:if test="${itemC.mon04 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -131,7 +131,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td scope="${sessionScope.languageJSON.info1095Table.May}"  data-title="${sessionScope.languageJSON.info1095Table.May}">
+								<td  data-title="${sessionScope.languageJSON.info1095Table.May}">
 										<c:if test="${itemC.mon05 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -141,7 +141,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td scope="${sessionScope.languageJSON.info1095Table.Jun}"  data-title="${sessionScope.languageJSON.info1095Table.Jun}">
+								<td  data-title="${sessionScope.languageJSON.info1095Table.Jun}">
 										<c:if test="${itemC.mon6 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -151,7 +151,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td scope="${sessionScope.languageJSON.info1095Table.Jul}"  data-title="${sessionScope.languageJSON.info1095Table.Jul}">
+								<td  data-title="${sessionScope.languageJSON.info1095Table.Jul}">
 										<c:if test="${itemC.mon07 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -161,7 +161,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td scope="${sessionScope.languageJSON.info1095Table.Aug}"  data-title="${sessionScope.languageJSON.info1095Table.Aug}">
+								<td  data-title="${sessionScope.languageJSON.info1095Table.Aug}">
 										<c:if test="${itemC.mon08 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -171,7 +171,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td scope="${sessionScope.languageJSON.info1095Table.Sep}"  data-title="${sessionScope.languageJSON.info1095Table.Sep}">
+								<td  data-title="${sessionScope.languageJSON.info1095Table.Sep}">
 									<c:if test="${itemC.mon09 == 'Y'}">
 										<span class="print-check-disabled">
 												<i class="fa fa-times"></i>
@@ -181,7 +181,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 										<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 								</c:if>
 								</td>
-								<td scope="${sessionScope.languageJSON.info1095Table.Oct}"  data-title="${sessionScope.languageJSON.info1095Table.Oct}">
+								<td  data-title="${sessionScope.languageJSON.info1095Table.Oct}">
 									<c:if test="${itemC.mon10 == 'Y'}">
 										<span class="print-check-disabled">
 												<i class="fa fa-times"></i>
@@ -191,7 +191,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 										<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 								</c:if>
 								</td>
-								<td scope="${sessionScope.languageJSON.info1095Table.Nov}"  data-title="${sessionScope.languageJSON.info1095Table.Nov}">
+								<td  data-title="${sessionScope.languageJSON.info1095Table.Nov}">
 									<c:if test="${itemC.mon11 == 'Y'}">
 										<span class="print-check-disabled">
 												<i class="fa fa-times"></i>
@@ -201,7 +201,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 										<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 								</c:if>
 								</td>
-								<td scope="${sessionScope.languageJSON.info1095Table.Dec}"  data-title="${sessionScope.languageJSON.info1095Table.Dec}">
+								<td  data-title="${sessionScope.languageJSON.info1095Table.Dec}">
 									<c:if test="${itemC.mon12 == 'Y'}">
 										<span class="print-check-disabled">
 												<i class="fa fa-times"></i>

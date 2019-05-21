@@ -24,7 +24,7 @@ $(function() {
         radioClass: 'iradio_square-green',
         increaseArea: '20%' // optional
     });
-    
+    $(".iradio_square-green").attr("role","radio")
     $('.amount_2').change(function() {
         var val = $(this).val();
         $(this).val(Number(val).toFixed(2));

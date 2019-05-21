@@ -1,19 +1,19 @@
 
 
 
-<table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
+<table  class="table no-border-table print-block word-table pdfPage">
         <tr>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                 <h1>
                ${sessionScope.languageJSON.w2Notice.w2018.instructionsForEmployee} </h1>
                 (<i>${sessionScope.languageJSON.w2Notice.w2018.alsoSeeNoticeToEmployee}</i>)
             </td>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                 &nbsp;
             </td>
         </tr>
         <tr>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                     <div><b><span>${sessionScope.languageJSON.w2Notice.box}</span>1</b>. 
                         <span>${sessionScope.languageJSON.w2Notice.w2018.box1}</span>
                         </div>
@@ -57,7 +57,7 @@
                     </div>
                     
             </td>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                     <div>
                             <b>${sessionScope.languageJSON.w2Notice.D}</b>-<span>${sessionScope.languageJSON.w2Notice.w2018.D}</span>
                         </div>

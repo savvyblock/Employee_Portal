@@ -1,19 +1,19 @@
 
 
 
-<table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
+<table  class="table no-border-table print-block word-table pdfPage">
         <tr>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                 <h1>
                ${sessionScope.languageJSON.w2Notice.w2017.instructionsForEmployee} </h1>
                 (<i>${sessionScope.languageJSON.w2Notice.w2017.alsoSeeNoticeToEmployee}</i>)
             </td>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                 &nbsp;
             </td>
         </tr>
         <tr>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                     <div><b><span>${sessionScope.languageJSON.w2Notice.box}</span>1</b>. 
                         <span>${sessionScope.languageJSON.w2Notice.w2017.box1}</span>
                         </div>
@@ -42,7 +42,7 @@
                         </div>
                     
             </td>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                     <div><b><span>${sessionScope.languageJSON.w2Notice.box}</span>12</b>. 
                         <span>${sessionScope.languageJSON.w2Notice.w2017.box12}</span>
                         </div>
@@ -73,19 +73,19 @@
     
     <div class="PageNext"></div>
     
-    <table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
+    <table  class="table no-border-table print-block word-table pdfPage">
         <tr>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                     <h1>
                        ${sessionScope.languageJSON.w2Notice.w2017.instructionsForEmployee} </h1>
                         (<i>${sessionScope.languageJSON.w2Notice.w2017.continuedFromBackOfCopy}</i>)
             </td>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                 &nbsp;
             </td>
         </tr>
         <tr>
-                <td style="width: 50%" valign="top">
+                <td style="width: 50%">
                     <div><b>${sessionScope.languageJSON.w2Notice.F}</b><span>${sessionScope.languageJSON.w2Notice.w2017.F}</span></div>
                     <div><b>${sessionScope.languageJSON.w2Notice.G}</b><span>${sessionScope.languageJSON.w2Notice.w2017.G}</span></div>
                     <div><b>${sessionScope.languageJSON.w2Notice.H}</b><span>${sessionScope.languageJSON.w2Notice.w2017.H}</span></div>
@@ -102,7 +102,7 @@
                     <div><b>${sessionScope.languageJSON.w2Notice.V}</b><span>${sessionScope.languageJSON.w2Notice.w2017.V}</span></div>
                     <div><b>${sessionScope.languageJSON.w2Notice.W}</b><span>${sessionScope.languageJSON.w2Notice.w2017.W}</span></div>
                 </td>
-                <td style="width: 50%" valign="top">
+                <td style="width: 50%">
                     <div><b>${sessionScope.languageJSON.w2Notice.Y}</b><span>${sessionScope.languageJSON.w2Notice.w2017.Y}</span></div>
                     <div><b>${sessionScope.languageJSON.w2Notice.Z}</b><span>${sessionScope.languageJSON.w2Notice.w2017.Z}</span></div>
                     <div><b>${sessionScope.languageJSON.w2Notice.AA}</b><span>${sessionScope.languageJSON.w2Notice.w2017.AA}</span></div>

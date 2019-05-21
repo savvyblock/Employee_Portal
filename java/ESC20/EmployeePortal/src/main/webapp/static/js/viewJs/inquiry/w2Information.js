@@ -5,8 +5,10 @@ $(function(){
     var consentVal = $("#elecConsntW2Flag").val()
     if (consentVal == 'Y') {
         $("#consent").prop('checked',true);
+        $("#consent").attr("aria-checked",true)
     } else if (consentVal == 'N') {
         $("#notConsent").prop('checked',true);
+        $("#notConsent").attr("aria-checked",true)
     }
     $(".consentRadio") .on('keypress', function(e) {
         console.log(e)
@@ -18,11 +20,15 @@ $(function(){
 
     $("#consent").on('click', function(event) {
         if($(this).is(':checked')){
+            $("#consent").attr("aria-checked",true)
+            $("#notConsent").attr("aria-checked",false)
             toggleOptions('Y')
         }
     })
     $("#notConsent").on('click', function(event) {
         if($(this).is(':checked')){
+            $("#notConsent").attr("aria-checked",true)
+            $("#consent").attr("aria-checked",false)
             toggleOptions('N')
         }
     })

@@ -1,15 +1,15 @@
-<table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
+<table  class="table no-border-table print-block word-table pdfPage">
         <tr>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                     <h1>${sessionScope.languageJSON.w2Notice.w2012.noticeToEmployee}</h1>
             </td>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                     
             </td>
         </tr>
         <tr>
             
-                <td style="width: 50%" valign="top">
+                <td style="width: 50%">
                     <div>
                     <b>${sessionScope.languageJSON.w2Notice.w2012.refund}</b>. 
                     <span>${sessionScope.languageJSON.w2Notice.w2012.box01lineEvenIf}</span> 
@@ -24,7 +24,7 @@
                     <span>${sessionScope.languageJSON.w2Notice.w2012.box01lineIfYouAreNot}</span> 
                 </div>
             </td>
-            <td style="width: 50%" valign="top">
+            <td style="width: 50%">
                     <div>
                             <b>${sessionScope.languageJSON.w2Notice.w2012.corrections}</b>. 
                             <span>${sessionScope.languageJSON.w2Notice.w2012.box01lineIfYourName}</span> 

@@ -81,7 +81,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </select>
                                     </div>
                                     <div class="form-group in-line">
-                                        <label for="b-1095" class="mr-3">
+                                        <div class="mr-3">
                                             <input
                                                 class="icheck"
                                                 type="radio"
@@ -90,9 +90,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <c:if test="${type == 'B' }">checked</c:if>
                                                 disabled
                                             />
-                                            <span>${sessionScope.languageJSON.label.b1095}</span>
-                                        </label>
-                                        <label for="c-1095">
+                                            <label for="b-1095">${sessionScope.languageJSON.label.b1095}</label>
+                                        </div>
+                                        <div>
                                             <input
                                                 class="icheck"
                                                 type="radio"
@@ -101,8 +101,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <c:if test="${type == 'C' }">checked</c:if>
                                                 disabled
                                             />
-                                            <span>${sessionScope.languageJSON.label.c1095}</span>
-                                        </label>
+                                            <label for="c-1095">${sessionScope.languageJSON.label.c1095}</label>
+                                        </div>
                                     </div>
                                 </form>
                                 <c:if test="${empty years}">
@@ -122,7 +122,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     class="table border-table middle-td-table mb-0 print-block-table tableHead1095"
                                                 >
                                                     <tr>
-                                                        <td width="160">
+                                                        <td style="width:160px;">
                                                             <div>
                                                                 <span>${sessionScope.languageJSON.info1095Table.from}</span> <span class="font-24" id="tableTile">1095-${type}</span><br />
                                                                 <span>${sessionScope.languageJSON.info1095Table.departmentOfTreasury}</span><br />
@@ -135,7 +135,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             · <span>${sessionScope.languageJSON.info1095Table.donotAttach}</span>.<br />
                                                             · <span>${sessionScope.languageJSON.info1095Table.goToForInstructions}</span>.
                                                         </td>
-                                                        <td class="no-border-td" width="110">
+                                                        <td class="no-border-td" style="width:110px;">
                                                             <div>
                                                                 <label for="void" class="print-flex">
                                                                     <input
@@ -171,7 +171,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     class="table border-table mb-0 print-block-table"
                                                 >
                                                     <tr>
-                                                        <td colspan="3" class="sub-title" width="50%">
+                                                        <td colspan="3" class="sub-title"  style="width:50%;">
                                                             <span>${sessionScope.languageJSON.info1095Table.partIEmployee}</span>
                                                         </td>
                                                         <td colspan="3">
@@ -254,7 +254,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             <td
                                                                 colspan="7"
                                                                 class="sub-title"
-                                                                width="50%"
+                                                                style="width:50%;"
                                                             >
                                                             <span>${sessionScope.languageJSON.info1095Table.partIIEmployee}</span>
                                                             </td>
@@ -282,87 +282,87 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td id="offerOfCoverage" class="tr-title">
+                                                            <th id="offerOfCoverage" class="tr-title">
                                                                 <div class="print-show">14 <span>${sessionScope.languageJSON.info1095Table.offerOfCoverage}</span></div>
                                                                 <span class="print-hide">${sessionScope.languageJSON.info1095Table.offerOfCoverageSimple}</span>
-                                                            </td>
-                                                            <td headers="allMonthsMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.allMonths}" data-title="${sessionScope.languageJSON.info1095Table.allMonths}">2C</td>
-                                                            <td headers="janMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.Jan}" data-title="${sessionScope.languageJSON.info1095Table.Jan}"></td>
-                                                            <td headers="febMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.Feb}" data-title="${sessionScope.languageJSON.info1095Table.Feb}"></td>
-                                                            <td headers="marMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.Mar}" data-title="${sessionScope.languageJSON.info1095Table.Mar}"></td>
-                                                            <td headers="aprMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.Apr}" data-title="${sessionScope.languageJSON.info1095Table.Apr}"></td>
-                                                            <td headers="mayMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.May}" data-title="${sessionScope.languageJSON.info1095Table.May}"></td>
-                                                            <td headers="junMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.Jun}" data-title="${sessionScope.languageJSON.info1095Table.Jun}"></td>
-                                                            <td headers="julMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.Jul}" data-title="${sessionScope.languageJSON.info1095Table.Jul}"></td>
-                                                            <td headers="augMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.Aug}" data-title="${sessionScope.languageJSON.info1095Table.Aug}"></td>
-                                                            <td headers="sepMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.Sep}" data-title="${sessionScope.languageJSON.info1095Table.Sep}"></td>
-                                                            <td headers="octMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.Oct}" data-title="${sessionScope.languageJSON.info1095Table.Oct}"></td>
-                                                            <td headers="novMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.Nov}" data-title="${sessionScope.languageJSON.info1095Table.Nov}"></td>
-                                                            <td headers="decMoney offerOfCoverage" scope="${sessionScope.languageJSON.info1095Table.Dec}" data-title="${sessionScope.languageJSON.info1095Table.Dec}"></td>
+                                                            </th>
+                                                            <td headers="allMonthsMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.allMonths}">2C</td>
+                                                            <td headers="janMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Jan}"></td>
+                                                            <td headers="febMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Feb}"></td>
+                                                            <td headers="marMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Mar}"></td>
+                                                            <td headers="aprMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Apr}"></td>
+                                                            <td headers="mayMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.May}"></td>
+                                                            <td headers="junMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Jun}"></td>
+                                                            <td headers="julMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Jul}"></td>
+                                                            <td headers="augMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Aug}"></td>
+                                                            <td headers="sepMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Sep}"></td>
+                                                            <td headers="octMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Oct}"></td>
+                                                            <td headers="novMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Nov}"></td>
+                                                            <td headers="decMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Dec}"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td id="employeeShare" class="tr-title">
+                                                            <th id="employeeShare" class="tr-title">
                                                                 <div class="print-show">15 <span>${sessionScope.languageJSON.info1095Table.employeeRequiredContribution}</span></div>
                                                                 <span class="print-hide">${sessionScope.languageJSON.info1095Table.employeeShare}</span>
-                                                            </td>
-                                                            <td headers="allMonthsMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.allMonths}" data-title="${sessionScope.languageJSON.info1095Table.allMonths}">
+                                                            </th>
+                                                            <td headers="allMonthsMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.allMonths}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
-                                                            <td headers="janMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.Jan}" data-title="${sessionScope.languageJSON.info1095Table.Jan}">
+                                                            <td headers="janMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Jan}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
-                                                            <td headers="febMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.Feb}" data-title="${sessionScope.languageJSON.info1095Table.Feb}">
+                                                            <td headers="febMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Feb}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
-                                                            <td headers="marMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.Mar}" data-title="${sessionScope.languageJSON.info1095Table.Mar}">
+                                                            <td headers="marMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Mar}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
-                                                            <td headers="aprMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.Apr}" data-title="${sessionScope.languageJSON.info1095Table.Apr}">
+                                                            <td headers="aprMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Apr}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
-                                                            <td headers="mayMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.May}" data-title="${sessionScope.languageJSON.info1095Table.May}">
+                                                            <td headers="mayMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.May}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
-                                                            <td headers="junMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.Jun}" data-title="${sessionScope.languageJSON.info1095Table.Jun}">
+                                                            <td headers="junMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Jun}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
-                                                            <td headers="julMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.Jul}" data-title="${sessionScope.languageJSON.info1095Table.Jul}">
+                                                            <td headers="julMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Jul}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
-                                                            <td headers="augMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.Aug}" data-title="${sessionScope.languageJSON.info1095Table.Aug}">
+                                                            <td headers="augMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Aug}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
-                                                            <td headers="sepMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.Sep}" data-title="${sessionScope.languageJSON.info1095Table.Sep}">
+                                                            <td headers="sepMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Sep}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
-                                                            <td headers="octMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.Oct}" data-title="${sessionScope.languageJSON.info1095Table.Oct}">
+                                                            <td headers="octMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Oct}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
-                                                            <td headers="novMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.Nov}" data-title="${sessionScope.languageJSON.info1095Table.Nov}">
+                                                            <td headers="novMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Nov}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
-                                                            <td headers="decMoney employeeShare" scope="${sessionScope.languageJSON.info1095Table.Dec}" data-title="${sessionScope.languageJSON.info1095Table.Dec}">
+                                                            <td headers="decMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Dec}">
                                                                     <span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 0.00
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td id="SafeHarbor" class="tr-title">
+                                                            <th id="SafeHarbor" class="tr-title">
                                                                 <div class="print-show">16 <span>${sessionScope.languageJSON.info1095Table.section4980HSafeHarbor}</span></div>
                                                                 <span class="print-hide">${sessionScope.languageJSON.info1095Table.SafeHarbor}</span>
-                                                            </td>
-                                                            <td headers="allMonthsMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.allMonths}" data-title="${sessionScope.languageJSON.info1095Table.allMonths}">2C</td>
-                                                            <td headers="janMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.Jan}" data-title="${sessionScope.languageJSON.info1095Table.Jan}"></td>
-                                                            <td headers="febMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.Feb}" data-title="${sessionScope.languageJSON.info1095Table.Feb}"></td>
-                                                            <td headers="marMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.Mar}" data-title="${sessionScope.languageJSON.info1095Table.Mar}"></td>
-                                                            <td headers="aprMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.Apr}" data-title="${sessionScope.languageJSON.info1095Table.Apr}"></td>
-                                                            <td headers="mayMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.May}" data-title="${sessionScope.languageJSON.info1095Table.May}"></td>
-                                                            <td headers="junMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.Jun}" data-title="${sessionScope.languageJSON.info1095Table.Jun}"></td>
-                                                            <td headers="julMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.Jul}" data-title="${sessionScope.languageJSON.info1095Table.Jul}"></td>
-                                                            <td headers="augMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.Aug}" data-title="${sessionScope.languageJSON.info1095Table.Aug}"></td>
-                                                            <td headers="sepMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.Sep}" data-title="${sessionScope.languageJSON.info1095Table.Sep}"></td>
-                                                            <td headers="octMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.Oct}" data-title="${sessionScope.languageJSON.info1095Table.Oct}"></td>
-                                                            <td headers="novMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.Nov}" data-title="${sessionScope.languageJSON.info1095Table.Nov}"></td>
-                                                            <td headers="decMoney SafeHarbor" scope="${sessionScope.languageJSON.info1095Table.Dec}" data-title="${sessionScope.languageJSON.info1095Table.Dec}"></td>
+                                                            </th>
+                                                            <td headers="allMonthsMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.allMonths}">2C</td>
+                                                            <td headers="janMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Jan}"></td>
+                                                            <td headers="febMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Feb}"></td>
+                                                            <td headers="marMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Mar}"></td>
+                                                            <td headers="aprMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Apr}"></td>
+                                                            <td headers="mayMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.May}"></td>
+                                                            <td headers="junMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Jun}"></td>
+                                                            <td headers="julMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Jul}"></td>
+                                                            <td headers="augMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Aug}"></td>
+                                                            <td headers="sepMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Sep}"></td>
+                                                            <td headers="octMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Oct}"></td>
+                                                            <td headers="novMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Nov}"></td>
+                                                            <td headers="decMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Dec}"></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -374,8 +374,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         <span>${sessionScope.languageJSON.info1095Table.ifEmployerProvidedSelfInsurance}</span>
                                                     </div>
                                                     <div class="self-insured-check">
-                                                        <label for="selfInsured">
-                                                                <span>${sessionScope.languageJSON.info1095Table.selfInsured}</span>:
+                                                        <div>
+                                                                <label for="selfInsured">${sessionScope.languageJSON.info1095Table.selfInsured}</label>:
                                                             <input
                                                                 class="icheck"
                                                                 type="checkbox"
@@ -383,7 +383,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 id="selfInsured"
                                                                 disabled
                                                             />
-                                                        </label>
+                                                        </div>
                                                     </div>
                                                     <div class="self-insured-time">
                                                             <span>${sessionScope.languageJSON.info1095Table.planStartMonth}</span>: 09
@@ -448,7 +448,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <input hidden="hidden" type="hidden" name="year" id="consentYear" value="${selectedYear}">
                                     <input hidden="hidden" type="hidden" name="consent" id="consentModal" value="">
                                 <div class="form-group">
-                                    <label for="customMessage">${sessionScope.languageJSON.label.customMessageHere}</label>
+                                    <label>${sessionScope.languageJSON.label.customMessageHere}</label>
                                      <c:if test="${message==''}">
 	                                     <input type="text" class="form-control form-text static" aria-label="${sessionScope.languageJSON.label.blankValueForCustomMessage}" readonly="readonly"/>
                                     </c:if>
@@ -460,13 +460,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <input hidden="hidden" type="text" name="consent" id="elecConsnt1095" value="${consent}" aria-label="${sessionScope.languageJSON.accessHint.consent}">
                                         <div class="checkbox mb-2">
                                             <label for="consent">
-                                                <input class="consentRadio" type="radio" role="radio" name="electronicConsent" id="consent"> 
+                                                <input class="consentRadio" type="radio" role="radio" name="electronicConsent" id="consent" aria-checked="false"> 
                                                 <span>${sessionScope.languageJSON.label.consentElectronicAccess}</span>
                                             </label>
                                         </div>
                                         <div class="checkbox">
                                                 <label for="notConsent">
-                                                    <input class="consentRadio" type="radio" role="radio" name="electronicConsent" id="notConsent"> 
+                                                    <input class="consentRadio" type="radio" role="radio" name="electronicConsent" id="notConsent" aria-checked="false"> 
                                                     <span>${sessionScope.languageJSON.label.donotConsentElectronicAccess}</span>
                                                 </label>
                                         </div>

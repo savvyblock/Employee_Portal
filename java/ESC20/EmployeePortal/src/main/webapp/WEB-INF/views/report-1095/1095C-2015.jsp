@@ -1,16 +1,16 @@
-<table cellpadding="15"  class="table no-border-table print-block word-table pdfPage">
+<table  class="table no-border-table print-block word-table pdfPage">
   <tr>
-      <td style="width: 50%" valign="top">
+      <td style="width: 50%">
         <h1>${sessionScope.languageJSON.Form1095.InstructionsForRecipient}
           </h1>
       </td>
-      <td style="width: 50%" valign="top">
+      <td style="width: 50%">
         <h2>${sessionScope.languageJSON.Form1095.C2015.partIIEmployer}
           </h2>   
       </td>
   </tr>
   <tr>
-      <td style="width: 50%" valign="top">
+      <td style="width: 50%">
           <div>${sessionScope.languageJSON.Form1095.C2015.youAreReceiving}</div>
           <div>${sessionScope.languageJSON.Form1095.C2015.inAdditionIfYou}</div>
           <div>${sessionScope.languageJSON.Form1095.C2015.ifYourEmployer}</div>
@@ -28,7 +28,7 @@
           <div><b><span>${sessionScope.languageJSON.Form1095.line}</span> 10.</b> 
             <span>${sessionScope.languageJSON.Form1095.C2015.line10}</span> </div>
       </td>
-      <td style="width: 50%" valign="top">
+      <td style="width: 50%">
         
         <div><b><span>${sessionScope.languageJSON.Form1095.line}</span> 14.</b> <span>${sessionScope.languageJSON.Form1095.C2015.line14}</span> </div>
         <div><b>1<span>${sessionScope.languageJSON.Form1095.A}</span></b> <span>${sessionScope.languageJSON.Form1095.C2015.oneA}</span> </div>

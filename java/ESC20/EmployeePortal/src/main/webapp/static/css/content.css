@@ -2015,6 +2015,10 @@
   max-width: 1050px;
 }
 
+.groupWrapTable {
+  border-spacing: 0;
+}
+
 .groupWrapTable .table {
   margin-bottom: 0;
   border-bottom: 0;

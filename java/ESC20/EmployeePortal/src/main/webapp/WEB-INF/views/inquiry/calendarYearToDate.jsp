@@ -105,21 +105,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         >
                             <tbody>
                                 <tr>
-                                    <td id="contractPay" class="td-title">${sessionScope.languageJSON.calendarTable.contractPay}</td>
+                                    <th id="contractPay" class="td-title">${sessionScope.languageJSON.calendarTable.contractPay}</th>
                                     <td
                                         headers="contractPay" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.contractPay}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.contrAmt}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="nonContractPay" class="td-title">${sessionScope.languageJSON.calendarTable.nonContractPay}</td>
+                                    <th id="nonContractPay" class="td-title">${sessionScope.languageJSON.calendarTable.nonContractPay}</th>
                                     <td
                                         headers="nonContractPay" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.nonContractPay}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.noncontrAmt}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="supplementalPay" class="td-title">${sessionScope.languageJSON.calendarTable.supplementalPay}</td>
+                                    <th id="supplementalPay" class="td-title">${sessionScope.languageJSON.calendarTable.supplementalPay}</th>
                                     <td
                                         headers="supplementalPay" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.supplementalPay}" 
                                        
@@ -128,23 +128,23 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td id="withholdingGross" class="td-title">${sessionScope.languageJSON.calendarTable.withholdingGross}</td>
+                                    <th id="withholdingGross" class="td-title">${sessionScope.languageJSON.calendarTable.withholdingGross}</th>
                                     <td
                                         headers="withholdingGross" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.withholdingGross}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.whGross}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="withholdingTax" class="td-title">${sessionScope.languageJSON.calendarTable.withholdingTax}</td>
+                                    <th id="withholdingTax" class="td-title">${sessionScope.languageJSON.calendarTable.withholdingTax}</th>
                                     <td
                                         headers="withholdingTax" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.withholdingTax}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.whTax}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="earnedIncomeCredit" class="td-title">
+                                    <th id="earnedIncomeCredit" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.earnedIncomeCredit}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="earnedIncomeCredit" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.earnedIncomeCredit}" 
                                        
@@ -153,14 +153,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td id="ficaGross" class="td-title">${sessionScope.languageJSON.calendarTable.ficaGross}</td>
+                                    <th id="ficaGross" class="td-title">${sessionScope.languageJSON.calendarTable.ficaGross}</th>
                                     <td
                                         headers="ficaGross" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.ficaGross}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.ficaGross}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="ficaTax" class="td-title">${sessionScope.languageJSON.calendarTable.ficaTax}</td>
+                                    <th id="ficaTax" class="td-title">${sessionScope.languageJSON.calendarTable.ficaTax}</th>
                                     <td
                                         headers="ficaTax" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.ficaTax}" 
                                        
@@ -170,27 +170,27 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <td class="td-title" colspan="2"></td>
                                 </tr>
                                 <tr>
-                                    <td id="dependentCare" class="td-title">
+                                    <th id="dependentCare" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.dependentCare}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="dependentCare" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.dependentCare}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.dependCare}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="dependentCareEmployer" class="td-title">
+                                    <th id="dependentCareEmployer" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.dependentCareEmployer}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="dependentCareEmployer" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.dependentCareEmployer}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.emplrDependCare}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="dependentCareExceeds" class="td-title">
+                                    <th id="dependentCareExceeds" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.dependentCareExceeds}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="dependentCareExceeds" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.dependentCareExceeds}" 
                                        
@@ -199,14 +199,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td id="medicareGross" class="td-title">${sessionScope.languageJSON.calendarTable.medicareGross}</td>
+                                    <th id="medicareGross" class="td-title">${sessionScope.languageJSON.calendarTable.medicareGross}</th>
                                     <td
                                         headers="medicareGross" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.medicareGross}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.medGross}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="medicareTax" class="td-title">${sessionScope.languageJSON.calendarTable.medicareTax}</td>
+                                    <th id="medicareTax" class="td-title">${sessionScope.languageJSON.calendarTable.medicareTax}</th>
                                     <td
                                         headers="medicareTax" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.medicareTax}" 
                                        
@@ -219,23 +219,23 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <td colspan="6">&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td id="annuityDeduction" class="td-title">${sessionScope.languageJSON.calendarTable.annuityDeduction}</td>
+                                    <th id="annuityDeduction" class="td-title">${sessionScope.languageJSON.calendarTable.annuityDeduction}</th>
                                     <td
                                         headers="annuityDeduction" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.annuityDeduction}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.annuityDed}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="roth403BAfterTax" class="td-title">
+                                    <th id="roth403BAfterTax" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.roth403BAfterTax}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="roth403BAfterTax" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.roth403BAfterTax}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.annuityRoth}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="taxableBenefits" class="td-title">${sessionScope.languageJSON.calendarTable.taxableBenefits}</td>
+                                    <th id="taxableBenefits" class="td-title">${sessionScope.languageJSON.calendarTable.taxableBenefits}</th>
                                     <td
                                         headers="taxableBenefits" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.taxableBenefits}" 
                                        
@@ -244,25 +244,25 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td id="annuity457Employee" class="td-title">
+                                    <th id="annuity457Employee" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.annuity457Employee}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="annuity457Employee" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.annuity457Employee}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.emp457Contrib}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="annuity457Employer" class="td-title">
+                                    <th id="annuity457Employer" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.annuity457Employer}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="annuity457Employer" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.annuity457Employer}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.emplr457Contrib}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="annuity457Withdraw" class="td-title">${sessionScope.languageJSON.calendarTable.annuity457Withdraw}</td>
+                                    <th id="annuity457Withdraw" class="td-title">${sessionScope.languageJSON.calendarTable.annuity457Withdraw}</th>
                                     <td
                                         headers="annuity457Withdraw" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.annuity457Withdraw}" 
                                        
@@ -274,27 +274,27 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <td colspan="6">&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td id="nonTrsBusinessExpense" class="td-title">
+                                    <th id="nonTrsBusinessExpense" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.nonTrsBusinessExpense}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="nonTrsBusinessExpense" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.nonTrsBusinessExpense}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.nontrsBusAllow}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="nonTrsReimbursementBase" class="td-title">
+                                    <th id="nonTrsReimbursementBase" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.nonTrsReimbursementBase}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="nonTrsReimbursementBase" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.nonTrsReimbursementBase}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.nontrsReimbrBase}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="nonTrsReimbursementExcess" class="td-title">
+                                    <th id="nonTrsReimbursementExcess" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.nonTrsReimbursementExcess}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="nonTrsReimbursementExcess" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.nonTrsReimbursementExcess}" 
                                        
@@ -303,27 +303,27 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td id="movingExpenseReimbursement" class="td-title">
+                                    <th id="movingExpenseReimbursement" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.movingExpenseReimbursement}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="movingExpenseReimbursement" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.movingExpenseReimbursement}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.movingExpReimbr}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="nonTrsNonTaxBusinessAllow" class="td-title">
+                                    <th id="nonTrsNonTaxBusinessAllow" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.nonTrsNonTaxBusinessAllow}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="nonTrsNonTaxBusinessAllow" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.nonTrsNonTaxBusinessAllow}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.nontrsNontaxBusAllow}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="nonTrsNonTaxNonPayAllow" class="td-title">
+                                    <th id="nonTrsNonTaxNonPayAllow" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.nonTrsNonTaxNonPayAllow}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="nonTrsNonTaxNonPayAllow" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.nonTrsNonTaxNonPayAllow}" 
                                        
@@ -335,16 +335,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <td colspan="6">&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td id="salaryReduction" class="td-title">
+                                    <th id="salaryReduction" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.salaryReduction}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="salaryReduction" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.salaryReduction}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.trsSalaryRed}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="trsInsurance" class="td-title">${sessionScope.languageJSON.calendarTable.trsInsurance}</td>
+                                    <th id="trsInsurance" class="td-title">${sessionScope.languageJSON.calendarTable.trsInsurance}</th>
                                     <td
                                         headers="trsInsurance" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.trsInsurance}" 
                                        
@@ -354,18 +354,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <td class="td-title" colspan="2"></td>
                                 </tr>
                                 <tr>
-                                    <td id="hsaEmployerContribution" class="td-title">
+                                    <th id="hsaEmployerContribution" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.hsaEmployerContribution}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="hsaEmployerContribution" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.hsaEmployerContribution}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.hsaEmplrContrib}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="hsaEmployeeSalaryReductionContribution" class="td-title">
+                                    <th id="hsaEmployeeSalaryReductionContribution" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.hsaEmployeeSalaryReductionContribution}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="hsaEmployeeSalaryReductionContribution" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.hsaEmployeeSalaryReductionContribution}" 
                                        
@@ -373,7 +373,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <fmt:formatNumber value="${calendar.hsaEmpSalRedctnContrib}" pattern="#,##0.00"/>
                                     </td>
 
-                                    <td id="hireExemptWgs" class="td-title">${sessionScope.languageJSON.calendarTable.hireExemptWgs}</td>
+                                    <th id="hireExemptWgs" class="td-title">${sessionScope.languageJSON.calendarTable.hireExemptWgs}</th>
                                     <td
                                         headers="hireExemptWgs" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.hireExemptWgs}" 
                                        
@@ -382,27 +382,27 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td id="taxedLifeContribution" class="td-title">
+                                    <th id="taxedLifeContribution" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.taxedLifeContribution}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="taxedLifeContribution" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.taxedLifeContribution}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.taxEmplrLife}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="taxedGroupContribution" class="td-title">
+                                    <th id="taxedGroupContribution" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.taxedGroupContribution}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="taxedGroupContribution" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.taxedGroupContribution}" 
                                        
                                     >
                                     <fmt:formatNumber value="${calendar.taxEmplrLifeGrp}" pattern="#,##0.00"/>
                                     </td>
-                                    <td id="healthInsuranceDeduction" class="td-title">
+                                    <th id="healthInsuranceDeduction" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.healthInsuranceDeduction}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="healthInsuranceDeduction" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.healthInsuranceDeduction}" 
                                        
@@ -415,9 +415,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <td colspan="6">&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td id="emplrPrvdHlthcare" class="td-title">
+                                    <th id="emplrPrvdHlthcare" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.emplrPrvdHlthcare}
-                                    </td>
+                                    </th>
                                     <td
                                         headers="emplrPrvdHlthcare" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.emplrPrvdHlthcare}" 
                                        
@@ -425,7 +425,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <fmt:formatNumber value="${calendar.emplrPrvdHlthcare}" pattern="#,##0.00"/>
                                     </td>
 
-                                    <td id="annuityRoth457b" class="td-title">${sessionScope.languageJSON.calendarTable.annuityRoth457b}</td>
+                                    <th id="annuityRoth457b" class="td-title">${sessionScope.languageJSON.calendarTable.annuityRoth457b}</th>
                                     <td
                                         headers="annuityRoth457b" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.annuityRoth457b}" 
                                        

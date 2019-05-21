@@ -52,13 +52,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <tbody>
                                                     <c:forEach items="${deductions[frequency]}" var="deduct" varStatus="counter">
                                                         <tr>
-                                                            <td class="text-center" scope="${sessionScope.languageJSON.deductionsTable.deductionCode}" data-title="${sessionScope.languageJSON.deductionsTable.deductionCode}">${deduct.dedCd}</td>
-                                                            <td scope="${sessionScope.languageJSON.deductionsTable.description}" data-title="${sessionScope.languageJSON.deductionsTable.description}">${deduct.dedCdDesc}</td>
-                                                            <td scope="${sessionScope.languageJSON.deductionsTable.amount}" data-title="${sessionScope.languageJSON.deductionsTable.amount}">
+                                                            <td class="text-center" data-title="${sessionScope.languageJSON.deductionsTable.deductionCode}">${deduct.dedCd}</td>
+                                                            <td data-title="${sessionScope.languageJSON.deductionsTable.description}">${deduct.dedCdDesc}</td>
+                                                            <td data-title="${sessionScope.languageJSON.deductionsTable.amount}">
                                                                 <fmt:formatNumber value="${deduct.empAmt}" pattern="#,##0.00"/>
                                                             </td>
-                                                            <td class="text-center" scope="${sessionScope.languageJSON.deductionsTable.cafeteriaFlag}" data-title="${sessionScope.languageJSON.deductionsTable.cafeteriaFlag}">${deduct.cafeFlgStr}</td>
-                                                            <td scope="${sessionScope.languageJSON.deductionsTable.employerContributionAmount}" data-title="${sessionScope.languageJSON.deductionsTable.employerContributionAmount}">
+                                                            <td class="text-center" data-title="${sessionScope.languageJSON.deductionsTable.cafeteriaFlag}">${deduct.cafeFlgStr}</td>
+                                                            <td data-title="${sessionScope.languageJSON.deductionsTable.employerContributionAmount}">
                                                                 <fmt:formatNumber value="${deduct.emplrAmt}" pattern="#,##0.00"/>
                                                             </td>
                                                         </tr>
