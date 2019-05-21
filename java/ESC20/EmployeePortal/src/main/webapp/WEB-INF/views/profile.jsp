@@ -178,7 +178,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                                             <div class="saveOrCancel">
                                                 <button
-                                                    type="submit" role="submitButton"
+                                                    type="submit" role="button"
                                                     class="btn btn-primary save-btn"
                                                     id="savePersonal"  aria-label = "${sessionScope.languageJSON.label.updatePersonalInfo}"
                                                 >
@@ -251,7 +251,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="submitButton"
+                                                type="submit" role="button"
                                                 class="btn btn-primary save-btn"
                                                 id="saveMarital" aria-label = "${sessionScope.languageJSON.label.updateMaritalStatus}"
                                             >
@@ -344,7 +344,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="submitButton"
+                                                type="submit" role="button"
                                                 class="btn btn-primary save-btn"
                                                 id="saveDriver" aria-label = "${sessionScope.languageJSON.label.updateDriver}"
                                             >
@@ -440,7 +440,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="submitButton"
+                                                type="submit" role="button"
                                                 class="btn btn-primary save-btn"
                                                 id="saveRestrict" aria-label = "${sessionScope.languageJSON.label.updateRestrict}"
                                             >
@@ -717,7 +717,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="submitButton"
+                                                type="submit" role="button"
                                                 class="btn btn-primary save-btn"
                                                 id="saveEmergency" aria-label = "${sessionScope.languageJSON.label.updateEmergency}"
                                             >
@@ -898,7 +898,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="submitButton"
+                                                type="submit" role="button"
                                                 class="btn btn-primary save-btn"
                                                 id="saveMailingAddress" aria-label = "${sessionScope.languageJSON.label.updateMailingAddress}"
                                             >
@@ -1079,7 +1079,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="submitButton"
+                                                type="submit" role="button"
                                                 class="btn btn-primary save-btn"
                                                 id="saveAltAddress" aria-label = "${sessionScope.languageJSON.label.updateAltAddress}"
                                             >${sessionScope.languageJSON.label.update}
@@ -1243,7 +1243,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="submitButton"
+                                                type="submit" role="button"
                                                 class="btn btn-primary save-btn"
                                                 id="savePhone" aria-label = "${sessionScope.languageJSON.label.updatePhone}"
                                             >
@@ -1359,7 +1359,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </div>
                                     <div class="saveOrCancel">
                                         <button
-                                            type="submit" role="submitButton"
+                                            type="submit" role="button"
                                             class="btn btn-primary save-btn"
                                             id="saveW4" aria-label = "${sessionScope.languageJSON.label.updateW4}"
                                         >

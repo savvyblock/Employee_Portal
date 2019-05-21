@@ -37,10 +37,10 @@
                                 
                             </div>
                             
-                            <p class="error-hint hide errorMessage" id="errorMessage" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.usernameOrPasswordError}</p>
-                            <p class="error-hint hide incorrectMessage" id="incorrectMessage" role="alert" aria-atomic="true">>${sessionScope.languageJSON.validator.usernameOrPasswordIncorrect}</p>
+                            <p class="error-hint hide errorMessage" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.usernameOrPasswordError}</p>
+                            <p class="error-hint hide incorrectMessage" role="alert" aria-atomic="true">>${sessionScope.languageJSON.validator.usernameOrPasswordIncorrect}</p>
                             <c:if test="${isUserLoginFailure=='true'}">
-                                <p class="error-hint authenticateFailed" id="authenticateFailed" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.authenticateFailed}</p>
+                                <p class="error-hint authenticateFailed" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.authenticateFailed}</p>
                             </c:if>                            
                             <c:if test="${times3}">
                                 <p class="error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.haveEnteredThree}</p>
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                             <div class="form-group account-btn">
-                                <button id="signin" type="submit" role="submitButton" class="btn btn-primary">${sessionScope.languageJSON.label.login}</button>
+                                <button id="signin" type="submit" class="btn btn-primary">${sessionScope.languageJSON.label.login}</button>
                             </div>
                             <div class="text-center">
                                 <a class="a-line" href="/<%=request.getContextPath().split("/")[1]%>/createUser/searchUser">${sessionScope.languageJSON.label.newUser}
@@ -98,10 +98,10 @@
                                 </div>
                                 
                             </div>
-                            <p class="error-hint hide errorMessage" id="errorMessage" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.usernameOrPasswordError}</p>
-                            <p class="error-hint hide incorrectMessage" id="incorrectMessage" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.usernameOrPasswordIncorrect}</p>
+                            <p class="error-hint hide errorMessage" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.usernameOrPasswordError}</p>
+                            <p class="error-hint hide incorrectMessage" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.usernameOrPasswordIncorrect}</p>
                             <c:if test="${isUserLoginFailure=='true'}">
-                                <p class="error-hint authenticateFailed" id="authenticateFailed" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.authenticateFailed}</p>
+                                <p class="error-hint authenticateFailed" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.authenticateFailed}</p>
                             </c:if>
                             <c:if test="${times3}">
                                 <p class="error-hint" id="haveEnteredThree" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.haveEnteredThree}</p>
@@ -119,7 +119,7 @@
 		                        <div class="valid-wrap error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.resetPswFaild}</div>
 		                    </c:if>
                             <div class="form-group account-btn">
-                                <button id="signin" type="submit" role="submitButton" class="btn btn-primary">${sessionScope.languageJSON.label.login}</button>
+                                <button id="timeOutSignin" type="submit" class="btn btn-primary">${sessionScope.languageJSON.label.login}</button>
                             </div>
                             
                         </form>

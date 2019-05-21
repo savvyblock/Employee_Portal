@@ -89,7 +89,7 @@
               </div>
               <div class="modal-footer">
                   <button
-                      type="submit" role="submitButton"
+                      type="submit" role="button"
                       class="btn btn-primary"
                       id="save"
                       name="save"

@@ -53,7 +53,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         <div class="valid-wrap error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.userNotExist}</div>
                     </c:if>
                     <div class="form-group account-btn">
-                        <button type="submit" role="submitButton" class="btn btn-primary">
+                        <button type="submit" role="button" class="btn btn-primary">
                                 ${sessionScope.languageJSON.label.retrieve}
                         </button>
                     </div>

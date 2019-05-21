@@ -15,10 +15,8 @@
                 <p>${sessionScope.languageJSON.label.areYouQuit}</p>
             </div>
             <div class="modal-footer">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/logout">
-                    <button type="button" role="button"  class="btn btn-primary">
+                <a href="/<%=request.getContextPath().split("/")[1]%>/logout"  class="btn btn-primary">
                     	${sessionScope.languageJSON.label.ok}
-                    </button>
                 </a>
                 <button
                     type="button" role="button"

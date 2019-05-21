@@ -51,7 +51,7 @@
                                         <p class="error-hint" role="alert" aria-atomic="true" id="noEmployeeError">${sessionScope.languageJSON.validator.noEmployeeAccountAssociated}</p>
                                          </c:if>
                                         <div class="form-group account-btn">
-                                            <button type="submit" role="submitButton" id="retrieveBtn" class="btn btn-primary">${sessionScope.languageJSON.label.retrieve}</button>
+                                            <button type="submit" role="button" id="retrieveBtn" class="btn btn-primary">${sessionScope.languageJSON.label.retrieve}</button>
                                         </div>
                                
                             </form>

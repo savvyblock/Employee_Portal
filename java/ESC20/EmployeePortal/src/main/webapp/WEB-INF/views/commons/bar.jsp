@@ -222,7 +222,7 @@
         </a></li>
         <li>
         <form action="/<%=request.getContextPath().split("/")[1]%>/logoutEA" method="post">
-          <button class="logoutBtn" type="submit" role="submitButton" aria-label="${sessionScope.languageJSON.accessHint.logout}" title="${sessionScope.languageJSON.accessHint.logout}">
+          <button class="logoutBtn" type="submit" role="button" aria-label="${sessionScope.languageJSON.accessHint.logout}" title="${sessionScope.languageJSON.accessHint.logout}">
             <i class="fa fa-sign-out "></i>
           </button>
           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

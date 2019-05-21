@@ -147,7 +147,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                             <div class="form-group btn-group">
                                                 <div style="margin-top:20px;">
-                                                        <button type="submit" role="submitButton" class="btn btn-primary">
+                                                        <button type="submit" role="button" class="btn btn-primary">
                                                         	${sessionScope.languageJSON.leaveBalance.retrieve}
                                                         </button>
                                                 </div>
