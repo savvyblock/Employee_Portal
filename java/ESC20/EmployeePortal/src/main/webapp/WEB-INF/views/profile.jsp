@@ -1426,7 +1426,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="primary_${count.index}"
                                                         type="radio"
                                                         aria-label="${sessionScope.languageJSON.accessHint.primaryAccountCheckbox}" 
-                                                       
+                                                        aria-disabled="${bank.isDelete}"
+                                                        <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
                                                         name="primaryAccount"
                                                     />
                                                 </label>
@@ -1450,7 +1451,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         type="text"
                                                         name="description"
                                                         aria-label="${sessionScope.languageJSON.profile.bankName}" 
-                                                       
+                                                        aria-disabled="${bank.isDelete}"
+                                                        <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
                                                         value="${bank.codeNew.description}"
                                                     />
                                                 </div>
@@ -1461,7 +1463,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         type="text"
                                                         name="subCode"
                                                         aria-label="${sessionScope.languageJSON.accessHint.bankCode}" 
-                                                       
+                                                        aria-disabled="${bank.isDelete}"
+                                                        <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
                                                         value="${bank.codeNew.subCode}"
                                                     />
                                                 </div>
@@ -1472,6 +1475,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     data-toggle= "modal"
                                                     data-target="#selectBankModal"
                                                     aria-label="${sessionScope.languageJSON.profile.chooseBank}"
+                                                    aria-disabled="${bank.isDelete}"
+                                                    <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
                                                 >
                                                     <i class="fa fa-ellipsis-h"></i>
                                                 </button>
@@ -1491,7 +1496,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control <c:if test="${bank.accountNumber != bank.accountNumberNew}">active</c:if>"
                                                     type="text"
                                                     aria-label="${sessionScope.languageJSON.profile.bankAcctNbr}"
-                                                   
+                                                    aria-disabled="${bank.isDelete}"
+                                                    <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
                                                     name="accountNumber"
                                                     id="accountNumberNew_${count.index}"
                                                     value="${bank.accountNumberNew}"
@@ -1512,7 +1518,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control <c:if test="${bank.accountType.code != bank.accountTypeNew.code}">active</c:if>"
                                                     aria-label="${sessionScope.languageJSON.profile.bankAcctType}"
                                                     id="accountTypeNew_${count.index}"
-                                                   
+                                                    aria-disabled="${bank.isDelete}"
+                                                    <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
                                                     name="displayLabel"
                                                 >
                                                 <c:forEach var="bankType" items="${bankAccountTypes}" varStatus="countBank">
@@ -1540,6 +1547,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     name="displayAmount"
                                                     value="${bank.depositAmountNew.displayAmount}"
                                                     oninput="clearNoNum(this)"
+                                                    aria-disabled="${bank.isDelete}"
+                                                    <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
                                                 />
                                             </div>
                                         </div>
