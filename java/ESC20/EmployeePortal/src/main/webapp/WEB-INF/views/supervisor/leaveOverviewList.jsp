@@ -48,7 +48,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <select  class="form-control"name="selectEmpNbr" onchange="changeEmployee()"
                                             id="selectEmpNbr">
                                             <c:forEach var="item" items="${directReportEmployee}" varStatus="count">
-                                                <option value="${item.employeeNumber}" <c:if test="${item.employeeNumber==selectedEmployee}">selected</c:if>>${item.selectOptionLabel}</option>
+                                                    <c:choose>
+                                                            <c:when test="${item.selectOptionLabel==''}">
+                                                                    <option value="${item.employeeNumber}" <c:if test="${item.employeeNumber==selectedEmployee}">selected</c:if>>&nbsp;</option>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                 <option value="${item.employeeNumber}" <c:if test="${item.employeeNumber==selectedEmployee}">selected</c:if>>${item.selectOptionLabel}</option>
+                                                            </c:otherwise>
+                                                         </c:choose>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -88,9 +95,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="form-group type-group">
                                                 <label class="form-title"  for="freq">${sessionScope.languageJSON.label.payrollFreq}</label>
                                                 <select class="form-control" name="freq" id="freq" onchange="changeFreq()">
-                                                    <c:forEach var="freq" items="${availableFreqs}" varStatus="count">
-                                                        <option value="${freq.code}" <c:if test="${freq.code == selectedFreq }">selected</c:if>>${freq.description}</option>
-                                                    </c:forEach>
+                                                        <c:forEach var="freq" items="${availableFreqs}" varStatus="count">
+                                                            <option value="${freq.code}" <c:if test="${freq.code == selectedFreq }">selected</c:if>>${freq.description}</option>
+                                                        </c:forEach>
+                                                    
                                                 </select>
                                         </div>
                                         <div class="form-group">
@@ -164,44 +172,44 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             <th>${sessionScope.languageJSON.approveRequest.leaveRequested}</th>
                                                             <th>${sessionScope.languageJSON.approveRequest.commentLog}</th>
                                                             <th>${sessionScope.languageJSON.approveRequest.status}</th>
-                                                            <th aria-label="${sessionScope.languageJSON.approveRequest.supervisorAction}"></th>
+                                                            <td aria-label="${sessionScope.languageJSON.approveRequest.supervisorAction}"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <c:if test="${isEmpty==false}">
                                                         <c:forEach var="item" items="${employeeList}" varStatus="status">
                                                             <tr class="hide">
-                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.leaveStartDate}" scope="${sessionScope.languageJSON.approveRequest.leaveStartDate}">${item.LeaveStartDate}</td>
-                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.leaveEndDate}" scope="${sessionScope.languageJSON.approveRequest.leaveEndDate}">${item.LeaveEndDate}</td>
-                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.leaveType}" scope="${sessionScope.languageJSON.approveRequest.leaveType}">
+                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.leaveStartDate}">${item.LeaveStartDate}</td>
+                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.leaveEndDate}">${item.LeaveEndDate}</td>
+                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.leaveType}">
                                                                         <c:forEach var="type" items="${leaveTypes}" varStatus="statusType">
                                                                         	<c:if test="${type.code==item.LeaveType}">${type.description}</c:if>
                                                                         </c:forEach>
                                                                     </td>
-                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.absenceReason}" scope="${sessionScope.languageJSON.approveRequest.absenceReason}">
+                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.absenceReason}" >
                                                                             <c:forEach var="reason" items="${absRsns}" varStatus="statusReason">
                                                                                     <c:if test="${reason.code==item.AbsenseReason}">${reason.description}</c:if>
                                                                             </c:forEach>
                                                                     </td>
                                                                     
-                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.leaveRequested}" scope="${sessionScope.languageJSON.approveRequest.leaveRequested}">${item.lvUnitsUsed} 
+                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.leaveRequested}">${item.lvUnitsUsed} 
                                                                         <span>${sessionScope.languageJSON.label.days}</span>
                                                                     </td>
-                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.commentLog}" scope="${sessionScope.languageJSON.approveRequest.commentLog}">
+                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.commentLog}">
                                                                             <c:forEach var="comment" items="${item.comments}" varStatus="statusComment">
                                                                                     <p>${comment.detail}</p>
                                                                                 </c:forEach>
                                                                     </td>
-                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.status}" scope="${sessionScope.languageJSON.approveRequest.status}">  
+                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.status}">  
                                                                         ${item.statusDescr}
                                                                     </td>
-                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.supervisorAction}" scope="${sessionScope.languageJSON.approveRequest.supervisorAction}" style="width:150px;">
+                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.supervisorAction}" style="width:150px;">
                                                                         
                                                                             <c:if test="${item.statusCd =='P'||item.statusCd =='D'}">
-                                                                                <button class="btn btn-primary sm edit-btn" id="editLeave" data-toggle="modal" data-target="#requestModal" 
+                                                                                <button class="btn btn-primary sm edit-btn" data-toggle="modal" data-target="#requestModal" 
                                                                                 onClick='editLeave("${item.id}","${item.LeaveType}","${item.AbsenseReason}","${item.start}",
                                                                                 "${item.end}", "${item.lvUnitsDaily}","${item.lvUnitsUsed}")'>${sessionScope.languageJSON.label.edit}</button>
-                                                                                <button class="btn btn-secondary sm delete-btn" id="deleteLeaveTable" data-toggle="modal" data-target="#deleteModal" 
+                                                                                <button class="btn btn-secondary sm delete-btn" data-toggle="modal" data-target="#deleteModal" 
                                                                                 onClick="deleteLeave('${item.id}')">${sessionScope.languageJSON.label.delete}</button>
                                                                             </c:if>
                                                                             
