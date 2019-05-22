@@ -44,7 +44,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <select  class="form-control" name="selectEmpNbr" onchange="changeLevel()"
                                             id="selectEmpNbr">
                                             <c:forEach var="item" items="${directReportEmployee}" varStatus="count">
-                                                <option value="${item.employeeNumber}">${item.selectOptionLabel}</option>
+                                               <c:choose>
+												   <c:when test="${item.selectOptionLabel==''}">
+											   			<option value="${item.employeeNumber}">&nbsp;</option>
+												   </c:when>
+												   <c:otherwise>
+												         <option value="${item.employeeNumber}">${item.selectOptionLabel}</option>
+												   </c:otherwise>
+												</c:choose>
                                             </c:forEach>
                                         </select>
                                     </div>
