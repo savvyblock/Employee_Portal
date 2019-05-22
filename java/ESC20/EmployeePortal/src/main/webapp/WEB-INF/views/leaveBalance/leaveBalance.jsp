@@ -121,20 +121,20 @@
 						<tbody>
 							<c:forEach var="leave" items="${leaves}" varStatus="count">
 								<tr>
-									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveType}" scope="${sessionScope.languageJSON.leaveBalance.leaveType}">
+									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveType}">
 										<c:forEach var="type" items="${leaveTypes}" varStatus="count">
 												<c:if test="${type.code == leave.lvTyp }">${type.description}</c:if>
 										</c:forEach>
 									</td>
-									<td data-title="${sessionScope.languageJSON.leaveBalance.dateOfPay}" scope="${sessionScope.languageJSON.leaveBalance.dateOfPay}">
+									<td data-title="${sessionScope.languageJSON.leaveBalance.dateOfPay}">
 											${leave.dtOfPay}
 									</td>
-									<td data-title="${sessionScope.languageJSON.leaveBalance.dateOfLeave}" scope="${sessionScope.languageJSON.leaveBalance.dateOfLeave}">${leave.dtOfAbs}</td>
-									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveUsed}" scope="${sessionScope.languageJSON.leaveBalance.leaveUsed}">${leave.lvUnitsUsed} 
+									<td data-title="${sessionScope.languageJSON.leaveBalance.dateOfLeave}">${leave.dtOfAbs}</td>
+									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveUsed}">${leave.lvUnitsUsed} 
 										<span>${sessionScope.languageJSON.label.days}</span>
 									</td>
-									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveEarned}" class="text-right" scope="${sessionScope.languageJSON.leaveBalance.leaveEarned}">${leave.lvUnitsEarned}</td>
-									<td data-title="${sessionScope.languageJSON.leaveBalance.status}" class="text-center" scope="${sessionScope.languageJSON.leaveBalance.status}">
+									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveEarned}" class="text-right">${leave.lvUnitsEarned}</td>
+									<td data-title="${sessionScope.languageJSON.leaveBalance.status}" class="text-center">
 											<c:if test="${leave.processDt && leave.processDt != ''}">
 												<span>${sessionScope.languageJSON.label.processed}</span>
 											</c:if>
@@ -155,9 +155,9 @@
 				</c:if>
 			</div>
 		</section>
-			<form hidden="true" id="deleteForm" action="deleteLeaveRequest" method="post">
+			<form id="deleteForm" action="deleteLeaveRequest" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				<input type="text" id="deleteId" name="id" aria-label="${sessionScope.languageJSON.accessHint.id}"/>
+				<input type="hidden" id="deleteId" name="id" aria-label="${sessionScope.languageJSON.accessHint.id}"/>
 			</form>
 		</main>
 	</div>

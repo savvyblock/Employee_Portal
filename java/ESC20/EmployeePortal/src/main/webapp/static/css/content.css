@@ -1419,7 +1419,7 @@
     display: none;
   }
   .table.border-table {
-    border-color: #000 !important;
+    border-color: 1px solid #000 !important;
   }
   .table.border-table thead td, .table.border-table thead th {
     border-width: 1px;
@@ -1464,6 +1464,12 @@
     opacity: 1 !important;
     width: 15px !important;
     height: 15px !important;
+  }
+  .tableSelf td:last-child, th:last-child {
+    width: 38px !important;
+  }
+  .print-table.tableSelf td:last-child, th:last-child {
+    width: 38px !important;
   }
 }
 

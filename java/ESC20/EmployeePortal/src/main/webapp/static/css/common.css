@@ -678,6 +678,10 @@ input:focus {
   padding: 0;
 }
 
+.table.earning-title-table td.td-title, .table.earning-title-table th.td-title {
+  width: 160px;
+}
+
 .table thead th {
   border-top: 0;
   vertical-align: bottom;

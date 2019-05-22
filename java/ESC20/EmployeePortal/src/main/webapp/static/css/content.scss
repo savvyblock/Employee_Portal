@@ -1086,6 +1086,7 @@
         height: 18px;
         border: 1px solid #000;
     }
+    
     .EMP-detail {
         .sub-title {
             font-size: 15px;
@@ -1280,7 +1281,7 @@
             }
         }
         &.border-table{
-            border-color: #000!important;
+            border-color: 1px solid #000!important;
             thead{
                 td,th{
                     border-width: 1px;
@@ -1342,6 +1343,16 @@
         opacity: 1!important;
         width: 15px!important;
         height: 15px!important;
+    }
+    .tableSelf td,th{
+        &:last-child{
+            width: 38px!important;
+        }
+    }
+    .print-table.tableSelf td,th{
+        &:last-child{
+            width: 38px!important;
+        }
     }
     
 }
