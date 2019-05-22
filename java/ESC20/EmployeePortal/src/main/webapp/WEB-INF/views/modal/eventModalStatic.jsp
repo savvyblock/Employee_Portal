@@ -24,7 +24,7 @@
                   <table class="table border-table no-thead">
                     <tbody>
                       <tr>
-                        <td id="employeeNameModal"><b>${sessionScope.languageJSON.label.employee}</b></td>
+                        <th id="employeeNameModal"><b>${sessionScope.languageJSON.label.employee}</b></th>
                         <td headers="employeeNameModal" title="${sessionScope.languageJSON.label.employee}">
                             <div id="employeeStatic"></div>
                         </td>
@@ -37,39 +37,38 @@
                         </td>
                       </tr>
                       <tr>
-                            <td id="startDateModalTitle"><b>${sessionScope.languageJSON.leaveRequest.startDate}</b></td>
+                            <th id="startDateModalTitle"><b>${sessionScope.languageJSON.leaveRequest.startDate}</b></th>
                             <td headers="startDateModalTitle" title="${sessionScope.languageJSON.leaveRequest.startDate}"><div id="startDateStatic"></div></td>
                           </tr>
                           <tr>
-                            <td id="endDateModalTitle"><b>${sessionScope.languageJSON.leaveRequest.endDate}</b></td>
+                            <th id="endDateModalTitle"><b>${sessionScope.languageJSON.leaveRequest.endDate}</b></th>
                             <td headers="endDateModalTitle" title="${sessionScope.languageJSON.leaveRequest.endDate}"><div id="endDateStatic"></div></td>
                           </tr>
                           <tr>
-                            <td id="leaveTypeModalTitle"><b>${sessionScope.languageJSON.leaveRequest.leaveType}</b></td>
+                            <th id="leaveTypeModalTitle"><b>${sessionScope.languageJSON.leaveRequest.leaveType}</b></th>
                             <td headers="leaveTypeModalTitle" title="${sessionScope.languageJSON.leaveRequest.leaveType}"><div id="leaveTypeStatic"></div></td>
                           </tr>
                           <tr>
-                            <td id="absenceReasonModalTitle"><b>${sessionScope.languageJSON.leaveRequest.absenceReason}</b></td>
+                            <th id="absenceReasonModalTitle"><b>${sessionScope.languageJSON.leaveRequest.absenceReason}</b></th>
                             <td headers="absenceReasonModalTitle" title="${sessionScope.languageJSON.leaveRequest.absenceReason}"><div id="absenceReasonStatic"></div></td>
                           </tr>
                           <tr>
-                            <td id="leaveRequestedModalTitle"><b>${sessionScope.languageJSON.leaveRequest.leaveRequested}</b></td>
+                            <th id="leaveRequestedModalTitle"><b>${sessionScope.languageJSON.leaveRequest.leaveRequested}</b></th>
                             <td headers="leaveRequestedModalTitle" title="${sessionScope.languageJSON.leaveRequest.leaveRequested}">
                                 <span id="leaveRequestedStatic"></span>
                                 <span>${sessionScope.languageJSON.label.days}</span>
                             </td>
                           </tr>
                           <tr>
-                                <td id="statusModalTitle"><b>${sessionScope.languageJSON.leaveRequest.status}</b></td>
+                                <th id="statusModalTitle"><b>${sessionScope.languageJSON.leaveRequest.status}</b></th>
                                 <td headers="statusModalTitle" title="${sessionScope.languageJSON.leaveRequest.status}"><div id="leaveStatusStatic"></div></td>
-                              </tr>
-                          <tr>
+                            </tr>
                         <tr>
-                                <td id="approverModalTitle"><b>${sessionScope.languageJSON.leaveRequest.approver}</b></td>
+                                <th id="approverModalTitle"><b>${sessionScope.languageJSON.leaveRequest.approver}</b></th>
                                 <td headers="approverModalTitle" title="${sessionScope.languageJSON.leaveRequest.approver}"><div id="leaveApproverStatic"></div></td>
                                 </tr>
                             <tr>
-                                <td id="commentLogModalTitle"><b>${sessionScope.languageJSON.leaveRequest.commentLog}</b></td>
+                                <th id="commentLogModalTitle"><b>${sessionScope.languageJSON.leaveRequest.commentLog}</b></th>
                                 <td headers="commentLogModalTitle" title="${sessionScope.languageJSON.leaveRequest.commentLog}">
                                     <div id="commentLogStatic"></div>
                                 </td>

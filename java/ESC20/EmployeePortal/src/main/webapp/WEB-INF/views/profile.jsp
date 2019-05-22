@@ -141,7 +141,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <div class="form-group valueInput">
                                                         <select
                                                             class="form-control <c:if test="${sessionScope.userDetail.nameGen != nameRequest.nameGenNew}">active</c:if>"
-                                                            value="${nameRequest.nameGenNew}"
                                                             aria-label="${sessionScope.languageJSON.profile.generation}"
                                                            
                                                             name="nameGenNew"
@@ -319,7 +318,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <select
                                                         id="driversState"
                                                         name="driversLicStNew"
-                                                        value="${licRequest.driversLicStNew}"                                                
                                                         class="form-control <c:if test="${sessionScope.userDetail.driversLicSt != licRequest.driversLicStNew }">active</c:if>"
                                                         aria-label="${sessionScope.languageJSON.profile.driversLicenseState}"
                                                        
@@ -1316,7 +1314,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="maritalStatusLabel"
                                                     name="maritalStatTaxNew"
                                                     class="form-control  <c:if test="${payInfo.maritalStatTax != w4Request.maritalStatTaxNew}">active</c:if>"
-                                                    value="${w4Request.maritalStatTaxNew}"
                                                     aria-label="${sessionScope.languageJSON.profile.MaritalStatus}"
                                                    
                                                     
@@ -1412,15 +1409,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="profile-title">${sessionScope.languageJSON.profile.primary}</div>
                                         <div class="profile-desc">
                                             <span class="haveValue">
-                                                <label>
+                                                <div>
                                                     <div class="noPrimary"></div>
                                                     <div class="yesPrimary">
                                                         <i class="fa fa-check"></i>
                                                     </div>
-                                                </label>
+                                                </div>
                                             </span>
                                             <div class="form-group valueInput">
-                                                <label for="primary_${count.index}">
+                                                <div>
                                                     <input
                                                         class="icheckRadioBank"
                                                         id="primary_${count.index}"
@@ -1430,7 +1427,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
                                                         name="primaryAccount"
                                                     />
-                                                </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -42,7 +42,6 @@
                           type="button" role="button"
                             class="btn btn-secondary closeModal"
                             data-dismiss="modal"
-                            id="cancelAdd"
                             data-localize="label.cancel"
                         >
                         </button>
