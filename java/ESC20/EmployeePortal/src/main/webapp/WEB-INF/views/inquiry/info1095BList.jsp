@@ -3,16 +3,16 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <table class="groupWrapTable" style="border:0;margin: 0;width:100%;">
 	<tr>
-		<td>
-			<table class="table border-table responsive-table no-thead print-table middle-td-table print-show-table">
+		<td style="padding:0;">
+			<table class="table border-table responsive-table no-thead print-table middle-td-table print-show-table tableSelf">
 				<tr>
-					<td class="no-border-td" colspan="16">
+					<td class="no-border-td">
 						<h2 class="sub-title">${sessionScope.languageJSON.info1095Table.partIIICoverIndividuals}</h2>
 						<div>
 								<span>${sessionScope.languageJSON.info1095Table.ifEmployerProvidedSelfInsurance02}</span>
 						</div>
 					</td>
-					<td colspan="3">
+					<td>
 						<span class="print-check-disabled print-show">
 							<i class="fa fa-times"></i>
 						</span>
@@ -23,8 +23,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 		</td>
 	</tr>
 	<tr>
-		<td>
-			<table class="table border-table responsive-table no-thead print-table middle-td-table">
+		<td style="padding:0;">
+			<table class="table border-table responsive-table no-thead print-table middle-td-table tableSelf" style="margin-bottom:5px;">
 				<thead>
 						<tr>
 								<th class="print-hide"><span>${sessionScope.languageJSON.info1095Table.firstName}</span></th>

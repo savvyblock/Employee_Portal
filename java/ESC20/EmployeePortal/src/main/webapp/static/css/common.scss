@@ -589,6 +589,13 @@ input {
             padding: 0;
         }
     }
+    &.earning-title-table{
+        td,th{
+            &.td-title{
+                width: 160px;
+            }
+        }
+    }
     thead {
         th {
             border-top: 0;

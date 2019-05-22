@@ -247,7 +247,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </table>
                         
                                                 <table
-                                                    class="table border-table responsive-table no-thead print-table money-table mb-0"
+                                                    class="table border-table responsive-table no-thead print-table money-table mb-0 tableSelf"
                                                 >
                                                     <thead>
                                                         <tr class="print-tr">

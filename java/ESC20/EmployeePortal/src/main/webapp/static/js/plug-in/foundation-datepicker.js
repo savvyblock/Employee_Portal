@@ -1453,7 +1453,7 @@
             '<th class="next" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" aria-label="'+nextLabel+'"><span class="forAria">'+nextLabel+'</span>' + rightArrow + '</th>' +
             '</tr>' +
             '</thead>')},
-        contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
+        contTemplate: '<tbody><tr><td colspan="3"></td></tr></tbody>',
         footTemplate: function(num) {
             return ('<tfoot><tr><th colspan="'+num+'" class="today"></th></tr></tfoot>')
         } 
