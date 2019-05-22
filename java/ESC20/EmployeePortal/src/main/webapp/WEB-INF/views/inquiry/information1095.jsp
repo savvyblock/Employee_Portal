@@ -453,7 +453,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	                                     <input type="text" class="form-control form-text static" aria-label="${sessionScope.languageJSON.label.blankValueForCustomMessage}" readonly="readonly"/>
                                     </c:if>
                                      <c:if test="${message!=''}">
-                                        <textarea class="form-control form-text static" readonly="readonly">${message}</textarea>
+                                        <textarea class="form-control form-text static" aria-label="${sessionScope.languageJSON.label.blankValueForCustomMessage}" readonly="readonly">${message}</textarea>
                                     </c:if>
                                 </div>
                                 <div class="form-group">

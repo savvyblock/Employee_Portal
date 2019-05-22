@@ -39,7 +39,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <select  class="form-control" name="selectEmpNbr" onchange="changeLevel()"
                                             id="selectEmpNbr">
                                             <c:forEach var="item" items="${directReportEmployee}" varStatus="count">
-                                                <option value="${item.employeeNumber}"><span>${item.selectOptionLabel}</span></option>
+                                                <c:choose>
+												   <c:when test="${item.selectOptionLabel==''}">
+											   			<option value="${item.employeeNumber}">&nbsp;</option>
+												   </c:when>
+												   <c:otherwise>
+												        <option value="${item.employeeNumber}">${item.selectOptionLabel}</option>
+												   </c:otherwise>
+												</c:choose>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -75,7 +82,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
                                     <input hidden="hidden" id="empNbrForm" name="empNbr" type="text" value="" aria-label="${sessionScope.languageJSON.accessHint.employeeNumber}"/>
                                     <input hidden="hidden" id="approverJson" name="approverJson" type="text" value="" aria-label="${sessionScope.languageJSON.accessHint.approverJson}"/>
-                                <table summary="${sessionScope.languageJSON.accessHint.deletedRowSummary}"
+                                <p id="tableSummary" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">${sessionScope.languageJSON.accessHint.deletedRowSummary}</p>    
+                                <table aria-describedby="tableSummary"
                                     class="table border-table setApprovers-list responsive-table"
                                 >
                                     <thead>
