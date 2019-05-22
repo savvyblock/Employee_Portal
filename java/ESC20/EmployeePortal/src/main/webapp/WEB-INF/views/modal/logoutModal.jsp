@@ -22,7 +22,6 @@
                     type="button" role="button"
                     class="btn btn-secondary closeModal"
                     data-dismiss="modal"
-                    id="cancelAdd"
                     onclick="setCountTime()"
                 >
                 	${sessionScope.languageJSON.label.cancel}

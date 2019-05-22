@@ -73,7 +73,6 @@
                         type="button" role="button"
                             class="btn btn-secondary closeModal"
                             data-dismiss="modal"
-                            id="cancelAdd"
                         >
                         	${sessionScope.languageJSON.label.cancel}
                         </button>

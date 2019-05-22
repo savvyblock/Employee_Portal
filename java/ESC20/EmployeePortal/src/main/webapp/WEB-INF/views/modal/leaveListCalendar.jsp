@@ -28,8 +28,7 @@ data-backdrop="static"
         <button
           type="button" role="button"
             class="btn btn-secondary closeModal"
-            data-dismiss="modal"
-            id="cancelAddCalendar">
+            data-dismiss="modal">
         	${sessionScope.languageJSON.label.close}
         </button>
     </div>

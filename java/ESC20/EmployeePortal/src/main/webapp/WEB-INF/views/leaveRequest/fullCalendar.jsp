@@ -23,9 +23,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <div class="content-white"><div id="calendar"></div></div>
                 </section>
             </main>
-            <form hidden="true" id="deleteForm" action="deleteLeaveRequestFromCalendar" method="post">
+            <form id="deleteForm" action="deleteLeaveRequestFromCalendar" method="post">
             		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <input type="text" id="deleteId" name="id" aria-label="${sessionScope.languageJSON.accessHint.id}"/>
+                    <input type="hidden" id="deleteId" name="id" aria-label="${sessionScope.languageJSON.accessHint.id}"/>
             </form>
         </div>
         <%@ include file="../commons/footer.jsp"%>
