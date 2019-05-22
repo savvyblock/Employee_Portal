@@ -24,7 +24,7 @@
                   <table class="table border-table no-thead leftTdTable">
                     <tbody>
                       <tr>
-                        <td id="hEmployee"><b>${sessionScope.languageJSON.label.employee}</b></td>
+                        <th id="hEmployee"><b>${sessionScope.languageJSON.label.employee}</b></th>
                         <td headers="hEmployee" data-title="${sessionScope.languageJSON.label.employee}" title="${sessionScope.languageJSON.label.employee}">
                             <button class="showBalanceBtn pull-right a-btn" type="button" role="button" onclick="showDetail(this)" aria-label="${sessionScope.languageJSON.label.showLeaveBalanceSummary}">
                                 <i class="fa fa-angle-double-down"></i>
@@ -34,38 +34,38 @@
                         </td>
                       </tr>
                       <tr>
-                        <td colspan="2" title="${sessionScope.languageJSON.label.leaveBalanceSummary}" id="leaveBalanceSummary">
+                        <th colspan="2" title="${sessionScope.languageJSON.label.leaveBalanceSummary}" id="leaveBalanceSummary">
                             <div><span>${sessionScope.languageJSON.label.leaveBalanceSummaryFor}</span> 
                                 <span id="infoEmpName"></span>
                             </div>
                             <div id="infoDetail"></div>
-                        </td>
+                        </th>
                       </tr>
                       <tr>
-                        <td id="hStartDate"><b>${sessionScope.languageJSON.leaveRequest.startDate}</b></td>
+                        <th id="hStartDate"><b>${sessionScope.languageJSON.leaveRequest.startDate}</b></th>
                         <td headers="hStartDate" title="${sessionScope.languageJSON.leaveRequest.startDate}"><div id="startDate"></div></td>
                       </tr>
                       <tr>
-                        <td id="hEndDate"><b>${sessionScope.languageJSON.leaveRequest.endDate}</b></td>
+                        <th id="hEndDate"><b>${sessionScope.languageJSON.leaveRequest.endDate}</b></th>
                         <td headers="hEndDate" title="${sessionScope.languageJSON.leaveRequest.endDate}"><div id="endDate"></div></td>
                       </tr>
                       <tr>
-                        <td id="hLeaveType"><b>${sessionScope.languageJSON.leaveRequest.leaveType}</b></td>
+                        <th id="hLeaveType"><b>${sessionScope.languageJSON.leaveRequest.leaveType}</b></th>
                         <td headers="hLeaveType" title="${sessionScope.languageJSON.leaveRequest.leaveType}"><div id="leaveType"></div></td>
                       </tr>
                       <tr>
-                        <td id="hAbsenceReason"><b>${sessionScope.languageJSON.leaveRequest.absenceReason}</b></td>
+                        <th id="hAbsenceReason"><b>${sessionScope.languageJSON.leaveRequest.absenceReason}</b></th>
                         <td headers="hAbsenceReason" title="${sessionScope.languageJSON.leaveRequest.absenceReason}"><div id="absenceReason"></div></td>
                       </tr>
                       <tr>
-                        <td id="hLeaveReauest"><b>${sessionScope.languageJSON.leaveRequest.leaveRequested}</b></td>
+                        <th id="hLeaveReauest"><b>${sessionScope.languageJSON.leaveRequest.leaveRequested}</b></th>
                         <td headers="hLeaveReauest" title="${sessionScope.languageJSON.leaveRequest.leaveRequested}">
                             <span id="leaveRequested"></span>
                             <span>${sessionScope.languageJSON.label.days}</span>
                         </td>
                       </tr>
                       <tr>
-                        <td id="hCommentLog"><b>${sessionScope.languageJSON.leaveRequest.commentLog}</b></td>
+                        <th id="hCommentLog"><b>${sessionScope.languageJSON.leaveRequest.commentLog}</b></th>
                         <td headers="hCommentLog" title="${sessionScope.languageJSON.leaveRequest.commentLog}"><div id="commentLog"></div></td>
                       </tr>
                     </tbody>
