@@ -1,7 +1,6 @@
 $(function(){
     $('#loginForm').bootstrapValidator({
         live: 'enable',
-        trigger: 'blur',
         feedbackIcons: {
             valid: 'fa fa-check ',
             // invalid: 'fa fa-times',
@@ -9,6 +8,7 @@ $(function(){
         },
         fields: {
             username: {
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: usernameCannotBeEmptyValidator
@@ -16,6 +16,7 @@ $(function(){
                 }
             },
             password: {
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: passwordCannotBeEmptyValidator
@@ -27,7 +28,6 @@ $(function(){
     });
     $('#loginBackForm').bootstrapValidator({
         live: 'enable',
-        trigger: 'blur',
         feedbackIcons: {
             valid: 'fa fa-check ',
             // invalid: 'fa fa-times',
@@ -35,6 +35,7 @@ $(function(){
         },
         fields: {
             username: {
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: usernameCannotBeEmptyValidator
@@ -42,6 +43,7 @@ $(function(){
                 }
             },
             password: {
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: passwordCannotBeEmptyValidator

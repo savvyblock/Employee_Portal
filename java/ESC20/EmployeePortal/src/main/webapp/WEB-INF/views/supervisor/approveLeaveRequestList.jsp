@@ -127,7 +127,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                     </c:forEach>
                                                             </td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.supervisorAction}"  style="width:150px;">
-                                                                <button class="btn btn-primary sm" id="actionLeave" data-toggle="modal" data-target="#approveModal" 
+                                                                <button class="btn btn-primary sm" data-toggle="modal" data-target="#approveModal" 
                                                                 onClick="actionLeave('${item.id}')"><span>${sessionScope.languageJSON.label.action}</span></button>
                                                             </td>
                                                         </tr>

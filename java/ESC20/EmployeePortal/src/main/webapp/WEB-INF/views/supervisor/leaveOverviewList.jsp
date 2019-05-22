@@ -92,7 +92,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <input type="hidden" type="text" name="empNbr" class="employeeNum" value="${selectedEmployee}" aria-label="${sessionScope.languageJSON.accessHint.employeeNumber}"/>
                                             <input type="hidden" class="chain" name="chain" type="text" value="" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
                                             <input type="hidden" type="text" name="isChangeLevel" class="isChangeLevel" value="false" aria-label="${sessionScope.languageJSON.accessHint.whetherChangeLevel}"/>
-                                        <div class="form-group type-group">
+                                        <div class="form-group type-group freqGroup">
                                                 <label class="form-title"  for="freq">${sessionScope.languageJSON.label.payrollFreq}</label>
                                                 <select class="form-control" name="freq" id="freq" onchange="changeFreq()">
                                                         <c:forEach var="freq" items="${availableFreqs}" varStatus="count">

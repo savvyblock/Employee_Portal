@@ -5,7 +5,7 @@ $('.icheck').iCheck({
 })
 $('#updatePassword').bootstrapValidator({
     live: 'enable',
-    trigger: 'blur',
+    trigger: null,
     feedbackIcons: {
         valid: 'fa fa-check ',
         // invalid: 'fa fa-times',

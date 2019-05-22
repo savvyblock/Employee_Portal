@@ -2,6 +2,17 @@ var chainString = JSON.stringify(chain)
 var reasonOption
 console.log(chainString)
 $(function() {
+    var selectHtml = $("#freq").html().trim();
+    console.log(selectHtml)
+    if(selectHtml==''){
+        // $("#freq").remove()
+        setTimeout(function(){
+            // var freqHtml = '<select class="form-control" name="freq" id="freq" onchange="changeFreq()"></select>'
+            // $('.freqGroup').append(freqHtml)
+            $("#freq").empty()
+        },300)
+       
+    }
     reasonOption = $("#absenceReason").html()
     changeLevel()
     $('.chain').val(chainString)

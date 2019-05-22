@@ -587,7 +587,7 @@ function personalValidator() {
         },
         fields: {
             nameFNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -599,7 +599,7 @@ function personalValidator() {
                 }
             },
             nameLNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -611,7 +611,7 @@ function personalValidator() {
                 }
             },
             nameMNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     stringLength: {
                         max: 25,
@@ -633,9 +633,8 @@ function maritalStatusValidator() {
             validating: 'fa fa-refresh'
         },
         fields: {
-            no: {
-                trigger: 'blur',
-
+            maritalStatNew: {
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -658,7 +657,7 @@ function driverLicenseValidator() {
         },
         fields: {
             driversLicNbrNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     stringLength: {
                         max: 19,
@@ -681,7 +680,7 @@ function restrictionCodeFormValidator() {
         },
         fields: {
             no: {
-                trigger: 'blur',
+                trigger: null,
 
                 validators: {
                     notEmpty: {
@@ -698,7 +697,7 @@ function emailFormValidator() {
         live: 'enable',
         fields: {
             emailNew: {
-                trigger: 'blur change',
+                trigger: null,
                 validators: {
                     emailAddress: {
                         message: pleaseEnterCorrectFormatValidator
@@ -706,7 +705,7 @@ function emailFormValidator() {
                 }
             },
             emailNewVerify: {
-                trigger: 'blur change',
+                trigger: null,
                 validators: {
                     identical: {
                         field: 'emailNew',
@@ -718,7 +717,7 @@ function emailFormValidator() {
                 }
             },
             hmEmailNew: {
-                trigger: 'blur change',
+                trigger: null,
                 validators: {
                     emailAddress: {
                         message: pleaseEnterCorrectFormatValidator
@@ -726,7 +725,7 @@ function emailFormValidator() {
                 }
             },
             hmEmailVerifyNew: {
-                trigger: 'blur change',
+                trigger: null,
                 validators: {
                     identical: {
                         field: 'hmEmailNew',
@@ -753,14 +752,14 @@ function emergencyContactFormValidator() {
         },
         fields: {
             emerContactNew: {
-                trigger: 'blur',
+                trigger: null,
                 stringLength: {
                     max: 26,
                     message: maxLength26Validator
                 }
             },
             emerPhoneAcNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -772,7 +771,7 @@ function emergencyContactFormValidator() {
                 }
             },
             emerPhoneNbrNew: {
-                trigger: 'blur',
+                trigger: null,
 
                 validators: {
                     notEmpty: {
@@ -785,7 +784,7 @@ function emergencyContactFormValidator() {
                 }
             },
             emerPhoneExtNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     regexp: {
                         regexp: /^[\d]{0,4}$/,
@@ -794,14 +793,14 @@ function emergencyContactFormValidator() {
                 }
             },
             emerRelNew: {
-                trigger: 'blur',
+                trigger: null,
                 stringLength: {
                     max: 25,
                     message: maxLength25Validator
                 }
             },
             emerNoteNew: {
-                trigger: 'blur',
+                trigger: null,
                 stringLength: {
                     max: 25,
                     message: maxLength25Validator
@@ -823,7 +822,7 @@ function mailingAddressValidator() {
         },
         fields: {
             addrNbrNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     regexp: {
                         regexp: /^[0-9]\d{0,7}$/,
@@ -832,7 +831,7 @@ function mailingAddressValidator() {
                 }
             },
             addrStrNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     stringLength: {
                         max: 20,
@@ -841,7 +840,7 @@ function mailingAddressValidator() {
                 }
             },
             addrAptNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     stringLength: {
                         max: 7,
@@ -850,7 +849,7 @@ function mailingAddressValidator() {
                 }
             },
             addrCityNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     stringLength: {
                         max: 20,
@@ -859,7 +858,7 @@ function mailingAddressValidator() {
                 }
             },
             addrZipNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -871,7 +870,7 @@ function mailingAddressValidator() {
                 }
             },
             addrZip4New: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     regexp: {
                         regexp: /^[0-9][\d]{3}$/,
@@ -894,7 +893,7 @@ function alternativeAddressValidator() {
         },
         fields: {
             smrAddrNbrNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     regexp: {
                         regexp: /^[0-9]\d{0,7}$/,
@@ -903,7 +902,7 @@ function alternativeAddressValidator() {
                 }
             },
             smrAddrStrNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     stringLength: {
                         max: 20,
@@ -912,7 +911,7 @@ function alternativeAddressValidator() {
                 }
             },
             smrAddrAptNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     stringLength: {
                         max: 7,
@@ -921,7 +920,7 @@ function alternativeAddressValidator() {
                 }
             },
             smrAddrCityNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     stringLength: {
                         max: 20,
@@ -930,7 +929,7 @@ function alternativeAddressValidator() {
                 }
             },
             smrAddrZipNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -942,7 +941,7 @@ function alternativeAddressValidator() {
                 }
             },
             smrAddrZip4New: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     regexp: {
                         regexp: /^[0-9][\d]{3}$/,
@@ -965,7 +964,7 @@ function phoneValidator() {
         },
         fields: {
             phoneAreaNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     regexp: {
                         regexp: /^[0-9]\d{2}$/,
@@ -974,7 +973,7 @@ function phoneValidator() {
                 }
             },
             phoneNbrNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     regexp: {
                         regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
@@ -983,7 +982,7 @@ function phoneValidator() {
                 }
             },
             phoneAreaCellNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     regexp: {
                         regexp: /^[0-9]\d{2}$/,
@@ -992,7 +991,7 @@ function phoneValidator() {
                 }
             },
             phoneNbrCellNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     regexp: {
                         regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
@@ -1001,7 +1000,7 @@ function phoneValidator() {
                 }
             },
             phoneAreaBusNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     regexp: {
                         regexp: /^[0-9]\d{2}$/,
@@ -1010,7 +1009,7 @@ function phoneValidator() {
                 }
             },
             phoneNbrBusNew: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     regexp: {
                         regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
@@ -1019,7 +1018,7 @@ function phoneValidator() {
                 }
             },
             busPhoneExtNew: {
-                trigger: 'blur',
+                trigger: null,
 
                 validators: {
                     regexp: {
@@ -1036,7 +1035,6 @@ function w4InfoValidator() {
     $('#w4InfoForm').bootstrapValidator({
         live: 'enable',
         submitButtons: '#saveW4',
-
         feedbackIcons: {
             valid: 'fa fa-check ',
             // invalid: 'fa fa-times',
@@ -1044,8 +1042,7 @@ function w4InfoValidator() {
         },
         fields: {
             maritalStatTaxNew: {
-                trigger: 'blur',
-
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -1053,8 +1050,7 @@ function w4InfoValidator() {
                 }
             },
             nbrTaxExemptsNew: {
-                trigger: 'blur',
-
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -1082,7 +1078,7 @@ function bankAccountValidator() {
             },
             fields: {
                 description: {
-                    trigger: 'blur change',
+                    trigger: null,
                     validators: {
                         notEmpty: {
                             message: requiredFieldValidator
@@ -1090,7 +1086,7 @@ function bankAccountValidator() {
                     }
                 },
                 subCode: {
-                    trigger: 'blur change',
+                    trigger: null,
                     validators: {
                         notEmpty: {
                             message: requiredFieldValidator
@@ -1098,7 +1094,7 @@ function bankAccountValidator() {
                     }
                 },
                 accountNumber: {
-                    trigger: 'blur',
+                    trigger: null,
                     validators: {
                         notEmpty: {
                             message: requiredFieldValidator
@@ -1110,7 +1106,7 @@ function bankAccountValidator() {
                     }
                 },
                 displayLabel: {
-                    trigger: 'blur',
+                    trigger: null,
                     validators: {
                         notEmpty: {
                             message: requiredFieldValidator
@@ -1118,7 +1114,7 @@ function bankAccountValidator() {
                     }
                 },
                 displayAmount: {
-                    trigger: 'blur',
+                    trigger: null,
                     validators: {
                         regexp: {
                             regexp: /^\d{1,7}$|^\d{1,7}[\.]{1}\d{1,2}$/,
@@ -1141,7 +1137,7 @@ function bankAccountAddValidator() {
         },
         fields: {
             description: {
-                trigger: 'blur change',
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -1149,7 +1145,7 @@ function bankAccountAddValidator() {
                 }
             },
             subCode: {
-                trigger: 'blur change',
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -1157,7 +1153,7 @@ function bankAccountAddValidator() {
                 }
             },
             accountNumber: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -1169,7 +1165,7 @@ function bankAccountAddValidator() {
                 }
             },
             displayLabel: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -1177,7 +1173,7 @@ function bankAccountAddValidator() {
                 }
             },
             displayAmount: {
-                trigger: 'blur',
+                trigger: null,
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator

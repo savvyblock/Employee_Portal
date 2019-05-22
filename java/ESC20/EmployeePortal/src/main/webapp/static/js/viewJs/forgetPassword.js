@@ -1,6 +1,6 @@
 $('#retrieveUserName').bootstrapValidator({
     live: 'enable',
-    trigger: 'blur',
+    trigger: null,
     feedbackIcons: {
         valid: 'fa fa-check ',
         // invalid: 'fa fa-times',
@@ -76,7 +76,7 @@ $('#retrieveUserName').bootstrapValidator({
 })
 $('#resetPassword').bootstrapValidator({
     live: 'enable',
-    trigger: 'blur',
+    trigger: null,
     feedbackIcons: {
         valid: 'fa fa-check ',
         // invalid: 'fa fa-times',

@@ -54,12 +54,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <select
                                                             class="form-control <c:if test="${sessionScope.userDetail.namePre != nameRequest.namePreNew }">active</c:if>"
                                                             aria-label="${sessionScope.languageJSON.profile.title}"
-                                                           
                                                             name="namePreNew"
                                                             id="titleString"
                                                         >
                                                         <c:forEach var="title" items="${titleOptions}" varStatus="count">
-                                                            <option value="${title.description}" <c:if test="${title.description == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
+                                                                <c:choose>
+                                                                        <c:when test="${title.description==''}">
+                                                                                <option value="${title.description}" <c:if test="${title.description == nameRequest.namePreNew }">selected</c:if>>&nbsp;</option>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                                <option value="${title.description}" <c:if test="${title.description == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
+                                                                        </c:otherwise>
+                                                                     </c:choose>
                                                         </c:forEach>
                                                         </select>
                                                     </div>
@@ -148,7 +154,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         >
                                                             <c:forEach var="gen" items="${generationOptions}" varStatus="count">
                                                                 <c:if test="${count.index<=2}">
-                                                                    <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                                        <c:choose>
+                                                                                <c:when test="${gen.description==''}">
+                                                                                        <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>&nbsp;</option>
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                        <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                                                </c:otherwise>
+                                                                             </c:choose>
                                                                 </c:if>
                                                             </c:forEach>
                                                             <c:forEach var="gen" items="${generationOptions}" varStatus="count">
@@ -228,11 +241,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="maritalStatNew"
                                                         class="form-control <c:if test="${sessionScope.userDetail.maritalStat != mrtlRequest.maritalStatNew }">active</c:if>"
                                                         aria-label="${sessionScope.languageJSON.profile.local}"
-                                                       
-                                                        
                                                     >
                                                         <c:forEach var="marital" items="${maritalOptions}" varStatus="count">
-                                                            <option value="${marital.code}" <c:if test="${marital.code == mrtlRequest.maritalStatNew }">selected</c:if>>${marital.displayLabel}</option>
+                                                                <c:choose>
+                                                                        <c:when test="${marital.displayLabel==''}">
+                                                                                <option value="${marital.code}" <c:if test="${marital.code == mrtlRequest.maritalStatNew }">selected</c:if>>&nbsp;</option>
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                                <option value="${marital.code}" <c:if test="${marital.code == mrtlRequest.maritalStatNew }">selected</c:if>>${marital.displayLabel}</option>
+                                                                        </c:otherwise>
+                                                                     </c:choose>
+                                                            
                                                         </c:forEach>
                                                     </select>
                                                 </div>
@@ -1408,14 +1427,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-item-line form-line">
                                         <div class="profile-title">${sessionScope.languageJSON.profile.primary}</div>
                                         <div class="profile-desc">
-                                            <span class="haveValue">
-                                                <div>
+                                            <div class="haveValue">
                                                     <div class="noPrimary"></div>
                                                     <div class="yesPrimary">
                                                         <i class="fa fa-check"></i>
                                                     </div>
-                                                </div>
-                                            </span>
+                                             </div>
                                             <div class="form-group valueInput">
                                                 <div>
                                                     <input
@@ -1520,7 +1537,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     name="displayLabel"
                                                 >
                                                 <c:forEach var="bankType" items="${bankAccountTypes}" varStatus="countBank">
-                                                    <option value="${bankType.displayLabel}" <c:if test="${bankType.code == bank.accountTypeNew.code}">selected</c:if>>${bankType.displayLabel}</option>
+                                                        <c:choose>
+                                                                <c:when test="${bankType.displayLabel==''}">
+                                                                        <option value="${bankType.displayLabel}" <c:if test="${bankType.code == bank.accountTypeNew.code}">selected</c:if>>&nbsp;</option>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                        <option value="${bankType.displayLabel}" <c:if test="${bankType.code == bank.accountTypeNew.code}">selected</c:if>>${bankType.displayLabel}</option>
+                                                                </c:otherwise>
+                                                             </c:choose>
+                                                    
                                                 </c:forEach>
     
                                                 </select>
@@ -1704,7 +1729,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="saveBankDisplayLabel"
                                                     >
                                                     <c:forEach var="bankType" items="${bankAccountTypes}" varStatus="count">
-                                                        <option value="${bankType.displayLabel}">${bankType.displayLabel}</option>
+                                                            <c:choose>
+                                                                    <c:when test="${bankType.displayLabel==''}">
+                                                                            <option value="${bankType.displayLabel}">&nbsp;</option>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                            <option value="${bankType.displayLabel}">${bankType.displayLabel}</option>
+                                                                    </c:otherwise>
+                                                                 </c:choose>
+                                                       
                                                     </c:forEach>
                                                     </select>
                                                 </div>
@@ -1766,7 +1799,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <%@ include file="commons/footer.jsp"%>
         <%@ include file="modal/changePassword.jsp"%>
         <%@ include file="modal/undoModal.jsp"%>
-        <%@ include file="modal/changeAvatar.jsp"%>
         <%@ include file="modal/deleteModal.jsp"%>
         <div
             class="modal fade"

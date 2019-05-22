@@ -1,6 +1,6 @@
 $('#createNewUserForm').bootstrapValidator({
     live: 'enable',
-    trigger: 'blur',
+    trigger: null,
     feedbackIcons: {
         valid: 'fa fa-check ',
         validating: 'fa fa-refresh'
@@ -58,7 +58,7 @@ $('#createNewUserForm').bootstrapValidator({
             }
         },
         workEmailVerify: {
-            trigger: 'blur change',
+            trigger: null,
             validators: {
                 identical: {
                     field: 'workEmail',
@@ -77,7 +77,7 @@ $('#createNewUserForm').bootstrapValidator({
             }
         },
         homeEmailVerify: {
-            trigger: 'blur change',
+            trigger: null,
             validators: {
                 identical: {
                     field: 'homeEmail',

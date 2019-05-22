@@ -1,6 +1,6 @@
 $('#retrieveUser').bootstrapValidator({
     live: 'enable',
-    trigger: 'blur',
+    trigger: null,
     feedbackIcons: {
         valid: 'fa fa-check ',
         validating: 'fa fa-refresh'

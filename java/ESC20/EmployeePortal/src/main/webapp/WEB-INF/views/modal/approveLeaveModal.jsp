@@ -70,15 +70,16 @@
                       </tr>
                     </tbody>
                   </table>
-                  <div class="form-group action-group">
-                        <label for="approve">
+                  <div class="form-group action-group flex">
+                        <div>
                             <input class="icheck" type="radio" name="approve" id="approve" value="Approve">
-                            <span>${sessionScope.languageJSON.label.approve}</span>
-                        </label>
-                        <label for="disApprove">
+                            <label for="approve">${sessionScope.languageJSON.label.approve}</label>
+                        </div>
+                        <span>&nbsp;&nbsp;</span>
+                        <div>
                             <input class="icheck" type="radio" name="approve" id="disApprove" value="Disapprove">
-                            <span>${sessionScope.languageJSON.label.disapprove}</span>
-                        </label>
+                            <label for="disApprove">${sessionScope.languageJSON.label.disapprove}</label>
+                        </div>
                   </div>
                   <div class="form-group supervisorComment">
                       <label for="supervisorComment">${sessionScope.languageJSON.label.supervisorComment}</label>
