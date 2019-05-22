@@ -14,8 +14,8 @@
             <div class="inner">
               <img src="/<%=request.getContextPath().split("/")[1]%>/images/404.png" alt="${sessionScope.languageJSON.label.errorImg}">
               <p class="word"></p>
-              <a href="#" onClick="javascript :history.back(-1);">
-                <button class="btn btn-primary">${sessionScope.languageJSON.label.back}</button>
+              <a href="#" onClick="javascript :history.back(-1);"  class="btn btn-primary">
+                ${sessionScope.languageJSON.label.back}
               </a>
             </div>
          </div>

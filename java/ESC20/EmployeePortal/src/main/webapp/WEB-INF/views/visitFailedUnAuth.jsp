@@ -25,8 +25,8 @@
                   <p class="btm-p">
                     ${sessionScope.languageJSON.label.ifYouHaveBookMarked}
                   </p>
-                  <a href="#" onclick="javascript :history.back(-1);">
-                    <button class="btn btn-primary">${sessionScope.languageJSON.label.back}</button>
+                  <a href="#" onclick="javascript :history.back(-1);"  class="btn btn-primary">
+                    ${sessionScope.languageJSON.label.back}
                   </a>
                 </div>
                 </div> 
