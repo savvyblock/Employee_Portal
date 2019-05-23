@@ -3470,6 +3470,3136 @@
 					<textFieldExpression><![CDATA["(" + $F{taxyr}.trim() + ")"]]></textFieldExpression>
 				</textField>
 			</frame>
+			<frame>
+				<reportElement key="Page 3 Part IV Continuation Sheet" x="0" y="0" width="720" height="540" uuid="64b78b81-4559-434b-869e-a76f7ad1bea8">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<printWhenExpression><![CDATA[$F{formpagenbr}.equals( "3" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<staticText>
+					<reportElement x="613" y="1" width="106" height="12" uuid="6978449a-6ea4-447c-a75b-e402891e0579"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[560317]]></text>
+				</staticText>
+				<frame>
+					<reportElement x="1" y="13" width="719" height="14" uuid="a33bf682-3d8f-4335-9cd5-a8e154e5f23d">
+						<property name="net.sf.jasperreports.export.pdf.tag.table"/>
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<box>
+						<bottomPen lineWidth="0.5"/>
+					</box>
+					<staticText>
+						<reportElement x="693" y="5" width="15" height="8" uuid="7657de7c-684c-4eb6-8011-4bf7f5afdd54">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement verticalAlignment="Top">
+							<font fontName="Microsoft Sans Serif" size="6"/>
+						</textElement>
+						<text><![CDATA[Page]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="708" y="4" width="9" height="9" uuid="ad656ecb-439b-490d-9089-f1cd367a6636">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement verticalAlignment="Bottom">
+							<font fontName="Microsoft Sans Serif" size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[3]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="1" y="4" width="120" height="9" uuid="8a2098ee-b1a4-4d23-a2ae-8eb67b515ebd">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="7"/>
+						</textElement>
+						<textFieldExpression><![CDATA["Form 1095-B (" + $F{taxyr} + ")"]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="0" y="27" width="720" height="25" uuid="2e720df2-42fa-463a-9ab2-333b6eda346a">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 1" x="0" y="0" width="387" height="25" uuid="d656bd6e-2755-45e2-8219-912abea1eb13">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="108" height="8" uuid="205e8b60-9a5d-4a7e-b65b-6c12c51d386f"/>
+							<textElement textAlignment="Left">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Name of responsible individual]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="16" y="11" width="370" height="12" uuid="a445fc7e-89cb-45f9-9c03-8a66dbad94d5"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox1}]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 2" x="388" y="0" width="151" height="25" uuid="394e31f4-37e4-420a-9d40-2c9d06389e2b">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0"/>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="140" height="8" uuid="10746fca-b4e2-4f06-a8a2-87d9489ea199"/>
+							<textElement textAlignment="Left">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Social security number (SSN or other TIN)]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="16" y="11" width="130" height="12" uuid="fa17b180-0f63-4ab4-811a-0f4740b76cfd"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b2_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 3" x="539" y="0" width="181" height="25" uuid="06afed52-d57d-43b0-9a0b-109738d89f29">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0"/>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="169" height="8" uuid="6bd9bbb9-1ce3-45c9-8751-66571f1d61cc"/>
+							<textElement textAlignment="Left">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Date of birth (If SSN or other TIN is not available)]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="16" y="11" width="135" height="12" uuid="11ac7aa5-459d-46a2-b07b-5a0b85311895"/>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b3_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Part IV" x="1" y="52" width="719" height="11" uuid="d0fa74bd-2cf8-475e-b0af-b812e271b9cb">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<box>
+						<bottomPen lineWidth="0.5"/>
+					</box>
+					<staticText>
+						<reportElement mode="Opaque" x="1" y="1" width="33" height="10" forecolor="#FFFFFF" backcolor="#000000" uuid="e7b1c03a-7fc6-4ce7-9d62-350e8d6364da">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="1.0" lineColor="#000000"/>
+							<leftPen lineWidth="1.0" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Center">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Part IV]]></text>
+					</staticText>
+					<staticText>
+						<reportElement mode="Opaque" x="45" y="1" width="85" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="eb8a7d3b-74a2-4460-a6d0-f05c68a51c57">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[Covered Individuals]]></text>
+					</staticText>
+					<staticText>
+						<reportElement mode="Opaque" x="141" y="1" width="310" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="03dd1b29-c70f-43d5-a9b3-90a62456518b">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+						</textElement>
+						<text><![CDATA[- Continuation Sheet]]></text>
+					</staticText>
+				</frame>
+				<frame>
+					<reportElement x="0" y="64" width="720" height="35" uuid="958f9da8-1eb1-4566-ac90-2d94b07456a6">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Part IV a" x="1" y="0" width="180" height="35" uuid="dc5ef3fc-2d97-4f6b-b826-ecccaa4a1264">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="10" width="178" height="8" uuid="7065cf4c-2c52-4138-ae64-27655910c192"/>
+							<textElement textAlignment="Center">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
+							</textElement>
+							<text><![CDATA[(a) Name of covered individual(s)]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV b" x="181" y="0" width="86" height="35" uuid="8078ceda-77fd-4a85-95a5-d08a30fbfb6b">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="10" width="84" height="8" uuid="de6ba92b-0c03-48d8-8be6-d2873e01b8f4"/>
+							<textElement textAlignment="Center">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
+							</textElement>
+							<text><![CDATA[(b) SSN or other TIN]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV c" x="267" y="0" width="72" height="35" uuid="9037625b-6c9f-4e0b-a527-72bcee65c288">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="5" width="70" height="24" uuid="506ddb11-2634-4b7b-bee2-bc0283a71669"/>
+							<textElement textAlignment="Center">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
+							</textElement>
+							<text><![CDATA[(c) DOB (If SSN or other TIN is not available)]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV d" x="339" y="0" width="36" height="35" uuid="afc41a1a-5cf8-42ed-aeb9-c2b5a07c436f">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="2" width="34" height="31" uuid="7ee7cbac-093e-481f-9abf-b6905818164d"/>
+							<textElement>
+								<font fontName="Microsoft Sans Serif" size="6" isBold="false"/>
+							</textElement>
+							<text><![CDATA[(d) Covered all 12 months]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV e" x="375" y="0" width="344" height="23" uuid="850d5cc3-d97e-4061-8677-719f6daf00e1">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="10" width="342" height="8" uuid="298587bd-fe9a-45ad-aa45-b64f87382a65"/>
+							<textElement textAlignment="Center">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
+							</textElement>
+							<text><![CDATA[(e) Months of coverage]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV Jan" x="375" y="23" width="28" height="12" uuid="680369af-a6d1-4a51-a22c-d44c0d68c9e6">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="26" height="10" uuid="5f1d881b-3cca-45d7-bfdf-d99860d62f5e"/>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Jan]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV Feb" x="403" y="23" width="28" height="12" uuid="034565a8-b556-4bc7-a3b4-62d2772b7cba"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="26" height="10" uuid="58fe154e-2663-41f5-936f-9327ef29a626"/>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Feb]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV Mar" x="431" y="23" width="28" height="12" uuid="245c5f8c-f127-441a-99fa-2bc55e09c440"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="26" height="10" uuid="7143baf9-c818-4cb1-94b0-56b896e2a17b"/>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Mar]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV Apr" x="459" y="23" width="29" height="12" uuid="37401a27-774d-4aa6-bb9d-86677870a1bc"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="27" height="10" uuid="c2282611-6f9c-4edb-9938-4137a85eef72"/>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Apr]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV May" x="488" y="23" width="29" height="12" uuid="8563915a-6123-4baa-b1ab-8a0c15d2494b"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="27" height="10" uuid="72e86dc8-8f8f-41f0-b304-befbead9279a"/>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+							</textElement>
+							<text><![CDATA[May]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV Jun" x="517" y="23" width="29" height="12" uuid="01bc1972-b32b-4412-9b30-a7962d7061b0"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="27" height="10" uuid="de1e9fbc-84f4-48f6-af87-c0348c0be83f"/>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Jun]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV Jul" x="546" y="23" width="29" height="12" uuid="23008ac5-6399-4d7e-9b84-8e220f20659d"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="27" height="10" uuid="e656e6a5-6e9d-4670-84ee-4a824fe990f5"/>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Jul]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV Aug" x="575" y="23" width="29" height="12" uuid="f4d1fffe-03c0-4072-9ed6-d649ff7f1485"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="27" height="10" uuid="50324927-e787-4331-b31c-220f05cabf90"/>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Aug]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV Sep" x="604" y="23" width="29" height="12" uuid="92c55941-2ad7-4012-9079-4d64e57f6d47"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="27" height="10" uuid="03d09cc8-4f6c-49b1-85a3-799d511875e0"/>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Sep]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV Oct" x="633" y="23" width="29" height="12" uuid="bc8443e3-f6b0-4c75-8e54-c9a2394823ee"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="27" height="10" uuid="9849fcbd-72a8-4eaa-acb9-a4d124fe88f4"/>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Oct]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV Nov" x="662" y="23" width="29" height="12" uuid="bcabb8ab-f9f3-414b-ae38-d21a7c1ae074"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="27" height="10" uuid="8f9090f6-9a00-41e0-aeae-65735472eacb"/>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Nov]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Part IV Dec" x="691" y="23" width="29" height="12" uuid="2bc8ac85-806f-4be7-b152-295a32981e17">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<staticText>
+							<reportElement x="1" y="1" width="27" height="10" uuid="3b233b1f-a592-4a56-b8c9-2192e9862a5b"/>
+							<textElement textAlignment="Center" verticalAlignment="Bottom">
+								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
+							</textElement>
+							<text><![CDATA[Dec]]></text>
+						</staticText>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Box 29" x="0" y="98" width="719" height="35" uuid="e88b9373-cfd1-4549-8e8e-e89623cf23c5">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 29 a" x="0" y="0" width="180" height="35" uuid="5fbe253c-b17f-4517-b517-824e775985dc">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="178" height="24" uuid="3221959e-63cc-4c8b-80ee-0718fab27679">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox29}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="1" y="27" width="11" height="8" uuid="c18798db-2eea-41e1-8898-d1af65039e93"/>
+							<textElement textAlignment="Right" verticalAlignment="Top">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[29]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 b" x="181" y="0" width="86" height="35" uuid="2d826a29-7cfe-4e83-a6ac-be5f43b132d2">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="84" height="24" uuid="2f4a9485-f991-41c7-b693-d36eb6854082"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b29_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 c" x="267" y="0" width="72" height="35" uuid="89c732c9-6ac1-46a1-b2e4-e0e686df962b">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="70" height="24" uuid="83259aa4-250b-4b97-b20f-ece1f5af1807"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b29_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 d" x="339" y="0" width="36" height="35" uuid="905a3543-9e57-4cf0-8f21-0a3818e1b4a7">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="8" y="8" width="19" height="19" uuid="77965716-f0a1-411b-bc1f-389477946cea"/>
+							<imageExpression><![CDATA[$F{b29_coveredindividualannualind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_coveredindividualannualind}.equals("Y") ? "checked Box for covered all" : "unchecked Box for covered all"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 Jan" x="375" y="0" width="28" height="35" uuid="e912af1e-dd22-4f11-a15f-fcf31b499261">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="9ed6eac6-37da-44ee-99d8-b65d7423f311"/>
+							<imageExpression><![CDATA[$F{b29_januaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_januaryind}.equals("Y") ? "checked Box for jan" : "unchecked Box for jan"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 Feb" x="403" y="0" width="28" height="35" uuid="a5e54d61-6433-4ae9-a006-31131cc60adb">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="ce8e4410-8028-406c-bd80-b7df441e204e"/>
+							<imageExpression><![CDATA[$F{b29_februaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_februaryind}.equals("Y") ? "checked Box for feb" : "unchecked Box for feb"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 Mar" x="431" y="0" width="28" height="35" uuid="6f45c29d-e5b2-4d05-9e8c-7fab898ce581">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="1705d3d2-4dcf-4dda-97ec-0fd94c60480a"/>
+							<imageExpression><![CDATA[$F{b29_marchind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_marchind}.equals("Y") ? "checked Box for mar" : "unchecked Box for mar"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 Apr" x="459" y="0" width="29" height="35" uuid="e64bb552-1220-42f4-9e96-aae2fae9eca3">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="915b0dac-ca75-4393-832c-2e5cb73fb39e"/>
+							<imageExpression><![CDATA[$F{b29_aprilind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_aprilind}.equals("Y") ? "checked Box for apr" : "unchecked Box for apr"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 may" x="488" y="0" width="29" height="35" uuid="82323919-d7e4-4e91-9e48-6a247904d733">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="5032a97f-568b-4e44-8002-c6d089a50be9"/>
+							<imageExpression><![CDATA[$F{b29_mayind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_mayind}.equals("Y") ? "checked Box for may" : "unchecked Box for may"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 Jun" x="517" y="0" width="29" height="35" uuid="c09dffbf-c790-497d-ba87-2fefb378a4dc">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="2a30aaba-ba86-4e6b-acfe-5dd55403dc30"/>
+							<imageExpression><![CDATA[$F{b29_juneind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_juneind}.equals("Y") ? "checked Box for jun" : "unchecked Box for jun"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 Jul" x="546" y="0" width="29" height="35" uuid="acf468d3-7d43-4f7e-8180-e91c44cb3c8a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="3d003335-bb9b-470c-b5d9-01d45ed27c79"/>
+							<imageExpression><![CDATA[$F{b29_julyind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_julyind}.equals("Y") ? "checked Box for jul" : "unchecked Box for jul"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 Aug" x="575" y="0" width="29" height="35" uuid="1f6263fe-6304-4ca2-bf52-c24d5d45abee">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="4c1e197e-56f8-4b3b-a842-2b9512f77782"/>
+							<imageExpression><![CDATA[$F{b29_augustind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_augustind}.equals("Y") ? "checked Box for aug" : "unchecked Box for aug"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 Sep" x="604" y="0" width="29" height="35" uuid="2453c321-4411-4611-b284-ede3d5d96fb1">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="0c958821-b59a-491d-86d9-9830d299ec3c"/>
+							<imageExpression><![CDATA[$F{b29_septemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_septemberind}.equals("Y") ? "checked Box for sep" : "unchecked Box for sep"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 Oct" x="633" y="0" width="29" height="35" uuid="06492386-b917-451c-a707-e3058387f84e">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="936117ec-0c17-4181-b25d-a97a6f7f086a"/>
+							<imageExpression><![CDATA[$F{b29_octoberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_octoberind}.equals("Y") ? "checked Box for oct" : "unchecked Box for oct"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 Nov" x="662" y="0" width="29" height="35" uuid="6a78851c-99a4-4cab-af85-94638aa862af">
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="63fad2e9-849b-40f1-8a08-ac5cbea53ef7"/>
+							<imageExpression><![CDATA[$F{b29_novemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_novemberind}.equals("Y") ? "checked Box for nov" : "unchecked Box for nov"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 29 Dec" x="691" y="0" width="28" height="35" uuid="0fc7ee54-763a-492d-b0f8-e9b04ff6da83">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="1676cb31-db7c-4b96-b34d-9f0cf4b361aa"/>
+							<imageExpression><![CDATA[$F{b29_decemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b29_decemberind}.equals("Y") ? "checked Box for dec" : "unchecked Box for dec"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Box 30" x="0" y="133" width="719" height="35" uuid="17555c64-bb16-4427-a28f-8f77a3f208c6">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 30 a" x="0" y="0" width="180" height="35" uuid="e7a6c19f-954b-4ed4-a22d-e8fd910ff8d1">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="178" height="24" uuid="14e1769e-5674-4c91-9741-ff3acfad2416">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox30}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="1" y="27" width="11" height="8" uuid="85b16e81-2359-4f5c-a380-2f1b2b842b34"/>
+							<textElement textAlignment="Right" verticalAlignment="Top">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[30]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 b" x="181" y="0" width="86" height="35" uuid="48da34a7-e6fb-4744-b22e-3d0335c75eb7">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="84" height="24" uuid="2bbd59c5-e7b8-496f-afaa-c3d3aa01f22a"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b30_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 c" x="267" y="0" width="72" height="35" uuid="c04cff7c-a05d-48df-b990-00316decc015">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="70" height="24" uuid="d429897b-0698-4c0d-93fd-40451fc9e604"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b30_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 d" x="339" y="0" width="36" height="35" uuid="4292a608-42c0-4844-8d3b-ae67dc438295">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="8" y="8" width="19" height="19" uuid="7d791614-09d5-4010-b596-89c734c7ac45"/>
+							<imageExpression><![CDATA[$F{b30_coveredindividualannualind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_coveredindividualannualind}.equals("Y") ? "checked Box for covered all" : "unchecked Box for covered all"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 Jan" x="375" y="0" width="28" height="35" uuid="7111ac16-3a7f-4679-858e-292db7f46c67"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="e10ee595-6d59-40f1-b1b6-370f5f3a488c"/>
+							<imageExpression><![CDATA[$F{b30_januaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_januaryind}.equals("Y") ? "checked Box for jan" : "unchecked Box for jan"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 Feb" x="403" y="0" width="28" height="35" uuid="499a33d0-44f9-4503-bf6b-caf2175041f6"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="a61ec3f9-0872-4b34-982b-ebb9d92a689f"/>
+							<imageExpression><![CDATA[$F{b30_februaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_februaryind}.equals("Y") ? "checked Box for feb" : "unchecked Box for feb"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 Mar" x="431" y="0" width="28" height="35" uuid="0a15e1b5-786e-4c5c-ae70-a9e3a2da831b"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="52a0d54b-2d9b-4da0-8e96-2642764dc178"/>
+							<imageExpression><![CDATA[$F{b30_marchind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_marchind}.equals("Y") ? "checked Box for mar" : "unchecked Box for mar"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 Apr" x="459" y="0" width="29" height="35" uuid="3fffc3bf-4323-48cb-99fe-a3f9b0700ff9"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="4878a03f-c7e4-470d-a277-a6b18b2306d8"/>
+							<imageExpression><![CDATA[$F{b30_aprilind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_aprilind}.equals("Y") ? "checked Box for apr" : "unchecked Box for apr"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 may" x="488" y="0" width="29" height="35" uuid="a39753ec-c3e4-4169-93d8-da2528cfc603"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="f4fcec4f-f358-4bda-ade8-8528a5b1c0c9"/>
+							<imageExpression><![CDATA[$F{b30_mayind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_mayind}.equals("Y") ? "checked Box for may" : "unchecked Box for may"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 Jun" x="517" y="0" width="29" height="35" uuid="2936cdcf-7051-4f33-ab6d-42f7b88e94cb"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="9fdb5222-6488-41a9-a32b-65de16d3d3d9"/>
+							<imageExpression><![CDATA[$F{b30_juneind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_juneind}.equals("Y") ? "checked Box for jun" : "unchecked Box for jun"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 Jul" x="546" y="0" width="29" height="35" uuid="a4d2924b-4768-4c02-9414-8d0ddbb4e01d"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="2e01848a-60c3-4144-91c6-31ca3989d58f"/>
+							<imageExpression><![CDATA[$F{b30_julyind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_julyind}.equals("Y") ? "checked Box for jul" : "unchecked Box for jul"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 Aug" x="575" y="0" width="29" height="35" uuid="ed3d5882-e77e-484e-86c3-6b5d8fcfcd2a"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="08f34514-96c9-414b-83a9-bf4664ea3b74"/>
+							<imageExpression><![CDATA[$F{b30_augustind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_augustind}.equals("Y") ? "checked Box for aug" : "unchecked Box for aug"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 Sep" x="604" y="0" width="29" height="35" uuid="a7f0b93a-e110-4b68-b8cb-c94ae037897a"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="609da244-6946-43fd-8844-646d96efd38f"/>
+							<imageExpression><![CDATA[$F{b30_septemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_septemberind}.equals("Y") ? "checked Box for sep" : "unchecked Box for sep"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 Oct" x="633" y="0" width="29" height="35" uuid="849a1e8d-da73-444e-bdf8-c4e06011ab6b"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="64db3454-77c8-4d17-850d-7f009d2da8e9"/>
+							<imageExpression><![CDATA[$F{b30_octoberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_octoberind}.equals("Y") ? "checked Box for oct" : "unchecked Box for oct"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 Nov" x="662" y="0" width="29" height="35" uuid="28535610-5595-4718-af83-597808c37c8d"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="9c624944-03a8-465c-9da0-aa10232738ee"/>
+							<imageExpression><![CDATA[$F{b30_novemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_novemberind}.equals("Y") ? "checked Box for nov" : "unchecked Box for nov"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 30 Dec" x="691" y="0" width="28" height="35" uuid="5ce54421-5cfd-4137-b6a1-39f9c29ccb47">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="8c104d43-beb0-4776-8496-d8a716f9ec2a"/>
+							<imageExpression><![CDATA[$F{b30_decemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_decemberind}.equals("Y") ? "checked Box for dec" : "unchecked Box for dec"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Box 31" x="0" y="168" width="719" height="35" uuid="655d05db-68c5-47f9-9285-3836268b07d5">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 31 a" x="0" y="0" width="180" height="35" uuid="5673671c-20c2-442a-a8e2-74e5301536ba">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="178" height="24" uuid="911f244b-c8c2-4161-b377-dda667d867c9">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox31}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="1" y="27" width="11" height="8" uuid="31cf96b8-f319-41d8-810a-242167c61b0b"/>
+							<textElement textAlignment="Right" verticalAlignment="Top">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[31]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 b" x="181" y="0" width="86" height="35" uuid="394fab35-60ff-4794-946b-a1e9dc7d193f">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="84" height="24" uuid="79a734b7-138d-40f1-b7c6-00c9b9473675"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b31_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 c" x="267" y="0" width="72" height="35" uuid="a484bb56-f8ab-46f4-aa6a-2c3d9a44634a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="70" height="24" uuid="c1a744e2-e07b-4caf-8b4e-33fb034013da"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b31_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 d" x="339" y="0" width="36" height="35" uuid="2c1b6cf7-1e3d-439a-ab53-df53af9dad7d">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="8" y="8" width="19" height="19" uuid="ecde525f-0478-48b3-8278-a5a74562efa0"/>
+							<imageExpression><![CDATA[$F{b31_coveredindividualannualind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b30_coveredindividualannualind}.equals("Y") ? "checked Box for covered all" : "unchecked Box for covered all"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 Jan" x="375" y="0" width="28" height="35" uuid="128d2362-36c3-4576-8aad-3e345f5ec899">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="cac91792-3686-44c0-90eb-9317b224dff8"/>
+							<imageExpression><![CDATA[$F{b31_januaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b31_januaryind}.equals("Y") ? "checked Box for jan" : "unchecked Box for jan"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 Feb" x="403" y="0" width="28" height="35" uuid="d1ccaf12-c09d-4abc-858b-fe6c69c54541"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="b46a0d72-ceb7-4fba-a826-5636f76cadd6"/>
+							<imageExpression><![CDATA[$F{b31_februaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b31_februaryind}.equals("Y") ? "checked Box for feb" : "unchecked Box for feb"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 Mar" x="431" y="0" width="28" height="35" uuid="7f00da36-fc7d-47ed-ba48-9f5494aad39b"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="711f34ec-51ea-40da-83c4-eecee768ab47"/>
+							<imageExpression><![CDATA[$F{b31_marchind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b31_marchind}.equals("Y") ? "checked Box for mar" : "unchecked Box for mar"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 Apr" x="459" y="0" width="29" height="35" uuid="981a7e5c-fed3-4fcb-9f0c-6508a9b082fe"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="64d55274-ce84-4d6f-8e4e-1d073049f490"/>
+							<imageExpression><![CDATA[$F{b31_aprilind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b31_aprilind}.equals("Y") ? "checked Box for apr" : "unchecked Box for apr"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 may" x="488" y="0" width="29" height="35" uuid="4e162e8b-77d4-46bd-b086-fa566035f0f2"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="7ea904d4-c6c6-4aff-889c-3086add599ca"/>
+							<imageExpression><![CDATA[$F{b31_mayind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b31_mayind}.equals("Y") ? "checked Box for may" : "unchecked Box for may"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 Jun" x="517" y="0" width="29" height="35" uuid="0c271b22-f0c4-4690-b731-179bfafb281a"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="01ff4d46-31f9-42a7-b315-911098c8cdc6"/>
+							<imageExpression><![CDATA[$F{b31_juneind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b31_juneind}.equals("Y") ? "checked Box for jun" : "unchecked Box for jun"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 Jul" x="546" y="0" width="29" height="35" uuid="1f0de27e-aec6-4d9e-969f-082f39b0820a"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="a6dd73e0-21f3-4217-9c4f-c9c5ffe95e34"/>
+							<imageExpression><![CDATA[$F{b31_julyind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b31_julyind}.equals("Y") ? "checked Box for jul" : "unchecked Box for jul"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 Aug" x="575" y="0" width="29" height="35" uuid="7dbd125d-657f-4e2d-92b8-4f286a92c86a"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="915ac929-9c52-4d9c-b3c5-504a3fef7798"/>
+							<imageExpression><![CDATA[$F{b31_augustind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b31_augustind}.equals("Y") ? "checked Box for aug" : "unchecked Box for aug"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 Sep" x="604" y="0" width="29" height="35" uuid="0d7156d1-8584-46e9-8f29-3e5076fa37b4"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="32964342-480f-4de5-87f5-2ed0395722e9"/>
+							<imageExpression><![CDATA[$F{b31_septemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b31_septemberind}.equals("Y") ? "checked Box for sep" : "unchecked Box for sep"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 Oct" x="633" y="0" width="29" height="35" uuid="0f4f60bf-d57a-4997-9464-b245af719e9c"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="8e5bbf0f-e39a-4957-a2f6-cfe11b8df9eb"/>
+							<imageExpression><![CDATA[$F{b31_octoberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b31_octoberind}.equals("Y") ? "checked Box for oct" : "unchecked Box for oct"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 Nov" x="662" y="0" width="29" height="35" uuid="fbe4ffd3-c9c3-48d0-8a53-7300a9c5a342"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="b0f759a8-14e3-46cd-9344-bb51dc84679e"/>
+							<imageExpression><![CDATA[$F{b31_novemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b31_novemberind}.equals("Y") ? "checked Box for nov" : "unchecked Box for nov"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 31 Dec" x="691" y="0" width="28" height="35" uuid="c9d1b536-9cc0-43af-9877-7adedfc193fc">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="9b2947f7-565d-420e-9fff-3f0bc2c21a6e"/>
+							<imageExpression><![CDATA[$F{b31_decemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b31_decemberind}.equals("Y") ? "checked Box for dec" : "unchecked Box for dec"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Box 32" x="0" y="203" width="719" height="35" uuid="696f8bc1-de6c-4279-b5ab-0d2330cf57de">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 32 a" x="0" y="0" width="180" height="35" uuid="f1998d56-42ca-40ac-9969-2b2db099ccde">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="178" height="24" uuid="0744e8eb-365e-413c-971f-020b90482dc2">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox32}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="1" y="27" width="11" height="8" uuid="26ae7064-398e-48bf-92b0-ac661acac0b3"/>
+							<textElement textAlignment="Right" verticalAlignment="Top">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[32]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 b" x="181" y="0" width="86" height="35" uuid="c7339447-77d7-4d62-b7a9-7ea213e9cb7d">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="84" height="24" uuid="95071138-b958-438f-af74-f694e9ec38bd"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b32_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 c" x="267" y="0" width="72" height="35" uuid="e9dee855-d8f1-4619-94e5-4af781921a10">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="70" height="24" uuid="c94b5c79-b760-418a-ba02-9a68dbc0dc1e"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b32_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 d" x="339" y="0" width="36" height="35" uuid="98d77215-845a-42fe-95e7-e6f57dbd7dab">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="8" y="8" width="19" height="19" uuid="9879e9f1-b03c-47c6-9cc6-996320a2caa0"/>
+							<imageExpression><![CDATA[$F{b32_coveredindividualannualind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_coveredindividualannualind}.equals("Y") ? "checked Box for covered all" : "unchecked Box for covered all"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 Jan" x="375" y="0" width="28" height="35" uuid="ecdc90ed-4cf4-4641-b058-79bf0f14d611">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="7b2ce1fd-4888-4773-9b8c-036f8a3e753a"/>
+							<imageExpression><![CDATA[$F{b32_januaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_januaryind}.equals("Y") ? "checked Box for jan" : "unchecked Box for jan"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 Feb" x="403" y="0" width="28" height="35" uuid="f93108d2-a705-49af-9d14-87569107df0f"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="6d9fee1d-9dd5-4696-843c-b37e6db4db61"/>
+							<imageExpression><![CDATA[$F{b32_februaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_februaryind}.equals("Y") ? "checked Box for feb" : "unchecked Box for feb"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 Mar" x="431" y="0" width="28" height="35" uuid="56d5f128-14d0-4515-84c4-c24cc42d3ddc"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="043447ef-456b-4ad5-9798-966e05dbb959"/>
+							<imageExpression><![CDATA[$F{b32_marchind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_marchind}.equals("Y") ? "checked Box for mar" : "unchecked Box for mar"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 Apr" x="459" y="0" width="29" height="35" uuid="725369b2-39d5-4bf3-8590-606e788089b5"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="8c2acb33-29bc-4ab5-8e94-d0d147fb1474"/>
+							<imageExpression><![CDATA[$F{b32_aprilind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_aprilind}.equals("Y") ? "checked Box for apr" : "unchecked Box for apr"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 may" x="488" y="0" width="29" height="35" uuid="26834595-d440-47bd-ad9a-71947ee74447"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="b44cbf91-986c-4c06-94d6-2180dbbd0aa9"/>
+							<imageExpression><![CDATA[$F{b32_mayind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_mayind}.equals("Y") ? "checked Box for may" : "unchecked Box for may"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 Jun" x="517" y="0" width="29" height="35" uuid="8fc4bdf7-10c8-4357-9839-8515e35520ad"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="f6015cac-04d6-4837-aaac-08b87b8021e3"/>
+							<imageExpression><![CDATA[$F{b32_juneind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_juneind}.equals("Y") ? "checked Box for jun" : "unchecked Box for jun"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 Jul" x="546" y="0" width="29" height="35" uuid="d363ec32-6134-483a-a90c-3e2ceba9b8f3"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="7cff92e4-0e11-4aae-90a6-ae524ac35294"/>
+							<imageExpression><![CDATA[$F{b32_julyind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_julyind}.equals("Y") ? "checked Box for jul" : "unchecked Box for jul"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 Aug" x="575" y="0" width="29" height="35" uuid="cc895318-dd2c-46af-8527-f425f99e47db"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="c55bbad6-ee23-432d-8880-8ebb393039f9"/>
+							<imageExpression><![CDATA[$F{b32_augustind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_augustind}.equals("Y") ? "checked Box for aug" : "unchecked Box for aug"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 Sep" x="604" y="0" width="29" height="35" uuid="1ecf6ce4-0721-4989-b49c-27966703e79b"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="d4587bb7-fef9-411c-9b2f-fc5a36e4dc40"/>
+							<imageExpression><![CDATA[$F{b32_septemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_septemberind}.equals("Y") ? "checked Box for sep" : "unchecked Box for sep"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 Oct" x="633" y="0" width="29" height="35" uuid="e2507bc6-7d8e-43df-8e75-11c19ad365df"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="6e233957-cdd3-4d95-bfff-72817b5f66a3"/>
+							<imageExpression><![CDATA[$F{b32_octoberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_octoberind}.equals("Y") ? "checked Box for oct" : "unchecked Box for oct"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 Nov" x="662" y="0" width="29" height="35" uuid="8c3ea89e-54f4-4bca-afff-8ea021c35421"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="e0ea2d7c-abdf-4ce9-a065-82de0da7db94"/>
+							<imageExpression><![CDATA[$F{b32_novemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_novemberind}.equals("Y") ? "checked Box for nov" : "unchecked Box for nov"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 32 Dec" x="691" y="0" width="28" height="35" uuid="714ac476-d9e2-468e-be8d-885687410f74">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="1866e54d-ec40-4dfd-9aca-a4984d948404"/>
+							<imageExpression><![CDATA[$F{b32_decemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b32_decemberind}.equals("Y") ? "checked Box for dec" : "unchecked Box for dec"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Box 33" x="0" y="238" width="719" height="35" uuid="5b0b43cb-f27b-42a5-975c-d97771419e36">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 33 a" x="0" y="0" width="180" height="35" uuid="4c2d0e2c-1c70-4700-a8bd-c7e5c6d64908">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="178" height="24" uuid="a16c5d8c-2ff9-4c93-9ece-7ad447cc7dbf">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox33}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="1" y="27" width="11" height="8" uuid="5bffb4b1-f808-4113-a8a4-aa0e9a91dbfa"/>
+							<textElement textAlignment="Right" verticalAlignment="Top">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[33]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 b" x="181" y="0" width="86" height="35" uuid="268fb378-0aff-4f29-8c31-2f595e5b0541">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="84" height="24" uuid="1df4ba6f-2185-43ac-8dc1-eb853dc64a2d"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b33_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 c" x="267" y="0" width="72" height="35" uuid="44b9e196-35d1-48fa-a8fe-7bc606460754">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="70" height="24" uuid="dd07200b-749b-4f7c-9d67-4c42a858d4cd"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b33_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 d" x="339" y="0" width="36" height="35" uuid="f1abe174-88ed-4676-94a7-f16e5d078432">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="8" y="8" width="19" height="19" uuid="a968d610-481a-488d-ab08-8205c7721fad"/>
+							<imageExpression><![CDATA[$F{b33_coveredindividualannualind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_coveredindividualannualind}.equals("Y") ? "checked Box for covered all" : "unchecked Box for covered all"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 Jan" x="375" y="0" width="28" height="35" uuid="9c0639fd-a521-4726-a3ba-87d191a05c12">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="73cec753-4df4-44c3-a8f7-a02e511eba82"/>
+							<imageExpression><![CDATA[$F{b33_januaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_januaryind}.equals("Y") ? "checked Box for jan" : "unchecked Box for jan"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 Feb" x="403" y="0" width="28" height="35" uuid="47d30ae5-c1a5-4904-9a15-2f8009bbe368"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="d37f43f2-e1f7-4097-9ed0-582a740834ef"/>
+							<imageExpression><![CDATA[$F{b33_februaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_februaryind}.equals("Y") ? "checked Box for feb" : "unchecked Box for feb"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 Mar" x="431" y="0" width="28" height="35" uuid="92a9e322-0396-4264-9a70-ff5549d06e32"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="9817dc81-e1ef-4c00-8129-de9da195245a"/>
+							<imageExpression><![CDATA[$F{b33_marchind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_marchind}.equals("Y") ? "checked Box for mar" : "unchecked Box for mar"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 Apr" x="459" y="0" width="29" height="35" uuid="ddd73d1d-7b40-4226-81ff-d61efa38b6cd"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="a54f8fb7-812b-4e24-ac27-ccb5d1223097"/>
+							<imageExpression><![CDATA[$F{b33_aprilind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_aprilind}.equals("Y") ? "checked Box for apr" : "unchecked Box for apr"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 may" x="488" y="0" width="29" height="35" uuid="e681baef-131e-44df-8948-78cb46562074"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="3a2bca72-36ec-4f96-8091-7358cd94af9a"/>
+							<imageExpression><![CDATA[$F{b33_mayind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_mayind}.equals("Y") ? "checked Box for may" : "unchecked Box for may"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 Jun" x="517" y="0" width="29" height="35" uuid="b7cea3dd-3c8c-4b3a-b102-550b64909843"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="409b1c0e-3221-4af7-a6ba-7952554fa188"/>
+							<imageExpression><![CDATA[$F{b33_juneind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_juneind}.equals("Y") ? "checked Box for jun" : "unchecked Box for jun"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 Jul" x="546" y="0" width="29" height="35" uuid="ba834274-2518-46a1-90bf-ae94e1a96ce9"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="bdb89679-d9b9-40e2-96ba-f13db16de13d"/>
+							<imageExpression><![CDATA[$F{b33_julyind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_julyind}.equals("Y") ? "checked Box for jul" : "unchecked Box for jul"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 Aug" x="575" y="0" width="29" height="35" uuid="67549da3-6808-4ed0-93ac-bb49ae46edfd"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="418e796f-eaaa-4d3e-bda6-d3e81355ab66"/>
+							<imageExpression><![CDATA[$F{b33_augustind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_augustind}.equals("Y") ? "checked Box for aug" : "unchecked Box for aug"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 Sep" x="604" y="0" width="29" height="35" uuid="9c4eab14-fa06-416a-a907-9b0275d218d5"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="74d91ff4-9aff-4089-bc3d-77cffe63128c"/>
+							<imageExpression><![CDATA[$F{b33_septemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_septemberind}.equals("Y") ? "checked Box for sep" : "unchecked Box for sep"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 Oct" x="633" y="0" width="29" height="35" uuid="60ca2dd4-e9a1-4491-8829-39713358e84c"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="6c3fff6c-9cc5-4041-9556-2c7026f2d01a"/>
+							<imageExpression><![CDATA[$F{b33_octoberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_octoberind}.equals("Y") ? "checked Box for oct" : "unchecked Box for oct"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 Nov" x="662" y="0" width="29" height="35" uuid="ea702c3c-4e1a-445c-a1bb-84da59430bc6"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="fc6690bd-6bd3-416c-9d52-fa20dc82f273"/>
+							<imageExpression><![CDATA[$F{b33_novemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_novemberind}.equals("Y") ? "checked Box for nov" : "unchecked Box for nov"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 33 Dec" x="691" y="0" width="28" height="35" uuid="7017f9be-1e5d-4c92-afa2-2a3d54ec7be0">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="a6612eca-7127-4e6e-990a-937e634051fd"/>
+							<imageExpression><![CDATA[$F{b33_decemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b33_decemberind}.equals("Y") ? "checked Box for dec" : "unchecked Box for dec"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Box 34" x="0" y="273" width="719" height="35" uuid="08983e58-9ea1-423b-9c8b-3b0c81f5b8ce">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 34 a" x="0" y="0" width="180" height="35" uuid="1d151c77-3913-4b0e-afe1-26cb39d2a08b">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="178" height="24" uuid="4fbafb86-915b-4242-a9f7-34c34349f71e">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox34}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="1" y="27" width="11" height="8" uuid="dfe90a28-c0c3-4ebc-a04a-1cebe93ed699"/>
+							<textElement textAlignment="Right" verticalAlignment="Top">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[34]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 b" x="181" y="0" width="86" height="35" uuid="93b1dbd1-5280-480e-ada4-e0bca2a62a6d">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="84" height="24" uuid="98fa1261-6bea-4e30-9ba1-07f6b0a3a268"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b34_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 c" x="267" y="0" width="72" height="35" uuid="b805e7ac-bb89-4837-8b30-f185aac32b4d">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="70" height="24" uuid="95207ed2-003d-4242-a1b8-3826525778e5"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b34_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 d" x="339" y="0" width="36" height="35" uuid="73f4bb23-7cfa-4af3-b650-7fdd81dcade0">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="8" y="8" width="19" height="19" uuid="9f364ebe-3aef-4881-bce1-e69722849bc6"/>
+							<imageExpression><![CDATA[$F{b34_coveredindividualannualind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_coveredindividualannualind}.equals("Y") ? "checked Box for covered all" : "unchecked Box for covered all"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 Jan" x="375" y="0" width="28" height="35" uuid="827eb535-cac9-448d-9d30-1b826ef89d97"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="f1540b83-12bd-4fad-8256-27faf53de663"/>
+							<imageExpression><![CDATA[$F{b34_januaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_januaryind}.equals("Y") ? "checked Box for jan" : "unchecked Box for jan"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 Feb" x="403" y="0" width="28" height="35" uuid="270a6e9d-4ca9-4e4a-b987-bd973aeea1d5"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="372390ba-d2a2-4bd3-9653-c2591e568fbe"/>
+							<imageExpression><![CDATA[$F{b34_februaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_februaryind}.equals("Y") ? "checked Box for feb" : "unchecked Box for feb"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 Mar" x="431" y="0" width="28" height="35" uuid="d4af294d-a33d-4133-8fc3-ac37cc0d34ee"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="9c9b5e93-c46a-4fae-9c44-4eb3b435ef4a"/>
+							<imageExpression><![CDATA[$F{b34_marchind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_marchind}.equals("Y") ? "checked Box for mar" : "unchecked Box for mar"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 Apr" x="459" y="0" width="29" height="35" uuid="ad012eeb-aee7-4112-8481-b5f1ae5d4730"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="0eb61600-6713-46e4-956e-01bfc8eee93f"/>
+							<imageExpression><![CDATA[$F{b34_aprilind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_aprilind}.equals("Y") ? "checked Box for apr" : "unchecked Box for apr"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 may" x="488" y="0" width="29" height="35" uuid="055093ea-c840-4f87-86f2-95d2496d0948"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="ae2db11f-95d2-4dfd-a9ca-655d6de912df"/>
+							<imageExpression><![CDATA[$F{b34_mayind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_mayind}.equals("Y") ? "checked Box for may" : "unchecked Box for may"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 Jun" x="517" y="0" width="29" height="35" uuid="9e617ebe-9861-4880-8620-2f4bf6a23cad"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="e422cc24-d9a9-4fde-8504-c496911f3b68"/>
+							<imageExpression><![CDATA[$F{b34_juneind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_juneind}.equals("Y") ? "checked Box for jun" : "unchecked Box for jun"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 Jul" x="546" y="0" width="29" height="35" uuid="4523eeec-f05e-477a-ade5-1a84651a3879"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="8028a2bb-57c0-4362-bd95-7e620b638bc8"/>
+							<imageExpression><![CDATA[$F{b34_julyind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_julyind}.equals("Y") ? "checked Box for jul" : "unchecked Box for jul"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 Aug" x="575" y="0" width="29" height="35" uuid="f0d87588-2a4f-491c-8732-907bd511c529"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="dd08f465-cd17-4864-ac45-251991dcfae1"/>
+							<imageExpression><![CDATA[$F{b34_augustind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_augustind}.equals("Y") ? "checked Box for aug" : "unchecked Box for aug"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 Sep" x="604" y="0" width="29" height="35" uuid="27673ce3-c2ab-4023-979a-437e420793f5"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="7d75e055-9640-4a83-b5ef-4a63fa57d9d9"/>
+							<imageExpression><![CDATA[$F{b34_septemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_septemberind}.equals("Y") ? "checked Box for sep" : "unchecked Box for sep"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 Oct" x="633" y="0" width="29" height="35" uuid="b60b9054-5ae3-449c-98b3-737139fdb949"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="980ded2c-875c-4d7a-85da-caf15ffca4db"/>
+							<imageExpression><![CDATA[$F{b34_octoberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_octoberind}.equals("Y") ? "checked Box for oct" : "unchecked Box for oct"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 Nov" x="662" y="0" width="29" height="35" uuid="5faad474-29c5-4d6c-89e7-775e59d5247f"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="21bcf53b-c1af-4c18-b0f1-91ac72774007"/>
+							<imageExpression><![CDATA[$F{b34_novemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_novemberind}.equals("Y") ? "checked Box for nov" : "unchecked Box for nov"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 34 Dec" x="691" y="0" width="28" height="35" uuid="8c8ee005-4766-46b6-ad26-b366ca8ad3f5">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="a04b4203-8922-41a4-9fe9-0df11cef4313"/>
+							<imageExpression><![CDATA[$F{b34_decemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b34_decemberind}.equals("Y") ? "checked Box for dec" : "unchecked Box for dec"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Box 35" x="0" y="308" width="719" height="35" uuid="d43c8f0f-fdb8-4844-a94f-25c9c3023b93">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 35 a" x="0" y="0" width="180" height="35" uuid="d88438ee-9424-4bcc-945d-c9d06a340e28">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="178" height="24" uuid="bebb0691-bf47-42f4-af57-809cb926a399">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox35}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="1" y="27" width="11" height="8" uuid="b589a2e7-bf17-45e6-8b2e-f8dd6ee52a50"/>
+							<textElement textAlignment="Right" verticalAlignment="Top">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[35]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 b" x="181" y="0" width="86" height="35" uuid="1fe71515-b107-47c9-99d0-0a5e717c1265">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="84" height="24" uuid="d799eee3-e95c-4419-a5a4-0785a818efbb"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b35_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 c" x="267" y="0" width="72" height="35" uuid="f5531119-8734-4d38-91f9-8d9a76b93a2f"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="70" height="24" uuid="7d046250-0913-4afe-bd90-216d2fc0b069"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b35_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 d" x="339" y="0" width="36" height="35" uuid="1d564de2-73bd-4779-8594-8d840ec94e70">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="8" y="8" width="19" height="19" uuid="8a8c80fe-72e2-4d4c-af73-45c7350af219"/>
+							<imageExpression><![CDATA[$F{b35_coveredindividualannualind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_coveredindividualannualind}.equals("Y") ? "checked Box for covered all" : "unchecked Box for covered all"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 Jan" x="375" y="0" width="28" height="35" uuid="5a7eca89-0ce2-441e-988f-c45002de9527">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="9b226b20-81cb-473c-9f84-fad1135b303d"/>
+							<imageExpression><![CDATA[$F{b35_januaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_januaryind}.equals("Y") ? "checked Box for jan" : "unchecked Box for jan"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 Feb" x="403" y="0" width="28" height="35" uuid="330e1c8d-b4c5-4965-aabf-efcc29788965"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="48c6ca97-e828-46a7-b7e3-8ecfcad5b11b"/>
+							<imageExpression><![CDATA[$F{b35_februaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_februaryind}.equals("Y") ? "checked Box for feb" : "unchecked Box for feb"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 Mar" x="431" y="0" width="28" height="35" uuid="42533ee5-afea-4212-9305-0566a845c45f"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="2343dd34-e3b2-4dd3-9d4c-613f3b5ae043"/>
+							<imageExpression><![CDATA[$F{b35_marchind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_marchind}.equals("Y") ? "checked Box for mar" : "unchecked Box for mar"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 Apr" x="459" y="0" width="29" height="35" uuid="2e205265-15be-414a-bd07-43860c01a52b"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="3816c49c-249c-4bfb-899a-56929092e7ca"/>
+							<imageExpression><![CDATA[$F{b35_aprilind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_aprilind}.equals("Y") ? "checked Box for apr" : "unchecked Box for apr"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 may" x="488" y="0" width="29" height="35" uuid="d784f19e-d564-405f-8c3a-95abc30c16a4"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="63d61707-a04d-4fd6-add1-8e4d6c5bba31"/>
+							<imageExpression><![CDATA[$F{b35_mayind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_mayind}.equals("Y") ? "checked Box for may" : "unchecked Box for may"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 Jun" x="517" y="0" width="29" height="35" uuid="a7003614-b409-4497-8e2e-d17b188fc42f"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="fad543f9-a9ef-4ab1-bd6b-3c887b8a9f85"/>
+							<imageExpression><![CDATA[$F{b35_juneind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_juneind}.equals("Y") ? "checked Box for jun" : "unchecked Box for jun"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 Jul" x="546" y="0" width="29" height="35" uuid="2ccd181c-0763-43a0-b06f-4e1700fa9711"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="f5e581f2-efac-43f1-81f0-c1ca3d05a3c4"/>
+							<imageExpression><![CDATA[$F{b35_julyind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_julyind}.equals("Y") ? "checked Box for jul" : "unchecked Box for jul"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 Aug" x="575" y="0" width="29" height="35" uuid="5ba1c1cb-4c24-4e4d-9233-7e2c13b8204f"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="2835789f-b8e2-4e20-87e7-b4123e88aff2"/>
+							<imageExpression><![CDATA[$F{b35_augustind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_augustind}.equals("Y") ? "checked Box for aug" : "unchecked Box for aug"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 Sep" x="604" y="0" width="29" height="35" uuid="d034b5c8-7b72-4635-8573-cf39fcb4394f"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="6a78c667-1b7f-4575-bbbc-68a98647d833"/>
+							<imageExpression><![CDATA[$F{b35_septemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_septemberind}.equals("Y") ? "checked Box for sep" : "unchecked Box for sep"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 Oct" x="633" y="0" width="29" height="35" uuid="7aeba8f7-f8f5-4099-a08a-9e5393088456"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="692c6ba8-7872-48ed-9d5b-b0749c2c034d"/>
+							<imageExpression><![CDATA[$F{b35_octoberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_octoberind}.equals("Y") ? "checked Box for oct" : "unchecked Box for oct"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 Nov" x="662" y="0" width="29" height="35" uuid="0e22c914-bc15-4c66-9534-0e675b118174"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="2c754d62-7e83-4c35-9e72-73c2b0529c1e"/>
+							<imageExpression><![CDATA[$F{b35_novemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_novemberind}.equals("Y") ? "checked Box for nov" : "unchecked Box for nov"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 35 Dec" x="691" y="0" width="28" height="35" uuid="dd1fd34d-5bf8-41b0-98a0-4832c38e0c9c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="4181516e-1a70-448c-88c5-5c3e6bc345fe"/>
+							<imageExpression><![CDATA[$F{b35_decemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b35_decemberind}.equals("Y") ? "checked Box for dec" : "unchecked Box for dec"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Box 36" x="0" y="343" width="719" height="35" uuid="2315141e-98c9-44b9-9f87-36bd97a59ec2">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 36 a" x="0" y="0" width="180" height="35" uuid="58157426-5471-4b1e-8bae-5f047fc5ae73">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="178" height="24" uuid="dbdaa671-1759-464e-a391-5630bb63b781">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox36}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="1" y="27" width="11" height="8" uuid="2a050204-16ad-4aa2-b070-e0dee0478d03"/>
+							<textElement textAlignment="Right" verticalAlignment="Top">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[36]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 b" x="181" y="0" width="86" height="35" uuid="65facf42-a321-44d2-b0c9-f526fc9b48c1">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="84" height="24" uuid="33203618-f82e-4378-88b9-67cc611ac8ed"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b36_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 c" x="267" y="0" width="72" height="35" uuid="97f25723-cbe2-4b56-9e67-3ab02b736ec1">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="70" height="24" uuid="61c3c576-597b-459c-96e7-5bdf38f8a123"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b36_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 d" x="339" y="0" width="36" height="35" uuid="c25c004d-ba4a-43f2-9b18-cb47ef2adf13">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="8" y="8" width="19" height="19" uuid="f8897cde-2b28-44c1-a1d0-b3f0f9ce08f9"/>
+							<imageExpression><![CDATA[$F{b36_coveredindividualannualind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_coveredindividualannualind}.equals("Y") ? "checked Box for covered all" : "unchecked Box for covered all"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 Jan" x="375" y="0" width="28" height="35" uuid="5f60a13d-be78-4716-97c4-a7dbe449607a"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="024c1aaa-d0af-4aa3-a249-9b9f2a8f4fb5"/>
+							<imageExpression><![CDATA[$F{b36_januaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_januaryind}.equals("Y") ? "checked Box for jan" : "unchecked Box for jan"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 Feb" x="403" y="0" width="28" height="35" uuid="3705941c-8c56-40ab-ad56-8043fa5a1ee7"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="54540f90-a960-4f26-8f84-e57f30a5fe5b"/>
+							<imageExpression><![CDATA[$F{b36_februaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_februaryind}.equals("Y") ? "checked Box for feb" : "unchecked Box for feb"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 Mar" x="431" y="0" width="28" height="35" uuid="7c825365-e756-417e-8946-9d6d1480c05c"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="3f9dfe6e-629f-4dd5-81b1-8dd6dff392e3"/>
+							<imageExpression><![CDATA[$F{b36_marchind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_marchind}.equals("Y") ? "checked Box for mar" : "unchecked Box for mar"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 Apr" x="459" y="0" width="29" height="35" uuid="78637e5c-bce8-4f09-ae01-d095be7da684"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="7acda19d-f6fc-4dac-82f0-335ba8d3044a"/>
+							<imageExpression><![CDATA[$F{b36_aprilind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_aprilind}.equals("Y") ? "checked Box for apr" : "unchecked Box for apr"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 may" x="488" y="0" width="29" height="35" uuid="aebb9453-2bdb-46e4-87d0-4c9508e40e54"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="a06aacd1-a7b8-46d9-949b-e812fac94ccb"/>
+							<imageExpression><![CDATA[$F{b36_mayind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_mayind}.equals("Y") ? "checked Box for may" : "unchecked Box for may"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 Jun" x="517" y="0" width="29" height="35" uuid="c55954d3-40fe-4708-a02e-f435836294c0"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="c6340fa6-f2e2-4e8f-a87d-481ee95b649d"/>
+							<imageExpression><![CDATA[$F{b36_juneind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_juneind}.equals("Y") ? "checked Box for jun" : "unchecked Box for jun"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 Jul" x="546" y="0" width="29" height="35" uuid="df7c8037-8574-4196-aef2-6bd3ea9c50eb"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="933844a6-1040-4c90-bffd-b74d209f6108"/>
+							<imageExpression><![CDATA[$F{b36_julyind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_julyind}.equals("Y") ? "checked Box for jul" : "unchecked Box for jul"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 Aug" x="575" y="0" width="29" height="35" uuid="55581566-6b89-4e38-ab41-cb7e8ca3970c"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="bfce9e7d-0c56-431d-b196-eac447e6b7a1"/>
+							<imageExpression><![CDATA[$F{b36_augustind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_augustind}.equals("Y") ? "checked Box for aug" : "unchecked Box for aug"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 Sep" x="604" y="0" width="29" height="35" uuid="b516efcd-64ac-4cfe-88b8-056e52d21ccd"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="606a257f-d438-408f-84d4-f2a154e949ba"/>
+							<imageExpression><![CDATA[$F{b36_septemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_septemberind}.equals("Y") ? "checked Box for sep" : "unchecked Box for sep"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 Oct" x="633" y="0" width="29" height="35" uuid="fac401bd-0d77-4df0-83aa-303d94d03e28"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="4f15800d-6bbe-4dd6-ba86-3039e0eadf2e"/>
+							<imageExpression><![CDATA[$F{b36_octoberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_octoberind}.equals("Y") ? "checked Box for oct" : "unchecked Box for oct"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 Nov" x="662" y="0" width="29" height="35" uuid="9737798d-bc8a-4a6b-bea9-3333a23f12ac"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="7c024e95-4378-4014-9daa-2ab9a4feb4ac"/>
+							<imageExpression><![CDATA[$F{b36_novemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_novemberind}.equals("Y") ? "checked Box for nov" : "unchecked Box for nov"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 36 Dec" x="691" y="0" width="28" height="35" uuid="98ecd128-6898-4db9-8488-cdea4ca3171e">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="63996023-cc2a-4d13-b777-24af885e5810"/>
+							<imageExpression><![CDATA[$F{b36_decemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b36_decemberind}.equals("Y") ? "checked Box for dec" : "unchecked Box for dec"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Box 37" x="0" y="378" width="719" height="35" uuid="9311ac4f-2be1-4533-9408-c1a734eb0e3c">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 37 a" x="0" y="0" width="180" height="35" uuid="9e87e305-ffda-456c-b81c-119acc494cc7">
+							<property name="net.sf.jasperreports.export.pdf.tag.tr"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="178" height="24" uuid="aa0bde37-6486-4ef6-8c13-1907eada3af3">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox37}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="1" y="27" width="11" height="8" uuid="aa20920a-6f4c-4aa5-bdfb-2761f4e7a069"/>
+							<textElement textAlignment="Right" verticalAlignment="Top">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[37]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 b" x="181" y="0" width="86" height="35" uuid="4fe8d492-bdcb-47dd-b8e9-3931180be415">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="84" height="24" uuid="ed78b36e-59e3-4af4-9dd2-5e94ddaaf8d7"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b37_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 c" x="267" y="0" width="72" height="35" uuid="d941e995-86f0-40f3-8c65-c8863ac4b690">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="70" height="24" uuid="38f5e731-ee8f-47cf-b570-0472c3a6f111"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b37_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 d" x="339" y="0" width="36" height="35" uuid="eadcf5e9-f6ff-4e26-9c89-ba912deca124">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="8" y="8" width="19" height="19" uuid="929fe0f8-edfa-4444-afc6-d72557d89135"/>
+							<imageExpression><![CDATA[$F{b37_coveredindividualannualind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_coveredindividualannualind}.equals("Y") ? "checked Box for covered all" : "unchecked Box for covered all"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 Jan" x="375" y="0" width="28" height="35" uuid="17d69c77-0d91-41e7-963b-336fe770a31a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="10c3f3a1-fa39-41d0-9013-eec57d6d2567"/>
+							<imageExpression><![CDATA[$F{b37_januaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_januaryind}.equals("Y") ? "checked Box for jan" : "unchecked Box for jan"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 Feb" x="403" y="0" width="28" height="35" uuid="97df44f5-5b2f-4b21-a61a-c755ceb7f97d"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="bbe0c733-dc40-415e-9289-07730cae6bf4"/>
+							<imageExpression><![CDATA[$F{b37_februaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_februaryind}.equals("Y") ? "checked Box for feb" : "unchecked Box for feb"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 Mar" x="431" y="0" width="28" height="35" uuid="5cb7ef0c-7519-46e9-982d-b0e4642f0e3e"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="9211cdbe-4ec2-423d-a667-b5e0624d8ff8"/>
+							<imageExpression><![CDATA[$F{b37_marchind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_marchind}.equals("Y") ? "checked Box for mar" : "unchecked Box for mar"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 Apr" x="459" y="0" width="29" height="35" uuid="387fd4a8-14df-4c02-8412-a83ddedee9b0"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="c8c7330c-3565-487b-815b-375513354b02"/>
+							<imageExpression><![CDATA[$F{b37_aprilind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_aprilind}.equals("Y") ? "checked Box for apr" : "unchecked Box for apr"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 may" x="488" y="0" width="29" height="35" uuid="71539e60-d19e-46c4-8688-f6914ab0e782"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="31778ec9-bb33-4148-950a-8a43dcc7251f"/>
+							<imageExpression><![CDATA[$F{b37_mayind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_mayind}.equals("Y") ? "checked Box for may" : "unchecked Box for may"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 Jun" x="517" y="0" width="29" height="35" uuid="fb54f19b-9ed0-414b-8edf-774e52360073"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="919d4998-3433-4f52-afad-3abcdbb4fdfa"/>
+							<imageExpression><![CDATA[$F{b37_juneind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_juneind}.equals("Y") ? "checked Box for jun" : "unchecked Box for jun"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 Jul" x="546" y="0" width="29" height="35" uuid="8de56bd6-adc6-4e33-a5d6-c6a6c0917b5d"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="d62bca6d-57e6-494e-b5a3-66bb46cbb971"/>
+							<imageExpression><![CDATA[$F{b37_julyind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_julyind}.equals("Y") ? "checked Box for jul" : "unchecked Box for jul"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 Aug" x="575" y="0" width="29" height="35" uuid="3d90ee95-71ab-4a3f-80a2-b1c6bc798458"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="b5f14c02-a3b8-43eb-846f-230456bc2af6"/>
+							<imageExpression><![CDATA[$F{b37_augustind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_augustind}.equals("Y") ? "checked Box for aug" : "unchecked Box for aug"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 Sep" x="604" y="0" width="29" height="35" uuid="a6530cd5-12f4-4fca-8831-39703427285e"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="106c0486-1937-4f5d-8dbf-d434863b0635"/>
+							<imageExpression><![CDATA[$F{b37_septemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_septemberind}.equals("Y") ? "checked Box for sep" : "unchecked Box for sep"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 Oct" x="633" y="0" width="29" height="35" uuid="ec217fdb-8a1d-454d-a6d4-d2bc96b63957"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="30ad46ef-3374-4ca6-abab-6fe25b861117"/>
+							<imageExpression><![CDATA[$F{b37_octoberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_octoberind}.equals("Y") ? "checked Box for oct" : "unchecked Box for oct"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 Nov" x="662" y="0" width="29" height="35" uuid="0b6dc185-d423-4ffe-9779-f393d2e2e5be"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="1f0fc78f-a556-40fd-b65a-1a20d43566fb"/>
+							<imageExpression><![CDATA[$F{b37_novemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_novemberind}.equals("Y") ? "checked Box for nov" : "unchecked Box for nov"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 37 Dec" x="691" y="0" width="28" height="35" uuid="f6de9d53-f6fc-4eb0-8c9a-207ac096f8cc">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="9adb03a6-2838-41fb-8368-9c5b296e5bfc"/>
+							<imageExpression><![CDATA[$F{b37_decemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b37_decemberind}.equals("Y") ? "checked Box for dec" : "unchecked Box for dec"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Box 38" x="0" y="413" width="719" height="35" uuid="1f871569-ea3c-4859-950f-a0114177ee81">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 38 a" x="0" y="0" width="180" height="35" uuid="09097483-d78d-49b9-8eda-354f8066ddfc">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="178" height="24" uuid="c4a7030d-926b-4448-b1bd-77bb31774783">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox38}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="1" y="27" width="11" height="8" uuid="0d08cc43-612e-47a9-a4b8-66907de8e4aa"/>
+							<textElement textAlignment="Right" verticalAlignment="Top">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[38]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 b" x="181" y="0" width="86" height="35" uuid="e06139ec-80d3-4d5c-960d-2c01be221577">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="84" height="24" uuid="955bacfa-7f79-46b3-9eff-967b862ae692"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b38_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 c" x="267" y="0" width="72" height="35" uuid="1e2a465d-ef17-4682-9819-814a768f68f8">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="70" height="24" uuid="be506ed7-c38c-4f76-9f4b-efa2650f5130"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b38_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 d" x="339" y="0" width="36" height="35" uuid="cbb19c10-0022-497d-aa16-92165cac0485">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="8" y="8" width="19" height="19" uuid="5533902d-4ac2-46bb-8eae-676067b3e448"/>
+							<imageExpression><![CDATA[$F{b38_coveredindividualannualind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_coveredindividualannualind}.equals("Y") ? "checked Box for covered all" : "unchecked Box for covered all"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 Jan" x="375" y="0" width="28" height="35" uuid="456adb0f-e0fb-43a7-904c-0d991f799aa8">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="2d6e842b-600b-4c8a-be08-102626dc8829"/>
+							<imageExpression><![CDATA[$F{b38_januaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_januaryind}.equals("Y") ? "checked Box for jan" : "unchecked Box for jan"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 Feb" x="403" y="0" width="28" height="35" uuid="7c183195-3d62-4a4a-8aae-b2cc78ebf706"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="784bd1d5-6792-416d-8cd2-bc4713a22518"/>
+							<imageExpression><![CDATA[$F{b38_februaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_februaryind}.equals("Y") ? "checked Box for feb" : "unchecked Box for feb"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 Mar" x="431" y="0" width="28" height="35" uuid="e687c436-247e-42ab-a933-8d4db07d4802"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="162b1bf5-3b5d-4a71-9f66-d7b356bd4af0"/>
+							<imageExpression><![CDATA[$F{b38_marchind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_marchind}.equals("Y") ? "checked Box for mar" : "unchecked Box for mar"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 Apr" x="459" y="0" width="29" height="35" uuid="83a12258-2c0a-44a0-90d6-31ea03a58479"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="237b8947-7183-43c5-852e-27a2f900a251"/>
+							<imageExpression><![CDATA[$F{b38_aprilind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_aprilind}.equals("Y") ? "checked Box for apr" : "unchecked Box for apr"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 may" x="488" y="0" width="29" height="35" uuid="39c5e3d4-c16a-4486-be37-3ad761c93bf3"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="77db9888-faad-4def-a61b-ce92b5e58d97"/>
+							<imageExpression><![CDATA[$F{b38_mayind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_mayind}.equals("Y") ? "checked Box for may" : "unchecked Box for may"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 Jun" x="517" y="0" width="29" height="35" uuid="d5ce9c28-7193-4a25-821c-156256edeeac"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="5b37e143-88ae-4345-a6b0-61e6e2a6f33d"/>
+							<imageExpression><![CDATA[$F{b38_juneind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_juneind}.equals("Y") ? "checked Box for jun" : "unchecked Box for jun"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 Jul" x="546" y="0" width="29" height="35" uuid="6aa902ec-544d-4a96-91f5-b4acb23ad4ee"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="4362e0ab-95dc-4f1e-9d5d-d8c06f89fcf7"/>
+							<imageExpression><![CDATA[$F{b38_julyind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_julyind}.equals("Y") ? "checked Box for jul" : "unchecked Box for jul"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 Aug" x="575" y="0" width="29" height="35" uuid="8055c86d-01bf-473d-a9c6-e5d925f5bb34"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="514bbbbe-aa8b-4d4e-9fca-d4d7e33468af"/>
+							<imageExpression><![CDATA[$F{b38_augustind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_augustind}.equals("Y") ? "checked Box for aug" : "unchecked Box for aug"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 Sep" x="604" y="0" width="29" height="35" uuid="aabad13d-3468-4b3d-aa1e-46053992d506"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="726e7219-50b2-4fc4-90ac-9806b31a6231"/>
+							<imageExpression><![CDATA[$F{b38_septemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_septemberind}.equals("Y") ? "checked Box for sep" : "unchecked Box for sep"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 Oct" x="633" y="0" width="29" height="35" uuid="8edbde48-eefb-480f-a14e-a71ee137e135"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="6f018202-50a3-44d8-bace-8f198b898d46"/>
+							<imageExpression><![CDATA[$F{b38_octoberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_octoberind}.equals("Y") ? "checked Box for oct" : "unchecked Box for oct"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 Nov" x="662" y="0" width="29" height="35" uuid="d44315a7-d215-4f04-a367-b3ab1549693d"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="caea50a3-cac5-482f-9b0d-1dcba68cfa38"/>
+							<imageExpression><![CDATA[$F{b38_novemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_novemberind}.equals("Y") ? "checked Box for nov" : "unchecked Box for nov"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 38 Dec" x="691" y="0" width="28" height="35" uuid="6cb55e7e-ded5-4a79-aafa-158a7cbafc07">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="b251a585-a6a7-491d-8de2-6c5d20f6beb1"/>
+							<imageExpression><![CDATA[$F{b38_decemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b38_decemberind}.equals("Y") ? "checked Box for dec" : "unchecked Box for dec"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Box 39" x="0" y="448" width="719" height="35" uuid="7b965a5f-5ec1-418b-9fd2-983b3db9a079">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 39 a" x="0" y="0" width="180" height="35" uuid="e6a6bbfc-50d4-4458-8349-1b21b5ee3d27">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="178" height="24" uuid="f64eeba3-5ef4-4320-8ab2-3ddcf959bd2a">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox39}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="1" y="27" width="11" height="8" uuid="35771b02-9ca8-4329-9c9c-d9aea3ba1d0e"/>
+							<textElement textAlignment="Right" verticalAlignment="Top">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[39]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 b" x="181" y="0" width="86" height="35" uuid="befc5e22-cdad-41d8-a443-46fcbc4f764e">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="84" height="24" uuid="2d3de2c3-96bd-4ee3-992e-847f6ce03684"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b39_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 c" x="267" y="0" width="72" height="35" uuid="a359f5f8-4a3f-41dc-9c51-cdc6774f1abc">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="70" height="24" uuid="6595d434-3efb-4fce-8c33-60f5e00b380e"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b39_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 d" x="339" y="0" width="36" height="35" uuid="73159526-8cc8-439d-9dd3-e051dd77400a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="8" y="8" width="19" height="19" uuid="c3d55926-15f9-4d30-a47e-3f76eb837e18"/>
+							<imageExpression><![CDATA[$F{b39_coveredindividualannualind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_coveredindividualannualind}.equals("Y") ? "checked Box for covered all" : "unchecked Box for covered all"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 Jan" x="375" y="0" width="28" height="35" uuid="0aa725cd-b2b8-4999-bc76-bab04873b4f2">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="d896bd96-b310-4fc0-a5cf-0c875fbb5c2c"/>
+							<imageExpression><![CDATA[$F{b39_januaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_januaryind}.equals("Y") ? "checked Box for jan" : "unchecked Box for jan"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 Feb" x="403" y="0" width="28" height="35" uuid="d0fa8a69-6cb8-41d9-90c0-2e27ca50075e"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="44812c2e-f37a-4337-bf2a-50371b69629a"/>
+							<imageExpression><![CDATA[$F{b39_februaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_februaryind}.equals("Y") ? "checked Box for feb" : "unchecked Box for feb"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 Mar" x="431" y="0" width="28" height="35" uuid="3608fe94-86ec-4523-95a9-4842e659da6f"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="b790986d-e5ee-4c85-a7f3-94c757494fae"/>
+							<imageExpression><![CDATA[$F{b39_marchind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_marchind}.equals("Y") ? "checked Box for mar" : "unchecked Box for mar"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 Apr" x="459" y="0" width="29" height="35" uuid="3a62918a-00ab-4ebb-a00d-7796586a5eb9"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="697f2270-d1b5-4795-8c36-7d88733aab1c"/>
+							<imageExpression><![CDATA[$F{b39_aprilind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_aprilind}.equals("Y") ? "checked Box for apr" : "unchecked Box for apr"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 may" x="488" y="0" width="29" height="35" uuid="fb8b9fe0-6d4b-4de4-afad-a73684d2425a"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="a0474866-199d-473c-81f2-e679d5835b0b"/>
+							<imageExpression><![CDATA[$F{b39_mayind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_mayind}.equals("Y") ? "checked Box for may" : "unchecked Box for may"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 Jun" x="517" y="0" width="29" height="35" uuid="a00691c6-ea0f-4110-b5b2-7402782b4a28"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="ad39099c-d56b-448c-b9a4-4c426cdce98e"/>
+							<imageExpression><![CDATA[$F{b39_juneind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_juneind}.equals("Y") ? "checked Box for jun" : "unchecked Box for jun"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 Jul" x="546" y="0" width="29" height="35" uuid="d6675e41-d380-414e-86d3-471ff965ff28"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="152d6991-5188-457d-b0ca-e0b01ea2e965"/>
+							<imageExpression><![CDATA[$F{b39_julyind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_julyind}.equals("Y") ? "checked Box for jul" : "unchecked Box for jul"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 Aug" x="575" y="0" width="29" height="35" uuid="543648ba-94b0-42e7-a79f-b5ec1e960605"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="be1a4fa5-d94e-4b9c-a8ec-6dbce1997c31"/>
+							<imageExpression><![CDATA[$F{b39_augustind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_augustind}.equals("Y") ? "checked Box for aug" : "unchecked Box for aug"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 Sep" x="604" y="0" width="29" height="35" uuid="fb22d54c-71f2-486a-8ca3-ca9f055e7776"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="886adf9d-ab1f-4b5d-ab6c-d3b7d870e8c2"/>
+							<imageExpression><![CDATA[$F{b39_septemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_septemberind}.equals("Y") ? "checked Box for sep" : "unchecked Box for sep"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 Oct" x="633" y="0" width="29" height="35" uuid="0c611190-24c1-4b90-8f7c-dc41db975884"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="07cbe781-b803-43b6-863e-4334c9cff7a8"/>
+							<imageExpression><![CDATA[$F{b39_octoberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_octoberind}.equals("Y") ? "checked Box for oct" : "unchecked Box for oct"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 Nov" x="662" y="0" width="29" height="35" uuid="7f45537f-2d62-4aeb-8ba0-ac155d75c22e"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="d07812ce-490d-4d22-a3a9-60c6babef648"/>
+							<imageExpression><![CDATA[$F{b39_novemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_novemberind}.equals("Y") ? "checked Box for nov" : "unchecked Box for nov"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 39 Dec" x="691" y="0" width="28" height="35" uuid="78af5330-d68d-4a80-939a-6107bd4dfab8">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="2a4195d3-34de-449e-8b7f-7f9a8bff3ce6"/>
+							<imageExpression><![CDATA[$F{b39_decemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b39_decemberind}.equals("Y") ? "checked Box for dec" : "unchecked Box for dec"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+				</frame>
+				<frame>
+					<reportElement key="Box 40" x="0" y="483" width="719" height="35" uuid="2ae798c5-9e94-4cf5-bd66-18a2806a4387">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<frame>
+						<reportElement key="Box 40 a" x="0" y="0" width="180" height="35" uuid="752fa174-daf2-44cc-997e-e0931bc0f693">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="178" height="24" uuid="4bd4b855-ef61-4e44-a778-22a9e7b62f13">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{nameBox40}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="1" y="27" width="11" height="8" uuid="2fb19174-f5b2-4fca-be16-f771c02b78ca"/>
+							<textElement textAlignment="Right" verticalAlignment="Top">
+								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[40]]></text>
+						</staticText>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 b" x="181" y="0" width="86" height="35" uuid="3a8974b6-e0a3-4d78-b90d-b05f3e9e83b4">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="84" height="24" uuid="8e4d8db4-a93f-45aa-8c67-12b5dd507ff9"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b40_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 c" x="267" y="0" width="72" height="35" uuid="b8b7be45-1748-4a9e-9f16-ba1ff78e81e2">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<textField>
+							<reportElement x="1" y="1" width="70" height="24" uuid="f63f6f4b-4a1e-442e-b43b-11b242a959a4"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+							</textElement>
+							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b40_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
+						</textField>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 d" x="339" y="0" width="36" height="35" uuid="3a3b0e16-cdcd-47de-9b2b-42a9643a6dfc">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="8" y="8" width="19" height="19" uuid="837a2087-3262-4f97-b90d-663592e4cbb6"/>
+							<imageExpression><![CDATA[$F{b40_coveredindividualannualind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_coveredindividualannualind}.equals("Y") ? "checked Box for covered all" : "unchecked Box for covered all"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 Jan" x="375" y="0" width="28" height="35" uuid="2cd45852-ac53-44ef-8f90-07c94def36c8">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="9a6d4417-6001-4405-b18a-91fcc947de5d"/>
+							<imageExpression><![CDATA[$F{b40_januaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_januaryind}.equals("Y") ? "checked Box for jan" : "unchecked Box for jan"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 Feb" x="403" y="0" width="28" height="35" uuid="24f544a7-b8f0-4598-b304-5a586395ef94"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="a5b04c25-658d-4014-944c-e968e97e6576"/>
+							<imageExpression><![CDATA[$F{b40_februaryind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_februaryind}.equals("Y") ? "checked Box for feb" : "unchecked Box for feb"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 Mar" x="431" y="0" width="28" height="35" uuid="07b759cd-29cb-491f-b9c3-4a8ef729d61b"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="aad754e1-1557-44c8-b6f7-b4ecd4984594"/>
+							<imageExpression><![CDATA[$F{b40_marchind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_marchind}.equals("Y") ? "checked Box for mar" : "unchecked Box for mar"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 Apr" x="459" y="0" width="29" height="35" uuid="0f7bcf6b-824d-474c-8624-e30d6e1d1302"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="c092c919-1d63-43b7-9989-d346b5b7fbfa"/>
+							<imageExpression><![CDATA[$F{b40_aprilind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_aprilind}.equals("Y") ? "checked Box for apr" : "unchecked Box for apr"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 may" x="488" y="0" width="29" height="35" uuid="d63888d9-f58c-435f-985f-fc7a6f5b409c"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="cec630db-65eb-4901-867a-c9b459727350"/>
+							<imageExpression><![CDATA[$F{b40_mayind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_mayind}.equals("Y") ? "checked Box for may" : "unchecked Box for may"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 Jun" x="517" y="0" width="29" height="35" uuid="d37ac495-048c-4782-acbb-fc027b8858b7"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="91073b3f-795d-4f2b-8225-33e4b0995bd9"/>
+							<imageExpression><![CDATA[$F{b40_juneind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_juneind}.equals("Y") ? "checked Box for jun" : "unchecked Box for jun"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 Jul" x="546" y="0" width="29" height="35" uuid="448adb3e-0d69-41bd-8137-43a7b76460ad"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="c5113fa8-8f06-49ab-973f-3c3378bcc98d"/>
+							<imageExpression><![CDATA[$F{b40_julyind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_julyind}.equals("Y") ? "checked Box for jul" : "unchecked Box for jul"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 Aug" x="575" y="0" width="29" height="35" uuid="4cec254e-6494-42c9-a8ab-a7042ffd7ea9"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="aaad610b-9050-4aad-9fd4-f34ff4104e0a"/>
+							<imageExpression><![CDATA[$F{b40_augustind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_augustind}.equals("Y") ? "checked Box for aug" : "unchecked Box for aug"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 Sep" x="604" y="0" width="29" height="35" uuid="6e43de4b-7446-4ca5-83be-5e5b6fbfbfd2"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="22bedbd3-a6e9-4d5a-b974-99e22ccde381"/>
+							<imageExpression><![CDATA[$F{b40_septemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_septemberind}.equals("Y") ? "checked Box for sep" : "unchecked Box for sep"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 Oct" x="633" y="0" width="29" height="35" uuid="bc520a34-0c70-44c3-8b7e-1ef631fe8d4c"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="0ecc8a88-f69b-428c-a07a-71feb5e84935"/>
+							<imageExpression><![CDATA[$F{b40_octoberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_octoberind}.equals("Y") ? "checked Box for oct" : "unchecked Box for oct"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 Nov" x="662" y="0" width="29" height="35" uuid="f8297038-3b6a-4a6f-8600-9c745954e003"/>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="9f381c50-8ca3-4d13-81be-e6bf183a3bd5"/>
+							<imageExpression><![CDATA[$F{b40_novemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_novemberind}.equals("Y") ? "checked Box for nov" : "unchecked Box for nov"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+					<frame>
+						<reportElement key="Box 40 Dec" x="691" y="0" width="28" height="35" uuid="30384fdc-dcd8-4a43-a1df-f1c6964760eb">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<box>
+							<leftPen lineWidth="0.5"/>
+							<bottomPen lineWidth="0.5"/>
+						</box>
+						<image>
+							<reportElement x="5" y="8" width="19" height="19" uuid="409ebc70-ad95-4b30-978e-7001a70b32e6"/>
+							<imageExpression><![CDATA[$F{b40_decemberind}.equals("Y") ? $F{webroot}+ "reportImages\\irs_form_1095_checked_box.gif" : $F{webroot}+ "reportImages\\irs_form_1095_unchecked_box.gif"]]></imageExpression>
+							<hyperlinkTooltipExpression><![CDATA[$F{b40_decemberind}.equals("Y") ? "checked Box for dec" : "unchecked Box for dec"]]></hyperlinkTooltipExpression>
+						</image>
+					</frame>
+				</frame>
+				<staticText>
+					<reportElement x="640" y="520" width="19" height="10" uuid="d41dcef5-d95d-4bda-94f5-b9907ff5001a"/>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Form]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="659" y="520" width="37" height="12" uuid="65e0791c-31c8-406d-91ff-fd4501921c3a"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font fontName="Microsoft Sans Serif" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[1095-B]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="696" y="520" width="22" height="10" uuid="02ff892b-abdd-4a40-8948-466417470efa"/>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["(" + $F{taxyr}.trim() + ")"]]></textFieldExpression>
+				</textField>
+			</frame>
 		</band>
 	</detail>
 	<columnFooter>
