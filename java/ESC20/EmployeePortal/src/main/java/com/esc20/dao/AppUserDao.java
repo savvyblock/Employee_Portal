@@ -72,7 +72,7 @@ public class AppUserDao extends HibernateDaoSupport{
         } else if (res.getLkPswd() == 'N') {
         	//lk_pswd = 'N' AND (bea_users.tmp_dts ='' OR DATEDIFF (HH, convert(datetime, bea_users.tmp_dts), GETDATE()) &lt; 24 )
         	if(res.getTmpDts()!= null && !("").equals(res.getTmpDts().trim())) {
-        		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         		Calendar tmpDts = Calendar.getInstance();
         		tmpDts.setTime(sdf.parse(res.getTmpDts()));
         		Calendar now = Calendar.getInstance();
