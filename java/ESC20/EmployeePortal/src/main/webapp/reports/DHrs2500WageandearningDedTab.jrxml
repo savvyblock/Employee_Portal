@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningDedTab" pageWidth="612" pageHeight="792" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="286b6cc3-4356-477b-b3a2-79831f03b6d1">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
-	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.zoom" value="1.6934217901613318"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
@@ -252,11 +252,11 @@ union SELECT distinct '',
 					<reportElement key="line-5" x="249" y="19" width="60" height="1" uuid="e4ab4a54-062d-4fe7-99a9-0f6eddc292e5"/>
 				</line>
 				<frame>
-					<reportElement x="1" y="1" width="540" height="18" uuid="e0fcd326-0745-4802-a0d9-1375efb78f74">
+					<reportElement x="1" y="1" width="351" height="18" uuid="e0fcd326-0745-4802-a0d9-1375efb78f74">
 						<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
 					</reportElement>
 					<frame>
-						<reportElement x="1" y="1" width="519" height="17" uuid="9de00dba-5f70-4aaf-b1bb-2b82a0f86fe0">
+						<reportElement x="1" y="1" width="350" height="17" uuid="9de00dba-5f70-4aaf-b1bb-2b82a0f86fe0">
 							<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						</reportElement>
 						<staticText>
@@ -276,7 +276,7 @@ union SELECT distinct '',
 							<text><![CDATA[Other Deductions]]></text>
 						</staticText>
 						<staticText>
-							<reportElement key="staticText" x="97" y="-197" width="26" height="11" backcolor="#C0C0C0" uuid="d32e0fd7-b605-443c-8bfc-a79305954733">
+							<reportElement key="staticText" x="102" y="1" width="26" height="11" backcolor="#C0C0C0" uuid="68be72fe-1ab0-4912-9428-9182c8597814">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 							</reportElement>
 							<box>
@@ -344,17 +344,18 @@ union SELECT distinct '',
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="86">
+			<band height="74">
 				<frame>
-					<reportElement x="1" y="1" width="540" height="80" uuid="b2bb2493-2a86-4f9c-b81d-3d9bae103c57">
+					<reportElement x="1" y="1" width="351" height="73" uuid="b2bb2493-2a86-4f9c-b81d-3d9bae103c57">
 						<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
 					</reportElement>
 					<frame>
-						<reportElement x="1" y="1" width="519" height="16" uuid="12f4d208-b2a9-42e3-9809-07ecc917206c">
+						<reportElement x="1" y="1" width="350" height="16" uuid="12f4d208-b2a9-42e3-9809-07ecc917206c">
 							<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+							<printWhenExpression><![CDATA[$V{sum_tea_contrib_1}.doubleValue() != 0 ?new Boolean(true):new Boolean(false)]]></printWhenExpression>
 						</reportElement>
 						<staticText>
-							<reportElement key="staticText" x="4" y="1" width="64" height="11" backcolor="#C0C0C0" uuid="9d08c3df-1f7b-4602-8a85-aadb33f0ec03">
+							<reportElement key="staticText" x="4" y="1" width="64" height="10" backcolor="#C0C0C0" uuid="9d08c3df-1f7b-4602-8a85-aadb33f0ec03">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[$V{sum_tea_contrib_1}.doubleValue() != 0 ?new Boolean(true):new Boolean(false)]]></printWhenExpression>
 							</reportElement>
@@ -371,7 +372,7 @@ union SELECT distinct '',
 							<text><![CDATA[TEA Contribution]]></text>
 						</staticText>
 						<staticText>
-							<reportElement key="staticText" x="105" y="1" width="26" height="11" backcolor="#C0C0C0" uuid="e254f928-9fdb-467f-ba0f-d9d586d3c130">
+							<reportElement key="staticText" x="105" y="1" width="26" height="10" backcolor="#C0C0C0" uuid="e254f928-9fdb-467f-ba0f-d9d586d3c130">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[$V{sum_tea_contrib_1}.doubleValue() != 0 ?new Boolean(true):new Boolean(false)]]></printWhenExpression>
 							</reportElement>
@@ -388,7 +389,7 @@ union SELECT distinct '',
 							<text><![CDATA[N]]></text>
 						</staticText>
 						<staticText>
-							<reportElement key="staticText" x="134" y="1" width="51" height="11" backcolor="#C0C0C0" uuid="45650e07-a6bc-4b9f-82df-3e23f25e260f">
+							<reportElement key="staticText" x="134" y="1" width="51" height="10" backcolor="#C0C0C0" uuid="45650e07-a6bc-4b9f-82df-3e23f25e260f">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[$V{sum_tea_contrib_1}.doubleValue() != 0 ?new Boolean(true):new Boolean(false)]]></printWhenExpression>
 							</reportElement>
@@ -405,7 +406,7 @@ union SELECT distinct '',
 							<text><![CDATA[.00]]></text>
 						</staticText>
 						<textField pattern="###,###.00" isBlankWhenNull="true">
-							<reportElement key="textField" x="189" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="94c2fd93-bbba-4531-b1ba-e1f8dc01eb94">
+							<reportElement key="textField" x="189" y="1" width="60" height="10" backcolor="#C0C0C0" uuid="94c2fd93-bbba-4531-b1ba-e1f8dc01eb94">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[$V{sum_tea_contrib_1}.doubleValue() != 0 ?new Boolean(true):new Boolean(false)]]></printWhenExpression>
 							</reportElement>
@@ -422,7 +423,7 @@ union SELECT distinct '',
 							<textFieldExpression><![CDATA[$V{sum_tea_contrib_1}]]></textFieldExpression>
 						</textField>
 						<staticText>
-							<reportElement key="staticText" x="251" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="f8b4204f-247e-4f06-922b-2685f4fca6d1">
+							<reportElement key="staticText" x="251" y="1" width="60" height="10" backcolor="#C0C0C0" uuid="f8b4204f-247e-4f06-922b-2685f4fca6d1">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[$V{sum_tea_contrib_1}.doubleValue() != 0 ?new Boolean(true):new Boolean(false)]]></printWhenExpression>
 							</reportElement>
@@ -440,11 +441,12 @@ union SELECT distinct '',
 						</staticText>
 					</frame>
 					<frame>
-						<reportElement x="1" y="17" width="519" height="16" uuid="12f4d208-b2a9-42e3-9809-07ecc917206c">
+						<reportElement x="1" y="17" width="350" height="16" uuid="12f4d208-b2a9-42e3-9809-07ecc917206c">
 							<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+							<printWhenExpression><![CDATA[$V{sum_dep_care_over_max_1}.intValue() > 0 ? new Boolean(true):new Boolean(false)]]></printWhenExpression>
 						</reportElement>
 						<staticText>
-							<reportElement key="staticText" x="4" y="1" width="156" height="11" backcolor="#C0C0C0" uuid="24077d90-1778-4528-b9db-2a2b7032c7df">
+							<reportElement key="staticText" x="4" y="1" width="156" height="10" backcolor="#C0C0C0" uuid="24077d90-1778-4528-b9db-2a2b7032c7df">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[$V{sum_dep_care_over_max_1}.intValue() > 0 ? new Boolean(true):new Boolean(false)]]></printWhenExpression>
 							</reportElement>
@@ -461,7 +463,7 @@ union SELECT distinct '',
 							<text><![CDATA[Dependent Care Total exceeds $5000.00]]></text>
 						</staticText>
 						<staticText>
-							<reportElement key="staticText" x="175" y="1" width="136" height="11" backcolor="#C0C0C0" uuid="a1420f21-3a34-4506-b0d5-a0acca051ba7">
+							<reportElement key="staticText" x="175" y="1" width="136" height="10" backcolor="#C0C0C0" uuid="a1420f21-3a34-4506-b0d5-a0acca051ba7">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
 							</reportElement>
@@ -479,11 +481,12 @@ union SELECT distinct '',
 						</staticText>
 					</frame>
 					<frame>
-						<reportElement x="1" y="33" width="519" height="16" uuid="12f4d208-b2a9-42e3-9809-07ecc917206c">
+						<reportElement x="1" y="33" width="350" height="16" uuid="12f4d208-b2a9-42e3-9809-07ecc917206c">
 							<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+							<printWhenExpression><![CDATA[$V{sum_hsa_emplr_over_max_1}.intValue() > 0 ? new Boolean(true):new Boolean(false)]]></printWhenExpression>
 						</reportElement>
 						<staticText>
-							<reportElement key="staticText" x="4" y="1" width="208" height="11" backcolor="#C0C0C0" uuid="9a4be0fc-69ee-44c6-a7da-8eda22a49dbc">
+							<reportElement key="staticText" x="4" y="1" width="208" height="10" backcolor="#C0C0C0" uuid="9a4be0fc-69ee-44c6-a7da-8eda22a49dbc">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[$V{sum_hsa_emplr_over_max_1}.intValue() > 0 ? new Boolean(true):new Boolean(false)]]></printWhenExpression>
 							</reportElement>
@@ -501,7 +504,7 @@ union SELECT distinct '',
 						</staticText>
 					</frame>
 					<frame>
-						<reportElement x="1" y="49" width="519" height="16" uuid="12f4d208-b2a9-42e3-9809-07ecc917206c">
+						<reportElement x="1" y="49" width="350" height="16" uuid="12f4d208-b2a9-42e3-9809-07ecc917206c">
 							<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						</reportElement>
 						<textField isBlankWhenNull="true">
@@ -521,7 +524,7 @@ union SELECT distinct '',
 							<textFieldExpression><![CDATA["Total Other Deductions:"]]></textFieldExpression>
 						</textField>
 						<textField pattern="###,###.00" isBlankWhenNull="true">
-							<reportElement key="textField" x="134" y="1" width="51" height="11" backcolor="#C0C0C0" uuid="1034664b-54e9-4876-b968-d7bd8bad1fef">
+							<reportElement key="textField" x="134" y="1" width="51" height="10" backcolor="#C0C0C0" uuid="1034664b-54e9-4876-b968-d7bd8bad1fef">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 							</reportElement>
 							<box>
@@ -537,7 +540,7 @@ union SELECT distinct '',
 							<textFieldExpression><![CDATA[$V{sum_ded_amt_1}]]></textFieldExpression>
 						</textField>
 						<textField pattern="###,###.00" isBlankWhenNull="true">
-							<reportElement key="textField" x="189" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="33e4020d-addb-4fa0-99e9-8d123e106dcc">
+							<reportElement key="textField" x="189" y="1" width="60" height="10" backcolor="#C0C0C0" uuid="33e4020d-addb-4fa0-99e9-8d123e106dcc">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 							</reportElement>
 							<box>
@@ -553,7 +556,7 @@ union SELECT distinct '',
 							<textFieldExpression><![CDATA[$V{sum_emplr_contrib_tea_contrib_1}]]></textFieldExpression>
 						</textField>
 						<textField pattern="###,###.00" isBlankWhenNull="true">
-							<reportElement key="textField" x="251" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="b07aee1c-d9f9-45b2-b354-0acea3d01697">
+							<reportElement key="textField" x="251" y="1" width="60" height="10" backcolor="#C0C0C0" uuid="b07aee1c-d9f9-45b2-b354-0acea3d01697">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 							</reportElement>
 							<box>
@@ -569,28 +572,23 @@ union SELECT distinct '',
 							<textFieldExpression><![CDATA[$V{sum_ytd_amt_1}]]></textFieldExpression>
 						</textField>
 					</frame>
-					<frame>
-						<reportElement x="1" y="63" width="519" height="16" uuid="12f4d208-b2a9-42e3-9809-07ecc917206c">
-							<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
-						</reportElement>
-						<staticText>
-							<reportElement key="staticText" x="3" y="1" width="320" height="11" backcolor="#C0C0C0" uuid="76338258-514a-4310-b836-d4ab39300dd8">
-								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
-							</reportElement>
-							<box>
-								<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-								<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-								<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							</box>
-							<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-								<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-								<paragraph lineSpacing="Single"/>
-							</textElement>
-							<text><![CDATA[*********************************************************************************************************]]></text>
-						</staticText>
-					</frame>
 				</frame>
+				<staticText>
+					<reportElement key="staticText" x="3" y="62" width="350" height="11" backcolor="#C0C0C0" uuid="76338258-514a-4310-b836-d4ab39300dd8">
+						<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+						<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[*********************************************************************************************************]]></text>
+				</staticText>
 			</band>
 		</groupFooter>
 	</group>
@@ -602,7 +600,7 @@ union SELECT distinct '',
 			<band/>
 		</groupHeader>
 		<groupFooter>
-			<band height="16">
+			<band height="14">
 				<printWhenExpression><![CDATA[($V{compute_7}.doubleValue() == 0 && $V{compute_5}.doubleValue() == 0 && $V{compute_6}.doubleValue() == 0 && !$F{bhr_pay_deduct_hist_ded_cd}.equals( "0CH" ))?
 new Boolean(false):
 (
@@ -613,15 +611,15 @@ $V{cumulativeSum_1_2}.intValue() == $V{count_bhr_pay_deduct_hist_ded_cd_2}.intVa
 )
 )]]></printWhenExpression>
 				<frame>
-					<reportElement x="1" y="1" width="540" height="15" uuid="5ee155b1-2980-4967-841f-a34b7d7cbde4">
+					<reportElement x="1" y="1" width="351" height="12" uuid="5ee155b1-2980-4967-841f-a34b7d7cbde4">
 						<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
 					</reportElement>
 					<frame>
-						<reportElement x="1" y="1" width="519" height="14" uuid="8da20baf-18db-4bd6-8ba9-108bcfc9c503">
+						<reportElement x="1" y="0" width="350" height="11" uuid="8da20baf-18db-4bd6-8ba9-108bcfc9c503">
 							<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						</reportElement>
 						<textField isBlankWhenNull="true">
-							<reportElement key="textField" x="4" y="1" width="98" height="11" backcolor="#C0C0C0" uuid="7af7dafc-5b03-4f8e-9e95-5851ad4a476f">
+							<reportElement key="textField" x="4" y="1" width="98" height="10" backcolor="#C0C0C0" uuid="7af7dafc-5b03-4f8e-9e95-5851ad4a476f">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[($V{compute_7}.doubleValue() == 0 && $V{compute_5}.doubleValue() == 0 && $V{compute_6}.doubleValue() == 0 && !$F{bhr_pay_deduct_hist_ded_cd}.equals( "0CH" ))?
 new Boolean(false):
@@ -646,7 +644,7 @@ $V{cumulativeSum_1_2}.intValue() == $V{count_bhr_pay_deduct_hist_ded_cd_2}.intVa
 							<textFieldExpression><![CDATA[$F{bhr_pay_deduct_hist_ded_cd}+" - "+$F{short_descr}]]></textFieldExpression>
 						</textField>
 						<textField isBlankWhenNull="true">
-							<reportElement key="textField" x="105" y="1" width="26" height="11" backcolor="#C0C0C0" uuid="1967947c-3ca8-4432-b576-3223d29da704">
+							<reportElement key="textField" x="105" y="1" width="26" height="10" backcolor="#C0C0C0" uuid="1967947c-3ca8-4432-b576-3223d29da704">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[($V{compute_7}.doubleValue() == 0 && $V{compute_5}.doubleValue() == 0 && $V{compute_6}.doubleValue() == 0 && !$F{bhr_pay_deduct_hist_ded_cd}.equals( "0CH" ))?
 new Boolean(false):
@@ -671,7 +669,7 @@ $V{cumulativeSum_1_2}.intValue() == $V{count_bhr_pay_deduct_hist_ded_cd_2}.intVa
 							<textFieldExpression><![CDATA[$F{bhr_pay_deduct_hist_cafe_flg}.equals( "Y" )?"Y":""]]></textFieldExpression>
 						</textField>
 						<textField pattern="###,###.00" isBlankWhenNull="true">
-							<reportElement key="textField" x="134" y="1" width="51" height="11" backcolor="#C0C0C0" uuid="8d3bcc1f-e990-4a3b-b24b-62d45d116818">
+							<reportElement key="textField" x="134" y="1" width="51" height="10" backcolor="#C0C0C0" uuid="8d3bcc1f-e990-4a3b-b24b-62d45d116818">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[($V{compute_7}.doubleValue() == 0 && $V{compute_5}.doubleValue() == 0 && $V{compute_6}.doubleValue() == 0 && !$F{bhr_pay_deduct_hist_ded_cd}.equals( "0CH" ))?
 new Boolean(false):
@@ -696,7 +694,7 @@ $V{cumulativeSum_1_2}.intValue() == $V{count_bhr_pay_deduct_hist_ded_cd_2}.intVa
 							<textFieldExpression><![CDATA[$V{sum_ded_amt_2}]]></textFieldExpression>
 						</textField>
 						<textField pattern="###,###.00" isBlankWhenNull="true">
-							<reportElement key="textField" x="189" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="6cb0389e-c74c-4cc4-809f-86b7ee39a201">
+							<reportElement key="textField" x="189" y="1" width="60" height="10" backcolor="#C0C0C0" uuid="6cb0389e-c74c-4cc4-809f-86b7ee39a201">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[($V{compute_7}.doubleValue() == 0 && $V{compute_5}.doubleValue() == 0 && $V{compute_6}.doubleValue() == 0 && !$F{bhr_pay_deduct_hist_ded_cd}.equals( "0CH" ))?
 new Boolean(false):
@@ -721,7 +719,7 @@ $V{cumulativeSum_1_2}.intValue() == $V{count_bhr_pay_deduct_hist_ded_cd_2}.intVa
 							<textFieldExpression><![CDATA[$V{sum_emplr_contrib_2}]]></textFieldExpression>
 						</textField>
 						<textField pattern="###,###.00" isBlankWhenNull="true">
-							<reportElement key="textField" x="251" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="0a76eee5-5940-4fd0-ae74-676d94216c7d">
+							<reportElement key="textField" x="251" y="1" width="60" height="10" backcolor="#C0C0C0" uuid="0a76eee5-5940-4fd0-ae74-676d94216c7d">
 								<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								<printWhenExpression><![CDATA[($V{compute_7}.doubleValue() == 0 && $V{compute_5}.doubleValue() == 0 && $V{compute_6}.doubleValue() == 0 && !$F{bhr_pay_deduct_hist_ded_cd}.equals( "0CH" ))?
 new Boolean(false):
@@ -753,15 +751,6 @@ $V{cumulativeSum_1_2}.intValue() == $V{count_bhr_pay_deduct_hist_ded_cd_2}.intVa
 	<background>
 		<band/>
 	</background>
-	<title>
-		<band/>
-	</title>
-	<pageHeader>
-		<band/>
-	</pageHeader>
-	<columnHeader>
-		<band/>
-	</columnHeader>
 	<detail>
 		<band/>
 	</detail>

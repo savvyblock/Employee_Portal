@@ -739,8 +739,8 @@
 		"userNotRegistered":"User account does not exist. Please create a new user.",
 		"pictureChoose":"Please upload images in '.jpg','.jpeg' or '.png' format",
 		"availableError":"Total Leave requested for this leave type exceeds the available balance.",
-		"sendEmailSuccess":"Send Email Success.",
-		"sendEmailFailed":"Send Email Failed.",
+		"sendEmailSuccess":"Send Email Success.Please go to the mailbox to check your mail.",
+		"sendEmailFailed":"Send Email Failed.Please contact administrator.",
 		"":""
 	},
 	"accessHint":{

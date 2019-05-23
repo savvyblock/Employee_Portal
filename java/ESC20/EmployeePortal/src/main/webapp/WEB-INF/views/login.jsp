@@ -57,10 +57,10 @@
 		                    <c:if test="${resetPsw!=null && resetPsw=='resetPswFaild'}">
 		                        <div class="valid-wrap error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.resetPswFaild}</div>
                             </c:if>
-                            <c:if test="${resetSuccess}">
+                            <c:if test="${resetSuccess == true}">
                                 <p class="error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.sendEmailSuccess}</p>
                             </c:if>
-                            <c:if test="${!resetSuccess}">
+                            <c:if test="${resetSuccess == false}">
                                 <p class="error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.sendEmailFailed}</p>
                             </c:if>
                             <div class="form-group clearfix">
