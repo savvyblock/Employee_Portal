@@ -65,15 +65,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                             <div class="form-group">
                                 <label class="chooseEmailGroup" for="workEmail">
-                                  <input type="radio" name="sendEmail" id="workEmail" checked value="">
-                                  <span class="emailAddress">werwe@fsdf.com</span>
+                                  <input type="radio" name="email" id="workEmail" checked value="${user.userEmail}" aria-label="${sessionScope.languageJSON.label.chooseWorkEmailSend}">
+                                  <span class="emailAddress">${user.userEmail}</span>
                                   <span class="emailType">${sessionScope.languageJSON.label.workEmail}</span>
                                 </label>
-                                <label class="chooseEmailGroup" for="homeEmail">
-                                    <input type="radio" name="sendEmail" id="homeEmail" value="">
-                                    <span class="emailAddress">werwe@fsdf.com</span>
-                                    <span class="emailType" >${sessionScope.languageJSON.label.homeEmail}</span>
-                                  </label>
+                                <c:if test="${user.userHomeEmail != ''}">
+                                    <label class="chooseEmailGroup" for="homeEmail">
+                                        <input type="radio" name="email" id="homeEmail" value="${user.userHomeEmail}" aria-label="${sessionScope.languageJSON.label.chooseHomeEmailSend}">
+                                        <span class="emailAddress">${user.userHomeEmail}</span>
+                                        <span class="emailType" >${sessionScope.languageJSON.label.homeEmail}</span>
+                                    </label>
+                                </c:if>
                               </div>
 
                             <c:if test="${errorMessage!=null && errorMessage!=''}">
