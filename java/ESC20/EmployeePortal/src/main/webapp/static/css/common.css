@@ -1116,6 +1116,11 @@ input:focus {
   font-size: smaller;
 }
 
+.success-hint {
+  color: #2d983b;
+  font-size: smaller;
+}
+
 .line-2-flex {
   display: flex;
 }

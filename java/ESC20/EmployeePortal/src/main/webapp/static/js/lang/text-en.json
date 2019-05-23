@@ -739,8 +739,8 @@
 		"userNotRegistered":"User account does not exist. Please create a new user.",
 		"pictureChoose":"Please upload images in '.jpg','.jpeg' or '.png' format",
 		"availableError":"Total Leave requested for this leave type exceeds the available balance.",
-		"sendEmailSuccess":"Send Email Success.",
-		"sendEmailFailed":"Send Email Failed.",
+		"sendEmailSuccess":"An email with your temp password had been sent to your email address, please reset your password in 'My Account' page as the temp password will expire in 24 hours.",
+		"sendEmailFailed":"We did not successfuly send the temp password to your email address, please contact the site admin for assisstance.",
 		"":""
 	},
 	"accessHint":{
