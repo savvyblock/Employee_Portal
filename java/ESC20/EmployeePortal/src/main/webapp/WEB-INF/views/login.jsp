@@ -56,7 +56,13 @@
 		                    </c:if>
 		                    <c:if test="${resetPsw!=null && resetPsw=='resetPswFaild'}">
 		                        <div class="valid-wrap error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.resetPswFaild}</div>
-		                    </c:if>
+                            </c:if>
+                            <c:if test="${resetSuccess}">
+                                <p class="error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.sendEmailSuccess}</p>
+                            </c:if>
+                            <c:if test="${!resetSuccess}">
+                                <p class="error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.sendEmailFailed}</p>
+                            </c:if>
                             <div class="form-group clearfix">
                                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&entry.372715739=Employee+Access+(TxEIS)" target="_blank">${sessionScope.languageJSON.label.contactUs}</a>
                                 <div class="pull-right">
