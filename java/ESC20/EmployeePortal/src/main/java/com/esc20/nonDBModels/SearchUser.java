@@ -11,6 +11,7 @@ public class SearchUser {
 	private String nameL;
 	private String username;
 	private String userEmail;
+	private String userHomeEmail;
 	private String hintQuestion;
 	private String hintAnswer;
 	
@@ -83,6 +84,12 @@ public class SearchUser {
 	}
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
+	}
+	public String getUserHomeEmail() {
+		return userHomeEmail;
+	}
+	public void setUserHomeEmail(String userHomeEmail) {
+		this.userHomeEmail = userHomeEmail;
 	}
 	
 	
