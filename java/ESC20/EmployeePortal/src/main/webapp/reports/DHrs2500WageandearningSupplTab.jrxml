@@ -5,7 +5,7 @@
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="3.0"/>
-	<property name="ireport.x" value="4"/>
+	<property name="ireport.x" value="219"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -263,7 +263,7 @@ group by bhr_pay_distr_hist.pay_freq,
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
-						<reportElement key="staticText" x="4" y="1" width="315" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5e6d71d5-d6f5-463b-92c4-cde18cef328b">
+						<reportElement key="staticText" x="4" y="1" width="376" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5e6d71d5-d6f5-463b-92c4-cde18cef328b">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
