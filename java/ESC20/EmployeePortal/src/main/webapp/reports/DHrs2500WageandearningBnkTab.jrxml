@@ -78,9 +78,9 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 		<band/>
 	</title>
 	<pageHeader>
-		<band height="19">
+		<band height="44">
 			<frame>
-				<reportElement x="4" y="1" width="510" height="17" uuid="b24c3442-998f-402e-8dcc-27823de0e8a2">
+				<reportElement x="4" y="27" width="510" height="17" uuid="b24c3442-998f-402e-8dcc-27823de0e8a2">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
 				</reportElement>
 				<frame>
@@ -277,7 +277,7 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 		<band/>
 	</pageFooter>
 	<summary>
-		<band height="33">
+		<band height="29">
 			<frame>
 				<reportElement x="4" y="1" width="580" height="28" uuid="ca78265c-0e93-46a4-b764-1d71a529f929">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
