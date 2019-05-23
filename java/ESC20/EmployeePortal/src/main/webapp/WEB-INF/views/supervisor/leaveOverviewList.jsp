@@ -220,7 +220,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </c:if>
                                                     <c:if test="${isEmpty==true}">
                                                         <tr>
-                                                            <td colspan="8">
+                                                            <td colspan="8" class="text-center">
                                                                 <span>${sessionScope.languageJSON.label.noData}</span>
                                                             </td>
                                                         </tr>
