@@ -156,6 +156,7 @@ public class ResetPasswordController {
 				mav.addObject("resetSuccess", false);
 			} else {
 				mav.setViewName("login");
+				user.setUsrpswd(encoder.encode(password));
 				//set temp dts so that password expires after one day
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
 				user.setTmpDts(sdf.format(new Date()).substring(0, 16));

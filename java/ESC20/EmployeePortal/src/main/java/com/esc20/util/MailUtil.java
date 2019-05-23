@@ -14,20 +14,27 @@ public class MailUtil {
 
 	private static final Integer serverPort = 25;
 
-	private static final String fromAddress = "employeeaccess@txeis.net";
+	private static final String fromAddress = "m15043019587@163.com";
+	
+	private static final String pass = "Demon1314";
 	
 	public static void sendEmail(String to, String subject, String content) throws MessagingException{
 		Properties props = new Properties();
 		props.put("mail.smtp.host", serverHost);
 		props.put("mail.smtp.port", serverPort);
-		props.put("mail.smtp.auth", "false");
-		Session session = Session.getDefaultInstance(props, null);
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.transport.protocol", "smtp");
+		Session session = Session.getInstance(props);
+		
 		MimeMessage message = new MimeMessage(session);
 		message.setSubject(subject);
 		message.setContent(content,"text/html;charset=UTF-8");
 		message.setFrom(new InternetAddress(fromAddress));
 		message.setRecipients(Message.RecipientType.TO, to);
-		Transport.send(message);
+		Transport transport = session.getTransport();
+		transport.connect(fromAddress, pass);
+		transport.sendMessage(message, message.getAllRecipients());
+		transport.close();
 	}
 	
 }
