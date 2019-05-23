@@ -63,7 +63,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     />
                                 </div>
                             </div>
-                            
+                            <div class="form-group">
+                                <label class="chooseEmailGroup" for="workEmail">
+                                  <input type="radio" name="sendEmail" id="workEmail" checked value="">
+                                  <span class="emailAddress">werwe@fsdf.com</span>
+                                  <span class="emailType">${sessionScope.languageJSON.label.workEmail}</span>
+                                </label>
+                                <label class="chooseEmailGroup" for="homeEmail">
+                                    <input type="radio" name="sendEmail" id="homeEmail" value="">
+                                    <span class="emailAddress">werwe@fsdf.com</span>
+                                    <span class="emailType" >${sessionScope.languageJSON.label.homeEmail}</span>
+                                  </label>
+                              </div>
+
                             <c:if test="${errorMessage!=null && errorMessage!=''}">
                             	<p class="error-hint" role="alert" aria-atomic="true" id="noUserError">
                                         ${sessionScope.languageJSON.validator.answerError}
