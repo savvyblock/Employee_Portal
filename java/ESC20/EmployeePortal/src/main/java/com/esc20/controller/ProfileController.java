@@ -408,7 +408,10 @@ public class ProfileController{
         	return mav;
         }
     	user.setUsrpswd(encoder.encode(password));
-    	user.setTmpDts(user.getTmpDts()==null?"":user.getTmpDts());
+    	user.setTmpDts("");
+		user.setTmpCnt(0);
+		user.setLkHint('N');
+		user.setHintCnt(0);
     	this.indexService.updateUser(user);
     	session.removeAttribute("user");
     	session.setAttribute("user", user);
