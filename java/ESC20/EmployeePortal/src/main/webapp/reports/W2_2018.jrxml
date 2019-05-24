@@ -1055,7 +1055,7 @@
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<imageExpression><![CDATA[$F{statemp}]]></imageExpression>
-						<hyperlinkTooltipExpression><![CDATA["Check Box for Statutory Employee"]]></hyperlinkTooltipExpression>
+						<hyperlinkTooltipExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? "unCheck Box for Statutory Employee" : "Check Box for Statutory Employee"]]></hyperlinkTooltipExpression>
 					</image>
 					<staticText>
 						<reportElement x="316" y="1" width="113" height="15" uuid="b34921ce-5078-431f-8143-5e4f7d4f7278">
@@ -1074,7 +1074,7 @@
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<imageExpression><![CDATA[$F{retplan}]]></imageExpression>
-						<hyperlinkTooltipExpression><![CDATA["Check Box for Retirement Plan"]]></hyperlinkTooltipExpression>
+						<hyperlinkTooltipExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "unCheck Box for Retirement Plan" : "Check Box for Retirement Plan"]]></hyperlinkTooltipExpression>
 					</image>
 					<staticText>
 						<reportElement x="428" y="1" width="119" height="15" uuid="b72c61d7-0f86-4648-97b5-66de461ef229">
@@ -1093,7 +1093,7 @@
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<imageExpression><![CDATA[$F{thrdsick}]]></imageExpression>
-						<hyperlinkTooltipExpression><![CDATA["Check Box for Third Party sick pay"]]></hyperlinkTooltipExpression>
+						<hyperlinkTooltipExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "unCheck Box for Third Party sick pay" : "Check Box for Third Party sick pay"]]></hyperlinkTooltipExpression>
 					</image>
 				</frame>
 			</frame>

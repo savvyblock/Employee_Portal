@@ -5,8 +5,6 @@
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.zoom" value="3.0"/>
-	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
-	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
@@ -64,7 +62,7 @@ group by bhr_suppl_xmital.job_Cd,
 		<band height="15">
 			<frame>
 				<reportElement x="2" y="1" width="305" height="14" uuid="e7ccc1a2-f866-4a33-b582-4aeb8d6e8bd6">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="start"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="300" height="13" uuid="a05432cc-5d7e-4d5e-9a33-b01924c5dd45">
@@ -72,7 +70,8 @@ group by bhr_suppl_xmital.job_Cd,
 					</reportElement>
 					<staticText>
 						<reportElement key="staticText" x="1" y="1" width="135" height="11" backcolor="#C0C0C0" uuid="eb1c2318-7bad-412d-a9de-fafc33900695">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -88,7 +87,8 @@ group by bhr_suppl_xmital.job_Cd,
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="137" y="1" width="48" height="11" backcolor="#C0C0C0" uuid="09a41e9d-da76-4018-b089-efc6d44ee660">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -104,7 +104,8 @@ group by bhr_suppl_xmital.job_Cd,
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="185" y="1" width="52" height="11" backcolor="#C0C0C0" uuid="f7bb1aeb-126b-4baa-a3da-61d542dd9bd9">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -120,7 +121,8 @@ group by bhr_suppl_xmital.job_Cd,
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="238" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="4091c9e2-77a6-4e04-a114-480f6716367e">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -145,7 +147,7 @@ group by bhr_suppl_xmital.job_Cd,
 		<band height="15">
 			<frame>
 				<reportElement x="2" y="1" width="305" height="14" uuid="95112f98-b5a7-47b8-a5b4-4047fd8e22b6">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="end"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="300" height="13" uuid="b7a6fa7e-b485-4d1d-9292-fc547a4ce545">
@@ -227,32 +229,22 @@ group by bhr_suppl_xmital.job_Cd,
 	</pageFooter>
 	<summary>
 		<band height="16">
-			<frame>
-				<reportElement x="2" y="1" width="310" height="14" uuid="21888bd1-3595-476e-9482-2b5ad549706f">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+			<staticText>
+				<reportElement key="staticText" x="0" y="1" width="312" height="11" backcolor="#C0C0C0" uuid="aefac7f9-bdf5-4f6e-80f6-93bd645ba0b1">
+					<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 				</reportElement>
-				<frame>
-					<reportElement x="1" y="1" width="308" height="13" uuid="e69edf6d-765c-4e08-a0f3-ce2c775c1411">
-						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
-					</reportElement>
-					<staticText>
-						<reportElement key="staticText" x="1" y="1" width="305" height="11" backcolor="#C0C0C0" uuid="aefac7f9-bdf5-4f6e-80f6-93bd645ba0b1">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
-						</reportElement>
-						<box>
-							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						</box>
-						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-							<paragraph lineSpacing="Single"/>
-						</textElement>
-						<text><![CDATA[*******************************************************************************************************]]></text>
-					</staticText>
-				</frame>
-			</frame>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[*******************************************************************************************************]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>
