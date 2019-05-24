@@ -946,7 +946,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<imageExpression><![CDATA[$F{statemp}]]></imageExpression>
-						<hyperlinkTooltipExpression><![CDATA["Check Box for Statutory Employee"]]></hyperlinkTooltipExpression>
+						<hyperlinkTooltipExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? "unCheck Box for Statutory Employee" : "Check Box for Statutory Employee"]]></hyperlinkTooltipExpression>
 					</image>
 					<staticText>
 						<reportElement x="316" y="1" width="113" height="15" uuid="3a878f17-25c9-4eee-9165-a7542d2571a0">
@@ -965,7 +965,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<imageExpression><![CDATA[$F{retplan}]]></imageExpression>
-						<hyperlinkTooltipExpression><![CDATA["Check Box for Retirement Plan"]]></hyperlinkTooltipExpression>
+						<hyperlinkTooltipExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "unCheck Box for Retirement Plan" : "Check Box for Retirement Plan"]]></hyperlinkTooltipExpression>
 					</image>
 					<staticText>
 						<reportElement x="428" y="1" width="119" height="15" uuid="5ba5d25e-2529-4583-9b21-df1a926cc578">
@@ -984,7 +984,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<imageExpression><![CDATA[$F{thrdsick}]]></imageExpression>
-						<hyperlinkTooltipExpression><![CDATA["Check Box for Third Party sick pay"]]></hyperlinkTooltipExpression>
+						<hyperlinkTooltipExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "unCheck Box for Third Party sick pay" : "Check Box for Third Party sick pay"]]></hyperlinkTooltipExpression>
 					</image>
 				</frame>
 			</frame>

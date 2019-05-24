@@ -5,7 +5,7 @@
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="3.0"/>
-	<property name="ireport.x" value="219"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -89,7 +89,7 @@ group by bhr_pay_distr_hist.pay_freq,
 		<band height="20">
 			<frame>
 				<reportElement x="1" y="1" width="390" height="17" uuid="8811733b-cd10-4c07-8416-514a307bf344">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="start"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="380" height="16" uuid="531a219b-aec5-4c21-a8f1-085d4947141b">
@@ -97,7 +97,8 @@ group by bhr_pay_distr_hist.pay_freq,
 					</reportElement>
 					<staticText>
 						<reportElement key="staticText" x="2" y="1" width="136" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="a35c73d5-1cb8-46c7-ba65-68301d107e09">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 							<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
 						</reportElement>
 						<box>
@@ -114,7 +115,8 @@ group by bhr_pay_distr_hist.pay_freq,
 					</staticText>
 					<textField>
 						<reportElement x="4" y="1" width="243" height="11" backcolor="#C0C0C0" uuid="7c253ef0-f10d-456d-a7fb-59e078c13c4c">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<textElement textAlignment="Center">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
@@ -125,7 +127,8 @@ group by bhr_pay_distr_hist.pay_freq,
 					</textField>
 					<staticText>
 						<reportElement key="staticText" x="251" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="82b6a454-5171-4ca3-92fa-041bcea90fac">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -156,7 +159,7 @@ group by bhr_pay_distr_hist.pay_freq,
 		<band height="16">
 			<frame>
 				<reportElement x="1" y="1" width="390" height="15" uuid="883638fe-3d31-4870-a1a7-17af96f1ad4c">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="380" height="14" uuid="a67cb9e9-5dbf-4665-ba66-3cef30bed36d">
@@ -216,8 +219,8 @@ group by bhr_pay_distr_hist.pay_freq,
 	<summary>
 		<band height="33">
 			<frame>
-				<reportElement x="1" y="1" width="390" height="31" uuid="6bc657be-5830-4d03-a1cc-533517dfa6c7">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				<reportElement x="1" y="1" width="390" height="17" uuid="6bc657be-5830-4d03-a1cc-533517dfa6c7">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="end"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="380" height="14" uuid="ce375469-e851-4a7d-a234-21e81f57f5cd">
@@ -258,28 +261,23 @@ group by bhr_pay_distr_hist.pay_freq,
 						<textFieldExpression><![CDATA[$V{sum_ed_amt}]]></textFieldExpression>
 					</textField>
 				</frame>
-				<frame>
-					<reportElement x="1" y="16" width="380" height="14" uuid="4c823acf-46ec-4524-82f7-c150a9572500">
-						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
-					</reportElement>
-					<staticText>
-						<reportElement key="staticText" x="4" y="1" width="376" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5e6d71d5-d6f5-463b-92c4-cde18cef328b">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
-						</reportElement>
-						<box>
-							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						</box>
-						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-							<paragraph lineSpacing="Single"/>
-						</textElement>
-						<text><![CDATA[*********************************************************************************************************]]></text>
-					</staticText>
-				</frame>
 			</frame>
+			<staticText>
+				<reportElement key="staticText" x="1" y="18" width="358" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5e6d71d5-d6f5-463b-92c4-cde18cef328b">
+					<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[*********************************************************************************************************]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

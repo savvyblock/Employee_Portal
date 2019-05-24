@@ -205,7 +205,7 @@ union all SELECT distinct
 			<band height="17">
 				<frame>
 					<reportElement x="4" y="1" width="570" height="15" uuid="690a93e6-500b-4fd0-93c2-6ef2c75a33ea">
-						<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+						<property name="net.sf.jasperreports.export.pdf.tag.table" value="end"/>
 					</reportElement>
 					<frame>
 						<reportElement x="1" y="1" width="560" height="14" uuid="e5de083c-1c7e-41a9-a037-a8fe6e7d05a0">
@@ -308,7 +308,7 @@ $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false
 			</line>
 			<frame>
 				<reportElement x="4" y="1" width="570" height="24" uuid="ad1e44c4-fe5a-4d5d-84e3-dfacacda1023">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="start"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="560" height="23" uuid="089b0d38-b660-40ab-b8c1-9c8e77d99ac3">
@@ -316,7 +316,8 @@ $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false
 					</reportElement>
 					<staticText>
 						<reportElement key="staticText" x="1" y="10" width="158" height="11" backcolor="#C0C0C0" uuid="a84a5da9-7977-4013-bc12-cf40cc46d683">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -332,7 +333,8 @@ $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="173" y="2" width="59" height="20" backcolor="#C0C0C0" uuid="a6bf88a6-d113-4e6d-a88b-dbde8fe25da9">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -349,7 +351,8 @@ This Period]]></text>
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="240" y="10" width="59" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="9d29894f-93b2-4398-94df-f53664ef2c6c">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 							<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
 $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false) :  new Boolean(true)]]></printWhenExpression>
 						</reportElement>
@@ -367,7 +370,8 @@ $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="307" y="1" width="62" height="20" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="ccf13723-9ac6-41cb-bef9-5136af55ce52">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 							<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
 $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false) :  new Boolean(true)]]></printWhenExpression>
 						</reportElement>
@@ -396,7 +400,7 @@ Year To Date]]></text>
 			<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
 			<frame>
 				<reportElement x="4" y="0" width="570" height="14" uuid="625fcf6a-c94f-40d0-beeb-01d618d920cc">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="560" height="13" uuid="56574543-0e1c-4218-a59b-e993f3478e0a">

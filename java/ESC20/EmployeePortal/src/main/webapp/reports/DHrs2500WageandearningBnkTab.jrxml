@@ -78,18 +78,19 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 		<band/>
 	</title>
 	<pageHeader>
-		<band height="44">
+		<band height="54">
 			<frame>
-				<reportElement x="4" y="27" width="510" height="17" uuid="b24c3442-998f-402e-8dcc-27823de0e8a2">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				<reportElement x="4" y="0" width="510" height="54" uuid="b24c3442-998f-402e-8dcc-27823de0e8a2">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="start"/>
 				</reportElement>
 				<frame>
-					<reportElement x="1" y="1" width="500" height="15" uuid="aa2f5017-13ad-42b8-b658-facae2218289">
+					<reportElement x="0" y="39" width="500" height="15" uuid="aa2f5017-13ad-42b8-b658-facae2218289">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
 						<reportElement key="staticText" x="3" y="1" width="210" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="1faacb86-1b91-44fa-95df-b4b69710c44f">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -105,7 +106,8 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="218" y="1" width="93" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="1f2efd5d-6931-47b3-9660-f80ea1adcc48">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -121,7 +123,8 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="313" y="1" width="79" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="eac75103-0fde-41b1-beec-7547dafe5ea6">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -137,7 +140,8 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="412" y="1" width="41" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="ff6f11a8-44c2-4371-a0c6-68ab45e3408f">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -159,10 +163,10 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 		<band/>
 	</columnHeader>
 	<detail>
-		<band height="19">
+		<band height="20">
 			<frame>
 				<reportElement x="4" y="1" width="510" height="17" uuid="1f909d02-2504-4c5f-9525-4e2d8723131a">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="500" height="15" uuid="cc379e87-fb5b-44a2-a572-95d1fd582283">
@@ -280,7 +284,7 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 		<band height="29">
 			<frame>
 				<reportElement x="4" y="1" width="580" height="28" uuid="ca78265c-0e93-46a4-b764-1d71a529f929">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="end"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="500" height="13" uuid="493cd1f7-1400-4513-8796-e12c3f4a90a1">
@@ -336,7 +340,7 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 						<textElement>
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
 						</textElement>
-						<text><![CDATA[*******************************************************************************************************************************************]]></text>
+						<text><![CDATA[**********************************************************************************************************************************************************]]></text>
 					</staticText>
 				</frame>
 			</frame>
