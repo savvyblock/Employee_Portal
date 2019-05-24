@@ -695,11 +695,20 @@ public class AppUserDao extends HibernateDaoSupport{
 		BhrEmpDemo demo = new BhrEmpDemo();
 		Session session = this.getSession();
 		Query q;
-		String sql= "select email,nameF,nameL,hmEmail from BhrEmpDemo where empNbr =:empNbr and dob =:dob  and addrZip =:addrZip";
+		String sql= "select email,nameF,nameL,hmEmail,empNbr, staffId from BhrEmpDemo where dob =:dob  and addrZip =:addrZip and ";
+		if(searchUser.getEmpNumber()!=null && !("").equals(searchUser.getEmpNumber())) {
+			sql += "empNbr =:empNbr";
+		}else if(searchUser.getSsn()!=null && !("").equals(searchUser.getSsn())) {
+			sql += "staffId =:staffId";
+		}
         q = session.createQuery(sql);
-        q.setParameter("empNbr", searchUser.getEmpNumber());
         q.setParameter("dob", searchUser.getDateYear()+searchUser.getDateMonth()+searchUser.getDateDay());
         q.setParameter("addrZip", searchUser.getZipCode());
+		if(searchUser.getEmpNumber()!=null && !("").equals(searchUser.getEmpNumber())) {
+			q.setParameter("empNbr", searchUser.getEmpNumber());
+		}else if(searchUser.getSsn()!=null && !("").equals(searchUser.getSsn())) {
+			q.setParameter("staffId", searchUser.getSsn());
+		}
         Object[] res = (Object[]) q.uniqueResult();
         if(res==null)
         	return null;
@@ -708,6 +717,8 @@ public class AppUserDao extends HibernateDaoSupport{
         	demo.setNameF((String) res[1]);
         	demo.setNameL((String) res[2]);
         	demo.setHmEmail((String) res[3]);
+        	demo.setEmpNbr((String) res[4]);
+        	demo.setStaffId((String) res[5]);
         }
         
         return demo;

@@ -3,6 +3,7 @@ package com.esc20.nonDBModels;
 public class SearchUser {
 
 	private String empNumber;
+	private String ssn;
 	private String dateMonth;
 	private String dateDay;
 	private String dateYear;
@@ -90,6 +91,12 @@ public class SearchUser {
 	}
 	public void setUserHomeEmail(String userHomeEmail) {
 		this.userHomeEmail = userHomeEmail;
+	}
+	public String getSsn() {
+		return ssn;
+	}
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
 	}
 	
 	

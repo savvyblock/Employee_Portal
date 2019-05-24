@@ -24,10 +24,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 >
                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="form-group">
-                                        <label class="form-title" for="autoAdvance_1"><span>${sessionScope.languageJSON.label.employeeNumber}</span>&nbsp;(<span>${sessionScope.languageJSON.label.noDashes}</span>)</label>
-                                        <div class="valid-wrap">
-                                            <input type="text" id="autoAdvance_1" class="form-control autoAdvance" placeholder="" value="${user.empNumber}" name="empNumber" maxlength="6">
-                                        </div>
+                                        <c:if test="${idType=='S'}">
+                                        	<label class="form-title" for="autoAdvance_1"><span>Social Security Number</span>&nbsp;(<span>${sessionScope.languageJSON.label.noDashes}</span>)</label>
+	                                        <div class="valid-wrap">
+	                                            <input type="text" id="autoAdvance_1" class="form-control autoAdvance" placeholder="" name="ssn" maxlength="9">
+	                                        </div>
+                                        </c:if>
+                                        <c:if test="${idType=='E'}">
+                                        	<label class="form-title" for="autoAdvance_1"><span>${sessionScope.languageJSON.label.employeeNumber}</span>&nbsp;(<span>${sessionScope.languageJSON.label.noDashes}</span>)</label>
+	                                        <div class="valid-wrap">
+	                                            <input type="text" id="autoAdvance_1" class="form-control autoAdvance" placeholder="" name="empNumber" maxlength="6">
+	                                        </div>
+                                        </c:if>
                                     </div>
                                     <div class="m-b-10">
                                         <label class="form-title"><span>${sessionScope.languageJSON.label.dateOfBirth}</span>	(<span>${sessionScope.languageJSON.label.mmddyyyy}</span>)</label>

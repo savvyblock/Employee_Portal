@@ -137,12 +137,12 @@ $(function() {
         var arrayBankLength = $('.usedBank').length
         $('.profile-item').removeClass('activeEdit')
         $('.addBankForm').addClass('activeEdit')
-        // if (arrayBankLength >= 2) {
-        //     $('.bankSizeError').show()
-        // } else {
-        $('.addBankForm').show()
-        //     $(this).hide()
-        // }
+//        if (arrayBankLength >= 2) {
+//            $('.bankSizeError').show()
+//        } else {
+            $('.addBankForm').show()
+//            $(this).hide()
+//        }
     })
 
     $('#saveNewBank').click(function() {

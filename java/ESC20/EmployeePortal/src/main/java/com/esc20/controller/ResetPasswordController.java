@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.esc20.model.BeaEmailId;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
+import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.SearchUser;
 import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.IndexService;
@@ -38,7 +39,7 @@ public class ResetPasswordController {
 	public ModelAndView retrieveUserName(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		if (req.getParameter("dateDay") == null || req.getParameter("dateMonth") == null
-				|| req.getParameter("dateYear") == null || req.getParameter("empNumber") == null
+				|| req.getParameter("dateYear") == null || (req.getParameter("empNumber") == null && req.getParameter("ssn") == null)
 				|| req.getParameter("zipCode") == null) {
 			mav.setViewName("visitFailedUnAuth");
 			mav.addObject("module", module);
@@ -46,12 +47,18 @@ public class ResetPasswordController {
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
 		}
-
+		Options options = this.indexService.getOptions();
+		if(options.getIdType().equals(Options.IdType.Ssn)) {
+			mav.addObject("idType", "S");
+		} else {
+			mav.addObject("idType", "E");
+		}
 		SearchUser searchUser = new SearchUser();
 		searchUser.setDateDay(req.getParameter("dateDay"));
 		searchUser.setDateMonth(req.getParameter("dateMonth"));
 		searchUser.setDateYear(req.getParameter("dateYear"));
 		searchUser.setEmpNumber(req.getParameter("empNumber"));
+		searchUser.setSsn(req.getParameter("ssn"));
 		searchUser.setZipCode(req.getParameter("zipCode"));
 
 		BhrEmpDemo bed = this.indexService.retrieveEmployee(searchUser);
@@ -61,7 +68,7 @@ public class ResetPasswordController {
 			return mav;
 		} else {
 
-			BeaUsers user = this.indexService.getUserByEmpNbr(searchUser.getEmpNumber());
+			BeaUsers user = this.indexService.getUserByEmpNbr(bed.getEmpNbr());
 			if (user == null) {
 				mav.addObject("retrieve", "false");
 				mav.setViewName("forgetPassword");
@@ -83,7 +90,6 @@ public class ResetPasswordController {
 			}
 
 		}
-
 		mav.setViewName("forgetPassword2");
 		mav.addObject("user", searchUser);
 
@@ -187,6 +193,12 @@ public class ResetPasswordController {
 	public ModelAndView forgetPassword(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("forgetPassword");
+		Options options = this.indexService.getOptions();
+		if(options.getIdType().equals(Options.IdType.Ssn)) {
+			mav.addObject("idType", "S");
+		} else {
+			mav.addObject("idType", "E");
+		}
 		return mav;
 	}
 
