@@ -441,8 +441,8 @@ function updateBank(index) {
             $.each(t, function() {
                 one[this.name] = this.value;
             });
-            console.log(one)
-            console.log(JSON.stringify(one))
+            console.log("one",one)
+            console.log("string",JSON.stringify(one))
             $.ajax({
                 type:'POST',
                 url:'/'+ctx+'/profile/updateBank',

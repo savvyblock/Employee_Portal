@@ -187,35 +187,28 @@ public class ProfileController{
     
     @RequestMapping(value = "updateBank", method = RequestMethod.POST)
     @ResponseBody
-    public ModelAndView updateBank(HttpServletRequest req) {
+    public Map<String, Boolean> updateBank(@RequestBody JSONObject json, HttpServletRequest req) {
         HttpSession session = req.getSession();
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        Map<String, Boolean> res = new HashMap<>();
+        String freq = json.getString("freq");
         
-        String freq = req.getParameter("freq");
-        ModelAndView mav = new ModelAndView();
-		if(req.getParameter("displayAmount")==null||req.getParameter("accountType")==null||
-				req.getParameter("accountNumber")==null || req.getParameter("code")==null || 
-				req.getParameter("displayAmountNew")==null || req.getParameter("accountTypeNew")==null
-				|| req.getParameter("accountNumberNew")==null || req.getParameter("codeNew")==null) {
-			mav.setViewName("visitFailed");
-			mav.addObject("module", module);
-			mav.addObject("action", "Update bank account reuqest information");
-			mav.addObject("errorMsg", "Not all mandotary fields provided.");
-			return mav;
+        String displayAmount = json.getString("displayAmount");
+        String displayLabel = json.getString("accountType");
+        String accountNumber = json.getString("accountNumber");
+        String code = json.getString("code");
+        
+        String displayAmountNew = json.getString("displayAmountNew");
+        String displayLabelNew = json.getString("accountTypeNew");
+        String accountNumberNew = json.getString("accountNumberNew");
+        String codeNew = json.getString("codeNew");
+		if(displayAmount==null||displayLabel==null||accountNumber==null || code==null || 
+				displayAmountNew==null || displayLabelNew==null || accountNumberNew==null || codeNew==null) {
+			res.put("success", false);
+			return res;
 		}
-        
-        String displayAmount = req.getParameter("displayAmount");
-        String displayLabel = req.getParameter("accountType");
-        String accountNumber = req.getParameter("accountNumber");
-        String code = req.getParameter("code");
-        
-        String displayAmountNew = req.getParameter("displayAmountNew");
-        String displayLabelNew = req.getParameter("accountTypeNew");
-        String accountNumberNew = req.getParameter("accountNumberNew");
-        String codeNew = req.getParameter("codeNew");
-        
-        String employeeNumber = demo.getEmpNbr();
-        
+		
+	    String employeeNumber = demo.getEmpNbr();
         
         Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
         
@@ -236,23 +229,15 @@ public class ProfileController{
         payrollAccountInfo.setCode(this.bankService.getBank(codeNew));
         payrollAccountInfo.setDepositAmount(new Money(new Double (displayAmountNew).doubleValue(), Currency.getInstance(Locale.US)));
         payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
-        
-       
-        
-        //TODO check if it is the same request, if yes, update the request
-        // this.bankService.checkSameBank
-        // 
+
         this.bankService.deleteAccountRequest(employeeNumber, freq, accountInfo, null);
         this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
         
         if(autoApprove) {
         	 this.bankService.updateAccountApprove(employeeNumber, freq, payrollAccountInfo, accountInfo);
         }
-        
-        getProfileDetails(session, mav,freq);
-        
-//        mav.setViewName("profile");
-        return mav;
+        res.put("success", true);
+        return res;
     }
     
     @RequestMapping("deleteBank")
