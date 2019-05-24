@@ -138,15 +138,15 @@ $(function() {
         $('.add-bank-btn').show()
     })
     $('.add-bank-btn').click(function() {
-        var arrayBankLength = $('.usedBank').length
+        var arrayBankLength = $('form.usedBank').length
         $('.profile-item').removeClass('activeEdit')
         $('.addBankForm').addClass('activeEdit')
-//        if (arrayBankLength >= 2) {
-//            $('.bankSizeError').show()
-//        } else {
+       if (arrayBankLength >= 2) {
+           $('.bankSizeError').show()
+       } else {
             $('.addBankForm').show()
            $(this).hide()
-//        }
+       }
     })
 
     $('#saveNewBank').click(function() {
