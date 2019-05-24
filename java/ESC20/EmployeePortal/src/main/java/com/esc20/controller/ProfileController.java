@@ -185,7 +185,8 @@ public class ProfileController{
         return mav;
     }
     
-    @RequestMapping("updateBank")
+    @RequestMapping(value = "updateBank", method = RequestMethod.POST)
+    @ResponseBody
     public ModelAndView updateBank(HttpServletRequest req) {
         HttpSession session = req.getSession();
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));

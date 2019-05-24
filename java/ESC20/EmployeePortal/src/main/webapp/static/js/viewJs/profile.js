@@ -137,12 +137,12 @@ $(function() {
         var arrayBankLength = $('.usedBank').length
         $('.profile-item').removeClass('activeEdit')
         $('.addBankForm').addClass('activeEdit')
-        if (arrayBankLength >= 2) {
-            $('.bankSizeError').show()
-        } else {
-            $('.addBankForm').show()
-            $(this).hide()
-        }
+        // if (arrayBankLength >= 2) {
+        //     $('.bankSizeError').show()
+        // } else {
+        $('.addBankForm').show()
+        //     $(this).hide()
+        // }
     })
 
     $('#saveNewBank').click(function() {
@@ -419,6 +419,48 @@ function deleteBankAmount(index) {
     willSubmitFormDelete = $('#deleteBankHidden')
 }
 function updateBank(index) {
+    var bankArry =  $(".updateBankForm");
+    var bankLen =  bankArry.length;
+    var arrayValidate = bankArry.map(function (index) {
+        var bankAccountForm = '#bankAccountForm_' + index
+        var bankAccountValidator = $(bankAccountForm).data('bootstrapValidator')
+        bankAccountValidator.validate()
+        if(bankAccountValidator.isValid()){
+            return true
+        }
+    });
+    console.log(bankLen)
+    console.log(arrayValidate)
+    var freq = $('#freq').val()
+    $('.hidden_freq_update').val(freq)
+    if(arrayValidate.length == bankLen){
+        $(".updateBankForm").each(function(){
+            // console.log(this)
+            var one = {};
+            var t = $(this).serializeArray();
+            $.each(t, function() {
+                one[this.name] = this.value;
+            });
+            console.log(one)
+            console.log(JSON.stringify(one))
+            $.ajax({
+                type:'POST',
+                url:'/'+ctx+'/profile/updateBank',
+                dataType:'JSON',
+                contentType:'application/json;charset=UTF-8',
+                data:JSON.stringify(one),
+                success : function (res) {
+                    console.log(res)
+                },
+                error:function(res){
+                    console.log(res)
+                }
+            });
+        })
+       
+    }
+    
+    return false
     console.log('updateBank=' + index)
     var bankAccountForm = '#bankAccountForm_' + index
     var bankAccountValidator = $(bankAccountForm).data('bootstrapValidator')
@@ -1093,7 +1135,7 @@ function bankAccountValidator() {
                         }
                     }
                 },
-                accountNumber: {
+                accountNumberNew: {
                     trigger: null,
                     validators: {
                         notEmpty: {
@@ -1105,7 +1147,7 @@ function bankAccountValidator() {
                         }
                     }
                 },
-                displayLabel: {
+                accountTypeNew: {
                     trigger: null,
                     validators: {
                         notEmpty: {
@@ -1113,7 +1155,7 @@ function bankAccountValidator() {
                         },
                     }
                 },
-                displayAmount: {
+                displayAmountNew: {
                     trigger: null,
                     validators: {
                         regexp: {

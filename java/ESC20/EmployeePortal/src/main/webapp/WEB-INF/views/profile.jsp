@@ -1411,181 +1411,185 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 
                                 
                             <form
-                                    class="profile-item border-0 bankAccountBlock  <c:if test="${bank.isDelete == false}">usedBank</c:if>  <c:if test="${bank.isDelete == true}">isDelete</c:if>"
+                                    class="profile-item border-0 bankAccountBlock updateBankForm  <c:if test="${bank.isDelete == false}">usedBank</c:if>  <c:if test="${bank.isDelete == true}">isDelete</c:if>"
                                     id="bankAccountForm_${count.index}"
-                                    method="POST"
+                                    action="updateBank" method="POST"
                                     >
+                                    <input type="hidden" name="freq" class="hidden_freq_update" />
                               <div role="main" aria-label="<c:if test="${bank.isDelete == true}">${sessionScope.languageJSON.accessHint.deletedPart}</c:if>" class="profile-item border-0 bankAccountBlock  <c:if test="${bank.isDelete == false}">usedBank</c:if>  <c:if test="${bank.isDelete == true}">isDelete</c:if>">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <div class="profile-left">
-                                        <c:if test="${count.index == 0}">
-                                        <div class="profileTitle form-line profileInfo">
-                                                <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
-                                                <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
-                                            </div>
-                                            </c:if>
-                                    <div class="profile-item-line form-line">
-                                        <div class="profile-title">${sessionScope.languageJSON.profile.primary}</div>
-                                        <div class="profile-desc">
-                                            <div class="haveValue">
-                                                    <div class="noPrimary"></div>
-                                                    <div class="yesPrimary">
-                                                        <i class="fa fa-check"></i>
-                                                    </div>
-                                             </div>
-                                            <div class="form-group valueInput">
-                                                <div>
-                                                    <input
-                                                        class="icheckRadioBank"
-                                                        id="primary_${count.index}"
-                                                        type="radio"
-                                                        aria-label="${sessionScope.languageJSON.accessHint.primaryAccountCheckbox}" 
-                                                        aria-disabled="${bank.isDelete}"
-                                                        <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
-                                                        name="primaryAccount"
-                                                    />
-                                                </div>
-                                            </div>
+                                    <c:if test="${count.index == 0}">
+                                    <div class="profileTitle form-line profileInfo">
+                                            <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                            <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                         </div>
-                                    </div>
-                                    <div class="profile-item-line form-line">
-                                        <div class="profile-title">${sessionScope.languageJSON.profile.bankName}</div>
-                                        <div class="profile-desc">
-                                            <span class="haveValue"
-                                                >${bank.code.description}</span
-                                            >
-                                            
-                                            <input type="hidden"  class="form-control bankcode bankNewCode"  id="codeNew_${count.index}" value="${bank.codeNew.code}" />
-                                            <input type="hidden" id="code_${count.index}" value="${bank.code.code}" />
-                                            
-                                            <div class="valueInput group-line">
-                                                <div class="form-group inputDisabled">
-                                                    <input
-                                                        class="form-control name <c:if test="${bank.code.description != bank.codeNew.description}">active</c:if>"
-                                                        type="text"
-                                                        name="description"
-                                                        aria-label="${sessionScope.languageJSON.profile.bankName}" 
-                                                        aria-disabled="${bank.isDelete}"
-                                                        <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
-                                                        value="${bank.codeNew.description}"
-                                                    />
+                                        </c:if>
+                                <div class="profile-item-line form-line">
+                                    <div class="profile-title">${sessionScope.languageJSON.profile.primary}</div>
+                                    <div class="profile-desc">
+                                        <div class="haveValue">
+                                                <div class="noPrimary"></div>
+                                                <div class="yesPrimary">
+                                                    <i class="fa fa-check"></i>
                                                 </div>
-
-                                                <div class="form-group inputDisabled">
-                                                    <input
-                                                        class="form-control code <c:if test="${bank.code.subCode != bank.codeNew.subCode}">active</c:if>"
-                                                        type="text"
-                                                        name="subCode"
-                                                        aria-label="${sessionScope.languageJSON.accessHint.bankCode}" 
-                                                        aria-disabled="${bank.isDelete}"
-                                                        <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
-                                                        value="${bank.codeNew.subCode}"
-                                                    />
-                                                </div>
-
-                                                <button
-                                                    class="btn btn-secondary xs getBank"
-                                                    type="button" role="button"
-                                                    data-toggle= "modal"
-                                                    data-target="#selectBankModal"
-                                                    aria-label="${sessionScope.languageJSON.profile.chooseBank}"
-                                                    aria-disabled="${bank.isDelete}"
-                                                    <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
-                                                >
-                                                    <i class="fa fa-ellipsis-h"></i>
-                                                </button>
-                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="profile-item-line form-line">
-                                        <div class="profile-title">
-                                                ${sessionScope.languageJSON.profile.bankAcctNbr}
-                                        </div>
-                                        <div class="profile-desc">
-                                            <span class="haveValue" id="accountNumber_${count.index}"
-                                                >${bank.accountNumber}</span
-                                            >
-                                            <div class="form-group valueInput">
+                                        <div class="form-group valueInput">
+                                            <div>
                                                 <input
-                                                    class="form-control <c:if test="${bank.accountNumber != bank.accountNumberNew}">active</c:if>"
-                                                    type="text"
-                                                    aria-label="${sessionScope.languageJSON.profile.bankAcctNbr}"
+                                                    class="icheckRadioBank"
+                                                    id="primary_${count.index}"
+                                                    type="radio"
+                                                    aria-label="${sessionScope.languageJSON.accessHint.primaryAccountCheckbox}" 
                                                     aria-disabled="${bank.isDelete}"
                                                     <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
-                                                    name="accountNumber"
-                                                    id="accountNumberNew_${count.index}"
-                                                    value="${bank.accountNumberNew}"
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="profile-item-line form-line">
-                                        <div class="profile-title">
-                                                ${sessionScope.languageJSON.profile.bankAcctType}
-                                        </div>
-                                        <div class="profile-desc">
-                                            <span class="haveValue"  id="accountType_${count.index}"
-                                                >${bank.accountType.displayLabel}</span
-                                            >
-                                            <div class="form-group valueInput">
-                                                <select
-                                                    class="form-control <c:if test="${bank.accountType.code != bank.accountTypeNew.code}">active</c:if>"
-                                                    aria-label="${sessionScope.languageJSON.profile.bankAcctType}"
-                                                    id="accountTypeNew_${count.index}"
-                                                    aria-disabled="${bank.isDelete}"
-                                                    <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
-                                                    name="displayLabel"
-                                                >
-                                                <c:forEach var="bankType" items="${bankAccountTypes}" varStatus="countBank">
-                                                        <c:choose>
-                                                                <c:when test="${bankType.displayLabel==''}">
-                                                                        <option value="${bankType.displayLabel}" <c:if test="${bankType.code == bank.accountTypeNew.code}">selected</c:if>>&nbsp;</option>
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                        <option value="${bankType.displayLabel}" <c:if test="${bankType.code == bank.accountTypeNew.code}">selected</c:if>>${bankType.displayLabel}</option>
-                                                                </c:otherwise>
-                                                             </c:choose>
-                                                    
-                                                </c:forEach>
-    
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="profile-item-line form-line">
-                                        <div class="profile-title">
-                                                ${sessionScope.languageJSON.profile.bankAcctAmt}
-                                        </div>
-                                        <div class="profile-desc bankAmount">
-                                            <span class="haveValue" id="displayAmount_${count.index}"
-                                                >${bank.depositAmount.displayAmount}</span
-                                            >
-                                            <div class="form-group valueInput">
-                                                <input
-                                                    class="form-control amount_2 <c:if test="${bank.depositAmount.displayAmount != bank.depositAmountNew.displayAmount}">active</c:if>"
-                                                    id="displayAmountNew_${count.index}"
-                                                    type="text"
-                                                    aria-label="${sessionScope.languageJSON.profile.bankAcctAmt}"
-                                                    name="displayAmount"
-                                                    value="${bank.depositAmountNew.displayAmount}"
-                                                    oninput="clearNoNum(this)"
-                                                    aria-disabled="${bank.isDelete}"
-                                                    <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                    name="primaryAccount"
                                                 />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="profile-item-line form-line">
+                                    <div class="profile-title">${sessionScope.languageJSON.profile.bankName}</div>
+                                    <div class="profile-desc">
+                                        <span class="haveValue"
+                                            >${bank.code.description}</span
+                                        >
+                                        
+                                        <input type="hidden"  class="form-control bankcode bankNewCode"  name="codeNew"  id="codeNew_${count.index}" value="${bank.codeNew.code}" />
+                                        <input type="hidden" id="code_${count.index}" name="code" value="${bank.code.code}" />
+                                        
+                                        <div class="valueInput group-line">
+                                            <div class="form-group inputDisabled">
+                                                <input
+                                                    class="form-control name <c:if test="${bank.code.description != bank.codeNew.description}">active</c:if>"
+                                                    type="text"
+                                                    name="description"
+                                                    aria-label="${sessionScope.languageJSON.profile.bankName}" 
+                                                    aria-disabled="${bank.isDelete}"
+                                                    <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                    value="${bank.codeNew.description}"
+                                                />
+                                            </div>
+
+                                            <div class="form-group inputDisabled">
+                                                <input
+                                                    class="form-control code <c:if test="${bank.code.subCode != bank.codeNew.subCode}">active</c:if>"
+                                                    type="text"
+                                                    name="subCode"
+                                                    aria-label="${sessionScope.languageJSON.accessHint.bankCode}" 
+                                                    aria-disabled="${bank.isDelete}"
+                                                    <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                    value="${bank.codeNew.subCode}"
+                                                />
+                                            </div>
+
+                                            <button
+                                                class="btn btn-secondary xs getBank"
+                                                type="button" role="button"
+                                                data-toggle= "modal"
+                                                data-target="#selectBankModal"
+                                                aria-label="${sessionScope.languageJSON.profile.chooseBank}"
+                                                aria-disabled="${bank.isDelete}"
+                                                <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                            >
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profile-item-line form-line">
+                                    <div class="profile-title">
+                                            ${sessionScope.languageJSON.profile.bankAcctNbr}
+                                    </div>
+                                    <div class="profile-desc">
+                                        <span class="haveValue" id="accountNumber_${count.index}"
+                                            >${bank.accountNumber}</span
+                                        >
+                                        <input type="hidden" name="accountNumber" value="${bank.accountNumber}">
+                                        <div class="form-group valueInput">
+                                            <input
+                                                class="form-control <c:if test="${bank.accountNumber != bank.accountNumberNew}">active</c:if>"
+                                                type="text"
+                                                aria-label="${sessionScope.languageJSON.profile.bankAcctNbr}"
+                                                aria-disabled="${bank.isDelete}"
+                                                <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                name="accountNumberNew"
+                                                id="accountNumberNew_${count.index}"
+                                                value="${bank.accountNumberNew}"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profile-item-line form-line">
+                                    <div class="profile-title">
+                                            ${sessionScope.languageJSON.profile.bankAcctType}
+                                    </div>
+                                    <div class="profile-desc">
+                                        <span class="haveValue"  id="accountType_${count.index}"
+                                            >${bank.accountType.displayLabel}</span
+                                        >
+                                        <input type="hidden" name="accountType" value="${bank.accountType.displayLabel}">
+                                        <div class="form-group valueInput">
+                                            <select
+                                                class="form-control <c:if test="${bank.accountType.code != bank.accountTypeNew.code}">active</c:if>"
+                                                aria-label="${sessionScope.languageJSON.profile.bankAcctType}"
+                                                id="accountTypeNew_${count.index}"
+                                                aria-disabled="${bank.isDelete}"
+                                                <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                name="accountTypeNew"
+                                            >
+                                            <c:forEach var="bankType" items="${bankAccountTypes}" varStatus="countBank">
+                                                    <c:choose>
+                                                            <c:when test="${bankType.displayLabel==''}">
+                                                                    <option value="${bankType.displayLabel}" <c:if test="${bankType.code == bank.accountTypeNew.code}">selected</c:if>>&nbsp;</option>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                    <option value="${bankType.displayLabel}" <c:if test="${bankType.code == bank.accountTypeNew.code}">selected</c:if>>${bankType.displayLabel}</option>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                
+                                            </c:forEach>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profile-item-line form-line">
+                                    <div class="profile-title">
+                                            ${sessionScope.languageJSON.profile.bankAcctAmt}
+                                    </div>
+                                    <div class="profile-desc bankAmount">
+                                        <span class="haveValue" id="displayAmount_${count.index}"
+                                            >${bank.depositAmount.displayAmount}</span
+                                        >
+                                        <input type="hidden" name="displayAmount" value="${bank.depositAmount.displayAmount}">
+                                        <div class="form-group valueInput">
+                                            <input
+                                                class="form-control amount_2 <c:if test="${bank.depositAmount.displayAmount != bank.depositAmountNew.displayAmount}">active</c:if>"
+                                                id="displayAmountNew_${count.index}"
+                                                type="text"
+                                                aria-label="${sessionScope.languageJSON.profile.bankAcctAmt}"
+                                                name="displayAmountNew"
+                                                value="${bank.depositAmountNew.displayAmount}"
+                                                oninput="clearNoNum(this)"
+                                                aria-disabled="${bank.isDelete}"
+                                                <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                                 <div class="profile-btn">
                                     <div class="saveOrCancel">
-                                        <button
+                                        <!-- <button
                                             type="button" role="button"
                                             class="btn btn-primary save-btn saveUpdateBankBtn"
                                             id="saveBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.updateBank}"
                                             onclick="updateBank(${count.index})"
                                         >
                                         ${sessionScope.languageJSON.label.update}
-                                        </button>
+                                        </button> -->
                                         <button
                                                 type="button" role="button"
                                                 id="undoBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.undoBank}"
@@ -1608,9 +1612,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
 							</div>   
                             </form>
-                                                    
                             </c:forEach>
-
+                            <div>
+                                <button
+                                        type="button" role="button"
+                                        class="btn btn-primary save-btn saveUpdateBankBtn"
+                                        id="saveBank" aria-label = "${sessionScope.languageJSON.label.updateBank}"
+                                        onclick="updateBank()"
+                                    >
+                                    ${sessionScope.languageJSON.label.update}
+                                </button>
+                            </div>
+                            <br/>
                             <div>
                                 <form hidden="hidden" action="updateBank" id="updateBankHidden" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
