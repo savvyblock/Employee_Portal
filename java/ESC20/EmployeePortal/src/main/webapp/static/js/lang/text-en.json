@@ -694,7 +694,7 @@
 		"emailNotMatch":"The two email you entered did not match.",
 		"maximumBankAmmount":"Maximum allowed number of Direct Deposit accounts reached. Unable to add new account.",
 		"pleaseEnterCorrectFormat":"Please enter correct format",
-		"pleaseEnterCorrectFormatBankAmount":"Please enter correct format,and the bank account amount cannot exceed 9,999,999.99.",
+		"pleaseEnterCorrectFormatBankAmount2":"Please enter correct format,and the bank account amount cannot exceed 9,999,999.99.",
 		"pleaseSelectOne":"Please select one at least.",
 		"pleaseEnterComment":"Please enter supervisor comment.",
 		"newRequest":"New Request",
@@ -741,6 +741,8 @@
 		"availableError":"Total Leave requested for this leave type exceeds the available balance.",
 		"sendEmailSuccess":"An email with your temp password had been sent to your email address, please reset your password in 'My Account' page as the temp password will expire in 24 hours.",
 		"sendEmailFailed":"We did not successfuly send the temp password to your email address, please contact the site admin for assisstance.",
+		"pleaseEnterCorrectFormatBankAmount":"Secondary accounts must have a deposit amount greater than $0.00",
+		"updateFailed":"Update Failed.",
 		"":""
 	},
 	"accessHint":{

@@ -1599,6 +1599,10 @@
   line-height: 25px;
 }
 
+.profile .profile-item.updateBankForm {
+  padding-bottom: 0;
+}
+
 @media (max-width: 1150px) {
   .profile .profile-item.first-child {
     display: block;

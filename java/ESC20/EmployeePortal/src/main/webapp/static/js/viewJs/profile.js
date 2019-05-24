@@ -59,6 +59,8 @@ $(function() {
             console.log($(this).parents(".profile-item").find(".bankAmount .amount_2").val())
             $(".bankAccountBlock").removeClass("asPrimary")
             $(this).parents(".bankAccountBlock").addClass("asPrimary")
+            $("input[name='displayAmountNew']").attr('type','text')
+            $(this).parents(".bankAccountBlock").find("input[name='displayAmountNew']").attr('type','hidden')
             var indexBank = $('.icheckRadioBank').index(this)
             $('.icheckRadioBank').each(function(index) {
                 if (index != indexBank) {
@@ -74,6 +76,8 @@ $(function() {
             $(this).find(".icheckRadioBank").prop('checked', true)
             $(".bankAccountBlock").removeClass("asPrimary")
             $(this).addClass("asPrimary")
+            $("input[name='displayAmountNew']").attr('type','text')
+            $(this).find("input[name='displayAmountNew']").attr('type','hidden')
             $(this).find(".yesPrimary").show()
             $(this).find(".noPrimary").hide()
             return false
@@ -418,7 +422,7 @@ function deleteBankAmount(index) {
     $('#hidden_displayAmount_delete').val(displayAmount)
     willSubmitFormDelete = $('#deleteBankHidden')
 }
-function updateBank(index) {
+function updateBank() {
     var bankArry =  $(".updateBankForm");
     var bankLen =  bankArry.length;
     var arrayValidate = bankArry.map(function (index) {
@@ -434,8 +438,9 @@ function updateBank(index) {
     var freq = $('#freq').val()
     $('.hidden_freq_update').val(freq)
     if(arrayValidate.length == bankLen){
-        $(".updateBankForm").each(function(){
-            // console.log(this)
+        var successNum = 0;
+        var currentBankIndex = 0;
+        $(".updateBankForm").each(function(index){
             var one = {};
             var t = $(this).serializeArray();
             $.each(t, function() {
@@ -450,10 +455,21 @@ function updateBank(index) {
                 contentType:'application/json;charset=UTF-8',
                 data:JSON.stringify(one),
                 success : function (res) {
-                    console.log(res)
+                    currentBankIndex ++;
+                    if(res.success){
+                        successNum ++;
+                        if(currentBankIndex == bankLen){
+                            if(successNum == bankLen){
+                                window.location.reload()
+                            }else{
+                                $(".updateMessageFailed").removeClass("hide")
+                            }
+                        }
+                    }
                 },
                 error:function(res){
                     console.log(res)
+                    $(".updateMessageFailed").removeClass("hide")
                 }
             });
         })
@@ -1112,6 +1128,7 @@ function bankAccountValidator() {
     for (var i = 0; i < arrayBankLength; i++) {
         $('#bankAccountForm_' + i).bootstrapValidator({
             live: 'enable',
+            excluded: [':disabled', ':hidden', ':not(:visible)'],
             submitButtons: '.saveUpdateBankBtn',
             feedbackIcons: {
                 valid: 'fa fa-check ',
@@ -1159,7 +1176,17 @@ function bankAccountValidator() {
                     trigger: null,
                     validators: {
                         regexp: {
-                            regexp: /^\d{1,7}$|^\d{1,7}[\.]{1}\d{1,2}$/,
+                            // regexp: /^[1-9]{1,7}[\.]{1}\d{1}$/,
+                            // regexp: /^[0][\.]{1}[1-9]{1}$/,
+
+                            // regexp: /^[0][\.]{1}\d{1}[1-9]{1}$/,
+                            // regexp: /^[0][\.]{1}[1-9]{1}\d{1}$/,
+
+                            // regexp: /^[1-9]{1}\d{0,6}[\.]{1}\d{1,2}$/,
+
+                            // regexp: /^[1-9]{1}\d{0,6}$/,
+
+                            regexp: /^[1-9]{1}\d{0,6}$|^[1-9]{1}\d{0,6}[\.]{1}\d{1,2}|^[0][\.]{1}[1-9]{1}\d{1}|^[0][\.]{1}\d{1}[1-9]{1}|^[1-9]{1,7}[\.]{1}\d{1}|^[0][\.]{1}[1-9]{1}$/,
                             message: pleaseEnterCorrectFormatBankAmountValidator
                         }
                     }
@@ -1221,7 +1248,7 @@ function bankAccountAddValidator() {
                         message: requiredFieldValidator
                     },
                     regexp: {
-                        regexp: /^\d{1,7}$|^\d{1,7}[\.]{1}\d{1,2}$/,
+                        regexp: /^[1-9]{1}\d{0,6}$|^[1-9]{1}\d{0,6}[\.]{1}\d{1,2}|^[0][\.]{1}[1-9]{1}\d{1}|^[0][\.]{1}\d{1}[1-9]{1}|^[1-9]{1,7}[\.]{1}\d{1}|^[0][\.]{1}[1-9]{1}$/,
                         message: pleaseEnterCorrectFormatBankAmountValidator
                     }
                 }

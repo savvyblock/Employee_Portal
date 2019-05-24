@@ -1464,6 +1464,9 @@
         padding-bottom: 25px;
         border-bottom: 1px solid #eee;
         line-height: 25px;
+        &.updateBankForm{
+            padding-bottom: 0;
+        }
         @media (max-width:1150px){
             &.first-child{
                 display: block;
