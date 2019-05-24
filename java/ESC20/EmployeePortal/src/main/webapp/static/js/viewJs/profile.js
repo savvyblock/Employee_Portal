@@ -145,7 +145,7 @@ $(function() {
 //            $('.bankSizeError').show()
 //        } else {
             $('.addBankForm').show()
-//            $(this).hide()
+           $(this).hide()
 //        }
     })
 
