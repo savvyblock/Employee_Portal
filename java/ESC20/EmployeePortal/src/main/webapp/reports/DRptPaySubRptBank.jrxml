@@ -46,7 +46,7 @@ ORDER BY BHR_BANK_DEPOSIT.BANK_CD]]>
 		<band height="19">
 			<frame>
 				<reportElement x="1" y="2" width="600" height="15" uuid="b97f4238-4e81-43e2-a736-2347bc074ed7">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="start"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="580" height="14" uuid="9a3ab531-fa37-4027-8e3d-eca93a57ac66">
@@ -54,7 +54,8 @@ ORDER BY BHR_BANK_DEPOSIT.BANK_CD]]>
 					</reportElement>
 					<staticText>
 						<reportElement key="staticText" x="10" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="2458dc03-56d0-4080-be8e-5e7bcf15640b">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -70,7 +71,8 @@ ORDER BY BHR_BANK_DEPOSIT.BANK_CD]]>
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="72" y="1" width="150" height="11" backcolor="#C0C0C0" uuid="2711807b-caca-4579-a8f8-14e7f3a134c2">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -86,7 +88,8 @@ ORDER BY BHR_BANK_DEPOSIT.BANK_CD]]>
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="225" y="1" width="150" height="11" backcolor="#C0C0C0" uuid="865f04b8-9ffe-42a3-9322-00c102faa650">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -102,7 +105,8 @@ ORDER BY BHR_BANK_DEPOSIT.BANK_CD]]>
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="378" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="ef928150-bbf3-4b02-86d1-1d73b8db8dd6">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -118,7 +122,8 @@ ORDER BY BHR_BANK_DEPOSIT.BANK_CD]]>
 					</staticText>
 					<staticText>
 						<reportElement key="staticText" x="441" y="1" width="45" height="11" backcolor="#C0C0C0" uuid="3cd35d2e-9ff0-421e-ba82-8f0116ea3fb4">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -158,7 +163,7 @@ ORDER BY BHR_BANK_DEPOSIT.BANK_CD]]>
 		<band height="18">
 			<frame>
 				<reportElement x="1" y="2" width="600" height="15" uuid="90682aca-d2c6-4f4a-bd38-6ecc60022e41">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="end"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="580" height="14" uuid="72097ea3-a774-4f67-9ac7-6685118e64cb">
