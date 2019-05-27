@@ -383,7 +383,10 @@ public class AppUserDao extends HibernateDaoSupport{
         q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
         BeaMailAddr res = (BeaMailAddr) q.uniqueResult();
-        
+        res.setAddrApt(res.getAddrApt()==null?"":res.getAddrApt().trim());
+        res.setAddrAptNew(res.getAddrAptNew()==null?"":res.getAddrAptNew().trim());
+        res.setAddrNbr(res.getAddrNbr()==null?"":res.getAddrNbr().trim());
+        res.setAddrNbrNew(res.getAddrNbrNew()==null?"":res.getAddrNbrNew().trim());
         return res;
 	}
 
