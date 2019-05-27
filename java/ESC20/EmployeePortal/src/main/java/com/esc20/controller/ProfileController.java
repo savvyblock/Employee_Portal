@@ -940,7 +940,14 @@ public class ProfileController{
         BeaHmPhone hmRequest = this.indexService.getBeaHmPhone(demo);
         BeaAltMailAddr altMailAddrRequest = this.indexService.getBeaAltMailAddr(demo);
         BeaMailAddr mailAddrRequest = this.indexService.getBeaMailAddr(demo);
-        
+        if(mailAddrRequest!=null) {
+        	mailAddrRequest.setAddrApt(mailAddrRequest.getAddrApt()==null?"":mailAddrRequest.getAddrApt().trim());
+        	mailAddrRequest.setAddrAptNew(mailAddrRequest.getAddrAptNew()==null?"":mailAddrRequest.getAddrAptNew().trim());
+        	mailAddrRequest.setAddrNbr(mailAddrRequest.getAddrNbr()==null?"":mailAddrRequest.getAddrNbr().trim());
+        	mailAddrRequest.setAddrNbrNew(mailAddrRequest.getAddrNbrNew()==null?"":mailAddrRequest.getAddrNbrNew().trim());
+        	mailAddrRequest.setAddrZip4(mailAddrRequest.getAddrZip4()==null?"":mailAddrRequest.getAddrZip4().trim());
+        	mailAddrRequest.setAddrZip4New(mailAddrRequest.getAddrZip4New()==null?"":mailAddrRequest.getAddrZip4New().trim());
+        }
         List<Code> payRollFrequenciesOptions = this.referenceService.getPayrollFrequencies(demo.getEmpNbr());
     	
         PayInfo payInfo;
