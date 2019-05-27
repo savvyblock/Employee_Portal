@@ -52,7 +52,7 @@ ORDER BY BTHR_JOB_CD.JOB_CD_DESCR]]>
 		<band height="18">
 			<frame>
 				<reportElement x="1" y="0" width="580" height="18" uuid="8367035c-1072-4d54-9d08-617936fd3161">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="start"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="0" width="176" height="18" uuid="a90b9fec-1d84-494b-9099-47b09fb57fa9">
@@ -86,7 +86,7 @@ ORDER BY BTHR_JOB_CD.JOB_CD_DESCR]]>
 		<band height="35">
 			<frame>
 				<reportElement x="1" y="1" width="580" height="32" uuid="47670cf4-4ba8-41b2-b566-ddbafca005a1">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="end"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="575" height="15" uuid="66eec567-4b72-427f-8e2d-ac254418b64e">
