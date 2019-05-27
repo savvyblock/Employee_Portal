@@ -35,52 +35,42 @@
 	</title>
 	<pageHeader>
 		<band height="16">
-			<frame>
-				<reportElement x="2" y="0" width="600" height="16" uuid="f9a6f75c-c171-4c91-8e95-5489837125bd">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="start"/>
+			<staticText>
+				<reportElement key="staticText" x="2" y="0" width="56" height="14" backcolor="#C0C0C0" uuid="93ab483c-7283-4413-9a58-7e01fd0cd447">
+					<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="start"/>
 				</reportElement>
-				<frame>
-					<reportElement x="1" y="0" width="580" height="15" uuid="dd135075-8293-407d-933a-3be361794a3e">
-						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
-					</reportElement>
-					<staticText>
-						<reportElement key="staticText" x="0" y="0" width="56" height="14" backcolor="#C0C0C0" uuid="93ab483c-7283-4413-9a58-7e01fd0cd447">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
-							<property name="net.sf.jasperreports.export.pdf.tag.h1" value="start"/>
-						</reportElement>
-						<box>
-							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						</box>
-						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-							<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-							<paragraph lineSpacing="Single"/>
-						</textElement>
-						<text><![CDATA[Frequency:  ]]></text>
-					</staticText>
-					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="57" y="0" width="100" height="14" backcolor="#C0C0C0" uuid="3c886f4f-bbad-49a6-b5d9-d676737c2fdb">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
-							<property name="net.sf.jasperreports.export.pdf.tag.h1" value="end"/>
-						</reportElement>
-						<box>
-							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						</box>
-						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-							<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-							<paragraph lineSpacing="Single"/>
-						</textElement>
-						<textFieldExpression><![CDATA[$P{as_payfreq}.equals( "4" ) ? "Biweekly" :
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Frequency:  ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="59" y="0" width="100" height="14" backcolor="#C0C0C0" uuid="3c886f4f-bbad-49a6-b5d9-d676737c2fdb">
+					<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.h1" value="end"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+					<font fontName="Microsoft Sans Serif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{as_payfreq}.equals( "4" ) ? "Biweekly" :
                        ($P{as_payfreq}.equals( "5") ? "Semimonthly" :
                                                "Monthly")]]></textFieldExpression>
-					</textField>
-				</frame>
-			</frame>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -90,7 +80,7 @@
 		<band height="15">
 			<frame>
 				<reportElement x="2" y="0" width="600" height="15" uuid="c40b1789-26e0-4c80-9ba4-0457081ec910">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="end"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="580" height="14" uuid="6fa31326-47a5-414e-add7-6fdde5af3f2d">
