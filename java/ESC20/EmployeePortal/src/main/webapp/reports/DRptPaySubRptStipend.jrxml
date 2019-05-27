@@ -99,7 +99,7 @@ ORDER BY BTHR_EXTRA_DUTY.EXTRA_DUTY_DESCR]]>
 		<band height="31">
 			<frame>
 				<reportElement x="0" y="0" width="580" height="30" uuid="baa52f93-d6f8-45c7-a2c2-e3518f302d83">
-					<property name="net.sf.jasperreports.export.pdf.tag.table" value="end"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
 				</reportElement>
 				<frame>
 					<reportElement x="4" y="1" width="570" height="13" uuid="aa492954-2696-4582-bed0-7226c81bf5b2">
