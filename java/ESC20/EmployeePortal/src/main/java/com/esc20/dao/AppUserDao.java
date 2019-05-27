@@ -414,19 +414,6 @@ public class AppUserDao extends HibernateDaoSupport{
     	session.flush();
 	}
 	
-	public void updateDemoAvatar(BhrEmpDemo demo) {
-		Session session = this.getSession();
-		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE BhrEmpDemo SET avatar = :avatar ");
-		sql.append(", module ='Employee Acces'");
-		sql.append(" WHERE empNbr = :employeeNumber ");
-		Query q = session.createQuery(sql.toString());
-		q.setParameter("avatar", demo.getAvatar());
-		q.setParameter("employeeNumber", demo.getEmpNbr());
-		Integer res = q.executeUpdate();
-    	session.flush();
-	}
-	
 	public void updateDemoMaritalStatus(BhrEmpDemo demo) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();

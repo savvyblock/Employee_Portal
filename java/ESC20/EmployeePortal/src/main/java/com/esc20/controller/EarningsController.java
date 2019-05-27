@@ -71,15 +71,17 @@ public class EarningsController {
 			message = ((Options) session.getAttribute("options")).getMessageEarnings();
 			earnings = this.service.retrieveEarnings(employeeNumber, latestPayDate);
 			YTDEarnings = this.service.getTYDEarnings(employeeNumber, payDates, latestPayDate);
-			for (int i = 0; i < earnings.getOther().size(); i++) {
-				for (int j = 0; j < YTDEarnings.getOther().size(); j++) {
-					if (earnings.getOther().get(i).getCode().equals(YTDEarnings.getOther().get(j).getCode())) {
-						earnings.getOther().get(i).setTydAmt(YTDEarnings.getOther().get(j).getTydAmt());
-						earnings.getOther().get(i).setTydContrib(YTDEarnings.getOther().get(j).getContrib());
+			if(earnings!=null && YTDEarnings!=null) {
+				for (int i = 0; i < earnings.getOther().size(); i++) {
+					for (int j = 0; j < YTDEarnings.getOther().size(); j++) {
+						if (earnings.getOther().get(i).getCode().equals(YTDEarnings.getOther().get(j).getCode())) {
+							earnings.getOther().get(i).setTydAmt(YTDEarnings.getOther().get(j).getTydAmt());
+							earnings.getOther().get(i).setTydContrib(YTDEarnings.getOther().get(j).getContrib());
+						}
 					}
 				}
+				YTDEarnings.setEmplrPrvdHlthcare(this.service.getEmplrPrvdHlthcare(employeeNumber, latestPayDate));
 			}
-			YTDEarnings.setEmplrPrvdHlthcare(this.service.getEmplrPrvdHlthcare(employeeNumber, latestPayDate));
 			freq = Frequency.getFrequency(StringUtil.mid(latestPayDate.getDateFreq(), 9, 1));
 			year = latestPayDate.getDateFreq().substring(0, 4);
 		}
@@ -174,49 +176,6 @@ public class EarningsController {
 		
 	    JasperPrint jasperPrint = pDFService.buildReport(ireport);
     	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
-	}
-	
-	@RequestMapping("earningsUnprotectedPDF")
-	public ModelAndView earningsUnprotectedPDF(HttpServletRequest req, String empNbr, String districtId,
-			String language, String selectedPayDate) throws IOException {
-		DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW" + districtId);
-		HttpSession session = req.getSession();
-		ModelAndView mav = new ModelAndView();
-		String employeeNumber = empNbr;
-		BhrEmpDemo userDetail = this.indexService.getUserDetail(empNbr);
-		session.setAttribute("userDetail", userDetail);
-		District districtInfo = this.indexService.getDistrict(districtId);
-		session.setAttribute("district", districtInfo);
-		Options options = this.indexService.getOptions();
-		Integer days = options.getMaxDays();
-		if (days == null)
-			days = 0;
-		List<PayDate> payDates = this.service.getAvailablePayDates(employeeNumber, days);
-		mav.addObject("payDates", payDates);
-		PayDate payDate = PayDate.getPaydate(selectedPayDate);
-		String message = options.getMessageEarnings();
-		Earnings earnings = this.service.retrieveEarnings(employeeNumber, payDate);
-		Earnings YTDEarnings = this.service.getTYDEarnings(employeeNumber, payDates, payDate);
-		for (int i = 0; i < earnings.getOther().size(); i++) {
-			for (int j = 0; j < YTDEarnings.getOther().size(); j++) {
-				if (earnings.getOther().get(i).getCode().equals(YTDEarnings.getOther().get(j).getCode())) {
-					earnings.getOther().get(i).setTydAmt(YTDEarnings.getOther().get(j).getTydAmt());
-					earnings.getOther().get(i).setTydContrib(YTDEarnings.getOther().get(j).getContrib());
-				}
-			}
-		}
-		YTDEarnings.setEmplrPrvdHlthcare(this.service.getEmplrPrvdHlthcare(employeeNumber, payDate));
-		Frequency freq = Frequency.getFrequency(StringUtil.mid(payDate.getDateFreq(), 9, 1));
-		String year = payDate.getDateFreq().substring(0, 4);
-		mav.setViewName("/inquiry/earnings");
-		mav.addObject("days", days);
-		mav.addObject("selectedPayDate", payDate);
-		mav.addObject("message", message);
-		mav.addObject("earnings", earnings);
-		mav.addObject("YTDEarnings", YTDEarnings);
-		mav.addObject("year", year);
-		mav.addObject("freq", freq);
-		return mav;
 	}
 
 	public EarningsPrint generateEarningsPrint(HttpServletRequest request, HttpServletResponse response,

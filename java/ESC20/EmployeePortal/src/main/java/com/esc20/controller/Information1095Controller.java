@@ -378,28 +378,6 @@ public class Information1095Controller{
 		return forms;
 	}
 	
-	@RequestMapping("information1095UnprotectedPDF")
-	public ModelAndView information1095UnprotectedPDF(HttpServletRequest req, String empNbr, String districtId,String language, String year, String BPageNo, String CPageNo,
-			String sortBy, String sortOrder, String type) throws IOException {
-		DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+districtId);
-		HttpSession session = req.getSession();
-		ModelAndView mav = new ModelAndView();
-		BhrEmpDemo userDetail = this.indexService.getUserDetail(empNbr);
-		session.setAttribute("userDetail", userDetail);
-		District districtInfo = this.indexService.getDistrict(districtId);
-		session.setAttribute("district", districtInfo);
-		Options options = this.indexService.getOptions();
-		session.setAttribute("options", options);
-		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
-		File file = new File(path);
-		String input = FileUtils.readFileToString(file, "UTF-8");
-		JSONObject jsonObject = JSONObject.fromObject(input);
-		session.setAttribute("languageJSON", jsonObject);
-		mav.setViewName("/inquiry/information1095");
-		mav = init1095(mav, session, year, Integer.parseInt(BPageNo), Integer.parseInt(CPageNo), sortBy, sortOrder, type);
-		return mav;
-	}
-	
 	private IReport setupBReport(ParameterReport report, List<Aca1095BPrint> forms, String year) throws Exception {
 		report.getParameters().clear();
 		ReportParameterConnection parameter = new ReportParameterConnection();

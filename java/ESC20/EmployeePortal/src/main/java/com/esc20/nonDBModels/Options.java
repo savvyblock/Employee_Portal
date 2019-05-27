@@ -149,7 +149,7 @@ public class Options implements Serializable {
 		this.setMaxDays(opt.getMaxDays());
 		this.setW2Latest(opt.getW2Latest());
 		this.setUrl(opt.getUrlHm());
-		this.setPreNote(opt.getPreNote().toString());
+		this.setPreNote(opt.getPreNote()==null?"":opt.getPreNote().toString());
 		this.setDdAccounts(opt.getDdAcct());
 		
 		this.setMessageEmployeeAccessSystem(opt.getMsgEap());

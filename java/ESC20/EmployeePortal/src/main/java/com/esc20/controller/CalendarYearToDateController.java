@@ -217,35 +217,4 @@ public class CalendarYearToDateController {
 		
 		return calYTDRpt;
 	}
-	
-//	@RequestMapping("calendarYearToDateUnprotectedPDF")
-//	public ModelAndView calendarYearToDateUnprotectedPDF(HttpServletRequest req, String empNbr, String districtId,String language,String year) throws IOException {
-//		DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+districtId);
-//		HttpSession session = req.getSession();
-//		ModelAndView mav = new ModelAndView();
-//		String employeeNumber = empNbr;
-//		BhrEmpDemo userDetail = this.indexService.getUserDetail(empNbr);
-//		session.setAttribute("userDetail", userDetail);
-//		District districtInfo = this.indexService.getDistrict(districtId);
-//		session.setAttribute("district", districtInfo);
-//		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
-//		File file = new File(path);
-//		String input = FileUtils.readFileToString(file, "UTF-8");
-//		JSONObject jsonObject = JSONObject.fromObject(input);
-//		req.getSession().setAttribute("languageJSON", jsonObject);
-//		mav.addObject("isPrintPDF", true);
-//		List<String> years = service.getAvailableYears(employeeNumber);
-//		BhrCalYtd calYTD = service.getCalenderYTD(employeeNumber, year);
-//		BigDecimal trsIns = calYTD.getTrsDeposit().subtract(calYTD.getTrsSalaryRed());
-//		Frequency freq = Frequency.getFrequency(calYTD.getId().getPayFreq() + "");
-//		String latestPayDate = service.getLatestPayDate(employeeNumber, freq);
-//		mav.setViewName("/inquiry/calendarYearToDate");
-//		mav.addObject("years", years);
-//		mav.addObject("selectedYear", year);
-//		mav.addObject("calendar", calYTD);
-//		mav.addObject("latestPayDate", latestPayDate);
-//		mav.addObject("trsIns", trsIns);
-//		mav.addObject("freq", freq);
-//		return mav;
-//	}
 }

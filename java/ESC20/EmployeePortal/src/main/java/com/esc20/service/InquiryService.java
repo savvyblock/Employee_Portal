@@ -226,6 +226,9 @@ public class InquiryService {
 			}
 		}
 		Earnings ytdEarnings = this.retrieveEarnings(employeeNumber, payDate);
+		if(ytdEarnings==null) {
+			return null;
+		}
 		List<EarningsOther> earningsOther = ytdEarnings.getOther();
 		ytdEarnings.setEarningsOtherTydTotal(new BigDecimal(0));
 		for (int i = 0; i < earningsOther.size(); i++) {
@@ -492,7 +495,9 @@ public class InquiryService {
 		checkNumber = payDate.getCheckNumber();
 
 		earningsInfo = earningsDao.getEarningsInfo(employeeNumber, payDate);
-
+		if(earningsInfo==null) {
+			return null;
+		}
 		if (earningsInfo.getPeriodEndingDate() != null && !earningsInfo.getPeriodEndingDate().equals("")) {
 			earningsInfo.formatPeriodEndingDate();
 		}
@@ -663,7 +668,7 @@ public class InquiryService {
 		print.setEaddress(employer.getAddress());
 		print.setEcityst(employer.getCity() + " " + employer.getState() + " " + employer.getZip());
 
-		if (employer.getZip4().length() > 0) {
+		if (employer.getZip4()!=null && employer.getZip4().length() > 0) {
 			print.setEcityst(print.getEcityst() + "-" + employer.getZip4());
 		}
 

@@ -236,9 +236,7 @@ public class IndexService {
 	public void updateDemoName(BhrEmpDemo demo) {
 		userDao.updateDemoName(demo);
 	}
-	public void updateDemoAvatar(BhrEmpDemo demo) {
-		userDao.updateDemoAvatar(demo);
-	}
+
 	public void updateDemoMaritalStatus(BhrEmpDemo demo) {
 		userDao.updateDemoMaritalStatus(demo);
 	}

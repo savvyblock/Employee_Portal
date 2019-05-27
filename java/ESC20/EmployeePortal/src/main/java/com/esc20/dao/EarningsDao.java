@@ -91,8 +91,9 @@ public class EarningsDao {
         q.setParameter("adjNbr", Short.parseShort(payDate.getAdjNumber()));
         q.setParameter("chkNbr", payDate.getCheckNumber());
         Object[] res = (Object[]) q.uniqueResult();
-        
-        EarningsInfo info = new EarningsInfo(res[0],res[1],res[2],res[3],res[4],res[5],res[6]);
+        EarningsInfo info = null;
+        if(res!=null)
+        	info = new EarningsInfo(res[0],res[1],res[2],res[3],res[4],res[5],res[6]);
 		return info;
 	}
 
