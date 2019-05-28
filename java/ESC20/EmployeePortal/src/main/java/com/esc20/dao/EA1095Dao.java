@@ -30,7 +30,8 @@ public class EA1095Dao {
 		String sql = "SELECT DISTINCT CAL_YR FROM BHR_ACA_1095B_EMP_HIST WHERE EMP_NBR = :empNbr UNION SELECT DISTINCT CAL_YR FROM BHR_ACA_1095C_EMP_HIST WHERE EMP_NBR = :empNbr ORDER BY CAL_YR DESC ";
         Query q = session.createSQLQuery(sql);
         q.setParameter("empNbr", employeeNumber);
-        List<String> years = (List<String>) q.list();
+        @SuppressWarnings("unchecked")
+		List<String> years = (List<String>) q.list();
         
         return years;
 	}
@@ -73,7 +74,8 @@ public class EA1095Dao {
         q.setParameter("calYr", year);
         q.setFirstResult(bPageNo*pageSize);  
         q.setMaxResults(pageSize);
-        List<BhrAca1095bCovrdHist> result = q.list();
+        @SuppressWarnings("unchecked")
+		List<BhrAca1095bCovrdHist> result = q.list();
         
         return result;
 	}
@@ -91,7 +93,8 @@ public class EA1095Dao {
         q.setParameter("calYr", year);
         q.setFirstResult(cPageNo*pageSize);  
         q.setMaxResults(pageSize);  
-        List<BhrAca1095cCovrdHist> result = q.list();
+        @SuppressWarnings("unchecked")
+		List<BhrAca1095cCovrdHist> result = q.list();
         
         return result;
 	}
@@ -106,7 +109,8 @@ public class EA1095Dao {
         Query q = session.createQuery(retrieveSQL.toString());
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
-        List<Object[]> res = q.list();
+        @SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for(Object[] item: res) {
@@ -122,7 +126,8 @@ public class EA1095Dao {
         Query q = session.createQuery(retrieveSQL);
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year); 
-        List<BhrAca1095cEmpHist> result = q.list();
+        @SuppressWarnings("unchecked")
+		List<BhrAca1095cEmpHist> result = q.list();
         
         return result;
 	}

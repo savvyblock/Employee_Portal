@@ -1,6 +1,5 @@
 package com.esc20.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +23,8 @@ import com.esc20.nonDBModels.PayDate;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.nonDBModels.report.ReportParameterConnection;
-import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
-import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.StringUtil;
 
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -40,9 +37,6 @@ public class EarningsController {
 
 	@Autowired
 	private InquiryService service;
-
-	@Autowired
-	private IndexService indexService;
 
     @Autowired
     private PDFService pDFService;

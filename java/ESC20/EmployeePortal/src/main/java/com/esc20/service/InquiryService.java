@@ -14,8 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,8 +57,6 @@ import com.esc20.util.StringUtil;
 
 @Service
 public class InquiryService {
-
-	private Logger logger = LoggerFactory.getLogger(InquiryService.class);
 
 	@Autowired
 	private CurrentPayInformationDao currentPayInformationDao;
@@ -345,8 +341,6 @@ public class InquiryService {
 		String dt;
 		Date dtDate;
 		Calendar cal = Calendar.getInstance();
-		Integer today = cal.get(Calendar.DAY_OF_YEAR);
-		Integer paidDate;
 		for (int i = 0; i < payDates.size(); i++) {
 			prefix = payDates.get(i).getCheckNumber().substring(0, 4);
 			if (prefix.equals("CYTD") || prefix.equals("AVAR") || prefix.equals("SYTD") || prefix.equals("SADJ")

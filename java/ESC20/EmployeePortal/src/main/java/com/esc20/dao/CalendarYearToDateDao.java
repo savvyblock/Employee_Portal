@@ -1,7 +1,6 @@
 package com.esc20.dao;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,7 +53,8 @@ public class CalendarYearToDateDao {
         q.setParameter("payFreq", payFreq);
         q.setParameter("empNbr", empNbr);
         q.setParameter("jobCd", jobCd);
-        List<BhrEmpJob> res = q.list();
+        @SuppressWarnings("unchecked")
+		List<BhrEmpJob> res = q.list();
         
         return res.get(0);
     }
@@ -68,6 +68,7 @@ public class CalendarYearToDateDao {
 		sql.append(" ORDER BY bcy.id.calYr DESC");
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
+		@SuppressWarnings("unchecked")
 		List<String> years = q.list();
 		
 		return years;

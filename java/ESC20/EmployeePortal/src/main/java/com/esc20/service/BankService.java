@@ -2,14 +2,11 @@ package com.esc20.service;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.esc20.dao.BankDao;
 import com.esc20.dao.OptionsDao;
-import com.esc20.dao.ReferenceDao;
 import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Bank;
 import com.esc20.nonDBModels.BankRequest;
@@ -21,16 +18,12 @@ import com.esc20.nonDBModels.Page;
 @Service
 public class BankService {
 
-	private Logger logger = LoggerFactory.getLogger(BankService.class);
-
 	@Autowired
 	private BankDao bankDao;
 
 	@Autowired
 	private OptionsDao optionsDao;
 
-	@Autowired
-	private ReferenceDao referenceDao;
 
 	public List<BthrBankCodes> getAllBanks() {
 		return bankDao.getAll();

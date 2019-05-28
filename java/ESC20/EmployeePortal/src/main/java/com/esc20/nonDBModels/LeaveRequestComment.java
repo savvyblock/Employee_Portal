@@ -1,5 +1,6 @@
 package com.esc20.nonDBModels;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -7,7 +8,7 @@ import com.esc20.util.DateUtil;
 
 import net.sf.json.JSONObject;
 
-public class LeaveRequestComment {
+public class LeaveRequestComment implements Serializable{
 
 	private static final long serialVersionUID = -4452126278573279987L;
 
@@ -16,11 +17,9 @@ public class LeaveRequestComment {
 	public static final String REQUEST_COMMENT_TYPE_APPROVAL = "A";
 	public static final String REQUEST_COMMENT_TYPE_DISAPPROVAL = "D";
 
-	private SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM-dd-yyyy hh:mmaa");
-	private SimpleDateFormat dateTimeFormat24hr = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
 	private SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mmaa");
-	private SimpleDateFormat bhrDateFormat = new SimpleDateFormat("yyyyMMdd");
 
 	private int id;
 	private int leaveId;
@@ -164,7 +163,6 @@ public class LeaveRequestComment {
 		String date = this.getCommentDateString() + " " + this.getCommentTimeString();
 		detail += date;
 		detail += ": " + this.getComment();
-		Integer value = detail.indexOf("'");
 		detail = detail.replaceAll("'", "\\" + "'");
 		jo.put("detail", detail);
 		return jo;

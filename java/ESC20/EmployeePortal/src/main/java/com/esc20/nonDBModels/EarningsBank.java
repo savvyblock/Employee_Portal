@@ -7,6 +7,8 @@ import com.esc20.util.NumberUtil;
 import com.esc20.util.StringUtil;
 
 public class EarningsBank implements Serializable{
+
+	private static final long serialVersionUID = -2272738495829005422L;
 	private String name="";
 	private String acctType="";
 	private String acctNum ="";

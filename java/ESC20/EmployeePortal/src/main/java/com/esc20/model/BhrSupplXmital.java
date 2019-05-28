@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "BHR_SUPPL_XMITAL", schema = "rsccc", catalog = "rsccc")
 public class BhrSupplXmital implements java.io.Serializable {
-
+	private static final long serialVersionUID = -4938722212173580052L;
 	private BhrSupplXmitalId id;
 	private String jobCd;
 	private String campusId;

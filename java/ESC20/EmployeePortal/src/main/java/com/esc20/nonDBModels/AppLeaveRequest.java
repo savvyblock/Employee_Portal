@@ -14,7 +14,7 @@ import com.esc20.util.DateUtil;
 
 public class AppLeaveRequest implements Serializable {
 
-
+	private static final long serialVersionUID = -3344977353642741347L;
 	private Integer id;
 	private Integer seqNum;
 	private Character payFreq;

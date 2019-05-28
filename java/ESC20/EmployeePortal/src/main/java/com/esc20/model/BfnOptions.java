@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "BFN_OPTIONS", schema = "rsccc", catalog = "rsccc")
 public class BfnOptions implements java.io.Serializable {
-
+	private static final long serialVersionUID = 1679135540070928360L;
 	private char glFileId;
 	private String districtId;
 	private String perCurrent;

@@ -1,7 +1,5 @@
 package com.esc20.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,11 +28,9 @@ import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.nonDBModels.report.ReportParameterConnection;
-import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
 import com.esc20.service.ReferenceService;
-import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
 import com.esc20.util.MailUtil;
 import com.esc20.util.StringUtil;
@@ -43,7 +38,6 @@ import com.esc20.util.StringUtil;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/information1095")
@@ -51,9 +45,6 @@ public class Information1095Controller{
 
 	@Autowired
 	private InquiryService service;
-
-    @Autowired
-    private IndexService indexService;
     
     @Autowired
     private ReferenceService referenceService;

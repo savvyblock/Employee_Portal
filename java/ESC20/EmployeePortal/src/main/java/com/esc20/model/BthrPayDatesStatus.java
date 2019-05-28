@@ -6,10 +6,6 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +15,7 @@ import javax.persistence.Table;
 @Table(name = "BTHR_PAY_DATES_STATUS", schema = "rsccc", catalog = "rsccc")
 public class BthrPayDatesStatus implements java.io.Serializable {
 
+	private static final long serialVersionUID = -2261091057871845766L;
 	private BthrPayDatesStatusId id;
 	private String dtPayRun;
 	private char interfaceFlg;

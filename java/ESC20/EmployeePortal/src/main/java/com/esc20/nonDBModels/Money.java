@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.Currency;
 
+@SuppressWarnings("rawtypes")
 public class Money implements Comparable, Serializable{
 	private static final long serialVersionUID = 6715142900654758429L;
 	private BigInteger amount;

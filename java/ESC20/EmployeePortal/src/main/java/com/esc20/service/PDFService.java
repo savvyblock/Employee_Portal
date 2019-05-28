@@ -16,16 +16,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.esc20.dao.CalendarYearToDateDao;
-import com.esc20.model.BhrCalYtd;
-import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.CalYTDPrint;
-import com.esc20.nonDBModels.District;
-import com.esc20.nonDBModels.EarningsPrint;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.nonDBModels.report.ReportParameter;
 import com.esc20.nonDBModels.report.ReportParameterConnection;
 import com.esc20.nonDBModels.report.ReportParameterDataSource;
+
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;

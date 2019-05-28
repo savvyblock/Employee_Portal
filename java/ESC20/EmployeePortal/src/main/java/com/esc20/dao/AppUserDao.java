@@ -1,13 +1,18 @@
 package com.esc20.dao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import javax.annotation.Resource;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.jfree.util.Log;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import com.esc20.model.AppUser;
 import com.esc20.model.BeaAltMailAddr;
 import com.esc20.model.BeaBusPhone;
 import com.esc20.model.BeaCellPhone;
@@ -20,31 +25,12 @@ import com.esc20.model.BeaMailAddr;
 import com.esc20.model.BeaMrtlStat;
 import com.esc20.model.BeaRestrict;
 import com.esc20.model.BeaUsers;
-import com.esc20.model.BeaW4;
-import com.esc20.model.BhrEapDemoAssgnGrp;
 import com.esc20.model.BhrEmpDemo;
-import com.esc20.model.BhrEmpPayId;
-import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.SearchUser;
-import com.esc20.util.DataSourceContextHolder;
-import com.esc20.util.DynamicDataSource;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
-import javax.annotation.Resource;
 
 @Repository
 public class AppUserDao extends HibernateDaoSupport{
-    @Autowired
-    private SessionFactory sessionFactory;
-    
-    @Autowired
-    private ReferenceDao referenceDao;
     
     @Resource  
     public void setSessionFacotry(SessionFactory sessionFacotry) {
@@ -383,6 +369,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("generationNew", demo.getNameGen());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
     	session.flush();
 	}
 	
@@ -396,6 +383,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("maritalStat", demo.getMaritalStat());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
     	session.flush();
 	}
 	
@@ -410,6 +398,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("driversLicSt", demo.getDriversLicSt());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
     	session.flush();
 	}
 	
@@ -424,6 +413,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("restrictCdPublic", demo.getRestrictCdPublic());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
     	session.flush();
 	}
 	
@@ -438,6 +428,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("hmEmail", demo.getHmEmail());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
     	session.flush();
 	}
 	
@@ -457,6 +448,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("emerNote", demo.getEmerNote());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
     	session.flush();
 	}
 	
@@ -477,6 +469,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("addrZip4", demo.getAddrZip4());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
     	session.flush();
 	}
 	
@@ -497,6 +490,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("smrAddrZip4", demo.getSmrAddrZip4());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
     	session.flush();
 	}
 	
@@ -511,6 +505,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("phoneNbr", demo.getPhoneNbr());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
     	session.flush();
 	}
 	
@@ -525,6 +520,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("phoneNbrCell", demo.getPhoneNbrCell());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
     	session.flush();
 	}
 	
@@ -540,6 +536,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("busPhoneExt", demo.getBusPhoneExt());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
     	session.flush();
 	}
 
@@ -550,6 +547,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
 		session.flush();
 	}
 	
@@ -560,6 +558,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
 		session.flush();
 	}
 	
@@ -570,6 +569,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
 		session.flush();
 	}
 	
@@ -580,6 +580,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
 		session.flush();
 	}
 	
@@ -590,6 +591,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
 		session.flush();
 	}
 	
@@ -600,6 +602,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
 		session.flush();
 	}
 	public void deleteMailAddrrequest(String empNbr) {
@@ -609,6 +612,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
 		session.flush();
 	}
 	public void deleteAltMailAddrrequest(String empNbr) {
@@ -618,6 +622,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
 		session.flush();
 	}
 	public void deleteHomePhonerequest(String empNbr) {
@@ -627,6 +632,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
 		session.flush();
 	}
 	public void deleteCellPhonerequest(String empNbr) {
@@ -636,6 +642,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
 		session.flush();
 	}
 	public void deleteBusinessPhonerequest(String empNbr) {
@@ -645,6 +652,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
 		session.flush();
 	}
 	
@@ -684,7 +692,6 @@ public class AppUserDao extends HibernateDaoSupport{
 	
 	public void updateEmailEmployee(String employeeNumber,String workEmail, String homeEmail) 
 	{
-		BhrEmpDemo demo = new BhrEmpDemo();
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
 		sql.append("UPDATE BhrEmpDemo SET email = :workEmail, hmEmail = :homeEmail ");
@@ -695,6 +702,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("homeEmail", homeEmail);
 		q.setParameter("employeeNumber", employeeNumber);
 		Integer res = q.executeUpdate();
+		Log.debug("Result of update: "+ res);
     	session.flush();
 	}
 
@@ -718,12 +726,4 @@ public class AppUserDao extends HibernateDaoSupport{
 		Integer result = (Integer) q.uniqueResult();
 		return result>0;
 	}
-
-	public Object TestDemo(String empNbr) {
-		Session session = this.getSession();
-        Query query = session.createSQLQuery("select * from Contacts");
-        List<Object[]> res = query.list();
-		return null;
-	}
-	
 }

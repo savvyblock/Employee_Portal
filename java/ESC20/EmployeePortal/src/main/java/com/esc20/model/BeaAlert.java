@@ -15,6 +15,7 @@ import javax.persistence.Table;
 @Table(name = "BEA_ALERT", schema = "rsccc", catalog = "rsccc")
 public class BeaAlert implements java.io.Serializable {
 
+	private static final long serialVersionUID = 8918523499293380239L;
 	private long id;
 	private String msgFrom;
 	private String msgTo;

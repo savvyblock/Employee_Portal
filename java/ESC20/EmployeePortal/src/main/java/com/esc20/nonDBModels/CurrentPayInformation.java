@@ -2,7 +2,6 @@ package com.esc20.nonDBModels;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 public class CurrentPayInformation implements Serializable {
 	

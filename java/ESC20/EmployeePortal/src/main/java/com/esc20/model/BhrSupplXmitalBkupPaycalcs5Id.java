@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class BhrSupplXmitalBkupPaycalcs5Id implements java.io.Serializable {
-
+	private static final long serialVersionUID = -4938722212173580052L;
 	private char cyrNyrFlg;
 	private char payFreq;
 	private String empNbr;

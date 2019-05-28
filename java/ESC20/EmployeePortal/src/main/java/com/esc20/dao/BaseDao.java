@@ -28,18 +28,20 @@ public class BaseDao {
         getSession().clear();
     }
 
-    public Object load(Class c, String id) {
+    @SuppressWarnings("unchecked")
+	public Object load(@SuppressWarnings("rawtypes") Class c, String id) {
         Session session = getSession();
         return session.get(c, id);
     }
 
-    public List getAllList(Class c) {
+    @SuppressWarnings("rawtypes")
+	public List getAllList(Class c) {
         String hql = "from " + c.getName();
         Session session = getSession();
         return session.createQuery(hql).list();
     }
 
-    public Long getTotalCount(Class c) {
+    public Long getTotalCount(@SuppressWarnings("rawtypes") Class c) {
         Session session = getNewSession();
         String hql = "select count(*) from " + c.getName();
         Long count = (Long) session.createQuery(hql).uniqueResult();
@@ -75,17 +77,19 @@ public class BaseDao {
         session.close();
     }
 
-    public void delete(Class c, String id) {
+    public void delete(@SuppressWarnings("rawtypes") Class c, String id) {
         Session session = getNewSession();
-        Object obj = session.get(c, id);
+        @SuppressWarnings("unchecked")
+		Object obj = session.get(c, id);
         session.delete(obj);
         flush();
         clear();
     }
 
-    public void delete(Class c, String[] ids) {
+    public void delete(@SuppressWarnings("rawtypes") Class c, String[] ids) {
         for (String id : ids) {
-            Object obj = getSession().get(c, id);
+            @SuppressWarnings("unchecked")
+			Object obj = getSession().get(c, id);
             if (obj !=null) {
                 getSession().delete(obj);
             }

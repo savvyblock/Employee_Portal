@@ -55,6 +55,7 @@ public class CurrentPayInformationDao {
 		sql.append(" AND job.id.jobCd = code.id.jobCd");
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
+		@SuppressWarnings("unchecked")
 		List<Object[]> list = q.list();
 		List<CurrentPayInformation> result = new ArrayList<CurrentPayInformation>();
 		CurrentPayInformation info;
@@ -85,6 +86,7 @@ public class CurrentPayInformationDao {
 		sql.append(" AND bhr.id.extraDutyCd = bthr.id.extraDutyCd");
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
+		@SuppressWarnings("unchecked")
 		List<Object[]> list = q.list();
 		List<Stipend> result = new ArrayList<Stipend>();
 		Stipend temp;
@@ -116,6 +118,7 @@ public class CurrentPayInformationDao {
 		sql.append(" AND depo.id.bankAcctTyp = typ.bankAcctTyp");
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
+		@SuppressWarnings("unchecked")
 		List<Object[]> list = q.list();
 		List<Account> result = new ArrayList<Account>();
 		Account temp;
@@ -139,6 +142,7 @@ public class CurrentPayInformationDao {
 		sql.append(" WHERE B.empNbr = :employeeNumber");
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
+		@SuppressWarnings("unchecked")
 		List<Object[]> list = q.list();
 		Object[] item = list.get(0);
 		if (checkHighDegree(employeeNumber) != null && !checkHighDegree(employeeNumber).isEmpty()) {

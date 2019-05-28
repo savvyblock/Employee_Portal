@@ -28,7 +28,8 @@ public class W2InformationDao {
 		sql.append(" ORDER BY w2.id.calYr DESC");
         Query q = session.createQuery(sql.toString());
         q.setParameter("employeeNumber", employeeNumber);
-        List<String> years = (List<String>) q.list();
+        @SuppressWarnings("unchecked")
+		List<String> years = (List<String>) q.list();
         
         return years;
 	}
@@ -73,6 +74,7 @@ public class W2InformationDao {
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("year", year);
+		@SuppressWarnings("unchecked")
 		List<BhrThirdPartySickPay> res = q.list();
 		
 		return res;

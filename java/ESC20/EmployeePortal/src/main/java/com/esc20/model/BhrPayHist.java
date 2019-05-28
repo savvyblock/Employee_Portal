@@ -2,15 +2,12 @@ package com.esc20.model;
 // Generated Jan 4, 2019 3:44:27 PM by Hibernate Tools 4.3.5.Final
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**

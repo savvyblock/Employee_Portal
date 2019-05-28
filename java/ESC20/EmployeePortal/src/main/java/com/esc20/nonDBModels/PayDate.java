@@ -18,6 +18,7 @@ public class PayDate  implements Serializable {
 	private String adjNumber="";
 	private String checkNumber="";
 	private String label="";
+	@SuppressWarnings("unused")
 	private String formatedDate;
 	public PayDate() {
 		

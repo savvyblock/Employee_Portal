@@ -27,6 +27,7 @@ public class StringUtil {
 		try
 		{
 
+		@SuppressWarnings("unused")
 		Integer val = Integer.parseInt(value);
 		}
 		catch (NumberFormatException ex)
@@ -361,14 +362,8 @@ public class StringUtil {
         return string;
     }
 
-    /**
-     * Converts the first character of a string to its ASCII integer value.
-     * @param string	The string for which you want the ASCII value of the first character
-     * @return Integer. Returns the ASCII value of the first character in string. If string
-     * is NULL, Asc returns NULL.
-     */
     public static int asc(String string) {
-        if (string == null && string.length() == 0)
+        if (string == null || (string!=null && string.length() == 0))
             return -1;
         return (int) string.charAt(0);
     }
