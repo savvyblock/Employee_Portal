@@ -20,21 +20,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                 </div>
                                 <div class="profile-top first-child">
-                                    <!-- <div class="profile-avatar" >
-                                        <div>
-                                                <div
-                                                class="avatar"
-                                                id="imgContentImg"
-                                                style="background-image:url(${sessionScope.userDetail.avatar})"
-                                            >
-                                                <button type="button" role="button" class="avatar-word" data-toggle="modal" data-target="#changeAvatarModal">${sessionScope.languageJSON.profile.change}</button>
-                                            </div>
-                                            <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal">
-                                                    <span>${sessionScope.languageJSON.label.changePassword}</span>
-                                                </button>
-                                            </div>
-                                        
-                                    </div> -->
                                     <form class="profile-item" id="personalForm" action="saveName" method="POST">
                                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <div class="profile-left">

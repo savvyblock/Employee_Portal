@@ -139,34 +139,6 @@ public class AppUserDao extends HibernateDaoSupport{
 
 	public BhrEmpDemo getUserDetail(String empNbr) {
         Session session = this.getSession();
-//        StringBuilder sql = new StringBuilder();
-//		sql.append("SELECT demo.staffId, demo.nameF, demo.nameM, demo.nameL, demo.nameGen, demo.dob, demo.sex, ");
-//		sql.append("demo.addrNbr, demo.addrStr, demo.addrApt, demo.addrCity, demo.addrSt, demo.addrZip, demo.addrZip4, ");
-//		sql.append("demo.phoneArea, demo.phoneNbr, demo.email, demo.hmEmail, '', ");
-//		sql.append("demo.namePre, demo.smrAddrNbr, demo.smrAddrStr, demo.smrAddrApt, demo.smrAddrCity, demo.smrAddrSt, demo.smrAddrZip, demo.smrAddrZip4, ");
-//		sql.append("demo.phoneAreaBus, demo.phoneNbrBus, demo.busPhoneExt, demo.phoneAreaCell, demo.phoneNbrCell, ");
-//		sql.append("demo.restrictCd, demo.restrictCdPublic, demo.maritalStat, demo.driversLicNbr, demo.driversLicSt, ");
-//		sql.append("demo.emerContact, demo.emerPhoneAc, demo.emerPhoneNbr, demo.emerPhoneExt, demo.emerRel, demo.emerNote,demo.avatar ");
-//		sql.append("FROM BhrEmpDemo demo WHERE demo.empNbr=:empNbr");
-//        Query q = session.createQuery(sql.toString());
-//        q.setParameter("empNbr", empNbr);
-//        Object[] res =  (Object[]) q.uniqueResult();
-//        BhrEmpDemo userInfo = new BhrEmpDemo(
-//        		empNbr, (String) res[0],(String) res[1], (String) res[2],        		
-//        		(String) res[3],(Character) res[4], (String) res[5], (Character) res[6], (String) res[7], 
-//        		(String) res[8], (String) res[9], (String) res[10], (String) res[11], (String) res[12], (String) res[13],
-//    			 (String) res[14],(String) res[15],(String) res[16],(String) res[17],
-//    			 (String) res[19],(String) res[20],(String) res[21],(String) res[22],(String) res[23],(String) res[24],(String) res[25],(String) res[26],
-//    			 (String) res[27],(String) res[28],(String) res[29],(String) res[30],(String) res[31],
-//    			 (Character) res[32],(Character) res[33],(Character) res[34],(String) res[35],(String) res[36],
-//    			 (String) res[37],(String) res[38],(String) res[39],(String) res[40],(String) res[41],(String) res[42],(String) res[43]);
-//        List<Code> gens = referenceDao.getGenerations();
-//        userInfo.setGenDescription("");
-//        for(Code gen: gens) {
-//        	if(userInfo.getNameGen()!=null && gen.getCode().equals(userInfo.getNameGen().toString())) {
-//        		userInfo.setGenDescription(gen.getDescription());
-//        	}
-//        }
         BhrEmpDemo result = session.get(BhrEmpDemo.class, empNbr);
         return result;
 	}
