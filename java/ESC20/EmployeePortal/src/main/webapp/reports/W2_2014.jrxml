@@ -958,9 +958,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<text><![CDATA[ 13 Statutory Employee]]></text>
 					</staticText>
 					<rectangle>
-						<reportElement x="257" y="18" width="10" height="10" uuid="abf2e797-4b6f-488d-b242-ef83c91ec196">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
-						</reportElement>
+						<reportElement x="257" y="18" width="10" height="10" uuid="abf2e797-4b6f-488d-b242-ef83c91ec196"/>
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="257" y="18" width="10" height="10" uuid="b8174d12-b35c-4002-a790-f47f5abddbc6">
@@ -994,9 +992,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<text><![CDATA[ Retirement Plan]]></text>
 					</staticText>
 					<rectangle>
-						<reportElement x="373" y="18" width="10" height="10" uuid="0ddb5e11-70c5-4a58-9cda-1072b899eeff">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
-						</reportElement>
+						<reportElement x="373" y="18" width="10" height="10" uuid="0ddb5e11-70c5-4a58-9cda-1072b899eeff"/>
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="373" y="18" width="10" height="10" uuid="87aaf327-222f-40f8-bf17-41b7c4f9a4c1">
@@ -1031,9 +1027,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<text><![CDATA[Third party sick pay]]></text>
 					</staticText>
 					<rectangle>
-						<reportElement x="486" y="18" width="10" height="10" uuid="a24e6b40-10a8-49fd-98ef-1ccfd663c1f6">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
-						</reportElement>
+						<reportElement x="486" y="18" width="10" height="10" uuid="a24e6b40-10a8-49fd-98ef-1ccfd663c1f6"/>
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="486" y="18" width="10" height="10" uuid="3b040394-60c6-45d3-ada8-2a6d59a95493">

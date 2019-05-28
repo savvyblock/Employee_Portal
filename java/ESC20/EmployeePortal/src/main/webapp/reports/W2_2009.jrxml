@@ -4,7 +4,7 @@
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="240"/>
+	<property name="ireport.y" value="288"/>
 	<field name="ssn" class="java.lang.String"/>
 	<field name="tgross" class="java.lang.String"/>
 	<field name="whold" class="java.lang.String"/>
@@ -942,9 +942,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<text><![CDATA[ 13 Statutory Employee]]></text>
 					</staticText>
 					<rectangle>
-						<reportElement x="257" y="18" width="10" height="10" uuid="917d3105-ad7f-46af-bee5-1060b89b6093">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
-						</reportElement>
+						<reportElement x="257" y="18" width="10" height="10" uuid="917d3105-ad7f-46af-bee5-1060b89b6093"/>
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="257" y="18" width="10" height="10" uuid="db5f3479-27bc-490f-a232-d16d2a550cd0">
@@ -978,9 +976,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<text><![CDATA[ Retirement Plan]]></text>
 					</staticText>
 					<rectangle>
-						<reportElement x="373" y="18" width="10" height="10" uuid="7e1e73c5-86a8-466a-95ff-e1d240e29631">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
-						</reportElement>
+						<reportElement x="373" y="18" width="10" height="10" uuid="7e1e73c5-86a8-466a-95ff-e1d240e29631"/>
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="373" y="18" width="10" height="10" uuid="faec6f5f-28d7-47e5-831b-b78b86c42291">
@@ -1015,9 +1011,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<text><![CDATA[Third party sick pay]]></text>
 					</staticText>
 					<rectangle>
-						<reportElement x="486" y="18" width="10" height="10" uuid="8a495571-7f5a-48b5-a205-c81d4ff2c432">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
-						</reportElement>
+						<reportElement x="486" y="18" width="10" height="10" uuid="8a495571-7f5a-48b5-a205-c81d4ff2c432"/>
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="486" y="18" width="10" height="10" uuid="64652d47-bcb0-4c20-b674-dc3b2afbea8d">

@@ -961,9 +961,7 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 						<text><![CDATA[ 13 Statutory Employee]]></text>
 					</staticText>
 					<rectangle>
-						<reportElement x="257" y="18" width="10" height="10" uuid="93ffe2ce-bd27-4740-98a5-aceb7740a5c3">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
-						</reportElement>
+						<reportElement x="257" y="18" width="10" height="10" uuid="93ffe2ce-bd27-4740-98a5-aceb7740a5c3"/>
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="257" y="18" width="10" height="10" uuid="66f29f64-6022-4491-b712-cdc12dfb969f">
@@ -997,9 +995,7 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 						<text><![CDATA[ Retirement Plan]]></text>
 					</staticText>
 					<rectangle>
-						<reportElement x="373" y="18" width="10" height="10" uuid="61655713-d9e0-4916-9e58-c38b5e8f596e">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
-						</reportElement>
+						<reportElement x="373" y="18" width="10" height="10" uuid="61655713-d9e0-4916-9e58-c38b5e8f596e"/>
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="373" y="18" width="10" height="10" uuid="573ba915-fa49-4b35-8570-82f63ad57b10">
@@ -1034,9 +1030,7 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 						<text><![CDATA[Third party sick pay]]></text>
 					</staticText>
 					<rectangle>
-						<reportElement x="486" y="18" width="10" height="10" uuid="a0f8cba2-43f0-43f7-ba97-65759e2c72a1">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
-						</reportElement>
+						<reportElement x="486" y="18" width="10" height="10" uuid="a0f8cba2-43f0-43f7-ba97-65759e2c72a1"/>
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="486" y="18" width="10" height="10" uuid="4a59259a-8974-4e09-995f-d3be7f37c7d4">

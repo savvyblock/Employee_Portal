@@ -996,9 +996,7 @@
 						<text><![CDATA[ 13 Statutory Employee]]></text>
 					</staticText>
 					<rectangle>
-						<reportElement x="257" y="18" width="10" height="10" uuid="5e2867b2-2166-435d-bda6-c1f1270a1008">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
-						</reportElement>
+						<reportElement x="257" y="18" width="10" height="10" uuid="5e2867b2-2166-435d-bda6-c1f1270a1008"/>
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="257" y="18" width="10" height="10" uuid="e0cfb9f2-6d6e-4443-9366-3b6c0fcea1e9">
@@ -1032,9 +1030,7 @@
 						<text><![CDATA[ Retirement Plan]]></text>
 					</staticText>
 					<rectangle>
-						<reportElement x="373" y="18" width="10" height="10" uuid="6840ef91-b8b9-45ea-9c1e-ee481c35b9b9">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
-						</reportElement>
+						<reportElement x="373" y="18" width="10" height="10" uuid="6840ef91-b8b9-45ea-9c1e-ee481c35b9b9"/>
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="373" y="18" width="10" height="10" uuid="f96fa732-935d-4484-bd17-e4be3d91a9f6">
@@ -1069,9 +1065,7 @@
 						<text><![CDATA[Third party sick pay]]></text>
 					</staticText>
 					<rectangle>
-						<reportElement x="486" y="18" width="10" height="10" uuid="95030fa4-6a7a-49d5-a1ed-fd2579665eb7">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
-						</reportElement>
+						<reportElement x="486" y="18" width="10" height="10" uuid="95030fa4-6a7a-49d5-a1ed-fd2579665eb7"/>
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="486" y="18" width="10" height="10" uuid="6c959082-418e-4574-9436-df29ab9f63ee">
