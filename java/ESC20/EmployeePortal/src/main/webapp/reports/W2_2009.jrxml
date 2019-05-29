@@ -959,7 +959,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font size="8"/>
+							<font size="5"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{statemp}.contains( "uncheckedbox" ) ? "checkbox for 13 Statutory Employee unchecked" : "checkbox for 13 Statutory Employee checked"]]></textFieldExpression>
 					</textField>
@@ -990,11 +990,11 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 					</line>
 					<elementGroup/>
 					<textField>
-						<reportElement x="319" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="6e5f61fb-0df0-426b-8e33-b74ae14e7141">
+						<reportElement x="319" y="31" width="113" height="20" forecolor="#FFFFFF" uuid="6e5f61fb-0df0-426b-8e33-b74ae14e7141">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
-						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font size="8"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="5"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "checkbox for Retirement Plan unchecked" : "checkbox for Retirement Plan checked"]]></textFieldExpression>
 					</textField>
@@ -1024,11 +1024,11 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						</reportElement>
 					</line>
 					<textField>
-						<reportElement x="434" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="d9d46b29-c0e7-42c6-89d3-0cde2efa8c81">
+						<reportElement x="432" y="31" width="114" height="20" forecolor="#FFFFFF" uuid="d9d46b29-c0e7-42c6-89d3-0cde2efa8c81">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
-						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font size="8"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="5"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "checkbox for Third party sick pay unchecked" : "checkbox for Third party sick pay checked"]]></textFieldExpression>
 					</textField>

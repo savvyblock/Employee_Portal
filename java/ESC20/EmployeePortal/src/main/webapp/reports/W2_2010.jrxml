@@ -4,7 +4,7 @@
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="174"/>
+	<property name="ireport.y" value="366"/>
 	<field name="ssn" class="java.lang.String"/>
 	<field name="tgross" class="java.lang.String"/>
 	<field name="whold" class="java.lang.String"/>
@@ -974,11 +974,11 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 						</reportElement>
 					</line>
 					<textField>
-						<reportElement x="205" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="c52df168-8c47-475f-80c0-bbbe6ea55c09">
+						<reportElement stretchType="RelativeToBandHeight" x="205" y="31" width="113" height="23" forecolor="#FFFFFF" uuid="c52df168-8c47-475f-80c0-bbbe6ea55c09">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font size="8"/>
+							<font size="5"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{statemp}.contains( "uncheckedbox" ) ? "checkbox for 13 Statutory Employee unchecked" : "checkbox for 13 Statutory Employee checked"]]></textFieldExpression>
 					</textField>
@@ -1009,11 +1009,11 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 					</line>
 					<elementGroup/>
 					<textField>
-						<reportElement x="319" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="55bcac45-0de9-4fe1-9a4b-61059f3c1752">
+						<reportElement stretchType="RelativeToBandHeight" x="319" y="31" width="114" height="23" forecolor="#FFFFFF" uuid="55bcac45-0de9-4fe1-9a4b-61059f3c1752">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
-						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font size="8"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="5"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "checkbox for Retirement Plan unchecked" : "checkbox for Retirement Plan checked"]]></textFieldExpression>
 					</textField>
@@ -1043,11 +1043,12 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 						</reportElement>
 					</line>
 					<textField>
-						<reportElement x="434" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="9ed274f7-ecfe-49b1-b55e-bb97fe86b4c5">
+						<reportElement stretchType="RelativeToBandHeight" x="433" y="31" width="114" height="23" forecolor="#FFFFFF" uuid="9ed274f7-ecfe-49b1-b55e-bb97fe86b4c5">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
-						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font size="8"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="5"/>
+							<paragraph lineSpacing="Single"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "checkbox for Third party sick pay unchecked" : "checkbox for Third party sick pay checked"]]></textFieldExpression>
 					</textField>

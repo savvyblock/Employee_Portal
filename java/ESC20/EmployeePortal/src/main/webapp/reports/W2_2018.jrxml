@@ -4,7 +4,7 @@
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="144"/>
+	<property name="ireport.y" value="336"/>
 	<field name="ssn" class="java.lang.String"/>
 	<field name="tgross" class="java.lang.String"/>
 	<field name="whold" class="java.lang.String"/>
@@ -1068,7 +1068,7 @@
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font size="8"/>
+							<font size="5"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{statemp}.contains( "uncheckedbox" ) ? "checkbox for 13 Statutory Employee unchecked" : "checkbox for 13 Statutory Employee checked"]]></textFieldExpression>
 					</textField>
@@ -1099,11 +1099,11 @@
 					</line>
 					<elementGroup/>
 					<textField>
-						<reportElement x="319" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="1a760fff-af55-4e96-bf93-1110326b8b63">
+						<reportElement x="318" y="31" width="114" height="20" forecolor="#FFFFFF" uuid="1a760fff-af55-4e96-bf93-1110326b8b63">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font size="8"/>
+							<font size="5"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "checkbox for Retirement Plan unchecked" : "checkbox for Retirement Plan checked"]]></textFieldExpression>
 					</textField>
@@ -1133,11 +1133,11 @@
 						</reportElement>
 					</line>
 					<textField>
-						<reportElement x="434" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="eeee5d45-0bc1-4990-aa97-3195c5d8a4bc">
+						<reportElement x="431" y="31" width="114" height="20" forecolor="#FFFFFF" uuid="eeee5d45-0bc1-4990-aa97-3195c5d8a4bc">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font size="8"/>
+							<font size="5"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "checkbox for Third party sick pay unchecked" : "checkbox for Third party sick pay checked"]]></textFieldExpression>
 					</textField>

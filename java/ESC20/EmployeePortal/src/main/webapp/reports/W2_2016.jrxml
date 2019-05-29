@@ -1016,7 +1016,7 @@
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font size="8"/>
+							<font size="5"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{statemp}.contains( "uncheckedbox" ) ? "checkbox for 13 Statutory Employee unchecked" : "checkbox for 13 Statutory Employee checked"]]></textFieldExpression>
 					</textField>
@@ -1047,11 +1047,11 @@
 					</line>
 					<elementGroup/>
 					<textField>
-						<reportElement x="319" y="31" width="111" height="18" forecolor="#FFFFFF" uuid="a17b48d8-2bb6-4b21-883a-afcb7aae6c5d">
+						<reportElement x="319" y="31" width="114" height="18" forecolor="#FFFFFF" uuid="a17b48d8-2bb6-4b21-883a-afcb7aae6c5d">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
-						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font size="8"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="5"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "checkbox for Retirement Plan unchecked" : "checkbox for Retirement Plan checked"]]></textFieldExpression>
 					</textField>
@@ -1081,11 +1081,11 @@
 						</reportElement>
 					</line>
 					<textField>
-						<reportElement x="434" y="31" width="111" height="18" forecolor="#FFFFFF" uuid="0d8c26ce-31f5-4510-aed9-eca58e7a4b5a">
+						<reportElement x="434" y="31" width="113" height="18" forecolor="#FFFFFF" uuid="0d8c26ce-31f5-4510-aed9-eca58e7a4b5a">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
-						<textElement textAlignment="Center" verticalAlignment="Middle">
-							<font size="8"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="5"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "checkbox for Third party sick pay unchecked" : "checkbox for Third party sick pay checked"]]></textFieldExpression>
 					</textField>
