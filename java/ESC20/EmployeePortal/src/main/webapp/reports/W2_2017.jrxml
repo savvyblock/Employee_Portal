@@ -4,7 +4,7 @@
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="192"/>
+	<property name="ireport.y" value="288"/>
 	<field name="ssn" class="java.lang.String"/>
 	<field name="tgross" class="java.lang.String"/>
 	<field name="whold" class="java.lang.String"/>
@@ -175,7 +175,7 @@
 				<text><![CDATA[Form W-2 Wage and Tax Statement]]></text>
 			</staticText>
 			<frame>
-				<reportElement x="1" y="15" width="548" height="339" uuid="28461c27-ee10-42f3-b14d-54059a2f00d7">
+				<reportElement x="1" y="15" width="548" height="358" uuid="28461c27-ee10-42f3-b14d-54059a2f00d7">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
 				</reportElement>
 				<box>
@@ -531,7 +531,7 @@
 					</textField>
 				</frame>
 				<frame>
-					<reportElement x="1" y="136" width="547" height="149" uuid="73e6e87a-ad1c-48e1-bfb2-92b678dc7719">
+					<reportElement x="1" y="136" width="547" height="173" uuid="73e6e87a-ad1c-48e1-bfb2-92b678dc7719">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						<property name="net.sf.jasperreports.export.pdf.tag.table"/>
 					</reportElement>
@@ -574,7 +574,7 @@
 						<textFieldExpression><![CDATA[$F{empaddress}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="0" y="43" width="205" height="106" uuid="247e6e01-c737-49c2-bce8-b9229e0fd08e">
+						<reportElement x="0" y="43" width="205" height="130" uuid="247e6e01-c737-49c2-bce8-b9229e0fd08e">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -600,7 +600,7 @@
 						<text><![CDATA[ 12 See Instrs. for box 12]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement x="215" y="15" width="20" height="15" uuid="14bc34a0-f8a7-4bde-86ea-47a59db72d65">
+						<reportElement x="225" y="15" width="20" height="15" uuid="14bc34a0-f8a7-4bde-86ea-47a59db72d65">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<textElement>
@@ -609,8 +609,8 @@
 						<textFieldExpression><![CDATA[$F{code1201}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="236" y="15" width="57" height="15" uuid="6d79351a-de72-4951-8639-9501a2da9f24">
-							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						<reportElement x="250" y="15" width="57" height="15" uuid="6d79351a-de72-4951-8639-9501a2da9f24">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
 							<font size="9"/>
@@ -618,7 +618,7 @@
 						<textFieldExpression><![CDATA[$F{amt1201}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="215" y="28" width="20" height="15" uuid="7f7dcaf8-6f5f-417e-a617-0667ed8ab54a">
+						<reportElement x="225" y="28" width="20" height="15" uuid="7f7dcaf8-6f5f-417e-a617-0667ed8ab54a">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<textElement>
@@ -627,8 +627,8 @@
 						<textFieldExpression><![CDATA[$F{code1202}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="236" y="28" width="57" height="15" uuid="0d29b149-00eb-4e9d-8557-d1335df9293c">
-							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+						<reportElement x="250" y="28" width="57" height="15" uuid="0d29b149-00eb-4e9d-8557-d1335df9293c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
 							<font size="9"/>
@@ -636,7 +636,7 @@
 						<textFieldExpression><![CDATA[$F{amt1202}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="215" y="40" width="20" height="15" uuid="85b6b410-98e8-428e-aac4-cfb187a6abf6">
+						<reportElement x="225" y="40" width="20" height="15" uuid="85b6b410-98e8-428e-aac4-cfb187a6abf6">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<textElement>
@@ -645,7 +645,7 @@
 						<textFieldExpression><![CDATA[$F{code1203}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="236" y="40" width="57" height="15" uuid="2a8517e8-71ce-4d74-bfe4-9da04804252e">
+						<reportElement x="250" y="40" width="57" height="15" uuid="2a8517e8-71ce-4d74-bfe4-9da04804252e">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -654,7 +654,7 @@
 						<textFieldExpression><![CDATA[$F{amt1203}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="215" y="55" width="20" height="15" uuid="1417c310-9c67-4b34-bab4-7d88f748df15">
+						<reportElement x="225" y="55" width="20" height="15" uuid="1417c310-9c67-4b34-bab4-7d88f748df15">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<textElement>
@@ -663,7 +663,7 @@
 						<textFieldExpression><![CDATA[$F{code1204}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="236" y="55" width="57" height="15" uuid="87aed130-414f-45d7-8353-246209bb30f7">
+						<reportElement x="250" y="55" width="57" height="15" uuid="87aed130-414f-45d7-8353-246209bb30f7">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -672,7 +672,7 @@
 						<textFieldExpression><![CDATA[$F{amt1204}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="215" y="69" width="20" height="15" uuid="774fb850-1385-4728-baf9-d1a421343d70">
+						<reportElement x="225" y="69" width="20" height="15" uuid="774fb850-1385-4728-baf9-d1a421343d70">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<textElement>
@@ -681,7 +681,7 @@
 						<textFieldExpression><![CDATA[$F{code1205}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="236" y="69" width="57" height="15" uuid="f38512f3-95d1-4b06-88f4-93d44298fc32">
+						<reportElement x="250" y="69" width="57" height="15" uuid="f38512f3-95d1-4b06-88f4-93d44298fc32">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -690,7 +690,7 @@
 						<textFieldExpression><![CDATA[$F{amt1205}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="215" y="84" width="20" height="15" uuid="bd65eccc-f0cc-46a6-8301-50bdfed72446">
+						<reportElement x="225" y="84" width="20" height="15" uuid="bd65eccc-f0cc-46a6-8301-50bdfed72446">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<textElement>
@@ -699,7 +699,7 @@
 						<textFieldExpression><![CDATA[$F{code1206}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="236" y="84" width="57" height="15" uuid="b73c6033-34e1-490e-bd3d-40bd0376b510">
+						<reportElement x="250" y="84" width="57" height="15" uuid="b73c6033-34e1-490e-bd3d-40bd0376b510">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -708,7 +708,7 @@
 						<textFieldExpression><![CDATA[$F{amt1206}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="215" y="99" width="20" height="15" uuid="f1bcf983-32e2-4da0-9eb7-54bebdcfe155">
+						<reportElement x="225" y="99" width="20" height="15" uuid="f1bcf983-32e2-4da0-9eb7-54bebdcfe155">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<textElement>
@@ -717,7 +717,7 @@
 						<textFieldExpression><![CDATA[$F{code1207}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="236" y="99" width="57" height="15" uuid="c1aa343a-db77-48ca-85ca-04ee5fe94130">
+						<reportElement x="250" y="99" width="57" height="15" uuid="c1aa343a-db77-48ca-85ca-04ee5fe94130">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -726,7 +726,7 @@
 						<textFieldExpression><![CDATA[$F{amt1207}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="215" y="113" width="20" height="15" uuid="39ec7367-3e5e-45da-ad0d-7facbb7c9f31">
+						<reportElement x="225" y="113" width="20" height="15" uuid="39ec7367-3e5e-45da-ad0d-7facbb7c9f31">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<textElement>
@@ -735,7 +735,7 @@
 						<textFieldExpression><![CDATA[$F{code1208}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="236" y="113" width="57" height="15" uuid="691d6e8f-0d88-4e81-adce-2b8f51316cc3">
+						<reportElement x="250" y="113" width="57" height="15" uuid="691d6e8f-0d88-4e81-adce-2b8f51316cc3">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -744,7 +744,7 @@
 						<textFieldExpression><![CDATA[$F{amt1208}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="215" y="128" width="20" height="15" uuid="20822acd-6031-421d-af4e-e4e5656f681f">
+						<reportElement x="225" y="128" width="20" height="15" uuid="20822acd-6031-421d-af4e-e4e5656f681f">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<textElement>
@@ -753,13 +753,49 @@
 						<textFieldExpression><![CDATA[$F{code1209}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="236" y="128" width="57" height="15" uuid="b50627bb-e42c-455e-bd49-7165e9e05e46">
+						<reportElement x="250" y="128" width="57" height="15" uuid="b50627bb-e42c-455e-bd49-7165e9e05e46">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
 							<font size="9"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{amt1209}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="225" y="143" width="20" height="15" uuid="7adb74e6-63db-4a27-ac24-fa007a7903ab">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1210}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="250" y="143" width="57" height="15" uuid="66b3e59e-f044-46c3-9a2d-182dc572524c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1210}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="225" y="158" width="20" height="15" uuid="2ac6f2de-3f82-457f-a7c2-43984a3aeeb9">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
+						<textElement>
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{code1211}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="250" y="158" width="57" height="15" uuid="cbc93c9f-9ce4-401d-b29c-72a9275a2bef">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
+						</reportElement>
+						<textElement textAlignment="Right">
+							<font size="9"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{amt1211}]]></textFieldExpression>
 					</textField>
 					<staticText>
 						<reportElement x="372" y="0" width="175" height="15" uuid="7e5ca73c-4f17-4aec-9f4c-de72376639ab">
@@ -922,7 +958,7 @@
 						<textFieldExpression><![CDATA[$F{amt1407}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="113" width="94" height="36" uuid="47c415f0-7611-4592-b7cd-dfbb78db60b5">
+						<reportElement x="372" y="113" width="94" height="60" uuid="47c415f0-7611-4592-b7cd-dfbb78db60b5">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -934,7 +970,7 @@
 						<textFieldExpression><![CDATA[$F{code1408}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="113" width="57" height="36" uuid="0a3b2494-1a83-48bc-a209-f0b2acfb280f">
+						<reportElement x="470" y="113" width="57" height="60" uuid="0a3b2494-1a83-48bc-a209-f0b2acfb280f">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -942,48 +978,16 @@
 						</textElement>
 						<textFieldExpression><![CDATA[$F{amt1408}]]></textFieldExpression>
 					</textField>
-					<textField isBlankWhenNull="true">
-						<reportElement x="316" y="28" width="57" height="15" uuid="cbc93c9f-9ce4-401d-b29c-72a9275a2bef">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
-						</reportElement>
-						<textElement textAlignment="Right">
-							<font size="9"/>
-						</textElement>
-						<textFieldExpression><![CDATA[$F{amt1211}]]></textFieldExpression>
-					</textField>
-					<textField isBlankWhenNull="true">
-						<reportElement x="316" y="15" width="57" height="15" uuid="66b3e59e-f044-46c3-9a2d-182dc572524c">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
-						</reportElement>
-						<textElement textAlignment="Right">
-							<font size="9"/>
-						</textElement>
-						<textFieldExpression><![CDATA[$F{amt1210}]]></textFieldExpression>
-					</textField>
-					<textField isBlankWhenNull="true">
-						<reportElement x="296" y="28" width="20" height="15" uuid="2ac6f2de-3f82-457f-a7c2-43984a3aeeb9"/>
-						<textElement>
-							<font size="9"/>
-						</textElement>
-						<textFieldExpression><![CDATA[$F{code1211}]]></textFieldExpression>
-					</textField>
-					<textField isBlankWhenNull="true">
-						<reportElement x="296" y="15" width="20" height="15" uuid="7adb74e6-63db-4a27-ac24-fa007a7903ab"/>
-						<textElement>
-							<font size="9"/>
-						</textElement>
-						<textFieldExpression><![CDATA[$F{code1210}]]></textFieldExpression>
-					</textField>
 				</frame>
 				<frame>
-					<reportElement stretchType="RelativeToBandHeight" x="1" y="284" width="547" height="55" uuid="a325737f-b703-403b-8701-b0dab24875b7">
+					<reportElement stretchType="RelativeToBandHeight" x="1" y="309" width="547" height="49" uuid="a325737f-b703-403b-8701-b0dab24875b7">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<box>
 						<leftPen lineWidth="1.0"/>
 					</box>
 					<staticText>
-						<reportElement x="205" y="1" width="112" height="54" uuid="709ebd60-e8c5-449b-872a-ec39913fc2ad">
+						<reportElement x="205" y="1" width="112" height="48" uuid="709ebd60-e8c5-449b-872a-ec39913fc2ad">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box>
@@ -1009,13 +1013,13 @@
 						</reportElement>
 					</line>
 					<textField>
-						<reportElement x="205" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="d344af68-d0a0-4dbc-b8ec-23f1bbe58fa1">
+						<reportElement x="204" y="29" width="111" height="18" forecolor="#FFFFFF" uuid="d344af68-d0a0-4dbc-b8ec-23f1bbe58fa1">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font size="8"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{statemp}.contains( "uncheckedbox" ) ? "unChecked for Statutory Employee" : "Checked for Statutory Employee"]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{statemp}.contains( "uncheckedbox" ) ? "checkbox for 13 Statutory Employee unchecked" : "checkbox for 13 Statutory Employee checked"]]></textFieldExpression>
 					</textField>
 					<staticText>
 						<reportElement x="316" y="1" width="113" height="15" uuid="92b30f64-eb42-43d6-b51d-dfbda0abd1bc">
@@ -1044,13 +1048,13 @@
 					</line>
 					<elementGroup/>
 					<textField>
-						<reportElement x="319" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="ed051a0b-4a40-42a7-a378-3f75c7e24ba8">
+						<reportElement x="318" y="29" width="111" height="18" forecolor="#FFFFFF" uuid="ed051a0b-4a40-42a7-a378-3f75c7e24ba8">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font size="8"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "unChecked for Retirement Plan" : "Checked for Retirement Plan"]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "checkbox for Retirement Plan unchecked" : "checkbox for Retirement Plan checked"]]></textFieldExpression>
 					</textField>
 					<staticText>
 						<reportElement x="428" y="1" width="119" height="15" uuid="3171a99b-7192-4bcc-b8e4-db5a14d32696">
@@ -1078,32 +1082,32 @@
 						</reportElement>
 					</line>
 					<textField>
-						<reportElement x="434" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="df3010b7-60f2-4096-86ab-d8c068ee5356">
+						<reportElement x="433" y="29" width="111" height="18" forecolor="#FFFFFF" uuid="df3010b7-60f2-4096-86ab-d8c068ee5356">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font size="8"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "unCheck Box for Third Party sick pay" : "Check Box for Third Party sick pay"]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "checkbox for Third party sick pay unchecked" : "checkbox for Third party sick pay checked"]]></textFieldExpression>
 					</textField>
 				</frame>
 			</frame>
 			<textField>
-				<reportElement x="0" y="361" width="325" height="15" uuid="29e2b7e4-8f3e-41d0-89af-6e5c7c8c2982"/>
+				<reportElement x="0" y="373" width="325" height="15" uuid="29e2b7e4-8f3e-41d0-89af-6e5c7c8c2982"/>
 				<textElement>
 					<font isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{copy}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="325" y="361" width="217" height="15" uuid="4ecf2949-96b5-4260-a292-2922c369e346"/>
+				<reportElement x="325" y="373" width="217" height="15" uuid="4ecf2949-96b5-4260-a292-2922c369e346"/>
 				<textElement textAlignment="Right">
 					<font size="7" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>
 				<text><![CDATA[Department of the Treasury - Internal Revenue Service]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="380" width="542" height="45" uuid="41e154cc-de05-44d6-bfda-4a60380c9b84"/>
+				<reportElement x="0" y="387" width="542" height="45" uuid="41e154cc-de05-44d6-bfda-4a60380c9b84"/>
 				<textElement textAlignment="Center">
 					<font size="24" isBold="true" pdfFontName="Helvetica-Bold"/>
 				</textElement>

@@ -1012,7 +1012,7 @@
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font size="8"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "unChecked for Retirement Plan" : "Checked for Retirement Plan"]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "checkbox for Retirement Plan unchecked" : "checkbox for Retirement Plan checked"]]></textFieldExpression>
 					</textField>
 					<staticText>
 						<reportElement x="428" y="1" width="119" height="15" uuid="81d60a21-9d0b-474d-9511-b9d0007fcdee">
@@ -1046,7 +1046,7 @@
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font size="8"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "unCheck Box for Third Party sick pay" : "Check Box for Third Party sick pay"]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "checkbox for Third party sick pay unchecked" : "checkbox for Third party sick pay checked"]]></textFieldExpression>
 					</textField>
 				</frame>
 			</frame>

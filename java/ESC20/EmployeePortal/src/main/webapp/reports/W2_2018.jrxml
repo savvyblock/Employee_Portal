@@ -4,7 +4,7 @@
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="192"/>
+	<property name="ireport.y" value="144"/>
 	<field name="ssn" class="java.lang.String"/>
 	<field name="tgross" class="java.lang.String"/>
 	<field name="whold" class="java.lang.String"/>
@@ -1070,7 +1070,7 @@
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font size="8"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{statemp}.contains( "uncheckedbox" ) ? "unChecked for Statutory Employee" : "Checked for Statutory Employee"]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{statemp}.contains( "uncheckedbox" ) ? "checkbox for 13 Statutory Employee unchecked" : "checkbox for 13 Statutory Employee checked"]]></textFieldExpression>
 					</textField>
 					<staticText>
 						<reportElement x="316" y="1" width="113" height="15" uuid="2b943c58-af51-460e-89b1-2e8b8f3cd6b7">
@@ -1105,7 +1105,7 @@
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font size="8"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "unChecked for Retirement Plan" : "Checked for Retirement Plan"]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "checkbox for Retirement Plan unchecked" : "checkbox for Retirement Plan checked"]]></textFieldExpression>
 					</textField>
 					<staticText>
 						<reportElement x="428" y="1" width="119" height="15" uuid="6fd5c3ae-3207-4a49-8003-a99c1c6eb2ce">
@@ -1139,7 +1139,7 @@
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font size="8"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "unCheck Box for Third Party sick pay" : "Check Box for Third Party sick pay"]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "checkbox for Third party sick pay unchecked" : "checkbox for Third party sick pay checked"]]></textFieldExpression>
 					</textField>
 				</frame>
 			</frame>

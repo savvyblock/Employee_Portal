@@ -978,7 +978,7 @@
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font size="8"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{statemp}.contains( "uncheckedbox" ) ? "unChecked for Statutory Employee" : "Checked for Statutory Employee"]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{statemp}.contains( "uncheckedbox" ) ? "checkbox for 13 Statutory Employee unchecked" : "checkbox for 13 Statutory Employee checked"]]></textFieldExpression>
 					</textField>
 					<staticText>
 						<reportElement x="316" y="1" width="113" height="15" uuid="07c1ee69-f380-4c63-ae95-73fce5b94700">
@@ -1013,7 +1013,7 @@
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font size="8"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "unChecked for Retirement Plan" : "Checked for Retirement Plan"]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "checkbox for Retirement Plan unchecked" : "checkbox for Retirement Plan checked"]]></textFieldExpression>
 					</textField>
 					<staticText>
 						<reportElement x="428" y="1" width="119" height="15" uuid="59540395-edf7-444d-a38a-a7685281ed6d">
@@ -1047,7 +1047,7 @@
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font size="8"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "unCheck Box for Third Party sick pay" : "Check Box for Third Party sick pay"]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "checkbox for Third party sick pay unchecked" : "checkbox for Third party sick pay checked"]]></textFieldExpression>
 					</textField>
 				</frame>
 			</frame>
