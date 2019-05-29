@@ -59,7 +59,7 @@ $(function() {
             console.log($(this).parents(".profile-item").find(".bankAmount .amount_2").val())
             $(".bankAccountBlock").removeClass("asPrimary")
             $(this).parents(".bankAccountBlock").addClass("asPrimary")
-            $("input[name='displayAmountNew']").attr('type','text')
+            $(".bankAccountBlock input[name='displayAmountNew']").attr('type','text')
             $(this).parents(".bankAccountBlock").find("input[name='displayAmountNew']").attr('type','hidden')
             var indexBank = $('.icheckRadioBank').index(this)
             $('.icheckRadioBank').each(function(index) {
@@ -76,7 +76,7 @@ $(function() {
             $(this).find(".icheckRadioBank").prop('checked', true)
             $(".bankAccountBlock").removeClass("asPrimary")
             $(this).addClass("asPrimary")
-            $("input[name='displayAmountNew']").attr('type','text')
+            $(".bankAccountBlock input[name='displayAmountNew']").attr('type','text')
             $(this).find("input[name='displayAmountNew']").attr('type','hidden')
             $(this).find(".yesPrimary").show()
             $(this).find(".noPrimary").hide()
