@@ -1,17 +1,10 @@
 package com.esc20.util;
 
-import java.util.Map;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.Name;
-import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.jdbc.datasource.lookup.DataSourceLookup;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
-import org.springframework.util.Assert;
 
 public class DynamicDataSource extends AbstractRoutingDataSource {
 	

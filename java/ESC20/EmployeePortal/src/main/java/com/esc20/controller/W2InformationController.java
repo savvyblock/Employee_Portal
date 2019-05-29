@@ -1,7 +1,5 @@
 package com.esc20.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -17,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,11 +29,9 @@ import com.esc20.nonDBModels.W2Print;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.nonDBModels.report.ReportParameterConnection;
-import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
 import com.esc20.util.CodeIterator;
-import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
 import com.esc20.util.MailUtil;
 import com.esc20.util.NumberUtil;
@@ -45,7 +40,6 @@ import com.esc20.util.StringUtil;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/w2Information")
@@ -53,9 +47,6 @@ public class W2InformationController{
 
 	@Autowired
 	private InquiryService service;
-	
-    @Autowired
-    private IndexService indexService;
 	
     @Autowired
     private PDFService pDFService;
@@ -221,28 +212,6 @@ public class W2InformationController{
 		
 	    JasperPrint jasperPrint = pDFService.buildReport(ireport);
     	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
-	}
-	
-	@RequestMapping("w2InformationUnprotectedPDF")
-	public ModelAndView w2InformationUnprotectedPDF(HttpServletRequest req, String empNbr, String districtId,String language,String year) throws IOException {
-		DataSourceContextHolder.setDataSourceType("java:jboss/DBNEW"+districtId);
-		HttpSession session = req.getSession();
-		ModelAndView mav = new ModelAndView();
-		String employeeNumber = empNbr;
-		BhrEmpDemo userDetail = this.indexService.getUserDetail(empNbr);
-		session.setAttribute("userDetail", userDetail);
-		District districtInfo = this.indexService.getDistrict(districtId);
-		session.setAttribute("district", districtInfo);
-		Options options = this.indexService.getOptions();
-		session.setAttribute("options", options);
-		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
-		File file = new File(path);
-		String input = FileUtils.readFileToString(file, "UTF-8");
-		JSONObject jsonObject = JSONObject.fromObject(input);
-		req.getSession().setAttribute("languageJSON", jsonObject);
-		BhrW2 w2Info = this.service.getW2Info(employeeNumber, year);
-		mav = setW2ValuesByCalYr(session, mav, employeeNumber, w2Info, year, false);
-		return mav;
 	}
 
 	public W2Print generateW2Print(HttpServletRequest req, String year)

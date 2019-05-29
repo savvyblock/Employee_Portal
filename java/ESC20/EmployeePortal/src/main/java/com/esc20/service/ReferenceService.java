@@ -7,11 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.esc20.dao.CurrentPayInformationDao;
 import com.esc20.dao.ReferenceDao;
 import com.esc20.nonDBModels.Code;
-
-import com.esc20.nonDBModels.Frequency;
 
 @Service
 public class ReferenceService {

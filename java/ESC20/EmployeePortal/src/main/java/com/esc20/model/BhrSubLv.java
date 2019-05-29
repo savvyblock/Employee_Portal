@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "BHR_SUB_LV", schema = "rsccc", catalog = "rsccc")
 public class BhrSubLv implements java.io.Serializable {
-
+	private static final long serialVersionUID = -8362241536302033385L;
 	private BhrSubLvId id;
 	private BigDecimal teachLvUnitsUsed;
 	private char tmOfDay;

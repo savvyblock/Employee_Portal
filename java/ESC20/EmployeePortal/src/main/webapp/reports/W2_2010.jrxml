@@ -4,7 +4,7 @@
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="434"/>
+	<property name="ireport.y" value="174"/>
 	<field name="ssn" class="java.lang.String"/>
 	<field name="tgross" class="java.lang.String"/>
 	<field name="whold" class="java.lang.String"/>
@@ -941,14 +941,14 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 					</textField>
 				</frame>
 				<frame>
-					<reportElement stretchType="RelativeToBandHeight" x="1" y="284" width="547" height="55" uuid="e9fd6a06-f18d-4b03-b6ea-60ddd3d23c55">
+					<reportElement stretchType="RelativeToBandHeight" x="1" y="284" width="547" height="55" uuid="773974a7-e5a7-4c12-ab47-aa2e86a80848">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<box>
 						<leftPen lineWidth="1.0"/>
 					</box>
 					<staticText>
-						<reportElement x="205" y="1" width="112" height="54" uuid="3898fe85-7666-4483-875f-3500d54e7c63">
+						<reportElement x="205" y="1" width="112" height="54" uuid="b14848db-e199-48f2-84ea-129bc4c6585a">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box>
@@ -960,15 +960,30 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 						</textElement>
 						<text><![CDATA[ 13 Statutory Employee]]></text>
 					</staticText>
-					<image>
-						<reportElement x="253" y="25" width="12" height="12" uuid="02f02e2c-fa53-466d-b980-5a3c9fd308c6">
+					<rectangle>
+						<reportElement x="257" y="18" width="10" height="10" uuid="93ffe2ce-bd27-4740-98a5-aceb7740a5c3"/>
+					</rectangle>
+					<line direction="BottomUp">
+						<reportElement x="257" y="18" width="10" height="10" uuid="66f29f64-6022-4491-b712-cdc12dfb969f">
+							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					</line>
+					<line>
+						<reportElement x="257" y="18" width="10" height="10" uuid="8b2ed639-0c58-491b-90cc-2b603b0ba68a">
+							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					</line>
+					<textField>
+						<reportElement x="205" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="c52df168-8c47-475f-80c0-bbbe6ea55c09">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
-						<imageExpression><![CDATA[$F{statemp}]]></imageExpression>
-						<hyperlinkTooltipExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? "unCheck Box for Statutory Employee" : "Check Box for Statutory Employee"]]></hyperlinkTooltipExpression>
-					</image>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{statemp}.contains( "uncheckedbox" ) ? "unChecked for Statutory Employee" : "Checked for Statutory Employee"]]></textFieldExpression>
+					</textField>
 					<staticText>
-						<reportElement x="316" y="1" width="113" height="15" uuid="7770acd6-76bc-4caf-8bfe-59e6a4ebf767">
+						<reportElement x="316" y="1" width="113" height="15" uuid="488adb60-62b7-4a26-86a2-b77bcece6d1b">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box>
@@ -979,15 +994,31 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 						</textElement>
 						<text><![CDATA[ Retirement Plan]]></text>
 					</staticText>
-					<image>
-						<reportElement x="372" y="25" width="12" height="12" uuid="31cf4a94-57d3-4ff6-810f-071868e31869">
+					<rectangle>
+						<reportElement x="373" y="18" width="10" height="10" uuid="61655713-d9e0-4916-9e58-c38b5e8f596e"/>
+					</rectangle>
+					<line direction="BottomUp">
+						<reportElement x="373" y="18" width="10" height="10" uuid="573ba915-fa49-4b35-8570-82f63ad57b10">
+							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					</line>
+					<line>
+						<reportElement x="373" y="18" width="10" height="10" uuid="d5fb4b1e-c49e-490c-8995-50813f879665">
+							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					</line>
+					<elementGroup/>
+					<textField>
+						<reportElement x="319" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="55bcac45-0de9-4fe1-9a4b-61059f3c1752">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
-						<imageExpression><![CDATA[$F{retplan}]]></imageExpression>
-						<hyperlinkTooltipExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "unCheck Box for Retirement Plan" : "Check Box for Retirement Plan"]]></hyperlinkTooltipExpression>
-					</image>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "unChecked for Retirement Plan" : "Checked for Retirement Plan"]]></textFieldExpression>
+					</textField>
 					<staticText>
-						<reportElement x="428" y="1" width="119" height="15" uuid="7f513e4a-0d08-40ae-9db8-39d863374a63">
+						<reportElement x="428" y="1" width="119" height="15" uuid="04b26ebb-d427-4136-ac73-39d05b6faf2e">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box>
@@ -998,13 +1029,28 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 						</textElement>
 						<text><![CDATA[Third party sick pay]]></text>
 					</staticText>
-					<image>
-						<reportElement x="484" y="25" width="12" height="12" uuid="0798a97f-8f07-4a07-aca5-b67122d78e10">
+					<rectangle>
+						<reportElement x="486" y="18" width="10" height="10" uuid="a0f8cba2-43f0-43f7-ba97-65759e2c72a1"/>
+					</rectangle>
+					<line direction="BottomUp">
+						<reportElement x="486" y="18" width="10" height="10" uuid="4a59259a-8974-4e09-995f-d3be7f37c7d4">
+							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					</line>
+					<line>
+						<reportElement x="486" y="18" width="10" height="10" uuid="fa8d9f3a-2243-486a-80a9-2fd6143d213f">
+							<printWhenExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					</line>
+					<textField>
+						<reportElement x="434" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="9ed274f7-ecfe-49b1-b55e-bb97fe86b4c5">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
-						<imageExpression><![CDATA[$F{thrdsick}]]></imageExpression>
-						<hyperlinkTooltipExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "unCheck Box for Third Party sick pay" : "Check Box for Third Party sick pay"]]></hyperlinkTooltipExpression>
-					</image>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "unCheck Box for Third Party sick pay" : "Check Box for Third Party sick pay"]]></textFieldExpression>
+					</textField>
 				</frame>
 			</frame>
 			<textField>

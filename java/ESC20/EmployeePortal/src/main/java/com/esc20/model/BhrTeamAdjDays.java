@@ -15,6 +15,10 @@ import javax.persistence.Table;
 @Table(name = "BHR_TEAM_ADJ_DAYS", schema = "rsccc", catalog = "rsccc")
 public class BhrTeamAdjDays implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6258018549724546977L;
 	private BhrTeamAdjDaysId id;
 	private byte adjNbrDaysWrkedPay;
 	private String rptYrPost;

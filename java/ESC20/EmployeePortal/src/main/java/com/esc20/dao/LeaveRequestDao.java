@@ -1,16 +1,13 @@
 package com.esc20.dao;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -35,17 +32,12 @@ public class LeaveRequestDao {
 		return sessionFactory.getCurrentSession();
 	}
 
-	private SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM-dd-yyyy hh:mmaa");
-	private SimpleDateFormat dateTimeFormat24hr = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
-	private SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-	private SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mmaa");
-	private SimpleDateFormat bhrDateFormat = new SimpleDateFormat("yyyyMMdd");
-
 	public BeaEmpLvRqst getleaveRequestById(int id) {
 		Session session = this.getSession();
 		String hql = "from BeaEmpLvRqst where id = ? ";
 		Query q = session.createQuery(hql);
 		q.setParameter(0, id);
+		@SuppressWarnings("unchecked")
 		List<BeaEmpLvRqst> res = q.list();
 		
 		return res.get(0);
@@ -85,6 +77,7 @@ public class LeaveRequestDao {
 		}
 		List<AppLeaveRequest> result = new ArrayList<AppLeaveRequest>();
 		AppLeaveRequest req;
+		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 		for (Object[] item : res) {
 			req = new AppLeaveRequest((Integer) item[0], (String) item[1], (String) item[2], (Date) item[3],
@@ -160,6 +153,7 @@ public class LeaveRequestDao {
 		sql.append("ORDER BY el.id.payFreq DESC");
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
+		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
@@ -257,6 +251,7 @@ public class LeaveRequestDao {
 			q.setParameter("leaveType", leaveType);
 		}
 		sql.append(" ORDER BY AR.absDescr ASC ");
+		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
@@ -289,6 +284,7 @@ public class LeaveRequestDao {
 			q.setParameter("leaveType", leaveType);
 		}
 		sql.append(" ORDER BY AR2LT.id.lvTyp ASC ");
+		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
@@ -348,6 +344,7 @@ public class LeaveRequestDao {
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
 		q.setParameter("payFrequency", freq.charAt(0));
+		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 		
 		List<LeaveInfo> leaveInfo = new ArrayList<LeaveInfo>();
@@ -396,6 +393,7 @@ public class LeaveRequestDao {
 		sql.append("ORDER BY ELC.lvCommentDatetime ASC");
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("leaveId", id);
+		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 		
 		List<LeaveRequestComment> comments = new ArrayList<LeaveRequestComment>();
@@ -414,6 +412,7 @@ public class LeaveRequestDao {
 			String sql = "from BeaEmpLvComments where beaEmpLvRqst=:beaEmpLvRqst";
 			Query q = session.createQuery(sql);
 			q.setParameter("beaEmpLvRqst", comments.getBeaEmpLvRqst());
+			@SuppressWarnings("unchecked")
 			List<BeaEmpLvComments> res = q.list();
 			for (int i = 0; i < res.size(); i++) {
 				session.delete(res.get(i));
@@ -431,6 +430,7 @@ public class LeaveRequestDao {
 			String sql = "from BeaEmpLvWorkflow where beaEmpLvRqst=:beaEmpLvRqst";
 			Query q = session.createQuery(sql);
 			q.setParameter("beaEmpLvRqst", flow.getBeaEmpLvRqst());
+			@SuppressWarnings("unchecked")
 			List<BeaEmpLvWorkflow> res = q.list();
 			for (int i = 0; i < res.size(); i++) {
 				session.delete(res.get(i));
@@ -470,6 +470,7 @@ public class LeaveRequestDao {
 		sql.append("ORDER BY ELR.datetimeFrom ASC ");
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
+		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 
 		List<AppLeaveRequest> requests = new ArrayList<AppLeaveRequest>();
@@ -509,6 +510,7 @@ public class LeaveRequestDao {
 			q.setParameter("dateFrom", searchStart);
 		if (searchEnd != null && !("").equals(searchEnd))
 			q.setParameter("dateTo", searchEnd);
+		@SuppressWarnings("unchecked")
 		List<BhrEmpLvXmital> res = q.list();
 		
 		return res;
@@ -519,6 +521,7 @@ public class LeaveRequestDao {
 		StringBuilder sql = new StringBuilder("");
 		sql.append("select ABS_RSN, LV_TYP from BTHR_ABS_RSN_TO_LV_TYP");
 		Query q = session.createSQLQuery(sql.toString());
+		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 		List<String[]> result = new ArrayList<String[]>();
 		String[] temp;

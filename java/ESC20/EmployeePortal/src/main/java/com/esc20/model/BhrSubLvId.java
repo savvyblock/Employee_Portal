@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class BhrSubLvId implements java.io.Serializable {
-
+	private static final long serialVersionUID = -4938722212173580052L;
 	private char teachPayFreq;
 	private String teachEmpNbr;
 	private char cyrNyrFlg;

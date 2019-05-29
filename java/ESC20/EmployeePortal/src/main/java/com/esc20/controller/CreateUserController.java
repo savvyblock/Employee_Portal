@@ -132,6 +132,7 @@ public class CreateUserController {
 		searchUser.setSsn(req.getParameter("ssn"));
 		searchUser.setZipCode(req.getParameter("zipCode"));
 		BhrEmpDemo bed = this.indexService.retrieveEmployee(searchUser);
+		
 		if (bed == null) {
 			mav.setViewName("searchUser");
 			mav.addObject("isSuccess", "false");
@@ -145,6 +146,7 @@ public class CreateUserController {
 			mav.addObject("newUser", searchUser);
 			return mav;
 		} else {
+			searchUser.setEmpNumber(bed.getEmpNbr());
 			BeaEmail emailRequest = this.indexService.getBeaEmail(bed);
 			searchUser.setNameF(bed.getNameF());
 			searchUser.setNameL(bed.getNameL());

@@ -25,7 +25,8 @@ public class AlertDao {
         String hql = "from BeaAlert where msgTo = :empNbr order by id desc" ;
         Query q = session.createQuery(hql);
         q.setParameter("empNbr", empNbr);
-        List<BeaAlert> result = q.list();
+        @SuppressWarnings("unchecked")
+		List<BeaAlert> result = q.list();
         if(result== null || result.isEmpty()) {
         	return null;
         }
@@ -46,7 +47,8 @@ public class AlertDao {
         Query q = session.createQuery(hql);
         q.setParameter("empNbr", empNbr);
         q.setMaxResults(5);
-        List<BeaAlert> result = q.list();
+        @SuppressWarnings("unchecked")
+		List<BeaAlert> result = q.list();
         if(result== null || result.isEmpty()) {
         	return new ArrayList<BeaAlert>();
         }
@@ -58,7 +60,8 @@ public class AlertDao {
         String hql = "from BeaAlert where msgTo = :empNbr and status = 'UR' order by id desc" ;
         Query q = session.createQuery(hql);
         q.setParameter("empNbr", empNbr);
-        List<BeaAlert> result = q.list();
+        @SuppressWarnings("unchecked")
+		List<BeaAlert> result = q.list();
         if(result== null || result.isEmpty()) {
         	return new ArrayList<BeaAlert>();
         }

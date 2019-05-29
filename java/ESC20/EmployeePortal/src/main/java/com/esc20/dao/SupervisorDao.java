@@ -40,7 +40,8 @@ public class SupervisorDao {
         Query q = session.createQuery(sql);
         q.setParameter("billetNumber", spvsrBilletNbr);
         q.setParameter("spvsrPosNbr", spvsrPosNbr);
-        List<Object[]> res = q.list();
+        @SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
         
         List<LeaveEmployeeData> result = new ArrayList<LeaveEmployeeData>();
         LeaveEmployeeData data;
@@ -57,7 +58,8 @@ public class SupervisorDao {
 				"FROM BhrEapEmpToSpvsr E2S, BhrEmpDemo ED WHERE E2S.spvsrEmpNbr=:empNbr AND E2S.empEmpNbr=ED.empNbr ORDER BY ED.nameL ASC, ED.nameF ASC, ED.nameM ASC";
         Query q = session.createQuery(sql);
         q.setParameter("empNbr", empNbr);
-        List<Object[]> res = q.list();
+        @SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
         
         List<LeaveEmployeeData> result = new ArrayList<LeaveEmployeeData>();
         LeaveEmployeeData data;
@@ -84,7 +86,8 @@ public class SupervisorDao {
         	q.setParameter("end", end);
         if(payFreq!=null)
         	q.setParameter("payFreq", payFreq.charAt(0));
-        List<BhrEmpLvXmital> result = q.list();
+        @SuppressWarnings("unchecked")
+		List<BhrEmpLvXmital> result = q.list();
         
         List<AppLeaveRequest> res = new ArrayList<AppLeaveRequest>();
         AppLeaveRequest request;
@@ -113,7 +116,8 @@ public class SupervisorDao {
         	q.setParameter("end", sdf2.parse(end));
         if(payFreq!=null)
         	q.setParameter("payFreq", payFreq.charAt(0));
-        List<BeaEmpLvRqst> result = q.list();
+        @SuppressWarnings("unchecked")
+		List<BeaEmpLvRqst> result = q.list();
         
         List<AppLeaveRequest> res = new ArrayList<AppLeaveRequest>();
         AppLeaveRequest request;
@@ -130,24 +134,22 @@ public class SupervisorDao {
 				+ " flow.beaEmpLvRqst.id =:id) and sec.empNbr is not null" ;
 		Query q = session.createQuery(sql);
 		q.setParameter("id", id);
+		@SuppressWarnings("unchecked")
 		List<SecUsers> res = q.list();
 		SecUsers result;
-		if(res !=null && res.size()>0)
+		if(res !=null && res.size()>0) {
 			result = res.get(0);
-		else
-			return "";
-		
-		if(res!=null) {
 			return result.getUsrNameF()+" "+ result.getUsrNameL();
-		}else {
+		} else
 			return "";
-		}
 	}
+	
 	public List<BeaEmpLvTmpApprovers> getBeaEmpLvTmpApprovers(String empNbr) {
 		Session session = this.getSession();
 		String sql = "FROM BeaEmpLvTmpApprovers WHERE spvsrEmpNbr=:empNbr" ;
 		Query q = session.createQuery(sql);
 		q.setParameter("empNbr", empNbr);
+		@SuppressWarnings("unchecked")
 		List<BeaEmpLvTmpApprovers> res =  q.list();
 		
 		return res;

@@ -631,7 +631,9 @@ Period]]></text>
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
-						<reportElement key="staticText" x="1" y="1" width="55" height="11" backcolor="#C0C0C0" uuid="8dddb517-57cd-4069-b773-5b50967d843a"/>
+						<reportElement key="staticText" x="1" y="1" width="55" height="11" backcolor="#C0C0C0" uuid="8dddb517-57cd-4069-b773-5b50967d843a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -645,7 +647,9 @@ Period]]></text>
 						<text><![CDATA[Overtime Pay:]]></text>
 					</staticText>
 					<textField pattern="###,###.00" isBlankWhenNull="true">
-						<reportElement key="textField" x="121" y="1" width="70" height="11" backcolor="#C0C0C0" uuid="b81bbcfc-4430-4101-b915-5ea1b2abf023"/>
+						<reportElement key="textField" x="121" y="1" width="70" height="11" backcolor="#C0C0C0" uuid="b81bbcfc-4430-4101-b915-5ea1b2abf023">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -700,6 +704,22 @@ Period]]></text>
 					<reportElement x="2" y="88" width="266" height="13" uuid="28bf4c28-a6c4-4c78-97f5-7c26d4903682">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="1" y="1" width="85" height="11" backcolor="#C0C0C0" uuid="5c28bb6d-c17a-41c7-9ab5-5ab40f261a08">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Taxed Fringe Benefits:]]></text>
+					</staticText>
 					<textField pattern="###,###.00" isBlankWhenNull="true">
 						<reportElement key="textField" x="121" y="1" width="70" height="11" backcolor="#C0C0C0" uuid="e606ca4d-6e61-4b23-8811-42f5dce33e07">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
@@ -732,41 +752,11 @@ Period]]></text>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{bhr_cal_ytd_taxed_benefits}]]></textFieldExpression>
 					</textField>
-					<staticText>
-						<reportElement key="staticText" x="1" y="1" width="85" height="11" backcolor="#C0C0C0" uuid="5c28bb6d-c17a-41c7-9ab5-5ab40f261a08"/>
-						<box>
-							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						</box>
-						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-							<paragraph lineSpacing="Single"/>
-						</textElement>
-						<text><![CDATA[Taxed Fringe Benefits:]]></text>
-					</staticText>
 				</frame>
 				<frame>
 					<reportElement x="2" y="103" width="266" height="13" uuid="ec85141c-9de6-4cdd-a523-93a3c413e9c1">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
-					<textField pattern="###,###.00" isBlankWhenNull="true">
-						<reportElement key="textField" x="194" y="1" width="70" height="11" backcolor="#C0C0C0" uuid="e77a574e-cd41-455f-9805-660c8d0f3ab0">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
-						</reportElement>
-						<box>
-							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						</box>
-						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-							<paragraph lineSpacing="Single"/>
-						</textElement>
-						<textFieldExpression><![CDATA[$F{bhr_cal_ytd_eic_amt}]]></textFieldExpression>
-					</textField>
 					<staticText>
 						<reportElement key="staticText" x="1" y="1" width="86" height="11" backcolor="#C0C0C0" uuid="4e91ed1b-fac0-47d0-bc36-16f169e781fd">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
@@ -785,7 +775,8 @@ Period]]></text>
 					</staticText>
 					<textField pattern="###,###.00" isBlankWhenNull="true">
 						<reportElement key="textField" x="121" y="1" width="70" height="11" backcolor="#C0C0C0" uuid="f06a85be-d9cd-4d08-8730-97adcda98d59">
-							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -799,11 +790,44 @@ Period]]></text>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{bhr_pay_hist_eic_amt}]]></textFieldExpression>
 					</textField>
+					<textField pattern="###,###.00" isBlankWhenNull="true">
+						<reportElement key="textField" x="194" y="1" width="70" height="11" backcolor="#C0C0C0" uuid="e77a574e-cd41-455f-9805-660c8d0f3ab0">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.th"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_cal_ytd_eic_amt}]]></textFieldExpression>
+					</textField>
 				</frame>
 				<frame>
 					<reportElement x="2" y="118" width="266" height="13" uuid="80de83ed-4138-4bfc-bb69-ab7b2a284557">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="1" y="1" width="71" height="11" backcolor="#C0C0C0" uuid="548ef392-e2b1-4800-818f-6a6b637fe8a3">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Non-TRS Taxable:]]></text>
+					</staticText>
 					<textField pattern="###,###.00" isBlankWhenNull="true">
 						<reportElement key="textField" x="121" y="1" width="70" height="11" backcolor="#C0C0C0" uuid="ae288bf4-4742-48e6-815c-bb601b83c067">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
@@ -836,22 +860,6 @@ Period]]></text>
 						</textElement>
 						<textFieldExpression><![CDATA[new Double($F{bhr_cal_ytd_nontrs_bus_allow}.doubleValue() + $F{bhr_cal_ytd_nontrs_reimbr_excess}.doubleValue())]]></textFieldExpression>
 					</textField>
-					<staticText>
-						<reportElement key="staticText" x="1" y="1" width="71" height="11" backcolor="#C0C0C0" uuid="548ef392-e2b1-4800-818f-6a6b637fe8a3">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
-						</reportElement>
-						<box>
-							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						</box>
-						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-							<paragraph lineSpacing="Single"/>
-						</textElement>
-						<text><![CDATA[Non-TRS Taxable:]]></text>
-					</staticText>
 				</frame>
 				<frame>
 					<reportElement x="2" y="133" width="266" height="13" uuid="c94b5c88-a3c7-42ee-a181-be59900b832e">
@@ -927,22 +935,6 @@ Period]]></text>
 						<text><![CDATA[TRS Supplemental:]]></text>
 					</staticText>
 					<textField pattern="###,###.00" isBlankWhenNull="true">
-						<reportElement key="textField" x="194" y="1" width="70" height="11" backcolor="#C0C0C0" uuid="cce121db-72e5-4a99-b83c-34f2668b649e">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
-						</reportElement>
-						<box>
-							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						</box>
-						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-							<paragraph lineSpacing="Single"/>
-						</textElement>
-						<textFieldExpression><![CDATA[$F{bhr_cal_ytd_trs_suppl_comp}]]></textFieldExpression>
-					</textField>
-					<textField pattern="###,###.00" isBlankWhenNull="true">
 						<reportElement key="textField" x="121" y="1" width="70" height="11" backcolor="#C0C0C0" uuid="a6643117-7d46-441f-9694-a00dc31d705c">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
@@ -957,6 +949,22 @@ Period]]></text>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{bhr_pay_hist_trs_suppl_comp}]]></textFieldExpression>
+					</textField>
+					<textField pattern="###,###.00" isBlankWhenNull="true">
+						<reportElement key="textField" x="194" y="1" width="70" height="11" backcolor="#C0C0C0" uuid="cce121db-72e5-4a99-b83c-34f2668b649e">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bhr_cal_ytd_trs_suppl_comp}]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>

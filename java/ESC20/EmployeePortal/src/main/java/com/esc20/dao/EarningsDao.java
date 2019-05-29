@@ -18,7 +18,6 @@ import com.esc20.nonDBModels.EarningsLeave;
 import com.esc20.nonDBModels.EarningsOther;
 import com.esc20.nonDBModels.EarningsOvertime;
 import com.esc20.nonDBModels.EarningsSupplemental;
-import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayDate;
 import com.esc20.util.StringUtil;
 
@@ -37,6 +36,7 @@ public class EarningsDao {
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT isnull(max_days, 0) as max_days from bhr_eap_opt"); 
 			Query q = session.createQuery(sql.toString());
+			@SuppressWarnings("unchecked")
 			List<Object> result = q.list();
 			
 			if(result!=null && result.size()!=0)
@@ -60,6 +60,7 @@ public class EarningsDao {
 			Query q = session.createQuery(sql.toString());
 	        q.setParameter("employeeNumber", employeeNumber);
 
+			@SuppressWarnings("unchecked")
 			List <Object[]> result = q.list();
 			
 			List<PayDate> payDates = new ArrayList<PayDate>();
@@ -91,8 +92,9 @@ public class EarningsDao {
         q.setParameter("adjNbr", Short.parseShort(payDate.getAdjNumber()));
         q.setParameter("chkNbr", payDate.getCheckNumber());
         Object[] res = (Object[]) q.uniqueResult();
-        
-        EarningsInfo info = new EarningsInfo(res[0],res[1],res[2],res[3],res[4],res[5],res[6]);
+        EarningsInfo info = null;
+        if(res!=null)
+        	info = new EarningsInfo(res[0],res[1],res[2],res[3],res[4],res[5],res[6]);
 		return info;
 	}
 
@@ -167,7 +169,8 @@ public class EarningsDao {
         q.setParameter("is_void", payDate.getVoidIssue().charAt(0));
         q.setParameter("is_adj_nbr", Short.parseShort(payDate.getAdjNumber()));
         q.setParameter("is_chk_nbr", payDate.getCheckNumber());
-        List<Object[]> res = q.list();
+        @SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
         List<EarningsOther> result = new ArrayList<EarningsOther>();
         EarningsOther other;
         for(Object[] item : res) {
@@ -231,7 +234,8 @@ public class EarningsDao {
         q.setParameter("is_void", payDate.getVoidIssue().charAt(0));
         q.setParameter("is_adj_nbr", Short.parseShort(payDate.getAdjNumber()));
         q.setParameter("is_chk_nbr", payDate.getCheckNumber());
-        List<Object[]> res = q.list();
+        @SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
         List<EarningsJob> result = new ArrayList<EarningsJob>();
         EarningsJob job;
         for(Object[] item : res) {
@@ -283,7 +287,8 @@ public class EarningsDao {
         q.setParameter("adjNbr", Short.parseShort(payDate.getAdjNumber()));
         q.setParameter("chkNbr", payDate.getCheckNumber());
         q.setParameterList("list", types.toArray());
-        List<Object[]> res = q.list();
+        @SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
         List<EarningsSupplemental> result = new ArrayList<EarningsSupplemental>();
         EarningsSupplemental suppl;
         for(Object[] item : res) {
@@ -325,7 +330,8 @@ public class EarningsDao {
         q.setParameter("voidOrIss", payDate.getVoidIssue().charAt(0));
         q.setParameter("adjNbr", Short.parseShort(payDate.getAdjNumber()));
         q.setParameter("chkNbr", payDate.getCheckNumber());
-        List<Object[]> res = q.list();
+        @SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
         List<EarningsBank> result = new ArrayList<EarningsBank>();
         EarningsBank bank;
         for(Object[] item : res) {
@@ -358,7 +364,8 @@ public class EarningsDao {
         q.setParameter("voidOrIss", payDate.getVoidIssue().charAt(0));
         q.setParameter("adjNbr", Short.parseShort(payDate.getAdjNumber()));
         q.setParameter("chkNbr", payDate.getCheckNumber());
-        List<Object[]> res = q.list();
+        @SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
         List<EarningsLeave> result = new ArrayList<EarningsLeave>();
         EarningsLeave leave;
         for(Object[] item : res) {
@@ -392,7 +399,8 @@ public class EarningsDao {
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("frequency", tempFreq.charAt(0));
         q.setParameter("dtOfPay", tempDate);
-        List<Object[]> res = q.list();
+        @SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
         List<EarningsOvertime> result = new ArrayList<EarningsOvertime>();
         EarningsOvertime overTime;
         for(Object[] item : res) {

@@ -1,8 +1,5 @@
 package com.esc20.dao;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Date;
@@ -42,7 +39,8 @@ public class BankDao {
     	Session session = this.getSession();
         String hql = "from BthrBankCodes order by bankName ASC" ;
         Query q = session.createQuery(hql);
-        List<BthrBankCodes> result = q.list();
+        @SuppressWarnings("unchecked")
+		List<BthrBankCodes> result = q.list();
         if(result== null || result.isEmpty()) {
         	return null;
         }
@@ -56,7 +54,8 @@ public class BankDao {
         q.setFirstResult((p.getCurrentPage()-1)*p.getPerPageRows());
         q.setMaxResults(p.getPerPageRows());
         
-        List<BthrBankCodes> result = q.list();
+        @SuppressWarnings("unchecked")
+		List<BthrBankCodes> result = q.list();
         if(result== null || result.isEmpty()) {
         	return null;
         }
@@ -81,7 +80,8 @@ public class BankDao {
         q.setFirstResult((p.getCurrentPage()-1)*p.getPerPageRows());
         q.setMaxResults(p.getPerPageRows());
         
-        List<BthrBankCodes> result = q.list();
+        @SuppressWarnings("unchecked")
+		List<BthrBankCodes> result = q.list();
         if(result== null || result.isEmpty()) {
         	return null;
         }
@@ -101,7 +101,8 @@ public class BankDao {
         hql = hql + " order by bankName ASC";
         
         Query q = session.createQuery(hql);
-        List<BthrBankCodes> result = q.list();
+        @SuppressWarnings("unchecked")
+		List<BthrBankCodes> result = q.list();
         if(result== null || result.isEmpty()) {
         	return null;
         }
@@ -129,6 +130,7 @@ public class BankDao {
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("frequency", frequency);
 		
+		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 		
 		for(Object[] item: res) {
@@ -183,6 +185,7 @@ public class BankDao {
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("freq", frequency);
 
+		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 		
 		for(Object[] item: res) {

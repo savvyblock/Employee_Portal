@@ -10,6 +10,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class BhrTeamEd20Id implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7550326055022219771L;
 	private String rptYr;
 	private String rptMon;
 	private String empNbr;

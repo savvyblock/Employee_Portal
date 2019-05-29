@@ -34,6 +34,7 @@ public class DeductionsDao {
 		sql.append(" AND EMP_NBR = :employeeNumber");
 		Query q = session.createSQLQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
+		@SuppressWarnings("unchecked")
 		List<Character> res = q.list();
 		List<Frequency> result = new ArrayList<Frequency>();
 		for(Character code: res) {
@@ -55,6 +56,7 @@ public class DeductionsDao {
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("frequency", frequency.getCode().charAt(0));
+		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 		List<Deduction> result = new ArrayList<Deduction>();
 		Deduction deduct;

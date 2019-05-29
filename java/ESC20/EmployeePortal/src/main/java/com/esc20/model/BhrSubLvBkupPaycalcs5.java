@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "BHR_SUB_LV_BKUP_PAYCALCS_5", schema = "rsccc", catalog = "rsccc")
 public class BhrSubLvBkupPaycalcs5 implements java.io.Serializable {
-
+	private static final long serialVersionUID = -6304268857946308043L;
 	private BhrSubLvBkupPaycalcs5Id id;
 
 	public BhrSubLvBkupPaycalcs5() {

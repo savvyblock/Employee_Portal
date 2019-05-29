@@ -13,9 +13,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <div class="account-top content-body"  tabindex="-1">
             <div class="account-inner sm">
                 <div class="tab-head">
-                    <p>
-                        <b>${sessionScope.languageJSON.label.pleaseEnterEmpBirthZipCode}</b>
-                </p>
+                            <c:if test="${idType=='E'}">
+	                            <p>
+	                            	<b>${sessionScope.languageJSON.label.pleaseEnterEmpBirthZipCode}</b>
+	                            </p>
+                            </c:if>
+                            <c:if test="${idType=='S'}">
+	                            <p>
+	                            	<b>${sessionScope.languageJSON.label.pleaseEnterSSoBirthZipCode}</b>
+	                            </p>
+                            </c:if>
                 </div>
                 <form
                     id="retrieveUserName"

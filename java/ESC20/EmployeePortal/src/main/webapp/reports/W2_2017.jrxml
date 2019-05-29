@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="W2_2017" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="548" leftMargin="32" rightMargin="32" topMargin="32" bottomMargin="32" uuid="13b60bea-61cd-4d6a-a7bf-d3a0985cc38b">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="192"/>
 	<field name="ssn" class="java.lang.String"/>
 	<field name="tgross" class="java.lang.String"/>
 	<field name="whold" class="java.lang.String"/>
@@ -976,14 +976,14 @@
 					</textField>
 				</frame>
 				<frame>
-					<reportElement x="1" y="284" width="547" height="55" uuid="e371ab3d-c28a-4c4b-bb70-1063ec88dcd9">
+					<reportElement stretchType="RelativeToBandHeight" x="1" y="284" width="547" height="55" uuid="a325737f-b703-403b-8701-b0dab24875b7">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<box>
 						<leftPen lineWidth="1.0"/>
 					</box>
 					<staticText>
-						<reportElement x="205" y="1" width="112" height="54" uuid="ff80c8ec-4642-4d7a-91b0-d6692fa46edd">
+						<reportElement x="205" y="1" width="112" height="54" uuid="709ebd60-e8c5-449b-872a-ec39913fc2ad">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box>
@@ -995,15 +995,30 @@
 						</textElement>
 						<text><![CDATA[ 13 Statutory Employee]]></text>
 					</staticText>
-					<image>
-						<reportElement x="257" y="25" width="12" height="12" uuid="e5598449-b978-4858-bbf1-4968d363f6f3">
+					<rectangle>
+						<reportElement x="257" y="18" width="10" height="10" uuid="5e2867b2-2166-435d-bda6-c1f1270a1008"/>
+					</rectangle>
+					<line direction="BottomUp">
+						<reportElement x="257" y="18" width="10" height="10" uuid="e0cfb9f2-6d6e-4443-9366-3b6c0fcea1e9">
+							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					</line>
+					<line>
+						<reportElement x="257" y="18" width="10" height="10" uuid="656d9d0c-d2ae-45d2-8b45-4357606b9033">
+							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					</line>
+					<textField>
+						<reportElement x="205" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="d344af68-d0a0-4dbc-b8ec-23f1bbe58fa1">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
-						<imageExpression><![CDATA[$F{statemp}]]></imageExpression>
-						<hyperlinkTooltipExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? "unCheck Box for Statutory Employee" : "Check Box for Statutory Employee"]]></hyperlinkTooltipExpression>
-					</image>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{statemp}.contains( "uncheckedbox" ) ? "unChecked for Statutory Employee" : "Checked for Statutory Employee"]]></textFieldExpression>
+					</textField>
 					<staticText>
-						<reportElement x="316" y="1" width="113" height="15" uuid="4c88e824-fe8b-4c82-80d1-7b3a8fe81cce">
+						<reportElement x="316" y="1" width="113" height="15" uuid="92b30f64-eb42-43d6-b51d-dfbda0abd1bc">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box>
@@ -1014,15 +1029,31 @@
 						</textElement>
 						<text><![CDATA[ Retirement Plan]]></text>
 					</staticText>
-					<image>
-						<reportElement x="372" y="25" width="12" height="12" uuid="adbf6392-9c25-42ca-8280-d60ca21b5e62">
+					<rectangle>
+						<reportElement x="373" y="18" width="10" height="10" uuid="6840ef91-b8b9-45ea-9c1e-ee481c35b9b9"/>
+					</rectangle>
+					<line direction="BottomUp">
+						<reportElement x="373" y="18" width="10" height="10" uuid="f96fa732-935d-4484-bd17-e4be3d91a9f6">
+							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					</line>
+					<line>
+						<reportElement x="373" y="18" width="10" height="10" uuid="01ece57f-56fc-4d82-8a29-b7de4c0a4b53">
+							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					</line>
+					<elementGroup/>
+					<textField>
+						<reportElement x="319" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="ed051a0b-4a40-42a7-a378-3f75c7e24ba8">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
-						<imageExpression><![CDATA[$F{retplan}]]></imageExpression>
-						<hyperlinkTooltipExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "unCheck Box for Retirement Plan" : "Check Box for Retirement Plan"]]></hyperlinkTooltipExpression>
-					</image>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? "unChecked for Retirement Plan" : "Checked for Retirement Plan"]]></textFieldExpression>
+					</textField>
 					<staticText>
-						<reportElement x="428" y="1" width="119" height="15" uuid="95768614-e417-4e7c-a717-d8174ba10f83">
+						<reportElement x="428" y="1" width="119" height="15" uuid="3171a99b-7192-4bcc-b8e4-db5a14d32696">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box>
@@ -1033,13 +1064,28 @@
 						</textElement>
 						<text><![CDATA[Third party sick pay]]></text>
 					</staticText>
-					<image>
-						<reportElement x="484" y="25" width="12" height="12" uuid="c024170e-fd66-4c1a-b52e-1e9562fda804">
+					<rectangle>
+						<reportElement x="486" y="18" width="10" height="10" uuid="95030fa4-6a7a-49d5-a1ed-fd2579665eb7"/>
+					</rectangle>
+					<line direction="BottomUp">
+						<reportElement x="486" y="18" width="10" height="10" uuid="6c959082-418e-4574-9436-df29ab9f63ee">
+							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					</line>
+					<line>
+						<reportElement x="486" y="18" width="10" height="10" uuid="4a302ff7-1890-4fe7-b410-a182334dcb63">
+							<printWhenExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					</line>
+					<textField>
+						<reportElement x="434" y="31" width="111" height="20" forecolor="#FFFFFF" uuid="df3010b7-60f2-4096-86ab-d8c068ee5356">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
-						<imageExpression><![CDATA[$F{thrdsick}]]></imageExpression>
-						<hyperlinkTooltipExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "unCheck Box for Third Party sick pay" : "Check Box for Third Party sick pay"]]></hyperlinkTooltipExpression>
-					</image>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? "unCheck Box for Third Party sick pay" : "Check Box for Third Party sick pay"]]></textFieldExpression>
+					</textField>
 				</frame>
 			</frame>
 			<textField>

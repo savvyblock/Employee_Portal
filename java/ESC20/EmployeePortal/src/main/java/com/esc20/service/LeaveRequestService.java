@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +25,6 @@ import com.esc20.nonDBModels.LeaveParameters;
 
 @Service
 public class LeaveRequestService {
-
-	private Logger logger = LoggerFactory.getLogger(LeaveRequestService.class);
 
 	@Autowired
 	private LeaveRequestDao leaveRequestDao;

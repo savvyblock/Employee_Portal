@@ -15,6 +15,10 @@ import javax.persistence.Table;
 @Table(name = "BHR_TEAM_ED25", schema = "rsccc", catalog = "rsccc")
 public class BhrTeamEd25 implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1165998654211182800L;
 	private BhrTeamEd25Id id;
 	private String origStaffId;
 	private String origDob;

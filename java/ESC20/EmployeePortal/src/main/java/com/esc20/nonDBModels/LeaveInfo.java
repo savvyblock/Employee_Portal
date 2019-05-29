@@ -1,5 +1,6 @@
 package com.esc20.nonDBModels;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
@@ -7,7 +8,7 @@ import com.esc20.util.NumberUtil;
 
 import net.sf.json.JSONObject;
 
-public class LeaveInfo {
+public class LeaveInfo implements Serializable{
 
 	private static final long serialVersionUID = -9075806121870313132L;
 	

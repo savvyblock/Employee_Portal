@@ -548,6 +548,7 @@
 		"hintQuestion":"Hint Question",
 		"hintAnswer":"Hint Answer",
 		"pleaseEnterEmpBirthZipCode":"Please enter your employee number, date of birth, and zip and click Retrieve.",
+		"pleaseEnterSSoBirthZipCode":"Please enter your social security number, date of birth, and zip and click Retrieve.",
 		"markAsRead":"Mark As Read",
 		"changeAvatar":"Change Avatar",
 		"chooseImageSize":"Choose a picture(JPG/JPEG/PNG/ <500kb):",

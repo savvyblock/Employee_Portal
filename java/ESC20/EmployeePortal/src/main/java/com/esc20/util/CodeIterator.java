@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CodeIterator implements Iterator<String> {
+	@SuppressWarnings("unused")
 	private List<String> codes;
 	private Map<String,BigDecimal> values;
 	private Iterator<String> iter;

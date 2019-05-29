@@ -26,7 +26,6 @@ import com.esc20.model.BeaMrtlStat;
 import com.esc20.model.BeaRestrict;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BeaW4;
-import com.esc20.model.BhrEapDemoAssgnGrp;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPay;
 import com.esc20.nonDBModels.District;
@@ -236,9 +235,7 @@ public class IndexService {
 	public void updateDemoName(BhrEmpDemo demo) {
 		userDao.updateDemoName(demo);
 	}
-	public void updateDemoAvatar(BhrEmpDemo demo) {
-		userDao.updateDemoAvatar(demo);
-	}
+
 	public void updateDemoMaritalStatus(BhrEmpDemo demo) {
 		userDao.updateDemoMaritalStatus(demo);
 	}
@@ -336,8 +333,4 @@ public class IndexService {
 	public Boolean isTempApprover(String empNbr) {
 		return userDao.isTempApprover(empNbr);
 	}
-	public void TestDemo(String empNbr) {
-		userDao.TestDemo(empNbr);
-	}
-	
 }
