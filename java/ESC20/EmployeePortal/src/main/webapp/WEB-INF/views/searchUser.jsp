@@ -15,9 +15,16 @@
                 <div class="account-inner sm">
                         <form id="retrieveUser" action="retrieveEmployee" method="post" >
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            <p>
-                                    <b>${sessionScope.languageJSON.label.pleaseEnterEmpBirthZipCode}</b>
-                            </p>
+                            <c:if test="${idType=='E'}">
+	                            <p>
+	                            	<b>${sessionScope.languageJSON.label.pleaseEnterEmpBirthZipCode}</b>
+	                            </p>
+                            </c:if>
+                            <c:if test="${idType=='S'}">
+	                            <p>
+	                            	<b>${sessionScope.languageJSON.label.pleaseEnterSSoBirthZipCode}</b>
+	                            </p>
+                            </c:if>
                                     <div class="form-group">
                                         <c:if test="${idType=='S'}">
                                         	<label class="form-title" for="autoAdvance_1"><span>Social Security Number</span>&nbsp;(<span>${sessionScope.languageJSON.label.noDashes}</span>)</label>
