@@ -100,7 +100,7 @@ private static final long serialVersionUID = -1023249528812172648L;
 		this.setNetPay(NumberUtil.value(netPay));
 		this.setNonTrsNonPayTax(NumberUtil.value(nontrsNonpayBusAllow));
 		this.setNonTrsNonPayNonTax(NumberUtil.value(nontrsNontaxNonpayAllow));
-		this.setTaxableWage(NumberUtil.value(nontrsNonpayBusAllow).add(NumberUtil.value(nontrsNontaxNonpayAllow)).add(NumberUtil.value(whTax)));
+		this.setTaxableWage(NumberUtil.value(nontrsNonpayBusAllow).add(NumberUtil.value(nontrsNontaxNonpayAllow)).add(NumberUtil.value(whGross)));
 		this.setFicaWage(NumberUtil.value(ficaGross));
 		this.setMedGross(NumberUtil.value(medGross));
 	}
