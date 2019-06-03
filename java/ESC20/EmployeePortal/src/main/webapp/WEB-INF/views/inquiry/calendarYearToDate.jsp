@@ -75,7 +75,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </div>
                                     </div>
                         </div>
-                        
+                        <c:if test="${not empty sessionScope.options.messageCalendarYearToDate}">
+                            <br/>
+                            <p class="topMsg">${sessionScope.options.messageCalendarYearToDate}</p>
+                            <br/>
+                        </c:if>
                         <form
                             class="no-print searchForm"
                             action="getCalendarYearToDateByYear"

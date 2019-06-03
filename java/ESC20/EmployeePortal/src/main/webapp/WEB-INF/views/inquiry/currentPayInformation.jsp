@@ -54,9 +54,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </div>
                         </div>
                         
-                        <c:if test="${not empty message}">
+                        <c:if test="${not empty sessionScope.options.messageCurrentPayInformation}">
                             <br/>
-                            <p class="topMsg">${message}</p>
+                            <p class="topMsg">${sessionScope.options.messageCurrentPayInformation}</p>
                             <br/>
                         </c:if>
                         <div class="needToClone">

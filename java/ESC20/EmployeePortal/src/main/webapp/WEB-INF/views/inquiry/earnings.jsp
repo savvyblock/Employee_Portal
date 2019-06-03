@@ -38,6 +38,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </button>
                                 </div>
                             </div>
+                       <c:if test="${not empty sessionScope.options.messageEarnings}">
+                            <br/>
+                            <p class="topMsg">${sessionScope.options.messageEarnings}</p>
+                            <br/>
+                        </c:if>
                             <div class="toPrint content-white EMP-detail earningPage">
                                 <div class="exportPDFBox" id="exportPDFBox">
                                         <div class="print-block print-title">

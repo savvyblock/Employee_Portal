@@ -42,6 +42,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </c:if>
                                 </div>
                             </div>
+                        <c:if test="${not empty sessionScope.options.messageW2}">
+                            <br/>
+                            <p class="topMsg">${sessionScope.options.messageW2}</p>
+                            <br/>
+                        </c:if>
                             <div class="toPrint content-white EMP-detail w-2">
                                 <div class="exportPDFBox">
 

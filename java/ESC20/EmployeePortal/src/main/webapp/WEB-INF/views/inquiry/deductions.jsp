@@ -17,9 +17,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 <section class="content">
                     <h1 class="clearfix no-print section-title">${sessionScope.languageJSON.title.deductions}</h1>
                     <div class="content-white EMP-detail">
-                            <c:if test="${not empty message}">
+                            <c:if test="${not empty sessionScope.options.messageDeductions}">
                                 <br/>
-                                <p class="topMsg">${message}</p>
+                                <p class="topMsg">${sessionScope.options.messageDeductions}</p>
                                 <br/>
                             </c:if>
                             <c:if test="${fn:length(frequencies) == 0}">
