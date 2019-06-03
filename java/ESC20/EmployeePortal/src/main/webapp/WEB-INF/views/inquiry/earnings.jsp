@@ -813,7 +813,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             class="print-td text-right"
                                                             data-title="${sessionScope.languageJSON.earningTable.unitsUsedYearToDate}"
                                                         >
-                                                            1.500
+                                                            ${leave.unitsUsed}
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

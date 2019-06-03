@@ -12,19 +12,20 @@ private static final long serialVersionUID = -1023249528812172648L;
 	private String code ="";
 	private String description="";
 	private String unitsPrior ="";
-	//private BigDecimal balance;
+	private String unitsUsed = "";
 	private String balance;
 	private String voidIssue;
 	private String adjNumber;
 
-	public EarningsLeave(String lvTyp, String longDescr, BigDecimal lvTaken, Character voidOrIss, Short adjNbr,
-			BigDecimal lvEndBal, Character chkStubPos) {
-		this.setCode(StringUtil.trim(lvTyp));
-		this.setBalance(StringUtil.trim(lvEndBal.toString()));
-		this.setDescription(StringUtil.trim(longDescr));
-		this.setUnitsPrior(StringUtil.trim(lvTaken.toString()));
-		this.setVoidIssue(StringUtil.trim(voidOrIss.toString()));
-		this.setAdjNumber(StringUtil.trim(adjNbr.toString()));
+	public EarningsLeave(String lvTyp, String longDescr, BigDecimal lvTaken, Character voidOrIss, BigDecimal adjNbr,
+			BigDecimal lvEndBal, Character chkStubPos, BigDecimal lvUsed) {
+		this.setCode(lvTyp==null?"":StringUtil.trim(lvTyp));
+		this.setBalance(lvEndBal==null?"":StringUtil.trim(lvEndBal.toString()));
+		this.setDescription(longDescr==null?"":StringUtil.trim(longDescr));
+		this.setUnitsPrior(lvTaken==null?"":StringUtil.trim(lvTaken.toString()));
+		this.setVoidIssue(voidOrIss==null?"":StringUtil.trim(voidOrIss.toString()));
+		this.setAdjNumber(adjNbr==null?"":StringUtil.trim(adjNbr.toString()));
+		this.setUnitsUsed(lvUsed==null?"":StringUtil.trim(lvUsed.toString()));
 	}
 	
 	public String getCode() {
@@ -69,5 +70,13 @@ private static final long serialVersionUID = -1023249528812172648L;
 	}
 	public void setAdjNumber(String adjNumber) {
 		this.adjNumber = adjNumber;
+	}
+
+	public String getUnitsUsed() {
+		return unitsUsed;
+	}
+
+	public void setUnitsUsed(String unitsUsed) {
+		this.unitsUsed = unitsUsed;
 	}
 }

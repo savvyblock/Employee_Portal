@@ -346,30 +346,32 @@ public class EarningsDao {
 	public List<EarningsLeave> getEarningsLeave(String employeeNumber, PayDate payDate, String checkNumber) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT lv.id.lvTyp, descr.longDescr, sum(isnull(hist.lvUsed,0)) as lvTaken, isnull(hist.id.voidOrIss,'') as voidOrIss, isnull(hist.id.adjNbr,0) as adjNbr, lv.lvEndBal, type.chkStubPos  ");
-		sql.append("FROM BhrEmpLv lv, BthrLvTypDescr descr,BthrLvTyp type,BhrEmpLvDockHist hist where descr.lvTyp = lv.id.lvTyp ");
-		sql.append("AND type.id.lvTyp = lv.id.lvTyp AND type.id.payFreq = :frequency ");
-		sql.append("AND hist.id.payFreq = :frequency AND hist.id.empNbr = :employeeNumber AND hist.id.chkNbr = :chkNbr AND  ");
-		sql.append("hist.id.dtOfPay = :dtOfPay AND hist.id.lvAltTyp  = lv.id.lvTyp and ");
-		sql.append("hist.id.voidOrIss = :voidOrIss and hist.id.adjNbr = :adjNbr ");
-		sql.append("AND lv.id.empNbr=:employeeNumber AND lv.id.payFreq = :frequency AND type.chkStubPos != '' AND type.chkStubPos is not null ");
-		sql.append("group by lv.id.lvTyp, descr.longDescr, hist.id.voidOrIss, hist.id.adjNbr, lv.lvEndBal, type.chkStubPos ");
-		sql.append("ORDER BY type.chkStubPos, lv.id.lvTyp");
-		Query q = session.createQuery(sql.toString());
+		sql.append("SELECT DISTINCT bhr_emp_lv.lv_typ, bthr_lv_typ_descr.long_descr, sum(isnull(bhr_emp_lv_dock_hist.lv_used,0)) as lv_taken, isnull(bhr_emp_lv_dock_hist.void_or_iss,'') as void_or_iss, isnull(bhr_emp_lv_dock_hist.adj_nbr,0) as adj_nbr, bhr_emp_lv.lv_end_bal, bthr_lv_typ.chk_stub_pos ,bhr_emp_lv.lv_used ");
+		sql.append("FROM bhr_emp_lv ");
+		sql.append("LEFT JOIN bthr_lv_typ_descr ON bthr_lv_typ_descr.lv_typ = bhr_emp_lv.lv_typ ");
+		sql.append("LEFT JOIN bthr_lv_typ ON bthr_lv_typ.lv_typ = bhr_emp_lv.lv_typ AND  bthr_lv_typ.pay_freq = :is_pay_freq ");
+		sql.append("LEFT JOIN bhr_emp_lv_dock_hist ON bhr_emp_lv_dock_hist.pay_freq = :is_pay_freq AND bhr_emp_lv_dock_hist.emp_nbr = :is_emp_nbr AND bhr_emp_lv_dock_hist.chk_nbr = :is_chk_nbr AND  ");
+		sql.append("bhr_emp_lv_dock_hist.dt_of_pay = :is_dt_of_pay AND bhr_emp_lv_dock_hist.lv_alt_typ  = bhr_emp_lv.lv_typ and ");
+		sql.append("bhr_emp_lv_dock_hist.void_or_iss = :is_void and bhr_emp_lv_dock_hist.adj_nbr = :is_adj_nbr ");
+		sql.append("WHERE bhr_emp_lv.emp_nbr=:is_emp_nbr AND bhr_emp_lv.pay_freq = :is_pay_freq AND bthr_lv_typ.chk_stub_pos != '' AND bthr_lv_typ.chk_stub_pos is not null ");
+		sql.append("group by bhr_emp_lv.lv_typ, bthr_lv_typ_descr.long_descr, void_or_iss, adj_nbr, bhr_emp_lv.lv_end_bal, bthr_lv_typ.chk_stub_pos, bhr_emp_lv.lv_used ");
+		sql.append("ORDER BY bthr_lv_typ.chk_stub_pos, bhr_emp_lv.lv_typ");
+
+		Query q = session.createSQLQuery(sql.toString());
 		String tempFreq = StringUtil.right(payDate.getDateFreq(), 1);
 		String tempDate = StringUtil.left(payDate.getDateFreq(), payDate.getDateFreq().length()-1);
-        q.setParameter("employeeNumber", employeeNumber);
-        q.setParameter("frequency", tempFreq.charAt(0));
-        q.setParameter("dtOfPay", tempDate);
-        q.setParameter("voidOrIss", payDate.getVoidIssue().charAt(0));
-        q.setParameter("adjNbr", Short.parseShort(payDate.getAdjNumber()));
-        q.setParameter("chkNbr", payDate.getCheckNumber());
+        q.setParameter("is_emp_nbr", employeeNumber);
+        q.setParameter("is_pay_freq", tempFreq.charAt(0));
+        q.setParameter("is_dt_of_pay", tempDate);
+        q.setParameter("is_chk_nbr", payDate.getVoidIssue().charAt(0));
+        q.setParameter("is_void", Short.parseShort(payDate.getAdjNumber()));
+        q.setParameter("is_adj_nbr", payDate.getCheckNumber());
         @SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
         List<EarningsLeave> result = new ArrayList<EarningsLeave>();
         EarningsLeave leave;
         for(Object[] item : res) {
-        	leave = new EarningsLeave((String) item[0], (String) item[1], (BigDecimal) item[2], (Character) item[3], (Short) item[4],(BigDecimal) item[5],(Character) item[6]);
+        	leave = new EarningsLeave((String) item[0], (String) item[1], (BigDecimal) item[2], (Character) item[3], (BigDecimal) item[4],(BigDecimal) item[5],(Character) item[6], (BigDecimal) item[7]);
         	result.add(leave);
         }
         
