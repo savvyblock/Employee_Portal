@@ -81,9 +81,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <tr>
                                         <th id="userDetailAddress" class="td-title"  rowspan="2"><b>${sessionScope.languageJSON.currentPayTable.address}</b></th>
                                         <td headers="userDetailAddress" class="td-content" data-title="${sessionScope.languageJSON.currentPayTable.address}" rowspan="2">
-                                            ${sessionScope.district.address}<br/>
-                                            ${sessionScope.district.city},
-                                            ${sessionScope.district.state} ${sessionScope.district.zip}
+                                            ${sessionScope.userDetail.addrStr} ${sessionScope.userDetail.addrNbr}<br/>
+                                            ${sessionScope.userDetail.addrCity},
+                                            ${sessionScope.userDetail.addrSt} ${sessionScope.userDetail.addrZip}
                                         </td>
                                         <th id="employeeId" class="td-title" ><b>${sessionScope.languageJSON.currentPayTable.employeeId}</b></th>
                                         <td
@@ -152,7 +152,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             headers="professionalDistrictExp" class="td-content"
                                             data-title="${sessionScope.languageJSON.currentPayTable.professionalDistrictExp}"
                                         >
-                                        ${employeeInfo.yrsExpDist}
+                                        ${employeeInfo.yrsProExperLoc}
                                         </td>
                                     </tr>
                                     <tr>
@@ -163,7 +163,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             headers="nonProfessionalYearExp" class="td-content"
                                             data-title="${sessionScope.languageJSON.currentPayTable.nonProfessionalYearExp}"
                                         >
-                                        ${employeeInfo.yrsProExperLoc}
+                                        ${employeeInfo.yrsExpDist}
                                         </td>
                                         <th id="noneProfessionalDistrictExp" class="td-title" >
                                             <b>${sessionScope.languageJSON.currentPayTable.noneProfessionalDistrictExp}</b>

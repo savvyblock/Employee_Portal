@@ -140,11 +140,6 @@ public class CurrentPayInformationDao {
 		sql.append("B.yrsExpDistLoc");
 		sql.append(" FROM BhrEmpEmply B, EtC015Highdeg deg, BhrOptions opt");
 		sql.append(" WHERE B.empNbr = :employeeNumber");
-		Query q = session.createQuery(sql.toString());
-		q.setParameter("employeeNumber", employeeNumber);
-		@SuppressWarnings("unchecked")
-		List<Object[]> list = q.list();
-		Object[] item = list.get(0);
 		if (checkHighDegree(employeeNumber) != null && !checkHighDegree(employeeNumber).isEmpty()) {
 			sql.append(" AND B.highDegree = deg.id.highdegCd");
 		} else {
@@ -152,6 +147,11 @@ public class CurrentPayInformationDao {
 		}
 
 		sql.append(" AND deg.id.schYr = opt.peimsCdYr");
+		Query q = session.createQuery(sql.toString());
+		q.setParameter("employeeNumber", employeeNumber);
+		@SuppressWarnings("unchecked")
+		List<Object[]> list = q.list();
+		Object[] item = list.get(0);
 		EmployeeInfo temp = new EmployeeInfo(item[0], item[1], item[2], item[3], item[4], item[5]);
 		
 		return temp;
