@@ -536,7 +536,7 @@
                 i = 0;
             while (i < 12) {
                 var n = i + 1
-                var month = dates[this.language].monthsShort[n]
+                var month = dates[this.language].monthsShort[i]
                 // console.log(month)
                 html += '<span class="month"  tabindex="0" aria-label="'+ year +' '+month+'"  onkeyDown="if(event.keyCode==13){this.click();$(\'.datepicker-days .date-switch\').focus()}">' + dates[this.language].monthsShort[i++] + '</span>';
             }
@@ -1449,7 +1449,7 @@
             return('<thead>' +
             '<tr>' +
             '<th class="prev" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" aria-label="'+prevLabel+'"><span class="forAria">'+prevLabel+'</span>' + leftArrow + '</th>' +
-            '<th colspan="'+num+'" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" class="date-switch"></th>' +
+            '<th role="gridcell" colspan="'+num+'" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" class="date-switch"></th>' +
             '<th class="next" tabindex="0" onkeyDown="if(event.keyCode==13){this.click()}" aria-label="'+nextLabel+'"><span class="forAria">'+nextLabel+'</span>' + rightArrow + '</th>' +
             '</tr>' +
             '</thead>')},
