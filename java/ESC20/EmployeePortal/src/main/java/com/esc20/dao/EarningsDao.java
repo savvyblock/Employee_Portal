@@ -101,36 +101,36 @@ public class EarningsDao {
 	public EarningsDeductions getEarningsDeductions(String employeeNumber, PayDate payDate, String checkNumber) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT hist.stdGross, hist.grossPayTot, hist.absDedAmt, hist.absDedCoded, hist.nontrsNonpayBusAllow, hist.whTax, hist.medTax, ");
-		sql.append("hist.extraDutyGross, hist.ovtmGross, hist.absDedRefund, hist.taxedBenefits, hist.eicAmt, hist.nontrsSuppl, (hist.nontrsBusAllow + hist.nontrsReimbrExcess ) as nontrsTaxPymtAmt, ");
-		sql.append("(hist.nontrsReimbrBase + hist.nontrsNontaxBusAllow) as nontrsNontaxPymtAmt, hist.trsSupplComp, hist.ficaTax, hist.trsSalaryRed, (hist.trsDeposit - hist.trsSalaryRed) as trsInsAmt, ");
-		sql.append("sum(case when isnull(deducCd.bthrDeducAbbrevTypCd.dedAbbrevTyp, '') = 'WH' then 0 when deductHist.refundFlg = 'Y' then (deductHist.dedAmt*-1) else deductHist.dedAmt end ) as totAddlDed, ");
-		sql.append("hist.netPay, hist.nontrsNontaxNonpayAllow, hist.whGross, hist.ficaGross, hist.medGross ");
-		sql.append("FROM BhrPayHist hist,BhrPayDeductHist deductHist, BthrDeducCd deducCd "
-				+ "where hist.id.empNbr = deductHist.id.empNbr AND hist.id.dtOfPay = deductHist.id.dtOfPay AND hist.id.payFreq = deductHist.id.payFreq AND hist.id.chkNbr = deductHist.id.chkNbr AND ");
-		sql.append("deductHist.id.dedCd = deducCd.dedCd AND ");
-		sql.append("hist.id.empNbr=:employeeNumber AND hist.id.payFreq = :frequency AND hist.id.dtOfPay = :dtOfPay AND hist.id.chkNbr = :chkNbr AND hist.id.voidOrIss = :voidOrIss AND hist.id.adjNbr = :adjNbr ");
-		sql.append("GROUP BY hist.stdGross, hist.grossPayTot, hist.absDedAmt, hist.absDedCoded, hist.nontrsNonpayBusAllow, hist.whTax, hist.medTax, ");
-		sql.append("hist.extraDutyGross, hist.ovtmGross, hist.absDedRefund, hist.taxedBenefits, hist.eicAmt, hist.nontrsSuppl, hist.nontrsBusAllow , hist.nontrsReimbrExcess, ");
-		sql.append("hist.nontrsReimbrBase , hist.nontrsNontaxBusAllow, hist.trsSupplComp, hist.ficaTax, hist.trsSalaryRed, hist.trsDeposit , hist.trsSalaryRed, ");
-		sql.append("hist.netPay, hist.nontrsNontaxNonpayAllow, hist.whGross, hist.ficaGross, hist.medGross ");
+		sql.append("SELECT std_gross, gross_pay_tot, abs_ded_amt, abs_ded_coded, nontrs_nonpay_bus_allow, wh_tax, med_tax, ");
+		sql.append("extra_duty_gross, ovtm_gross, abs_ded_refund, taxed_benefits, eic_amt, nontrs_suppl, (nontrs_bus_allow + nontrs_reimbr_excess ) as non_trs_tax_pymt_amt, ");
+		sql.append("(nontrs_reimbr_base + nontrs_nontax_bus_allow) as non_trs_nontax_pymt_amt, trs_suppl_comp, fica_tax, trs_salary_red, (bhr_pay_hist.trs_deposit - bhr_pay_hist.trs_salary_red) as trs_ins_amt, ");
+		sql.append("sum(case when isnull(bthr_deduc_cd.ded_abbrev_typ, '') = 'WH' then 0 when bhr_pay_deduct_hist.refund_flg = 'Y' then  bhr_pay_deduct_hist.ded_amt * -1 else bhr_pay_deduct_hist.ded_amt end ) as tot_addl_ded, ");
+		sql.append("net_pay, nontrs_nontax_nonpay_allow, wh_gross, fica_gross, med_gross ");
+		sql.append("FROM bhr_pay_hist ");
+		sql.append("LEFT JOIN bhr_pay_deduct_hist ON bhr_pay_hist.emp_nbr = bhr_pay_deduct_hist.emp_nbr AND bhr_pay_hist.dt_of_pay = bhr_pay_deduct_hist.dt_of_pay AND bhr_pay_hist.pay_freq = bhr_pay_deduct_hist.pay_freq AND bhr_pay_hist.chk_nbr = bhr_pay_deduct_hist.chk_nbr ");
+		sql.append("LEFT JOIN bthr_deduc_cd ON bhr_pay_deduct_hist.ded_cd = bthr_deduc_cd.ded_cd ");
+		sql.append("WHERE bhr_pay_hist.emp_nbr=:is_emp_nbr AND bhr_pay_hist.pay_freq = :is_pay_freq AND bhr_pay_hist.dt_of_pay = :is_dt_of_pay AND bhr_pay_hist.chk_nbr = :is_chk_nbr AND bhr_pay_hist.void_or_iss = :is_void AND bhr_pay_hist.adj_nbr = :is_adj_nbr ");
+		sql.append("GROUP BY std_gross, gross_pay_tot, abs_ded_amt, abs_ded_coded, nontrs_nonpay_bus_allow, wh_tax, med_tax, ");
+		sql.append("extra_duty_gross, ovtm_gross, abs_ded_refund, taxed_benefits, eic_amt, nontrs_suppl, nontrs_bus_allow, nontrs_reimbr_excess, ");
+		sql.append("nontrs_reimbr_base, nontrs_nontax_bus_allow, trs_suppl_comp, fica_tax, trs_salary_red, trs_deposit, trs_salary_red, ");
+		sql.append("net_pay, nontrs_nontax_nonpay_allow, wh_gross, fica_gross, med_gross  ");
 		
 		String tempFreq = StringUtil.right(payDate.getDateFreq(), 1);
 		String tempDate = StringUtil.left(payDate.getDateFreq(), payDate.getDateFreq().length()-1);
-		Query q = session.createQuery(sql.toString());
-        q.setParameter("employeeNumber", employeeNumber);
-        q.setParameter("frequency", tempFreq.charAt(0));
-        q.setParameter("dtOfPay", tempDate);
-        q.setParameter("voidOrIss", payDate.getVoidIssue().charAt(0));
-        q.setParameter("adjNbr", Short.parseShort(payDate.getAdjNumber()));
-        q.setParameter("chkNbr", payDate.getCheckNumber());
+		Query q = session.createSQLQuery(sql.toString());
+        q.setParameter("is_emp_nbr", employeeNumber);
+        q.setParameter("is_pay_freq", tempFreq.charAt(0));
+        q.setParameter("is_dt_of_pay", tempDate);
+        q.setParameter("is_void", payDate.getVoidIssue().charAt(0));
+        q.setParameter("is_adj_nbr", Short.parseShort(payDate.getAdjNumber()));
+        q.setParameter("is_chk_nbr", payDate.getCheckNumber());
 		Object[] res = (Object[]) q.uniqueResult();
 		
 		if(res != null) {
 			EarningsDeductions deductions = new EarningsDeductions((BigDecimal) res[0],(BigDecimal) res[1],(BigDecimal) res[2],(BigDecimal) res[3],(BigDecimal) res[4],(BigDecimal) res[5],(BigDecimal) res[6],
 					(BigDecimal) res[7],(BigDecimal) res[8],(BigDecimal) res[9],(BigDecimal) res[10],(BigDecimal) res[11],(BigDecimal) res[12],(BigDecimal) res[13],
 					(BigDecimal) res[14],(BigDecimal) res[15],(BigDecimal) res[16],(BigDecimal) res[17],(BigDecimal) res[18],
-					(Long) res[19],
+					(BigDecimal) res[19],
 					(BigDecimal) res[20],(BigDecimal) res[21], (BigDecimal) res[22], (BigDecimal) res[23], (BigDecimal) res[24]);
 			return deductions;
 		} else {

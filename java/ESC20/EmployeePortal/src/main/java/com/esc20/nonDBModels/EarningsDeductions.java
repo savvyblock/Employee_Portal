@@ -39,7 +39,7 @@ private static final long serialVersionUID = -1023249528812172648L;
 			BigDecimal extraDutyGross, BigDecimal ovtmGross, BigDecimal absDedRefund, BigDecimal taxedBenefits,
 			BigDecimal eicAmt, BigDecimal nontrsSuppl, BigDecimal nontrsTaxPymtAmt, BigDecimal nontrsNontaxPymtAmt,
 			BigDecimal trsSupplComp, BigDecimal ficaTax, BigDecimal trsSalaryRed, BigDecimal trsInsAmt,
-			Long totAddlDed, BigDecimal netPay, BigDecimal nontrsNontaxNonpayAllow, BigDecimal whGross, BigDecimal ficaGross, BigDecimal medGross) {
+			BigDecimal totAddlDed, BigDecimal netPay, BigDecimal nontrsNontaxNonpayAllow, BigDecimal whGross, BigDecimal ficaGross, BigDecimal medGross) {
 		BigDecimal value = absDedCoded.setScale(2, BigDecimal.ROUND_HALF_UP);
 		BigDecimal absenceRefund = BigDecimal.ZERO.setScale(2, BigDecimal.ROUND_HALF_UP);
 		if (value.compareTo(BigDecimal.ZERO) < 0) {
@@ -66,7 +66,7 @@ private static final long serialVersionUID = -1023249528812172648L;
 			absenceDeduct = NumberUtil.value(absDedAmt);
 		}
 		absenceDeduct = absenceDeduct.setScale(2, BigDecimal.ROUND_HALF_UP);
-		BigDecimal totalDed = NumberUtil.value(medTax).add(NumberUtil.value(ficaTax)).add(NumberUtil.value(whTax)).add(NumberUtil.value(trsSalaryRed)).add(NumberUtil.value(trsInsAmt)).add(NumberUtil.value(BigDecimal.valueOf(totAddlDed)));
+		BigDecimal totalDed = NumberUtil.value(medTax).add(NumberUtil.value(ficaTax)).add(NumberUtil.value(whTax)).add(NumberUtil.value(trsSalaryRed)).add(NumberUtil.value(trsInsAmt)).add(NumberUtil.value(totAddlDed));
 		if (absenceRefund.doubleValue() < 0) {
 			absenceRefund = absenceRefund.multiply(new BigDecimal(-1));
 		}
@@ -95,7 +95,7 @@ private static final long serialVersionUID = -1023249528812172648L;
 		this.setTrsSalaryRed(NumberUtil.value(trsSalaryRed));
 		this.setTrsInsurance(NumberUtil.value(trsInsAmt));
 		this.setMedicareTax(NumberUtil.value(medTax));
-		this.setTotOtherDed(NumberUtil.value(BigDecimal.valueOf(totAddlDed)));
+		this.setTotOtherDed(NumberUtil.value(totAddlDed));
 		this.setTotDed(totalDed.setScale(decimalPlaces,BigDecimal.ROUND_UP));
 		this.setNetPay(NumberUtil.value(netPay));
 		this.setNonTrsNonPayTax(NumberUtil.value(nontrsNonpayBusAllow));
