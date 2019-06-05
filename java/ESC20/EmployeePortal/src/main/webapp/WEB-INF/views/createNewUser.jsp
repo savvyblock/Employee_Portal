@@ -19,7 +19,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <div class="valid-wrap">
                                    ${user.empNumber}
                                 </div>
-                                <input type="hidden" name="empNbr" value="${user.empNumber}" />
+                                <input type="hidden" id="empNbr" name="empNbr" value="${user.empNumber}" />
                             </div>
                             <div class="form-group">
                                 <label class="form-title">${sessionScope.languageJSON.label.dateOfBirth}</label>
@@ -165,6 +165,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         ${sessionScope.languageJSON.label.save}
                                 </button>
                             </div> 
+                    </form>
+                    
+                    <form id="loginForm" method="post" style="visibility: hidden" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
+                    	<input type="text" id="loginUsername" class="form-control" placeholder="${sessionScope.languageJSON.label.username}"name="username"/>
+                    	<input type="password" id="loginPassword" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password"/>
+                    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                 </div>
             </div>
