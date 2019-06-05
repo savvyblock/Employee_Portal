@@ -379,6 +379,10 @@
         flex: 1;
         padding: 10px;
         margin-bottom: 0;
+        &.paddingSide-0{
+            padding-left: 0;
+            padding-right: 0;
+        }
         &.flex-auto{
             flex: 0 0 auto;
             margin-bottom: 10px;
@@ -1030,6 +1034,12 @@
     }
 }
 @media print {
+    body{
+        padding-top: 10px;
+    }
+    .topMsg{
+        display: none;
+    }
     html{
         height: auto;
         overflow: initial;

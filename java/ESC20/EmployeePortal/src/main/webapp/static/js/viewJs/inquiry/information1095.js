@@ -33,6 +33,10 @@ $(function(){
             toggleOptions('N')
         }
     })
+    if(consentVal==''){
+        $("#updateMsg").addClass("hidden");
+        $('#electronicConsent').modal('show')
+    }
     $("#saveConsent").on('click', function(event) {
         var year = $("#consentYear").val()
         var consentOption = $("#consentModal").val()

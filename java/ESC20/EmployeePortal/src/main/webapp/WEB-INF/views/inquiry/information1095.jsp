@@ -54,19 +54,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </c:if>
                                 </div>
                             </div>
-                        <c:if test="${not empty sessionScope.options.message1095}">
-                            <br/>
-                            <p class="topMsg">${sessionScope.options.message1095}</p>
-                            <br/>
-                        </c:if>
+                        
                             <div class="toPrint content-white EMP-detail info-1095">
+                                    <c:if test="${not empty sessionScope.options.message1095}">
+                                            <p class="topMsg error-hint" role="alert">${sessionScope.options.message1095}</p>
+                                        </c:if>
                                 <div class="exportPDFBox"></div>
                                 <c:if test="${isUpdate && isSuccess}">
-                                    <span class="error-hint" role="alert" aria-atomic="true">
-                                            <b>${sessionScope.languageJSON.validator.updateWasSuccessful}</b>
-                                        </span>
-                                    <br/>
-                                    <br/>
+                                    <div id="updateMsg">
+                                            <span class="error-hint" role="alert" aria-atomic="true">
+                                                    <b>${sessionScope.languageJSON.validator.updateWasSuccessful}</b>
+                                                </span>
+                                            <br/>
+                                            <br/>
+                                    </div>
+                                    
                                 </c:if>
                                 <form
                                     class="no-print searchForm"
@@ -75,7 +77,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     method="POST"
                                 >
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <div class="form-group in-line">
+                                    <div class="form-group in-line  paddingSide-0">
                                         <label class="form-title" for="year">
                                                 ${sessionScope.languageJSON.label.pleaseSelectYear}
                                         </label>

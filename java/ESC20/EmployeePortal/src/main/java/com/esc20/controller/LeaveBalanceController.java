@@ -52,8 +52,8 @@ public class LeaveBalanceController{
 		if (freq == null || ("").equals(freq)) {
 			if (availableFreqs.size() > 0) {
 				freq = availableFreqs.get(0).getCode();
-				List<LeaveBalance> approvedLeaves = this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType,
-						start, end, freq);
+				//List<LeaveBalance> approvedLeaves = this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType,
+				//		start, end, freq);
 				List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
 				List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
 				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
@@ -63,7 +63,7 @@ public class LeaveBalanceController{
 				mav.addObject("absRsns", absRsns);
 				mav.addObject("leaveTypes", leaveTypesWithAll);
 				mav.addObject("leaveInfo", leaveInfo);
-				mav.addObject("leaves", approvedLeaves);
+				//mav.addObject("leaves", approvedLeaves);
 			}
 		} else {
 			List<LeaveBalance> approvedLeaves = this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType, start,

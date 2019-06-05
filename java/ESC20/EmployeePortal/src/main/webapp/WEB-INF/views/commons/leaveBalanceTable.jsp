@@ -15,7 +15,7 @@
         <c:forEach var="leave" items="${leaveInfo}" varStatus="count">
             <tr>
                 <td data-title="${sessionScope.languageJSON.leaveBalance.leaveType}">
-                        ${leave.type.code}-${leave.type.description}
+                        ${leave.type.description}
                 </td>
                 <td class="text-right" data-title="${sessionScope.languageJSON.leaveBalance.beginningBalance}">${leave.beginBalanceLabel}</td>
                 <td class="text-right" data-title="${sessionScope.languageJSON.leaveBalance.advancedEarned}">${leave.advancedEarnedLabel}</td>

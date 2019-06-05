@@ -38,11 +38,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </button>
                                 </div>
                             </div>
-                       <c:if test="${not empty sessionScope.options.messageEarnings}">
-                            <br/>
-                            <p class="topMsg">${sessionScope.options.messageEarnings}</p>
-                            <br/>
-                        </c:if>
+                       
                             <div class="toPrint content-white EMP-detail earningPage">
                                 <div class="exportPDFBox" id="exportPDFBox">
                                         <div class="print-block print-title">
@@ -198,11 +194,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </div>
                                 </div>
                                 
-                                <c:if test="${not empty message}">
-                                    <br/>
-                                    <p class="topMsg">${message}</p>
-                                    <br/>
-                                </c:if>
+                                <c:if test="${not empty sessionScope.options.messageEarnings}">
+                            <p class="topMsg error-hint" role="alert">${sessionScope.options.messageEarnings}</p>
+                        </c:if>
                                 <form
                                     class="no-print searchForm"
                                     action="earningsByPayDate"
@@ -210,7 +204,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     method="POST"
                                 >
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <div class="form-group in-line">
+                                    <div class="form-group in-line paddingSide-0">
                                         <label class="form-title" for="payDateString"><span>${sessionScope.languageJSON.label.payDates}</span>:</label>
                                         <select class="form-control" name="payDateString" id="payDateString" onchange="submitEarning()" style="max-width:280px;">
                                             <c:forEach var="payDate" items="${payDates}" varStatus="counter">
@@ -290,6 +284,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <h2 class="no-print table-top-title">
                                                     <b>${sessionScope.languageJSON.label.earningAndDeductions}</b>
                                                 </h2>
+                                                <p style="text-align:right;padding-right: 0px;margin: 0;">
+                                                	<b>${sessionScope.languageJSON.label.noteEarning}</b>
+                                                </p>
                                                 <table
                                                     class="table border-table no-thead print-table earning-table"
                                                 >
@@ -328,7 +325,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                     <fmt:formatNumber value="${earnings.deductions.overtimePay}" pattern="#,##0.00"/>
                                                             </td>
                                                             <td headers="calendarYTDTitle01 overtimePay">
-                                                                <fmt:formatNumber value="${YTDEarnings.deductions.overtimePay}" pattern="#,##0.00"/>
+                                                                <%-- <fmt:formatNumber value="${YTDEarnings.deductions.overtimePay}" pattern="#,##0.00"/> --%>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
@@ -337,7 +334,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                     <fmt:formatNumber value="${earnings.deductions.absenceRefund}" pattern="#,##0.00"/>
                                                             </td>
                                                             <td headers="calendarYTDTitle01 absenceRefund">
-                                                                <fmt:formatNumber value="${YTDEarnings.deductions.absenceRefund}" pattern="#,##0.00"/>
+                                                                <%-- <fmt:formatNumber value="${YTDEarnings.deductions.absenceRefund}" pattern="#,##0.00"/> --%>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
@@ -400,7 +397,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                     <fmt:formatNumber value="${earnings.deductions.absenceDed}" pattern="#,##0.00"/>
                                                             </td>
                                                             <td headers="calendarYTDTitle01 absenceDeductions">
-                                                                <fmt:formatNumber value="${YTDEarnings.deductions.absenceDed}" pattern="#,##0.00"/>
+                                                               <%--  <fmt:formatNumber value="${YTDEarnings.deductions.absenceDed}" pattern="#,##0.00"/> --%>
                                                             </td>
                                                         </tr>
                                                         <tr>

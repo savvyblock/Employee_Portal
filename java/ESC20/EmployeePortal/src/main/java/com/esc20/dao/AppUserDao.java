@@ -690,15 +690,14 @@ public class AppUserDao extends HibernateDaoSupport{
         return demo;
 	}
 	
-	public void updateEmailEmployee(String employeeNumber,String workEmail, String homeEmail) 
+	public void updateEmailEmployee(String employeeNumber, String homeEmail) 
 	{
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE BhrEmpDemo SET email = :workEmail, hmEmail = :homeEmail ");
+		sql.append("UPDATE BhrEmpDemo SET hmEmail = :homeEmail ");
 		sql.append(" WHERE empNbr = :employeeNumber ");
 		
 		Query q = session.createQuery(sql.toString());
-		q.setParameter("workEmail", workEmail);
 		q.setParameter("homeEmail", homeEmail);
 		q.setParameter("employeeNumber", employeeNumber);
 		Integer res = q.executeUpdate();

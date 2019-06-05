@@ -55,7 +55,11 @@ public class ReferenceDao {
 		List<Object[]> res = q.list();
 		
 		List<Code> result = new ArrayList<Code>();
-		Code code;
+		Code code = new Code();
+		code.setCode("");
+		code.setSubCode("");
+		code.setDescription("");
+		result.add(code);
 		for(Object[] item: res) {
 			code = new Code((item[0]==null?"":(item[0]).toString()),"",(String)item[1]);
 			result.add(code);		
@@ -74,6 +78,7 @@ public class ReferenceDao {
 		
 		List<Code> result = new ArrayList<Code>();
 		Code code;
+		
 		for(Object[] item: res) {
 			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),"",(String)item[1]);
 			result.add(code);		

@@ -762,7 +762,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control <c:if test="${sessionScope.userDetail.addrNbr != mailAddrRequest.addrNbrNew}">active</c:if>"
+                                                        class="form-control <c:if test="${fn:trim(sessionScope.userDetail.addrNbr) != fn:trim(mailAddrRequest.addrNbrNew)}">active</c:if>"
                                                         name="addrNbrNew"
                                                         id="mailAddrNumber"
                                                         aria-label="${sessionScope.languageJSON.profile.mailingAddressNumber}"
@@ -783,7 +783,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control <c:if test="${sessionScope.userDetail.addrStr != mailAddrRequest.addrStrNew}">active</c:if>"
+                                                        class="form-control <c:if test="${fn:trim(sessionScope.userDetail.addrStr) != fn:trim(mailAddrRequest.addrStrNew)}">active</c:if>"
                                                         name="addrStrNew"
                                                         id="mailAddrStr"
                                                         aria-label="${sessionScope.languageJSON.profile.streetBox}"
@@ -801,11 +801,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control <c:if test="${sessionScope.userDetail.addrApt != mailAddrRequest.addrAptNew}">active</c:if>"
+                                                        class="form-control <c:if test="${fn:trim(sessionScope.userDetail.addrApt) != fn:trim(mailAddrRequest.addrAptNew)}">active</c:if>"
                                                         name="addrAptNew"
                                                         id="mailAddrApartment"
                                                         aria-label="${sessionScope.languageJSON.profile.apt}"
-                                                       
                                                         value="${mailAddrRequest.addrAptNew}"
                                                     />
                                                 </div>
@@ -819,7 +818,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </span>
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control <c:if test="${sessionScope.userDetail.addrCity != mailAddrRequest.addrCityNew}">active</c:if>"
+                                                        class="form-control <c:if test="${fn:trim(sessionScope.userDetail.addrCity) != fn:trim(mailAddrRequest.addrCityNew)}">active</c:if>"
                                                         name="addrCityNew"
                                                         id="mailAddrCity"
                                                         aria-label="${sessionScope.languageJSON.profile.city}"
@@ -843,7 +842,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="addrStNew"
                                                         aria-label="${sessionScope.languageJSON.profile.state}"
                                                        
-                                                        class="form-control  <c:if test="${sessionScope.userDetail.addrSt != mailAddrRequest.addrStNew}">active</c:if>"
+                                                        class="form-control  <c:if test="${fn:trim(sessionScope.userDetail.addrSt) != fn:trim(mailAddrRequest.addrStNew)}">active</c:if>"
                                                     >
                                                         <c:forEach var="states" items="${statesOptions}" varStatus="count">
                                                             <option value="${states.code}" <c:if test="${states.code == mailAddrRequest.addrStNew }">selected</c:if>>${states.displayLabel}</option>
@@ -860,7 +859,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control  <c:if test="${sessionScope.userDetail.addrZip != mailAddrRequest.addrZipNew}">active</c:if>"
+                                                        class="form-control  <c:if test="${fn:trim(sessionScope.userDetail.addrZip) != fn:trim(mailAddrRequest.addrZipNew)}">active</c:if>"
                                                         name="addrZipNew"
                                                         id="mailAddrZip"
                                                         aria-label="${sessionScope.languageJSON.profile.zip}"
@@ -878,7 +877,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        class="form-control <c:if test="${sessionScope.userDetail.addrZip4 != mailAddrRequest.addrZip4New}">active</c:if>"
+                                                        class="form-control <c:if test="${fn:trim(sessionScope.userDetail.addrZip4) != fn:trim(mailAddrRequest.addrZip4New)}">active</c:if>"
                                                         name="addrZip4New"
                                                         id="mailAddrZipPlusFour"
                                                         aria-label="${sessionScope.languageJSON.profile.zip4}"
@@ -1063,7 +1062,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="smrAddrZip4New"
                                                         id="altAddrZipPlusFour"
                                                         aria-label="${sessionScope.languageJSON.profile.zip4}"
-                                                       
                                                         value="${altMailAddrRequest.smrAddrZip4New}"
                                                     />
                                                 </div>
