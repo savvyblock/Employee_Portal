@@ -325,7 +325,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                     <fmt:formatNumber value="${earnings.deductions.overtimePay}" pattern="#,##0.00"/>
                                                             </td>
                                                             <td headers="calendarYTDTitle01 overtimePay">
-                                                                <fmt:formatNumber value="${YTDEarnings.deductions.overtimePay}" pattern="#,##0.00"/>
+                                                                <%-- <fmt:formatNumber value="${YTDEarnings.deductions.overtimePay}" pattern="#,##0.00"/> --%>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
@@ -334,7 +334,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                     <fmt:formatNumber value="${earnings.deductions.absenceRefund}" pattern="#,##0.00"/>
                                                             </td>
                                                             <td headers="calendarYTDTitle01 absenceRefund">
-                                                                <fmt:formatNumber value="${YTDEarnings.deductions.absenceRefund}" pattern="#,##0.00"/>
+                                                                <%-- <fmt:formatNumber value="${YTDEarnings.deductions.absenceRefund}" pattern="#,##0.00"/> --%>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
@@ -397,7 +397,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                     <fmt:formatNumber value="${earnings.deductions.absenceDed}" pattern="#,##0.00"/>
                                                             </td>
                                                             <td headers="calendarYTDTitle01 absenceDeductions">
-                                                                <fmt:formatNumber value="${YTDEarnings.deductions.absenceDed}" pattern="#,##0.00"/>
+                                                               <%--  <fmt:formatNumber value="${YTDEarnings.deductions.absenceDed}" pattern="#,##0.00"/> --%>
                                                             </td>
                                                         </tr>
                                                         <tr>
