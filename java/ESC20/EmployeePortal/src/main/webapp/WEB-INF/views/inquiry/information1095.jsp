@@ -54,12 +54,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </c:if>
                                 </div>
                             </div>
-                        <c:if test="${not empty sessionScope.options.message1095}">
-                            <br/>
-                            <p class="topMsg">${sessionScope.options.message1095}</p>
-                            <br/>
-                        </c:if>
+                        
                             <div class="toPrint content-white EMP-detail info-1095">
+                                    <c:if test="${not empty sessionScope.options.message1095}">
+                                            <p class="topMsg error-hint" role="alert">${sessionScope.options.message1095}</p>
+                                        </c:if>
                                 <div class="exportPDFBox"></div>
                                 <c:if test="${isUpdate && isSuccess}">
                                     <span class="error-hint" role="alert" aria-atomic="true">

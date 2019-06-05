@@ -42,12 +42,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </c:if>
                                 </div>
                             </div>
-                        <c:if test="${not empty sessionScope.options.messageW2}">
-                            <br/>
-                            <p class="topMsg">${sessionScope.options.messageW2}</p>
-                            <br/>
-                        </c:if>
+                       
                             <div class="toPrint content-white EMP-detail w-2">
+                                    <c:if test="${not empty sessionScope.options.messageW2}">
+                                            <p class="topMsg error-hint" role="alert">${sessionScope.options.messageW2}</p>
+                                        </c:if>
                                 <div class="exportPDFBox">
 
                                 </div>
@@ -68,7 +67,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     method="POST"
                                 >
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <div class="form-group in-line">
+                                    <div class="form-group in-line paddingSide-0">
                                         <label class="form-title"  for="year"  >${sessionScope.languageJSON.label.pleaseSelectYear}</label>
                                         <select class="form-control" name="year" id="year" onchange="submitCalendarForm()">
                                             <c:forEach var="year" items="${years}" varStatus="years">

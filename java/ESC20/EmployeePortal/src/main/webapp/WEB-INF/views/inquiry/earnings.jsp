@@ -38,11 +38,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </button>
                                 </div>
                             </div>
-                       <c:if test="${not empty sessionScope.options.messageEarnings}">
-                            <br/>
-                            <p class="topMsg">${sessionScope.options.messageEarnings}</p>
-                            <br/>
-                        </c:if>
+                       
                             <div class="toPrint content-white EMP-detail earningPage">
                                 <div class="exportPDFBox" id="exportPDFBox">
                                         <div class="print-block print-title">
@@ -198,11 +194,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </div>
                                 </div>
                                 
-                                <c:if test="${not empty message}">
-                                    <br/>
-                                    <p class="topMsg">${message}</p>
-                                    <br/>
-                                </c:if>
+                                <c:if test="${not empty sessionScope.options.messageEarnings}">
+                            <p class="topMsg error-hint" role="alert">${sessionScope.options.messageEarnings}</p>
+                        </c:if>
                                 <form
                                     class="no-print searchForm"
                                     action="earningsByPayDate"
@@ -210,7 +204,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     method="POST"
                                 >
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <div class="form-group in-line">
+                                    <div class="form-group in-line paddingSide-0">
                                         <label class="form-title" for="payDateString"><span>${sessionScope.languageJSON.label.payDates}</span>:</label>
                                         <select class="form-control" name="payDateString" id="payDateString" onchange="submitEarning()" style="max-width:280px;">
                                             <c:forEach var="payDate" items="${payDates}" varStatus="counter">

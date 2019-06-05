@@ -477,6 +477,11 @@
   margin-bottom: 0;
 }
 
+.searchForm .form-group.paddingSide-0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .searchForm .form-group.flex-auto {
   flex: 0 0 auto;
   margin-bottom: 10px;

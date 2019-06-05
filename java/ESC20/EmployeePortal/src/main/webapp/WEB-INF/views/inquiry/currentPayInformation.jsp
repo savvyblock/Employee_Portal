@@ -55,9 +55,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         </div>
                         
                         <c:if test="${not empty sessionScope.options.messageCurrentPayInformation}">
-                            <br/>
-                            <p class="topMsg">${sessionScope.options.messageCurrentPayInformation}</p>
-                            <br/>
+                            <p class="topMsg error-hint" role="alert">${sessionScope.options.messageCurrentPayInformation}</p>
                         </c:if>
                         <div class="needToClone">
                         	<input type="hidden" id="isPrintPDF" value="${isPrintPDF}" />

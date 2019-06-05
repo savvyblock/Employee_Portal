@@ -76,9 +76,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </div>
                         </div>
                         <c:if test="${not empty sessionScope.options.messageCalendarYearToDate}">
-                            <br/>
-                            <p class="topMsg">${sessionScope.options.messageCalendarYearToDate}</p>
-                            <br/>
+                            <p class="topMsg error-hint" role="alert">${sessionScope.options.messageCalendarYearToDate}</p>
                         </c:if>
                         <form
                             class="no-print searchForm"
@@ -87,7 +85,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             method="POST"
                         >
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            <div class="form-group in-line">
+                            <div class="form-group in-line paddingSide-0">
                                 <label class="form-title" for="year"
                                     >${sessionScope.languageJSON.label.pleaseSelectYear}</label
                                 >
