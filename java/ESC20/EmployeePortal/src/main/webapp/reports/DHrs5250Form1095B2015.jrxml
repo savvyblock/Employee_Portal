@@ -4913,7 +4913,7 @@
 			<frame>
 				<reportElement key="Page 3 Part IV Continuation Sheet" x="0" y="0" width="720" height="540" uuid="e40e64e4-fd82-498c-9879-983883b79f22">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
-					<printWhenExpression><![CDATA[$F{formpagenbr}.equals( "1" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+					<printWhenExpression><![CDATA[$F{formpagenbr}.equals( "3" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
 				</reportElement>
 				<staticText>
 					<reportElement x="613" y="1" width="106" height="12" uuid="6c2d8ad6-f2c3-4963-9501-ee29217bc58c"/>
