@@ -1,11 +1,15 @@
 package com.esc20.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BeaEmail;
@@ -48,17 +52,15 @@ public class CreateUserController {
 		return mav;
 	}
 
-	@RequestMapping("saveNewUser")
-	public ModelAndView saveNewUser(HttpServletRequest req) {
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value = "saveNewUser", method = RequestMethod.POST)
+    @ResponseBody
+	public Map<String, String> saveNewUser(HttpServletRequest req) {
+		Map<String, String> res = new HashMap<>();
 		if (req.getParameter("empNbr") == null || req.getParameter("username") == null
 				|| req.getParameter("hintQuestion") == null || req.getParameter("hintAnswer") == null
 				|| req.getParameter("password") == null) {
-			mav.setViewName("visitFailedUnAuth");
-			mav.addObject("module", module);
-			mav.addObject("action", "Save Users");
-			mav.addObject("errorMsg", "Not all mandotary fields provided.");
-			return mav;
+			res.put("success", "false");
+			return res;
 		}
 		BeaUsers newUser = new BeaUsers();
 		newUser.setEmpNbr(req.getParameter("empNbr"));
@@ -88,21 +90,20 @@ public class CreateUserController {
 		searchUser.setZipCode(bed.getAddrZip());
 		BeaUsers user = indexService.getUserByUsername(req.getParameter("username"));
 		if (user != null) {
-			mav.setViewName("createNewUser");
-			mav.addObject("user", searchUser);
-			mav.addObject("newUser", newUser);
-			mav.addObject("isUserExist", "true");
+			res.put("isUserExist", "true");
+			res.put("success", "false");
+			return res;
 		} else {
 			this.indexService.updateEmailEmployee(newUser.getEmpNbr(), req.getParameter("workEmail"),
 					req.getParameter("homeEmail"));
 			indexService.saveBeaUsers(newUser);
-			mav.setViewName("login");
-			mav.addObject("user", user);
-			mav.addObject("newUser", newUser);
-			mav.addObject("isSuccess", "true");
+			res.put("isUserExist", "true");
+			res.put("success", "true");
+			res.put("username", req.getParameter("username"));
+			res.put("password", req.getParameter("password"));
 		}
 
-		return mav;
+		return res;
 	}
 
 	@RequestMapping(value = "retrieveEmployee", method = RequestMethod.POST)
