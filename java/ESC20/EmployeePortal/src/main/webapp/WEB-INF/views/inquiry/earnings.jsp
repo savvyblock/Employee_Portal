@@ -284,6 +284,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <h2 class="no-print table-top-title">
                                                     <b>${sessionScope.languageJSON.label.earningAndDeductions}</b>
                                                 </h2>
+                                                <p style="text-align:right;padding-right: 0px;margin: 0;">
+                                                	<b>${sessionScope.languageJSON.label.noteEarning}</b>
+                                                </p>
                                                 <table
                                                     class="table border-table no-thead print-table earning-table"
                                                 >

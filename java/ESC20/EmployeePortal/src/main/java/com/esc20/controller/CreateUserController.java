@@ -94,8 +94,7 @@ public class CreateUserController {
 			res.put("success", "false");
 			return res;
 		} else {
-			this.indexService.updateEmailEmployee(newUser.getEmpNbr(), req.getParameter("workEmail"),
-					req.getParameter("homeEmail"));
+			this.indexService.updateEmailEmployee(newUser.getEmpNbr(), req.getParameter("homeEmail"));
 			indexService.saveBeaUsers(newUser);
 			res.put("isUserExist", "true");
 			res.put("success", "true");

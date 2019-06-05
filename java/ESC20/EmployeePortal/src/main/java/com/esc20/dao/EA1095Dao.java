@@ -42,7 +42,7 @@ public class EA1095Dao {
         Query q = session.createQuery(retrieveSQL);
         q.setParameter("employeeNumber", employeeNumber);
 		Character result = ((Character)q.uniqueResult());
-		String res = result==null?"N":result.toString();
+		String res = result==null?"":result.toString();
 		
 		if(res!=null)
 			return res.trim();

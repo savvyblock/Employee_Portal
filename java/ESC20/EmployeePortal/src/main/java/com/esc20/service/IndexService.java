@@ -323,8 +323,8 @@ public class IndexService {
 		
 	}
 	
-	public void updateEmailEmployee(String employeeNumber, String workEmail, String hmEmail) {
-		 userDao.updateEmailEmployee(employeeNumber,workEmail,hmEmail);
+	public void updateEmailEmployee(String employeeNumber, String hmEmail) {
+		 userDao.updateEmailEmployee(employeeNumber, hmEmail);
 		
 	}
 	public Boolean isSupervisor(String empNbr) {
