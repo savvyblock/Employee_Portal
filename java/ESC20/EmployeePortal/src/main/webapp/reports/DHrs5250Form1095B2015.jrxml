@@ -5,8 +5,8 @@
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="507"/>
-	<property name="ireport.y" value="192"/>
+	<property name="ireport.x" value="509"/>
+	<property name="ireport.y" value="720"/>
 	<field name="webroot" class="java.lang.String"/>
 	<field name="both_side" class="java.lang.String"/>
 	<field name="formpagenbr" class="java.lang.String"/>
@@ -552,7 +552,7 @@
 				</staticText>
 				<frame>
 					<reportElement key="Page 2 Instructions" x="0" y="0" width="720" height="540" uuid="ed52e5ab-05af-485c-90e4-0b950694f821">
-						<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+						<property name="net.sf.jasperreports.export.pdf.tag.table"/>
 						<printWhenExpression><![CDATA[$F{formpagenbr}.equals( "1" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
 					</reportElement>
 					<staticText>
@@ -4885,13 +4885,22 @@
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
-						<reportElement x="0" y="0" width="577" height="10" uuid="e7979df4-f7b2-4288-86ab-6f7364652095">
+						<reportElement x="0" y="0" width="220" height="10" uuid="e7979df4-f7b2-4288-86ab-6f7364652095">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Bottom">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
 						</textElement>
-						<text><![CDATA[For Privacy Act and Paperwork Reduction Act Notice, see the current version of the Instructions for Forms 1094-B, 1095-B, 1094-C, and 1095-C.]]></text>
+						<text><![CDATA[For Privacy Act and Paperwork Reduction Act Notice,]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="220" y="0" width="365" height="10" uuid="8e712aeb-5880-4928-a89b-593a897fadde">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Bottom">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+						</textElement>
+						<text><![CDATA[see the current version of the Instructions for Forms 1094-B, 1095-B, 1094-C, and 1095-C.]]></text>
 					</staticText>
 					<textField>
 						<reportElement x="579" y="0" width="60" height="10" uuid="8bd00cee-c110-4dcb-959a-c71465f5fa4e">
