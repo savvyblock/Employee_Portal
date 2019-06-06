@@ -1,6 +1,154 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<c:forEach var="cEmpItem" items="${cEmpList}" varStatus="status">
+		<c:if test="${cEmpItem.year == selectedYear}">
+			<table
+			class="table border-table responsive-table no-thead print-table money-table mb-0 tableSelf"
+			>
+			<thead>
+					<tr class="print-tr">
+							<td
+									colspan="7"
+									class="sub-title"
+									style="width:50%;"
+							>
+							<span>${sessionScope.languageJSON.info1095Table.partIIEmployee}</span>
+							</td>
+							<td colspan="7">
+											<span>${sessionScope.languageJSON.info1095Table.planStartMonth}</span>:
+									<b class="font-20">09</b>
+							</td>
+					</tr>
+					<tr>
+							<td></td>
+							<th id="allMonthsMoney">${sessionScope.languageJSON.info1095Table.allMonths}</th>
+							<th id="janMoney">${sessionScope.languageJSON.info1095Table.Jan}</th>
+							<th id="febMoney">${sessionScope.languageJSON.info1095Table.Feb}</th>
+							<th id="marMoney">${sessionScope.languageJSON.info1095Table.Mar}</th>
+							<th id="aprMoney">${sessionScope.languageJSON.info1095Table.Apr}</th>
+							<th id="mayMoney">${sessionScope.languageJSON.info1095Table.May}</th>
+							<th id="junMoney">${sessionScope.languageJSON.info1095Table.Jun}</th>
+							<th id="julMoney">${sessionScope.languageJSON.info1095Table.Jul}</th>
+							<th id="augMoney">${sessionScope.languageJSON.info1095Table.Aug}</th>
+							<th id="sepMoney">${sessionScope.languageJSON.info1095Table.Sep}</th>
+							<th id="octMoney">${sessionScope.languageJSON.info1095Table.Oct}</th>
+							<th id="novMoney">${sessionScope.languageJSON.info1095Table.Nov}</th>
+							<th id="decMoney">${sessionScope.languageJSON.info1095Table.Dec}</th>
+					</tr>
+			</thead>
+			<tbody>
+					<tr>
+							<th id="offerOfCoverage" class="tr-title">
+									<div class="print-show">14 <span>${sessionScope.languageJSON.info1095Table.offerOfCoverage}</span></div>
+									<span class="print-hide">${sessionScope.languageJSON.info1095Table.offerOfCoverageSimple}</span>
+							</th>
+							<td headers="allMonthsMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.allMonths}">${cEmpItem.monAll.offrOfCovrg}</td>
+							<td headers="janMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Jan}">${cEmpItem.mon01.offrOfCovrg}</td>
+							<td headers="febMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Feb}">${cEmpItem.mon02.offrOfCovrg}</td>
+							<td headers="marMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Mar}">${cEmpItem.mon03.offrOfCovrg}</td>
+							<td headers="aprMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Apr}">${cEmpItem.mon04.offrOfCovrg}</td>
+							<td headers="mayMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.May}">${cEmpItem.mon05.offrOfCovrg}</td>
+							<td headers="junMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Jun}">${cEmpItem.mon06.offrOfCovrg}</td>
+							<td headers="julMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Jul}">${cEmpItem.mon07.offrOfCovrg}</td>
+							<td headers="augMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Aug}">${cEmpItem.mon08.offrOfCovrg}</td>
+							<td headers="sepMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Sep}">${cEmpItem.mon09.offrOfCovrg}</td>
+							<td headers="octMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Oct}">${cEmpItem.mon10.offrOfCovrg}</td>
+							<td headers="novMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Nov}">${cEmpItem.mon11.offrOfCovrg}</td>
+							<td headers="decMoney offerOfCoverage" data-title="${sessionScope.languageJSON.info1095Table.Dec}">${cEmpItem.mon12.offrOfCovrg}</td>
+					</tr>
+					<tr>
+							<th id="employeeShare" class="tr-title">
+									<div class="print-show">15 <span>${sessionScope.languageJSON.info1095Table.employeeRequiredContribution}</span></div>
+									<span class="print-hide">${sessionScope.languageJSON.info1095Table.employeeShare}</span>
+							</th>
+							<td headers="allMonthsMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.allMonths}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.monAll.empShr}
+							</td>
+							<td headers="janMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Jan}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon01.empShr}
+							</td>
+							<td headers="febMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Feb}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon02.empShr}
+							</td>
+							<td headers="marMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Mar}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon03.empShr}
+							</td>
+							<td headers="aprMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Apr}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon04.empShr}
+							</td>
+							<td headers="mayMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.May}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon05.empShr}
+							</td>
+							<td headers="junMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Jun}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon06.empShr}
+							</td>
+							<td headers="julMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Jul}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon07.empShr}
+							</td>
+							<td headers="augMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Aug}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon08.empShr}
+							</td>
+							<td headers="sepMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Sep}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon09.empShr}
+							</td>
+							<td headers="octMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Oct}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon10.empShr}
+							</td>
+							<td headers="novMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Nov}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon11.empShr}
+							</td>
+							<td headers="decMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Dec}">
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon12.empShr}
+							</td>
+					</tr>
+					<tr>
+							<th id="SafeHarbor" class="tr-title">
+									<div class="print-show">16 <span>${sessionScope.languageJSON.info1095Table.section4980HSafeHarbor}</span></div>
+									<span class="print-hide">${sessionScope.languageJSON.info1095Table.SafeHarbor}</span>
+							</th>
+							<td headers="allMonthsMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.allMonths}">${cEmpItem.monAll.safeHrbr}</td>
+							<td headers="janMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Jan}">${cEmpItem.mon01.safeHrbr}</td>
+							<td headers="febMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Feb}">${cEmpItem.mon02.safeHrbr}</td>
+							<td headers="marMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Mar}">${cEmpItem.mon03.safeHrbr}</td>
+							<td headers="aprMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Apr}">${cEmpItem.mon04.safeHrbr}</td>
+							<td headers="mayMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.May}">${cEmpItem.mon05.safeHrbr}</td>
+							<td headers="junMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Jun}">${cEmpItem.mon06.safeHrbr}</td>
+							<td headers="julMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Jul}">${cEmpItem.mon07.safeHrbr}</td>
+							<td headers="augMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Aug}">${cEmpItem.mon08.safeHrbr}</td>
+							<td headers="sepMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Sep}">${cEmpItem.mon09.safeHrbr}</td>
+							<td headers="octMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Oct}">${cEmpItem.mon10.safeHrbr}</td>
+							<td headers="novMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Nov}">${cEmpItem.mon11.safeHrbr}</td>
+							<td headers="decMoney SafeHarbor" data-title="${sessionScope.languageJSON.info1095Table.Dec}">${cEmpItem.mon12.safeHrbr}</td>
+					</tr>
+			</tbody>
+			</table>
+			<h2 class="table-top-title no-print">
+					<b>${sessionScope.languageJSON.info1095Table.coverIndividuals}</b>
+			</h2>
+			<div class="flex self-insured-flex no-print">
+					<div class="self-insured-tips">
+							<span>${sessionScope.languageJSON.info1095Table.ifEmployerProvidedSelfInsurance}</span>
+					</div>
+					<div class="self-insured-check">
+							<div>
+											<label for="selfInsured">${sessionScope.languageJSON.info1095Table.selfInsured}</label>:
+									<input
+											class="icheck"
+											type="checkbox"
+											name="selfInsured"
+											id="selfInsured"
+											<c:if test="${cEmpItem.monAll.selfIns=='Y'}">checked="checked"</c:if>
+											disabled
+									/>
+							</div>
+					</div>
+					<div class="self-insured-time">
+									<span>${sessionScope.languageJSON.info1095Table.planStartMonth}</span>: ${cEmpItem.monAll.planStrtMon}
+					</div>
+			</div>
+		</c:if>
+</c:forEach>
 <table class="groupWrapTable" style="border:0;margin: 0;width:100%;">
 	<tr>
 		<td style="padding:0;">
@@ -16,7 +164,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 						<span class="print-check-disabled print-show">
 							<i class="fa fa-times"></i>
 						</span>
-						<input class="checkBoxOld print-hide" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" checked disabled/>
+						<input class="checkBoxOld print-hide" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" checked disabled/>
 					</td>
 				</tr>
 			</table>
@@ -88,7 +236,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 													</span>
 										</c:if>
 										<c:if test="${itemC.monAll=='N'}">
-												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.Jan}">
@@ -98,7 +246,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 													</span>
 										</c:if>
 										<c:if test="${itemC.mon01=='N'}">
-												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.Feb}">
@@ -108,7 +256,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 													</span>
 										</c:if>
 										<c:if test="${itemC.mon02=='N'}">
-												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.Mar}">
@@ -118,7 +266,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 													</span>
 										</c:if>
 										<c:if test="${itemC.mon03=='N'}">
-												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.Apr}">
@@ -128,7 +276,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 													</span>
 										</c:if>
 										<c:if test="${itemC.mon04=='N'}">
-												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.May}">
@@ -138,7 +286,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 													</span>
 										</c:if>
 										<c:if test="${itemC.mon05=='N'}">
-												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.Jun}">
@@ -148,7 +296,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 													</span>
 										</c:if>
 										<c:if test="${itemC.mon06=='N'}">
-												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.Jul}">
@@ -158,7 +306,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 													</span>
 										</c:if>
 										<c:if test="${itemC.mon07=='N'}">
-												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.Aug}">
@@ -168,7 +316,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 													</span>
 										</c:if>
 										<c:if test="${itemC.mon08=='N'}">
-												<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.Sep}">
@@ -178,7 +326,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 											</span>
 								</c:if>
 								<c:if test="${itemC.mon09=='N'}">
-										<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+										<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 								</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.Oct}">
@@ -188,7 +336,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 											</span>
 								</c:if>
 								<c:if test="${itemC.mon10=='N'}">
-										<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+										<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 								</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.Nov}">
@@ -198,7 +346,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 											</span>
 								</c:if>
 								<c:if test="${itemC.mon11=='N'}">
-										<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+										<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 								</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.Dec}">
@@ -208,7 +356,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 											</span>
 								</c:if>
 								<c:if test="${itemC.mon12=='N'}">
-										<input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.label.checkbox}" />
+										<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 								</c:if>
 								</td>
 							</tr>
@@ -228,7 +376,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	</tr>
 	
 <c:if test="${fn:length(cList) > 0}">
-	<tr>
+	<tr class="print-hide">
 		<td>
 				
 			<div class="pageGroup">

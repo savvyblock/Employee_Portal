@@ -1384,6 +1384,9 @@
     display: table-cell !important;
     vertical-align: center;
   }
+  .table td.print-hide, .table th.print-hide {
+    display: none !important;
+  }
   .table .print-td {
     display: table-cell;
   }
@@ -1429,11 +1432,17 @@
   .table.print-table td:before {
     display: none;
   }
+  .table.print-table td.print-hide {
+    display: none !important;
+  }
   .table.border-table {
     border-color: 1px solid #000 !important;
   }
   .table.border-table thead td, .table.border-table thead th {
     border-width: 1px;
+  }
+  .table.border-table thead td.print-hide, .table.border-table thead th.print-hide {
+    display: none !important;
   }
   .table.border-table td, .table.border-table th {
     border-color: #000 !important;
