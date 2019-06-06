@@ -1414,7 +1414,7 @@
     display: none;
   }
   .table.print-table th, .table.print-table td {
-    padding: 3px 5px;
+    padding: 3px 2px;
   }
   .table.print-table th.td-content, .table.print-table td.td-content {
     text-align: right;
