@@ -215,9 +215,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 						<c:forEach var="itemC" items="${cList}">
 							<tr>
 								<td class="print-hide" scope="${sessionScope.languageJSON.info1095Table.firstName}"  data-title="${sessionScope.languageJSON.info1095Table.firstName}">${itemC.nameF}</td>
-								<td class="print-hide" scope="${sessionScope.languageJSON.info1095Table.lastName}"  data-title="${sessionScope.languageJSON.info1095Table.lastName}">${itemC.nameM}</td>
+								<td class="print-hide" scope="${sessionScope.languageJSON.info1095Table.lastName}"  data-title="${sessionScope.languageJSON.info1095Table.lastName}">${itemC.nameL}</td>
 								<td scope="${sessionScope.languageJSON.info1095Table.middleName}"  data-title="${sessionScope.languageJSON.info1095Table.middleName}">
-									<span class="print-hide">${itemC.nameL}</span>
+									<span class="print-hide">${itemC.nameM}</span>
 									<span class="print-show">${itemC.nameF} ${itemC.nameM} ${itemC.nameL}</span>
 								</td>
 								<td class="print-hide" scope="${sessionScope.languageJSON.info1095Table.generation}"  data-title="${sessionScope.languageJSON.info1095Table.generation}">
