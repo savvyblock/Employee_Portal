@@ -142,7 +142,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 										</c:if>
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.Jun}">
-										<c:if test="${itemC.mon6 == 'Y'}">
+										<c:if test="${itemC.mon06 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
 													</span>

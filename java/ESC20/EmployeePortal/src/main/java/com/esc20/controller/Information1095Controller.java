@@ -186,24 +186,22 @@ public class Information1095Controller{
 		String consent = this.service.get1095Consent(employeeNumber);
 		Integer BTotal = this.service.getBInfoTotal(employeeNumber, year);
 		Integer CTotal = this.service.getCInfoTotal(employeeNumber, year);
-		// List<String> bCovrgTypList =
-		// this.service.retrieveEA1095BEmpInfo(employeeNumber,year);
+		List<Code> bCovrgTypList = this.service.retrieveEA1095BEmpInfo(employeeNumber,year);
 		List<BhrAca1095bCovrdHist> bList;
 		if (("B").equals(type))
 			bList = this.service.retrieveEA1095BInfo(employeeNumber, year, sortBy, sortOrder, BPageNo);
 		else
 			bList = this.service.retrieveEA1095BInfo(employeeNumber, year, null, null, 1);
-		// List<BhrAca1095cEmpHist> cEmpList =
-		// this.service.retrieveEA1095CEmpInfo(employeeNumber,year);
+		List<BhrAca1095cEmpHist> cEmpList = this.service.retrieveEA1095CEmpInfo(employeeNumber,year);
 		List<BhrAca1095cCovrdHist> cList;
 		if (("C").equals(type))
 			cList = this.service.retrieveEA1095CInfo(employeeNumber, year, sortBy, sortOrder, CPageNo);
 		else
 			cList = this.service.retrieveEA1095CInfo(employeeNumber, year, null, null, 1);
-//		if (bCovrgTypList.size() > 0) {
-//			mav.addObject("BCovrgTyp", bCovrgTypList.get(0));
-//			mav.addObject("BCovrgTypDescr", bCovrgTypList.get(1));
-//		}
+		if (bCovrgTypList.size() > 0) {
+			mav.addObject("BCovrgTyp", bCovrgTypList.get(0));
+			mav.addObject("BCovrgTypDescr", bCovrgTypList.get(1));
+		}
 		if (type == null) {
 			if (cList != null && cList.size() > 0)
 				mav.addObject("type", "C");

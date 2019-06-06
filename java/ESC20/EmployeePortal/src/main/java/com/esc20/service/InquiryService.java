@@ -901,38 +901,31 @@ public class InquiryService {
 
 	public List<BhrAca1095bCovrdHist> retrieveEA1095BInfo(String employeeNumber, String year, String sortBy,
 			String sortOrder, Integer bPageNo) {
-		// TODO Auto-generated method stub
 		return ea1095Dao.retrieveEA1095BInfo(employeeNumber, year, sortBy, sortOrder, bPageNo);
 	}
 
 	public List<BhrAca1095cCovrdHist> retrieveEA1095CInfo(String employeeNumber, String year, String sortBy,
 			String sortOrder, Integer cPageNo) {
-		// TODO Auto-generated method stub
 		return ea1095Dao.retrieveEA1095CInfo(employeeNumber, year, sortBy, sortOrder, cPageNo);
 	}
 
 	public List<Code> retrieveEA1095BEmpInfo(String employeeNumber, String year) {
-		// TODO Auto-generated method stub
 		return ea1095Dao.retrieveEA1095BEmpInfo(employeeNumber, year);
 	}
 
 	public List<BhrAca1095cEmpHist> retrieveEA1095CEmpInfo(String employeeNumber, String year) {
-		// TODO Auto-generated method stub
 		return ea1095Dao.retrieveEA1095CEmpInfo(employeeNumber, year);
 	}
 
 	public Integer getBInfoTotal(String employeeNumber, String year) {
-		// TODO Auto-generated method stub
 		return ea1095Dao.getBInfoTotal(employeeNumber, year);
 	}
 
 	public Integer getCInfoTotal(String employeeNumber, String year) {
-		// TODO Auto-generated method stub
 		return ea1095Dao.getCInfoTotal(employeeNumber, year);
 	}
 
 	public Boolean update1095ElecConsent(String employeeNumber, String consent) {
-		// TODO Auto-generated method stub
 		return ea1095Dao.update1095ElecConsent(employeeNumber, consent);
 	}
 	

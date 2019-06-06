@@ -91,7 +91,7 @@ public class EA1095Dao {
         }
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
-        q.setFirstResult(cPageNo*pageSize);  
+        q.setFirstResult((cPageNo-1)*pageSize);  
         q.setMaxResults(pageSize);  
         @SuppressWarnings("unchecked")
 		List<BhrAca1095cCovrdHist> result = q.list();
