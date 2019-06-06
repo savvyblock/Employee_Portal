@@ -24,6 +24,7 @@ import com.esc20.nonDBModels.Aca1095BPrint;
 import com.esc20.nonDBModels.Aca1095CPrint;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
+import com.esc20.nonDBModels.EA1095CEmployerShare;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
@@ -192,15 +193,15 @@ public class Information1095Controller{
 			bList = this.service.retrieveEA1095BInfo(employeeNumber, year, sortBy, sortOrder, BPageNo);
 		else
 			bList = this.service.retrieveEA1095BInfo(employeeNumber, year, null, null, 1);
-		List<BhrAca1095cEmpHist> cEmpList = this.service.retrieveEA1095CEmpInfo(employeeNumber,year);
+		List<EA1095CEmployerShare> cEmpList = this.service.retrieveEA1095CEmpInfo(employeeNumber,year);
 		List<BhrAca1095cCovrdHist> cList;
 		if (("C").equals(type))
 			cList = this.service.retrieveEA1095CInfo(employeeNumber, year, sortBy, sortOrder, CPageNo);
 		else
 			cList = this.service.retrieveEA1095CInfo(employeeNumber, year, null, null, 1);
 		if (bCovrgTypList.size() > 0) {
-			mav.addObject("BCovrgTyp", bCovrgTypList.get(0));
-			mav.addObject("BCovrgTypDescr", bCovrgTypList.get(1));
+			mav.addObject("BCovrgTyp", bCovrgTypList.get(0).getCode());
+			mav.addObject("BCovrgTypDescr", bCovrgTypList.get(0).getDescription());
 		}
 		if (type == null) {
 			if (cList != null && cList.size() > 0)
@@ -218,6 +219,7 @@ public class Information1095Controller{
 		mav.addObject("cList", cList);
 		mav.addObject("BPageNo", BPageNo);
 		mav.addObject("CPageNo", CPageNo);
+		mav.addObject("cEmpList", cEmpList);
 		mav.addObject("BTotal", BTotal);
 		mav.addObject("CTotal", CTotal);
 		mav.addObject("sortBy", sortBy);

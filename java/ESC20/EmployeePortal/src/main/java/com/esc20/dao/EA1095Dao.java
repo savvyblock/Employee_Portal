@@ -14,6 +14,7 @@ import com.esc20.model.BhrAca1095cCovrdHist;
 import com.esc20.model.BhrAca1095cEmpHist;
 import com.esc20.model.BrRptngContact;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.EA1095CEmployerShare;
 @Repository
 public class EA1095Dao {
 
@@ -91,11 +92,8 @@ public class EA1095Dao {
         }
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
-        q.setFirstResult((cPageNo-1)*pageSize);  
-        q.setMaxResults(pageSize);  
         @SuppressWarnings("unchecked")
 		List<BhrAca1095cCovrdHist> result = q.list();
-        
         return result;
 	}
 
@@ -120,16 +118,54 @@ public class EA1095Dao {
 		return result;
 	}
 
-	public List<BhrAca1095cEmpHist> retrieveEA1095CEmpInfo(String employeeNumber, String year) {
+	public List<EA1095CEmployerShare> retrieveEA1095CEmpInfo(String employeeNumber, String year) {
 		Session session = this.getSession();
-		String retrieveSQL = "FROM BhrAca1095cEmpHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";
+		String retrieveSQL = "FROM BhrAca1095cEmpHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr order by A.id.empNbr desc, A.id.calYr desc, A.id.calMon";
         Query q = session.createQuery(retrieveSQL);
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year); 
         @SuppressWarnings("unchecked")
 		List<BhrAca1095cEmpHist> result = q.list();
-        
-        return result;
+        List<EA1095CEmployerShare> shareResult = new ArrayList<EA1095CEmployerShare>();
+        EA1095CEmployerShare share;
+        for(int i=0;i<result.size();i++) {
+        	if(result.get(i).getId().getCalMon().equals("ALL")) {
+        		share = new EA1095CEmployerShare();
+        		share.setYear(result.get(i).getId().getCalYr());
+        		share.setMonAll(result.get(i));
+        		for(int j=0;j<result.size();j++) {
+        			if(result.get(i).getId().getEmpNbr().equals(result.get(j).getId().getEmpNbr()) && 
+        					result.get(i).getId().getCalYr().equals(result.get(j).getId().getCalYr())) {
+        				if(result.get(j).getId().getCalMon().equals("01"))
+        					share.setMon01(result.get(j));
+        				if(result.get(j).getId().getCalMon().equals("02"))
+        					share.setMon02(result.get(j));
+        				if(result.get(j).getId().getCalMon().equals("03"))
+        					share.setMon03(result.get(j));
+        				if(result.get(j).getId().getCalMon().equals("04"))
+        					share.setMon04(result.get(j));
+        				if(result.get(j).getId().getCalMon().equals("05"))
+        					share.setMon05(result.get(j));
+        				if(result.get(j).getId().getCalMon().equals("06"))
+        					share.setMon06(result.get(j));
+        				if(result.get(j).getId().getCalMon().equals("07"))
+        					share.setMon07(result.get(j));
+        				if(result.get(j).getId().getCalMon().equals("08"))
+        					share.setMon08(result.get(j));
+        				if(result.get(j).getId().getCalMon().equals("09"))
+        					share.setMon09(result.get(j));
+        				if(result.get(j).getId().getCalMon().equals("10"))
+        					share.setMon10(result.get(j));
+        				if(result.get(j).getId().getCalMon().equals("11"))
+        					share.setMon11(result.get(j));
+        				if(result.get(j).getId().getCalMon().equals("12"))
+        					share.setMon12(result.get(j));
+        			}
+        		}
+        		shareResult.add(share);
+        	}
+        }
+        return shareResult;
 	}
 
 	public Integer getBInfoTotal(String employeeNumber, String year) {

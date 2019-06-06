@@ -36,6 +36,7 @@ import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.Deduction;
 import com.esc20.nonDBModels.District;
+import com.esc20.nonDBModels.EA1095CEmployerShare;
 import com.esc20.nonDBModels.Earnings;
 import com.esc20.nonDBModels.EarningsBank;
 import com.esc20.nonDBModels.EarningsDeductions;
@@ -913,7 +914,7 @@ public class InquiryService {
 		return ea1095Dao.retrieveEA1095BEmpInfo(employeeNumber, year);
 	}
 
-	public List<BhrAca1095cEmpHist> retrieveEA1095CEmpInfo(String employeeNumber, String year) {
+	public List<EA1095CEmployerShare> retrieveEA1095CEmpInfo(String employeeNumber, String year) {
 		return ea1095Dao.retrieveEA1095CEmpInfo(employeeNumber, year);
 	}
 
