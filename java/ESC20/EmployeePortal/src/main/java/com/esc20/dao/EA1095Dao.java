@@ -73,6 +73,8 @@ public class EA1095Dao {
         }
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
+        q.setFirstResult((bPageNo-1)*pageSize);  
+        q.setMaxResults(pageSize);
         @SuppressWarnings("unchecked")
 		List<BhrAca1095bCovrdHist> result = q.list();
         
@@ -90,6 +92,8 @@ public class EA1095Dao {
         }
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
+        q.setFirstResult((cPageNo-1)*pageSize);  
+        q.setMaxResults(pageSize);
         @SuppressWarnings("unchecked")
 		List<BhrAca1095cCovrdHist> result = q.list();
         return result;
