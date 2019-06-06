@@ -933,4 +933,8 @@ public class InquiryService {
 	public BrRptngContact getReportingContact() {
 		return ea1095Dao.getReportingContact();
 	}
+
+	public List<BhrAca1095cEmpHist> retrieveEA1095CEmpInfoPrint(String employeeNumber, String year) {
+		return ea1095Dao.retrieveEA1095CEmpInfoPrint(employeeNumber, year);
+	}
 }

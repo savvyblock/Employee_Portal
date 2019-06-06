@@ -199,4 +199,15 @@ public class EA1095Dao {
 		BrRptngContact res = (BrRptngContact) q.uniqueResult();
 		return res;
 	}
+
+	public List<BhrAca1095cEmpHist> retrieveEA1095CEmpInfoPrint(String employeeNumber, String year) {
+		Session session = this.getSession();
+		String retrieveSQL = "FROM BhrAca1095cEmpHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr order by A.id.empNbr desc, A.id.calYr desc, A.id.calMon";
+        Query q = session.createQuery(retrieveSQL);
+        q.setParameter("employeeNumber", employeeNumber);
+        q.setParameter("calYr", year); 
+        @SuppressWarnings("unchecked")
+		List<BhrAca1095cEmpHist> result = q.list();
+        return result;
+	}
 }

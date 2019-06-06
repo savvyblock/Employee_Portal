@@ -328,7 +328,7 @@ public class Information1095Controller{
 		District district = (District) session.getAttribute("district");
 		if (year == null)
 			year = DateUtil.getLatestYear(years);
-		List<BhrAca1095cEmpHist> cCovrgTypList = this.service.retrieveEA1095CEmpInfo(employeeNumber,year);
+		List<BhrAca1095cEmpHist> cCovrgTypList = this.service.retrieveEA1095CEmpInfoPrint(employeeNumber,year);
 		List<BhrAca1095cCovrdHist> cList = this.service.retrieveEA1095CInfo(employeeNumber, year, null, null, 1);
 		String taxYr = year==null?"":year;
 		print.setFormpagenbr("1");
