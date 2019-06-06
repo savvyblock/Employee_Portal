@@ -228,7 +228,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	</tr>
 	
 	<c:if test="${fn:length(bList) > 0}">
-		<tr>
+		<tr class="print-hide">
 			<td>
 				<table class="table border-table responsive-table no-thead print-table middle-td-table">
 					<tr>

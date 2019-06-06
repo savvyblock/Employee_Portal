@@ -1242,6 +1242,9 @@
             padding: 3px 5px;
             display: table-cell !important;
             vertical-align: center;
+            &.print-hide{
+                display: none!important;
+            }
         }
         .print-td{
             display: table-cell;
@@ -1288,6 +1291,9 @@
                 &:before {
                     display: none;
                 }
+                &.print-hide{
+                    display: none!important;
+                }
             }
         }
         &.border-table{
@@ -1295,6 +1301,9 @@
             thead{
                 td,th{
                     border-width: 1px;
+                    &.print-hide{
+                        display: none!important;
+                    }
                 }
             }
             td,th{
