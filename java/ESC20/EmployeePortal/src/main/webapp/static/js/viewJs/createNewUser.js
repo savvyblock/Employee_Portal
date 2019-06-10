@@ -52,9 +52,6 @@ $('#createNewUserForm').bootstrapValidator({
         },
         workEmail: {
             validators: {
-                notEmpty: {
-                    message: requiredFieldValidator
-                },
                 emailAddress: {
                     message: pleaseEnterCorrectFormatValidator
                 }
@@ -63,9 +60,6 @@ $('#createNewUserForm').bootstrapValidator({
         workEmailVerify: {
             trigger: null,
             validators: {
-                notEmpty: {
-                    message: requiredFieldValidator
-                },
                 identical: {
                     field: 'workEmail',
                     message:emailNotMatchValidator
