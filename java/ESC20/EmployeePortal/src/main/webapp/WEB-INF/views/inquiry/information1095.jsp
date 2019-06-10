@@ -30,7 +30,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             disabled
                                            >${sessionScope.languageJSON.label.consent1095}</button>
                                     </c:if>
-                                    <c:if test="${sessionScope.options.enable1095 == true && selectedYear <= sessionScope.options.w2Latest }">
+                                    <c:if test="${sessionScope.options.enable1095 == true && selectedYear <= latestYear }">
 	                                    <form class="no-print" action="exportPDF" method="POST">
 												<input type="hidden" name="${_csrf.parameterName}"
 													value="${_csrf.token}" />
