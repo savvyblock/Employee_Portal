@@ -79,7 +79,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <tr>
                                         <th id="userDetailAddress" class="td-title"  rowspan="2"><b>${sessionScope.languageJSON.currentPayTable.address}</b></th>
                                         <td headers="userDetailAddress" class="td-content" data-title="${sessionScope.languageJSON.currentPayTable.address}" rowspan="2">
-                                            ${sessionScope.userDetail.addrStr} ${sessionScope.userDetail.addrNbr}<br/>
+                                            ${sessionScope.userDetail.addrNbr} ${sessionScope.userDetail.addrStr}<br/>
                                             ${sessionScope.userDetail.addrCity},
                                             ${sessionScope.userDetail.addrSt} ${sessionScope.userDetail.addrZip}
                                         </td>

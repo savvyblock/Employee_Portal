@@ -19,7 +19,7 @@ $(function(){
         var approve = false;
         $('#approve').on('ifChecked', function(event) {
             $('.supervisorComment').show()
-            comment = true;
+            comment = false;
             action = true;
             approve = true
         })
