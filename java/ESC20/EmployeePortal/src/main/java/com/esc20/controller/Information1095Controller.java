@@ -211,6 +211,8 @@ public class Information1095Controller{
 		} else {
 			mav.addObject("type", type);
 		}
+		String latestYear = DateUtil.getLatestYear(years);
+		mav.addObject("latestYear", latestYear);
 		mav.addObject("years", years);
 		mav.addObject("selectedYear", year);
 		mav.addObject("consent", consent);
