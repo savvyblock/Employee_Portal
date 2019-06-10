@@ -78,8 +78,6 @@ $(document).ready(function() {
                     //   $('#EventDetailModal').modal('show')
                 },
                 eventRender: function(event, element, view) {
-                    console.log(event)
-                    console.log(element)
                     element.attr('data-toggle', 'modal')
                     element.attr('data-target', '#EventDetailModal')
                     element.append('<b>('+event.statusCd+')</b>')
