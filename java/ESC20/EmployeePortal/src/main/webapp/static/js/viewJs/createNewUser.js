@@ -50,6 +50,31 @@ $('#createNewUserForm').bootstrapValidator({
                 }
             }
         },
+        workEmail: {
+            validators: {
+                notEmpty: {
+                    message: requiredFieldValidator
+                },
+                emailAddress: {
+                    message: pleaseEnterCorrectFormatValidator
+                }
+            }
+        },
+        workEmailVerify: {
+            trigger: null,
+            validators: {
+                notEmpty: {
+                    message: requiredFieldValidator
+                },
+                identical: {
+                    field: 'workEmail',
+                    message:emailNotMatchValidator
+                },
+                emailAddress: {
+                    message: pleaseEnterCorrectFormatValidator
+                }
+            }
+        },
         homeEmail: {
             validators: {
               emailAddress: {
@@ -94,6 +119,8 @@ $(function(){
     	var password= $("#password").val();
         var homeE = $("#homeEmail").val()
         var homeEV = $("#verifyHomeEmail").val()
+        var workE = $("#workEmail").val()
+        var workEV = $("#verifyWorkEmail").val()
         var hintQuestion = $("#hintQuestion").val();
         var hintAnswer = $("#hintAnswer").val();
         var newUserFormValidator = $('#createNewUserForm').data(
@@ -102,12 +129,12 @@ $(function(){
         newUserFormValidator.validate()
         console.log(newUserFormValidator.isValid())
         if (newUserFormValidator.isValid()) {
-            if(homeE===homeEV){
+            if(workE===workEV && homeE===homeEV){
                 $.ajax({
                     type: 'post',
                     url: urlMain+'/createUser/saveNewUser',
                     cache: false,
-                    data: {empNbr: empNbr, username: username, password: password,
+                    data: {empNbr: empNbr, username: username, password: password, workEmail: workE,
                     		homeEmail: homeE, hintQuestion: hintQuestion, hintAnswer: hintAnswer, 
                     		csrfmiddlewaretoken: $("#csrfmiddlewaretoken").val()},
                     dataType: 'json',
@@ -119,6 +146,14 @@ $(function(){
                     }
                 })
             }else{
+                if(workE!=workEV){
+                    $("#workEmail").parents(".form-group").addClass("has-error").removeClass('has-success')
+                    $("#verifyWorkEmail").parents(".form-group")
+                    .addClass("has-error")
+                    .removeClass('has-success')
+                    .find(".help-block[data-bv-validator='identical']")
+                    .show()
+                }
                 if(homeE!=homeEV){
                     $("#homeEmail").parents(".form-group").addClass("has-error").removeClass('has-success')
                     $("#verifyHomeEmail")
