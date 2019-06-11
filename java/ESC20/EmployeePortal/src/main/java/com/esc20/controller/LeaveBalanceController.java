@@ -56,7 +56,7 @@ public class LeaveBalanceController{
 				//		start, end, freq);
 				List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
 				List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
-				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
+				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
 				leaveTypesWithAll.addAll(leaveTypes);
 				mav.setViewName("/leaveBalance/leaveBalance");
 				mav.addObject("selectedFreq", freq);
@@ -70,7 +70,7 @@ public class LeaveBalanceController{
 					end, freq);
 			List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
 			List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
-			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
+			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
 			leaveTypesWithAll.addAll(leaveTypes);
 			mav.setViewName("/leaveBalance/leaveBalance");
 			mav.addObject("selectedFreq", freq);

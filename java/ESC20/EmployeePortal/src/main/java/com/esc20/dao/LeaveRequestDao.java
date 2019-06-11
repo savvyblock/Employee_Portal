@@ -299,51 +299,50 @@ public class LeaveRequestDao {
 	public List<LeaveInfo> getLeaveInfo(String empNbr, String freq) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT LV.id.payFreq, LV.id.lvTyp, LV.lvBeginBal, LV.lvEarned, LV.lvUsed, ");
-		sql.append("		DES.longDescr, DES.postAgnstZeroBal, TP.daysHrs, TP.addSubtractBal, ");
-		//PENDING_EARNED
-		sql.append("		(SELECT SUM(ISNULL(xmi.lvUnitsEarned,0)) ");
-		sql.append("			FROM BhrEmpLvXmital xmi ");
-		sql.append("			WHERE xmi.id.cyrNyrFlg = 'C' AND ");
-		sql.append("				xmi.id.empNbr = :employeeNumber AND ");
-		sql.append("				xmi.id.payFreq = LV.id.payFreq AND ");
-		sql.append("				xmi.lvTyp = LV.id.lvTyp AND ");
-		sql.append("				xmi.processDt is null), ");
-		//PENDING_APPROVAL
-		sql.append("		(SELECT SUM(ISNULL(req.lvUnitsUsed,0)) ");
-		sql.append("			FROM BeaEmpLvRqst req ");
-		sql.append("			WHERE req.statusCd = 'P' AND ");
-		sql.append("				req.empNbr = :employeeNumber AND ");
-		sql.append("				req.payFreq = LV.id.payFreq AND ");
-		sql.append("				req.lvTyp = LV.id.lvTyp), ");
-		//PENDING_PAYROLL
-		sql.append("		(SELECT SUM(ISNULL(req2.lvUnitsUsed,0)) ");
-		sql.append("			FROM BeaEmpLvRqst req2 ");
-		sql.append("			WHERE req2.statusCd IN ('A','L') AND ");
-		sql.append("				req2.empNbr = :employeeNumber AND ");
-		sql.append("				req2.payFreq = LV.id.payFreq AND ");
-		sql.append("				req2.lvTyp = LV.id.lvTyp), ");
-		//PENDING_USED
-		sql.append("		(SELECT SUM(ISNULL(xmi2.lvUnitsUsed,0))");
-		sql.append("			FROM BhrEmpLvXmital xmi2 ");
-		sql.append("			WHERE xmi2.id.cyrNyrFlg = 'C' AND  ");
-		sql.append("				xmi2.id.empNbr = :employeeNumber AND  ");
-		sql.append("				xmi2.id.payFreq = LV.id.payFreq AND ");
-		sql.append("				xmi2.lvTyp = LV.id.lvTyp AND ");
-		sql.append("				xmi2.processDt is null) ");
+		sql.append("SELECT BHR_EMP_LV.PAY_FREQ, BHR_EMP_LV.LV_TYP, BHR_EMP_LV.LV_BEGIN_BAL, BHR_EMP_LV.LV_EARNED, BHR_EMP_LV.LV_USED, ");
+		sql.append("		BTHR_LV_TYP_DESCR.LONG_DESCR, BTHR_LV_TYP_DESCR.POST_AGNST_ZERO_BAL, BTHR_LV_TYP.DAYS_HRS, BTHR_LV_TYP.ADD_SUBTRACT_BAL, ");
+				
+		sql.append("		(SELECT ISNULL((SELECT SUM(ISNULL(BHR_EMP_LV_XMITAL.LV_UNITS_EARNED, 0))),0) ");
+		sql.append("			FROM BHR_EMP_LV_XMITAL ");
+		sql.append("			WHERE BHR_EMP_LV_XMITAL.CYR_NYR_FLG = 'C' AND ");
+		sql.append("				BHR_EMP_LV_XMITAL.EMP_NBR = :employeeNumber AND ");
+		sql.append("				BHR_EMP_LV_XMITAL.PAY_FREQ = BHR_EMP_LV.PAY_FREQ AND ");
+		sql.append("				BHR_EMP_LV_XMITAL.LV_TYP = BHR_EMP_LV.LV_TYP AND ");
+		sql.append("				LENGTH(TRIM(ISNULL(BHR_EMP_LV_XMITAL.PROCESS_DT, '')))=0) AS PENDING_EARNED, ");
+				
+		sql.append("		(SELECT ISNULL((SELECT SUM(ISNULL(BEA_EMP_LV_RQST.LV_UNITS_USED, 0))),0) ");
+		sql.append("			FROM BEA_EMP_LV_RQST ");
+		sql.append("			WHERE BEA_EMP_LV_RQST.STATUS_CD = 'P' AND ");
+		sql.append("				BEA_EMP_LV_RQST.EMP_NBR = :employeeNumber AND ");
+		sql.append("				BEA_EMP_LV_RQST.PAY_FREQ = BHR_EMP_LV.PAY_FREQ AND ");
+		sql.append("				BEA_EMP_LV_RQST.LV_TYP = BHR_EMP_LV.LV_TYP) AS PENDING_APPROVAL, ");
 
-		sql.append("	FROM BhrEmpLv LV, BthrLvTypDescr DES, BthrLvTyp TP");
-		sql.append("	WHERE LV.id.cyrNyrFlg = 'C' ");
-		sql.append("		AND LV.id.empNbr = :employeeNumber ");
-		sql.append("		AND LV.id.payFreq = :payFrequency ");
-		sql.append("		AND LV.id.lvTyp = DES.lvTyp ");
-		sql.append("		AND LV.id.lvTyp = TP.id.lvTyp ");
-		sql.append("		AND LV.id.payFreq = TP.id.payFreq ");
-		sql.append("		AND TP.stat='A' ");
-		sql.append("		AND DES.stat='A' ");
-		Query q = session.createQuery(sql.toString());
+		sql.append("		(SELECT ISNULL((SELECT SUM(ISNULL(BEA_EMP_LV_RQST.LV_UNITS_USED, 0))),0) ");
+		sql.append("			FROM BEA_EMP_LV_RQST ");
+		sql.append("			WHERE BEA_EMP_LV_RQST.STATUS_CD IN ('A','L') AND ");
+		sql.append("				BEA_EMP_LV_RQST.EMP_NBR = :employeeNumber AND ");
+		sql.append("				BEA_EMP_LV_RQST.PAY_FREQ = BHR_EMP_LV.PAY_FREQ AND ");
+		sql.append("				BEA_EMP_LV_RQST.LV_TYP = BHR_EMP_LV.LV_TYP) AS PENDING_PAYROLL, ");
+
+		sql.append("		(SELECT ISNULL((SELECT SUM(ISNULL(BHR_EMP_LV_XMITAL.LV_UNITS_USED, 0))),0) ");
+		sql.append("			FROM BHR_EMP_LV_XMITAL ");
+		sql.append("			WHERE BHR_EMP_LV_XMITAL.CYR_NYR_FLG = 'C' AND  ");
+		sql.append("				BHR_EMP_LV_XMITAL.EMP_NBR = :employeeNumber AND  ");
+		sql.append("				BHR_EMP_LV_XMITAL.PAY_FREQ = BHR_EMP_LV.PAY_FREQ AND ");
+		sql.append("				BHR_EMP_LV_XMITAL.LV_TYP = BHR_EMP_LV.LV_TYP AND  ");
+		sql.append("				LENGTH(TRIM(ISNULL(BHR_EMP_LV_XMITAL.PROCESS_DT, '')))=0) AS PENDING_USED ");
+				
+		sql.append("	FROM BHR_EMP_LV, BTHR_LV_TYP_DESCR, BTHR_LV_TYP ");
+		sql.append("	WHERE CYR_NYR_FLG = 'C' ");
+		sql.append("		AND EMP_NBR = :employeeNumber ");
+		sql.append("		AND BHR_EMP_LV.LV_TYP = BTHR_LV_TYP_DESCR.LV_TYP ");
+		sql.append("		AND BHR_EMP_LV.LV_TYP = BTHR_LV_TYP.LV_TYP ");
+		sql.append("		AND BHR_EMP_LV.PAY_FREQ = BTHR_LV_TYP.PAY_FREQ ");
+		sql.append("		AND BTHR_LV_TYP.STAT='A' ");
+		sql.append("		AND BTHR_LV_TYP_DESCR.STAT='A' ");
+		Query q = session.createSQLQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
-		q.setParameter("payFrequency", freq.charAt(0));
+		//q.setParameter("payFrequency", freq.charAt(0));
 		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 		
