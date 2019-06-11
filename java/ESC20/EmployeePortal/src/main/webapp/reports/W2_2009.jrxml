@@ -946,12 +946,12 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="257" y="18" width="10" height="10" uuid="db5f3479-27bc-490f-a232-d16d2a550cd0">
-							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<line>
 						<reportElement x="257" y="18" width="10" height="10" uuid="c7985edf-b041-4f04-83cc-ee858746e941">
-							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<textField>
@@ -980,12 +980,12 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="373" y="18" width="10" height="10" uuid="faec6f5f-28d7-47e5-831b-b78b86c42291">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<line>
 						<reportElement x="373" y="18" width="10" height="10" uuid="6b8d10a1-bce6-42e3-9268-3e21d846fb19">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<elementGroup/>
@@ -1015,12 +1015,12 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="486" y="18" width="10" height="10" uuid="64652d47-bcb0-4c20-b674-dc3b2afbea8d">
-							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<line>
 						<reportElement x="486" y="18" width="10" height="10" uuid="a0a16f14-66ab-4981-af4f-0ea396998765">
-							<printWhenExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<textField>

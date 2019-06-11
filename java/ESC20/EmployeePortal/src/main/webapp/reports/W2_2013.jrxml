@@ -962,12 +962,12 @@ However, if you were at least age 50 in 2013, your employer may have allowed an 
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="257" y="18" width="10" height="10" uuid="01f9bc2c-10cf-41f4-aa9d-ea647188d5ac">
-							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<line>
 						<reportElement x="257" y="18" width="10" height="10" uuid="34e8eb3b-945d-42df-a4ee-febd4451e552">
-							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<textField>
@@ -996,12 +996,12 @@ However, if you were at least age 50 in 2013, your employer may have allowed an 
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="373" y="18" width="10" height="10" uuid="c90ed118-0d70-48c9-9951-108e44f919fe">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<line>
 						<reportElement x="373" y="18" width="10" height="10" uuid="399f2c9b-9615-4f5b-afec-9a3c762061e0">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<elementGroup/>
@@ -1031,12 +1031,12 @@ However, if you were at least age 50 in 2013, your employer may have allowed an 
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="486" y="18" width="10" height="10" uuid="fc025649-5ba6-4a97-aebe-8d64b2f3ad7c">
-							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<line>
 						<reportElement x="486" y="18" width="10" height="10" uuid="a0cf5840-0797-46bd-b15e-90bde24ffc72">
-							<printWhenExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<textField>

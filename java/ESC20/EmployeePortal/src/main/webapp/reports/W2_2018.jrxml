@@ -1055,12 +1055,12 @@
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="257" y="18" width="10" height="10" uuid="9275f23b-ab82-4350-9559-8e11cd625150">
-							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<line>
 						<reportElement x="257" y="18" width="10" height="10" uuid="a8e9321f-aa6e-4cdd-8b51-f4895e1107c0">
-							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<textField>
@@ -1089,12 +1089,12 @@
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="373" y="18" width="10" height="10" uuid="9d3c6a22-f790-4835-a44f-290afd356302">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<line>
 						<reportElement x="373" y="18" width="10" height="10" uuid="545659f8-5ca9-49db-b41c-8353ba3d407e">
-							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{retplan}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<elementGroup/>
@@ -1124,12 +1124,12 @@
 					</rectangle>
 					<line direction="BottomUp">
 						<reportElement x="486" y="18" width="10" height="10" uuid="a86ba35e-e8b6-463e-bd73-1fe42397a0c2">
-							<printWhenExpression><![CDATA[$F{statemp}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<line>
 						<reportElement x="486" y="18" width="10" height="10" uuid="58143952-9015-407c-9efd-751f5e81ff28">
-							<printWhenExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<printWhenExpression><![CDATA[$F{thrdsick}.contains( "unchecked" ) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 						</reportElement>
 					</line>
 					<textField>
