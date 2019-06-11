@@ -1278,6 +1278,9 @@
                 &.td-content{
                     text-align: right;
                 }
+                &.text-right{
+                    text-align: right!important;
+                }
             }
             td {
                 display: table-cell !important;
@@ -1293,6 +1296,11 @@
                 }
                 &.print-hide{
                     display: none!important;
+                }
+            }
+            &.tableColumn4{
+                td,th{
+                    width: 25%;
                 }
             }
         }
