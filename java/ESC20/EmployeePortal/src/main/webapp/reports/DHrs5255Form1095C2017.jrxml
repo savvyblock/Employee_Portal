@@ -1497,7 +1497,7 @@ see IRS.gov.]]></text>
 						</box>
 						<staticText>
 							<reportElement x="0" y="1" width="50" height="10" uuid="903b4433-ec57-4a14-93e2-0662d70cd34d">
-								<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+								<property name="net.sf.jasperreports.export.pdf.tag.td"/>
 							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
@@ -1507,7 +1507,7 @@ see IRS.gov.]]></text>
 					</frame>
 					<frame>
 						<reportElement key="Part II Feb" x="165" y="0" width="50" height="12" uuid="ccffa1c5-49de-43fd-a184-cbe117bb9ec4">
-							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
 						</reportElement>
 						<box>
 							<leftPen lineWidth="0.5"/>
@@ -1658,7 +1658,9 @@ see IRS.gov.]]></text>
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<staticText>
-							<reportElement x="0" y="1" width="50" height="10" uuid="3b2ca2f2-cfb2-424a-a907-eb947993cfce"/>
+							<reportElement x="0" y="1" width="50" height="10" uuid="3b2ca2f2-cfb2-424a-a907-eb947993cfce">
+								<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 							</textElement>
@@ -5322,15 +5324,39 @@ see IRS.gov.]]></text>
 					<reportElement x="0" y="521" width="720" height="15" uuid="c6da9b5e-b152-4b52-9a7c-e72c351bad68">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
-					<staticText>
-						<reportElement x="0" y="0" width="402" height="10" uuid="96811c78-e181-49b0-9048-090b4df1299a">
+					<frame>
+						<reportElement x="0" y="0" width="400" height="15" uuid="2ecadcde-270e-4a55-a49d-dff658709b37">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
-						<textElement textAlignment="Left" verticalAlignment="Bottom">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
-						</textElement>
-						<text><![CDATA[For Privacy Act and Paperwork Reduction Act Notice, see separate instructions.]]></text>
-					</staticText>
+						<staticText>
+							<reportElement x="0" y="0" width="80" height="15" uuid="44996765-12c5-4efe-9dba-02d8c7f2956e"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[For Privacy Act and ]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="81" y="0" width="87" height="15" uuid="0d57bbd8-ae0a-42d4-8339-81730edfa555"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[Paperwork Reduction]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="169" y="0" width="46" height="15" uuid="e1b9e40a-905d-488a-8b06-f2e46bae3e04"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[Act Notice,]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="214" y="0" width="105" height="15" uuid="b1bcc239-ebe0-4862-9d94-1f29b588fef0"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[see separate instructions.]]></text>
+						</staticText>
+					</frame>
 					<staticText>
 						<reportElement x="400" y="0" width="70" height="10" uuid="f4f8314b-23a4-45c1-8e37-810f481f8c12">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>

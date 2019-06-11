@@ -4691,15 +4691,39 @@
 					<reportElement x="0" y="521" width="720" height="18" uuid="2635139a-d637-43f3-a1d6-1d9fac97a025">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
-					<staticText>
-						<reportElement x="0" y="0" width="355" height="10" uuid="a596fd09-47be-4be9-9c93-c049f56c8127">
+					<frame>
+						<reportElement x="0" y="0" width="400" height="15" uuid="52eca05c-d577-40b4-96b0-f4f1e3f44a5c">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
-						<textElement textAlignment="Left" verticalAlignment="Bottom">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
-						</textElement>
-						<text><![CDATA[For Privacy Act and Paperwork Reduction Act Notice, see separate instructions.]]></text>
-					</staticText>
+						<staticText>
+							<reportElement x="0" y="0" width="80" height="15" uuid="86a316b0-e8a9-4c91-9dcd-e7823f3dde2c"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[For Privacy Act and ]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="81" y="0" width="87" height="15" uuid="4b2a9dc3-d630-4347-b001-60b8f4c42c69"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[Paperwork Reduction]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="169" y="0" width="46" height="15" uuid="23897d42-ef22-4021-bf69-9738aa1ef7eb"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[Act Notice,]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="214" y="0" width="105" height="15" uuid="08767db7-95e4-454d-b2db-5547c8ab459d"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[see separate instructions.]]></text>
+						</staticText>
+					</frame>
 					<staticText>
 						<reportElement x="367" y="0" width="70" height="10" uuid="e383bceb-4c80-4340-9ed2-2946601f02ec">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>

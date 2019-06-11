@@ -5,7 +5,7 @@
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="509"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="716"/>
 	<field name="webroot" class="java.lang.String"/>
 	<field name="both_side" class="java.lang.String"/>
@@ -889,7 +889,7 @@
 						</box>
 						<staticText>
 							<reportElement x="1" y="1" width="104" height="10" uuid="5e95cafe-e417-4b43-a814-76d6cd0c82dc">
-								<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+								<property name="net.sf.jasperreports.export.pdf.tag.td"/>
 							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="7"/>
@@ -1634,7 +1634,9 @@
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<staticText>
-							<reportElement x="0" y="1" width="50" height="10" uuid="4bb9a92a-8241-4379-aac5-cb25064b811d"/>
+							<reportElement x="0" y="1" width="50" height="10" uuid="4bb9a92a-8241-4379-aac5-cb25064b811d">
+								<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 							</textElement>
@@ -5300,15 +5302,60 @@
 					<reportElement x="0" y="520" width="720" height="15" uuid="cc340b22-f21f-47d6-a0c6-b1d6d02e988e">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
-					<staticText>
-						<reportElement x="0" y="0" width="577" height="10" uuid="c0ee1255-0478-4928-8468-50d7a9d5ad92">
+					<frame>
+						<reportElement x="0" y="0" width="576" height="15" uuid="49fd6fee-302b-4318-b785-4fc3d063b5b8">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
-						<textElement textAlignment="Left" verticalAlignment="Bottom">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
-						</textElement>
-						<text><![CDATA[For Privacy Act and Paperwork Reduction Act Notice, see the current version of the Instructions for Forms 1094-B, 1095-B, 1094-C, and 1095-C.]]></text>
-					</staticText>
+						<staticText>
+							<reportElement x="0" y="0" width="80" height="15" uuid="5b53c039-3dd6-493d-a09e-364c8b7aec38"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[For Privacy Act and ]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="81" y="0" width="87" height="15" uuid="46a505db-5307-4c6a-875c-b2caae0af690"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[Paperwork Reduction]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="169" y="0" width="46" height="15" uuid="6e676ca9-2997-440a-a493-a60ae0309961"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[Act Notice,]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="214" y="0" width="105" height="15" uuid="65c091ac-80d2-473c-8a1b-de34425628b7"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[see the current version of]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="319" y="0" width="103" height="15" uuid="52aafde3-fbaf-478b-b1cf-7c29d44939c7"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[the Instructions for Forms]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="421" y="0" width="67" height="15" uuid="18620d4e-dbf5-459f-95de-72bf0d85f7a4"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[1094-B,1095-B,]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="485" y="0" width="67" height="15" uuid="1c540f77-afbc-4cb9-81c2-1dd39cce04c7"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[1094-C,1095-C.]]></text>
+						</staticText>
+					</frame>
 					<textField>
 						<reportElement x="578" y="0" width="60" height="10" uuid="beafb59a-c531-4ca8-81ac-fac8b707837f">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
