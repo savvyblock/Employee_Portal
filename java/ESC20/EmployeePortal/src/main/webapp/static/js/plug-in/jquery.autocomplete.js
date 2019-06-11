@@ -16,6 +16,7 @@
 
 	$.fn.extend({
 		autocomplete: function(urlOrData, options) {
+			console.log(urlOrData)
 			var isUrl = typeof urlOrData == "string";
 			options = $.extend({}, $.Autocompleter.defaults, {
 				url: isUrl ? urlOrData : null,
@@ -367,7 +368,9 @@
 					success(term, data);
 				}
 				else{
-					var parsed = options.parse && options.parse(options.noRecord) || parse(options.noRecord);	
+					// var parsed = options.parse && options.parse(options.noRecord) || parse(options.noRecord);	
+					var parsed = []
+					// console.log(parsed)
 					success(term,parsed);
 				}
 			// if an AJAX url has been supplied, try loading the data now
@@ -456,7 +459,11 @@
 		inputFocus: true,
 		clickFire: false,
 		highlight: function(value, term) {
+			if(value){
 			return value.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1") + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
+			}else{
+				return ''
+			}
 		},
 		scroll: true,
 		scrollHeight: 180,
@@ -703,6 +710,7 @@
 		function fillList() {
 			list.empty();
 			var max = limitNumberOfItems(data.length);
+			console.log(data)
 			for (var i=0; i < max; i++) {
 				if (!data[i])
 					continue;
@@ -724,6 +732,7 @@
 	
 		return {
 			display: function(d, q) {
+				console.log(d)
 				init();
 				data = d;
 				term = q;

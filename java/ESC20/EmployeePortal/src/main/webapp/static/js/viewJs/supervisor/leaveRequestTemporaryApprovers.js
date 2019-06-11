@@ -245,16 +245,24 @@ function verifyRepeat() {
     }
 }
 function initialCompleteList() {
+    console.log(employeeList)
+    var newDirect = employeeList.filter(function(item){
+        if(item.employeeNumber && item.employeeNumber!=''){
+            return item
+        }
+    })
     $('.empControl').each(function() {
         var input = this
         $(this)
-            .autocomplete(employeeList, {
+            .autocomplete(newDirect, {
                 max: 10, //
                 minChars: 0, //
                 width: $(this).width() + 1, //
                 scrollHeight: 300, //
                 matchContains: true, //
-                autoFill: true, //
+                autoFill: false, //
+                mouseDownOnSelect:true,
+                clickFire:true,
                 formatItem: function(row, i, max) {
                     if (row.employeeNumber) {
                         $('#noResultError').hide()
