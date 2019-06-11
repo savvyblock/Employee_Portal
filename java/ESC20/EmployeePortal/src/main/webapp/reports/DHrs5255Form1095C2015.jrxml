@@ -6,7 +6,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="509"/>
-	<property name="ireport.y" value="44"/>
+	<property name="ireport.y" value="716"/>
 	<field name="webroot" class="java.lang.String"/>
 	<field name="both_side" class="java.lang.String"/>
 	<field name="formpagenbr" class="java.lang.String"/>
@@ -787,7 +787,7 @@
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<frame>
-						<reportElement key="Form 1095-B" x="0" y="0" width="108" height="47" uuid="960d92df-46bf-42ca-8d6c-42441986070e">
+						<reportElement key="Form 1095-C" x="0" y="0" width="108" height="47" uuid="960d92df-46bf-42ca-8d6c-42441986070e">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -806,7 +806,7 @@
 							<textElement verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="22" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
-							<text><![CDATA[1095-B]]></text>
+							<text><![CDATA[1095-C]]></text>
 						</staticText>
 						<staticText>
 							<reportElement x="3" y="25" width="90" height="19" uuid="df09d24b-e8ef-4c75-aa80-e14fc21822d4"/>
