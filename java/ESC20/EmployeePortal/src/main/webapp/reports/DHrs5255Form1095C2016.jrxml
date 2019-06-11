@@ -805,7 +805,7 @@
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<frame>
-						<reportElement key="Form 1095-B" x="0" y="0" width="108" height="47" uuid="d86fab2a-e5da-42f5-bee8-059bc4e1b9a4">
+						<reportElement key="Form 1095-C" x="0" y="0" width="108" height="47" uuid="d86fab2a-e5da-42f5-bee8-059bc4e1b9a4">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -824,7 +824,7 @@
 							<textElement verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="22" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
-							<text><![CDATA[1095-B]]></text>
+							<text><![CDATA[1095-C]]></text>
 						</staticText>
 						<staticText>
 							<reportElement x="3" y="25" width="90" height="19" uuid="81a4c9b0-4bc9-4ea4-9d82-b3b9667f6f69"/>
