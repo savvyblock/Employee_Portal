@@ -2433,16 +2433,25 @@ see IRS.gov.]]></text>
 						<text><![CDATA[Covered Individuals]]></text>
 					</staticText>
 					<staticText>
-						<reportElement mode="Opaque" x="61" y="12" width="450" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="0e670e68-44c3-421e-9d78-9160540b4d3a">
+						<reportElement mode="Opaque" x="61" y="12" width="330" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="0e670e68-44c3-421e-9d78-9160540b4d3a">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Left">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 						</textElement>
-						<text><![CDATA[If Employer provided self-insured coverage, check the box and enter the information for each covered individual.]]></text>
+						<text><![CDATA[If Employer provided self-insured coverage, check the box and enter the information for each]]></text>
+					</staticText>
+					<staticText>
+						<reportElement mode="Opaque" x="391" y="12" width="80" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="1fc0561e-5228-4229-8656-40cafbe4e712">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isPdfEmbedded="false"/>
+						</textElement>
+						<text><![CDATA[covered individual.]]></text>
 					</staticText>
 					<frame>
-						<reportElement x="463" y="8" width="87" height="15" uuid="8bb21a7b-6d68-492e-aef7-9c89972f870f">
+						<reportElement x="465" y="8" width="87" height="15" uuid="8bb21a7b-6d68-492e-aef7-9c89972f870f">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<rectangle>

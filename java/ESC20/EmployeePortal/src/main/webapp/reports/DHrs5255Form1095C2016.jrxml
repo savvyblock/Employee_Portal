@@ -6,7 +6,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="672"/>
+	<property name="ireport.y" value="0"/>
 	<field name="webroot" class="java.lang.String"/>
 	<field name="both_side" class="java.lang.String"/>
 	<field name="formpagenbr" class="java.lang.String"/>
@@ -2439,16 +2439,25 @@
 						<text><![CDATA[Covered Individuals]]></text>
 					</staticText>
 					<staticText>
-						<reportElement mode="Opaque" x="61" y="12" width="450" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="c21443c7-4d96-4158-a2ec-56edd21eb71d">
+						<reportElement mode="Opaque" x="61" y="12" width="330" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="c21443c7-4d96-4158-a2ec-56edd21eb71d">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Left">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 						</textElement>
-						<text><![CDATA[If Employer provided self-insured coverage, check the box and enter the information for each covered individual.]]></text>
+						<text><![CDATA[If Employer provided self-insured coverage, check the box and enter the information for each]]></text>
+					</staticText>
+					<staticText>
+						<reportElement mode="Opaque" x="391" y="12" width="80" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="5e97e191-4748-46d5-b716-13a2b0c3677f">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isPdfEmbedded="false"/>
+						</textElement>
+						<text><![CDATA[covered individual.]]></text>
 					</staticText>
 					<frame>
-						<reportElement x="459" y="8" width="87" height="15" uuid="190b5a3b-a80d-4074-9c56-b7dc95825463">
+						<reportElement x="465" y="8" width="87" height="15" uuid="190b5a3b-a80d-4074-9c56-b7dc95825463">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<rectangle>

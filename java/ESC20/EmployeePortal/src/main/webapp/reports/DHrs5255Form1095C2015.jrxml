@@ -5,8 +5,8 @@
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="716"/>
+	<property name="ireport.x" value="509"/>
+	<property name="ireport.y" value="140"/>
 	<field name="webroot" class="java.lang.String"/>
 	<field name="both_side" class="java.lang.String"/>
 	<field name="formpagenbr" class="java.lang.String"/>
@@ -2409,16 +2409,25 @@
 						<text><![CDATA[Covered Individuals]]></text>
 					</staticText>
 					<staticText>
-						<reportElement mode="Opaque" x="61" y="12" width="450" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="95f48495-53a9-4883-b779-ced77f68f80d">
+						<reportElement mode="Opaque" x="61" y="12" width="330" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="95f48495-53a9-4883-b779-ced77f68f80d">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Left">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="true"/>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 						</textElement>
-						<text><![CDATA[If Employer provided self-insured coverage, check the box and enter the information for each covered individual.]]></text>
+						<text><![CDATA[If Employer provided self-insured coverage, check the box and enter the information for each ]]></text>
+					</staticText>
+					<staticText>
+						<reportElement mode="Opaque" x="391" y="12" width="80" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="deb19d24-8a22-4403-bbc5-9b2fa877819b">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isPdfEmbedded="false"/>
+						</textElement>
+						<text><![CDATA[covered individual.]]></text>
 					</staticText>
 					<frame>
-						<reportElement x="512" y="7" width="87" height="15" uuid="36943085-0d50-43f0-93ec-b27a9710d173">
+						<reportElement x="480" y="7" width="87" height="15" uuid="36943085-0d50-43f0-93ec-b27a9710d173">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<rectangle>
@@ -2490,7 +2499,7 @@
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<staticText>
-							<reportElement x="0" y="3" width="70" height="25" uuid="f49e8d06-4baf-4007-814e-1f81eef1a403"/>
+							<reportElement x="2" y="3" width="70" height="25" uuid="f49e8d06-4baf-4007-814e-1f81eef1a403"/>
 							<textElement verticalAlignment="Top">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
@@ -2506,7 +2515,7 @@
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<staticText>
-							<reportElement x="1" y="3" width="34" height="25" uuid="67f99141-0e22-4624-bb56-3b5617c3619c"/>
+							<reportElement x="2" y="3" width="34" height="25" uuid="67f99141-0e22-4624-bb56-3b5617c3619c"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" size="6" isBold="false"/>
 							</textElement>
