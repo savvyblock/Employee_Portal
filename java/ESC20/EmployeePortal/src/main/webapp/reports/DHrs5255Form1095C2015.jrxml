@@ -6,7 +6,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="509"/>
-	<property name="ireport.y" value="140"/>
+	<property name="ireport.y" value="812"/>
 	<field name="webroot" class="java.lang.String"/>
 	<field name="both_side" class="java.lang.String"/>
 	<field name="formpagenbr" class="java.lang.String"/>
@@ -5344,14 +5344,25 @@
 							<text><![CDATA[see the current version of]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="319" y="0" width="103" height="15" uuid="52aafde3-fbaf-478b-b1cf-7c29d44939c7"/>
+							<reportElement x="319" y="0" width="76" height="15" uuid="52aafde3-fbaf-478b-b1cf-7c29d44939c7"/>
 							<textElement>
 								<font size="9"/>
 							</textElement>
-							<text><![CDATA[the Instructions for Forms]]></text>
+							<text><![CDATA[the Instructions for]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="421" y="0" width="67" height="15" uuid="18620d4e-dbf5-459f-95de-72bf0d85f7a4"/>
+							<reportElement x="395" y="0" width="38" height="15" uuid="2b88ee58-ccfa-4b9b-82ed-691efe135620">
+								<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							</reportElement>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[Forms]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="421" y="0" width="67" height="15" uuid="18620d4e-dbf5-459f-95de-72bf0d85f7a4">
+								<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							</reportElement>
 							<textElement>
 								<font size="9"/>
 							</textElement>
