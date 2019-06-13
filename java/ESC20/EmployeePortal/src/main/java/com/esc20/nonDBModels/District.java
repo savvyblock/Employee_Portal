@@ -14,6 +14,7 @@ public class District implements Serializable
 	private String zip = "";
 	private String zip4 = "";
 	private String phone = "";	
+	private String ein = "";
 	
 	public District(Object distName, Object strNbrDist, Object strNameDist, Object cityNameDist, Object stateCd, Object zipDist,
 			Object zip4Dist, Object areaCdDist, Object phoneNbrDist) {
@@ -75,5 +76,11 @@ public class District implements Serializable
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public String getEin() {
+		return ein;
+	}
+	public void setEin(String ein) {
+		this.ein = ein;
 	}
 }

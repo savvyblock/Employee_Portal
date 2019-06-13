@@ -141,7 +141,10 @@ public class AppUserDao extends HibernateDaoSupport{
         q.setParameter("district", district);
         Object[] res =  (Object[]) q.uniqueResult();
         District dis = new District(res[0],res[1],res[2],res[3],res[4],res[5],res[6],res[7],res[8]);
-        
+        String einSql = "SELECT DIST_EIN FROM BFN_OPTIONS WHERE GL_FILE_ID='C'";
+        q = session.createSQLQuery(einSql);
+        String ein = (String) q.uniqueResult();
+        dis.setEin(ein);
         return dis;
 	}
 

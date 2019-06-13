@@ -237,8 +237,8 @@ public class W2InformationController{
 
 		if(!StringUtil.isNullOrEmpty(userDetail.getEmpNbr()) && userDetail.getEmpNbr().length() == 6)
 		{
-			String ein1 = userDetail.getEmpNbr().substring(0,2);
-			String ein2 = userDetail.getEmpNbr().substring(2,userDetail.getEmpNbr().length());
+			String ein1 = district.getEin().substring(0,2);
+			String ein2 = district.getEin().substring(2,district.getEin().length());
 			print.setEin(ein1 + "-" + ein2);
 		}
 

@@ -36,7 +36,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
   <%--                                       <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="${sessionScope.languageJSON.label.exportPDF}">
                                 <i class="fa fa-file-pdf-o"></i>
                             </button> --%>
-                                        <button class="btn btn-primary"onclick="doPrint()">
+                                        <button class="btn btn-primary"onclick="doLandscapePrint()">
                                             ${sessionScope.languageJSON.label.print}
                                         </button>
                                     </c:if>

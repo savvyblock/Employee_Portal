@@ -117,6 +117,14 @@ function clearDate(e){
 
 function doPrint() {
     window.focus()
+    
+    window.print()
+    // window.close()    
+}
+
+function doLandscapePrint() {
+    window.focus()
+    print.portrait=false;
     window.print()
     // window.close()    
 }
