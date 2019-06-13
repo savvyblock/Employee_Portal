@@ -264,7 +264,7 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
-						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
