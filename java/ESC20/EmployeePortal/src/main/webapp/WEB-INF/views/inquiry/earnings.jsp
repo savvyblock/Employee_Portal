@@ -555,7 +555,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             ${job.code} - ${job.description}
                                                                     </th>
                                                                     <td headers="units01 jobDescription01_${counter.index}">
-                                                                            <fmt:formatNumber value="${job.units}" pattern="#,##0.00"/>
+                                                                        <c:if test="${job.units != 0 && job.units != 0.00 && job.units != '0.00'}">
+                                                                                <fmt:formatNumber value="${job.units}" pattern="#,##0.00"/>
+                                                                        </c:if>
+                                                                            
                                                                     </td>
                                                                     <td headers="payRate01 jobDescription01_${counter.index}">
                                                                             <fmt:formatNumber value="${job.payRate}" pattern="#,##0.00"/>
@@ -593,7 +596,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                                     ${overtime.jobCd} - ${overtime.description}
                                                                             </th> 
                                                                             <td headers="units02 jobDescription02_${counter.index}">
-                                                                                    <fmt:formatNumber value="${overtime.overtimeUnits}" pattern="#,##0.00"/>
+                                                                                    <c:if test="${overtime.overtimeUnits != 0 && overtime.overtimeUnits != 0.00 && overtime.overtimeUnits != '0.00'}">
+                                                                                            <fmt:formatNumber value="${overtime.overtimeUnits}" pattern="#,##0.00"/>
+                                                                                    </c:if>
+                                                                                    
                                                                             </td> 
                                                                             <td headers="payRate02 jobDescription02_${counter.index}">
                                                                                     <fmt:formatNumber value="${overtime.overtimeRate}" pattern="#,##0.00"/>
@@ -783,7 +789,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </div>
                                         <div class="print-block hr-black"></div>
                                         <table
-                                            class="table responsive-table border-table print-table"
+                                            class="table responsive-table border-table print-table tableColumn4"
                                         >
                                             <thead>
                                                 <tr>
@@ -826,7 +832,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </table>
                                         <div class="show-all-screen hr-black"></div>
                                         <table
-                                            class="table border-table responsive-table payRoll-table print-table"
+                                            class="table border-table responsive-table payRoll-table print-table tableColumn4"
                                         >
                                             <thead>
                                                 <tr>

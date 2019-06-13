@@ -5,7 +5,7 @@
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="507"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<field name="webroot" class="java.lang.String"/>
 	<field name="both_side" class="java.lang.String"/>
@@ -805,7 +805,7 @@
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<frame>
-						<reportElement key="Form 1095-B" x="0" y="0" width="108" height="47" uuid="d86fab2a-e5da-42f5-bee8-059bc4e1b9a4">
+						<reportElement key="Form 1095-C" x="0" y="0" width="108" height="47" uuid="d86fab2a-e5da-42f5-bee8-059bc4e1b9a4">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -824,7 +824,7 @@
 							<textElement verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="22" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
-							<text><![CDATA[1095-B]]></text>
+							<text><![CDATA[1095-C]]></text>
 						</staticText>
 						<staticText>
 							<reportElement x="3" y="25" width="90" height="19" uuid="81a4c9b0-4bc9-4ea4-9d82-b3b9667f6f69"/>
@@ -2439,16 +2439,25 @@
 						<text><![CDATA[Covered Individuals]]></text>
 					</staticText>
 					<staticText>
-						<reportElement mode="Opaque" x="61" y="12" width="450" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="c21443c7-4d96-4158-a2ec-56edd21eb71d">
+						<reportElement mode="Opaque" x="61" y="12" width="330" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="c21443c7-4d96-4158-a2ec-56edd21eb71d">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Left">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 						</textElement>
-						<text><![CDATA[If Employer provided self-insured coverage, check the box and enter the information for each covered individual.]]></text>
+						<text><![CDATA[If Employer provided self-insured coverage, check the box and enter the information for each]]></text>
+					</staticText>
+					<staticText>
+						<reportElement mode="Opaque" x="391" y="12" width="80" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="5e97e191-4748-46d5-b716-13a2b0c3677f">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isPdfEmbedded="false"/>
+						</textElement>
+						<text><![CDATA[covered individual.]]></text>
 					</staticText>
 					<frame>
-						<reportElement x="459" y="8" width="87" height="15" uuid="190b5a3b-a80d-4074-9c56-b7dc95825463">
+						<reportElement x="465" y="8" width="87" height="15" uuid="190b5a3b-a80d-4074-9c56-b7dc95825463">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<rectangle>
@@ -3685,7 +3694,9 @@
 						</textField>
 					</frame>
 					<frame>
-						<reportElement key="Jan" x="375" y="0" width="28" height="35" uuid="2ead0e8b-83e6-48c2-8d4e-2602d88effb6"/>
+						<reportElement key="Jan" x="375" y="0" width="28" height="35" uuid="2ead0e8b-83e6-48c2-8d4e-2602d88effb6">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
+						</reportElement>
 						<box>
 							<leftPen lineWidth="0.5"/>
 							<bottomPen lineWidth="0.5"/>
@@ -4016,7 +4027,9 @@
 							</reportElement>
 						</line>
 						<textField>
-							<reportElement stretchType="RelativeToBandHeight" x="3" y="19" width="26" height="15" forecolor="#FFFFFF" uuid="14bc5858-b0e8-4a40-9155-88b2a9f357f2"/>
+							<reportElement stretchType="RelativeToBandHeight" x="3" y="19" width="26" height="15" forecolor="#FFFFFF" uuid="14bc5858-b0e8-4a40-9155-88b2a9f357f2">
+								<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Top">
 								<font size="1"/>
 								<paragraph lineSpacing="Single"/>
@@ -4449,7 +4462,9 @@
 							</reportElement>
 						</line>
 						<textField>
-							<reportElement stretchType="RelativeToBandHeight" x="3" y="19" width="26" height="15" forecolor="#FFFFFF" uuid="3a98f347-7c7f-4279-b1b3-6e909fa001c5"/>
+							<reportElement stretchType="RelativeToBandHeight" x="3" y="19" width="26" height="15" forecolor="#FFFFFF" uuid="3a98f347-7c7f-4279-b1b3-6e909fa001c5">
+								<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Top">
 								<font size="1"/>
 								<paragraph lineSpacing="Single"/>
@@ -5328,15 +5343,39 @@
 					<reportElement x="0" y="520" width="720" height="15" uuid="9c3bfc92-f323-4a27-8c84-0d8307a4b404">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
-					<staticText>
-						<reportElement x="0" y="0" width="402" height="10" uuid="71967a37-6dcd-4dce-a482-eaaf8495bf7e">
+					<frame>
+						<reportElement x="0" y="0" width="400" height="15" uuid="3e5993a7-c1a3-4971-91d0-30dfce2bf419">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
-						<textElement textAlignment="Left" verticalAlignment="Bottom">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
-						</textElement>
-						<text><![CDATA[For Privacy Act and Paperwork Reduction Act Notice, see separate instructions.]]></text>
-					</staticText>
+						<staticText>
+							<reportElement x="0" y="0" width="80" height="15" uuid="e786a571-34ce-4191-94c4-275ce951ed84"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[For Privacy Act and ]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="81" y="0" width="87" height="15" uuid="715935ee-6d62-434c-b233-9f22874f19bb"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[Paperwork Reduction]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="169" y="0" width="46" height="15" uuid="790abd7e-85cc-4cb0-a564-34bc331001bd"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[Act Notice,]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="214" y="0" width="105" height="15" uuid="84f4306e-ac46-4311-a36f-3c2560b23d07"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[see separate instructions.]]></text>
+						</staticText>
+					</frame>
 					<staticText>
 						<reportElement x="400" y="0" width="70" height="10" uuid="bdee91a6-0fd1-4c36-bfe7-05f76151b484">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>

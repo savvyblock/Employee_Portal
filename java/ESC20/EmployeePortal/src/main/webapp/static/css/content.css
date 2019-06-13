@@ -1419,6 +1419,9 @@
   .table.print-table th.td-content, .table.print-table td.td-content {
     text-align: right;
   }
+  .table.print-table th.text-right, .table.print-table td.text-right {
+    text-align: right !important;
+  }
   .table.print-table td {
     display: table-cell !important;
     width: initial !important;
@@ -1434,6 +1437,9 @@
   }
   .table.print-table td.print-hide {
     display: none !important;
+  }
+  .table.print-table.tableColumn4 td, .table.print-table.tableColumn4 th {
+    width: 25%;
   }
   .table.border-table {
     border-color: 1px solid #000 !important;
