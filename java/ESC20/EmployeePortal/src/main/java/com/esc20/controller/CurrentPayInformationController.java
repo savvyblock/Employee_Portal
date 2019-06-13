@@ -133,10 +133,10 @@ public class CurrentPayInformationController{
 			print.setEcityst(print.getEcityst() + "-" + userDetail.getAddrZip4());
 		}
 		
-		print.setPhoneNumber(userDetail.getPhoneNbr());
+		print.setPhoneNumber(userDetail.getPhoneArea()+"-"+userDetail.getPhoneNbr());
 		print.setEmployeeNumber(userDetail.getEmpNbr());
 		if(userDetail.getDob()!=null && userDetail.getDob().length()>=8)
-			print.setDateOfBirth(StringUtil.mid(userDetail.getDob(), 5, 2) + "-" + StringUtil.right(userDetail.getDob(), 2) + "-" + StringUtil.left(userDetail.getDob(), 4));
+			print.setDateOfBirth(userDetail.getDob());
 		else
 			print.setDateOfBirth("");
 		String gender;
