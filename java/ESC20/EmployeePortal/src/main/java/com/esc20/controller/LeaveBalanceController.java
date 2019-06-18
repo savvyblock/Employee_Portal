@@ -3,6 +3,8 @@ package com.esc20.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,13 +38,27 @@ public class LeaveBalanceController{
 		ModelAndView mav = new ModelAndView();
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
+		
 		String start = SearchStart;
 		String end = SearchEnd;
 		if (SearchStart != null && !("").equals(SearchStart)) {
 			start = sdf2.format(DateUtil.getUTCTime(sdf1.parse(SearchStart)));
+		} else {
+			Date endL;
+			if (SearchEnd != null && !("").equals(SearchEnd)) {
+				endL = DateUtil.getUTCTime(sdf1.parse(SearchEnd));
+			} else {
+				endL =  new Date();
+			}
+			Calendar fromC = Calendar.getInstance();
+			fromC.setTime(endL);
+			fromC.add(Calendar.MONTH, -18);
+			start = sdf2.format(fromC.getTime());
 		}
 		if (SearchEnd != null && !("").equals(SearchEnd)) {
 			end = sdf2.format(DateUtil.getUTCTime(sdf1.parse(SearchEnd)));
+		} else {
+			end =  sdf2.format(new Date());
 		}
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());

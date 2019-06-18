@@ -6,7 +6,7 @@
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="507"/>
-	<property name="ireport.y" value="672"/>
+	<property name="ireport.y" value="720"/>
 	<field name="webroot" class="java.lang.String"/>
 	<field name="both_side" class="java.lang.String"/>
 	<field name="formpagenbr" class="java.lang.String"/>
@@ -4917,11 +4917,18 @@
 							<text><![CDATA[see the current version of]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="319" y="0" width="103" height="15" uuid="c17f1a6a-8445-4d63-8a28-a87a1bb0f8c9"/>
+							<reportElement x="319" y="0" width="76" height="15" uuid="c17f1a6a-8445-4d63-8a28-a87a1bb0f8c9"/>
 							<textElement>
 								<font size="9"/>
 							</textElement>
-							<text><![CDATA[the Instructions for Forms]]></text>
+							<text><![CDATA[the Instructions for]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="395" y="0" width="26" height="15" uuid="a8f1bc57-f02a-4fc5-b09e-e8ec6dda8572"/>
+							<textElement>
+								<font size="9"/>
+							</textElement>
+							<text><![CDATA[Forms]]></text>
 						</staticText>
 						<staticText>
 							<reportElement x="421" y="0" width="67" height="15" uuid="f1a784d3-2c53-447c-ab30-69c23977670a"/>

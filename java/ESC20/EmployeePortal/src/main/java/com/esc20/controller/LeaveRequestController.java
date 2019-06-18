@@ -51,6 +51,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 		String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
 		if (supervisorEmpNbr == null) {
 			supervisorEmpNbr = "";
+			mav.addObject("haveSupervisor", false);
 		}
 		request.setLvTyp(SearchType);
 		if (SearchStart != null && !("").equals(SearchStart)) {

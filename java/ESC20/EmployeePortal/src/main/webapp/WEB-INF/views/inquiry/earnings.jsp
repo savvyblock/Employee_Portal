@@ -181,8 +181,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     style="padding-left:60px;text-align:left;margin-bottom:0;"
                                                 >
                                                 ${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameM} ${sessionScope.userDetail.nameL}<br />
-                                                    ${sessionScope.district.address}<br />
-                                                    ${sessionScope.district.city}, ${sessionScope.district.state} ${sessionScope.district.zip}
+                                                ${sessionScope.userDetail.addrNbr} ${sessionScope.userDetail.addrStr}<br/>
+                                            	${sessionScope.userDetail.addrCity},
+                                            	${sessionScope.userDetail.addrSt} ${sessionScope.userDetail.addrZip}
                                                 </div>
                                                 <p
                                                     style="text-align:right;padding-right: 20px;margin: 0;"

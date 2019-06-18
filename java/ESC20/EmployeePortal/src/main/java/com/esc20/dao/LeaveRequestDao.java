@@ -366,6 +366,7 @@ public class LeaveRequestDao {
 				comm = (BeaEmpLvComments) session.get(BeaEmpLvComments.class, prevComs.get(i).getId());
 				comm.setLvCommentTyp('P');
 				session.update(comm);
+				session.flush();
 			}
 		}
 		session.save(comments);

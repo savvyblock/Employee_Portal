@@ -654,8 +654,8 @@ public class InquiryService {
 		}
 
 		if (!StringUtil.isNullOrEmpty(user.getEmpNbr()) && user.getEmpNbr().length() == 6) {
-			String ein1 = user.getEmpNbr().substring(0, 2);
-			String ein2 = user.getEmpNbr().substring(2, user.getEmpNbr().length());
+			String ein1 = employer.getEin().substring(0, 2);
+			String ein2 = employer.getEin().substring(2, employer.getEin().length());
 			print.setEin(ein1 + "-" + ein2);
 		}
 
