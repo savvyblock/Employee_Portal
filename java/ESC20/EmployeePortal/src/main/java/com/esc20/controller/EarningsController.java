@@ -180,7 +180,7 @@ public class EarningsController {
 		print.setDname(district.getName());
 		print.setBhr_emp_demo_name_l(userDetail.getNameL());
 		print.setBhr_emp_demo_name_gen(userDetail.getNameGen() == null ? "" : userDetail.getNameGen().toString());
-		print.setGen_code_descr(userDetail.getNameGen() == null ? "" : userDetail.getGenDescription());
+		print.setGen_code_descr(userDetail.getGenDescription() == null ? "" : userDetail.getGenDescription());
 		print.setBhr_emp_demo_name_f(userDetail.getNameF());
 		print.setBhr_emp_demo_name_m(userDetail.getNameM());
 		PayDate payDate = PayDate.getPaydate(selectedPayDate);
