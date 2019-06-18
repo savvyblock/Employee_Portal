@@ -25,8 +25,13 @@ $(function(){
     $("#actionChain").val(chainSt)
     var requestActionJson = []
     $(".request-list input[type=radio]").change(function(){
+        console.log(this.value)
         var requestIndex = $(this).attr('data-index')
-        $("#supervisorComment_"+requestIndex+"").removeClass('hide')
+        if(this.value == '0'){
+            $("#supervisorComment_"+requestIndex+"").removeClass('hide')
+        }else{
+            $("#supervisorComment_"+requestIndex+"").addClass('hide')
+        }
     })
     $("#saveRequestListBtn").click(function(){
         var result = true
