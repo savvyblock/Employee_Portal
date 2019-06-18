@@ -14,8 +14,8 @@
   
     <main  class="content-wrapper" tabindex="-1">
     	<section class="content">
-    		<div class="container-fluid">
-        		<span>${sessionScope.languageJSON.label.welcome}</span>  ${userDetail.nameF} ${userDetail.nameL} 
+    		<div class="container-fluid homeLanding">
+        		<span>${sessionScope.languageJSON.label.welcomeToNewEmployeePortal}</span>
         	</div>
         </section>
     </main>
