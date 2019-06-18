@@ -20,9 +20,46 @@ $(function(){
         $("#previousLevel")[0].submit()  
     })
     var chainSt = $("#chainValue").text()
-    $("#disChain").val(chainSt)
-    $("#appChain").val(chainSt)
+    $("#disChain").val(chainSt)//unuseful
+    $("#appChain").val(chainSt)//unuseful
+    $("#actionChain").val(chainSt)
+    var requestActionJson = []
+    $(".request-list input[type=radio]").change(function(){
+        var requestIndex = $(this).attr('data-index')
+        $("#supervisorComment_"+requestIndex+"").removeClass('hide')
+    })
+    $("#saveRequestListBtn").click(function(){
+        var result = true
+        requestActionJson=[]
+        leaves.forEach(function(val,index){  
+            var actionValue = $('input[type=radio][name=actionRadio_'+index+']:checked').val()
+            if(actionValue == '1' || actionValue == '0'){
+                var comment = $("#supervisorComment_"+index+"").find("textarea").val()
+                if(actionValue=='0'&&(comment == ''||!comment)){
+                    $("#errorComment_"+index+"").removeClass('hide')
+                    $("#supervisorComment_"+index+"").find("textarea").focus()
+                    result = false
+                    return false
+                }else{
+                    $("#errorComment_"+index+"").addClass('hide')
+                    var obj = {
+                        id:val.id,
+                        actionValue:actionValue,
+                        comments:comment
+                    }
+                    requestActionJson.push(obj)
+                }
+            }
+        });
+        console.log(requestActionJson)
+        $("#actionList").val(JSON.stringify(requestActionJson))
+        if(!result&&requestActionJson.length>0){
+            return false
+        }
+        // $("#actionForm")[0].submit()
+    })
 })
+
 function actionLeave(id){
     var leaveRequest;
     leaves.forEach(function(element) {

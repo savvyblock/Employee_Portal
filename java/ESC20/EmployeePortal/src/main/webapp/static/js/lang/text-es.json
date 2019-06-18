@@ -611,6 +611,7 @@
 		"chooseHomeEmailSend":"send Password to Home email address",
 		"getPasswordNoEmail":"No email address exists on file for employee. Please contact your personnel office to have your security information deleted. You may then re-register as a new user. ",
 		"welcomeToNewEmployeePortal":"Welcome to the new ASCENDER EmployeePortal.",
+		"saveSuperAction":"Save Supervisor Action",
 		"":""
 	},
 	"language":{

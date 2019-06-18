@@ -102,8 +102,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <c:if test="${isEmpty==false}">
                                                     <c:forEach var="item" items="${leaves}" varStatus="status">
                                                         <c:if test="${item.statusCd !='A' && item.statusCd !='D'}">
-                                                        <tr>
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.employee}">${item.firstName} ${item.lastName}</td>
+                                                        <tr id="actionList_${status.index}">
+                                                            <td data-title="${sessionScope.languageJSON.approveRequest.employee}">${item.lastName} ${item.firstName}</td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.leaveStartDate}">${item.LeaveStartDate}</td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.leaveEndDate}" >${item.LeaveEndDate}</td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.leaveType}">
@@ -125,10 +125,25 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                     <c:forEach var="comment" items="${item.comments}" varStatus="statusComment">
                                                                         <p>${comment.detail}</p>
                                                                     </c:forEach>
+                                                                    <div class="form-group hide" id="supervisorComment_${status.index}">
+                                                                            <textarea  class="form-control form-text" cols="30" rows="4" aria-label="${sessionScope.languageJSON.label.supervisorComment}" data-index="${status.index}"></textarea>
+                                                                            <div class="error-hint hide" id="errorComment_${status.index}" role="alert">${sessionScope.languageJSON.validator.pleaseEnterComment}</div>
+                                                                    </div>
                                                             </td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.supervisorAction}"  style="width:150px;">
-                                                                <button class="btn btn-primary sm" data-toggle="modal" data-target="#approveModal" 
-                                                                onClick="actionLeave('${item.id}')"><span>${sessionScope.languageJSON.label.action}</span></button>
+                                                                <!-- <button class="btn btn-primary sm" data-toggle="modal" data-target="#approveModal" 
+                                                                onClick="actionLeave('${item.id}')"><span>${sessionScope.languageJSON.label.action}</span></button> -->
+                                                                <div role="group" aria-labelledby="groupLabelAction_${status.index}">
+                                                                    <div class="forAria" aria-hidden="true" id="groupLabelAction_${status.index}">${sessionScope.languageJSON.approveRequest.supervisorAction} ${sessionScope.languageJSON.label.for}  ${item.lastName} ${item.firstName}</div>
+                                                                    <div class="form-group">
+                                                                            <input class="approveRadio" type="radio" name="actionRadio_${status.index}" id="approveAction_${status.index}" value="1" data-id="${item.id}" data-index="${status.index}">
+                                                                            <label for="approveAction_${status.index}">${sessionScope.languageJSON.label.approve}</label>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <input class="disapproveRadio" type="radio" name="actionRadio_${status.index}" id="disapproveAction_${status.index}" value="0" data-id="${item.id}" data-index="${status.index}">
+                                                                        <label for="disapproveAction_${status.index}">${sessionScope.languageJSON.label.disapprove}</label>
+                                                                    </div>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     </c:if>
@@ -144,9 +159,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </tbody>
                     
                                         </table>
+                                        <br/><hr/><br/>
+                                        <div class="text-right">
+                                            <button id="saveRequestListBtn" class="btn btn-primary" aria-label="${sessionScope.languageJSON.label.saveSuperAction}">${sessionScope.languageJSON.label.save}</button>
+                                        </div>
                                 </div>
                             </div>
                         </section>
+                        <form hidden="hidden" action="" method="POST" id="actionForm">
+                                <input type="hidden" value="${level}" name="level"/>
+                                <input type="hidden" name="chain" id="actionChain"/>
+                                <input type="hidden" name="comment" id="actionList">
+                        </form>
             </main>
         </div>
         <%@ include file="../modal/leaveListCalendar.jsp"%>
