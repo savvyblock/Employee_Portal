@@ -1,1 +1,3 @@
-/java/ESC20/EmployeePortal/.classpath
+/target/
+/.settings
+/bin/
