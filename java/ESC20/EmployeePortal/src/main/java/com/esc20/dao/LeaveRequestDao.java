@@ -339,6 +339,7 @@ public class LeaveRequestDao {
 		sql.append("		AND BHR_EMP_LV.LV_TYP = BTHR_LV_TYP.LV_TYP ");
 		sql.append("		AND BHR_EMP_LV.PAY_FREQ = BTHR_LV_TYP.PAY_FREQ ");
 		sql.append("		AND BTHR_LV_TYP.STAT='A' ");
+		sql.append("		AND BTHR_LV_TYP.CHK_STUB_POS <>'' ");
 		sql.append("		AND BTHR_LV_TYP_DESCR.STAT='A' ");
 		Query q = session.createSQLQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
