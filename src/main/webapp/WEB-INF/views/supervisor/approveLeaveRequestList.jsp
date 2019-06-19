@@ -159,7 +159,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </tbody>
                     
                                         </table>
-                                        <br/><hr/><br/>
+                                        <br/><hr class="saveHr"/><br/>
                                         <div class="text-right">
                                             <button id="saveRequestListBtn" class="btn btn-primary" aria-label="${sessionScope.languageJSON.label.saveSuperAction}">${sessionScope.languageJSON.label.save}</button>
                                         </div>

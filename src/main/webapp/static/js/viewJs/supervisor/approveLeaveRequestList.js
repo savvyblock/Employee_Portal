@@ -24,8 +24,17 @@ $(function(){
     $("#appChain").val(chainSt)//unuseful
     $("#actionChain").val(chainSt)
     var requestActionJson = []
+    if(requestActionJson.length<1){
+        $("#saveRequestListBtn").attr('disabled','disabled')
+    }else{
+        $("#saveRequestListBtn").removeAttr('disabled')
+    }
+    if(leaves.length<1){
+        $('.saveHr').hide()
+        $('#saveRequestListBtn').hide()
+    }
     $(".request-list input[type=radio]").change(function(){
-        console.log(this.value)
+        $("#saveRequestListBtn").removeAttr('disabled')
         var requestIndex = $(this).attr('data-index')
         if(this.value == '0'){
             $("#supervisorComment_"+requestIndex+"").removeClass('hide')
@@ -33,6 +42,7 @@ $(function(){
             $("#supervisorComment_"+requestIndex+"").addClass('hide')
         }
     })
+    
     $("#saveRequestListBtn").click(function(){
         var result = true
         requestActionJson=[]
@@ -56,12 +66,16 @@ $(function(){
                 }
             }
         });
-        console.log(requestActionJson)
+        // console.log(requestActionJson)
         $("#actionList").val(JSON.stringify(requestActionJson))
-        if(!result&&requestActionJson.length>0){
+        console.log(result)
+        console.log(requestActionJson.length)
+        if(result==false){
             return false
+        }else{
+            $("#actionForm")[0].submit()
         }
-        $("#actionForm")[0].submit()
+        
     })
 })
 
