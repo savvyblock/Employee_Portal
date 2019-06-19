@@ -61,7 +61,7 @@ $(function(){
         if(!result&&requestActionJson.length>0){
             return false
         }
-        // $("#actionForm")[0].submit()
+        $("#actionForm")[0].submit()
     })
 })
 

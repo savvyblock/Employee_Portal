@@ -1,6 +1,7 @@
 package com.esc20.controller;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -174,13 +175,10 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		return mav;
 	}
 	
-	@RequestMapping("approveLeave")
-	@Transactional
-	public ModelAndView approveLeave(HttpServletRequest req, String level, String chain, String id, String comment)
-			throws ParseException {
-		HttpSession session = req.getSession();
+	@RequestMapping("submitRequests")
+	public ModelAndView submitRequests(HttpServletRequest req, String level, String chain, String actionList) throws ParseException {
 		ModelAndView mav = new ModelAndView();
-		if(id==null||chain==null) {
+		if(actionList==null||chain==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Approve leave");
@@ -190,48 +188,51 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		JSONArray levels = JSONArray.fromObject(chain);
 		Integer currentLevel = levels.size() - 1;
 		String currentSupervisorEmployeeNumber = ((JSONObject) levels.get(currentLevel)).getString("employeeNumber");
-		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
-		BeaEmpLvRqst rqst = this.service.getBeaEmpLvRqstById(Integer.parseInt(id));
-		if (rqst.getStatusCd() == 'P') {
-			this.supService.approveLeave(rqst, demo, comment);
-		} else {
-			mav = this.getApproveLeaveRequestList(req, currentSupervisorEmployeeNumber);
-			mav.addObject("chain", levels);
-			mav.addObject("error", "Leave is arealdy under approved status");
-			return mav;
+		JSONArray actions = JSONArray.fromObject(actionList);
+		JSONObject item = new JSONObject();
+		String errorMessage = "";
+		for(int i=0;i<actions.size();i++) {
+			item = (JSONObject)actions.get(i);
+			if(("0").equals(item.getString("actionValue"))) {
+				errorMessage += this.disapproveLeave(req, level, chain, item.getString("id"), item.getString("comments"));
+			}else if (("1").equals(item.getString("actionValue"))) {
+				errorMessage += this.approveLeave(req, level, chain, item.getString("id"), item.getString("comments"));
+			}
 		}
 		mav = this.getApproveLeaveRequestList(req, currentSupervisorEmployeeNumber);
 		mav.addObject("chain", levels);
+		if(!errorMessage.equals(""))
+			mav.addObject("actionErrors", errorMessage);
 		return mav;
 	}
 
-	@RequestMapping("disapproveLeave")
-	public ModelAndView disapproveLeave(HttpServletRequest req, String level, String chain, String id, String comment)
+	@Transactional
+	public String approveLeave(HttpServletRequest req, String level, String chain, String id, String comment)
 			throws ParseException {
 		HttpSession session = req.getSession();
-		ModelAndView mav = new ModelAndView();
-		if(id==null||chain==null) {
-			mav.setViewName("visitFailed");
-			mav.addObject("module", module);
-			mav.addObject("action", "Disapprove leave");
-			mav.addObject("errorMsg", "Not all mandotary fields provided.");
-			return mav;
-		}
-		JSONArray levels = JSONArray.fromObject(chain);
-		Integer currentLevel = levels.size() - 1;
-		String currentSupervisorEmployeeNumber = ((JSONObject) levels.get(currentLevel)).getString("employeeNumber");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		BeaEmpLvRqst rqst = this.service.getBeaEmpLvRqstById(Integer.parseInt(id));
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		if (rqst.getStatusCd() == 'P') {
+			this.supService.approveLeave(rqst, demo, comment);
+		} else {
+			return "Approve Leave Failed for leave request from " + sdf.format(rqst.getDatetimeFrom())+ " to " + sdf.format(rqst.getDatetimeTo())+".";
+		}
+		return "";
+	}
+
+	@Transactional
+	public String disapproveLeave(HttpServletRequest req, String level, String chain, String id, String comment)
+			throws ParseException {
+		HttpSession session = req.getSession();
+		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		BeaEmpLvRqst rqst = this.service.getBeaEmpLvRqstById(Integer.parseInt(id));
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		if (rqst.getStatusCd() == 'P') {
 			this.supService.disApproveLeave(rqst, demo, comment);
 		} else {
-			mav = this.getApproveLeaveRequestList(req, currentSupervisorEmployeeNumber);
-			mav.addObject("chain", levels);
-			mav.addObject("error", "Leave is arealdy under approved status");
-			return mav;
+			return "Disapprove Leave Failed for leave request from " + sdf.format(rqst.getDatetimeFrom())+ " to " + sdf.format(rqst.getDatetimeTo())+".";
 		}
-		mav = this.getApproveLeaveRequestList(req, currentSupervisorEmployeeNumber);
-		mav.addObject("chain", levels);
-		return mav;
+		return "";
 	}
 }
