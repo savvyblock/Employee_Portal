@@ -159,17 +159,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </tbody>
                     
                                         </table>
-                                        <br/><hr/><br/>
+                                        <br/><hr class="saveHr"/><br/>
                                         <div class="text-right">
                                             <button id="saveRequestListBtn" class="btn btn-primary" aria-label="${sessionScope.languageJSON.label.saveSuperAction}">${sessionScope.languageJSON.label.save}</button>
                                         </div>
                                 </div>
                             </div>
                         </section>
-                        <form hidden="hidden" action="" method="POST" id="actionForm">
+                        <form hidden="hidden" action="submitRequests" method="POST" id="actionForm">
                                 <input type="hidden" value="${level}" name="level"/>
                                 <input type="hidden" name="chain" id="actionChain"/>
-                                <input type="hidden" name="comment" id="actionList">
+                                <input type="hidden" name="actionList" id="actionList">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </form>
             </main>
         </div>
@@ -178,11 +179,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <%@ include file="../commons/footer.jsp"%>
     </body>
     <script>
-    var directReportEmployee = eval(${directReportEmployee});
-    var chain = eval(${chain});
-    var leaves = eval(${leaves});
-    var leaveTypes = eval(${leaveTypes});
-    var absRsns = eval(${absRsns});
+	    var directReportEmployee = eval(${directReportEmployee});
+	    var chain = eval(${chain});
+	    var leaves = eval(${leaves});
+	    var leaveTypes = eval(${leaveTypes});
+	    var absRsns = eval(${absRsns});
     </script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/supervisor/approveLeaveRequestList.js"></script>
 

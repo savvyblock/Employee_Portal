@@ -219,9 +219,9 @@ private static long msInDay = 24 * 60 * 60 * 1000;
     	Calendar cal = Calendar.getInstance();
     	if(localTime!=null)
     		cal.setTime(localTime);
-    	int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);  
-    	int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);  
-    	cal.add(java.util.Calendar.MILLISECOND, -(zoneOffset + dstOffset));
+//    	int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);  
+//    	int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);  
+//    	cal.add(java.util.Calendar.MILLISECOND, -(zoneOffset + dstOffset));
     	return cal.getTime();
     }
     
@@ -229,9 +229,9 @@ private static long msInDay = 24 * 60 * 60 * 1000;
     public static Date getLocalTime(Date GMTTime) {
     	Calendar cal = Calendar.getInstance();
     	cal.setTime(GMTTime);
-    	int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);  
-    	int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);  
-    	cal.add(java.util.Calendar.MILLISECOND, (zoneOffset + dstOffset));
+//    	int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);  
+//    	int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);  
+//    	cal.add(java.util.Calendar.MILLISECOND, (zoneOffset + dstOffset));
     	return cal.getTime();
     }
 }
