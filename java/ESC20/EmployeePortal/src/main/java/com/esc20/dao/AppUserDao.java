@@ -144,6 +144,7 @@ public class AppUserDao extends HibernateDaoSupport{
         q = session.createSQLQuery(einSql);
         String ein = (String) q.uniqueResult();
         dis.setEin(ein);
+        //setting EIN
         return dis;
 	}
 
