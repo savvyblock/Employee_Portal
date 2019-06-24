@@ -136,6 +136,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		sql.append("dr.cityNameDist, dr.stateCd, dr.zipDist, dr.zip4Dist, dr.areaCdDist, dr.phoneNbrDist ");
 		sql.append(" FROM DrDemo dr");
 		sql.append(" WHERE dr.id.schYr = (SELECT MAX(dr2.id.schYr) from DrDemo dr2)");
+		// changed to remove the dist id param
         Query q = session.createQuery(sql.toString());
         Object[] res =  (Object[]) q.uniqueResult();
         District dis = new District(res[0],res[1],res[2],res[3],res[4],res[5],res[6],res[7],res[8]);
