@@ -147,7 +147,7 @@ public class InquiryService {
 		for (int i = 0; i < accountNumber.length() - 4; i++) {
 			symbol += "*";
 		}
-		return symbol + accountNumber.substring(accountNumber.length() - 5, accountNumber.length() - 1);
+		return symbol + accountNumber.substring(accountNumber.length() - 4, accountNumber.length());
 	}
 
 	public Map<Frequency, PayInfo> retrievePayInfo(String employeeNumber, List<Frequency> frequencies) {

@@ -14,14 +14,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 <section class="content">
                     <div class="content-white no-title profile">
                             <c:if test="${sessionScope.options.enableSelfServiceDemographic == true}">
-	                            <c:if test="${not empty sessionScope.options.messageSelfServiceDemographic}">
-	                            	<p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServiceDemographic}</p>
-	                        	</c:if>
                                 <div class="profile-item">
                                         <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal">
                                                 <span>${sessionScope.languageJSON.label.changePassword}</span>
                                             </button>
                                 </div>
+                                <c:if test="${not empty sessionScope.options.messageSelfServiceDemographic}">
+	                            	<p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServiceDemographic}</p>
+	                        	</c:if>
                                 <div class="profile-top first-child">
                                     <form class="profile-item" id="personalForm" action="saveName" method="POST">
                                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
