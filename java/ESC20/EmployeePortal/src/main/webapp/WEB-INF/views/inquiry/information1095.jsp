@@ -277,13 +277,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input type="hidden" name="year" value="${selectedYear}">
                                                 <input type="hidden" name="CPageNo" id="selectPageNowC">
-                                                <input type="hidden" name="sortBy" value="C">
+                                                <input type="hidden" name="sortBy">
                                 </form>
                                 <form id="changePageFormB" hidden="hidden" action="sortOrChangePageForTypeB" method="POST">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input type="hidden" name="year" value="${selectedYear}">
                                         <input type="hidden" name="BPageNo" id="selectPageNowB">
-                                        <input type="hidden" name="sortBy" value="B">
+                                        <input type="hidden" name="sortBy">
                                 </form>
                         </div>
                 </section>
