@@ -273,6 +273,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <jsp:include page="../report-1095/1095${type}-${selectedYear}.jsp"></jsp:include>
                                     </c:if>
                                 </div>
+                                <form id="changePageFormC" hidden="hidden" action="sortOrChangePageForTypeC" method="POST">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        <input type="hidden" name="year" value="${selectedYear}">
+                                                <input type="hidden" name="CPageNo" id="selectPageNowC">
+                                                <input type="hidden" name="sortBy" value="C">
+                                </form>
+                                <form id="changePageFormB" hidden="hidden" action="sortOrChangePageForTypeB" method="POST">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <input type="hidden" name="year" value="${selectedYear}">
+                                        <input type="hidden" name="BPageNo" id="selectPageNowB">
+                                        <input type="hidden" name="sortBy" value="B">
+                                </form>
                         </div>
                 </section>
             </main>

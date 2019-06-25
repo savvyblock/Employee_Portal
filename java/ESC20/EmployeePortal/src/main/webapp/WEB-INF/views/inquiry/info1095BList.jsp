@@ -265,9 +265,5 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 		</tr>
 	</c:if>
 </table>
-<form id="changePageForm" hidden="hidden" action="sortOrChangePageForTypeB" method="POST">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    <input type="hidden" name="year" id="yearNow" value="${selectedYear}">
-    <input type="hidden" name="BPageNo" id="selectPageNow">
-</form>
+
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/inquiry/info1095BList.js"></script>
