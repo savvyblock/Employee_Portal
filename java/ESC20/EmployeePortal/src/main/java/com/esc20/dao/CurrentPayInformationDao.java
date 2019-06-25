@@ -101,22 +101,22 @@ public class CurrentPayInformationDao {
 	public List<Account> getAccounts(String employeeNumber) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT depo.id.bankCd,");
-		sql.append("codes.bankName,");
-		sql.append("codes.transitRoute,");
-		sql.append("depo.id.payFreq,");
-		sql.append("depo.id.bankAcctNbr,");
-		sql.append("depo.id.bankAcctTyp,");
-		sql.append("typ.bankAcctTypDescr,");
-		sql.append("depo.bankAcctAmt");
-		sql.append(" FROM BhrBankDeposit depo,");
-		sql.append("BthrBankCodes codes,");
-		sql.append("BthrBankAcctTyp typ");
-		sql.append(" WHERE depo.id.empNbr = :employeeNumber");
-		sql.append(" AND depo.id.cyrNyrFlg = 'C'");
-		sql.append(" AND depo.id.bankCd = codes.bankCd");
-		sql.append(" AND depo.id.bankAcctTyp = typ.bankAcctTyp");
-		Query q = session.createQuery(sql.toString());
+		sql.append("SELECT BHR_BANK_DEPOSIT.BANK_CD,");
+		sql.append("BTHR_BANK_CODES.BANK_NAME,");
+		sql.append("BTHR_BANK_CODES.TRANSIT_ROUTE,");
+		sql.append("BHR_BANK_DEPOSIT.PAY_FREQ,");
+		sql.append("BHR_BANK_DEPOSIT.BANK_ACCT_NBR,");
+		sql.append("BHR_BANK_DEPOSIT.BANK_ACCT_TYP,");
+		sql.append("BTHR_BANK_ACCT_TYP.BANK_ACCT_TYP_DESCR,");
+		sql.append("BHR_BANK_DEPOSIT.BANK_ACCT_AMT");
+		sql.append(" FROM BHR_BANK_DEPOSIT,");
+		sql.append("BTHR_BANK_CODES,");
+		sql.append("BTHR_BANK_ACCT_TYP");
+		sql.append(" WHERE EMP_NBR = :employeeNumber");
+		sql.append(" AND CYR_NYR_FLG = 'C'");
+		sql.append(" AND BHR_BANK_DEPOSIT.BANK_CD = BTHR_BANK_CODES.BANK_CD");
+		sql.append(" AND BHR_BANK_DEPOSIT.BANK_ACCT_TYP = BTHR_BANK_ACCT_TYP.BANK_ACCT_TYP");
+		Query q = session.createSQLQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
 		@SuppressWarnings("unchecked")
 		List<Object[]> list = q.list();

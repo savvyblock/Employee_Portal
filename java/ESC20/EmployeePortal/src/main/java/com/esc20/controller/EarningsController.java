@@ -30,6 +30,7 @@ import com.esc20.util.StringUtil;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/earnings")
@@ -166,6 +167,8 @@ public class EarningsController {
 		report.setFilterable(false);
 		
 		EarningsPrint earningsPrint = generateEarningsPrint(request, response, selectedPayDate);
+		JSONArray jsonArray = JSONArray.fromObject(earningsPrint);
+		System.out.println("Earnings Print: "+jsonArray.toString());
 		IReport ireport = setupReport(report, earningsPrint);
 		
 	    JasperPrint jasperPrint = pDFService.buildReport(ireport);

@@ -13,8 +13,12 @@ import com.esc20.model.BhrAca1095bCovrdHist;
 import com.esc20.model.BhrAca1095cCovrdHist;
 import com.esc20.model.BhrAca1095cEmpHist;
 import com.esc20.model.BrRptngContact;
+import com.esc20.nonDBModels.BCoveredHistory;
+import com.esc20.nonDBModels.CCoveredHistory;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.EA1095CEmployerShare;
+import com.esc20.util.DateUtil;
+import com.esc20.util.StringUtil;
 @Repository
 public class EA1095Dao {
 
@@ -62,7 +66,7 @@ public class EA1095Dao {
 		return res>0;
 	}
 	
-	public List<BhrAca1095bCovrdHist> retrieveEA1095BInfo(String employeeNumber, String year, String sortBy, String sortOrder, Integer bPageNo) {
+	public List<BCoveredHistory> retrieveEA1095BInfo(String employeeNumber, String year, String sortBy, String sortOrder, Integer bPageNo) {
 		Session session = this.getSession();
 		String retrieveSQL = "FROM BhrAca1095bCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";
         Query q = session.createQuery(retrieveSQL);
@@ -77,11 +81,14 @@ public class EA1095Dao {
         q.setMaxResults(pageSize);
         @SuppressWarnings("unchecked")
 		List<BhrAca1095bCovrdHist> result = q.list();
-        
-        return result;
+        List<BCoveredHistory> res = new ArrayList<BCoveredHistory>();
+        for(BhrAca1095bCovrdHist item : result){
+        	res.add(new BCoveredHistory(item));
+        }
+        return res;
 	}
 
-	public List<BhrAca1095cCovrdHist> retrieveEA1095CInfo(String employeeNumber, String year, String sortBy, String sortOrder, Integer cPageNo) {
+	public List<CCoveredHistory> retrieveEA1095CInfo(String employeeNumber, String year, String sortBy, String sortOrder, Integer cPageNo) {
 		Session session = this.getSession();
 		String retrieveSQL = "FROM BhrAca1095cCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";
         Query q = session.createQuery(retrieveSQL);
@@ -96,7 +103,11 @@ public class EA1095Dao {
         q.setMaxResults(pageSize);
         @SuppressWarnings("unchecked")
 		List<BhrAca1095cCovrdHist> result = q.list();
-        return result;
+        List<CCoveredHistory> res = new ArrayList<CCoveredHistory>();
+        for(BhrAca1095cCovrdHist item : result){
+        	res.add(new CCoveredHistory(item));
+        }
+        return res;
 	}
 
 	public List<Code> retrieveEA1095BEmpInfo(String employeeNumber, String year) {

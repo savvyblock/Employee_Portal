@@ -32,6 +32,8 @@ import com.esc20.model.BhrThirdPartySickPay;
 import com.esc20.model.BhrW2;
 import com.esc20.model.BrRptngContact;
 import com.esc20.nonDBModels.Account;
+import com.esc20.nonDBModels.BCoveredHistory;
+import com.esc20.nonDBModels.CCoveredHistory;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.Deduction;
@@ -147,7 +149,7 @@ public class InquiryService {
 		for (int i = 0; i < accountNumber.length() - 4; i++) {
 			symbol += "*";
 		}
-		return symbol + accountNumber.substring(accountNumber.length() - 5, accountNumber.length() - 1);
+		return symbol + accountNumber.substring(accountNumber.length() - 4, accountNumber.length());
 	}
 
 	public Map<Frequency, PayInfo> retrievePayInfo(String employeeNumber, List<Frequency> frequencies) {
@@ -900,12 +902,12 @@ public class InquiryService {
 		return ea1095Dao.get1095Consent(employeeNumber);
 	}
 
-	public List<BhrAca1095bCovrdHist> retrieveEA1095BInfo(String employeeNumber, String year, String sortBy,
+	public List<BCoveredHistory> retrieveEA1095BInfo(String employeeNumber, String year, String sortBy,
 			String sortOrder, Integer bPageNo) {
 		return ea1095Dao.retrieveEA1095BInfo(employeeNumber, year, sortBy, sortOrder, bPageNo);
 	}
 
-	public List<BhrAca1095cCovrdHist> retrieveEA1095CInfo(String employeeNumber, String year, String sortBy,
+	public List<CCoveredHistory> retrieveEA1095CInfo(String employeeNumber, String year, String sortBy,
 			String sortOrder, Integer cPageNo) {
 		return ea1095Dao.retrieveEA1095CInfo(employeeNumber, year, sortBy, sortOrder, cPageNo);
 	}
