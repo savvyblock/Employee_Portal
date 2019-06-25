@@ -95,7 +95,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 name="bc-1095"
                                                 id="b-1095"
                                                 <c:if test="${type == 'B' }">checked</c:if>
-                                                disabled
+                                                <c:if test="${disabled}">disabled</c:if>
                                             />
                                             <label for="b-1095">${sessionScope.languageJSON.label.b1095}</label>
                                         </div>
@@ -106,7 +106,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 name="bc-1095"
                                                 id="c-1095"
                                                 <c:if test="${type == 'C' }">checked</c:if>
-                                                disabled
+                                                <c:if test="${disabled}">disabled</c:if>
                                             />
                                             <label for="c-1095">${sessionScope.languageJSON.label.c1095}</label>
                                         </div>

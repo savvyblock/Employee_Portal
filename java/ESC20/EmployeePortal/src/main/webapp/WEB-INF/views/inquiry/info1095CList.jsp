@@ -176,11 +176,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 				<thead>
 					<tr>
 						<th class="print-hide"><span>${sessionScope.languageJSON.info1095Table.firstName}</span></th>
-						<th class="print-hide"><span>${sessionScope.languageJSON.info1095Table.lastName}</span></th>
 						<th>
 							<span class="print-hide">${sessionScope.languageJSON.info1095Table.middleName}</span>
 							<span class="print-show">${sessionScope.languageJSON.info1095Table.nameIndividuals}</span>
 						</th>
+						<th class="print-hide"><span>${sessionScope.languageJSON.info1095Table.lastName}</span></th>
 						<th class="print-hide">
 							<span>${sessionScope.languageJSON.info1095Table.generation}</span>
 						</th>
@@ -215,11 +215,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 						<c:forEach var="itemC" items="${cList}">
 							<tr>
 								<td class="print-hide"  data-title="${sessionScope.languageJSON.info1095Table.firstName}">${itemC.nameF}</td>
-								<td class="print-hide"  data-title="${sessionScope.languageJSON.info1095Table.lastName}">${itemC.nameL}</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.middleName}">
 									<span class="print-hide">${itemC.nameM}</span>
 									<span class="print-show">${itemC.nameF} ${itemC.nameM} ${itemC.nameL}</span>
 								</td>
+								<td class="print-hide"  data-title="${sessionScope.languageJSON.info1095Table.lastName}">${itemC.nameL}</td>
 								<td class="print-hide"  data-title="${sessionScope.languageJSON.info1095Table.generation}">
 										${itemC.nameGen}
 								</td>
