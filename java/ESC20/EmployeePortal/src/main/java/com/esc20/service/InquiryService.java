@@ -549,7 +549,10 @@ public class InquiryService {
 		earnings.setNonTrsTax(earningsNonTrsTax);
 		earnings.setNonTrsNonTax(earningsNonTrsNonTax);
 		earnings.setBank(earningsBank);
-		earnings.setLeave(earningsLeave);
+		if(earningsSupplemental.size() > 0 && !(earningsSupplemental.size()==1 && earningsSupplemental.get(0).getCode().equals("ZZZ")))
+			earnings.setLeave(new ArrayList<EarningsLeave>());
+		else
+			earnings.setLeave(earningsLeave);
 		earnings.setOvertime(earningsOvertime);
 
 		return earnings;
