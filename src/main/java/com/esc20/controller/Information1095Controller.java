@@ -15,13 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.esc20.model.BhrAca1095bCovrdHist;
-import com.esc20.model.BhrAca1095cCovrdHist;
 import com.esc20.model.BhrAca1095cEmpHist;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BrRptngContact;
 import com.esc20.nonDBModels.Aca1095BPrint;
 import com.esc20.nonDBModels.Aca1095CPrint;
+import com.esc20.nonDBModels.BCoveredHistory;
+import com.esc20.nonDBModels.CCoveredHistory;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.EA1095CEmployerShare;
@@ -188,13 +188,13 @@ public class Information1095Controller{
 		Integer BTotal = this.service.getBInfoTotal(employeeNumber, year);
 		Integer CTotal = this.service.getCInfoTotal(employeeNumber, year);
 		List<Code> bCovrgTypList = this.service.retrieveEA1095BEmpInfo(employeeNumber,year);
-		List<BhrAca1095bCovrdHist> bList;
+		List<BCoveredHistory> bList;
 		if (("B").equals(type))
 			bList = this.service.retrieveEA1095BInfo(employeeNumber, year, sortBy, sortOrder, BPageNo);
 		else
 			bList = this.service.retrieveEA1095BInfo(employeeNumber, year, null, null, 1);
 		List<EA1095CEmployerShare> cEmpList = this.service.retrieveEA1095CEmpInfo(employeeNumber,year);
-		List<BhrAca1095cCovrdHist> cList;
+		List<CCoveredHistory> cList;
 		if (("C").equals(type))
 			cList = this.service.retrieveEA1095CInfo(employeeNumber, year, sortBy, sortOrder, CPageNo);
 		else
@@ -219,6 +219,11 @@ public class Information1095Controller{
 		mav.addObject("message", message);
 		mav.addObject("bList", bList);
 		mav.addObject("cList", cList);
+		if(bList.isEmpty() || cList.isEmpty()) {
+			mav.addObject("disabled", true);
+		} else {
+			mav.addObject("disabled", false);
+		}
 		mav.addObject("BPageNo", BPageNo);
 		mav.addObject("CPageNo", CPageNo);
 		mav.addObject("cEmpList", cEmpList);
@@ -271,7 +276,7 @@ public class Information1095Controller{
 		if (year == null)
 			year = DateUtil.getLatestYear(years);
 		List<Code> bCovrgTypList = this.service.retrieveEA1095BEmpInfo(employeeNumber,year);
-		List<BhrAca1095bCovrdHist> bList = this.service.retrieveEA1095BInfo(employeeNumber, year, null, null, 1);
+		List<BCoveredHistory> bList = this.service.retrieveEA1095BInfo(employeeNumber, year, null, null, 1);
 		String coverType = "";
 		if (bCovrgTypList.size() > 0) {
 			coverType = bCovrgTypList.get(0).getCode();
@@ -331,7 +336,7 @@ public class Information1095Controller{
 		if (year == null)
 			year = DateUtil.getLatestYear(years);
 		List<BhrAca1095cEmpHist> cCovrgTypList = this.service.retrieveEA1095CEmpInfoPrint(employeeNumber,year);
-		List<BhrAca1095cCovrdHist> cList = this.service.retrieveEA1095CInfo(employeeNumber, year, null, null, 1);
+		List<CCoveredHistory> cList = this.service.retrieveEA1095CInfo(employeeNumber, year, null, null, 1);
 		String taxYr = year==null?"":year;
 		print.setFormpagenbr("1");
 		print.setTaxyr(taxYr);
@@ -451,7 +456,7 @@ public class Information1095Controller{
 
    
     
-	private void fillPartIVBoxesB(List<BhrAca1095bCovrdHist> bList, Aca1095BPrint print, Boolean printPage4) {
+	private void fillPartIVBoxesB(List<BCoveredHistory> bList, Aca1095BPrint print, Boolean printPage4) {
 		int box = 23;
 		List<Code> gens = referenceService.getGenerations();
 		//if printin page 4, then cut down the list for the report
@@ -463,7 +468,7 @@ public class Information1095Controller{
 
 		//Go through part IV boxes on the form and instantiate them blank or with data
 		for(int i=0; i<bList.size(); i++) {
-			BhrAca1095bCovrdHist ea1095 = bList.get(i);
+			BCoveredHistory ea1095 = bList.get(i);
 			print.setCovrgFirstName(box, ea1095.getNameF());
 			print.setCovrgMiddleName(box, ea1095.getNameM());
 			print.setCovrgLastName(box, ea1095.getNameL());
@@ -591,7 +596,7 @@ public class Information1095Controller{
 		print.setPlanStrtMon(cCovrgTypList.get(0).getPlanStrtMon());
 	}
 
-	private void fillPartIIIBoxesC(List<BhrAca1095cCovrdHist> cList, Aca1095CPrint print, Boolean printPage4) {
+	private void fillPartIIIBoxesC(List<CCoveredHistory> cList, Aca1095CPrint print, Boolean printPage4) {
 
 		// start at box 17 and move to box 34
 		int box = 17;
@@ -604,7 +609,7 @@ public class Information1095Controller{
 		}
 
 		//Go through part IV boxes on the form and instantiate them blank or with data
-		for(BhrAca1095cCovrdHist ea1095 : cList) {
+		for(CCoveredHistory ea1095 : cList) {
 
 			print.setCovrgFirstName(box, ea1095.getNameF());
 			print.setCovrgMiddleName(box, ea1095.getNameM());

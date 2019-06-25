@@ -1,11 +1,11 @@
 function changePage(page){
     if(page){
-            $("#selectPageNow").val(page)
+            $("#selectPageNowB").val(page)
     }else{
             var pageNow = $("#pageNow").val();
-            $("#selectPageNow").val(pageNow)
+            $("#selectPageNowB").val(pageNow)
 
     }
-    $("#changePageForm")[0].submit()
+    $("#changePageFormB")[0].submit()
     
 }

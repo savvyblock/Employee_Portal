@@ -33,6 +33,18 @@ $(function(){
             toggleOptions('N')
         }
     })
+
+    $("#b-1095").on('ifChecked', function(event){
+        var pageNow = $("#pageNow").val();
+        $("#selectPageNowB").val(pageNow)
+        $("#changePageFormB")[0].submit()
+ });
+
+ $("#c-1095").on('ifChecked', function(event){
+        var pageNow = $("#pageNow").val();
+        $("#selectPageNowC").val(pageNow)
+        $("#changePageFormC")[0].submit()
+    })
     if(consentVal==''){
         $("#updateMsg").addClass("hidden");
         $('#electronicConsent').modal('show')
@@ -128,4 +140,9 @@ function save(){
     $('.exportPDFBox').hide()
     $('.exportPDFBox').removeClass("printStatus")
     $(pdfDom).remove()
+}
+function changeBC(){
+    var pageNow = $("#pageNow").val();
+    $("#selectPageNow").val(pageNow)
+    $("#changePageForm")[0].submit()
 }

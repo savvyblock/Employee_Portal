@@ -95,7 +95,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 name="bc-1095"
                                                 id="b-1095"
                                                 <c:if test="${type == 'B' }">checked</c:if>
-                                                disabled
+                                                <c:if test="${disabled}">disabled</c:if>
                                             />
                                             <label for="b-1095">${sessionScope.languageJSON.label.b1095}</label>
                                         </div>
@@ -106,7 +106,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 name="bc-1095"
                                                 id="c-1095"
                                                 <c:if test="${type == 'C' }">checked</c:if>
-                                                disabled
+                                                <c:if test="${disabled}">disabled</c:if>
                                             />
                                             <label for="c-1095">${sessionScope.languageJSON.label.c1095}</label>
                                         </div>
@@ -273,6 +273,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <jsp:include page="../report-1095/1095${type}-${selectedYear}.jsp"></jsp:include>
                                     </c:if>
                                 </div>
+                                <form id="changePageFormC" hidden="hidden" action="sortOrChangePageForTypeC" method="POST">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        <input type="hidden" name="year" value="${selectedYear}">
+                                                <input type="hidden" name="CPageNo" id="selectPageNowC">
+                                                <input type="hidden" name="sortBy">
+                                </form>
+                                <form id="changePageFormB" hidden="hidden" action="sortOrChangePageForTypeB" method="POST">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <input type="hidden" name="year" value="${selectedYear}">
+                                        <input type="hidden" name="BPageNo" id="selectPageNowB">
+                                        <input type="hidden" name="sortBy">
+                                </form>
                         </div>
                 </section>
             </main>

@@ -176,11 +176,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 				<thead>
 					<tr>
 						<th class="print-hide"><span>${sessionScope.languageJSON.info1095Table.firstName}</span></th>
-						<th class="print-hide"><span>${sessionScope.languageJSON.info1095Table.lastName}</span></th>
 						<th>
 							<span class="print-hide">${sessionScope.languageJSON.info1095Table.middleName}</span>
 							<span class="print-show">${sessionScope.languageJSON.info1095Table.nameIndividuals}</span>
 						</th>
+						<th class="print-hide"><span>${sessionScope.languageJSON.info1095Table.lastName}</span></th>
 						<th class="print-hide">
 							<span>${sessionScope.languageJSON.info1095Table.generation}</span>
 						</th>
@@ -215,11 +215,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 						<c:forEach var="itemC" items="${cList}">
 							<tr>
 								<td class="print-hide"  data-title="${sessionScope.languageJSON.info1095Table.firstName}">${itemC.nameF}</td>
-								<td class="print-hide"  data-title="${sessionScope.languageJSON.info1095Table.lastName}">${itemC.nameL}</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.middleName}">
 									<span class="print-hide">${itemC.nameM}</span>
 									<span class="print-show">${itemC.nameF} ${itemC.nameM} ${itemC.nameL}</span>
 								</td>
+								<td class="print-hide"  data-title="${sessionScope.languageJSON.info1095Table.lastName}">${itemC.nameL}</td>
 								<td class="print-hide"  data-title="${sessionScope.languageJSON.info1095Table.generation}">
 										${itemC.nameGen}
 								</td>
@@ -414,9 +414,5 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	</tr>
 </c:if>
 </table>
-<form id="changePageForm" hidden="hidden" action="sortOrChangePageForTypeC" method="POST">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <input type="hidden" name="year" id="yearNow" value="${selectedYear}">
-        <input type="hidden" name="CPageNo" id="selectPageNow">
-</form>
+
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/inquiry/info1095CList.js"></script>

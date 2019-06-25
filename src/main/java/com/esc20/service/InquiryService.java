@@ -32,6 +32,8 @@ import com.esc20.model.BhrThirdPartySickPay;
 import com.esc20.model.BhrW2;
 import com.esc20.model.BrRptngContact;
 import com.esc20.nonDBModels.Account;
+import com.esc20.nonDBModels.BCoveredHistory;
+import com.esc20.nonDBModels.CCoveredHistory;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.Deduction;
@@ -547,7 +549,10 @@ public class InquiryService {
 		earnings.setNonTrsTax(earningsNonTrsTax);
 		earnings.setNonTrsNonTax(earningsNonTrsNonTax);
 		earnings.setBank(earningsBank);
-		earnings.setLeave(earningsLeave);
+		if(earningsSupplemental.size() > 0 && !(earningsSupplemental.size()==1 && earningsSupplemental.get(0).getCode().equals("ZZZ")))
+			earnings.setLeave(new ArrayList<EarningsLeave>());
+		else
+			earnings.setLeave(earningsLeave);
 		earnings.setOvertime(earningsOvertime);
 
 		return earnings;
@@ -900,12 +905,12 @@ public class InquiryService {
 		return ea1095Dao.get1095Consent(employeeNumber);
 	}
 
-	public List<BhrAca1095bCovrdHist> retrieveEA1095BInfo(String employeeNumber, String year, String sortBy,
+	public List<BCoveredHistory> retrieveEA1095BInfo(String employeeNumber, String year, String sortBy,
 			String sortOrder, Integer bPageNo) {
 		return ea1095Dao.retrieveEA1095BInfo(employeeNumber, year, sortBy, sortOrder, bPageNo);
 	}
 
-	public List<BhrAca1095cCovrdHist> retrieveEA1095CInfo(String employeeNumber, String year, String sortBy,
+	public List<CCoveredHistory> retrieveEA1095CInfo(String employeeNumber, String year, String sortBy,
 			String sortOrder, Integer cPageNo) {
 		return ea1095Dao.retrieveEA1095CInfo(employeeNumber, year, sortBy, sortOrder, cPageNo);
 	}

@@ -86,6 +86,10 @@ public class EarningsController {
 		mav.addObject("message", message);
 		mav.addObject("earnings", earnings);
 		mav.addObject("YTDEarnings", YTDEarnings);
+		if(earnings.getSupplemental().size()>0) {
+			if(!(earnings.getSupplemental().size()==1 && earnings.getSupplemental().get(0).getCode().equals("ZZZ")))
+				mav.addObject("isSupplemental", true);
+		}
 		mav.addObject("year", year);
 		mav.addObject("freq", freq);
 		return mav;
@@ -129,6 +133,10 @@ public class EarningsController {
 		mav.addObject("selectedPayDate", payDate);
 		mav.addObject("message", message);
 		mav.addObject("earnings", earnings);
+		if(earnings.getSupplemental().size()>0) {
+			if(!(earnings.getSupplemental().size()==1 && earnings.getSupplemental().get(0).getCode().equals("ZZZ")))
+				mav.addObject("isSupplemental", true);
+		}
 		mav.addObject("YTDEarnings", YTDEarnings);
 		mav.addObject("year", year);
 		mav.addObject("freq", freq);
