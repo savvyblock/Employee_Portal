@@ -683,8 +683,8 @@ public class InquiryService {
 		print.setEmpaddress((user.getAddrNbr() == null ? "" : user.getAddrNbr()) + " " + user.getAddrStr());
 		print.setEmpcityst(user.getAddrCity() + " " + user.getAddrSt() + " " + user.getAddrZip());
 
-		if (user.getAddrZip4() != null && user.getAddrZip4().length() > 0) {
-			print.setEmpcityst(print.getEmpcityst() + "-" + user.getAddrZip4());
+		if (user.getAddrZip4() != null && (user.getAddrZip4().trim()).length() > 0) {
+			print.setEmpcityst(print.getEmpcityst() + "-" + (user.getAddrZip4().trim()));
 		}
 
 		if (w2Info != null) {
