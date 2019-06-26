@@ -581,7 +581,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                    <table class="table border-table no-print">
+                                                    <table class="table border-table">
                                                         <thead>
                                                             <tr>
                                                                 <th id="jobDescriptionTitle02" class="earning-detail-titleTd">${sessionScope.languageJSON.earningTable.jobDescription}</th>
@@ -620,7 +620,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                    <table class="table border-table no-print">
+                                                    <table class="table border-table">
                                                         <thead>
                                                             <tr>
                                                                 <th id="supType">${sessionScope.languageJSON.earningTable.supType}</th>
@@ -653,7 +653,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                    <table class="table border-table no-print">
+                                                    <table class="table border-table">
                                                         <thead>
                                                             <tr>
                                                                 <th id="nonTRSTaxType" >${sessionScope.languageJSON.earningTable.nonTRSTaxType}</th>
@@ -684,7 +684,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                    <table class="table border-table no-print">
+                                                    <table class="table border-table">
                                                         <thead>
                                                             <tr>
                                                                 <th id="nonTRSNonTaxType">${sessionScope.languageJSON.earningTable.nonTRSNonTaxType}</th>
