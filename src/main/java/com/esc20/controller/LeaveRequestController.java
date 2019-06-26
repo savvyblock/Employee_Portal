@@ -52,6 +52,8 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 		if (supervisorEmpNbr == null) {
 			supervisorEmpNbr = "";
 			mav.addObject("haveSupervisor", false);
+		}else {
+			mav.addObject("haveSupervisor", true);
 		}
 		request.setLvTyp(SearchType);
 		if (SearchStart != null && !("").equals(SearchStart)) {
