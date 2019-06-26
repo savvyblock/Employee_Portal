@@ -141,8 +141,10 @@ public class EA1095Dao {
 		List<BhrAca1095cEmpHist> result = q.list();
         List<EA1095CEmployerShare> shareResult = new ArrayList<EA1095CEmployerShare>();
         EA1095CEmployerShare share;
+        String empNbr = "";
         for(int i=0;i<result.size();i++) {
-        	if(result.get(i).getId().getCalMon().equals("ALL")) {
+        	if(!empNbr.equals(result.get(i).getId().getEmpNbr())) {
+        		empNbr = result.get(i).getId().getEmpNbr();
         		share = new EA1095CEmployerShare();
         		share.setYear(result.get(i).getId().getCalYr());
         		share.setMonAll(result.get(i));
