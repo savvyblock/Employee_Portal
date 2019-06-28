@@ -6,10 +6,12 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.esc20.model.BeaEmpLvComments;
 import com.esc20.model.BeaEmpLvRqst;
@@ -20,6 +22,7 @@ import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
+import com.esc20.nonDBModels.LeaveRequest;
 import com.esc20.nonDBModels.LeaveRequestComment;
 import com.esc20.util.StringUtil;
 
@@ -39,7 +42,7 @@ public class LeaveRequestDao {
 		q.setParameter(0, id);
 		@SuppressWarnings("unchecked")
 		List<BeaEmpLvRqst> res = q.list();
-		
+
 		return res.get(0);
 	}
 
@@ -85,41 +88,98 @@ public class LeaveRequestDao {
 					(String) item[9], (String) item[10], (String) item[11], (String) item[12], (String) item[13]);
 			result.add(req);
 		}
-		
+
 		return result;
 	}
 
-	public BeaEmpLvRqst saveLeaveRequest(BeaEmpLvRqst request, boolean isUpdate) {
+	public Integer saveLeaveRequest(BeaEmpLvRqst request, boolean isUpdate) {
 		Session session = this.getSession();
-		BeaEmpLvRqst req;
 		try {
 			if (isUpdate) {
-				session.update(request);
-				req = request;
+				String sql = "Update BEA_EMP_LV_RQST set PAY_FREQ=:payFreq, EMP_NBR=:empNbr, DATETIME_SUBMITTED=:datetimeSubmitted, "
+						+ "DATETIME_FROM =:datetimeFrom, DATETIME_TO=:datetimeTo, LV_UNITS_DAILY=:lvUnitsDaily, LV_UNITS_USED=:lvUnitsUsed, "
+						+ "LV_TYP=:lvTyp,ABS_RSN=:absRsn,STATUS_CD=:statusCd,DT_OF_PAY=:dtOfPay where ID=:id";
+				Query q = session.createSQLQuery(sql);
+				q.setParameter("payFreq", request.getPayFreq());
+				q.setParameter("empNbr", request.getEmpNbr());
+				q.setParameter("datetimeSubmitted", request.getDatetimeSubmitted());
+				q.setParameter("datetimeFrom", request.getDatetimeFrom());
+				q.setParameter("datetimeTo", request.getDatetimeTo());
+				q.setParameter("lvUnitsDaily", request.getLvUnitsDaily());
+				q.setParameter("lvUnitsUsed", request.getLvUnitsUsed());
+				q.setParameter("lvTyp", request.getLvTyp());
+				q.setParameter("absRsn", request.getAbsRsn());
+				q.setParameter("statusCd", request.getStatusCd());
+				q.setParameter("dtOfPay", request.getDtOfPay());
+				q.setParameter("id", request.getId());
+				q.executeUpdate();
+				return request.getId();
 			} else {
-				Integer id = (Integer) session.save(request);
-				req = (BeaEmpLvRqst) session.get(BeaEmpLvRqst.class, id);
+				String sql = "INSERT INTO BEA_EMP_LV_RQST (PAY_FREQ, EMP_NBR, DATETIME_SUBMITTED, DATETIME_FROM, DATETIME_TO, LV_UNITS_DAILY, LV_UNITS_USED, LV_TYP,ABS_RSN,STATUS_CD,DT_OF_PAY)"
+						+ " VALUES (:payFreq, :empNbr, :datetimeSubmitted, :datetimeFrom, :datetimeTo, :lvUnitsDaily, :lvUnitsUsed, :lvTyp, :absRsn, :statusCd, :dtOfPay)";
+				Query q = session.createSQLQuery(sql);
+				q.setParameter("payFreq", request.getPayFreq());
+				q.setParameter("empNbr", request.getEmpNbr());
+				q.setParameter("datetimeSubmitted", request.getDatetimeSubmitted());
+				q.setParameter("datetimeFrom", request.getDatetimeFrom());
+				q.setParameter("datetimeTo", request.getDatetimeTo());
+				q.setParameter("lvUnitsDaily", request.getLvUnitsDaily());
+				q.setParameter("lvUnitsUsed", request.getLvUnitsUsed());
+				q.setParameter("lvTyp", request.getLvTyp());
+				q.setParameter("absRsn", request.getAbsRsn());
+				q.setParameter("statusCd", request.getStatusCd());
+				q.setParameter("dtOfPay", request.getDtOfPay());
+				q.executeUpdate();
+				String sb = "SELECT NEWID = @@IDENTITY;";
+				SQLQuery q2 = session.createSQLQuery(sb);
+				Object res = q2.uniqueResult();
+				return Integer.parseInt(res.toString());
 			}
-			session.flush();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-		return req;
 	}
 
-	public boolean DeleteLeaveRequest(BeaEmpLvRqst request) {
-		Session session = this.getSession();
-		try {
-			session.delete(request);
-			session.flush();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+	public void saveLeaveRequest(Integer lvId, String status, boolean isUpdate) {
+		Session session = sessionFactory.openSession();
+		String sql = "update BEA_EMP_LV_RQST set STATUS_CD=:status, DT_OF_PAY='' where ID=:lvId";
+		Query q = session.createSQLQuery(sql);
+		q.setParameter("status", status);
+		q.setParameter("lvId", lvId);
+		q.executeUpdate();
+		session.flush();
+		session.close();
+	}
+
+	public void DeleteLeaveRequest(Integer lvId) {
+		Session session = sessionFactory.openSession();
+		String sql = "delete from BEA_EMP_LV_RQST where ID=:lvId";
+		Query q = session.createSQLQuery(sql);
+		q.setParameter("lvId", lvId);
+		q.executeUpdate();
+		session.flush();
+		session.close();
+	}
+
+	public void deleteLeaveFlow(Integer lvId) {
+		Session session = sessionFactory.openSession();
+		String sql = "delete from BEA_EMP_LV_WORKFLOW where LV_ID=:lvId";
+		Query q = session.createSQLQuery(sql);
+		q.setParameter("lvId", lvId);
+		q.executeUpdate();
+		session.flush();
+		session.close();
+	}
+
+	public void deleteLeaveComments(Integer lvId) {
+		Session session = sessionFactory.openSession();
+		String sql = "DELETE from BEA_EMP_LV_COMMENTS where LV_ID=:lvId";
+		Query q = session.createSQLQuery(sql);
+		q.setParameter("lvId", lvId);
+		q.executeUpdate();
+		session.flush();
+		session.close();
 	}
 
 	public LeaveParameters getLeaveParameters() {
@@ -131,7 +191,7 @@ public class LeaveRequestDao {
 		sql.append("FROM BhrOptions BO, BhrEapOpt BEO");
 		Query q = session.createQuery(sql.toString());
 		Object[] res = (Object[]) q.uniqueResult();
-		
+
 		LeaveParameters result = new LeaveParameters((BigDecimal) res[0], (BigDecimal) res[1], (Character) res[2],
 				(Character) res[3], (Character) res[4], (String) res[5], (String) res[6]);
 		return result;
@@ -155,12 +215,12 @@ public class LeaveRequestDao {
 		q.setParameter("employeeNumber", empNbr);
 		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
-		
+
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for (Object[] item : res) {
-			code = new Code((StringUtil.convertToCharacter(item[0]) == null ? "" : (StringUtil.convertToCharacter(item[0])).toString()),
-					"", (String) item[1]);
+			code = new Code((StringUtil.convertToCharacter(item[0]) == null ? ""
+					: (StringUtil.convertToCharacter(item[0])).toString()), "", (String) item[1]);
 			result.add(code);
 		}
 		return result;
@@ -175,7 +235,7 @@ public class LeaveRequestDao {
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", directReportEmployeeNumber);
 		BhrPmisPosCtrl res = (BhrPmisPosCtrl) q.list().get(0);
-		
+
 		return res;
 	}
 
@@ -199,7 +259,7 @@ public class LeaveRequestDao {
 		q.setParameter("supervisorBilletNumber", spvsrBilletNbr);
 		q.setParameter("supervisorPosNumber", spvsrPosNbr);
 		Object[] res = (Object[]) q.uniqueResult();
-		
+
 		String empNbr = res == null ? null : (String) res[1];
 		return empNbr;
 	}
@@ -217,7 +277,7 @@ public class LeaveRequestDao {
 		Query q = session.createQuery(sql);
 		q.setParameter("employeeNumber", directReportEmployeeNumber);
 		Object[] res = (Object[]) q.uniqueResult();
-		
+
 		String empNbr = res == null ? null : (String) res[0];
 		return empNbr;
 	}
@@ -253,7 +313,7 @@ public class LeaveRequestDao {
 		sql.append(" ORDER BY AR.absDescr ASC ");
 		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
-		
+
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for (Object[] item : res) {
@@ -286,7 +346,7 @@ public class LeaveRequestDao {
 		sql.append(" ORDER BY AR2LT.id.lvTyp ASC ");
 		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
-		
+
 		List<Code> result = new ArrayList<Code>();
 		Code code;
 		for (Object[] item : res) {
@@ -299,9 +359,11 @@ public class LeaveRequestDao {
 	public List<LeaveInfo> getLeaveInfo(String empNbr, String freq) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT BHR_EMP_LV.PAY_FREQ, BHR_EMP_LV.LV_TYP, BHR_EMP_LV.LV_BEGIN_BAL, BHR_EMP_LV.LV_EARNED, BHR_EMP_LV.LV_USED, ");
-		sql.append("		BTHR_LV_TYP_DESCR.LONG_DESCR, BTHR_LV_TYP_DESCR.POST_AGNST_ZERO_BAL, BTHR_LV_TYP.DAYS_HRS, BTHR_LV_TYP.ADD_SUBTRACT_BAL, ");
-				
+		sql.append(
+				"SELECT BHR_EMP_LV.PAY_FREQ, BHR_EMP_LV.LV_TYP, BHR_EMP_LV.LV_BEGIN_BAL, BHR_EMP_LV.LV_EARNED, BHR_EMP_LV.LV_USED, ");
+		sql.append(
+				"		BTHR_LV_TYP_DESCR.LONG_DESCR, BTHR_LV_TYP_DESCR.POST_AGNST_ZERO_BAL, BTHR_LV_TYP.DAYS_HRS, BTHR_LV_TYP.ADD_SUBTRACT_BAL, ");
+
 		sql.append("		(SELECT ISNULL((SELECT SUM(ISNULL(BHR_EMP_LV_XMITAL.LV_UNITS_EARNED, 0))),0) ");
 		sql.append("			FROM BHR_EMP_LV_XMITAL ");
 		sql.append("			WHERE BHR_EMP_LV_XMITAL.CYR_NYR_FLG = 'C' AND ");
@@ -309,7 +371,7 @@ public class LeaveRequestDao {
 		sql.append("				BHR_EMP_LV_XMITAL.PAY_FREQ = BHR_EMP_LV.PAY_FREQ AND ");
 		sql.append("				BHR_EMP_LV_XMITAL.LV_TYP = BHR_EMP_LV.LV_TYP AND ");
 		sql.append("				LENGTH(TRIM(ISNULL(BHR_EMP_LV_XMITAL.PROCESS_DT, '')))=0) AS PENDING_EARNED, ");
-				
+
 		sql.append("		(SELECT ISNULL((SELECT SUM(ISNULL(BEA_EMP_LV_RQST.LV_UNITS_USED, 0))),0) ");
 		sql.append("			FROM BEA_EMP_LV_RQST ");
 		sql.append("			WHERE BEA_EMP_LV_RQST.STATUS_CD = 'P' AND ");
@@ -331,7 +393,7 @@ public class LeaveRequestDao {
 		sql.append("				BHR_EMP_LV_XMITAL.PAY_FREQ = BHR_EMP_LV.PAY_FREQ AND ");
 		sql.append("				BHR_EMP_LV_XMITAL.LV_TYP = BHR_EMP_LV.LV_TYP AND  ");
 		sql.append("				LENGTH(TRIM(ISNULL(BHR_EMP_LV_XMITAL.PROCESS_DT, '')))=0) AS PENDING_USED ");
-				
+
 		sql.append("	FROM BHR_EMP_LV, BTHR_LV_TYP_DESCR, BTHR_LV_TYP ");
 		sql.append("	WHERE CYR_NYR_FLG = 'C' ");
 		sql.append("		AND EMP_NBR = :employeeNumber ");
@@ -343,10 +405,10 @@ public class LeaveRequestDao {
 		sql.append("		AND BTHR_LV_TYP_DESCR.STAT='A' ");
 		Query q = session.createSQLQuery(sql.toString());
 		q.setParameter("employeeNumber", empNbr);
-		//q.setParameter("payFrequency", freq.charAt(0));
+		// q.setParameter("payFrequency", freq.charAt(0));
 		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
-		
+
 		List<LeaveInfo> leaveInfo = new ArrayList<LeaveInfo>();
 		LeaveInfo info;
 		for (Object[] item : res) {
@@ -359,44 +421,52 @@ public class LeaveRequestDao {
 	}
 
 	public void saveLvComments(BeaEmpLvComments comments) {
-		Session session = this.getSession();
-		List<LeaveRequestComment> prevComs = getLeaveComments(comments.getBeaEmpLvRqst().getId());
-		BeaEmpLvComments comm;
-		for (int i = 0; i < prevComs.size(); i++) {
-			if (prevComs.get(i).getCommentType().equals("C")) {
-				comm = (BeaEmpLvComments) session.get(BeaEmpLvComments.class, prevComs.get(i).getId());
-				comm.setLvCommentTyp('P');
-				session.update(comm);
-				session.flush();
-			}
-		}
-		session.save(comments);
+		Session session = sessionFactory.openSession();
+		String sql = "update BEA_EMP_LV_COMMENTS set LV_COMMENT_TYP='P' where LV_ID=:lvId";
+		Query q = session.createSQLQuery(sql);
+		q.setParameter("lvId", comments.getLvId());
+		q.executeUpdate();
+		sql = "INSERT INTO BEA_EMP_LV_COMMENTS (LV_ID, LV_COMMENT_TYP, LV_COMMENT_EMP_NBR, LV_COMMENT_DATETIME, LV_COMMENT)"
+				+ " VALUES (:lvId, :lvCommentTyp, :lvCommentEmpNbr, :lvCommentDatetime, :lvComment)";
+		q = session.createSQLQuery(sql);
+		q.setParameter("lvId", comments.getLvId());
+		q.setParameter("lvCommentTyp", comments.getLvCommentTyp());
+		q.setParameter("lvCommentEmpNbr", comments.getLvCommentEmpNbr());
+		q.setParameter("lvCommentDatetime", comments.getLvCommentDatetime());
+		q.setParameter("lvComment", comments.getLvComment());
+		q.executeUpdate();
 		session.flush();
-		
+		session.close();
 	}
 
 	public void saveLvWorkflow(BeaEmpLvWorkflow flow) {
-		Session session = this.getSession();
-		session.save(flow);
+		Session session = sessionFactory.openSession();
+        String sqAll = "INSERT INTO BEA_EMP_LV_WORKFLOW (LV_ID, SEQ_NUM, INSERT_DATETIME,  APPRVR_EMP_NBR)"
+                + " VALUES (:lvId, :seqNum, :insertDatetime, :apprvrEmpNbr)";
+        Query queryAll = session.createSQLQuery(sqAll);
+        queryAll.setParameter("lvId", flow.getLvId());
+        queryAll.setParameter("seqNum", flow.getSeqNum());
+        queryAll.setParameter("insertDatetime", flow.getInsertDatetime());
+        queryAll.setParameter("apprvrEmpNbr", flow.getApprvrEmpNbr());
+        queryAll.executeUpdate();
 		session.flush();
-		
+		session.close();
 	}
 
 	public List<LeaveRequestComment> getLeaveComments(Integer id) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
 		sql.append(
-				"SELECT ELC.id, ELC.beaEmpLvRqst.id, ISNULL(ELC.lvComment,''), ELC.lvCommentDatetime, ELC.lvCommentTyp, ELC.lvCommentEmpNbr, ");
+				"SELECT ELC.id, ELC.lvId, ISNULL(ELC.lvComment,''), ELC.lvCommentDatetime, ELC.lvCommentTyp, ELC.lvCommentEmpNbr, ");
 		sql.append("	ED.nameF, ED.nameM, ED.nameL ");
 		sql.append("FROM BeaEmpLvComments ELC, BhrEmpDemo ED ");
-		sql.append(
-				"WHERE ELC.beaEmpLvRqst.id=:leaveId AND ELC.lvCommentEmpNbr=ED.empNbr AND LENGTH(ISNULL(ELC.lvComment,''))>0 ");
+		sql.append("WHERE ELC.lvId=:leaveId AND ELC.lvCommentEmpNbr=ED.empNbr AND LENGTH(ISNULL(ELC.lvComment,''))>0 ");
 		sql.append("ORDER BY ELC.lvCommentDatetime ASC");
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("leaveId", id);
 		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
-		
+
 		List<LeaveRequestComment> comments = new ArrayList<LeaveRequestComment>();
 		LeaveRequestComment comment;
 		for (Object[] item : res) {
@@ -407,48 +477,17 @@ public class LeaveRequestDao {
 		return comments;
 	}
 
-	public void deleteLeaveComments(BeaEmpLvComments comments) {
+	public LeaveRequest getBeaEmpLvRqstById(int id) {
 		Session session = this.getSession();
-		try {
-			String sql = "from BeaEmpLvComments where beaEmpLvRqst=:beaEmpLvRqst";
-			Query q = session.createQuery(sql);
-			q.setParameter("beaEmpLvRqst", comments.getBeaEmpLvRqst());
-			@SuppressWarnings("unchecked")
-			List<BeaEmpLvComments> res = q.list();
-			for (int i = 0; i < res.size(); i++) {
-				session.delete(res.get(i));
-			}
-			session.flush();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void deleteLeaveFlow(BeaEmpLvWorkflow flow) {
-		Session session = this.getSession();
-		try {
-			String sql = "from BeaEmpLvWorkflow where beaEmpLvRqst=:beaEmpLvRqst";
-			Query q = session.createQuery(sql);
-			q.setParameter("beaEmpLvRqst", flow.getBeaEmpLvRqst());
-			@SuppressWarnings("unchecked")
-			List<BeaEmpLvWorkflow> res = q.list();
-			for (int i = 0; i < res.size(); i++) {
-				session.delete(res.get(i));
-			}
-			session.flush();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public BeaEmpLvRqst getBeaEmpLvRqstById(int id) {
-		Session session = this.getSession();
-		BeaEmpLvRqst res = (BeaEmpLvRqst) session.get(BeaEmpLvRqst.class, id);
-		if(res.getDtOfPay()==null)
-			res.setDtOfPay("");
-		return res;
+		StringBuilder sql = new StringBuilder("");
+		sql.append("select * from BEA_EMP_LV_RQST rqst where ID =:id");
+		Query q = session.createSQLQuery(sql.toString());
+		q.setParameter("id", id);
+		Object[] res = (Object[]) q.uniqueResult();
+		LeaveRequest result = new LeaveRequest((Integer) res[0], (Character) res[1], (String) res[2], (Date) res[3],
+				(Date) res[4], (Date) res[5], (BigDecimal) res[6], (BigDecimal) res[7], (String) res[8],
+				(String) res[9], (Character) res[10], (String) res[11]);
+		return result;
 	}
 
 	public List<AppLeaveRequest> getSupervisorSumittedLeaveRequests(String employeeNumber) {
@@ -461,10 +500,10 @@ public class LeaveRequestDao {
 		sql.append(
 				"  BeaEmpLvWorkflow ELW, BteaEmpLvStatusCodes ELSC, BthrLvTyp LT, BthrLvTypDescr LTD, BthrAbsRsn AR, BhrEmpDemo ED ");
 		sql.append("WHERE ELW.apprvrEmpNbr = :employeeNumber AND ELR.empNbr = ED.empNbr ");
-		sql.append("  AND ELW.beaEmpLvRqst.id = ELR.id ");
+		sql.append("  AND ELW.lvId = ELR.id ");
 		sql.append("  AND ELR.lvTyp=LT.id.lvTyp AND LT.stat='A' AND ELR.statusCd = 'P' ");
 		sql.append(
-				"  AND ELW.insertDatetime = (SELECT MAX(ELW2.insertDatetime) FROM BeaEmpLvWorkflow ELW2 WHERE ELW2.beaEmpLvRqst.id=ELW.beaEmpLvRqst.id) ");
+				"  AND ELW.insertDatetime = (SELECT MAX(ELW2.insertDatetime) FROM BeaEmpLvWorkflow ELW2 WHERE ELW2.lvId=ELW.lvId) ");
 		sql.append("  AND ELR.statusCd = ELSC.cd  ");
 		sql.append("  AND LT.id.payFreq =  ELR.payFreq  ");
 		sql.append("  AND ELR.lvTyp=LTD.lvTyp AND LTD.stat='A' AND ELR.absRsn=AR.absRsn AND AR.stat='A' ");
@@ -485,7 +524,6 @@ public class LeaveRequestDao {
 			requests.add(request);
 		}
 
-		
 		return requests;
 	}
 
@@ -513,7 +551,7 @@ public class LeaveRequestDao {
 			q.setParameter("dateTo", searchEnd);
 		@SuppressWarnings("unchecked")
 		List<BhrEmpLvXmital> res = q.list();
-		
+
 		return res;
 	}
 
@@ -526,10 +564,10 @@ public class LeaveRequestDao {
 		List<Object[]> res = q.list();
 		List<String[]> result = new ArrayList<String[]>();
 		String[] temp;
-		for(int i=0;i<res.size();i++) {
+		for (int i = 0; i < res.size(); i++) {
 			temp = new String[2];
-			temp[0] = (String)(res.get(i)[0]);
-			temp[1] = (String)(res.get(i)[1]);
+			temp[0] = (String) (res.get(i)[0]);
+			temp[1] = (String) (res.get(i)[1]);
 			result.add(temp);
 		}
 		return result;

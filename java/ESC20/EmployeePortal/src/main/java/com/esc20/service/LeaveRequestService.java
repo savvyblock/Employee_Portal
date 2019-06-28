@@ -22,6 +22,7 @@ import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.LeaveBalance;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
+import com.esc20.nonDBModels.LeaveRequest;
 
 @Service
 public class LeaveRequestService {
@@ -35,12 +36,12 @@ public class LeaveRequestService {
 		return leaveRequestDao.getleaveRequestById(id);
 	}
 
-	public BeaEmpLvRqst saveLeaveRequest(BeaEmpLvRqst request, boolean isUpdate) {
+	public Integer saveLeaveRequest(BeaEmpLvRqst request, boolean isUpdate) {
 		return leaveRequestDao.saveLeaveRequest(request, isUpdate);
 	}
 
-	public boolean deleteLeaveRequest(BeaEmpLvRqst request) {
-		return leaveRequestDao.DeleteLeaveRequest(request);
+	public void deleteLeaveRequest(Integer lvId) {
+		leaveRequestDao.DeleteLeaveRequest(lvId);
 	}
 
 	public List<AppLeaveRequest> getLeaveRequests(AppLeaveRequest request, String empNbr, String freq) {
@@ -141,15 +142,15 @@ public class LeaveRequestService {
 		alertDao.createAlert(demo.getEmpNbr(), flow.getApprvrEmpNbr(), message);
 	}
 
-	public void deleteLeaveComments(BeaEmpLvComments comments) {
-		leaveRequestDao.deleteLeaveComments(comments);
+	public void deleteLeaveComments(Integer lvId) {
+		leaveRequestDao.deleteLeaveComments(lvId);
 	}
 
-	public void deleteLeaveFlow(BeaEmpLvWorkflow flow) {
-		leaveRequestDao.deleteLeaveFlow(flow);
+	public void deleteLeaveFlow(Integer lvId) {
+		leaveRequestDao.deleteLeaveFlow(lvId);
 	}
 
-	public BeaEmpLvRqst getBeaEmpLvRqstById(int id) {
+	public LeaveRequest getBeaEmpLvRqstById(int id) {
 		return leaveRequestDao.getBeaEmpLvRqstById(id);
 	}
 

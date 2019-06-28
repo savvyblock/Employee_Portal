@@ -131,7 +131,7 @@ public class SupervisorDao {
 	public String getApprover(Integer id) {
 		Session session = this.getSession();
 		String sql = "FROM SecUsers sec WHERE sec.empNbr in (select flow.apprvrEmpNbr from BeaEmpLvWorkflow flow where flow.apprvrEmpNbr = sec.empNbr and "
-				+ " flow.beaEmpLvRqst.id =:id) and sec.empNbr is not null" ;
+				+ " flow.lvId =:id) and sec.empNbr is not null" ;
 		Query q = session.createQuery(sql);
 		q.setParameter("id", id);
 		@SuppressWarnings("unchecked")
@@ -146,7 +146,7 @@ public class SupervisorDao {
 	
 	public List<BeaEmpLvTmpApprovers> getBeaEmpLvTmpApprovers(String empNbr) {
 		Session session = this.getSession();
-		String sql = "FROM BeaEmpLvTmpApprovers WHERE spvsrEmpNbr=:empNbr" ;
+		String sql = "FROM BeaEmpLvTmpApprovers appr WHERE appr.spvsrEmpNbr=:empNbr order by datetimeFrom asc" ;
 		Query q = session.createQuery(sql);
 		q.setParameter("empNbr", empNbr);
 		@SuppressWarnings("unchecked")
