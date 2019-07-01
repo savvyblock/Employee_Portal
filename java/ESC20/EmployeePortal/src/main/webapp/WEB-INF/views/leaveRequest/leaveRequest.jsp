@@ -17,16 +17,16 @@
 			<div class="clearfix section-title">
 					<h1 class="pageTitle">${sessionScope.languageJSON.title.leaveRequest}</h1>
 				<div class="pull-right right-btn">
-					<button class="btn btn-primary"  onclick="showRequestForm()" id="new-btn" data-toggle="modal" data-target="#requestModal">
+					<button class="btn btn-primary"  onclick="showRequestForm()" id="new-btn" data-toggle="modal" <c:if test="${!haveSupervisor}">disabled</c:if> data-target="#requestModal">
 						<span>${sessionScope.languageJSON.label.add}</span>
 					</button>
 					<a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequestCalendar/eventCalendar"  aria-label="${sessionScope.languageJSON.label.switchToCalendarView}">
 						<i class="fa fa-calendar"></i>
 					</a>
 				</div>
-<%-- 				<c:if test="${!haveSupervisor}">
+ 				<c:if test="${!haveSupervisor}">
 					<p class="topMsg error-hint" role="alert">Leave Request cannot be entered. No supervisor found.</p>
-				</c:if> --%>
+				</c:if>
 				
 			</div>
 			<div class="content-white">

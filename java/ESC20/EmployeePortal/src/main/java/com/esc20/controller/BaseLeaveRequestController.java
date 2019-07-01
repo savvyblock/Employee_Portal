@@ -55,11 +55,11 @@ public class BaseLeaveRequestController{
 			}
 			request.setDtOfPay(request.getDtOfPay() == null ? "" : request.getDtOfPay());
 		}
-		BeaEmpLvRqst res = this.service.saveLeaveRequest(request, (leaveId != null && !("").equals(leaveId)));
+		Integer id = this.service.saveLeaveRequest(request, (leaveId != null && !("").equals(leaveId)));
 		// Create Comments
 		if (Remarks != null && !("").equals(Remarks)) {
 			BeaEmpLvComments comments = new BeaEmpLvComments();
-			comments.setBeaEmpLvRqst(res);
+			comments.setLvId(id);
 			comments.setLvCommentEmpNbr(demo.getEmpNbr());
 			comments.setLvCommentDatetime(DateUtil.getUTCTime(new Date()));
 			comments.setLvComment(Remarks);
@@ -72,7 +72,7 @@ public class BaseLeaveRequestController{
 			String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
 			if (!StringUtils.isEmpty(supervisorEmpNbr)) {
 				BeaEmpLvWorkflow flow = new BeaEmpLvWorkflow();
-				flow.setBeaEmpLvRqst(res);
+				flow.setLvId(id);
 				flow.setInsertDatetime(DateUtil.getUTCTime(new Date()));
 				flow.setSeqNum(1);
 				flow.setApprvrEmpNbr(supervisorEmpNbr == null ? "" : supervisorEmpNbr);
@@ -83,14 +83,10 @@ public class BaseLeaveRequestController{
 	}
 
 	protected void deleteLeaveRequest(String id) {
-		BeaEmpLvRqst request = new BeaEmpLvRqst();
-		request = this.service.getBeaEmpLvRqstById(Integer.parseInt(id));
 		BeaEmpLvComments comments = new BeaEmpLvComments();
-		comments.setBeaEmpLvRqst(request);
-		this.service.deleteLeaveComments(comments);
-		BeaEmpLvWorkflow flow = new BeaEmpLvWorkflow();
-		flow.setBeaEmpLvRqst(request);
-		this.service.deleteLeaveFlow(flow);
-		this.service.deleteLeaveRequest(request);
+		comments.setLvId(Integer.parseInt(id));
+		this.service.deleteLeaveComments(Integer.parseInt(id));
+		this.service.deleteLeaveFlow(Integer.parseInt(id));
+		this.service.deleteLeaveRequest(Integer.parseInt(id));
 	}
 }

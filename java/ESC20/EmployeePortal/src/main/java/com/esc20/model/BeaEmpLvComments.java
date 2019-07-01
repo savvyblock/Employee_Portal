@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 public class BeaEmpLvComments implements java.io.Serializable {
 	private static final long serialVersionUID = 6715142900654758429L;
 	private int id;
-	private BeaEmpLvRqst beaEmpLvRqst;
+	private int lvId;
 	private char lvCommentTyp;
 	private String lvCommentEmpNbr;
 	private Date lvCommentDatetime;
@@ -32,19 +32,19 @@ public class BeaEmpLvComments implements java.io.Serializable {
 	public BeaEmpLvComments() {
 	}
 
-	public BeaEmpLvComments(int id, BeaEmpLvRqst beaEmpLvRqst, char lvCommentTyp, String lvCommentEmpNbr,
+	public BeaEmpLvComments(int id, int lvId, char lvCommentTyp, String lvCommentEmpNbr,
 			Date lvCommentDatetime) {
 		this.id = id;
-		this.beaEmpLvRqst = beaEmpLvRqst;
+		this.lvId = lvId;
 		this.lvCommentTyp = lvCommentTyp;
 		this.lvCommentEmpNbr = lvCommentEmpNbr;
 		this.lvCommentDatetime = lvCommentDatetime;
 	}
 
-	public BeaEmpLvComments(int id, BeaEmpLvRqst beaEmpLvRqst, char lvCommentTyp, String lvCommentEmpNbr,
+	public BeaEmpLvComments(int id, int lvId, char lvCommentTyp, String lvCommentEmpNbr,
 			Date lvCommentDatetime, String lvComment) {
 		this.id = id;
-		this.beaEmpLvRqst = beaEmpLvRqst;
+		this.lvId = lvId;
 		this.lvCommentTyp = lvCommentTyp;
 		this.lvCommentEmpNbr = lvCommentEmpNbr;
 		this.lvCommentDatetime = lvCommentDatetime;
@@ -62,14 +62,13 @@ public class BeaEmpLvComments implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "LV_ID", nullable = false)
-	public BeaEmpLvRqst getBeaEmpLvRqst() {
-		return this.beaEmpLvRqst;
+	@Column(name = "LV_ID", nullable = false)
+	public Integer getLvId() {
+		return this.lvId;
 	}
 
-	public void setBeaEmpLvRqst(BeaEmpLvRqst beaEmpLvRqst) {
-		this.beaEmpLvRqst = beaEmpLvRqst;
+	public void setLvId(Integer lvId) {
+		this.lvId = lvId;
 	}
 
 	@Column(name = "LV_COMMENT_TYP", nullable = false, length = 1)
