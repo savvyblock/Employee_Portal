@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .account-wrap {
   min-height: 100vh;
   padding-top: 0;
@@ -1205,6 +1206,9 @@
 
 @media print {
   body {
+      size: landscape;
+  }
+  body {
     padding-top: 10px;
   }
   .topMsg {
@@ -1440,6 +1444,18 @@
   }
   .table.print-table.tableColumn4 td, .table.print-table.tableColumn4 th {
     width: 25%;
+  }
+  .table.print-table.bankAccountTable {
+    border: 0;
+    border-spacing: 5px;
+    border-collapse: separate;
+  }
+  .table.print-table.bankAccountTable th, .table.print-table.bankAccountTable td {
+    border: 0 !important;
+    vertical-align: middle;
+  }
+  .table.print-table.bankAccountTable thead th {
+    border-bottom: 1px solid #000 !important;
   }
   .table.border-table {
     border-color: 1px solid #000 !important;

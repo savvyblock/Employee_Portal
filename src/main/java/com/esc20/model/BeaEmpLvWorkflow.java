@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 public class BeaEmpLvWorkflow implements java.io.Serializable {
 	private static final long serialVersionUID = 6715142900654758429L;
 	private int id;
-	private BeaEmpLvRqst beaEmpLvRqst;
+	private int lvId;
 	private int seqNum;
 	private Date insertDatetime;
 	private Date tmpApprvrExpDatetime;
@@ -31,18 +31,18 @@ public class BeaEmpLvWorkflow implements java.io.Serializable {
 	public BeaEmpLvWorkflow() {
 	}
 
-	public BeaEmpLvWorkflow(int id, BeaEmpLvRqst beaEmpLvRqst, int seqNum, Date insertDatetime, String apprvrEmpNbr) {
+	public BeaEmpLvWorkflow(int id, int lvId, int seqNum, Date insertDatetime, String apprvrEmpNbr) {
 		this.id = id;
-		this.beaEmpLvRqst = beaEmpLvRqst;
+		this.lvId = lvId;
 		this.seqNum = seqNum;
 		this.insertDatetime = insertDatetime;
 		this.apprvrEmpNbr = apprvrEmpNbr;
 	}
 
-	public BeaEmpLvWorkflow(int id, BeaEmpLvRqst beaEmpLvRqst, int seqNum, Date insertDatetime,
+	public BeaEmpLvWorkflow(int id, int lvId, int seqNum, Date insertDatetime,
 			Date tmpApprvrExpDatetime, String apprvrEmpNbr) {
 		this.id = id;
-		this.beaEmpLvRqst = beaEmpLvRqst;
+		this.lvId = lvId;
 		this.seqNum = seqNum;
 		this.insertDatetime = insertDatetime;
 		this.tmpApprvrExpDatetime = tmpApprvrExpDatetime;
@@ -60,14 +60,13 @@ public class BeaEmpLvWorkflow implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "LV_ID", nullable = false)
-	public BeaEmpLvRqst getBeaEmpLvRqst() {
-		return this.beaEmpLvRqst;
+	@Column(name = "LV_ID", nullable = false)
+	public Integer getLvId() {
+		return this.lvId;
 	}
 
-	public void setBeaEmpLvRqst(BeaEmpLvRqst beaEmpLvRqst) {
-		this.beaEmpLvRqst = beaEmpLvRqst;
+	public void setLvId(Integer lvId) {
+		this.lvId = lvId;
 	}
 
 	@Column(name = "SEQ_NUM", nullable = false)

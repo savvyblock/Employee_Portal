@@ -36,11 +36,11 @@ $(function(){
     $(".request-list input[type=radio]").change(function(){
         $("#saveRequestListBtn").removeAttr('disabled')
         var requestIndex = $(this).attr('data-index')
-        if(this.value == '0'){
+        // if(this.value == '0'){
             $("#supervisorComment_"+requestIndex+"").removeClass('hide')
-        }else{
-            $("#supervisorComment_"+requestIndex+"").addClass('hide')
-        }
+        // }else{
+        //     $("#supervisorComment_"+requestIndex+"").addClass('hide')
+        // }
     })
     
     $("#saveRequestListBtn").click(function(){
