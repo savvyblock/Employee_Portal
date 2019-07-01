@@ -301,11 +301,11 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 		request.setLvUnitsUsed(BigDecimal.valueOf(Double.parseDouble(lvUnitsUsed)));
 		request.setDtOfPay(request.getDtOfPay() == null ? "" : request.getDtOfPay());
 		request.setStatusCd('A');
-		BeaEmpLvRqst res = this.service.saveLeaveRequest(request, (leaveId != null && !("").equals(leaveId)));
+		Integer id = this.service.saveLeaveRequest(request, (leaveId != null && !("").equals(leaveId)));
 		// Create Comments
 		if (Remarks != null && !("").equals(Remarks)) {
 			BeaEmpLvComments comments = new BeaEmpLvComments();
-			comments.setBeaEmpLvRqst(res);
+			comments.setLvId(id);
 			comments.setLvCommentEmpNbr(empNbr);
 			comments.setLvCommentDatetime(DateUtil.getUTCTime());
 			comments.setLvComment(Remarks);

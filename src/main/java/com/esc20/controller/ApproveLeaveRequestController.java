@@ -20,6 +20,7 @@ import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveParameters;
+import com.esc20.nonDBModels.LeaveRequest;
 import com.esc20.nonDBModels.LeaveRequestModel;
 import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
@@ -211,7 +212,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 			throws ParseException {
 		HttpSession session = req.getSession();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
-		BeaEmpLvRqst rqst = this.service.getBeaEmpLvRqstById(Integer.parseInt(id));
+		LeaveRequest rqst = this.service.getBeaEmpLvRqstById(Integer.parseInt(id));
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		if (rqst.getStatusCd() == 'P') {
 			this.supService.approveLeave(rqst, demo, comment);
@@ -226,7 +227,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 			throws ParseException {
 		HttpSession session = req.getSession();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
-		BeaEmpLvRqst rqst = this.service.getBeaEmpLvRqstById(Integer.parseInt(id));
+		LeaveRequest rqst = this.service.getBeaEmpLvRqstById(Integer.parseInt(id));
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		if (rqst.getStatusCd() == 'P') {
 			this.supService.disApproveLeave(rqst, demo, comment);
