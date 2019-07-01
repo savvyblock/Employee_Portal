@@ -7,7 +7,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <title>${sessionScope.languageJSON.headTitle.info1095}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <%@ include file="../commons/header.jsp"%>
-       
+        <style media='print'>
+
+            @page{
+            
+            size:landscape;
+            
+            
+            }
+            
+            </style>
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
