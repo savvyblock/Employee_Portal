@@ -665,6 +665,11 @@ input:focus {
   border-right: 1px solid #dee2e6;
 }
 
+.table th.td-content.moreBig, .table td.td-content.moreBig {
+  width: 80px;
+  min-width: 80px;
+}
+
 .table th.no-border-td, .table td.no-border-td {
   border: 0;
   border-bottom: 1px solid #dee2e6;

@@ -1034,6 +1034,9 @@
     }
 }
 @media print {
+    body {
+          size: landscape;
+    }
     body{
         padding-top: 10px;
     }
@@ -1301,6 +1304,24 @@
             &.tableColumn4{
                 td,th{
                     width: 25%;
+                }
+            }
+            &.bankAccountTable{
+                border:0;
+                border-spacing: 5px;
+                border-collapse: separate;
+                th,td{
+                    border:0!important;
+                    vertical-align: middle;
+                }
+                thead{
+                    th{
+                        border-bottom: 1px solid #000!important;
+                        
+                    }
+                }
+                tr{
+
                 }
             }
         }
