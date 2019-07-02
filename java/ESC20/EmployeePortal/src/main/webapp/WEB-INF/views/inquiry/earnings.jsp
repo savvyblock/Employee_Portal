@@ -26,16 +26,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 										<button type="submit" role="button" class="btn btn-primary download-pdf"
 											aria-label="${sessionScope.languageJSON.label.exportPDF}"><i class="fa fa-file-pdf-o"></i></button>
                                     </form>
-                                    <%-- <button class="btn btn-primary download-pdf" onclick="downloadPDF()" title="" aria-label="${sessionScope.languageJSON.label.exportPDF}">
-                                <i class="fa fa-file-pdf-o"></i>
-                            </button> --%>
-                                    <button
-                                            class="btn btn-primary"
-                                            onclick="doPrint()"
-                                        
-                                        >
-                                        ${sessionScope.languageJSON.label.print}
-                            </button>
+		                            <form class="no-print" action="printPDF" method="POST" target="printIframe">
+										<input type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}" />
+										<input type="hidden" name="selectedPayDate"
+											value="${selectedPayDate.dateFreqVoidAdjChk}" />
+			                            <button type="submit" role="button" class="btn btn-primary">
+			                            	${sessionScope.languageJSON.label.print}
+			                            </button>
+		                            </form>
+		
+		                            <iframe style="display:none" name="printIframe" onload="load()" id="printIframe"></iframe>
                                 </div>
                             </div>
                        

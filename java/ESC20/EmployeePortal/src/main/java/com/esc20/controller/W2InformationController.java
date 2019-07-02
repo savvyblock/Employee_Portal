@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BhrEmpDemo;
@@ -214,6 +215,32 @@ public class W2InformationController{
     	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 	}
 
+	@RequestMapping("printPDF")
+	@ResponseBody
+	public void printPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
+		response.setContentType("application/pdf;charset=UTF-8");
+		response.setHeader("Content-Disposition", "application/pdf;filename=W-2 Substitute Form for "+year+".pdf");
+		
+		String path = request.getServletContext().getRealPath("/");
+		if (path != null && !path.endsWith("\\")) {
+			path = path.concat("\\");
+		}
+		pDFService.setRealPath(path);
+		
+		ParameterReport report = new ParameterReport();
+		report.setTitle("W-2 Substitute Form for" + year);
+		report.setId("w2Report");
+		report.setFileName("W-2 Substitute Form for" + year);
+		report.setSortable(false);
+		report.setFilterable(false);
+		
+		W2Print w2Print = generateW2Print(request, year);
+		IReport ireport = setupReport(report, w2Print, year);
+		
+	    JasperPrint jasperPrint = pDFService.buildReport(ireport);
+    	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+	}
+	
 	public W2Print generateW2Print(HttpServletRequest req, String year)
 	{
 		W2Print print = new W2Print();

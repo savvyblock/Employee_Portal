@@ -60,3 +60,8 @@ $(function(){
 function toggleOptions(value){
     $("#elecConsntW2Flag").val(value)
 }
+
+function load(){
+	$("#printIframe")[0].contentWindow.focus();
+	$("#printIframe")[0].contentWindow.print();
+}

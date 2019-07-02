@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BhrEmpDemo;
@@ -183,6 +184,47 @@ public class EarningsController {
     	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 	}
 
+	@RequestMapping("printPDF")
+	@ResponseBody
+	public void printPDF(HttpServletRequest request, HttpServletResponse response, String selectedPayDate) throws Exception {
+		HttpSession session = request.getSession();
+		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		String employeeNumber = userDetail.getEmpNbr();
+		Integer days = ((Options) session.getAttribute("options")).getMaxDays();
+		if (days == null)
+			days = 0;
+		response.setContentType("application/pdf;charset=UTF-8");
+		PayDate payDate;
+		if(selectedPayDate !=null)
+			payDate = PayDate.getPaydate(selectedPayDate);
+		else {
+			List<PayDate> payDates = this.service.getAvailablePayDates(employeeNumber, days);
+			payDate = this.service.getLatestPayDate(payDates);
+		}
+		response.setHeader("Content-Disposition", "application/pdf;filename=Earnings for "+payDate.getFormatedDate()+".pdf");
+		
+		String path = request.getServletContext().getRealPath("/");
+		if (path != null && !path.endsWith("\\")) {
+			path = path.concat("\\");
+		}
+		pDFService.setRealPath(path);
+		
+		ParameterReport report = new ParameterReport();
+		report.setTitle("Earnings Report");
+		report.setId("earningsReport");
+		report.setFileName("DHrs2500WageandearningstmtTab");
+		report.setSortable(false);
+		report.setFilterable(false);
+		
+		EarningsPrint earningsPrint = generateEarningsPrint(request, response, selectedPayDate);
+		JSONArray jsonArray = JSONArray.fromObject(earningsPrint);
+		System.out.println("Earnings Print: "+jsonArray.toString());
+		IReport ireport = setupReport(report, earningsPrint);
+		
+	    JasperPrint jasperPrint = pDFService.buildReport(ireport);
+    	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+	}
+	
 	public EarningsPrint generateEarningsPrint(HttpServletRequest request, HttpServletResponse response,
 			String selectedPayDate) {
 		EarningsPrint print = new EarningsPrint();
