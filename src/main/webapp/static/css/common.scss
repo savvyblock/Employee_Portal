@@ -578,6 +578,10 @@ input {
         }
         &.td-content{
             border-right: 1px solid #dee2e6;
+            &.moreBig{
+                width: 80px;
+                min-width: 80px;
+            }
         }
         &.no-border-td{
             border:0;

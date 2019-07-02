@@ -146,3 +146,8 @@ function changeBC(){
     $("#selectPageNow").val(pageNow)
     $("#changePageForm")[0].submit()
 }
+
+function load(){
+	$("#printIframe")[0].contentWindow.focus();
+	$("#printIframe")[0].contentWindow.print();
+}

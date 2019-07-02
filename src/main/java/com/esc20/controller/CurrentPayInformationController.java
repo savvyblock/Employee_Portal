@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BhrEmpDemo;
@@ -97,7 +98,33 @@ public class CurrentPayInformationController{
 	    JasperPrint jasperPrint = pDFService.buildReport(ireport);
     	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 	}
+
+	@RequestMapping("printPDF")
+	@ResponseBody
+	public void printPDF(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("application/pdf;charset=UTF-8");
+		response.setHeader("Content-Disposition", "application/pdf;filename=Current Pay Information.pdf");
 		
+		String path = request.getServletContext().getRealPath("/");
+		if (path != null && !path.endsWith("\\")) {
+			path = path.concat("\\");
+		}
+		pDFService.setRealPath(path);
+		
+		ParameterReport report = new ParameterReport();
+		report.setTitle("Pay Report");
+		report.setId("payReport");
+		report.setFileName("DRptPay");
+		report.setSortable(false);
+		report.setFilterable(false);
+		
+		PayPrint payPrint = generatePayPrint(request, response);
+		IReport ireport = setupReport(report, payPrint);
+		
+	    JasperPrint jasperPrint = pDFService.buildReport(ireport);
+    	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+	}
+	
 	public PayPrint generatePayPrint(HttpServletRequest request, HttpServletResponse response)
 	{
 		PayPrint print = new PayPrint();

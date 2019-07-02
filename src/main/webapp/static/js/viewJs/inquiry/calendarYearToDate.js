@@ -53,3 +53,8 @@ function downloadPDF() {
     var title = $(document).attr("title")
     convert2canvasDownload(shareContent,pdfDom,fileName,title)
 }
+
+function load(){
+	$("#printIframe")[0].contentWindow.focus();
+	$("#printIframe")[0].contentWindow.print();
+}

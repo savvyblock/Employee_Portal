@@ -7,6 +7,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <head>
         <title>${sessionScope.languageJSON.headTitle.calendarYTD}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <% response.addHeader("x-frame-options","SAMEORIGIN");%>​​​​​​​
         <%@ include file="../commons/header.jsp"%>
     </head>
     <body class="hold-transition sidebar-mini">
@@ -26,13 +27,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 								<button type="submit" role="button" class="btn btn-primary download-pdf"
 									aria-label="${sessionScope.languageJSON.label.exportPDF}"><i class="fa fa-file-pdf-o"></i></button>
                             </form>
-                            <button
-                                class="btn btn-primary"
-                                onclick="doPrint()"
-                               
-                            >
-                            ${sessionScope.languageJSON.label.print}
-                            </button>
+                            <form class="no-print" action="printPDF" method="POST" target="printIframe">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+								<input type="hidden" name="year"
+									value="${selectedYear}" />
+	                            <button type="submit" role="button" class="btn btn-primary">
+	                            	${sessionScope.languageJSON.label.print}
+	                            </button>
+                            </form>
+
+                            <iframe style="display:none" name="printIframe" onload="load()" id="printIframe"></iframe>
                         </div>
                     </div>
                     <div class="toPrint content-white EMP-detail">
@@ -444,6 +449,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 </section>
             </main>
         </div>
+        
         <%@ include file="../commons/footer.jsp"%>
     </body>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/inquiry/calendarYearToDate.js"></script>

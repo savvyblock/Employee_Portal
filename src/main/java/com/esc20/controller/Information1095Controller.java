@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BhrAca1095cEmpHist;
@@ -266,6 +267,39 @@ public class Information1095Controller{
 		}
 	}
 
+	@RequestMapping("printPDF")
+	@ResponseBody
+	public void printPDF(HttpServletRequest request, HttpServletResponse response, String year, String type)
+			throws Exception {
+		response.setContentType("application/pdf;charset=UTF-8");
+		response.setHeader("Content-Disposition", "application/pdf;filename=1095 " + type.toUpperCase() + " Form for " + year + ".pdf");
+		String path = request.getServletContext().getRealPath("/");
+		if (path != null && !path.endsWith("\\")) {
+			path = path.concat("\\");
+		}
+		pDFService.setRealPath(path);
+
+		ParameterReport report = new ParameterReport();
+		report.setTitle("1095" + type.toUpperCase() + " Form for " + year);
+		report.setId("1095" + type.toUpperCase() + year);
+		report.setFileName("1095" + type.toUpperCase() + " Form for " + year);
+		report.setSortable(false);
+		report.setFilterable(false);
+		IReport ireport;
+		JasperPrint jasperPrint;
+		if (StringUtil.equals(type.trim().toUpperCase(), "B")) {
+			List<Aca1095BPrint> aca1095BPrint = generate1095BPrint(request, year);
+			ireport = setupBReport(report, aca1095BPrint, year);
+			jasperPrint = pDFService.buildReport(ireport);
+			JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+		} else if (StringUtil.equals(type.trim().toUpperCase(), "C")) {
+			List<Aca1095CPrint> aca1095CPrint = generate1095CPrint(request, year);
+			ireport = setupCReport(report, aca1095CPrint, year);
+			jasperPrint = pDFService.buildReport(ireport);
+			JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+		}
+	}
+	
 	private List<Aca1095BPrint> generate1095BPrint(HttpServletRequest request, String year) {
 		Aca1095BPrint print = new Aca1095BPrint();
 		HttpSession session = request.getSession();

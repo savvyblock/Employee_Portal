@@ -2,15 +2,19 @@ package com.esc20.controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BhrCalYtd;
@@ -121,6 +125,38 @@ public class CalendarYearToDateController {
 	    JasperPrint jasperPrint = null;
 		jasperPrint = pDFService.buildReport(ireport);
     	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+	}
+
+	@RequestMapping("printPDF")
+	@ResponseBody
+	public void printPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
+		response.setContentType("application/pdf;charset=UTF-8");
+		response.setHeader("Content-Disposition",
+				"application/pdf;filename=Calendar Year to Date Report for "+ year+".pdf");
+		String path = request.getServletContext().getRealPath("/");
+		if (path != null && !path.endsWith("\\")) {
+			path = path.concat("\\");
+		}
+		pDFService.setRealPath(path);
+		BhrEmpDemo userDetail = (BhrEmpDemo) request.getSession().getAttribute("userDetail");
+		District district = (District) request.getSession().getAttribute("district");
+		
+		BhrCalYtd b = service.getCalenderYTD(userDetail.getEmpNbr(), year);
+		
+		List<CalYTDPrint> parameters = this.generateCalYTDPrint(userDetail, district, b);
+		
+		ParameterReport report = new ParameterReport();
+		
+		report.setTitle("Calendar Year to Date Report for "+ year);
+		report.setId("calYTDReport");
+		report.setFileName("Calendar Year to Date Report for "+ year);
+		report.setSortable(false);
+		report.setFilterable(false);
+		
+		IReport ireport = pDFService.setupReport(report, parameters);
+	    JasperPrint jasperPrint = null;
+		jasperPrint = pDFService.buildReport(ireport);
+		JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
 	}
 	
 	//jf20140110 Print Report on Calendar YTD screen
