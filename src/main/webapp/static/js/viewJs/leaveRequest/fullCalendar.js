@@ -1,4 +1,5 @@
 var reasonOption
+console.log(haveSupervisor)
 $(document).ready(function() {
     reasonOption = $("#absenceReason").html()
     $('#requestForm').attr('action', 'submitLeaveRequestFromCalendar')
@@ -16,7 +17,7 @@ $(document).ready(function() {
                 displayEventEnd: true,
                 defaultDate: new Date(),
                 weekNumbers: false,
-                navLinks: true, // can click day/week names to navigate views
+                navLinks: false, // can click day/week names to navigate views
                 editable: false,
                 eventLimit: true, // allow "more" link when too many events
                 events: leaveList,
@@ -145,10 +146,13 @@ $(document).ready(function() {
                     }
                 },
                 dayClick: function(date, allDay, jsEvent, view) {
-                    console.log(date)
-                    console.log(allDay)
-                    console.log(jsEvent)
-                    console.log(view)
+                    // console.log(date)
+                    // console.log(allDay)
+                    // console.log(jsEvent)
+                    // console.log(view)
+                    if(haveSupervisor == 'false'){
+                        return false
+                    }
                     newEvent($(this))
                     $("#requestModal").modal("show")
                     $("#absenceReason").html(reasonOption)
@@ -193,10 +197,19 @@ $(document).ready(function() {
                     $('.fc-day-top').each(function() {
                         var title = $(this).attr('data-date')
                         // var newBtn = `<button class="btn btn-primary xs"  data-title="${title}" title="Add a new request" onclick="newEvent(this)">Add</button>`
-                        var newBtn =
+                        var newBtn =''
+                        if(haveSupervisor == 'false'){
+                            newBtn =
+                            '<button class="btn btn-primary xs calendarAddBtn" data-title="'+title+'" aria-label="'+addNewRequestLabel+' ' +title +'" onclick="newEvent(this)"  data-toggle="modal" data-target="#requestModal" disabled="disabled"><span>'
+                            + addLabel +
+                            '</span></button>'
+                        }else{
+                            newBtn =
                             '<button class="btn btn-primary xs calendarAddBtn" data-title="'+title+'" aria-label="'+addNewRequestLabel+' ' +title +'" onclick="newEvent(this)"  data-toggle="modal" data-target="#requestModal"><span>'
                             + addLabel +
                             '</span></button>'
+                        }
+                        
                         $(this).prepend(newBtn)
                     })
                     var currentHtml = '<span>' + currentMonthLabel + '</span>'

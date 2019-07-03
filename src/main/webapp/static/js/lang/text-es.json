@@ -747,6 +747,7 @@
 		"sendEmailFailed":"We did not successfuly send the temp password to your email address, please contact the site admin for assisstance.",
 		"pleaseEnterCorrectFormatBankAmount":"Secondary accounts must have a deposit amount greater than $0.00",
 		"updateFailed":"Update Failed.",
+		"enteredWrongDate":"The date format you entered is incorrect",
 		"":""
 	},
 	"accessHint":{

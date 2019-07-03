@@ -102,6 +102,7 @@ var maxLength19Validator = "${sessionScope.languageJSON.validator.maxLength19}";
 var maxLength20Validator = "${sessionScope.languageJSON.validator.maxLength20}";
 var maxLength25Validator = "${sessionScope.languageJSON.validator.maxLength25}";
 var maxLength26Validator = "${sessionScope.languageJSON.validator.maxLength26}";
+var wrongDateFormat = "${sessionScope.languageJSON.validator.enteredWrongDate}";
 
 var oldPasswordWrongValidator = "${sessionScope.languageJSON.validator.oldPasswordWrong}";
 var usernameOrPasswordErrorValidator = "${sessionScope.languageJSON.validator.usernameOrPasswordError}";
