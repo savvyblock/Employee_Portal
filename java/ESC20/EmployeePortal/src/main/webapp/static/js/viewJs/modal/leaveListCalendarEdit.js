@@ -36,7 +36,7 @@ function initialLeaveCalendarStaticModal(){
                 displayEventEnd: true,
                 defaultDate: new Date(),
                 weekNumbers: false,
-                navLinks: true, // can click day/week names to navigate views
+                navLinks: false, // can click day/week names to navigate views
                 editable: false,
                 eventLimit: true, // allow "more" link when too many events
                 events: leaveList,

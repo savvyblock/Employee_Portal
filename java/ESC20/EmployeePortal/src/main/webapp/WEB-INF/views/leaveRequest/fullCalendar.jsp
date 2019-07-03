@@ -20,6 +20,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         	${sessionScope.languageJSON.label.switchToTableView}
                         </a>
                     </div>
+                    <c:if test="${!haveSupervisor}">
+                        <p class="topMsg error-hint" role="alert">${sessionScope.languageJSON.label.noSupervisorFound}</p>
+                    </c:if>
                     <div class="content-white"><div id="calendar"></div></div>
                 </section>
             </main>
@@ -37,7 +40,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         var leaveList = eval(${leaves});
         var leaveTypes = eval(${leaveTypes});
         var absRsns = eval(${absRsns});
+        var haveSupervisor = '${haveSupervisor}'
         console.log(leaveList)
+        console.log(haveSupervisor)
     </script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/leaveRequest/fullCalendar.js"></script>
 

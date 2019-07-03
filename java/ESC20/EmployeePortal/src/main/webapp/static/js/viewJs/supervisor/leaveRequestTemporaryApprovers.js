@@ -358,12 +358,13 @@ function initDateControl() {
                 console.log(ev)
                 var endDate = toDateDom.val()
                 var startDate = fromDateDom.val()
-                if (
-                    ev.date &&
-                    (ev.date.valueOf() >= checkout[index].date.valueOf() ||
-                        !endDate ||
-                        endDate == '')
-                ) {
+                // if (
+                //     ev.date &&
+                //     (ev.date.valueOf() >= checkout[index].date.valueOf() ||
+                //         !endDate ||
+                //         endDate == '')
+                // ) {
+                if (ev.date){
                     startDate = new Date(startDate)
                     startDate.setDate(startDate.getDate())
                     checkout[index].update(startDate)

@@ -229,10 +229,17 @@
                             var getDate = $(this).val();
                             if(getDate&&getDate!=''){
                                 var date = that.parseMessDate(getDate);
-                                if(!date||date=='Invalid Date') date = now
-                                $(this).val(that.getFormattedDate(date,that.format,that.language))
-                                that._setDate(date)
-                                $(this).change()
+                                if(!date||date=='Invalid Date'){
+                                    // date = now
+                                    alert(wrongDateFormat)
+                                    $(this).val('')
+                                    $(this).focus()
+                                }else{
+                                    $(this).val(that.getFormattedDate(date,that.format,that.language))
+                                    that._setDate(date)
+                                    $(this).change()
+                                }
+                                // console.log(date)
                             }
                         },
                         keyup: $.proxy(this.update, this),

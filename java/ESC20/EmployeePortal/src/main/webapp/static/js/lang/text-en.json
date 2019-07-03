@@ -612,6 +612,7 @@
 		"getPasswordNoEmail":"No email address exists on file for employee. Please contact your personnel office to have your security information deleted. You may then re-register as a new user. ",
 		"welcomeToNewEmployeePortal":"Welcome to the new ASCENDER EmployeePortal.",
 		"saveSuperAction":"Save Supervisor Action",
+		"noSupervisorFound":"Leave Request cannot be entered. No supervisor found.",
 		"":""
 	},
 	"language":{
@@ -747,6 +748,7 @@
 		"sendEmailFailed":"We did not successfuly send the temp password to your email address, please contact the site admin for assisstance.",
 		"pleaseEnterCorrectFormatBankAmount":"Secondary accounts must have a deposit amount greater than $0.00",
 		"updateFailed":"Update Failed.",
+		"enteredWrongDate":"The date format you entered is incorrect",
 		"":""
 	},
 	"accessHint":{

@@ -25,7 +25,7 @@
 					</a>
 				</div>
  				<c:if test="${!haveSupervisor}">
-					<p class="topMsg error-hint" role="alert">Leave Request cannot be entered. No supervisor found.</p>
+					<p class="topMsg error-hint" role="alert">${sessionScope.languageJSON.label.noSupervisorFound}</p>
 				</c:if>
 				
 			</div>
