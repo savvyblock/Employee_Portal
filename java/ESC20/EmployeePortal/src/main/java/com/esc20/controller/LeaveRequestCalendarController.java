@@ -16,6 +16,7 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.LeaveInfo;
+import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequestModel;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
@@ -43,6 +44,14 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 		AppLeaveRequest request = new AppLeaveRequest();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
+		LeaveParameters params = this.service.getLeaveParameters();
+		String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
+		if (supervisorEmpNbr == null) {
+			supervisorEmpNbr = "";
+			mav.addObject("haveSupervisor", false);
+		}else {
+			mav.addObject("haveSupervisor", true);
+		}
 		List<AppLeaveRequest> requests = new ArrayList<AppLeaveRequest>();
 		if (freq == null || ("").equals(freq)) {
 			if (availableFreqs.size() > 0) {
