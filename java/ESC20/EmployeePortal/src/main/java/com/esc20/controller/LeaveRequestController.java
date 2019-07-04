@@ -85,7 +85,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 				leaveTypesforSearch.add(empty);
 				leaveTypes.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
 				leaveTypesforSearch.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
-				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
+				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
 				JSONArray json = new JSONArray();
 
 				leaveTypes.add(empty);
@@ -135,7 +135,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			leaveTypesforSearch.add(empty);
 			leaveTypes.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
 			leaveTypesforSearch.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
-			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
+			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
 			JSONArray json = new JSONArray();
 			for (int i = 0; i < requestModels.size(); i++) {
 				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
