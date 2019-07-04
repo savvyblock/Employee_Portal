@@ -555,13 +555,13 @@ public class Information1095Controller{
 	}
 
 	private void fillPartIALEBoxesC(District district, Aca1095CPrint print) {
-		String ein = district.getNumber();
+		String ein = district.getEin();
 		ein = StringUtil.left(ein, 2) + "-" + StringUtil.right(ein, 7);
 
 		print.setB7_businessnameline1txt(StringUtil.trim(StringUtil.upper(district.getName())));
 		print.setB8_ein(ein);
 		print.setB9_addressline1txt(StringUtil.trim(StringUtil.upper(district.getAddress())));
-		print.setB10_contactphonenum(district.getPhone());
+		print.setB10_contactphonenum(district.getPhone().replaceAll("-", ""));
 		print.setB11_citynm(StringUtil.trim(StringUtil.upper(district.getCity())));
 		print.setB12_usstatecd(StringUtil.trim(StringUtil.upper(district.getState())));
 		print.setB13_uszipcd(district.getZip()==null?"":district.getZip());
@@ -626,7 +626,7 @@ public class Information1095Controller{
 			}
 		}
 		print.setPiii_coveredindividualind(cCovrgTypList.get(0).getSelfIns() == 'Y'?"Y":"N");
-		print.setPlanStrtMon(cCovrgTypList.get(0).getPlanStrtMon());
+		print.setPlanStrtMon(cCovrgTypList.get(0).getPlanStrtMon()==null?"":cCovrgTypList.get(0).getPlanStrtMon());
 	}
 
 	private void fillPartIIIBoxesC(List<CCoveredHistory> cList, Aca1095CPrint print, Boolean printPage4) {
