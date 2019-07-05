@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs5255Form1095C2017" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="720" leftMargin="36" rightMargin="36" topMargin="24" bottomMargin="36" uuid="53325ff8-f39d-4217-af00-41d776b3acd7">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
@@ -920,7 +921,7 @@ see IRS.gov.]]></text>
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="7"/>
 							</textElement>
-							<text><![CDATA[OMB No. 1545-2252]]></text>
+							<text><![CDATA[OMB No. 1545-2251]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -1889,7 +1890,7 @@ see IRS.gov.]]></text>
 						<textElement textAlignment="Left" verticalAlignment="Top">
 							<font fontName="Microsoft Sans Serif" size="6" isBold="false"/>
 						</textElement>
-						<text><![CDATA[15 Employee Share of Lowest Cost Monthly Premium, for Self-Only Minimum Value Coverage]]></text>
+						<text><![CDATA[15 Employee Required Contribution (see instructions)]]></text>
 					</staticText>
 					<frame>
 						<reportElement key="Box 15 All" x="65" y="0" width="50" height="36" uuid="44034e99-40e4-48e3-8a82-7ed65dd65b7e">
@@ -2212,7 +2213,7 @@ see IRS.gov.]]></text>
 						<textElement textAlignment="Left" verticalAlignment="Top">
 							<font fontName="Microsoft Sans Serif" size="6" isBold="false"/>
 						</textElement>
-						<text><![CDATA[16 Applicable Section 4980H Safe Harbor (enter code, if applicable)]]></text>
+						<text><![CDATA[16 Section 4980H Safe Harbor and Other Relief  (enter code, if applicable)]]></text>
 					</staticText>
 					<frame>
 						<reportElement key="Box 16 All" x="65" y="0" width="50" height="30" uuid="a9ab0fa1-3d98-4af5-8582-ed4c0468e0ab">
@@ -2448,7 +2449,7 @@ see IRS.gov.]]></text>
 						<textElement textAlignment="Left">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isPdfEmbedded="false"/>
 						</textElement>
-						<text><![CDATA[covered individual.]]></text>
+						<text><![CDATA[individual enrolled in coverage, including the employee.]]></text>
 					</staticText>
 					<frame>
 						<reportElement x="465" y="8" width="87" height="15" uuid="8bb21a7b-6d68-492e-aef7-9c89972f870f">
@@ -2751,7 +2752,7 @@ see IRS.gov.]]></text>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
 							</textElement>
-							<textFieldExpression><![CDATA[$V{nameBox27}]]></textFieldExpression>
+							<textFieldExpression><![CDATA[$V{nameBox17}]]></textFieldExpression>
 						</textField>
 						<staticText>
 							<reportElement x="1" y="27" width="11" height="8" uuid="99313c5a-5ae9-4821-b0ee-d47b9f0f67bd"/>

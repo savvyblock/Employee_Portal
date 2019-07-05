@@ -133,7 +133,7 @@ public class EA1095Dao {
 
 	public List<EA1095CEmployerShare> retrieveEA1095CEmpInfo(String employeeNumber, String year) {
 		Session session = this.getSession();
-		String retrieveSQL = "FROM BhrAca1095cEmpHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr order by A.id.empNbr desc, A.id.calYr desc, A.id.calMon";
+		String retrieveSQL = "FROM BhrAca1095cEmpHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr order by A.id.empNbr desc, A.id.calYr desc, A.id.calMon desc";
         Query q = session.createQuery(retrieveSQL);
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year); 
@@ -147,7 +147,6 @@ public class EA1095Dao {
         		empNbr = result.get(i).getId().getEmpNbr();
         		share = new EA1095CEmployerShare();
         		share.setYear(result.get(i).getId().getCalYr());
-        		share.setMonAll(result.get(i));
         		for(int j=0;j<result.size();j++) {
         			if(result.get(i).getId().getEmpNbr().equals(result.get(j).getId().getEmpNbr()) && 
         					result.get(i).getId().getCalYr().equals(result.get(j).getId().getCalYr())) {
@@ -175,6 +174,8 @@ public class EA1095Dao {
         					share.setMon11(result.get(j));
         				if(result.get(j).getId().getCalMon().equals("12"))
         					share.setMon12(result.get(j));
+        				if(result.get(j).getId().getCalMon().equals("ALL"))
+        					share.setMonAll(result.get(j));
         			}
         		}
         		shareResult.add(share);
