@@ -441,10 +441,10 @@ public class Information1095Controller{
 	}
 	
 	private void fillPartIBoxesB(BhrEmpDemo userDetail, Aca1095BPrint print) {
-		print.setB1_personfirstnm(userDetail.getNameF());
-		print.setB1_personmiddlenm(userDetail.getNameM());
-		print.setB1_personlastnm(userDetail.getNameL());
-		print.setB1_suffixnm(userDetail.getGenDescription());
+		print.setB1_personfirstnm(userDetail.getNameF()==null?"":userDetail.getNameF());
+		print.setB1_personmiddlenm(userDetail.getNameM()==null?"":userDetail.getNameM());
+		print.setB1_personlastnm(userDetail.getNameL()==null?"":userDetail.getNameL());
+		print.setB1_suffixnm(userDetail.getGenDescription()==null?"":userDetail.getGenDescription());
 
 		String ssn = userDetail.getStaffId().replaceAll("-", "").trim();
 		String b2_ssn = "";
@@ -454,7 +454,7 @@ public class Information1095Controller{
 		} else {
 			b2_ssn = ssn;
 		}	
-
+		
 		print.setB2_ssn(b2_ssn);
 		print.setB3_birthdt(b3_birthDt);
 		print.setB4_addressline1txt(userDetail.getAddrNbr()+ " "+ userDetail.getAddrStr());
@@ -475,12 +475,12 @@ public class Information1095Controller{
 	}
 
 	private void fillPartIIIBoxesB(District district,Aca1095BPrint print) {
-		String ein = district.getNumber();
+		String ein = district.getEin();
 		ein = StringUtil.left(ein, 2) + "-" + StringUtil.right(ein, 7);
 
 		print.setB16_businessnameline1txt(StringUtil.trim(StringUtil.upper(district.getName())));
 		print.setB17_ein(ein);
-		print.setB18_contactphonenum(district.getPhone());
+		print.setB18_contactphonenum(district.getPhone().replaceAll("-", ""));
 		print.setB19_addressline1txt(StringUtil.trim(StringUtil.upper(district.getAddress())));
 		print.setB20_citynm(StringUtil.trim(StringUtil.upper(district.getCity())));
 		print.setB21_usstatecd(StringUtil.trim(StringUtil.upper(district.getState())));
@@ -503,9 +503,9 @@ public class Information1095Controller{
 		//Go through part IV boxes on the form and instantiate them blank or with data
 		for(int i=0; i<bList.size(); i++) {
 			BCoveredHistory ea1095 = bList.get(i);
-			print.setCovrgFirstName(box, ea1095.getNameF());
-			print.setCovrgMiddleName(box, ea1095.getNameM());
-			print.setCovrgLastName(box, ea1095.getNameL());
+			print.setCovrgFirstName(box, ea1095.getNameF()==null?"":ea1095.getNameF());
+			print.setCovrgMiddleName(box, ea1095.getNameM()==null?" ":" "+ ea1095.getNameM() + " ");
+			print.setCovrgLastName(box, ea1095.getNameL()==null?"":ea1095.getNameL());
 			print.setCovrgSuffix(box, "");
 		    for(Code gen: gens) {
 		    	if(ea1095.getNameGen() != null && gen.getCode().equals(ea1095.getNameGen().toString())) {
@@ -543,7 +543,7 @@ public class Information1095Controller{
 
 	private void fillPartIEmpBoxesC(BhrEmpDemo userDetail, Aca1095CPrint print) {
 		print.setB1_personfirstnm(userDetail.getNameF()==null?"":userDetail.getNameF());
-		print.setB1_personmiddlenm(userDetail.getNameM()==null?" ":" "+ userDetail.getNameM()+" ");
+		print.setB1_personmiddlenm(userDetail.getNameM()==null?"":userDetail.getNameM());
 		print.setB1_personlastnm(userDetail.getNameL()==null?"":userDetail.getNameL());
 		print.setB1_suffixnm(userDetail.getGenDescription()==null?"":userDetail.getGenDescription());
 		print.setB2_ssn(userDetail.getStaffId().replaceAll("-", "").trim());

@@ -2758,7 +2758,7 @@
 							<textElement textAlignment="Left" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
 							</textElement>
-							<textFieldExpression><![CDATA[$V{nameBox27}]]></textFieldExpression>
+							<textFieldExpression><![CDATA[$V{nameBox17}]]></textFieldExpression>
 						</textField>
 						<staticText>
 							<reportElement x="1" y="27" width="11" height="8" uuid="caa7f3dc-f074-479c-8415-5aeb9977bc6e"/>
