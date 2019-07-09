@@ -47,7 +47,7 @@ public class SupervisorService {
 		if (usePMIS) {
 			BhrPmisPosCtrl employeePMISData = leaveRequestDao.getEmployeeSupervisorPMISData(empNbr);
 			if (employeePMISData!=null) {
-				directReports = supervisorDao.getPMISSupervisorDirectReports(employeePMISData.getSpvsrBilletNbr(), employeePMISData.getSpvsrPosNbr());
+				directReports = supervisorDao.getPMISSupervisorDirectReports(employeePMISData.getId().getBilletNbr(), employeePMISData.getId().getPosNbr());
 			} else {
 				directReports = new ArrayList<LeaveEmployeeData>();
 			}
