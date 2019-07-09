@@ -493,22 +493,19 @@ public class LeaveRequestDao {
 	public List<AppLeaveRequest> getSupervisorSumittedLeaveRequests(String employeeNumber) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder("");
-		sql.append(
-				"SELECT ELW.seqNum, ELR.id, ELR.payFreq, ELR.empNbr, ELR.lvTyp, ELR.absRsn, ELR.datetimeSubmitted, ELR.datetimeFrom, ELR.datetimeTo, ELR.lvUnitsDaily, ELR.lvUnitsUsed, ELR.statusCd, ");
-		sql.append("  ELSC.descr, LT.daysHrs, LTD.longDescr, AR.absDescr, ED.nameF, ED.nameM, ED.nameL ");
-		sql.append("FROM BeaEmpLvRqst ELR, ");
-		sql.append(
-				"  BeaEmpLvWorkflow ELW, BteaEmpLvStatusCodes ELSC, BthrLvTyp LT, BthrLvTypDescr LTD, BthrAbsRsn AR, BhrEmpDemo ED ");
-		sql.append("WHERE ELW.apprvrEmpNbr = :employeeNumber AND ELR.empNbr = ED.empNbr ");
-		sql.append("  AND ELW.lvId = ELR.id ");
-		sql.append("  AND ELR.lvTyp=LT.id.lvTyp AND LT.stat='A' AND ELR.statusCd = 'P' ");
-		sql.append(
-				"  AND ELW.insertDatetime = (SELECT MAX(ELW2.insertDatetime) FROM BeaEmpLvWorkflow ELW2 WHERE ELW2.lvId=ELW.lvId) ");
-		sql.append("  AND ELR.statusCd = ELSC.cd  ");
-		sql.append("  AND LT.id.payFreq =  ELR.payFreq  ");
-		sql.append("  AND ELR.lvTyp=LTD.lvTyp AND LTD.stat='A' AND ELR.absRsn=AR.absRsn AND AR.stat='A' ");
-		sql.append("ORDER BY ELR.datetimeFrom ASC ");
-		Query q = session.createQuery(sql.toString());
+		sql.append("SELECT ELW.SEQ_NUM, ELR.ID, ELR.PAY_FREQ, ELR.EMP_NBR, ELR.LV_TYP, ELR.ABS_RSN, ELR.DATETIME_SUBMITTED, ELR.DATETIME_FROM, ELR.DATETIME_TO, ELR.LV_UNITS_DAILY, ELR.LV_UNITS_USED, ELR.STATUS_CD, ");
+		sql.append("  ELSC.DESCR AS STATUS_DESCR, ISNULL(ELC.LV_COMMENT,'') AS REQUEST_COMMENT, LT.DAYS_HRS, LTD.LONG_DESCR, AR.ABS_DESCR, ED.NAME_F, ED.NAME_M, ED.NAME_L ");
+		sql.append("FROM BEA_EMP_LV_RQST ELR LEFT OUTER JOIN BEA_EMP_LV_COMMENTS ELC ON ELR.ID=ELC.LV_ID AND ELC.LV_COMMENT_TYP='C', ");
+		sql.append("  BEA_EMP_LV_WORKFLOW ELW, BTEA_EMP_LV_STATUS_CODES ELSC, BTHR_LV_TYP LT, BTHR_LV_TYP_DESCR LTD, BTHR_ABS_RSN AR, BHR_EMP_DEMO ED ");
+		sql.append("WHERE ELW.APPRVR_EMP_NBR = :employeeNumber AND ELR.EMP_NBR = ED.EMP_NBR ");
+		sql.append("  AND ELW.LV_ID = ELR.ID ");
+		sql.append("  AND ELR.LV_TYP=LT.LV_TYP AND LT.STAT='A' AND ELR.STATUS_CD = 'P' ");
+		sql.append("  AND ELW.INSERT_DATETIME = (SELECT MAX(ELW2.INSERT_DATETIME) FROM BEA_EMP_LV_WORKFLOW ELW2 WHERE ELW2.LV_ID=ELW.LV_ID) ");
+		sql.append("  AND ELR.STATUS_CD = ELSC.CD  ");
+		sql.append("  AND LT.PAY_FREQ =  ELR.PAY_FREQ  ");
+		sql.append("  AND ELR.LV_TYP=LTD.LV_TYP AND LTD.STAT='A' AND ELR.ABS_RSN=AR.ABS_RSN AND AR.STAT='A' ");
+		sql.append("ORDER BY DATETIME_FROM ASC ");
+		Query q = session.createSQLQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
 		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();

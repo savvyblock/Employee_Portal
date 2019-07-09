@@ -82,7 +82,6 @@ public class TempApproverController extends BaseSupervisorController {
 		if (demo.getEmpNbr().equals(empNbr)) {
 			mav.addObject("chain", chain);
 		}
-		System.out.println("Temp Approver List >>>>>>>>>>>>>>>>>>>>>>>>>>>" + tmpApprovers.toString());
 		mav.addObject("tmpApprovers", tmpApprovers);
 		mav.addObject("directReportEmployee", employeeDataJSON);
 		return mav;

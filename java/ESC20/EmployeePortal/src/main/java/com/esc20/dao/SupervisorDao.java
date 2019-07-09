@@ -26,20 +26,20 @@ public class SupervisorDao {
     private Session getSession(){
         return sessionFactory.getCurrentSession();
     }
-	public List<LeaveEmployeeData> getPMISSupervisorDirectReports(String spvsrBilletNbr, String spvsrPosNbr) {
+	public List<LeaveEmployeeData> getPMISSupervisorDirectReports(String billetNbr, String posNbr) {
 		Session session = this.getSession();
-		String sql = "SELECT PPC.occEmpNbr, PPC.payFreq, ED.nameF, ED.nameL, ED.nameM, " +
-				"(SELECT COUNT(*) FROM BhrPmisPosCtrl PPC3 WHERE PPC3.spvsrBilletNbr=PPC.id.billetNbr " +
-					"AND PPC3.spvsrPosNbr=PPC.id.posNbr " +
-					"AND PPC3.payFreq=(SELECT MAX(PPC4.payFreq) FROM BhrPmisPosCtrl PPC4 WHERE PPC4.occEmpNbr=PPC3.occEmpNbr AND PPC4.id.posTyp='P' AND PPC4.id.cyrNyrFlg='C') " +
-					"AND PPC3.id.posTyp='P' AND PPC3.id.cyrNyrFlg='C')" +
-				"FROM BhrPmisPosCtrl PPC, BhrEmpDemo ED WHERE PPC.spvsrBilletNbr=:billetNumber " +
-					"AND PPC.spvsrPosNbr=:posNumber " +
-					"AND PPC.payFreq=(SELECT MAX(PPC2.payFreq) FROM BhrPmisPosCtrl PPC2 WHERE PPC2.occEmpNbr=PPC.occEmpNbr AND PPC2.id.posTyp='P' AND PPC2.id.cyrNyrFlg='C') " +
-					"AND PPC.id.posTyp='P' AND PPC.id.cyrNyrFlg='C' AND PPC.occEmpNbr=ED.empNbr ORDER BY ED.nameL ASC, ED.nameF ASC, ED.nameM ASC";
-        Query q = session.createQuery(sql);
-        q.setParameter("billetNumber", spvsrBilletNbr);
-        q.setParameter("spvsrPosNbr", spvsrPosNbr);
+		String sql = "SELECT PPC.OCC_EMP_NBR, PPC.PAY_FREQ, ED.NAME_F AS FIRST_NAME, ED.NAME_L AS LAST_NAME, ED.NAME_M AS MIDDLE_NAME, " +
+				"(SELECT COUNT(*) FROM BHR_PMIS_POS_CTRL PPC3 WHERE PPC3.SPVSR_BILLET_NBR=PPC.BILLET_NBR " +
+					"AND PPC3.SPVSR_POS_NBR=PPC.POS_NBR " +
+					"AND PPC3.PAY_FREQ=(SELECT MAX(PPC4.PAY_FREQ) FROM BHR_PMIS_POS_CTRL PPC4 WHERE PPC4.OCC_EMP_NBR=PPC3.OCC_EMP_NBR AND PPC4.POS_TYP='P' AND PPC4.CYR_NYR_FLG='C') " +
+					"AND PPC3.POS_TYP='P' AND PPC3.CYR_NYR_FLG='C') AS NUM_DIRECT_REPORTS " +
+				"FROM BHR_PMIS_POS_CTRL PPC, BHR_EMP_DEMO ED WHERE PPC.SPVSR_BILLET_NBR=:billetNumber " +
+					"AND PPC.SPVSR_POS_NBR=:spvsrPosNbr " +
+					"AND PPC.PAY_FREQ=(SELECT MAX(PPC2.PAY_FREQ) FROM BHR_PMIS_POS_CTRL PPC2 WHERE PPC2.OCC_EMP_NBR=PPC.OCC_EMP_NBR AND PPC2.POS_TYP='P' AND PPC2.CYR_NYR_FLG='C') " +
+					"AND PPC.POS_TYP='P' AND PPC.CYR_NYR_FLG='C' AND PPC.OCC_EMP_NBR=ED.EMP_NBR ORDER BY LAST_NAME ASC, FIRST_NAME ASC, MIDDLE_NAME ASC";
+        Query q = session.createSQLQuery(sql);
+        q.setParameter("billetNumber", billetNbr);
+        q.setParameter("spvsrPosNbr", posNbr);
         @SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
         
@@ -53,10 +53,10 @@ public class SupervisorDao {
 	}
 	public List<LeaveEmployeeData> getSupervisorDirectReports(String empNbr) {
 		Session session = this.getSession();
-		String sql = "SELECT E2S.empEmpNbr, ED.nameF, ED.nameL, ED.nameM, " +
-				"(SELECT COUNT(*) FROM BhrEapEmpToSpvsr E2S2 WHERE E2S2.spvsrEmpNbr=ED.empNbr) " +
-				"FROM BhrEapEmpToSpvsr E2S, BhrEmpDemo ED WHERE E2S.spvsrEmpNbr=:empNbr AND E2S.empEmpNbr=ED.empNbr ORDER BY ED.nameL ASC, ED.nameF ASC, ED.nameM ASC";
-        Query q = session.createQuery(sql);
+		String sql = "SELECT E2S.EMP_EMP_NBR, ED.NAME_F AS FIRST_NAME, ED.NAME_L AS LAST_NAME, ED.NAME_M AS MIDDLE_NAME, " +
+				"(SELECT COUNT(*) FROM BHR_EAP_EMP_TO_SPVSR E2S WHERE E2S.SPVSR_EMP_NBR=ED.EMP_NBR) AS NUM_DIRECT_REPORTS " +
+				"FROM BHR_EAP_EMP_TO_SPVSR E2S, BHR_EMP_DEMO ED WHERE E2S.SPVSR_EMP_NBR=:empNbr AND E2S.EMP_EMP_NBR=ED.EMP_NBR ORDER BY LAST_NAME ASC, FIRST_NAME ASC, MIDDLE_NAME ASC";
+        Query q = session.createSQLQuery(sql);
         q.setParameter("empNbr", empNbr);
         @SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();

@@ -18,15 +18,15 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	private static final long serialVersionUID = 6715142900654758429L;
 	private BhrPmisPosCtrlId id;
 	private String posDescr;
-	private char posStat;
+	private Character posStat;
 	private String posSchYr;
-	private char payFreq;
+	private Character payFreq;
 	private String occEmpNbr;
-	private char primJob;
-	private char incrElig;
+	private Character primJob;
+	private Character incrElig;
 	private String occPayGrd;
 	private String occPayStp;
-	private char occPaySched;
+	private Character occPaySched;
 	private String stStp;
 	private String contrDtBeg;
 	private String contrDtEnd;
@@ -34,37 +34,37 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	private BigDecimal nbrDaysOff;
 	private BigDecimal actHrlyDlyRate;
 	private BigDecimal salAmt;
-	private short nbrRemainPymts;
+	private Short nbrRemainPymts;
 	private String jobCateg;
-	private char supplAtch;
+	private Character supplAtch;
 	private String jobCd;
 	private String frstPaydtCd;
 	private String calCd;
 	private String campusId;
-	private char dept;
+	private Character dept;
 	private BigDecimal hrsPerDay;
 	private BigDecimal dayEmpldPct;
 	private BigDecimal pctOfYr;
-	private char payConcpt;
+	private Character payConcpt;
 	private String eeocCd;
-	private char wrkComp;
+	private Character wrkComp;
 	private String trsPosCd;
 	private BigDecimal maxDays;
-	private short maxPymts;
-	private char ovtmEligFlg;
-	private short stMinDays;
+	private Short maxPymts;
+	private Character ovtmEligFlg;
+	private Short stMinDays;
 	private String spvsrPosNbr;
 	private String spvsrBilletNbr;
 	private BigDecimal supplExtraDays;
 	private String supplToPosNbr;
 	private String supplToPosBillet;
 	private String extraDutyCd;
-	private char supplTyp;
+	private Character supplTyp;
 	private BigDecimal supplMaxAmt;
-	private char basSupplOnDlyRate;
-	private char supplPay1time;
+	private Character basSupplOnDlyRate;
+	private Character supplPay1time;
 	private String dtSuppl1time;
-	private char acptChg;
+	private Character acptChg;
 	private String dtCreateUpdt;
 	private String dtFill;
 	private String fillPosRsn;
@@ -77,42 +77,42 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	private String vacRsn;
 	private String payGrd;
 	private String payStp;
-	private char paySched;
+	private Character paySched;
 	private BigDecimal equivUnts;
-	private char midpntBas;
+	private Character midpntBas;
 	private BigDecimal pctOfMidpnt;
-	private char unempEligFlg;
-	private char ficaElig;
-	private char trsStatCd;
+	private Character unempEligFlg;
+	private Character ficaElig;
+	private Character trsStatCd;
 	private BigDecimal budAmt;
-	private char budSalOvrrid;
-	private char actBudInd;
-	private char payTyp;
-	private char occPayTyp;
+	private Character budSalOvrrid;
+	private Character actBudInd;
+	private Character payTyp;
+	private Character occPayTyp;
 	private String module;
 	private BigDecimal nbrDaysEmpld;
-	private char supplRecalc;
-	private char ignPctDayForSalCalcs;
-	private char ignPctYrForSalCalcs;
+	private Character supplRecalc;
+	private Character ignPctDayForSalCalcs;
+	private Character ignPctYrForSalCalcs;
 
 	public BhrPmisPosCtrl() {
 	}
 
-	public BhrPmisPosCtrl(BhrPmisPosCtrlId id, String posDescr, char posStat, String posSchYr, char payFreq,
-			String occEmpNbr, char primJob, char incrElig, String occPayGrd, String occPayStp, char occPaySched,
+	public BhrPmisPosCtrl(BhrPmisPosCtrlId id, String posDescr, Character posStat, String posSchYr, Character payFreq,
+			String occEmpNbr, Character primJob, Character incrElig, String occPayGrd, String occPayStp, Character occPaySched,
 			String stStp, String contrDtBeg, String contrDtEnd, String dtPayoff, BigDecimal nbrDaysOff,
-			BigDecimal actHrlyDlyRate, BigDecimal salAmt, short nbrRemainPymts, String jobCateg, char supplAtch,
-			String jobCd, String frstPaydtCd, String calCd, String campusId, char dept, BigDecimal hrsPerDay,
-			BigDecimal dayEmpldPct, BigDecimal pctOfYr, char payConcpt, String eeocCd, char wrkComp, String trsPosCd,
-			BigDecimal maxDays, short maxPymts, char ovtmEligFlg, short stMinDays, String spvsrPosNbr,
+			BigDecimal actHrlyDlyRate, BigDecimal salAmt, Short nbrRemainPymts, String jobCateg, Character supplAtch,
+			String jobCd, String frstPaydtCd, String calCd, String campusId, Character dept, BigDecimal hrsPerDay,
+			BigDecimal dayEmpldPct, BigDecimal pctOfYr, Character payConcpt, String eeocCd, Character wrkComp, String trsPosCd,
+			BigDecimal maxDays, Short maxPymts, Character ovtmEligFlg, Short stMinDays, String spvsrPosNbr,
 			String spvsrBilletNbr, BigDecimal supplExtraDays, String supplToPosNbr, String supplToPosBillet,
-			String extraDutyCd, char supplTyp, BigDecimal supplMaxAmt, char basSupplOnDlyRate, char supplPay1time,
-			String dtSuppl1time, char acptChg, String dtCreateUpdt, String dtFill, String fillPosRsn, String dtCriteria,
+			String extraDutyCd, Character supplTyp, BigDecimal supplMaxAmt, Character basSupplOnDlyRate, Character supplPay1time,
+			String dtSuppl1time, Character acptChg, String dtCreateUpdt, String dtFill, String fillPosRsn, String dtCriteria,
 			String dtAuth, String dtAuthEnd, String dtEntry, String dtInactv, String inactvRsnCd, String vacRsn,
-			String payGrd, String payStp, char paySched, BigDecimal equivUnts, char midpntBas, BigDecimal pctOfMidpnt,
-			char unempEligFlg, char ficaElig, char trsStatCd, BigDecimal budAmt, char budSalOvrrid, char actBudInd,
-			char payTyp, char occPayTyp, String module, BigDecimal nbrDaysEmpld, char supplRecalc,
-			char ignPctDayForSalCalcs, char ignPctYrForSalCalcs) {
+			String payGrd, String payStp, Character paySched, BigDecimal equivUnts, Character midpntBas, BigDecimal pctOfMidpnt,
+			Character unempEligFlg, Character ficaElig, Character trsStatCd, BigDecimal budAmt, Character budSalOvrrid, Character actBudInd,
+			Character payTyp, Character occPayTyp, String module, BigDecimal nbrDaysEmpld, Character supplRecalc,
+			Character ignPctDayForSalCalcs, Character ignPctYrForSalCalcs) {
 		this.id = id;
 		this.posDescr = posDescr;
 		this.posStat = posStat;
@@ -218,11 +218,11 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "POS_STAT", nullable = false, length = 1)
-	public char getPosStat() {
+	public Character getPosStat() {
 		return this.posStat;
 	}
 
-	public void setPosStat(char posStat) {
+	public void setPosStat(Character posStat) {
 		this.posStat = posStat;
 	}
 
@@ -236,11 +236,11 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "PAY_FREQ", nullable = false, length = 1)
-	public char getPayFreq() {
+	public Character getPayFreq() {
 		return this.payFreq;
 	}
 
-	public void setPayFreq(char payFreq) {
+	public void setPayFreq(Character payFreq) {
 		this.payFreq = payFreq;
 	}
 
@@ -254,20 +254,20 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "PRIM_JOB", nullable = false, length = 1)
-	public char getPrimJob() {
+	public Character getPrimJob() {
 		return this.primJob;
 	}
 
-	public void setPrimJob(char primJob) {
+	public void setPrimJob(Character primJob) {
 		this.primJob = primJob;
 	}
 
 	@Column(name = "INCR_ELIG", nullable = false, length = 1)
-	public char getIncrElig() {
+	public Character getIncrElig() {
 		return this.incrElig;
 	}
 
-	public void setIncrElig(char incrElig) {
+	public void setIncrElig(Character incrElig) {
 		this.incrElig = incrElig;
 	}
 
@@ -290,11 +290,11 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "OCC_PAY_SCHED", nullable = false, length = 1)
-	public char getOccPaySched() {
+	public Character getOccPaySched() {
 		return this.occPaySched;
 	}
 
-	public void setOccPaySched(char occPaySched) {
+	public void setOccPaySched(Character occPaySched) {
 		this.occPaySched = occPaySched;
 	}
 
@@ -362,11 +362,11 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "NBR_REMAIN_PYMTS", nullable = false, precision = 3, scale = 0)
-	public short getNbrRemainPymts() {
+	public Short getNbrRemainPymts() {
 		return this.nbrRemainPymts;
 	}
 
-	public void setNbrRemainPymts(short nbrRemainPymts) {
+	public void setNbrRemainPymts(Short nbrRemainPymts) {
 		this.nbrRemainPymts = nbrRemainPymts;
 	}
 
@@ -380,11 +380,11 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "SUPPL_ATCH", nullable = false, length = 1)
-	public char getSupplAtch() {
+	public Character getSupplAtch() {
 		return this.supplAtch;
 	}
 
-	public void setSupplAtch(char supplAtch) {
+	public void setSupplAtch(Character supplAtch) {
 		this.supplAtch = supplAtch;
 	}
 
@@ -425,11 +425,11 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "DEPT", nullable = false, length = 1)
-	public char getDept() {
+	public Character getDept() {
 		return this.dept;
 	}
 
-	public void setDept(char dept) {
+	public void setDept(Character dept) {
 		this.dept = dept;
 	}
 
@@ -461,11 +461,11 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "PAY_CONCPT", nullable = false, length = 1)
-	public char getPayConcpt() {
+	public Character getPayConcpt() {
 		return this.payConcpt;
 	}
 
-	public void setPayConcpt(char payConcpt) {
+	public void setPayConcpt(Character payConcpt) {
 		this.payConcpt = payConcpt;
 	}
 
@@ -479,11 +479,11 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "WRK_COMP", nullable = false, length = 1)
-	public char getWrkComp() {
+	public Character getWrkComp() {
 		return this.wrkComp;
 	}
 
-	public void setWrkComp(char wrkComp) {
+	public void setWrkComp(Character wrkComp) {
 		this.wrkComp = wrkComp;
 	}
 
@@ -506,29 +506,29 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "MAX_PYMTS", nullable = false, precision = 3, scale = 0)
-	public short getMaxPymts() {
+	public Short getMaxPymts() {
 		return this.maxPymts;
 	}
 
-	public void setMaxPymts(short maxPymts) {
+	public void setMaxPymts(Short maxPymts) {
 		this.maxPymts = maxPymts;
 	}
 
 	@Column(name = "OVTM_ELIG_FLG", nullable = false, length = 1)
-	public char getOvtmEligFlg() {
+	public Character getOvtmEligFlg() {
 		return this.ovtmEligFlg;
 	}
 
-	public void setOvtmEligFlg(char ovtmEligFlg) {
+	public void setOvtmEligFlg(Character ovtmEligFlg) {
 		this.ovtmEligFlg = ovtmEligFlg;
 	}
 
 	@Column(name = "ST_MIN_DAYS", nullable = false, precision = 3, scale = 0)
-	public short getStMinDays() {
+	public Short getStMinDays() {
 		return this.stMinDays;
 	}
 
-	public void setStMinDays(short stMinDays) {
+	public void setStMinDays(Short stMinDays) {
 		this.stMinDays = stMinDays;
 	}
 
@@ -587,11 +587,11 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "SUPPL_TYP", nullable = false, length = 1)
-	public char getSupplTyp() {
+	public Character getSupplTyp() {
 		return this.supplTyp;
 	}
 
-	public void setSupplTyp(char supplTyp) {
+	public void setSupplTyp(Character supplTyp) {
 		this.supplTyp = supplTyp;
 	}
 
@@ -605,20 +605,20 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "BAS_SUPPL_ON_DLY_RATE", nullable = false, length = 1)
-	public char getBasSupplOnDlyRate() {
+	public Character getBasSupplOnDlyRate() {
 		return this.basSupplOnDlyRate;
 	}
 
-	public void setBasSupplOnDlyRate(char basSupplOnDlyRate) {
+	public void setBasSupplOnDlyRate(Character basSupplOnDlyRate) {
 		this.basSupplOnDlyRate = basSupplOnDlyRate;
 	}
 
 	@Column(name = "SUPPL_PAY_1TIME", nullable = false, length = 1)
-	public char getSupplPay1time() {
+	public Character getSupplPay1time() {
 		return this.supplPay1time;
 	}
 
-	public void setSupplPay1time(char supplPay1time) {
+	public void setSupplPay1time(Character supplPay1time) {
 		this.supplPay1time = supplPay1time;
 	}
 
@@ -632,11 +632,11 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "ACPT_CHG", nullable = false, length = 1)
-	public char getAcptChg() {
+	public Character getAcptChg() {
 		return this.acptChg;
 	}
 
-	public void setAcptChg(char acptChg) {
+	public void setAcptChg(Character acptChg) {
 		this.acptChg = acptChg;
 	}
 
@@ -749,11 +749,11 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "PAY_SCHED", nullable = false, length = 1)
-	public char getPaySched() {
+	public Character getPaySched() {
 		return this.paySched;
 	}
 
-	public void setPaySched(char paySched) {
+	public void setPaySched(Character paySched) {
 		this.paySched = paySched;
 	}
 
@@ -767,11 +767,11 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "MIDPNT_BAS", nullable = false, length = 1)
-	public char getMidpntBas() {
+	public Character getMidpntBas() {
 		return this.midpntBas;
 	}
 
-	public void setMidpntBas(char midpntBas) {
+	public void setMidpntBas(Character midpntBas) {
 		this.midpntBas = midpntBas;
 	}
 
@@ -785,29 +785,29 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "UNEMP_ELIG_FLG", nullable = false, length = 1)
-	public char getUnempEligFlg() {
+	public Character getUnempEligFlg() {
 		return this.unempEligFlg;
 	}
 
-	public void setUnempEligFlg(char unempEligFlg) {
+	public void setUnempEligFlg(Character unempEligFlg) {
 		this.unempEligFlg = unempEligFlg;
 	}
 
 	@Column(name = "FICA_ELIG", nullable = false, length = 1)
-	public char getFicaElig() {
+	public Character getFicaElig() {
 		return this.ficaElig;
 	}
 
-	public void setFicaElig(char ficaElig) {
+	public void setFicaElig(Character ficaElig) {
 		this.ficaElig = ficaElig;
 	}
 
 	@Column(name = "TRS_STAT_CD", nullable = false, length = 1)
-	public char getTrsStatCd() {
+	public Character getTrsStatCd() {
 		return this.trsStatCd;
 	}
 
-	public void setTrsStatCd(char trsStatCd) {
+	public void setTrsStatCd(Character trsStatCd) {
 		this.trsStatCd = trsStatCd;
 	}
 
@@ -821,38 +821,38 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "BUD_SAL_OVRRID", nullable = false, length = 1)
-	public char getBudSalOvrrid() {
+	public Character getBudSalOvrrid() {
 		return this.budSalOvrrid;
 	}
 
-	public void setBudSalOvrrid(char budSalOvrrid) {
+	public void setBudSalOvrrid(Character budSalOvrrid) {
 		this.budSalOvrrid = budSalOvrrid;
 	}
 
 	@Column(name = "ACT_BUD_IND", nullable = false, length = 1)
-	public char getActBudInd() {
+	public Character getActBudInd() {
 		return this.actBudInd;
 	}
 
-	public void setActBudInd(char actBudInd) {
+	public void setActBudInd(Character actBudInd) {
 		this.actBudInd = actBudInd;
 	}
 
 	@Column(name = "PAY_TYP", nullable = false, length = 1)
-	public char getPayTyp() {
+	public Character getPayTyp() {
 		return this.payTyp;
 	}
 
-	public void setPayTyp(char payTyp) {
+	public void setPayTyp(Character payTyp) {
 		this.payTyp = payTyp;
 	}
 
 	@Column(name = "OCC_PAY_TYP", nullable = false, length = 1)
-	public char getOccPayTyp() {
+	public Character getOccPayTyp() {
 		return this.occPayTyp;
 	}
 
-	public void setOccPayTyp(char occPayTyp) {
+	public void setOccPayTyp(Character occPayTyp) {
 		this.occPayTyp = occPayTyp;
 	}
 
@@ -875,29 +875,29 @@ public class BhrPmisPosCtrl implements java.io.Serializable {
 	}
 
 	@Column(name = "SUPPL_RECALC", nullable = false, length = 1)
-	public char getSupplRecalc() {
+	public Character getSupplRecalc() {
 		return this.supplRecalc;
 	}
 
-	public void setSupplRecalc(char supplRecalc) {
+	public void setSupplRecalc(Character supplRecalc) {
 		this.supplRecalc = supplRecalc;
 	}
 
 	@Column(name = "IGN_PCT_DAY_FOR_SAL_CALCS", nullable = false, length = 1)
-	public char getIgnPctDayForSalCalcs() {
+	public Character getIgnPctDayForSalCalcs() {
 		return this.ignPctDayForSalCalcs;
 	}
 
-	public void setIgnPctDayForSalCalcs(char ignPctDayForSalCalcs) {
+	public void setIgnPctDayForSalCalcs(Character ignPctDayForSalCalcs) {
 		this.ignPctDayForSalCalcs = ignPctDayForSalCalcs;
 	}
 
 	@Column(name = "IGN_PCT_YR_FOR_SAL_CALCS", nullable = false, length = 1)
-	public char getIgnPctYrForSalCalcs() {
+	public Character getIgnPctYrForSalCalcs() {
 		return this.ignPctYrForSalCalcs;
 	}
 
-	public void setIgnPctYrForSalCalcs(char ignPctYrForSalCalcs) {
+	public void setIgnPctYrForSalCalcs(Character ignPctYrForSalCalcs) {
 		this.ignPctYrForSalCalcs = ignPctYrForSalCalcs;
 	}
 
