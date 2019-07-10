@@ -193,13 +193,11 @@ public class CalendarYearToDateController {
 			print.setEmployeeNumber(user.getEmpNbr());
 			
 			print.setCalYr(calendar.getId().getCalYr());
-			print.setFrequency(String.valueOf(calendar.getId().getPayFreq()));
-		
-			// TODO 
-			// lastPostedPayDate != null ? new SimpleDateFormat("MM-dd-yyyy").format(lastPostedPayDate) : "no pay date";  
-			String postedDate = "no pay date";
-			postedDate = postedDate  == null ? "no pay date": postedDate;
-			print.setLastPostedPayDate(postedDate);
+			Frequency freq = Frequency.getFrequency(calendar.getId().getPayFreq() + "");
+			print.setFrequency(freq.getLabel());
+
+			String latestPayDate = service.getLatestPayDate(user.getEmpNbr(), freq);
+			print.setLastPostedPayDate(latestPayDate);
 			
 			print.setContractPay(calendar.getContrAmt());
 			print.setNonContractPay(calendar.getNoncontrAmt());
@@ -236,9 +234,6 @@ public class CalendarYearToDateController {
 			print.setNonTrsNonTaxNonPayAllow(calendar.getNontrsNontaxNonpayAllow());
 			
 			print.setSalaryReduction(calendar.getTrsSalaryRed());
-			//TODO 
-//			print.setTrsInsurance(calendar.getTrsInsurance());
-			
 			print.setHsaEmployerContribution(calendar.getHsaEmplrContrib());
 			print.setHsaEmployeeSalaryReductionContribution(calendar.getHsaEmpSalRedctnContrib());
 			print.setHireExemptWgs(calendar.getHireExemptWgs());
@@ -249,6 +244,8 @@ public class CalendarYearToDateController {
 			
 			print.setEmplrPrvdHlthcare(calendar.getEmplrPrvdHlthcare());
 			print.setAnnuityRoth457b(calendar.getAnnuityRoth457b());
+			BigDecimal trsIns = calendar.getTrsDeposit().subtract(calendar.getTrsSalaryRed());
+			print.setTrsInsurance(trsIns);
 			calYTDRpt.add(print);
 		
 		return calYTDRpt;

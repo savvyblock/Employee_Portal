@@ -160,7 +160,8 @@ public class CurrentPayInformationController{
 			print.setEcityst(print.getEcityst() + "-" + userDetail.getAddrZip4());
 		}
 		
-		print.setPhoneNumber(userDetail.getPhoneArea()+"-"+userDetail.getPhoneNbr());
+		//print.setPhoneNumber(userDetail.getPhoneArea()+"-"+userDetail.getPhoneNbr());
+		print.setPhoneNumber("");
 		print.setEmployeeNumber(userDetail.getEmpNbr());
 		if(userDetail.getDob()!=null && userDetail.getDob().length()>=8)
 			print.setDateOfBirth(userDetail.getDob());
