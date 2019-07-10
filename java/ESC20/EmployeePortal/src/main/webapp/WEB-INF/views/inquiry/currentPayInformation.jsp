@@ -111,7 +111,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             headers="phoneNumber" class="td-content"
                                             data-title="${sessionScope.languageJSON.currentPayTable.phoneNumber}"
                                         >
-                                        	${sessionScope.userDetail.phoneArea}-${fn:substring(sessionScope.userDetail.phoneNbr,0,3)}-${fn:substring(sessionScope.userDetail.phoneNbr,3,fn:length(sessionScope.userDetail.phoneNbr))}
+                                        	<%-- ${sessionScope.userDetail.phoneArea}-${fn:substring(sessionScope.userDetail.phoneNbr,0,3)}-${fn:substring(sessionScope.userDetail.phoneNbr,3,fn:length(sessionScope.userDetail.phoneNbr))} --%>
                                         </td>
                                         <th id="gender" class="td-title" ><b>${sessionScope.languageJSON.currentPayTable.gender}</b></th>
                                         <td headers="gender" class="td-content" data-title="Gender">
