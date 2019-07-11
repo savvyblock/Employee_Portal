@@ -256,7 +256,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </td>
                                                     <th id="dailyRate_${jobCount.index}" class="td-title">${sessionScope.languageJSON.currentPayTable.dailyRate}</th>
                                                     <td headers="dailyRate_${jobCount.index}" class="td-content text-right" data-title="${sessionScope.languageJSON.currentPayTable.dailyRate}">
-                                                            <fmt:formatNumber value="${job.dlyRateofPay}" pattern="#,##0.00"/>
+                                                            <fmt:formatNumber value="${job.dlyRateofPay}" pattern="#,##0.000"/>
                                                     </td>
                                                     <th id="payRate_${jobCount.index}" class="td-title">${sessionScope.languageJSON.currentPayTable.payRate}</th>
                                                     <td headers="payRate_${jobCount.index}" class="td-content text-right" data-title="${sessionScope.languageJSON.currentPayTable.payRate}">
@@ -317,7 +317,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
                                     <c:if test="${fn:length(stipends[frequency]) > 0}">
                                             <h2 class="table-top-title">
-                                                    <b><span>${sessionScope.languageJSON.label.stipendInfo}</span> </b>
+                                                    <b><span>${sessionScope.languageJSON.label.stipendInfo}</span>: ${frequency}</b>
                                             </h2>
                                         <table class="table border-table responsive-table print-table">
                                             <thead>
