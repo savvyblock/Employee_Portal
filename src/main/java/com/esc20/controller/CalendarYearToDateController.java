@@ -185,9 +185,9 @@ public class CalendarYearToDateController {
 		CalYTDPrint print = null;
 		
 			print = new CalYTDPrint();
-			print.setDname(district.getName());
-			print.setDaddress(district.getAddress());
-			print.setDcityst(dCitySt);
+			print.setDname(district.getName().trim());
+			print.setDaddress(district.getAddress().trim());
+			print.setDcityst(dCitySt.trim());
 			
 			print.setEname(eName);
 			print.setEmployeeNumber(user.getEmpNbr());

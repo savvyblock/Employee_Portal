@@ -1695,7 +1695,33 @@ see IRS.gov.]]></text>
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<textField>
-							<reportElement x="0" y="1" width="50" height="15" uuid="9b136ebe-5360-4523-b275-d712c395bb84"/>
+							<reportElement x="0" y="1" width="50" height="15" uuid="1de11602-0039-4562-afb3-c5f0ce60b1d9">
+								<printWhenExpression><![CDATA[($F{b14_annualofferofcoveragecd}.equals($F{b14_janoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_feboffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_maroffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_aproffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_mayoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_junoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_juloffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_augoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_sepoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_octoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_novoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_decoffercd})) ||
+("".equals($F{b14_janoffercd}) &&
+ "".equals($F{b14_feboffercd}) &&
+ "".equals($F{b14_maroffercd}) &&
+ "".equals($F{b14_aproffercd}) &&
+ "".equals($F{b14_mayoffercd}) &&
+ "".equals($F{b14_junoffercd}) &&
+ "".equals($F{b14_juloffercd}) &&
+ "".equals($F{b14_augoffercd}) &&
+ "".equals($F{b14_sepoffercd}) &&
+ "".equals($F{b14_octoffercd}) &&
+ "".equals($F{b14_novoffercd}) &&
+ "".equals($F{b14_decoffercd}))
+? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
 							</textElement>
@@ -1711,7 +1737,20 @@ see IRS.gov.]]></text>
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<textField>
-							<reportElement x="0" y="1" width="50" height="15" uuid="e2429af0-06d3-44cc-9f9e-e493e11effdd"/>
+							<reportElement x="0" y="1" width="50" height="15" uuid="2efcf559-732d-4923-a2d9-3cd745203daf">
+								<printWhenExpression><![CDATA[($F{b14_annualofferofcoveragecd}.equals($F{b14_janoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_feboffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_maroffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_aproffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_mayoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_junoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_juloffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_augoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_sepoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_octoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_novoffercd}) &&
+ $F{b14_annualofferofcoveragecd}.equals($F{b14_decoffercd})) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
+							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
 							</textElement>
@@ -1908,8 +1947,37 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="5812c498-291b-40be-9964-616167a23274">
-								<printWhenExpression><![CDATA[($F{b14_annualofferofcoveragecd}.equals("1B") || $F{b14_annualofferofcoveragecd}.equals("1C") || $F{b14_annualofferofcoveragecd}.equals("1D") || $F{b14_annualofferofcoveragecd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="7cd33846-39b4-4108-8eb1-f2be1423da15">
+								<printWhenExpression><![CDATA[($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())
+? (("1B".equals($F{b14_annualofferofcoveragecd}) ||
+ "1C".equals($F{b14_annualofferofcoveragecd}) ||
+ "1D".equals($F{b14_annualofferofcoveragecd}) ||
+ "1E".equals($F{b14_annualofferofcoveragecd}) ||
+ "1J".equals($F{b14_annualofferofcoveragecd}) ||
+ "1K".equals($F{b14_annualofferofcoveragecd})) ? new Boolean(true) : new Boolean(false)) : new Boolean (false)]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -1933,8 +2001,47 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="404da4a6-656a-49d8-add0-454ec9198ca4">
-								<printWhenExpression><![CDATA[($F{b14_janoffercd}.equals("1B") || $F{b14_janoffercd}.equals("1C") || $F{b14_janoffercd}.equals("1D") || $F{b14_janoffercd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="78826343-a4e1-4aea-922e-7cb3e590d533">
+								<printWhenExpression><![CDATA[(($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())) &&
+$V{allOfferOfCoverage}
+? new Boolean(false) :
+("1B".equals($F{b14_janoffercd}) ||
+ "1C".equals($F{b14_janoffercd}) ||
+ "1D".equals($F{b14_janoffercd}) ||
+ "1E".equals($F{b14_janoffercd}) ||
+ "1J".equals($F{b14_janoffercd}) ||
+ "1K".equals($F{b14_janoffercd}) ||
+ ("".equals($F{b14_janoffercd}) &&
+  ("".equals($F{b14_annualofferofcoveragecd}) ||
+   "1B".equals($F{b14_annualofferofcoveragecd}) ||
+   "1C".equals($F{b14_annualofferofcoveragecd}) ||
+   "1D".equals($F{b14_annualofferofcoveragecd}) ||
+   "1E".equals($F{b14_annualofferofcoveragecd}) ||
+   "1J".equals($F{b14_annualofferofcoveragecd}) ||
+   "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -1956,8 +2063,47 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="5b4cb478-0466-4367-b9a1-2d4730ee80b4">
-								<printWhenExpression><![CDATA[($F{b14_feboffercd}.equals("1B") || $F{b14_feboffercd}.equals("1C") || $F{b14_feboffercd}.equals("1D") || $F{b14_feboffercd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="97495a1c-9473-4b4a-a6b7-1626a346def1">
+								<printWhenExpression><![CDATA[(($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())) &&
+$V{allOfferOfCoverage}
+? new Boolean(false) :
+("1B".equals($F{b14_feboffercd}) ||
+ "1C".equals($F{b14_feboffercd}) ||
+ "1D".equals($F{b14_feboffercd}) ||
+ "1E".equals($F{b14_feboffercd}) ||
+ "1J".equals($F{b14_feboffercd}) ||
+ "1K".equals($F{b14_feboffercd}) ||
+ ("".equals($F{b14_feboffercd}) &&
+  ("".equals($F{b14_annualofferofcoveragecd}) ||
+   "1B".equals($F{b14_annualofferofcoveragecd}) ||
+   "1C".equals($F{b14_annualofferofcoveragecd}) ||
+   "1D".equals($F{b14_annualofferofcoveragecd}) ||
+   "1E".equals($F{b14_annualofferofcoveragecd}) ||
+   "1J".equals($F{b14_annualofferofcoveragecd}) ||
+   "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -1979,8 +2125,47 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="417012ec-9191-41f0-b15a-6b263d4fd6ac">
-								<printWhenExpression><![CDATA[($F{b14_maroffercd}.equals("1B") || $F{b14_maroffercd}.equals("1C") || $F{b14_maroffercd}.equals("1D") || $F{b14_maroffercd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="5928e681-b566-4a17-9612-2b31bd49fdad">
+								<printWhenExpression><![CDATA[(($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())) &&
+$V{allOfferOfCoverage}
+? new Boolean(false) :
+("1B".equals($F{b14_maroffercd}) ||
+ "1C".equals($F{b14_maroffercd}) ||
+ "1D".equals($F{b14_maroffercd}) ||
+ "1E".equals($F{b14_maroffercd}) ||
+ "1J".equals($F{b14_maroffercd}) ||
+ "1K".equals($F{b14_maroffercd}) ||
+ ("".equals($F{b14_maroffercd}) &&
+  ("".equals($F{b14_annualofferofcoveragecd}) ||
+   "1B".equals($F{b14_annualofferofcoveragecd}) ||
+   "1C".equals($F{b14_annualofferofcoveragecd}) ||
+   "1D".equals($F{b14_annualofferofcoveragecd}) ||
+   "1E".equals($F{b14_annualofferofcoveragecd}) ||
+   "1J".equals($F{b14_annualofferofcoveragecd}) ||
+   "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -2002,8 +2187,47 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="35f48727-c4c6-4687-8763-9c6cb51a51b3">
-								<printWhenExpression><![CDATA[($F{b14_aproffercd}.equals("1B") || $F{b14_aproffercd}.equals("1C") || $F{b14_aproffercd}.equals("1D") || $F{b14_aproffercd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="eb3111fc-5fe3-49c1-92b4-a2f9bf0bb28b">
+								<printWhenExpression><![CDATA[(($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())) &&
+$V{allOfferOfCoverage}
+? new Boolean(false) :
+("1B".equals($F{b14_aproffercd}) ||
+ "1C".equals($F{b14_aproffercd}) ||
+ "1D".equals($F{b14_aproffercd}) ||
+ "1E".equals($F{b14_aproffercd}) ||
+ "1J".equals($F{b14_aproffercd}) ||
+ "1K".equals($F{b14_aproffercd}) ||
+ ("".equals($F{b14_aproffercd}) &&
+  ("".equals($F{b14_annualofferofcoveragecd}) ||
+   "1B".equals($F{b14_annualofferofcoveragecd}) ||
+   "1C".equals($F{b14_annualofferofcoveragecd}) ||
+   "1D".equals($F{b14_annualofferofcoveragecd}) ||
+   "1E".equals($F{b14_annualofferofcoveragecd}) ||
+   "1J".equals($F{b14_annualofferofcoveragecd}) ||
+   "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -2025,8 +2249,47 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="2f1456e2-6d94-44cf-b91b-dfbf73815eba">
-								<printWhenExpression><![CDATA[($F{b14_maroffercd}.equals("1B") || $F{b14_maroffercd}.equals("1C") || $F{b14_maroffercd}.equals("1D") || $F{b14_maroffercd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="667001f0-a297-408e-8155-6e9ca16ab2da">
+								<printWhenExpression><![CDATA[(($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())) &&
+$V{allOfferOfCoverage}
+? new Boolean(false) :
+("1B".equals($F{b14_mayoffercd}) ||
+ "1C".equals($F{b14_mayoffercd}) ||
+ "1D".equals($F{b14_mayoffercd}) ||
+ "1E".equals($F{b14_mayoffercd}) ||
+ "1J".equals($F{b14_mayoffercd}) ||
+ "1K".equals($F{b14_mayoffercd}) ||
+ ("".equals($F{b14_mayoffercd}) &&
+  ("".equals($F{b14_annualofferofcoveragecd}) ||
+   "1B".equals($F{b14_annualofferofcoveragecd}) ||
+   "1C".equals($F{b14_annualofferofcoveragecd}) ||
+   "1D".equals($F{b14_annualofferofcoveragecd}) ||
+   "1E".equals($F{b14_annualofferofcoveragecd}) ||
+   "1J".equals($F{b14_annualofferofcoveragecd}) ||
+   "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -2048,8 +2311,47 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="f6008013-8e7e-4a58-8ce8-9f28c9398f08">
-								<printWhenExpression><![CDATA[($F{b14_junoffercd}.equals("1B") || $F{b14_junoffercd}.equals("1C") || $F{b14_junoffercd}.equals("1D") || $F{b14_junoffercd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="4046d470-3891-477e-9bd3-547b7f744292">
+								<printWhenExpression><![CDATA[(($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())) &&
+$V{allOfferOfCoverage}
+? new Boolean(false) :
+("1B".equals($F{b14_junoffercd}) ||
+ "1C".equals($F{b14_junoffercd}) ||
+ "1D".equals($F{b14_junoffercd}) ||
+ "1E".equals($F{b14_junoffercd}) ||
+ "1J".equals($F{b14_junoffercd}) ||
+ "1K".equals($F{b14_junoffercd}) ||
+ ("".equals($F{b14_junoffercd}) &&
+  ("".equals($F{b14_annualofferofcoveragecd}) ||
+   "1B".equals($F{b14_annualofferofcoveragecd}) ||
+   "1C".equals($F{b14_annualofferofcoveragecd}) ||
+   "1D".equals($F{b14_annualofferofcoveragecd}) ||
+   "1E".equals($F{b14_annualofferofcoveragecd}) ||
+   "1J".equals($F{b14_annualofferofcoveragecd}) ||
+   "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -2071,8 +2373,47 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="67fff16f-58fe-40fb-8147-250f43ddd4ee">
-								<printWhenExpression><![CDATA[($F{b14_juloffercd}.equals("1B") || $F{b14_juloffercd}.equals("1C") || $F{b14_juloffercd}.equals("1D") || $F{b14_juloffercd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="ba75fd16-15ff-496c-9c55-8266483380f0">
+								<printWhenExpression><![CDATA[(($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())) &&
+$V{allOfferOfCoverage}
+? new Boolean(false) :
+("1B".equals($F{b14_juloffercd}) ||
+ "1C".equals($F{b14_juloffercd}) ||
+ "1D".equals($F{b14_juloffercd}) ||
+ "1E".equals($F{b14_juloffercd}) ||
+ "1J".equals($F{b14_juloffercd}) ||
+ "1K".equals($F{b14_juloffercd}) ||
+ ("".equals($F{b14_juloffercd}) &&
+  ("".equals($F{b14_annualofferofcoveragecd}) ||
+   "1B".equals($F{b14_annualofferofcoveragecd}) ||
+   "1C".equals($F{b14_annualofferofcoveragecd}) ||
+   "1D".equals($F{b14_annualofferofcoveragecd}) ||
+   "1E".equals($F{b14_annualofferofcoveragecd}) ||
+   "1J".equals($F{b14_annualofferofcoveragecd}) ||
+   "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -2094,8 +2435,47 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="1f367cff-b1c4-4cd7-8442-47b7b2925e3c">
-								<printWhenExpression><![CDATA[($F{b14_augoffercd}.equals("1B") || $F{b14_augoffercd}.equals("1C") || $F{b14_augoffercd}.equals("1D") || $F{b14_augoffercd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="a3bb5f24-8943-4d76-a410-3554b71281a9">
+								<printWhenExpression><![CDATA[(($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())) &&
+$V{allOfferOfCoverage}
+? new Boolean(false) :
+("1B".equals($F{b14_augoffercd}) ||
+ "1C".equals($F{b14_augoffercd}) ||
+ "1D".equals($F{b14_augoffercd}) ||
+ "1E".equals($F{b14_augoffercd}) ||
+ "1J".equals($F{b14_augoffercd}) ||
+ "1K".equals($F{b14_augoffercd}) ||
+ ("".equals($F{b14_augoffercd}) &&
+  ("".equals($F{b14_annualofferofcoveragecd}) ||
+   "1B".equals($F{b14_annualofferofcoveragecd}) ||
+   "1C".equals($F{b14_annualofferofcoveragecd}) ||
+   "1D".equals($F{b14_annualofferofcoveragecd}) ||
+   "1E".equals($F{b14_annualofferofcoveragecd}) ||
+   "1J".equals($F{b14_annualofferofcoveragecd}) ||
+   "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -2117,8 +2497,47 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="4f9cb319-aa78-4d94-b33a-b366e428540b">
-								<printWhenExpression><![CDATA[($F{b14_sepoffercd}.equals("1B") || $F{b14_sepoffercd}.equals("1C") || $F{b14_sepoffercd}.equals("1D") || $F{b14_sepoffercd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="891a9e7a-635a-4f36-b21f-d6968844fb1b">
+								<printWhenExpression><![CDATA[(($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())) &&
+$V{allOfferOfCoverage}
+? new Boolean(false) :
+("1B".equals($F{b14_sepoffercd}) ||
+ "1C".equals($F{b14_sepoffercd}) ||
+ "1D".equals($F{b14_sepoffercd}) ||
+ "1E".equals($F{b14_sepoffercd}) ||
+ "1J".equals($F{b14_sepoffercd}) ||
+ "1K".equals($F{b14_sepoffercd}) ||
+ ("".equals($F{b14_sepoffercd}) &&
+  ("".equals($F{b14_annualofferofcoveragecd}) ||
+   "1B".equals($F{b14_annualofferofcoveragecd}) ||
+   "1C".equals($F{b14_annualofferofcoveragecd}) ||
+   "1D".equals($F{b14_annualofferofcoveragecd}) ||
+   "1E".equals($F{b14_annualofferofcoveragecd}) ||
+   "1J".equals($F{b14_annualofferofcoveragecd}) ||
+   "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -2140,8 +2559,47 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="9e677f8a-2141-4f17-8f95-8b4bff579c2b">
-								<printWhenExpression><![CDATA[($F{b14_octoffercd}.equals("1B") || $F{b14_octoffercd}.equals("1C") || $F{b14_octoffercd}.equals("1D") || $F{b14_octoffercd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="ace16527-a5e7-4d6b-886e-41f26689a752">
+								<printWhenExpression><![CDATA[(($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())) &&
+$V{allOfferOfCoverage}
+? new Boolean(false) :
+("1B".equals($F{b14_octoffercd}) ||
+ "1C".equals($F{b14_octoffercd}) ||
+ "1D".equals($F{b14_octoffercd}) ||
+ "1E".equals($F{b14_octoffercd}) ||
+ "1J".equals($F{b14_octoffercd}) ||
+ "1K".equals($F{b14_octoffercd}) ||
+ ("".equals($F{b14_octoffercd}) &&
+  ("".equals($F{b14_annualofferofcoveragecd}) ||
+   "1B".equals($F{b14_annualofferofcoveragecd}) ||
+   "1C".equals($F{b14_annualofferofcoveragecd}) ||
+   "1D".equals($F{b14_annualofferofcoveragecd}) ||
+   "1E".equals($F{b14_annualofferofcoveragecd}) ||
+   "1J".equals($F{b14_annualofferofcoveragecd}) ||
+   "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -2163,8 +2621,47 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="62cf482f-36b5-4908-895b-6ebc51f27c58">
-								<printWhenExpression><![CDATA[($F{b14_novoffercd}.equals("1B") || $F{b14_novoffercd}.equals("1C") || $F{b14_novoffercd}.equals("1D") || $F{b14_novoffercd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="aac21a09-c37c-402d-a6b1-547b4323a040">
+								<printWhenExpression><![CDATA[(($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())) &&
+$V{allOfferOfCoverage}
+? new Boolean(false) :
+("1B".equals($F{b14_novoffercd}) ||
+ "1C".equals($F{b14_novoffercd}) ||
+ "1D".equals($F{b14_novoffercd}) ||
+ "1E".equals($F{b14_novoffercd}) ||
+ "1J".equals($F{b14_novoffercd}) ||
+ "1K".equals($F{b14_novoffercd}) ||
+ ("".equals($F{b14_novoffercd}) &&
+  ("".equals($F{b14_annualofferofcoveragecd}) ||
+   "1B".equals($F{b14_annualofferofcoveragecd}) ||
+   "1C".equals($F{b14_annualofferofcoveragecd}) ||
+   "1D".equals($F{b14_annualofferofcoveragecd}) ||
+   "1E".equals($F{b14_annualofferofcoveragecd}) ||
+   "1J".equals($F{b14_annualofferofcoveragecd}) ||
+   "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -2188,8 +2685,47 @@ see IRS.gov.]]></text>
 							<text><![CDATA[$]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="8" y="23" width="41" height="12" uuid="b4a14cbf-b6a5-4bb7-9d88-1910da2e5536">
-								<printWhenExpression><![CDATA[($F{b14_decoffercd}.equals("1B") || $F{b14_decoffercd}.equals("1C") || $F{b14_decoffercd}.equals("1D") || $F{b14_decoffercd}.equals("1E")) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							<reportElement x="8" y="23" width="41" height="12" uuid="6dafe772-22c3-4296-8bd6-d47250c1e7eb">
+								<printWhenExpression><![CDATA[(($F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_januaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_februaryamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_marchamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_aprilamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_mayamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_juneamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_julyamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_augustamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_septemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_octoberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_novemberamt}.doubleValue() &&
+ $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() == $F{b15_decemberamt}.doubleValue()) ||
+(0.00 == $F{b15_januaryamt}.doubleValue() &&
+ 0.00 == $F{b15_februaryamt}.doubleValue() &&
+ 0.00 == $F{b15_marchamt}.doubleValue() &&
+ 0.00 == $F{b15_aprilamt}.doubleValue() &&
+ 0.00 == $F{b15_mayamt}.doubleValue() &&
+ 0.00 == $F{b15_juneamt}.doubleValue() &&
+ 0.00 == $F{b15_julyamt}.doubleValue() &&
+ 0.00 == $F{b15_augustamt}.doubleValue() &&
+ 0.00 == $F{b15_septemberamt}.doubleValue() &&
+ 0.00 == $F{b15_octoberamt}.doubleValue() &&
+ 0.00 == $F{b15_novemberamt}.doubleValue() &&
+ 0.00 == $F{b15_decemberamt}.doubleValue())) &&
+$V{allOfferOfCoverage}
+? new Boolean(false) :
+("1B".equals($F{b14_decoffercd}) ||
+ "1C".equals($F{b14_decoffercd}) ||
+ "1D".equals($F{b14_decoffercd}) ||
+ "1E".equals($F{b14_decoffercd}) ||
+ "1J".equals($F{b14_decoffercd}) ||
+ "1K".equals($F{b14_decoffercd}) ||
+ ("".equals($F{b14_decoffercd}) &&
+  ("".equals($F{b14_annualofferofcoveragecd}) ||
+   "1B".equals($F{b14_annualofferofcoveragecd}) ||
+   "1C".equals($F{b14_annualofferofcoveragecd}) ||
+   "1D".equals($F{b14_annualofferofcoveragecd}) ||
+   "1E".equals($F{b14_annualofferofcoveragecd}) ||
+   "1J".equals($F{b14_annualofferofcoveragecd}) ||
+   "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
@@ -2224,7 +2760,33 @@ see IRS.gov.]]></text>
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<textField>
-							<reportElement x="0" y="1" width="50" height="28" uuid="ecbcf9c0-0de6-4128-8ee5-53c148b13bf2"/>
+							<reportElement x="0" y="1" width="50" height="28" uuid="84e502a5-b200-446e-b75d-e5afcfc9e985">
+								<printWhenExpression><![CDATA[($F{b16_annualsafeharborcd}.equals($F{b16_jansafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_febsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_marsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_aprsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_maysafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_junsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_julsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_augsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_sepsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_octsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_novsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_decsafeharborcd})) ||
+("".equals($F{b16_jansafeharborcd}) &&
+ "".equals($F{b16_febsafeharborcd}) &&
+ "".equals($F{b16_marsafeharborcd}) &&
+ "".equals($F{b16_aprsafeharborcd}) &&
+ "".equals($F{b16_maysafeharborcd}) &&
+ "".equals($F{b16_junsafeharborcd}) &&
+ "".equals($F{b16_julsafeharborcd}) &&
+ "".equals($F{b16_augsafeharborcd}) &&
+ "".equals($F{b16_sepsafeharborcd}) &&
+ "".equals($F{b16_octsafeharborcd}) &&
+ "".equals($F{b16_novsafeharborcd}) &&
+ "".equals($F{b16_decsafeharborcd}))
+? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
 							</textElement>
@@ -2240,7 +2802,20 @@ see IRS.gov.]]></text>
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<textField>
-							<reportElement x="0" y="1" width="50" height="28" uuid="23e63f73-183b-47bc-8b2c-4454c24f9485"/>
+							<reportElement x="0" y="1" width="50" height="28" uuid="5918bda8-2887-4e8f-a14f-79d0a2aecf47">
+								<printWhenExpression><![CDATA[($F{b16_annualsafeharborcd}.equals($F{b16_jansafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_febsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_marsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_aprsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_maysafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_junsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_julsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_augsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_sepsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_octsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_novsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_decsafeharborcd})) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
+							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
 							</textElement>
@@ -2254,7 +2829,20 @@ see IRS.gov.]]></text>
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<textField>
-							<reportElement x="0" y="1" width="50" height="28" uuid="d6b6e9fd-6823-46f2-8fe5-da1cfaf98b1a"/>
+							<reportElement x="0" y="1" width="50" height="28" uuid="ddc00133-1594-4466-9f01-078e3ed5baef">
+								<printWhenExpression><![CDATA[($F{b16_annualsafeharborcd}.equals($F{b16_jansafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_febsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_marsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_aprsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_maysafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_junsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_julsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_augsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_sepsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_octsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_novsafeharborcd}) &&
+ $F{b16_annualsafeharborcd}.equals($F{b16_decsafeharborcd})) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
+							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
 							</textElement>

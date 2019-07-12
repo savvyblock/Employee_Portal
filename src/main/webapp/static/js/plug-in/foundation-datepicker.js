@@ -414,11 +414,21 @@
         parseMessDate:function(dateString){
             console.log(dateString)
             var reg = /^[0-9]{1,2}[^\d]{1}[0-9]{1,2}[^\d]{1}[0-9]{4}$/;
+            var regStr = /^[0-9]{1,2}[0-9]{1,2}[0-9]{4}$/;
             var dateArray,newDateString
-            if(reg.test(dateString)){
-                dateArray = dateString.split(/[^\d]/)
-                newDateString = dateArray[2]+"-"+dateArray[0]+"-"+dateArray[1]
-                return new Date(newDateString)
+            if(reg.test(dateString)||regStr.test(dateString)){
+                if(reg.test(dateString)){
+                    dateArray = dateString.split(/[^\d]/)
+                    newDateString = dateArray[2]+"-"+dateArray[0]+"-"+dateArray[1]
+                    return new Date(newDateString)
+                }
+                if(regStr.test(dateString)){
+                    var pattern = /(\d{2})(\d{2})(\d{4})/;
+                    var formatedDate = dateString.replace(pattern, '$1/$2/$3');
+                    dateArray = formatedDate.split(/[^\d]/)
+                    newDateString = dateArray[2]+"-"+dateArray[0]+"-"+dateArray[1]
+                    return new Date(newDateString)
+                }
             }else{
                 return false
             }

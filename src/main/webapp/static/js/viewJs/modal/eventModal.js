@@ -28,7 +28,8 @@ $(function() {
             var startDate = $('#startDateInput').val()
             if (
                 ev.date &&
-                (ev.date.valueOf() >= checkout.date.valueOf() || !endDate)
+                !endDate
+                // (ev.date.valueOf() >= checkout.date.valueOf() || !endDate)
             ) {
                 // var newDate = new Date(ev.date)
                 // newDate.setDate(newDate.getDate())
@@ -114,6 +115,7 @@ function closeRequestForm() {
 function formValidator() {
     $('#requestForm').bootstrapValidator({
         live: 'enable',
+        trigger:null,
         submitButtons: '.save',
         feedbackIcons: {
             valid: 'fa fa-check ',
@@ -132,7 +134,6 @@ function formValidator() {
                 }
             },
             LeaveStartDate: {
-                trigger: 'change',
                 validators: {
                     notEmpty: {
                         message: startDateCannotBeEmptyValidator
@@ -140,7 +141,7 @@ function formValidator() {
                 }
             },
             LeaveEndDate: {
-                trigger: 'change',
+                trigger:'change',
                 validators: {
                     notEmpty: {
                         message: endDateCannotBeEmptyValidator
@@ -148,7 +149,6 @@ function formValidator() {
                 }
             },
             startHour: {
-                trigger: 'change',
                 validators: {
                     notEmpty: {
                         message: startTimeCannotBeEmptyValidator
@@ -156,7 +156,6 @@ function formValidator() {
                 }
             },
             endHour: {
-                trigger: 'change',
                 validators: {
                     notEmpty: {
                         message: endTimeCannotBeEmptyValidator
@@ -174,11 +173,11 @@ function formValidator() {
     })
     // setGlobal()
 }
-$("#startDateInput").change(function(){
-    var fromValue = $("#startDateInput").val()
-    var toValue = $("#endDateInput").val()
-    var leaveFrom = changeDateYMD(fromValue)
-    var leaveTo = changeDateYMD(toValue)
+$("#startDateInput").blur(function(){
+    var fromValue = convertRightFormat($("#startDateInput").val())
+    var toValue = convertRightFormat($("#endDateInput").val())
+    var leaveFrom = fromValue?changeDateYMD(fromValue):null
+    var leaveTo = toValue?changeDateYMD(toValue):null
     if(fromValue && toValue){
         if( leaveFrom<=leaveTo){
             $('.dateValidator01').hide()
@@ -189,24 +188,24 @@ $("#startDateInput").change(function(){
     }
     
 });
-$('#startDateInput').keyup(function() {
-    var fromValue = $("#startDateInput").val()
-    var toValue = $("#endDateInput").val()
-    var leaveFrom = changeDateYMD(fromValue)
-    var leaveTo = changeDateYMD(toValue)
-    if(fromValue && toValue){
-        if( leaveFrom<=leaveTo){
-            $('.dateValidator01').hide()
+// $('#startDateInput').keyup(function() {
+//     var fromValue = $("#startDateInput").val()
+//     var toValue = $("#endDateInput").val()
+//     var leaveFrom = changeDateYMD(fromValue)
+//     var leaveTo = changeDateYMD(toValue)
+//     if(fromValue && toValue){
+//         if( leaveFrom<=leaveTo){
+//             $('.dateValidator01').hide()
             
-        }else{
-            $('.dateValidator01').show()
-        }
-        calcDays()
-    }
-});
- $("#endDateInput").change(function(){
-    var fromValue = $("#startDateInput").val()
-    var toValue = $("#endDateInput").val()
+//         }else{
+//             $('.dateValidator01').show()
+//         }
+//         calcDays()
+//     }
+// });
+ $("#endDateInput").blur(function(){
+    var fromValue = convertRightFormat($("#startDateInput").val())
+    var toValue = convertRightFormat($("#endDateInput").val())
     var leaveFrom = changeDateYMD(fromValue)
     var leaveTo = changeDateYMD(toValue)
     if(fromValue && toValue){
@@ -219,21 +218,21 @@ $('#startDateInput').keyup(function() {
         }
         
     });
-    $('#endDateInput').keyup(function() {
-        var fromValue = $("#startDateInput").val()
-    var toValue = $("#endDateInput").val()
-    var leaveFrom = changeDateYMD(fromValue)
-    var leaveTo = changeDateYMD(toValue)
-    if(fromValue && toValue){
-            if( leaveFrom<=leaveTo){
-                $('.dateValidator01').hide()
+    // $('#endDateInput').keyup(function() {
+    //     var fromValue = $("#startDateInput").val()
+    // var toValue = $("#endDateInput").val()
+    // var leaveFrom = changeDateYMD(fromValue)
+    // var leaveTo = changeDateYMD(toValue)
+    // if(fromValue && toValue){
+    //         if( leaveFrom<=leaveTo){
+    //             $('.dateValidator01').hide()
                 
-            }else{
-                $('.dateValidator01').show()
-            }
-            calcDays()
-        }
-    });
+    //         }else{
+    //             $('.dateValidator01').show()
+    //         }
+    //         calcDays()
+    //     }
+    // });
 
     $("#leaveHoursDaily").change(function(){
         var val = $(this).val()
@@ -471,4 +470,21 @@ $('#startDateInput').keyup(function() {
 		var dateArry = date.split("/")
 		var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
 		return DateFormat
-	}
+    }
+    
+    function convertRightFormat(str){
+        var reg = /^[0-9]{1,2}[^\d]{1}[0-9]{1,2}[^\d]{1}[0-9]{4}$/;
+        var regStr = /^[0-9]{1,2}[0-9]{1,2}[0-9]{4}$/;
+        if(reg.test(str)||regStr.test(str)){
+            if(reg.test(str)){
+                return str
+            }
+            if(regStr.test(str)){
+                var pattern = /(\d{2})(\d{2})(\d{4})/;
+                var formatedDate = str.replace(pattern, '$1/$2/$3');
+                return formatedDate
+            }
+        }else{
+            return false
+        }
+    }

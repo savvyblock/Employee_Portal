@@ -42,7 +42,7 @@ public class LeaveEmployeeData implements Serializable {
 	}
 	
 	public LeaveEmployeeData(String employeeNumber, Character payFreq, String firstName, String lastName, String middleName,
-			Long numDirectReports) {
+			Integer numDirectReports) {
 		this.employeeNumber = employeeNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
