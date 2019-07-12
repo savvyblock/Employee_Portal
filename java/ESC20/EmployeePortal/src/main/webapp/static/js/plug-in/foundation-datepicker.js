@@ -424,7 +424,7 @@
                 }
                 if(regStr.test(dateString)){
                     var pattern = /(\d{2})(\d{2})(\d{4})/;
-                    var formatedDate = dateString.replace(pattern, '$1-$2-$3');
+                    var formatedDate = dateString.replace(pattern, '$1/$2/$3');
                     dateArray = formatedDate.split(/[^\d]/)
                     newDateString = dateArray[2]+"-"+dateArray[0]+"-"+dateArray[1]
                     return new Date(newDateString)

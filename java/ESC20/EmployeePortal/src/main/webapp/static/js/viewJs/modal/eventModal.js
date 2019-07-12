@@ -173,10 +173,10 @@ function formValidator() {
     // setGlobal()
 }
 $("#startDateInput").blur(function(){
-    var fromValue = $("#startDateInput").val()
-    var toValue = $("#endDateInput").val()
-    var leaveFrom = changeDateYMD(fromValue)
-    var leaveTo = changeDateYMD(toValue)
+    var fromValue = convertRightFormat($("#startDateInput").val())
+    var toValue = convertRightFormat($("#endDateInput").val())
+    var leaveFrom = fromValue?changeDateYMD(fromValue):null
+    var leaveTo = toValue?changeDateYMD(toValue):null
     if(fromValue && toValue){
         if( leaveFrom<=leaveTo){
             $('.dateValidator01').hide()
@@ -203,8 +203,8 @@ $("#startDateInput").blur(function(){
 //     }
 // });
  $("#endDateInput").blur(function(){
-    var fromValue = $("#startDateInput").val()
-    var toValue = $("#endDateInput").val()
+    var fromValue = convertRightFormat($("#startDateInput").val())
+    var toValue = convertRightFormat($("#endDateInput").val())
     var leaveFrom = changeDateYMD(fromValue)
     var leaveTo = changeDateYMD(toValue)
     if(fromValue && toValue){
@@ -469,4 +469,21 @@ $("#startDateInput").blur(function(){
 		var dateArry = date.split("/")
 		var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
 		return DateFormat
-	}
+    }
+    
+    function convertRightFormat(str){
+        var reg = /^[0-9]{1,2}[^\d]{1}[0-9]{1,2}[^\d]{1}[0-9]{4}$/;
+        var regStr = /^[0-9]{1,2}[0-9]{1,2}[0-9]{4}$/;
+        if(reg.test(str)||regStr.test(str)){
+            if(reg.test(str)){
+                return str
+            }
+            if(regStr.test(str)){
+                var pattern = /(\d{2})(\d{2})(\d{4})/;
+                var formatedDate = str.replace(pattern, '$1/$2/$3');
+                return formatedDate
+            }
+        }else{
+            return false
+        }
+    }
