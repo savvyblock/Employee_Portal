@@ -457,7 +457,7 @@ public class Information1095Controller{
 		
 		print.setB2_ssn(b2_ssn);
 		print.setB3_birthdt(b3_birthDt);
-		print.setB4_addressline1txt(userDetail.getAddrNbr()+ " "+ userDetail.getAddrStr());
+		print.setB4_addressline1txt((userDetail.getAddrNbr()==null?"":userDetail.getAddrNbr()+ " ") + userDetail.getAddrStr());
 		print.setB5_citynm(userDetail.getAddrCity());
 		print.setB6_usstatecd(userDetail.getAddrSt());
 		print.setB7_uszipcd(userDetail.getAddrZip()==null?"":userDetail.getAddrZip());
@@ -547,7 +547,7 @@ public class Information1095Controller{
 		print.setB1_personlastnm(userDetail.getNameL()==null?"":userDetail.getNameL());
 		print.setB1_suffixnm(userDetail.getGenDescription()==null?"":userDetail.getGenDescription());
 		print.setB2_ssn(userDetail.getStaffId().replaceAll("-", "").trim());
-		print.setB3_addressline1txt(userDetail.getAddrNbr()+ " "+ userDetail.getAddrStr());
+		print.setB3_addressline1txt((userDetail.getAddrNbr()==null?"":userDetail.getAddrNbr()+ " ") + userDetail.getAddrStr());
 		print.setB4_citynm(userDetail.getAddrCity());
 		print.setB5_usstatecd(userDetail.getAddrSt());
 		print.setB6_uszipcd(userDetail.getAddrZip()==null?"":userDetail.getAddrZip());
@@ -609,19 +609,19 @@ public class Information1095Controller{
 				print.setB16_augsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
 			} else if("09".equals(hist.getId().getCalMon())) {
 				print.setB14_sepoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
-				print.setB15_septemberamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
+				print.setB15_septemberamt(hist.getEmpShr()==null?new Double(0):new Double(hist.getEmpShr().doubleValue()));
 				print.setB16_sepsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
 			} else if("10".equals(hist.getId().getCalMon())) {
 				print.setB14_octoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
-				print.setB15_octoberamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
+				print.setB15_octoberamt(hist.getEmpShr()==null?new Double(0):new Double(hist.getEmpShr().doubleValue()));
 				print.setB16_octsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
 			} else if("11".equals(hist.getId().getCalMon())) {
 				print.setB14_novoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
-				print.setB15_novemberamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
+				print.setB15_novemberamt(hist.getEmpShr()==null?new Double(0):new Double(hist.getEmpShr().doubleValue()));
 				print.setB16_novsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
 			} else if("12".equals(hist.getId().getCalMon())) {
 				print.setB14_decoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
-				print.setB15_decemberamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
+				print.setB15_decemberamt(hist.getEmpShr()==null?new Double(0):new Double(hist.getEmpShr().doubleValue()));
 				print.setB16_decsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
 			}
 		}

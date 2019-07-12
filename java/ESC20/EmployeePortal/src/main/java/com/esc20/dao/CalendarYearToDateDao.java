@@ -91,9 +91,9 @@ public class CalendarYearToDateDao {
 	public String getLatestPayDate(String employeeNumber, Frequency freq) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("select distinct hist.id.dtOfPay from BhrPayHist hist where hist.id.dtOfPay in (select max(hist2.id.dtOfPay) from BhrPayHist hist2 ");
-		sql.append("where hist.id.empNbr = :employeeNumber and hist.id.payFreq = :frequency)");
-		Query q = session.createQuery(sql.toString());
+		sql.append("select distinct dt_of_pay from bhr_pay_hist where dt_of_pay in (select max(dt_of_pay) from bhr_pay_hist ");
+		sql.append("where emp_nbr = :employeeNumber and pay_freq = :frequency)");
+		Query q = session.createSQLQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("frequency", freq.getCode().charAt(0));
 		String result = (String) q.uniqueResult();

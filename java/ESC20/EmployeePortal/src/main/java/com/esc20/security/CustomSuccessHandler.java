@@ -41,7 +41,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
             userDetail.setEmpNbr(user.getEmpNbr());
             userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
             String phone = districtInfo.getPhone();
-            districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.left(phone, 4));
+            districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
             Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr());
             Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
             session.setAttribute("isSupervisor", isSupervisor);

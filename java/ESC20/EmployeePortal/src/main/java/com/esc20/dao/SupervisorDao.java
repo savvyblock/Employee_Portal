@@ -46,7 +46,7 @@ public class SupervisorDao {
         List<LeaveEmployeeData> result = new ArrayList<LeaveEmployeeData>();
         LeaveEmployeeData data;
         for(Object[] item: res) {
-        	data = new LeaveEmployeeData((String) item[0], (Character) item[1], (String) item[2] ,(String) item[3],(String)item[4],(Long)item[5]);
+        	data = new LeaveEmployeeData((String) item[0], (Character) item[1], (String) item[2] ,(String) item[3],(String)item[4],(Integer)item[5]);
         	result.add(data);
         }
 		return result;
@@ -64,7 +64,7 @@ public class SupervisorDao {
         List<LeaveEmployeeData> result = new ArrayList<LeaveEmployeeData>();
         LeaveEmployeeData data;
         for(Object[] item: res) {
-        	data = new LeaveEmployeeData((String) item[0], '\0', (String) item[1] ,(String) item[2],(String)item[3],(Long)item[4]);
+        	data = new LeaveEmployeeData((String) item[0], '\0', (String) item[1] ,(String) item[2],(String)item[3],(Integer)item[4]);
         	result.add(data);
         }
 		return result;
