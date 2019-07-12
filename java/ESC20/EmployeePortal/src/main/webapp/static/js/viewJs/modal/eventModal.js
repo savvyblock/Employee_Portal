@@ -28,7 +28,8 @@ $(function() {
             var startDate = $('#startDateInput').val()
             if (
                 ev.date &&
-                (ev.date.valueOf() >= checkout.date.valueOf() || !endDate)
+                !endDate
+                // (ev.date.valueOf() >= checkout.date.valueOf() || !endDate)
             ) {
                 // var newDate = new Date(ev.date)
                 // newDate.setDate(newDate.getDate())
