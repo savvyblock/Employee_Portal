@@ -114,6 +114,7 @@ function closeRequestForm() {
 function formValidator() {
     $('#requestForm').bootstrapValidator({
         live: 'enable',
+        trigger:null,
         submitButtons: '.save',
         feedbackIcons: {
             valid: 'fa fa-check ',
@@ -132,7 +133,6 @@ function formValidator() {
                 }
             },
             LeaveStartDate: {
-                trigger: 'change',
                 validators: {
                     notEmpty: {
                         message: startDateCannotBeEmptyValidator
@@ -140,7 +140,7 @@ function formValidator() {
                 }
             },
             LeaveEndDate: {
-                trigger: 'change',
+                trigger:'change',
                 validators: {
                     notEmpty: {
                         message: endDateCannotBeEmptyValidator
@@ -148,7 +148,6 @@ function formValidator() {
                 }
             },
             startHour: {
-                trigger: 'change',
                 validators: {
                     notEmpty: {
                         message: startTimeCannotBeEmptyValidator
@@ -156,7 +155,6 @@ function formValidator() {
                 }
             },
             endHour: {
-                trigger: 'change',
                 validators: {
                     notEmpty: {
                         message: endTimeCannotBeEmptyValidator
@@ -174,7 +172,7 @@ function formValidator() {
     })
     // setGlobal()
 }
-$("#startDateInput").change(function(){
+$("#startDateInput").blur(function(){
     var fromValue = $("#startDateInput").val()
     var toValue = $("#endDateInput").val()
     var leaveFrom = changeDateYMD(fromValue)
@@ -189,22 +187,22 @@ $("#startDateInput").change(function(){
     }
     
 });
-$('#startDateInput').keyup(function() {
-    var fromValue = $("#startDateInput").val()
-    var toValue = $("#endDateInput").val()
-    var leaveFrom = changeDateYMD(fromValue)
-    var leaveTo = changeDateYMD(toValue)
-    if(fromValue && toValue){
-        if( leaveFrom<=leaveTo){
-            $('.dateValidator01').hide()
+// $('#startDateInput').keyup(function() {
+//     var fromValue = $("#startDateInput").val()
+//     var toValue = $("#endDateInput").val()
+//     var leaveFrom = changeDateYMD(fromValue)
+//     var leaveTo = changeDateYMD(toValue)
+//     if(fromValue && toValue){
+//         if( leaveFrom<=leaveTo){
+//             $('.dateValidator01').hide()
             
-        }else{
-            $('.dateValidator01').show()
-        }
-        calcDays()
-    }
-});
- $("#endDateInput").change(function(){
+//         }else{
+//             $('.dateValidator01').show()
+//         }
+//         calcDays()
+//     }
+// });
+ $("#endDateInput").blur(function(){
     var fromValue = $("#startDateInput").val()
     var toValue = $("#endDateInput").val()
     var leaveFrom = changeDateYMD(fromValue)
@@ -219,21 +217,21 @@ $('#startDateInput').keyup(function() {
         }
         
     });
-    $('#endDateInput').keyup(function() {
-        var fromValue = $("#startDateInput").val()
-    var toValue = $("#endDateInput").val()
-    var leaveFrom = changeDateYMD(fromValue)
-    var leaveTo = changeDateYMD(toValue)
-    if(fromValue && toValue){
-            if( leaveFrom<=leaveTo){
-                $('.dateValidator01').hide()
+    // $('#endDateInput').keyup(function() {
+    //     var fromValue = $("#startDateInput").val()
+    // var toValue = $("#endDateInput").val()
+    // var leaveFrom = changeDateYMD(fromValue)
+    // var leaveTo = changeDateYMD(toValue)
+    // if(fromValue && toValue){
+    //         if( leaveFrom<=leaveTo){
+    //             $('.dateValidator01').hide()
                 
-            }else{
-                $('.dateValidator01').show()
-            }
-            calcDays()
-        }
-    });
+    //         }else{
+    //             $('.dateValidator01').show()
+    //         }
+    //         calcDays()
+    //     }
+    // });
 
     $("#leaveHoursDaily").change(function(){
         var val = $(this).val()
