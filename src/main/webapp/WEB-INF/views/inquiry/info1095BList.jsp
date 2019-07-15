@@ -1,6 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<label class="form-title">
+	${sessionScope.languageJSON.info1095Table.coverageTypeB}
+</label>
+<h2 class="table-top-title no-print">
+	<b>${sessionScope.languageJSON.info1095Table.coverIndividuals}</b>
+</h2>
 <table class="groupWrapTable" style="border:0;margin: 0;width:100%;">
 	<tr>
 		<td style="padding:0;">

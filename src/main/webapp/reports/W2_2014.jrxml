@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="W2_2014" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="548" leftMargin="32" rightMargin="32" topMargin="32" bottomMargin="32" uuid="13b60bea-61cd-4d6a-a7bf-d3a0985cc38b">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
@@ -306,10 +307,10 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						</reportElement>
 						<box>
 							<pen lineWidth="1.0"/>
-							<topPen lineWidth="1.0"/>
-							<leftPen lineWidth="1.0"/>
-							<bottomPen lineWidth="1.0"/>
-							<rightPen lineWidth="1.0"/>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textElement>
 							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
@@ -322,10 +323,10 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						</reportElement>
 						<box leftPadding="8">
 							<pen lineWidth="1.0"/>
-							<topPen lineWidth="1.0"/>
-							<leftPen lineWidth="1.0"/>
-							<bottomPen lineWidth="1.0"/>
-							<rightPen lineWidth="1.0"/>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textElement>
 							<font size="9"/>
@@ -338,10 +339,10 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						</reportElement>
 						<box>
 							<pen lineWidth="1.0"/>
-							<topPen lineWidth="1.0"/>
-							<leftPen lineWidth="1.0"/>
-							<bottomPen lineWidth="1.0"/>
-							<rightPen lineWidth="1.0"/>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textElement>
 							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
@@ -354,10 +355,10 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						</reportElement>
 						<box leftPadding="8">
 							<pen lineWidth="1.0"/>
-							<topPen lineWidth="1.0"/>
-							<leftPen lineWidth="1.0"/>
-							<bottomPen lineWidth="1.0"/>
-							<rightPen lineWidth="1.0"/>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textElement>
 							<font size="9"/>
@@ -769,7 +770,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<text><![CDATA[14 See Instrs. for box 14]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="15" width="94" height="15" uuid="fcf10570-d02e-4313-b2db-5b1b4b29b498">
+						<reportElement x="372" y="15" width="155" height="15" uuid="fcf10570-d02e-4313-b2db-5b1b4b29b498">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -781,7 +782,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{code1401}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="15" width="57" height="15" uuid="8c0048ab-6202-4245-9c6a-bdbaf08d1036">
+						<reportElement x="481" y="15" width="57" height="15" uuid="8c0048ab-6202-4245-9c6a-bdbaf08d1036">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -790,7 +791,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{amt1401}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="28" width="94" height="15" uuid="3ba29932-d47c-481b-889e-d9634afb797b">
+						<reportElement x="372" y="28" width="155" height="15" uuid="3ba29932-d47c-481b-889e-d9634afb797b">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -802,7 +803,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{code1402}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="28" width="57" height="15" uuid="74e50f06-e991-4d31-8e71-9d93be53325b">
+						<reportElement x="481" y="28" width="57" height="15" uuid="74e50f06-e991-4d31-8e71-9d93be53325b">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -811,7 +812,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{amt1402}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="42" width="94" height="15" uuid="4aba5519-70e4-4d31-9a43-c588debb2f83">
+						<reportElement x="372" y="42" width="155" height="15" uuid="4aba5519-70e4-4d31-9a43-c588debb2f83">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -823,7 +824,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{code1403}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="42" width="57" height="15" uuid="4763b8d7-a1ee-48a9-be12-4b40a2fd5aa6">
+						<reportElement x="481" y="42" width="57" height="15" uuid="4763b8d7-a1ee-48a9-be12-4b40a2fd5aa6">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -832,7 +833,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{amt1403}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="55" width="94" height="15" uuid="c7d245f4-9a05-4eab-a701-79a2438485ff">
+						<reportElement x="372" y="55" width="155" height="15" uuid="c7d245f4-9a05-4eab-a701-79a2438485ff">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -844,7 +845,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{code1404}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="55" width="57" height="15" uuid="be0370e6-840c-4265-bdee-2a25d8b9eb43">
+						<reportElement x="481" y="55" width="57" height="15" uuid="be0370e6-840c-4265-bdee-2a25d8b9eb43">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -853,7 +854,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{amt1404}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="69" width="94" height="15" uuid="64924b45-0825-44f4-beaf-2e15649589ab">
+						<reportElement x="372" y="69" width="155" height="15" uuid="64924b45-0825-44f4-beaf-2e15649589ab">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -865,7 +866,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{code1405}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="69" width="57" height="15" uuid="d593f0bb-b48e-44b7-8bf2-1bd03e63d5e5">
+						<reportElement x="481" y="69" width="57" height="15" uuid="d593f0bb-b48e-44b7-8bf2-1bd03e63d5e5">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -874,7 +875,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{amt1405}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="84" width="94" height="15" uuid="2095417c-75d0-4027-bdf1-17c85aa59df0">
+						<reportElement x="372" y="84" width="155" height="15" uuid="2095417c-75d0-4027-bdf1-17c85aa59df0">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -886,7 +887,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{code1406}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="84" width="57" height="15" uuid="fa7b5c7e-2092-4d55-92a9-edfca5f752ed">
+						<reportElement x="481" y="84" width="57" height="15" uuid="fa7b5c7e-2092-4d55-92a9-edfca5f752ed">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -895,7 +896,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{amt1406}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="99" width="94" height="15" uuid="b8e17ee0-5a9f-4ae5-8156-5e91111d3c48">
+						<reportElement x="372" y="99" width="155" height="15" uuid="b8e17ee0-5a9f-4ae5-8156-5e91111d3c48">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -907,7 +908,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{code1407}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="99" width="57" height="15" uuid="6ed7eb81-8822-440f-af6a-cfd9b127a500">
+						<reportElement x="481" y="99" width="57" height="15" uuid="6ed7eb81-8822-440f-af6a-cfd9b127a500">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -916,7 +917,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{amt1407}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="113" width="94" height="36" uuid="23283659-2848-4a20-b52c-7a38ca085826">
+						<reportElement x="372" y="113" width="155" height="36" uuid="23283659-2848-4a20-b52c-7a38ca085826">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -928,7 +929,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textFieldExpression><![CDATA[$F{code1408}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="113" width="57" height="36" uuid="fbb5d061-c270-45b4-98bd-8080fa409d98">
+						<reportElement x="481" y="113" width="57" height="36" uuid="fbb5d061-c270-45b4-98bd-8080fa409d98">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
