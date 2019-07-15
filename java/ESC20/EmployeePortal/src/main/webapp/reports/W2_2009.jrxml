@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="W2_2009" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="548" leftMargin="32" rightMargin="32" topMargin="32" bottomMargin="32" uuid="06df95f8-e2d8-4ef2-9ed4-5b3ac51522b0">
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
@@ -307,10 +308,10 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						</reportElement>
 						<box>
 							<pen lineWidth="1.0"/>
-							<topPen lineWidth="1.0"/>
-							<leftPen lineWidth="1.0"/>
-							<bottomPen lineWidth="1.0"/>
-							<rightPen lineWidth="1.0"/>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textElement>
 							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
@@ -323,10 +324,10 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						</reportElement>
 						<box leftPadding="8">
 							<pen lineWidth="1.0"/>
-							<topPen lineWidth="1.0"/>
-							<leftPen lineWidth="1.0"/>
-							<bottomPen lineWidth="1.0"/>
-							<rightPen lineWidth="1.0"/>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textElement>
 							<font size="9"/>
@@ -339,10 +340,10 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						</reportElement>
 						<box>
 							<pen lineWidth="1.0"/>
-							<topPen lineWidth="1.0"/>
-							<leftPen lineWidth="1.0"/>
-							<bottomPen lineWidth="1.0"/>
-							<rightPen lineWidth="1.0"/>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textElement>
 							<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
@@ -355,10 +356,10 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						</reportElement>
 						<box leftPadding="8">
 							<pen lineWidth="1.0"/>
-							<topPen lineWidth="1.0"/>
-							<leftPen lineWidth="1.0"/>
-							<bottomPen lineWidth="1.0"/>
-							<rightPen lineWidth="1.0"/>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textElement>
 							<font size="9"/>
@@ -753,7 +754,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<text><![CDATA[14 See Instrs. for box 14]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="15" width="94" height="15" uuid="047a8788-f048-4f88-b330-a7c86788b5cb">
+						<reportElement x="372" y="15" width="155" height="15" uuid="047a8788-f048-4f88-b330-a7c86788b5cb">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -765,7 +766,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{code1401}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="15" width="57" height="15" uuid="05017767-7aad-4a79-aaf3-8b6a138bda19">
+						<reportElement x="480" y="15" width="57" height="15" uuid="05017767-7aad-4a79-aaf3-8b6a138bda19">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -774,7 +775,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{amt1401}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="28" width="94" height="15" uuid="203e1cf7-3bbb-4c16-bed6-3c20511cea56">
+						<reportElement x="372" y="28" width="155" height="15" uuid="203e1cf7-3bbb-4c16-bed6-3c20511cea56">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -786,7 +787,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{code1402}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="28" width="57" height="15" uuid="b936632d-2a31-4115-b63a-b75d420927ee">
+						<reportElement x="480" y="28" width="57" height="15" uuid="b936632d-2a31-4115-b63a-b75d420927ee">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -795,7 +796,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{amt1402}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="42" width="94" height="15" uuid="f4c611d3-b68c-4a70-9e1b-a192598d58e6">
+						<reportElement x="372" y="42" width="155" height="15" uuid="f4c611d3-b68c-4a70-9e1b-a192598d58e6">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -807,7 +808,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{code1403}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="42" width="57" height="15" uuid="54ede79c-4438-44d5-a6b5-20a091e451e5">
+						<reportElement x="480" y="42" width="57" height="15" uuid="54ede79c-4438-44d5-a6b5-20a091e451e5">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -816,7 +817,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{amt1403}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="55" width="94" height="15" uuid="a1e8dbea-834d-44c5-a357-30d1dc59b6a6">
+						<reportElement x="372" y="55" width="155" height="15" uuid="a1e8dbea-834d-44c5-a357-30d1dc59b6a6">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -828,7 +829,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{code1404}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="55" width="57" height="15" uuid="a030ea95-745d-423a-9fb2-f44f701ab06d">
+						<reportElement x="480" y="55" width="57" height="15" uuid="a030ea95-745d-423a-9fb2-f44f701ab06d">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -837,7 +838,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{amt1404}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="69" width="94" height="15" uuid="2d36d12e-9708-4441-af8a-158498d937ae">
+						<reportElement x="372" y="69" width="155" height="15" uuid="2d36d12e-9708-4441-af8a-158498d937ae">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -849,7 +850,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{code1405}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="69" width="57" height="15" uuid="a52bf69e-c133-468c-8341-9f3a869ee710">
+						<reportElement x="480" y="69" width="57" height="15" uuid="a52bf69e-c133-468c-8341-9f3a869ee710">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -858,7 +859,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{amt1405}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="84" width="94" height="15" uuid="49302ced-8ecd-4989-8b15-831746258a9e">
+						<reportElement x="372" y="84" width="155" height="15" uuid="49302ced-8ecd-4989-8b15-831746258a9e">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -870,7 +871,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{code1406}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="84" width="57" height="15" uuid="ce681c59-06e1-43da-b8f5-8fc0c1f5901e">
+						<reportElement x="480" y="84" width="57" height="15" uuid="ce681c59-06e1-43da-b8f5-8fc0c1f5901e">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -879,7 +880,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{amt1406}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="99" width="94" height="15" uuid="2d55d1bd-10e4-43be-adea-ff458a502040">
+						<reportElement x="372" y="99" width="155" height="15" uuid="2d55d1bd-10e4-43be-adea-ff458a502040">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -891,7 +892,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{code1407}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="99" width="57" height="15" uuid="30254775-33af-4b47-8202-1f386eed71ba">
+						<reportElement x="480" y="99" width="57" height="15" uuid="30254775-33af-4b47-8202-1f386eed71ba">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
@@ -900,7 +901,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{amt1407}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="372" y="113" width="94" height="36" uuid="a944e1de-f5ba-40c1-acf7-001d2c6b5e31">
+						<reportElement x="372" y="113" width="155" height="36" uuid="a944e1de-f5ba-40c1-acf7-001d2c6b5e31">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="start"/>
 						</reportElement>
 						<box leftPadding="8">
@@ -912,7 +913,7 @@ You may be able to take the EIC for 2009 if (a) you do not have a qualifying chi
 						<textFieldExpression><![CDATA[$F{code1408}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement x="470" y="113" width="57" height="36" uuid="2dba8b03-0f21-4f0e-ad8a-c44e599aa7cb">
+						<reportElement x="480" y="113" width="57" height="36" uuid="2dba8b03-0f21-4f0e-ad8a-c44e599aa7cb">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="end"/>
 						</reportElement>
 						<textElement textAlignment="Right">
