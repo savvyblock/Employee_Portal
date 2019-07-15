@@ -30,10 +30,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												value="${_csrf.token}" />
 											<input type="hidden" name="year"
 												value="${selectedYear}" />
-											<button type="submit" role="button" class="btn btn-primary download-pdf"
+											<button type="submit" role="button" class="btn btn-primary download-pdf" title="${sessionScope.languageJSON.label.print}"
 												aria-label="${sessionScope.languageJSON.label.exportPDF}"><i class="fa fa-file-pdf-o"></i></button>
                                         </form>
-			                            <form class="no-print" action="printPDF" method="POST" target="printIframe">
+			                          <%--   <form class="no-print" action="printPDF" method="POST" target="printIframe">
 											<input type="hidden" name="${_csrf.parameterName}"
 												value="${_csrf.token}" />
 											<input type="hidden" name="year"
@@ -43,7 +43,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 				                            </button>
 			                            </form>
 			
-			                            <iframe style="display:none" name="printIframe" onload="load()" id="printIframe"></iframe>
+			                            <iframe style="display:none" name="printIframe" onload="load()" id="printIframe"></iframe> --%>
                                     </c:if>
                                 </div>
                             </div>
