@@ -135,12 +135,20 @@
 									</td>
 									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveEarned}" class="text-right">${leave.lvUnitsEarned}</td>
 									<td data-title="${sessionScope.languageJSON.leaveBalance.status}" class="text-center">
-											<c:if test="${leave.processDt && leave.processDt != ''}">
+											<c:choose>
+                                                  <c:when test="${not empty leave.processDt}">
+                                                     <span>${sessionScope.languageJSON.label.processed}</span>
+												  </c:when>
+												  <c:otherwise>
+											            <span>${sessionScope.languageJSON.label.notProcessed}</span>                              
+                                                  </c:otherwise>
+                                            </c:choose>
+											<%-- <c:if test="${leave.processDt && leave.processDt != ''}">
 												<span>${sessionScope.languageJSON.label.processed}</span>
 											</c:if>
-											<c:if test="${!leave.processDt || leave.processDt == ''}">
+											<c:if test="${(!leave.processDt) || (leave.processDt == '')}">
 												<span>${sessionScope.languageJSON.label.notProcessed}</span>
-											</c:if>
+											</c:if> --%>
 									</td>
 								</tr>
 							</c:forEach>
