@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,7 @@ import com.esc20.nonDBModels.W2Print;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.nonDBModels.report.ReportParameterConnection;
+import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
 import com.esc20.util.CodeIterator;
@@ -45,6 +48,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @Controller
 @RequestMapping("/w2Information")
 public class W2InformationController{
+   private Logger logger = LoggerFactory.getLogger(W2InformationController.class);
 
 	@Autowired
 	private InquiryService service;
@@ -273,7 +277,8 @@ public class W2InformationController{
 		print.setEaddress(district.getAddress());
 		print.setEcityst(district.getCity() + ", " + district.getState() + " " + district.getZip());
 		
-		if(district.getZip4()!=null && district.getZip4().length() > 0)
+		logger.info("W2 Infomation Controller Zip4: " + district.getZip4());
+		if(district.getZip4()!=null && district.getZip4().trim().length() > 0)
 		{
 			print.setEcityst(print.getEcityst() + "-" + district.getZip4());
 		}
@@ -294,9 +299,10 @@ public class W2InformationController{
 		}
 		print.setEmpcityst(userDetail.getAddrCity() + ", " + userDetail.getAddrSt() + " " + userDetail.getAddrZip());
 
-		if(userDetail.getAddrZip4()!=null && userDetail.getAddrZip4().length() > 0)
+		logger.info("W2 Infomation Controller Zip4: " + userDetail.getAddrZip4());
+		if(userDetail.getAddrZip4()!=null && userDetail.getAddrZip4().trim().length() > 0)
 		{
-			print.setEmpcityst(print.getEmpcityst() + "-" + userDetail.getAddrZip4());
+			print.setEmpcityst(print.getEmpcityst() + "-" + userDetail.getAddrZip4().trim());
 		}
 
 		if(w2Info != null)

@@ -37,7 +37,7 @@
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="text" name="freq" hidden="hidden" value="${selectedFreq}" aria-label="${sessionScope.languageJSON.accessHint.id}"/>
 					<div class="form-group type-group">
-						<label class="form-title" for="SearchType"><span>${sessionScope.languageJSON.leaveBalance.type}</span>:</label> 
+						<label class="form-title" for="SearchType"><span>${sessionScope.languageJSON.leaveBalance.leaveType}</span>:</label> 
 						<select id="SearchType"
 							class="form-control" name="SearchType" autocomplete="off">
 							<c:forEach var="type" items="${leaveTypes}" varStatus="count">
@@ -46,7 +46,7 @@
 						</select>
 					</div>
 					<div class="form-group">
-							<label class="form-title" for="SearchStartInput"><span>${sessionScope.languageJSON.label.from}</span>:</label> 
+							<label class="form-title" for="SearchStartInput"><span>${sessionScope.languageJSON.leaveBalance.fromDateLeave}</span>:</label> 
 							<div class="button-group">
 								<div class="fDateGroup date" id="SearchStartDate" data-date-format="mm/dd/yyyy">
 											<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
@@ -69,7 +69,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="form-title" for="SearchEndInput"> <span>${sessionScope.languageJSON.label.to}</span>: </label> 
+							<label class="form-title" for="SearchEndInput"> <span>${sessionScope.languageJSON.leaveBalance.toDateLeave}</span>: </label> 
 							<div class="button-group">
 									<div class="fDateGroup date" id="SearchEndDate" data-date-format="mm/dd/yyyy">
 										<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
@@ -135,12 +135,20 @@
 									</td>
 									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveEarned}" class="text-right">${leave.lvUnitsEarned}</td>
 									<td data-title="${sessionScope.languageJSON.leaveBalance.status}" class="text-center">
-											<c:if test="${leave.processDt && leave.processDt != ''}">
+											<c:choose>
+                                                  <c:when test="${not empty leave.processDt}">
+                                                     <span>${sessionScope.languageJSON.label.processed}</span>
+												  </c:when>
+												  <c:otherwise>
+											            <span>${sessionScope.languageJSON.label.notProcessed}</span>                              
+                                                  </c:otherwise>
+                                            </c:choose>
+											<%-- <c:if test="${leave.processDt && leave.processDt != ''}">
 												<span>${sessionScope.languageJSON.label.processed}</span>
 											</c:if>
-											<c:if test="${!leave.processDt || leave.processDt == ''}">
+											<c:if test="${(!leave.processDt) || (leave.processDt == '')}">
 												<span>${sessionScope.languageJSON.label.notProcessed}</span>
-											</c:if>
+											</c:if> --%>
 									</td>
 								</tr>
 							</c:forEach>

@@ -516,8 +516,8 @@ public class LeaveRequestDao {
 			request = new AppLeaveRequest((Integer) item[0], (Integer) item[1], (Character) item[2], (String) item[3],
 					(String) item[4], (String) item[5], (Date) item[6], (Date) item[7], (Date) item[8],
 					(BigDecimal) item[9], (BigDecimal) item[10], (Character) item[11], (String) item[12],
-					(String) item[13], (String) item[14], (String) item[15], (String) item[16], (String) item[17],
-					(String) item[18]);
+					(String) item[14], (String) item[15], (String) item[16], (String) item[17], (String) item[18],
+					(String) item[19]);
 			requests.add(request);
 		}
 
