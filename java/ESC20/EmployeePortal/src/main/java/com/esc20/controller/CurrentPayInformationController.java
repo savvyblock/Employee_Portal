@@ -155,9 +155,9 @@ public class CurrentPayInformationController{
 		}
 		print.setEcityst(userDetail.getAddrCity() + ", " + userDetail.getAddrSt() + " " + userDetail.getAddrZip());
 		
-		if(userDetail.getAddrZip4()!=null && userDetail.getAddrZip4().length() > 0)
+		if(userDetail.getAddrZip4()!=null && userDetail.getAddrZip4().trim().length() > 0)
 		{
-			print.setEcityst(print.getEcityst() + "-" + userDetail.getAddrZip4());
+			print.setEcityst(print.getEcityst() + "-" + userDetail.getAddrZip4().trim());
 		}
 		
 		//print.setPhoneNumber(userDetail.getPhoneArea()+"-"+userDetail.getPhoneNbr());

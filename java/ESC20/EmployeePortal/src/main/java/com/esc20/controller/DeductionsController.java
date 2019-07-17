@@ -14,12 +14,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Deduction;
 import com.esc20.nonDBModels.Frequency;
+import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayInfo;
+import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 
 @Controller
 @RequestMapping("/deductions")
 public class DeductionsController{
+	@Autowired
+	private IndexService indexService;
 
 	@Autowired
 	private InquiryService service;
@@ -33,6 +37,8 @@ public class DeductionsController{
 		List<Frequency> frequencies = this.service.getAvailableFrequencies(employeeNumber);
 		Map<Frequency, PayInfo> payInfos = this.service.retrievePayInfo(employeeNumber, frequencies);
 		Map<Frequency, List<Deduction>> deductions = this.service.retrieveAllDeductions(employeeNumber, frequencies);
+		Options options = this.indexService.getOptions();
+		session.setAttribute("options", options);
 		mav.setViewName("/inquiry/deductions");
 		mav.addObject("frequencies", frequencies);
 		mav.addObject("payInfos", payInfos);
