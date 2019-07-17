@@ -473,6 +473,9 @@ $("#startDateInput").blur(function(){
         } else return
     })
     function changeDateYMD(date){
+        if(!date){
+            return
+        }
 		var dateArry = date.split("/")
 		var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
 		return DateFormat
