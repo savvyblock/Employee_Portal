@@ -10,12 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.esc20.dao.EA1095Dao;
 import com.esc20.model.BhrAca1095cEmpHist;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BrRptngContact;
@@ -44,6 +47,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @Controller
 @RequestMapping("/information1095")
 public class Information1095Controller{
+	private Logger logger = LoggerFactory.getLogger(Information1095Controller.class);
 
 	@Autowired
 	private InquiryService service;
@@ -461,7 +465,7 @@ public class Information1095Controller{
 		print.setB5_citynm(userDetail.getAddrCity());
 		print.setB6_usstatecd(userDetail.getAddrSt());
 		print.setB7_uszipcd(userDetail.getAddrZip()==null?"":userDetail.getAddrZip());
-		print.setB7_uszipextensioncd(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4());
+		print.setB7_uszipextensioncd(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4().trim());
 	}
 
 	private void fillPartIIBoxesB(Aca1095BPrint print, BrRptngContact reportingContact) {
@@ -551,7 +555,7 @@ public class Information1095Controller{
 		print.setB4_citynm(userDetail.getAddrCity());
 		print.setB5_usstatecd(userDetail.getAddrSt());
 		print.setB6_uszipcd(userDetail.getAddrZip()==null?"":userDetail.getAddrZip());
-		print.setB6_uszipextensioncd(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4());
+		print.setB6_uszipextensioncd(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4().trim());
 	}
 
 	private void fillPartIALEBoxesC(District district, Aca1095CPrint print) {
@@ -571,62 +575,63 @@ public class Information1095Controller{
 	private void fillPartIIBoxesC(List<BhrAca1095cEmpHist> cCovrgTypList, Aca1095CPrint print) {
 
 		for(BhrAca1095cEmpHist hist: cCovrgTypList) {
-			if("ALL".equals(hist.getId().getCalMon())) {
-				print.setB14_annualofferofcoveragecd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+			logger.info("1095 C Mon for PDF: '" + hist.getId().getCalMon()+"'");
+			if("ALL".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_annualofferofcoveragecd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_annualshrlowestcostmthlypremamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
-				print.setB16_annualsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
-			} else if("01".equals(hist.getId().getCalMon())) {
-				print.setB14_janoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+				print.setB16_annualsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
+			} else if("01".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_janoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_januaryamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
-				print.setB16_jansafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
-			} else if("02".equals(hist.getId().getCalMon())) {
-				print.setB14_feboffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+				print.setB16_jansafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
+			} else if("02".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_feboffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_februaryamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
-				print.setB16_febsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
-			} else if("03".equals(hist.getId().getCalMon())) {
-				print.setB14_maroffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+				print.setB16_febsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
+			} else if("03".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_maroffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_marchamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
-				print.setB16_marsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
-			} else if("04".equals(hist.getId().getCalMon())) {
-				print.setB14_aproffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+				print.setB16_marsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
+			} else if("04".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_aproffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_aprilamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
-				print.setB16_aprsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
-			} else if("05".equals(hist.getId().getCalMon())) {
-				print.setB14_mayoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+				print.setB16_aprsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
+			} else if("05".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_mayoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_mayamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
-				print.setB16_maysafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
-			} else if("06".equals(hist.getId().getCalMon())) {
-				print.setB14_junoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+				print.setB16_maysafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
+			} else if("06".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_junoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_juneamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
-				print.setB16_junsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
-			} else if("07".equals(hist.getId().getCalMon())) {
-				print.setB14_juloffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+				print.setB16_junsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
+			} else if("07".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_juloffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_julyamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
-				print.setB16_julsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
-			} else if("08".equals(hist.getId().getCalMon())) {
-				print.setB14_augoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+				print.setB16_julsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
+			} else if("08".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_augoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_augustamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
-				print.setB16_augsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
-			} else if("09".equals(hist.getId().getCalMon())) {
-				print.setB14_sepoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+				print.setB16_augsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
+			} else if("09".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_sepoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_septemberamt(hist.getEmpShr()==null?new Double(0):new Double(hist.getEmpShr().doubleValue()));
-				print.setB16_sepsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
-			} else if("10".equals(hist.getId().getCalMon())) {
-				print.setB14_octoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+				print.setB16_sepsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
+			} else if("10".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_octoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_octoberamt(hist.getEmpShr()==null?new Double(0):new Double(hist.getEmpShr().doubleValue()));
-				print.setB16_octsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
-			} else if("11".equals(hist.getId().getCalMon())) {
-				print.setB14_novoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+				print.setB16_octsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
+			} else if("11".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_novoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_novemberamt(hist.getEmpShr()==null?new Double(0):new Double(hist.getEmpShr().doubleValue()));
-				print.setB16_novsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
-			} else if("12".equals(hist.getId().getCalMon())) {
-				print.setB14_decoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg());
+				print.setB16_novsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
+			} else if("12".equals(hist.getId().getCalMon().trim())) {
+				print.setB14_decoffercd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_decemberamt(hist.getEmpShr()==null?new Double(0):new Double(hist.getEmpShr().doubleValue()));
-				print.setB16_decsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr());
+				print.setB16_decsafeharborcd(hist.getSafeHrbr()==null?"":hist.getSafeHrbr().trim());
 			}
 		}
 		print.setPiii_coveredindividualind(cCovrgTypList.get(0).getSelfIns() == 'Y'?"Y":"N");
-		print.setPlanStrtMon(cCovrgTypList.get(0).getPlanStrtMon()==null?"":cCovrgTypList.get(0).getPlanStrtMon());
+		print.setPlanStrtMon(cCovrgTypList.get(0).getPlanStrtMon()==null?"":cCovrgTypList.get(0).getPlanStrtMon().trim());
 	}
 
 	private void fillPartIIIBoxesC(List<CCoveredHistory> cList, Aca1095CPrint print, Boolean printPage4) {

@@ -123,10 +123,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </div>
                                                                 <div class="info-content">
                                                                     <c:if test="${earnings.info.withholdingStatus =='M'}">
-                                                                        <span>${sessionScope.languageJSON.label.married}</span>
+                                                                        <span class="textCapital">${sessionScope.languageJSON.label.married}</span>
                                                                     </c:if>
                                                                     <c:if test="${earnings.info.withholdingStatus =='S'}">
-                                                                            <span>${sessionScope.languageJSON.label.single}</span>
+                                                                            <span class="textCapital">${sessionScope.languageJSON.label.single}</span>
                                                                     </c:if>
                                                                 </div>
                                                             </div>

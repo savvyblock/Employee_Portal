@@ -72,6 +72,7 @@ function initialLeaveCalendarModal(){
                 eventRender: function(event, element, view) {
                     element.attr('data-toggle', 'modal')
                     element.attr('data-target', '#EventDetailModal')
+                    element.append('<b>('+event.statusCd+')</b>')
                     var startEv = changeYMDFormat(event.LeaveStartDate)
                     var endEv = changeYMDFormat(event.LeaveEndDate)
                     var time = element.find(".fc-time").text()

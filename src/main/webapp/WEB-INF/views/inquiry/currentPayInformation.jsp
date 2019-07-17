@@ -198,10 +198,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     
                                                 >
                                                     <c:if test="${payInfos[frequency].maritalStatTax =='M'}">
-                                                            <span>${sessionScope.languageJSON.label.married}</span>
+                                                        ${payInfos[frequency].maritalStatTax} - <span>${sessionScope.languageJSON.label.married}</span>
                                                     </c:if>
                                                     <c:if test="${payInfos[frequency].maritalStatTax =='S'}">
-                                                            <span>${sessionScope.languageJSON.label.single}</span>
+                                                        ${payInfos[frequency].maritalStatTax} - <span>${sessionScope.languageJSON.label.single}</span>
                                                     </c:if>
                                                 </td>
                                                 <th id="numOfExemptions_${count.index}" class="td-title" >

@@ -184,6 +184,9 @@ $("#startDateInput").blur(function(){
             calcDays()
         }else{
             $('.dateValidator01').show()
+            setTimeout(function(){
+                $("#endDateInput").val('')
+            },500)
         }
     }
     
@@ -213,6 +216,9 @@ $("#startDateInput").blur(function(){
                 $('.dateValidator01').hide()
             }else{
                 $('.dateValidator01').show()
+                setTimeout(function(){
+                    $("#startDateInput").val('')
+                },500)
             }
             calcDays()
         }
@@ -467,6 +473,9 @@ $("#startDateInput").blur(function(){
         } else return
     })
     function changeDateYMD(date){
+        if(!date){
+            return
+        }
 		var dateArry = date.split("/")
 		var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
 		return DateFormat
