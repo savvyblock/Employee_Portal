@@ -461,7 +461,7 @@ public class Information1095Controller{
 		print.setB5_citynm(userDetail.getAddrCity());
 		print.setB6_usstatecd(userDetail.getAddrSt());
 		print.setB7_uszipcd(userDetail.getAddrZip()==null?"":userDetail.getAddrZip());
-		print.setB7_uszipextensioncd(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4());
+		print.setB7_uszipextensioncd(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4().trim());
 	}
 
 	private void fillPartIIBoxesB(Aca1095BPrint print, BrRptngContact reportingContact) {
@@ -551,7 +551,7 @@ public class Information1095Controller{
 		print.setB4_citynm(userDetail.getAddrCity());
 		print.setB5_usstatecd(userDetail.getAddrSt());
 		print.setB6_uszipcd(userDetail.getAddrZip()==null?"":userDetail.getAddrZip());
-		print.setB6_uszipextensioncd(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4());
+		print.setB6_uszipextensioncd(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4().trim());
 	}
 
 	private void fillPartIALEBoxesC(District district, Aca1095CPrint print) {

@@ -260,7 +260,7 @@ public class EarningsController {
 		print.setBhr_emp_demo_addr_city(userDetail.getAddrCity());
 		print.setBhr_emp_demo_addr_st(userDetail.getAddrSt());
 		print.setBhr_emp_demo_addr_zip(userDetail.getAddrZip());
-		print.setBhr_emp_demo_addr_zip4(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4());
+		print.setBhr_emp_demo_addr_zip4(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4().trim());
 		print.setBhr_emp_pay_pay_campus(earnings.getInfo().getCampusId());
 		print.setBhr_emp_pay_emp_nbr(userDetail.getEmpNbr());
 		print.setBhr_emp_job_campus_id(primaryCampusId);
