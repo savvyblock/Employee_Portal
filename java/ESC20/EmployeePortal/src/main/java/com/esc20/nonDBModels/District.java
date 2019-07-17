@@ -18,13 +18,13 @@ public class District implements Serializable
 	
 	public District(Object distName, Object strNbrDist, Object strNameDist, Object cityNameDist, Object stateCd, Object zipDist,
 			Object zip4Dist, Object areaCdDist, Object phoneNbrDist) {
-		this.setAddress((String) strNbrDist + " " +(String)strNameDist);
-		this.setName((String) distName);
-		this.setCity((String) cityNameDist);
-		this.setState((String) stateCd);
-		this.setZip((String) zipDist);
-		this.setZip4((String) zip4Dist);
-		this.setPhone((String)areaCdDist + (String)phoneNbrDist);
+		this.setAddress(((String) strNbrDist).trim() + " " +((String)strNameDist).trim());
+		this.setName(((String) distName).trim());
+		this.setCity(((String) cityNameDist).trim());
+		this.setState(((String) stateCd).trim());
+		this.setZip(((String) zipDist).trim());
+		this.setZip4(((String) zip4Dist).trim());
+		this.setPhone(((String)areaCdDist).trim() + ((String)phoneNbrDist).trim());
 	}
 	public District() {
 

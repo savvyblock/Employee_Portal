@@ -164,11 +164,11 @@ public class CalendarYearToDateController {
 	{
 		String dCitySt = "";
 		
-		dCitySt = district.getCity() + ", " + district.getState() + " " + district.getZip();
+		dCitySt = district.getCity().trim() + ", " + district.getState().trim() + " " + district.getZip().trim();
 		
-		if(district.getZip4().length() > 0)
+		if(district.getZip4().trim().length() > 0)
 		{
-			dCitySt = dCitySt + "-" + district.getZip4();
+			dCitySt = dCitySt + "-" + district.getZip4().trim();
 		}
 		
 		String eName = "";
