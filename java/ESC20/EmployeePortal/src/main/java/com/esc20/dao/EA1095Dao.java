@@ -6,9 +6,12 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.esc20.controller.W2InformationController;
 import com.esc20.model.BhrAca1095bCovrdHist;
 import com.esc20.model.BhrAca1095cCovrdHist;
 import com.esc20.model.BhrAca1095cEmpHist;
@@ -21,6 +24,7 @@ import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
 @Repository
 public class EA1095Dao {
+	private Logger logger = LoggerFactory.getLogger(EA1095Dao.class);
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -143,38 +147,43 @@ public class EA1095Dao {
         EA1095CEmployerShare share;
         String empNbr = "";
         for(int i=0;i<result.size();i++) {
-        	if(!empNbr.equals(result.get(i).getId().getEmpNbr())) {
-        		empNbr = result.get(i).getId().getEmpNbr();
+        	if(!empNbr.equals(result.get(i).getId().getEmpNbr().trim())) {
+        		empNbr = result.get(i).getId().getEmpNbr().trim();
+        		logger.info("1095 C empNbr: " + empNbr);
         		share = new EA1095CEmployerShare();
-        		share.setYear(result.get(i).getId().getCalYr());
+        		share.setYear(result.get(i).getId().getCalYr().trim());
         		for(int j=0;j<result.size();j++) {
-        			if(result.get(i).getId().getEmpNbr().equals(result.get(j).getId().getEmpNbr()) && 
-        					result.get(i).getId().getCalYr().equals(result.get(j).getId().getCalYr())) {
-        				if(result.get(j).getId().getCalMon().equals("01"))
+        			if(result.get(i).getId().getEmpNbr().trim().equals(result.get(j).getId().getEmpNbr().trim()) && 
+        					result.get(i).getId().getCalYr().trim().equals(result.get(j).getId().getCalYr().trim())) {
+        				logger.info("1095 C Month: '" + result.get(j).getId().getCalMon()+"'");
+        				if(result.get(j).getId().getCalMon().trim().equals("01"))
         					share.setMon01(result.get(j));
-        				if(result.get(j).getId().getCalMon().equals("02"))
+        				if(result.get(j).getId().getCalMon().trim().equals("02"))
         					share.setMon02(result.get(j));
-        				if(result.get(j).getId().getCalMon().equals("03"))
+        				if(result.get(j).getId().getCalMon().trim().equals("03"))
         					share.setMon03(result.get(j));
-        				if(result.get(j).getId().getCalMon().equals("04"))
+        				if(result.get(j).getId().getCalMon().trim().equals("04"))
         					share.setMon04(result.get(j));
-        				if(result.get(j).getId().getCalMon().equals("05"))
+        				if(result.get(j).getId().getCalMon().trim().equals("05"))
         					share.setMon05(result.get(j));
-        				if(result.get(j).getId().getCalMon().equals("06"))
+        				if(result.get(j).getId().getCalMon().trim().equals("06"))
         					share.setMon06(result.get(j));
-        				if(result.get(j).getId().getCalMon().equals("07"))
+        				if(result.get(j).getId().getCalMon().trim().equals("07"))
         					share.setMon07(result.get(j));
-        				if(result.get(j).getId().getCalMon().equals("08"))
+        				if(result.get(j).getId().getCalMon().trim().equals("08"))
         					share.setMon08(result.get(j));
-        				if(result.get(j).getId().getCalMon().equals("09"))
+        				if(result.get(j).getId().getCalMon().trim().equals("09"))
         					share.setMon09(result.get(j));
-        				if(result.get(j).getId().getCalMon().equals("10"))
+        				if(result.get(j).getId().getCalMon().trim().equals("10"))
         					share.setMon10(result.get(j));
-        				if(result.get(j).getId().getCalMon().equals("11"))
+        				if(result.get(j).getId().getCalMon().trim().equals("11"))
         					share.setMon11(result.get(j));
-        				if(result.get(j).getId().getCalMon().equals("12"))
+        				if(result.get(j).getId().getCalMon().trim().equals("12")) {
         					share.setMon12(result.get(j));
-        				if(result.get(j).getId().getCalMon().equals("ALL"))
+        					logger.info("1095 C Mon12 Amount : '" + share.getMon12().getEmpShr()+"'");
+        				}
+        					
+        				if(result.get(j).getId().getCalMon().trim().equals("ALL"))
         					share.setMonAll(result.get(j));
         			}
         		}
