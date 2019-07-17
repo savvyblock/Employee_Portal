@@ -38,6 +38,11 @@ $(function() {
         var length = trLen
         var newRow =
             '<tr class="approver_tr">'+
+		            '<td style="text-align:center" scope="'+deleteLabel+'">'+
+		            '<button type="button" role="button" class="a-btn" onclick="deleteRow(this)" aria-label="'+deleteBtnLabel+'">'+
+		                '<i class="fa fa-trash"></i>'+
+		           '</button>'+
+		   '</td>'+
                 '<td class="countIndex" scope="'+rowNbrLabel+'">' +length +
                '</td>'+
                 '<td scope="'+temporaryApproverLabel+'">'+
@@ -61,11 +66,6 @@ $(function() {
                         '</div>'+
                     '</div>'+
                 '</td>'+
-                '<td scope="'+deleteLabel+'">'+
-                        '<button type="button" role="button" class="a-btn" onclick="deleteRow(this)" aria-label="'+deleteBtnLabel+'">'+
-                            '<i class="fa fa-trash"></i>'+
-                       '</button>'+
-               '</td>'+
             '</tr>'
                     
         console.log('tr that have empty field' + approverEmptyJson)

@@ -20,7 +20,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <div class="showSelectSupervisor">
                         <label class="form-title"><span>${sessionScope.languageJSON.label.supervisorHierarchy}</span>: </label>
                         <c:forEach var="item" items="${chain}" varStatus="status">
-                             <b> ${item.employeeNumber}-${item.firstName},${item.lastName}</b>
+                             <b> ${item.employeeNumber}: ${item.firstName},${item.lastName}</b>
                              <c:if test="${!status.last}"> ➝ </c:if>
                         </c:forEach>
                     </div>
@@ -72,8 +72,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <c:forEach var="item" items="${chain}" varStatus="status">
                                                     <c:if test="${status.last}"><span id="currentEmployee">${item.employeeNumber}</span>-${item.firstName},${item.lastName} </c:if>
                                             </c:forEach>
-                                        </b
-                                    >
+                                        </b>
                                         </h2>
                         <div class="content-white EMP-detail">
                             
@@ -88,43 +87,53 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 >
                                     <thead>
                                         <tr>
+                                            <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.delete}</th>
                                             <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}</th>
                                             <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}</th>
                                             <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.from}</th>
                                             <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.to}</th>
-                                            <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.delete}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                            <c:forEach var="tem" items="${tmpApprovers}" varStatus="status">
-                                                    <tr class="listTr">
-                                                            <td
-                                                                class="countIndex"
-                                                                data-title="${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}"
-                                                            >
-                                                                ${status.index + 1}
-                                                            </td>
-                                                            <td class="empNumber"
-                                                            data-title="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}">
-                                                            <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}" aria-label="${sessionScope.languageJSON.accessHint.employeeId}">
-                                                            ${tem.tmpApprvrEmpNbr}-${tem.approverName}
+                                        <c:forEach var="tem" items="${tmpApprovers}" varStatus="status">
+                                                <tr class="listTr">
+                                                   <td style="text-align:center;" data-title="${sessionScope.languageJSON.setTemporaryApprovers.delete}">
+                                                            <button
+                                                                type="button" 
+                                                                class="a-btn deleteApprover"
+                                                                aria-label="${sessionScope.languageJSON.label.delete}">
+                                                                <i
+                                                                    class="fa fa-trash"
+                                                                ></i>
+                                                            </button>
                                                         </td>
-                                                            <td class="empFrom" data-title="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}">${tem.datetimeFrom}</td>
-                                                            <td class="empTo" data-title="${sessionScope.languageJSON.setTemporaryApprovers.toDate}" >${tem.datetimeTo}</td>
-                                                            <td data-title="${sessionScope.languageJSON.setTemporaryApprovers.delete}">
-                                                                <button
-                                                                    type="button" 
-                                                                    class="a-btn deleteApprover"
-                                                                    aria-label="${sessionScope.languageJSON.label.delete}">
-                                                                    <i
-                                                                        class="fa fa-trash"
-                                                                    ></i>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                            </c:forEach>
+                                                        <td
+                                                            class="countIndex"
+                                                            data-title="${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}"
+                                                        >
+                                                            ${status.index + 1}
+                                                        </td>
+                                                        <td class="empNumber"
+                                                        data-title="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}">
+                                                        <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}" aria-label="${sessionScope.languageJSON.accessHint.employeeId}">
+                                                        ${tem.tmpApprvrEmpNbr}-${tem.approverName}
+                                                    </td>
+                                                        <td class="empFrom" data-title="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}">${tem.datetimeFrom}</td>
+                                                        <td class="empTo" data-title="${sessionScope.languageJSON.setTemporaryApprovers.toDate}" >${tem.datetimeTo}</td>
+                                                     
+                                                    </tr>
+                                        </c:forEach>
                                         
                                         <tr class="approver_tr">
+                                            <td style="text-align:center;">
+                                                <button
+                                                    type="button" role="button"
+                                                    class="a-btn"
+                                                    onclick="deleteRow(this)"
+                                                    aria-label="${sessionScope.languageJSON.setTemporaryApprovers.delete}">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
                                             <td
                                                 class="countIndex">
                                                 <span id="firstRow"></span>
@@ -186,15 +195,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         placeholder="mm/dd/yyyy"
                                                     /> -->
                                                 </div>
-                                            </td>
-                                            <td>
-                                                <button
-                                                    type="button" role="button"
-                                                    class="a-btn"
-                                                    onclick="deleteRow(this)"
-                                                    aria-label="${sessionScope.languageJSON.setTemporaryApprovers.delete}">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
                                             </td>
                                         </tr>
                                         <tr>
