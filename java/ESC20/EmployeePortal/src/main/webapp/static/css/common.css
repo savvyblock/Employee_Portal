@@ -1243,6 +1243,9 @@ input:focus {
 
 .topMsg {
   font-weight: bold;
+  word-break: break-all;
+  word-break: break-word;
+  font-size: 12px;
 }
 
 .textCapital {
