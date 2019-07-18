@@ -2749,7 +2749,7 @@ $V{allOfferOfCoverage}
 						<textElement textAlignment="Left" verticalAlignment="Top">
 							<font fontName="Microsoft Sans Serif" size="6" isBold="false"/>
 						</textElement>
-						<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >16 </style>Section 4980H Safe Harbor and Other Relief  (enter code, if applicable)]]></text>
+						<text><![CDATA[16 Section 4980H Safe Harbor and Other Relief (enter code, if applicable)]]></text>
 					</staticText>
 					<frame>
 						<reportElement key="Box 16 All" x="65" y="0" width="50" height="30" uuid="2b44c179-91ed-4790-8e91-b35ff9ec8806">
