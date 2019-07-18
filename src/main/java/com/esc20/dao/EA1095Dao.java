@@ -149,13 +149,13 @@ public class EA1095Dao {
         for(int i=0;i<result.size();i++) {
         	if(!empNbr.equals(result.get(i).getId().getEmpNbr().trim())) {
         		empNbr = result.get(i).getId().getEmpNbr().trim();
-        		logger.info("1095 C empNbr: " + empNbr);
+        		//logger.info("1095 C empNbr: " + empNbr);
         		share = new EA1095CEmployerShare();
         		share.setYear(result.get(i).getId().getCalYr().trim());
         		for(int j=0;j<result.size();j++) {
         			if(result.get(i).getId().getEmpNbr().trim().equals(result.get(j).getId().getEmpNbr().trim()) && 
         					result.get(i).getId().getCalYr().trim().equals(result.get(j).getId().getCalYr().trim())) {
-        				logger.info("1095 C Month: '" + result.get(j).getId().getCalMon()+"'");
+        				//logger.info("1095 C Month: '" + result.get(j).getId().getCalMon()+"'");
         				if(result.get(j).getId().getCalMon().trim().equals("01"))
         					share.setMon01(result.get(j));
         				if(result.get(j).getId().getCalMon().trim().equals("02"))
@@ -180,7 +180,7 @@ public class EA1095Dao {
         					share.setMon11(result.get(j));
         				if(result.get(j).getId().getCalMon().trim().equals("12")) {
         					share.setMon12(result.get(j));
-        					logger.info("1095 C Mon12 Amount : '" + share.getMon12().getEmpShr()+"'");
+        					//logger.info("1095 C Mon12 Amount : '" + share.getMon12().getEmpShr()+"'");
         				}
         					
         				if(result.get(j).getId().getCalMon().trim().equals("ALL"))

@@ -424,7 +424,7 @@
 						<textElement>
 							<font size="9"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{whold}]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{ftax}]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>

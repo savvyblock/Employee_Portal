@@ -105,7 +105,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <b><span>${sessionScope.languageJSON.label.frequency}</span>: ${freq}</b>
                         </h2>
                         <p class="no-print">
-                            <span>${sessionScope.languageJSON.label.lastPostedPayDate}</span>:${latestPayDate}
+                            <span>${sessionScope.languageJSON.label.lastPostedPayDate}</span>: ${latestPayDate}
                         </p>
                         <table
                             class="table border-table responsive-table no-thead print-table calendarYTDTable"
