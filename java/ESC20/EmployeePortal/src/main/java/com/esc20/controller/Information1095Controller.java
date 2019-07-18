@@ -575,7 +575,7 @@ public class Information1095Controller{
 	private void fillPartIIBoxesC(List<BhrAca1095cEmpHist> cCovrgTypList, Aca1095CPrint print) {
 
 		for(BhrAca1095cEmpHist hist: cCovrgTypList) {
-			logger.info("1095 C Mon for PDF: '" + hist.getId().getCalMon()+"'");
+			//logger.info("1095 C Mon for PDF: '" + hist.getId().getCalMon()+"'");
 			if("ALL".equals(hist.getId().getCalMon().trim())) {
 				print.setB14_annualofferofcoveragecd(hist.getOffrOfCovrg()==null?"":hist.getOffrOfCovrg().trim());
 				print.setB15_annualshrlowestcostmthlypremamt(hist.getEmpShr()==null?new Double(0):hist.getEmpShr().doubleValue());
