@@ -365,7 +365,7 @@ You may be able to take the EIC for 2010 if (a) you do not have a qualifying chi
 						<textElement>
 							<font size="9"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{whold}]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{ftax}]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>

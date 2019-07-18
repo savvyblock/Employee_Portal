@@ -363,7 +363,7 @@ However, if you were at least age 50 in 2014, your employer may have allowed an 
 						<textElement>
 							<font size="9"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{whold}]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{ftax}]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>
