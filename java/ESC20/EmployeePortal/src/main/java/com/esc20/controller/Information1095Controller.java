@@ -503,12 +503,13 @@ public class Information1095Controller{
 			bList = bList.subList(18, size);
 			box = 29;
 		}
+		//logger.info("1095 B Infomation box : "+ box);
 
 		//Go through part IV boxes on the form and instantiate them blank or with data
 		for(int i=0; i<bList.size(); i++) {
 			BCoveredHistory ea1095 = bList.get(i);
 			print.setCovrgFirstName(box, ea1095.getNameF()==null?"":ea1095.getNameF());
-			print.setCovrgMiddleName(box, ea1095.getNameM()==null?" ":" "+ ea1095.getNameM() + " ");
+			print.setCovrgMiddleName(box, ea1095.getNameM()==null?" ":ea1095.getNameM().trim()+" ");
 			print.setCovrgLastName(box, ea1095.getNameL()==null?"":ea1095.getNameL());
 			print.setCovrgSuffix(box, "");
 		    for(Code gen: gens) {
@@ -525,6 +526,7 @@ public class Information1095Controller{
 				box_birthDt = ea1095.getDob().replaceAll("-", "").trim();
 			} else {
 				box_ssn = ssn;
+				//logger.info("1095 B Infomation box : "+ box+" SSN:" + ssn);
 			}
 			print.setCovrgSSN(box, box_ssn);
 			print.setCovrgBirthDt(box, box_birthDt);
@@ -650,7 +652,7 @@ public class Information1095Controller{
 		for(CCoveredHistory ea1095 : cList) {
 
 			print.setCovrgFirstName(box, ea1095.getNameF()==null?"":ea1095.getNameF());
-			print.setCovrgMiddleName(box, ea1095.getNameM()==null?" ":" "+ ea1095.getNameM() + " ");
+			print.setCovrgMiddleName(box, ea1095.getNameM()==null?" ":ea1095.getNameM().trim()+" ");
 			print.setCovrgLastName(box, ea1095.getNameL()==null?"":ea1095.getNameL());
 			print.setCovrgSuffix(box, "");
 		    for(Code gen: gens) {
