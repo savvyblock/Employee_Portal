@@ -24,9 +24,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 			                    <form class="no-print" action="exportPDF" method="POST">
 									<input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}" />
-									<button type="submit" role="button" class="btn btn-primary download-pdf" title="${sessionScope.languageJSON.label.print}"
-									 aria-label="${sessionScope.languageJSON.label.exportPDF}"
-										><i class="fa fa-file-pdf-o"></i></button>
+										<button type="submit" role="button" class="btn btn-primary"
+											aria-label="${sessionScope.languageJSON.label.print}">${sessionScope.languageJSON.label.print}</button>
                                 </form>
 
 	                          <%--   <form class="no-print" action="printPDF" method="POST" target="printIframe">

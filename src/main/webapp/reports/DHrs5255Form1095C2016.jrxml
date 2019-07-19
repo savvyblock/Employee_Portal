@@ -433,126 +433,126 @@
 	</variable>
 	<variable name="nameBox17" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b17_personfirstnm}.trim()
-+ ($F{b17_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b17_personmiddlenm}.trim()))
++ ($F{b17_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b17_personmiddlenm}.substring(0,1).trim()))
 + ($F{b17_personlastnm}.trim().equals("") ? "" : (" " + $F{b17_personlastnm}.trim()))
 + ($F{b17_suffixnm}.trim().equals("") ? "" : (" " + $F{b17_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox18" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b18_personfirstnm}.trim()
-+ ($F{b18_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b18_personmiddlenm}.trim()))
++ ($F{b18_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b18_personmiddlenm}.substring(0,1).trim()))
 + ($F{b18_personlastnm}.trim().equals("") ? "" : (" " + $F{b18_personlastnm}.trim()))
 + ($F{b18_suffixnm}.trim().equals("") ? "" : (" " + $F{b18_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox19" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b19_personfirstnm}.trim()
-+ ($F{b19_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b19_personmiddlenm}.trim()))
++ ($F{b19_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b19_personmiddlenm}.substring(0,1).trim()))
 + ($F{b19_personlastnm}.trim().equals("") ? "" : (" " + $F{b19_personlastnm}.trim()))
 + ($F{b19_suffixnm}.trim().equals("") ? "" : (" " + $F{b19_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox20" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b20_personfirstnm}.trim()
-+ ($F{b20_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b20_personmiddlenm}.trim()))
++ ($F{b20_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b20_personmiddlenm}.substring(0,1).trim()))
 + ($F{b20_personlastnm}.trim().equals("") ? "" : (" " + $F{b20_personlastnm}.trim()))
 + ($F{b20_suffixnm}.trim().equals("") ? "" : (" " + $F{b20_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox21" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b21_personfirstnm}.trim()
-+ ($F{b21_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b21_personmiddlenm}.trim()))
++ ($F{b21_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b21_personmiddlenm}.substring(0,1).trim()))
 + ($F{b21_personlastnm}.trim().equals("") ? "" : (" " + $F{b21_personlastnm}.trim()))
 + ($F{b21_suffixnm}.trim().equals("") ? "" : (" " + $F{b21_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox22" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b22_personfirstnm}.trim()
-+ ($F{b22_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b22_personmiddlenm}.trim()))
++ ($F{b22_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b22_personmiddlenm}.substring(0,1).trim()))
 + ($F{b22_personlastnm}.trim().equals("") ? "" : (" " + $F{b22_personlastnm}.trim()))
 + ($F{b22_suffixnm}.trim().equals("") ? "" : (" " + $F{b22_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox23" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b23_personfirstnm}.trim()
-+ ($F{b23_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b23_personmiddlenm}.trim()))
++ ($F{b23_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b23_personmiddlenm}.substring(0,1).trim()))
 + ($F{b23_personlastnm}.trim().equals("") ? "" : (" " + $F{b23_personlastnm}.trim()))
 + ($F{b23_suffixnm}.trim().equals("") ? "" : (" " + $F{b23_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox24" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b24_personfirstnm}.trim()
-+ ($F{b24_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b24_personmiddlenm}.trim()))
++ ($F{b24_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b24_personmiddlenm}.substring(0,1).trim()))
 + ($F{b24_personlastnm}.trim().equals("") ? "" : (" " + $F{b24_personlastnm}.trim()))
 + ($F{b24_suffixnm}.trim().equals("") ? "" : (" " + $F{b24_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox25" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b25_personfirstnm}.trim()
-+ ($F{b25_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b25_personmiddlenm}.trim()))
++ ($F{b25_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b25_personmiddlenm}.substring(0,1).trim()))
 + ($F{b25_personlastnm}.trim().equals("") ? "" : (" " + $F{b25_personlastnm}.trim()))
 + ($F{b25_suffixnm}.trim().equals("") ? "" : (" " + $F{b25_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox26" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b26_personfirstnm}.trim()
-+ ($F{b26_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b26_personmiddlenm}.trim()))
++ ($F{b26_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b26_personmiddlenm}.substring(0,1).trim()))
 + ($F{b26_personlastnm}.trim().equals("") ? "" : (" " + $F{b26_personlastnm}.trim()))
 + ($F{b26_suffixnm}.trim().equals("") ? "" : (" " + $F{b26_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox27" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b27_personfirstnm}.trim()
-+ ($F{b27_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b27_personmiddlenm}.trim()))
++ ($F{b27_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b27_personmiddlenm}.substring(0,1).trim()))
 + ($F{b27_personlastnm}.trim().equals("") ? "" : (" " + $F{b27_personlastnm}.trim()))
 + ($F{b27_suffixnm}.trim().equals("") ? "" : (" " + $F{b27_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox28" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b28_personfirstnm}.trim()
-+ ($F{b28_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b28_personmiddlenm}.trim()))
++ ($F{b28_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b28_personmiddlenm}.substring(0,1).trim()))
 + ($F{b28_personlastnm}.trim().equals("") ? "" : (" " + $F{b28_personlastnm}.trim()))
 + ($F{b28_suffixnm}.trim().equals("") ? "" : (" " + $F{b28_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox29" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b29_personfirstnm}.trim()
-+ ($F{b29_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b29_personmiddlenm}.trim()))
++ ($F{b29_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b29_personmiddlenm}.substring(0,1).trim()))
 + ($F{b29_personlastnm}.trim().equals("") ? "" : (" " + $F{b29_personlastnm}.trim()))
 + ($F{b29_suffixnm}.trim().equals("") ? "" : (" " + $F{b29_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox30" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b30_personfirstnm}.trim()
-+ ($F{b30_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b30_personmiddlenm}.trim()))
++ ($F{b30_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b30_personmiddlenm}.substring(0,1).trim()))
 + ($F{b30_personlastnm}.trim().equals("") ? "" : (" " + $F{b30_personlastnm}.trim()))
 + ($F{b30_suffixnm}.trim().equals("") ? "" : (" " + $F{b30_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox31" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b31_personfirstnm}.trim()
-+ ($F{b31_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b31_personmiddlenm}.trim()))
++ ($F{b31_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b31_personmiddlenm}.substring(0,1).trim()))
 + ($F{b31_personlastnm}.trim().equals("") ? "" : (" " + $F{b31_personlastnm}.trim()))
 + ($F{b31_suffixnm}.trim().equals("") ? "" : (" " + $F{b31_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox32" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b32_personfirstnm}.trim()
-+ ($F{b32_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b32_personmiddlenm}.trim()))
++ ($F{b32_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b32_personmiddlenm}.substring(0,1).trim()))
 + ($F{b32_personlastnm}.trim().equals("") ? "" : (" " + $F{b32_personlastnm}.trim()))
 + ($F{b32_suffixnm}.trim().equals("") ? "" : (" " + $F{b32_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox33" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b33_personfirstnm}.trim()
-+ ($F{b33_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b33_personmiddlenm}.trim()))
++ ($F{b33_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b33_personmiddlenm}.substring(0,1).trim()))
 + ($F{b33_personlastnm}.trim().equals("") ? "" : (" " + $F{b33_personlastnm}.trim()))
 + ($F{b33_suffixnm}.trim().equals("") ? "" : (" " + $F{b33_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox34" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b34_personfirstnm}.trim()
-+ ($F{b34_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b34_personmiddlenm}.trim()))
++ ($F{b34_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b34_personmiddlenm}.substring(0,1).trim()))
 + ($F{b34_personlastnm}.trim().equals("") ? "" : (" " + $F{b34_personlastnm}.trim()))
 + ($F{b34_suffixnm}.trim().equals("") ? "" : (" " + $F{b34_suffixnm}.trim()))
 ).trim()]]></variableExpression>
@@ -2984,7 +2984,7 @@ $V{allOfferOfCoverage}
 					</frame>
 				</frame>
 				<frame>
-					<reportElement key="Part III" x="1" y="252" width="718" height="23" uuid="ce1da704-d86f-45dc-bf5d-23f467a29154">
+					<reportElement key="Part III" x="1" y="252" width="719" height="23" uuid="ce1da704-d86f-45dc-bf5d-23f467a29154">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<box>
@@ -3022,7 +3022,7 @@ $V{allOfferOfCoverage}
 						<text><![CDATA[If Employer provided self-insured coverage, check the box and enter the information for each]]></text>
 					</staticText>
 					<staticText>
-						<reportElement mode="Opaque" x="391" y="12" width="80" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="5e97e191-4748-46d5-b716-13a2b0c3677f">
+						<reportElement mode="Opaque" x="391" y="12" width="235" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="5e97e191-4748-46d5-b716-13a2b0c3677f">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<textElement textAlignment="Left">
@@ -3031,7 +3031,7 @@ $V{allOfferOfCoverage}
 						<text><![CDATA[individual enrolled in coverage, including the employee.]]></text>
 					</staticText>
 					<frame>
-						<reportElement x="465" y="8" width="87" height="15" uuid="190b5a3b-a80d-4074-9c56-b7dc95825463">
+						<reportElement x="640" y="8" width="77" height="15" uuid="190b5a3b-a80d-4074-9c56-b7dc95825463">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<rectangle>
@@ -3048,7 +3048,7 @@ $V{allOfferOfCoverage}
 							</reportElement>
 						</line>
 						<textField>
-							<reportElement stretchType="RelativeToBandHeight" x="12" y="1" width="70" height="14" forecolor="#FFFFFF" uuid="e060a87b-6c8d-403d-bc58-e2634bdfde14"/>
+							<reportElement stretchType="RelativeToBandHeight" x="12" y="1" width="65" height="14" forecolor="#FFFFFF" uuid="e060a87b-6c8d-403d-bc58-e2634bdfde14"/>
 							<textElement textAlignment="Left" verticalAlignment="Top">
 								<font size="1"/>
 								<paragraph lineSpacing="Single"/>

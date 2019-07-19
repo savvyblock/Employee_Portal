@@ -87,7 +87,7 @@ public class EarningsController {
 		mav.addObject("message", message);
 		mav.addObject("earnings", earnings);
 		mav.addObject("YTDEarnings", YTDEarnings);
-		if(earnings.getSupplemental().size()>0) {
+		if(earnings !=null && earnings.getSupplemental() !=null && earnings.getSupplemental().size()>0) {
 			if(!(earnings.getSupplemental().size()==1 && earnings.getSupplemental().get(0).getCode().equals("ZZZ")))
 				mav.addObject("isSupplemental", true);
 		}

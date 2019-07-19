@@ -24,8 +24,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 									value="${_csrf.token}" />
 								<input type="hidden" name="year"
 									value="${selectedYear}" />
-								<button type="submit" role="button" class="btn btn-primary download-pdf" title="${sessionScope.languageJSON.label.print}"
-									aria-label="${sessionScope.languageJSON.label.exportPDF}"><i class="fa fa-file-pdf-o"></i></button>
+								<button type="submit" role="button" class="btn btn-primary" 
+									aria-label="${sessionScope.languageJSON.label.print}">${sessionScope.languageJSON.label.print}</button>
+							<%-- 	<button type="submit" role="button" class="btn btn-primary download-pdf" title="${sessionScope.languageJSON.label.print}"
+									aria-label="${sessionScope.languageJSON.label.print}"><i class="fa fa-file-pdf-o"></i></button> --%>
                             </form>
                          <%--    <form class="no-print" action="printPDF" method="POST" target="printIframe">
 								<input type="hidden" name="${_csrf.parameterName}"
