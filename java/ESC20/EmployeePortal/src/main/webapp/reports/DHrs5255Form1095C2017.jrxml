@@ -2993,7 +2993,7 @@ $V{allOfferOfCoverage}
 					</frame>
 				</frame>
 				<frame>
-					<reportElement key="Part III" x="1" y="252" width="718" height="23" uuid="8ea90530-45c7-4b62-9f15-4efe421f70ad">
+					<reportElement key="Part III" x="1" y="252" width="719" height="23" uuid="8ea90530-45c7-4b62-9f15-4efe421f70ad">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<box>
@@ -3031,8 +3031,9 @@ $V{allOfferOfCoverage}
 						<text><![CDATA[If Employer provided self-insured coverage, check the box and enter the information for each]]></text>
 					</staticText>
 					<staticText>
-						<reportElement mode="Opaque" x="391" y="12" width="80" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="1fc0561e-5228-4229-8656-40cafbe4e712">
+						<reportElement mode="Opaque" x="391" y="12" width="235" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="1fc0561e-5228-4229-8656-40cafbe4e712">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isPdfEmbedded="false"/>
@@ -3040,8 +3041,9 @@ $V{allOfferOfCoverage}
 						<text><![CDATA[individual enrolled in coverage, including the employee.]]></text>
 					</staticText>
 					<frame>
-						<reportElement x="465" y="8" width="87" height="15" uuid="8bb21a7b-6d68-492e-aef7-9c89972f870f">
+						<reportElement x="640" y="6" width="77" height="15" uuid="8bb21a7b-6d68-492e-aef7-9c89972f870f">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						</reportElement>
 						<rectangle>
 							<reportElement x="0" y="4" width="10" height="10" uuid="41cba39c-191d-4d60-988b-e5ffe6bc53fa"/>
@@ -3057,7 +3059,7 @@ $V{allOfferOfCoverage}
 							</reportElement>
 						</line>
 						<textField>
-							<reportElement stretchType="RelativeToBandHeight" x="12" y="1" width="70" height="14" forecolor="#FFFFFF" uuid="33b6b656-989c-4754-84aa-ce2ce3374e6e"/>
+							<reportElement stretchType="RelativeToBandHeight" x="12" y="1" width="65" height="14" forecolor="#FFFFFF" uuid="33b6b656-989c-4754-84aa-ce2ce3374e6e"/>
 							<textElement textAlignment="Left" verticalAlignment="Top">
 								<font size="1"/>
 								<paragraph lineSpacing="Single"/>
@@ -3082,7 +3084,7 @@ $V{allOfferOfCoverage}
 							<textElement textAlignment="Left" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(a)</style> Name of covered individual(s)     First name, middle initial, last name]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(a)</style> Name of covered individual(s)]]></text>
 						</staticText>
 					</frame>
 					<frame>

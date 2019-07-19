@@ -2993,7 +2993,7 @@ $V{allOfferOfCoverage}
 					</frame>
 				</frame>
 				<frame>
-					<reportElement key="Part III" x="1" y="252" width="718" height="23" uuid="fb6cae79-804b-4a52-9f55-7ddb96b2dfa4">
+					<reportElement key="Part III" x="1" y="252" width="719" height="23" uuid="fb6cae79-804b-4a52-9f55-7ddb96b2dfa4">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<box>
@@ -3031,7 +3031,7 @@ $V{allOfferOfCoverage}
 						<text><![CDATA[If Employer provided self-insured coverage, check the box and enter the information for each]]></text>
 					</staticText>
 					<staticText>
-						<reportElement mode="Opaque" x="391" y="12" width="80" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="493810d9-5274-456d-b487-20cb2c662cae">
+						<reportElement mode="Opaque" x="391" y="12" width="235" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="493810d9-5274-456d-b487-20cb2c662cae">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<textElement textAlignment="Left">
@@ -3040,7 +3040,7 @@ $V{allOfferOfCoverage}
 						<text><![CDATA[individual enrolled in coverage, including the employee.]]></text>
 					</staticText>
 					<frame>
-						<reportElement x="465" y="7" width="87" height="15" uuid="779fdb4f-e432-455b-ac5f-df8e3c6245c8">
+						<reportElement x="640" y="7" width="77" height="15" uuid="779fdb4f-e432-455b-ac5f-df8e3c6245c8">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<rectangle>
@@ -3057,7 +3057,7 @@ $V{allOfferOfCoverage}
 							</reportElement>
 						</line>
 						<textField>
-							<reportElement stretchType="RelativeToBandHeight" x="12" y="1" width="70" height="14" forecolor="#FFFFFF" uuid="a770bbd0-4eb8-4307-8a69-da9e69ed44e5"/>
+							<reportElement stretchType="RelativeToBandHeight" x="12" y="1" width="65" height="14" forecolor="#FFFFFF" uuid="a770bbd0-4eb8-4307-8a69-da9e69ed44e5"/>
 							<textElement textAlignment="Left" verticalAlignment="Top">
 								<font size="1"/>
 								<paragraph lineSpacing="Single"/>
