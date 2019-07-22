@@ -203,13 +203,13 @@ union all SELECT distinct
 			<band/>
 		</groupHeader>
 		<groupFooter>
-			<band height="15">
-				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<band height="12">
 				<frame>
-					<reportElement x="0" y="0" width="560" height="14" uuid="e5de083c-1c7e-41a9-a037-a8fe6e7d05a0">
+					<reportElement x="0" y="0" width="560" height="11" uuid="e5de083c-1c7e-41a9-a037-a8fe6e7d05a0">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textField isBlankWhenNull="true">
 						<reportElement key="textField" x="9" y="1" width="158" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5ab243e8-af3d-485b-933a-65cd1fb1e05b">
@@ -409,10 +409,11 @@ $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false
 		<band/>
 	</columnHeader>
 	<detail>
-		<band height="14">
+		<band height="12">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
 			<frame>
-				<reportElement x="1" y="1" width="560" height="13" uuid="56574543-0e1c-4218-a59b-e993f3478e0a">
+				<reportElement x="1" y="1" width="560" height="11" uuid="56574543-0e1c-4218-a59b-e993f3478e0a">
 					<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 				</reportElement>
 				<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
