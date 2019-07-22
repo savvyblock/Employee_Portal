@@ -16,6 +16,9 @@
 		<section class="content">
 			<h1 class="clearfix no-print section-title">${sessionScope.languageJSON.title.leaveBalances}</h1>
 			<div class="content-white">
+			    <c:if test="${not empty sessionScope.options.messageLeave}">
+                                <p class="topMsg error-hint" role="alert">${sessionScope.options.messageLeave}</p>
+                            </c:if>
 					<form
 					class="no-print searchForm"
 					action="leaveBalanceByFreqency"
