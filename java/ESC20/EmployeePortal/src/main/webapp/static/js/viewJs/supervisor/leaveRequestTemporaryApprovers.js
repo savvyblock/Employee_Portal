@@ -271,10 +271,9 @@ function initialCompleteList() {
                             .removeAttr('disabled')
                         return (
                             row.employeeNumber +
-                            '-' +
-                            row.firstName +
-                            ',' +
+                            ': ' +
                             row.lastName +
+                            ', ' +
                             row.firstName
                         )
                     } else {
@@ -291,20 +290,18 @@ function initialCompleteList() {
                 formatMatch: function(row, i, max) {
                     return (
                         row.employeeNumber +
-                        '-' +
-                        row.firstName +
-                        ',' +
+                        ': ' +
                         row.lastName +
+                        ', ' +
                         row.firstName
                     )
                 },
                 formatResult: function(row) {
                     return (
                         row.employeeNumber +
-                        '-' +
-                        row.firstName +
-                        ',' +
+                        ': ' +
                         row.lastName +
+                        ', ' +
                         row.firstName
                     )
                 }

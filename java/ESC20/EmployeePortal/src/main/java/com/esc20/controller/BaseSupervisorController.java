@@ -56,7 +56,7 @@ public class BaseSupervisorController{
 		jo.put("tmpApprvrEmpNbr", record.getTmpApprvrEmpNbr());
 		jo.put("datetimeFrom", sdf1.format(DateUtil.getLocalTime(record.getDatetimeFrom())));
 		jo.put("datetimeTo", sdf1.format(DateUtil.getLocalTime(record.getDatetimeTo())));
-		jo.put("approverName", approver.getNameF() + " " + approver.getNameL());
+		jo.put("approverName", approver.getNameL() + ", " + approver.getNameF());
 		return jo;
 	}
 }
