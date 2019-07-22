@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningstmtTab" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="e8dea437-23f4-4d5c-91ba-8f1027a5424f">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
@@ -446,7 +447,9 @@ $F{bhr_emp_demo_addr_zip} +
 	<detail>
 		<band height="102">
 			<subreport isUsingCache="true">
-				<reportElement key="DHrs2500WageandearningEarnTab" positionType="Float" x="8" y="2" width="282" height="77" isRemoveLineWhenBlank="true" uuid="c2540a24-4cc6-420f-9d42-f8c47726acd6"/>
+				<reportElement key="DHrs2500WageandearningEarnTab" positionType="Float" x="8" y="2" width="282" height="70" isRemoveLineWhenBlank="true" uuid="c2540a24-4cc6-420f-9d42-f8c47726acd6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<subreportParameter name="SUBREPORT_DIR">
 					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -611,7 +614,9 @@ $F{bhr_emp_demo_addr_zip} +
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningOvtmTab.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true">
-				<reportElement key="DHrs2500WageandearningDedTab" positionType="Float" x="291" y="52" width="312" height="27" isRemoveLineWhenBlank="true" uuid="7bc2fe75-ee8e-4ee9-80d4-f9c386e46162"/>
+				<reportElement key="DHrs2500WageandearningDedTab" positionType="Float" x="291" y="52" width="312" height="20" isRemoveLineWhenBlank="true" uuid="7bc2fe75-ee8e-4ee9-80d4-f9c386e46162">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<subreportParameter name="SUBREPORT_DIR">
 					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -637,7 +642,9 @@ $F{bhr_emp_demo_addr_zip} +
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningDedTab.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true">
-				<reportElement key="DHrs2500WageandearningBnkTab" positionType="Float" x="8" y="79" width="595" height="10" isRemoveLineWhenBlank="true" uuid="48397fe7-057b-448b-a94f-34d610a1d9ce"/>
+				<reportElement key="DHrs2500WageandearningBnkTab" positionType="Float" x="8" y="72" width="595" height="10" isRemoveLineWhenBlank="true" uuid="48397fe7-057b-448b-a94f-34d610a1d9ce">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 				<subreportParameter name="SUBREPORT_DIR">
 					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -666,7 +673,9 @@ $F{bhr_emp_demo_addr_zip} +
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningBnkTab.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true">
-				<reportElement key="DHrs2500WageandearningLvTab" positionType="Float" x="8" y="89" width="595" height="10" isRemoveLineWhenBlank="true" uuid="b5f1e9c7-cf8e-4235-9fd7-6bd23a33153a"/>
+				<reportElement key="DHrs2500WageandearningLvTab" positionType="Float" x="8" y="82" width="595" height="10" isRemoveLineWhenBlank="true" uuid="b5f1e9c7-cf8e-4235-9fd7-6bd23a33153a">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 				<subreportParameter name="SUBREPORT_DIR">
 					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 				</subreportParameter>

@@ -79,13 +79,14 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 		<band/>
 	</title>
 	<pageHeader>
-		<band height="10">
+		<band height="24">
 			<frame>
-				<reportElement x="4" y="0" width="510" height="10" uuid="b24c3442-998f-402e-8dcc-27823de0e8a2">
+				<reportElement x="4" y="0" width="510" height="18" isRemoveLineWhenBlank="true" uuid="b24c3442-998f-402e-8dcc-27823de0e8a2">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="start"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<frame>
-					<reportElement x="0" y="39" width="500" height="12" uuid="aa2f5017-13ad-42b8-b658-facae2218289">
+					<reportElement x="0" y="2" width="500" height="15" isRemoveLineWhenBlank="true" uuid="aa2f5017-13ad-42b8-b658-facae2218289">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
@@ -164,13 +165,14 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 		<band/>
 	</columnHeader>
 	<detail>
-		<band height="11">
+		<band height="12">
 			<frame>
-				<reportElement x="4" y="0" width="510" height="11" uuid="1f909d02-2504-4c5f-9525-4e2d8723131a">
+				<reportElement x="4" y="1" width="510" height="11" uuid="1f909d02-2504-4c5f-9525-4e2d8723131a">
 					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<frame>
-					<reportElement x="1" y="0" width="500" height="11" uuid="cc379e87-fb5b-44a2-a572-95d1fd582283">
+					<reportElement x="1" y="1" width="500" height="11" uuid="cc379e87-fb5b-44a2-a572-95d1fd582283">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<textField isBlankWhenNull="true">
@@ -199,14 +201,14 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
-						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{bhr_bank_deposit_hist_bank_acct_typ}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="230" y="0" width="5" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5a984b86-8c5a-4412-803c-486e2dd12a80">
+						<reportElement key="staticText" x="230" y="1" width="5" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5a984b86-8c5a-4412-803c-486e2dd12a80">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -265,7 +267,7 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
-						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
@@ -282,14 +284,16 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 		<band/>
 	</pageFooter>
 	<summary>
-		<band height="29">
+		<band height="24">
 			<frame>
-				<reportElement x="4" y="1" width="580" height="28" uuid="ca78265c-0e93-46a4-b764-1d71a529f929">
+				<reportElement x="4" y="0" width="580" height="24" uuid="ca78265c-0e93-46a4-b764-1d71a529f929">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="end"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<frame>
-					<reportElement x="1" y="1" width="500" height="13" uuid="493cd1f7-1400-4513-8796-e12c3f4a90a1">
+					<reportElement x="1" y="0" width="500" height="10" uuid="493cd1f7-1400-4513-8796-e12c3f4a90a1">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<staticText>
 						<reportElement key="staticText" x="323" y="1" width="70" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="b9dad257-d499-43f6-9299-12a0f109bbad">
@@ -325,8 +329,9 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 					</textField>
 				</frame>
 				<frame>
-					<reportElement x="1" y="14" width="575" height="12" uuid="9585ab55-503b-4d48-aef4-fdcd8b5fdef5">
+					<reportElement x="1" y="10" width="575" height="12" uuid="9585ab55-503b-4d48-aef4-fdcd8b5fdef5">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<staticText>
 						<reportElement key="staticText-1" mode="Opaque" x="2" y="1" width="559" height="10" isRemoveLineWhenBlank="true" uuid="db01fb57-9941-4543-960f-5b1d17fa0f89">
