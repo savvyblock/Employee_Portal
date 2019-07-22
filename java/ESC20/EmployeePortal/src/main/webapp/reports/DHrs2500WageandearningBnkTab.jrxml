@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningBnkTab" pageWidth="612" pageHeight="792" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="2e80e945-3fff-4db6-a7bc-996a9f39bbbe">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -78,13 +79,13 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 		<band/>
 	</title>
 	<pageHeader>
-		<band height="54">
+		<band height="10">
 			<frame>
-				<reportElement x="4" y="0" width="510" height="54" uuid="b24c3442-998f-402e-8dcc-27823de0e8a2">
+				<reportElement x="4" y="0" width="510" height="10" uuid="b24c3442-998f-402e-8dcc-27823de0e8a2">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="start"/>
 				</reportElement>
 				<frame>
-					<reportElement x="0" y="39" width="500" height="15" uuid="aa2f5017-13ad-42b8-b658-facae2218289">
+					<reportElement x="0" y="39" width="500" height="12" uuid="aa2f5017-13ad-42b8-b658-facae2218289">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
@@ -163,13 +164,13 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 		<band/>
 	</columnHeader>
 	<detail>
-		<band height="20">
+		<band height="11">
 			<frame>
-				<reportElement x="4" y="1" width="510" height="17" uuid="1f909d02-2504-4c5f-9525-4e2d8723131a">
+				<reportElement x="4" y="0" width="510" height="11" uuid="1f909d02-2504-4c5f-9525-4e2d8723131a">
 					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
 				</reportElement>
 				<frame>
-					<reportElement x="1" y="1" width="500" height="15" uuid="cc379e87-fb5b-44a2-a572-95d1fd582283">
+					<reportElement x="1" y="0" width="500" height="11" uuid="cc379e87-fb5b-44a2-a572-95d1fd582283">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<textField isBlankWhenNull="true">
@@ -205,7 +206,7 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 						<textFieldExpression><![CDATA[$F{bhr_bank_deposit_hist_bank_acct_typ}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="230" y="1" width="5" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5a984b86-8c5a-4412-803c-486e2dd12a80">
+						<reportElement key="staticText" x="230" y="0" width="5" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5a984b86-8c5a-4412-803c-486e2dd12a80">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -264,7 +265,7 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
-						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
