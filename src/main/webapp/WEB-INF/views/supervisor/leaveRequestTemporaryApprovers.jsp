@@ -20,7 +20,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <div class="showSelectSupervisor">
                         <label class="form-title"><span>${sessionScope.languageJSON.label.supervisorHierarchy}</span>: </label>
                         <c:forEach var="item" items="${chain}" varStatus="status">
-                             <b> ${item.employeeNumber}: ${item.firstName},${item.lastName}</b>
+                             <b> ${item.employeeNumber}: ${item.lastName}, ${item.firstName}</b>
                              <c:if test="${!status.last}"> ➝ </c:if>
                         </c:forEach>
                     </div>
@@ -70,7 +70,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <span>${sessionScope.languageJSON.label.temporaryApproversFor}</span>
                                     <b class="highlight">
                                             <c:forEach var="item" items="${chain}" varStatus="status">
-                                                    <c:if test="${status.last}"><span id="currentEmployee">${item.employeeNumber}</span>-${item.firstName},${item.lastName} </c:if>
+                                                    <c:if test="${status.last}"><span id="currentEmployee">${item.employeeNumber}</span>: ${item.lastName}, ${item.firstName} </c:if>
                                             </c:forEach>
                                         </b>
                                         </h2>
@@ -116,7 +116,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <td class="empNumber"
                                                         data-title="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}">
                                                         <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}" aria-label="${sessionScope.languageJSON.accessHint.employeeId}">
-                                                        ${tem.tmpApprvrEmpNbr}-${tem.approverName}
+                                                        ${tem.tmpApprvrEmpNbr}: ${tem.approverName}
                                                     </td>
                                                         <td class="empFrom" data-title="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}">${tem.datetimeFrom}</td>
                                                         <td class="empTo" data-title="${sessionScope.languageJSON.setTemporaryApprovers.toDate}" >${tem.datetimeTo}</td>

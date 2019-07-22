@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningLvTab" pageWidth="612" pageHeight="792" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="7cbfce36-a729-4fd9-90f9-dd72cd83067e">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -202,12 +203,13 @@ union all SELECT distinct
 			<band/>
 		</groupHeader>
 		<groupFooter>
-			<band height="20">
+			<band height="12">
 				<frame>
-					<reportElement x="0" y="0" width="560" height="14" uuid="e5de083c-1c7e-41a9-a037-a8fe6e7d05a0">
+					<reportElement x="0" y="0" width="560" height="11" uuid="e5de083c-1c7e-41a9-a037-a8fe6e7d05a0">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textField isBlankWhenNull="true">
 						<reportElement key="textField" x="9" y="1" width="158" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5ab243e8-af3d-485b-933a-65cd1fb1e05b">
@@ -227,7 +229,7 @@ union all SELECT distinct
 /*$F{bhr_emp_lv_lv_typ} + ' - ' +  bthr_lv_typ_descr_long_descr*/]]></textFieldExpression>
 					</textField>
 					<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
-						<reportElement key="textField" x="173" y="1" width="59" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="b1aa28bc-7cf3-4dcf-990d-b287c3921794">
+						<reportElement key="textField" x="173" y="1" width="109" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="b1aa28bc-7cf3-4dcf-990d-b287c3921794">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -244,7 +246,7 @@ union all SELECT distinct
 /*sum( bhr_emp_lv_hist_lv_taken  for group 1)*/]]></textFieldExpression>
 					</textField>
 					<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
-						<reportElement key="textField" x="244" y="1" width="58" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="6907ee0c-b1a0-459f-aa36-d544f01979d6">
+						<reportElement key="textField" x="294" y="1" width="58" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="6907ee0c-b1a0-459f-aa36-d544f01979d6">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 							<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
 $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false) :  new Boolean(true)]]></printWhenExpression>
@@ -262,8 +264,9 @@ $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false
 						<textFieldExpression><![CDATA[$F{bhr_emp_lv_lv_end_bal}]]></textFieldExpression>
 					</textField>
 					<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
-						<reportElement key="textField" x="310" y="1" width="61" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="531aeead-f75e-49ab-bcfa-720b2939a618">
+						<reportElement key="textField" x="360" y="1" width="101" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="531aeead-f75e-49ab-bcfa-720b2939a618">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
 $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false) :  new Boolean(true)]]></printWhenExpression>
 						</reportElement>
@@ -290,30 +293,44 @@ $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false
 		<band/>
 	</title>
 	<pageHeader>
-		<band height="28">
+		<band height="18">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<line>
-				<reportElement x="178" y="23" width="59" height="1" uuid="042533ed-2ee9-4302-bd3e-285ab0164ab3"/>
+				<reportElement x="178" y="17" width="109" height="1" uuid="042533ed-2ee9-4302-bd3e-285ab0164ab3">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 			</line>
 			<line>
-				<reportElement x="7" y="23" width="158" height="1" uuid="05d0944a-b07f-4a23-9eab-b3e9d1f47c97"/>
+				<reportElement x="7" y="17" width="158" height="1" uuid="05d0944a-b07f-4a23-9eab-b3e9d1f47c97">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 			</line>
 			<line>
-				<reportElement x="245" y="23" width="59" height="1" uuid="32f9a2ca-fd79-4c06-944b-1b69f2d0e596"/>
+				<reportElement x="295" y="17" width="59" height="1" uuid="32f9a2ca-fd79-4c06-944b-1b69f2d0e596">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 			</line>
 			<line>
-				<reportElement x="312" y="23" width="62" height="1" uuid="c0ffd5eb-5736-44a2-95bf-2c10a84bae37"/>
+				<reportElement x="362" y="17" width="102" height="1" uuid="c0ffd5eb-5736-44a2-95bf-2c10a84bae37">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 			</line>
 			<frame>
-				<reportElement x="4" y="1" width="570" height="24" uuid="ad1e44c4-fe5a-4d5d-84e3-dfacacda1023">
+				<reportElement x="4" y="1" width="570" height="14" uuid="ad1e44c4-fe5a-4d5d-84e3-dfacacda1023">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="start"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<frame>
-					<reportElement x="1" y="1" width="560" height="23" uuid="089b0d38-b660-40ab-b8c1-9c8e77d99ac3">
+					<reportElement x="1" y="1" width="560" height="12" uuid="089b0d38-b660-40ab-b8c1-9c8e77d99ac3">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<staticText>
-						<reportElement key="staticText" x="1" y="10" width="158" height="11" backcolor="#C0C0C0" uuid="a84a5da9-7977-4013-bc12-cf40cc46d683">
+						<reportElement key="staticText" x="1" y="1" width="158" height="12" backcolor="#C0C0C0" uuid="a84a5da9-7977-4013-bc12-cf40cc46d683">
 							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
+							<property name="com.jaspersoft.studio.unit.y" value="px"/>
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -328,8 +345,10 @@ $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false
 						<text><![CDATA[Leave Type]]></text>
 					</staticText>
 					<staticText>
-						<reportElement key="staticText" x="173" y="2" width="59" height="20" backcolor="#C0C0C0" uuid="a6bf88a6-d113-4e6d-a88b-dbde8fe25da9">
+						<reportElement key="staticText" x="173" y="1" width="109" height="12" backcolor="#C0C0C0" uuid="a6bf88a6-d113-4e6d-a88b-dbde8fe25da9">
 							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
+							<property name="com.jaspersoft.studio.unit.y" value="px"/>
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -341,12 +360,12 @@ $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<text><![CDATA[Units Used
-This Period]]></text>
+						<text><![CDATA[Units Used This Period]]></text>
 					</staticText>
 					<staticText>
-						<reportElement key="staticText" x="240" y="10" width="59" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="9d29894f-93b2-4398-94df-f53664ef2c6c">
+						<reportElement key="staticText" x="290" y="1" width="59" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="9d29894f-93b2-4398-94df-f53664ef2c6c">
 							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
+							<property name="com.jaspersoft.studio.unit.y" value="px"/>
 							<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
 $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false) :  new Boolean(true)]]></printWhenExpression>
 						</reportElement>
@@ -363,8 +382,10 @@ $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false
 						<text><![CDATA[Balance]]></text>
 					</staticText>
 					<staticText>
-						<reportElement key="staticText" x="307" y="1" width="62" height="20" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="ccf13723-9ac6-41cb-bef9-5136af55ce52">
+						<reportElement key="staticText" x="357" y="1" width="102" height="12" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="ccf13723-9ac6-41cb-bef9-5136af55ce52">
 							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 							<printWhenExpression><![CDATA[/*1~tif(  first_paydate_sch_yr_pay >  vs_dtofpay,0,1)*/
 $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false) :  new Boolean(true)]]></printWhenExpression>
 						</reportElement>
@@ -378,8 +399,7 @@ $F{first_paydate_sch_yr_pay}.compareTo( $P{vs_dtofpay}) > 0 ?  new Boolean(false
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<text><![CDATA[Units Used
-Year To Date]]></text>
+						<text><![CDATA[Units Used Year To Date]]></text>
 					</staticText>
 				</frame>
 			</frame>
@@ -389,10 +409,11 @@ Year To Date]]></text>
 		<band/>
 	</columnHeader>
 	<detail>
-		<band height="14">
+		<band height="12">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
 			<frame>
-				<reportElement x="1" y="1" width="560" height="13" uuid="56574543-0e1c-4218-a59b-e993f3478e0a">
+				<reportElement x="1" y="1" width="560" height="11" uuid="56574543-0e1c-4218-a59b-e993f3478e0a">
 					<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 				</reportElement>
 				<textField pattern="###,###.000;(###,###.000)" isBlankWhenNull="true">
