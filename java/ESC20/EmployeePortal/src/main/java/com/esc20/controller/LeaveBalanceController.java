@@ -19,12 +19,16 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.LeaveBalance;
 import com.esc20.nonDBModels.LeaveInfo;
+import com.esc20.nonDBModels.Options;
+import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.util.DateUtil;
 
 @Controller
 @RequestMapping("/leaveBalance")
 public class LeaveBalanceController{
+	@Autowired
+	private IndexService indexService;
 
 	@Autowired
 	private LeaveRequestService service;
@@ -35,6 +39,9 @@ public class LeaveBalanceController{
 	public ModelAndView leaveBalance(HttpServletRequest req, String SearchType, String SearchStart, String SearchEnd,
 			String freq) throws ParseException {
 		HttpSession session = req.getSession();
+		Options options = this.indexService.getOptions();
+		session.setAttribute("options", options);
+		
 		ModelAndView mav = new ModelAndView();
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");

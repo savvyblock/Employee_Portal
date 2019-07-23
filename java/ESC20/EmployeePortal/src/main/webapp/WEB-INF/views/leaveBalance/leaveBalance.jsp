@@ -49,7 +49,13 @@
 						</select>
 					</div>
 					<div class="form-group">
-							<label class="form-title" for="SearchStartInput"><span>${sessionScope.languageJSON.leaveBalance.fromDateLeave}</span>:</label> 
+							<label class="form-title" for="SearchStartInput">
+								  <c:if test="${not empty sessionScope.languageJSON.leaveBalance.fromDateLeave}">
+	                                <span>${sessionScope.languageJSON.leaveBalance.fromDateLeave}</span>
+	                              </c:if>
+	                               <c:if test="${empty sessionScope.languageJSON.leaveBalance.fromDateLeave}">
+	                                <span>From Date of Leave</span>
+	                              </c:if>:</label> 
 							<div class="button-group">
 								<div class="fDateGroup date" id="SearchStartDate" data-date-format="mm/dd/yyyy">
 											<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
@@ -72,7 +78,14 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="form-title" for="SearchEndInput"> <span>${sessionScope.languageJSON.leaveBalance.toDateLeave}</span>: </label> 
+							<label class="form-title" for="SearchEndInput"> 
+							 	 <c:if test="${not empty sessionScope.languageJSON.leaveBalance.toDateLeave}">
+	                                <span>${sessionScope.languageJSON.leaveBalance.toDateLeave}</span>
+	                              </c:if>
+	                               <c:if test="${empty sessionScope.languageJSON.leaveBalance.toDateLeave}">
+	                                <span>To Date of Leave</span>
+	                              </c:if>
+							  : </label> 
 							<div class="button-group">
 									<div class="fDateGroup date" id="SearchEndDate" data-date-format="mm/dd/yyyy">
 										<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>

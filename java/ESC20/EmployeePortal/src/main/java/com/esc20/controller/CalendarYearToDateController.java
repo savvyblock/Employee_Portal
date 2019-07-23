@@ -22,8 +22,10 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.CalYTDPrint;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Frequency;
+import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
+import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
 import com.esc20.util.DateUtil;
@@ -34,7 +36,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 @Controller
 @RequestMapping("/calendarYearToDate")
 public class CalendarYearToDateController {
-
+	@Autowired
+	private IndexService indexService;
+	
 	@Autowired
 	private InquiryService service;
     
@@ -46,6 +50,9 @@ public class CalendarYearToDateController {
 	@RequestMapping("calendarYearToDate")
 	public ModelAndView getCalendarYearToDate(HttpServletRequest req) {
 		HttpSession session = req.getSession();
+		Options options = this.indexService.getOptions();
+		session.setAttribute("options", options);
+		
 		ModelAndView mav = new ModelAndView();
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
@@ -55,6 +62,7 @@ public class CalendarYearToDateController {
 		BigDecimal trsIns = calYTD.getTrsDeposit().subtract(calYTD.getTrsSalaryRed());
 		Frequency freq = Frequency.getFrequency(calYTD.getId().getPayFreq() + "");
 		String latestPayDate = service.getLatestPayDate(employeeNumber, freq);
+	
 		mav.setViewName("/inquiry/calendarYearToDate");
 		mav.addObject("years", years);
 		mav.addObject("selectedYear", latestYear);

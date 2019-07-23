@@ -24,6 +24,7 @@ import com.esc20.nonDBModels.PayDate;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.nonDBModels.report.ReportParameterConnection;
+import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
 import com.esc20.util.StringUtil;
@@ -36,6 +37,8 @@ import net.sf.json.JSONArray;
 @Controller
 @RequestMapping("/earnings")
 public class EarningsController {
+	@Autowired
+	private IndexService indexService;
 
 	@Autowired
 	private InquiryService service;
@@ -48,6 +51,9 @@ public class EarningsController {
 	@RequestMapping("earnings")
 	public ModelAndView getEarnings(HttpServletRequest req) {
 		HttpSession session = req.getSession();
+		Options options = this.indexService.getOptions();
+		session.setAttribute("options", options);
+		
 		ModelAndView mav = new ModelAndView();
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();

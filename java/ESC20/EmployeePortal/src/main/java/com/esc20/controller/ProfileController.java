@@ -41,6 +41,7 @@ import com.esc20.nonDBModels.BankRequest;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Money;
+import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.Page;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.SearchCriteria;
@@ -73,6 +74,9 @@ public class ProfileController{
     @RequestMapping("profile")
     public ModelAndView getProfile(HttpServletRequest req,String freq){
         HttpSession session = req.getSession();
+        Options options = this.indexService.getOptions();
+		session.setAttribute("options", options);
+		
         BeaUsers user = (BeaUsers)session.getAttribute("user");
         ModelAndView mav = new ModelAndView();
         getProfileDetails(session, mav,freq);

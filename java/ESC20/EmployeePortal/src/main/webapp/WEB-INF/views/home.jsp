@@ -15,7 +15,12 @@
     <main  class="content-wrapper" tabindex="-1">
     	<section class="content">
     		<div class="container-fluid homeLanding">
-        		<span>${sessionScope.languageJSON.label.welcomeToNewEmployeePortal}</span>
+    		  <c:if test="${not empty sessionScope.options.messageEmployeeAccessSystem}">
+    		       <span>${sessionScope.options.messageEmployeeAccessSystem}</span>
+              </c:if>
+              <c:if test="${empty sessionScope.options.messageEmployeeAccessSystem}">
+    		       <span>${sessionScope.languageJSON.label.welcomeToNewEmployeePortal}</span>
+              </c:if> 
         	</div>
         </section>
     </main>

@@ -28,6 +28,7 @@ import com.esc20.nonDBModels.Stipend;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.nonDBModels.report.ReportParameterConnection;
+import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
 import com.esc20.util.StringUtil;
@@ -39,6 +40,8 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @Controller
 @RequestMapping("/currentPayInformation")
 public class CurrentPayInformationController{
+	@Autowired
+	private IndexService indexService;
 	
 	@Autowired
 	private InquiryService service;
@@ -49,6 +52,9 @@ public class CurrentPayInformationController{
 	@RequestMapping("currentPayInformation")
 	public ModelAndView getCurrentPayInformation(HttpServletRequest req) throws IOException {
 		HttpSession session = req.getSession();
+		Options options = this.indexService.getOptions();
+		session.setAttribute("options", options);
+		
 		ModelAndView mav = new ModelAndView();
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
@@ -60,6 +66,7 @@ public class CurrentPayInformationController{
 		Map<Frequency, PayInfo> payInfos = this.service.retrievePayInfo(employeeNumber, frequencies);
 		Map<Frequency, String> payCampuses = this.service.retrievePayCampuses(employeeNumber);
 		EmployeeInfo employeeInfo = this.service.getEmployeeInfo(employeeNumber);
+		
 		String message = ((Options) session.getAttribute("options")).getMessageCurrentPayInformation();
 		mav.setViewName("/inquiry/currentPayInformation");
 		mav.addObject("jobs", jobs);

@@ -49,6 +49,9 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @RequestMapping("/w2Information")
 public class W2InformationController{
    private Logger logger = LoggerFactory.getLogger(W2InformationController.class);
+   
+	@Autowired
+	private IndexService indexService;
 
 	@Autowired
 	private InquiryService service;
@@ -61,6 +64,9 @@ public class W2InformationController{
 	@RequestMapping("w2Information")
 	public ModelAndView getW2Information(HttpServletRequest req) {
 		HttpSession session = req.getSession();
+		Options options = this.indexService.getOptions();
+		session.setAttribute("options", options);
+		
 		ModelAndView mav = new ModelAndView();
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();

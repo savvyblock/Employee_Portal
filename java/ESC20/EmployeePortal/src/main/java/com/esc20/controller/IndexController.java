@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,12 +18,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BhrEmpDemo;
+import com.esc20.nonDBModels.Options;
+import com.esc20.service.IndexService;
 
 import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/")
 public class IndexController {
+	@Autowired
+	private IndexService indexService;
     
     @RequestMapping(value="login", method=RequestMethod.GET)
     public ModelAndView getIndexPage(HttpServletRequest req, String Id,HttpServletResponse response){
@@ -49,6 +54,9 @@ public class IndexController {
     @RequestMapping("home")
     public ModelAndView getHome(HttpServletRequest req,HttpServletResponse response){
         HttpSession session = req.getSession();
+        Options options = this.indexService.getOptions();
+		session.setAttribute("options", options);
+		
         BhrEmpDemo userDetail = (BhrEmpDemo)session.getAttribute("userDetail");
         ModelAndView mav = new ModelAndView();
         mav.setViewName("home");

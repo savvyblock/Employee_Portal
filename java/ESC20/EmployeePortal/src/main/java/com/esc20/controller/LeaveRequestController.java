@@ -19,6 +19,8 @@ import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequestModel;
+import com.esc20.nonDBModels.Options;
+import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
 
@@ -29,6 +31,9 @@ import net.sf.json.JSONObject;
 @RequestMapping("/leaveRequest")
 public class LeaveRequestController extends BaseLeaveRequestController {
 
+	@Autowired
+	private IndexService indexService;
+	
 	@Autowired
 	private LeaveRequestService service;
 
@@ -41,6 +46,9 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	public ModelAndView leaveRequest(HttpServletRequest req, String SearchType, String SearchStart, String SearchEnd,
 			String freq) throws ParseException {
 		HttpSession session = req.getSession();
+		Options options = this.indexService.getOptions();
+		session.setAttribute("options", options);
+		
 		ModelAndView mav = new ModelAndView();
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		mav.setViewName("/leaveRequest/leaveRequest");

@@ -33,6 +33,7 @@ import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.nonDBModels.report.ReportParameterConnection;
+import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
 import com.esc20.service.ReferenceService;
@@ -48,6 +49,9 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @RequestMapping("/information1095")
 public class Information1095Controller{
 	private Logger logger = LoggerFactory.getLogger(Information1095Controller.class);
+	
+	@Autowired
+	private IndexService indexService;
 
 	@Autowired
 	private InquiryService service;
@@ -63,6 +67,9 @@ public class Information1095Controller{
 	@RequestMapping("information1095")
 	public ModelAndView getInformation1095(HttpServletRequest req) {
 		HttpSession session = req.getSession();
+		Options options = this.indexService.getOptions();
+		session.setAttribute("options", options);
+		
 		ModelAndView mav = new ModelAndView();
 		mav = init1095(mav, session, null, 1, 1, null, null, null);
 		return mav;
