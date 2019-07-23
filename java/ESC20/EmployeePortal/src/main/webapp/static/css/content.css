@@ -23,10 +23,6 @@
   display: none;
 }
 
-.account-wrap .account-header .logo {
-  max-height: 40px;
-}
-
 @media (max-width: 486px) {
   .account-wrap .account-header .logo-sm {
     display: block;

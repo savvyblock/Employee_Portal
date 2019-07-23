@@ -512,11 +512,6 @@
   align-items: center;
 }
 
-.main-sidebar .nav-logo img {
-  max-width: 90%;
-  max-height: 40px;
-}
-
 @media (max-width: 374px) {
   .main-sidebar .nav-logo {
     display: block;
