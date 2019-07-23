@@ -156,8 +156,8 @@ public class LeaveRequestComment implements Serializable{
 		JSONObject jo = new JSONObject();
 		String detail = "";
 		boolean middleNameExists = this.getCommentEmpMiddleName() == null || this.getCommentEmpMiddleName().equals("");
-		String name = this.getCommentEmpNumber() + "-" + this.getCommentEmpFirstName()
-				+ (middleNameExists ? "" : (" " + this.getCommentEmpMiddleName())) +" "+ this.getCommentEmpLastName();
+		String name = this.getCommentEmpNumber() + ": " + this.getCommentEmpLastName() +", "+ this.getCommentEmpFirstName()
+			+" "+ (middleNameExists ? "" : (" " + this.getCommentEmpMiddleName()));
 		detail += name;
 		detail += " commented on ";
 		String date = this.getCommentDateString() + " " + this.getCommentTimeString();

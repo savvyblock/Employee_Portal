@@ -309,8 +309,8 @@
 	},
 	"approveRequest":{
 		"employee":"Employee",
-		"leaveStartDate":"Leave Start Date",
-		"leaveEndDate":"Leave End Date",
+		"leaveStartDate":"Start Date",
+		"leaveEndDate":"End Date",
 		"startTime":"Start Time",
 		"endTime":"End Time",
 		"leaveType":"Leave Type",

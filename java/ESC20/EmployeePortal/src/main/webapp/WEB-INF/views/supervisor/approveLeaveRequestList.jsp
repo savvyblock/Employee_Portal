@@ -77,7 +77,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <span>
                                                 <c:forEach var="item" items="${chain}" varStatus="status">
                                                      <c:if test="${status.last}"> 
-                                                            ${item.employeeNumber}:${item.lastName},${item.firstName}     
+                                                            ${item.employeeNumber}: ${item.lastName}, ${item.firstName}     
                                                     </c:if>
                                                     </c:forEach>
                                         </span>
@@ -89,11 +89,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <thead>
                                                 <tr>
                                                         <th scope="col">${sessionScope.languageJSON.approveRequest.employee}</th>
-                                                        <th scope="col">${sessionScope.languageJSON.approveRequest.leaveStartDate}</th>
-                                                        <th scope="col">${sessionScope.languageJSON.approveRequest.leaveEndDate}</th>
-                                                        <th scope="col">${sessionScope.languageJSON.approveRequest.leaveType}</th>
-                                                        <th scope="col">${sessionScope.languageJSON.approveRequest.absenceReason}</th>
-                                                        <th scope="col">${sessionScope.languageJSON.approveRequest.leaveRequested}</th>
+                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.leaveStartDate}</th>
+                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.leaveEndDate}</th>
+                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.startTime}</th>
+                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.endTime}</th>
+                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.leaveType}</th>
+                                                        <th scope="col" style="width:12%">${sessionScope.languageJSON.approveRequest.absenceReason}</th>
+                                                        <th scope="col" style="width:12%">${sessionScope.languageJSON.approveRequest.leaveRequested}</th>
                                                         <th scope="col">${sessionScope.languageJSON.approveRequest.commentLog}</th>
                                                         <th scope="col">${sessionScope.languageJSON.approveRequest.supervisorAction}</th>
                                                 </tr>
@@ -103,9 +105,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <c:forEach var="item" items="${leaves}" varStatus="status">
                                                         <c:if test="${item.statusCd !='A' && item.statusCd !='D'}">
                                                         <tr id="actionList_${status.index}">
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.employee}">${item.lastName}, ${item.firstName}</td>
+                                                            <td data-title="${sessionScope.languageJSON.approveRequest.employee}"> ${item.empNbr}: ${item.lastName}, ${item.firstName}</td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.leaveStartDate}">${item.LeaveStartDate}</td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.leaveEndDate}" >${item.LeaveEndDate}</td>
+                                                            <td data-title="${sessionScope.languageJSON.approveRequest.startTime}">${item.LeaveStartTime}</td>
+                                                            <td data-title="${sessionScope.languageJSON.approveRequest.endTime}" >${item.LeaveEndTime}</td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.leaveType}">
                                                                     <c:forEach var="type" items="${leaveTypes}" varStatus="statusType">
                                                                             <c:if test="${type.code==item.LeaveType}">${type.description}</c:if>
