@@ -401,6 +401,14 @@ input {
     border-color: #3ab34a;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    &:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: inset 0 0 0 transparent,
+            0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
 }
 .has-error .form-control {
     border-color: #ea2623;
