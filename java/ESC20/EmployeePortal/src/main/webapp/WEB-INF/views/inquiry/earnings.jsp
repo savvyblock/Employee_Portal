@@ -223,7 +223,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <tr>
                                                 <th id="campus" class="td-title column1"><span>${sessionScope.languageJSON.earningTable.campus}</span>:</th>
                                                 <td headers="campus"
-                                                    class="td-content text-left" data-title="${sessionScope.languageJSON.earningTable.campus}"
+                                                    class="td-content text-right" data-title="${sessionScope.languageJSON.earningTable.campus}"
                                                    
                                                     
                                                 >
@@ -280,15 +280,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <div class="hr-black"></div>
                                     <div class="earning-body">
 
-                                    
+                                        <div class="total-table-title">
+                                            <%--  <h2 class="no-print table-top-title">
+                                                <b>${sessionScope.languageJSON.label.earningAndDeductions}</b>
+                                            </h2> --%>
+                                            <p style="text-align:left;padding-left: 0px;margin: 0;">
+                                                <b>${sessionScope.languageJSON.label.noteEarning}</b>
+                                            </p>
+                                        </div>
                                         <div class="clearfix">
                                             <div class="total-table  pull-left">
-                                               <%--  <h2 class="no-print table-top-title">
-                                                    <b>${sessionScope.languageJSON.label.earningAndDeductions}</b>
-                                                </h2> --%>
-                                                <p style="text-align:left;padding-left: 0px;margin: 0;">
-                                                	<b>${sessionScope.languageJSON.label.noteEarning}</b>
-                                                </p>
                                                 <table
                                                     class="table border-table no-thead print-table earning-table"
                                                 >
@@ -725,12 +726,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     >
                                                         <thead>
                                                             <tr>
-                                                                <th id="otherDeductionsTitle">${sessionScope.languageJSON.earningTable.otherDeductions}</th>
-                                                                <th id="cafeTitle">${sessionScope.languageJSON.earningTable.cafe}</th>
-                                                                <th id="thisPeriod06" class="text-right sameWidth20">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
-                                                                <th id="employerContribution" class="text-right sameWidth20">${sessionScope.languageJSON.earningTable.employerContribution}</th>
-                                                                <th id="calendarYTD" class="print-td text-right sameWidth20">
-                                                                    <span>${sessionScope.languageJSON.earningTable.calendarYTD}</span> ${year}
+                                                                <th id="otherDeductionsTitle" class="text-center" style="width:200px;">${sessionScope.languageJSON.earningTable.otherDeductions}</th>
+                                                                <th id="cafeTitle" class="text-center">${sessionScope.languageJSON.earningTable.cafe}</th>
+                                                                <th id="thisPeriod06" class="text-center" style="width:60px;">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
+                                                                <th id="employerContribution" class="text-center sameWidth20">${sessionScope.languageJSON.earningTable.employerContribution}</th>
+                                                                <th id="calendarYTD" class="print-td text-center" style="width:85px;">
+                                                                    ${sessionScope.languageJSON.earningTable.calendarYTD} ${year}
                                                                 </th>
                                                             </tr>
                                                         </thead>

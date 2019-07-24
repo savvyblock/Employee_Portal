@@ -657,6 +657,11 @@
   padding-right: 20px;
 }
 
+.EMP-detail .total-table-title {
+  width: 50%;
+  padding-right: 20px;
+}
+
 .EMP-detail .earning-detail {
   display: none;
 }
@@ -731,6 +736,10 @@
 
 @media (max-width: 830px) {
   .EMP-detail .total-table {
+    width: 100%;
+    padding-right: 0;
+  }
+  .EMP-detail .total-table-title {
     width: 100%;
     padding-right: 0;
   }
