@@ -283,10 +283,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     
                                         <div class="clearfix">
                                             <div class="total-table  pull-left">
-                                                <h2 class="no-print table-top-title">
+                                               <%--  <h2 class="no-print table-top-title">
                                                     <b>${sessionScope.languageJSON.label.earningAndDeductions}</b>
-                                                </h2>
-                                                <p style="text-align:right;padding-right: 0px;margin: 0;">
+                                                </h2> --%>
+                                                <p style="text-align:left;padding-left: 0px;margin: 0;">
                                                 	<b>${sessionScope.languageJSON.label.noteEarning}</b>
                                                 </p>
                                                 <table
