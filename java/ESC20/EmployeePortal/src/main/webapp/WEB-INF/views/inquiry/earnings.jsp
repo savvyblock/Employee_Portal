@@ -791,7 +791,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </div>
                                         </div>
                                         <div class="print-block hr-black"></div>
-                                        <c:if test ="${!isSupplemental}">
+                                     <%--    <c:if test ="${!isSupplemental}"> --%>
 	                                        <table
 	                                            class="table responsive-table border-table print-table tableColumn4"
 	                                        >
@@ -834,7 +834,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	                                            </c:if>
 	                                            </tbody>
 	                                        </table>
-	                                    </c:if>
+	                                   <%--  </c:if> --%>
                                         <div class="show-all-screen hr-black"></div>
                                         <table
                                             class="table border-table responsive-table payRoll-table print-table tableColumn4"
