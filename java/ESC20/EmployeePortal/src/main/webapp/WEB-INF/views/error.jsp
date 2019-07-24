@@ -16,6 +16,15 @@
               <p class="word">
                     ${sessionScope.languageJSON.label.pleaseTryAgain}
               </p>
+               <%
+                  java.lang.Exception ex = (java.lang.Exception)request.getAttribute("ex");
+                  java.io.ByteArrayOutputStream  ostr = new java.io.ByteArrayOutputStream ();
+                  if (ex != null)  ex.printStackTrace(new java.io.PrintStream(ostr));
+              %>
+              <p>&nbsp;</p>
+              <div style="display: block">
+              <%=ostr.toString()%>
+              </div>
             </div>
          </div>
     </body>

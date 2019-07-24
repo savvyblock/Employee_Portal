@@ -21,5 +21,8 @@
     <mvc:resources mapping="/css/**" location="/static/css/"/>
 
     <mvc:annotation-driven/>
-
+	 <bean class="com.esc20.exception.CustomSimpleMappingExceptionResolver">
+	        <property name="defaultErrorView" value="error"/>
+	        <property name="exceptionAttribute" value="ex"></property>
+	    </bean>
 </beans>
