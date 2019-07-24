@@ -479,6 +479,7 @@
                 .info-title {
                     width: 290px;
                     white-space: normal;
+                    word-break: break-all;
                     word-break: break-word;
                 }
                 .info-content {
@@ -726,6 +727,7 @@
         font-weight: bold;
         padding-right: 10px;
         white-space: normal;
+        word-break: break-all;
         word-break: break-word;
         float: left;
     }
@@ -733,6 +735,7 @@
         float: left;
         padding-right: 10px;
         white-space: normal;
+        word-break: break-all;
         word-break: break-word;
     }
 }
@@ -1562,6 +1565,7 @@
                 .haveValue{
                     flex: 0 0 200px;
                     white-space: normal;
+                    word-break: break-all;
                     word-break: break-word;
                     margin-right: 10px;
                     @media (max-width:630px){
@@ -1699,6 +1703,7 @@
             }
             .profile-desc {
                 word-spacing: normal;
+                word-break: break-all;
                 word-break: break-word;
                 .profile-desc-item {
                     .desc-title {
@@ -1991,4 +1996,10 @@
     font-size: 26px;
     font-weight: bold;
     text-align: center;
+    width: 100%;
+    span{
+        word-spacing: normal;
+        word-break: break-all;
+        word-break: break-word;
+    }
 }
