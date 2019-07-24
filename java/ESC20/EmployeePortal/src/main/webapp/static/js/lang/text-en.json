@@ -134,7 +134,7 @@
 		"totalNonTRSTax":"Total Non-TRS Taxable Pay",
 		"nonTRSNonTaxType":"Non-TRS Non-Taxable Type",
 		"totalNonTRSNonTax":"Total Non-TRS Non-Taxable Pay",
-		"otherDeductions":"Other Deductions",
+		"otherDeductions":"Other Deductions Description",
 		"cafe":"Cafe",
 		"employerContribution":"Employer Contribution",
 		"leaveType":"Leave Type",

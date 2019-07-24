@@ -558,10 +558,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                             ${job.code} - ${job.description}
                                                                     </th>
                                                                     <td headers="units01 jobDescription01_${counter.index}">
-                                                                        <c:if test="${job.units != 0 && job.units != 0.00 && job.units != '0.00'}">
+                                                                       <%--  <c:if test="${job.units != 0 && job.units != 0.00 && job.units != '0.00'}">
                                                                                 <fmt:formatNumber value="${job.units}" pattern="#,##0.00"/>
-                                                                        </c:if>
-                                                                            
+                                                                        </c:if> --%>
+                                                                        <fmt:formatNumber value="${job.units}" pattern="#,##0.00"/>
                                                                     </td>
                                                                     <td headers="payRate01 jobDescription01_${counter.index}">
                                                                             <fmt:formatNumber value="${job.payRate}" pattern="#,##0.00"/>
