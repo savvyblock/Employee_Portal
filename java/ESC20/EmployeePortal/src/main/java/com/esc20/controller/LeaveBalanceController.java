@@ -69,6 +69,23 @@ public class LeaveBalanceController{
 		}
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
+		if (availableFreqs.size() > 0) {
+			for (int i = 0; i < availableFreqs.size(); i++) {
+				String freqCode = availableFreqs.get(i).getCode();
+				if("4".equals(freqCode) || "Biweekly".equals(freqCode))
+				{
+					availableFreqs.get(i).setDescription("Biweekly");
+				}
+				else if("5".equals(freqCode) || "Semimonthly".equals(freqCode)) 
+				{
+					availableFreqs.get(i).setDescription("Semimonthly");
+				}
+				else if("6".equals(freqCode) || "Monthly".equals(freqCode))
+				{
+					availableFreqs.get(i).setDescription("Monthly");
+				}
+			}
+		}
 		List<Code> leaveTypesWithAll = new ArrayList<>();
 		Code code = new Code("", "ALL");
 		leaveTypesWithAll.add(code);
