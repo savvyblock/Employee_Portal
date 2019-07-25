@@ -141,7 +141,8 @@
 		"unitsUsedThisPeriod":"Units Used This Period",
 		"balance":"Balance",
 		"unitsUsedYearToDate":"Units Used Year To Date",
-		"total":"Total"
+		"total":"Total",
+		"NoEarnings":"No Earnings information is available."
 	},
 	"w2InformationTable":{
 		"taxableGrossPay":"Taxable Gross Pay",

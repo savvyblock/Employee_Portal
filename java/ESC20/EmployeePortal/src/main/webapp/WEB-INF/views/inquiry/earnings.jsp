@@ -17,7 +17,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     <section class="content">
                             <div class="clearfix no-print section-title">
                                 <h1 class="pageTitle">${sessionScope.languageJSON.title.earnings}</h1>
-                                <div class="pull-right right-btn">
+                                <c:if test="${not empty payDates}">
+                               	 <div class="pull-right right-btn">
 		                            <form class="no-print" action="exportPDF" method="POST">
 										<input type="hidden" name="${_csrf.parameterName}"
 											value="${_csrf.token}" />
@@ -38,6 +39,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 		
 		                            <iframe style="display:none" name="printIframe" onload="load()" id="printIframe"></iframe> --%>
                                 </div>
+                            	</c:if>
                             </div>
                        
                             <div class="toPrint content-white EMP-detail earningPage">
@@ -197,9 +199,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                                 
                                 <c:if test="${not empty sessionScope.options.messageEarnings}">
-                            <p class="topMsg error-hint" role="alert">${sessionScope.options.messageEarnings}</p>
-                        </c:if>
-                                <form
+		                            <p class="topMsg error-hint" role="alert">${sessionScope.options.messageEarnings}</p>
+		                        </c:if>
+		                        <c:if test="${empty payDates}">
+									<div class="topMsg error-hint">${sessionScope.languageJSON.earningTable.NoEarnings}</div>
+								</c:if>
+								<c:if test="${not empty payDates}">
+                           	    	 <form
                                     class="no-print searchForm"
                                     action="earningsByPayDate"
                                     id="selectEarnings"
@@ -215,6 +221,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </select>
                                     </div>
                                 </form>
+                              
                                 <div class="needToClone">                                
                                     <table
                                         class="no-print no-thead table no-border-table responsive-table max-w-550 earning-title-table"
@@ -876,6 +883,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </table>
                                     </div>
                                 </div>
+                                  </c:if>
                             </div>
                         </section>
             </main>
