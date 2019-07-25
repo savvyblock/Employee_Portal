@@ -483,7 +483,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                     <fmt:formatNumber value="${earnings.deductions.netPay}" pattern="#,##0.00"/>
                                                             </td>
                                                             <td headers="calendarYTDTitle01 netPay" class="print-td">
-                                                                <fmt:formatNumber value="${YTDEarnings.deductions.netPay}" pattern="#,##0.00"/>
+                                                                <%-- <fmt:formatNumber value="${YTDEarnings.deductions.netPay}" pattern="#,##0.00"/> --%>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
@@ -733,11 +733,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     >
                                                         <thead>
                                                             <tr>
-                                                                <th id="otherDeductionsTitle" class="text-center" style="width:200px;">${sessionScope.languageJSON.earningTable.otherDeductions}</th>
+                                                                <th id="otherDeductionsTitle" class="text-left" style="width:200px;">${sessionScope.languageJSON.earningTable.otherDeductions}</th>
                                                                 <th id="cafeTitle" class="text-center">${sessionScope.languageJSON.earningTable.cafe}</th>
-                                                                <th id="thisPeriod06" class="text-center" style="width:60px;">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
-                                                                <th id="employerContribution" class="text-center sameWidth20">${sessionScope.languageJSON.earningTable.employerContribution}</th>
-                                                                <th id="calendarYTD" class="print-td text-center" style="width:85px;">
+                                                                <th id="thisPeriod06" class="text-right" style="width:60px;">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
+                                                                <th id="employerContribution" class="text-right sameWidth20">${sessionScope.languageJSON.earningTable.employerContribution}</th>
+                                                                <th id="calendarYTD" class="print-td text-right" style="width:85px;">
                                                                     ${sessionScope.languageJSON.earningTable.calendarYTD} ${year}
                                                                 </th>
                                                             </tr>
