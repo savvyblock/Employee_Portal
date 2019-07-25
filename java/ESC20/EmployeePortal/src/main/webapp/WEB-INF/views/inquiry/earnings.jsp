@@ -580,7 +580,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             </c:forEach>
                                                             <tr class="total-tr">
                                                                 <th  id="totalStandardGross" colspan="3">
-                                                                    <b>${sessionScope.languageJSON.earningTable.totalStandardGross}</b>
+                                                                    <b>${sessionScope.languageJSON.earningTable.totalStandardGross}:</b>
                                                                 </th>
                                                                 <td headers="thisPeriod01 totalStandardGross">
                                                                     <b>
@@ -621,7 +621,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
                                                                 <th id="totalOvertimePay" colspan="3">
-                                                                    <span>${sessionScope.languageJSON.earningTable.totalOvertimePay}</span>
+                                                                    <span>${sessionScope.languageJSON.earningTable.totalOvertimePay}:</span>
                                                                 </th>
                                                                 <td headers="thisPeriod02 totalOvertimePay">
                                                                         <fmt:formatNumber value="${earnings.earningsOvertimeTotal}" pattern="#,##0.00"/>
@@ -654,7 +654,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
                                                                 <th id="totalSupPay">
-                                                                    <span>${sessionScope.languageJSON.earningTable.totalSupPay}</span>
+                                                                    <span>${sessionScope.languageJSON.earningTable.totalSupPay}:</span>
                                                                 </th>
                                                                 <td headers="thisPeriod03 totalSupPay">
                                                                         <fmt:formatNumber value="${earnings.earningsSupplementalTotal}" pattern="#,##0.00"/>
@@ -685,7 +685,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
                                                                 <th id="totalNonTRSTax">
-                                                                    <span>${sessionScope.languageJSON.earningTable.totalNonTRSTax}</span>
+                                                                    <span>${sessionScope.languageJSON.earningTable.totalNonTRSTax}:</span>
                                                                 </th>
                                                                 <td headers="thisPeriod04 totalNonTRSTax">
                                                                         <fmt:formatNumber value="${earnings.earningsNonTrsTaxTotal}" pattern="#,##0.00"/>
@@ -718,7 +718,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
                                                                 <th id="totalNonTRSNonTax">
-                                                                    <span>${sessionScope.languageJSON.earningTable.totalNonTRSNonTax}</span>
+                                                                    <span>${sessionScope.languageJSON.earningTable.totalNonTRSNonTax}:</span>
                                                                 </th>
                                                                 <td headers="thisPeriod05 totalNonTRSNonTax">
                                                                         <fmt:formatNumber value="${earnings.earningsNonTrsNonTaxTotal}" pattern="#,##0.00"/>
@@ -780,7 +780,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             </c:if>
                                                             <tr class="total-tr">
                                                                 <th id="totalOtherDeductionsOther" colspan="2">
-                                                                    <b>${sessionScope.languageJSON.earningTable.totalOtherDeductions}</b>
+                                                                    <b>${sessionScope.languageJSON.earningTable.totalOtherDeductions}:</b>
                                                                 </th>
                                                                 <td headers="thisPeriod06 totalOtherDeductionsOther">
                                                                         <fmt:formatNumber value="${earnings.earningsOtherTotal}" pattern="#,##0.00"/>
