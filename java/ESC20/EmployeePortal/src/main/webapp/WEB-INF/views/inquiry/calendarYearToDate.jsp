@@ -43,9 +43,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         </div>
                     </div>
                     <div class="toPrint content-white EMP-detail">
-                        <div class="currentTimeBox">
-                            <div class="currentTime"></div>
-                        </div>
+                        
                         <div class="exportPDFBox">
                                 <div class="print-block print-title">
                                         <div style="text-align:center;margin-bottom:10px;">
@@ -88,6 +86,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         <c:if test="${not empty sessionScope.options.messageCalendarYearToDate}">
                             <p class="topMsg error-hint" role="alert">${sessionScope.options.messageCalendarYearToDate}</p>
                         </c:if>
+                        <div class="currentTimeBox">
+                                <div class="currentTime down"></div>
+                            </div>
                         <form
                             class="no-print searchForm"
                             action="getCalendarYearToDateByYear"
@@ -106,6 +107,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </select>
                             </div>
                         </form>
+                       
                         <h2 class="no-print table-top-title">
                             <b><span>${sessionScope.languageJSON.label.frequency}</span>: ${freq}</b>
                         </h2>

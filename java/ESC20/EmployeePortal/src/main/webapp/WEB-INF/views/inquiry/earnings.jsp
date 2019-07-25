@@ -43,9 +43,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                        
                             <div class="toPrint content-white EMP-detail earningPage">
-                                    <div class="currentTimeBox">
-                                            <div class="currentTime"></div>
-                                        </div>
                                 <div class="exportPDFBox" id="exportPDFBox">
                                         <div class="print-block print-title">
                                                 <div style="text-align:center;margin-bottom:10px;">
@@ -206,7 +203,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 		                        </c:if>
 		                        <c:if test="${empty payDates}">
 									<div class="topMsg error-hint">${sessionScope.languageJSON.earningTable.NoEarnings}</div>
-								</c:if>
+                                </c:if>
+                                <div class="currentTimeBox">
+                                        <div class="currentTime down"></div>
+                                    </div>
 								<c:if test="${not empty payDates}">
                            	    	 <form
                                     class="no-print searchForm"

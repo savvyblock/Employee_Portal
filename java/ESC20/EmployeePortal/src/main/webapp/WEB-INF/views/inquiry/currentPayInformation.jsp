@@ -40,9 +40,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                     </div>
                     <div class="toPrint content-white EMP-detail">
-                            <div class="currentTimeBox">
-                                <div class="currentTime"></div>
-                            </div>
+                            
                         <div class="exportPDFBox">
                                 <div class="print-block print-title">
                                         <div style="text-align:center;margin-bottom:10px;">
@@ -60,6 +58,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         <c:if test="${not empty sessionScope.options.messageCurrentPayInformation}">
                             <p class="topMsg error-hint" role="alert">${sessionScope.options.messageCurrentPayInformation}</p>
                         </c:if>
+                        <div class="currentTimeBox">
+                                <div class="currentTime"></div>
+                            </div>
                         <div class="needToClone">
                         	<input type="hidden" id="isPrintPDF" value="${isPrintPDF}" />
                         	<input type="hidden" id="language" value="${language}" />

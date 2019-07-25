@@ -1153,10 +1153,20 @@ input {
 .currentTimeBox{
     text-align: right;
     margin-bottom: 15px;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
     .currentTime{
         display: inline-block;
         border:1px solid #6d6c6c;
         padding: 0 10px;
         line-height: 30px;
+        &.down{
+            position: absolute;
+            bottom: -55px;
+            right: 0;
+            z-index: 2;
+            min-width: 130px;
+        }
     }
 }
