@@ -798,54 +798,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </div>
                                         </div>
                                         <div class="print-block hr-black"></div>
-                                     <%--    <c:if test ="${!isSupplemental}"> --%>
-	                                        <table
-	                                            class="table responsive-table border-table print-table tableColumn4"
-	                                        >
-	                                            <thead>
-	                                                <tr>
-	                                                    <th>${sessionScope.languageJSON.earningTable.leaveType}</th>
-	                                                    <th class="text-right">${sessionScope.languageJSON.earningTable.unitsUsedThisPeriod}</th>
-	                                                    <th class="text-right">${sessionScope.languageJSON.earningTable.balance}</th>
-	                                                    <th class="print-td text-right">${sessionScope.languageJSON.earningTable.unitsUsedYearToDate}</th>
-	                                                </tr>
-	                                            </thead>
-	                                            <tbody>
-	                                                    <c:if test="${fn:length(earnings.leave) > 0}">
-	                                                    <c:forEach items="${earnings.leave}" var="leave" varStatus="counter">
-	                                                    <tr>
-	                                                        <td class="text-left" data-title="${sessionScope.languageJSON.earningTable.leaveType}">
-	                                                                ${leave.code} - ${leave.description}
-	                                                        </td>
-	                                                        <td class="text-right" data-title="${sessionScope.languageJSON.earningTable.unitsUsedThisPeriod}">
-	                                                                <fmt:formatNumber value="${leave.unitsPrior}" pattern="#,##0.000"/>
-	                                                        </td>
-	                                                        <td class="text-right" data-title="${sessionScope.languageJSON.earningTable.balance}">
-	                                                                <fmt:formatNumber value="${leave.balance}" pattern="#,##0.000"/>
-	                                                        </td>
-	                                                        <td
-	                                                            class="print-td text-right"
-	                                                            data-title="${sessionScope.languageJSON.earningTable.unitsUsedYearToDate}"
-	                                                        >
-	                                                            ${leave.unitsUsed}
-	                                                        </td>
-	                                                    </tr>
-	                                                </c:forEach>
-	                                                </c:if>
-	                                                <c:if test="${fn:length(earnings.leave) == 0}">
-	                                                <tr>
-	                                                    <td colspan="4" class="text-center">
-	                                                        <span>${sessionScope.languageJSON.earningTable.noData}</span>
-	                                                    </td>
-	                                                </tr>
-	                                            </c:if>
-	                                            </tbody>
-	                                        </table>
-	                                   <%--  </c:if> --%>
-                                        <div class="show-all-screen hr-black"></div>
-                                        <table
-                                            class="table border-table responsive-table payRoll-table print-table tableColumn4"
-                                        >
+                                  		 <table class="table border-table responsive-table payRoll-table print-table tableColumn4">
                                             <thead>
                                                 <tr>
                                                     <th>${sessionScope.languageJSON.currentPayTable.bankName}</th>
@@ -881,7 +834,53 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </c:forEach>
                                             </tbody>
                                         </table>
-                                    </div>
+                                  
+                                        <div class="show-all-screen hr-black"></div>
+                                           <%--    <c:if test ="${!isSupplemental}"> --%>
+		                                        <table
+		                                            class="table responsive-table border-table print-table tableColumn4"
+		                                        >
+		                                            <thead>
+		                                                <tr>
+		                                                    <th>${sessionScope.languageJSON.earningTable.leaveType}</th>
+		                                                    <th class="text-right">${sessionScope.languageJSON.earningTable.unitsUsedThisPeriod}</th>
+		                                                    <th class="text-right">${sessionScope.languageJSON.earningTable.balance}</th>
+		                                                    <th class="print-td text-right">${sessionScope.languageJSON.earningTable.unitsUsedYearToDate}</th>
+		                                                </tr>
+		                                            </thead>
+		                                            <tbody>
+		                                                    <c:if test="${fn:length(earnings.leave) > 0}">
+		                                                    <c:forEach items="${earnings.leave}" var="leave" varStatus="counter">
+		                                                    <tr>
+		                                                        <td class="text-left" data-title="${sessionScope.languageJSON.earningTable.leaveType}">
+		                                                                ${leave.code} - ${leave.description}
+		                                                        </td>
+		                                                        <td class="text-right" data-title="${sessionScope.languageJSON.earningTable.unitsUsedThisPeriod}">
+		                                                                <fmt:formatNumber value="${leave.unitsPrior}" pattern="#,##0.000"/>
+		                                                        </td>
+		                                                        <td class="text-right" data-title="${sessionScope.languageJSON.earningTable.balance}">
+		                                                                <fmt:formatNumber value="${leave.balance}" pattern="#,##0.000"/>
+		                                                        </td>
+		                                                        <td
+		                                                            class="print-td text-right"
+		                                                            data-title="${sessionScope.languageJSON.earningTable.unitsUsedYearToDate}"
+		                                                        >
+		                                                            ${leave.unitsUsed}
+		                                                        </td>
+		                                                    </tr>
+		                                                </c:forEach>
+		                                                </c:if>
+		                                                <c:if test="${fn:length(earnings.leave) == 0}">
+		                                                <tr>
+		                                                    <td colspan="4" class="text-center">
+		                                                        <span>${sessionScope.languageJSON.earningTable.noData}</span>
+		                                                    </td>
+		                                                </tr>
+		                                            </c:if>
+		                                            </tbody>
+		                                        </table>
+		                                   <%--  </c:if> --%>
+                                         </div>
                                 </div>
                                   </c:if>
                             </div>
