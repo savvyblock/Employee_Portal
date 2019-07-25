@@ -486,7 +486,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                     <fmt:formatNumber value="${earnings.deductions.netPay}" pattern="#,##0.00"/>
                                                             </td>
                                                             <td headers="calendarYTDTitle01 netPay" class="print-td">
-                                                                <fmt:formatNumber value="${YTDEarnings.deductions.netPay}" pattern="#,##0.00"/>
+                                                                <%-- <fmt:formatNumber value="${YTDEarnings.deductions.netPay}" pattern="#,##0.00"/> --%>
                                                             </td>
                                                         </tr>
                                                         <tr class="print-tr">
@@ -583,7 +583,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             </c:forEach>
                                                             <tr class="total-tr">
                                                                 <th  id="totalStandardGross" colspan="3">
-                                                                    <b>${sessionScope.languageJSON.earningTable.totalStandardGross}</b>
+                                                                    <b>${sessionScope.languageJSON.earningTable.totalStandardGross}:</b>
                                                                 </th>
                                                                 <td headers="thisPeriod01 totalStandardGross">
                                                                     <b>
@@ -624,7 +624,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
                                                                 <th id="totalOvertimePay" colspan="3">
-                                                                    <span>${sessionScope.languageJSON.earningTable.totalOvertimePay}</span>
+                                                                    <span>${sessionScope.languageJSON.earningTable.totalOvertimePay}:</span>
                                                                 </th>
                                                                 <td headers="thisPeriod02 totalOvertimePay">
                                                                         <fmt:formatNumber value="${earnings.earningsOvertimeTotal}" pattern="#,##0.00"/>
@@ -657,7 +657,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
                                                                 <th id="totalSupPay">
-                                                                    <span>${sessionScope.languageJSON.earningTable.totalSupPay}</span>
+                                                                    <span>${sessionScope.languageJSON.earningTable.totalSupPay}:</span>
                                                                 </th>
                                                                 <td headers="thisPeriod03 totalSupPay">
                                                                         <fmt:formatNumber value="${earnings.earningsSupplementalTotal}" pattern="#,##0.00"/>
@@ -688,7 +688,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
                                                                 <th id="totalNonTRSTax">
-                                                                    <span>${sessionScope.languageJSON.earningTable.totalNonTRSTax}</span>
+                                                                    <span>${sessionScope.languageJSON.earningTable.totalNonTRSTax}:</span>
                                                                 </th>
                                                                 <td headers="thisPeriod04 totalNonTRSTax">
                                                                         <fmt:formatNumber value="${earnings.earningsNonTrsTaxTotal}" pattern="#,##0.00"/>
@@ -721,7 +721,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                 </c:forEach>
                                                             <tr class="total-tr">
                                                                 <th id="totalNonTRSNonTax">
-                                                                    <span>${sessionScope.languageJSON.earningTable.totalNonTRSNonTax}</span>
+                                                                    <span>${sessionScope.languageJSON.earningTable.totalNonTRSNonTax}:</span>
                                                                 </th>
                                                                 <td headers="thisPeriod05 totalNonTRSNonTax">
                                                                         <fmt:formatNumber value="${earnings.earningsNonTrsNonTaxTotal}" pattern="#,##0.00"/>
@@ -736,11 +736,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     >
                                                         <thead>
                                                             <tr>
-                                                                <th id="otherDeductionsTitle" class="text-center" style="width:200px;">${sessionScope.languageJSON.earningTable.otherDeductions}</th>
+                                                                <th id="otherDeductionsTitle" class="text-left" style="width:200px;">${sessionScope.languageJSON.earningTable.otherDeductions}</th>
                                                                 <th id="cafeTitle" class="text-center">${sessionScope.languageJSON.earningTable.cafe}</th>
-                                                                <th id="thisPeriod06" class="text-center" style="width:60px;">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
-                                                                <th id="employerContribution" class="text-center sameWidth20">${sessionScope.languageJSON.earningTable.employerContribution}</th>
-                                                                <th id="calendarYTD" class="print-td text-center" style="width:85px;">
+                                                                <th id="thisPeriod06" class="text-right" style="width:60px;">${sessionScope.languageJSON.earningTable.thisPeriod}</th>
+                                                                <th id="employerContribution" class="text-right sameWidth20">${sessionScope.languageJSON.earningTable.employerContribution}</th>
+                                                                <th id="calendarYTD" class="print-td text-right" style="width:85px;">
                                                                     ${sessionScope.languageJSON.earningTable.calendarYTD} ${year}
                                                                 </th>
                                                             </tr>
@@ -783,7 +783,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                             </c:if>
                                                             <tr class="total-tr">
                                                                 <th id="totalOtherDeductionsOther" colspan="2">
-                                                                    <b>${sessionScope.languageJSON.earningTable.totalOtherDeductions}</b>
+                                                                    <b>${sessionScope.languageJSON.earningTable.totalOtherDeductions}:</b>
                                                                 </th>
                                                                 <td headers="thisPeriod06 totalOtherDeductionsOther">
                                                                         <fmt:formatNumber value="${earnings.earningsOtherTotal}" pattern="#,##0.00"/>
@@ -801,54 +801,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </div>
                                         </div>
                                         <div class="print-block hr-black"></div>
-                                     <%--    <c:if test ="${!isSupplemental}"> --%>
-	                                        <table
-	                                            class="table responsive-table border-table print-table tableColumn4"
-	                                        >
-	                                            <thead>
-	                                                <tr>
-	                                                    <th>${sessionScope.languageJSON.earningTable.leaveType}</th>
-	                                                    <th class="text-right">${sessionScope.languageJSON.earningTable.unitsUsedThisPeriod}</th>
-	                                                    <th class="text-right">${sessionScope.languageJSON.earningTable.balance}</th>
-	                                                    <th class="print-td text-right">${sessionScope.languageJSON.earningTable.unitsUsedYearToDate}</th>
-	                                                </tr>
-	                                            </thead>
-	                                            <tbody>
-	                                                    <c:if test="${fn:length(earnings.leave) > 0}">
-	                                                    <c:forEach items="${earnings.leave}" var="leave" varStatus="counter">
-	                                                    <tr>
-	                                                        <td class="text-left" data-title="${sessionScope.languageJSON.earningTable.leaveType}">
-	                                                                ${leave.code} - ${leave.description}
-	                                                        </td>
-	                                                        <td class="text-right" data-title="${sessionScope.languageJSON.earningTable.unitsUsedThisPeriod}">
-	                                                                <fmt:formatNumber value="${leave.unitsPrior}" pattern="#,##0.000"/>
-	                                                        </td>
-	                                                        <td class="text-right" data-title="${sessionScope.languageJSON.earningTable.balance}">
-	                                                                <fmt:formatNumber value="${leave.balance}" pattern="#,##0.000"/>
-	                                                        </td>
-	                                                        <td
-	                                                            class="print-td text-right"
-	                                                            data-title="${sessionScope.languageJSON.earningTable.unitsUsedYearToDate}"
-	                                                        >
-	                                                            ${leave.unitsUsed}
-	                                                        </td>
-	                                                    </tr>
-	                                                </c:forEach>
-	                                                </c:if>
-	                                                <c:if test="${fn:length(earnings.leave) == 0}">
-	                                                <tr>
-	                                                    <td colspan="4" class="text-center">
-	                                                        <span>${sessionScope.languageJSON.earningTable.noData}</span>
-	                                                    </td>
-	                                                </tr>
-	                                            </c:if>
-	                                            </tbody>
-	                                        </table>
-	                                   <%--  </c:if> --%>
-                                        <div class="show-all-screen hr-black"></div>
-                                        <table
-                                            class="table border-table responsive-table payRoll-table print-table tableColumn4"
-                                        >
+                                  		 <table class="table border-table responsive-table payRoll-table print-table tableColumn4">
                                             <thead>
                                                 <tr>
                                                     <th>${sessionScope.languageJSON.currentPayTable.bankName}</th>
@@ -884,7 +837,53 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </c:forEach>
                                             </tbody>
                                         </table>
-                                    </div>
+                                  
+                                        <div class="show-all-screen hr-black"></div>
+                                           <%--    <c:if test ="${!isSupplemental}"> --%>
+		                                        <table
+		                                            class="table responsive-table border-table print-table tableColumn4"
+		                                        >
+		                                            <thead>
+		                                                <tr>
+		                                                    <th>${sessionScope.languageJSON.earningTable.leaveType}</th>
+		                                                    <th class="text-right">${sessionScope.languageJSON.earningTable.unitsUsedThisPeriod}</th>
+		                                                    <th class="text-right">${sessionScope.languageJSON.earningTable.balance}</th>
+		                                                    <th class="print-td text-right">${sessionScope.languageJSON.earningTable.unitsUsedYearToDate}</th>
+		                                                </tr>
+		                                            </thead>
+		                                            <tbody>
+		                                                    <c:if test="${fn:length(earnings.leave) > 0}">
+		                                                    <c:forEach items="${earnings.leave}" var="leave" varStatus="counter">
+		                                                    <tr>
+		                                                        <td class="text-left" data-title="${sessionScope.languageJSON.earningTable.leaveType}">
+		                                                                ${leave.code} - ${leave.description}
+		                                                        </td>
+		                                                        <td class="text-right" data-title="${sessionScope.languageJSON.earningTable.unitsUsedThisPeriod}">
+		                                                                <fmt:formatNumber value="${leave.unitsPrior}" pattern="#,##0.000"/>
+		                                                        </td>
+		                                                        <td class="text-right" data-title="${sessionScope.languageJSON.earningTable.balance}">
+		                                                                <fmt:formatNumber value="${leave.balance}" pattern="#,##0.000"/>
+		                                                        </td>
+		                                                        <td
+		                                                            class="print-td text-right"
+		                                                            data-title="${sessionScope.languageJSON.earningTable.unitsUsedYearToDate}"
+		                                                        >
+		                                                            ${leave.unitsUsed}
+		                                                        </td>
+		                                                    </tr>
+		                                                </c:forEach>
+		                                                </c:if>
+		                                                <c:if test="${fn:length(earnings.leave) == 0}">
+		                                                <tr>
+		                                                    <td colspan="4" class="text-center">
+		                                                        <span>${sessionScope.languageJSON.earningTable.noData}</span>
+		                                                    </td>
+		                                                </tr>
+		                                            </c:if>
+		                                            </tbody>
+		                                        </table>
+		                                   <%--  </c:if> --%>
+                                         </div>
                                 </div>
                                   </c:if>
                             </div>
