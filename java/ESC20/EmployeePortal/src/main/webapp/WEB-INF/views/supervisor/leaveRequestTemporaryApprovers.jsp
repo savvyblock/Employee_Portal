@@ -14,9 +14,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 			
             <main class="content-wrapper" tabindex="-1">
                     <section class="content">
-                    <h1 class="clearfix section-title">
-                        <span>${sessionScope.languageJSON.title.setTemporaryApprovers}</span>
-                    </h1>
+                    <div class="clearfix section-title">
+                        <h1 class="pageTitle">${sessionScope.languageJSON.title.setTemporaryApprovers}</h1>
+                    </div>
                     <div class="showSelectSupervisor">
                         <label class="form-title"><span>${sessionScope.languageJSON.label.supervisorHierarchy}</span>: </label>
                         <c:forEach var="item" items="${chain}" varStatus="status">

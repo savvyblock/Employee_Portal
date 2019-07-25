@@ -14,7 +14,9 @@
 		<%@ include file="../commons/bar.jsp"%>
 		<main class="content-wrapper" tabindex="-1">
 		<section class="content">
-			<h1 class="clearfix no-print section-title">${sessionScope.languageJSON.title.leaveBalances}</h1>
+			<div class="clearfix no-print section-title">
+				<h1 class="pageTitle">${sessionScope.languageJSON.title.leaveBalances}</h1>
+			</div>
 			<div class="content-white">
 			    <c:if test="${not empty sessionScope.options.messageLeave}">
                                 <p class="topMsg error-hint" role="alert">${sessionScope.options.messageLeave}</p>

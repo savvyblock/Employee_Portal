@@ -362,6 +362,8 @@
 .content-wrapper > .content .section-title .pageTitle {
   display: inline-block;
   margin: 0;
+  font-size: 21px;
+  font-weight: bold;
 }
 
 .content-wrapper > .content .section-title .btn {

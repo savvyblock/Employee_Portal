@@ -40,6 +40,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                     </div>
                     <div class="toPrint content-white EMP-detail">
+                            <div class="currentTimeBox">
+                                <div class="currentTime"></div>
+                            </div>
                         <div class="exportPDFBox">
                                 <div class="print-block print-title">
                                         <div style="text-align:center;margin-bottom:10px;">

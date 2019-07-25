@@ -55,7 +55,26 @@ $(function() {
         $("#globalSet").val(language)
         initialLocaleCode = language
     }
-    
+    var dateCu = new Date();
+    var cuYear = dateCu.getFullYear(); 
+    var cuMonth = dateCu.getMonth() + 1; 
+    var cuDay = dateCu.getDate();
+    var cuHour = dateCu.getHours();
+    var cuMin = dateCu.getMinutes();
+    var cuSecond = dateCu.getSeconds();
+    var time
+    if(cuHour>12){
+        cuHour = cuHour-12;
+        time = cuHour+ ":" +cuMin + ":" + cuSecond +" PM"
+    }else{
+        if(cuHour==12){
+            time = cuHour+ ":" +cuMin + ":" + cuSecond+" PM"
+        }else{
+            cuHour = cuHour < 10 ? "0" + cuHour : cuHour;
+            time = cuHour+ ":" +cuMin + ":" + cuSecond+" AM"
+        }
+    }
+    $(".currentTime").html(cuMonth+'-'+cuDay+'-'+cuYear + '  ' +time)
 })
 function setGlobal(){
     if (getCookie(name)&&getCookie(name) != '') {

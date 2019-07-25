@@ -43,6 +43,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                        
                             <div class="toPrint content-white EMP-detail earningPage">
+                                    <div class="currentTimeBox">
+                                            <div class="currentTime"></div>
+                                        </div>
                                 <div class="exportPDFBox" id="exportPDFBox">
                                         <div class="print-block print-title">
                                                 <div style="text-align:center;margin-bottom:10px;">
@@ -224,7 +227,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                               
                                 <div class="needToClone">                                
                                     <table
-                                        class="no-print no-thead table no-border-table responsive-table max-w-550 earning-title-table"
+                                        class="no-print no-thead table no-border-table responsive-table max-w-480 earning-title-table"
                                     >
                                         <tbody>
                                             <tr>

@@ -15,7 +15,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
             <main class="content-wrapper" id="content" tabindex="-1">
                 <section class="content">
-                    <h1 class="clearfix no-print section-title">${sessionScope.languageJSON.title.deductions}</h1>
+                    <div class="clearfix no-print section-title">
+                        <h1 class="pageTitle">${sessionScope.languageJSON.title.deductions}</h1> 
+                    </div>
                     <div class="content-white EMP-detail">
                             <c:if test="${not empty sessionScope.options.messageDeductions}">
                                 <p class="topMsg error-hint" role="alert">${sessionScope.options.messageDeductions}</p>

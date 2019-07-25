@@ -14,9 +14,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 			
             <main class="content-wrapper" tabindex="-1">
                     <section class="content">
-                            <h1 class="clearfix section-title">
-                                <span>${sessionScope.languageJSON.title.calendar}</span>
-                            </h1>
+                            <div class="clearfix section-title">
+                                <h1>${sessionScope.languageJSON.title.calendar}</h1>
+                            </div>
                             <div class="container-fluid">
                                 
                                 <div class="content-white">

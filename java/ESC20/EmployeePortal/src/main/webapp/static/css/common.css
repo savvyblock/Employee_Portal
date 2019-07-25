@@ -530,6 +530,10 @@ input:focus {
   max-width: 550px !important;
 }
 
+.max-w-480 {
+  max-width: 480px !important;
+}
+
 .unit-dollar {
   display: inline-block;
   padding-right: 5px;
@@ -693,6 +697,10 @@ input:focus {
 
 .table.earning-title-table td.td-title, .table.earning-title-table th.td-title {
   width: 160px;
+}
+
+.table.earning-title-table td.td-title.column1, .table.earning-title-table th.td-title.column1 {
+  width: 130px;
 }
 
 .table thead th {
@@ -1258,4 +1266,16 @@ input:focus {
 
 .textCapital {
   text-transform: capitalize;
+}
+
+.currentTimeBox {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.currentTimeBox .currentTime {
+  display: inline-block;
+  border: 1px solid #6d6c6c;
+  padding: 0 10px;
+  line-height: 30px;
 }
