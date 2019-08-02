@@ -63,6 +63,8 @@ $(function() {
     var cuMin = dateCu.getMinutes();
     var cuSecond = dateCu.getSeconds();
     var time
+    cuMin = cuMin > 9?cuMin:"0"+cuMin
+    cuSecond = cuSecond > 9?cuSecond:"0"+cuSecond
     if(cuHour>12){
         cuHour = cuHour-12;
         time = cuHour+ ":" +cuMin + ":" + cuSecond +" PM"
@@ -70,7 +72,7 @@ $(function() {
         if(cuHour==12){
             time = cuHour+ ":" +cuMin + ":" + cuSecond+" PM"
         }else{
-            cuHour = cuHour < 10 ? "0" + cuHour : cuHour;
+            // cuHour = cuHour < 10 ? "0" + cuHour : cuHour;
             time = cuHour+ ":" +cuMin + ":" + cuSecond+" AM"
         }
     }
