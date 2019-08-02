@@ -128,7 +128,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 			</h2>
 			<div class="flex self-insured-flex no-print">
 					<div class="self-insured-tips">
-							<span>${sessionScope.languageJSON.info1095Table.ifEmployerProvidedSelfInsurance}</span>
+							<span>${sessionScope.languageJSON.info1095Table.ifEmployerProvidedSelfInsurance02}</span>
 					</div>
 					<div class="self-insured-check">
 							<div>

@@ -166,9 +166,13 @@ public class CurrentPayInformationController{
 		{
 			print.setEcityst(print.getEcityst() + "-" + userDetail.getAddrZip4().trim());
 		}
+		if(userDetail.getPhoneArea()!=null && userDetail.getPhoneNbr() != null && userDetail.getPhoneNbr().trim().length()>0) {
+			print.setPhoneNumber(userDetail.getPhoneArea().trim()+"-"+userDetail.getPhoneNbr().trim().substring(0,3)+"-"+userDetail.getPhoneNbr().trim().substring(3));
+		}
+		else {
+			print.setPhoneNumber("");
+		}
 		
-		//print.setPhoneNumber(userDetail.getPhoneArea()+"-"+userDetail.getPhoneNbr());
-		print.setPhoneNumber("");
 		print.setEmployeeNumber(userDetail.getEmpNbr());
 		if(userDetail.getDob()!=null && userDetail.getDob().length()>=8)
 			print.setDateOfBirth(userDetail.getDob());
