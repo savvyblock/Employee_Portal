@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningJobTab" pageWidth="315" pageHeight="792" columnWidth="315" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="b9963339-7046-472f-b409-301991f980bf">
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningJobTab" pageWidth="315" pageHeight="792" whenNoDataType="NoPages" columnWidth="315" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="b9963339-7046-472f-b409-301991f980bf">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="2.4793388429752063"/>
@@ -146,31 +147,32 @@ $F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
 		<band/>
 	</title>
 	<pageHeader>
-		<band height="15">
+		<band height="26">
 			<line>
-				<reportElement x="2" y="13" width="141" height="1" uuid="2db71fa4-a384-41fa-a337-7cb067ea7b58"/>
+				<reportElement x="2" y="25" width="141" height="1" uuid="2db71fa4-a384-41fa-a337-7cb067ea7b58"/>
 			</line>
 			<line>
-				<reportElement x="145" y="13" width="48" height="1" uuid="bd3235ce-84f2-4784-b060-25bcba9a501d"/>
+				<reportElement x="145" y="25" width="48" height="1" uuid="bd3235ce-84f2-4784-b060-25bcba9a501d"/>
 			</line>
 			<line>
-				<reportElement x="195" y="13" width="52" height="1" uuid="89fac33e-7f43-45f9-8e4c-f3ed71f49adc"/>
+				<reportElement x="195" y="25" width="52" height="1" uuid="89fac33e-7f43-45f9-8e4c-f3ed71f49adc"/>
 			</line>
 			<line>
-				<reportElement x="249" y="13" width="65" height="1" uuid="1663e569-b26c-4cce-94f9-f9277f1dae37"/>
+				<reportElement x="249" y="25" width="65" height="1" uuid="1663e569-b26c-4cce-94f9-f9277f1dae37"/>
 			</line>
 			<frame>
 				<reportElement x="1" y="1" width="312" height="13" uuid="127b646a-d02d-4cb1-b4d6-faf704537f1e">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="start"/>
 				</reportElement>
 				<frame>
-					<reportElement x="1" y="1" width="310" height="12" uuid="e44bb1f2-b377-4221-b122-0c7d52200b25">
+					<reportElement x="1" y="13" width="310" height="12" uuid="e44bb1f2-b377-4221-b122-0c7d52200b25">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
 						<reportElement key="staticText" x="1" y="1" width="141" height="10" backcolor="#C0C0C0" uuid="d1b6d91e-2cd9-46de-bfa3-dd7e121bd411">
 							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
 							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
+							<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -188,6 +190,7 @@ $F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
 						<reportElement key="staticText" x="144" y="1" width="48" height="10" backcolor="#C0C0C0" uuid="e848fc82-0269-4802-9c4b-2d60967edfd1">
 							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
 							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
+							<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -205,6 +208,7 @@ $F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
 						<reportElement key="staticText" x="194" y="1" width="48" height="10" backcolor="#C0C0C0" uuid="25d73c42-b000-4a1d-a1d3-ac4509c7b287">
 							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
 							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
+							<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -222,6 +226,7 @@ $F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
 						<reportElement key="staticText" x="244" y="1" width="65" height="10" backcolor="#C0C0C0" uuid="276aaf22-6d7e-49f5-a5e7-ccdbbaf9215b">
 							<property name="net.sf.jasperreports.export.pdf.tag.td"/>
 							<property name="net.sf.jasperreports.export.pdf.tag.th" value="full"/>
+							<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -243,18 +248,19 @@ $F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
 		<band/>
 	</columnHeader>
 	<detail>
-		<band height="17">
+		<band height="12">
 			<frame>
-				<reportElement x="1" y="1" width="312" height="15" uuid="e87d5e7f-4e20-4f47-921b-b21d3ff6c0a7">
+				<reportElement x="1" y="1" width="312" height="11" uuid="e87d5e7f-4e20-4f47-921b-b21d3ff6c0a7">
 					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
 				</reportElement>
 				<frame>
-					<reportElement x="1" y="1" width="310" height="13" uuid="3fe4d1d4-2f55-4e11-9077-5fe39e80ea2e">
+					<reportElement x="1" y="-5" width="310" height="11" uuid="3fe4d1d4-2f55-4e11-9077-5fe39e80ea2e">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="3" y="1" width="141" height="11" backcolor="#C0C0C0" uuid="36a8587a-8e24-451c-98f2-4c262f7c9320">
+						<reportElement key="textField" x="1" y="-2" width="141" height="11" backcolor="#C0C0C0" uuid="36a8587a-8e24-451c-98f2-4c262f7c9320">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -269,7 +275,7 @@ $F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
 						<textFieldExpression><![CDATA[$F{display}]]></textFieldExpression>
 					</textField>
 					<textField pattern="###,###.00" isBlankWhenNull="true">
-						<reportElement key="textField" x="148" y="1" width="48" height="11" backcolor="#C0C0C0" uuid="e1dc958f-7681-4cdb-92e1-fad100fb33a2">
+						<reportElement key="textField" x="148" y="-2" width="48" height="11" backcolor="#C0C0C0" uuid="e1dc958f-7681-4cdb-92e1-fad100fb33a2">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 							<printWhenExpression><![CDATA[($F{pay_type}.equals( "3" ) || $F{pay_type}.equals( "4" ))? new Boolean(true):new Boolean(false)]]></printWhenExpression>
 						</reportElement>
@@ -286,7 +292,7 @@ $F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
 						<textFieldExpression><![CDATA[$F{xmital_hrs_wrk}.doubleValue() == 0 ? $F{reg_hrs_wrk}:$F{xmital_hrs_wrk}]]></textFieldExpression>
 					</textField>
 					<textField pattern="###,###,###.00" isBlankWhenNull="true">
-						<reportElement key="textField" x="195" y="1" width="52" height="11" backcolor="#C0C0C0" uuid="c0012456-8cd5-4105-88f6-1f3b38ed8adb">
+						<reportElement key="textField" x="195" y="-2" width="52" height="11" backcolor="#C0C0C0" uuid="c0012456-8cd5-4105-88f6-1f3b38ed8adb">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -302,7 +308,7 @@ $F{bhr_pay_hist_std_gross}.doubleValue() != 0 ? $F{pay_rate}:new Double(0)
 						<textFieldExpression><![CDATA[$F{pay_rate}]]></textFieldExpression>
 					</textField>
 					<textField pattern="###,###,###.00" isBlankWhenNull="true">
-						<reportElement key="textField" x="247" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="790f8822-baad-44c1-ad15-0ae8f38b80cc">
+						<reportElement key="textField" x="247" y="-2" width="60" height="11" backcolor="#C0C0C0" uuid="790f8822-baad-44c1-ad15-0ae8f38b80cc">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -336,15 +342,16 @@ $F{pay_rate}]]></textFieldExpression>
 	<summary>
 		<band height="33">
 			<frame>
-				<reportElement x="1" y="1" width="314" height="18" uuid="9bd8e4d1-3cf0-40f4-b379-fa9a13aad4ff">
+				<reportElement x="1" y="-5" width="314" height="18" uuid="9bd8e4d1-3cf0-40f4-b379-fa9a13aad4ff">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="end"/>
 				</reportElement>
 				<frame>
-					<reportElement x="1" y="1" width="313" height="15" uuid="04519d97-5a8e-4771-b181-b349e2269d91">
+					<reportElement x="1" y="1" width="310" height="15" uuid="04519d97-5a8e-4771-b181-b349e2269d91">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
 					<staticText>
-						<reportElement key="staticText" x="1" y="1" width="106" height="11" backcolor="#C0C0C0" uuid="443e2358-2014-4a65-a9db-9ab062a36700">
+						<reportElement key="staticText" x="1" y="-2" width="106" height="11" backcolor="#C0C0C0" uuid="443e2358-2014-4a65-a9db-9ab062a36700">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -360,7 +367,7 @@ $F{pay_rate}]]></textFieldExpression>
 						<text><![CDATA[Total Standard Gross:]]></text>
 					</staticText>
 					<staticText>
-						<reportElement key="staticText" x="108" y="1" width="136" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="644fd8a0-67b1-4cce-9a36-c6395f28cc43">
+						<reportElement key="staticText" x="108" y="-2" width="136" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="644fd8a0-67b1-4cce-9a36-c6395f28cc43">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 							<printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
 						</reportElement>
@@ -377,7 +384,7 @@ $F{pay_rate}]]></textFieldExpression>
 						<text><![CDATA[This dw used by ytd rept also.]]></text>
 					</staticText>
 					<textField pattern="###,###,###.00" isBlankWhenNull="true">
-						<reportElement key="textField" x="244" y="1" width="62" height="11" backcolor="#C0C0C0" uuid="ee30a717-5778-4ad5-809b-de838eef87f1">
+						<reportElement key="textField" x="244" y="-2" width="62" height="11" backcolor="#C0C0C0" uuid="ee30a717-5778-4ad5-809b-de838eef87f1">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -395,8 +402,9 @@ $F{pay_rate}]]></textFieldExpression>
 				</frame>
 			</frame>
 			<staticText>
-				<reportElement key="staticText" x="1" y="19" width="315" height="10" backcolor="#C0C0C0" uuid="48c441c7-f281-4962-a16c-8a76b5654c13">
+				<reportElement key="staticText" x="1" y="5" width="310" height="10" backcolor="#C0C0C0" uuid="48c441c7-f281-4962-a16c-8a76b5654c13">
 					<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
