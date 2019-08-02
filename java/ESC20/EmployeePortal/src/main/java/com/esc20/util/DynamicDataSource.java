@@ -21,7 +21,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 		DataSource dataSource = null;
 		try {
 			if (dataSource == null && (lookupKey == null)) {
-				dataSource = (DataSource)dataSourceLookup.getDataSource("java:jboss/DB001904");
+				dataSource = (DataSource)dataSourceLookup.getDataSource("java:jboss/TxeisDB");
 				return dataSource;
 			}else {
 				if(lookupKey != null)

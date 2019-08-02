@@ -1,6 +1,8 @@
 package com.esc20.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Earnings;
+import com.esc20.nonDBModels.EarningsOther;
 import com.esc20.nonDBModels.EarningsPrint;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Options;
@@ -87,6 +90,16 @@ public class EarningsController {
 			freq = Frequency.getFrequency(StringUtil.mid(latestPayDate.getDateFreq(), 9, 1));
 			year = latestPayDate.getDateFreq().substring(0, 4);
 		}
+		//Sort for earnings.others
+		  Collections.sort(earnings.getOther(), new Comparator<EarningsOther>() {
+				@Override
+				public int compare(EarningsOther o1, EarningsOther o2) {
+					String s1 = String.valueOf(o1.getDescription());
+	                String s2 = String.valueOf(o2.getDescription());
+	                return s1.compareTo(s2);
+				}
+	    	});
+		
 		mav.setViewName("/inquiry/earnings");
 		mav.addObject("days", days);
 		mav.addObject("selectedPayDate", latestPayDate);
