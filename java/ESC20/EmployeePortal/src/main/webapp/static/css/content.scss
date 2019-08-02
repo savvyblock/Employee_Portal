@@ -291,6 +291,17 @@
     .section-title {
         color: #000;
         margin: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 31px;
+        @media (max-width:374px){
+            display: block;
+            height: auto;
+        }
+        &:after{
+            display: none;
+        }
         .pageTitle{
             display: inline-block;
             margin: 0;
@@ -2011,5 +2022,27 @@
         word-spacing: normal;
         word-break: break-all;
         word-break: break-word;
+    }
+}
+.earningTitleWrap{
+    max-width: 1050px;
+    .earningTitleWrap-inner{
+        width: 50%;
+        padding-right: 20px;
+        @media (min-width:1361px){
+            .earning-title-table{
+                tbody{
+                    tr{
+                        td.left-td{
+                            padding-right: 15px;
+                        }
+                    }
+                }
+            }
+        }
+        @media (max-width:1360px){
+            width: 100%;
+            padding-right: 0;
+        }
     }
 }
