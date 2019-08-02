@@ -357,6 +357,21 @@
 .content-wrapper > .content .section-title {
   color: #000;
   margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 31px;
+}
+
+@media (max-width: 374px) {
+  .content-wrapper > .content .section-title {
+    display: block;
+    height: auto;
+  }
+}
+
+.content-wrapper > .content .section-title:after {
+  display: none;
 }
 
 .content-wrapper > .content .section-title .pageTitle {
@@ -2228,4 +2243,26 @@
   word-spacing: normal;
   word-break: break-all;
   word-break: break-word;
+}
+
+.earningTitleWrap {
+  max-width: 1050px;
+}
+
+.earningTitleWrap .earningTitleWrap-inner {
+  width: 50%;
+  padding-right: 20px;
+}
+
+@media (min-width: 1361px) {
+  .earningTitleWrap .earningTitleWrap-inner .earning-title-table tbody tr td.left-td {
+    padding-right: 15px;
+  }
+}
+
+@media (max-width: 1360px) {
+  .earningTitleWrap .earningTitleWrap-inner {
+    width: 100%;
+    padding-right: 0;
+  }
 }

@@ -24,15 +24,16 @@
 						<i class="fa fa-calendar"></i>
 					</a>
 				</div>
-				<c:if test="${not empty sessionScope.options.messageLeaveRequest}">
-                     <p class="topMsg error-hint" role="alert">${sessionScope.options.messageLeaveRequest}</p>
-                 </c:if>
- 				<c:if test="${!haveSupervisor}">
-					<p class="topMsg error-hint" role="alert">${sessionScope.languageJSON.label.noSupervisorFound}</p>
-				</c:if>
 				
 			</div>
 			<div class="content-white">
+					<c:if test="${not empty sessionScope.options.messageLeaveRequest}">
+							<p class="topMsg error-hint" role="alert">${sessionScope.options.messageLeaveRequest}</p>
+					</c:if>
+					<c:if test="${!haveSupervisor}">
+					<p class="topMsg error-hint" role="alert">${sessionScope.languageJSON.label.noSupervisorFound}</p>
+				</c:if>
+ 
 					<form
                             class="no-print searchForm"
                             action="leaveRequestByFreqency"

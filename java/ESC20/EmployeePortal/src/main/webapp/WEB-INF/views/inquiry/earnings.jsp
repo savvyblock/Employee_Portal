@@ -225,68 +225,70 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </div>
                                 </form>
                               
-                                <div class="needToClone">                                
-                                    <table
-                                        class="no-print no-thead table no-border-table responsive-table max-w-480 earning-title-table"
-                                    >
-                                        <tbody>
-                                            <tr>
-                                                <th id="campus" class="td-title column1"><span>${sessionScope.languageJSON.earningTable.campus}</span>:</th>
-                                                <td headers="campus"
-                                                    class="td-content text-right" data-title="${sessionScope.languageJSON.earningTable.campus}"
-                                                   
-                                                    
-                                                >
-                                                ${earnings.info.campusId} ${earnings.info.campusName}
-                                                </td>
-                                                <td colspan="2"></td>
-                                            </tr>
-                                            <tr>
-                                                <th id="checkNumber" class="td-title column1"><span>${sessionScope.languageJSON.earningTable.checkNumber}</span>:</th>
-                                                <td headers="checkNumber"
-                                                    class="td-content" data-title="${sessionScope.languageJSON.earningTable.checkNumber}"
-                                                   
-                                                >
-                                                ${earnings.info.checkNumber}
-                                                </td>
-                                                <th id="periodEndingDate" class="td-title">
-                                                        <span>${sessionScope.languageJSON.earningTable.periodEndingDate}</span>:
-                                                </th>
-                                                <td headers="periodEndingDate"
-                                                    class="td-content" data-title="${sessionScope.languageJSON.earningTable.periodEndingDate}"
-                                                   
-                                                >
-                                                ${earnings.info.periodEndingDate}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th id="withholdingStatus" class="td-title column1">
-                                                        <span>${sessionScope.languageJSON.earningTable.withholdingStatus}</span>:
-                                                </th>
-                                                <td headers="withholdingStatus"
-                                                data-title="${sessionScope.languageJSON.earningTable.withholdingStatus}"
-                                                    class="td-content"
-                                                   
-                                                >
-                                                    <c:if test="${earnings.info.withholdingStatus =='M'}">
-                                                        <span>${sessionScope.languageJSON.label.married}</span>
-                                                    </c:if>
-                                                    <c:if test="${earnings.info.withholdingStatus =='S'}">
-                                                            <span>${sessionScope.languageJSON.label.single}</span>
-                                                    </c:if>
-                                                </td>
-                                                <th id="numberOfExemptions" class="td-title">
-                                                        <span>${sessionScope.languageJSON.earningTable.numberOfExemptions}</span>:
-                                                </th>
-                                                <td headers="numberOfExemptions"
-                                                    class="td-content" data-title="${sessionScope.languageJSON.earningTable.numberOfExemptions}"
-                                                   
-                                                >
-                                                ${earnings.info.numExceptions}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="needToClone">    
+                                    <div class="earningTitleWrap">
+                                        <div class="earningTitleWrap-inner">
+                                                <table
+                                                class="no-print no-thead table no-border-table responsive-table earning-title-table"
+                                            >
+                                                <tbody>
+                                                    <tr>
+                                                        <th id="campus" class="td-title column1"><span>${sessionScope.languageJSON.earningTable.campus}</span>:</th>
+                                                        <td headers="campus" class="td-content text-right left-td" data-title="${sessionScope.languageJSON.earningTable.campus}">
+                                                        ${earnings.info.campusId} ${earnings.info.campusName}
+                                                        </td>
+                                                        <td colspan="2"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th id="checkNumber" class="td-title column1"><span>${sessionScope.languageJSON.earningTable.checkNumber}</span>:</th>
+                                                        <td headers="checkNumber"
+                                                            class="td-content left-td" data-title="${sessionScope.languageJSON.earningTable.checkNumber}"
+                                                           
+                                                        >
+                                                        ${earnings.info.checkNumber}
+                                                        </td>
+                                                        <th id="periodEndingDate" class="td-title">
+                                                                <span>${sessionScope.languageJSON.earningTable.periodEndingDate}</span>:
+                                                        </th>
+                                                        <td headers="periodEndingDate"
+                                                            class="td-content" data-title="${sessionScope.languageJSON.earningTable.periodEndingDate}"
+                                                           
+                                                        >
+                                                        ${earnings.info.periodEndingDate}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th id="withholdingStatus" class="td-title column1">
+                                                                <span>${sessionScope.languageJSON.earningTable.withholdingStatus}</span>:
+                                                        </th>
+                                                        <td headers="withholdingStatus"
+                                                        data-title="${sessionScope.languageJSON.earningTable.withholdingStatus}"
+                                                            class="td-content left-td"
+                                                           
+                                                        >
+                                                            <c:if test="${earnings.info.withholdingStatus =='M'}">
+                                                                <span>${earnings.info.withholdingStatus}-${sessionScope.languageJSON.label.married}</span>
+                                                            </c:if>
+                                                            <c:if test="${earnings.info.withholdingStatus =='S'}">
+                                                                    <span>${earnings.info.withholdingStatus}-${sessionScope.languageJSON.label.single}</span>
+                                                            </c:if>
+                                                        </td>
+                                                        <th id="numberOfExemptions" class="td-title">
+                                                                <span>${sessionScope.languageJSON.earningTable.numberOfExemptions}</span>:
+                                                        </th>
+                                                        <td headers="numberOfExemptions"
+                                                            class="td-content" data-title="${sessionScope.languageJSON.earningTable.numberOfExemptions}"
+                                                           
+                                                        >
+                                                        ${earnings.info.numExceptions}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                           
+                                    </div>                            
+                                    
                                     <div class="hr-black"></div>
                                     <div class="earning-body">
 
