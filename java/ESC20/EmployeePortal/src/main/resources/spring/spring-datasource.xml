@@ -18,14 +18,14 @@
         http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
         
         
-    <jee:jndi-lookup id="DB001904" jndi-name="java:jboss/DB001904"/> 
+    <jee:jndi-lookup id="TxeisDB" jndi-name="java:jboss/TxeisDB"/> 
     <bean class="com.esc20.util.DynamicDataSource" id="dataSource">
 		<property name="targetDataSources">
 		<map key-type="java.lang.String">
-		  <entry value-ref="DB001904" key="DB001904"></entry>
+		  <entry value-ref="TxeisDB" key="TxeisDB"></entry>
 		</map>
 		</property>
-		<property name="defaultTargetDataSource" ref="DB001904"></property>
+		<property name="defaultTargetDataSource" ref="TxeisDB"></property>
 	</bean>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
