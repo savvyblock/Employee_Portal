@@ -135,8 +135,9 @@
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
-						<reportElement key="staticText" x="2" y="1" width="42" height="11" backcolor="#C0C0C0" uuid="4d181a51-149a-42a8-a72c-e27a39ddcae0">
+						<reportElement key="staticText" x="0" y="1" width="42" height="11" backcolor="#C0C0C0" uuid="4d181a51-149a-42a8-a72c-e27a39ddcae0">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -185,8 +186,9 @@
 						<text><![CDATA[Primary Campus:]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="326" y="1" width="245" height="11" backcolor="#C0C0C0" uuid="64d862a7-2fdd-49c7-a80f-f0708724fb39">
+						<reportElement key="textField" x="324" y="1" width="245" height="11" backcolor="#C0C0C0" uuid="64d862a7-2fdd-49c7-a80f-f0708724fb39">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -222,8 +224,9 @@
 $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="249" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="e2b54b1a-d64d-4bef-8623-7a26174f3ea6">
+						<reportElement key="staticText" x="251" y="1" width="60" height="11" backcolor="#C0C0C0" uuid="e2b54b1a-d64d-4bef-8623-7a26174f3ea6">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -247,8 +250,9 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
-						<reportElement key="staticText" x="2" y="1" width="52" height="11" backcolor="#C0C0C0" uuid="25ab872b-209c-4b3f-aff3-282e8419bd03">
+						<reportElement key="staticText" x="0" y="1" width="52" height="11" backcolor="#C0C0C0" uuid="25ab872b-209c-4b3f-aff3-282e8419bd03">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -267,8 +271,9 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 						<textFieldExpression><![CDATA[$F{bhr_pay_hist_chk_nbr}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="119" y="1" width="74" height="11" backcolor="#C0C0C0" uuid="09edc5e7-880a-4d46-92ef-966e805add7e">
+						<reportElement key="staticText" x="120" y="1" width="74" height="11" backcolor="#C0C0C0" uuid="09edc5e7-880a-4d46-92ef-966e805add7e">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -297,8 +302,9 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 						<text><![CDATA[Exempt:]]></text>
 					</staticText>
 					<textField pattern="#,###,##0" isBlankWhenNull="true">
-						<reportElement key="textField" x="326" y="1" width="27" height="11" backcolor="#C0C0C0" uuid="89b06951-e483-4a9e-b35f-08e15998f8b7">
+						<reportElement key="textField" x="324" y="1" width="27" height="11" backcolor="#C0C0C0" uuid="89b06951-e483-4a9e-b35f-08e15998f8b7">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -308,12 +314,14 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 					</textField>
 				</frame>
 				<frame>
-					<reportElement x="10" y="62" width="571" height="12" uuid="922d2a82-836b-405e-b724-7fc2403aa78d">
+					<reportElement x="12" y="62" width="571" height="12" uuid="922d2a82-836b-405e-b724-7fc2403aa78d">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<staticText>
-						<reportElement key="staticText" x="4" y="1" width="46" height="11" backcolor="#C0C0C0" uuid="6272c366-0cc5-4fe7-8bfd-eb0c2cc93658">
+						<reportElement key="staticText" x="0" y="1" width="46" height="11" backcolor="#C0C0C0" uuid="6272c366-0cc5-4fe7-8bfd-eb0c2cc93658">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -322,8 +330,9 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 						<text><![CDATA[Pay Date:]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="61" y="1" width="52" height="11" backcolor="#C0C0C0" uuid="adf00976-3009-4d43-a88e-5a0b25393ad2">
+						<reportElement key="textField" x="59" y="1" width="52" height="11" backcolor="#C0C0C0" uuid="adf00976-3009-4d43-a88e-5a0b25393ad2">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -334,8 +343,9 @@ $F{bhr_pay_hist_dt_of_pay}.substring(6,8)+"-"+
 $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="121" y="1" width="74" height="11" backcolor="#C0C0C0" uuid="38679108-1032-4f1c-a80f-d314cd820891">
+						<reportElement key="staticText" x="120" y="1" width="74" height="11" backcolor="#C0C0C0" uuid="38679108-1032-4f1c-a80f-d314cd820891">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -344,8 +354,9 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 						<text><![CDATA[Period Begin:]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="195" y="1" width="52" height="11" backcolor="#C0C0C0" uuid="9e20ef6a-ee0e-46e2-834c-d5df328b115c">
+						<reportElement key="textField" x="193" y="1" width="52" height="11" backcolor="#C0C0C0" uuid="9e20ef6a-ee0e-46e2-834c-d5df328b115c">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -354,8 +365,9 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 						<textFieldExpression><![CDATA[$F{bthr_pay_dates_dt_payper_beg} == null? "":$F{bthr_pay_dates_dt_payper_beg}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="253" y="1" width="62" height="11" backcolor="#C0C0C0" uuid="d41aebb8-57bb-4fea-81bb-86921215a521">
+						<reportElement key="staticText" x="251" y="1" width="62" height="11" backcolor="#C0C0C0" uuid="d41aebb8-57bb-4fea-81bb-86921215a521">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -364,8 +376,9 @@ $F{bhr_pay_hist_dt_of_pay}.substring(0,4))]]></textFieldExpression>
 						<text><![CDATA[Period End:]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="328" y="1" width="53" height="11" backcolor="#C0C0C0" uuid="9786c850-9b1b-4f26-bcb3-fa96aa78a8df">
+						<reportElement key="textField" x="324" y="1" width="53" height="11" backcolor="#C0C0C0" uuid="9786c850-9b1b-4f26-bcb3-fa96aa78a8df">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
