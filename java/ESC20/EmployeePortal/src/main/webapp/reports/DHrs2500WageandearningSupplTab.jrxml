@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningSupplTab" pageWidth="612" pageHeight="792" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="fcf27442-f49c-42de-9dee-f711876f8081">
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningSupplTab" pageWidth="612" pageHeight="792" whenNoDataType="NoPages" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="fcf27442-f49c-42de-9dee-f711876f8081">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
@@ -7,6 +8,7 @@
 	<property name="ireport.zoom" value="3.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -143,7 +145,9 @@ group by bhr_pay_distr_hist.pay_freq,
 						<text><![CDATA[This Period]]></text>
 					</staticText>
 					<line>
-						<reportElement key="line-1" x="2" y="11" width="245" height="1" uuid="3da62895-d22a-456a-a0c5-c3001a676210"/>
+						<reportElement key="line-1" x="1" y="11" width="245" height="1" uuid="3da62895-d22a-456a-a0c5-c3001a676210">
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						</reportElement>
 					</line>
 					<line>
 						<reportElement key="line-2" x="251" y="11" width="60" height="1" uuid="8a16598c-a7be-44dc-8bbb-cafd513b8fe9"/>
@@ -156,17 +160,17 @@ group by bhr_pay_distr_hist.pay_freq,
 		<band/>
 	</columnHeader>
 	<detail>
-		<band height="16">
+		<band height="14">
 			<frame>
-				<reportElement x="1" y="1" width="390" height="15" uuid="883638fe-3d31-4870-a1a7-17af96f1ad4c">
+				<reportElement x="1" y="1" width="390" height="13" uuid="883638fe-3d31-4870-a1a7-17af96f1ad4c">
 					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
 				</reportElement>
 				<frame>
-					<reportElement x="1" y="1" width="380" height="14" uuid="a67cb9e9-5dbf-4665-ba66-3cef30bed36d">
+					<reportElement x="1" y="1" width="380" height="11" uuid="a67cb9e9-5dbf-4665-ba66-3cef30bed36d">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="4" y="1" width="243" height="11" backcolor="#C0C0C0" uuid="0436f5ae-af1f-4b58-bd7d-291b512845f9">
+						<reportElement key="textField" x="4" y="-6" width="243" height="13" backcolor="#C0C0C0" uuid="0436f5ae-af1f-4b58-bd7d-291b512845f9">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -191,7 +195,7 @@ group by bhr_pay_distr_hist.pay_freq,
       : $F{short_descr}]]></textFieldExpression>
 					</textField>
 					<textField pattern="###,###,###.00" isBlankWhenNull="true">
-						<reportElement key="textField" x="256" y="1" width="55" height="11" backcolor="#C0C0C0" uuid="9e45db45-aa8c-4508-a4d1-61fa0ec438e2">
+						<reportElement key="textField" x="256" y="-6" width="55" height="13" backcolor="#C0C0C0" uuid="9e45db45-aa8c-4508-a4d1-61fa0ec438e2">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -227,7 +231,7 @@ group by bhr_pay_distr_hist.pay_freq,
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="4" y="1" width="118" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="1f1f875d-f1cf-4f0a-9372-5e692cf02b05">
+						<reportElement key="textField" x="4" y="-8" width="118" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="1f1f875d-f1cf-4f0a-9372-5e692cf02b05">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -245,7 +249,7 @@ group by bhr_pay_distr_hist.pay_freq,
         "Total Non-TRS Non-Taxable:"))]]></textFieldExpression>
 					</textField>
 					<textField pattern="###,###.00" isBlankWhenNull="true">
-						<reportElement key="textField" x="256" y="1" width="55" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="6c566cec-c536-4664-abd2-df1a553342f1">
+						<reportElement key="textField" x="256" y="-8" width="55" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="6c566cec-c536-4664-abd2-df1a553342f1">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -263,7 +267,7 @@ group by bhr_pay_distr_hist.pay_freq,
 				</frame>
 			</frame>
 			<staticText>
-				<reportElement key="staticText" x="1" y="18" width="358" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5e6d71d5-d6f5-463b-92c4-cde18cef328b">
+				<reportElement key="staticText" x="1" y="7" width="358" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="5e6d71d5-d6f5-463b-92c4-cde18cef328b">
 					<property name="net.sf.jasperreports.export.pdf.tag.td"/>
 				</reportElement>
 				<box>

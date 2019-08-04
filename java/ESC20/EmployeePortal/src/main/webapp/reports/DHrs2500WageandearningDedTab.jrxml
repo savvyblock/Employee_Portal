@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningDedTab" pageWidth="612" pageHeight="792" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="286b6cc3-4356-477b-b3a2-79831f03b6d1">
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningDedTab" pageWidth="612" pageHeight="792" whenNoDataType="NoPages" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="286b6cc3-4356-477b-b3a2-79831f03b6d1">
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
 	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
 	<property name="ireport.scriptlethandling" value="0"/>
@@ -578,7 +579,9 @@ union SELECT distinct '',
 					</textField>
 				</frame>
 				<staticText>
-					<reportElement key="staticText" x="2" y="54" width="315" height="11" backcolor="#C0C0C0" uuid="e4a7bc27-d768-4882-8a6a-b57d5ed3ac80"/>
+					<reportElement key="staticText" x="1" y="52" width="358" height="11" isRemoveLineWhenBlank="true" backcolor="#C0C0C0" uuid="ec57e056-7492-4c7e-8dca-55e16a1fc8eb">
+						<property name="net.sf.jasperreports.export.pdf.tag.td"/>
+					</reportElement>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

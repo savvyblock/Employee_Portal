@@ -287,7 +287,7 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 	<summary>
 		<band height="24">
 			<frame>
-				<reportElement x="4" y="0" width="580" height="24" uuid="ca78265c-0e93-46a4-b764-1d71a529f929">
+				<reportElement x="4" y="0" width="550" height="24" uuid="ca78265c-0e93-46a4-b764-1d71a529f929">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="end"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -330,12 +330,12 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 					</textField>
 				</frame>
 				<frame>
-					<reportElement x="1" y="10" width="500" height="12" uuid="9585ab55-503b-4d48-aef4-fdcd8b5fdef5">
+					<reportElement x="1" y="10" width="540" height="12" uuid="9585ab55-503b-4d48-aef4-fdcd8b5fdef5">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<staticText>
-						<reportElement key="staticText-1" mode="Opaque" x="2" y="-2" width="451" height="10" isRemoveLineWhenBlank="true" uuid="db01fb57-9941-4543-960f-5b1d17fa0f89">
+						<reportElement key="staticText-1" mode="Opaque" x="0" y="-2" width="520" height="10" isRemoveLineWhenBlank="true" uuid="db01fb57-9941-4543-960f-5b1d17fa0f89">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						</reportElement>
@@ -348,7 +348,7 @@ Where bhr_pay_hist.cyr_nyr_flg = 'C' and
 						<textElement>
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
 						</textElement>
-						<text><![CDATA[**********************************************************************************************************************************************************]]></text>
+						<text><![CDATA[*********************************************************************************************************************************************************************************************]]></text>
 					</staticText>
 				</frame>
 			</frame>
