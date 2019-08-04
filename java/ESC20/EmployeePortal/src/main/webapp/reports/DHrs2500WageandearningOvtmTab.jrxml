@@ -187,7 +187,7 @@ group by bhr_suppl_xmital.job_Cd,
 						<textFieldExpression><![CDATA[$F{tot_hrs_wrk}]]></textFieldExpression>
 					</textField>
 					<textField pattern="###,###,###.00" isBlankWhenNull="true">
-						<reportElement key="textField" x="245" y="1" width="64" height="11" backcolor="#C0C0C0" uuid="c43cab15-ad17-43e3-afa9-f627d18196bb">
+						<reportElement key="textField" x="249" y="1" width="57" height="11" backcolor="#C0C0C0" uuid="c43cab15-ad17-43e3-afa9-f627d18196bb">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -231,7 +231,7 @@ group by bhr_suppl_xmital.job_Cd,
 	<summary>
 		<band height="23">
 			<staticText>
-				<reportElement key="staticText" x="3" y="0" width="99" height="11" backcolor="#C0C0C0" uuid="f3518c18-89fd-45d1-8f19-984592a559af"/>
+				<reportElement key="staticText" x="5" y="0" width="99" height="11" backcolor="#C0C0C0" uuid="f3518c18-89fd-45d1-8f19-984592a559af"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -245,7 +245,7 @@ group by bhr_suppl_xmital.job_Cd,
 				<text><![CDATA[Total Overtime Pay:]]></text>
 			</staticText>
 			<textField pattern="###,###,###.00" isBlankWhenNull="true">
-				<reportElement key="textField" x="244" y="0" width="68" height="11" backcolor="#C0C0C0" uuid="20829ddf-65ae-4fa3-8d70-0726b6e5e85b"/>
+				<reportElement key="textField" x="249" y="0" width="61" height="11" backcolor="#C0C0C0" uuid="20829ddf-65ae-4fa3-8d70-0726b6e5e85b"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
