@@ -385,8 +385,10 @@ $F{pay_rate}]]></textFieldExpression>
 						<text><![CDATA[This dw used by ytd rept also.]]></text>
 					</staticText>
 					<textField pattern="###,###,###.00" isBlankWhenNull="true">
-						<reportElement key="textField" x="244" y="-2" width="62" height="11" backcolor="#C0C0C0" uuid="ee30a717-5778-4ad5-809b-de838eef87f1">
+						<reportElement key="textField" x="247" y="-2" width="60" height="11" backcolor="#C0C0C0" uuid="ee30a717-5778-4ad5-809b-de838eef87f1">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
