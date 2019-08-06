@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Account;
+import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.EmployeeInfo;
@@ -31,6 +32,7 @@ import com.esc20.nonDBModels.report.ReportParameterConnection;
 import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
+import com.esc20.service.ReferenceService;
 import com.esc20.util.StringUtil;
 
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -45,6 +47,9 @@ public class CurrentPayInformationController{
 	
 	@Autowired
 	private InquiryService service;
+	
+    @Autowired
+    private ReferenceService referenceService;
     
     @Autowired
     private PDFService pDFService;
@@ -58,6 +63,12 @@ public class CurrentPayInformationController{
 		ModelAndView mav = new ModelAndView();
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
+		List<Code> gens = referenceService.getGenerations();
+		 for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
 		
 		Map<Frequency, List<CurrentPayInformation>> jobs = this.service.getJob(employeeNumber);
 		Map<Frequency, List<Stipend>> stipends = this.service.getStipends(employeeNumber);
@@ -152,6 +163,13 @@ public class CurrentPayInformationController{
 		} else {
 			middleName = "";
 		}
+		
+		List<Code> gens = referenceService.getGenerations();
+		 for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
 		
 		print.setEname(userDetail.getNameF() + " " + middleName + userDetail.getNameL() + " " + (userDetail.getGenDescription()==null?"":userDetail.getGenDescription()));
 		print.setEaddress(StringUtil.trim(userDetail.getAddrNbr())+ " "+ StringUtil.trim(userDetail.getAddrStr()));

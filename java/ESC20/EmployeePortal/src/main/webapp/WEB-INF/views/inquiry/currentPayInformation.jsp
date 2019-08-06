@@ -77,7 +77,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             headers="userDetailName" class="td-content"
                                             colspan="3"
                                         >
-                                        ${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameM} ${sessionScope.userDetail.nameL}
+                                        ${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameM} ${sessionScope.userDetail.nameL} ${sessionScope.userDetail.genDescription}
                                         </td>
                                     </tr>
                                     <tr>
