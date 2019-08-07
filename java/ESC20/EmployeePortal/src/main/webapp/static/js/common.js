@@ -77,6 +77,34 @@ $(function() {
         }
     }
     $(".currentTime").html(cuMonth+'-'+cuDay+'-'+cuYear + '  ' +time)
+    var helpJson = {
+        "login":"aboutemployeeaccess",
+        "createUser":"newuser",
+        "forgetPassword":"forgotpassword",
+        "updatePassword":"changepassword",
+        "profile":"employeeportalselfservice",
+        "calendarYearToDate":"inquiry/calendaryeartodate",
+        "currentPayInformation":"inquiry/currentpayinformation",
+        "deductions":"inquiry/deductions",
+        "earnings":"inquiry/earnings",
+        "w2Information":"inquiry/w2information",
+        "information1095":"inquiry/1095information",
+        "leaveBalance":"leavebalances",
+        "leaveRequest":"leaverequests",
+        "approveLeaveRequest":"supervisor/approveleaverequests",
+        "leaveOverview":"supervisor/leaveoverview",
+        "supervisorCalendar":"supervisor/calendar",
+        "leaveRequestTemporaryApprovers":"supervisor/settemporaryapprovers"
+    }
+    var url = window.location.href
+    var urlArry = url.split('?')
+    var itemUrlArry = urlArry[0].split('/')
+    var lastItem = itemUrlArry[itemUrlArry.length - 1]
+    var lastTowItem = itemUrlArry[itemUrlArry.length - 2]
+    var helpLinkParam = helpJson[lastItem] || helpJson[lastTowItem]
+    var helpLink = "https://help.ascendertx.com/employeeportaltest/doku.php/" + (helpLinkParam || '')
+    $("a.helpLink").attr('href',helpLink)
+
 })
 function setGlobal(){
     if (getCookie(name)&&getCookie(name) != '') {

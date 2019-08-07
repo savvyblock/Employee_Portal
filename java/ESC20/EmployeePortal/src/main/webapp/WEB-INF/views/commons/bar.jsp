@@ -216,7 +216,7 @@
         </c:if>
         <!-- <li><a href="/" title="Full Screen"><i class="fa fa-arrows-alt"></i></a></li> -->
         <li>
-          <a href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank"
+          <a class="helpLink" href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank"
           aria-label="${sessionScope.languageJSON.accessHint.goHelp}" title="${sessionScope.languageJSON.accessHint.goHelp}">
           <i class="fa fa-question-circle"></i>
         </a></li>
