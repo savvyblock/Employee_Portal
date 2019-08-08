@@ -8,6 +8,7 @@
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -98,7 +99,7 @@ ORDER BY BHR_BANK_DEPOSIT.BANK_CD]]>
 							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
-						<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
@@ -115,7 +116,7 @@ ORDER BY BHR_BANK_DEPOSIT.BANK_CD]]>
 							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
-						<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
@@ -132,7 +133,7 @@ ORDER BY BHR_BANK_DEPOSIT.BANK_CD]]>
 							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
-						<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
@@ -149,7 +150,7 @@ ORDER BY BHR_BANK_DEPOSIT.BANK_CD]]>
 							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						</box>
-						<textElement textAlignment="Center" verticalAlignment="Top" rotation="None">
+						<textElement textAlignment="Right" verticalAlignment="Top" rotation="None">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
@@ -170,7 +171,9 @@ ORDER BY BHR_BANK_DEPOSIT.BANK_CD]]>
 				<reportElement key="line-4" x="378" y="29" width="60" height="1" uuid="ac32867b-156d-488a-a062-2056ab214588"/>
 			</line>
 			<line>
-				<reportElement key="line-5" x="441" y="29" width="45" height="1" uuid="70e25c4f-9d4d-47c6-8bac-0e6937e7e144"/>
+				<reportElement key="line-5" x="442" y="29" width="46" height="1" uuid="70e25c4f-9d4d-47c6-8bac-0e6937e7e144">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
 			</line>
 		</band>
 	</pageHeader>
