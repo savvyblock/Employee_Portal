@@ -216,10 +216,10 @@ public class Information1095Controller{
 			mav.addObject("BCovrgTypDescr", bCovrgTypList.get(0).getDescription());
 		}
 		if (type == null) {
-			if (cList != null && cList.size() > 0)
-				mav.addObject("type", "C");
-			else
+			if (bList != null && bList.size() > 0)
 				mav.addObject("type", "B");
+			else
+				mav.addObject("type", "C");
 		} else {
 			mav.addObject("type", type);
 		}
