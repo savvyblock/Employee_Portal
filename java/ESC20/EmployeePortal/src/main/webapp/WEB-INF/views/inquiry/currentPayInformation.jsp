@@ -83,7 +83,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <tr>
                                         <th id="userDetailAddress" class="td-title"  rowspan="2"><b>${sessionScope.languageJSON.currentPayTable.address}</b></th>
                                         <td headers="userDetailAddress" class="td-content" data-title="${sessionScope.languageJSON.currentPayTable.address}" rowspan="2">
-                                            ${sessionScope.userDetail.addrNbr} ${sessionScope.userDetail.addrStr}<br/>
+                                            ${sessionScope.userDetail.addrNbr} ${sessionScope.userDetail.addrStr} ${sessionScope.userDetail.addrApt}<br/>
                                             ${sessionScope.userDetail.addrCity},
                                             ${sessionScope.userDetail.addrSt} ${sessionScope.userDetail.addrZip}
                                         </td>
@@ -296,7 +296,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <th id="bankName">${sessionScope.languageJSON.currentPayTable.bankName}</th>
                                                     <th id="accountType">${sessionScope.languageJSON.currentPayTable.accountType}</th>
                                                     <th id="acctNbr">${sessionScope.languageJSON.currentPayTable.acctNbr}</th>
-                                                    <th id="depAmt">${sessionScope.languageJSON.currentPayTable.depAmt}</th>
+                                                    <th id="depAmt"  class="text-right">${sessionScope.languageJSON.currentPayTable.depAmt}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

@@ -15,6 +15,8 @@ public class CustomCsrfSecurityRequestMatcher implements RequestMatcher {
     		return false;
     	if (request.getRequestURI().endsWith("loginEA"))
     		return false;
+    	if (request.getRequestURI().endsWith("logoutEA"))
+    		return false;
         return !allowedMethods.matcher(request.getMethod()).matches();
     } 
 }
