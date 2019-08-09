@@ -80,7 +80,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 								</td>
 								<td class="print-hide" data-title="${sessionScope.languageJSON.info1095Table.lastName}">${itemB.nameL}</td>
 								<td class="print-hide" data-title="${sessionScope.languageJSON.info1095Table.generation}">
-										${itemB.nameGen}
+										${itemB.genDescription}
 								</td>
 								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.ssn}">
 										${itemB.ssn}

@@ -221,7 +221,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 								</td>
 								<td class="print-hide"  data-title="${sessionScope.languageJSON.info1095Table.lastName}">${itemC.nameL}</td>
 								<td class="print-hide"  data-title="${sessionScope.languageJSON.info1095Table.generation}">
-										${itemC.nameGen}
+										${itemC.genDescription}
 								</td>
 								<td  data-title="${sessionScope.languageJSON.info1095Table.ssn}">
 										${itemC.ssn}

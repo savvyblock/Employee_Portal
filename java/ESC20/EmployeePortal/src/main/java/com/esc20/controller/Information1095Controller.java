@@ -205,12 +205,30 @@ public class Information1095Controller{
 			bList = this.service.retrieveEA1095BInfo(employeeNumber, year, sortBy, sortOrder, BPageNo);
 		else
 			bList = this.service.retrieveEA1095BInfo(employeeNumber, year, null, null, 1);
+		
+		for(BCoveredHistory bItem: bList) {
+			List<Code> gens = referenceService.getGenerations();
+			 for(Code gen: gens) {
+			    	if(bItem.getNameGen() != null && gen.getCode().trim().equals(bItem.getNameGen().toString().trim())) {
+			    		bItem.setGenDescription(gen.getDescription());
+			    	}
+			    }
+		}
 		List<EA1095CEmployerShare> cEmpList = this.service.retrieveEA1095CEmpInfo(employeeNumber,year);
 		List<CCoveredHistory> cList;
 		if (("C").equals(type))
 			cList = this.service.retrieveEA1095CInfo(employeeNumber, year, sortBy, sortOrder, CPageNo);
 		else
 			cList = this.service.retrieveEA1095CInfo(employeeNumber, year, null, null, 1);
+		
+		for(CCoveredHistory cItem: cList) {
+			List<Code> gens = referenceService.getGenerations();
+			 for(Code gen: gens) {
+			    	if(cItem.getNameGen() != null && gen.getCode().trim().equals(cItem.getNameGen().toString().trim())) {
+			    		cItem.setGenDescription(gen.getDescription());
+			    	}
+			    }
+		}
 		if (bCovrgTypList.size() > 0) {
 			mav.addObject("BCovrgTyp", bCovrgTypList.get(0).getCode());
 			mav.addObject("BCovrgTypDescr", bCovrgTypList.get(0).getDescription());

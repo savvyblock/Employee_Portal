@@ -1,5 +1,7 @@
 package com.esc20.nonDBModels;
 
+import javax.persistence.Transient;
+
 import com.esc20.model.BhrAca1095bCovrdHist;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
@@ -28,6 +30,8 @@ public class BCoveredHistory {
 	private Character mon10;
 	private Character mon11;
 	private Character mon12;
+	
+	private transient String genDescription;
 	
 	public BCoveredHistory (BhrAca1095bCovrdHist hist) {
 		this.empNbr = hist.getId().getEmpNbr();
@@ -231,6 +235,17 @@ public class BCoveredHistory {
 
 	public void setSeqNbr(Byte seqNbr) {
 		this.seqNbr = seqNbr;
+	}
+	
+	@Transient 
+	public String getGenDescription() {
+		return genDescription;
+	}
+
+
+	@Transient 
+	public void setGenDescription(String genDescription) {
+		this.genDescription = genDescription;
 	}
 	
 }
