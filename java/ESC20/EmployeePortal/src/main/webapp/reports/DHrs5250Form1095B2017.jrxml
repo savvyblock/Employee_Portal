@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs5250Form1095B2017" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="720" leftMargin="36" rightMargin="36" topMargin="24" bottomMargin="36" uuid="53325ff8-f39d-4217-af00-41d776b3acd7">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
@@ -2014,7 +2015,7 @@
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Jun]]></text>
+							<text><![CDATA[June]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -2028,7 +2029,7 @@
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Jul]]></text>
+							<text><![CDATA[July]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -2056,7 +2057,7 @@
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Sep]]></text>
+							<text><![CDATA[Sept]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -5125,7 +5126,7 @@
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Jun]]></text>
+							<text><![CDATA[June]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -5139,7 +5140,7 @@
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Jul]]></text>
+							<text><![CDATA[July]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -5167,7 +5168,7 @@
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Sep]]></text>
+							<text><![CDATA[Sept]]></text>
 						</staticText>
 					</frame>
 					<frame>
