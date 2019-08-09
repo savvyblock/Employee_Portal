@@ -43,30 +43,30 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 								<th class="print-hide">
 									<span>${sessionScope.languageJSON.info1095Table.generation}</span>
 								</th>
-								<th>
+								<th class="text-center">
 									<span class="print-show">${sessionScope.languageJSON.info1095Table.SSNOrTIN}</span>
 									<span class="print-hide">${sessionScope.languageJSON.info1095Table.ssn}</span>
 								</th>
-								<th>
+								<th class="text-center">
 									<span class="print-show">${sessionScope.languageJSON.info1095Table.DOB}</span>
 									<span class="print-hide">${sessionScope.languageJSON.info1095Table.dob}</span>
 								</th>
-								<th>
+								<th class="text-center">
 									<span class="print-show">${sessionScope.languageJSON.info1095Table.coverAllMonths}</span>
 									<span class="print-hide">${sessionScope.languageJSON.info1095Table.all}</span>
 								</th>
-								<th>${sessionScope.languageJSON.info1095Table.Jan}</th>
-								<th>${sessionScope.languageJSON.info1095Table.Feb}</th>
-								<th>${sessionScope.languageJSON.info1095Table.Mar}</th>
-								<th>${sessionScope.languageJSON.info1095Table.Apr}</th>
-								<th>${sessionScope.languageJSON.info1095Table.May}</th>
-								<th>${sessionScope.languageJSON.info1095Table.Jun}</th>
-								<th>${sessionScope.languageJSON.info1095Table.Jul}</th>
-								<th>${sessionScope.languageJSON.info1095Table.Aug}</th>
-								<th>${sessionScope.languageJSON.info1095Table.Sep}</th>
-								<th>${sessionScope.languageJSON.info1095Table.Oct}</th>
-								<th>${sessionScope.languageJSON.info1095Table.Nov}</th>
-								<th>${sessionScope.languageJSON.info1095Table.Dec}</th>
+								<th class="text-center">${sessionScope.languageJSON.info1095Table.Jan}</th>
+								<th class="text-center">${sessionScope.languageJSON.info1095Table.Feb}</th>
+								<th class="text-center">${sessionScope.languageJSON.info1095Table.Mar}</th>
+								<th class="text-center">${sessionScope.languageJSON.info1095Table.Apr}</th>
+								<th class="text-center">${sessionScope.languageJSON.info1095Table.May}</th>
+								<th class="text-center">${sessionScope.languageJSON.info1095Table.Jun}</th>
+								<th class="text-center">${sessionScope.languageJSON.info1095Table.Jul}</th>
+								<th class="text-center">${sessionScope.languageJSON.info1095Table.Aug}</th>
+								<th class="text-center">${sessionScope.languageJSON.info1095Table.Sep}</th>
+								<th class="text-center">${sessionScope.languageJSON.info1095Table.Oct}</th>
+								<th class="text-center">${sessionScope.languageJSON.info1095Table.Nov}</th>
+								<th class="text-center">${sessionScope.languageJSON.info1095Table.Dec}</th>
 							</tr>
 				</thead>
 				<tbody>
@@ -82,13 +82,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 								<td class="print-hide" data-title="${sessionScope.languageJSON.info1095Table.generation}">
 										${itemB.nameGen}
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.ssn}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.ssn}">
 										${itemB.ssn}
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.dob}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.dob}">
 										${itemB.dob}
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.all}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.all}">
 										<c:if test="${itemB.monAll == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -98,7 +98,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}"  />
 										</c:if>
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.Jan}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.Jan}">
 										<c:if test="${itemB.mon01 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -108,7 +108,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}"  />
 										</c:if>
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.Feb}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.Feb}">
 										<c:if test="${itemB.mon02 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -118,7 +118,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.Mar}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.Mar}">
 										<c:if test="${itemB.mon03 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -128,7 +128,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.Apr}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.Apr}">
 										<c:if test="${itemB.mon04 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -138,7 +138,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.May}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.May}">
 										<c:if test="${itemB.mon05 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -148,7 +148,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.Jun}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.Jun}">
 										<c:if test="${itemB.mon06 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -158,7 +158,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.Jul}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.Jul}">
 										<c:if test="${itemB.mon07 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -168,7 +168,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.Aug}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.Aug}">
 										<c:if test="${itemB.mon08 == 'Y'}">
 												<span class="print-check-disabled">
 														<i class="fa fa-times"></i>
@@ -178,7 +178,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 										</c:if>
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.Sep}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.Sep}">
 									<c:if test="${itemB.mon09 == 'Y'}">
 										<span class="print-check-disabled">
 												<i class="fa fa-times"></i>
@@ -188,7 +188,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 										<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 								</c:if>
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.Oct}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.Oct}">
 									<c:if test="${itemB.mon10 == 'Y'}">
 										<span class="print-check-disabled">
 												<i class="fa fa-times"></i>
@@ -198,7 +198,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 										<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 								</c:if>
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.Nov}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.Nov}">
 									<c:if test="${itemB.mon11 == 'Y'}">
 										<span class="print-check-disabled">
 												<i class="fa fa-times"></i>
@@ -208,7 +208,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 										<input class="checkBoxOld" type="checkbox" disabled="disabled" aria-label="${sessionScope.languageJSON.label.checkbox}" />
 								</c:if>
 								</td>
-								<td data-title="${sessionScope.languageJSON.info1095Table.Dec}">
+								<td class="text-center" data-title="${sessionScope.languageJSON.info1095Table.Dec}">
 									<c:if test="${itemB.mon12 == 'Y'}">
 											<span class="print-check-disabled">
 													<i class="fa fa-times"></i>
