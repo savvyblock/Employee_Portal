@@ -98,7 +98,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 
 				leaveTypes.add(empty);
 				for (int i = 0; i < requestModels.size(); i++) {
-					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
+					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null));
 				}
 				
 				List<String[]> map = this.service.mapReasonsAndLeaveTypes();
@@ -146,7 +146,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
 			JSONArray json = new JSONArray();
 			for (int i = 0; i < requestModels.size(); i++) {
-				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes));
+				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null));
 			}
 			List<String[]> map = this.service.mapReasonsAndLeaveTypes();
 			JSONArray mapJson = new JSONArray();

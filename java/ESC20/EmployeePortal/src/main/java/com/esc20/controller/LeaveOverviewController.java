@@ -153,10 +153,10 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 		if(!initialLoad) 
 			leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
 		for (int i = 0; i < requestModels.size(); i++) {
-			calendar.add(requestModels.get(i).toJSON(leaveStatus, null));
+			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null));
 			if(!initialLoad) {
 				if (requestModels.get(i).getEmpNbr().equals(demo.getEmpNbr()))
-					employee.add(requestModels.get(i).toJSON(leaveStatus, null));
+					employee.add(requestModels.get(i).toJSON(leaveStatus, null,null));
 			}
 		}
 		List<Code> absRsns;

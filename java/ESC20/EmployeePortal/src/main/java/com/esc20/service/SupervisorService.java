@@ -41,6 +41,9 @@ public class SupervisorService {
     @Autowired
     private AlertDao alertDao;   
     
+    @Autowired
+    private LeaveRequestService leaveRequestService;
+    
 	public List<LeaveEmployeeData> getDirectReportEmployee(String empNbr, boolean usePMIS, boolean supervisorsOnly,
 			boolean excludeTempApprovers) {
 		List<LeaveEmployeeData> directReports;
@@ -78,7 +81,8 @@ public class SupervisorService {
     	List<AppLeaveRequest> leaves = leaveRequestDao.getSupervisorSumittedLeaveRequests(employeeNumber);
     	for(int i=0;i<leaves.size();i++) {
     		leaves.get(i).setComments(leaveRequestDao.getLeaveComments(leaves.get(i).getId()));
-    		leaves.get(i).setInfo(leaveRequestDao.getLeaveInfo(leaves.get(i).getEmpNbr(), leaves.get(i).getPayFreq().toString()));
+    		//leaves.get(i).setInfo(leaveRequestDao.getLeaveInfo(leaves.get(i).getEmpNbr(), leaves.get(i).getPayFreq().toString()));
+    		leaves.get(i).setInfo(leaveRequestService.getLeaveInfo(leaves.get(i).getEmpNbr(), leaves.get(i).getPayFreq().toString(),true));
     	}
     	return leaves;
 	}

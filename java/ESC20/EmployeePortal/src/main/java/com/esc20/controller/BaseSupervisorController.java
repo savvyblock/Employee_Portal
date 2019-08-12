@@ -34,6 +34,7 @@ public class BaseSupervisorController{
 		List<AppLeaveRequest> leaves = this.supService.getSupervisorSumittedLeaveRequests(empNbr);
 		List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
+		List<Code> payFreqs = this.referenceService.getPayFreq();
 		LeaveRequestModel model;
 		JSONArray json = new JSONArray();
 		for (int i = 0; i < leaves.size(); i++) {
@@ -41,7 +42,7 @@ public class BaseSupervisorController{
 			requestModels.add(model);
 		}
 		for (int i = 0; i < requestModels.size(); i++) {
-			json.add(requestModels.get(i).toJSON(leaveStatus, null));
+			json.add(requestModels.get(i).toJSON(leaveStatus, null,payFreqs));
 		}
 		return json;
 	}
