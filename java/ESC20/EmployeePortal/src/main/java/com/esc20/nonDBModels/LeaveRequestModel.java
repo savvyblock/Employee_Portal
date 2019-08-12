@@ -150,7 +150,7 @@ public class LeaveRequestModel implements Serializable {
 		return end;
 	}
 
-	public JSONObject toJSON(List<Code> leaveStatus, List<Code> leaveTypes) {
+	public JSONObject toJSON(List<Code> leaveStatus, List<Code> leaveTypes, List<Code> payFreqs) {
 		JSONObject jo = new JSONObject();
 		jo.put("id", this.getId());
 		String typeDesc= "";
@@ -183,6 +183,14 @@ public class LeaveRequestModel implements Serializable {
 		}
 		jo.put("seqNum", this.getSeqNum());
 		jo.put("payFreq", this.getPayFreq());
+		if (!CollectionUtils.isEmpty(payFreqs)) {
+			for (int i = 0; i < payFreqs.size(); i++) {
+				if (payFreqs.get(i).getCode().trim().equals(this.getPayFreq().toString().trim())) {
+					jo.put("payFreqDescr", payFreqs.get(i).getDescription());
+					break;
+				}
+			}
+		}
 		jo.put("empNbr", this.getEmpNbr());
 		jo.put("firstName", this.getFirstName());
 		jo.put("middleName", this.getMiddleName());

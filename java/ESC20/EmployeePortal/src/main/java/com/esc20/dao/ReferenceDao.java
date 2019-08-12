@@ -212,6 +212,23 @@ public class ReferenceDao {
 		return result;
 	}
 	
+	public List<Code> getPayFreq() {
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT DISTINCT PAY_FREQ , PAY_FREQ_DESCR FROM BTHR_PAY_FREQ  ");
+		Query q = session.createQuery(sql.toString());
+		@SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
+		
+		List<Code> result = new ArrayList<Code>();
+		Code code;
+		for(Object[] item: res) {
+			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),"",(String)item[1]);
+			result.add(code);		
+		}
+		return result;
+	}
+	
 	public List<Code> getPayrollFrequencies(String empNbr) {
 		Session session = this.sessionFactory.getCurrentSession();
 		String sql= "SELECT DISTINCT pay.id.payFreq FROM BhrEmpPay pay where pay.id.empNbr = :empNbr AND pay.id.cyrNyrFlg ='C'";

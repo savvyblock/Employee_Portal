@@ -63,6 +63,10 @@ public class ReferenceService {
 		return codes;
 	}
 	
+	public List<Code> getPayFreq() {
+		return referenceDao.getPayFreq();
+	}
+	
 	public List<Code> getPayrollFrequencies(String empNbr) {
 		List<Code> payrollFrequencies = referenceDao.getPayrollFrequencies(empNbr);
 		
