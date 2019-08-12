@@ -216,7 +216,7 @@ public class ReferenceDao {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT DISTINCT PAY_FREQ , PAY_FREQ_DESCR FROM BTHR_PAY_FREQ  ");
-		Query q = session.createQuery(sql.toString());
+		Query q = session.createSQLQuery(sql.toString());
 		@SuppressWarnings("unchecked")
 		List<Object[]> res = q.list();
 		
