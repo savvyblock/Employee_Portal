@@ -197,7 +197,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	    var chain = eval(${chain});
 	    var leaves = eval(${leaves});
 	    var leaveTypes = eval(${leaveTypes});
-	    var absRsns = eval(${absRsns});
+        var absRsns = eval(${absRsns});
+        var labelLeaveType = '${sessionScope.languageJSON.leaveBalance.leaveType}'
+        var beginningBalanceType = '${sessionScope.languageJSON.leaveBalance.beginningBalance}'
+        var advancedEarnedType = '${sessionScope.languageJSON.leaveBalance.advancedEarned}'
+        var pendingEarnedType = '${sessionScope.languageJSON.leaveBalance.pendingEarned}'
+        var usedType = '${sessionScope.languageJSON.leaveBalance.used}'
+        var pendingUsedType = '${sessionScope.languageJSON.leaveBalance.pendingUsed}'
+        var availableType = '${sessionScope.languageJSON.leaveBalance.available}'
+        var unitsType = '${sessionScope.languageJSON.leaveBalance.units}'
+        var daysType = '${sessionScope.languageJSON.label.days}'
+        var hoursType = '${sessionScope.languageJSON.label.hours}'
     </script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/supervisor/approveLeaveRequestList.js"></script>
 

@@ -1,5 +1,6 @@
 
 $(function(){
+    console.log(leaves)
     changeLevel()
     var level = $("#level").val()
     if(chain.length>1){
@@ -202,5 +203,42 @@ function showCalendarModal(){
 }
 
 function showBalance(id){
-    console.log(id)
+    var leaveCurrent,leaveBalance
+    for(var i = 0,len = leaves.length;i<len;i++){
+        if(id == leaves[i].empNbr){
+            leaveCurrent = leaves[i]
+            leaveBalance = leaves[i].infos
+        }
+    } 
+    $("#leaveBalanceSummaryFor").text(leaveCurrent.empNbr + ': '+ leaveCurrent.lastName + ' '+ leaveCurrent.firstName)
+    $("#payrollFreqEmp").text(leaveCurrent.payFreqDescr)
+    var tbody = ''
+    for(var i = 0,len = leaveBalance.length;i<len;i++){
+        tbody += '<tr> <td data-title="'+labelLeaveType+'">' +
+                        leaveBalance[i].lvTyp + '-' + leaveBalance[i].longDescr +
+                '</td>'+
+                '<td class="text-right" data-title="'+beginningBalanceType+'">'+
+                parseFloat(leaveBalance[i].beginBalance).toFixed(3) +
+                '</td>'+
+                '<td class="text-right" data-title="'+advancedEarnedType+'">'+
+                parseFloat(leaveBalance[i].advancedEarned).toFixed(3) +
+                '</td>'+
+                '<td class="text-right" data-title="'+pendingEarnedType+'">'+
+                parseFloat(leaveBalance[i].pendingEarned).toFixed(3) +
+                '</td>'+
+                '<td class="text-right" data-title="'+usedType+'">'+
+                parseFloat(leaveBalance[i].used).toFixed(3) +
+                '</td>'+
+                '<td class="text-right" data-title="'+pendingUsedType+'">'+
+                parseFloat(leaveBalance[i].pendingUsed).toFixed(3) +
+                '</td>'+
+                '<td class="text-right" data-title="'+availableType+'">'+
+                parseFloat(leaveBalance[i].availableBalance).toFixed(3)+
+                '</td>'+
+                '<td class="text-center" data-title="'+unitsType+'">'+
+                    (leaveBalance[i].daysHrs=='D'?daysType:hoursType) +
+                '</td></tr>'
+    } 
+    $("#leaveBalanceDetail tbody").html(tbody)
+
 }
