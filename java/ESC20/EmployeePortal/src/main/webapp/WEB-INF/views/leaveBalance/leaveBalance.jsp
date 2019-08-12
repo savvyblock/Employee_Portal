@@ -133,7 +133,7 @@
 								<th>${sessionScope.languageJSON.leaveBalance.dateOfLeave}</th>
 								<th>${sessionScope.languageJSON.leaveBalance.leaveUsed}</th>
 								<th class="text-right">${sessionScope.languageJSON.leaveBalance.leaveEarned}</th>
-								<th class="text-center">${sessionScope.languageJSON.leaveBalance.status}</th>
+								<th class="text-left">${sessionScope.languageJSON.leaveBalance.status}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -152,7 +152,7 @@
 										<span>${sessionScope.languageJSON.label.days}</span>
 									</td>
 									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveEarned}" class="text-right">${leave.lvUnitsEarned}</td>
-									<td data-title="${sessionScope.languageJSON.leaveBalance.status}" class="text-center">
+									<td data-title="${sessionScope.languageJSON.leaveBalance.status}" class="text-left">
 											<c:choose>
                                                   <c:when test="${not empty leave.processDt}">
                                                      <span>${sessionScope.languageJSON.label.processed}</span>

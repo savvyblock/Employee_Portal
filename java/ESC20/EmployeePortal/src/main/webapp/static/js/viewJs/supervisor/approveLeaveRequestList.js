@@ -235,7 +235,7 @@ function showBalance(id){
                 '<td class="text-right" data-title="'+availableType+'">'+
                 parseFloat(leaveBalance[i].availableBalance).toFixed(3)+
                 '</td>'+
-                '<td class="text-center" data-title="'+unitsType+'">'+
+                '<td class="text-left" data-title="'+unitsType+'">'+
                     (leaveBalance[i].daysHrs=='D'?daysType:hoursType) +
                 '</td></tr>'
     } 

@@ -159,11 +159,14 @@
                                 </select>
                                 <input hidden="hidden" type="text" name="endTimeValue" id="endTimeValue">
                             </div>
+                            <div class="form-group has-error dateValidator">
+                                    <small class="help-block" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.startNotBeGreaterThanEndTime}</small>
+                                </div>
                         </div>
                     </div>
-                    <div class="form-group has-error dateValidator">
+                    <!-- <div class="form-group has-error dateValidator">
                         <small class="help-block" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.startNotBeGreaterThanEndTime}</small>
-                    </div>
+                    </div> -->
                     <div class="date-group">
                             <div class="form-group calendar-left">
                                     <label class="form-title" for="leaveHoursDaily"><span>${sessionScope.languageJSON.leaveRequest.hourDayRequested}</span>: </label>

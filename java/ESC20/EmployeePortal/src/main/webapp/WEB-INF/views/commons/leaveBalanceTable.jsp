@@ -8,7 +8,7 @@
                 <th class="text-right">${sessionScope.languageJSON.leaveBalance.used}</th>
                 <th class="text-right">${sessionScope.languageJSON.leaveBalance.pendingUsed}</th>
                 <th class="text-right">${sessionScope.languageJSON.leaveBalance.available}</th>
-                <th class="text-center">${sessionScope.languageJSON.leaveBalance.units}</th>
+                <th class="text-left">${sessionScope.languageJSON.leaveBalance.units}</th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +25,7 @@
                 <td class="text-right" data-title="${sessionScope.languageJSON.leaveBalance.available}">
                     <span id="available${leave.type.code}">${leave.availableBalanceLabel}</span>
                 </td>
-                <td class="text-center" data-title="${sessionScope.languageJSON.leaveBalance.units}">
+                <td class="text-left" data-title="${sessionScope.languageJSON.leaveBalance.units}">
                         <c:if test="${leave.daysHrs == 'D'}">													
                         	<span>${sessionScope.languageJSON.label.days}</span>
                         </c:if> 
