@@ -137,9 +137,9 @@ public class LeaveRequestService {
 		leaveRequestDao.saveLvWorkflow(flow);
 		// create alert
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a E");
-		String message = sdf.format(new Date()) + ": Leave Request from " + demo.getNameF() + " " + demo.getNameL()
+		String message = sdf.format(new Date()) + ": Leave Request from " + demo.getNameF().trim() + " " + demo.getNameL().trim()
 				+ " pending your approval";
-		alertDao.createAlert(demo.getEmpNbr(), flow.getApprvrEmpNbr(), message);
+		alertDao.createAlert(demo.getEmpNbr().trim(), flow.getApprvrEmpNbr().trim(), message.trim());
 	}
 
 	public void deleteLeaveComments(Integer lvId) {

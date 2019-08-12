@@ -139,37 +139,37 @@ public class SupervisorService {
 		//insert approver Comment;
         BeaEmpLvComments comments = new BeaEmpLvComments();
         comments.setLvId(request.getId());
-        comments.setLvCommentEmpNbr(demo.getEmpNbr());
+        comments.setLvCommentEmpNbr(demo.getEmpNbr().trim());
         comments.setLvCommentDatetime(DateUtil.getUTCTime());
-        comments.setLvComment(approverComment==null?"":approverComment);
+        comments.setLvComment(approverComment==null?"":approverComment.trim());
         comments.setLvCommentTyp('A');
         this.leaveRequestDao.saveLvComments(comments);
 		this.leaveRequestDao.saveLeaveRequest(request.getId(), "A", true);
 		//create alert
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a E");
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
-		String message = sdf.format(new Date())+": "+ demo.getNameF()+" " + demo.getNameL() +
+		String message = sdf.format(new Date())+": "+ demo.getNameF().trim()+" " + demo.getNameL().trim() +
 						 " had approved your leave request from "+sdf1.format(DateUtil.getLocalTime(request.getDatetimeFrom()))+
 						 " to " + sdf1.format(DateUtil.getLocalTime(request.getDatetimeTo()));
-		alertDao.createAlert(demo.getEmpNbr(), request.getEmpNbr(), message);
+		alertDao.createAlert(demo.getEmpNbr().trim(), request.getEmpNbr().trim(), message.trim());
 	}
 
 	public void disApproveLeave(LeaveRequest request, BhrEmpDemo demo, String disapproveComment) {
 		//insert approver Comment;
         BeaEmpLvComments comments = new BeaEmpLvComments();
         comments.setLvId(request.getId());
-        comments.setLvCommentEmpNbr(demo.getEmpNbr());
+        comments.setLvCommentEmpNbr(demo.getEmpNbr().trim());
         comments.setLvCommentDatetime(DateUtil.getUTCTime());
-        comments.setLvComment(disapproveComment==null?"":disapproveComment);
+        comments.setLvComment(disapproveComment==null?"":disapproveComment.trim());
         comments.setLvCommentTyp('D');
         this.leaveRequestDao.saveLvComments(comments);
 		this.leaveRequestDao.saveLeaveRequest(request.getId(), "D", true);
 		//create alert
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a E");
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
-		String message = sdf.format(new Date())+": "+ demo.getNameF()+" " + demo.getNameL() +" disapproved your leave from "+
+		String message = sdf.format(new Date())+": "+ demo.getNameF().trim()+" " + demo.getNameL().trim() +" disapproved your leave from "+
 						 sdf1.format(DateUtil.getLocalTime(request.getDatetimeFrom()))+" to " + sdf1.format(DateUtil.getLocalTime(request.getDatetimeTo())) +" with comment: " + disapproveComment;
-		alertDao.createAlert(demo.getEmpNbr(), request.getEmpNbr(), message);
+		alertDao.createAlert(demo.getEmpNbr().trim(), request.getEmpNbr().trim(), message.trim());
 	}
 
 	public List<BeaEmpLvTmpApprovers> getBeaEmpLvTmpApprovers(String empNbr) {

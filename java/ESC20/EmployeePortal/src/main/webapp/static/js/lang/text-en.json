@@ -715,7 +715,7 @@
 		"endDateCannotBeEmpty":"The end date cannot be empty",
 		"startTimeCannotBeEmpty":"The start time cannot be empty",
 		"endTimeCannotBeEmpty":"The end time cannot be empty",
-		"remarksCannotBeEmpty":"The remarks cannot be empty",
+		"remarksCannotBeEmpty":"A remark must be entered for the leave type selected",
 		"updateWasSuccessful":"Update was successful - an email will be sent confirming your selection.",
 		"maxLength7":"The maximum length of a string is 7",
 		"maxLength6":"The maximum length of a string is 6",
