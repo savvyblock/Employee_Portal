@@ -19,7 +19,7 @@ public class LeaveRequestComment implements Serializable{
 
 
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-	private SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mmaa");
+	private SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm aa");
 
 	private int id;
 	private int leaveId;

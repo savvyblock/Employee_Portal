@@ -164,7 +164,7 @@ public class LeaveRequestModel implements Serializable {
 		String title = this.getFirstName()+" "+this.getLastName()+ typeDesc;
 		jo.put("title", title);
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
-		SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mma");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm a");
 		jo.put("LeaveType", this.getLeaveType());
 		jo.put("AbsenseReason", this.getAbsenseReason());
 		jo.put("LeaveStartDate", sdf1.format(this.getLeaveStartDate()));
