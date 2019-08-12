@@ -64,7 +64,15 @@ public class ReferenceService {
 	}
 	
 	public List<Code> getPayFreq() {
-		return referenceDao.getPayFreq();
+		//return referenceDao.getPayFreq();
+		
+		List<Code> codes  = referenceDao.getPayFreq();
+		Code notProcessed = new Code();
+		notProcessed.setCode("0");
+		notProcessed.setSubCode("");
+		notProcessed.setDescription("");
+		codes.add(notProcessed);
+		return codes;
 	}
 	
 	public List<Code> getPayrollFrequencies(String empNbr) {

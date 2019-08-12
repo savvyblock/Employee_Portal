@@ -121,8 +121,14 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 		List<Code> availableFreqs = new ArrayList<Code>();
 		if(!initialLoad) {
 			availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
-			if (freq == null || ("").equals(freq))
-				freq = availableFreqs.get(0).getCode();
+			if (freq == null || ("").equals(freq)) {
+				if(availableFreqs != null && availableFreqs.size() >0) {
+					freq = availableFreqs.get(0).getCode();
+				   }
+				else {
+					freq = "0";
+				}	
+			   }
 		}
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
