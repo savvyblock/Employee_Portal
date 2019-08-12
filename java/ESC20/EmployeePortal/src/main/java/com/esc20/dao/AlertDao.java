@@ -70,12 +70,20 @@ public class AlertDao {
     
 	public void createAlert(String empNbr, String apprvrEmpNbr, String message) {
 		Session session = this.getSession();
-		BeaAlert alert = new BeaAlert();
+		/*BeaAlert alert = new BeaAlert();
 		alert.setMsgFrom(empNbr);
 		alert.setMsgTo(apprvrEmpNbr);
 		alert.setMsgContent(message);
 		alert.setStatus("UR");
-		session.save(alert);
+		session.save(alert);*/
+		
+		String sql = "INSERT INTO BEA_ALERT(msg_from,msg_to,msg_content,status) VALUES(:empNbr, :apprvrEmpNbr,:message,:status)";
+		Query q = session.createSQLQuery(sql);
+		 q.setParameter("empNbr", empNbr);
+		 q.setParameter("apprvrEmpNbr", apprvrEmpNbr);
+		 q.setParameter("message", message);
+		 q.setParameter("status", "UR");
+		 q.executeUpdate();
 		session.flush();
 	}
 	
