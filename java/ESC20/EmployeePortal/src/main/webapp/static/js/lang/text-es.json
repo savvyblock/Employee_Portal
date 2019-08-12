@@ -617,6 +617,7 @@
 		"welcomeToNewEmployeePortal":"Welcome to the new ASCENDER EmployeePortal.",
 		"saveSuperAction":"Save Supervisor Action",
 		"noSupervisorFound":"Leave Request cannot be entered. No supervisor found.",
+		"showLeaveBalanceOf":"show leave balance detail of",
 		"":""
 	},
 	"language":{

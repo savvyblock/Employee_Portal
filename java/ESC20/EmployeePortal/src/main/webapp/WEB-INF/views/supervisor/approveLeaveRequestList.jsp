@@ -105,7 +105,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <c:forEach var="item" items="${leaves}" varStatus="status">
                                                         <c:if test="${item.statusCd !='A' && item.statusCd !='D'}">
                                                         <tr id="actionList_${status.index}">
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.employee}"> ${item.empNbr}: ${item.lastName}, ${item.firstName}</td>
+                                                            <td data-title="${sessionScope.languageJSON.approveRequest.employee}"> 
+                                                                ${item.empNbr}: ${item.lastName}, ${item.firstName}
+                                                                <button data-toggle="modal" data-target="#balanceModal" onclick="showBalance('${item.empNbr}')" aria-label="${sessionScope.languageJSON.label.showLeaveBalanceOf} ${item.empNbr}: ${item.lastName}, ${item.firstName}">
+                                                                    <i class="fa fa-search"></i>
+                                                                </button>
+                                                            </td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.leaveStartDate}">${item.LeaveStartDate}</td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.leaveEndDate}" >${item.LeaveEndDate}</td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.startTime}">${item.LeaveStartTime}</td>
@@ -147,6 +152,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                         <input class="disapproveRadio" type="radio" name="actionRadio_${status.index}" id="disapproveAction_${status.index}" value="0" data-id="${item.id}" data-index="${status.index}">
                                                                         <label for="disapproveAction_${status.index}">${sessionScope.languageJSON.label.disapprove}</label>
                                                                     </div>
+                                                                    <div class="form-group">
+                                                                        <input class="noActionRadio" type="radio" name="actionRadio_${status.index}" id="noAction_${status.index}" value="no" data-id="${item.id}" data-index="${status.index}">
+                                                                        <label for="noAction_${status.index}">${sessionScope.languageJSON.label.noAction}</label>
+                                                                    </div>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -180,6 +189,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         </div>
         <%@ include file="../modal/leaveListCalendar.jsp"%>
         <%@ include file="../modal/approveLeaveModal.jsp"%>
+        <%@ include file="../modal/approveLeaveBalance.jsp"%>
         <%@ include file="../commons/footer.jsp"%>
     </body>
     <script>

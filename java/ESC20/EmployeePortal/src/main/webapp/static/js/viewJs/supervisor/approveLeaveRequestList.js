@@ -34,13 +34,30 @@ $(function(){
         $('#saveRequestListBtn').hide()
     }
     $(".request-list input[type=radio]").change(function(){
-        $("#saveRequestListBtn").removeAttr('disabled')
-        var requestIndex = $(this).attr('data-index')
-        // if(this.value == '0'){
-            $("#supervisorComment_"+requestIndex+"").removeClass('hide')
-        // }else{
-        //     $("#supervisorComment_"+requestIndex+"").addClass('hide')
-        // }
+        var actionRadio = $(".request-list input[type=radio]")
+        var actionList = new Array()
+        var radioName = new Array()
+        $(".request-list input[type=radio]").each(function(){
+            radioName.push($(this).attr("name"));
+        })
+        radioName.sort();
+        $.unique(radioName);
+        $.each(radioName,function(i,val){
+            var checkVal = $("input[name="+val+"]:checked").val()
+            var requestIndex = $("input[name="+val+"]:checked").attr('data-index')
+            if(checkVal == '1'||checkVal == '0'){
+                $("#supervisorComment_"+requestIndex+"").removeClass('hide')
+                actionList.push(checkVal)
+            }else{
+                $("#supervisorComment_"+requestIndex+"").addClass('hide')
+            }
+        });
+        if(actionList.length>0){
+            $("#saveRequestListBtn").removeAttr('disabled')
+        }else{
+            $("#saveRequestListBtn").attr('disabled','disabled')
+        }
+
     })
     
     $("#saveRequestListBtn").click(function(){
@@ -76,6 +93,9 @@ $(function(){
             $("#actionForm")[0].submit()
         }
         
+    })
+    $(".noActionRadio").click(function(){
+       $(this).closest("tr").find("textarea.form-text").val("");
     })
 })
 
@@ -179,4 +199,8 @@ function changeLevel(){
 function showCalendarModal(){
     setTimeout("initialLeaveCalendarModal()",100)
     
+}
+
+function showBalance(id){
+    console.log(id)
 }
