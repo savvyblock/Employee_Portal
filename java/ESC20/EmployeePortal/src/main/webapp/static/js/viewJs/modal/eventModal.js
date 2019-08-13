@@ -1,5 +1,9 @@
 console.log(leaveTypesAbsrsnsMap)
+console.log(isAddValue)
 $(function() {
+    if(isAddValue == 'true'){
+        $("#requestModal").modal('show')
+    }
     formValidator()
     var nowTemp = new Date()
     var now = new Date(
@@ -17,11 +21,6 @@ $(function() {
             // startDate: now,
             format: 'mm/dd/yyyy',
             language:initialLocaleCode,
-            onRender: function(date) {
-                // if(checkout&&haveEndDate){
-                //     return date.valueOf() > checkout.date.valueOf() ? 'disabled' : '';
-                // }
-            }
         })
         .on('changeDate', function(ev) {
             var endDate = $('#endDateInput').val()
@@ -38,6 +37,7 @@ $(function() {
                 checkout.update(startDate)
                 console.log(startDate)
                 $('#endDateInput').change()
+                $('#startDateInput').change()
             }
         })
         .data('datepicker')
@@ -134,6 +134,7 @@ function formValidator() {
                 }
             },
             LeaveStartDate: {
+                trigger:'change',
                 validators: {
                     notEmpty: {
                         message: startDateCannotBeEmptyValidator
@@ -432,8 +433,77 @@ $("#startDateInput").blur(function(){
         }
         return true;
     }
-     $('.save').on('click', function() {
-         $(this).parents(".modal").focus()
+    //  $('.save').on('click', function() {
+    //      $(this).parents(".modal").focus()
+    //     var bootstrapValidator = $('#requestForm').data('bootstrapValidator')
+    //     bootstrapValidator.validate()
+    //     if (bootstrapValidator.isValid()) {
+    //         console.log('success')
+    //         var startDate = $('#startDateInput').val()
+    //         var endDate = $('#endDateInput').val()
+    //         var start = new Date(startDate)
+    //         var end = new Date(endDate)
+    //         var dateTotal = $("#totalRequested").val()
+    //         var typeCode = $("#modalLeaveType").val()
+    //         var balanceAvailable = $("#available"+typeCode+"").text()
+    //         // if (start.valueOf() > end.valueOf()) {
+    //             console.log(startDate)
+    //             console.log(endDate)
+    //         if (timeError) {
+    //             $('.dateValidator').show()
+    //             return false
+    //         } else {
+    //             $('.dateValidator').hide()
+    //             if(parseFloat(dateTotal)>0){
+    //                 $(".dateValidator01").hide()
+    //                 // console.log(parseFloat(dateTotal))
+    //                 // console.log(parseFloat(balanceAvailable))
+
+    //                 if(parseFloat(dateTotal)<=parseFloat(balanceAvailable)){
+    //                     $(".availableError").hide()
+    //                     // return false
+    //                     $('#requestForm')[0].submit()
+    //                 }else{
+    //                     $(".availableError").show()
+    //                 }
+    //             }else{
+    //                 $(".dateValidator01").show()
+    //             }
+                
+    //         }
+    //     } else return
+    // })
+    function changeDateYMD(date){
+        if(!date){
+            return
+        }
+		var dateArry = date.split("/")
+		var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
+		return DateFormat
+    }
+    
+    function convertRightFormat(str){
+        var reg = /^[0-9]{1,2}[^\d]{1}[0-9]{1,2}[^\d]{1}[0-9]{4}$/;
+        var regStr = /^[0-9]{1,2}[0-9]{1,2}[0-9]{4}$/;
+        if(reg.test(str)||regStr.test(str)){
+            if(reg.test(str)){
+                return str
+            }
+            if(regStr.test(str)){
+                var pattern = /(\d{2})(\d{2})(\d{4})/;
+                var formatedDate = str.replace(pattern, '$1/$2/$3');
+                return formatedDate
+            }
+        }else{
+            return false
+        }
+    }
+
+    function saveRequest(isAdd){
+        if(isAdd){
+            $("#isAdd").val(isAdd)
+        }
+        $(event.currentTarget).parents(".modal").focus()
         var bootstrapValidator = $('#requestForm').data('bootstrapValidator')
         bootstrapValidator.validate()
         if (bootstrapValidator.isValid()) {
@@ -471,29 +541,4 @@ $("#startDateInput").blur(function(){
                 
             }
         } else return
-    })
-    function changeDateYMD(date){
-        if(!date){
-            return
-        }
-		var dateArry = date.split("/")
-		var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
-		return DateFormat
-    }
-    
-    function convertRightFormat(str){
-        var reg = /^[0-9]{1,2}[^\d]{1}[0-9]{1,2}[^\d]{1}[0-9]{4}$/;
-        var regStr = /^[0-9]{1,2}[0-9]{1,2}[0-9]{4}$/;
-        if(reg.test(str)||regStr.test(str)){
-            if(reg.test(str)){
-                return str
-            }
-            if(regStr.test(str)){
-                var pattern = /(\d{2})(\d{2})(\d{4})/;
-                var formatedDate = str.replace(pattern, '$1/$2/$3');
-                return formatedDate
-            }
-        }else{
-            return false
-        }
     }
