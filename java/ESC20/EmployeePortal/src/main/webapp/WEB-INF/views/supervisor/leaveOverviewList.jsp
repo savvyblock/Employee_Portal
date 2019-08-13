@@ -167,9 +167,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <tr>
                                                             <th>${sessionScope.languageJSON.approveRequest.leaveStartDate}</th>
                                                             <th>${sessionScope.languageJSON.approveRequest.leaveEndDate}</th>
-                                                            <th>${sessionScope.languageJSON.approveRequest.leaveType}</th>
-                                                            <th>${sessionScope.languageJSON.approveRequest.absenceReason}</th>
-                                                            <th>${sessionScope.languageJSON.approveRequest.leaveRequested}</th>
+                                                            <th style="width:8%">${sessionScope.languageJSON.approveRequest.startTime}</th>
+                                                            <th style="width:8%">${sessionScope.languageJSON.approveRequest.endTime}</th>
+                                                            <th style="width:8%">${sessionScope.languageJSON.approveRequest.leaveType}</th>
+                                                            <th style="width:12%">${sessionScope.languageJSON.approveRequest.absenceReason}</th>
+                                                            <th style="width:12%">${sessionScope.languageJSON.approveRequest.leaveRequested}</th>
                                                             <th>${sessionScope.languageJSON.approveRequest.commentLog}</th>
                                                             <th>${sessionScope.languageJSON.approveRequest.status}</th>
                                                             <td aria-label="${sessionScope.languageJSON.approveRequest.supervisorAction}"></td>
@@ -181,6 +183,25 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             <tr class="hide">
                                                                     <td data-title="${sessionScope.languageJSON.approveRequest.leaveStartDate}">${item.LeaveStartDate}</td>
                                                                     <td data-title="${sessionScope.languageJSON.approveRequest.leaveEndDate}">${item.LeaveEndDate}</td>
+                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.startTime}">
+                                                                      <c:if test="${not empty item.id}">
+																		  ${item.LeaveStartTime}
+																	   </c:if>
+                                                                     
+                                                                       <c:if test="${empty item.id}">
+																		-
+																	  </c:if>
+                                                                     </td>
+                                                                    <td data-title="${sessionScope.languageJSON.approveRequest.endTime}">
+                                                                      <c:if test="${not empty item.id}">
+																		  ${item.LeaveEndTime}
+																	   </c:if>
+                                                                     
+                                                                       <c:if test="${empty item.id}">
+																		-
+																	  </c:if>
+                                                                   
+                                                                    </td>
                                                                     <td data-title="${sessionScope.languageJSON.approveRequest.leaveType}">
                                                                         <c:forEach var="type" items="${leaveTypes}" varStatus="statusType">
                                                                         	<c:if test="${type.code==item.LeaveType}">${type.description}</c:if>
