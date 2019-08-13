@@ -44,7 +44,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	
 	@RequestMapping("leaveRequest")
 	public ModelAndView leaveRequest(HttpServletRequest req, String SearchType, String SearchStart, String SearchEnd,
-			String freq) throws ParseException {
+			String freq,Boolean isAdd) throws ParseException {
 		HttpSession session = req.getSession();
 		Options options = this.indexService.getOptions();
 		session.setAttribute("options", options);
@@ -62,6 +62,15 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			mav.addObject("haveSupervisor", false);
 		}else {
 			mav.addObject("haveSupervisor", true);
+		}
+		if(isAdd == null) {
+			isAdd = false;
+		}
+		if(isAdd) {
+			mav.addObject("addRow", true);
+		}
+		else {
+			mav.addObject("addRow", false);
 		}
 		request.setLvTyp(SearchType);
 		if (SearchStart != null && !("").equals(SearchStart)) {
@@ -182,7 +191,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	
 	@RequestMapping("leaveRequestByFreqency")
 	public ModelAndView leaveRequestByFrequency(HttpServletRequest req, String freq) throws ParseException {
-		return this.leaveRequest(req, null, null, null, freq);
+		return this.leaveRequest(req, null, null, null, freq,false);
 	}
 	
 	@RequestMapping("submitLeaveRequest")
@@ -200,19 +209,14 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
 		}
-		if(isAdd == null) {
-			isAdd = false;
-		}
+		
 		
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate,
 				endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo);
 		
-		if(isAdd) {
-			mav.addObject("addRow", true);
-			return mav;
-		}
-		return this.leaveRequest(req, null, null, null, null);
+		
+		return this.leaveRequest(req, null, null, null, null,isAdd);
 	}
 	
 	@RequestMapping("deleteLeaveRequest")
@@ -226,6 +230,6 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			return mav;
 		}
 		deleteLeaveRequest(id);
-		return this.leaveRequest(req, null, null, null, null);
+		return this.leaveRequest(req, null, null, null, null,false);
 	}
 }
