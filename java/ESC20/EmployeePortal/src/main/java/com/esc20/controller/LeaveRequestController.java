@@ -13,9 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequestModel;
@@ -23,6 +25,8 @@ import com.esc20.nonDBModels.Options;
 import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
+import com.esc20.util.DateUtil;
+import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -46,8 +50,20 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	public ModelAndView leaveRequest(HttpServletRequest req, String SearchType, String SearchStart, String SearchEnd,
 			String freq,Boolean isAdd) throws ParseException {
 		HttpSession session = req.getSession();
-		Options options = this.indexService.getOptions();
-		session.setAttribute("options", options);
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+        Options options = this.indexService.getOptions();
+        String district = (String)session.getAttribute("districtId");
+        District districtInfo = this.indexService.getDistrict(district);
+        userDetail.setEmpNbr(user.getEmpNbr());
+        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        String phone = districtInfo.getPhone();
+        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+
+		 session.setAttribute("userDetail", userDetail);
+         session.setAttribute("companyId", district);
+         session.setAttribute("options", options);
+         session.setAttribute("district", districtInfo);
 		
 		ModelAndView mav = new ModelAndView();
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");

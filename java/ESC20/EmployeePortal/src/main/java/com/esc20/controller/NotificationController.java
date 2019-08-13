@@ -18,6 +18,8 @@ import com.esc20.model.BeaAlert;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.service.IndexService;
+import com.esc20.util.DateUtil;
+import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -35,8 +37,13 @@ public class NotificationController{
     public ModelAndView getNotifications(HttpServletRequest req){
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
-        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
+        demo.setEmpNbr(user.getEmpNbr());
+        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		session.setAttribute("userDetail", demo);
+
+       // BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         List<BeaAlert> unReadList = this.indexService.getUnReadAlert(demo.getEmpNbr());
         mav.setViewName("notifications");
         mav.addObject("user", user);
@@ -56,7 +63,11 @@ public class NotificationController{
 			mav.addObject("errorMsg", "No id provided.");
 			return mav;
 		}
-        BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
+        demo.setEmpNbr(user.getEmpNbr());
+        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		session.setAttribute("userDetail", demo);
+        //BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteAlert(id);
         List<BeaAlert> unReadList = this.indexService.getUnReadAlert(demo.getEmpNbr());
         mav.setViewName("notifications");
@@ -70,7 +81,12 @@ public class NotificationController{
     public Map<String, String> getBudgeCount(HttpServletRequest req) throws Exception{
     	HttpSession session = req.getSession();
     	Map<String, String> res = new HashMap<>();
-    	BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+        BeaUsers user = (BeaUsers)session.getAttribute("user");
+    	BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
+        demo.setEmpNbr(user.getEmpNbr());
+        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		session.setAttribute("userDetail", demo);
+    	//BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
     	if(demo==null)
     		return null;
     	Integer count = this.indexService.getBudgeCount(demo.getEmpNbr());
@@ -83,7 +99,12 @@ public class NotificationController{
     public Map<String, JSONArray> getTop5Alerts(HttpServletRequest req) throws Exception{
     	HttpSession session = req.getSession();
     	Map<String, JSONArray> result = new HashMap<>();
-    	BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+    	 BeaUsers user = (BeaUsers)session.getAttribute("user");
+     	BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
+         demo.setEmpNbr(user.getEmpNbr());
+         demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+ 		session.setAttribute("userDetail", demo);
+    	//BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
     	if(demo==null)
     		return null;
     	List<BeaAlert> top5 = this.indexService.getTop5Alerts(demo.getEmpNbr());

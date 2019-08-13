@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.dao.EA1095Dao;
+import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrAca1095cEmpHist;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BrRptngContact;
@@ -67,9 +68,20 @@ public class Information1095Controller{
 	@RequestMapping("information1095")
 	public ModelAndView getInformation1095(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		Options options = this.indexService.getOptions();
-		session.setAttribute("options", options);
-		
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+        Options options = this.indexService.getOptions();
+        String district = (String)session.getAttribute("districtId");
+        District districtInfo = this.indexService.getDistrict(district);
+        userDetail.setEmpNbr(user.getEmpNbr());
+        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        String phone = districtInfo.getPhone();
+        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+
+		session.setAttribute("userDetail", userDetail);
+        session.setAttribute("companyId", district);
+        session.setAttribute("options", options);
+        session.setAttribute("district", districtInfo);
 		ModelAndView mav = new ModelAndView();
 		mav = init1095(mav, session, null, 1, 1, null, null, null);
 		return mav;

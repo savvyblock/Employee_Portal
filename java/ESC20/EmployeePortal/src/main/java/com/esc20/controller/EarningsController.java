@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Earnings;
@@ -30,6 +31,7 @@ import com.esc20.nonDBModels.report.ReportParameterConnection;
 import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
+import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
 
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -54,11 +56,23 @@ public class EarningsController {
 	@RequestMapping("earnings")
 	public ModelAndView getEarnings(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		Options options = this.indexService.getOptions();
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+        Options options = this.indexService.getOptions();
+        String district = (String)session.getAttribute("districtId");
+        District districtInfo = this.indexService.getDistrict(district);
+        userDetail.setEmpNbr(user.getEmpNbr());
+        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        String phone = districtInfo.getPhone();
+        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+
 		session.setAttribute("options", options);
+		session.setAttribute("userDetail", userDetail);
+        session.setAttribute("companyId", district);
+        session.setAttribute("district", districtInfo);
 		
 		ModelAndView mav = new ModelAndView();
-		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		Integer days = ((Options) session.getAttribute("options")).getMaxDays();
 		if (days == null)

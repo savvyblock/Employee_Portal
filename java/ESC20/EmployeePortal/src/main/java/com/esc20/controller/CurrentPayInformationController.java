@@ -69,7 +69,7 @@ public class CurrentPayInformationController{
         String phone = districtInfo.getPhone();
         districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
 
-		session.setAttribute("options", options);
+		 session.setAttribute("options", options);
 		 session.setAttribute("userDetail", userDetail);
          session.setAttribute("companyId", district);
          session.setAttribute("options", options);

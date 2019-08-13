@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
+import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
 import com.esc20.service.IndexService;
+import com.esc20.util.DateUtil;
+import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONObject;
 
@@ -54,10 +58,20 @@ public class IndexController {
     @RequestMapping("home")
     public ModelAndView getHome(HttpServletRequest req,HttpServletResponse response){
         HttpSession session = req.getSession();
+        BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
         Options options = this.indexService.getOptions();
+        /*String district = (String)session.getAttribute("districtId");
+        District districtInfo = this.indexService.getDistrict(district);*/
+        userDetail.setEmpNbr(user.getEmpNbr());
+        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+       /* String phone = districtInfo.getPhone();
+        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));*/
+
 		session.setAttribute("options", options);
+		session.setAttribute("userDetail", userDetail);
 		
-        BhrEmpDemo userDetail = (BhrEmpDemo)session.getAttribute("userDetail");
+       // BhrEmpDemo userDetail = (BhrEmpDemo)session.getAttribute("userDetail");
         ModelAndView mav = new ModelAndView();
         mav.setViewName("home");
         mav.addObject("userDetail", userDetail);

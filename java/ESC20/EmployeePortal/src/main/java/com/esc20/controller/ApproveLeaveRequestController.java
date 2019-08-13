@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BeaEmpLvRqst;
+import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequest;
@@ -26,6 +28,8 @@ import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
 import com.esc20.service.SupervisorService;
+import com.esc20.util.DateUtil;
+import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -54,7 +58,19 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		LeaveParameters params = this.service.getLeaveParameters();
-		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
+        //String district = (String)session.getAttribute("districtId");
+       // District districtInfo = this.indexService.getDistrict(district);
+        demo.setEmpNbr(user.getEmpNbr());
+        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+       // String phone = districtInfo.getPhone();
+        //districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+
+		 session.setAttribute("userDetail", demo);
+		
+	//	BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		boolean supervisorsOnly = true;
 		boolean excludeTempApprovers = false;
 		if (empNbr == null || ("").equals(empNbr)) {

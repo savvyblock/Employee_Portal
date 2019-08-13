@@ -12,14 +12,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequestModel;
+import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
+import com.esc20.util.DateUtil;
+import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -30,6 +35,9 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 
 	@Autowired
 	private LeaveRequestService service;
+	
+	@Autowired
+	private IndexService indexService;
 
 	@Autowired
 	private ReferenceService referenceService;
@@ -39,10 +47,25 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 	@RequestMapping("eventCalendar")
 	public ModelAndView getEventCalendar(HttpServletRequest req, String freq) {
 		HttpSession session = req.getSession();
+	
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
+
+        String district = (String)session.getAttribute("districtId");
+        District districtInfo = this.indexService.getDistrict(district);
+        demo.setEmpNbr(user.getEmpNbr());
+        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        String phone = districtInfo.getPhone();
+        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+
+		 session.setAttribute("userDetail", demo);
+         session.setAttribute("companyId", district);
+         session.setAttribute("district", districtInfo);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/leaveRequest/fullCalendar");
 		AppLeaveRequest request = new AppLeaveRequest();
-		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		//BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
 		LeaveParameters params = this.service.getLeaveParameters();
 		String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());

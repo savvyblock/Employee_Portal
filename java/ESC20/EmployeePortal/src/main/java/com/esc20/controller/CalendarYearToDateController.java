@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrCalYtd;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.CalYTDPrint;
@@ -29,6 +30,7 @@ import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
 import com.esc20.util.DateUtil;
+import com.esc20.util.StringUtil;
 
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -50,11 +52,24 @@ public class CalendarYearToDateController {
 	@RequestMapping("calendarYearToDate")
 	public ModelAndView getCalendarYearToDate(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		Options options = this.indexService.getOptions();
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+        Options options = this.indexService.getOptions();
+       /* String district = (String)session.getAttribute("districtId");
+        District districtInfo = this.indexService.getDistrict(district);*/
+        userDetail.setEmpNbr(user.getEmpNbr());
+        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+       /* String phone = districtInfo.getPhone();
+        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));*/
+
 		session.setAttribute("options", options);
+		session.setAttribute("userDetail", userDetail);
+      //  session.setAttribute("companyId", district);
+        session.setAttribute("options", options);
+       // session.setAttribute("district", districtInfo);
 		
 		ModelAndView mav = new ModelAndView();
-		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		List<String> years = service.getAvailableYears(employeeNumber);
 		String latestYear = DateUtil.getLatestYear(years);
@@ -84,7 +99,13 @@ public class CalendarYearToDateController {
 			mav.addObject("errorMsg", "Year not provided.");
 			return mav;
 		}
-		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+        userDetail.setEmpNbr(user.getEmpNbr());
+        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+   	 	session.setAttribute("userDetail", userDetail);
+
+		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		BhrCalYtd calYTD = service.getCalenderYTD(employeeNumber, year);
 		BigDecimal trsIns = calYTD.getTrsDeposit().subtract(calYTD.getTrsSalaryRed());
@@ -114,8 +135,18 @@ public class CalendarYearToDateController {
 		}
 		pDFService.setRealPath(path);
 		
-		BhrEmpDemo userDetail = (BhrEmpDemo) request.getSession().getAttribute("userDetail");
-		District district = (District) request.getSession().getAttribute("district");
+		BeaUsers user = (BeaUsers) request.getSession().getAttribute("user");
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+        String districtId = (String)request.getSession().getAttribute("districtId");
+        District district = this.indexService.getDistrict(districtId);
+        userDetail.setEmpNbr(user.getEmpNbr());
+        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        String phone = district.getPhone();
+        district.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+
+		
+		//BhrEmpDemo userDetail = (BhrEmpDemo) request.getSession().getAttribute("userDetail");
+		//District district = (District) request.getSession().getAttribute("district");
 		
 		BhrCalYtd b = service.getCalenderYTD(userDetail.getEmpNbr(), year);
 		
@@ -146,8 +177,19 @@ public class CalendarYearToDateController {
 			path = path.concat("\\");
 		}
 		pDFService.setRealPath(path);
-		BhrEmpDemo userDetail = (BhrEmpDemo) request.getSession().getAttribute("userDetail");
-		District district = (District) request.getSession().getAttribute("district");
+		
+		BeaUsers user = (BeaUsers) request.getSession().getAttribute("user");
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+        String districtId = (String)request.getSession().getAttribute("districtId");
+        District district = this.indexService.getDistrict(districtId);
+        userDetail.setEmpNbr(user.getEmpNbr());
+        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        String phone = district.getPhone();
+        district.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+
+        
+		//BhrEmpDemo userDetail = (BhrEmpDemo) request.getSession().getAttribute("userDetail");
+		//District district = (District) request.getSession().getAttribute("district");
 		
 		BhrCalYtd b = service.getCalenderYTD(userDetail.getEmpNbr(), year);
 		

@@ -39,6 +39,7 @@ import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Bank;
 import com.esc20.nonDBModels.BankRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Money;
 import com.esc20.nonDBModels.Options;
@@ -49,6 +50,8 @@ import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.BankService;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
+import com.esc20.util.DateUtil;
+import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -74,10 +77,9 @@ public class ProfileController{
     @RequestMapping("profile")
     public ModelAndView getProfile(HttpServletRequest req,String freq){
         HttpSession session = req.getSession();
-        Options options = this.indexService.getOptions();
-		session.setAttribute("options", options);
-		
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
+       
+        BeaUsers user = (BeaUsers) session.getAttribute("user");
+         
         ModelAndView mav = new ModelAndView();
         getProfileDetails(session, mav,freq);
         mav.addObject("decryptedPwd",user.getUsrpswd());
@@ -932,7 +934,22 @@ public class ProfileController{
    }
     
 	private void getProfileDetails(HttpSession session, ModelAndView mav, String freq) {
-		BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
+        Options options = this.indexService.getOptions();
+        String district = (String)session.getAttribute("districtId");
+        District districtInfo = this.indexService.getDistrict(district);
+        demo.setEmpNbr(user.getEmpNbr());
+        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        String phone = districtInfo.getPhone();
+        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+
+		 session.setAttribute("userDetail", demo);
+         session.setAttribute("companyId", district);
+         session.setAttribute("options", options);
+         session.setAttribute("district", districtInfo);
+	         
+		//BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         BeaLglName nameRequest = this.indexService.getBeaLglName(demo);
         BeaEmerContact emerRequest = this.indexService.getBeaEmerContact(demo);
         BeaDrvsLic licRequest = this.indexService.getBeaDrvsLic(demo);
