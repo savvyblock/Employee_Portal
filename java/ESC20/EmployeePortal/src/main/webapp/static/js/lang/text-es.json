@@ -285,7 +285,8 @@
 		"submitForApproval":"Enviar a aprobaciѓn",
 		"reSubmitForApproval":"Resubmit for Approval",
 		"fromDateLeave":"From Date of Leave",
-		"toDateLeave":"To Date of Leave"
+		"toDateLeave":"To Date of Leave",
+		"submitAndAdd":"Submit and Add"
 	},
 	"leaveRequest":{
 		"sno":"Sno.",

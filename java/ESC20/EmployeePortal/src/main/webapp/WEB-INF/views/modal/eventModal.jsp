@@ -214,18 +214,25 @@
                     </div>
                     <p class="error-hint hide availableError" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.availableError}</p>
                     <%@ include file="../commons/leaveBalanceTable.jsp"%>
+                    <input type="hidden" name="isAdd" id="isAdd">
                 </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary firstSubmit save" 
-                        type="button" role="button"
-                        id="saveCreate"
-                        name="save">
-                        	${sessionScope.languageJSON.leaveBalance.submitForApproval}
+                        <button class="btn btn-primary firstSubmit save" onclick="saveRequest(true)"
+                            type="button" role="button"
+                            id="saveCreate"
+                            name="save">
+                        	${sessionScope.languageJSON.leaveBalance.submitAndAdd}
                         </button>
-                        <button class="btn btn-primary secondSubmit save" 
-                        type="button" role="button"
-                        id="saveEdit"
-                        name="save">
+                        <button class="btn btn-primary firstSubmit save"  onclick="saveRequest()"
+                            type="button" role="button"
+                            id="saveCreate"
+                            name="save">
+                        	${sessionScope.languageJSON.leaveBalance.submitAndClose}
+                        </button>
+                        <button class="btn btn-primary secondSubmit save"  onclick="saveRequest()"
+                            type="button" role="button"
+                            id="saveEdit"
+                            name="save">
                         	${sessionScope.languageJSON.leaveBalance.reSubmitForApproval}
                         </button>
                         <button
@@ -253,6 +260,7 @@
 </div>
 <script>
 var leaveTypesAbsrsnsMap = eval(${leaveTypesAbsrsnsMap});
+var isAddValue = '${addRow}'
 </script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/eventModal.js"></script>
 
