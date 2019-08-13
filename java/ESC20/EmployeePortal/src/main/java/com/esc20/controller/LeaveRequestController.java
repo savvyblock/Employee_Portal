@@ -188,7 +188,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	@RequestMapping("submitLeaveRequest")
 	public ModelAndView submitLeaveRequest(HttpServletRequest req, String leaveId, String leaveType,
 			String absenseReason, String LeaveStartDate, String startTimeValue, String LeaveEndDate,
-			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq)
+			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq,Boolean isAdd)
 			throws ParseException {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
@@ -200,9 +200,18 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
 		}
+		if(isAdd == null) {
+			isAdd = false;
+		}
+		
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate,
 				endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo);
+		
+		if(isAdd) {
+			mav.addObject("addRow", true);
+			return mav;
+		}
 		return this.leaveRequest(req, null, null, null, null);
 	}
 	
