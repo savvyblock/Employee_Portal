@@ -3,6 +3,9 @@ console.log(isAddValue)
 $(function() {
     if(isAddValue == 'true'){
         $("#requestModal").modal('show')
+        $(".edit-title").hide()
+        $(".secondSubmit").hide();
+        $("#deleteLeave").hide();	
     }
     formValidator()
     var nowTemp = new Date()
