@@ -210,7 +210,7 @@ function showBalance(id){
             leaveBalance = leaves[i].infos
         }
     } 
-    $("#leaveBalanceSummaryFor").text(leaveCurrent.empNbr + ': '+ leaveCurrent.lastName + ' '+ leaveCurrent.firstName)
+    $("#leaveBalanceSummaryFor").text(leaveCurrent.empNbr + ': '+ leaveCurrent.lastName + ', '+ leaveCurrent.firstName + ' ' +leaveCurrent.middleName)
     $("#payrollFreqEmp").text(leaveCurrent.payFreqDescr)
     var tbody = ''
     for(var i = 0,len = leaveBalance.length;i<len;i++){

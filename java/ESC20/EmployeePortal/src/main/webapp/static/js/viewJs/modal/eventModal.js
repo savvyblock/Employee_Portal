@@ -523,6 +523,7 @@ $("#startDateInput").blur(function(){
                 console.log(endDate)
             if (timeError) {
                 $('.dateValidator').show()
+                $("#endHour").focus()
                 return false
             } else {
                 $('.dateValidator').hide()
