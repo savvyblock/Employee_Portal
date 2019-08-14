@@ -547,7 +547,12 @@ input {
         border-top: 1px solid #dee2e6;
         text-align: left;
         word-spacing: normal;
+        word-break: break-all;
+        word-break: break-word;
         font-size: 12px;
+        &.commentLog{
+            width: 35%;
+        }
         &.boxtitle,&.boxvalue,&.boxvaluerj{
             padding: 0;
         }
@@ -1169,4 +1174,9 @@ input {
             min-width: 130px;
         }
     }
+}
+.commentsList{
+    white-space: normal;
+    word-break: break-all;
+    word-break: break-word;
 }

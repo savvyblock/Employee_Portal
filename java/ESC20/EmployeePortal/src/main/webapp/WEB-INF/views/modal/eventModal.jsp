@@ -208,7 +208,9 @@
                                 class="form-control"
                                 name="Remarks"
                                 id="Remarks"
-                                rows="2"
+                                rows="5"
+                                cols="60"
+                                maxlength="400"
                             ></textarea>
                         </div>
                     </div>

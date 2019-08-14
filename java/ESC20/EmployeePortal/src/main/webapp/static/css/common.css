@@ -621,7 +621,13 @@ input:focus {
   border-top: 1px solid #dee2e6;
   text-align: left;
   word-spacing: normal;
+  word-break: break-all;
+  word-break: break-word;
   font-size: 12px;
+}
+
+.table th.commentLog, .table td.commentLog {
+  width: 35%;
 }
 
 .table th.boxtitle, .table th.boxvalue, .table th.boxvaluerj, .table td.boxtitle, .table td.boxvalue, .table td.boxvaluerj {
@@ -1289,4 +1295,10 @@ input:focus {
   right: 0;
   z-index: 2;
   min-width: 130px;
+}
+
+.commentsList {
+  white-space: normal;
+  word-break: break-all;
+  word-break: break-word;
 }
