@@ -65,7 +65,7 @@ function initialLeaveCalendarModal(){
                             var html = '<p>'+comments[i].detail+'</p>'
                             $("#commentLogStatic").append(html)
                     }
-                    $("infoEmpNameStatic").html(leaveRequest.empNbr + ":" +leaveRequest.firstName+ ","+leaveRequest.firstName)
+                    $("infoEmpNameStatic").html(leaveRequest.empNbr + ":" +leaveRequest.lastName+ ","+leaveRequest.firstName)
                     $("#infoDetailStatic").html("")
                     // $('#EventDetailModal').modal('show')
                 },

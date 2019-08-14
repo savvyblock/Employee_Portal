@@ -88,7 +88,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <table class="table request-list responsive-table">
                                             <thead>
                                                 <tr>
-                                                        <th scope="col">${sessionScope.languageJSON.approveRequest.employee}</th>
+                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.employee}</th>
                                                         <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.leaveStartDate}</th>
                                                         <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.leaveEndDate}</th>
                                                         <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.startTime}</th>
