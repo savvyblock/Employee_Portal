@@ -210,6 +210,15 @@ public class Information1095Controller{
 		String message = options.getMessageElecConsent1095().trim();
 		String consent = this.service.get1095Consent(employeeNumber);
 		Integer BTotal = this.service.getBInfoTotal(employeeNumber, year);
+		Integer BTotalPage = this.service.getBInfoTotal(employeeNumber, year)/ 20;
+		Integer BRemianList =  this.service.getBInfoTotal(employeeNumber, year) % 20;
+		if(BRemianList >0) {
+			BTotal = BTotalPage + 1;
+		}
+		else
+		{
+			BTotal = BTotalPage;
+		}
 		Integer CTotal = this.service.getCInfoTotal(employeeNumber, year);
 		List<Code> bCovrgTypList = this.service.retrieveEA1095BEmpInfo(employeeNumber,year);
 		List<BCoveredHistory> bList;
