@@ -23,6 +23,8 @@ import com.esc20.nonDBModels.LeaveBalance;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequest;
+import com.esc20.nonDBModels.Options;
+import com.esc20.util.StringUtil;
 
 @Service
 public class LeaveRequestService {
@@ -31,6 +33,9 @@ public class LeaveRequestService {
 	private LeaveRequestDao leaveRequestDao;
 	@Autowired
 	private AlertDao alertDao;
+	
+	@Autowired
+	private IndexService indexService;
 
 	public BeaEmpLvRqst getleaveRequestById(int id) {
 		return leaveRequestDao.getleaveRequestById(id);
@@ -158,6 +163,21 @@ public class LeaveRequestService {
 			String freq) throws ParseException {
 		List<BhrEmpLvXmital> result = leaveRequestDao.getApprovedLeaves(empNbr, leaveType, searchStart, searchEnd,
 				freq);
+		
+		// filter processed and not processed based on options
+		 Options o =  this.indexService.getOptions();
+				
+		 for(int i = 0; i < result.size(); i++)
+		 {
+			if((StringUtil.isNullOrEmpty(result.get(i).getProcessDt())&& !o.getShowUnprocessedLeave())
+				||((!StringUtil.isNullOrEmpty(result.get(i).getProcessDt()))&& !o.getShowProcessedLeave())
+			  )
+			{
+				result.remove(i);
+				i--;
+			}
+		 }
+				
 		List<LeaveBalance> balances = new ArrayList<LeaveBalance>();
 		LeaveBalance temp;
 		for (int i = 0; i < result.size(); i++) {
