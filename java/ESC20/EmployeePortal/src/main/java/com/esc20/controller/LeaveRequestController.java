@@ -110,12 +110,22 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 					model = new LeaveRequestModel(temp);
 					requestModels.add(model);
 				}
-				List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
+				Code empty = new Code();
+				List<Code> absRsns =  new ArrayList<Code>();
+				//Add a blank for absRsns for default shown
+				empty = new Code();
+				empty.setDescription(" ");
+				absRsns.add(empty);
+				absRsns.addAll(this.service.getAbsRsns(demo.getEmpNbr(), freq, ""));
 				List<Code> leaveTypes = new ArrayList<Code>();
 				List<Code> leaveTypesforSearch = new ArrayList<Code>();
-				Code empty = new Code();
+				empty = new Code();
 				empty.setDescription("ALL");
 				leaveTypesforSearch.add(empty);
+				//Add a blank for leave Types for default shown
+				empty = new Code();
+				empty.setDescription(" ");
+				leaveTypes.add(empty);
 				leaveTypes.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
 				leaveTypesforSearch.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
 				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
@@ -160,12 +170,22 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 				model = new LeaveRequestModel(temp);
 				requestModels.add(model);
 			}
-			List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
+			Code empty = new Code();
+			List<Code> absRsns =  new ArrayList<Code>();
+			//Add a blank for absRsns for default shown
+			empty = new Code();
+			empty.setDescription(" ");
+			absRsns.add(empty);
+			absRsns.addAll(this.service.getAbsRsns(demo.getEmpNbr(), freq, ""));
 			List<Code> leaveTypes = new ArrayList<Code>();
 			List<Code> leaveTypesforSearch = new ArrayList<Code>();
-			Code empty = new Code();
+			empty = new Code();
 			empty.setDescription("ALL");
 			leaveTypesforSearch.add(empty);
+			//Add a blank for leave Types for default shown
+			empty = new Code();
+			empty.setDescription(" ");
+			leaveTypes.add(empty);
 			leaveTypes.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
 			leaveTypesforSearch.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
 			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);

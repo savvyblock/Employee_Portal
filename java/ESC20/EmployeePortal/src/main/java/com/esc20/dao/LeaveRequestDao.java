@@ -561,6 +561,12 @@ public class LeaveRequestDao {
 		List<Object[]> res = q.list();
 		List<String[]> result = new ArrayList<String[]>();
 		String[] temp;
+		//Add a blank row for the map
+		temp = new String[2];
+		temp[0] = "";
+		temp[1] = "";
+		result.add(temp);
+		
 		for (int i = 0; i < res.size(); i++) {
 			temp = new String[2];
 			temp[0] = (String) (res.get(i)[0]);
