@@ -77,7 +77,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <span>
                                                 <c:forEach var="item" items="${chain}" varStatus="status">
                                                      <c:if test="${status.last}"> 
-                                                            ${item.employeeNumber}: ${item.lastName}, ${item.firstName}   
+                                                            ${item.employeeNumber}: ${item.lastName}, ${item.firstName} ${item.middleName}   
                                                     </c:if>
                                                     </c:forEach>
                                         </span>
@@ -88,7 +88,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <table class="table request-list responsive-table">
                                             <thead>
                                                 <tr>
-                                                        <th scope="col">${sessionScope.languageJSON.approveRequest.employee}</th>
+                                                        <th scope="col" style="width:10%">${sessionScope.languageJSON.approveRequest.employee}</th>
                                                         <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.leaveStartDate}</th>
                                                         <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.leaveEndDate}</th>
                                                         <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.startTime}</th>
@@ -96,7 +96,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.leaveType}</th>
                                                         <th scope="col" style="width:12%">${sessionScope.languageJSON.approveRequest.absenceReason}</th>
                                                         <th scope="col" style="width:12%">${sessionScope.languageJSON.approveRequest.leaveRequested}</th>
-                                                        <th scope="col">${sessionScope.languageJSON.approveRequest.commentLog}</th>
+                                                        <th class="commentLog15" scope="col">${sessionScope.languageJSON.approveRequest.commentLog}</th>
                                                         <th scope="col">${sessionScope.languageJSON.approveRequest.supervisorAction}</th>
                                                 </tr>
                                             </thead>

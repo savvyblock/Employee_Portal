@@ -620,6 +620,7 @@
 		"saveSuperAction":"Save Supervisor Action",
 		"noSupervisorFound":"Leave Request cannot be entered. No supervisor found.",
 		"showLeaveBalanceOf":"show leave balance detail of",
+		"calendarForSuper":"Calendar for supervisor",
 		"":""
 	},
 	"language":{

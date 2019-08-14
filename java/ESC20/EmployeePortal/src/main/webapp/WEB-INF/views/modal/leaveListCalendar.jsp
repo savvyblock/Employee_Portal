@@ -12,7 +12,14 @@ data-backdrop="static"
 <div class="modal-content">
     <div class="modal-header">
         
-        <h4 class="modal-title"><span class="hide">${sessionScope.languageJSON.accessHint.calendarView}</span></h4>
+        <h4 class="modal-title">
+            <span>${sessionScope.languageJSON.label.calendarForSuper}</span>
+            <c:forEach var="item" items="${chain}" varStatus="status">
+                <c:if test="${status.last}"> 
+                    ${item.employeeNumber}: ${item.lastName}, ${item.firstName} ${item.middleName}
+                </c:if>
+            </c:forEach>
+        </h4>
         <button
         type="button" role="button"
         class="close closeModal"

@@ -43,7 +43,7 @@
                                 <select class="form-control" name="leaveType" id="modalLeaveType" onchange="changeLeaveType()">
                                         <c:forEach var="type" items="${leaveTypes}" varStatus="count">
                                             <c:if test="${type.description !='ALL'}">
-                                                <option value="${type.code}">${type.description}</option>
+                                                <option value="${type.code}" data-label="${type.subCode}">${type.description}</option>
                                             </c:if>
                                         </c:forEach>
                                 </select>

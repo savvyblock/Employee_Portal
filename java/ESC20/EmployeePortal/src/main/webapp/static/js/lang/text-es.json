@@ -286,7 +286,8 @@
 		"reSubmitForApproval":"Resubmit for Approval",
 		"fromDateLeave":"From Date of Leave",
 		"toDateLeave":"To Date of Leave",
-		"submitAndAdd":"Submit and Add"
+		"submitAndAdd":"Submit and Add",
+		"submitAndClose":"Submit and Close"
 	},
 	"leaveRequest":{
 		"sno":"Sno.",
@@ -619,6 +620,7 @@
 		"saveSuperAction":"Save Supervisor Action",
 		"noSupervisorFound":"Leave Request cannot be entered. No supervisor found.",
 		"showLeaveBalanceOf":"show leave balance detail of",
+		"calendarForSuper":"Calendar for supervisor",
 		"":""
 	},
 	"language":{

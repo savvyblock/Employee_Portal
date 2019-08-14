@@ -73,13 +73,16 @@ $(function() {
 function changeLeaveType(){
     var leaveType = $("#modalLeaveType").val()
     console.log(leaveType)
-    var reason = leaveTypesAbsrsnsMap.filter(function(item){
-        return item.leaveType == leaveType
-    })
-    $("#absenceReason").html('')
-    reason.forEach(function(item){
-        $("#absenceReason").append("<option value='"+item.absRsn +"'>" + item.absRsnDescrption +"</option>")
-    })
+    if(leaveType != ''){
+        var reason = leaveTypesAbsrsnsMap.filter(function(item){
+            return item.leaveType == leaveType
+        })
+        $("#absenceReason").html('')
+        reason.forEach(function(item){
+            $("#absenceReason").append("<option value='"+item.absRsn +"'>" + item.absRsnDescrption +"</option>")
+        })
+    }
+    
 
 }
 
