@@ -131,7 +131,6 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
 				JSONArray json = new JSONArray();
 
-				leaveTypes.add(empty);
 				for (int i = 0; i < requestModels.size(); i++) {
 					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null));
 				}
