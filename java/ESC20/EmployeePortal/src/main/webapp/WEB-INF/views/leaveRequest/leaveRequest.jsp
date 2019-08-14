@@ -142,7 +142,7 @@
 								<th class="text-center">${sessionScope.languageJSON.leaveRequest.startDate}</th>
 								<th class="text-center">${sessionScope.languageJSON.leaveRequest.endDate}</th>
 								<th>${sessionScope.languageJSON.leaveRequest.leaveRequested}</th>
-								<th>${sessionScope.languageJSON.leaveRequest.commentLog}</th>
+								<th class="commentLog">${sessionScope.languageJSON.leaveRequest.commentLog}</th>
 								<th>${sessionScope.languageJSON.leaveRequest.status}</th>
 								<td></td>
 							</tr>
