@@ -70,7 +70,7 @@ $(document).ready(function() {
                     $('infoEmpNameStatic').html(
                         leaveRequest.empNbr +
                             ':' +
-                            leaveRequest.firstName +
+                            leaveRequest.lastName +
                             ',' +
                             leaveRequest.firstName
                     )

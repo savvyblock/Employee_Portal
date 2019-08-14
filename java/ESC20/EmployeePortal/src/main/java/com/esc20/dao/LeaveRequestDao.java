@@ -244,18 +244,22 @@ public class LeaveRequestDao {
 		Session session = this.getSession();
 		String sql = null;
 		if (checkTemporaryApprover) {
-			sql = "SELECT ED.empNbr, ED.nameF, ED.nameM, ED.nameL, ED.email " + "FROM BhrEmpDemo ED  "
-					+ "WHERE ED.empNbr=( " + "SELECT ISNULL( "
-					+ "(SELECT TA.tmpApprvrEmpNbr FROM BeaEmpLvTmpApprovers TA WHERE TA.spvsrEmpNbr=(SELECT PPC2.occEmpNbr FROM BhrPmisPosCtrl PPC2 WHERE PPC2.id.billetNbr=:supervisorBilletNumber AND PPC2.id.posNbr=:supervisorPosNumber AND PPC2.id.posTyp='P' AND PPC2.id.cyrNyrFlg='C') AND TA.datetimeFrom <= GETDATE() AND GETDATE() <= TA.datetimeTo),"
-					+ "(SELECT PPC2.occEmpNbr FROM BhrPmisPosCtrl PPC2 WHERE PPC2.id.billetNbr=:supervisorBilletNumber AND PPC2.id.posNbr=:supervisorPosNumber AND PPC2.id.posTyp='P' AND PPC2.id.cyrNyrFlg='C')"
-					+ ") " + ") ";
+			sql = "SELECT ED.EMP_NBR, ED.NAME_F, ED.NAME_M, ED.NAME_L, ED.EMAIL " +
+					"FROM BHR_EMP_DEMO ED  " +
+					"WHERE ED.EMP_NBR=( " +
+						"SELECT ISNULL( " +
+							"(SELECT TA.TMP_APPRVR_EMP_NBR FROM BEA_EMP_LV_TMP_APPROVERS TA WHERE TA.SPVSR_EMP_NBR=(SELECT PPC2.OCC_EMP_NBR FROM BHR_PMIS_POS_CTRL PPC2 WHERE PPC2.BILLET_NBR=:supervisorBilletNumber AND PPC2.POS_NBR=:supervisorPosNumber AND PPC2.POS_TYP='P' AND PPC2.CYR_NYR_FLG='C') AND TA.DATETIME_FROM <= GETDATE() AND GETDATE() <= TA.DATETIME_TO)," +
+							"(SELECT PPC2.OCC_EMP_NBR FROM BHR_PMIS_POS_CTRL PPC2 WHERE PPC2.BILLET_NBR=:supervisorBilletNumber AND PPC2.POS_NBR=:supervisorPosNumber AND PPC2.POS_TYP='P' AND PPC2.CYR_NYR_FLG='C')" +
+						             ") " +
+					") ";
 		} else {
-			sql = "SELECT ED.empNbr, ED.nameF, ED.nameM, ED.nameL, ED.email " + "FROM BhrEmpDemo ED  "
-					+ "WHERE ED.empNbr=( "
-					+ "SELECT PPC2.occEmpNbr FROM BhrPmisPosCtrl PPC2 WHERE PPC2.id.billetNbr=:supervisorBilletNumber AND PPC2.id.posNbr=:supervisorPosNumber AND PPC2.id.posTyp='P' AND PPC2.id.cyrNyrFlg='C'"
-					+ ") ";
+			sql = "SELECT ED.EMP_NBR, ED.NAME_F, ED.NAME_M, ED.NAME_L, ED.EMAIL " +
+					"FROM BHR_EMP_DEMO ED  " +
+					"WHERE ED.EMP_NBR=( " +
+							"SELECT PPC2.OCC_EMP_NBR FROM BHR_PMIS_POS_CTRL PPC2 WHERE PPC2.BILLET_NBR=:supervisorBilletNumber AND PPC2.POS_NBR=:supervisorPosNumber AND PPC2.POS_TYP='P' AND PPC2.CYR_NYR_FLG='C' " +      
+					") ";
 		}
-		Query q = session.createQuery(sql);
+		Query q = session.createSQLQuery(sql);
 		q.setParameter("supervisorBilletNumber", spvsrBilletNbr);
 		q.setParameter("supervisorPosNumber", spvsrPosNbr);
 		Object[] res = (Object[]) q.uniqueResult();
