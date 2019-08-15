@@ -162,6 +162,9 @@ public class LeaveRequestModel implements Serializable {
 			}
 		}
 		String title = this.getFirstName()+" "+this.getLastName()+ typeDesc;
+		if(this.getMiddleName().trim().length()>0) {
+			title = this.getFirstName()+" "+this.getMiddleName().trim()+ " "+this.getLastName()+ typeDesc;
+		}
 		jo.put("title", title);
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm a");
