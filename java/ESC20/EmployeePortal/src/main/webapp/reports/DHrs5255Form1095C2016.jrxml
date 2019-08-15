@@ -985,7 +985,7 @@
 						<textElement textAlignment="Left">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
 						</textElement>
-						<text><![CDATA[Applicable Large Employer Member (Employer)]]></text>
+						<text><![CDATA[  Applicable Large Employer Member (Employer)]]></text>
 					</staticText>
 				</frame>
 				<frame>
@@ -1090,14 +1090,14 @@
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<staticText>
-							<reportElement x="0" y="0" width="11" height="8" uuid="898734be-c07c-4a45-b8b3-73262d4b969a"/>
+							<reportElement x="0" y="1" width="11" height="8" uuid="898734be-c07c-4a45-b8b3-73262d4b969a"/>
 							<textElement textAlignment="Right">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="true"/>
 							</textElement>
 							<text><![CDATA[8]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="12" y="0" width="123" height="8" uuid="38ada56c-c8e5-43bb-a448-c7888996442a"/>
+							<reportElement x="12" y="1" width="123" height="8" uuid="38ada56c-c8e5-43bb-a448-c7888996442a"/>
 							<textElement textAlignment="Left">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
@@ -6281,7 +6281,7 @@ $V{allOfferOfCoverage}
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Jun]]></text>
+							<text><![CDATA[June]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -6295,7 +6295,7 @@ $V{allOfferOfCoverage}
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Jul]]></text>
+							<text><![CDATA[July]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -6323,7 +6323,7 @@ $V{allOfferOfCoverage}
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="8" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Sep]]></text>
+							<text><![CDATA[Sept]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -6376,11 +6376,11 @@ $V{allOfferOfCoverage}
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<staticText>
-							<reportElement x="11" y="3" width="120" height="8" uuid="234dc99d-7f8b-4f97-a6c0-92359ba6e09e"/>
+							<reportElement x="11" y="3" width="120" height="25" uuid="234dc99d-7f8b-4f97-a6c0-92359ba6e09e"/>
 							<textElement textAlignment="Left" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[(a) Name of covered individual(s)]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(a)</style> Name of covered individual(s)     (First name, middle initial, last name)]]></text>
 						</staticText>
 					</frame>
 				</frame>
