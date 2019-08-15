@@ -27,12 +27,15 @@
                 </button>
             </div>
             <form id="requestForm" action="submitLeaveRequest" method="post">
+                <input type="hidden" name="mealBreakHours" id="mealBreakHours" value="${params.mealBreakHours}">
+                <input type="hidden" name="standardHoursDaily" id="standardHoursDaily" value="${params.standardHours}">
+                <input type="hidden" name="requireLeaveHoursRequestedEntry" id="requireLeaveHoursRequestedEntry" value="${params.requireLeaveHoursRequestedEntry}">
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <input type="text" hidden="hidden" name="chain" id="chainModal" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
-                <input type="text" hidden="hidden" name="empNbr" id="empNbrModal" aria-label="${sessionScope.languageJSON.accessHint.employeeNumber}"/>
-                <input type="text" name="freq" hidden="hidden" id="freqModal" value="${selectedFreq}" aria-label="${sessionScope.languageJSON.accessHint.frequency}"/>
-                <input type="text" name="startDate" id="searchStartModal" hidden="hidden" aria-label="${sessionScope.languageJSON.leaveRequest.startDate}"/>
-                <input type="text" name="endDate" id="searchEndModal" hidden="hidden" aria-label="${sessionScope.languageJSON.leaveRequest.endDate}"/>
+                <input type="hidden" hidden="hidden" name="chain" id="chainModal" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
+                <input type="hidden" hidden="hidden" name="empNbr" id="empNbrModal" aria-label="${sessionScope.languageJSON.accessHint.employeeNumber}"/>
+                <input type="hidden" name="freq" hidden="hidden" id="freqModal" value="${selectedFreq}" aria-label="${sessionScope.languageJSON.accessHint.frequency}"/>
+                <input type="hidden" name="startDate" id="searchStartModal" hidden="hidden" aria-label="${sessionScope.languageJSON.leaveRequest.startDate}"/>
+                <input type="hidden" name="endDate" id="searchEndModal" hidden="hidden" aria-label="${sessionScope.languageJSON.leaveRequest.endDate}"/>
                 <div class="modal-body requestForm">
                     <input type="hidden" name="leaveId" id="leaveId" />
                     
@@ -180,6 +183,9 @@
                                             onkeyup="this.value=this.value.toString().match(/^\d+(?:\.\d{0,3})?/)"
                                         />
                                     </div>
+                                    <small class="help-block leaveHoursDailyNotZero" role="alert" aria-atomic="true" style="display:none;">
+                                        ${sessionScope.languageJSON.validator.enterNonZeroValue}
+                                    </small>
                             </div>
     
                             <div class="form-group time-right">
@@ -193,7 +199,8 @@
                                         value="0.000"
                                         readonly
                                     />
-                                    <span class="form-text">${sessionScope.languageJSON.leaveRequest.days}</span>
+                                    <span class="form-text timeUnit days">${sessionScope.languageJSON.leaveRequest.days}</span>
+                                    <span class="form-text timeUnit hours">${sessionScope.languageJSON.leaveRequest.hours}</span>
                                 </div>
                             </div>
                         </div>

@@ -303,6 +303,7 @@
 		"approver":"Approver",
 		"remark":"Remarks",
 		"days":"days",
+		"hours":"hours",
 		"totalRequested":"Total Requested",
 		"hourDayRequested":"Hours/Day Requested",
 		"AM":"AM",
@@ -757,6 +758,7 @@
 		"pleaseEnterCorrectFormatBankAmount":"Secondary accounts must have a deposit amount greater than $0.00",
 		"updateFailed":"Update Failed.",
 		"enteredWrongDate":"The date format you entered is incorrect",
+		"enterNonZeroValue":"Enter a non-zero value.",
 		"":""
 	},
 	"accessHint":{

@@ -299,9 +299,10 @@
 		"endTime":"Hora de terminaciѓn",
 		"leaveRequested":"Permiso solicitado",
 		"commentLog":"Bitсcora de comentarios",
-        "status":"Estado",
+		"status":"Estado",
 		"remark":"Comentarios",
 		"days":"dэas",
+		"hours":"hours",
 		"totalRequested":"Total solicitado",
 		"hourDayRequested":"Horas/Dэas solicitados",
 		"AM":"AM",
@@ -757,6 +758,7 @@
 		"pleaseEnterCorrectFormatBankAmount":"Secondary accounts must have a deposit amount greater than $0.00",
 		"updateFailed":"Update Failed.",
 		"enteredWrongDate":"The date format you entered is incorrect",
+		"enterNonZeroValue":"Enter a non-zero value.",
 		"":""
 	},
 	"accessHint":{

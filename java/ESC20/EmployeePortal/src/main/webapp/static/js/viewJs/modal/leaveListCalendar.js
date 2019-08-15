@@ -1,4 +1,5 @@
 
+console.log(leaveList)
 function initialLeaveCalendarModal(){
     initThemeChooser({
         init: function(themeSystem) {

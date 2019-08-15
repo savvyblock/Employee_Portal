@@ -1,6 +1,16 @@
-console.log(leaveTypesAbsrsnsMap)
-console.log(isAddValue)
+
+var calUnit
+var mealBreakHours,standardHoursDaily,leaveHoursRequestedEntry
 $(function() {
+    showTimeUnit()
+    mealBreakHours = $("#mealBreakHours").val()
+    standardHoursDaily = $("#standardHoursDaily").val()
+    leaveHoursRequestedEntry = $("#requireLeaveHoursRequestedEntry").val()
+    standardHoursDaily = Number(standardHoursDaily)
+    mealBreakHours = Number(mealBreakHours)
+    console.log("mealBreakHours>>>>:" + mealBreakHours)
+    console.log("standardHoursDaily>>>>:" + standardHoursDaily)
+    console.log("leaveHoursRequestedEntry>>>>:" + leaveHoursRequestedEntry)
     if(isAddValue == 'true'){
         $("#requestModal").modal('show')
         $(".edit-title").hide()
@@ -72,18 +82,38 @@ $(function() {
 })
 function changeLeaveType(){
     var leaveType = $("#modalLeaveType").val()
-    console.log(leaveType)
+    $("#absenceReason").html('')
+
     if(leaveType != ''){
         var reason = leaveTypesAbsrsnsMap.filter(function(item){
             return item.leaveType == leaveType
         })
-        $("#absenceReason").html('')
         reason.forEach(function(item){
             $("#absenceReason").append("<option value='"+item.absRsn +"'>" + item.absRsnDescrption +"</option>")
         })
+    }else{
+        var reasonJson = new Array()
+        leaveTypesAbsrsnsMap.forEach(function(item){
+            var count = 0
+            if(item.absRsnDescrption){
+                for(var i=0,len = reasonJson.length;i<len;i++){
+                    if(item.absRsn == reasonJson[i].absRsn){
+                        count++
+                    }
+                }
+                if(count == 0){
+                    reasonJson.push(item)
+                }
+                
+            }
+        })
+        reasonJson.forEach(function(item){
+            $("#absenceReason").append("<option value='"+item.absRsn +"'>" + item.absRsnDescrption +"</option>")
+        })
+        calUnit = false
     }
     
-
+    showTimeUnit()
 }
 
 function changeFormatTime(value) {
@@ -130,9 +160,10 @@ function formValidator() {
         },
         fields: {
             leaveType:{
+                trigger:'change',
                 notEmpty: {
                     message: requiredFieldValidator
-                }
+                },
             },
             absenseReason:{
                 notEmpty: {
@@ -285,12 +316,16 @@ $("#startDateInput").blur(function(){
         var hours = time/(3600*1000)
         if(hours>0){
             timeError = false
+            // if()
             hours = Number(hours).toFixed(3)
         }else{
             timeError = true
             hours = Number(0) .toFixed(3)
         }
-        $('#leaveHoursDaily').val(hours)
+        if(leaveHoursRequestedEntry == 'false'){
+            $('#leaveHoursDaily').val(hours)
+        }
+        
         calcDays(hours)
         calValueTime()
     }
@@ -301,49 +336,60 @@ $("#startDateInput").blur(function(){
         var day1 = new Date(startDate);
         var day2 = new Date(endDate);
         var dayDate = ((day2 - day1) / (1000 * 60 * 60 * 24)) + 1;
+        console.log(dayDate)
         dayDate = dayDate?dayDate:0;
         var startH = $("#startHour").val()
         var startM = $("#startMinute").val()
         var endH = $("#endHour").val()
         var endM = $("#endMinute").val()
+        var hour,days,hoursDaily
+        
+        leaveHoursDaily = Number(leaveHoursDaily)
+        
 
-        var hour = Number(leaveHoursDaily) - 8
-        var days
-        if(hour > -4){
-            if(hour <= 0){
-                days = dayDate
-            }else{
-                var a = parseInt(leaveHoursDaily/8)
-                var b = leaveHoursDaily%8
-                if(b>4){
-                    days = dayDate * (a + 1)
-                }else{
-                    if(b == 0){
-                        days = dayDate * a
-                    }else{
-                        days = dayDate * a +  dayDate * 0.5
-                    }
-                }
-            }
+        if(leaveHoursDaily > 5 && mealBreakHours > 0){
+            // if(leaveHoursDaily > standardHoursDaily){
+            //     hoursDaily = standardHoursDaily - mealBreakHours
+            // }else{
+                hoursDaily = leaveHoursDaily - mealBreakHours
+            // }
             
         }else{
-            if(hour <= -8){
-                days = 0
+            hoursDaily = Number(leaveHoursDaily)
+        }
+        if(!calUnit){
+            return false
+        }
+
+        if(calUnit.toLowerCase() == 'd'){
+            var cal01 = parseFloat(hoursDaily/standardHoursDaily) //0.465
+            var cal02 = parseInt(hoursDaily/standardHoursDaily)
+            leaveDaysDaily = 0
+            if(cal01 - cal02 > 0){
+                leaveDaysDaily = cal02 + (cal01 - cal02<=0.5?0.5:1)
+            }
+            var totalDays =  leaveDaysDaily * dayDate
+            console.log(leaveDaysDaily)
+            console.log(totalDays)
+            if(dayDate>=0){
+                $("#requestModal .save").removeAttr("disabled")
             }else{
-                days = 0.5 * dayDate
+                $("#requestModal .save").attr("disabled","disabled")
+            }
+            if(totalDays>0){
+                $("#totalRequested").val(Number(totalDays).toFixed(3));
+            }else{
+                $("#totalRequested").val(Number(0).toFixed(3));
             }
             
+        }else if(calUnit.toLowerCase() == 'h'){
+            console.log(dayDate)
+            var totalHours = hoursDaily * dayDate
+            $("#totalRequested").val(Number(totalHours).toFixed(3));
         }
-        if(dayDate>=0){
-            $("#requestModal .save").removeAttr("disabled")
-        }else{
-            $("#requestModal .save").attr("disabled","disabled")
-        }
-        if(days>0){
-            $("#totalRequested").val(Number(days).toFixed(3));
-        }else{
-            $("#totalRequested").val(Number(0).toFixed(3));
-        }
+        
+
+        
     }
     
     function calValueTime(){
@@ -439,46 +485,7 @@ $("#startDateInput").blur(function(){
         }
         return true;
     }
-    //  $('.save').on('click', function() {
-    //      $(this).parents(".modal").focus()
-    //     var bootstrapValidator = $('#requestForm').data('bootstrapValidator')
-    //     bootstrapValidator.validate()
-    //     if (bootstrapValidator.isValid()) {
-    //         console.log('success')
-    //         var startDate = $('#startDateInput').val()
-    //         var endDate = $('#endDateInput').val()
-    //         var start = new Date(startDate)
-    //         var end = new Date(endDate)
-    //         var dateTotal = $("#totalRequested").val()
-    //         var typeCode = $("#modalLeaveType").val()
-    //         var balanceAvailable = $("#available"+typeCode+"").text()
-    //         // if (start.valueOf() > end.valueOf()) {
-    //             console.log(startDate)
-    //             console.log(endDate)
-    //         if (timeError) {
-    //             $('.dateValidator').show()
-    //             return false
-    //         } else {
-    //             $('.dateValidator').hide()
-    //             if(parseFloat(dateTotal)>0){
-    //                 $(".dateValidator01").hide()
-    //                 // console.log(parseFloat(dateTotal))
-    //                 // console.log(parseFloat(balanceAvailable))
 
-    //                 if(parseFloat(dateTotal)<=parseFloat(balanceAvailable)){
-    //                     $(".availableError").hide()
-    //                     // return false
-    //                     $('#requestForm')[0].submit()
-    //                 }else{
-    //                     $(".availableError").show()
-    //                 }
-    //             }else{
-    //                 $(".dateValidator01").show()
-    //             }
-                
-    //         }
-    //     } else return
-    // })
     function changeDateYMD(date){
         if(!date){
             return
@@ -506,6 +513,12 @@ $("#startDateInput").blur(function(){
     }
 
     function saveRequest(isAdd){
+        var leaveHoursDaily = $("#leaveHoursDaily").val()
+        if(Number(leaveHoursDaily) == 0){
+            $(".leaveHoursDailyNotZero").show()
+            return false
+        }
+        $(".leaveHoursDailyNotZero").hide()
         if(isAdd){
             $("#isAdd").val(isAdd)
         }
@@ -548,4 +561,20 @@ $("#startDateInput").blur(function(){
                 
             }
         } else return
+    }
+    function showTimeUnit(){
+        var leaveTypeCurrent = $("#modalLeaveType option:selected").data('label')
+        if(!leaveTypeCurrent){
+            $(".timeUnit").hide()
+        }else{
+            if(leaveTypeCurrent.toLowerCase() == 'h'){
+                $(".timeUnit.hours").show()
+                $(".timeUnit.days").hide()
+                calUnit = 'h'
+            }else{
+                $(".timeUnit.days").show()
+                $(".timeUnit.hours").hide()
+                calUnit = 'd'
+            }
+        }
     }

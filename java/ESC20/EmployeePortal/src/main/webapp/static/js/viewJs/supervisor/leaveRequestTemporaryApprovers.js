@@ -458,3 +458,8 @@ function judgeContent() {
     console.log(approverJson)
     console.log(approverEmptyJson)
 }
+
+function showCalendarModal(){
+    setTimeout("initialLeaveCalendarModal()",100)
+    
+}

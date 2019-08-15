@@ -16,6 +16,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <section class="content">
                     <div class="clearfix section-title">
                         <h1 class="pageTitle">${sessionScope.languageJSON.title.setTemporaryApprovers}</h1>
+                        <button class="btn btn-primary pull-right" onclick="showCalendarModal()"
+                                data-toggle="modal" data-target="#leaveListCalendarModal" aria-label="${sessionScope.languageJSON.label.switchToCalendarView}">
+                                    <i class="fa fa-calendar"></i>
+                                </button>
                     </div>
                     <div class="showSelectSupervisor">
                         <label class="form-title"><span>${sessionScope.languageJSON.label.supervisorHierarchy}</span>: </label>
@@ -204,6 +208,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="a-btn add-new-row"
                                                     aria-label="${sessionScope.languageJSON.label.add}">
                                                     <i class="fa fa-plus"></i>
+                                                    <span>${sessionScope.languageJSON.label.add}</span>
                                                 </button>
                                             </td>
                                         </tr>
@@ -246,6 +251,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             <input type="text" id="deleteEmpID" aria-label="${sessionScope.languageJSON.accessHint.employeeId}">
         </form>
         <%@ include file="../commons/footer.jsp"%>
+        <%@ include file="../modal/leaveListCalendar.jsp"%>
     </body>
     <script>
     var directReportEmployee = eval(${directReportEmployee});
