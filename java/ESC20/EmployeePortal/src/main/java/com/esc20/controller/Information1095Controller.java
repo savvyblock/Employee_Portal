@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +32,7 @@ import com.esc20.nonDBModels.CCoveredHistory;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.EA1095CEmployerShare;
+import com.esc20.nonDBModels.EarningsOther;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
@@ -38,6 +41,7 @@ import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
 import com.esc20.service.ReferenceService;
+import com.esc20.util.ConstUtil;
 import com.esc20.util.DateUtil;
 import com.esc20.util.MailUtil;
 import com.esc20.util.StringUtil;
@@ -68,20 +72,7 @@ public class Information1095Controller{
 	@RequestMapping("information1095")
 	public ModelAndView getInformation1095(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
-		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-        Options options = this.indexService.getOptions();
-        String district = (String)session.getAttribute("districtId");
-        District districtInfo = this.indexService.getDistrict(district);
-        userDetail.setEmpNbr(user.getEmpNbr());
-        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-        String phone = districtInfo.getPhone();
-        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
-
-		session.setAttribute("userDetail", userDetail);
-        session.setAttribute("companyId", district);
-        session.setAttribute("options", options);
-        session.setAttribute("district", districtInfo);
+		
 		ModelAndView mav = new ModelAndView();
 		mav = init1095(mav, session, null, 1, 1, null, null, null);
 		return mav;
@@ -194,8 +185,32 @@ public class Information1095Controller{
 
 	private ModelAndView init1095(ModelAndView mav, HttpSession session, String year, Integer BPageNo, Integer CPageNo,
 			String sortBy, String sortOrder, String type) {
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+        Options options = this.indexService.getOptions();
+        String district = (String)session.getAttribute("districtId");
+        District districtInfo = this.indexService.getDistrict(district);
+        userDetail.setEmpNbr(user.getEmpNbr());
+        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        String phone = districtInfo.getPhone();
+        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+
+		session.setAttribute("userDetail", userDetail);
+        session.setAttribute("companyId", district);
+        session.setAttribute("options", options);
+        session.setAttribute("district", districtInfo);
+        
+		Integer pageSize = ConstUtil.getPageSize();
 		mav.setViewName("/inquiry/information1095");
-		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		
+		 List<Code> gens = referenceService.getGenerations();
+		 for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
+		 
 		String employeeNumber = userDetail.getEmpNbr();
 		List<String> years = this.service.retrieveAvailable1095CalYrs(employeeNumber);
 		if (years != null && years.size() > 0) {
@@ -206,13 +221,13 @@ public class Information1095Controller{
 		}
 		if (year == null)
 			year = DateUtil.getLatestYear(years);
-		Options options = ((Options) session.getAttribute("options"));
+	//	Options options = ((Options) session.getAttribute("options"));
 		String message = options.getMessageElecConsent1095().trim();
 		String consent = this.service.get1095Consent(employeeNumber);
 		Integer BTotal = this.service.getBInfoTotal(employeeNumber, year);
-		Integer BTotalPage = this.service.getBInfoTotal(employeeNumber, year)/ 20;
-		Integer BRemianList =  this.service.getBInfoTotal(employeeNumber, year) % 20;
-		if(BRemianList >0) {
+		Integer BTotalPage = BTotal/ pageSize;
+		Integer BRemainingList =  BTotal % pageSize;
+		if(BRemainingList >0) {
 			BTotal = BTotalPage + 1;
 		}
 		else
@@ -220,6 +235,16 @@ public class Information1095Controller{
 			BTotal = BTotalPage;
 		}
 		Integer CTotal = this.service.getCInfoTotal(employeeNumber, year);
+		Integer CTotalPage = CTotal/ pageSize;
+		Integer CRemainingList =  CTotal % pageSize;
+		if(CRemainingList >0) {
+			CTotal = CTotalPage + 1;
+		}
+		else
+		{
+			CTotal = CTotalPage;
+		}
+		
 		List<Code> bCovrgTypList = this.service.retrieveEA1095BEmpInfo(employeeNumber,year);
 		List<BCoveredHistory> bList;
 		if (("B").equals(type))
@@ -228,13 +253,15 @@ public class Information1095Controller{
 			bList = this.service.retrieveEA1095BInfo(employeeNumber, year, null, null, 1);
 		
 		for(BCoveredHistory bItem: bList) {
-			List<Code> gens = referenceService.getGenerations();
+			//List<Code> gens = referenceService.getGenerations();
 			 for(Code gen: gens) {
 			    	if(bItem.getNameGen() != null && gen.getCode().trim().equals(bItem.getNameGen().toString().trim())) {
 			    		bItem.setGenDescription(gen.getDescription());
 			    	}
 			    }
 		}
+		
+		
 		List<EA1095CEmployerShare> cEmpList = this.service.retrieveEA1095CEmpInfo(employeeNumber,year);
 		List<CCoveredHistory> cList;
 		if (("C").equals(type))
@@ -243,13 +270,14 @@ public class Information1095Controller{
 			cList = this.service.retrieveEA1095CInfo(employeeNumber, year, null, null, 1);
 		
 		for(CCoveredHistory cItem: cList) {
-			List<Code> gens = referenceService.getGenerations();
+			//List<Code> gens = referenceService.getGenerations();
 			 for(Code gen: gens) {
 			    	if(cItem.getNameGen() != null && gen.getCode().trim().equals(cItem.getNameGen().toString().trim())) {
 			    		cItem.setGenDescription(gen.getDescription());
 			    	}
 			    }
 		}
+		
 		if (bCovrgTypList.size() > 0) {
 			mav.addObject("BCovrgTyp", bCovrgTypList.get(0).getCode());
 			mav.addObject("BCovrgTypDescr", bCovrgTypList.get(0).getDescription());
@@ -354,6 +382,12 @@ public class Information1095Controller{
 		Aca1095BPrint print = new Aca1095BPrint();
 		HttpSession session = request.getSession();
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		List<Code> gens = referenceService.getGenerations();
+		for(Code gen: gens) {
+	    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+	    		userDetail.setGenDescription(gen.getDescription());
+	    	}
+	    }
 		String employeeNumber = userDetail.getEmpNbr();
 		List<String> years = this.service.retrieveAvailable1095CalYrs(employeeNumber);
 		District district = (District) session.getAttribute("district");
@@ -414,13 +448,20 @@ public class Information1095Controller{
 		Aca1095CPrint print = new Aca1095CPrint();
 		HttpSession session = request.getSession();
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+
+		List<Code> gens = referenceService.getGenerations();
+		 for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
 		String employeeNumber = userDetail.getEmpNbr();
 		List<String> years = this.service.retrieveAvailable1095CalYrs(employeeNumber);
 		District district = (District) session.getAttribute("district");
 		if (year == null)
 			year = DateUtil.getLatestYear(years);
 		List<BhrAca1095cEmpHist> cCovrgTypList = this.service.retrieveEA1095CEmpInfoPrint(employeeNumber,year);
-		List<CCoveredHistory> cList = this.service.retrieveEA1095CInfo(employeeNumber, year, null, null, 1);
+		List<CCoveredHistory> cList = this.service.retrieveALL1095CInfo(employeeNumber, year);
 		String taxYr = year==null?"":year;
 		print.setFormpagenbr("1");
 		print.setTaxyr(taxYr);
@@ -507,7 +548,7 @@ public class Information1095Controller{
 		
 		print.setB2_ssn(b2_ssn);
 		print.setB3_birthdt(b3_birthDt);
-		print.setB4_addressline1txt((userDetail.getAddrNbr()==null?"":userDetail.getAddrNbr()+ " ") + userDetail.getAddrStr());
+		print.setB4_addressline1txt((userDetail.getAddrNbr()==null?"":userDetail.getAddrNbr()+ " ") + userDetail.getAddrStr()+" "+userDetail.getAddrApt());
 		print.setB5_citynm(userDetail.getAddrCity());
 		print.setB6_usstatecd(userDetail.getAddrSt());
 		print.setB7_uszipcd(userDetail.getAddrZip()==null?"":userDetail.getAddrZip());
@@ -599,7 +640,7 @@ public class Information1095Controller{
 		print.setB1_personlastnm(userDetail.getNameL()==null?"":userDetail.getNameL());
 		print.setB1_suffixnm(userDetail.getGenDescription()==null?"":userDetail.getGenDescription());
 		print.setB2_ssn(userDetail.getStaffId().replaceAll("-", "").trim());
-		print.setB3_addressline1txt((userDetail.getAddrNbr()==null?"":userDetail.getAddrNbr()+ " ") + userDetail.getAddrStr());
+		print.setB3_addressline1txt((userDetail.getAddrNbr()==null?"":userDetail.getAddrNbr()+ " ") + userDetail.getAddrStr()+" "+userDetail.getAddrApt());
 		print.setB4_citynm(userDetail.getAddrCity());
 		print.setB5_usstatecd(userDetail.getAddrSt());
 		print.setB6_uszipcd(userDetail.getAddrZip()==null?"":userDetail.getAddrZip());

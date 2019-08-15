@@ -16,11 +16,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.esc20.model.BeaEmpLvTmpApprovers;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
+import com.esc20.nonDBModels.AppLeaveRequest;
+import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveParameters;
+import com.esc20.nonDBModels.LeaveRequestModel;
 import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
+import com.esc20.service.ReferenceService;
 import com.esc20.service.SupervisorService;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
@@ -37,6 +41,9 @@ public class TempApproverController extends BaseSupervisorController {
 
 	@Autowired
 	private SupervisorService supService;
+	
+	@Autowired
+	private ReferenceService referenceService;
 
 	@Autowired
 	private IndexService indexService;
@@ -44,7 +51,7 @@ public class TempApproverController extends BaseSupervisorController {
 	private final String module = "Set Temp Approvers";
 	
 	@RequestMapping("leaveRequestTemporaryApprovers")
-	public ModelAndView getLeaveRequestTemporaryApprovers(HttpServletRequest req, String empNbr) {
+	public ModelAndView getLeaveRequestTemporaryApprovers(HttpServletRequest req, String empNbr) throws ParseException {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
@@ -98,6 +105,22 @@ public class TempApproverController extends BaseSupervisorController {
 		if (demo.getEmpNbr().equals(empNbr)) {
 			mav.addObject("chain", chain);
 		}
+		
+		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
+		List<AppLeaveRequest> leavesCalendar = this.supService.getLeaveDetailsForCalendar(demo.getEmpNbr(), null, null,
+				null);		
+		List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
+		LeaveRequestModel model;
+		JSONArray calendar = new JSONArray();
+		for (int i = 0; i < leavesCalendar.size(); i++) {
+			model = new LeaveRequestModel(leavesCalendar.get(i));
+			requestModels.add(model);
+		}
+		for (int i = 0; i < requestModels.size(); i++) {
+			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null));
+		}
+        mav.addObject("leavesCalendar", calendar);
+		
 		mav.addObject("tmpApprovers", tmpApprovers);
 		mav.addObject("directReportEmployee", employeeDataJSON);
 		return mav;

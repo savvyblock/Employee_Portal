@@ -20,6 +20,7 @@ import com.esc20.nonDBModels.BCoveredHistory;
 import com.esc20.nonDBModels.CCoveredHistory;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.EA1095CEmployerShare;
+import com.esc20.util.ConstUtil;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
 @Repository
@@ -32,7 +33,8 @@ public class EA1095Dao {
         return sessionFactory.getCurrentSession();
     }
     
-    private final Integer pageSize = 20;
+    //set it in ConstUtil now
+    //private final Integer pageSize = 20;
     
 	public List<String> getAvailableYears(String employeeNumber) {
 		Session session = this.getSession();
@@ -72,13 +74,15 @@ public class EA1095Dao {
 	
 	public List<BCoveredHistory> retrieveEA1095BInfo(String employeeNumber, String year, String sortBy, String sortOrder, Integer bPageNo) {
 		Session session = this.getSession();
-		String retrieveSQL = "FROM BhrAca1095bCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";
-        Query q = session.createQuery(retrieveSQL);
+		Integer pageSize = ConstUtil.getPageSize();
+		String retrieveSQL = "FROM BhrAca1095bCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr order by NAME_F ASC ";
+		Query q = session.createQuery(retrieveSQL);
         if(sortBy!=null && (!("").equals(sortBy))) {
-        	retrieveSQL += "order by :=sortBy :=sortOrder";
+        	retrieveSQL += ", :=sortBy :=sortOrder";
             q.setParameter("sortBy", sortBy);
             q.setParameter("sortOrder", sortOrder==null?"asc":sortOrder);
         }
+      
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
         q.setFirstResult((bPageNo-1)*pageSize);  
@@ -94,17 +98,35 @@ public class EA1095Dao {
 
 	public List<CCoveredHistory> retrieveEA1095CInfo(String employeeNumber, String year, String sortBy, String sortOrder, Integer cPageNo) {
 		Session session = this.getSession();
-		String retrieveSQL = "FROM BhrAca1095cCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";
+		Integer pageSize = ConstUtil.getPageSize();
+		String retrieveSQL = "FROM BhrAca1095cCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr order by  EMP_FLG DESC, NAME_F ASC ";
         Query q = session.createQuery(retrieveSQL);
         if(sortBy!=null && (!("").equals(sortBy))) {
-        	retrieveSQL += "order by :=sortBy :=sortOrder";
+        	retrieveSQL += ", :=sortBy :=sortOrder";
             q.setParameter("sortBy", sortBy);
             q.setParameter("sortOrder", sortOrder==null?"asc":sortOrder);
         }
+       
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
         q.setFirstResult((cPageNo-1)*pageSize);  
         q.setMaxResults(pageSize);
+        @SuppressWarnings("unchecked")
+		List<BhrAca1095cCovrdHist> result = q.list();
+        List<CCoveredHistory> res = new ArrayList<CCoveredHistory>();
+        for(BhrAca1095cCovrdHist item : result){
+        	res.add(new CCoveredHistory(item));
+        }
+        return res;
+	}
+	
+	public List<CCoveredHistory> retrieveALL1095CInfo(String employeeNumber, String year) {
+		Session session = this.getSession();
+		String retrieveSQL = "FROM BhrAca1095cCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr order by  EMP_FLG DESC, NAME_F ASC ";
+        Query q = session.createQuery(retrieveSQL);
+       
+        q.setParameter("employeeNumber", employeeNumber);
+        q.setParameter("calYr", year);
         @SuppressWarnings("unchecked")
 		List<BhrAca1095cCovrdHist> result = q.list();
         List<CCoveredHistory> res = new ArrayList<CCoveredHistory>();
