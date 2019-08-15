@@ -10,6 +10,8 @@ import java.util.Locale;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import com.esc20.util.StringUtil;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -162,7 +164,7 @@ public class LeaveRequestModel implements Serializable {
 			}
 		}
 		String title = this.getFirstName()+" "+this.getLastName()+ typeDesc;
-		if(this.getMiddleName().trim().length()>0) {
+		if((!StringUtil.isNullOrEmpty(this.getMiddleName())) && this.getMiddleName().trim().length()>0) {
 			title = this.getFirstName()+" "+this.getMiddleName().trim()+ " "+this.getLastName()+ typeDesc;
 		}
 		jo.put("title", title);
