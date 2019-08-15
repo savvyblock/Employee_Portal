@@ -461,7 +461,7 @@ public class Information1095Controller{
 		if (year == null)
 			year = DateUtil.getLatestYear(years);
 		List<BhrAca1095cEmpHist> cCovrgTypList = this.service.retrieveEA1095CEmpInfoPrint(employeeNumber,year);
-		List<CCoveredHistory> cList = this.service.retrieveEA1095CInfo(employeeNumber, year, null, null, 1);
+		List<CCoveredHistory> cList = this.service.retrieveALL1095CInfo(employeeNumber, year);
 		String taxYr = year==null?"":year;
 		print.setFormpagenbr("1");
 		print.setTaxyr(taxYr);

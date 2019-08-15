@@ -6116,7 +6116,7 @@ $V{allOfferOfCoverage}
 						<textElement textAlignment="Center">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true"/>
 						</textElement>
-						<text><![CDATA[Part IV]]></text>
+						<text><![CDATA[Part III]]></text>
 					</staticText>
 					<staticText>
 						<reportElement mode="Opaque" x="45" y="1" width="85" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="87c31a0e-f2f8-4576-97da-a194c382f772">
@@ -11608,7 +11608,7 @@ $V{allOfferOfCoverage}
 						<textElement textAlignment="Left" verticalAlignment="Top">
 							<font fontName="Microsoft Sans Serif" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 						</textElement>
-						<text><![CDATA[1095-B]]></text>
+						<text><![CDATA[1095-C]]></text>
 					</staticText>
 					<textField>
 						<reportElement x="681" y="0" width="22" height="10" uuid="f9460530-11e8-4200-ad17-006c89f7e00c">

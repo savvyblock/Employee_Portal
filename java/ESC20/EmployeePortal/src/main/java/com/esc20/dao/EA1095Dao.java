@@ -119,6 +119,22 @@ public class EA1095Dao {
         }
         return res;
 	}
+	
+	public List<CCoveredHistory> retrieveALL1095CInfo(String employeeNumber, String year) {
+		Session session = this.getSession();
+		String retrieveSQL = "FROM BhrAca1095cCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr order by  EMP_FLG DESC, NAME_F ASC ";
+        Query q = session.createQuery(retrieveSQL);
+       
+        q.setParameter("employeeNumber", employeeNumber);
+        q.setParameter("calYr", year);
+        @SuppressWarnings("unchecked")
+		List<BhrAca1095cCovrdHist> result = q.list();
+        List<CCoveredHistory> res = new ArrayList<CCoveredHistory>();
+        for(BhrAca1095cCovrdHist item : result){
+        	res.add(new CCoveredHistory(item));
+        }
+        return res;
+	}
 
 	public List<Code> retrieveEA1095BEmpInfo(String employeeNumber, String year) {
 		Session session = this.getSession();

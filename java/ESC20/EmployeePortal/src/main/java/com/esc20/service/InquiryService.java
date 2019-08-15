@@ -915,6 +915,10 @@ public class InquiryService {
 			String sortOrder, Integer cPageNo) {
 		return ea1095Dao.retrieveEA1095CInfo(employeeNumber, year, sortBy, sortOrder, cPageNo);
 	}
+	
+	public List<CCoveredHistory> retrieveALL1095CInfo(String employeeNumber, String year) {
+		return ea1095Dao.retrieveALL1095CInfo(employeeNumber, year);
+	}
 
 	public List<Code> retrieveEA1095BEmpInfo(String employeeNumber, String year) {
 		return ea1095Dao.retrieveEA1095BEmpInfo(employeeNumber, year);

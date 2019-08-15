@@ -5536,7 +5536,7 @@
 						<textElement textAlignment="Center">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true"/>
 						</textElement>
-						<text><![CDATA[Part IV]]></text>
+						<text><![CDATA[Part III]]></text>
 					</staticText>
 					<staticText>
 						<reportElement mode="Opaque" x="45" y="1" width="85" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="bf897bae-e5ba-4e2a-84c0-f5b307700522">
@@ -11028,7 +11028,7 @@
 						<textElement textAlignment="Left" verticalAlignment="Top">
 							<font fontName="Microsoft Sans Serif" size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
 						</textElement>
-						<text><![CDATA[1095-B]]></text>
+						<text><![CDATA[1095-C]]></text>
 					</staticText>
 					<textField>
 						<reportElement x="689" y="0" width="22" height="10" uuid="96497ca8-707f-4b1c-9a3e-f14d947aed7a">
