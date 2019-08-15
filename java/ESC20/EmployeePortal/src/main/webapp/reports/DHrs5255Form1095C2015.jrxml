@@ -950,11 +950,7 @@
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
-							<pen lineWidth="0.25"/>
-							<topPen lineWidth="0.25"/>
 							<leftPen lineWidth="0.5"/>
-							<bottomPen lineWidth="0.25"/>
-							<rightPen lineWidth="0.5"/>
 						</box>
 						<textElement textAlignment="Left">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
