@@ -203,6 +203,14 @@ public class Information1095Controller{
 		Integer pageSize = ConstUtil.getPageSize();
 		mav.setViewName("/inquiry/information1095");
 		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		
+		 List<Code> gens = referenceService.getGenerations();
+		 for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
+		 
 		String employeeNumber = userDetail.getEmpNbr();
 		List<String> years = this.service.retrieveAvailable1095CalYrs(employeeNumber);
 		if (years != null && years.size() > 0) {
@@ -245,7 +253,7 @@ public class Information1095Controller{
 			bList = this.service.retrieveEA1095BInfo(employeeNumber, year, null, null, 1);
 		
 		for(BCoveredHistory bItem: bList) {
-			List<Code> gens = referenceService.getGenerations();
+			//List<Code> gens = referenceService.getGenerations();
 			 for(Code gen: gens) {
 			    	if(bItem.getNameGen() != null && gen.getCode().trim().equals(bItem.getNameGen().toString().trim())) {
 			    		bItem.setGenDescription(gen.getDescription());
@@ -262,7 +270,7 @@ public class Information1095Controller{
 			cList = this.service.retrieveEA1095CInfo(employeeNumber, year, null, null, 1);
 		
 		for(CCoveredHistory cItem: cList) {
-			List<Code> gens = referenceService.getGenerations();
+			//List<Code> gens = referenceService.getGenerations();
 			 for(Code gen: gens) {
 			    	if(cItem.getNameGen() != null && gen.getCode().trim().equals(cItem.getNameGen().toString().trim())) {
 			    		cItem.setGenDescription(gen.getDescription());
@@ -374,6 +382,12 @@ public class Information1095Controller{
 		Aca1095BPrint print = new Aca1095BPrint();
 		HttpSession session = request.getSession();
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		List<Code> gens = referenceService.getGenerations();
+		for(Code gen: gens) {
+	    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+	    		userDetail.setGenDescription(gen.getDescription());
+	    	}
+	    }
 		String employeeNumber = userDetail.getEmpNbr();
 		List<String> years = this.service.retrieveAvailable1095CalYrs(employeeNumber);
 		District district = (District) session.getAttribute("district");
@@ -434,6 +448,13 @@ public class Information1095Controller{
 		Aca1095CPrint print = new Aca1095CPrint();
 		HttpSession session = request.getSession();
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+
+		List<Code> gens = referenceService.getGenerations();
+		 for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
 		String employeeNumber = userDetail.getEmpNbr();
 		List<String> years = this.service.retrieveAvailable1095CalYrs(employeeNumber);
 		District district = (District) session.getAttribute("district");
@@ -527,7 +548,7 @@ public class Information1095Controller{
 		
 		print.setB2_ssn(b2_ssn);
 		print.setB3_birthdt(b3_birthDt);
-		print.setB4_addressline1txt((userDetail.getAddrNbr()==null?"":userDetail.getAddrNbr()+ " ") + userDetail.getAddrStr());
+		print.setB4_addressline1txt((userDetail.getAddrNbr()==null?"":userDetail.getAddrNbr()+ " ") + userDetail.getAddrStr()+" "+userDetail.getAddrApt());
 		print.setB5_citynm(userDetail.getAddrCity());
 		print.setB6_usstatecd(userDetail.getAddrSt());
 		print.setB7_uszipcd(userDetail.getAddrZip()==null?"":userDetail.getAddrZip());
@@ -619,7 +640,7 @@ public class Information1095Controller{
 		print.setB1_personlastnm(userDetail.getNameL()==null?"":userDetail.getNameL());
 		print.setB1_suffixnm(userDetail.getGenDescription()==null?"":userDetail.getGenDescription());
 		print.setB2_ssn(userDetail.getStaffId().replaceAll("-", "").trim());
-		print.setB3_addressline1txt((userDetail.getAddrNbr()==null?"":userDetail.getAddrNbr()+ " ") + userDetail.getAddrStr());
+		print.setB3_addressline1txt((userDetail.getAddrNbr()==null?"":userDetail.getAddrNbr()+ " ") + userDetail.getAddrStr()+" "+userDetail.getAddrApt());
 		print.setB4_citynm(userDetail.getAddrCity());
 		print.setB5_usstatecd(userDetail.getAddrSt());
 		print.setB6_uszipcd(userDetail.getAddrZip()==null?"":userDetail.getAddrZip());
