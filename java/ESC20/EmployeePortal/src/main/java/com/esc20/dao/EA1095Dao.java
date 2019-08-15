@@ -20,6 +20,7 @@ import com.esc20.nonDBModels.BCoveredHistory;
 import com.esc20.nonDBModels.CCoveredHistory;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.EA1095CEmployerShare;
+import com.esc20.util.ConstUtil;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
 @Repository
@@ -32,7 +33,8 @@ public class EA1095Dao {
         return sessionFactory.getCurrentSession();
     }
     
-    private final Integer pageSize = 20;
+    //set it in ConstUtil now
+    //private final Integer pageSize = 20;
     
 	public List<String> getAvailableYears(String employeeNumber) {
 		Session session = this.getSession();
@@ -72,6 +74,7 @@ public class EA1095Dao {
 	
 	public List<BCoveredHistory> retrieveEA1095BInfo(String employeeNumber, String year, String sortBy, String sortOrder, Integer bPageNo) {
 		Session session = this.getSession();
+		Integer pageSize = ConstUtil.getPageSize();
 		String retrieveSQL = "FROM BhrAca1095bCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";
         Query q = session.createQuery(retrieveSQL);
         if(sortBy!=null && (!("").equals(sortBy))) {
@@ -94,6 +97,7 @@ public class EA1095Dao {
 
 	public List<CCoveredHistory> retrieveEA1095CInfo(String employeeNumber, String year, String sortBy, String sortOrder, Integer cPageNo) {
 		Session session = this.getSession();
+		Integer pageSize = ConstUtil.getPageSize();
 		String retrieveSQL = "FROM BhrAca1095cCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";
         Query q = session.createQuery(retrieveSQL);
         if(sortBy!=null && (!("").equals(sortBy))) {

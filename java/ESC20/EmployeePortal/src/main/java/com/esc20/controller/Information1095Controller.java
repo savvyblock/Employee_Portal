@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +32,7 @@ import com.esc20.nonDBModels.CCoveredHistory;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.EA1095CEmployerShare;
+import com.esc20.nonDBModels.EarningsOther;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
@@ -38,6 +41,7 @@ import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
 import com.esc20.service.ReferenceService;
+import com.esc20.util.ConstUtil;
 import com.esc20.util.DateUtil;
 import com.esc20.util.MailUtil;
 import com.esc20.util.StringUtil;
@@ -68,20 +72,7 @@ public class Information1095Controller{
 	@RequestMapping("information1095")
 	public ModelAndView getInformation1095(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		BeaUsers user = (BeaUsers) session.getAttribute("user");
-		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-        Options options = this.indexService.getOptions();
-        String district = (String)session.getAttribute("districtId");
-        District districtInfo = this.indexService.getDistrict(district);
-        userDetail.setEmpNbr(user.getEmpNbr());
-        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-        String phone = districtInfo.getPhone();
-        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
-
-		session.setAttribute("userDetail", userDetail);
-        session.setAttribute("companyId", district);
-        session.setAttribute("options", options);
-        session.setAttribute("district", districtInfo);
+		
 		ModelAndView mav = new ModelAndView();
 		mav = init1095(mav, session, null, 1, 1, null, null, null);
 		return mav;
@@ -194,8 +185,24 @@ public class Information1095Controller{
 
 	private ModelAndView init1095(ModelAndView mav, HttpSession session, String year, Integer BPageNo, Integer CPageNo,
 			String sortBy, String sortOrder, String type) {
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+        Options options = this.indexService.getOptions();
+        String district = (String)session.getAttribute("districtId");
+        District districtInfo = this.indexService.getDistrict(district);
+        userDetail.setEmpNbr(user.getEmpNbr());
+        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        String phone = districtInfo.getPhone();
+        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+
+		session.setAttribute("userDetail", userDetail);
+        session.setAttribute("companyId", district);
+        session.setAttribute("options", options);
+        session.setAttribute("district", districtInfo);
+        
+		Integer pageSize = ConstUtil.getPageSize();
 		mav.setViewName("/inquiry/information1095");
-		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		List<String> years = this.service.retrieveAvailable1095CalYrs(employeeNumber);
 		if (years != null && years.size() > 0) {
@@ -206,13 +213,13 @@ public class Information1095Controller{
 		}
 		if (year == null)
 			year = DateUtil.getLatestYear(years);
-		Options options = ((Options) session.getAttribute("options"));
+	//	Options options = ((Options) session.getAttribute("options"));
 		String message = options.getMessageElecConsent1095().trim();
 		String consent = this.service.get1095Consent(employeeNumber);
 		Integer BTotal = this.service.getBInfoTotal(employeeNumber, year);
-		Integer BTotalPage = this.service.getBInfoTotal(employeeNumber, year)/ 20;
-		Integer BRemianList =  this.service.getBInfoTotal(employeeNumber, year) % 20;
-		if(BRemianList >0) {
+		Integer BTotalPage = BTotal/ pageSize;
+		Integer BRemainingList =  BTotal % pageSize;
+		if(BRemainingList >0) {
 			BTotal = BTotalPage + 1;
 		}
 		else
@@ -220,6 +227,16 @@ public class Information1095Controller{
 			BTotal = BTotalPage;
 		}
 		Integer CTotal = this.service.getCInfoTotal(employeeNumber, year);
+		Integer CTotalPage = CTotal/ pageSize;
+		Integer CRemainingList =  CTotal % pageSize;
+		if(CRemainingList >0) {
+			CTotal = CTotalPage + 1;
+		}
+		else
+		{
+			CTotal = CTotalPage;
+		}
+		
 		List<Code> bCovrgTypList = this.service.retrieveEA1095BEmpInfo(employeeNumber,year);
 		List<BCoveredHistory> bList;
 		if (("B").equals(type))
@@ -235,6 +252,19 @@ public class Information1095Controller{
 			    	}
 			    }
 		}
+		if(bList != null && bList.size() >0) {
+			//Sort bList according to FN
+			 Collections.sort(bList, new Comparator<BCoveredHistory>() {
+					@Override
+					public int compare(BCoveredHistory o1, BCoveredHistory o2) {
+						String s1 = String.valueOf(o1.getNameF());
+		                String s2 = String.valueOf(o2.getNameF());
+		                return s1.compareTo(s2);
+					}
+		    	});
+		}
+		
+		
 		List<EA1095CEmployerShare> cEmpList = this.service.retrieveEA1095CEmpInfo(employeeNumber,year);
 		List<CCoveredHistory> cList;
 		if (("C").equals(type))
@@ -249,6 +279,17 @@ public class Information1095Controller{
 			    		cItem.setGenDescription(gen.getDescription());
 			    	}
 			    }
+		}
+		if(cList != null && cList.size() >0) {
+			//Sort cList according to FN
+			 Collections.sort(cList, new Comparator<CCoveredHistory>() {
+					@Override
+					public int compare(CCoveredHistory o1, CCoveredHistory o2) {
+						String s1 = String.valueOf(o1.getNameF());
+		                String s2 = String.valueOf(o2.getNameF());
+		                return s1.compareTo(s2);
+					}
+		    	});
 		}
 		if (bCovrgTypList.size() > 0) {
 			mav.addObject("BCovrgTyp", bCovrgTypList.get(0).getCode());
