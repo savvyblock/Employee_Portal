@@ -252,17 +252,6 @@ public class Information1095Controller{
 			    	}
 			    }
 		}
-		if(bList != null && bList.size() >0) {
-			//Sort bList according to FN
-			 Collections.sort(bList, new Comparator<BCoveredHistory>() {
-					@Override
-					public int compare(BCoveredHistory o1, BCoveredHistory o2) {
-						String s1 = String.valueOf(o1.getNameF());
-		                String s2 = String.valueOf(o2.getNameF());
-		                return s1.compareTo(s2);
-					}
-		    	});
-		}
 		
 		
 		List<EA1095CEmployerShare> cEmpList = this.service.retrieveEA1095CEmpInfo(employeeNumber,year);
@@ -280,17 +269,7 @@ public class Information1095Controller{
 			    	}
 			    }
 		}
-		if(cList != null && cList.size() >0) {
-			//Sort cList according to FN
-			 Collections.sort(cList, new Comparator<CCoveredHistory>() {
-					@Override
-					public int compare(CCoveredHistory o1, CCoveredHistory o2) {
-						String s1 = String.valueOf(o1.getNameF());
-		                String s2 = String.valueOf(o2.getNameF());
-		                return s1.compareTo(s2);
-					}
-		    	});
-		}
+		
 		if (bCovrgTypList.size() > 0) {
 			mav.addObject("BCovrgTyp", bCovrgTypList.get(0).getCode());
 			mav.addObject("BCovrgTypDescr", bCovrgTypList.get(0).getDescription());

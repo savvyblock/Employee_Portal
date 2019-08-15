@@ -75,13 +75,14 @@ public class EA1095Dao {
 	public List<BCoveredHistory> retrieveEA1095BInfo(String employeeNumber, String year, String sortBy, String sortOrder, Integer bPageNo) {
 		Session session = this.getSession();
 		Integer pageSize = ConstUtil.getPageSize();
-		String retrieveSQL = "FROM BhrAca1095bCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";
-        Query q = session.createQuery(retrieveSQL);
+		String retrieveSQL = "FROM BhrAca1095bCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr order by NAME_F ASC ";
+		Query q = session.createQuery(retrieveSQL);
         if(sortBy!=null && (!("").equals(sortBy))) {
-        	retrieveSQL += "order by :=sortBy :=sortOrder";
+        	retrieveSQL += ", :=sortBy :=sortOrder";
             q.setParameter("sortBy", sortBy);
             q.setParameter("sortOrder", sortOrder==null?"asc":sortOrder);
         }
+      
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
         q.setFirstResult((bPageNo-1)*pageSize);  
@@ -98,13 +99,14 @@ public class EA1095Dao {
 	public List<CCoveredHistory> retrieveEA1095CInfo(String employeeNumber, String year, String sortBy, String sortOrder, Integer cPageNo) {
 		Session session = this.getSession();
 		Integer pageSize = ConstUtil.getPageSize();
-		String retrieveSQL = "FROM BhrAca1095cCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr ";
+		String retrieveSQL = "FROM BhrAca1095cCovrdHist A WHERE A.id.empNbr = :employeeNumber and A.id.calYr= :calYr order by  EMP_FLG DESC, NAME_F ASC ";
         Query q = session.createQuery(retrieveSQL);
         if(sortBy!=null && (!("").equals(sortBy))) {
-        	retrieveSQL += "order by :=sortBy :=sortOrder";
+        	retrieveSQL += ", :=sortBy :=sortOrder";
             q.setParameter("sortBy", sortBy);
             q.setParameter("sortOrder", sortOrder==null?"asc":sortOrder);
         }
+       
         q.setParameter("employeeNumber", employeeNumber);
         q.setParameter("calYr", year);
         q.setFirstResult((cPageNo-1)*pageSize);  
