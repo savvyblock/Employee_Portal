@@ -96,6 +96,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			request.setDatetimeTo(sdf1.parse(SearchEnd + " 23:59:59"));
 		}
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
+		List<Code> gens = referenceService.getGenerations();
 		if (freq == null || ("").equals(freq)) {
 			if (availableFreqs.size() > 0) {
 				freq = availableFreqs.get(0).getCode();
@@ -132,7 +133,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 				JSONArray json = new JSONArray();
 
 				for (int i = 0; i < requestModels.size(); i++) {
-					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null));
+					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null,gens));
 				}
 				
 				List<String[]> map = this.service.mapReasonsAndLeaveTypes();
@@ -190,7 +191,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
 			JSONArray json = new JSONArray();
 			for (int i = 0; i < requestModels.size(); i++) {
-				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null));
+				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null,gens));
 			}
 			List<String[]> map = this.service.mapReasonsAndLeaveTypes();
 			JSONArray mapJson = new JSONArray();

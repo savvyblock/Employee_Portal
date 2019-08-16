@@ -107,7 +107,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <tr id="actionList_${status.index}">
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.employee}"> 
                                                                 ${item.empNbr}: 
-                                                                <div class="empNameTd">${item.lastName}, ${item.firstName} ${item.middleName}</div>
+                                                                <div class="empNameTd">${item.lastName}, ${item.firstName} ${item.middleName} ${item.generation}</div>
                                                                 <button data-toggle="modal" data-target="#balanceModal" onclick="showBalance('${item.empNbr}')" aria-label="${sessionScope.languageJSON.label.showLeaveBalanceOf} ${item.empNbr}: ${item.lastName}, ${item.firstName}">
                                                                     <i class="fa fa-search"></i>
                                                                 </button>

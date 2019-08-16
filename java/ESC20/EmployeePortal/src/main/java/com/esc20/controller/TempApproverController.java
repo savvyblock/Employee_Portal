@@ -107,6 +107,7 @@ public class TempApproverController extends BaseSupervisorController {
 		}
 		
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
+		List<Code> gens = referenceService.getGenerations();
 		List<AppLeaveRequest> leavesCalendar = this.supService.getLeaveDetailsForCalendar(demo.getEmpNbr(), null, null,
 				null);		
 		List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
@@ -117,7 +118,7 @@ public class TempApproverController extends BaseSupervisorController {
 			requestModels.add(model);
 		}
 		for (int i = 0; i < requestModels.size(); i++) {
-			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null));
+			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null,gens));
 		}
         mav.addObject("leavesCalendar", calendar);
 		

@@ -72,6 +72,7 @@ public class SupervisorCalendarController extends BaseSupervisorController {
 			leaveTypesJson.add(leaveTypes.get(i).toJSON());
 		}
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
+		List<Code> gens = referenceService.getGenerations();
 		List<AppLeaveRequest> leavesCalendar = this.supService.getLeaveDetailsForCalendar(demo.getEmpNbr(), null, null,
 				null);
 		List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
@@ -82,7 +83,7 @@ public class SupervisorCalendarController extends BaseSupervisorController {
 			requestModels.add(model);
 		}
 		for (int i = 0; i < requestModels.size(); i++) {
-			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null));
+			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null,gens));
 		}
 		mav.addObject("absRsns", absRsnsJson);
 		mav.addObject("leaveTypes", leaveTypesJson);

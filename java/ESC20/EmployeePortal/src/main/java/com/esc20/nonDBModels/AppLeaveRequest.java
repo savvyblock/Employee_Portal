@@ -35,6 +35,7 @@ public class AppLeaveRequest implements Serializable {
 	private String firstName;
 	private String middleName;
 	private String lastName;
+	private String generation;
 	private String createComment;
 	private List<LeaveRequestComment> comments;
 	private List<LeaveInfo> info;
@@ -69,7 +70,7 @@ public class AppLeaveRequest implements Serializable {
 	public AppLeaveRequest(Integer seqNum, Integer id, Character payFreq, String empNbr, String lvTyp,
 			String absRsn, Date datetimeSubmitted, Date datetimeFrom, Date datetimeTo, BigDecimal lvUnitsDaily, BigDecimal lvUnitsUsed,
 			Character statusCd, String descr, String daysHrs, String longDescr, String absDescr, String firstName,
-			String middleName, String lastName) {
+			String middleName, String lastName, String generation) {
 		this.seqNum = seqNum;
 		this.id = id;
 		this.payFreq = payFreq;
@@ -89,6 +90,7 @@ public class AppLeaveRequest implements Serializable {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
+		this.generation = generation;
 	}
 
 	public AppLeaveRequest(BhrEmpLvXmital item,BhrEmpDemo demo) throws ParseException {
@@ -276,6 +278,13 @@ public class AppLeaveRequest implements Serializable {
 		this.middleName = middleName;
 	}
 
+	public String getGeneration() {
+		return generation;
+	}
+
+	public void setGeneration(String generation) {
+		this.generation = generation;
+	}
 	public String getLastName() {
 		return lastName;
 	}

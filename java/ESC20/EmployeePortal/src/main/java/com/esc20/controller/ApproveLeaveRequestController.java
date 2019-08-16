@@ -100,6 +100,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 			leaveTypesJson.add(leaveTypes.get(i).toJSON());
 		}
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
+		List<Code> gens = referenceService.getGenerations();
 		JSONArray chain = new JSONArray();
 		JSONObject currentLevel = new JSONObject();
 		currentLevel.put("level", 0);
@@ -119,7 +120,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 			requestModels.add(model);
 		}
 		for (int i = 0; i < requestModels.size(); i++) {
-			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null));
+			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null,gens));
 		}
 		mav.addObject("directReportEmployee", employeeDataJSON);
 		if (demo.getEmpNbr().equals(empNbr)) {

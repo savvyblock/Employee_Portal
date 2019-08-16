@@ -498,7 +498,7 @@ public class LeaveRequestDao {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder("");
 		sql.append("SELECT ELW.SEQ_NUM, ELR.ID, ELR.PAY_FREQ, ELR.EMP_NBR, ELR.LV_TYP, ELR.ABS_RSN, ELR.DATETIME_SUBMITTED, ELR.DATETIME_FROM, ELR.DATETIME_TO, ELR.LV_UNITS_DAILY, ELR.LV_UNITS_USED, ELR.STATUS_CD, ");
-		sql.append("  ELSC.DESCR AS STATUS_DESCR, ISNULL(ELC.LV_COMMENT,'') AS REQUEST_COMMENT, LT.DAYS_HRS, LTD.LONG_DESCR, AR.ABS_DESCR, ED.NAME_F, ED.NAME_M, ED.NAME_L ");
+		sql.append("  ELSC.DESCR AS STATUS_DESCR, ISNULL(ELC.LV_COMMENT,'') AS REQUEST_COMMENT, LT.DAYS_HRS, LTD.LONG_DESCR, AR.ABS_DESCR, ED.NAME_F, ED.NAME_M, ED.NAME_L, ED.NAME_GEN ");
 		sql.append("FROM BEA_EMP_LV_RQST ELR LEFT OUTER JOIN BEA_EMP_LV_COMMENTS ELC ON ELR.ID=ELC.LV_ID AND ELC.LV_COMMENT_TYP='C', ");
 		sql.append("  BEA_EMP_LV_WORKFLOW ELW, BTEA_EMP_LV_STATUS_CODES ELSC, BTHR_LV_TYP LT, BTHR_LV_TYP_DESCR LTD, BTHR_ABS_RSN AR, BHR_EMP_DEMO ED ");
 		sql.append("WHERE ELW.APPRVR_EMP_NBR = :employeeNumber AND ELR.EMP_NBR = ED.EMP_NBR ");
@@ -521,7 +521,7 @@ public class LeaveRequestDao {
 					(String) item[4], (String) item[5], (Date) item[6], (Date) item[7], (Date) item[8],
 					(BigDecimal) item[9], (BigDecimal) item[10], (Character) item[11], (String) item[12],
 					(String) item[14], (String) item[15], (String) item[16], (String) item[17], (String) item[18],
-					(String) item[19]);
+					(String) item[19], (String)item[20]);
 			requests.add(request);
 		}
 

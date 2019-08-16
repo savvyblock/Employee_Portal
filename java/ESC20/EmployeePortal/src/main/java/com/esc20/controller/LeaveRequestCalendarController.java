@@ -82,6 +82,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 				requests = this.service.getLeaveRequests(request, demo.getEmpNbr(), freq);
 				List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
 				List<Code> leaveStatus = this.referenceService.getLeaveStatus();
+				List<Code> gens = referenceService.getGenerations();
 				LeaveRequestModel model;
 				JSONArray json = new JSONArray();
 				AppLeaveRequest temp;
@@ -104,7 +105,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 					leaveTypesJson.add(leaveTypes.get(i).toJSON());
 				}
 				for (int i = 0; i < requestModels.size(); i++) {
-					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null));
+					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null,gens));
 				}
 				
 				List<String[]> map = this.service.mapReasonsAndLeaveTypes();
@@ -132,6 +133,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 			requests = this.service.getLeaveRequests(request, demo.getEmpNbr(), freq);
 			List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
 			List<Code> leaveStatus = this.referenceService.getLeaveStatus();
+			List<Code> gens = referenceService.getGenerations();
 			LeaveRequestModel model;
 			JSONArray json = new JSONArray();
 			AppLeaveRequest temp;
@@ -154,7 +156,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 				leaveTypesJson.add(leaveTypes.get(i).toJSON());
 			}
 			for (int i = 0; i < requestModels.size(); i++) {
-				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null));
+				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null,gens));
 			}
 			List<String[]> map = this.service.mapReasonsAndLeaveTypes();
 			JSONArray mapJson = new JSONArray();

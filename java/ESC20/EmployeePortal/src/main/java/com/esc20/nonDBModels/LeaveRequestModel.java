@@ -41,6 +41,7 @@ public class LeaveRequestModel implements Serializable {
 		this.firstName = request.getFirstName();
 		this.middleName = request.getMiddleName();
 		this.lastName = request.getLastName();
+		this.generation = request.getGeneration();
 		this.createComment = request.getCreateComment();
 		this.info = request.getInfo();
 		this.approver = request.getApprover();
@@ -69,6 +70,7 @@ public class LeaveRequestModel implements Serializable {
 	private String firstName;
 	private String middleName;
 	private String lastName;
+	private String generation;
 	private String createComment;
 	private List<LeaveRequestComment> comments;
 	private List<LeaveInfo> info;
@@ -152,7 +154,7 @@ public class LeaveRequestModel implements Serializable {
 		return end;
 	}
 
-	public JSONObject toJSON(List<Code> leaveStatus, List<Code> leaveTypes, List<Code> payFreqs) {
+	public JSONObject toJSON(List<Code> leaveStatus, List<Code> leaveTypes, List<Code> payFreqs,List<Code> genenations) {
 		JSONObject jo = new JSONObject();
 		jo.put("id", this.getId());
 		String typeDesc= "";
@@ -200,6 +202,21 @@ public class LeaveRequestModel implements Serializable {
 		jo.put("firstName", this.getFirstName());
 		jo.put("middleName", this.getMiddleName());
 		jo.put("lastName", this.getLastName());
+		String genStr = this.getGeneration();
+		String nameGen = "";
+		if(!StringUtil.isNullOrEmpty(genStr)) {
+			
+			List<Code> gens = genenations;
+			if(!CollectionUtils.isEmpty(gens)){
+				for(Code gen: gens) {
+			    	if(genStr!= null && gen.getCode().trim().equals(genStr.trim())) {
+			    		nameGen = gen.getDescription();
+			    	}
+			    }
+			} 
+		}
+		jo.put("generation", nameGen);
+	
 		if (this.getComments() != null) {
 			JSONArray comments = new JSONArray();
 			JSONObject comment;
@@ -338,6 +355,15 @@ public class LeaveRequestModel implements Serializable {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
+	public String getGeneration() {
+		return generation;
+	}
+
+	public void setGeneration(String generation) {
+		this.generation = generation;
+	}
+
 
 	public String getCreateComment() {
 		return createComment;
