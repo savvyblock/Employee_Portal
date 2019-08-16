@@ -171,7 +171,7 @@
                         <small class="help-block" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.startNotBeGreaterThanEndTime}</small>
                     </div> -->
                     <div class="date-group">
-                            <div class="form-group calendar-left">
+                            <div class="form-group calendar-left leaveHoursDailyWrap">
                                     <label class="form-title" for="leaveHoursDaily"><span>${sessionScope.languageJSON.leaveRequest.hourDayRequested}</span>: </label>
                                     <div class="valid-wrap">
                                         <input

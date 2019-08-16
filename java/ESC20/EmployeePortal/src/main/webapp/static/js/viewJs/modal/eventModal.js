@@ -516,9 +516,11 @@ $("#startDateInput").blur(function(){
         var leaveHoursDaily = $("#leaveHoursDaily").val()
         if(Number(leaveHoursDaily) == 0){
             $(".leaveHoursDailyNotZero").show()
+            $(".leaveHoursDailyWrap").addClass('has-error')
             return false
         }
         $(".leaveHoursDailyNotZero").hide()
+        $(".leaveHoursDailyWrap").removeClass('has-error')
         if(isAdd){
             $("#isAdd").val(isAdd)
         }
