@@ -1413,7 +1413,7 @@
 							<textElement textAlignment="Left">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Employer Identification number (EIN)]]></text>
+							<text><![CDATA[Employer identification number (EIN)]]></text>
 						</staticText>
 						<textField>
 							<reportElement x="16" y="11" width="163" height="12" uuid="a00c13b0-7d5f-41ff-92d1-d02af2865ed7"/>
@@ -1645,7 +1645,7 @@
 							<textElement textAlignment="Left">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Employer Identification number (EIN)]]></text>
+							<text><![CDATA[Employer identification number (EIN)]]></text>
 						</staticText>
 						<textField>
 							<reportElement x="16" y="11" width="130" height="12" uuid="fc37fdbb-c0c6-449a-81ec-1705fba9086c"/>

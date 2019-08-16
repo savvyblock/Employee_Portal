@@ -1419,7 +1419,7 @@
 							<textElement textAlignment="Left">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Employer Identification number (EIN)]]></text>
+							<text><![CDATA[Employer identification number (EIN)]]></text>
 						</staticText>
 						<textField>
 							<reportElement x="16" y="11" width="163" height="12" uuid="c5947750-be11-4401-a167-02d05114a0e1"/>
@@ -1640,7 +1640,7 @@
 							<textElement textAlignment="Left">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[Employer Identification number (EIN)]]></text>
+							<text><![CDATA[Employer identification number (EIN)]]></text>
 						</staticText>
 						<textField>
 							<reportElement x="16" y="11" width="130" height="12" uuid="6f5f8054-719c-4633-8f70-dd509c9cf719"/>
@@ -1894,7 +1894,7 @@
 						</box>
 						<staticText>
 							<reportElement x="0" y="3" width="70" height="25" uuid="16bf761d-32a0-49c7-93a4-bc527c2213ba"/>
-							<textElement verticalAlignment="Top">
+							<textElement textAlignment="Center" verticalAlignment="Top">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
 							<text><![CDATA[(c) DOB (If SSN or other TIN is not available)]]></text>

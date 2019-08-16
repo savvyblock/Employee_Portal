@@ -394,7 +394,7 @@ public class Information1095Controller{
 		if (year == null)
 			year = DateUtil.getLatestYear(years);
 		List<Code> bCovrgTypList = this.service.retrieveEA1095BEmpInfo(employeeNumber,year);
-		List<BCoveredHistory> bList = this.service.retrieveEA1095BInfo(employeeNumber, year, null, null, 1);
+		List<BCoveredHistory> bList = this.service.retrieveAll1095BInfo(employeeNumber, year);
 		String coverType = "";
 		if (bCovrgTypList.size() > 0) {
 			coverType = bCovrgTypList.get(0).getCode();
