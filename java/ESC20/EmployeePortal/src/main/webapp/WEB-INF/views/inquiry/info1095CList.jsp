@@ -63,43 +63,56 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 									<span class="print-hide">${sessionScope.languageJSON.info1095Table.employeeShare}</span>
 							</th>
 							<td headers="allMonthsMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.allMonths}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.monAll.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.monAll.empShr}" pattern="#,##0.00"/>
 							</td>
 							<td headers="janMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Jan}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon01.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.mon01.empShr}" pattern="#,##0.00"/>
 							</td>
 							<td headers="febMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Feb}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon02.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.mon02.empShr}" pattern="#,##0.00"/>
 							</td>
 							<td headers="marMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Mar}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon03.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.mon03.empShr}" pattern="#,##0.00"/>
 							</td>
 							<td headers="aprMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Apr}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon04.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.mon04.empShr}" pattern="#,##0.00"/>
 							</td>
 							<td headers="mayMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.May}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon05.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.mon05.empShr}" pattern="#,##0.00"/>
 							</td>
 							<td headers="junMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Jun}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon06.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.mon06.empShr}" pattern="#,##0.00"/>
 							</td>
 							<td headers="julMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Jul}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon07.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.mon07.empShr}" pattern="#,##0.00"/>
 							</td>
 							<td headers="augMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Aug}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon08.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.mon08.empShr}" pattern="#,##0.00"/>
 							</td>
 							<td headers="sepMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Sep}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon09.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.mon09.empShr}" pattern="#,##0.00"/>
 							</td>
 							<td headers="octMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Oct}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon10.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.mon10.empShr}" pattern="#,##0.00"/>
 							</td>
 							<td headers="novMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Nov}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon11.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.mon11.empShr}" pattern="#,##0.00"/>
 							</td>
 							<td headers="decMoney employeeShare" data-title="${sessionScope.languageJSON.info1095Table.Dec}">
-											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> ${cEmpItem.mon12.empShr}
+											<span class="unit-dollar">${sessionScope.languageJSON.info1095Table.dollar}</span> 
+											<fmt:formatNumber value="${cEmpItem.mon12.empShr}" pattern="#,##0.00"/>
 							</td>
 					</tr>
 					<tr>
