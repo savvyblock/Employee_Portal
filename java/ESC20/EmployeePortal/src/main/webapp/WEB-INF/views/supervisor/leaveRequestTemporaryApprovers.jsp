@@ -24,7 +24,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <div class="showSelectSupervisor">
                         <label class="form-title"><span>${sessionScope.languageJSON.label.supervisorHierarchy}</span>: </label>
                         <c:forEach var="item" items="${chain}" varStatus="status">
-                             <b> ${item.employeeNumber}: ${item.lastName}, ${item.firstName}</b>
+                             <b> ${item.employeeNumber}: ${item.lastName}, ${item.firstName} ${item.middleName} </b>
                              <c:if test="${!status.last}"> ➝ </c:if>
                         </c:forEach>
                     </div>
@@ -48,7 +48,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 											   			<option value="${item.employeeNumber}">&nbsp;</option>
 												   </c:when>
 												   <c:otherwise>
-												        <option value="${item.employeeNumber}">${item.selectOptionLabel}</option>
+												        <option value="${item.employeeNumber}">
+                                                            ${item.employeeNumber}: ${item.lastName}, ${item.firstName} ${item.middleName} 
+                                                        </option>
 												   </c:otherwise>
 												</c:choose>
                                             </c:forEach>

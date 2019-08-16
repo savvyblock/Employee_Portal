@@ -24,7 +24,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <div class="showSelectSupervisor">
                                 <label class="form-title"><span>${sessionScope.languageJSON.label.supervisorHierarchy}</span>: </label>
                                 <c:forEach var="item" items="${chain}" varStatus="status">
-                                    <b> ${item.employeeNumber}: ${item.lastName}, ${item.firstName}</b>
+                                    <b> ${item.employeeNumber}: ${item.lastName}, ${item.firstName} ${item.middleName}</b>
                                  <c:if test="${!status.last}"> ➝ </c:if>
                                 </c:forEach>
                             </div>
@@ -49,7 +49,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 											   			<option value="${item.employeeNumber}">&nbsp;</option>
 												   </c:when>
 												   <c:otherwise>
-												         <option value="${item.employeeNumber}">${item.selectOptionLabel}</option>
+												         <option value="${item.employeeNumber}">${item.employeeNumber}: ${item.lastName}, ${item.firstName} ${item.middleName}</option>
 												   </c:otherwise>
 												</c:choose>
                                             </c:forEach>
@@ -85,7 +85,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </h2>
                                 <div class="content-white">
                                     
-                                    <table class="table request-list responsive-table">
+                                    <table class="table request-list responsive-table-1320">
                                             <thead>
                                                 <tr>
                                                         <th scope="col" style="width:10%">${sessionScope.languageJSON.approveRequest.employee}</th>
@@ -93,11 +93,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.leaveEndDate}</th>
                                                         <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.startTime}</th>
                                                         <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.endTime}</th>
-                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.leaveType}</th>
+                                                        <th scope="col" style="width:10%">${sessionScope.languageJSON.approveRequest.leaveType}</th>
                                                         <th scope="col" style="width:12%">${sessionScope.languageJSON.approveRequest.absenceReason}</th>
-                                                        <th scope="col" style="width:12%">${sessionScope.languageJSON.approveRequest.leaveRequested}</th>
+                                                        <th scope="col" style="width:10%">${sessionScope.languageJSON.approveRequest.leaveRequested}</th>
                                                         <th class="commentLog15" scope="col">${sessionScope.languageJSON.approveRequest.commentLog}</th>
-                                                        <th scope="col">${sessionScope.languageJSON.approveRequest.supervisorAction}</th>
+                                                        <th scope="col" style="width:11%">${sessionScope.languageJSON.approveRequest.supervisorAction}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -106,7 +106,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <c:if test="${item.statusCd !='A' && item.statusCd !='D'}">
                                                         <tr id="actionList_${status.index}">
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.employee}"> 
-                                                                ${item.empNbr}: ${item.lastName}, ${item.firstName}
+                                                                ${item.empNbr}: 
+                                                                <div class="empNameTd">${item.lastName}, ${item.firstName} ${item.middleName}</div>
                                                                 <button data-toggle="modal" data-target="#balanceModal" onclick="showBalance('${item.empNbr}')" aria-label="${sessionScope.languageJSON.label.showLeaveBalanceOf} ${item.empNbr}: ${item.lastName}, ${item.firstName}">
                                                                     <i class="fa fa-search"></i>
                                                                 </button>
@@ -117,7 +118,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.endTime}" >${item.LeaveEndTime}</td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.leaveType}">
                                                                     <c:forEach var="type" items="${leaveTypes}" varStatus="statusType">
-                                                                            <c:if test="${type.code==item.LeaveType}">${type.description}</c:if>
+                                                                            <c:if test="${type.code==item.LeaveType}">${type.code} - ${type.description}</c:if>
                                                                     </c:forEach>
                                                             </td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.absenceReason}" >
@@ -130,7 +131,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                     ${item.lvUnitsUsed}
                                                                 <span>${sessionScope.languageJSON.label.days}</span>
                                                             </td>
-                                                            <td>
+                                                            <td data-title="${sessionScope.languageJSON.approveRequest.commentLog}">
                                                                     <c:forEach var="comment" items="${item.comments}" varStatus="statusComment">
                                                                         <p>${comment.detail}</p>
                                                                     </c:forEach>

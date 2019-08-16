@@ -659,6 +659,105 @@ input {
     page-break-after: always;
 }
 // ------------------modal
+@media (max-width:1320px){
+    .table.responsive-table-1320 {
+        border: 0;
+        &.no-thead{
+            &.border-table{
+                border-bottom: 1px solid #eee;
+            }
+            
+            tr{
+                margin-bottom: 0;
+            }
+            td{
+                &.td-title{
+                    display: none!important;
+                }
+                
+            }
+        }
+        &.payRoll-table{
+            tr{
+                margin-bottom: 0;
+                border-bottom: 2px solid #eee;
+            }
+        }
+		thead {
+			display: none;
+        }
+        tbody{
+            display: block!important;
+            width: 100%;
+        }
+		tr,
+		td {
+			display: block;
+		}
+		tr {
+            flex-wrap: wrap;
+            display: flex;
+            width: 100%!important;
+            margin-bottom: 25px;
+            &.total-tr{
+                td{
+                    padding: 3px!important;
+                    text-align: right;
+                }
+            }
+		}
+		td {
+			width: 100% !important;
+			max-width: initial;
+			height: auto;
+			padding: 5px;
+			border-left: 1px solid #eee;
+			border-right: 1px solid #eee;
+			position: relative;
+			white-space: normal;
+			text-align: left;
+            font-size: 12px;
+            display: flex!important;
+            flex-direction:row!important;
+            align-items: center;
+            text-align: left!important;
+            &.tr-title{
+                padding-left: 0;
+                justify-content: center;
+                font-weight: bold;
+                &::before{
+                    display: none;
+                }
+            }
+			&:first-child {
+				border-top: 1px solid #eee;
+			}
+			&.selector {
+				padding-left: 6px;
+				.ivu-checkbox-wrapper {
+					margin: 0;
+				}
+				&:before {
+					display: none;
+				}
+			}
+			&:before {
+				width: 130px;
+				padding-right: 10px;
+				white-space: nowrap;
+				text-align: left;
+                font-weight: bold;
+                font-size: 12px;
+                content: attr(data-title);
+                flex: 0 0 130px;
+                white-space: normal;
+                word-wrap: break-word;
+                display: block;
+                float: left;
+			}
+		}
+	}
+}
 @media (max-width:768px){
     .table.responsive-table {
         border: 0;
