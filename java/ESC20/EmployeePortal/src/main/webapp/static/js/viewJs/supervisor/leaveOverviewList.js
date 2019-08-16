@@ -82,7 +82,7 @@ function initList() {
     } else {
         $('#leaveOverviewList tbody tr').removeClass('hide')
     }
-    var requester = $('#selectEmpNbr option:selected').text()
+    var requester = $('#selectEmpNbr option:selected').text().trim()
     if (requester && requester != '') {
         $('#forWord').removeClass('hide')
         $('#currentLeaveRequests').text(requester)

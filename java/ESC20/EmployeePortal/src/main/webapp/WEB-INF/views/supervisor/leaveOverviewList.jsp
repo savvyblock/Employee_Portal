@@ -28,7 +28,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="showSelectSupervisor">
                                             <label class="form-title"><span>${sessionScope.languageJSON.label.supervisorHierarchy}</span>: </label>
                                             <c:forEach var="item" items="${chain}" varStatus="status">
-                                                    <b> ${item.employeeNumber}:${item.lastName},${item.firstName}</b>
+                                                    <b> ${item.employeeNumber}: ${item.lastName}, ${item.firstName} ${item.middleName}</b>
                                                     <c:if test="${!status.last}"> ➝ </c:if>
                                             </c:forEach>
                                     </div>
@@ -53,7 +53,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                     <option value="${item.employeeNumber}" <c:if test="${item.employeeNumber==selectedEmployee}">selected</c:if>>&nbsp;</option>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                 <option value="${item.employeeNumber}" <c:if test="${item.employeeNumber==selectedEmployee}">selected</c:if>>${item.selectOptionLabel}</option>
+                                                                 <option value="${item.employeeNumber}" <c:if test="${item.employeeNumber==selectedEmployee}">selected</c:if>>
+                                                                    ${item.employeeNumber}: ${item.lastName}, ${item.firstName} ${item.middleName}
+                                                                </option>
                                                             </c:otherwise>
                                                          </c:choose>
                                             </c:forEach>
@@ -75,7 +77,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input type="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="${sessionScope.languageJSON.accessHint.level}"/>
                                         <input type="hidden" name="chain" type="text" value="" id="preChain" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
                                 </form>
-                                <h2 class="tableTitle" style="padding:0;">
+                                <h2 class="tableTitle">
                                     <span>${sessionScope.languageJSON.label.LeaveRequests}</span>
                                     <span id="forWord" class="hide">${sessionScope.languageJSON.label.for}</span>
                                     <span id="currentLeaveRequests"></span>

@@ -2266,3 +2266,13 @@
     padding-right: 0;
   }
 }
+
+#selectEmpNbr.form-control {
+  padding-left: 0;
+  max-width: 240px;
+  width: 240px;
+}
+
+.empNameTd {
+  white-space: nowrap;
+}

@@ -747,6 +747,96 @@ input:focus {
   page-break-after: always;
 }
 
+@media (max-width: 1320px) {
+  .table.responsive-table-1320 {
+    border: 0;
+  }
+  .table.responsive-table-1320.no-thead.border-table {
+    border-bottom: 1px solid #eee;
+  }
+  .table.responsive-table-1320.no-thead tr {
+    margin-bottom: 0;
+  }
+  .table.responsive-table-1320.no-thead td.td-title {
+    display: none !important;
+  }
+  .table.responsive-table-1320.payRoll-table tr {
+    margin-bottom: 0;
+    border-bottom: 2px solid #eee;
+  }
+  .table.responsive-table-1320 thead {
+    display: none;
+  }
+  .table.responsive-table-1320 tbody {
+    display: block !important;
+    width: 100%;
+  }
+  .table.responsive-table-1320 tr,
+  .table.responsive-table-1320 td {
+    display: block;
+  }
+  .table.responsive-table-1320 tr {
+    flex-wrap: wrap;
+    display: flex;
+    width: 100% !important;
+    margin-bottom: 25px;
+  }
+  .table.responsive-table-1320 tr.total-tr td {
+    padding: 3px !important;
+    text-align: right;
+  }
+  .table.responsive-table-1320 td {
+    width: 100% !important;
+    max-width: initial;
+    height: auto;
+    padding: 5px;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    position: relative;
+    white-space: normal;
+    text-align: left;
+    font-size: 12px;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    text-align: left !important;
+  }
+  .table.responsive-table-1320 td.tr-title {
+    padding-left: 0;
+    justify-content: center;
+    font-weight: bold;
+  }
+  .table.responsive-table-1320 td.tr-title::before {
+    display: none;
+  }
+  .table.responsive-table-1320 td:first-child {
+    border-top: 1px solid #eee;
+  }
+  .table.responsive-table-1320 td.selector {
+    padding-left: 6px;
+  }
+  .table.responsive-table-1320 td.selector .ivu-checkbox-wrapper {
+    margin: 0;
+  }
+  .table.responsive-table-1320 td.selector:before {
+    display: none;
+  }
+  .table.responsive-table-1320 td:before {
+    width: 130px;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+    font-size: 12px;
+    content: attr(data-title);
+    flex: 0 0 130px;
+    white-space: normal;
+    word-wrap: break-word;
+    display: block;
+    float: left;
+  }
+}
+
 @media (max-width: 768px) {
   .table.responsive-table {
     border: 0;
