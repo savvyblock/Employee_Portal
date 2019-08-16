@@ -910,6 +910,11 @@ public class InquiryService {
 			String sortOrder, Integer bPageNo) {
 		return ea1095Dao.retrieveEA1095BInfo(employeeNumber, year, sortBy, sortOrder, bPageNo);
 	}
+	
+	public List<BCoveredHistory> retrieveAll1095BInfo(String employeeNumber, String year) {
+		return ea1095Dao.retrieveAll1095BInfo(employeeNumber, year);
+	}
+
 
 	public List<CCoveredHistory> retrieveEA1095CInfo(String employeeNumber, String year, String sortBy,
 			String sortOrder, Integer cPageNo) {
