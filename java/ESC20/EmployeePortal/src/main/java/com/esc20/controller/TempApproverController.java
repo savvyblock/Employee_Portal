@@ -121,6 +121,8 @@ public class TempApproverController extends BaseSupervisorController {
 			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null,gens));
 		}
         mav.addObject("leavesCalendar", calendar);
+        
+      //  List<Code> testApproves = this.supService.getEmployeeTempApproverSearch(user.getEmpNbr(), "0");
 		
 		mav.addObject("tmpApprovers", tmpApprovers);
 		mav.addObject("directReportEmployee", employeeDataJSON);

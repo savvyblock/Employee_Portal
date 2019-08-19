@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.esc20.dao.AlertDao;
 import com.esc20.dao.AppUserDao;
+import com.esc20.dao.AutoCompleteDao;
 import com.esc20.dao.LeaveRequestDao;
 import com.esc20.dao.SupervisorDao;
 import com.esc20.model.BeaEmpLvComments;
@@ -20,6 +21,7 @@ import com.esc20.model.BeaEmpLvTmpApprovers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrPmisPosCtrl;
 import com.esc20.nonDBModels.AppLeaveRequest;
+import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveRequest;
 import com.esc20.nonDBModels.LeaveRequestComment;
@@ -40,6 +42,9 @@ public class SupervisorService {
     
     @Autowired
     private AlertDao alertDao;   
+    
+    @Autowired
+    private AutoCompleteDao autoCompleteDao;   
     
     @Autowired
     private LeaveRequestService leaveRequestService;
@@ -186,6 +191,10 @@ public class SupervisorService {
 
 	public void deleteTempApprover(BeaEmpLvTmpApprovers tempApprover) {
 		this.supervisorDao.deleteTempApprover(tempApprover);
+	}
+	
+	public List<Code> getEmployeeTempApproverSearch(String excludeEmpNumber, String search){
+		return this.autoCompleteDao.getEmployeeTempApproverSearch(excludeEmpNumber, search);
 	}
 
 }
