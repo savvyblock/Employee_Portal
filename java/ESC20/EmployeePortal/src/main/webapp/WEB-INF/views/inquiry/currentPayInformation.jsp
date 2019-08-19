@@ -76,6 +76,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <td
                                             headers="userDetailName" class="td-content"
                                             colspan="3"
+                                            data-title="${sessionScope.languageJSON.currentPayTable.name}"
                                         >
                                         ${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameM} ${sessionScope.userDetail.nameL} ${sessionScope.userDetail.genDescription}
                                         </td>
@@ -192,7 +193,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <b><span>${sessionScope.languageJSON.label.frequency}</span>: ${frequency}</b>
                                     </h2>
                                     <table
-                                        class="table border-table responsive-table no-thead print-table noNumTable"
+                                        class="table border-table responsive-table no-thead print-table noNumTable smTitleTable"
                                     >
                                         <tbody>
                                             <tr>
@@ -234,7 +235,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <b><span>${sessionScope.languageJSON.label.positions}</span></b>
                                     </h2>
                                     
-                                        <table class="table border-table responsive-table no-thead print-table" style="border:0;">
+                                        <table class="table border-table responsive-table no-thead print-table smTitleTable" style="border:0;">
                                             <tbody>
                                                     <c:forEach var="job" items="${jobs[frequency]}" varStatus="jobCount">
                                                 <tr>

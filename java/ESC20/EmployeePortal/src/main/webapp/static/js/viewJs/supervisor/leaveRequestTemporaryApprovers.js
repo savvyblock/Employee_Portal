@@ -4,7 +4,8 @@ $(function() {
     changeLevel()
     initDateControl()
     judgeContent()
-    initialCompleteList()
+    getApprovers("")
+    // initialCompleteList()
     var level = $('#level').val()
     var chainString = JSON.stringify(chain)
     var empNbr = $('#currentEmployee').text()
@@ -75,7 +76,8 @@ $(function() {
             if (errorLength==0) {
                 console.log(newRow)
                 $('.setApprovers-list tbody tr:last-child').before(newRow)
-                initialCompleteList()
+                getApprovers("")
+                // initialCompleteList()
             }
         } else {
             $('#errorComplete').show()
@@ -244,37 +246,36 @@ function verifyRepeat() {
             .removeAttr('disabled')
     }
 }
-function initialCompleteList() {
-    console.log(employeeList)
-    var newDirect = employeeList.filter(function(item){
-        if(item.employeeNumber && item.employeeNumber!=''){
-            return item
-        }
-    })
+function initialCompleteList(dataList) {
+    // console.log(employeeList)
+    // var newDirect = employeeList.filter(function(item){
+    //     if(item.employeeNumber && item.employeeNumber!=''){
+    //         return item
+    //     }
+    // })
+    // console.log(newDirect)
     $('.empControl').each(function() {
         var input = this
         $(this)
-            .autocomplete(newDirect, {
-                max: 10, //
+            .autocomplete(dataList, {
+                max: 10000, //
                 minChars: 0, //
-                width: $(this).width() + 1, //
+                width: 300, //
                 scrollHeight: 300, //
                 matchContains: true, //
                 autoFill: false, //
                 mouseDownOnSelect:true,
                 clickFire:true,
-                formatItem: function(row, i, max) {
-                    if (row.employeeNumber) {
+                formatItem: function(row, i, max) {//search data
+                    if (row.code) {
                         $('#noResultError').hide()
                         $('#saveSet')
                             .removeClass('disabled')
                             .removeAttr('disabled')
                         return (
-                            row.employeeNumber +
+                            row.code +
                             ': ' +
-                            row.lastName +
-                            ', ' +
-                            row.firstName
+                            row.description
                         )
                     } else {
                         console.log('no result')
@@ -287,28 +288,44 @@ function initialCompleteList() {
                         $('.ac_results').hide()
                     }
                 },
-                formatMatch: function(row, i, max) {
+                formatMatch: function(row, i, max) {//formatted data
                     return (
-                        row.employeeNumber +
+                        row.code +
                         ': ' +
-                        row.lastName +
-                        ', ' +
-                        row.firstName
+                        row.description
                     )
                 },
-                formatResult: function(row) {
+                formatResult: function(row) {//selected
                     return (
-                        row.employeeNumber +
+                        row.code +
                         ': ' +
-                        row.lastName +
-                        ', ' +
-                        row.firstName
+                        row.description
                     )
                 }
             })
             .result(function(event, row, formatted) {
                 judgeContent()
             })
+    })
+}
+function getApprovers(searchStr){
+    $.ajax({
+        type:'POST',
+        url:urlMain + '/leaveRequestTemporaryApprovers/getEmployeeTempApproverSearch',
+        async:true,
+        data:{
+       	 searchStr:searchStr
+		},
+		beforeSend: function (xhr) {
+            
+		},
+        success : function (res) {
+            var dataList = res.tempApprover
+            initialCompleteList(dataList)
+        },
+        error:function(res){
+			 console.log(res);
+        }
     })
 }
 
@@ -424,7 +441,7 @@ function judgeContent() {
         var empNbr = $(this)
             .find('.empControl')
             .val()
-        var empArry = empNbr.split('-')
+        var empArry = empNbr.split(':')
         var from = $(this)
             .find('.dateFromControl .date-control')
             .val()

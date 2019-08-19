@@ -95,7 +95,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <tr>
                                             <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.delete}</th>
                                             <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}</th>
-                                            <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}</th>
+                                            <th scope="col" style="width:350px;">${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}</th>
                                             <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.from}</th>
                                             <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.to}</th>
                                         </tr>

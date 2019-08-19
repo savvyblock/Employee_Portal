@@ -610,6 +610,18 @@ input {
             padding: 0;
         }
     }
+    &.smTitleTable{
+        td,th{
+            &.td-title{
+                max-width: 200px;
+                width: 150px;
+                @media (max-width:1300px){
+                    width: auto;
+                    width: initial;
+                }
+            }
+        }
+    }
     &.earning-title-table{
         td,th{
             &.td-title{
@@ -854,7 +866,12 @@ input {
                 display: block;
                 float: left;
 			}
-		}
+        }
+        td,th{
+            &.td-title{
+                display: none;
+            }
+        }
 	}
 }
 

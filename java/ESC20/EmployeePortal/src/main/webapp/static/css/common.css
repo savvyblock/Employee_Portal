@@ -701,6 +701,18 @@ input:focus {
   padding: 0;
 }
 
+.table.smTitleTable td.td-title, .table.smTitleTable th.td-title {
+  max-width: 200px;
+  width: 150px;
+}
+
+@media (max-width: 1300px) {
+  .table.smTitleTable td.td-title, .table.smTitleTable th.td-title {
+    width: auto;
+    width: initial;
+  }
+}
+
 .table.earning-title-table td.td-title, .table.earning-title-table th.td-title {
   width: 160px;
 }
@@ -924,6 +936,9 @@ input:focus {
     word-wrap: break-word;
     display: block;
     float: left;
+  }
+  .table.responsive-table td.td-title, .table.responsive-table th.td-title {
+    display: none;
   }
 }
 
