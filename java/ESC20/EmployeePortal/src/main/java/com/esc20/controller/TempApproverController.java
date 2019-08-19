@@ -3,7 +3,9 @@ package com.esc20.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BeaEmpLvTmpApprovers;
@@ -240,4 +244,21 @@ public class TempApproverController extends BaseSupervisorController {
 		mav.addObject("chain", levels);
 		return mav;
 	}
+
+	@RequestMapping(value = "getEmployeeTempApproverSearch", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, List<Code>> getEmployeeTempApproverSearch(HttpServletRequest req,String searchStr) throws Exception{
+	    	HttpSession session = req.getSession();
+	    	Map<String, List<Code>> res = new HashMap<>();
+	        BeaUsers user = (BeaUsers)session.getAttribute("user");
+	    	BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
+	        demo.setEmpNbr(user.getEmpNbr());
+	        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+			session.setAttribute("userDetail", demo);
+	    	if(demo==null)
+	    		return null;
+	    	List<Code> testApproves = this.supService.getEmployeeTempApproverSearch(user.getEmpNbr(), searchStr);
+	        res.put("tempApprover", testApproves);
+	        return res;
+	    }
 }
