@@ -2059,4 +2059,4 @@
 .empNameTd{
     white-space: nowrap;
 }
-.ui-autocomplete{height:250px; overflow-y: scroll; overflow-x: hidden;}
+.ui-autocomplete{max-height:250px; overflow-y: scroll; overflow-x: hidden;}

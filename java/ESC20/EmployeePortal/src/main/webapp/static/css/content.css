@@ -2282,7 +2282,7 @@
 }
 
 .ui-autocomplete {
-  height: 250px;
+  max-height: 250px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
