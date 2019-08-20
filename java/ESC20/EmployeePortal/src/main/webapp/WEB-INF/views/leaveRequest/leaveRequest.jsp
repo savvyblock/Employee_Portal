@@ -133,23 +133,31 @@
 						<b>${sessionScope.languageJSON.label.unprocessedLeaveRequest}</b>
 					</h2>
 					<div class="hr-black"></div>
-				<c:if test="${fn:length(leaves) > 0}">
+				
 					<table class="table request-list responsive-table">
 						<thead>
 							<tr>
-								<th>${sessionScope.languageJSON.leaveRequest.leaveType}</th>
-								<th>${sessionScope.languageJSON.leaveRequest.absenceReason}</th>
-								<th class="text-center">${sessionScope.languageJSON.leaveRequest.startDate}</th>
-								<th class="text-center">${sessionScope.languageJSON.leaveRequest.endDate}</th>
-								<th>${sessionScope.languageJSON.leaveRequest.leaveRequested}</th>
-								<th class="commentLog">${sessionScope.languageJSON.leaveRequest.commentLog}</th>
-								<th>${sessionScope.languageJSON.leaveRequest.status}</th>
+							    <th class="text-center" style="width:8%">${sessionScope.languageJSON.leaveRequest.startDate}</th>
+								<th class="text-center" style="width:8%">${sessionScope.languageJSON.leaveRequest.endDate}</th>
+							    <th class="text-center" style="width:8%">${sessionScope.languageJSON.leaveRequest.startTime}</th>
+								<th class="text-center" style="width:8%">${sessionScope.languageJSON.leaveRequest.endTime}</th>
+								<th style="width:10%">${sessionScope.languageJSON.leaveRequest.leaveType}</th>
+								<th style="width:12%">${sessionScope.languageJSON.leaveRequest.absenceReason}</th>
+								<th style="width:10%">${sessionScope.languageJSON.leaveRequest.leaveRequested}</th>
+								<th style="width:20%" class="commentLog">${sessionScope.languageJSON.leaveRequest.commentLog}</th>
+								<th style="width:10%">${sessionScope.languageJSON.leaveRequest.status}</th>
 								<td></td>
 							</tr>
 						</thead>
 						<tbody>
+						<c:if test="${fn:length(leaves) > 0}">
+							
 							<c:forEach var="leave" items="${leaves}" varStatus="leaves">
 								<tr>
+									<td data-title="${sessionScope.languageJSON.leaveRequest.startDate}" class="text-center">${leave.LeaveStartDate}</td>
+									<td data-title="${sessionScope.languageJSON.leaveRequest.endDate}" class="text-center">${leave.LeaveEndDate}</td>
+								    <td data-title="${sessionScope.languageJSON.leaveRequest.startTime}" class="text-center">${leave.LeaveStartTime}</td>
+									<td data-title="${sessionScope.languageJSON.leaveRequest.endTime}" class="text-center">${leave.LeaveEndTime}</td>
 									<td data-title="${sessionScope.languageJSON.leaveRequest.leaveType}">
 											<c:forEach var="type" items="${leaveTypes}" varStatus="count">
 													<c:if test="${type.code == leave.LeaveType}">${type.description}</c:if>
@@ -160,8 +168,6 @@
 													<c:if test="${abs.code == leave.AbsenseReason }">${abs.description}</c:if>
 											</c:forEach>
 									</td>
-									<td data-title="${sessionScope.languageJSON.leaveRequest.startDate}" class="text-center">${leave.start}</td>
-									<td data-title="${sessionScope.languageJSON.leaveRequest.endDate}" class="text-center">${leave.end}</td>
 									<td data-title="${sessionScope.languageJSON.leaveRequest.leaveRequested}">${leave.lvUnitsUsed} 
 											<span>${sessionScope.languageJSON.label.days}</span>
 									</td>
@@ -186,15 +192,24 @@
 									</td>
 								</tr>
 							</c:forEach>
+
+							</c:if>
+							<c:if test="${fn:length(leaves) == 0}">
+                                 <tr>
+                                     <td colspan="7" class="text-left">
+                                         <span>${sessionScope.languageJSON.label.noData}</span>
+                                     </td>
+                                 </tr>
+                             </c:if>
 						</tbody>
 
 					</table>
-				</c:if>
-				<c:if test="${fn:length(leaves) == 0}">
+			
+				<%-- <c:if test="${fn:length(leaves) == 0}">
 					<div>
 						${sessionScope.languageJSON.label.noData}
 					</div>
-				</c:if>
+				</c:if> --%>
 			</div>
 		</section>
 			<form id="deleteForm" action="deleteLeaveRequest" method="post">
