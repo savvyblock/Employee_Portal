@@ -1,6 +1,6 @@
 
 var calUnit
-var mealBreakHours,standardHoursDaily,leaveHoursRequestedEntry
+var mealBreakHours,standardHoursDaily,leaveHoursRequestedEntry,conversionMinuteHour
 $(function() {
     showTimeUnit()
     mealBreakHours = $("#mealBreakHours").val()
@@ -229,21 +229,7 @@ $("#startDateInput").blur(function(){
     }
     
 });
-// $('#startDateInput').keyup(function() {
-//     var fromValue = $("#startDateInput").val()
-//     var toValue = $("#endDateInput").val()
-//     var leaveFrom = changeDateYMD(fromValue)
-//     var leaveTo = changeDateYMD(toValue)
-//     if(fromValue && toValue){
-//         if( leaveFrom<=leaveTo){
-//             $('.dateValidator01').hide()
-            
-//         }else{
-//             $('.dateValidator01').show()
-//         }
-//         calcDays()
-//     }
-// });
+
  $("#endDateInput").blur(function(){
     var fromValue = convertRightFormat($("#startDateInput").val())
     var toValue = convertRightFormat($("#endDateInput").val())
@@ -262,35 +248,15 @@ $("#startDateInput").blur(function(){
         }
         
     });
-    // $('#endDateInput').keyup(function() {
-    //     var fromValue = $("#startDateInput").val()
-    // var toValue = $("#endDateInput").val()
-    // var leaveFrom = changeDateYMD(fromValue)
-    // var leaveTo = changeDateYMD(toValue)
-    // if(fromValue && toValue){
-    //         if( leaveFrom<=leaveTo){
-    //             $('.dateValidator01').hide()
-                
-    //         }else{
-    //             $('.dateValidator01').show()
-    //         }
-    //         calcDays()
-    //     }
-    // });
 
-    $("#leaveHoursDaily").change(function(){
-        var val = $(this).val()
-        $(this).val(Number(val).toFixed(3))
 
-        calcDays()
-    });
+$("#leaveHoursDaily").change(function(){
+    var val = $(this).val()
+    $(this).val(Number(val).toFixed(3))
 
-    // $(".timeControl").change(function(){
-    //     var val = $(this).val()
-    //     if(Number(val) < 10){
-    //         $(this).val("0"+val)
-    //     }
-    // });
+    calcDaysOrHours()
+});
+
     var timeError = false
     function calcTime(){
         $('#requestForm').bootstrapValidator('disableSubmitButtons', false);  
@@ -323,80 +289,20 @@ $("#startDateInput").blur(function(){
             hours = Number(0) .toFixed(3)
         }
         if(leaveHoursRequestedEntry == 'false'){
-            $('#leaveHoursDaily').val(hours)
+            hours = hours > 5 ? hours - mealBreakHours:hours
+            $('#leaveHoursDaily').val(Number(hours).toFixed(3))
         }
         
-        calcDays(hours)
+        calcDays()
         calValueTime()
     }
-    function calcDays(duration){
-        var startDate = $('#startDateInput').val()
-        var endDate = $('#endDateInput').val()
-        var leaveHoursDaily = $('#leaveHoursDaily').val()
-        var day1 = new Date(startDate);
-        var day2 = new Date(endDate);
-        var dayDate = ((day2 - day1) / (1000 * 60 * 60 * 24)) + 1;
-        console.log(dayDate)
-        dayDate = dayDate?dayDate:0;
-        var startH = $("#startHour").val()
-        var startM = $("#startMinute").val()
-        var endH = $("#endHour").val()
-        var endM = $("#endMinute").val()
-        var hour,days,hoursDaily
-        
-        leaveHoursDaily = Number(leaveHoursDaily)
-        
-
-        if(leaveHoursDaily > 5){
-            // if(leaveHoursDaily > standardHoursDaily){
-            //     hoursDaily = standardHoursDaily - mealBreakHours
-            // }else{
-                hoursDaily = leaveHoursDaily - mealBreakHours
-            // }            
-        }else{
-            hoursDaily = leaveHoursDaily
-        }
-        $('#leaveHoursDaily').val(Number(hoursDaily).toFixed(3))
-        if(!calUnit){
-            return false
-        }
-
-        if(calUnit.toLowerCase() == 'd'){
-            var cal01 = parseFloat(hoursDaily/standardHoursDaily) //0.465
-            var cal02 = parseInt(hoursDaily/standardHoursDaily)
-            leaveDaysDaily = cal02
-            if(cal01 - cal02 > 0){
-                leaveDaysDaily = cal02 + (cal01 - cal02<=0.5?0.5:1)
-            }
-            var totalDays =  leaveDaysDaily * dayDate
-            console.log(leaveDaysDaily)
-            console.log(totalDays)
-            if(dayDate>=0){
-                $("#requestModal .save").removeAttr("disabled")
-            }else{
-                $("#requestModal .save").attr("disabled","disabled")
-            }
-            if(totalDays>0){
-                $("#totalRequested").val(Number(totalDays).toFixed(3));
-            }else{
-                $("#totalRequested").val(Number(0).toFixed(3));
-            }
-            
-        }else if(calUnit.toLowerCase() == 'h'){
-            console.log(dayDate)
-            var totalHours = hoursDaily * dayDate
-            $("#totalRequested").val(Number(totalHours).toFixed(3));
-        }
-        
-
-        
+    function calcDays(){
+        calcDaysOrHours()
     }
     
     function calValueTime(){
         var start = $("#startHour").val() + ":" + $("#startMinute").val() + " " + $("#startAmOrPm").val()
         var end = $("#endHour").val() + ":" + $("#endMinute").val() + " " + $("#endAmOrPm").val()
-        console.log(start)
-        console.log(end)
         $("#startTimeValue").val(start)
         $("#endTimeValue").val(end)
     }
@@ -569,14 +475,103 @@ $("#startDateInput").blur(function(){
         if(!leaveTypeCurrent){
             $(".timeUnit").hide()
         }else{
+            var ConversionRecsUrl = ''
             if(leaveTypeCurrent.toLowerCase() == 'h'){
                 $(".timeUnit.hours").show()
                 $(".timeUnit.days").hide()
                 calUnit = 'h'
+                ConversionRecsUrl = '/getMinutesToHoursConversionRecs'
             }else{
                 $(".timeUnit.days").show()
                 $(".timeUnit.hours").hide()
                 calUnit = 'd'
+                ConversionRecsUrl = '/getHoursToDaysConversionRecs'
+            }
+            var leaveType = $("#modalLeaveType").val()
+            var freq = $("#freq").val()
+            $.ajax({
+                type:'POST',
+                url:urlMain + '/leaveRequest' + ConversionRecsUrl,
+                data:{
+                    payFrequency:freq.trim(),
+                    leaveType:leaveType.trim()
+                },
+                success : function (res) {
+                    console.log(res)
+                    conversionMinuteHour = res
+                    calcDaysOrHours()
+                },
+                error:function(res){
+                     console.log(res);
+                }
+            })
+        }
+    }
+
+    function calcDaysOrHours(){
+        var startDate = $('#startDateInput').val()
+        var endDate = $('#endDateInput').val()
+        var leaveHoursDaily = Number($('#leaveHoursDaily').val().trim())
+        var day1 = new Date(startDate);
+        var day2 = new Date(endDate);
+        var dayDate = ((day2 - day1) / (1000 * 60 * 60 * 24)) + 1;
+        var totalDays = 0
+        console.log(dayDate)
+        dayDate = dayDate?dayDate:0;
+        if(leaveHoursDaily <= 0){
+            $("#totalRequested").val(Number(0).toFixed(3));
+        }
+
+        if(leaveHoursDaily > 0){
+            console.log('calc...')
+            if(calUnit.toLowerCase() == 'd'){
+                var intDays = parseInt(leaveHoursDaily/standardHoursDaily)
+                var intDaysRemainHours = parseFloat(leaveHoursDaily%standardHoursDaily)
+                var floatDays = 0
+                console.log(intDays)
+                console.log(intDaysRemainHours)
+                if(conversionMinuteHour && conversionMinuteHour.length>0){
+                    for(var i = 0,len = conversionMinuteHour.length;i<len;i++){
+                        if(intDaysRemainHours >0 && intDaysRemainHours <= conversionMinuteHour[i].toUnit){
+                            floatDays = conversionMinuteHour[i].fractionalAmount
+                            break;
+                        }
+                    }
+                }else{
+                    var cal01 = parseFloat(leaveHoursDaily/standardHoursDaily) //0.465
+                    var cal02 = parseInt(leaveHoursDaily/standardHoursDaily)
+                    if(cal01 - cal02 > 0){
+                        floatDays = cal01 - cal02<=0.5?0.5:1
+                    }
+                }
+                
+                console.log('floatDays'+floatDays)
+                totalDays = intDays + floatDays
+                console.log('totalDays' + totalDays)
+                $("#totalRequested").val(Number(totalDays).toFixed(3));
+            }else if(calUnit.toLowerCase() == 'h'){
+                if(leaveHoursRequestedEntry == 'false'){
+                    var intHours = parseInt(leaveHoursDaily)
+                    var intHoursRemainMinutes = (leaveHoursDaily - intHours) * 60
+                    var floatHours = leaveHoursDaily - intHours
+                    console.log(intHours)
+                    console.log(intHoursRemainMinutes)
+                    if(conversionMinuteHour && conversionMinuteHour.length>0){
+                        for(var i = 0,len = conversionMinuteHour.length;i<len;i++){
+                            if(intHoursRemainMinutes >0 && intHoursRemainMinutes <= conversionMinuteHour[i].toUnit){
+                                floatHours = conversionMinuteHour[i].fractionalAmount
+                                break;
+                            }
+                        }
+                    }
+                    $('#leaveHoursDaily').val(Number(floatHours + intHours).toFixed(3))
+                    var totalHours = (floatHours + intHours) * dayDate
+                    $("#totalRequested").val(Number(totalHours).toFixed(3));
+                }else{
+                    var totalHours = leaveHoursDaily * dayDate
+                    $("#totalRequested").val(Number(totalHours).toFixed(3));
+                }                
             }
         }
+         
     }
