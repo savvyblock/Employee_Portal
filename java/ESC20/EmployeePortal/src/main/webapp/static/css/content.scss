@@ -469,6 +469,9 @@
                         display: none;
                     }
                 }
+                &.empNumber{
+                    text-align: left;
+                }
             }
         }
     }
@@ -2056,3 +2059,4 @@
 .empNameTd{
     white-space: nowrap;
 }
+.ui-autocomplete{height:250px; overflow-y: scroll; overflow-x: hidden;}

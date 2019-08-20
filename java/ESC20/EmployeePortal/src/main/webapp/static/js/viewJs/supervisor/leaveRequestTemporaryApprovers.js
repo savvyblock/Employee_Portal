@@ -4,8 +4,7 @@ $(function() {
     changeLevel()
     initDateControl()
     judgeContent()
-    getApprovers("")
-    // initialCompleteList()
+    initialCompleteList()
     var level = $('#level').val()
     var chainString = JSON.stringify(chain)
     var empNbr = $('#currentEmployee').text()
@@ -74,10 +73,9 @@ $(function() {
             $('#errorComplete').hide()
             var errorLength = veryIfError()
             if (errorLength==0) {
-                console.log(newRow)
+                // console.log(newRow)
                 $('.setApprovers-list tbody tr:last-child').before(newRow)
-                getApprovers("")
-                // initialCompleteList()
+                initialCompleteList()
             }
         } else {
             $('#errorComplete').show()
@@ -94,7 +92,7 @@ $(function() {
         $('#chainString').val(chainString)
         $('#empNbrForm').val(empNbr)
         var length = $('.approver_tr').length
-        var resultApprover = []
+        var resultApprover = []//data has saved + new data
         approverJson.forEach(function(item) {
             console.log(item)
             if(item.empNbr&&item.from&&item.to&&item.empNbr!=''&&item.from!=''&&item.to!=''){
@@ -102,7 +100,7 @@ $(function() {
             }
         })
         console.log(resultApprover)
-        console.log('tr that have empty field' + approverEmptyJson)
+        console.log('if have empty field' + approverEmptyJson)
         if (approverEmptyJson && approverEmptyJson.length > 0) {
             $('#errorComplete').show()
         } else {
@@ -126,7 +124,7 @@ $(function() {
     })
 
     $(document).on('blur', '.empControl', function() {
-        verifyRepeat()
+        // verifyRepeat()
         judgeContent()
     })
     $('.deleteApprover').click(function() {
@@ -143,7 +141,7 @@ $(function() {
         })
         // console.log("approver saved")
         // console.log(addedApprover)
-        verifyRepeat()
+        // verifyRepeat()
     })
     $(document).on('blur','.dateToControl', function() {
         var fromValue=$(this).parents('.approver_tr').find('.dateFromControl .date-control').val()
@@ -247,85 +245,33 @@ function verifyRepeat() {
     }
 }
 function initialCompleteList(dataList) {
-    // console.log(employeeList)
-    // var newDirect = employeeList.filter(function(item){
-    //     if(item.employeeNumber && item.employeeNumber!=''){
-    //         return item
-    //     }
-    // })
-    // console.log(newDirect)
     $('.empControl').each(function() {
         var input = this
-        $(this)
-            .autocomplete(dataList, {
-                max: 10000, //
-                minChars: 0, //
-                width: 300, //
-                scrollHeight: 300, //
-                matchContains: true, //
-                autoFill: false, //
-                mouseDownOnSelect:true,
-                clickFire:true,
-                formatItem: function(row, i, max) {//search data
-                    if (row.code) {
-                        $('#noResultError').hide()
-                        $('#saveSet')
-                            .removeClass('disabled')
-                            .removeAttr('disabled')
-                        return (
-                            row.code +
-                            ': ' +
-                            row.description
-                        )
-                    } else {
-                        console.log('no result')
-                        if ($(input).val() && $(input).val() != '') {
-                            $('#noResultError').show()
-                            $('#saveSet')
-                                .addClass('disabled')
-                                .attr('disabled', 'disabled')
-                        }
-                        $('.ac_results').hide()
+        $(input).autocomplete({
+            source: function(request,response){
+                $.ajax({
+                    type:'POST',
+                    url:urlMain + '/leaveRequestTemporaryApprovers/getEmployeeTempApproverSearch',
+                    data:{
+                        searchStr:$(input).val().trim()
+                    },
+                    success : function (res) {
+                        var data = res.tempApprover
+                        response($.map(data, function(item){
+							return {
+								label: item.code + " : " + item.description,
+								value: item.code + " : " + item.description,
+								empNbr: item.code
+							}
+						}));
+                    },
+                    error:function(res){
+                         console.log(res);
+                         response(res)
                     }
-                },
-                formatMatch: function(row, i, max) {//formatted data
-                    return (
-                        row.code +
-                        ': ' +
-                        row.description
-                    )
-                },
-                formatResult: function(row) {//selected
-                    return (
-                        row.code +
-                        ': ' +
-                        row.description
-                    )
-                }
-            })
-            .result(function(event, row, formatted) {
-                judgeContent()
-            })
-    })
-}
-function getApprovers(searchStr){
-    $.ajax({
-        type:'POST',
-        url:urlMain + '/leaveRequestTemporaryApprovers/getEmployeeTempApproverSearch',
-        async:true,
-        data:{
-       	 searchStr:searchStr
-		},
-		beforeSend: function (xhr) {
-            
-		},
-        success : function (res) {
-            var dataList = res.tempApprover
-            initialCompleteList(dataList)
-        },
-        error:function(res){
-			 console.log(res);
-        }
+                })
+            }
+        });
     })
 }
 
@@ -346,7 +292,7 @@ function deleteRow(dom) {
         .addClass('redTd')
     $("#errorDate").hide()
     judgeContent()
-    verifyRepeat()
+    // verifyRepeat()
 }
 var checkin = []
 var checkout = []
@@ -456,7 +402,7 @@ function judgeContent() {
         obj = {
             id: '',
             domId: index,
-            empNbr: empArry[0],
+            empNbr: empArry[0].trim(),
             from: from,
             to: to
         }

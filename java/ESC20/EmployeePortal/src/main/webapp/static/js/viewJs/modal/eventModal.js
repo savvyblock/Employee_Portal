@@ -347,16 +347,16 @@ $("#startDateInput").blur(function(){
         leaveHoursDaily = Number(leaveHoursDaily)
         
 
-        if(leaveHoursDaily > 5 && mealBreakHours > 0){
+        if(leaveHoursDaily > 5){
             // if(leaveHoursDaily > standardHoursDaily){
             //     hoursDaily = standardHoursDaily - mealBreakHours
             // }else{
                 hoursDaily = leaveHoursDaily - mealBreakHours
-            // }
-            
+            // }            
         }else{
-            hoursDaily = Number(leaveHoursDaily)
+            hoursDaily = leaveHoursDaily
         }
+        $('#leaveHoursDaily').val(Number(hoursDaily).toFixed(3))
         if(!calUnit){
             return false
         }
@@ -364,7 +364,7 @@ $("#startDateInput").blur(function(){
         if(calUnit.toLowerCase() == 'd'){
             var cal01 = parseFloat(hoursDaily/standardHoursDaily) //0.465
             var cal02 = parseInt(hoursDaily/standardHoursDaily)
-            leaveDaysDaily = 0
+            leaveDaysDaily = cal02
             if(cal01 - cal02 > 0){
                 leaveDaysDaily = cal02 + (cal01 - cal02<=0.5?0.5:1)
             }

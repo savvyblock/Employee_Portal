@@ -586,6 +586,10 @@
   display: none;
 }
 
+.EMP-detail .setApprovers-list tbody td.empNumber {
+  text-align: left;
+}
+
 .EMP-detail .table-top-title {
   font-size: 14px;
   color: #2a3f54;
@@ -2275,4 +2279,10 @@
 
 .empNameTd {
   white-space: nowrap;
+}
+
+.ui-autocomplete {
+  height: 250px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

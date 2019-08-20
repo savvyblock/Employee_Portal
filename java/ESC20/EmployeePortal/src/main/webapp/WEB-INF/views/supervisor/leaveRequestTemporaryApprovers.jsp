@@ -6,6 +6,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <title>${sessionScope.languageJSON.headTitle.setTempApprovers}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/fullcalendar.min.css" />
+        <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/jquery-ui.css" />
         <%@ include file="../commons/header.jsp"%>
     </head>
     <body class="hold-transition sidebar-mini">
@@ -93,8 +94,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 >
                                     <thead>
                                         <tr>
-                                            <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.delete}</th>
-                                            <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}</th>
+                                            <th scope="col" style="width:55px;">${sessionScope.languageJSON.setTemporaryApprovers.delete}</th>
+                                            <th scope="col" style="width:65px;">${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}</th>
                                             <th scope="col" style="width:350px;">${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}</th>
                                             <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.from}</th>
                                             <th scope="col">${sessionScope.languageJSON.setTemporaryApprovers.to}</th>
@@ -124,14 +125,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}" aria-label="${sessionScope.languageJSON.accessHint.employeeId}">
                                                         ${tem.tmpApprvrEmpNbr}: ${tem.approverName}
                                                     </td>
-                                                        <td class="empFrom" data-title="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}">${tem.datetimeFrom}</td>
-                                                        <td class="empTo" data-title="${sessionScope.languageJSON.setTemporaryApprovers.toDate}" >${tem.datetimeTo}</td>
+                                                        <td class="empFrom" data-title="${sessionScope.languageJSON.setTemporaryApprovers.from}">${tem.datetimeFrom}</td>
+                                                        <td class="empTo" data-title="${sessionScope.languageJSON.setTemporaryApprovers.to}" >${tem.datetimeTo}</td>
                                                      
                                                     </tr>
                                         </c:forEach>
                                         
                                         <tr class="approver_tr">
-                                            <td style="text-align:center;">
+                                            <td style="text-align:center;" data-title="${sessionScope.languageJSON.setTemporaryApprovers.delete}">
                                                 <button
                                                     type="button" role="button"
                                                     class="a-btn"
@@ -140,11 +141,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </td>
-                                            <td
+                                            <td data-title="${sessionScope.languageJSON.setTemporaryApprovers.rowNbr}"
                                                 class="countIndex">
                                                 <span id="firstRow"></span>
                                             </td>
-                                            <td>
+                                            <td data-title="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}">
                                                 <div class="form-group">
                                                     <input
                                                         class="form-control empControl"
@@ -155,7 +156,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     />
                                                 </div>
                                             </td>
-                                            <td>
+                                            <td data-title="${sessionScope.languageJSON.setTemporaryApprovers.from}">
                                                 <div class="form-group">
                                                         <div class="fDateGroup date dateFromControl" data-date-format="mm/dd/yyyy">
                                                             <button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
@@ -179,7 +180,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     /> -->
                                                 </div>
                                             </td>
-                                            <td>
+                                            <td data-title="${sessionScope.languageJSON.setTemporaryApprovers.to}">
                                                 <div class="form-group">
                                                         <div class="fDateGroup date dateToControl" data-date-format="mm/dd/yyyy">
                                                             <button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
@@ -260,6 +261,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     var addedApprover = eval(${tmpApprovers});
     var chain = eval(${chain});
     </script>
+    <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery-ui.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/supervisor/leaveRequestTemporaryApprovers.js"></script>
 
 </html>
