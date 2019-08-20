@@ -3,7 +3,9 @@ package com.esc20.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BeaUsers;
@@ -21,6 +25,7 @@ import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequestModel;
+import com.esc20.nonDBModels.LeaveUnitsConversion;
 import com.esc20.nonDBModels.Options;
 import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
@@ -268,4 +273,20 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 		deleteLeaveRequest(id);
 		return this.leaveRequest(req, null, null, null, null,false);
 	}
+	
+	
+	@RequestMapping(value = "getMinutesToHoursConversionRecs", method = RequestMethod.POST)
+	@ResponseBody
+	public List<LeaveUnitsConversion> getMinutesToHoursConversionRecs(HttpServletRequest req,String payFrequency, String leaveType) throws Exception{  
+	    	List<LeaveUnitsConversion> minutesToHours = this.service.getMinutesToHoursConversionRecs(payFrequency, leaveType);
+	        return minutesToHours;
+	    }
+	
+	
+	@RequestMapping(value = "getHoursToDaysConversionRecs", method = RequestMethod.POST)
+	@ResponseBody
+	public List<LeaveUnitsConversion> getHoursToDaysConversionRecs(HttpServletRequest req,String payFrequency, String leaveType) throws Exception{  
+	    	List<LeaveUnitsConversion> minutesToHours = this.service.getHoursToDaysConversionRecs(payFrequency, leaveType);
+	        return minutesToHours;
+	    }
 }

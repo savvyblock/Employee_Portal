@@ -1,5 +1,6 @@
 package com.esc20.service;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import com.esc20.nonDBModels.LeaveBalance;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequest;
+import com.esc20.nonDBModels.LeaveUnitsConversion;
 import com.esc20.nonDBModels.Options;
 import com.esc20.util.StringUtil;
 
@@ -191,4 +193,25 @@ public class LeaveRequestService {
 		List<String[]> map = leaveRequestDao.getAbsrsnsLeaveTypesMap();
 		return map;
 	}
+	
+	public List<LeaveUnitsConversion> getMinutesToHoursConversionRecs(String payFrequency, String leaveType) {
+		List<LeaveUnitsConversion> conversionRecs = leaveRequestDao.getMinutesToHoursConversionRecs(payFrequency, leaveType);
+		BigDecimal fromMinute = new BigDecimal(1.0).setScale(3, BigDecimal.ROUND_HALF_UP);
+		for (LeaveUnitsConversion rec : conversionRecs) {
+			rec.setFromUnit(fromMinute);
+			fromMinute = new BigDecimal (rec.getToUnit().intValue()+1).setScale(3, BigDecimal.ROUND_HALF_UP);
+		}
+		return conversionRecs;
+	}
+	
+	public List<LeaveUnitsConversion> getHoursToDaysConversionRecs(String payFrequency, String leaveType) {
+		List<LeaveUnitsConversion> conversionRecs = leaveRequestDao.getHoursToDaysConversionRecs(payFrequency, leaveType);
+		BigDecimal fromHour = new BigDecimal(0.001).setScale(3, BigDecimal.ROUND_HALF_UP);
+		for (LeaveUnitsConversion rec : conversionRecs) {
+			rec.setFromUnit(fromHour);
+			fromHour = new BigDecimal (rec.getToUnit().doubleValue()+0.001).setScale(3, BigDecimal.ROUND_HALF_UP);
+		}
+		return conversionRecs;
+	}
+	
 }

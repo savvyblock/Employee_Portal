@@ -24,6 +24,7 @@ import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequest;
 import com.esc20.nonDBModels.LeaveRequestComment;
+import com.esc20.nonDBModels.LeaveUnitsConversion;
 import com.esc20.util.StringUtil;
 
 @Repository
@@ -578,5 +579,61 @@ public class LeaveRequestDao {
 			result.add(temp);
 		}
 		return result;
+	}
+
+	public List<LeaveUnitsConversion> getMinutesToHoursConversionRecs(String payFrequency, String leaveType) {
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT LV_TYP, UP_TO_MIN, PCT_OF_HR_DAY FROM BTHR_LV_UNTS_CONV ");
+		sql.append("WHERE PAY_FREQ=:payFrequency AND LV_TYP=:leaveType AND UP_TO_MIN>0 AND UP_TO_HR=0.0 ORDER BY UP_TO_MIN ASC");
+		
+		Query q = session.createSQLQuery(sql.toString());
+		q.setParameter("payFrequency", payFrequency);
+		q.setParameter("leaveType", leaveType);
+		
+		@SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
+
+		List<LeaveUnitsConversion> requests = new ArrayList<LeaveUnitsConversion>();
+		LeaveUnitsConversion request;
+		for (Object[] item : res) {
+			request = new LeaveUnitsConversion();
+			request.setUnitType(LeaveUnitsConversion.UNIT_TYPE_HOURS);
+			request.setLeaveType(((String) item[0]).trim());
+			request.setToUnit(((BigDecimal) item[1]).setScale(3, BigDecimal.ROUND_HALF_UP));
+			BigDecimal fractionalAmount = ((BigDecimal) item[2]);
+			request.setFractionalAmount(fractionalAmount.setScale(3, BigDecimal.ROUND_HALF_UP));
+			requests.add(request);
+		}
+
+		return requests;
+	
+	}
+
+	public List<LeaveUnitsConversion> getHoursToDaysConversionRecs(String payFrequency, String leaveType) {
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT LV_TYP, UP_TO_HR, PCT_OF_HR_DAY FROM BTHR_LV_UNTS_CONV ");
+		sql.append("WHERE PAY_FREQ=:payFrequency AND LV_TYP=:leaveType AND UP_TO_HR>0.0 AND UP_TO_MIN=0 ORDER BY UP_TO_HR ASC");
+		
+		Query q = session.createSQLQuery(sql.toString());
+		q.setParameter("payFrequency", payFrequency);
+		q.setParameter("leaveType", leaveType);
+		
+		@SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
+
+		List<LeaveUnitsConversion> requests = new ArrayList<LeaveUnitsConversion>();
+		LeaveUnitsConversion request;
+		for (Object[] item : res) {
+			request = new LeaveUnitsConversion();
+			request.setUnitType(LeaveUnitsConversion.UNIT_TYPE_DAYS);
+			request.setLeaveType(((String) item[0]).trim());
+			request.setToUnit(((BigDecimal) item[1]).setScale(3, BigDecimal.ROUND_HALF_UP));
+			BigDecimal fractionalAmount = ((BigDecimal) item[2]);
+			request.setFractionalAmount(fractionalAmount.setScale(3, BigDecimal.ROUND_HALF_UP));
+			requests.add(request);
+		}
+		return requests;
 	}
 }
