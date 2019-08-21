@@ -27,6 +27,7 @@ import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrThirdPartySickPay;
 import com.esc20.model.BhrW2;
+import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.W2Print;
@@ -36,6 +37,7 @@ import com.esc20.nonDBModels.report.ReportParameterConnection;
 import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
+import com.esc20.service.ReferenceService;
 import com.esc20.util.CodeIterator;
 import com.esc20.util.DateUtil;
 import com.esc20.util.MailUtil;
@@ -60,6 +62,9 @@ public class W2InformationController{
     @Autowired
     private PDFService pDFService;
     
+    @Autowired
+	private ReferenceService referenceService;
+    
 	private final String module = "W2 Information";
 	
 	@RequestMapping("w2Information")
@@ -72,6 +77,13 @@ public class W2InformationController{
         District districtInfo = this.indexService.getDistrict(district);
         userDetail.setEmpNbr(user.getEmpNbr());
         userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
+		
         String phone = districtInfo.getPhone();
         districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
 
@@ -101,6 +113,12 @@ public class W2InformationController{
         District districtInfo = this.indexService.getDistrict(district);
         userDetail.setEmpNbr(user.getEmpNbr());
         userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
         String phone = districtInfo.getPhone();
         districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
 

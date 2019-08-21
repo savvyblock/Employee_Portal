@@ -437,6 +437,13 @@ public class ProfileController{
     	demo.setNameM(nameMNew);
     	demo.setNameGen((nameGenNew==null||("").equals(nameGenNew))?'\0':nameGenNew.charAt(0));
          	this.indexService.updateDemoName(demo);
+         	List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
             session.removeAttribute("userDetail");
         	session.setAttribute("userDetail", demo);
         }else {
@@ -481,6 +488,14 @@ public class ProfileController{
         	demo.setMaritalStat(maritalStatNew.charAt(0));
         	this.indexService.updateDemoMaritalStatus(demo);
         	session.removeAttribute("userDetail");
+        	
+        	List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
         	session.setAttribute("userDetail", demo);
         }else {
         	maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts,maritalStatNew,'P');
@@ -525,6 +540,13 @@ public class ProfileController{
         	demo.setDriversLicNbr(driversLicNbrNew);
         	demo.setDriversLicSt(driversLicStNew);
         	this.indexService.updateDemoDriversLicense(demo);
+        	List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
             session.removeAttribute("userDetail");
         	session.setAttribute("userDetail", demo);
         }else {
@@ -569,6 +591,13 @@ public class ProfileController{
         	demo.setRestrictCd(restrictCdNew.charAt(0));
         	demo.setRestrictCdPublic(restrictCdPublicNew.charAt(0));
         	this.indexService.updateDemoRestrictionCodes(demo);
+        	List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
             session.removeAttribute("userDetail");
         	session.setAttribute("userDetail", demo);
         }else {
@@ -613,6 +642,13 @@ public class ProfileController{
         	demo.setEmail(emailNew);
         	demo.setHmEmail(hmEmailNew);
         	this.indexService.updateDemoEmail(demo);
+        	List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
             session.removeAttribute("userDetail");
         	session.setAttribute("userDetail", demo);
         }else {
@@ -664,6 +700,13 @@ public class ProfileController{
     	demo.setEmerNote(emerNoteNew);
         	this.indexService.updateDemoEmergencyContact(demo);
             session.removeAttribute("userDetail");
+            List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
          	session.setAttribute("userDetail", demo);
         }else {
         	emergencyContactRequest = new BeaEmerContact(demo, empNbr, reqDts, emerContactNew, emerPhoneAcNew,emerPhoneNbrNew,emerPhoneExtNew,emerRelNew,emerNoteNew, 'P');
@@ -715,6 +758,13 @@ public class ProfileController{
     	demo.setAddrZip4(addrZip4New);
         	this.indexService.updateDemoMailAddr(demo);
             session.removeAttribute("userDetail");
+            List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
          	session.setAttribute("userDetail", demo);
         }else {
         	mailingAddressRequest = new BeaMailAddr(demo, empNbr, reqDts,  addrNbrNew, addrStrNew,addrAptNew,addrCityNew,addrStNew,addrZipNew,addrZip4New, 'P');
@@ -766,6 +816,13 @@ public class ProfileController{
     	demo.setSmrAddrZip4(smrAddrZip4New);
         	this.indexService.updateDemoAltMailAddr(demo);
             session.removeAttribute("userDetail");
+            List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
         	session.setAttribute("userDetail", demo);
         }else {
         	altMailingAddressRequest = new BeaAltMailAddr(demo, empNbr, reqDts, smrAddrNbrNew, smrAddrStrNew,smrAddrAptNew,smrAddrCityNew,smrAddrStNew,smrAddrZipNew,smrAddrZip4New, 'P');
@@ -815,6 +872,13 @@ public class ProfileController{
         	demo.setPhoneNbr(phoneNbrNew);
         	this.indexService.updateDemoHomePhone(demo);
         	session.removeAttribute("userDetail");
+        	List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
         	session.setAttribute("userDetail", demo);
         }else {
         	homePhoneRequest = new BeaHmPhone(demo, empNbr, reqDts, phoneAreaNew, phoneNbrNew, 'P');
@@ -830,6 +894,13 @@ public class ProfileController{
         	demo.setPhoneNbrCell(phoneNbrCellNew);
         	this.indexService.updateDemoCellPhone(demo);
         	session.removeAttribute("userDetail");
+        	List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
         	session.setAttribute("userDetail", demo);
         }else {
         	cellPhoneRequest = new BeaCellPhone(demo, empNbr, reqDts, phoneAreaCellNew, phoneNbrCellNew, 'P');
@@ -846,6 +917,13 @@ public class ProfileController{
         	demo.setBusPhoneExt(busPhoneExtNew);
         	this.indexService.updateDemoBusinessPhone(demo);
         	session.removeAttribute("userDetail");
+        	List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
         	session.setAttribute("userDetail", demo);
         }else {
         	businessPhoneRequest = new BeaBusPhone(demo, empNbr, reqDts, phoneAreaBusNew, phoneNbrBusNew, busPhoneExtNew, 'P');
@@ -941,6 +1019,13 @@ public class ProfileController{
         District districtInfo = this.indexService.getDistrict(district);
         demo.setEmpNbr(user.getEmpNbr());
         demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+	 	for(Code gen: gens) {
+	    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+	    		demo.setGenDescription(gen.getDescription());
+	    	}
+	    }
+
         String phone = districtInfo.getPhone();
         districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
 

@@ -24,6 +24,7 @@ import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.Options;
 import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
+import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
 
@@ -35,6 +36,9 @@ public class LeaveBalanceController{
 
 	@Autowired
 	private LeaveRequestService service;
+	
+	@Autowired
+	private ReferenceService referenceService;
 	
 	private final String module = "Leave Balance";
 	
@@ -49,6 +53,12 @@ public class LeaveBalanceController{
         District districtInfo = this.indexService.getDistrict(district);
         userDetail.setEmpNbr(user.getEmpNbr());
         userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
         String phone = districtInfo.getPhone();
         districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
 

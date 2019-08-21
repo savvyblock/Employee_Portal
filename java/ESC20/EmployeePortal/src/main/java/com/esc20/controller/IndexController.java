@@ -3,6 +3,7 @@ package com.esc20.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
+import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
 import com.esc20.service.IndexService;
+import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
 
@@ -32,6 +35,9 @@ import net.sf.json.JSONObject;
 public class IndexController {
 	@Autowired
 	private IndexService indexService;
+	
+	@Autowired
+	private ReferenceService referenceService;
     
     @RequestMapping(value="login", method=RequestMethod.GET)
     public ModelAndView getIndexPage(HttpServletRequest req, String Id,HttpServletResponse response){
@@ -65,6 +71,12 @@ public class IndexController {
         District districtInfo = this.indexService.getDistrict(district);*/
         userDetail.setEmpNbr(user.getEmpNbr());
         userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
        /* String phone = districtInfo.getPhone();
         districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));*/
 

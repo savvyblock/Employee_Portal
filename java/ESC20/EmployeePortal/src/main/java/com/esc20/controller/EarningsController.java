@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
+import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Earnings;
 import com.esc20.nonDBModels.EarningsOther;
@@ -31,6 +32,7 @@ import com.esc20.nonDBModels.report.ReportParameterConnection;
 import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
+import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
 
@@ -47,6 +49,9 @@ public class EarningsController {
 
 	@Autowired
 	private InquiryService service;
+	
+	@Autowired
+	private ReferenceService referenceService;
 
     @Autowired
     private PDFService pDFService;
@@ -63,6 +68,12 @@ public class EarningsController {
         District districtInfo = this.indexService.getDistrict(district);
         userDetail.setEmpNbr(user.getEmpNbr());
         userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
         String phone = districtInfo.getPhone();
         districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
 

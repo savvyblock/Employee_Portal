@@ -63,6 +63,13 @@ public class TempApproverController extends BaseSupervisorController {
         District districtInfo = this.indexService.getDistrict(district);
         demo.setEmpNbr(user.getEmpNbr());
         demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+	 	for(Code gen: gens) {
+	    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+	    		demo.setGenDescription(gen.getDescription());
+	    	}
+	    }
+
         String phone = districtInfo.getPhone();
         districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
 
@@ -111,7 +118,7 @@ public class TempApproverController extends BaseSupervisorController {
 		}
 		
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
-		List<Code> gens = referenceService.getGenerations();
+		//List<Code> gens = referenceService.getGenerations();
 		List<AppLeaveRequest> leavesCalendar = this.supService.getLeaveDetailsForCalendar(demo.getEmpNbr(), null, null,
 				null);		
 		List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
@@ -254,6 +261,13 @@ public class TempApproverController extends BaseSupervisorController {
 	    	BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
 	        demo.setEmpNbr(user.getEmpNbr());
 	        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+	        List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
 			session.setAttribute("userDetail", demo);
 	    	if(demo==null)
 	    		return null;

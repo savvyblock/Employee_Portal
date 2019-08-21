@@ -62,6 +62,14 @@ public class LeaveRequestController extends BaseLeaveRequestController {
         District districtInfo = this.indexService.getDistrict(district);
         userDetail.setEmpNbr(user.getEmpNbr());
         userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
+		
+
         String phone = districtInfo.getPhone();
         districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
 
@@ -101,7 +109,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			request.setDatetimeTo(sdf1.parse(SearchEnd + " 23:59:59"));
 		}
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
-		List<Code> gens = referenceService.getGenerations();
+		//List<Code> gens = referenceService.getGenerations();
 		if (freq == null || ("").equals(freq)) {
 			if (availableFreqs.size() > 0) {
 				freq = availableFreqs.get(0).getCode();

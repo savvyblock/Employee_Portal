@@ -21,6 +21,7 @@ import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrCalYtd;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.CalYTDPrint;
+import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Options;
@@ -29,6 +30,7 @@ import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.PDFService;
+import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
 
@@ -43,6 +45,9 @@ public class CalendarYearToDateController {
 	
 	@Autowired
 	private InquiryService service;
+	
+	@Autowired
+	private ReferenceService referenceService;
     
     @Autowired
     private PDFService pDFService;
@@ -59,6 +64,13 @@ public class CalendarYearToDateController {
         District districtInfo = this.indexService.getDistrict(district);*/
         userDetail.setEmpNbr(user.getEmpNbr());
         userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+	 	for(Code gen: gens) {
+	    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+	    		userDetail.setGenDescription(gen.getDescription());
+	    	}
+	    }
+		
        /* String phone = districtInfo.getPhone();
         districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));*/
 
@@ -103,6 +115,13 @@ public class CalendarYearToDateController {
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
         userDetail.setEmpNbr(user.getEmpNbr());
         userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+		    		userDetail.setGenDescription(gen.getDescription());
+		    	}
+		    }
+		
    	 	session.setAttribute("userDetail", userDetail);
 
 		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");

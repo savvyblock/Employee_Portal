@@ -17,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.esc20.model.BeaAlert;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
+import com.esc20.nonDBModels.Code;
 import com.esc20.service.IndexService;
+import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
 
@@ -30,6 +32,10 @@ public class NotificationController{
 
     @Autowired
     private IndexService indexService;
+    
+
+    @Autowired
+	private ReferenceService referenceService;
 	
     private final String module = "Notifications";
     
@@ -41,6 +47,12 @@ public class NotificationController{
 		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
         demo.setEmpNbr(user.getEmpNbr());
         demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+	 	for(Code gen: gens) {
+	    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+	    		demo.setGenDescription(gen.getDescription());
+	    	}
+	    }
 		session.setAttribute("userDetail", demo);
 
        // BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
@@ -66,6 +78,13 @@ public class NotificationController{
 		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
         demo.setEmpNbr(user.getEmpNbr());
         demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+	 	for(Code gen: gens) {
+	    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+	    		demo.setGenDescription(gen.getDescription());
+	    	}
+	    }
+
 		session.setAttribute("userDetail", demo);
         //BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteAlert(id);
@@ -85,6 +104,13 @@ public class NotificationController{
     	BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
         demo.setEmpNbr(user.getEmpNbr());
         demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+	 	for(Code gen: gens) {
+	    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+	    		demo.setGenDescription(gen.getDescription());
+	    	}
+	    }
+
 		session.setAttribute("userDetail", demo);
     	//BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
     	if(demo==null)
@@ -103,6 +129,13 @@ public class NotificationController{
      	BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
          demo.setEmpNbr(user.getEmpNbr());
          demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+         List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
+
  		session.setAttribute("userDetail", demo);
     	//BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
     	if(demo==null)

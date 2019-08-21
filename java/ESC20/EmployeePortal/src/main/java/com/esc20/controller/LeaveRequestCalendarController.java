@@ -55,6 +55,12 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
         District districtInfo = this.indexService.getDistrict(district);
         demo.setEmpNbr(user.getEmpNbr());
         demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+	 	for(Code gen: gens) {
+	    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+	    		demo.setGenDescription(gen.getDescription());
+	    	}
+	    }
         String phone = districtInfo.getPhone();
         districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
 
@@ -82,7 +88,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 				requests = this.service.getLeaveRequests(request, demo.getEmpNbr(), freq);
 				List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
 				List<Code> leaveStatus = this.referenceService.getLeaveStatus();
-				List<Code> gens = referenceService.getGenerations();
+				//List<Code> gens = referenceService.getGenerations();
 				LeaveRequestModel model;
 				JSONArray json = new JSONArray();
 				AppLeaveRequest temp;
@@ -133,7 +139,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 			requests = this.service.getLeaveRequests(request, demo.getEmpNbr(), freq);
 			List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
 			List<Code> leaveStatus = this.referenceService.getLeaveStatus();
-			List<Code> gens = referenceService.getGenerations();
+			//List<Code> gens = referenceService.getGenerations();
 			LeaveRequestModel model;
 			JSONArray json = new JSONArray();
 			AppLeaveRequest temp;

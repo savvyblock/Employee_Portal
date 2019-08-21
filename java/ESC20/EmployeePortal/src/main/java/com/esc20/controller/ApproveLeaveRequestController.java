@@ -68,6 +68,12 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
        // String phone = districtInfo.getPhone();
         //districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
 
+          List<Code> gens = referenceService.getGenerations();
+		 	for(Code gen: gens) {
+		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+		    		demo.setGenDescription(gen.getDescription());
+		    	}
+		    }
 		 session.setAttribute("userDetail", demo);
 		
 	//	BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
@@ -100,7 +106,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 			leaveTypesJson.add(leaveTypes.get(i).toJSON());
 		}
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
-		List<Code> gens = referenceService.getGenerations();
+		
 		JSONArray chain = new JSONArray();
 		JSONObject currentLevel = new JSONObject();
 		currentLevel.put("level", 0);

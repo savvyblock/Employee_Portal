@@ -80,7 +80,7 @@
           <c:if test="${sessionScope.options.enableSelfServiceDemographic||sessionScope.options.enableSelfServicePayroll}">
             href="/<%=request.getContextPath().split("/")[1]%>/profile/profile" 
           </c:if>
-            class="d-block">${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameL}</a>
+            class="d-block">${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameL} ${sessionScope.userDetail.genDescription}</a>
         </div>
       </div>
 
