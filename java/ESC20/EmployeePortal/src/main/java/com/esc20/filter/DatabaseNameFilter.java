@@ -72,6 +72,13 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 					String input = FileUtils.readFileToString(file, "UTF-8");
 					JSONObject jsonObject = JSONObject.fromObject(input);
 					request.getSession().setAttribute("languageJSON", jsonObject);
+					
+					//these strings should never be translated per esc20
+					String path1 = request.getSession().getServletContext().getRealPath("/") +"/static/js/constant/text-non-translate.json";
+					File file1 = new File(path1);
+					String input1 = FileUtils.readFileToString(file1, "UTF-8");
+					JSONObject jsonObject1 = JSONObject.fromObject(input1);
+					request.getSession().setAttribute("constantJSON", jsonObject1);
 				}
 			}
 			catch(ClassCastException ex)

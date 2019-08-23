@@ -100,6 +100,14 @@ public class IndexController {
 		String input = FileUtils.readFileToString(file, "UTF-8");
 		JSONObject jsonObject = JSONObject.fromObject(input);
 		req.getSession().setAttribute("languageJSON", jsonObject);
+		
+		//these strings should never be translated per esc20
+		String path1 = req.getSession().getServletContext().getRealPath("/") +"/static/js/constant/text-non-translate.json";
+		File file1 = new File(path1);
+		String input1 = FileUtils.readFileToString(file1, "UTF-8");
+		JSONObject jsonObject1 = JSONObject.fromObject(input1);
+		req.getSession().setAttribute("constantJSON", jsonObject1);
+		
 		res.put("success", true);
 	    return res;
     }
