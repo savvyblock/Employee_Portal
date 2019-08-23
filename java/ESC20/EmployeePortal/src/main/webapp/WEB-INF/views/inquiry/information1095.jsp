@@ -148,16 +148,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     <tr>
                                                         <td style="width:160px;">
                                                             <div>
-                                                                <span>${sessionScope.languageJSON.info1095Table.from}</span> <span class="font-24" id="tableTile">1095-${type}</span><br />
-                                                                <span>${sessionScope.languageJSON.info1095Table.departmentOfTreasury}</span><br />
+                                                                <span>${sessionScope.constantJSON.info1095Table.from}</span> <span class="font-24" id="tableTile">1095-${type}</span><br />
+                                                                <span>${sessionScope.constantJSON.info1095Table.departmentOfTreasury}</span><br />
                                                             </div>
                                                         </td>
                                                         <td class="no-border-td">
                                                             <span class="font-20"
-                                                                ><span>${sessionScope.languageJSON.info1095Table.employerProvidedHealth}</span></span
+                                                                ><span>${sessionScope.constantJSON.info1095Table.employerProvidedHealth}</span></span
                                                             ><br />
-                                                            · <span>${sessionScope.languageJSON.info1095Table.donotAttach}</span>.<br />
-                                                            · <span>${sessionScope.languageJSON.info1095Table.goToForInstructions}</span>.
+                                                            · <span>${sessionScope.constantJSON.info1095Table.donotAttach}</span>.<br />
+                                                            · <span>${sessionScope.constantJSON.info1095Table.goToForInstructions}</span>.
                                                         </td>
                                                         <td class="no-border-td" style="width:110px;">
                                                             <div>
@@ -167,7 +167,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                         name="void"
                                                                         id="void"
                                                                     />
-                                                                    <span>${sessionScope.languageJSON.info1095Table.void}</span>
+                                                                    <span>${sessionScope.constantJSON.info1095Table.void}</span>
                                                                 </label>
                                                                 <label
                                                                     for="corrected"
@@ -178,13 +178,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                                         name="corrected"
                                                                         id="corrected"
                                                                     />
-                                                                    <span>${sessionScope.languageJSON.info1095Table.corrected}</span>
+                                                                    <span>${sessionScope.constantJSON.info1095Table.corrected}</span>
                                                                 </label>
                                                             </div>
                                                         </td>
                                                         <td class="no-padding text-center">
                                                             <div class="border-btm-black">
-                                                                <span>${sessionScope.languageJSON.info1095Table.OMBNo}</span> 1545-2251<br /><br />
+                                                                <span>${sessionScope.constantJSON.info1095Table.OMBNo}</span> 1545-2251<br /><br />
                                                             </div>
                                                             <div class="font-24 selectYearSpan">${selectedYear}</div>
                                                         </td>
@@ -195,47 +195,47 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 >
                                                     <tr>
                                                         <td colspan="3" class="sub-title"  style="width:50%;">
-                                                            <span>${sessionScope.languageJSON.info1095Table.partIEmployee}</span>
+                                                            <span>${sessionScope.constantJSON.info1095Table.partIEmployee}</span>
                                                         </td>
                                                         <td colspan="3">
-                                                                <span>${sessionScope.languageJSON.info1095Table.applicableEmployer}</span>
+                                                                <span>${sessionScope.constantJSON.info1095Table.applicableEmployer}</span>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2">
-                                                            1 <span>${sessionScope.languageJSON.info1095Table.nameOfEmployee}</span>
+                                                            1 <span>${sessionScope.constantJSON.info1095Table.nameOfEmployee}</span>
                                                             <div class="focused-value">
                                                                     ${sessionScope.userDetail.nameF} ${sessionScope.userDetail.nameM} ${sessionScope.userDetail.nameL}
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            2 <span>${sessionScope.languageJSON.info1095Table.SSN}</span>
+                                                            2 <span>${sessionScope.constantJSON.info1095Table.SSN}</span>
                                                             <div class="focused-value">SSN</div>
                                                         </td>
                                                         <td colspan="2">
-                                                            7 <span>${sessionScope.languageJSON.info1095Table.nameOfEmployer}</span>
+                                                            7 <span>${sessionScope.constantJSON.info1095Table.nameOfEmployer}</span>
                                                             <div class="focused-value">${sessionScope.district.name}</div>
                                                         </td>
                                                         <td>
-                                                            8 <span>${sessionScope.languageJSON.info1095Table.EIN}</span>
+                                                            8 <span>${sessionScope.constantJSON.info1095Table.EIN}</span>
                                                             <div class="focused-value">EIN</div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="3">
-                                                            3 <span>${sessionScope.languageJSON.info1095Table.streetAddressApt}</span>
+                                                            3 <span>${sessionScope.constantJSON.info1095Table.streetAddressApt}</span>
                                                             <div class="focused-value">
                                                                     ${sessionScope.userDetail.addrApt}
                                                             </div>
                                                         </td>
                                                         <td colspan="2">
-                                                            9 <span>${sessionScope.languageJSON.info1095Table.streetAddressRoomSuite}</span>
+                                                            9 <span>${sessionScope.constantJSON.info1095Table.streetAddressRoomSuite}</span>
                                                             <div class="focused-value">
                                                                     ${sessionScope.userDetail.addrNbr} ${sessionScope.userDetail.addrStr}
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            10 <span>${sessionScope.languageJSON.info1095Table.contactTelephoneNum}</span>
+                                                            10 <span>${sessionScope.constantJSON.info1095Table.contactTelephoneNum}</span>
                                                             <div class="focused-value">
                                                                     (${sessionScope.userDetail.phoneArea}) ${sessionScope.userDetail.phoneNbr}
                                                             </div>
@@ -243,27 +243,27 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            4 <span>${sessionScope.languageJSON.info1095Table.cityOrTown}</span>
+                                                            4 <span>${sessionScope.constantJSON.info1095Table.cityOrTown}</span>
                                                             <div class="focused-value">${sessionScope.district.city}</div>
                                                         </td>
                                                         <td>
-                                                            5 <span>${sessionScope.languageJSON.info1095Table.stateOrProvince}</span>
+                                                            5 <span>${sessionScope.constantJSON.info1095Table.stateOrProvince}</span>
                                                             <div class="focused-value">${sessionScope.district.state}</div>
                                                         </td>
                                                         <td>
-                                                            6 <span>${sessionScope.languageJSON.info1095Table.countryAndZip}</span>
+                                                            6 <span>${sessionScope.constantJSON.info1095Table.countryAndZip}</span>
                                                             <div class="focused-value">${sessionScope.userDetail.addrZip}</div>
                                                         </td>
                                                         <td>
-                                                            11 <span>${sessionScope.languageJSON.info1095Table.cityOrTown}</span>
+                                                            11 <span>${sessionScope.constantJSON.info1095Table.cityOrTown}</span>
                                                             <div class="focused-value">${sessionScope.district.city}</div>
                                                         </td>
                                                         <td>
-                                                            12 <span>${sessionScope.languageJSON.info1095Table.stateOrProvince}</span>
+                                                            12 <span>${sessionScope.constantJSON.info1095Table.stateOrProvince}</span>
                                                             <div class="focused-value">${sessionScope.district.state}TX</div>
                                                         </td>
                                                         <td>
-                                                            13 <span>${sessionScope.languageJSON.info1095Table.countryAndZip}</span>
+                                                            13 <span>${sessionScope.constantJSON.info1095Table.countryAndZip}</span>
                                                             <div class="focused-value">${sessionScope.district.zip}-${sessionScope.district.zip4}</div>
                                                         </td>
                                                     </tr>
@@ -277,11 +277,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <table class="table no-border-table print-block-table">
                                                     <tr>
                                                         <td>
-                                                            <span>${sessionScope.languageJSON.info1095Table.forPrivacyAct}</span>
+                                                            <span>${sessionScope.constantJSON.info1095Table.forPrivacyAct}</span>
                                                         </td>
                                                         <td>Cat. No. 60705M</td>
                                                         <td style="text-align:right">
-                                                            <span>${sessionScope.languageJSON.info1095Table.from}</span> <span id="fromWitch1095"></span> (<span class="selectYearSpan">${selectedYear}</span>)
+                                                            <span>${sessionScope.constantJSON.info1095Table.from}</span> <span id="fromWitch1095"></span> (<span class="selectYearSpan">${selectedYear}</span>)
                                                         </td>
                                                     </tr>
                                                 </table>

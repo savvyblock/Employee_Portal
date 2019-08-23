@@ -19,7 +19,7 @@
     		       <span>${sessionScope.options.messageEmployeeAccessSystem}</span>
               </c:if>
               <c:if test="${empty sessionScope.options.messageEmployeeAccessSystem}">
-    		       <span>${sessionScope.languageJSON.label.welcomeToNewEmployeePortal}</span>
+    		       <span>${sessionScope.constantJSON.label.welcomeToNewEmployeePortal}</span>
               </c:if> 
         	</div>
         </section>

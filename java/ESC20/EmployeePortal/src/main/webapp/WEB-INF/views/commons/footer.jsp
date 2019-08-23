@@ -1,7 +1,7 @@
 <footer class="main-footer">
 	<div class="footer-word">
 		<strong><span>${sessionScope.languageJSON.label.copyRight}</span>; 2018 <a
-			href="#"><span>${sessionScope.languageJSON.label.ESC20}</span></span></a>.</strong>
+			href="#"><span>${sessionScope.constantJSON.label.ESC20}</span></span></a>.</strong>
 			<span>${sessionScope.languageJSON.label.allRightReserved}</span></span>
 	</div>
 
