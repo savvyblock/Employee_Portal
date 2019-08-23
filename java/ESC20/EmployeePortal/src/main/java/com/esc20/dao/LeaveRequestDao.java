@@ -524,8 +524,8 @@ public class LeaveRequestDao {
 		for (Object[] item : res) {
 			 String days_HRS = "D";
 			if(item[14] instanceof Character) days_HRS = item[14].toString().trim();
-			logger.debug("days_HRS Value from DB " + item[14]);
-			logger.debug("days_HRS String  = " + days_HRS);
+			logger.info("days_HRS Value from DB " + item[14]);
+			logger.info("days_HRS String  = " + days_HRS);
 			request = new AppLeaveRequest((Integer) item[0], (Integer) item[1], (Character) item[2], (String) item[3],
 					(String) item[4], (String) item[5], (Date) item[6], (Date) item[7], (Date) item[8],
 					(BigDecimal) item[9], (BigDecimal) item[10], (Character) item[11], (String) item[12],
