@@ -22,7 +22,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <c:if test="${not empty sessionScope.options.messageSelfServiceDemographic}">
 	                            	<p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServiceDemographic}</p>
 	                        	</c:if>
+	                        	 <h2 class="sub-title">${sessionScope.languageJSON.profile.LegalName}</h2>
                                 <div class="profile-top first-child">
+                                  
                                     <form class="profile-item" id="personalForm" action="saveName" method="POST">
                                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <div class="profile-left">
@@ -56,6 +58,28 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                      </c:choose>
                                                         </c:forEach>
                                                         </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <div class="profile-item-line form-line">
+                                                <label class="profile-title"
+                                                    >${sessionScope.languageJSON.profile.lastname}</label
+                                                >
+                                                <div class="profile-desc">
+                                                    <span class="haveValue"
+                                                        >${sessionScope.userDetail.nameL}</span
+                                                    >
+                                                    <div class="form-group valueInput">
+                                                        <input
+                                                            class="form-control <c:if test="${sessionScope.userDetail.nameL != nameRequest.nameLNew}">active</c:if>"
+                                                            type="text"
+                                                            value="${nameRequest.nameLNew}"
+                                                            aria-label="${sessionScope.languageJSON.profile.lastname}"
+                                                           
+                                                            name="nameLNew"
+                                                            id="lastName"
+                                                            maxlength="25"
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
@@ -101,28 +125,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="profile-item-line form-line">
-                                                <label class="profile-title"
-                                                    >${sessionScope.languageJSON.profile.lastname}</label
-                                                >
-                                                <div class="profile-desc">
-                                                    <span class="haveValue"
-                                                        >${sessionScope.userDetail.nameL}</span
-                                                    >
-                                                    <div class="form-group valueInput">
-                                                        <input
-                                                            class="form-control <c:if test="${sessionScope.userDetail.nameL != nameRequest.nameLNew}">active</c:if>"
-                                                            type="text"
-                                                            value="${nameRequest.nameLNew}"
-                                                            aria-label="${sessionScope.languageJSON.profile.lastname}"
-                                                           
-                                                            name="nameLNew"
-                                                            id="lastName"
-                                                            maxlength="25"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
+                                           
                                             
                                             <div class="profile-item-line form-line">
                                                 <label class="profile-title"
@@ -130,7 +133,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="profile-desc">
                                                     <span class="haveValue"
-                                                        >${sessionScope.userDetail.nameGen}</span
+                                                        >${sessionScope.userDetail.genDescription}</span
                                                     >
                                                     <div class="form-group valueInput">
                                                         <select
