@@ -9,6 +9,8 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +31,8 @@ import com.esc20.util.StringUtil;
 
 @Repository
 public class LeaveRequestDao {
+	private Logger logger = LoggerFactory.getLogger(LeaveRequestDao.class);
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -518,10 +522,14 @@ public class LeaveRequestDao {
 		List<AppLeaveRequest> requests = new ArrayList<AppLeaveRequest>();
 		AppLeaveRequest request;
 		for (Object[] item : res) {
+			 String days_HRS = "D";
+			if(item[14] instanceof Character) days_HRS = item[14].toString().trim();
+			logger.debug("days_HRS Value from DB " + item[14]);
+			logger.debug("days_HRS String  = " + days_HRS);
 			request = new AppLeaveRequest((Integer) item[0], (Integer) item[1], (Character) item[2], (String) item[3],
 					(String) item[4], (String) item[5], (Date) item[6], (Date) item[7], (Date) item[8],
 					(BigDecimal) item[9], (BigDecimal) item[10], (Character) item[11], (String) item[12],
-					(String) item[14], (String) item[15], (String) item[16], (String) item[17], (String) item[18],
+					 days_HRS, (String) item[15], (String) item[16], (String) item[17], (String) item[18],
 					(String) item[19], (String)item[20]);
 			requests.add(request);
 		}
