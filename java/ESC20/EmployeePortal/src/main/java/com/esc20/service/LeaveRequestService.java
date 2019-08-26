@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +23,14 @@ import com.esc20.model.BhrPmisPosCtrl;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.LeaveBalance;
+import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequest;
 import com.esc20.nonDBModels.LeaveUnitsConversion;
 import com.esc20.nonDBModels.Options;
+import com.esc20.util.DateUtil;
+import com.esc20.util.MailUtil;
 import com.esc20.util.StringUtil;
 
 @Service
@@ -67,8 +72,8 @@ public class LeaveRequestService {
 		return leaveRequestDao.getAvailableFrequencies(empNbr);
 	}
 
-	public String getFirstLineSupervisor(String empNbr, boolean usePMIS) {
-		String firstLineSupervisor = null;
+	public LeaveEmployeeData getFirstLineSupervisor(String empNbr, boolean usePMIS) {
+		LeaveEmployeeData firstLineSupervisor = null;
 		String directReportEmployeeNumber = empNbr;
 
 		while (firstLineSupervisor == null && directReportEmployeeNumber != null) {
@@ -86,7 +91,7 @@ public class LeaveRequestService {
 			}
 			if (firstLineSupervisor == null) {
 				return null;
-			} else if (empNbr.equals(firstLineSupervisor)) {
+			} else if (empNbr.equals(firstLineSupervisor.getEmployeeNumber())) {
 				firstLineSupervisor = null;
 				if (usePMIS) {
 					firstLineSupervisor = leaveRequestDao.getPMISFirstLineSupervisor(
@@ -96,7 +101,7 @@ public class LeaveRequestService {
 					firstLineSupervisor = leaveRequestDao.getFirstLineSupervisor(directReportEmployeeNumber, false);
 				}
 				if (firstLineSupervisor != null) {
-					directReportEmployeeNumber = firstLineSupervisor;
+					directReportEmployeeNumber = firstLineSupervisor.getEmployeeNumber();
 					firstLineSupervisor = null;
 				} else {
 					directReportEmployeeNumber = null;
@@ -140,15 +145,42 @@ public class LeaveRequestService {
 		leaveRequestDao.saveLvComments(comments);
 	}
 
-	public void saveLvWorkflow(BeaEmpLvWorkflow flow, BhrEmpDemo demo) {
+	public void saveLvWorkflow(BeaEmpLvWorkflow flow, BhrEmpDemo demo) throws MessagingException {
 		leaveRequestDao.saveLvWorkflow(flow);
 		// create alert
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a E");
 		String message = sdf.format(new Date()) + ": Leave Request from " + demo.getNameF().trim() + " " + demo.getNameL().trim()
 				+ " pending your approval";
 		alertDao.createAlert(demo.getEmpNbr().trim(), flow.getApprvrEmpNbr().trim(), message.trim());
+	
 	}
 
+	
+	public void sendEmail(BeaEmpLvRqst request,BhrEmpDemo demo,LeaveEmployeeData supervisorData ) throws MessagingException{
+		String supervisorEmail = supervisorData ==null?null:supervisorData.getEmailAddress();
+		if(!StringUtil.isNullOrEmpty(supervisorEmail)) {
+			//Send Email
+			String subject = "Leave request submitted for "+ demo.getNameF().trim() + " " + demo.getNameL().trim();
+			String returnBody = "";
+			StringBuilder emailBody = new StringBuilder();
+			emailBody.append("<p>%s:</p>");
+			emailBody.append("<p>A leave request for %s, employee number %s, has been submitted and is ready for your approval.  The leave dates and times requested are as follows:</p>");
+			emailBody.append("<p style='margin-left: 12pt;'>Dates:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s<br/>Times:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s</p>");		
+			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal to process this submission.</p>");
+			emailBody.append("<p>Thank You</p>");
+			SimpleDateFormat sdfD = new SimpleDateFormat("MM/dd/yyyy");
+			SimpleDateFormat sdfT = new SimpleDateFormat("hh:mm a");
+			returnBody = String.format(emailBody.toString(), supervisorData.getFullNameTitleCase(), demo.getNameF().trim() + " " + demo.getNameL().trim(),demo.getEmpNbr() ,
+					sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
+					sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())));
+			try {
+				MailUtil.sendEmail(supervisorEmail.trim(), subject, returnBody.trim());
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
 	public void deleteLeaveComments(Integer lvId) {
 		leaveRequestDao.deleteLeaveComments(lvId);
 	}
@@ -193,6 +225,11 @@ public class LeaveRequestService {
 		List<String[]> map = leaveRequestDao.getAbsrsnsLeaveTypesMap();
 		return map;
 	}
+	
+	public LeaveEmployeeData getEmployeeData(String employeeNumber) {
+		return leaveRequestDao.getEmployeeData(employeeNumber);
+	}
+	
 	
 	public List<LeaveUnitsConversion> getMinutesToHoursConversionRecs(String payFrequency, String leaveType) {
 		List<LeaveUnitsConversion> conversionRecs = leaveRequestDao.getMinutesToHoursConversionRecs(payFrequency, leaveType);

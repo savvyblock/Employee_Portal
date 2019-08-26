@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,8 @@ import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveRequest;
 import com.esc20.nonDBModels.LeaveRequestComment;
 import com.esc20.util.DateUtil;
+import com.esc20.util.MailUtil;
+import com.esc20.util.StringUtil;
 
 
 @Service
@@ -144,7 +148,7 @@ public class SupervisorService {
 		return result;
 	}
 
-	public void approveLeave(LeaveRequest request, BhrEmpDemo demo, String approverComment) {
+	public void approveLeave(LeaveRequest request, BhrEmpDemo demo, String approverComment,LeaveEmployeeData employee) throws MessagingException {
 		//insert approver Comment;
         BeaEmpLvComments comments = new BeaEmpLvComments();
         comments.setLvId(request.getId());
@@ -161,9 +165,34 @@ public class SupervisorService {
 						 " had approved your leave request from "+sdf1.format(DateUtil.getLocalTime(request.getDatetimeFrom()))+
 						 " to " + sdf1.format(DateUtil.getLocalTime(request.getDatetimeTo()));
 		alertDao.createAlert(demo.getEmpNbr().trim(), request.getEmpNbr().trim(), message.trim());
+		
+		if(employee !=null && (!StringUtil.isNullOrEmpty(employee.getEmailAddress()))) {
+			String subject = "Leave Request Approved";
+			String returnBody = "";
+			StringBuilder emailBody = new StringBuilder();
+			emailBody.append("<p>%s:</p>");
+			emailBody.append("<p>Your leave request has been approved by %s.  No action is needed on your part.  The leave dates and times requested are as follows:</p>");
+			emailBody.append("<p style='margin-left: 12pt;'>Dates:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s<br/>Times:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s</p>");		
+
+			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal if you wish to make changes to the leave requested and resubmit the request.</p>");
+			emailBody.append("<p>Thank You</p>");
+			
+			SimpleDateFormat sdfD = new SimpleDateFormat("MM/dd/yyyy");
+			SimpleDateFormat sdfT = new SimpleDateFormat("hh:mm a");
+			returnBody = String.format(emailBody.toString(), employee.getFullNameTitleCase(),  demo.getNameF().trim()+" " + demo.getNameL().trim(), 
+					sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
+					sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())));
+			try {
+				MailUtil.sendEmail(employee.getEmailAddress().trim(), subject, returnBody.trim());
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		
 	}
 
-	public void disApproveLeave(LeaveRequest request, BhrEmpDemo demo, String disapproveComment) {
+	public void disApproveLeave(LeaveRequest request, BhrEmpDemo demo, String disapproveComment,LeaveEmployeeData employee) throws MessagingException {
 		//insert approver Comment;
         BeaEmpLvComments comments = new BeaEmpLvComments();
         comments.setLvId(request.getId());
@@ -179,6 +208,31 @@ public class SupervisorService {
 		String message = sdf.format(new Date())+": "+ demo.getNameF().trim()+" " + demo.getNameL().trim() +" disapproved your leave from "+
 						 sdf1.format(DateUtil.getLocalTime(request.getDatetimeFrom()))+" to " + sdf1.format(DateUtil.getLocalTime(request.getDatetimeTo())) +" with comment: " + disapproveComment;
 		alertDao.createAlert(demo.getEmpNbr().trim(), request.getEmpNbr().trim(), message.trim());
+		if(employee !=null && (!StringUtil.isNullOrEmpty(employee.getEmailAddress()))) {
+			String subject = "Leave Request Disapproved";
+			String returnBody = "";
+			StringBuilder emailBody = new StringBuilder();
+			emailBody.append("<p>%s:</p>");
+			emailBody.append("<p>The leave request you submitted has been disapproved by %s.  The leave dates and times requested are as follows:</p>");
+			emailBody.append("<p style='margin-left: 12pt;'>Dates:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s<br/>Times:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s</p>");		
+			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal to view comments entered by the supervisor or if you wish to make changes to the leave requested and resubmit the request.</p>");
+			
+			emailBody.append("<p>Thank You</p>");
+			
+			SimpleDateFormat sdfD = new SimpleDateFormat("MM/dd/yyyy");
+			SimpleDateFormat sdfT = new SimpleDateFormat("hh:mm a");
+			returnBody = String.format(emailBody.toString(), employee.getFullNameTitleCase(),  demo.getNameF().trim()+" " + demo.getNameL().trim(), 
+					sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
+					sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())));
+			
+			try {
+				MailUtil.sendEmail(employee.getEmailAddress().trim(), subject, returnBody.trim());
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
+			
+		}
 	}
 
 	public List<BeaEmpLvTmpApprovers> getBeaEmpLvTmpApprovers(String empNbr) {

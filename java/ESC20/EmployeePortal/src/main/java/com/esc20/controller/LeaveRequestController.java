@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +23,7 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
+import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequestModel;
@@ -85,7 +87,8 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		LeaveParameters params = this.service.getLeaveParameters();
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
-		String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
+		LeaveEmployeeData supervisorData = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
+		String supervisorEmpNbr = supervisorData==null?null:supervisorData.getEmployeeNumber();
 		if (supervisorEmpNbr == null) {
 			supervisorEmpNbr = "";
 			mav.addObject("haveSupervisor", false);
@@ -247,7 +250,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	public ModelAndView submitLeaveRequest(HttpServletRequest req, String leaveId, String leaveType,
 			String absenseReason, String LeaveStartDate, String startTimeValue, String LeaveEndDate,
 			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq,Boolean isAdd)
-			throws ParseException {
+			throws ParseException, MessagingException {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
 		if(leaveType==null||absenseReason==null||LeaveStartDate==null||startTimeValue==null||

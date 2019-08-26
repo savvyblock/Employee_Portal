@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -15,6 +17,7 @@ import com.esc20.model.BeaEmpLvComments;
 import com.esc20.model.BeaEmpLvRqst;
 import com.esc20.model.BeaEmpLvWorkflow;
 import com.esc20.model.BhrEmpDemo;
+import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.util.DateUtil;
@@ -28,7 +31,7 @@ public class BaseLeaveRequestController{
 
 	protected void saveLeaveRequest(String leaveId, String leaveType, String absenseReason, String LeaveStartDate,
 			String startTimeValue, String LeaveEndDate, String endTimeValue, String lvUnitsDaily, String lvUnitsUsed,
-			String Remarks, String freq, BhrEmpDemo demo) throws ParseException {
+			String Remarks, String freq, BhrEmpDemo demo) throws ParseException, MessagingException {
 		BeaEmpLvRqst request;
 		if (leaveId == null || ("").equals(leaveId))
 			request = new BeaEmpLvRqst();
@@ -69,7 +72,8 @@ public class BaseLeaveRequestController{
 		// Create Workflow upon first creation or modify disapproved leave
 		if ((leaveId == null || ("").equals(leaveId)) || ((leaveId != null && !("").equals(leaveId) && isDisapproveUpdate))) {
 			LeaveParameters params = this.service.getLeaveParameters();
-			String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
+			LeaveEmployeeData supervisorData = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
+			String supervisorEmpNbr = supervisorData ==null?null:supervisorData.getEmployeeNumber();
 			if (!StringUtils.isEmpty(supervisorEmpNbr)) {
 				BeaEmpLvWorkflow flow = new BeaEmpLvWorkflow();
 				flow.setLvId(id);
@@ -77,7 +81,9 @@ public class BaseLeaveRequestController{
 				flow.setSeqNum(1);
 				flow.setApprvrEmpNbr(supervisorEmpNbr == null ? "" : supervisorEmpNbr);
 				flow.setTmpApprvrExpDatetime(null);
+				//String supervisorEmail = supervisorData ==null?null:supervisorData.getEmailAddress();
 				this.service.saveLvWorkflow(flow, demo);
+				this.service.sendEmail(request, demo, supervisorData);
 			}
 		}
 	}

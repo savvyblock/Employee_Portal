@@ -49,6 +49,15 @@ public class LeaveEmployeeData implements Serializable {
 		this.middleName = middleName;
 		this.numDirectReports = numDirectReports.intValue();
 	}
+	
+	public LeaveEmployeeData(String employeeNumber, String firstName, String middleName,String lastName, String email) {
+		this.employeeNumber = employeeNumber;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.middleName = middleName;
+		this.emailAddress = email;
+	}
+	
 	public LeaveEmployeeData() {
 		// TODO Auto-generated constructor stub
 	}

@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -74,7 +75,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 		//BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
 		LeaveParameters params = this.service.getLeaveParameters();
-		String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
+		String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS())==null?null:this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS()).getEmployeeNumber();
 		if (supervisorEmpNbr == null) {
 			supervisorEmpNbr = "";
 			mav.addObject("haveSupervisor", false);
@@ -192,7 +193,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 	public ModelAndView submitLeaveRequestFromCalendar(HttpServletRequest req, String leaveId, String leaveType,
 			String absenseReason, String LeaveStartDate, String startTimeValue, String LeaveEndDate,
 			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq)
-			throws ParseException {
+			throws ParseException, MessagingException {
 		HttpSession session = req.getSession();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		ModelAndView mav = new ModelAndView();

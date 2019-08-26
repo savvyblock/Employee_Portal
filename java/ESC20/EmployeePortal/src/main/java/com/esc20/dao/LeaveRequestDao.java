@@ -22,6 +22,7 @@ import com.esc20.model.BhrEmpLvXmital;
 import com.esc20.model.BhrPmisPosCtrl;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveInfo;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequest;
@@ -244,7 +245,7 @@ public class LeaveRequestDao {
 		return res;
 	}
 
-	public String getPMISFirstLineSupervisor(String spvsrBilletNbr, String spvsrPosNbr,
+	public LeaveEmployeeData getPMISFirstLineSupervisor(String spvsrBilletNbr, String spvsrPosNbr,
 			boolean checkTemporaryApprover) {
 		Session session = this.getSession();
 		String sql = null;
@@ -268,27 +269,68 @@ public class LeaveRequestDao {
 		q.setParameter("supervisorBilletNumber", spvsrBilletNbr);
 		q.setParameter("supervisorPosNumber", spvsrPosNbr);
 		Object[] res = (Object[]) q.uniqueResult();
+		
 
-		String empNbr = res == null ? null : (String) res[1];
-		return empNbr;
+		LeaveEmployeeData result = new LeaveEmployeeData();
+		if(res != null) {
+			result = new LeaveEmployeeData((String) res[0], (String) res[1], (String) res[2],(String) res[3],(String) res[4]);
+		}
+		else
+		{
+			result = null;
+		}
+	
+        return result;
+
+		/*String empNbr = res == null ? null : (String) res[0];
+		return empNbr;*/
 	}
 
-	public String getFirstLineSupervisor(String directReportEmployeeNumber, boolean checkTemporaryApprover) {
+	public LeaveEmployeeData getFirstLineSupervisor(String directReportEmployeeNumber, boolean checkTemporaryApprover) {
 		Session session = this.getSession();
 		String sql = null;
-		if (checkTemporaryApprover) {
+		/*if (checkTemporaryApprover) {
 			String tempApprover = getTempApprover(directReportEmployeeNumber);
 			if (tempApprover != null)
 				return tempApprover;
+		}*/
+	/*	sql = "SELECT ED.empNbr, ED.nameF, ED.nameM, ED.nameL, ED.email " + "FROM BhrEmpDemo ED  " + "WHERE ED.empNbr= "
+				+ "(SELECT E2S.spvsrEmpNbr " + "FROM BhrEapEmpToSpvsr E2S " + "WHERE E2S.empEmpNbr=:employeeNumber )";*/
+		
+		if(checkTemporaryApprover) {
+			sql = "SELECT ED.EMP_NBR, ED.NAME_F, ED.NAME_M, ED.NAME_L, ED.EMAIL " + 
+					"FROM BHR_EMP_DEMO ED " + 
+					"WHERE ED.EMP_NBR= " + 
+						"(SELECT ISNULL(TA.TMP_APPRVR_EMP_NBR, E2S.SPVSR_EMP_NBR) AS APPROVER " +
+							"FROM BHR_EAP_EMP_TO_SPVSR E2S " +
+								"LEFT OUTER JOIN BEA_EMP_LV_TMP_APPROVERS TA ON TA.SPVSR_EMP_NBR=E2S.SPVSR_EMP_NBR AND TA.DATETIME_FROM <= GETDATE() AND GETDATE() <= TA.DATETIME_TO " +
+							"WHERE E2S.EMP_EMP_NBR=:employeeNumber )";
 		}
-		sql = "SELECT ED.empNbr, ED.nameF, ED.nameM, ED.nameL, ED.email " + "FROM BhrEmpDemo ED  " + "WHERE ED.empNbr= "
-				+ "(SELECT E2S.spvsrEmpNbr " + "FROM BhrEapEmpToSpvsr E2S " + "WHERE E2S.empEmpNbr=:employeeNumber )";
-		Query q = session.createQuery(sql);
+		else {
+			sql = "SELECT ED.EMP_NBR, ED.NAME_F, ED.NAME_M, ED.NAME_L, ED.EMAIL " + 
+					"FROM BHR_EMP_DEMO ED " + 
+					"WHERE ED.EMP_NBR= " + 
+						"(SELECT E2S.SPVSR_EMP_NBR " +
+							"FROM BHR_EAP_EMP_TO_SPVSR E2S " +
+							"WHERE E2S.EMP_EMP_NBR=:employeeNumber )";
+		}
+		Query q = session.createSQLQuery(sql);
 		q.setParameter("employeeNumber", directReportEmployeeNumber);
 		Object[] res = (Object[]) q.uniqueResult();
+		
+		LeaveEmployeeData result = new LeaveEmployeeData();
+		if(res != null) {
+			result = new LeaveEmployeeData((String) res[0], (String) res[1], (String) res[2],(String) res[3],(String) res[4]);
+		}
+		else {
+			result = null;
+		}
+	
+        return result;
 
+/*
 		String empNbr = res == null ? null : (String) res[0];
-		return empNbr;
+		return empNbr;*/
 	}
 
 	private String getTempApprover(String directReportEmployeeNumber) {
@@ -523,14 +565,19 @@ public class LeaveRequestDao {
 		AppLeaveRequest request;
 		for (Object[] item : res) {
 			 String days_HRS = "D";
-			if(item[14] instanceof Character) days_HRS = item[14].toString().trim();
-			logger.info("days_HRS Value from DB " + item[14]);
-			logger.info("days_HRS String  = " + days_HRS);
+			 String name_Gen = "";
+			 if(item[14]!=null) {
+				 if(item[14] instanceof Character) days_HRS = item[14].toString().trim();
+			 }
+			if(item[20]!=null) {
+				if(item[20] instanceof Character) name_Gen = item[20].toString().trim();
+			}
+		
 			request = new AppLeaveRequest((Integer) item[0], (Integer) item[1], (Character) item[2], (String) item[3],
 					(String) item[4], (String) item[5], (Date) item[6], (Date) item[7], (Date) item[8],
 					(BigDecimal) item[9], (BigDecimal) item[10], (Character) item[11], (String) item[12],
 					 days_HRS, (String) item[15], (String) item[16], (String) item[17], (String) item[18],
-					(String) item[19], (String)item[20]);
+					(String) item[19], name_Gen);
 			requests.add(request);
 		}
 
@@ -589,6 +636,21 @@ public class LeaveRequestDao {
 		return result;
 	}
 
+	public LeaveEmployeeData  getEmployeeData(String employeeNumber) {
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT ED.EMP_NBR, ED.NAME_F, ED.NAME_M, ED.NAME_L, ED.EMAIL, ISNULL(SU.USR_LOG_NAME,'') AS USR_LOG_NAME ");
+		sql.append("FROM BHR_EMP_DEMO ED LEFT OUTER JOIN SEC_USERS SU ON ED.EMP_NBR=SU.EMP_NBR AND SU.USR_DELETED=0, ");
+		sql.append("WHERE ED.EMP_NBR= :employeeNumber");
+		Query q = session.createSQLQuery(sql.toString());
+		q.setParameter("employeeNumber", employeeNumber);
+		Object[] res = (Object[]) q.uniqueResult();
+		
+		LeaveEmployeeData result = new LeaveEmployeeData();
+		result = new LeaveEmployeeData((String) res[0], (String) res[1], (String) res[2],(String) res[3],(String) res[4]);
+        return result;
+	}
+	
 	public List<LeaveUnitsConversion> getMinutesToHoursConversionRecs(String payFrequency, String leaveType) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();

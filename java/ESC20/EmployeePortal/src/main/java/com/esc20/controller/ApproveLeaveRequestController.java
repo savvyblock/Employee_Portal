@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -200,7 +201,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 	}
 	
 	@RequestMapping("submitRequests")
-	public ModelAndView submitRequests(HttpServletRequest req, String level, String chain, String actionList) throws ParseException {
+	public ModelAndView submitRequests(HttpServletRequest req, String level, String chain, String actionList) throws ParseException, MessagingException {
 		ModelAndView mav = new ModelAndView();
 		if(actionList==null||chain==null) {
 			mav.setViewName("visitFailed");
@@ -232,13 +233,17 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 
 	@Transactional
 	public String approveLeave(HttpServletRequest req, String level, String chain, String id, String comment)
-			throws ParseException {
+			throws ParseException, MessagingException {
 		HttpSession session = req.getSession();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		LeaveRequest rqst = this.service.getBeaEmpLvRqstById(Integer.parseInt(id));
+		
+		String employeeNum = rqst ==null ? null:rqst.getEmpNbr();
+		LeaveEmployeeData employeeData = this.service.getEmployeeData(employeeNum);
+	
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		if (rqst.getStatusCd() == 'P') {
-			this.supService.approveLeave(rqst, demo, comment);
+			this.supService.approveLeave(rqst, demo, comment,employeeData);
 		} else {
 			return "Approve Leave Failed for leave request from " + sdf.format(rqst.getDatetimeFrom())+ " to " + sdf.format(rqst.getDatetimeTo())+".";
 		}
@@ -247,13 +252,15 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 
 	@Transactional
 	public String disapproveLeave(HttpServletRequest req, String level, String chain, String id, String comment)
-			throws ParseException {
+			throws ParseException, MessagingException {
 		HttpSession session = req.getSession();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		LeaveRequest rqst = this.service.getBeaEmpLvRqstById(Integer.parseInt(id));
+		String employeeNum = rqst ==null ? null:rqst.getEmpNbr();
+		LeaveEmployeeData employeeData = this.service.getEmployeeData(employeeNum);
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		if (rqst.getStatusCd() == 'P') {
-			this.supService.disApproveLeave(rqst, demo, comment);
+			this.supService.disApproveLeave(rqst, demo, comment,employeeData);
 		} else {
 			return "Disapprove Leave Failed for leave request from " + sdf.format(rqst.getDatetimeFrom())+ " to " + sdf.format(rqst.getDatetimeTo())+".";
 		}
