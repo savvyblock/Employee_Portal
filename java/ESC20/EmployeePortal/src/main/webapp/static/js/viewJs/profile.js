@@ -637,6 +637,7 @@ function clearValidator() {
 function personalValidator() {
     $('#personalForm').bootstrapValidator({
         live: 'enable',
+        excluded : [':disabled'],
         submitButtons: '#savePersonal',
         feedbackIcons: {
             valid: 'fa fa-check ',
@@ -644,6 +645,15 @@ function personalValidator() {
             validating: 'fa fa-refresh'
         },
         fields: {
+            namePreNew:{
+                trigger: null,
+                validators: {
+                    stringLength: {
+                        max: 1000,
+                        message: maxLength25Validator
+                    }
+                }
+            },
             nameFNew: {
                 trigger: null,
                 validators: {
@@ -676,7 +686,16 @@ function personalValidator() {
                         message: maxLength25Validator
                     }
                 }
-            }
+            },
+            nameGenNew:{
+                trigger: null,
+                validators: {
+                    stringLength: {
+                        max: 1000,
+                        message: maxLength25Validator
+                    }
+                }
+            },
         }
     })
 }
@@ -722,7 +741,16 @@ function driverLicenseValidator() {
                         message: maxLength19Validator
                     }
                 }
-            }
+            },
+            driversLicStNew:{
+                trigger: null,
+                validators: {
+                    stringLength: {
+                        max: 1000,
+                        message: maxLength25Validator
+                    }
+                }
+            },
         }
     })
 }
@@ -737,15 +765,24 @@ function restrictionCodeFormValidator() {
             validating: 'fa fa-refresh'
         },
         fields: {
-            no: {
+            restrictCdNew:{
                 trigger: null,
-
                 validators: {
-                    notEmpty: {
-                        message: requiredFieldValidator
+                    stringLength: {
+                        max: 1000,
+                        message: maxLength25Validator
                     }
                 }
-            }
+            },
+            restrictCdPublicNew:{
+                trigger: null,
+                validators: {
+                    stringLength: {
+                        max: 1000,
+                        message: maxLength25Validator
+                    }
+                }
+            },
         }
     })
 }
@@ -915,6 +952,15 @@ function mailingAddressValidator() {
                     }
                 }
             },
+            addrStNew:{
+                trigger: null,
+                validators: {
+                    stringLength: {
+                        max: 1000,
+                        message: maxLength25Validator
+                    }
+                }
+            },
             addrZipNew: {
                 trigger: null,
                 validators: {
@@ -983,6 +1029,15 @@ function alternativeAddressValidator() {
                     stringLength: {
                         max: 20,
                         message: maxLength20Validator
+                    }
+                }
+            },
+            smrAddrStNew:{
+                trigger: null,
+                validators: {
+                    stringLength: {
+                        max: 1000,
+                        message: maxLength25Validator
                     }
                 }
             },

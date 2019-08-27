@@ -1459,6 +1459,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     name="description"
                                                     aria-label="${sessionScope.languageJSON.profile.bankName}" 
                                                     aria-disabled="${bank.isDelete}"
+                                                    tabindex="-1"
                                                     <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
                                                     value="${bank.codeNew.description}"
                                                 />
@@ -1471,6 +1472,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     name="subCode"
                                                     aria-label="${sessionScope.languageJSON.accessHint.bankCode}" 
                                                     aria-disabled="${bank.isDelete}"
+                                                    tabindex="-1"
                                                     <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
                                                     value="${bank.codeNew.subCode}"
                                                 />
@@ -1677,6 +1679,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             id="saveBankDescription"
                                                             aria-label="${sessionScope.languageJSON.accessHint.bankName}"
                                                             value=""
+                                                            tabindex="-1"
                                                         />
                                                     </div>
 
@@ -1688,6 +1691,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             id="saveBankCode"
                                                             aria-label="${sessionScope.languageJSON.accessHint.bankCode}"
                                                             value=""
+                                                            tabindex="-1"
                                                         />
                                                     </div>
                                                     <input type="hidden" id="newBankCode" aria-label="${sessionScope.languageJSON.accessHint.bankCode}">
