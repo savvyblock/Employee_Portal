@@ -47,22 +47,25 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     ${user.nameF}
                                 </div>
                             </div>
-                            <p>
-                                <b>${sessionScope.languageJSON.label.pleaseAnswerYourHintQuestion}</b>
-                            </p>
-                            <div class="form-group">
-                                <label class="form-title" for="answerQuestion">
-                                 	${user.hintQuestion}
-                                </label>
-                                <div class="valid-wrap">
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        name="answer"
-                                        id="answerQuestion"
-                                    />
-                                </div>
-                            </div>
+                            <c:if test="${user.userHomeEmail != '' || user.userEmail != ''}">
+	                            <p>
+	                                <b>${sessionScope.languageJSON.label.pleaseAnswerYourHintQuestion}</b>
+	                            </p>
+	                        
+	                            <div class="form-group">
+		                                <label class="form-title" for="answerQuestion">
+		                                 	${user.hintQuestion}
+		                                </label>
+		                                <div class="valid-wrap">
+		                                    <input
+		                                        type="text"
+		                                        class="form-control"
+		                                        name="answer"
+		                                        id="answerQuestion"
+		                                    />
+		                                </div>
+	                            </div>
+                           </c:if>
                             <div class="form-group">
                                 <c:if test="${user.userEmail != ''}">
                                     <label class="chooseEmailGroup" for="workEmail">
@@ -89,9 +92,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </p>
                             </c:if>
                             <div class="form-group account-btn">
-                                <button type="submit" role="button" class="btn btn-primary">
-                                        ${sessionScope.languageJSON.label.submit}
-                                </button>
+                            	<c:if test="${user.userHomeEmail != '' || user.userEmail != ''}">
+	                                <button type="submit" role="button" class="btn btn-primary">
+	                                        ${sessionScope.languageJSON.label.submit}
+	                                </button>
+                                </c:if>
+                                <c:if test="${user.userHomeEmail == '' && user.userEmail == ''}">
+                                	<a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/login?distid=${sessionScope.districtId}" role="link">
+	                                        ${sessionScope.languageJSON.label.returnLogin}
+	                                </a>
+                                </c:if>
                             </div> 
                     </form>
                 </div>
