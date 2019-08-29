@@ -1280,7 +1280,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <c:if test="${not empty sessionScope.options.messageSelfServicePayroll}">
                             	<p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServicePayroll}</p>
                         	</c:if>
-                            <h2 class="sub-title">${sessionScope.languageJSON.profile.W4MaritalStatusInfo}</h2>
+                           
                             <form
                                 class="no-print searchForm"
                                 action="profile"
@@ -1298,6 +1298,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </select>
                                 </div>
                             </form>
+                             <h2 class="sub-title">${sessionScope.languageJSON.profile.W4MaritalStatusInfo}</h2>
                             <form class="profile-item" id="w4InfoForm" action="saveW4" method="POST">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <input type="hidden" name="empNbr" value="${w4Request.id.empNbr}">
