@@ -307,7 +307,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             </main>
         </div>
         <%@ include file="../commons/footer.jsp"%>
-        <c:if test="${sessionScope.options.enableElecConsnt1095 == true}">
+        <c:if test="${sessionScope.options.enableElecConsnt1095 == true && sessionScope.cancel1095Consent == false}">
             <div
                 class="modal fade"
                 id="electronicConsent"
@@ -373,6 +373,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                    
                                 >${sessionScope.languageJSON.label.save}</button>
                             <button
+                                id="cancelConsent"
                                 type="button" role="button"
                                 class="btn btn-secondary"
                                 data-dismiss="modal"

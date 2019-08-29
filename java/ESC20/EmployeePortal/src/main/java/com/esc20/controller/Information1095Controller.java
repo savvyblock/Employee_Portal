@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -97,7 +98,16 @@ public class Information1095Controller{
 		this.sendEmail(userDetail.getNameF(), userDetail.getNameL(), userDetail.getEmail(), userDetail.getHmEmail(), consent);
 		mav.addObject("isUpdate", true);
 		mav.addObject("isSuccess", isSuccess);
+		
 		return mav;
+	}
+	
+	@RequestMapping(value = "cancel1095Consent", method = RequestMethod.POST)
+	@ResponseBody
+	public Boolean cancel1095Consent(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		session.setAttribute("cancel1095Consent", true);
+	    return (Boolean)session.getAttribute("cancel1095Consent");
 	}
 	
 	public Integer sendEmail(String userFirstName, String userLastName, String userWorkEmail, String userHomeEmail, String ea1095ElecConsnt) {
