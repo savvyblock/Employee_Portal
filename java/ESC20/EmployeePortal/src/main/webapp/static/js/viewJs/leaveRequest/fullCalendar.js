@@ -109,8 +109,8 @@ $(document).ready(function() {
                         var startTime = changeFormatTimeAm(start_arry[1])
                         var endTime = changeFormatTimeAm(end_arry[1])
 
-                        var startDate = changeMMDDFormat(start_arry[0])
-                        var endDate = changeMMDDFormat(end_arry[0])
+                        var startDate = start_arry[0] //changeMMDDFormat(start_arry[0])
+                        var endDate = end_arry[0] //changeMMDDFormat(end_arry[0])
 
                         var start = startDate + ' ' + startTime
                         var end = endDate + ' ' + endTime
@@ -121,6 +121,8 @@ $(document).ready(function() {
                         $('#employeeStatic').text(leaveRequest.lastName)
                         $('#startDateInputStatic').html(leaveRequest.start._i)
                         $('#endDateInputStatic').html(leaveRequest.end._i)
+                        $('#startDateStatic').html(start)
+                        $('#endDateStatic').html(end)
                         $('#leaveTypeStatic').html(type)
                         $('#absenceReasonStatic').html(reason)
                         $('#leaveRequestedStatic').html(
@@ -259,13 +261,11 @@ function newEvent(dom) {
 }
 
 function changeMMDDFormat(date) {
-    console.log(date)
-    var dateArry = date.split('/')
+    var dateArry = date.split('-')
     return dateArry[1] + '-' + dateArry[2] + '-' + dateArry[0]
 }
 function changeYMDFormat(date) {
-    console.log(date)
-    var dateArry = date.split('/')
+    var dateArry = date.split('-')
     return dateArry[2] + '-' + dateArry[0] + '-' + dateArry[1]
 }
 function changeFormatTimeAm(value) {

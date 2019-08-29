@@ -106,10 +106,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="form-group">
                                                 <label class="form-title" for="SearchStartInput"><span>${sessionScope.languageJSON.label.from}</span>:</label> 
                                                 <div class="button-group">
-                                                        <div class="fDateGroup date" id="SearchStartDate" data-date-format="mm/dd/yyyy">
+                                                        <div class="fDateGroup date" id="SearchStartDate" data-date-format="mm-dd-yyyy">
                                                             <button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
                                                             <input class="form-control dateInput"type="text" name="startDate"
-                                                            data-date-format="mm/dd/yyyy"  autocomplete="off"
+                                                            data-date-format="mm-dd-yyyy"  autocomplete="off"
                                                             aria-label="${sessionScope.languageJSON.label.from}"
                                                             placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                                             title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
@@ -120,7 +120,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </div>
                                                 <!-- <input
                                                     class="form-control" type="text" name="startDate"
-                                                    data-date-format="mm/dd/yyyy"  autocomplete="off"
+                                                    data-date-format="mm-dd-yyyy"  autocomplete="off"
                                                     aria-label="${sessionScope.languageJSON.label.from}"
                                                     placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                                     title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
@@ -133,9 +133,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="form-group">
                                                 <label class="form-title" for="SearchEndInput"> <span>${sessionScope.languageJSON.label.to}</span>: </label> 
                                                 <div class="button-group">
-                                                        <div class="fDateGroup date" id="SearchEndDate" data-date-format="mm/dd/yyyy">
+                                                        <div class="fDateGroup date" id="SearchEndDate" data-date-format="mm-dd-yyyy">
                                                             <button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
-                                                            <input class="form-control dateInput" type="text" name="endDate" data-date-format="mm/dd/yyyy"  autocomplete="off"
+                                                            <input class="form-control dateInput" type="text" name="endDate" data-date-format="mm-dd-yyyy"  autocomplete="off"
                                                             aria-label="${sessionScope.languageJSON.label.to}"
                                                             placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                                             title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
@@ -145,7 +145,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             </button>
                                                         </div>
                                                 <!-- <input
-                                                    class="form-control" type="text" name="endDate" data-date-format="mm/dd/yyyy"  autocomplete="off"
+                                                    class="form-control" type="text" name="endDate" data-date-format="mm-dd-yyyy"  autocomplete="off"
                                                     aria-label="${sessionScope.languageJSON.label.to}"
                                                     placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                                     title="${sessionScope.languageJSON.label.mmddyyyyFormat}"

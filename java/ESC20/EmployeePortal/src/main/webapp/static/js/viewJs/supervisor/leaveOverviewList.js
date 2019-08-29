@@ -19,11 +19,11 @@ $(function() {
     var level = $('#level').val()
     console.log(initialLocaleCode)
     $('#SearchStartDate').fdatepicker({
-        format: 'mm/dd/yyyy',
+        format: 'mm-dd-yyyy',
         language: initialLocaleCode
     })
     $('#SearchEndDate').fdatepicker({
-        format: 'mm/dd/yyyy',
+        format: 'mm-dd-yyyy',
         language: initialLocaleCode
     })
     if (chain && chain != '' && chain.length > 1) {
@@ -227,8 +227,8 @@ function editLeave(
     $("[name='leaveType']").val(leaveType)
     changeLeaveType()
     $('#absenceReason').val(absenceReason)
-    $('#startDateInput').val(changeMMDDFormat(start_arry[0]))
-    $('#endDateInput').val(changeMMDDFormat(end_arry[0]))
+    $('#startDateInput').val(start_arry[0])//changeMMDDFormat(start_arry[0])
+    $('#endDateInput').val(end_arry[0])//changeMMDDFormat(end_arry[0])
     $('#leaveHoursDaily').val(lvUnitsDaily)
     $('#totalRequested').val(lvUnitsUsed)
 }

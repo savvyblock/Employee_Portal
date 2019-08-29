@@ -158,7 +158,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </td>
                                             <td data-title="${sessionScope.languageJSON.setTemporaryApprovers.from}">
                                                 <div class="form-group">
-                                                        <div class="fDateGroup date dateFromControl" data-date-format="mm/dd/yyyy">
+                                                        <div class="fDateGroup date dateFromControl" data-date-format="mm-dd-yyyy">
                                                             <button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
                                                             <input class="form-control dateInput date-control"
                                                             aria-label="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}"
@@ -166,7 +166,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             type="text"
                                                             name="temporaryApprovers[${row.index}].fromDateString"
                                                             id="fromDate_01" autocomplete="off"
-                                                            placeholder="mm/dd/yyyy"
+                                                            placeholder="mm-dd-yyyy"
                                                         />
                                                     </div>
                                                     <!-- <input
@@ -176,20 +176,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         type="text"
                                                         name="temporaryApprovers[${row.index}].fromDateString"
                                                         id="fromDate_01" autocomplete="off"
-                                                        placeholder="mm/dd/yyyy"
+                                                        placeholder="mm-dd-yyyy"
                                                     /> -->
                                                 </div>
                                             </td>
                                             <td data-title="${sessionScope.languageJSON.setTemporaryApprovers.to}">
                                                 <div class="form-group">
-                                                        <div class="fDateGroup date dateToControl" data-date-format="mm/dd/yyyy">
+                                                        <div class="fDateGroup date dateToControl" data-date-format="mm-dd-yyyy">
                                                             <button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
                                                             <input class="form-control dateInput  date-control"
                                                             aria-label="${sessionScope.languageJSON.setTemporaryApprovers.toDate}"
                                                             type="text"
                                                             name="temporaryApprovers[${row.index}].toDateString"
                                                             id="toDate_01" autocomplete="off"
-                                                            placeholder="mm/dd/yyyy"
+                                                            placeholder="mm-dd-yyyy"
                                                         />
                                                         </div>
                                                     <!-- <input
@@ -199,7 +199,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         data-title="to"
                                                         name="temporaryApprovers[${row.index}].toDateString"
                                                         id="toDate_01" autocomplete="off"
-                                                        placeholder="mm/dd/yyyy"
+                                                        placeholder="mm-dd-yyyy"
                                                     /> -->
                                                 </div>
                                             </td>

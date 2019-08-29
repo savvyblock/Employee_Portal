@@ -393,10 +393,11 @@ $("#leaveHoursDaily").change(function(){
     }
 
     function changeDateYMD(date){
+        console.log(date)
         if(!date){
             return
         }
-		var dateArry = date.split("/")
+		var dateArry = date.split("-")
 		var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
 		return DateFormat
     }
@@ -410,7 +411,7 @@ $("#leaveHoursDaily").change(function(){
             }
             if(regStr.test(str)){
                 var pattern = /(\d{2})(\d{2})(\d{4})/;
-                var formatedDate = str.replace(pattern, '$1/$2/$3');
+                var formatedDate = str.replace(pattern, '$1-$2-$3');
                 return formatedDate
             }
         }else{
@@ -489,12 +490,11 @@ $("#leaveHoursDaily").change(function(){
             }
             var leaveType = $("#modalLeaveType").val()
             var freq = $("#freq").val()
-            return false
             $.ajax({
                 type:'POST',
                 url:urlMain + '/leaveRequest' + ConversionRecsUrl,
                 data:{
-                    payFrequency:freq.trim(),
+                    payFrequency:freq?freq.trim():'',
                     leaveType:leaveType.trim()
                 },
                 success : function (res) {

@@ -52,17 +52,17 @@ $(function() {
                 '</td>'+
                 '<td scope="'+fromDateLabel+'">'+
                     '<div class="form-group">'+
-                        '<div class="fDateGroup date dateFromControl" data-date-format="mm/dd/yyyy">'+
+                        '<div class="fDateGroup date dateFromControl" data-date-format="mm-dd-yyyy">'+
                             '<button class="prefix" type="button" aria-label="'+showDatepickerLabel+'"><i class="fa fa-calendar"></i></button>'+
-                            '<input class="form-control dateInput date-control" aria-label="'+fromDateLabel+'" type="text" autocomplete="off" id="fromDate_0'+length+'" placeholder="mm/dd/yyyy">'+
+                            '<input class="form-control dateInput date-control" aria-label="'+fromDateLabel+'" type="text" autocomplete="off" id="fromDate_0'+length+'" placeholder="mm-dd-yyyy">'+
                         '</div>'+
                     '</div>'+
                 '</td>'+
                 '<td scope="'+toDateLabel+'">'+
                     '<div class="form-group">'+
-                        '<div class="fDateGroup date dateToControl" data-date-format="mm/dd/yyyy">'+
+                        '<div class="fDateGroup date dateToControl" data-date-format="mm-dd-yyyy">'+
                             '<button class="prefix" type="button" aria-label="'+showDatepickerLabel+'"><i class="fa fa-calendar"></i></button>'+
-                            '<input class="form-control dateInput  date-control" aria-label="'+toDateLabel+'" type="text" autocomplete="off" id="toDate_0'+length+'" placeholder="mm/dd/yyyy">'+
+                            '<input class="form-control dateInput  date-control" aria-label="'+toDateLabel+'" type="text" autocomplete="off" id="toDate_0'+length+'" placeholder="mm-dd-yyyy">'+
                         '</div>'+
                     '</div>'+
                 '</td>'+
@@ -202,7 +202,7 @@ $(function() {
     })
 })
 function changeDateYMD(date){
-    var dateArry = date.split("/")
+    var dateArry = date.split("-")
     var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
     return DateFormat
 }
@@ -306,7 +306,7 @@ function initDateControl() {
         var toDateDom = $(this).find('.dateToControl .date-control')
         checkin[index] = fromCalendar
             .fdatepicker({
-                format: 'mm/dd/yyyy',
+                format: 'mm-dd-yyyy',
                 language: initialLocaleCode,
                 onRender: function(date) {
                     // if(checkout[index]&&haveEndDate[index]){
@@ -336,7 +336,7 @@ function initDateControl() {
 
         checkout[index] = toCalendar
             .fdatepicker({
-                format: 'mm/dd/yyyy',
+                format: 'mm-dd-yyyy',
                 language: initialLocaleCode,
                 onRender: function(date) {
                     return date.valueOf() < checkin[index].date.valueOf()
