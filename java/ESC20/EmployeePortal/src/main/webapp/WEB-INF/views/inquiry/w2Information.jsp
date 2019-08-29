@@ -1189,7 +1189,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             </main>
         </div>
         <%@ include file="../commons/footer.jsp"%>
-        <c:if test="${sessionScope.options.enableElecConsntW2 == true}">
+        <c:if test="${sessionScope.options.enableElecConsntW2 == true && sessionScope.cancelW2Consent == false}">
             <div
                 class="modal fade"
                 id="electronicConsent"

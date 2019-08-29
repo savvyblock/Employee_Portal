@@ -66,6 +66,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
             session.setAttribute("options", options);
             session.setAttribute("district", districtInfo);
             session.setAttribute("cancel1095Consent", false);
+            session.setAttribute("cancelW2Consent", false);
             String returnURL= "/"+request.getContextPath().split("/")[1]+"/home";
             response.sendRedirect(returnURL);
 		} catch (ParseException e) {
