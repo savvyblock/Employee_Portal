@@ -141,14 +141,14 @@ public class LeaveRequestModel implements Serializable {
 	}
 
 	public String getStart() {
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy hh:mm a");
 		String result = sdf.format(this.leaveStartDate);
 		this.start = result;
 		return start;
 	}
 
 	public String getEnd() {
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy hh:mm a");
 		String result = sdf.format(this.leaveEndDate);
 		this.end = result;
 		return end;
@@ -170,7 +170,7 @@ public class LeaveRequestModel implements Serializable {
 			title = this.getFirstName()+" "+this.getMiddleName().trim()+ " "+this.getLastName()+ typeDesc;
 		}
 		jo.put("title", title);
-		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm a");
 		jo.put("LeaveType", this.getLeaveType());
 		jo.put("AbsenseReason", this.getAbsenseReason());
@@ -236,7 +236,7 @@ public class LeaveRequestModel implements Serializable {
 			jo.put("infos", infos);
 		}
 		jo.put("approver", this.getApprover());
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.ENGLISH);
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy hh:mm a", Locale.ENGLISH);
 		String startDate = sdf.format(this.getLeaveStartDate());
 		String endDate = sdf.format(this.getLeaveEndDate());
 		jo.put("start", startDate);

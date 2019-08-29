@@ -8,9 +8,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringUtil {
-    public static String DEFAULT_DATE_FORMAT     = "MM/dd/yyyy";
+    public static String DEFAULT_DATE_FORMAT     = "MM-dd-yyyy";
     public static String DEFAULT_TIME_FORMAT     = "HH:mm:ss";
-    public static String DEFAULT_DATETIME_FORMAT = "MM/dd/yyyy";
+    public static String DEFAULT_DATETIME_FORMAT = "MM-dd-yyyy";
 	
 	static public String leftZeroPad(int count, String value) {
 		if (value != null && value.length() < count && isInteger(value)) {

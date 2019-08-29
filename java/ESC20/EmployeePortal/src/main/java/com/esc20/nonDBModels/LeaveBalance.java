@@ -28,7 +28,7 @@ public class LeaveBalance implements Serializable {
 	private String module;
 	private Integer lvId;
 
-	private static SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
+	private static SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
 	private static SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
 	
 	public LeaveBalance(BhrEmpLvXmital bhrEmpLvXmital) throws ParseException {

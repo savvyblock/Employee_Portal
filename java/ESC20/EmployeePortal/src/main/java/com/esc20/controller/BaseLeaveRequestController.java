@@ -37,7 +37,7 @@ public class BaseLeaveRequestController{
 			request = new BeaEmpLvRqst();
 		else
 			request = this.service.getleaveRequestById(Integer.parseInt(leaveId + ""));
-		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.ENGLISH);
+		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy hh:mm a", Locale.ENGLISH);
 		request.setEmpNbr(demo.getEmpNbr());
 		request.setPayFreq(freq.charAt(0));
 		request.setLvTyp(leaveType);

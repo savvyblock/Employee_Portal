@@ -154,7 +154,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 				}	
 			   }
 		}
-		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
 		String start = null;
 		String end = null;
@@ -318,7 +318,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 			request = new BeaEmpLvRqst();
 		} else
 			request = this.service.getleaveRequestById(Integer.parseInt(leaveId + ""));
-		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.ENGLISH);
+		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy hh:mm a", Locale.ENGLISH);
 		if (leaveId == null || ("").equals(leaveId)) {
 			request.setEmpNbr(empNbr);
 		}

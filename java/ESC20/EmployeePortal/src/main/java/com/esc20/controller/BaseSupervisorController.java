@@ -52,7 +52,7 @@ public class BaseSupervisorController{
 
 	public Object toJSON(BeaEmpLvTmpApprovers record, BhrEmpDemo approver) {
 		JSONObject jo = new JSONObject();
-		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
 		jo.put("id", record.getId());
 		jo.put("spvsrEmpNbr", record.getSpvsrEmpNbr());
 		jo.put("tmpApprvrEmpNbr", record.getTmpApprvrEmpNbr());

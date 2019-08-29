@@ -241,7 +241,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		String employeeNum = rqst ==null ? null:rqst.getEmpNbr();
 		LeaveEmployeeData employeeData = this.service.getEmployeeData(employeeNum);
 	
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
 		if (rqst.getStatusCd() == 'P') {
 			this.supService.approveLeave(rqst, demo, comment,employeeData);
 		} else {
@@ -258,7 +258,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		LeaveRequest rqst = this.service.getBeaEmpLvRqstById(Integer.parseInt(id));
 		String employeeNum = rqst ==null ? null:rqst.getEmpNbr();
 		LeaveEmployeeData employeeData = this.service.getEmployeeData(employeeNum);
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
 		if (rqst.getStatusCd() == 'P') {
 			this.supService.disApproveLeave(rqst, demo, comment,employeeData);
 		} else {

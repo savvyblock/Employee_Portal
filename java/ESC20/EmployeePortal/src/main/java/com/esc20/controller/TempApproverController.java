@@ -223,7 +223,7 @@ public class TempApproverController extends BaseSupervisorController {
 		JSONArray inputs = JSONArray.fromObject(approverJson);
 		BeaEmpLvTmpApprovers tempApprover;
 		JSONObject temp;
-		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
 		boolean isDelete = true;
 		for (int j = 0; j < records.size(); j++) {
 			isDelete = true;
