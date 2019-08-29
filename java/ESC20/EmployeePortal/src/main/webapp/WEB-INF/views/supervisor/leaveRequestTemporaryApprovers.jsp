@@ -73,7 +73,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="${sessionScope.languageJSON.accessHint.level}"/>
                                         <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
                                 </form>
-                                <h2 class="mb-3 tableTitle">
+                                <h2 class="tableTitle" style="margin-top:5px;">
                                     <span>${sessionScope.languageJSON.label.temporaryApproversFor}</span>
                                     <b class="highlight">
                                             <c:forEach var="item" items="${chain}" varStatus="status">

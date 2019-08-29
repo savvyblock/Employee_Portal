@@ -29,7 +29,7 @@
 								>
 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 								<div class="form-group in-line">
-								<label class="form-title"  for="freq">${sessionScope.languageJSON.label.pleaseSelectFre}</label>
+								<label class="form-title"  for="freq">${sessionScope.languageJSON.label.pleaseSelectFre}:</label>
 				<select class="form-control" name="freq" id="freq" onchange="changeFreq()">
 								<c:forEach var="freq" items="${availableFreqs}" varStatus="count">
 									<option value="${freq.code}" <c:if test="${freq.code == selectedFreq }">selected</c:if>>${freq.description}</option>

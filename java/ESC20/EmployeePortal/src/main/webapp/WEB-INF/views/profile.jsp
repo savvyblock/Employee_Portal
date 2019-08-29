@@ -1289,7 +1289,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             >
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>           
                                 <div class="form-group in-line p-l-0">
-                                    <label class="form-title"  for="freq" >${sessionScope.languageJSON.label.payrollFreq}</label>
+                                    <label class="form-title"  for="freq" >${sessionScope.languageJSON.label.payrollFreq}:</label>
                                     
                                     <select class="form-control" name="freq" id="freq" onchange="changeFreq()">
                                         <c:forEach var="freq" items="${payRollFrequenciesOptions}" varStatus="count">

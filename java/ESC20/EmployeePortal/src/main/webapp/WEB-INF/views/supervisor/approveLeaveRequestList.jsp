@@ -28,7 +28,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                  <c:if test="${!status.last}"> ➝ </c:if>
                                 </c:forEach>
                             </div>
-                            <br/>
                             <div class="container-fluid">
                                     <form
                                     class="no-print searchForm"
@@ -71,7 +70,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input hidden="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="${sessionScope.languageJSON.accessHint.level}"/>
                                         <input hidden="hidden" name="chain" type="text" value="" id="preChain" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
                                 </form>
-                                <h2 id="approveTableTitle" class="tableTitle" style="padding:0 10px;">
+                                <h2 id="approveTableTitle" class="tableTitle" style="padding:0 10px;margin-top: 5px;">
                                     <b>
                                         <span>${sessionScope.languageJSON.approveRequest.leavePendingActionBy}</span>
                                         <span>
