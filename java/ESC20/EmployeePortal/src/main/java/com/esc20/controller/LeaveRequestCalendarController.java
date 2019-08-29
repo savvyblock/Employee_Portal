@@ -74,6 +74,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 		AppLeaveRequest request = new AppLeaveRequest();
 		//BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
+		mav.addObject("availableFreqs", availableFreqs);
 		LeaveParameters params = this.service.getLeaveParameters();
 		String supervisorEmpNbr = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS())==null?null:this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS()).getEmployeeNumber();
 		if (supervisorEmpNbr == null) {
