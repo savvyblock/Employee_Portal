@@ -148,7 +148,7 @@ public class LeaveRequestService {
 	public void saveLvWorkflow(BeaEmpLvWorkflow flow, BhrEmpDemo demo) throws MessagingException {
 		leaveRequestDao.saveLvWorkflow(flow);
 		// create alert
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a E");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy hh:mm:ss a E");
 		String message = sdf.format(new Date()) + ": Leave Request from " + demo.getNameF().trim() + " " + demo.getNameL().trim()
 				+ " pending your approval";
 		alertDao.createAlert(demo.getEmpNbr().trim(), flow.getApprvrEmpNbr().trim(), message.trim());
@@ -168,7 +168,7 @@ public class LeaveRequestService {
 			emailBody.append("<p style='margin-left: 12pt;'>Dates:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s<br/>Times:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s</p>");		
 			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal to process this submission.</p>");
 			emailBody.append("<p>Thank You</p>");
-			SimpleDateFormat sdfD = new SimpleDateFormat("MM/dd/yyyy");
+			SimpleDateFormat sdfD = new SimpleDateFormat("MM-dd-yyyy");
 			SimpleDateFormat sdfT = new SimpleDateFormat("hh:mm a");
 			returnBody = String.format(emailBody.toString(), supervisorData.getFullNameTitleCase(), demo.getNameF().trim() + " " + demo.getNameL().trim(),demo.getEmpNbr() ,
 					sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 

@@ -159,8 +159,8 @@ public class SupervisorService {
         this.leaveRequestDao.saveLvComments(comments);
 		this.leaveRequestDao.saveLeaveRequest(request.getId(), "A", true);
 		//create alert
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a E");
-		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy hh:mm:ss a E");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy hh:mm a");
 		String message = sdf.format(new Date())+": "+ demo.getNameF().trim()+" " + demo.getNameL().trim() +
 						 " had approved your leave request from "+sdf1.format(DateUtil.getLocalTime(request.getDatetimeFrom()))+
 						 " to " + sdf1.format(DateUtil.getLocalTime(request.getDatetimeTo()));
@@ -177,7 +177,7 @@ public class SupervisorService {
 			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal if you wish to make changes to the leave requested and resubmit the request.</p>");
 			emailBody.append("<p>Thank You</p>");
 			
-			SimpleDateFormat sdfD = new SimpleDateFormat("MM/dd/yyyy");
+			SimpleDateFormat sdfD = new SimpleDateFormat("MM-dd-yyyy");
 			SimpleDateFormat sdfT = new SimpleDateFormat("hh:mm a");
 			returnBody = String.format(emailBody.toString(), employee.getFullNameTitleCase(),  demo.getNameF().trim()+" " + demo.getNameL().trim(), 
 					sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
@@ -203,8 +203,8 @@ public class SupervisorService {
         this.leaveRequestDao.saveLvComments(comments);
 		this.leaveRequestDao.saveLeaveRequest(request.getId(), "D", true);
 		//create alert
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a E");
-		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy hh:mm:ss a E");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy hh:mm a");
 		String message = sdf.format(new Date())+": "+ demo.getNameF().trim()+" " + demo.getNameL().trim() +" disapproved your leave from "+
 						 sdf1.format(DateUtil.getLocalTime(request.getDatetimeFrom()))+" to " + sdf1.format(DateUtil.getLocalTime(request.getDatetimeTo())) +" with comment: " + disapproveComment;
 		alertDao.createAlert(demo.getEmpNbr().trim(), request.getEmpNbr().trim(), message.trim());
@@ -219,7 +219,7 @@ public class SupervisorService {
 			
 			emailBody.append("<p>Thank You</p>");
 			
-			SimpleDateFormat sdfD = new SimpleDateFormat("MM/dd/yyyy");
+			SimpleDateFormat sdfD = new SimpleDateFormat("MM-dd-yyyy");
 			SimpleDateFormat sdfT = new SimpleDateFormat("hh:mm a");
 			returnBody = String.format(emailBody.toString(), employee.getFullNameTitleCase(),  demo.getNameF().trim()+" " + demo.getNameL().trim(), 
 					sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 

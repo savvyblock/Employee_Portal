@@ -81,7 +81,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
          session.setAttribute("district", districtInfo);
 		
 		ModelAndView mav = new ModelAndView();
-		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
 		mav.setViewName("/leaveRequest/leaveRequest");
 		AppLeaveRequest request = new AppLeaveRequest();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));

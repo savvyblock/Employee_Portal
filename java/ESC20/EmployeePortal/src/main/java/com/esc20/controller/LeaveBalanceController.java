@@ -68,7 +68,7 @@ public class LeaveBalanceController{
          session.setAttribute("district", districtInfo);
 		
 		ModelAndView mav = new ModelAndView();
-		SimpleDateFormat sdf1 = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
 		
 		String start = SearchStart;
