@@ -2,7 +2,7 @@ $(document).ready(function() {
     console.log(initialLocaleCode)
     var formDate = $('#SearchStartDate')
         .fdatepicker({
-            format: 'mm/dd/yyyy',
+            format: 'mm-dd-yyyy',
             language: initialLocaleCode
         })
         .on('changeDate', function(ev) {
@@ -25,7 +25,7 @@ $(document).ready(function() {
         .data('datepicker')
     var toDate = $('#SearchEndDate')
         .fdatepicker({
-            format: 'mm/dd/yyyy',
+            format: 'mm-dd-yyyy',
             language: initialLocaleCode
         })
         .on('changeDate', function(ev) {
@@ -63,12 +63,12 @@ $(document).ready(function() {
 })
 
 function changeMMYYDDFormat(date) {
-    var string = date.split('/')
+    var string = date.split('-')
     console.log(string[2] + string[0] + string[1])
     return string[2] + string[0] + string[1]
 }
 function changeDateYMD(date){
-    var dateArry = date.split("/")
+    var dateArry = date.split("-")
     var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
     return DateFormat
 }

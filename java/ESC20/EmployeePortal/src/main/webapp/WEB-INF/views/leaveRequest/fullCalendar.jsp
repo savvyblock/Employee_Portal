@@ -23,6 +23,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <c:if test="${!haveSupervisor}">
                         <p class="topMsg error-hint" role="alert">${sessionScope.languageJSON.label.noSupervisorFound}</p>
                     </c:if>
+                    <div class="hide">
+                        <select aria-hidden="true" class="form-control" name="freq" id="freq" onchange="changeFreq()">
+                            <c:forEach var="freq" items="${availableFreqs}" varStatus="count">
+                                <option value="${freq.code}" <c:if test="${freq.code == selectedFreq }">selected</c:if>>${freq.description}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
                     <div class="content-white"><div id="calendar"></div></div>
                 </section>
             </main>

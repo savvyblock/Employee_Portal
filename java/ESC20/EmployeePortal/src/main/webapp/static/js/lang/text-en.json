@@ -212,8 +212,8 @@
         "from": "From Date",
         "to": "To Date",
         "delete": "Delete",
-        "fromDate": "Please input start Date,the format must be 'mm/dd/yyyy'!",
-        "toDate": "Please input end Date,the format must be 'mm/dd/yyyy'!"
+        "fromDate": "Please input start Date,the format must be 'mm-dd-yyyy'!",
+        "toDate": "Please input end Date,the format must be 'mm-dd-yyyy'!"
     },
     "profile": {
         "change": "Change",
@@ -444,7 +444,7 @@
         "checkbox": "checkbox",
         "sessionTimeOut": "Session Timeout",
         "sessionTimeOutWord": "You have exceeded the maximum time allowed for an online session.For your security, your session has been terminated",
-        "mmddyyyyFormat": "mm/dd/yyyy",
+        "mmddyyyyFormat": "mm-dd-yyyy",
         "ifYouHaveBookMarked": "If you have book-marked this URL, please remove it as this is related to submissions, necessary parameters will need to be provided in order for the method to function.",
         "exceptionOccurred": "Exception occurred",
         "fromModule": "From Module",

@@ -1,6 +1,7 @@
 var reasonOption
 console.log(haveSupervisor)
 $(document).ready(function() {
+    formValidator()
     reasonOption = $("#absenceReason").html()
     $('#requestForm').attr('action', 'submitLeaveRequestFromCalendar')
     initThemeChooser({
@@ -258,10 +259,12 @@ function newEvent(dom) {
 }
 
 function changeMMDDFormat(date) {
-    var dateArry = date.split('-')
-    return dateArry[1] + '/' + dateArry[2] + '/' + dateArry[0]
+    console.log(date)
+    var dateArry = date.split('/')
+    return dateArry[1] + '-' + dateArry[2] + '-' + dateArry[0]
 }
 function changeYMDFormat(date) {
+    console.log(date)
     var dateArry = date.split('/')
     return dateArry[2] + '-' + dateArry[0] + '-' + dateArry[1]
 }

@@ -32,7 +32,7 @@ $(function() {
     var checkin = $('#startDate')
         .fdatepicker({
             // startDate: now,
-            format: 'mm/dd/yyyy',
+            format: 'mm-dd-yyyy',
             language:initialLocaleCode,
         })
         .on('changeDate', function(ev) {
@@ -57,7 +57,7 @@ $(function() {
     var checkout = $('#endDate')
         .fdatepicker({
             // startDate: now,
-            format: 'mm/dd/yyyy',
+            format: 'mm-dd-yyyy',
             language:initialLocaleCode,
             onRender: function(date) {
                 return date.valueOf() < checkin.date.valueOf()
@@ -489,6 +489,7 @@ $("#leaveHoursDaily").change(function(){
             }
             var leaveType = $("#modalLeaveType").val()
             var freq = $("#freq").val()
+            return false
             $.ajax({
                 type:'POST',
                 url:urlMain + '/leaveRequest' + ConversionRecsUrl,

@@ -4,7 +4,7 @@ $(document).ready(
 			reasonOption = $("#absenceReason").html()
 			console.log(initialLocaleCode)
 			var formDate = $('#SearchStartDate').fdatepicker({
-				format:'mm/dd/yyyy',
+				format:'mm-dd-yyyy',
 				language:initialLocaleCode
 			}).on('changeDate', function(ev) {
 				var fromInput = $("#SearchStartInput").val()
@@ -25,7 +25,7 @@ $(document).ready(
 			})
 			.data('datepicker')
 			var toDate = $('#SearchEndDate').fdatepicker({
-				format:'mm/dd/yyyy',
+				format:'mm-dd-yyyy',
 				language:initialLocaleCode
 			}).on('changeDate', function(ev) {
 				console.log(ev)
@@ -133,7 +133,7 @@ $(document).ready(
 
 	function changeMMDDFormat(date){
 		var dateArry = date.split("-")
-		return dateArry[1]+"/"+dateArry[2]+"/"+dateArry[0]
+		return dateArry[1]+"-"+dateArry[2]+"-"+dateArry[0]
 	}
 	function showRequestForm() {
 			$('#leaveId').attr('value', '')
@@ -188,7 +188,7 @@ $(document).ready(
 		if(!date){
 			return
 		}
-		var dateArry = date.split("/")
+		var dateArry = date.split("-")
 		var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
 		return DateFormat
 	}

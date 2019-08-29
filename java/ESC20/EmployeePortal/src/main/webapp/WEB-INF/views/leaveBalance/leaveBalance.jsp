@@ -59,7 +59,7 @@
 	                                <span>From Date of Leave</span>
 	                              </c:if>:</label> 
 							<div class="button-group">
-								<div class="fDateGroup date" id="SearchStartDate" data-date-format="mm/dd/yyyy">
+								<div class="fDateGroup date" id="SearchStartDate" data-date-format="mm-dd-yyyy">
 											<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
 											<input class="form-control dateInput" name="SearchStart" autocomplete="off" type="text"
 											placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}" id="SearchStartInput" value="${SearchStart}">
@@ -69,7 +69,7 @@
 								</div>
 							<!-- <input
 								class="form-control dateInput" type="text" name="SearchStart"
-								data-date-format="mm/dd/yyyy"  autocomplete="off"
+								data-date-format="mm-dd-yyyy"  autocomplete="off"
 								aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
 								placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
 								title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
@@ -89,10 +89,10 @@
 	                              </c:if>
 							  : </label> 
 							<div class="button-group">
-									<div class="fDateGroup date" id="SearchEndDate" data-date-format="mm/dd/yyyy">
+									<div class="fDateGroup date" id="SearchEndDate" data-date-format="mm-dd-yyyy">
 										<button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
 										<input class="form-control dateInput" type="text" name="SearchEnd"
-										data-date-format="mm/dd/yyyy"  autocomplete="off"
+										data-date-format="mm-dd-yyyy"  autocomplete="off"
 										placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
 										title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
 										id="SearchEndInput" value="${SearchEnd}"/>
@@ -102,7 +102,7 @@
 							</div>
 							<!-- <input
 								class="form-control dateInput" type="text" name="SearchEnd"
-								data-date-format="mm/dd/yyyy"  autocomplete="off"
+								data-date-format="mm-dd-yyyy"  autocomplete="off"
 								aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
 								placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
 								title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
