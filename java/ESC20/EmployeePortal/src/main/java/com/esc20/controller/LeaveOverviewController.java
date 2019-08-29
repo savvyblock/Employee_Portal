@@ -234,6 +234,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 		mav.addObject("leavesCalendar", calendar);
 		mav.addObject("employeeList", employee);
 		mav.addObject("leaveInfo", leaveInfo);
+		mav.addObject("params", params);
 		mav.addObject("isEmpty", employee.size() == 0);
 		mav.setViewName("/supervisor/leaveOverviewList");
 		return mav;
