@@ -65,3 +65,16 @@ function load(){
 	$("#printIframe")[0].contentWindow.focus();
 	$("#printIframe")[0].contentWindow.print();
 }
+
+function submitCancelConsent(){
+    $.ajax({
+        url:urlMain + '/w2Information/cancelW2Consent',
+        type:'POST',
+        success:function(res){
+            console.log(res)
+        },
+        error:function(err){
+            console.log(err)
+        }
+    })
+}
