@@ -1160,7 +1160,10 @@ input {
 }
 .error-hint{
     color: #ea2623;
-    font-size: smaller;
+    font-size: 12px;
+    &.font13{
+        font-size: 13px;
+    }
 }
 .success-hint{
     color: #2d983b;

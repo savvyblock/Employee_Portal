@@ -7,16 +7,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <title>${sessionScope.languageJSON.headTitle.info1095}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <%@ include file="../commons/header.jsp"%>
-        <style media='print'>
-
-            @page{
-            
-            size:landscape;
-            
-            
-            }
-            
-            </style>
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -79,7 +69,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <div class="exportPDFBox"></div>
                                 <c:if test="${isUpdate && isSuccess}">
                                     <div id="updateMsg">
-                                            <span class="error-hint" role="alert" aria-atomic="true">
+                                            <span class="error-hint font13" role="alert" aria-atomic="true">
                                                     <b>${sessionScope.languageJSON.validator.updateWasSuccessful}</b>
                                                 </span>
                                             <br/>
@@ -306,8 +296,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 </section>
             </main>
         </div>
+        <input type="hidden" name="consentCancel" id="elecConsnt1095Cancel" value="${sessionScope.cancel1095Consent}" aria-hidden="true">
         <%@ include file="../commons/footer.jsp"%>
-        <c:if test="${sessionScope.options.enableElecConsnt1095 == true && sessionScope.cancel1095Consent == false}">
+        <c:if test="${sessionScope.options.enableElecConsnt1095 == true}">
             <div
                 class="modal fade"
                 id="electronicConsent"
@@ -339,12 +330,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <input hidden="hidden" type="hidden" name="year" id="consentYear" value="${selectedYear}">
                                     <input hidden="hidden" type="hidden" name="consent" id="consentModal" value="">
                                 <div class="form-group">
-                                    <label>${sessionScope.languageJSON.label.customMessageHere}</label>
+                                    <label for="consentText">${sessionScope.languageJSON.label.customMessageHere}</label>
                                      <c:if test="${message==''}">
-	                                     <input type="text" class="form-control form-text static" aria-label="${sessionScope.languageJSON.label.blankValueForCustomMessage}" readonly="readonly"/>
+	                                     <input id="consentText" type="text" class="form-control form-text static" aria-label="${sessionScope.languageJSON.label.blankValueForCustomMessage}" readonly="readonly"/>
                                     </c:if>
                                      <c:if test="${message!=''}">
-                                        <textarea class="form-control form-text static" aria-label="${sessionScope.languageJSON.label.blankValueForCustomMessage}" readonly="readonly">${message}</textarea>
+                                        <textarea id="consentText" class="form-control form-text static" aria-label="${sessionScope.languageJSON.label.blankValueForCustomMessage}" readonly="readonly">${message}</textarea>
                                     </c:if>
                                 </div>
                                 <div class="form-group">

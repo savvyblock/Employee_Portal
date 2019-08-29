@@ -34,13 +34,17 @@ $(function(){
     })
     if(consentVal==''&& $('#enableElecConsntW2').val() == 'true'){
         $("#updateMsg").addClass("hidden");
+        var consentCancel = $("#elecConsntW2Cancel").val()
         if ($("#elecConsntMsgW2").val() != null) {
             if (consentVal == 'Y') {
                 $('#consent').iCheck('check');
             } else if (consentVal == 'N') {
                 $('#notConsent').iCheck('check');
             } 
-            $('#electronicConsent').modal('show')
+            if(consentCancel != 'true'){
+                $('#electronicConsent').modal('show')
+            }
+            
         }
     }
     $("#saveConsent").on('click', function(event) {

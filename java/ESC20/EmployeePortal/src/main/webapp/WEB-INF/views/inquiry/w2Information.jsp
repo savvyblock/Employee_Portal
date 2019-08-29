@@ -59,7 +59,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
                                 <c:if test="${isSuccess && isUpdate}">
                                     <div id="updateMsg" class="no-print">
-                                        <span class="error-hint" role="alert" aria-atomic="true">
+                                        <span class="error-hint font13" role="alert" aria-atomic="true">
                                             <b >${sessionScope.languageJSON.validator.updateWasSuccessful}</b>
                                         </span>
                                         <br/>
@@ -1188,8 +1188,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         </section>
             </main>
         </div>
+        <input type="hidden" name="consentCancel" id="elecConsntW2Cancel" value="${sessionScope.cancelW2Consent}" aria-hidden="true">
         <%@ include file="../commons/footer.jsp"%>
-        <c:if test="${sessionScope.options.enableElecConsntW2 == true && sessionScope.cancelW2Consent == false}">
+        <c:if test="${sessionScope.options.enableElecConsntW2 == true}">
             <div
                 class="modal fade"
                 id="electronicConsent"
@@ -1218,12 +1219,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <form >
                             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <div class="form-group">
-                                    <label >${sessionScope.languageJSON.label.customMessageHere}</label>
+                                    <label for="consentText">${sessionScope.languageJSON.label.customMessageHere}</label>
                                      <c:if test="${elecConsntMsgW2==''}">
-	                                     <input type="text" class="form-control form-text static" aria-label="${sessionScope.languageJSON.label.blankValueForCustomMessage}" readonly="readonly"/>
+	                                     <input id="consentText" type="text" class="form-control form-text static" aria-label="${sessionScope.languageJSON.label.blankValueForCustomMessage}" readonly="readonly"/>
                                     </c:if>
                                      <c:if test="${elecConsntMsgW2!=''}">
-                                        <textarea class="form-control form-text static"  readonly="readonly">${elecConsntMsgW2}</textarea>
+                                        <textarea id="consentText" class="form-control form-text static"  readonly="readonly">${elecConsntMsgW2}</textarea>
                                     </c:if>
                                 </div>
                                 <div class="form-group">

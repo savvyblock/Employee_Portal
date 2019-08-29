@@ -3,6 +3,7 @@ function submitYear(){
 }
 $(function(){
     var consentVal = $("#elecConsnt1095").val()
+    var consentCancel = $("#elecConsnt1095Cancel").val()
     $("#consentModal").val(consentVal)
     if (consentVal == 'Y') {
         $("#consent").prop('checked',true);
@@ -47,7 +48,9 @@ $(function(){
     })
     if(consentVal==''){
         $("#updateMsg").addClass("hidden");
-        $('#electronicConsent').modal('show')
+        if(consentCancel != 'true'){
+            $('#electronicConsent').modal('show')
+        }
     }
     $("#saveConsent").on('click', function(event) {
         var year = $("#consentYear").val()
