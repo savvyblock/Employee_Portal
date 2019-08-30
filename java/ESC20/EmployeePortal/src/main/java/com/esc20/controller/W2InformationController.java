@@ -1,5 +1,6 @@
 package com.esc20.controller;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -194,7 +195,7 @@ public class W2InformationController{
 	}
 
 	@RequestMapping("updateW2Consent")
-	public ModelAndView updateW2Consent(HttpServletRequest req, String year, String consent) {
+	public ModelAndView updateW2Consent_old(HttpServletRequest req, String year, String consent) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
 		if(year==null||consent==null) {
@@ -213,6 +214,21 @@ public class W2InformationController{
 		mav.addObject("isSuccess", isSuccess);
 		return mav;
 	}
+	
+	 @RequestMapping(value = "updateW2Consent", method = RequestMethod.POST)
+	 @ResponseBody
+	 public Map<String, Boolean> updateW2Consent(HttpServletRequest req, String year, String consent) throws IOException{
+		HttpSession session = req.getSession();
+    	Map<String, Boolean> res = new HashMap<>();
+    	BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		String employeeNumber = userDetail.getEmpNbr();
+		Boolean isSuccess = this.service.updateW2ElecConsent(employeeNumber, consent);
+		this.sendEmail(userDetail.getNameF(), userDetail.getNameL(), userDetail.getEmail(), userDetail.getHmEmail(), consent);
+		
+    	res.put("isUpdate", true);
+    	res.put("isSuccess", isSuccess);
+    	return res;
+	 }
 	
 	@RequestMapping(value = "cancelW2Consent", method = RequestMethod.POST)
 	@ResponseBody
