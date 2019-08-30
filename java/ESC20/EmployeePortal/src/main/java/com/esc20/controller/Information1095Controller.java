@@ -1,12 +1,15 @@
 package com.esc20.controller;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -80,7 +83,7 @@ public class Information1095Controller{
 	}
 
 	@RequestMapping("update1095Consent")
-	public ModelAndView update1095Consent(HttpServletRequest req, String year, String consent) {
+	public ModelAndView update1095Consent_old(HttpServletRequest req, String year, String consent) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
 		if(consent==null||year==null) {
@@ -92,7 +95,8 @@ public class Information1095Controller{
 		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
-		Boolean isSuccess = this.service.update1095ElecConsent(employeeNumber, consent);
+		//Boolean isSuccess = this.service.update1095ElecConsent(employeeNumber, consent);
+		Boolean isSuccess = true;
 		mav.setViewName("/inquiry/information1095");
 		mav = init1095(mav, session, year, 1, 1, null, null, null);
 		this.sendEmail(userDetail.getNameF(), userDetail.getNameL(), userDetail.getEmail(), userDetail.getHmEmail(), consent);
@@ -101,6 +105,21 @@ public class Information1095Controller{
 		
 		return mav;
 	}
+	
+	 @RequestMapping(value = "update1095Consent", method = RequestMethod.POST)
+	 @ResponseBody
+	 public Map<String, Boolean> update1095Consent(HttpServletRequest req, String year, String consent) throws IOException{
+		HttpSession session = req.getSession();
+    	Map<String, Boolean> res = new HashMap<>();
+    	BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		String employeeNumber = userDetail.getEmpNbr();
+		Boolean isSuccess = this.service.update1095ElecConsent(employeeNumber, consent);
+		this.sendEmail(userDetail.getNameF(), userDetail.getNameL(), userDetail.getEmail(), userDetail.getHmEmail(), consent);
+		
+    	res.put("isUpdate", true);
+    	res.put("isSuccess", isSuccess);
+    	return res;
+	 }
 	
 	@RequestMapping(value = "cancel1095Consent", method = RequestMethod.POST)
 	@ResponseBody
