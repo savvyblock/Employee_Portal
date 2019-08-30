@@ -96,8 +96,9 @@ function saveConsent(data){
         data:data,
         success:function(res){
             console.log(res)
-            if(res.isSuccess){
+            if(res.isSuccess && res.isUpdate){
                 $("#electronicConsent").modal("hide")
+                $("#updateMsg").show()
             }
             
         },

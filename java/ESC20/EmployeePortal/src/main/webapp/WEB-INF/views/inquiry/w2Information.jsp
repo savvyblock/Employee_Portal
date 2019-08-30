@@ -53,19 +53,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <c:if test="${not empty sessionScope.options.messageW2}">
                                             <p class="topMsg error-hint" role="alert">${sessionScope.options.messageW2}</p>
                                         </c:if>
-                                <div class="exportPDFBox">
 
-                                </div>
-
-                                <c:if test="${isSuccess && isUpdate}">
-                                    <div id="updateMsg" class="no-print">
+                                    <div id="updateMsg" style="display:none">
                                         <span class="error-hint font13" role="alert" aria-atomic="true">
                                             <b >${sessionScope.languageJSON.validator.updateWasSuccessful}</b>
                                         </span>
                                         <br/>
                                         <br/>
                                     </div>
-                                </c:if>
                                 <form
                                     class="no-print searchForm"
                                     action="w2InformationByYear"

@@ -66,9 +66,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     <c:if test="${not empty sessionScope.options.message1095}">
                                             <p class="topMsg error-hint" role="alert">${sessionScope.options.message1095}</p>
                                         </c:if>
-                                <div class="exportPDFBox"></div>
-                                <c:if test="${isUpdate && isSuccess}">
-                                    <div id="updateMsg">
+                                    <div id="updateMsg" style="display:none;">
                                             <span class="error-hint font13" role="alert" aria-atomic="true">
                                                     <b>${sessionScope.languageJSON.validator.updateWasSuccessful}</b>
                                                 </span>
@@ -76,7 +74,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             <br/>
                                     </div>
                                     
-                                </c:if>
                                 <form
                                     class="no-print searchForm"
                                     action="information1095ByYear"
