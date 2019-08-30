@@ -95,7 +95,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <input type="hidden" class="chain" name="chain" type="text" value="" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
                                             <input type="hidden" type="text" name="isChangeLevel" class="isChangeLevel" value="false" aria-label="${sessionScope.languageJSON.accessHint.whetherChangeLevel}"/>
                                         <div class="form-group type-group freqGroup">
-                                                <label class="form-title"  for="freq">${sessionScope.languageJSON.label.payrollFreq}</label>
+                                                <label class="form-title"  for="freq">${sessionScope.languageJSON.label.payrollFreq}:</label>
                                                 <select class="form-control" name="freq" id="freq" onchange="changeFreq()">
                                                         <c:forEach var="freq" items="${availableFreqs}" varStatus="count">
                                                             <option value="${freq.code}" <c:if test="${freq.code == selectedFreq }">selected</c:if>>${freq.description}</option>
@@ -167,15 +167,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <table class="table request-list responsive-table-1320" id="leaveOverviewList">
                                                 <thead>
                                                     <tr>
-                                                            <th style="width:75px;">${sessionScope.languageJSON.approveRequest.leaveStartDate}</th>
-                                                            <th style="width:75px;">${sessionScope.languageJSON.approveRequest.leaveEndDate}</th>
-                                                            <th style="width:70px;">${sessionScope.languageJSON.approveRequest.startTime}</th>
-                                                            <th style="width:70px;">${sessionScope.languageJSON.approveRequest.endTime}</th>
-                                                            <th style="width:100px;">${sessionScope.languageJSON.approveRequest.leaveType}</th>
-                                                            <th style="width:80px">${sessionScope.languageJSON.approveRequest.absenceReason}</th>
-                                                            <th style="width:75px;">${sessionScope.languageJSON.approveRequest.leaveRequested}</th>
-                                                            <th style="width:25%;">${sessionScope.languageJSON.approveRequest.commentLog}</th>
-                                                            <th>${sessionScope.languageJSON.approveRequest.status}</th>
+                                                            <th style="width:8%;">${sessionScope.languageJSON.approveRequest.leaveStartDate}</th>
+                                                            <th style="width:8%;">${sessionScope.languageJSON.approveRequest.leaveEndDate}</th>
+                                                            <th style="width:8%;">${sessionScope.languageJSON.approveRequest.startTime}</th>
+                                                            <th style="width:8%;">${sessionScope.languageJSON.approveRequest.endTime}</th>
+                                                            <th style="width:10%;">${sessionScope.languageJSON.approveRequest.leaveType}</th>
+                                                            <th style="width:12%">${sessionScope.languageJSON.approveRequest.absenceReason}</th>
+                                                            <th style="width:10%;">${sessionScope.languageJSON.approveRequest.leaveRequested}</th>
+                                                            <th style="width:20%;">${sessionScope.languageJSON.approveRequest.commentLog}</th>
+                                                            <th style="width:10%;">${sessionScope.languageJSON.approveRequest.status}</th>
                                                             <td aria-label="${sessionScope.languageJSON.approveRequest.supervisorAction}"></td>
                                                     </tr>
                                                 </thead>
