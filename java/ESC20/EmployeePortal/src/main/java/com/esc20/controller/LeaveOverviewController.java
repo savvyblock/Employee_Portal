@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -85,8 +87,8 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 		LeaveParameters params = this.service.getLeaveParameters();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		BhrEmpDemo root = demo;
-		boolean supervisorsOnly = true;
-		boolean excludeTempApprovers = false;
+		boolean supervisorsOnly = false;// false indicates all direct reports are to be returned
+		boolean excludeTempApprovers = false;// since supervisorsOnly is false, the value of this field is never checked
 		boolean initialLoad = false;
 		if (empNbr == null || ("").equals(empNbr)) {
 			empNbr = demo.getEmpNbr();
@@ -114,8 +116,16 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 			mav.addObject("chain", rootLevel);
 		}
 		if ((isChangeLevel != null && isChangeLevel) || (root.getEmpNbr().equals(empNbr))) {
-			List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(empNbr, params.isUsePMIS(),
+			List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(empNbr,params.isUsePMIS() ,
 					supervisorsOnly, excludeTempApprovers);
+			 Collections.sort(employeeData, new Comparator<LeaveEmployeeData>() {
+					@Override
+					public int compare(LeaveEmployeeData o1, LeaveEmployeeData o2) {
+						String s1 = String.valueOf(o1.getLastName());
+		                String s2 = String.valueOf(o2.getLastName());
+		                return s1.compareTo(s2);
+					}
+		    	});
 			LeaveEmployeeData empty = new LeaveEmployeeData();
 			List<LeaveEmployeeData> directReport = new ArrayList<LeaveEmployeeData>();
 			directReport.add(empty);
@@ -134,6 +144,14 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 			}
 			List<LeaveEmployeeData> employeeData = this.supService.getDirectReportEmployee(selectedEmp,
 					params.isUsePMIS(), supervisorsOnly, excludeTempApprovers);
+			 Collections.sort(employeeData, new Comparator<LeaveEmployeeData>() {
+					@Override
+					public int compare(LeaveEmployeeData o1, LeaveEmployeeData o2) {
+						String s1 = String.valueOf(o1.getLastName());
+		                String s2 = String.valueOf(o2.getLastName());
+		                return s1.compareTo(s2);
+					}
+		    	});
 			LeaveEmployeeData empty = new LeaveEmployeeData();
 			List<LeaveEmployeeData> directReport = new ArrayList<LeaveEmployeeData>();
 			directReport.add(empty);
