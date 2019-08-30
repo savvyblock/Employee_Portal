@@ -1249,7 +1249,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <input type="hidden" name="consent" id="elecConsntW2Flag" value="${consent}">
                                 <input type="hidden"  id="enableElecConsntW2" value="${sessionScope.options.enableElecConsntW2}"/>
                             </form>
-                            <p class="error-hint hide" role="alert" aria-atomic="true" id="noChooseError" >
+                            <p class="error-hint" role="alert" aria-atomic="true" id="noChooseError"  style="display:none;">
                                     ${sessionScope.languageJSON.validator.pleaseSelectAgreeWay}
                             </p>
                         </div>
