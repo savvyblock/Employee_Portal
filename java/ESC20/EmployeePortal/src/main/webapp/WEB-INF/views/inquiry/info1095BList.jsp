@@ -3,7 +3,13 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <label class="form-title">
-	${sessionScope.constantJSON.info1095Table.coverageTypeB}
+	${sessionScope.constantJSON.info1095Table.coverageType}   
+	<c:if test="${not empty BCovrgTyp}">
+    		       ${BCovrgTyp}
+              </c:if>
+    <c:if test="${not empty BCovrgTypDescr}">
+    		      - ${BCovrgTypDescr}
+              </c:if>
 </label>
 <h2 class="table-top-title no-print">
 	<b>${sessionScope.constantJSON.info1095Table.coverIndividuals}</b>

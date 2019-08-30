@@ -96,6 +96,7 @@
         "section4980HSafeHarbor": "Section 4980H Safe Harbor and Other Relief (enter code, if applicable)",
         "SafeHarbor": "Safe Harbor",
         "coverageTypeB": "Coverage Type: B - Employer-sponsored coverage",
+        "coverageType": "Coverage Type:",
         "coverIndividuals": "Covered Individuals",
         "dollar": "$",
         "selfInsured": "Self-Insured",
