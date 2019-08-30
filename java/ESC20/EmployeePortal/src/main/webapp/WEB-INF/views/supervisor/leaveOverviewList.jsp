@@ -77,11 +77,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <input type="hidden" type="text" value="${level}" name="level" id="preLevel" aria-label="${sessionScope.languageJSON.accessHint.level}"/>
                                         <input type="hidden" name="chain" type="text" value="" id="preChain" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
                                 </form>
-                                <h2 class="tableTitle" style="margin-top:5px;">
-                                    <span>${sessionScope.languageJSON.label.LeaveRequests}</span>
-                                    <span id="forWord" class="hide">${sessionScope.languageJSON.label.for}</span>
-                                    <span id="currentLeaveRequests"></span>
-                                </h2>
+                                
                                 <div class="content-white">
                                         
                                         <form
@@ -163,7 +159,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </div>
                                         </form>
-                                        
+                                        <h2 class="table-top-title">
+                                                <span>${sessionScope.languageJSON.label.LeaveRequests}</span>
+                                                <span id="forWord" class="hide">${sessionScope.languageJSON.label.for}</span>
+                                                <span id="currentLeaveRequests"></span>
+                                            </h2>
+                                            <div class="hr-black"></div>
                                         <table class="table request-list responsive-table-1320" id="leaveOverviewList">
                                                 <thead>
                                                     <tr>
