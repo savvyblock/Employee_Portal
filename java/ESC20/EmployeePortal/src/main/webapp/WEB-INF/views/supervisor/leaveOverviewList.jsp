@@ -219,9 +219,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                         <span>${sessionScope.languageJSON.label.days}</span>
                                                                     </td>
                                                                     <td data-title="${sessionScope.languageJSON.approveRequest.commentLog}">
-                                                                            <c:forEach var="comment" items="${item.comments}" varStatus="statusComment">
-                                                                                    <p>${comment.detail}</p>
-                                                                                </c:forEach>
+                                                                            <div>
+                                                                                    <c:forEach var="comment" items="${item.comments}" varStatus="statusComment">
+                                                                                            <p>${comment.detail}</p>
+                                                                                        </c:forEach>
+                                                                            </div>
                                                                     </td>
                                                                     <td data-title="${sessionScope.languageJSON.approveRequest.status}">  
                                                                         ${item.statusDescr}

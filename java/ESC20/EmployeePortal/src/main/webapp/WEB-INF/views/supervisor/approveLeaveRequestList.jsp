@@ -93,7 +93,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.startTime}</th>
                                                         <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.endTime}</th>
                                                         <th scope="col" style="width:10%">${sessionScope.languageJSON.approveRequest.leaveType}</th>
-                                                        <th scope="col" style="width:12%">${sessionScope.languageJSON.approveRequest.absenceReason}</th>
+                                                        <th scope="col" style="width:10%">${sessionScope.languageJSON.approveRequest.absenceReason}</th>
                                                         <th scope="col" style="width:10%">${sessionScope.languageJSON.approveRequest.leaveRequested}</th>
                                                         <th class="commentLog15" scope="col">${sessionScope.languageJSON.approveRequest.commentLog}</th>
                                                         <th scope="col" style="width:11%">${sessionScope.languageJSON.approveRequest.supervisorAction}</th>
@@ -105,11 +105,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <c:if test="${item.statusCd !='A' && item.statusCd !='D'}">
                                                         <tr id="actionList_${status.index}">
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.employee}"> 
-                                                                ${item.empNbr}: 
-                                                                <div class="empNameTd">${item.lastName}, ${item.firstName} ${item.middleName} ${item.generation}</div>
-                                                                <button data-toggle="modal" data-target="#balanceModal" onclick="showBalance('${item.empNbr}')" aria-label="${sessionScope.languageJSON.label.showLeaveBalanceOf} ${item.empNbr}: ${item.lastName}, ${item.firstName}">
-                                                                    <i class="fa fa-search"></i>
-                                                                </button>
+                                                                <div>
+                                                                        ${item.empNbr}: 
+                                                                        <div class="empNameTd">${item.lastName}, ${item.firstName} ${item.middleName} ${item.generation}</div>
+                                                                        <button data-toggle="modal" data-target="#balanceModal" onclick="showBalance('${item.empNbr}')" aria-label="${sessionScope.languageJSON.label.showLeaveBalanceOf} ${item.empNbr}: ${item.lastName}, ${item.firstName}">
+                                                                            <i class="fa fa-search"></i>
+                                                                        </button>
+                                                                </div>
                                                             </td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.leaveStartDate}">${item.LeaveStartDate}</td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.leaveEndDate}" >${item.LeaveEndDate}</td>
@@ -131,12 +133,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                 <span>${sessionScope.languageJSON.label.days}</span>
                                                             </td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.commentLog}">
-                                                                    <c:forEach var="comment" items="${item.comments}" varStatus="statusComment">
-                                                                        <p>${comment.detail}</p>
-                                                                    </c:forEach>
-                                                                    <div class="form-group hide" id="supervisorComment_${status.index}">
-                                                                            <textarea  class="form-control form-text" cols="30" rows="4" aria-label="${sessionScope.languageJSON.label.supervisorComment}" data-index="${status.index}"></textarea>
-                                                                            <div class="error-hint hide" id="errorComment_${status.index}" role="alert">${sessionScope.languageJSON.validator.pleaseEnterComment}</div>
+                                                                    <div>
+                                                                            <c:forEach var="comment" items="${item.comments}" varStatus="statusComment">
+                                                                                    <p>${comment.detail}</p>
+                                                                                </c:forEach>
+                                                                                <div class="form-group hide" id="supervisorComment_${status.index}">
+                                                                                        <textarea  class="form-control form-text" cols="30" rows="4" aria-label="${sessionScope.languageJSON.label.supervisorComment}" data-index="${status.index}"></textarea>
+                                                                                        <div class="error-hint hide" id="errorComment_${status.index}" role="alert">${sessionScope.languageJSON.validator.pleaseEnterComment}</div>
+                                                                                </div>
                                                                     </div>
                                                             </td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.supervisorAction}"  style="width:150px;">

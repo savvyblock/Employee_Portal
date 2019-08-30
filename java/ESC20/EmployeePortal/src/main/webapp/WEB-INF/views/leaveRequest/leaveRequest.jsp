@@ -172,9 +172,11 @@
 											<span>${sessionScope.languageJSON.label.days}</span>
 									</td>
 									<td data-title="${sessionScope.languageJSON.leaveRequest.commentLog}">
-										<c:forEach var="comment" items="${leave.comments}" varStatus="count">
-													${comment.detail}<br/>
-											</c:forEach>
+										<div>
+												<c:forEach var="comment" items="${leave.comments}" varStatus="count">
+														${comment.detail}<br/>
+												</c:forEach>
+										</div>
 									</td>
 									<td data-title="${sessionScope.languageJSON.leaveRequest.status}">${leave.statusDescr}</td>
 									<td style="width:150px;">

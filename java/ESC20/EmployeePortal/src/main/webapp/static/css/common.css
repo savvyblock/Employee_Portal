@@ -792,6 +792,7 @@ input:focus {
     display: flex;
     width: 100% !important;
     margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
   }
   .table.responsive-table-1320 tr.total-tr td {
     padding: 3px !important;
@@ -882,6 +883,7 @@ input:focus {
     display: flex;
     width: 100% !important;
     margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
   }
   .table.responsive-table tr.total-tr td {
     padding: 3px !important;

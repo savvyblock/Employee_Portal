@@ -2279,6 +2279,35 @@
 
 .empNameTd {
   white-space: nowrap;
+  overflow: hidden;
+  max-width: 150px;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1450px) {
+  .empNameTd {
+    max-width: 115px;
+  }
+}
+
+@media (max-width: 1700px) {
+  .empNameTd {
+    max-width: 130px;
+  }
+}
+
+@media (max-width: 1320px) {
+  .responsive-table-1320 .empNameTd {
+    max-width: 150px;
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 374px) {
+  .responsive-table-1320 .empNameTd {
+    max-width: 130px;
+    margin-right: 5px;
+  }
 }
 
 .ui-autocomplete {
