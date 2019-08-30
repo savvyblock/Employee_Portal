@@ -1217,7 +1217,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         </div>
                         <div class="modal-body">
                             <form >
-                            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <div class="form-group">
                                     <label for="consentText">${sessionScope.languageJSON.label.customMessageHere}</label>
                                      <c:if test="${elecConsntMsgW2==''}">
@@ -1243,7 +1242,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </form>
                             <form hidden="hidden" id="consentForm" action="updateW2Consent" method="POST">
-                            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            	<input type="hidden" name="${_csrf.parameterName}" id="csrfmiddlewaretokenConsent" value="${_csrf.token}"/>
                                 <input type="hidden" name="year" id="consentYear" value="${selectedYear}">
                                 <input type="hidden" id="w2Latest" value="${sessionScope.options.w2Latest}"/>
                                 <input type="hidden" name="consentMsg" id="elecConsntMsgW2" value="${elecConsntMsgW2}">

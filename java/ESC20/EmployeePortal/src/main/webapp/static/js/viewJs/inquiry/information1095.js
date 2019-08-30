@@ -57,7 +57,13 @@ $(function(){
         var consentOption = $("#consentModal").val()
         if(year && year!='' && consentOption && consentOption!=''){
             $("#noChooseError").hide()
-            $("#update1095Consent")[0].submit()
+            // $("#update1095Consent")[0].submit()
+            var data = {
+                csrfmiddlewaretoken: $("#csrfmiddlewaretokenConsent").val(),
+                year:year,
+                consent:consentOption
+            }
+            saveConsent(data)
         }else{
             if(!consentOption || consentOption==''){
                 $("#noChooseError").show()
@@ -161,6 +167,24 @@ function submitCancelConsent(){
         type:'POST',
         success:function(res){
             console.log(res)
+        },
+        error:function(err){
+            console.log(err)
+        }
+    })
+}
+
+function saveConsent(data){
+    $.ajax({
+        url:urlMain + '/information1095/update1095Consent',
+        type:'POST',
+        data:data,
+        success:function(res){
+            console.log(res)
+            if(res.isSuccess){
+                $("#electronicConsent").modal("hide")
+            }
+            
         },
         error:function(err){
             console.log(err)

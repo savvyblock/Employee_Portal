@@ -53,7 +53,13 @@ $(function(){
         
         if(year && year!='' && consentOption && consentOption!=''){
             $("#noChooseError").hide()
-            $("#consentForm")[0].submit()
+            // $("#consentForm")[0].submit()
+            var data = {
+                csrfmiddlewaretoken: $("#csrfmiddlewaretokenConsent").val(),
+                year:year,
+                consent:consentOption
+            }
+            saveConsent(data)
         }else{
             if(!consentOption || consentOption==''){
                 $("#noChooseError").show()
@@ -76,6 +82,24 @@ function submitCancelConsent(){
         type:'POST',
         success:function(res){
             console.log(res)
+        },
+        error:function(err){
+            console.log(err)
+        }
+    })
+}
+
+function saveConsent(data){
+    $.ajax({
+        url:urlMain + '/w2Information/updateW2Consent',
+        type:'POST',
+        data:data,
+        success:function(res){
+            console.log(res)
+            if(res.isSuccess){
+                $("#electronicConsent").modal("hide")
+            }
+            
         },
         error:function(err){
             console.log(err)
