@@ -23,6 +23,8 @@ function changeFormatTimeAm(value){
     return time
 }
 function initialLeaveCalendarStaticModal(){
+    var h = $(window).height()
+    var h_c = h - 220
     initThemeChooser({
         init: function(themeSystem) {
             $('#calendar').fullCalendar({
@@ -32,6 +34,7 @@ function initialLeaveCalendarStaticModal(){
                     center: 'title',
                     right: ''
                 },
+                height: h_c,
                 timeFormat: 'hh:mm A',
                 displayEventEnd: true,
                 defaultDate: new Date(),
@@ -97,7 +100,7 @@ function initialLeaveCalendarStaticModal(){
                     element.attr('data-toggle', 'modal')
                     element.attr('data-target', '#EventDetailModal')
                     if(event.statusCd.toLowerCase() == 'p'){
-                        element.append('<b>('+event.statusCd+')</b>')
+                        element.find(".fc-content").append('<b>('+event.statusCd+')</b>')
                     }
                     var startEv = changeYMDFormat(event.LeaveStartDate)
                     var endEv = changeYMDFormat(event.LeaveEndDate)

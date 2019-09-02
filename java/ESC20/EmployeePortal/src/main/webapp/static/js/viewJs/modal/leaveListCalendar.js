@@ -1,15 +1,19 @@
 
 console.log(leaveList)
 function initialLeaveCalendarModal(){
+    var h = $(window).height()
+    var w = $(window).width()
+    var h_c = h - 220
     initThemeChooser({
-        init: function(themeSystem) {
+        init: function(themeSystem,h) {
             $('#calendar').fullCalendar({
-                themeSystem: themeSystem,
+                // themeSystem: themeSystem,
                 header: {
                     left: 'prev,next today',
                     center: 'title',
                     right: ''
                 },
+                height: h_c,
                 timeFormat: 'hh:mm A',
                 displayEventEnd: true,
                 defaultDate: new Date(),
@@ -75,7 +79,7 @@ function initialLeaveCalendarModal(){
                     element.attr('data-target', '#EventDetailModal')
                     console.log(event.statusCd)
                     if(event.statusCd.toLowerCase() == 'p'){
-                        element.append('<b>('+event.statusCd+')</b>')
+                        element.find(".fc-content").append('<b>('+event.statusCd+')</b>')
                     }
                     var startEv = changeYMDFormat(event.LeaveStartDate)
                     var endEv = changeYMDFormat(event.LeaveEndDate)
