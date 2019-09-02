@@ -1982,12 +1982,44 @@
 }
 
 .leaveListCalendarForm {
-  width: 80%;
-  max-width: 1000px;
+  width: 100%;
+  max-width: 1100px;
 }
 
 .fc-day-grid-event .fc-content {
   white-space: normal;
+}
+
+@media (max-height: 629px) {
+  .fc-day-grid-event .fc-content {
+    line-height: 1.1;
+  }
+}
+
+@media (max-width: 1200px) {
+  .fc-day-grid-event .fc-content {
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .fc-day-grid-event .fc-content .fc .fc-more {
+    padding: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .fc .fc-more {
+    padding: 0;
+  }
+}
+
+.fc-basic-view .fc-day-number, .fc-basic-view .fc-week-number {
+  padding: 0 3px;
+}
+
+.modal #calendar {
+  margin: 0;
 }
 
 #skipNav {

@@ -493,7 +493,6 @@
         "chooseWorkEmailSend": "enviar contraseña a dirección de correo electrónico del trabajo",
         "chooseHomeEmailSend": "enviar contraseña a dirección de correo electrónico personal",
         "getPasswordNoEmail": "No hay direcciones de correo electrónico registradas para el empleado. Comuníquese con su oficina de personal para que elimine su información de seguridad. Después puede volver a registrarse como usuario nuevo. ",
-        "welcomeToNewEmployeePortal": "Bienvenidos al nuevo ASCENDER EmployeePortal.",
         "saveSuperAction": "Guardar acción del supervisor",
         "noSupervisorFound": "Salir No se puede capturar la solicitud. No se encontró el supervisor.",
         "showLeaveBalanceOf": "mostrar detalles de saldo de permisos",
@@ -635,6 +634,7 @@
         "updateFailed": "Error en la actualización.",
         "enteredWrongDate": "El formato de fecha que capturó es incorrecto.",
         "enterNonZeroValue": "Escriba un valor diferente a cero.",
+        "saveSuccess":"Save Successful",
         "": ""
     },
     "accessHint": {
