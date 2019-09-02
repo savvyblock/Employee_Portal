@@ -634,6 +634,7 @@
         "updateFailed": "Update Failed.",
         "enteredWrongDate": "The date format you entered is incorrect",
         "enterNonZeroValue": "Enter a non-zero value.",
+        "saveSuccess":"Save Successful",
         "": ""
     },
     "accessHint": {

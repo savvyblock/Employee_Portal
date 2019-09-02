@@ -51,6 +51,7 @@ $(function() {
                 console.log(startDate)
                 $('#endDateInput').change()
                 $('#startDateInput').change()
+                calcTime()
             }
         })
         .data('datepicker')
@@ -65,7 +66,9 @@ $(function() {
                     : ''
             }
         })
-        .on('changeDate', function(ev) {})
+        .on('changeDate', function(ev) {
+            calcTime()
+        })
         .data('datepicker')
 
         $("input").bind('keypress', function(e)  {
@@ -547,7 +550,7 @@ $("#leaveHoursDaily").change(function(){
                 }
                 
                 console.log('floatDays'+floatDays)
-                totalDays = intDays + floatDays
+                totalDays = (intDays + floatDays) * dayDate
                 console.log('totalDays' + totalDays)
                 $("#totalRequested").val(Number(totalDays).toFixed(3));
             }else if(calUnit.toLowerCase() == 'h'){
