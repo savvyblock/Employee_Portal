@@ -19,9 +19,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <span>${sessionScope.languageJSON.label.changePassword}</span>
                                             </button>
                                 </div>
+                                <br/>
+                                <div class="text-left">
+                                    <button type="button" role="button" class="btn btn-primary">
+                                        <span>${sessionScope.languageJSON.label.save}</span>
+                                    </button>  
+                                    <button type="button" role="button" class="btn btn-default">
+                                        <span>${sessionScope.languageJSON.label.reset}</span>
+                                    </button>
+                                </div>
                                 <c:if test="${not empty sessionScope.options.messageSelfServiceDemographic}">
 	                            	<p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServiceDemographic}</p>
-	                        	</c:if>
+                                </c:if>
+                                
 	                        	 <h2 class="sub-title">${sessionScope.languageJSON.profile.LegalName}</h2>
                                 <div class="profile-top first-child">
                                   
@@ -182,7 +192,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="saveOrCancel">
                                                 <button
                                                     type="submit" role="button"
-                                                    class="btn btn-primary save-btn"
+                                                    class="btn btn-primary save-btn hide"
                                                     id="savePersonal"  aria-label = "${sessionScope.languageJSON.label.updatePersonalInfo}"
                                                 >
                                                 ${sessionScope.languageJSON.label.update}
@@ -261,7 +271,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="button"
-                                                class="btn btn-primary save-btn"
+                                                class="btn btn-primary save-btn hide"
                                                 id="saveMarital" aria-label = "${sessionScope.languageJSON.label.updateMaritalStatus}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
@@ -353,7 +363,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="button"
-                                                class="btn btn-primary save-btn"
+                                                class="btn btn-primary save-btn hide"
                                                 id="saveDriver" aria-label = "${sessionScope.languageJSON.label.updateDriver}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
@@ -449,7 +459,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="button"
-                                                class="btn btn-primary save-btn"
+                                                class="btn btn-primary save-btn hide"
                                                 id="saveRestrict" aria-label = "${sessionScope.languageJSON.label.updateRestrict}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
@@ -567,7 +577,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="button" role="button"
-                                                class="btn btn-primary save-btn"
+                                                class="btn btn-primary save-btn hide"
                                                 id="saveEmail" aria-label = "${sessionScope.languageJSON.label.updateEmail}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
@@ -726,7 +736,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="button"
-                                                class="btn btn-primary save-btn"
+                                                class="btn btn-primary save-btn hide"
                                                 id="saveEmergency" aria-label = "${sessionScope.languageJSON.label.updateEmergency}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
@@ -906,7 +916,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="button"
-                                                class="btn btn-primary save-btn"
+                                                class="btn btn-primary save-btn hide"
                                                 id="saveMailingAddress" aria-label = "${sessionScope.languageJSON.label.updateMailingAddress}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
@@ -1086,7 +1096,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="button"
-                                                class="btn btn-primary save-btn"
+                                                class="btn btn-primary save-btn hide"
                                                 id="saveAltAddress" aria-label = "${sessionScope.languageJSON.label.updateAltAddress}"
                                             >${sessionScope.languageJSON.label.update}
                                             
@@ -1250,7 +1260,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="saveOrCancel">
                                             <button
                                                 type="submit" role="button"
-                                                class="btn btn-primary save-btn"
+                                                class="btn btn-primary save-btn hide"
                                                 id="savePhone" aria-label = "${sessionScope.languageJSON.label.updatePhone}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
@@ -1369,7 +1379,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="saveOrCancel">
                                         <button
                                             type="submit" role="button"
-                                            class="btn btn-primary save-btn"
+                                            class="btn btn-primary save-btn hide"
                                             id="saveW4" aria-label = "${sessionScope.languageJSON.label.updateW4}"
                                         >
                                         ${sessionScope.languageJSON.label.update}
@@ -1409,17 +1419,17 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     action="updateBank" method="POST"
                                     >
                                     <input type="hidden" name="freq" class="hidden_freq_update" />
-                              <div role="main" aria-label="<c:if test="${bank.isDelete == true}">${sessionScope.languageJSON.accessHint.deletedPart}</c:if>" class="profile-item border-0 bankAccountBlock  <c:if test="${bank.isDelete == false}">usedBank</c:if>  <c:if test="${bank.isDelete == true}">isDelete</c:if>">
+                              <div class="bankPart" role="main" aria-label="<c:if test="${bank.isDelete == true}">${sessionScope.languageJSON.accessHint.deletedPart}</c:if>" class="profile-item border-0 bankAccountBlock  <c:if test="${bank.isDelete == false}">usedBank</c:if>  <c:if test="${bank.isDelete == true}">isDelete</c:if>">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <div class="profile-left">
                                     <c:if test="${count.index == 0}">
                                     <div class="profileTitle form-line profileInfo">
+                                            <span class="primaryTitle">${sessionScope.languageJSON.profile.primary}</span>
                                             <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
                                             <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                         </div>
                                         </c:if>
-                                <div class="profile-item-line form-line">
-                                    <div class="profile-title">${sessionScope.languageJSON.profile.primary}</div>
+                                <!-- <div class="profile-item-line form-line">
                                     <div class="profile-desc">
                                         <div class="haveValue">
                                                 <div class="noPrimary"></div>
@@ -1441,9 +1451,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="profile-item-line form-line">
                                     <div class="profile-title">${sessionScope.languageJSON.profile.bankName}</div>
+                                    <div class="primaryBank">
+                                            <input
+                                                class="icheckRadioBank"
+                                                id="primary_${count.index}"
+                                                type="radio"
+                                                aria-label="${sessionScope.languageJSON.accessHint.primaryAccountCheckbox}" 
+                                                aria-disabled="${bank.isDelete}"
+                                                <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                name="primaryAccount"
+                                            />
+                                        </div>
                                     <div class="profile-desc">
                                         <span class="haveValue"
                                             >${bank.code.description}</span
@@ -1497,6 +1518,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-title">
                                             ${sessionScope.languageJSON.profile.bankAcctNbr}
                                     </div>
+                                    <div class="primaryBank"></div>
                                     <div class="profile-desc">
                                         <span class="haveValue" id="accountNumber_${count.index}"
                                             >${bank.accountNumber}</span
@@ -1520,6 +1542,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-title">
                                             ${sessionScope.languageJSON.profile.bankAcctType}
                                     </div>
+                                    <div class="primaryBank"></div>
                                     <div class="profile-desc">
                                         <span class="haveValue"  id="accountType_${count.index}"
                                             >${bank.accountType.displayLabel}</span
@@ -1554,6 +1577,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="profile-title">
                                             ${sessionScope.languageJSON.profile.bankAcctAmt}
                                     </div>
+                                    <div class="primaryBank"></div>
                                     <div class="profile-desc bankAmount">
                                         <span class="haveValue" id="displayAmount_${count.index}"
                                             >${bank.depositAmount.displayAmount}</span
@@ -1577,14 +1601,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </div>
                                 <div class="profile-btn">
                                     <div class="saveOrCancel">
-                                        <!-- <button
+                                        <button
                                             type="button" role="button"
                                             class="btn btn-primary save-btn saveUpdateBankBtn"
                                             id="saveBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.updateBank}"
                                             onclick="updateBank(${count.index})"
                                         >
                                         ${sessionScope.languageJSON.label.update}
-                                        </button> -->
+                                        </button>
                                         <button
                                                 type="button" role="button"
                                                 id="undoBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.undoBank}"
@@ -1609,7 +1633,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             </form>
                             </c:forEach>
                             <p class="error-hint updateMessageFailed hide">${sessionScope.languageJSON.validator.updateFailed}</p>
-                            <div>
+                            <!-- <div>
                                 <button
                                         type="button" role="button"
                                         class="btn btn-primary save-btn saveUpdateBankBtn"
@@ -1618,9 +1642,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     >
                                     ${sessionScope.languageJSON.label.update}
                                 </button>
-                            </div>
+                            </div> -->
                             <br/>
-                            <div>
+                            <div class="bankPart">
                                 <form hidden="hidden" action="updateBank" id="updateBankHidden" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input type="hidden" name="freq" id="hidden_freq_update" />
