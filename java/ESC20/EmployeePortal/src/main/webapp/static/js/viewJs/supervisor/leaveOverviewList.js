@@ -135,6 +135,10 @@ function showRequestForm() {
     $("#leaveModalTitle .editSpan").hide()
     $("#leaveModalTitle .addSpan").show()
     $('#requestForm').attr('action', 'updateLeaveFromLeaveOverview')
+    $("#commentList").html("")
+    $(".timeUnit").hide()
+    $(".leaveHoursDailyNotZero").hide()
+    $(".leaveHoursDailyWrap").removeClass('has-error')
 }
 function changeFreq() {
     var select = $('#freq').val()

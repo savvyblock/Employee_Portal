@@ -148,7 +148,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <td data-title="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}">
                                                 <div class="form-group">
                                                     <input
-                                                        class="form-control empControl"
+                                                        class="form-control empControl lastRowTabOut"
                                                         type="text"
                                                         aria-label="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}"
                                                         name="name_01"
@@ -222,7 +222,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <p class="error-hint hide" role="alert" aria-atomic="true" id="noResultError">${sessionScope.languageJSON.validator.noResultError}</p>
                                     <p class="error-hint hide" role="alert" aria-atomic="true" id="errorComplete">${sessionScope.languageJSON.validator.pleaseCompleteForm}</p>
                                     <p class="error-hint hide" role="alert" aria-atomic="true" id="errorDate">${sessionScope.languageJSON.validator.startNotBeGreaterThanEndDate}</p>
-    
+                                    <p class="success-hint" style="display:none;" role="alert" aria-atomic="true" id="saveSuccess">${sessionScope.languageJSON.validator.saveSuccess}</p>
                                 </div>
                                 <div class="text-right mt-3">
                                     <button
@@ -260,6 +260,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     var directReportEmployee = eval(${directReportEmployee});
     var addedApprover = eval(${tmpApprovers});
     var chain = eval(${chain});
+    var leaveTypes = eval(${leaveTypes});
+    var absRsns = eval(${absRsns});
     </script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery-ui.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/supervisor/leaveRequestTemporaryApprovers.js"></script>

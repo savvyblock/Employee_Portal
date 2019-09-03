@@ -69,6 +69,8 @@ var showDatepickerLabel = "${sessionScope.languageJSON.label.showDatepicker}"
 var addNewRequestLabel = "${sessionScope.languageJSON.label.addNewRequestOn}"
 
 var answerErrorValidator = "${sessionScope.languageJSON.validator.answerError}";
+var selectLeaveTypeValidator = "${sessionScope.languageJSON.validator.selectLeaveType}";
+var selectAbsenceReasonValidator = "${sessionScope.languageJSON.validator.selectAbsenceReason}";
 var requiredFieldValidator = "${sessionScope.languageJSON.validator.requiredField}";
 var notValidValidator = "${sessionScope.languageJSON.validator.notValid}";
 var pleaseEnterCorrectMailFormatValidator = "${sessionScope.languageJSON.validator.pleaseEnterCorrectMailFormat}";
