@@ -104,8 +104,8 @@ $(document).ready(
 		$("#endTimeValue").val(endTimeValue)
 		$("#startMinute").val(startTime[1])
 		$("#endMinute").val(endTime[1])
-		$("#cancelAdd").hide();
-		$("#deleteLeave").show();	
+		// $("#cancelAdd").hide();
+		// $("#deleteLeave").show();	
 		$(".firstSubmit").hide();
 		$(".secondSubmit").show();
 		$(".edit-title").show();

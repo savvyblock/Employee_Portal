@@ -1330,7 +1330,15 @@ input:focus {
 .datepicker td.isToday.day,
 .datepicker td.isToday.month,
 .datepicker td.isToday.year {
-  background: #666;
+  background: none;
+  border: 1px solid #666;
+  color: #333;
+}
+
+.datepicker td.isToday.day.active,
+.datepicker td.isToday.month.active,
+.datepicker td.isToday.year.active {
+  background: #2ba6cb;
   color: #fff;
 }
 

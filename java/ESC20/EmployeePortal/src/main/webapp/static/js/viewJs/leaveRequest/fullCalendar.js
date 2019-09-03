@@ -74,8 +74,8 @@ $(document).ready(function() {
                                 '<p>' + calEvent.comments[i].detail + '</p>'
                             $('#commentList').append(html)
                         }
-                        $('#cancelAdd').hide()
-                        $('#deleteLeave').show()
+                        // $('#cancelAdd').hide()
+                        // $('#deleteLeave').show()
                         $('.edit-title').show()
                         $('.new-title').hide()
                         $('.firstSubmit').hide()

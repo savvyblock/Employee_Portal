@@ -1228,8 +1228,13 @@ input {
 .datepicker td.isToday.day,
 .datepicker td.isToday.month,
 .datepicker td.isToday.year{
-    background: #666;
-    color: #fff;
+    background: none;
+    border: 1px solid #666;
+    color: #333;
+    &.active{
+        background: #2ba6cb;
+        color: #fff;
+    }
 }
 .datepicker{
     .closeDatepicker{
