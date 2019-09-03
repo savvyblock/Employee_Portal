@@ -222,6 +222,7 @@
                         </div>
                     </div>
                     <p class="error-hint hide availableError" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.availableError}</p>
+                    <p><b>${sessionScope.languageJSON.label.leaveBalanceSummary}</b></p>
                     <%@ include file="../commons/leaveBalanceTable.jsp"%>
                     <input type="hidden" name="isAdd" id="isAdd">
                 </div>

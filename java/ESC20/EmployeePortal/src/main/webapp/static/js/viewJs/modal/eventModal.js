@@ -2,6 +2,7 @@
 var calUnit
 var mealBreakHours,standardHoursDaily,leaveHoursRequestedEntry,conversionMinuteHour
 $(function() {
+    $('#deleteLeave').hide()
     showTimeUnit()
     mealBreakHours = $("#mealBreakHours").val()
     standardHoursDaily = $("#standardHoursDaily").val()

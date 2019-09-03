@@ -175,7 +175,6 @@
         this.setEndDate(options.endDate || this.element.data('date-enddate'));
         this.setDaysOfWeekDisabled(options.daysOfWeekDisabled || this.element.data('date-days-of-week-disabled'));
         this.setDatesDisabled(options.datesDisabled || this.element.data('dates-disabled'));
-
         if (this.initialDate != null) {
             this.date = this.viewDate = DPGlobal.parseDate(this.initialDate, this.format, this.language);
             this.setValue();
@@ -357,6 +356,7 @@
         },
 
         setUTCDate: function(d) {
+            console.log(d)
             this.date = d;
             this.setValue();
         },
@@ -509,9 +509,7 @@
                 $(this.picker).removeClass('is-invalid')
                 $(this.element).removeClass('is-invalid-input')
             }
-        
             this.date = DPGlobal.parseDate(date, this.format, this.language);
-
             if (fromArgs) {
                 this.setValue();
             } else if (currentVal == "") {
@@ -580,7 +578,22 @@
                 titleFormat = dates[this.language].titleFormat || dates['en'].titleFormat;
             // this.picker.find('.datepicker-days thead th.date-switch')
             //          .text(DPGlobal.formatDate(new UTCDate(year, month), titleFormat, this.language));
+            var currentVal
+            if (this.isInput) {
+                currentVal = this.element.val()
+            }else{
+                currentVal = this.element.find('input').val()
+            }
 
+            if(currentVal){
+                var currentValArry = currentVal.split('-')
+                var currentDateFormat = currentValArry[2]+"-"+currentValArry[0]+"-"+currentValArry[1]
+                currentDate = new Date(currentDateFormat).valueOf()
+            }else{
+                currentDate = ''
+            }
+            
+            console.log(currentDate)
             this.picker.find('.datepicker-days thead th:eq(1)')
                 .text(dates[this.language].months[month] + ' ' + year);
             this.picker.find('.datepicker-hours thead th:eq(1)')
