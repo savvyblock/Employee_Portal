@@ -250,7 +250,7 @@
         "city": "City",
         "zip": "Zip",
         "zip4": "Zip+4",
-        "altAddr": "Alternate",
+        "altAddr": "Alternate Address",
         "altAddrNumber": "Alternative Address Number",
         "phoneNumbers": "Phone Numbers",
         "home": "Home",

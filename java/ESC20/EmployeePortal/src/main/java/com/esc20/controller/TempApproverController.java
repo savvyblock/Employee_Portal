@@ -55,7 +55,7 @@ public class TempApproverController extends BaseSupervisorController {
 	private final String module = "Set Temp Approvers";
 	
 	@RequestMapping("leaveRequestTemporaryApprovers")
-	public ModelAndView getLeaveRequestTemporaryApprovers(HttpServletRequest req, String empNbr) throws ParseException {
+	public ModelAndView getLeaveRequestTemporaryApprovers(HttpServletRequest req, String empNbr,String freq) throws ParseException {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
@@ -133,8 +133,23 @@ public class TempApproverController extends BaseSupervisorController {
 		}
         mav.addObject("leavesCalendar", calendar);
         
+        List<Code> leaveTypes = new ArrayList<Code>();
+   
+		//Add a blank for leave Types for default shown
+        Code emptyType = new Code();
+        emptyType.setDescription(" ");
+    	leaveTypes.add(emptyType);
+    	List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
+    	if (freq == null || ("").equals(freq)) {
+			if (availableFreqs.size() > 0) {
+				freq = availableFreqs.get(0).getCode();
+			}
+    	}
+        leaveTypes.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
+        
       //  List<Code> testApproves = this.supService.getEmployeeTempApproverSearch(user.getEmpNbr(), "0");
-		
+    	mav.addObject("leaveTypes", leaveTypes);
+    	mav.addObject("params", params);
 		mav.addObject("tmpApprovers", tmpApprovers);
 		mav.addObject("directReportEmployee", employeeDataJSON);
 		return mav;
@@ -169,10 +184,10 @@ public class TempApproverController extends BaseSupervisorController {
 			currentLevelDetail.put("middleName", nextLevelSupervisor.getNameM());
 			currentLevelDetail.put("employeeNumber", nextLevelSupervisor.getEmpNbr());
 			levels.add(currentLevelDetail);
-			mav = this.getLeaveRequestTemporaryApprovers(req, nextLevelSupervisor.getEmpNbr());
+			mav = this.getLeaveRequestTemporaryApprovers(req, nextLevelSupervisor.getEmpNbr(),"");
 			mav.addObject("chain", levels);
 		} else {
-			mav = this.getLeaveRequestTemporaryApprovers(req, currentSupervisorEmployeeNumber);
+			mav = this.getLeaveRequestTemporaryApprovers(req, currentSupervisorEmployeeNumber,"");
 			mav.addObject("chain", levels);
 		}
 		return mav;
@@ -194,7 +209,7 @@ public class TempApproverController extends BaseSupervisorController {
 		Integer prevLevel = levels.size() - 2;
 		String empNbr = ((JSONObject) levels.get(prevLevel)).getString("employeeNumber");
 		levels.remove(levels.size() - 1);
-		mav = this.getLeaveRequestTemporaryApprovers(req, empNbr);
+		mav = this.getLeaveRequestTemporaryApprovers(req, empNbr,"");
 		mav.addObject("chain", levels);
 		return mav;
 	}
@@ -247,7 +262,7 @@ public class TempApproverController extends BaseSupervisorController {
 			tempApprover.setTmpApprvrEmpNbr(temp.getString("empNbr"));
 			this.supService.saveTempApprover(tempApprover, !(temp.getString("id") == null || temp.getString("id").equals("")));
 		}
-		mav = this.getLeaveRequestTemporaryApprovers(req, empNbr);
+		mav = this.getLeaveRequestTemporaryApprovers(req, empNbr,"");
 		mav.addObject("chain", levels);
 		return mav;
 	}
