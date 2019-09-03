@@ -151,8 +151,21 @@ public class TempApproverController extends BaseSupervisorController {
 		for (int i = 0; i < leaveTypes.size(); i++) {
 			leaveTypesJson.add(leaveTypes.get(i).toJSON());
 		}
+		
+		List<Code> absRsns =  new ArrayList<Code>();
+		//Add a blank for absRsns for default shown
+		emptyType = new Code();
+		emptyType.setDescription(" ");
+		absRsns.add(emptyType);
+		absRsns.addAll(this.service.getAbsRsns(demo.getEmpNbr(), freq, ""));
+		
+		JSONArray absRsnsJson = new JSONArray();
+		for (int i = 0; i < absRsns.size(); i++) {
+			absRsnsJson.add(absRsns.get(i).toJSON());
+		}
         
       //  List<Code> testApproves = this.supService.getEmployeeTempApproverSearch(user.getEmpNbr(), "0");
+		mav.addObject("absRsns", absRsnsJson);
     	mav.addObject("leaveTypes", leaveTypesJson);
     	mav.addObject("params", params);
 		mav.addObject("tmpApprovers", tmpApprovers);
