@@ -387,6 +387,11 @@ input:focus {
   box-shadow: inset 0 0 0 transparent;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   resize: none;
+  font-family: "Arial";
+}
+
+.form-control option {
+  font-family: "Arial";
 }
 
 .form-control.form-text {
