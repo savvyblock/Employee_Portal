@@ -593,7 +593,6 @@
                 currentDate = ''
             }
             
-            console.log(currentDate)
             this.picker.find('.datepicker-days thead th:eq(1)')
                 .text(dates[this.language].months[month] + ' ' + year);
             this.picker.find('.datepicker-hours thead th:eq(1)')

@@ -271,6 +271,7 @@
 <script>
 var leaveTypesAbsrsnsMap = eval(${leaveTypesAbsrsnsMap});
 var isAddValue = '${addRow}'
+var  enterNonZeroValueValidator = '${sessionScope.languageJSON.validator.enterNonZeroValue}'
 </script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/eventModal.js"></script>
 

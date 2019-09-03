@@ -156,6 +156,9 @@ $(document).ready(
 			$(".availableError").hide()
 	//Initializes the time control when edit event modal show
 			$("#commentList").html("")
+			$(".timeUnit").hide()
+			$(".leaveHoursDailyNotZero").hide()
+        	$(".leaveHoursDailyWrap").removeClass('has-error')
 }
 	function changeFormatTimeAm(value){
 			var array = value.split(/[,: ]/);

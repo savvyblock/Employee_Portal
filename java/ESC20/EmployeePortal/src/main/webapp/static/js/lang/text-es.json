@@ -635,6 +635,8 @@
         "enteredWrongDate": "El formato de fecha que capturó es incorrecto.",
         "enterNonZeroValue": "Escriba un valor diferente a cero.",
         "saveSuccess":"Save Successful",
+        "selectAbsenceReason":"Select a Absence Reason.",
+        "selectLeaveType":"Select a Leave Type.",
         "": ""
     },
     "accessHint": {

@@ -635,6 +635,8 @@
         "enteredWrongDate": "The date format you entered is incorrect",
         "enterNonZeroValue": "Enter a non-zero value.",
         "saveSuccess":"Save Successful",
+        "selectAbsenceReason":"Select a Absence Reason.",
+        "selectLeaveType":"Select a Leave Type.",
         "": ""
     },
     "accessHint": {
