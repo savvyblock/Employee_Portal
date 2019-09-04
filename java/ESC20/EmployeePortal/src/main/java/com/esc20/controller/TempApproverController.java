@@ -276,6 +276,7 @@ public class TempApproverController extends BaseSupervisorController {
 		}
 		mav = this.getLeaveRequestTemporaryApprovers(req, empNbr);
 		mav.addObject("chain", levels);
+		mav.addObject("saveSuccess", true);
 		return mav;
 	}
 
