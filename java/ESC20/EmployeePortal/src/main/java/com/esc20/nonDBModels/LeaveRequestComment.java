@@ -162,7 +162,7 @@ public class LeaveRequestComment implements Serializable{
 		detail += " commented on ";
 		String date = this.getCommentDateString() + " " + this.getCommentTimeString();
 		detail += date;
-		detail += ": " + this.getComment();
+		detail += ": <b>" + this.getComment()+"</b>";
 		detail = detail.replaceAll("'", "\\" + "'");
 		jo.put("detail", detail);
 		return jo;
