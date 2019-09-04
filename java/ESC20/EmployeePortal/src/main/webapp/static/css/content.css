@@ -1831,6 +1831,10 @@
   display: block;
 }
 
+.profile .profile-item .profile-btn .save-btn.hide {
+  display: none;
+}
+
 .profile .profile-item .profile-btn .edit {
   display: none;
 }
@@ -1953,6 +1957,10 @@
     color: #000;
     flex: 1;
   }
+}
+
+.profile .bankAccountBlock {
+  margin-bottom: 20px;
 }
 
 .profile .bankAccountBlock.isDelete {

@@ -279,7 +279,8 @@
         "routingNumber": "Routing Number",
         "addANewBankAccount": "Add a new bank account",
         "restrictionCodesPublic": "Restriction Codes Public",
-        "verifyEmail": "Verify E-mail Address"
+        "verifyEmail": "Verify E-mail Address",
+        "searchForBanks":"Search for banks"
     },
     "label": {
         "back": "Go Back",

@@ -279,7 +279,8 @@
         "routingNumber": "Número de ruta bancaria",
         "addANewBankAccount": "Añadir una nueva cuenta bancaria",
         "restrictionCodesPublic": "Códigos de restricción públicos",
-        "verifyEmail": "Verificar dirección de correo electrónico"
+        "verifyEmail": "Verificar dirección de correo electrónico",
+        "searchForBanks":"Search for banks"
     },
     "label": {
         "back": "Regresar",
