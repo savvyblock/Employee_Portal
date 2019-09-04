@@ -637,6 +637,11 @@
         "saveSuccess":"Save Successful",
         "selectAbsenceReason":"Select a Absence Reason.",
         "selectLeaveType":"Select a Leave Type.",
+        "selectAFromDate":"Select a From Date.",
+        "selectAToDate":"Select a To Date.",
+        "overlapsDate":"Date range overlaps with a prior one.",
+        "enterSelectEmp":"Enter or Select an Employee Number.",
+        "employeeInvalid":"Employee Number entered is invalid. Enter or Select an Employee Number.",
         "": ""
     },
     "accessHint": {

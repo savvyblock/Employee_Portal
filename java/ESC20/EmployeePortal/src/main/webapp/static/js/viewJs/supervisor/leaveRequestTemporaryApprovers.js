@@ -1,9 +1,10 @@
 var employeeList = directReportEmployee
 var thisTrIndex, repeat, currentInputNbr
+var resultDeleteApprover = addedApprover,emptyRow = 0,overlapsRow = false
 $(function() {
     changeLevel()
     initDateControl()
-    judgeContent()
+    // judgeContent()
     initialCompleteList()
     var level = $('#level').val()
     var chainString = JSON.stringify(chain)
@@ -32,79 +33,24 @@ $(function() {
         $('#previousLevel')[0].submit()
     })
     $('.add-new-row').click(function() {
-        judgeContent()
-        var trLen = $('.setApprovers-list tbody tr').length
-        var approverLen = $('.setApprovers-list tbody tr.approver_tr').length
-        var length = trLen
-        var newRow =
-            '<tr class="approver_tr">'+
-		            '<td style="text-align:center" scope="'+deleteLabel+'">'+
-		            '<button type="button" role="button" class="a-btn" onclick="deleteRow(this)" aria-label="'+deleteBtnLabel+'">'+
-		                '<i class="fa fa-trash"></i>'+
-		           '</button>'+
-		   '</td>'+
-                '<td class="countIndex" scope="'+rowNbrLabel+'">' +length +
-               '</td>'+
-                '<td scope="'+temporaryApproverLabel+'">'+
-                    '<div class="form-group">'+
-                        '<input class="form-control empControl" type="text" aria-label="'+temporaryApproverLabel+'" id="name_0'+length+'">'+
-                    '</div>'+
-                '</td>'+
-                '<td scope="'+fromDateLabel+'">'+
-                    '<div class="form-group">'+
-                        '<div class="fDateGroup date dateFromControl" data-date-format="mm-dd-yyyy">'+
-                            '<button class="prefix" type="button" aria-label="'+showDatepickerLabel+'"><i class="fa fa-calendar"></i></button>'+
-                            '<input class="form-control dateInput date-control" aria-label="'+fromDateLabel+'" type="text" autocomplete="off" id="fromDate_0'+length+'" placeholder="mm-dd-yyyy">'+
-                        '</div>'+
-                    '</div>'+
-                '</td>'+
-                '<td scope="'+toDateLabel+'">'+
-                    '<div class="form-group">'+
-                        '<div class="fDateGroup date dateToControl" data-date-format="mm-dd-yyyy">'+
-                            '<button class="prefix" type="button" aria-label="'+showDatepickerLabel+'"><i class="fa fa-calendar"></i></button>'+
-                            '<input class="form-control dateInput  date-control" aria-label="'+toDateLabel+'" type="text" autocomplete="off" id="toDate_0'+length+'" placeholder="mm-dd-yyyy">'+
-                        '</div>'+
-                    '</div>'+
-                '</td>'+
-            '</tr>'
-                    
-        console.log('tr that have empty field' + approverEmptyJson)
-        if (!approverEmptyJson || approverEmptyJson.length < 1) {
-            $('#errorComplete').hide()
-            var errorLength = veryIfError()
-            if (errorLength==0) {
-                // console.log(newRow)
-                $('.setApprovers-list tbody tr:last-child').before(newRow)
-                initialCompleteList()
-            }
-        } else {
-            $('#errorComplete').show()
-        }
-
-        initLocalize(initialLocaleCode) //Initialize multilingual function
-        initDateControl()
+        addTemporaryApproverRow()
     })
     $('#reset').click(function() {
         $('#resetForm')[0].submit()
     })
     $('#saveSet').click(function() {
-        initDateControl()
-        $('#chainString').val(chainString)
-        $('#empNbrForm').val(empNbr)
-        var length = $('.approver_tr').length
-        var resultApprover = []//data has saved + new data
-        approverJson.forEach(function(item) {
-            console.log(item)
-            if(item.empNbr&&item.from&&item.to&&item.empNbr!=''&&item.from!=''&&item.to!=''){
-                resultApprover.push(item)
-            }
-        })
-        console.log(resultApprover)
-        console.log('if have empty field' + approverEmptyJson)
-        if (approverEmptyJson && approverEmptyJson.length > 0) {
-            $('#errorComplete').show()
-        } else {
-            addedApprover.forEach(function(item, index){
+        judgeContent()
+        console.log(emptyRow)
+        console.log(overlapsRow)
+        var resultApprover = []
+        if(emptyRow == 0 && !overlapsRow){
+            approverJson.forEach(function(item) {
+                console.log(item)
+                if(item.empNbr&&item.from&&item.to&&item.empNbr!=''&&item.from!=''&&item.to!=''){
+                    resultApprover.push(item)
+                }
+            })
+            resultDeleteApprover.forEach(function(item, index){
                 var approver = {
                     id: '',
                     empNbr: item.tmpApprvrEmpNbr,
@@ -115,32 +61,46 @@ $(function() {
             })
             console.log(resultApprover)
             $('#approverJson').val(JSON.stringify(resultApprover))
-            $('#errorComplete').hide()
-            var errorLength = veryIfError()
-            if (errorLength==0) {
-                $('#saveTempApprovers')[0].submit()
-            }
+            $('#saveTempApprovers')[0].submit()
         }
-    })
 
-    $(document).on('blur', '.empControl', function() {
-        // verifyRepeat()
-        judgeContent()
     })
+    var idArry = []
     $('.deleteApprover').click(function() {
-        var id = $(this)
-            .parents('.listTr')
-            .find('.empId')
-            .val()
-        $(this)
-            .parents('.listTr')
-            .removeClass('listTr')
-            .addClass('redTd')
-        addedApprover = addedApprover.filter(function(value) {
-            return value.tmpApprvrEmpNbr != id
-        })
+        var tr = $(this).parents('tr')
+        if(tr.hasClass('redTd')){
+            var id = $(this).parents('tr').find('.trId').val()
+            $(this).parents('tr').removeClass('redTd').addClass('listTr')
+            for(var i = 0,len = idArry.length;i<len;i++){
+                if(id == [i]){
+                    idArry.splice(i,1);
+                }
+            }
+            for(var i =0,len = addedApprover.length;i<len;i++){
+                if(addedApprover[i].id == id){
+                    resultDeleteApprover.push(addedApprover[i])
+                }
+            }
+
+        }else{
+            var id = $(this).parents('tr').find('.trId').val()
+            idArry.push(id)
+            $(this).parents('tr').removeClass('listTr').addClass('redTd')
+            resultDeleteApprover = addedApprover.filter(function(value) {
+                var equal = false
+                for(var i = 0,len = idArry.length;i<len;i++){
+                    if(value.id == idArry[i]){
+                        equal = true
+                    }
+                }
+                if(!equal){
+                    return value
+                }
+            })
+        }
+        
         // console.log("approver saved")
-        // console.log(addedApprover)
+        console.log(resultDeleteApprover)
         // verifyRepeat()
     })
     $(document).on('blur','.dateToControl', function() {
@@ -206,44 +166,8 @@ function changeDateYMD(date){
     var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
     return DateFormat
 }
-function verifyRepeat() {
-    repeat = 0
-    addedApprover.forEach(function(item, index) {
-        approverJson.forEach(function(emp, index){
-            if (emp.empNbr && emp.empNbr == item.tmpApprvrEmpNbr) {
-                console.log(emp.empNbr)
-                console.log(item.tmpApprvrEmpNbr)
-                repeat++
-            }
-        })
-    })
-    approverJson.forEach(function(emp, index){
-        approverJson.forEach(function(item, index) {
-            if (
-                emp.empNbr &&
-                item.empNbr &&
-                emp.empNbr == item.empNbr &&
-                emp.domId != item.domId
-            ) {
-                console.log(emp.empNbr)
-                console.log(item.empNbr)
-                repeat++
-            }
-        })
-    })
-    console.log('repeat' + repeat)
-    if (repeat > 0) {
-        $('#repeatError').show()
-        $('#saveSet')
-            .addClass('disabled')
-            .attr('disabled', 'disabled')
-    } else {
-        $('#repeatError').hide()
-        $('#saveSet')
-            .removeClass('disabled')
-            .removeAttr('disabled')
-    }
-}
+
+
 function initialCompleteList(dataList) {
     $('.empControl').each(function() {
         var input = this
@@ -270,9 +194,76 @@ function initialCompleteList(dataList) {
                          response(res)
                     }
                 })
-            }
+            },
+            select: function(event, ui) {
+                console.log(ui)
+				$(this).val(ui.item.value);
+				// copy the employee number into the attribute data-number 
+				$(this).attr('data-number',ui.item.empNbr);
+				// set the value into the text field
+				var inputObj = $(this).closest("td").find("input.empControl")[0];
+				
+				// auto tab as long as the selection was made without the use of the tab key
+				var charCode = (event.which) ? event.which : event.keyCode;
+				if (charCode!=9) {
+					if ($(inputObj).hasClass("lastRowTabOut")) {
+						// this is the last row in the table... add a row
+						addTemporaryApproverRow();
+					}
+					focusNext(inputObj);
+				}
+			}
         });
     })
+}
+
+function addTemporaryApproverRow(){
+    var trLen = $('.setApprovers-list tbody tr').length
+    var approverLen = $('.setApprovers-list tbody tr.approver_tr').length
+    var length = trLen
+    var newRow =
+            '<tr class="approver_tr">'+
+		            '<td style="text-align:center" scope="'+deleteLabel+'">'+
+		            '<button type="button" role="button" class="a-btn" onclick="deleteRow(this)" aria-label="'+deleteBtnLabel+'">'+
+		                '<i class="fa fa-trash"></i>'+
+		           '</button>'+
+		   '</td>'+
+                '<td class="countIndex" scope="'+rowNbrLabel+'">' +length +
+               '</td>'+
+                '<td scope="'+temporaryApproverLabel+'">'+
+                    '<div class="form-group">'+
+                        '<input class="form-control empControl lastRowTabOut" type="text" aria-label="'+temporaryApproverLabel+'" id="name_0'+length+'">'+
+                        '<small class="help-block invalid" role="alert" aria-atomic="true" style="display:none;">'+employeeInvalid+'</small>'+
+                        '<small class="help-block required" role="alert" aria-atomic="true" style="display:none;">'+enterSelectEmp+'</small>'+
+                    '</div>'+
+                '</td>'+
+                '<td scope="'+fromDateLabel+'">'+
+                    '<div class="form-group">'+
+                        '<div class="fDateGroup date dateFromControl" data-date-format="mm-dd-yyyy">'+
+                            '<button class="prefix" type="button" aria-label="'+showDatepickerLabel+'"><i class="fa fa-calendar"></i></button>'+
+                            '<input class="form-control dateInput date-control" aria-label="'+fromDateLabel+'" type="text" autocomplete="off" id="fromDate_0'+length+'" placeholder="mm-dd-yyyy">'+
+                            '<small class="help-block required" role="alert" aria-atomic="true" style="display:none;">'+selectAFromDate+'</small>'+
+                            '<small class="help-block overlapsDate" role="alert" aria-atomic="true" style="display:none;">'+overlapsDate+'</small>'+
+                        '</div>'+
+                    '</div>'+
+                '</td>'+
+                '<td scope="'+toDateLabel+'">'+
+                    '<div class="form-group">'+
+                        '<div class="fDateGroup date dateToControl" data-date-format="mm-dd-yyyy">'+
+                            '<button class="prefix" type="button" aria-label="'+showDatepickerLabel+'"><i class="fa fa-calendar"></i></button>'+
+                            '<input class="form-control dateInput  date-control" aria-label="'+toDateLabel+'" type="text" autocomplete="off" id="toDate_0'+length+'" placeholder="mm-dd-yyyy">'+
+                            '<small class="help-block required" role="alert" aria-atomic="true" style="display:none;">'+selectAToDate+'</small>'+
+                            '<small class="help-block overlapsDate" role="alert" aria-atomic="true" style="display:none;">'+overlapsDate+'</small>'+
+                        '</div>'+
+                    '</div>'+
+                '</td>'+
+            '</tr>'
+     $('.setApprovers-list tbody tr:last-child').before(newRow)
+     $(".setApprovers-list").find("input.lastRowTabOut").removeClass("lastRowTabOut");
+    $(".setApprovers-list").find("input.empControl:last").addClass("lastRowTabOut");
+    initialCompleteList()
+    initLocalize(initialLocaleCode) //Initialize multilingual function
+    initDateControl()
 }
 
 function veryIfError(){
@@ -291,7 +282,7 @@ function deleteRow(dom) {
         .removeClass('approver_tr')
         .addClass('redTd')
     $("#errorDate").hide()
-    judgeContent()
+    // judgeContent()
     // verifyRepeat()
 }
 var checkin = []
@@ -315,7 +306,6 @@ function initDateControl() {
                 }
             })
             .on('changeDate', function(ev) {
-                console.log(ev)
                 var endDate = toDateDom.val()
                 var startDate = fromDateDom.val()
                 // if (
@@ -329,7 +319,10 @@ function initDateControl() {
                     startDate.setDate(startDate.getDate())
                     checkout[index].update(startDate)
                     toDateDom.change()
-                    judgeContent()
+                    setTimeout(function(){
+                        focusNext(fromDateDom)
+                    },100)
+                    // judgeContent()
                 }
             })
             .data('datepicker')
@@ -345,11 +338,10 @@ function initDateControl() {
                 }
             })
             .on('changeDate', function(ev) {
-                console.log(ev)
                 if (ev.date) {
                     haveEndDate[index] = true
                 }
-                judgeContent()
+                // judgeContent()
             })
             .data('datepicker')
     })
@@ -374,14 +366,11 @@ function changeLevel() {
     }
 }
 
-var noEmpty = 0
 var approverJson = []
-var approverEmptyJson = []
 
 function judgeContent() {
     approverJson = []
-    approverEmptyJson = []
-    noEmpty = 0
+    emptyRow = 0
     var length = $('.approver_tr').length
     $('.approver_tr').each(function(index) {
         var empNbr = $(this)
@@ -394,35 +383,117 @@ function judgeContent() {
         var to = $(this)
             .find('.dateToControl .date-control')
             .val()
+        // Verify that the input is complete
+        if((empNbr == ''&& from == '' && to == '')||(empNbr != ''&& from != '' && to != '')){
+            $(this).find('.empControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
+            $(this).find('.dateFromControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
+            $(this).find('.dateToControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
+        }else{
+            emptyRow++
+            if(empNbr == ''){
+                $(this).find('.empControl').parents('.form-group').addClass('has-error').find('.help-block.required').show().addClass("shown")
+            }else{
+                $(this).find('.empControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
+            }
+            if(from == ''){
+                $(this).find('.dateFromControl').parents('.form-group').addClass('has-error').find('.help-block.required').show().addClass("shown")
+            }else{
+                $(this).find('.dateFromControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
+            }
+            if(to == ''){
+                $(this).find('.dateToControl').parents('.form-group').addClass('has-error').find('.help-block.required').show().addClass("shown")
+            }else{
+                $(this).find('.dateToControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
+            }
+        }
+        // Verify that there are overlapping dates
         var obj
-        if (empNbr == '' || from == '' || to == '') {
-        } else {
-            noEmpty += 1
-        }
-        obj = {
-            id: '',
-            domId: index,
-            empNbr: empArry[0].trim(),
-            from: from,
-            to: to
-        }
-        if (obj && obj != '') {
+        if(from != '' && to != ''){
+            obj = {
+                id: '',
+                dom:$(this),
+                domId: index,
+                empNbr: empArry[0].trim(),
+                from: from,
+                to: to
+            }
             approverJson.push(obj)
         }
-        if (
-            (empNbr == '' && from == '' && to == '') ||
-            (empNbr != '' && from != '' && to != '')
-        ) {
-        } else {
-            approverEmptyJson.push(index)
-        }
     })
-    console.log("just added +++ have empty field  tr")
+    overlapsRow = verifyOverlappingDate(approverJson)
+    console.log(overlapsRow)
     console.log(approverJson)
-    console.log(approverEmptyJson)
+    setTimeout(function(){
+        $(".setApprovers-list .has-error .help-block").hide()
+    },1500)
+}
+function verifyOverlappingDate(json){
+    var jsonArry =  []
+    resultDeleteApprover.forEach(function(item, index){
+        var approver = {
+            id: '',
+            empNbr: item.tmpApprvrEmpNbr,
+            from: item.datetimeFrom,
+            to: item.datetimeTo
+        }
+        jsonArry.push(approver)
+    })
+    json.forEach(function(item, index){
+        jsonArry.push(item)
+    })
+    var repeatDate = 0
+    for(var i = 0;i< jsonArry.length-1;i++){
+        for(var j=i+1;j<jsonArry.length;j++){
+            if(
+                changeDateYMD(jsonArry[i].from).valueOf() <= changeDateYMD(jsonArry[j].to).valueOf() 
+                && 
+                changeDateYMD(jsonArry[i].to).valueOf() >= changeDateYMD(jsonArry[j].from).valueOf()
+            ){
+                console.log(jsonArry[j])
+                $(jsonArry[j].dom).find('.dateFromControl,.dateToControl').parents('.form-group').addClass("has-error").find(".help-block.overlapsDate").show().addClass("shown")
+                repeatDate++
+                
+            }
+        }
+    }
+    if(repeatDate>0){
+        console.log(repeatDate)
+        return true;
+    }
 }
 
 function showCalendarModal(){
     setTimeout("initialLeaveCalendarModal()",100)
-    
+}
+
+function focusNext(obj) {
+	var browser='';
+	if (document.selection) {
+		obj.focus ();
+		var sel = document.selection.createRange();
+		sel.moveStart ('character', -obj.value.length);
+		browser = "IE";
+	} else if (obj.selectionStart || obj.selectionStart == '0') {
+		browser="Firefox";
+	}
+
+	var inputs = $('input:visible');
+	var indexx = inputs.index(obj);
+	var nextInput = inputs.get(indexx + 1);
+    if (nextInput) {
+		if(browser == "Firefox")
+	    {
+		   	nextInput.selectionStart = 0;
+			nextInput.selectionEnd = 0;
+	   	}
+	   	nextInput.focus();
+    }
+}
+function onBlurTempApproverEntry(event) {
+	var trObj = $(event.target).closest("tr");
+	var tempApproverEmployeeNumber = $(trObj).find(".empControl").attr('data-number').trim();
+	var inputAutoCompleteString = $(trObj).find(".empControl").val().trim();
+	if (!inputAutoCompleteString.startsWith(tempApproverEmployeeNumber)) {
+		$(trObj).find(".empControl").val(""); // validate the approver emp number entered on the server side
+	}
 }

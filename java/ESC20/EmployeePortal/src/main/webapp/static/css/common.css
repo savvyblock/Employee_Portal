@@ -573,7 +573,7 @@ input:focus {
 }
 
 .table.border-table tr.redTd .a-btn {
-  display: none;
+  opacity: 0.6;
 }
 
 .table.border-table th, .table.border-table td {

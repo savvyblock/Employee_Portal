@@ -82,13 +82,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </b>
                                         </h2>
                         <div class="content-white EMP-detail">
-                            
+                            <c:if test="${saveSuccess}">
+                            <p class="success-hint"><b>${sessionScope.languageJSON.validator.saveSuccess}</b></p>
+                            </c:if>
                             <form action="saveTempApprovers" id="saveTempApprovers" method="POST">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input hidden="hidden" id="chainString" class="chain" name="chain" type="text" value="" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
                                     <input hidden="hidden" id="empNbrForm" name="empNbr" type="text" value="" aria-label="${sessionScope.languageJSON.accessHint.employeeNumber}"/>
                                     <input hidden="hidden" id="approverJson" name="approverJson" type="text" value="" aria-label="${sessionScope.languageJSON.accessHint.approverJson}"/>
-                                <p id="tableSummary" class="forAria">${sessionScope.languageJSON.accessHint.deletedRowSummary}</p>    
+                                    <div class="text-left">
+                                        <button
+                                            type="button" role="button"
+                                            class="btn btn-primary"
+                                            aria-label="${sessionScope.languageJSON.label.save}"
+                                            id="saveSet">
+                                            ${sessionScope.languageJSON.label.save}
+                                        </button>
+                                        <button
+                                            type="button" role="button"
+                                            class="btn btn-secondary"
+                                            aria-label="${sessionScope.languageJSON.label.reset}"
+                                            id="reset">
+                                            ${sessionScope.languageJSON.label.reset}
+                                        </button>
+                                    </div>
+                                    <p id="tableSummary" class="forAria">${sessionScope.languageJSON.accessHint.deletedRowSummary}</p>    
                                 <table aria-describedby="tableSummary"
                                     class="table border-table setApprovers-list responsive-table"
                                 >
@@ -122,7 +140,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         </td>
                                                         <td class="empNumber"
                                                         data-title="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}">
-                                                        <input hidden="hidden" type="text" class="empId" value="${tem.tmpApprvrEmpNbr}" aria-label="${sessionScope.languageJSON.accessHint.employeeId}">
+                                                        <input type="hidden" class="empId" value="${tem.tmpApprvrEmpNbr}">
+                                                        <input type="hidden" class="trId" value="${tem.id}">
                                                         ${tem.tmpApprvrEmpNbr}: ${tem.approverName}
                                                     </td>
                                                         <td class="empFrom" data-title="${sessionScope.languageJSON.setTemporaryApprovers.from}">${tem.datetimeFrom}</td>
@@ -154,6 +173,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="name_01"
                                                         id="name_01"
                                                     />
+                                                    <small class="help-block invalid" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.employeeInvalid}</small>
+                                                    <small class="help-block required" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.enterSelectEmp}</small>
                                                 </div>
                                             </td>
                                             <td data-title="${sessionScope.languageJSON.setTemporaryApprovers.from}">
@@ -169,6 +190,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             placeholder="mm-dd-yyyy"
                                                         />
                                                     </div>
+                                                    <small class="help-block required" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.selectAFromDate}</small>
+                                                    <small class="help-block overlapsDate" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.overlapsDate}</small>
                                                     <!-- <input
                                                         class="form-control date-control dateFromControl"
                                                         aria-label="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}"
@@ -192,6 +215,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             placeholder="mm-dd-yyyy"
                                                         />
                                                         </div>
+                                                        <small class="help-block required" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.selectAToDate}</small>
+                                                        <small class="help-block overlapsDate" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.overlapsDate}</small>
                                                     <!-- <input
                                                         class="form-control  date-control dateToControl"
                                                         aria-label="${sessionScope.languageJSON.setTemporaryApprovers.toDate}"
@@ -224,22 +249,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <p class="error-hint hide" role="alert" aria-atomic="true" id="errorDate">${sessionScope.languageJSON.validator.startNotBeGreaterThanEndDate}</p>
                                     <p class="success-hint" style="display:none;" role="alert" aria-atomic="true" id="saveSuccess">${sessionScope.languageJSON.validator.saveSuccess}</p>
                                 </div>
-                                <div class="text-right mt-3">
-                                    <button
-                                        type="button" role="button"
-                                        class="btn btn-primary"
-                                        aria-label="${sessionScope.languageJSON.label.save}"
-                                        id="saveSet">
-                                    	${sessionScope.languageJSON.label.save}
-                                    </button>
-                                    <button
-                                        type="button" role="button"
-                                        class="btn btn-secondary"
-                                        aria-label="${sessionScope.languageJSON.label.reset}"
-                                        id="reset">
-                                    	${sessionScope.languageJSON.label.reset}
-                                    </button>
-                                </div>
+                                
                             </form>
                              <form hidden="hidden" action="leaveRequestTemporaryApprovers" id="resetForm" method="POST">
                              	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -262,6 +272,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     var chain = eval(${chain});
     var leaveTypes = eval(${leaveTypes});
     var absRsns = eval(${absRsns});
+    var employeeInvalid = '${sessionScope.languageJSON.validator.employeeInvalid}'
+    var selectAFromDate = '${sessionScope.languageJSON.validator.selectAFromDate}'
+    var selectAToDate = '${sessionScope.languageJSON.validator.selectAToDate}'
+    var enterSelectEmp = '${sessionScope.languageJSON.validator.enterSelectEmp}'
+    var overlapsDate = '${sessionScope.languageJSON.validator.overlapsDate}'
     </script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery-ui.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/supervisor/leaveRequestTemporaryApprovers.js"></script>

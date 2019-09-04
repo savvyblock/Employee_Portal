@@ -474,6 +474,16 @@
                 }
             }
         }
+        .help-block{
+            left: 0;
+        }
+        .has-error{
+            &:hover{
+                .help-block.shown{
+                    display: block!important;
+                }
+            }
+        }
     }
     .table-top-title {
         font-size: 14px;
