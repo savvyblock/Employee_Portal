@@ -1211,6 +1211,9 @@ input {
         background: none;
         color: #3ab34a;
         font-size: 15px;
+        &:disabled{
+            opacity: 0.6;
+        }
         &:hover{
             border: 0;
             background: none;

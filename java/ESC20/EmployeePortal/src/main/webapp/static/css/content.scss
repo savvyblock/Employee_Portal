@@ -1644,6 +1644,11 @@
                 margin: 3px;
                 display: block;
             }
+            .save-btn{
+                &.hide{
+                    display: none;
+                }
+            }
             .edit {
                 display: none;
             }
@@ -1759,6 +1764,7 @@
         }
     }
     .bankAccountBlock {
+        margin-bottom: 20px;
         &.isDelete {
             background: #e28088 !important;
             .profile-btn {
