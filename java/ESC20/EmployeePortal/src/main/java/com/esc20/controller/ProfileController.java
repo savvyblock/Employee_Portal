@@ -410,6 +410,12 @@ public class ProfileController{
         getProfileDetails(session, mav,null);
         return mav;
     }
+    @RequestMapping("saveAll")
+    public String saveAll(HttpServletRequest req) {
+    	
+    	return "";
+    }
+    
     
     @RequestMapping("saveName")
     public ModelAndView saveName(HttpServletRequest req, 

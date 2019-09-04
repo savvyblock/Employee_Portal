@@ -20,11 +20,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                 </div>
                                 <br/>
+                                
+                               
+                                
+                                
                                 <div class="text-left">
-                                    <button type="button" role="button" class="btn btn-primary">
+                                    <button type="button" role="button" id="saveAll" class="btn btn-primary">
                                         <span>${sessionScope.languageJSON.label.save}</span>
                                     </button>  
-                                    <button type="button" role="button" class="btn btn-default">
+                                    <button type="button" role="button" id="reset" class="btn btn-default">
                                         <span>${sessionScope.languageJSON.label.reset}</span>
                                     </button>
                                 </div>
@@ -32,10 +36,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	                            	<p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServiceDemographic}</p>
                                 </c:if>
                                 
-	                        	 <h2 class="sub-title">${sessionScope.languageJSON.profile.LegalName}</h2>
+                                 <form class="profile-item" id="profileForm" action="saveAll" method="POST">
+                                
+	                        	<h2 class="sub-title">${sessionScope.languageJSON.profile.LegalName}</h2>
                                 <div class="profile-top first-child">
-                                  
+                                  <!-- 
                                     <form class="profile-item" id="personalForm" action="saveName" method="POST">
+                                     -->
                                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
@@ -212,7 +219,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </button>
                                             </div>
                                         </div>
+                                        <!-- 
                                     </form>
+                                      -->
+                                      </form>
                                     <form hidden="hidden" action="deleteNameRequest" id="deleteNameRequest" method="POST">
                                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     </form>
