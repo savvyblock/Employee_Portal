@@ -277,6 +277,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     var selectAToDate = '${sessionScope.languageJSON.validator.selectAToDate}'
     var enterSelectEmp = '${sessionScope.languageJSON.validator.enterSelectEmp}'
     var overlapsDate = '${sessionScope.languageJSON.validator.overlapsDate}'
+    var areUDeleteRow = '${sessionScope.languageJSON.validator.areUDeleteRow}'
+    var pressContinue = '${sessionScope.languageJSON.validator.pressContinue}'
     </script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery-ui.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/supervisor/leaveRequestTemporaryApprovers.js"></script>

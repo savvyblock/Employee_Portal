@@ -61,7 +61,14 @@ $(function() {
             })
             console.log(resultApprover)
             $('#approverJson').val(JSON.stringify(resultApprover))
-            $('#saveTempApprovers')[0].submit()
+            if(showDeleteConfirm){
+                if(deleteRowQuery(event)){
+                    $('#saveTempApprovers')[0].submit()
+                }
+            }else{
+                $('#saveTempApprovers')[0].submit()
+            }
+            
         }
 
     })
@@ -266,24 +273,14 @@ function addTemporaryApproverRow(){
     initDateControl()
 }
 
-function veryIfError(){
-    var i = 0
-    $(".errorList .error-hint").each(function(){
-        if($(this).is(':visible')){
-            i++
-        }
-    });
-    return i
-}
 function deleteRow(dom) {
-    var length = $('.setApprovers-list tbody .approver_tr').length
-    $(dom)
-        .parents('.approver_tr')
-        .removeClass('approver_tr')
-        .addClass('redTd')
-    $("#errorDate").hide()
-    // judgeContent()
-    // verifyRepeat()
+    var domTr =  $(dom).parents('tr')
+    if(domTr.hasClass('approver_tr')){
+        domTr.removeClass('approver_tr').addClass('redTd')
+    }else{
+        domTr.addClass('approver_tr').removeClass('redTd')
+    }
+
 }
 var checkin = []
 var checkout = []
@@ -315,10 +312,15 @@ function initDateControl() {
                 //         endDate == '')
                 // ) {
                 if (ev.date){
-                    startDate = new Date(startDate)
-                    startDate.setDate(startDate.getDate())
-                    checkout[index].update(startDate)
-                    toDateDom.change()
+                    console.log(ev.date)
+                    console.log(checkout[index].date)
+                    console.log(endDate)
+                    if(endDate&&endDate!=''&&checkout[index].date && ev.date.valueOf()>checkout[index].date.valueOf()){
+                        startDate = new Date(startDate)
+                        startDate.setDate(startDate.getDate())
+                        checkout[index].update(startDate)
+                        toDateDom.change()
+                    }
                     setTimeout(function(){
                         focusNext(fromDateDom)
                     },100)
@@ -367,11 +369,17 @@ function changeLevel() {
 }
 
 var approverJson = []
+var showDeleteConfirm = false
 
 function judgeContent() {
+    showDeleteConfirm = false
     approverJson = []
     emptyRow = 0
     var length = $('.approver_tr').length
+    var lengthRed = $('.redTd').length
+    if(lengthRed>0){
+        showDeleteConfirm = true
+    }
     $('.approver_tr').each(function(index) {
         var empNbr = $(this)
             .find('.empControl')
@@ -496,4 +504,12 @@ function onBlurTempApproverEntry(event) {
 	if (!inputAutoCompleteString.startsWith(tempApproverEmployeeNumber)) {
 		$(trObj).find(".empControl").val(""); // validate the approver emp number entered on the server side
 	}
+}
+
+function deleteRowQuery(e) {
+	var result = confirm(areUDeleteRow + "\n\n" + pressContinue);	
+		if(result == false){ 
+			e.preventDefault();
+		}
+		return result;
 }

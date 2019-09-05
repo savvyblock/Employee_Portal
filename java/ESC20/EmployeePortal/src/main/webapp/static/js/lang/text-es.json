@@ -642,6 +642,8 @@
         "overlapsDate":"Date range overlaps with a prior one.",
         "enterSelectEmp":"Enter or Select an Employee Number.",
         "employeeInvalid":"Employee Number entered is invalid. Enter or Select an Employee Number.",
+        "areUDeleteRow":"Are you sure you want to delete the row?",
+        "pressContinue":"Press OK to continue, or Cancel to stay on the current page.",
         "": ""
     },
     "accessHint": {
