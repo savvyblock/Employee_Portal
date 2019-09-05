@@ -2115,3 +2115,39 @@
     }
 }
 .ui-autocomplete{max-height:250px; overflow-y: scroll; overflow-x: hidden;}
+@media (min-width:1321px){
+    body{
+        &.showBalance{
+            overflow-y: initial;
+            position: relative;
+            height: auto;
+            height: initial!important;
+            .modal{
+                position: absolute;
+            }
+        }
+    }
+}
+#balanceModal{
+    .modal-dialog{
+        position: absolute;
+        margin: 0;
+        .modal-footer{
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .modal-body{
+            padding: 5px;
+            p{
+                margin: 5px 0;
+            }
+            #leaveBalanceDetail{
+                margin-bottom: 5px;
+            }
+        }
+        @media (max-width:1320px){
+                position: static;
+                margin: 1.75rem auto;
+        }
+    }
+}

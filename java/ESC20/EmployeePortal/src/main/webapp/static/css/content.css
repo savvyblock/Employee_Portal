@@ -2355,3 +2355,44 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+@media (min-width: 1321px) {
+  body.showBalance {
+    overflow-y: initial;
+    position: relative;
+    height: auto;
+    height: initial !important;
+  }
+  body.showBalance .modal {
+    position: absolute;
+  }
+}
+
+#balanceModal .modal-dialog {
+  position: absolute;
+  margin: 0;
+}
+
+#balanceModal .modal-dialog .modal-footer {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#balanceModal .modal-dialog .modal-body {
+  padding: 5px;
+}
+
+#balanceModal .modal-dialog .modal-body p {
+  margin: 5px 0;
+}
+
+#balanceModal .modal-dialog .modal-body #leaveBalanceDetail {
+  margin-bottom: 5px;
+}
+
+@media (max-width: 1320px) {
+  #balanceModal .modal-dialog {
+    position: static;
+    margin: 1.75rem auto;
+  }
+}

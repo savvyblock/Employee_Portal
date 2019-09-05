@@ -212,6 +212,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         var unitsType = '${sessionScope.languageJSON.leaveBalance.units}'
         var daysType = '${sessionScope.languageJSON.label.days}'
         var hoursType = '${sessionScope.languageJSON.label.hours}'
+        var noRows = '${sessionScope.languageJSON.label.noRows}'
     </script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/supervisor/approveLeaveRequestList.js"></script>
 

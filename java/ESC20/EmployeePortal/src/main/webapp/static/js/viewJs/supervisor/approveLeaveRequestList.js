@@ -201,8 +201,16 @@ function showCalendarModal(){
     setTimeout("initialLeaveCalendarModal()",100)
     
 }
-
+function closeBalance(){
+    $("body").removeClass("showBalance")
+}
 function showBalance(id){
+    $("body").addClass("showBalance")
+    var y = $(event.currentTarget).offset().top;
+    var x = $(event.currentTarget).offset().left;
+    console.log(x)
+    console.log(y)
+    $("#balanceModal .modal-dialog").css({"left":x+35,"top":y})
     var leaveCurrent,leaveBalance
     for(var i = 0,len = leaves.length;i<len;i++){
         if(id == leaves[i].empNbr){
@@ -239,6 +247,9 @@ function showBalance(id){
                     (leaveBalance[i].daysHrs=='D'?daysType:hoursType) +
                 '</td></tr>'
     } 
+    if(leaveBalance.length < 1){
+        tbody = '<tr><td class="text-center" colspan="8">'+noRows+'</td></tr>'
+    }
     $("#leaveBalanceDetail tbody").html(tbody)
 
 }

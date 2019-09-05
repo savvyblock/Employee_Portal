@@ -35,6 +35,7 @@
                     type="button" role="button"
                     class="btn btn-secondary"
                     data-dismiss="modal"
+                    onclick="closeBalance()"
                 >
                 	${sessionScope.languageJSON.label.ok}
                 </button>
