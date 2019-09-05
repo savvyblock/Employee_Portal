@@ -1,6 +1,6 @@
 
 $(function(){
-    console.log(leaves)
+    // console.log(leaves)
     changeLevel()
     var level = $("#level").val()
     if(chain.length>1){

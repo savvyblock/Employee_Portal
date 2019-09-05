@@ -9,9 +9,6 @@ $(function() {
     leaveHoursRequestedEntry = $("#requireLeaveHoursRequestedEntry").val()
     standardHoursDaily = Number(standardHoursDaily)
     mealBreakHours = Number(mealBreakHours)
-    console.log("mealBreakHours>>>>:" + mealBreakHours)
-    console.log("standardHoursDaily>>>>:" + standardHoursDaily)
-    console.log("leaveHoursRequestedEntry>>>>:" + leaveHoursRequestedEntry)
     if(isAddValue == 'true'){
         $("#requestModal").modal('show')
         $(".edit-title").hide()
@@ -49,7 +46,6 @@ $(function() {
                 startDate = new Date(startDate)
                 startDate.setDate(startDate.getDate())
                 checkout.update(startDate)
-                console.log(startDate)
                 $('#endDateInput').change()
                 $('#startDateInput').change()
                 calcTime()
@@ -414,7 +410,6 @@ function isMinuteKey(keyPressEvent) {
 }
 
 function changeDateYMD(date){
-    console.log(date)
     if(!date){
         return
     }
@@ -456,7 +451,6 @@ function saveRequest(isAdd){
         }
         $(".leaveHoursDailyNotZero").hide()
         $(".leaveHoursDailyWrap").removeClass('has-error')
-        console.log('success')
         var startDate = $('#startDateInput').val()
         var endDate = $('#endDateInput').val()
         var start = new Date(startDate)
@@ -465,8 +459,6 @@ function saveRequest(isAdd){
         var typeCode = $("#modalLeaveType").val()
         var balanceAvailable = $("#available"+typeCode+"").text()
         // if (start.valueOf() > end.valueOf()) {
-            console.log(startDate)
-            console.log(endDate)
         if (timeError) {
             $('.dateValidator').show()
             $("#endHour").focus()
@@ -475,8 +467,6 @@ function saveRequest(isAdd){
             $('.dateValidator').hide()
             if(parseFloat(dateTotal)>0){
                 $(".dateValidator01").hide()
-                // console.log(parseFloat(dateTotal))
-                // console.log(parseFloat(balanceAvailable))
 
                 if(parseFloat(dateTotal)<=parseFloat(balanceAvailable)){
                     $(".availableError").hide()
@@ -531,28 +521,29 @@ function showTimeUnit(){
 }
 
 function calcDaysOrHours(){
-    var startDate = $('#startDateInput').val()
-    var endDate = $('#endDateInput').val()
+    var startDate = changeDateYMD($('#startDateInput').val())
+    var endDate = changeDateYMD($('#endDateInput').val())
     var leaveHoursDaily = Number($('#leaveHoursDaily').val().trim())
-    var day1 = new Date(startDate);
-    var day2 = new Date(endDate);
-    var dayDate = ((day2 - day1) / (1000 * 60 * 60 * 24)) + 1;
-    var totalDays = 0
+    // var day1 = new Date(startDate);
+    // var day2 = new Date(endDate);
+    var day1 = startDate;
+    var day2 = endDate;
+    var dayDate = ((day2 - day1) / (1000 * 60 * 60 * 24));
     console.log(dayDate)
+    dayDate += 1
+    console.log(dayDate)
+    var totalDays = 0
     dayDate = dayDate?dayDate:0;
     if(leaveHoursDaily <= 0){
         $("#totalRequested").val(Number(0).toFixed(3));
     }
 
     if(leaveHoursDaily > 0){
-        console.log('calc...')
         if(calUnit){
             if(calUnit.toLowerCase() == 'd'){
                 var intDays = parseInt(leaveHoursDaily/standardHoursDaily)
                 var intDaysRemainHours = parseFloat(leaveHoursDaily%standardHoursDaily)
                 var floatDays = 0
-                console.log(intDays)
-                console.log(intDaysRemainHours)
                 if(conversionMinuteHour && conversionMinuteHour.length>0){
                     for(var i = 0,len = conversionMinuteHour.length;i<len;i++){
                         if(intDaysRemainHours >0 && intDaysRemainHours <= conversionMinuteHour[i].toUnit){
@@ -568,17 +559,18 @@ function calcDaysOrHours(){
                     }
                 }
                 
-                console.log('floatDays'+floatDays)
                 totalDays = (intDays + floatDays) * dayDate
-                console.log('totalDays' + totalDays)
-                $("#totalRequested").val(Number(totalDays).toFixed(3));
+                if(Number(totalDays).toFixed(3)>=0){
+                    $("#totalRequested").val(Number(totalDays).toFixed(3));
+                }else{
+                    $("#totalRequested").val(Number(0).toFixed(3));
+                }
+                
             }else if(calUnit.toLowerCase() == 'h'){
                 if(leaveHoursRequestedEntry == 'false'){
                     var intHours = parseInt(leaveHoursDaily)
                     var intHoursRemainMinutes = (leaveHoursDaily - intHours) * 60
                     var floatHours = leaveHoursDaily - intHours
-                    console.log(intHours)
-                    console.log(intHoursRemainMinutes)
                     if(conversionMinuteHour && conversionMinuteHour.length>0){
                         for(var i = 0,len = conversionMinuteHour.length;i<len;i++){
                             if(intHoursRemainMinutes >0 && intHoursRemainMinutes <= conversionMinuteHour[i].toUnit){
@@ -592,10 +584,10 @@ function calcDaysOrHours(){
                     if(Number(floatHours + intHours).toFixed(3) > 0){
                         updateStatusDaily()
                     }
-                    var totalHours = (floatHours + intHours) * dayDate
+                    var totalHours = dayDate>=0?(floatHours + intHours) * dayDate:0
                     $("#totalRequested").val(Number(totalHours).toFixed(3));
                 }else{
-                    var totalHours = leaveHoursDaily * dayDate
+                    var totalHours = dayDate>=0?leaveHoursDaily * dayDate:0
                     $("#totalRequested").val(Number(totalHours).toFixed(3));
                 }                
             }

@@ -1,11 +1,24 @@
 var reasonOption
-console.log(haveSupervisor)
 var leaveListArry = new Array()
 for(var i = 0,len = leaveList.length;i<len;i++){
     var item = leaveList[i]
     item.start = item.start?convertSlashDate(item.start):''
     item.end = item.end?convertSlashDate(item.end):''
     leaveListArry.push(item)
+}
+function convertSlashDate(date){
+    var dateArry = date.split(' ')
+    var dateArry01 = dateArry[0].split('-')
+    var fullDate = dateArry01[2] + '-' + dateArry01[0] + '-' + dateArry01[1]
+    return fullDate + ' ' + convertDay24(dateArry[1],dateArry[2])
+}
+function convertDay24(day,m){
+    if(m == 'PM'){
+        var dayArry = day.split(':')
+        return (Number(dayArry[0])+12) + ':'+dayArry[1]
+    }else{
+        return day
+    }
 }
 
 console.log(leaveListArry)
@@ -47,23 +60,30 @@ $(document).ready(function() {
 
                         var start_arry = leaveStartDate.split(' ')
                         var end_arry = leaveEndDate.split(' ')
-                        var startTime = start_arry[1].split(':')
-                        var endTime = end_arry[1].split(':')
+
+                        var startTime12 = changeFormatTimeAm(start_arry[1])//24 to 12
+                        var endTime12 = changeFormatTimeAm(end_arry[1])
+
+                        var time12ArryStart = startTime12.split(' ')
+                        var time12ArryEnd = endTime12.split(' ')
+
+                        var startTime = time12ArryStart[0].split(':')
+                        var endTime = time12ArryEnd[0].split(':')
                         var startH = parseInt(startTime[0])
                         var endH = parseInt(endTime[0])
                         var startAMOrPM, endAMOrPM
                         startH = startTime[0].trim()
-                        startAMOrPM = start_arry[2].trim()
+                        startAMOrPM = time12ArryStart[1].trim()
                         endH = endTime[0].trim()
-                        endAMOrPM = end_arry[2].trim()
+                        endAMOrPM = time12ArryEnd[1].trim()
                         $('#startHour').val(startH)
                         $('#endHour').val(endH)
                         $('#startAmOrPm').val(startAMOrPM)
                         $('#endAmOrPm').val(endAMOrPM)
                         var startTimeValue =
-                            startH + ':' + startTime[1] + ' ' + startAMOrPM
+                            startH + ':' + time12ArryStart[0] + ' ' + startAMOrPM
                         var endTimeValue =
-                            endH + ':' + endTime[1] + ' ' + endAMOrPM
+                            endH + ':' + time12ArryEnd[0] + ' ' + endAMOrPM
                         $('#startTimeValue').val(startTimeValue)
                         $('#endTimeValue').val(endTimeValue)
                         $('#startMinute').val(startTime[1])
@@ -88,8 +108,6 @@ $(document).ready(function() {
                         $('#leaveId').attr('value', calEvent.id + '')
                         $('#startDateInput').val(calEvent.LeaveStartDate)
                         $('#endDateInput').val(calEvent.LeaveEndDate)
-                        console.log(calEvent.lvUnitsDaily)
-                        console.log(calEvent.lvUnitsUsed)
                         $("#leaveHoursDaily").val(Number(calEvent.lvUnitsDaily).toFixed(3));
 		                $("#totalRequested").val(Number(calEvent.lvUnitsUsed).toFixed(3));
                         
@@ -148,23 +166,10 @@ $(document).ready(function() {
                             var html = '<p>' + comments[i].detail + '</p>'
                             $('#commentLogStatic').append(html)
                         }
-                        $('infoEmpNameStatic').html(
-                            leaveRequest.empNbr +
-                                ':' +
-                                leaveRequest.firstName +
-                                ',' +
-                                leaveRequest.firstName
-                        )
-                        $('#infoDetailStatic').html('')
-                        //   $('#EventDetailModal').modal('show')
                         initLocalize(initialLocaleCode)
                     }
                 },
                 dayClick: function(date, allDay, jsEvent, view) {
-                    // console.log(date)
-                    // console.log(allDay)
-                    // console.log(jsEvent)
-                    // console.log(view)
                     if(haveSupervisor == 'false'){
                         return false
                     }
@@ -172,11 +177,6 @@ $(document).ready(function() {
                     $("#requestModal").modal("show")
                     $("#absenceReason").html(reasonOption)
                 },
-                // eventMouseover: function (calEvent, jsEvent, view) {   
-                //     console.log(calEvent)
-                //     console.log(jsEvent)
-                //     console.log(view)
-                // },
                 eventRender: function(event, element, view) {
                     if (event.statusCd != 'A') {
                         element.attr('data-toggle', 'modal')
@@ -195,7 +195,6 @@ $(document).ready(function() {
                     element.attr('aria-label', ariaLabel)
                     element.attr('tabindex', 0)
                     element.bind('keypress', function(e)  {
-                        console.log(e)
                         var eCode = e.keyCode
                             ? e.keyCode
                             : e.which
@@ -208,7 +207,6 @@ $(document).ready(function() {
                     initLocalize(initialLocaleCode)
                 },
                 viewRender: function(view, element) {
-                    console.log(view)
                     $('.fc-day-top').each(function() {
                         var title = $(this).attr('data-date')
                         // var newBtn = `<button class="btn btn-primary xs"  data-title="${title}" title="Add a new request" onclick="newEvent(this)">Add</button>`
@@ -246,11 +244,7 @@ $(document).ready(function() {
 })
 function newEvent(dom) {
     $('.dateValidator').hide()
-    console.log(dom)
-    console.log($(dom).attr('data-title'))
-    console.log($(dom).attr('data-date'))
     var date = changeMMDDFormat($(dom).attr('data-title')?$(dom).attr('data-title'):$(dom).attr('data-date'))
-    console.log(date)
     $('#leaveId').attr('value', '')
     $("[name='Remarks']").text('')
     $('#requestForm')[0].reset()
@@ -280,7 +274,7 @@ function changeYMDFormat(date) {
     var dateArry = date.split('-')
     return dateArry[2] + '-' + dateArry[0] + '-' + dateArry[1]
 }
-function convertSlashDate(date){
+function convertSlashDateText(date){
     var dateArry = date.split(' ')
     var dateArry01 = dateArry[0].split('-')
     var fullDate = dateArry01[2] + '/' + dateArry01[0] + '/' + dateArry01[1]

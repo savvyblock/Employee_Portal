@@ -37,7 +37,6 @@ $(function(){
         })
         $('#save').on('click', function() {
             var commentValue = $(".supervisorComment .form-control").val()
-            console.log(commentValue)
             if(action){
                 if(!comment){
                     $('.approveValidator').hide()

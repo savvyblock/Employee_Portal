@@ -1,3 +1,25 @@
+var leaveListArry = new Array()
+for(var i = 0,len = leaveList.length;i<len;i++){
+    var item = leaveList[i]
+    item.start = item.start?convertSlashDate(item.start):''
+    item.end = item.end?convertSlashDate(item.end):''
+    leaveListArry.push(item)
+}
+function convertSlashDate(date){
+    var dateArry = date.split(' ')
+    var dateArry01 = dateArry[0].split('-')
+    var fullDate = dateArry01[2] + '-' + dateArry01[0] + '-' + dateArry01[1]
+    return fullDate + ' ' + convertDay24(dateArry[1],dateArry[2])
+}
+function convertDay24(day,m){
+    if(m == 'PM'){
+        var dayArry = day.split(':')
+        return (Number(dayArry[0])+12) + ':'+dayArry[1]
+    }else{
+        return day
+    }
+}
+console.log(leaveListArry)
 $(document).ready(function() {
     console.log(initialLocaleCode)
     initThemeChooser({
@@ -17,7 +39,7 @@ $(document).ready(function() {
                 navLinks: false, // can click day/week names to navigate views
                 editable: false,
                 eventLimit: true, // allow "more" link when too many events
-                events: leaveList,
+                events: leaveListArry,
                 locale: initialLocaleCode,
                 eventClick: function(calEvent, jsEvent, view) {
                     console.log(calEvent)
@@ -47,15 +69,16 @@ $(document).ready(function() {
                     var startDate = changeMMDDFormat(start_arry[0])
                     var endDate = changeMMDDFormat(end_arry[0])
 
-                    var start = startDate + ' ' + startTime
-                    var end = endDate + ' ' + endTime
-
+                    // var start = startDate + ' ' + startTime
+                    // var end = endDate + ' ' + endTime
+                    var start = leaveRequest.LeaveStartDate + ' ' + leaveRequest.LeaveStartTime
+                    var end = leaveRequest.LeaveEndDate + ' ' + leaveRequest.LeaveEndTime
                     // $("#leaveIdStatic").attr("value", leaveRequest.id+"");
                     $('#disIdStatic').attr('value', leaveRequest.id + '')
                     $('#appIdStatic').attr('value', leaveRequest.id + '')
                     $('#employeeStatic').text(leaveRequest.lastName)
-                    $('#startDateStatic').html(leaveRequest.start._i)
-                    $('#endDateStatic').html(leaveRequest.end._i)
+                    $('#startDateStatic').html(start)
+                    $('#endDateStatic').html(end)
                     $('#leaveTypeStatic').html(type)
                     $('#absenceReasonStatic').html(reason)
                     $('#leaveRequestedStatic').html(leaveRequest.lvUnitsUsed)
@@ -67,15 +90,6 @@ $(document).ready(function() {
                         var html = '<p>' + comments[i].detail + '</p>'
                         $('#commentLogStatic').append(html)
                     }
-                    $('infoEmpNameStatic').html(
-                        leaveRequest.empNbr +
-                            ':' +
-                            leaveRequest.lastName +
-                            ',' +
-                            leaveRequest.firstName
-                    )
-                    $('#infoDetailStatic').html('')
-                    //   $('#EventDetailModal').modal('show')
                 },
                 eventRender: function(event, element, view) {
                     element.attr('data-toggle', 'modal')

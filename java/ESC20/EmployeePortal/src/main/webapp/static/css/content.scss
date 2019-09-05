@@ -1807,11 +1807,22 @@
 }
 .leaveListCalendarForm{
     width: 100%;
-    max-width: 1100px;
+    max-width: 1250px;
 }
+.fc-event{
+    display: flex;
+    .fc-content{
 
+    }
+    b{
+        flex: 0 0 16px;
+    }
+}
 .fc-day-grid-event .fc-content{
-    white-space: normal;
+    white-space: nowrap;
+    height: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     @media (max-height:629px){
         line-height: 1.1;
     }
@@ -2148,6 +2159,15 @@
         @media (max-width:1320px){
                 position: static;
                 margin: 1.75rem auto;
+        }
+    }
+}
+#EventDetailModal{
+    .table{
+        td,th{
+            white-space: normal;
+            word-break:break-all;
+           word-break:break-word;
         }
     }
 }

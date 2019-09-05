@@ -178,6 +178,8 @@ function editLeave(
         .data('bootstrapValidator')
         .destroy()
     $('#requestForm').data('bootstrapValidator', null)
+    $('.dateValidator').hide()
+	$('.dateValidator01').hide()
     formValidator()
     console.log(leaveStartDate)
     console.log(leaveEndDate)

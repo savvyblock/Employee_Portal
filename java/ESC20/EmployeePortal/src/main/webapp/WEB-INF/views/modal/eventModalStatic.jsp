@@ -24,16 +24,9 @@
                   <table class="table border-table no-thead">
                     <tbody>
                       <tr>
-                        <th id="employeeNameModal"><b>${sessionScope.languageJSON.label.employee}</b></th>
-                        <td headers="employeeNameModal" title="${sessionScope.languageJSON.label.employee}">
+                        <th id="employeeNameModal" style="width:25%;"><b>${sessionScope.languageJSON.label.employee}</b></th>
+                        <td headers="employeeNameModal" style="width:75%;" title="${sessionScope.languageJSON.label.employee}">
                             <div id="employeeStatic"></div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td colspan="2" title="${sessionScope.languageJSON.label.leaveBalanceSummary}" id="leaveBalanceSummaryStatic">
-                          <div><span>${sessionScope.languageJSON.label.leaveBalanceSummaryFor}</span> 
-                            <span id="infoEmpNameStatic"></span></div>
-                            <div id="infoDetailStatic"></div>
                         </td>
                       </tr>
                       <tr>

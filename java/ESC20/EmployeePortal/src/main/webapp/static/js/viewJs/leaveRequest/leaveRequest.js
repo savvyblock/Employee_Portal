@@ -2,7 +2,6 @@ var reasonOption
 $(document).ready(
 		function() {
 			reasonOption = $("#absenceReason").html()
-			console.log(initialLocaleCode)
 			var formDate = $('#SearchStartDate').fdatepicker({
 				format:'mm-dd-yyyy',
 				language:initialLocaleCode
@@ -28,7 +27,6 @@ $(document).ready(
 				format:'mm-dd-yyyy',
 				language:initialLocaleCode
 			}).on('changeDate', function(ev) {
-				console.log(ev)
 				var fromInput = $("#SearchStartInput").val()
 				var toInput = $("#SearchEndInput").val()
 				if(fromInput&&toInput){
@@ -45,7 +43,6 @@ $(document).ready(
 					}
 				}
 			}).on('outOfRange',function(ev){
-				console.log(ev)
 			})
 			.data('datepicker')
 			$(".sureDelete").click(function(){
@@ -56,8 +53,6 @@ $(document).ready(
 				var toValue = $("#SearchEndInput").val()
 				var fromInput = changeDateYMD(fromValue)
 				var toInput = changeDateYMD(toValue)
-				console.log(fromInput)
-				console.log(toInput)
 				if((!fromValue || !toValue) || (fromInput && toInput && fromInput<=toInput)){
 					$("#timeErrorMessage").addClass("hide")
 					$("#SearchForm")[0].submit();
@@ -71,7 +66,6 @@ $(document).ready(
 		var comments;
 		leaveList.forEach(function(element) {
 			if(element.id == id){
-				console.log(element)
 				comments = element.comments
 			}
 		});
@@ -80,13 +74,12 @@ $(document).ready(
 		.destroy()
 			$('#requestForm').data('bootstrapValidator', null)
 			$('.dateValidator').hide()
+			$('.dateValidator01').hide()
 		formValidator()
 		var start_arry = leaveStartDate.split(" ")
 		var end_arry = leaveEndDate.split(" ")
 		var startTime = start_arry[1].split(":")
 		var endTime = end_arry[1].split(":")
-		console.log(startTime)
-		console.log(endTime)
 		var startH = parseInt(startTime[0])
 		var endH = parseInt(endTime[0])
 		var startAMOrPM,endAMOrPM;
@@ -112,7 +105,6 @@ $(document).ready(
 		$(".new-title").hide();
 		$(".availableError").hide()
 		$("#commentList").html("")
-		console.log(comments)
 		for(var i=0;i<comments.length;i++){
 				var html = '<p>'+comments[i].detail+'</p>'
 				$("#commentList").append(html)
