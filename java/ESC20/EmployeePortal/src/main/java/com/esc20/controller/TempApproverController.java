@@ -306,7 +306,7 @@ public class TempApproverController extends BaseSupervisorController {
 	
 	@RequestMapping(value = "isEmpNumberCorrect", method = RequestMethod.POST)
 	@ResponseBody
-	public Boolean isEmpNumberCorrect(HttpServletRequest req) {
+	public Boolean isEmpNumberCorrect(HttpServletRequest req,String number) {
 		//HttpSession session = req.getSession();
 		Boolean isCorrect = true;
 		
