@@ -33,13 +33,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	                            	<p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServiceDemographic}</p>
                                 </c:if>
                                 
-                                 <form class="profile-item" id="profileForm" action="saveAll" method="POST">
+                                 <form  id="profileForm" action="saveAll" method="POST">
                                 
 	                        	<h2 class="sub-title">${sessionScope.languageJSON.profile.LegalName}</h2>
                                 <div class="profile-top first-child">
-                                  <!-- 
-                                    <form class="profile-item" id="personalForm" action="saveName" method="POST">
-                                     -->
+                                    <div class="profile-item" id="personalForm" >
                                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
@@ -216,9 +214,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </button>
                                             </div>
                                         </div>
-                                        <!-- 
-                                    </form>
-                                     
+                                      
+                                    </div>
+                                       <!-- 
                                       
                                     <form hidden="hidden" action="deleteNameRequest" id="deleteNameRequest" method="POST">
                                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -228,9 +226,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
 
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.MaritalStatus}</h2>
-                                <!-- 
-                                <form class="profile-item" id="maritalStatusForm" action="saveMarital" method="POST">
-                                 
+                                
+                                <div class="profile-item" id="maritalStatusForm" >
+                                <!--  
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 	-->
                                     <div class="profile-left">
@@ -301,19 +299,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
-                                    <!-- 
-                                </form>
+                                   
+                                </div>
+                                 <!-- 
                                 <form hidden="hidden" action="deleteMaritalRequest" id="deleteMaritalRequest" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
                                  -->
-                                </form>
                                 
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.driversLicense}</h2>
-                                <form class="profile-item" id="driverLicenseForm" action="saveDriversLicense" method="POST">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="hidden" name="empNbr" value="${licRequest.id.empNbr}">
-                                    <input type="hidden" name="reqDts" value="${licRequest.id.reqDts}">
+                                <div class="profile-item" id="driverLicenseForm" >
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
@@ -397,15 +392,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                                <!-- 
                                 <form hidden="hidden" action="deleteDriversLicenseRequest" id="deleteDriversLicense" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
+                                 -->
+                                  
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.restrictionCodes}</h2>
-                                <form class="profile-item" id="restrictionCodeForm" action="saveRestrictionCodes" method="POST">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="hidden" name="empNbr" value="${restrictRequest.id.empNbr}">
-                                    <input type="hidden" name="reqDts" value="${restrictRequest.id.reqDts}">
+                                <div class="profile-item" id="restrictionCodeForm" >
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
@@ -493,15 +488,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                                <!-- 
                                 <form hidden="hidden" action="deleteRestrictionCodesRequest" id="deleteRestrictionCodesRequest" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
+                                 -->
+                               
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.email}</h2>
-                                <form class="profile-item" id="emailForm" action="saveEmail" method="POST">
-                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input type="hidden" name="empNbr" value="${emailRequest.id.empNbr}">
-                                        <input type="hidden" name="reqDts" value="${emailRequest.id.reqDts}">
+                                <div class="profile-item" id="emailForm" >
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
@@ -611,15 +606,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                                <!-- 
                                 <form hidden="hidden" action="deleteEmail" id="deleteEmail" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
+                                 -->
+                                
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.emergenceContactInfo}</h2>
-                                <form class="profile-item" id="emergencyContactForm" action="saveEmergencyContact" method="POST">
-                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input type="hidden" name="empNbr" value="${emerRequest.id.empNbr}">
-                                        <input type="hidden" name="reqDts" value="${emerRequest.id.reqDts}">
+                                <div class="profile-item" id="emergencyContactForm" >
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
@@ -770,15 +765,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                                <!--  
                                 <form hidden="hidden" action="deleteEmergencyContact" id="deleteEmergencyContact" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
+                                -->
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.mailingAddress}</h2>
-                                <form class="profile-item" id="mailingAddressForm" action="saveMailAddr" method="POST">
-                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input type="hidden" name="empNbr" value="${mailAddrRequest.id.empNbr}">
-                                        <input type="hidden" name="reqDts" value="${mailAddrRequest.id.reqDts}">
+                                <div class="profile-item" id="mailingAddressForm" >
+                                    
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
@@ -950,15 +945,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                                <!-- 
                                 <form hidden="hidden" action="deleteMailAddr" id="deleteMailAddr" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
+                                 -->
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.altAddr}</h2>
-                                <form class="profile-item" id="alternativeAddressForm" action="saveAltMailAddr" method="POST">
-                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input type="hidden" name="empNbr" value="${altMailAddrRequest.id.empNbr}">
-                                        <input type="hidden" name="reqDts" value="${altMailAddrRequest.id.reqDts}">
+                                <div class="profile-item" id="alternativeAddressForm" >
+                                       
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
@@ -1130,15 +1125,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                                <!-- 
                                 <form hidden="hidden" action="deleteAltMailAddr" id="deleteAltMailAddr" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
+                                 -->
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.phoneNumbers}</h2>
-                                <form class="profile-item" id="phoneForm" action="savePhone" method="POST">
-                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <input type="hidden" name="empNbr" value="${hmRequest.id.empNbr}">
-                                        <input type="hidden" name="reqDts" value="${hmRequest.id.reqDts}">
+                                <div class="profile-item" id="phoneForm" >
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
@@ -1294,10 +1288,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                                <!-- 
                                 <form hidden="hidden" action="deletePhone" id="deletePhone" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
+                                 -->
+                                 </form>
                         </c:if>
                         
                         <c:if test="${sessionScope.options.enableSelfServicePayroll == true}">
