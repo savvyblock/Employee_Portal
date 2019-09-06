@@ -307,9 +307,24 @@ public class TempApproverController extends BaseSupervisorController {
 	@RequestMapping(value = "isEmpNumberCorrect", method = RequestMethod.POST)
 	@ResponseBody
 	public Boolean isEmpNumberCorrect(HttpServletRequest req,String number) {
-		//HttpSession session = req.getSession();
 		Boolean isCorrect = true;
-		
+		HttpSession session = req.getSession();
+        BeaUsers user = (BeaUsers)session.getAttribute("user");
+    	BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
+        demo.setEmpNbr(user.getEmpNbr());
+        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+        List<Code> gens = referenceService.getGenerations();
+	 	for(Code gen: gens) {
+	    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+	    		demo.setGenDescription(gen.getDescription());
+	    	}
+	    }
+		session.setAttribute("userDetail", demo);
+    	List<Code> testApproves = this.supService.getEmployeeTempApproverSearch(user.getEmpNbr(), number);
+        if(testApproves == null || testApproves.size() == 0) {
+        	isCorrect = false;
+        }
+        
 	    return isCorrect;
 	}
 }
