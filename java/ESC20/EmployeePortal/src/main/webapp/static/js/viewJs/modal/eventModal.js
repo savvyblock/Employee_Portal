@@ -32,6 +32,7 @@ $(function() {
             // startDate: now,
             format: 'mm-dd-yyyy',
             language:initialLocaleCode,
+            weekStart:7
         })
         .on('changeDate', function(ev) {
             var endDate = $('#endDateInput').val()
@@ -57,6 +58,7 @@ $(function() {
             // startDate: now,
             format: 'mm-dd-yyyy',
             language:initialLocaleCode,
+            weekStart:7,
             onRender: function(date) {
                 return date.valueOf() < checkin.date.valueOf()
                     ? 'disabled'

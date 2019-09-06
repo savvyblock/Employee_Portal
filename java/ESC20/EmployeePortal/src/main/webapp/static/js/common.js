@@ -104,7 +104,6 @@ $(function() {
     var helpLinkParam = helpJson[lastItem] || helpJson[lastTowItem]
     var helpLink = "https://help.ascendertx.com/employeeportaltest/doku.php/" + (helpLinkParam || '')
     $("a.helpLink").attr('href',helpLink)
-
 })
 function setGlobal(){
     if (getCookie(name)&&getCookie(name) != '') {
@@ -186,4 +185,19 @@ function hideBody(){
             }
         })
     }, 200);
+}
+
+function setConsentCookie(name, value) {
+    var Days = 30; // cookie will stay 30 days
+    var exp = new Date(); //new Date("December 31, 9998");
+    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+    document.cookie = name + '=' + escape(value) + ';expires=' + exp.toGMTString() + ";path="+"/"+ctx+"/;";
+    console.log(document.cookie);
+}
+function getConsentCookie(name) {
+    var arr = document.cookie.match(
+        new RegExp('(^| )' + name + '=([^;]*)(;|$)')
+    );
+    if (arr != null) return unescape(arr[2]);
+    return null;
 }

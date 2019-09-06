@@ -296,6 +296,7 @@ function initDateControl() {
             .fdatepicker({
                 format: 'mm-dd-yyyy',
                 language: initialLocaleCode,
+				weekStart:7,
                 onRender: function(date) {
                     // if(checkout[index]&&haveEndDate[index]){
                     //     return date.valueOf() > checkout[index].date.valueOf() ? 'disabled' : '';
@@ -333,6 +334,7 @@ function initDateControl() {
             .fdatepicker({
                 format: 'mm-dd-yyyy',
                 language: initialLocaleCode,
+				weekStart:7,
                 onRender: function(date) {
                     return date.valueOf() < checkin[index].date.valueOf()
                         ? 'disabled'

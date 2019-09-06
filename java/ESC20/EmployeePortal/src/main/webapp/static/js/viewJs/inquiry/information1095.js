@@ -12,6 +12,24 @@ $(function(){
         $("#notConsent").prop('checked',true);
         $("#notConsent").attr("aria-checked",true)
     }
+    
+    var url = window.location.href
+    var urlArry = url.split('?')
+    var itemUrlArry = urlArry[0].split('/')
+    var lastItem = itemUrlArry[itemUrlArry.length - 1]
+    var lastTowItem = itemUrlArry[itemUrlArry.length - 2]
+    var consentClose = getConsentCookie('consentCancel1095')
+
+    if(consentVal==''){
+        $("#updateMsg").addClass("hidden");
+        if(consentClose !='true'){
+            $('#electronicConsent').modal('show')
+        }else{
+            if(lastItem != 'sortOrChangePageForTypeB' && lastItem != 'sortOrChangePageForTypeC'){
+                $('#electronicConsent').modal('show')
+            }
+        }
+    }
     $(".consentRadio") .on('keypress', function(e) {
         console.log(e)
         var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
@@ -39,19 +57,14 @@ $(function(){
         var pageNow = $("#pageNow").val();
         $("#selectPageNowB").val(pageNow)
         $("#changePageFormB")[0].submit()
- });
+    });
 
- $("#c-1095").on('ifChecked', function(event){
+    $("#c-1095").on('ifChecked', function(event){
         var pageNow = $("#pageNow").val();
         $("#selectPageNowC").val(pageNow)
         $("#changePageFormC")[0].submit()
     })
-    if(consentVal==''){
-        $("#updateMsg").addClass("hidden");
-        if(consentCancel != 'true'){
-            $('#electronicConsent').modal('show')
-        }
-    }
+    
     $("#saveConsent").on('click', function(event) {
         var year = $("#consentYear").val()
         var consentOption = $("#consentModal").val()
@@ -70,6 +83,7 @@ $(function(){
             }
         }
     })
+
 })
 function toggleOptions(value){
     $("#consentModal").val(value)            
@@ -87,16 +101,9 @@ function load(){
 }
 
 function submitCancelConsent(){
-    $.ajax({
-        url:urlMain + '/information1095/cancel1095Consent',
-        type:'POST',
-        success:function(res){
-            console.log(res)
-        },
-        error:function(err){
-            console.log(err)
-        }
-    })
+    var name = 'consentCancel1095'
+    var value = true
+    setConsentCookie(name, value)
 }
 
 function saveConsent(data){
@@ -117,3 +124,4 @@ function saveConsent(data){
         }
     })
 }
+

@@ -4,7 +4,8 @@ $(document).ready(
 			reasonOption = $("#absenceReason").html()
 			var formDate = $('#SearchStartDate').fdatepicker({
 				format:'mm-dd-yyyy',
-				language:initialLocaleCode
+				language:initialLocaleCode,
+				weekStart:7
 			}).on('changeDate', function(ev) {
 				var fromInput = $("#SearchStartInput").val()
 				var toInput = $("#SearchEndInput").val()
@@ -25,7 +26,8 @@ $(document).ready(
 			.data('datepicker')
 			var toDate = $('#SearchEndDate').fdatepicker({
 				format:'mm-dd-yyyy',
-				language:initialLocaleCode
+				language:initialLocaleCode,
+				weekStart:7
 			}).on('changeDate', function(ev) {
 				var fromInput = $("#SearchStartInput").val()
 				var toInput = $("#SearchEndInput").val()
