@@ -303,4 +303,13 @@ public class TempApproverController extends BaseSupervisorController {
 	        res.put("tempApprover", testApproves);
 	        return res;
 	    }
+	
+	@RequestMapping(value = "isEmpNumberCorrect", method = RequestMethod.POST)
+	@ResponseBody
+	public Boolean isEmpNumberCorrect(HttpServletRequest req) {
+		//HttpSession session = req.getSession();
+		Boolean isCorrect = true;
+		
+	    return isCorrect;
+	}
 }
