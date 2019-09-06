@@ -122,10 +122,12 @@ public class Information1095Controller{
 	
 	@RequestMapping(value = "cancel1095Consent", method = RequestMethod.POST)
 	@ResponseBody
-	public Boolean cancel1095Consent(HttpServletRequest req) {
+	public Map<String, Boolean> cancel1095Consent(HttpServletRequest req) {
 		HttpSession session = req.getSession();
+		Map<String, Boolean> res = new HashMap<>();
+		res.put("isCancel", true);
 		session.setAttribute("cancel1095Consent", true);
-	    return (Boolean)session.getAttribute("cancel1095Consent");
+	    return res;
 	}
 	
 	public Integer sendEmail(String userFirstName, String userLastName, String userWorkEmail, String userHomeEmail, String ea1095ElecConsnt) {
