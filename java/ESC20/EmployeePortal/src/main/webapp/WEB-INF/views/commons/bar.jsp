@@ -3,13 +3,14 @@
 <%ResourceBundle res = ResourceBundle.getBundle("system"); %>  
 <%
     String sessionTimeOut = res.getString("sessionTimeOut");
+	long token=System.currentTimeMillis();
+	session.setAttribute("token",token); 
 %>
 <script>
 	var sessionTimeOut = "<%=sessionTimeOut%>";
 </script>
 <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-light clearfix">
-  	
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">

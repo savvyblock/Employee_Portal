@@ -249,7 +249,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	@RequestMapping("submitLeaveRequest")
 	public ModelAndView submitLeaveRequest(HttpServletRequest req, String leaveId, String leaveType,
 			String absenseReason, String LeaveStartDate, String startTimeValue, String LeaveEndDate,
-			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq,Boolean isAdd)
+			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq,Boolean isAdd, Long token)
 			throws ParseException, MessagingException {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
@@ -262,7 +262,10 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			return mav;
 		}
 		
-		
+		Long sessionToken = (Long) session.getAttribute("token");
+		if(!sessionToken.equals(token)) {
+			return this.leaveRequest(req, null, null, null, null,isAdd);
+		}
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate,
 				endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo);
@@ -272,14 +275,19 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	}
 	
 	@RequestMapping("deleteLeaveRequest")
-	public ModelAndView deleteLeaveRequest(HttpServletRequest req, String id) throws ParseException {
+	public ModelAndView deleteLeaveRequest(HttpServletRequest req, String id, Long token) throws ParseException {
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = req.getSession();
 		if(id==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Delete leave information from leave request list view");
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
+		}
+		Long sessionToken = (Long) session.getAttribute("token");
+		if(!sessionToken.equals(token)) {
+			return this.leaveRequest(req, null, null, null, null,false);
 		}
 		deleteLeaveRequest(id);
 		return this.leaveRequest(req, null, null, null, null,false);

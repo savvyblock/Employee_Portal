@@ -27,6 +27,7 @@
                 </button>
             </div>
             <form id="requestForm" action="submitLeaveRequest" method="post">
+            	<input type="hidden" value="<%=token %>" name="token"/>
                 <input type="hidden" name="mealBreakHours" id="mealBreakHours" value="${params.mealBreakHours}">
                 <input type="hidden" name="standardHoursDaily" id="standardHoursDaily" value="${params.standardHours}">
                 <input type="hidden" name="requireLeaveHoursRequestedEntry" id="requireLeaveHoursRequestedEntry" value="${params.requireLeaveHoursRequestedEntry}">

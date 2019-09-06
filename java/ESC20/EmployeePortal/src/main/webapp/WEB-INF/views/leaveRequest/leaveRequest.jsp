@@ -216,6 +216,7 @@
 		</section>
 			<form id="deleteForm" action="deleteLeaveRequest" method="post">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<input type="hidden" value="<%=token %>" name="token"/>
 				<input type="hidden" id="deleteId" name="id" aria-label="${sessionScope.languageJSON.accessHint.id}"/>
 			</form>
 		</main>
