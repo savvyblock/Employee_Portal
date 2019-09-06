@@ -225,6 +225,13 @@ $(function() {
         willSubmitFormDelete.submit()
     })
     
+    //133
+    $('#saveAll').click(function() {
+        console.log('save -- all')
+        profileForm = $('#profileForm')
+         var t = $("#profileForm").serializeArray();
+        profileForm.submit();
+    })
 })
 function clearNoNum(obj){
     obj.value = obj.value.replace(/[^\d.]/g, ""); //  

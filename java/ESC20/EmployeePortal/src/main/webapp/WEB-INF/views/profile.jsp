@@ -21,9 +21,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                                 <br/>
                                 
-                               
-                                
-                                
                                 <div class="text-left">
                                     <button type="button" role="button" id="saveAll" class="btn btn-primary">
                                         <span>${sessionScope.languageJSON.label.save}</span>
@@ -221,16 +218,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <!-- 
                                     </form>
-                                      -->
-                                      </form>
+                                     
+                                      
                                     <form hidden="hidden" action="deleteNameRequest" id="deleteNameRequest" method="POST">
                                     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     </form>
+                                     -->
+                                      
                                 </div>
 
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.MaritalStatus}</h2>
+                                <!-- 
                                 <form class="profile-item" id="maritalStatusForm" action="saveMarital" method="POST">
+                                 
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                	-->
                                     <div class="profile-left">
                                             <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
@@ -244,8 +246,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <c:if test="${marital.code == sessionScope.userDetail.maritalStat }">${marital.displayLabel}</c:if>
                                                     </c:forEach>
                                                 </span>
-                                                <input type="hidden" name="empNbr" value="${mrtlRequest.id.empNbr}" >
-                                                    <input type="hidden" name="reqDts" value="${mrtlRequest.id.reqDts}">
                                                 <div class="form-group valueInput">
                                                     <select
                                                         id="maritalStatus"
@@ -301,10 +301,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
+                                    <!-- 
                                 </form>
                                 <form hidden="hidden" action="deleteMaritalRequest" id="deleteMaritalRequest" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
+                                 -->
+                                </form>
+                                
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.driversLicense}</h2>
                                 <form class="profile-item" id="driverLicenseForm" action="saveDriversLicense" method="POST">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
