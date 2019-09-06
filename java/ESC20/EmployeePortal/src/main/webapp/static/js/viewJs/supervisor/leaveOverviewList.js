@@ -20,11 +20,13 @@ $(function() {
     console.log(initialLocaleCode)
     $('#SearchStartDate').fdatepicker({
         format: 'mm-dd-yyyy',
-        language: initialLocaleCode
+        language: initialLocaleCode,
+        weekStart:7
     })
     $('#SearchEndDate').fdatepicker({
         format: 'mm-dd-yyyy',
-        language: initialLocaleCode
+        language: initialLocaleCode,
+        weekStart:7
     })
     if (chain && chain != '' && chain.length > 1) {
         $('#prevLevel')

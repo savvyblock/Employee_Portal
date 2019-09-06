@@ -3,7 +3,8 @@ $(document).ready(function() {
     var formDate = $('#SearchStartDate')
         .fdatepicker({
             format: 'mm-dd-yyyy',
-            language: initialLocaleCode
+            language: initialLocaleCode,
+            weekStart:7
         })
         .on('changeDate', function(ev) {
             var fromInput = $('#SearchStartInput').val()
@@ -26,7 +27,8 @@ $(document).ready(function() {
     var toDate = $('#SearchEndDate')
         .fdatepicker({
             format: 'mm-dd-yyyy',
-            language: initialLocaleCode
+            language: initialLocaleCode,
+            weekStart:7
         })
         .on('changeDate', function(ev) {
             var fromInput = $('#SearchStartInput').val()

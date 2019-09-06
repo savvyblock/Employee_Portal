@@ -41,9 +41,7 @@ $(function(){
             } else if (consentVal == 'N') {
                 $('#notConsent').iCheck('check');
             } 
-            if(consentCancel != 'true'){
-                $('#electronicConsent').modal('show')
-            }
+            $('#electronicConsent').modal('show')
             
         }
     }
