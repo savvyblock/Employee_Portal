@@ -536,7 +536,7 @@
                 this.picker.find('.datepicker-days thead tr:first-child').prepend(cell);
             }
             while (dowCnt < this.weekStart + 7) {
-                html += '<th class="dow">' + dates[this.language].daysMin[(dowCnt++) % 7] + '</th>';
+                html += '<th class="dow">' + dates[this.language].daysShort[(dowCnt++) % 7] + '</th>';
             }
             html += '</tr>';
             this.picker.find('.datepicker-days thead').append(html);
