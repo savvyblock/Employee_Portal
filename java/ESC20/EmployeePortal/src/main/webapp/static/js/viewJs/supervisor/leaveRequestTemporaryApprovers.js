@@ -110,27 +110,27 @@ $(function() {
         console.log(resultDeleteApprover)
         // verifyRepeat()
     })
-    $(document).on('blur','.empControl', function() {
-        var numberData = $(this).attr('data-number')
-        console.log(numberData)
-        var that = $(this)
-        $.ajax({
-            type:'POST',
-            url:urlMain + '/leaveRequestTemporaryApprovers/isEmpNumberCorrect',
-            data:numberData,
-            success : function (res) {
-                res = false
-                if(res){
-                    that.parents('.form-group').removeClass('has-error').find('.help-block.invalid').hide()
-                }else{
-                    that.parents('.form-group').addClass('has-error').find('.help-block.invalid').show()
-                }
-            },
-            error:function(res){
-                 console.log(res);
-            }
-        })
-    })
+    // $(document).on('blur','.empControl', function() {
+    //     var numberData = $(this).attr('data-number')
+    //     console.log(numberData)
+    //     var that = $(this)
+    //     $.ajax({
+    //         type:'POST',
+    //         url:urlMain + '/leaveRequestTemporaryApprovers/isEmpNumberCorrect',
+    //         data:numberData,
+    //         success : function (res) {
+    //             res = false
+    //             if(res){
+    //                 that.parents('.form-group').removeClass('has-error').find('.help-block.invalid').hide()
+    //             }else{
+    //                 that.parents('.form-group').addClass('has-error').find('.help-block.invalid').show()
+    //             }
+    //         },
+    //         error:function(res){
+    //              console.log(res);
+    //         }
+    //     })
+    // })
     $(document).on('blur','.dateToControl', function() {
         var fromValue=$(this).parents('.approver_tr').find('.dateFromControl .date-control').val()
         var toValue=$(this).val()
@@ -240,7 +240,7 @@ function initialCompleteList(dataList) {
 					}
 					focusNext(inputObj);
 				}
-			}
+            }
         });
     })
 }
@@ -260,7 +260,7 @@ function addTemporaryApproverRow(){
                '</td>'+
                 '<td scope="'+temporaryApproverLabel+'">'+
                     '<div class="form-group">'+
-                        '<input class="form-control empControl lastRowTabOut" type="text" aria-label="'+temporaryApproverLabel+'" id="name_0'+length+'">'+
+                        '<input class="form-control empControl lastRowTabOut" type="text" onblur="onBlurTempApproverEntry(event)" aria-label="'+temporaryApproverLabel+'" id="name_0'+length+'">'+
                         '<small class="help-block invalid" role="alert" aria-atomic="true" style="display:none;">'+employeeInvalid+'</small>'+
                         '<small class="help-block required" role="alert" aria-atomic="true" style="display:none;">'+enterSelectEmp+'</small>'+
                     '</div>'+
@@ -305,10 +305,8 @@ function deleteRow(dom) {
 }
 var checkin = []
 var checkout = []
-var haveEndDate = []
 function initDateControl() {
     $('.approver_tr').each(function(index) {
-        haveEndDate[index] = false
         var fromCalendar = $(this).find('.dateFromControl')
         var toCalendar = $(this).find('.dateToControl')
         var fromDateDom = $(this).find('.dateFromControl .date-control')
@@ -327,12 +325,6 @@ function initDateControl() {
             .on('changeDate', function(ev) {
                 var endDate = toDateDom.val()
                 var startDate = fromDateDom.val()
-                // if (
-                //     ev.date &&
-                //     (ev.date.valueOf() >= checkout[index].date.valueOf() ||
-                //         !endDate ||
-                //         endDate == '')
-                // ) {
                 if (ev.date){
                     console.log(ev.date)
                     console.log(checkout[index].date)
@@ -346,7 +338,6 @@ function initDateControl() {
                     setTimeout(function(){
                         focusNext(fromDateDom)
                     },100)
-                    // judgeContent()
                 }
             })
             .data('datepicker')
@@ -363,10 +354,13 @@ function initDateControl() {
                 }
             })
             .on('changeDate', function(ev) {
-                if (ev.date) {
-                    haveEndDate[index] = true
+                console.log(ev.date)
+                var dateStart = checkin[index].date
+                console.log(dateStart)
+                if(ev.date && dateStart.valueOf()>ev.date.valueOf()){
+                    fromDateDom.val('')
+                    fromDateDom.change()
                 }
-                // judgeContent()
             })
             .data('datepicker')
     })
@@ -522,11 +516,29 @@ function focusNext(obj) {
 }
 function onBlurTempApproverEntry(event) {
 	var trObj = $(event.target).closest("tr");
-	var tempApproverEmployeeNumber = $(trObj).find(".empControl").attr('data-number').trim();
-	var inputAutoCompleteString = $(trObj).find(".empControl").val().trim();
-	if (!inputAutoCompleteString.startsWith(tempApproverEmployeeNumber)) {
-		$(trObj).find(".empControl").val(""); // validate the approver emp number entered on the server side
-	}
+    var tempApproverEmployeeNumber = $(trObj).find(".empControl").attr('data-number');
+    var inputAutoCompleteString = $(trObj).find(".empControl").val().trim();
+
+    if (!inputAutoCompleteString.startsWith(tempApproverEmployeeNumber)) {
+		$(trObj).find(".empControl").attr('data-number',inputAutoCompleteString); // validate the approver emp number entered on the server side
+        var that = $(trObj).find(".empControl")
+        $.ajax({
+            type:'POST',
+            url:urlMain + '/leaveRequestTemporaryApprovers/isEmpNumberCorrect',
+            data:{number:inputAutoCompleteString},
+            success : function (res) {
+                if(res){
+                    that.parents('.form-group').removeClass('has-error').find('.help-block.invalid').hide()
+                }else{
+                    that.parents('.form-group').addClass('has-error').find('.help-block.invalid').show()
+                }
+            },
+            error:function(res){
+                    console.log(res);
+            }
+        })
+    }
+    
 }
 
 function deleteRowQuery(e) {

@@ -172,6 +172,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         aria-label="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}"
                                                         name="name_01"
                                                         id="name_01"
+                                                        onblur="onBlurTempApproverEntry(event)"
                                                     />
                                                     <small class="help-block invalid" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.employeeInvalid}</small>
                                                     <small class="help-block required" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.enterSelectEmp}</small>
