@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.esc20.model.BeaEmpLvComments;
 import com.esc20.model.BeaEmpLvRqst;
@@ -705,5 +704,33 @@ public class LeaveRequestDao {
 			requests.add(request);
 		}
 		return requests;
+	}
+	
+	public List<AppLeaveRequest> getEmployeeLeaveRequestsPeriods(String empNbr) {
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder("");
+		sql.append(
+				"SELECT ID, DATETIME_FROM, DATETIME_TO, LV_UNITS_USED ");
+		sql.append("  FROM BEA_EMP_LV_RQST  ");
+		sql.append(" WHERE STATUS_CD IN ('A','P','L','C')  ");
+		sql.append("  AND EMP_NBR=:employeeNumber ");
+		sql.append(" AND DATETIME_TO > DATEADD(YY, -1, GETDATE()) ");
+		
+		Query q = session.createSQLQuery(sql.toString());
+		q.setParameter("employeeNumber", empNbr);
+		
+		List<AppLeaveRequest> result = new ArrayList<AppLeaveRequest>();
+		AppLeaveRequest request;
+		List<Object[]> res = q.list();
+		for (Object[] item : res) {
+			request = new AppLeaveRequest();
+			request.setId(((Integer) item[0]));
+			request.setDatetimeFrom( (Date)item[1]);
+			request.setDatetimeTo( (Date)item[2]);
+			request.setLvUnitsUsed((BigDecimal)item[3]);
+			result.add(request);
+		}
+
+		return result;
 	}
 }

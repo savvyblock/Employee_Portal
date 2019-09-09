@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -249,6 +250,71 @@ public class LeaveRequestService {
 			fromHour = new BigDecimal (rec.getToUnit().doubleValue()+0.001).setScale(3, BigDecimal.ROUND_HALF_UP);
 		}
 		return conversionRecs;
+	}
+	
+	public List<AppLeaveRequest> getEmployeeLeaveRequestsPeriods(String empNbr) {
+		return leaveRequestDao.getEmployeeLeaveRequestsPeriods(empNbr);
+	}
+	public boolean isLeavePeriodsOverlapping(Date fromDateFromTime1, Date fromDateToTime1, int numberDays1, Date fromDateFromTime2, Date fromDateToTime2, int numberDays2) {
+
+		boolean overlappingPeriods = false;
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(fromDateFromTime2);
+		Date savedFromDateFromTime = cal.getTime();
+		cal.setTime(fromDateToTime2);
+		Date savedFromDateToTime = cal.getTime();
+		
+		for (int i=0; i < numberDays1; i++) {
+			for (int j=-0; j < numberDays2; j++) {
+				if ((fromDateFromTime1.compareTo(fromDateToTime2)<0) && (fromDateToTime1.compareTo(fromDateFromTime2)>0)) {
+					overlappingPeriods = true;
+					break;
+				}
+				// increment day
+		        cal.setTime(fromDateFromTime2);
+		        cal.add(Calendar.DATE, 1);
+		        fromDateFromTime2 = cal.getTime();		
+		        cal.setTime(fromDateToTime2);
+		        cal.add(Calendar.DATE, 1);
+		        fromDateToTime2 = cal.getTime();		
+			}
+			if (overlappingPeriods) {
+				break;
+			}
+			// increment day
+	        cal.setTime(fromDateFromTime1);
+	        cal.add(Calendar.DATE, 1);
+	        fromDateFromTime1 = cal.getTime();		
+	        cal.setTime(fromDateToTime1);
+	        cal.add(Calendar.DATE, 1);
+	        fromDateToTime1 = cal.getTime();
+	        // reset values of fromDateFromTime2 and fromDateToTime2
+	        fromDateFromTime2 = savedFromDateFromTime;
+	        fromDateToTime2 = savedFromDateToTime;
+		}
+		
+		return overlappingPeriods;
+	}
+	
+	public int getRequestNumberDays (Date fromDate,Date toDate) {
+		int leaveNumberDays = 0;
+		
+		try {
+//			String localFromDate = fromDate;
+//			String localToDate = toDate;
+//			// a correct fromDate would consist of 10 characters in the format "MM-dd-yyyy"
+//			if (localFromDate==null || localFromDate.trim().length()!=10) {
+//				localFromDate = (this.fromDateString==null) ? "" : this.fromDateString;
+//			}
+//			if (localToDate==null || localToDate.trim().length()!=10) {
+//				localToDate = (this.toDateString==null) ? "" : this.toDateString;
+//			}
+//			Date fromDateObj = dateFormat.parse(localFromDate);
+//			Date toDateObj = dateFormat.parse(localToDate);
+			leaveNumberDays = ((int)((toDate.getTime() - fromDate.getTime())/(1000*60*60*24))) + 1;
+		} catch (Exception e) {
+		}
+		return leaveNumberDays;
 	}
 	
 }
