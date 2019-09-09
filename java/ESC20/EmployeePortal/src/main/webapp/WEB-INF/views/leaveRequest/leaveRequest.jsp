@@ -26,6 +26,7 @@
 				</div>
 				
 			</div>
+			<input type="hidden" id="sessionEmpNbr" value="${sessionScope.userDetail.empNbr}">
 			<div class="content-white">
 					<c:if test="${not empty sessionScope.options.messageLeaveRequest}">
 							<p class="topMsg error-hint" role="alert">${sessionScope.options.messageLeaveRequest}</p>
@@ -168,7 +169,8 @@
 													<c:if test="${abs.code == leave.AbsenseReason }">${abs.description}</c:if>
 											</c:forEach>
 									</td>
-									<td data-title="${sessionScope.languageJSON.leaveRequest.leaveRequested}">${leave.lvUnitsUsed} 
+									<td data-title="${sessionScope.languageJSON.leaveRequest.leaveRequested}">
+										${leave.lvUnitsUsed} 
 											<span>${sessionScope.languageJSON.label.days}</span>
 									</td>
 									<td data-title="${sessionScope.languageJSON.leaveRequest.commentLog}">

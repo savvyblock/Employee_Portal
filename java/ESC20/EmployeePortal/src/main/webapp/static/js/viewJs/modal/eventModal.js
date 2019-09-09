@@ -91,7 +91,7 @@ function changeLeaveType(){
             return item.leaveType == leaveType
         })
         if(reason.length>1){
-        	$("#absenceReason").append("<option value=\"\" data-label=\"\"> </option>");
+        	$("#absenceReason").append("<option value=\"\" data-label=\"\">&nbsp;</option>");
         }
         reason.forEach(function(item){
             $("#absenceReason").append("<option value='"+item.absRsn +"'>" + item.absRsnDescrption +"</option>")
@@ -156,7 +156,7 @@ function closeRequestForm() {
 }
 function formValidator() {
     $('#requestForm').bootstrapValidator({
-        live: 'enable',
+        live: 'disabled',
         trigger:null,
         submitButtons: '.save',
         excluded:[":disabled"],
@@ -166,7 +166,6 @@ function formValidator() {
         },
         fields: {
             leaveType:{
-                trigger:'change',
                 validators: {
                     notEmpty: {
                         message: selectLeaveTypeValidator
@@ -457,14 +456,14 @@ function saveRequest(isAdd){
         $(".leaveHoursDailyNotZero").hide()
         $(".leaveHoursDailyWrap").removeClass('has-error')
         
-        var absenceReason = $("#absenceReason").val()
-        if(Number(absenceReason) == 0){
-            $(".absenceReasonNotEmpty").show()
-            $(".absenceReasonWrap").addClass('has-error')
-            return false
-        }
-        $(".absenceReasonNotEmpty").hide()
-        $(".absenceReasonWrap").removeClass('has-error')
+        // var absenceReason = $("#absenceReason").val()
+        // if(Number(absenceReason) == 0){
+        //     $(".absenceReasonNotEmpty").show()
+        //     $(".absenceReasonWrap").addClass('has-error')
+        //     return false
+        // }
+        // $(".absenceReasonNotEmpty").hide()
+        // $(".absenceReasonWrap").removeClass('has-error')
         var startDate = $('#startDateInput').val()
         var endDate = $('#endDateInput').val()
         var start = new Date(startDate)
@@ -488,15 +487,16 @@ function saveRequest(isAdd){
                     var leaveStartDate = $("#startDateInput").val();
                     var startTimeValue = $("#startTimeValue").val();
                     var endTimeValue = $("#endTimeValue").val();
+                    var empNbr = $("#empNbrModal").val();
                     $.ajax({
-                    	 type: "POST"
-                    	        , url: "/EmployeePortal/leaveRequest/validateLeaveRequestCommand"
-                    	        , data: JSON.stringify({ 'leaveStartDate': leaveStartDate,'startTimeValue':startTimeValue,'endTimeValue':endTimeValue }) // this creates formatted JSON string for ajax post to asmx service
-                    	        , dataType: "json"
-                    	        , cache: false
-                    	        , contentType: "application/json; charset=utf-8"
-                    	        , success: function (result) {
-			                    	console.log(result);
+                        type: "POST", 
+                        url: "/EmployeePortal/leaveRequest/validateLeaveRequestCommand", 
+                        data: JSON.stringify({ 'leaveStartDate': leaveStartDate,'startTimeValue':startTimeValue,'endTimeValue':endTimeValue,'empNbr': empNbr}), // this creates formatted JSON string for ajax post to asmx service
+                        dataType: "json",
+                    	cache: false,
+                    	contentType: "application/json; charset=utf-8",
+                    	success: function (result) {
+                                    console.log(result);
 			                    	if(result.sucess){
 			                    		 $(".dateTimePeriodOverlap").hide()
 			                    	     $(".dateTimePeriodOverlapWrap").removeClass('has-error')

@@ -27,16 +27,16 @@
                 </button>
             </div>
             <form id="requestForm" action="submitLeaveRequest" method="post">
-            	<input type="hidden" value="<%=token %>" name="token"/>
+                <input type="hidden" value="<%=token %>" name="token"/>
                 <input type="hidden" name="mealBreakHours" id="mealBreakHours" value="${params.mealBreakHours}">
                 <input type="hidden" name="standardHoursDaily" id="standardHoursDaily" value="${params.standardHours}">
                 <input type="hidden" name="requireLeaveHoursRequestedEntry" id="requireLeaveHoursRequestedEntry" value="${params.requireLeaveHoursRequestedEntry}">
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <input type="hidden" hidden="hidden" name="chain" id="chainModal" aria-label="${sessionScope.languageJSON.accessHint.chain}"/>
-                <input type="hidden" hidden="hidden" name="empNbr" id="empNbrModal" aria-label="${sessionScope.languageJSON.accessHint.employeeNumber}"/>
-                <input type="hidden" name="freq" hidden="hidden" id="freqModal" value="${selectedFreq}" aria-label="${sessionScope.languageJSON.accessHint.frequency}"/>
-                <input type="hidden" name="startDate" id="searchStartModal" hidden="hidden" aria-label="${sessionScope.languageJSON.leaveRequest.startDate}"/>
-                <input type="hidden" name="endDate" id="searchEndModal" hidden="hidden" aria-label="${sessionScope.languageJSON.leaveRequest.endDate}"/>
+                <input type="hidden" name="chain" id="chainModal"/>
+                <input type="hidden" name="empNbr" id="empNbrModal"/>
+                <input type="hidden" name="freq" id="freqModal" value="${selectedFreq}"/>
+                <input type="hidden" name="startDate" id="searchStartModal"/>
+                <input type="hidden" name="endDate" id="searchEndModal"/>
                 <div class="modal-body requestForm">
                     <input type="hidden" name="leaveId" id="leaveId" />
                     
@@ -93,12 +93,13 @@
                                     title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                     value=""
                                 /> -->
+                                <small class="help-block dateTimePeriodOverlap" role="alert" aria-atomic="true" style="display:none">
+                                    ${sessionScope.languageJSON.validator.dateTimePeriodOverlapsWithAPriorOne}
+                                </small>
                             </div>
                         </div>
 
-						<small class="help-block dateTimePeriodOverlap" role="alert" aria-atomic="true" style="display:none">
-		                    ${sessionScope.languageJSON.validator.dateTimePeriodOverlapsWithAPriorOne}
-		                </small>
+						
 		                
                         <div class="form-group time-right dateTimePeriodOverlapWrap">
                                 <label class="form-title" for="endDateInput"><span>${sessionScope.languageJSON.leaveRequest.endDate}</span>: </label>
