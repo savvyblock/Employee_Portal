@@ -119,6 +119,8 @@ $(document).ready(
 		$("#endDateInput").val(end_arry[0]);
 		$("#leaveHoursDaily").val(lvUnitsDaily);
 		$("#totalRequested").val(lvUnitsUsed);
+		var empNbr = $("#sessionEmpNbr").val()
+		$("#empNbrModal").val(empNbr);
 	}
 	
 	function deleteLeave(id){
@@ -152,7 +154,9 @@ $(document).ready(
 			$("#commentList").html("")
 			$(".timeUnit").hide()
 			$(".leaveHoursDailyNotZero").hide()
-        	$(".leaveHoursDailyWrap").removeClass('has-error')
+			$(".leaveHoursDailyWrap").removeClass('has-error')
+			var empNbr = $("#sessionEmpNbr").val()
+			$("#empNbrModal").val(empNbr);
 }
 	function changeFormatTimeAm(value){
 			var array = value.split(/[,: ]/);
