@@ -320,7 +320,7 @@ public class TempApproverController extends BaseSupervisorController {
 	    	}
 	    }
 		session.setAttribute("userDetail", demo);
-    	List<Code> testApproves = this.supService.getEmployeeTempApproverSearch(user.getEmpNbr(), number);
+    	List<Code> testApproves = this.supService.getEmployeeTempApproverByNumber(user.getEmpNbr(), number);
         if(testApproves == null || testApproves.size() == 0) {
         	isCorrect = false;
         }

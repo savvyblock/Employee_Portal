@@ -250,5 +250,9 @@ public class SupervisorService {
 	public List<Code> getEmployeeTempApproverSearch(String excludeEmpNumber, String search){
 		return this.autoCompleteDao.getEmployeeTempApproverSearch(excludeEmpNumber, search);
 	}
+	
+	public List<Code> getEmployeeTempApproverByNumber(String excludeEmpNumber, String search){
+		return this.autoCompleteDao.getEmployeeTempApproverByNumber(excludeEmpNumber, search);
+	}
 
 }
