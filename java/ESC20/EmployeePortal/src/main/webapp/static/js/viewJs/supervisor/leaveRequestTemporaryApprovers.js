@@ -518,27 +518,40 @@ function onBlurTempApproverEntry(event) {
 	var trObj = $(event.target).closest("tr");
     var tempApproverEmployeeNumber = $(trObj).find(".empControl").attr('data-number');
     var inputAutoCompleteString = $(trObj).find(".empControl").val().trim();
-
+    var that = $(trObj).find(".empControl")
     if (!inputAutoCompleteString.startsWith(tempApproverEmployeeNumber)) {
 		$(trObj).find(".empControl").attr('data-number',inputAutoCompleteString); // validate the approver emp number entered on the server side
-        var that = $(trObj).find(".empControl")
-        $.ajax({
-            type:'POST',
-            url:urlMain + '/leaveRequestTemporaryApprovers/isEmpNumberCorrect',
-            data:{number:inputAutoCompleteString},
-            success : function (res) {
-                if(res){
-                    that.parents('.form-group').removeClass('has-error').find('.help-block.invalid').hide()
-                }else{
-                    that.parents('.form-group').addClass('has-error').find('.help-block.invalid').show()
-                }
-            },
-            error:function(res){
-                    console.log(res);
-            }
-        })
+        
+        validateNumber(inputAutoCompleteString,that)
+    }else{
+        if(inputAutoCompleteString == tempApproverEmployeeNumber){
+            validateNumber(inputAutoCompleteString,that)
+        }else{
+            that.parents('.form-group').removeClass('has-error').find('.help-block.invalid').hide()
+            $("#saveSet").removeAttr('disabled')
+        }
+        
     }
     
+}
+function validateNumber(num,obj){
+    $.ajax({
+        type:'POST',
+        url:urlMain + '/leaveRequestTemporaryApprovers/isEmpNumberCorrect',
+        data:{number:num},
+        success : function (res) {
+            if(res){
+                obj.parents('.form-group').removeClass('has-error').find('.help-block.invalid').hide()
+                $("#saveSet").removeAttr('disabled')
+            }else{
+                obj.parents('.form-group').addClass('has-error').find('.help-block.invalid').show()
+                $("#saveSet").attr('disabled','disabled')
+            }
+        },
+        error:function(res){
+                console.log(res);
+        }
+    })
 }
 
 function deleteRowQuery(e) {
