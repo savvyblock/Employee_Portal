@@ -209,13 +209,25 @@ function initialCompleteList(dataList) {
                     },
                     success : function (res) {
                         var data = res.tempApprover
-                        response($.map(data, function(item){
-							return {
-								label: item.code + " : " + item.description,
-								value: item.code + " : " + item.description,
-								empNbr: item.code
-							}
-						}));
+                        console.log(data)
+                        if(data.length>0){
+                            $(input).parents('.form-group').removeClass('has-error').find('.help-block.invalid').hide().removeClass("shown")
+                            $("#saveSet").removeAttr('disabled')
+                            response($.map(data, function(item){
+                                return {
+                                    label: item.code + " : " + item.description,
+                                    value: item.code + " : " + item.description,
+                                    empNbr: item.code
+                                }
+                            }));
+                        }else{
+                            $(input).parents('.form-group').addClass('has-error').find('.help-block.invalid').show().addClass("shown")
+                            $("#saveSet").attr('disabled','disabled') 
+                        }
+                        setTimeout(function(){
+                            $(".setApprovers-list .has-error .help-block").hide()
+                        },1500)
+                        
                     },
                     error:function(res){
                          console.log(res);
@@ -527,12 +539,15 @@ function onBlurTempApproverEntry(event) {
         if(inputAutoCompleteString == tempApproverEmployeeNumber){
             validateNumber(inputAutoCompleteString,that)
         }else{
-            that.parents('.form-group').removeClass('has-error').find('.help-block.invalid').hide()
-            $("#saveSet").removeAttr('disabled')
+            // validateNumber(tempApproverEmployeeNumber,that)
+            // that.parents('.form-group').removeClass('has-error').find('.help-block.invalid').hide().removeClass("shown")
+            // $("#saveSet").removeAttr('disabled')
         }
         
     }
-    
+    setTimeout(function(){
+        $(".setApprovers-list .has-error .help-block").hide()
+    },1500)
 }
 function validateNumber(num,obj){
     $.ajax({
@@ -541,10 +556,10 @@ function validateNumber(num,obj){
         data:{number:num},
         success : function (res) {
             if(res){
-                obj.parents('.form-group').removeClass('has-error').find('.help-block.invalid').hide()
+                obj.parents('.form-group').removeClass('has-error').find('.help-block.invalid').hide().removeClass("shown")
                 $("#saveSet").removeAttr('disabled')
             }else{
-                obj.parents('.form-group').addClass('has-error').find('.help-block.invalid').show()
+                obj.parents('.form-group').addClass('has-error').find('.help-block.invalid').show().addClass("shown")
                 $("#saveSet").attr('disabled','disabled')
             }
         },
