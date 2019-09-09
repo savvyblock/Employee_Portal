@@ -644,6 +644,8 @@
         "employeeInvalid":"Employee Number entered is invalid. Enter or Select an Employee Number.",
         "areUDeleteRow":"Are you sure you want to delete the row?",
         "pressContinue":"Press OK to continue, or Cancel to stay on the current page.",
+        "selectAnAbsenceReason":"Select an Absence Reason.",
+        "dateTimePeriodOverlapsWithAPriorOne":"Date/Time period overlaps with a prior one.",
         "": ""
     },
     "accessHint": {
