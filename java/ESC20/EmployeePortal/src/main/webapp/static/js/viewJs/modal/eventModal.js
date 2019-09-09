@@ -90,6 +90,9 @@ function changeLeaveType(){
         var reason = leaveTypesAbsrsnsMap.filter(function(item){
             return item.leaveType == leaveType
         })
+        if(reason.length>1){
+        	$("#absenceReason").append("<option value=\"\" data-label=\"\"> </option>");
+        }
         reason.forEach(function(item){
             $("#absenceReason").append("<option value='"+item.absRsn +"'>" + item.absRsnDescrption +"</option>")
         })
@@ -453,6 +456,15 @@ function saveRequest(isAdd){
         }
         $(".leaveHoursDailyNotZero").hide()
         $(".leaveHoursDailyWrap").removeClass('has-error')
+        
+        var absenceReason = $("#absenceReason").val()
+        if(Number(absenceReason) == 0){
+            $(".absenceReasonNotEmpty").show()
+            $(".absenceReasonWrap").addClass('has-error')
+            return false
+        }
+        $(".absenceReasonNotEmpty").hide()
+        $(".absenceReasonWrap").removeClass('has-error')
         var startDate = $('#startDateInput').val()
         var endDate = $('#endDateInput').val()
         var start = new Date(startDate)
@@ -473,7 +485,30 @@ function saveRequest(isAdd){
                 if(parseFloat(dateTotal)<=parseFloat(balanceAvailable)){
                     $(".availableError").hide()
                     // return false
-                    $('#requestForm')[0].submit()
+                    var leaveStartDate = $("#startDateInput").val();
+                    var startTimeValue = $("#startTimeValue").val();
+                    var endTimeValue = $("#endTimeValue").val();
+                    $.ajax({
+                    	 type: "POST"
+                    	        , url: "/EmployeePortal/leaveRequest/validateLeaveRequestCommand"
+                    	        , data: JSON.stringify({ 'leaveStartDate': leaveStartDate,'startTimeValue':startTimeValue,'endTimeValue':endTimeValue }) // this creates formatted JSON string for ajax post to asmx service
+                    	        , dataType: "json"
+                    	        , cache: false
+                    	        , contentType: "application/json; charset=utf-8"
+                    	        , success: function (result) {
+			                    	console.log(result);
+			                    	if(result.sucess){
+			                    		 $(".dateTimePeriodOverlap").hide()
+			                    	     $(".dateTimePeriodOverlapWrap").removeClass('has-error')
+			                             $('#requestForm')[0].submit()
+			                    	}else{
+			                    		$(".dateTimePeriodOverlap").show()
+			                            $(".dateTimePeriodOverlapWrap").addClass('has-error')
+			                    	}
+			                    }
+			                })	
+                    
+                   
                 }else{
                     $(".availableError").show()
                 }

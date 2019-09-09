@@ -64,9 +64,12 @@
                             </div>
                         </div>
                     </div>
+                    <small class="help-block absenceReasonNotEmpty" role="alert" aria-atomic="true" style="display:none;">
+                    	${sessionScope.languageJSON.validator.selectAnAbsenceReason}
+                    </small>
 
                     <div class="date-group">
-                        <div class="form-group calendar-left">
+                        <div class="form-group calendar-left dateTimePeriodOverlapWrap">
                             <label class="form-title" for="startDateInput"><span>${sessionScope.languageJSON.leaveRequest.startDate}</span>: </label>
                             <div class="valid-wrap">
                                 <div class="fDateGroup date" id="startDate" data-date-format="mm/dd/yyyy">
@@ -93,7 +96,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group time-right">
+						<small class="help-block dateTimePeriodOverlap" role="alert" aria-atomic="true" style="display:none">
+		                    ${sessionScope.languageJSON.validator.dateTimePeriodOverlapsWithAPriorOne}
+		                </small>
+		                
+                        <div class="form-group time-right dateTimePeriodOverlapWrap">
                                 <label class="form-title" for="endDateInput"><span>${sessionScope.languageJSON.leaveRequest.endDate}</span>: </label>
                                 <div class="valid-wrap">
                                     <div class="fDateGroup date" id="endDate" data-date-format="mm/dd/yyyy">
@@ -125,7 +132,7 @@
                         <small class="help-block" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.startNotBeGreaterThanEndDate}</small>
                     </div>
                     <div class="date-group">
-                        <div class="form-group calendar-left">
+                        <div class="form-group calendar-left dateTimePeriodOverlapWrap">
                                 <label class="form-title" for="startTimeValue"><span>${sessionScope.languageJSON.leaveRequest.startTime}</span>: </label>
                                 <div class="valid-wrap flex-middle">
                                     <input class="form-control timeControl" type="text" name="startHour" 
@@ -145,7 +152,7 @@
                                 </div>
                         </div>
 
-                        <div class="form-group time-right">
+                        <div class="form-group time-right dateTimePeriodOverlapWrap">
                             <label class="form-title" for="endTimeValue"><span>${sessionScope.languageJSON.leaveRequest.endTime}</span>: </label>
                             <div class="valid-wrap flex-middle">
                                 <input class="form-control timeControl" type="text" name="endHour" 

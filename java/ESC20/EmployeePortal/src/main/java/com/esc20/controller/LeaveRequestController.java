@@ -3,6 +3,8 @@ package com.esc20.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,6 +55,8 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	private ReferenceService referenceService;
 	
 	private final String module= "Leave Request List View";
+	private SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm aa");
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
 	
 	@RequestMapping("leaveRequest")
 	public ModelAndView leaveRequest(HttpServletRequest req, String SearchType, String SearchStart, String SearchEnd,
@@ -240,6 +245,64 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 		mav.addObject("supervisorEmpNbr", supervisorEmpNbr);
 		return mav;
 	}
+	
+	@RequestMapping(value = "validateLeaveRequestCommand", method = RequestMethod.POST)
+    @ResponseBody
+	public Map<String, Object> validateLeaveRequestCommand(HttpServletRequest req, @RequestBody JSONObject param) {
+		Map<String, Object> data = new HashMap<>();
+        String leaveStartDate = param.getString("leaveStartDate");
+        String startTimeValue = param.getString("startTimeValue");
+        String endTimeValue = param.getString("endTimeValue");
+        
+		HttpSession session = req.getSession();
+		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+	
+		
+		List<AppLeaveRequest> savedRequests =  null;
+		// set up the list of saved leave requests to validate against the leave periods of the requests being created/edited
+		savedRequests = this.service.getEmployeeLeaveRequestsPeriods(demo.getEmpNbr());
+		// check if there is an overlap with a previously saved leave request other than any being edited
+		Date toDateObj=null;
+		
+		Date fromDateFromTimeObj=null;
+		Date fromDateToTimeObj=null;
+		try {
+			fromDateFromTimeObj = dateTimeFormat.parse(leaveStartDate+" "+startTimeValue.trim());
+			fromDateToTimeObj = dateTimeFormat.parse(leaveStartDate+" "+endTimeValue.trim());
+		} catch (Exception e) {
+			
+		} 
+		boolean validDateRange = true;
+		for (AppLeaveRequest savedRequest : savedRequests) {
+			try {
+				Calendar calendarFrom = Calendar.getInstance();
+				calendarFrom.setTime(savedRequest.getDatetimeFrom());
+				Calendar calendarTo = Calendar.getInstance();
+				calendarTo.setTime(savedRequest.getDatetimeTo());
+				toDateObj = dateTimeFormat.parse((calendarFrom.get(Calendar.MONTH)+1)+"-"+calendarFrom.get(Calendar.DAY_OF_MONTH)+"-"+calendarFrom.get(Calendar.YEAR)+" "+calendarTo.get(Calendar.HOUR)+":"+calendarTo.get(Calendar.MINUTE)+" "+(calendarTo.get(Calendar.AM_PM)==0?"AM":"PM"));	
+			} catch (Exception e) {
+				
+			}
+			boolean overlapping = false;
+			if (toDateObj != null) {
+				overlapping = this.service.isLeavePeriodsOverlapping(savedRequest.getDatetimeFrom(), toDateObj, ((int)((savedRequest.getDatetimeFrom().getTime() - savedRequest.getDatetimeTo().getTime())/(1000*60*60*24))) + 1, 
+						fromDateFromTimeObj, fromDateToTimeObj, ((int)((fromDateFromTimeObj.getTime() - fromDateToTimeObj.getTime())/(1000*60*60*24))) + 1);
+			}
+		    if (overlapping) {
+		    	validDateRange = false;
+				break;
+		    }					
+		}
+		
+		if(validDateRange) {
+			data.put("sucess", true);
+		}else {
+			data.put("sucess", false);
+		}
+		return data;
+	}
+	
+	
 	
 	@RequestMapping("leaveRequestByFreqency")
 	public ModelAndView leaveRequestByFrequency(HttpServletRequest req, String freq) throws ParseException {
