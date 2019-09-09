@@ -285,8 +285,8 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			}
 			boolean overlapping = false;
 			if (toDateObj != null) {
-				overlapping = this.service.isLeavePeriodsOverlapping(savedRequest.getDatetimeFrom(), toDateObj, ((int)((savedRequest.getDatetimeFrom().getTime() - savedRequest.getDatetimeTo().getTime())/(1000*60*60*24))) + 1, 
-						fromDateFromTimeObj, fromDateToTimeObj, ((int)((fromDateFromTimeObj.getTime() - fromDateToTimeObj.getTime())/(1000*60*60*24))) + 1);
+				overlapping = this.service.isLeavePeriodsOverlapping(savedRequest.getDatetimeFrom(), toDateObj, getRequestNumberDays(savedRequest.getDatetimeFrom(),savedRequest.getDatetimeTo()), 
+						fromDateFromTimeObj, fromDateToTimeObj, getRequestNumberDays(fromDateFromTimeObj,fromDateToTimeObj));
 			}
 		    if (overlapping) {
 		    	validDateRange = false;
@@ -301,7 +301,15 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 		}
 		return data;
 	}
-	
+	public int getRequestNumberDays (Date fromDate,Date toDate) {
+		int leaveNumberDays = 0;
+		
+		try {
+			leaveNumberDays = ((int)((toDate.getTime() - fromDate.getTime())/(1000*60*60*24))) + 1;
+		} catch (Exception e) {
+		}
+		return leaveNumberDays;
+	}
 	
 	
 	@RequestMapping("leaveRequestByFreqency")
