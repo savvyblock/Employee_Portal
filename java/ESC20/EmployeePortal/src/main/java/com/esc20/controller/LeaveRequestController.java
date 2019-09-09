@@ -253,14 +253,16 @@ public class LeaveRequestController extends BaseLeaveRequestController {
         String leaveStartDate = param.getString("leaveStartDate");
         String startTimeValue = param.getString("startTimeValue");
         String endTimeValue = param.getString("endTimeValue");
+        String empNbr = param.getString("empNbr");
         
-		HttpSession session = req.getSession();
+	/*	HttpSession session = req.getSession();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
-	
+		
+	*/
 		
 		List<AppLeaveRequest> savedRequests =  null;
 		// set up the list of saved leave requests to validate against the leave periods of the requests being created/edited
-		savedRequests = this.service.getEmployeeLeaveRequestsPeriods(demo.getEmpNbr());
+		savedRequests = this.service.getEmployeeLeaveRequestsPeriods(empNbr);
 		// check if there is an overlap with a previously saved leave request other than any being edited
 		Date toDateObj=null;
 		
