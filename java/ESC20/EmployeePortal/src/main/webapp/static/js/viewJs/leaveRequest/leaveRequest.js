@@ -121,6 +121,7 @@ $(document).ready(
 		$("#totalRequested").val(lvUnitsUsed);
 		var empNbr = $("#sessionEmpNbr").val()
 		$("#empNbrModal").val(empNbr);
+		$(".dateTimePeriodOverlap").hide()
 	}
 	
 	function deleteLeave(id){
@@ -157,6 +158,7 @@ $(document).ready(
 			$(".leaveHoursDailyWrap").removeClass('has-error')
 			var empNbr = $("#sessionEmpNbr").val()
 			$("#empNbrModal").val(empNbr);
+			$(".dateTimePeriodOverlap").hide()
 }
 	function changeFormatTimeAm(value){
 			var array = value.split(/[,: ]/);

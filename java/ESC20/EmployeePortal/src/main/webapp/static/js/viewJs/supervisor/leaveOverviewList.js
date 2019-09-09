@@ -141,6 +141,7 @@ function showRequestForm() {
     $(".timeUnit").hide()
     $(".leaveHoursDailyNotZero").hide()
     $(".leaveHoursDailyWrap").removeClass('has-error')
+    $(".dateTimePeriodOverlap").hide()
 }
 function changeFreq() {
     var select = $('#freq').val()
@@ -239,6 +240,7 @@ function editLeave(
     $('#endDateInput').val(end_arry[0])//changeMMDDFormat(end_arry[0])
     $('#leaveHoursDaily').val(lvUnitsDaily)
     $('#totalRequested').val(lvUnitsUsed)
+    $(".dateTimePeriodOverlap").hide()
 }
 
 function deleteLeave(id) {
