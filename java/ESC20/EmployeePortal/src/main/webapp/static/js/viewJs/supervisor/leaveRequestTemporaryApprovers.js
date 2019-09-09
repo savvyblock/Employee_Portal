@@ -110,6 +110,27 @@ $(function() {
         console.log(resultDeleteApprover)
         // verifyRepeat()
     })
+    $(document).on('blur','.empControl', function() {
+        var numberData = $(this).attr('data-number')
+        console.log(numberData)
+        var that = $(this)
+        $.ajax({
+            type:'POST',
+            url:urlMain + '/leaveRequestTemporaryApprovers/isEmpNumberCorrect',
+            data:numberData,
+            success : function (res) {
+                res = false
+                if(res){
+                    that.parents('.form-group').removeClass('has-error').find('.help-block.invalid').hide()
+                }else{
+                    that.parents('.form-group').addClass('has-error').find('.help-block.invalid').show()
+                }
+            },
+            error:function(res){
+                 console.log(res);
+            }
+        })
+    })
     $(document).on('blur','.dateToControl', function() {
         var fromValue=$(this).parents('.approver_tr').find('.dateFromControl .date-control').val()
         var toValue=$(this).val()

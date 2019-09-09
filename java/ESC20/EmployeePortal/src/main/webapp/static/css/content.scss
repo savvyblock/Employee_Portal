@@ -16,8 +16,7 @@
         width: 100%;
         padding: 0 20px;
         .logo-sm {
-            display: none;
-        }
+            display: none;}
         .logo {
             // max-height: 40px;
         }
@@ -2168,6 +2167,25 @@
             white-space: normal;
             word-break:break-all;
            word-break:break-word;
+        }
+    }
+}
+.fc-more-cell{
+    div{
+        height: 16px;
+        line-height: 16px;
+    }
+    height: 17px;
+    .fc-more{
+        font-size: 12px;
+    }
+}
+@media (max-height:650px){
+    .fc-day-top {
+        height: 18px;
+        .fc-day-number{
+            height: 18px;
+            line-height: 18px;
         }
     }
 }

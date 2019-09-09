@@ -2413,3 +2413,26 @@
   word-break: break-all;
   word-break: break-word;
 }
+
+.fc-more-cell {
+  height: 17px;
+}
+
+.fc-more-cell div {
+  height: 16px;
+  line-height: 16px;
+}
+
+.fc-more-cell .fc-more {
+  font-size: 12px;
+}
+
+@media (max-height: 650px) {
+  .fc-day-top {
+    height: 18px;
+  }
+  .fc-day-top .fc-day-number {
+    height: 18px;
+    line-height: 18px;
+  }
+}
