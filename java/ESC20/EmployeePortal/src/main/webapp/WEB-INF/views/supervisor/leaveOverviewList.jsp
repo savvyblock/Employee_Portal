@@ -270,6 +270,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <input type="hidden" name="endDate" id="searchEndDelete"/>
                             <input type="hidden" name="chain" id="chainDelete"/>
                             <input type="hidden" name="freq" id="freqDelete"/>
+                            <input type="hidden" value="<%=token %>" name="token"/>
                             <input type="hidden" name="leaveId" id="deleteId" aria-label="${sessionScope.languageJSON.accessHint.id}"/>
                         </form>
             </main>
