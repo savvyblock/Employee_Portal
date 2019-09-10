@@ -354,8 +354,9 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	public ModelAndView updateLeaveFromLeaveOverview(HttpServletRequest req, String level, String chain, String leaveId,
 			String leaveType, String absenseReason, String LeaveStartDate, String startTimeValue, String LeaveEndDate,
 			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String empNbr, String freq,
-			String startDate, String endDate,Boolean isAdd) throws ParseException {
+			String startDate, String endDate,Boolean isAdd, Long token) throws ParseException {
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = req.getSession();
 		if(chain==null||leaveType==null||absenseReason==null||LeaveStartDate==null||startTimeValue==null||
 				LeaveEndDate==null||endTimeValue==null||lvUnitsDaily==null||lvUnitsUsed==null||empNbr==null||freq==null) {
 			mav.setViewName("visitFailed");
@@ -364,6 +365,12 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
 		}
+		
+		Long sessionToken = (Long) session.getAttribute("token");
+		if(!sessionToken.equals(token)) {
+			return this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false,isAdd);
+		}
+		
 		JSONArray levels = JSONArray.fromObject(chain);
 		BeaEmpLvRqst request;
 		if (leaveId == null || ("").equals(leaveId)) {
@@ -402,14 +409,19 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	
 	@RequestMapping("deleteLeaveFromLeaveOverview")
 	public ModelAndView deleteLeaveFromLeaveOverview(HttpServletRequest req, String level, String chain, String leaveId,
-			String empNbr, String freq, String startDate, String endDate) throws ParseException {
+			String empNbr, String freq, String startDate, String endDate, Long token) throws ParseException {
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = req.getSession();
 		if(chain==null||leaveId==null||empNbr==null||freq==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Delete leave from leave overview");
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
+		}
+		Long sessionToken = (Long) session.getAttribute("token");
+		if(!sessionToken.equals(token)) {
+			return this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false,null);
 		}
 		JSONArray levels = JSONArray.fromObject(chain);
 		deleteLeaveRequest(leaveId);

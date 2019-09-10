@@ -13,7 +13,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             <main class="content-wrapper" tabindex="-1">
                 <section class="content">
                     <div class="content-white no-title profile">
-                            <c:if test="${sessionScope.options.enableSelfServiceDemographic == true}">
+                            <c:if test="${sessionScope.enableSelfServiceDemographic}">
                                 <div class="profile-item">
                                         <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal">
                                                 <span>${sessionScope.languageJSON.label.changePassword}</span>
@@ -1276,7 +1276,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </form>
                         </c:if>
                         
-                        <c:if test="${sessionScope.options.enableSelfServicePayroll == true}">
+                        <c:if test="${sessionScope.enableSelfServicePayroll}">
                             <c:if test="${not empty sessionScope.options.messageSelfServicePayroll}">
                             	<p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServicePayroll}</p>
                         	</c:if>

@@ -194,7 +194,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 	@RequestMapping("submitLeaveRequestFromCalendar")
 	public ModelAndView submitLeaveRequestFromCalendar(HttpServletRequest req, String leaveId, String leaveType,
 			String absenseReason, String LeaveStartDate, String startTimeValue, String LeaveEndDate,
-			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq)
+			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq, Long token)
 			throws ParseException, MessagingException {
 		HttpSession session = req.getSession();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
@@ -207,20 +207,29 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
 		}
+		Long sessionToken = (Long) session.getAttribute("token");
+		if(!sessionToken.equals(token)) {
+			return this.getEventCalendar(req, freq);
+		}
 		this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate,
 				endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo);
 		return this.getEventCalendar(req, freq);
 	}
 	
 	@RequestMapping("deleteLeaveRequestFromCalendar")
-	public ModelAndView deleteLeaveRequestFromCalendar(HttpServletRequest req, String id, String freq) {
+	public ModelAndView deleteLeaveRequestFromCalendar(HttpServletRequest req, String id, String freq, Long token) {
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = req.getSession();
 		if(id==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Delete leave information from leave overview");
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
+		}
+		Long sessionToken = (Long) session.getAttribute("token");
+		if(!sessionToken.equals(token)) {
+			return this.getEventCalendar(req, freq);
 		}
 		deleteLeaveRequest(id);
 		return this.getEventCalendar(req, freq);
