@@ -127,7 +127,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 			requestModels.add(model);
 		}
 		for (int i = 0; i < requestModels.size(); i++) {
-			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null,gens));
+			calendar.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null,gens));
 		}
 		mav.addObject("directReportEmployee", employeeDataJSON);
 		if (demo.getEmpNbr().equals(empNbr)) {
