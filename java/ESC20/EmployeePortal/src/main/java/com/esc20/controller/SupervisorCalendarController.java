@@ -90,7 +90,7 @@ public class SupervisorCalendarController extends BaseSupervisorController {
 			requestModels.add(model);
 		}
 		for (int i = 0; i < requestModels.size(); i++) {
-			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null,gens));
+			calendar.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null,gens));
 		}
 		mav.addObject("absRsns", absRsnsJson);
 		mav.addObject("leaveTypes", leaveTypesJson);
