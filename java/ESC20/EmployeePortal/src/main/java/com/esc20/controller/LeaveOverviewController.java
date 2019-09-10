@@ -60,8 +60,19 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	
 	@RequestMapping("leaveOverviewList")
 	public ModelAndView getLeaveOverviewList(HttpServletRequest req, String empNbr, String chain, String freq,
-			String startDate, String endDate, Boolean isChangeLevel) throws ParseException {
+			String startDate, String endDate, Boolean isChangeLevel,Boolean isAdd) throws ParseException {
 		HttpSession session = req.getSession();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/supervisor/approveLeaveRequestList");
+		if(isAdd == null) {
+			isAdd = false;
+		}
+		if(isAdd) {
+			mav.addObject("addRow", true);
+		}
+		else {
+			mav.addObject("addRow", false);
+		}
 		
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
@@ -82,8 +93,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
          session.setAttribute("companyId", district);
          session.setAttribute("district", districtInfo);
          
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/supervisor/approveLeaveRequestList");
+		
 		LeaveParameters params = this.service.getLeaveParameters();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		BhrEmpDemo root = demo;
@@ -310,10 +320,10 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 			currentLevelDetail.put("middleName", nextLevelSupervisor.getNameM());
 			currentLevelDetail.put("employeeNumber", nextLevelSupervisor.getEmpNbr());
 			levels.add(currentLevelDetail);
-			mav = this.getLeaveOverviewList(req, nextLevelSupervisor.getEmpNbr(), null, null, null, null, true);
+			mav = this.getLeaveOverviewList(req, nextLevelSupervisor.getEmpNbr(), null, null, null, null, true,null);
 			mav.addObject("chain", levels);
 		} else {
-			mav = this.getLeaveOverviewList(req, currentSupervisorEmployeeNumber, null, null, null, null, true);
+			mav = this.getLeaveOverviewList(req, currentSupervisorEmployeeNumber, null, null, null, null, true,null);
 			mav.addObject("chain", levels);
 		}
 		return mav;
@@ -335,7 +345,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 		Integer prevLevel = levels.size() - 2;
 		String empNbr = ((JSONObject) levels.get(prevLevel)).getString("employeeNumber");
 		levels.remove(levels.size() - 1);
-		mav = this.getLeaveOverviewList(req, empNbr, null, null, null, null, true);
+		mav = this.getLeaveOverviewList(req, empNbr, null, null, null, null, true,null);
 		mav.addObject("chain", levels);
 		return mav;
 	}
@@ -344,7 +354,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	public ModelAndView updateLeaveFromLeaveOverview(HttpServletRequest req, String level, String chain, String leaveId,
 			String leaveType, String absenseReason, String LeaveStartDate, String startTimeValue, String LeaveEndDate,
 			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String empNbr, String freq,
-			String startDate, String endDate) throws ParseException {
+			String startDate, String endDate,Boolean isAdd) throws ParseException {
 		ModelAndView mav = new ModelAndView();
 		if(chain==null||leaveType==null||absenseReason==null||LeaveStartDate==null||startTimeValue==null||
 				LeaveEndDate==null||endTimeValue==null||lvUnitsDaily==null||lvUnitsUsed==null||empNbr==null||freq==null) {
@@ -385,7 +395,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 			comments.setLvCommentTyp('C');
 			this.service.saveLvComments(comments);
 		}
-		mav = this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false);
+		mav = this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false,isAdd);
 		mav.addObject("chain", levels);
 		return mav;
 	}
@@ -403,7 +413,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 		}
 		JSONArray levels = JSONArray.fromObject(chain);
 		deleteLeaveRequest(leaveId);
-		mav = this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false);
+		mav = this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false,null);
 		mav.addObject("chain", levels);
 		return mav;
 	}

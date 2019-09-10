@@ -49,7 +49,8 @@
                             <th id="leaveRequestedModalTitle"><b>${sessionScope.languageJSON.leaveRequest.leaveRequested}</b></th>
                             <td headers="leaveRequestedModalTitle" title="${sessionScope.languageJSON.leaveRequest.leaveRequested}">
                                 <span id="leaveRequestedStatic"></span>
-                                <span>${sessionScope.languageJSON.label.days}</span>
+                                <span id="unitsDays" style="display:none;">${sessionScope.languageJSON.label.days}</span>
+                                <span id="unitsHours" style="display:none;">${sessionScope.languageJSON.label.hours}</span>
                             </td>
                           </tr>
                           <tr>

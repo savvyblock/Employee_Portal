@@ -33,7 +33,7 @@
                 <input type="hidden" name="requireLeaveHoursRequestedEntry" id="requireLeaveHoursRequestedEntry" value="${params.requireLeaveHoursRequestedEntry}">
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <input type="hidden" name="chain" id="chainModal"/>
-                <input type="hidden" name="empNbr" id="empNbrModal"/>
+                <input type="hidden" name="empNbr" id="empNbrModal" value="${sessionScope.userDetail.empNbr}"/>
                 <input type="hidden" name="freq" id="freqModal" value="${selectedFreq}"/>
                 <input type="hidden" name="startDate" id="searchStartModal"/>
                 <input type="hidden" name="endDate" id="searchEndModal"/>

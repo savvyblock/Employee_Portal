@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.mail.MessagingException;
@@ -55,7 +56,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	private ReferenceService referenceService;
 	
 	private final String module= "Leave Request List View";
-	private SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm aa");
+	private SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm aa",Locale.ENGLISH);
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
 	
 	@RequestMapping("leaveRequest")

@@ -11,6 +11,10 @@ $(function() {
     mealBreakHours = Number(mealBreakHours)
     if(isAddValue == 'true'){
         $("#requestModal").modal('show')
+        var empNbr = $('#selectEmpNbr').val()
+        if(empNbr&&empNbr!=''){
+            $('#empNbrModal').val(empNbr)
+        }
         $(".edit-title").hide()
         $(".secondSubmit").hide();
         $("#deleteLeave").hide();	
@@ -50,6 +54,10 @@ $(function() {
                 $('#endDateInput').change()
                 $('#startDateInput').change()
                 calcTime()
+            }
+            if(ev.date){
+                $(".dateTimePeriodOverlap").hide()
+			    $(".dateTimePeriodOverlapWrap").removeClass('has-error')
             }
         })
         .data('datepicker')
@@ -158,7 +166,6 @@ function formValidator() {
     $('#requestForm').bootstrapValidator({
         live: 'disabled',
         trigger:null,
-        submitButtons: '.save',
         excluded:[":disabled"],
         feedbackIcons: {
             valid: 'fa fa-check ',
@@ -500,7 +507,7 @@ function saveRequest(isAdd){
                                     console.log(result);
 			                    	if(result.sucess){
 			                    		 $(".dateTimePeriodOverlap").hide()
-			                    	     $(".dateTimePeriodOverlapWrap").removeClass('has-error')
+                                         $(".dateTimePeriodOverlapWrap").removeClass('has-error')
 			                             $('#requestForm')[0].submit()
 			                    	}else{
 			                    		$(".dateTimePeriodOverlap").show()

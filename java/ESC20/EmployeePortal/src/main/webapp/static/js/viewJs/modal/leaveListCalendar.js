@@ -75,6 +75,14 @@ function initialLeaveCalendarModal(){
                     $("#commentLogStatic").html("")
                     $("#leaveStatusStatic").text(leaveRequest.statusDescr)
                     $("#leaveApproverStatic").text(leaveRequest.approver)
+                    if(leaveRequest.daysHrs == 'H'){
+                        $("#unitsHours").show()
+                        $("#unitsDays").hide()
+                    }
+                    if(leaveRequest.daysHrs == 'D'){
+                        $("#unitsDays").show()
+                        $("#unitsHours").hide()
+                    }
                     var comments = leaveRequest.comments
                     for(var i=0;i<comments.length;i++){
                             var html = '<p>'+comments[i].detail+'</p>'
