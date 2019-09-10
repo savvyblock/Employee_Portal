@@ -158,10 +158,15 @@ public class LeaveRequestModel implements Serializable {
 		JSONObject jo = new JSONObject();
 		jo.put("id", this.getId());
 		String typeDesc= "";
+		String daysHrs ="";
 		if (!CollectionUtils.isEmpty(leaveTypes)) {
 			for (Code type : leaveTypes) {
 				if (!StringUtils.isEmpty(type.code) && type.getCode().equals(this.getLeaveType())) {
 					typeDesc = " ("+type.getDescription()+")" ;
+				}
+				
+				if (!StringUtils.isEmpty(type.code) && type.getCode().equals(this.getLeaveType())) {
+					daysHrs = type.getSubCode();
 				}
 			}
 		}
@@ -181,8 +186,9 @@ public class LeaveRequestModel implements Serializable {
 		jo.put("Remarks", this.getRemarks());
 		jo.put("lvUnitsDaily", this.getLvUnitsDaily());
 		jo.put("lvUnitsUsed", this.getLvUnitsUsed());
+		jo.put("daysHrs", daysHrs);
 		for (int i = 0; i < leaveStatus.size(); i++) {
-			if (leaveStatus.get(i).getCode().equals(this.getStatus())) {
+			if (leaveStatus.get(i).getCode().trim().equals(this.getStatus().trim())) {
 				jo.put("statusCd", this.getStatus());
 				jo.put("statusDescr", leaveStatus.get(i).getDescription());
 				break;

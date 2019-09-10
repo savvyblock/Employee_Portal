@@ -196,6 +196,27 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 			model = new LeaveRequestModel(leavesCalendar.get(i));
 			requestModels.add(model);
 		}
+		
+		List<Code> leaveTypes =  new ArrayList<Code>();;
+		//Add a blank for leave Types for default shown
+		Code emptyType = new Code();
+		emptyType = new Code();
+		emptyType.setDescription(" ");
+		leaveTypes.add(emptyType);
+		if(!initialLoad) {
+			//leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
+			leaveTypes.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
+		}
+		else {
+			leaveTypes.addAll(this.referenceService.getLeaveTypes());
+			//leaveTypes = this.referenceService.getLeaveTypes();
+		}
+		
+		JSONArray leaveTypesJson = new JSONArray();
+		for (int i = 0; i < leaveTypes.size(); i++) {
+			leaveTypesJson.add(leaveTypes.get(i).toJSON());
+		}
+		
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
 		//List<Code> gens = referenceService.getGenerations();
 		List<LeaveInfo> leaveInfo = new ArrayList<LeaveInfo>();
@@ -205,7 +226,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null,gens));
 			if(!initialLoad) {
 				if (requestModels.get(i).getEmpNbr().equals(demo.getEmpNbr()))
-					employee.add(requestModels.get(i).toJSON(leaveStatus, null,null,gens));
+					employee.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null,gens));
 			}
 		}
 		List<Code> absRsns = new ArrayList<Code>();
@@ -227,25 +248,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 		for (int i = 0; i < absRsns.size(); i++) {
 			absRsnsJson.add(absRsns.get(i).toJSON());
 		}
-		List<Code> leaveTypes =  new ArrayList<Code>();;
-		//Add a blank for leave Types for default shown
-		Code emptyType = new Code();
-		emptyType = new Code();
-		emptyType.setDescription(" ");
-		leaveTypes.add(emptyType);
-		if(!initialLoad) {
-			//leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
-			leaveTypes.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
-		}
-		else {
-			leaveTypes.addAll(this.referenceService.getLeaveTypes());
-			//leaveTypes = this.referenceService.getLeaveTypes();
-		}
 		
-		JSONArray leaveTypesJson = new JSONArray();
-		for (int i = 0; i < leaveTypes.size(); i++) {
-			leaveTypesJson.add(leaveTypes.get(i).toJSON());
-		}
 		List<String[]> map = this.service.mapReasonsAndLeaveTypes();
 		JSONArray mapJson = new JSONArray();
 		JSONObject tempMap;
