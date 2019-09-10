@@ -118,23 +118,9 @@ public class TempApproverController extends BaseSupervisorController {
 		}
 		
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
-		//List<Code> gens = referenceService.getGenerations();
-		List<AppLeaveRequest> leavesCalendar = this.supService.getLeaveDetailsForCalendar(demo.getEmpNbr(), null, null,
-				null);		
-		List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
-		LeaveRequestModel model;
-		JSONArray calendar = new JSONArray();
-		for (int i = 0; i < leavesCalendar.size(); i++) {
-			model = new LeaveRequestModel(leavesCalendar.get(i));
-			requestModels.add(model);
-		}
-		for (int i = 0; i < requestModels.size(); i++) {
-			calendar.add(requestModels.get(i).toJSON(leaveStatus, null,null,gens));
-		}
-        mav.addObject("leavesCalendar", calendar);
-        
-        List<Code> leaveTypes = new ArrayList<Code>();
-   
+		
+		 List<Code> leaveTypes = new ArrayList<Code>();
+		   
 		//Add a blank for leave Types for default shown
         Code emptyType = new Code();
         emptyType.setDescription(" ");
@@ -157,6 +143,22 @@ public class TempApproverController extends BaseSupervisorController {
 		for (int i = 0; i < absRsns.size(); i++) {
 			absRsnsJson.add(absRsns.get(i).toJSON());
 		}
+		//List<Code> gens = referenceService.getGenerations();
+		List<AppLeaveRequest> leavesCalendar = this.supService.getLeaveDetailsForCalendar(demo.getEmpNbr(), null, null,
+				null);		
+		List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
+		LeaveRequestModel model;
+		JSONArray calendar = new JSONArray();
+		for (int i = 0; i < leavesCalendar.size(); i++) {
+			model = new LeaveRequestModel(leavesCalendar.get(i));
+			requestModels.add(model);
+		}
+		for (int i = 0; i < requestModels.size(); i++) {
+			calendar.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null,gens));
+		}
+        mav.addObject("leavesCalendar", calendar);
+        
+       
         
       //  List<Code> testApproves = this.supService.getEmployeeTempApproverSearch(user.getEmpNbr(), "0");
 		mav.addObject("absRsns", absRsnsJson);
