@@ -120,6 +120,11 @@ public class LeaveRequestService {
 		return leaveRequestDao.getLeaveTypes(empNbr, freq, leaveType);
 	}
 
+	
+	public List<Code> getAvailableLeaveTypes(String empNbr, String freq) {
+		return leaveRequestDao.getAvailableLeaveTypes(empNbr, freq);
+	}
+
 	public List<LeaveInfo> getLeaveInfo(String empNbr, String freq, boolean removeZeroedOutLeaveTypes) {
 		List<LeaveInfo> leaveInfos = leaveRequestDao.getLeaveInfo(empNbr, freq);
 
