@@ -2,6 +2,20 @@ var chainString = JSON.stringify(chain)
 var reasonOption
 console.log(chainString)
 $(function() {
+    if(isAddValue == 'true'){
+        $("#requestModal").modal('show')
+        $('#requestForm').attr('action', 'updateLeaveFromLeaveOverview')
+        var empNbr = $('#selectEmpNbr').val()
+        $('#empNbrModal').val(empNbr)
+        $('#chainModal').val(chainString)
+        var searchStart = $("#SearchStartInput").val()
+        var searchEnd = $("#SearchEndInput").val()
+        $('#searchStartModal').val(searchStart)
+        $('#searchEndModal').val(searchEnd)
+        $(".edit-title").hide()
+        $(".secondSubmit").hide();
+        $("#deleteLeave").hide();	
+    }
     var selectHtml = $("#freq").html().trim();
     console.log(selectHtml)
     if(selectHtml==''){

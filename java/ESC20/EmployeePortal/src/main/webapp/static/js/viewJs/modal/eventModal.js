@@ -9,16 +9,7 @@ $(function() {
     leaveHoursRequestedEntry = $("#requireLeaveHoursRequestedEntry").val()
     standardHoursDaily = Number(standardHoursDaily)
     mealBreakHours = Number(mealBreakHours)
-    if(isAddValue == 'true'){
-        $("#requestModal").modal('show')
-        var empNbr = $('#selectEmpNbr').val()
-        if(empNbr&&empNbr!=''){
-            $('#empNbrModal').val(empNbr)
-        }
-        $(".edit-title").hide()
-        $(".secondSubmit").hide();
-        $("#deleteLeave").hide();	
-    }
+    
     formValidator()
     var nowTemp = new Date()
     var now = new Date(
