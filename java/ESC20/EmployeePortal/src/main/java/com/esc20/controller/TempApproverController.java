@@ -256,7 +256,7 @@ public class TempApproverController extends BaseSupervisorController {
 			isDelete = true;
 			for (int i = 0; i < inputs.size(); i++) {
 				temp = ((JSONObject) inputs.get(i));
-				if (temp.getString("id") != null && !("").equals(temp.getString("id")) && Integer.parseInt(temp.getString("id")) == records.get(j).getId()) {
+				if (temp.getString("id") != null && !("").equals(temp.getString("id")) && !("0").equals(temp.getString("id")) && Integer.parseInt(temp.getString("id")) == records.get(j).getId()) {
 					isDelete = false;
 				}
 			}
@@ -272,7 +272,7 @@ public class TempApproverController extends BaseSupervisorController {
 			tempApprover.setDatetimeTo(DateUtil.getUTCTime(sdf1.parse(temp.getString("to"))));
 			tempApprover.setSpvsrEmpNbr(empNbr);
 			tempApprover.setTmpApprvrEmpNbr(temp.getString("empNbr"));
-			this.supService.saveTempApprover(tempApprover, !(temp.getString("id") == null || temp.getString("id").equals("")));
+			this.supService.saveTempApprover(tempApprover, !(temp.getString("id") == null || temp.getString("id").equals("") || temp.getString("id").equals("0")));
 		}
 		mav = this.getLeaveRequestTemporaryApprovers(req, empNbr);
 		mav.addObject("chain", levels);

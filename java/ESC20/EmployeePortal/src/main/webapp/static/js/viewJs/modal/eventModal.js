@@ -485,13 +485,14 @@ function saveRequest(isAdd){
                     $(".availableError").hide()
                     // return false
                     var leaveStartDate = $("#startDateInput").val();
+                    var leaveEndDate = $("#endDateInput").val();
                     var startTimeValue = $("#startTimeValue").val();
                     var endTimeValue = $("#endTimeValue").val();
                     var empNbr = $("#empNbrModal").val();
                     $.ajax({
                         type: "POST", 
                         url: "/EmployeePortal/leaveRequest/validateLeaveRequestCommand", 
-                        data: JSON.stringify({ 'leaveStartDate': leaveStartDate,'startTimeValue':startTimeValue,'endTimeValue':endTimeValue,'empNbr': empNbr}), // this creates formatted JSON string for ajax post to asmx service
+                        data: JSON.stringify({ 'leaveStartDate': leaveStartDate,'leaveEndDate':leaveEndDate,'startTimeValue':startTimeValue,'endTimeValue':endTimeValue,'empNbr': empNbr}), // this creates formatted JSON string for ajax post to asmx service
                         dataType: "json",
                     	cache: false,
                     	contentType: "application/json; charset=utf-8",
