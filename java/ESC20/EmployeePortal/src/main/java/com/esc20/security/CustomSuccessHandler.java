@@ -53,7 +53,9 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
    		    		userDetail.setGenDescription(gen.getDescription());
    		    	}
    		    }
-   		
+   		 	if(!indexService.isEmployeePayCampusLeaveCampus(user.getEmpNbr())) {
+   		 		options.setEnableLeaveReq(false);
+   		 	}
             String phone = districtInfo.getPhone();
             districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
             Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr());
@@ -75,5 +77,4 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
 		}
 		
 	}
-
 }

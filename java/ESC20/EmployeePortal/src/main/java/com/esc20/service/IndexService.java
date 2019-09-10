@@ -334,4 +334,7 @@ public class IndexService {
 	public Boolean isTempApprover(String empNbr) {
 		return userDao.isTempApprover(empNbr);
 	}
+	public boolean isEmployeePayCampusLeaveCampus(String empNbr) {
+		return userDao.employeePayCampusLeaveCampusCount(empNbr)>0;
+	}
 }

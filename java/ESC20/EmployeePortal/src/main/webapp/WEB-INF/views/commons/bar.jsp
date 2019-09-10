@@ -180,25 +180,26 @@
                   <p>${sessionScope.languageJSON.nav.approveLeaveRequests}</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a  href="/<%=request.getContextPath().split("/")[1]%>/leaveOverview/leaveOverviewList" class="nav-link" id="leaveOverview">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>${sessionScope.languageJSON.nav.leaveOverview}</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/supervisorCalendar/calendarView" class="nav-link" id="supervisorCalendar">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>${sessionScope.languageJSON.nav.calendar}</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/<%=request.getContextPath().split("/")[1]%>/leaveRequestTemporaryApprovers/leaveRequestTemporaryApprovers" class="nav-link" id="leaveRequestTemporaryApprovers">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>${sessionScope.languageJSON.nav.setTemporary}</p>
-                </a>
-              </li>
-              
+              <c:if test="${sessionScope.isSupervisor}">
+	              <li class="nav-item">
+	                <a  href="/<%=request.getContextPath().split("/")[1]%>/leaveOverview/leaveOverviewList" class="nav-link" id="leaveOverview">
+	                  <i class="fa fa-circle-o nav-icon"></i>
+	                  <p>${sessionScope.languageJSON.nav.leaveOverview}</p>
+	                </a>
+	              </li>
+	              <li class="nav-item">
+	                <a href="/<%=request.getContextPath().split("/")[1]%>/supervisorCalendar/calendarView" class="nav-link" id="supervisorCalendar">
+	                  <i class="fa fa-circle-o nav-icon"></i>
+	                  <p>${sessionScope.languageJSON.nav.calendar}</p>
+	                </a>
+	              </li>
+	              <li class="nav-item">
+	                <a href="/<%=request.getContextPath().split("/")[1]%>/leaveRequestTemporaryApprovers/leaveRequestTemporaryApprovers" class="nav-link" id="leaveRequestTemporaryApprovers">
+	                  <i class="fa fa-circle-o nav-icon"></i>
+	                  <p>${sessionScope.languageJSON.nav.setTemporary}</p>
+	                </a>
+	              </li>
+              </c:if>
             </ul>
           </li>
         </c:if>

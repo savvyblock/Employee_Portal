@@ -131,6 +131,14 @@ function actionLeave(id){
     $("#absenceReason").html(reason)
     $("#leaveRequested").html(leaveRequest.lvUnitsUsed)
     $("#commentLog").html("")
+    if(leaveRequest.daysHrs == 'H'){
+        $("#unitsHours").show()
+        $("#unitsDays").hide()
+    }
+    if(leaveRequest.daysHrs == 'D'){
+        $("#unitsDays").show()
+        $("#unitsHours").hide()
+    }
     var comments = leaveRequest.comments
     for(var i=0;i<comments.length;i++){
         var htmlC = '<p>'+comments[i].detail+'</p>'
