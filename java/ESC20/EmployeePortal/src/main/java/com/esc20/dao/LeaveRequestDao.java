@@ -406,6 +406,34 @@ public class LeaveRequestDao {
 		return result;
 	}
 
+	public List<Code> getAvailableLeaveTypes(String empNbr, String freq){
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT DISTINCT BHR_EMP_LV_XMITAL.LV_TYP, BTHR_LV_TYP_DESCR.LONG_DESCR");
+		sql.append(" FROM BHR_EMP_LV_XMITAL, BTHR_LV_TYP_DESCR");
+		sql.append(" WHERE CYR_NYR_FLG = 'C'");
+		sql.append(" AND PAY_FREQ = :frequency");
+		sql.append(" AND EMP_NBR = :employeeNumber");
+		sql.append(" AND BHR_EMP_LV_XMITAL.LV_TYP = BTHR_LV_TYP_DESCR.LV_TYP");
+		
+		Query q = session.createSQLQuery(sql.toString());
+		q.setParameter("employeeNumber", empNbr);
+		q.setParameter("frequency", freq);
+
+
+		@SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
+
+		List<Code> result = new ArrayList<Code>();
+		Code code;
+		for (Object[] item : res) {
+			code = new Code((String) item[0], "", (String) item[1]);
+			result.add(code);
+		}
+		return result;
+	}
+	
+	
 	public List<LeaveInfo> getLeaveInfo(String empNbr, String freq) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();

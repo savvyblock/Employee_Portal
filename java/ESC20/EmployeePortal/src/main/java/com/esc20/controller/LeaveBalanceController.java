@@ -120,7 +120,8 @@ public class LeaveBalanceController{
 				//List<LeaveBalance> approvedLeaves = this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType,
 				//		start, end, freq);
 				List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
-				List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
+				//List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");	
+				List<Code> leaveTypes = this.service.getAvailableLeaveTypes(demo.getEmpNbr(), freq);	
 				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
 				leaveTypesWithAll.addAll(leaveTypes);
 				mav.setViewName("/leaveBalance/leaveBalance");
@@ -134,7 +135,8 @@ public class LeaveBalanceController{
 			List<LeaveBalance> approvedLeaves = this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType, start,
 					end, freq);
 			List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
-			List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
+			//List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
+			List<Code> leaveTypes = this.service.getAvailableLeaveTypes(demo.getEmpNbr(), freq);	
 			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
 			leaveTypesWithAll.addAll(leaveTypes);
 			mav.setViewName("/leaveBalance/leaveBalance");

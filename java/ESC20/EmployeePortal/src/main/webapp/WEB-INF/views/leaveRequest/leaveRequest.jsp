@@ -171,7 +171,12 @@
 									</td>
 									<td data-title="${sessionScope.languageJSON.leaveRequest.leaveRequested}">
 										${leave.lvUnitsUsed} 
-											<span>${sessionScope.languageJSON.label.days}</span>
+										 <c:if test="${leave.daysHrs=='D'}">
+                                             <span>${sessionScope.languageJSON.label.days}</span>
+                                         </c:if>
+                                          <c:if test="${leave.daysHrs=='H'}">
+                                           <span>${sessionScope.languageJSON.label.hours}</span>
+                                         </c:if>
 									</td>
 									<td data-title="${sessionScope.languageJSON.leaveRequest.commentLog}">
 										<div>

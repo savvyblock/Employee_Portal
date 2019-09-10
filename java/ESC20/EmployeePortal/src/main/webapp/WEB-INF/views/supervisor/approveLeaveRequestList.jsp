@@ -130,7 +130,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.leaveRequested}"> 
                                                                     ${item.lvUnitsUsed}
-                                                                <span>${sessionScope.languageJSON.label.days}</span>
+                                                                  <c:if test="${item.daysHrs=='D'}">
+                                                                           <span>${sessionScope.languageJSON.label.days}</span>
+                                                                       </c:if>
+                                                                        <c:if test="${item.daysHrs=='H'}">
+                                                                         <span>${sessionScope.languageJSON.label.hours}</span>
+                                                                       </c:if>
                                                             </td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.commentLog}">
                                                                     <div>

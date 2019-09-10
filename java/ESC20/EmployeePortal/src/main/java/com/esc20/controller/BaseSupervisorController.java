@@ -36,6 +36,7 @@ public class BaseSupervisorController{
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
 		List<Code> payFreqs = this.referenceService.getPayFreq();
 		List<Code> gens = referenceService.getGenerations();
+		List<Code> leaveTypes = this.referenceService.getLeaveTypes();
 		LeaveRequestModel model;
 		JSONArray json = new JSONArray();
 		for (int i = 0; i < leaves.size(); i++) {
@@ -43,7 +44,7 @@ public class BaseSupervisorController{
 			requestModels.add(model);
 		}
 		for (int i = 0; i < requestModels.size(); i++) {
-			json.add(requestModels.get(i).toJSON(leaveStatus, null,payFreqs,gens));
+			json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,payFreqs,gens));
 		}
 		return json;
 	}
