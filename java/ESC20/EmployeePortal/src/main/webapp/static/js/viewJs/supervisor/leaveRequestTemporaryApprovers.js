@@ -206,7 +206,8 @@ function initialCompleteList(dataList) {
                     type:'POST',
                     url:urlMain + '/leaveRequestTemporaryApprovers/getEmployeeTempApproverSearch',
                     data:{
-                        searchStr:$(input).val().trim()
+                        searchStr:$(input).val().trim(), 
+                        excludeNbr:$('#currentEmployee').text()
                     },
                     success : function (res) {
                         var data = res.tempApprover

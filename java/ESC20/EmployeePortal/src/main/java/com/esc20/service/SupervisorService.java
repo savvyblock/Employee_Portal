@@ -16,6 +16,7 @@ import com.esc20.dao.AlertDao;
 import com.esc20.dao.AppUserDao;
 import com.esc20.dao.AutoCompleteDao;
 import com.esc20.dao.LeaveRequestDao;
+import com.esc20.dao.OptionsDao;
 import com.esc20.dao.SupervisorDao;
 import com.esc20.model.BeaEmpLvComments;
 import com.esc20.model.BeaEmpLvRqst;
@@ -27,6 +28,7 @@ import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveRequest;
 import com.esc20.nonDBModels.LeaveRequestComment;
+import com.esc20.nonDBModels.Options;
 import com.esc20.util.DateUtil;
 import com.esc20.util.MailUtil;
 import com.esc20.util.StringUtil;
@@ -35,6 +37,9 @@ import com.esc20.util.StringUtil;
 @Service
 public class SupervisorService {
 
+    @Autowired
+    private OptionsDao optionsDao;
+	
     @Autowired
     private LeaveRequestDao leaveRequestDao;
     
@@ -145,6 +150,16 @@ public class SupervisorService {
 				return arg1.getDatetimeFrom().compareTo(arg0.getDatetimeFrom());
 			}
 		});
+		Options options = optionsDao.getOptions();
+		for(int i = 0; i < result.size(); i++)
+		{
+			if((result.get(i).getStatusCd().equals('\0') && !options.getShowUnprocessedLeave())
+				|| (!result.get(i).getStatusCd().equals('\0') && !options.getShowProcessedLeave()))
+			{
+				result.remove(i);
+				i--;
+			}
+		}
 		return result;
 	}
 

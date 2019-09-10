@@ -282,7 +282,7 @@ public class TempApproverController extends BaseSupervisorController {
 
 	@RequestMapping(value = "getEmployeeTempApproverSearch", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, List<Code>> getEmployeeTempApproverSearch(HttpServletRequest req,String searchStr) throws Exception{
+	public Map<String, List<Code>> getEmployeeTempApproverSearch(HttpServletRequest req,String searchStr, String excludeNbr) throws Exception{
 	    	HttpSession session = req.getSession();
 	    	Map<String, List<Code>> res = new HashMap<>();
 	        BeaUsers user = (BeaUsers)session.getAttribute("user");
@@ -299,7 +299,7 @@ public class TempApproverController extends BaseSupervisorController {
 			session.setAttribute("userDetail", demo);
 	    	if(demo==null)
 	    		return null;
-	    	List<Code> testApproves = this.supService.getEmployeeTempApproverSearch(user.getEmpNbr(), searchStr);
+	    	List<Code> testApproves = this.supService.getEmployeeTempApproverSearch(excludeNbr, searchStr);
 	        res.put("tempApprover", testApproves);
 	        return res;
 	    }
