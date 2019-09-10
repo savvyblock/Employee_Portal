@@ -60,6 +60,18 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
             districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
             Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr());
             Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+            session.setAttribute("enableLeaveReq", options.getEnableLeaveReq());
+            session.setAttribute("enable1095", options.getEnable1095());
+            session.setAttribute("enableW2", options.getEnableW2());
+            session.setAttribute("enableEarnings", options.getEnableEarnings());
+            session.setAttribute("enableDeductions", options.getEnableDeductions());
+            session.setAttribute("enableCurrentPayInformation", options.getEnableCurrentPayInformation());
+            session.setAttribute("enableCalendarYearToDate", options.getEnableCalendarYearToDate());
+            session.setAttribute("enableSelfServicePayroll", options.getEnableSelfServicePayroll());
+            session.setAttribute("enableSelfServiceDemographic", options.getEnableSelfServiceDemographic());
+            session.setAttribute("enableLeaveReq", options.getEnableLeaveReq());
+            session.setAttribute("enableLeaveReq", options.getEnableLeaveReq());
+            session.setAttribute("enableLeaveReq", options.getEnableLeaveReq());
             session.setAttribute("isSupervisor", isSupervisor);
             session.setAttribute("isTempApprover", isTempApprover);
             session.setAttribute("user", user);
