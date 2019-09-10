@@ -149,7 +149,6 @@
 									</td>
 									<td data-title="${sessionScope.languageJSON.leaveBalance.dateOfLeave}">${leave.dtOfAbs}</td>
 									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveUsed}">${leave.lvUnitsUsed} 
-										<span>${sessionScope.languageJSON.label.days}</span>
 									</td>
 									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveEarned}" class="text-right">${leave.lvUnitsEarned}</td>
 									<td data-title="${sessionScope.languageJSON.leaveBalance.status}" class="text-left">

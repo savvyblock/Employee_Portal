@@ -252,6 +252,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 	public Map<String, Object> validateLeaveRequestCommand(HttpServletRequest req, @RequestBody JSONObject param) {
 		Map<String, Object> data = new HashMap<>();
         String leaveStartDate = param.getString("leaveStartDate");
+        String leaveEndDate = param.getString("leaveEndDate");
         String startTimeValue = param.getString("startTimeValue");
         String endTimeValue = param.getString("endTimeValue");
         String empNbr = param.getString("empNbr");
@@ -269,9 +270,12 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 		
 		Date fromDateFromTimeObj=null;
 		Date fromDateToTimeObj=null;
+		Date endDateToTimeObj=null;
 		try {
 			fromDateFromTimeObj = dateTimeFormat.parse(leaveStartDate+" "+startTimeValue.trim());
 			fromDateToTimeObj = dateTimeFormat.parse(leaveStartDate+" "+endTimeValue.trim());
+			
+			endDateToTimeObj = dateTimeFormat.parse(leaveEndDate+" "+endTimeValue.trim());
 		} catch (Exception e) {
 			
 		} 
@@ -289,7 +293,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			boolean overlapping = false;
 			if (toDateObj != null) {
 				overlapping = this.service.isLeavePeriodsOverlapping(savedRequest.getDatetimeFrom(), toDateObj, getRequestNumberDays(savedRequest.getDatetimeFrom(),savedRequest.getDatetimeTo()), 
-						fromDateFromTimeObj, fromDateToTimeObj, getRequestNumberDays(fromDateFromTimeObj,fromDateToTimeObj));
+						fromDateFromTimeObj, fromDateToTimeObj, getRequestNumberDays(fromDateFromTimeObj,endDateToTimeObj));
 			}
 		    if (overlapping) {
 		    	validDateRange = false;

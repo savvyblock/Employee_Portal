@@ -729,4 +729,14 @@ public class AppUserDao extends HibernateDaoSupport{
 		Integer result = (Integer) q.uniqueResult();
 		return result>0;
 	}
+	
+	public Integer employeePayCampusLeaveCampusCount(String employeeNumber) {
+		Session session = this.getSession();
+		String sql = "select count(*) from bhr_emp_pay bep, bthr_eap_campus btec "
+				+ "where bep.emp_nbr = :employeeNumber and bep.cyr_nyr_flg = 'C' and bep.pay_campus=btec.campus_id and bep.pay_dept=btec.dept";
+		Query q = session.createSQLQuery(sql);
+		q.setParameter("employeeNumber", employeeNumber);
+		Integer result = (Integer) q.uniqueResult();
+		return result;
+	}
 }
