@@ -119,8 +119,8 @@ $(document).ready(
 		$("#endDateInput").val(end_arry[0]);
 		$("#leaveHoursDaily").val(lvUnitsDaily);
 		$("#totalRequested").val(lvUnitsUsed);
-		var empNbr = $("#sessionEmpNbr").val()
-		$("#empNbrModal").val(empNbr);
+		// var empNbr = $("#sessionEmpNbr").val()
+		// $("#empNbrModal").val(empNbr);
 		$(".dateTimePeriodOverlap").hide()
 	}
 	
@@ -156,8 +156,8 @@ $(document).ready(
 			$(".timeUnit").hide()
 			$(".leaveHoursDailyNotZero").hide()
 			$(".leaveHoursDailyWrap").removeClass('has-error')
-			var empNbr = $("#sessionEmpNbr").val()
-			$("#empNbrModal").val(empNbr);
+			// var empNbr = $("#sessionEmpNbr").val()
+			// $("#empNbrModal").val(empNbr);
 			$(".dateTimePeriodOverlap").hide()
 }
 	function changeFormatTimeAm(value){
