@@ -48,11 +48,11 @@ public class AutoCompleteDao {
 		}
 		
 		if(lb_emp_nbr) {
-			search5 = String.format("%1$05d", Long.parseLong(search)) + "_";
-			search4 = String.format("%1$04d", Long.parseLong(search)) + "__";
-			search3 = String.format("%1$03d", Long.parseLong(search)) + "___";
-			search2 = String.format("%1$02d", Long.parseLong(search)) + "____";
-			search1 = String.format("%1$01d", Long.parseLong(search)) + "_____";
+			search5 = String.format("%1$05d", Long.parseLong(search)) + "%";
+			search4 = String.format("%1$04d", Long.parseLong(search)) + "%";
+			search3 = String.format("%1$03d", Long.parseLong(search)) + "%";
+			search2 = String.format("%1$02d", Long.parseLong(search)) + "%";
+			search1 = String.format("%1$01d", Long.parseLong(search)) + "%";
 			search = String.format("%06d", Long.parseLong(search));
 		}
 		

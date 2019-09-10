@@ -9,6 +9,7 @@ $(function() {
     var level = $('#level').val()
     var chainString = JSON.stringify(chain)
     var empNbr = $('#currentEmployee').text()
+    $('#empNbrForm').val(empNbr)
     var lengthNow = $('.setApprovers-list tbody tr').length
     if ($('#firstRow')) {
         $('#firstRow').text(lengthNow - 1)
