@@ -444,31 +444,31 @@ public class ProfileController{
     	if("deleteNameRequest".equalsIgnoreCase(undoName)) {
     		deleteNameRequest(req);
     	}
-    	if("undoMaritalRequest".equalsIgnoreCase(undoName)) {
+    	if("deleteMaritalRequest".equalsIgnoreCase(undoName)) {
     		deleteMaritalRequest(req);
     	}
-    	if("undoDriverLicense".equalsIgnoreCase(undoName)) {
+    	if("deleteDriversLicenseRequest".equalsIgnoreCase(undoName)) {
     		deleteDriversLicenseRequest(req);
     	}
-    	if("undoRestriction".equalsIgnoreCase(undoName)) {
+    	if("deleteRestrictionCodesRequest".equalsIgnoreCase(undoName)) {
     		deleteRestrictionCodesRequest(req);
     	}
-    	if("undoEmail".equalsIgnoreCase(undoName)) {
+    	if("deleteEmail".equalsIgnoreCase(undoName)) {
     		deleteEmail(req);
     	}
-    	if("undoEmergencyContact".equalsIgnoreCase(undoName)) {
+    	if("deleteEmergencyContact".equalsIgnoreCase(undoName)) {
     		deleteEmergencyContact(req);
     	}
-    	if("undoMailingAddress".equalsIgnoreCase(undoName)) {
+    	if("deleteMailAddr".equalsIgnoreCase(undoName)) {
     		deleteMailAddr(req);
     	}
-    	if("undoAlternative".equalsIgnoreCase(undoName)) {
+    	if("deleteAltMailAddr".equalsIgnoreCase(undoName)) {
     		deleteAltMailAddr(req);
     	}
-    	if("undoPhoneNumber".equalsIgnoreCase(undoName)) {
+    	if("deletePhone".equalsIgnoreCase(undoName)) {
     		deletePhone(req);
     	}
-    	if("undoW4".equalsIgnoreCase(undoName)) {
+    	if("deleteW4".equalsIgnoreCase(undoName)) {
 //    		deleteW4(req);
     	}
 //    	deleteW4(req);

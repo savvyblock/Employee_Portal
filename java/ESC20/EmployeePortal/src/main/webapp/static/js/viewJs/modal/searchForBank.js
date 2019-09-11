@@ -11,13 +11,12 @@ $(function(){
     })
 })
 function changePage(num){
-	if(num == 0){
-		num = $('#pageNow').val();
-	}
+	
     var searchCode = $('#codeCriteriaSearchCode').val()
     var searchDescription = $('#codeCriteriaSearchDescription').val()
     if((!searchCode||searchCode=='') && (!searchDescription||searchDescription=='')){
-        if(num == 1){
+    	
+    	if(num == 1){
             goPage(num)
         }
         if(num == 2){
@@ -29,8 +28,12 @@ function changePage(num){
         if(num == 4){
             goPage(total)
         }
-        
+        if(num == 0){
+    		num = $('#pageNow').val();
+    		goPage(num)
+    	}
     }else{
+    	
         if(num == 1){
             searchPage(num)
         }
@@ -43,6 +46,10 @@ function changePage(num){
         if(num == 4){
             searchPage(total)
         }
+        if(num == 0){
+    		num = $('#pageNow').val();
+    		searchPage(num)
+    	}
     }
     
 }

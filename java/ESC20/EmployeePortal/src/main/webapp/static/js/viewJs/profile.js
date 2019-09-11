@@ -245,6 +245,12 @@ $(function() {
          var t = $("#profileForm").serializeArray();
         profileForm.submit();
     })
+//    $('#reset').click(function() {
+//        console.log('reset')
+//        profileForm = $('#profileForm')
+//         var t = $("#profileForm").serializeArray();
+//        profileForm.submit();
+//    })
 })
 function clearNoNum(obj){
     obj.value = obj.value.replace(/[^\d.]/g, ""); //  
