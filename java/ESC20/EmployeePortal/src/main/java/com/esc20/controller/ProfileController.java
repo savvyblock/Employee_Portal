@@ -479,7 +479,7 @@ public class ProfileController{
     public ModelAndView saveName(HttpServletRequest req,ModelAndView mav) {
     	
 		String empNbr = req.getParameter("empNbr"); 
-		String reqDts = req.getParameter("reqDts");
+		String reqDts = req.getParameter("nameReqDts");
 		String namePreNew = req.getParameter("namePreNew");
 		String nameFNew = req.getParameter("nameFNew");
 		String nameLNew = req.getParameter("nameLNew");
@@ -541,7 +541,7 @@ public class ProfileController{
         HttpSession session = req.getSession();
         
     	String empNbr = req.getParameter("empNbr");
-    	String reqDts = req.getParameter("reqDts");
+    	String reqDts = req.getParameter("mrtlReqDts");
     	String maritalStatNew = req.getParameter("maritalStatNew");
         
  		if(empNbr==null||reqDts==null||maritalStatNew==null) {
@@ -593,7 +593,7 @@ public class ProfileController{
     		) {
         HttpSession session = req.getSession();
         String empNbr = req.getParameter("empNbr");
-        String reqDts = req.getParameter("reqDts");
+        String reqDts = req.getParameter("licReqDts");
         String driversLicNbrNew = req.getParameter("driversLicNbrNew");
         String driversLicStNew = req.getParameter("driversLicStNew");
         
@@ -645,7 +645,7 @@ public class ProfileController{
     public ModelAndView saveRestrictionCodes(HttpServletRequest req,  ModelAndView mav) {
         HttpSession session = req.getSession();
         String empNbr = req.getParameter("empNbr");
-        String reqDts = req.getParameter("reqDts");
+        String reqDts = req.getParameter("restrictReqDts");
         String restrictCdNew = req.getParameter("restrictCdNew");
         String restrictCdPublicNew = req.getParameter("restrictCdPublicNew");
         
@@ -700,7 +700,7 @@ public class ProfileController{
         HttpSession session = req.getSession();
 
         String empNbr = req.getParameter("empNbr");
-        String reqDts = req.getParameter("reqDts");
+        String reqDts = req.getParameter("emailReqDts");
         String emailNew = req.getParameter("emailNew");
         String hmEmailNew = req.getParameter("hmEmailNew");
         
@@ -755,7 +755,7 @@ public class ProfileController{
         HttpSession session = req.getSession();
 
         String empNbr = req.getParameter("empNbr");
-        String reqDts = req.getParameter("reqDts");
+        String reqDts = req.getParameter("emerReqDts");
         String emerContactNew = req.getParameter("emerContactNew");
         String emerPhoneAcNew = req.getParameter("emerPhoneAcNew");
 		String emerPhoneNbrNew = req.getParameter("emerPhoneNbrNew");
@@ -817,7 +817,7 @@ public class ProfileController{
     		) {
         HttpSession session = req.getSession();
         String empNbr = req.getParameter("empNbr");
-        String reqDts = req.getParameter("reqDts");
+        String reqDts = req.getParameter("mailAddrReqDts");
         String addrNbrNew = req.getParameter("addrNbrNew");
         String addrStrNew = req.getParameter("addrStrNew");
         String addrAptNew = req.getParameter("addrAptNew");
@@ -881,7 +881,7 @@ public class ProfileController{
     		) {
         HttpSession session = req.getSession();
         String empNbr = req.getParameter("empNbr");
-        String reqDts = req.getParameter("reqDts");
+        String reqDts = req.getParameter("altMailAddrReqDts");
         String smrAddrNbrNew = req.getParameter("smrAddrNbrNew");
         String smrAddrStrNew = req.getParameter("smrAddrStrNew");
         String smrAddrAptNew = req.getParameter("smrAddrAptNew");
@@ -945,7 +945,7 @@ public class ProfileController{
     		) {
         HttpSession session = req.getSession();
         String empNbr = req.getParameter("empNbr");
-        String reqDts = req.getParameter("reqDts");
+        String reqDts = req.getParameter("hmReqDts");
         String phoneAreaNew = req.getParameter("phoneAreaNew");
         String phoneNbrNew = req.getParameter("phoneNbrNew");
         String phoneAreaCellNew = req.getParameter("phoneAreaCellNew");

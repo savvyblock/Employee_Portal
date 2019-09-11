@@ -51,7 +51,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         >${sessionScope.userDetail.namePre}</span
                                                     >
                                                     <input type="hidden" name="empNbr" value="${nameRequest.id.empNbr}">
-                                                    <input type="hidden" name="reqDts" value="${nameRequest.id.reqDts}">
+                                                    <input type="hidden" name="nameReqDts" value="${nameRequest.id.reqDts}">
+                                                    <input type="hidden" name="mrtlReqDts" value="${mrtlRequest.id.reqDts}">
+													<input type="hidden" name="licReqDts" value="${licRequest.id.reqDts}">
+													<input type="hidden" name="restrictReqDts" value="${restrictRequest.id.reqDts}">
+													<input type="hidden" name="emailReqDts" value="${emailRequest.id.reqDts}">
+													<input type="hidden" name="emerReqDts" value="${emerRequest.id.reqDts}">
+													<input type="hidden" name="mailAddrReqDts" value="${mailAddrRequest.id.reqDts}">
+													<input type="hidden" name="altMailAddrReqDts" value="${altMailAddrRequest.id.reqDts}">
+													<input type="hidden" name="hmReqDts" value="${hmRequest.id.reqDts}">
+													<input type="hidden" name="w4ReqDts" value="${w4Request.id.reqDts}">
                                                     <input type="hidden" id="undoName" name="undoName" value="">
                                                     <div class="form-group valueInput">
                                                         <select
