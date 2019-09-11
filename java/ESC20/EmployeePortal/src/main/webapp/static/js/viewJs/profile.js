@@ -1,5 +1,5 @@
 var bank01, bank02
-var formSelect
+var formSelect,undoForm
 var formUndoSelect
 var willSubmitFormDelete
 $(function() {
@@ -222,14 +222,21 @@ $(function() {
     })
     $('#undoW4').click(function() {
         // $('#undoModal').modal('show')
-//        formSelect = $('#deleteW4')
-        $('#undoName').val("deleteW4");
+       formSelect = $('#deleteW4')
+       undoForm = 'deleteW4'
+        // $('#undoName').val("deleteW4");
     })
     $('.sureUndo').click(function() {
-        console.log('modal -- undo')
-        profileForm = $('#profileForm')
-        var t = $("#profileForm").serializeArray();
-       profileForm.submit();
+        if(undoForm == 'deleteW4'){
+            undoForm = null
+            formSelect.submit()
+        }else{
+            console.log('modal -- undo')
+            profileForm = $('#profileForm')
+            var t = $("#profileForm").serializeArray();
+            profileForm.submit();
+        }
+        
         
     })
     $('.sureDelete').click(function() {

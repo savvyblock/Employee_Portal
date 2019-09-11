@@ -1400,7 +1400,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <div class="saveOrCancel">
                                         <button
                                             type="submit" role="button"
-                                            class="btn btn-primary save-btn hide"
+                                            class="btn btn-primary save-btn"
                                             id="saveW4" aria-label = "${sessionScope.languageJSON.label.updateW4}"
                                         >
                                         ${sessionScope.languageJSON.label.update}
