@@ -23,9 +23,9 @@ public class Code implements Serializable, Cloneable, Comparable<Code>
 	
 	public Code(String code, String subCode, String description)
 	{
-		this.code = code;
-		this.description = description;
-		this.subCode = subCode;
+		this.code = code.trim();
+		this.description = description.trim();
+		this.subCode = subCode.trim();
 	}
 
 

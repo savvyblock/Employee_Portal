@@ -798,7 +798,7 @@ public class ProfileController{
         	this.indexService.saveEmergencyContactRequest(emergencyContactRequest);
         }
        
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "emergencyContactRequest");
         return mav;
     }
@@ -987,7 +987,7 @@ public class ProfileController{
         	homePhoneRequest = new BeaHmPhone(demo, empNbr, reqDts, phoneAreaNew, phoneNbrNew, 'P');
         	this.indexService.saveHomePhoneRequest(homePhoneRequest);
         }
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "homePhoneRequest");
         
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_CELL_PHONE")) {
@@ -1009,7 +1009,7 @@ public class ProfileController{
         	cellPhoneRequest = new BeaCellPhone(demo, empNbr, reqDts, phoneAreaCellNew, phoneNbrCellNew, 'P');
         	this.indexService.saveCellPhoneRequest(cellPhoneRequest);
         }
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "cellPhoneRequest");
         
         if(this.indexService.getBhrEapDemoAssgnGrp("BEA_BUS_PHONE")) {
