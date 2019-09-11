@@ -115,7 +115,7 @@ function initialLeaveCalendarStaticModal(){
                         $("#unitsHours").show()
                         $("#unitsDays").hide()
                     }
-                    if(leaveRequest.daysHrs == 'D'){
+                    if(!leaveRequest.daysHrs || leaveRequest.daysHrs == '' || leaveRequest.daysHrs == 'D'){
                         $("#unitsDays").show()
                         $("#unitsHours").hide()
                     }
