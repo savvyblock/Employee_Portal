@@ -106,8 +106,8 @@ public class AppLeaveRequest implements Serializable {
 		this.firstName = demo.getNameF();
 		this.middleName = demo.getNameM();
 		this.lastName = demo.getNameL();
-		this.longDescr = (item.getProcessDt()==null||("").equals(item.getProcessDt()))?"Not Processed":"Processed";
-		this.statusCd = (item.getProcessDt()==null||("").equals(item.getProcessDt()))?'N':'C';
+		this.longDescr = (item.getProcessDt()==null||("").equals(item.getProcessDt().trim()))?"Not Processed":"Processed";
+		this.statusCd = (item.getProcessDt()==null||("").equals(item.getProcessDt().trim()))?'N':'C';
 	}
 
 	public AppLeaveRequest(BeaEmpLvRqst item, BhrEmpDemo demo) {
