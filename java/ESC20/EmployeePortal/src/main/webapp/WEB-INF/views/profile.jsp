@@ -25,9 +25,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <button type="button" role="button" id="saveAll" class="btn btn-primary">
                                         <span>${sessionScope.languageJSON.label.save}</span>
                                     </button>  
-                                    <button type="button" role="button" id="reset" class="btn btn-default">
+                                    <a href="/EmployeePortal/profile/profile" id="reset" class="btn btn-default">
                                         <span>${sessionScope.languageJSON.label.reset}</span>
-                                    </button>
+                                    </a>
                                 </div>
                                 <c:if test="${not empty sessionScope.options.messageSelfServiceDemographic}">
 	                            	<p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServiceDemographic}</p>

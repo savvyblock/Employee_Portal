@@ -1627,6 +1627,11 @@
   max-width: 150px;
 }
 
+.profile #reset {
+  background-color: #ddd;
+  color: #000;
+}
+
 .profile .profile-top {
   width: 100%;
   display: flex;
