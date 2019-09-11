@@ -176,48 +176,60 @@ $(function() {
     })   
     $('#undoNameRequest').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteNameRequest')
+    	$('#undoName').val("deleteNameRequest");
+//        formSelect = $('#deleteNameRequest')
     })
     $('#undoMaritalRequest').click(function(e) {
         e.preventDefault()
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteMaritalRequest')
+//        formSelect = $('#deleteMaritalRequest')
+        $('#undoName').val("deleteMaritalRequest");
     })
     $('#undoDriverLicense').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteDriversLicense')
+//        formSelect = $('#deleteDriversLicense')
+        $('#undoName').val("deleteDriversLicenseRequest");
     })
     $('#undoRestriction').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteRestrictionCodesRequest')
+//        formSelect = $('#deleteRestrictionCodesRequest')
+        $('#undoName').val("deleteRestrictionCodesRequest");
     })
     $('#undoEmail').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteEmail')
+//        formSelect = $('#deleteEmail')
+        $('#undoName').val("deleteEmail");
     })
     $('#undoEmergencyContact').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteEmergencyContact')
+//        formSelect = $('#deleteEmergencyContact')
+        $('#undoName').val("deleteEmergencyContact");
     })
     $('#undoMailingAddress').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteMailAddr')
+//        formSelect = $('#deleteMailAddr')
+        $('#undoName').val("deleteMailAddr");
     })
     $('#undoAlternative').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteAltMailAddr')
+//        formSelect = $('#deleteAltMailAddr')
+        $('#undoName').val("deleteAltMailAddr");
     })
     $('#undoPhoneNumber').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deletePhone')
+//        formSelect = $('#deletePhone')
+        $('#undoName').val("deletePhone");
     })
     $('#undoW4').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteW4')
+//        formSelect = $('#deleteW4')
+        $('#undoName').val("deleteW4");
     })
     $('.sureUndo').click(function() {
         console.log('modal -- undo')
-        formSelect.submit()
+        profileForm = $('#profileForm')
+        var t = $("#profileForm").serializeArray();
+       profileForm.submit();
         
     })
     $('.sureDelete').click(function() {
@@ -228,6 +240,7 @@ $(function() {
     //133
     $('#saveAll').click(function() {
         console.log('save -- all')
+        $('#undoName').val("");
         profileForm = $('#profileForm')
          var t = $("#profileForm").serializeArray();
         profileForm.submit();

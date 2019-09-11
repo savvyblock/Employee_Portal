@@ -11,6 +11,9 @@ $(function(){
     })
 })
 function changePage(num){
+	if(num == 0){
+		num = $('#pageNow').val();
+	}
     var searchCode = $('#codeCriteriaSearchCode').val()
     var searchDescription = $('#codeCriteriaSearchDescription').val()
     if((!searchCode||searchCode=='') && (!searchDescription||searchDescription=='')){

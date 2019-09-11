@@ -91,7 +91,7 @@
 									<button class="pageBtn prevPage" onclick="changePage(2)" aria-label="${sessionScope.languageJSON.label.prevPage}">
 											<i class="fa fa-angle-left "></i>
 									</button>
-									<select class="selectPage" name="page" id="pageNow" aria-label="${sessionScope.languageJSON.label.choosePage}" onchange="changePage()">
+									<select class="selectPage" name="page" id="pageNow" aria-label="${sessionScope.languageJSON.label.choosePage}" onchange="changePage(0)">
 									</select>
 									<div class="page-list">
 											<span class="slash">/</span>

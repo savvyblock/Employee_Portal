@@ -52,6 +52,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     >
                                                     <input type="hidden" name="empNbr" value="${nameRequest.id.empNbr}">
                                                     <input type="hidden" name="reqDts" value="${nameRequest.id.reqDts}">
+                                                    <input type="hidden" id="undoName" name="undoName" value="">
                                                     <div class="form-group valueInput">
                                                         <select
                                                             class="form-control <c:if test="${sessionScope.userDetail.namePre != nameRequest.namePreNew }">active</c:if>"

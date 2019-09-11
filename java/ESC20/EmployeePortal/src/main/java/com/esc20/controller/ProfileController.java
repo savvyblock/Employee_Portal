@@ -92,7 +92,7 @@ public class ProfileController{
     public JSONObject getAllBanks(HttpServletRequest req,@RequestBody Page page){
     	
     	Page p = new Page();
-    	p.setCurrentPage(1);
+    	p.setCurrentPage(page.getCurrentPage());
     	p.setPerPageRows(10);
     	
     	List<BthrBankCodes> allbanks = bankService.getAllBanks();
@@ -430,9 +430,51 @@ public class ProfileController{
     	saveAltMailAddr(req, mav);
     	savePhone(req, mav);
     	
+    	//undo check
+    	undoHandle(req);
+    	
+    	
     	this.getProfileDetails(req.getSession(), mav,null);
     	return mav;
     }
+    
+    public void undoHandle(HttpServletRequest req) {
+    	
+    	String undoName = req.getParameter("undoName");
+    	if("deleteNameRequest".equalsIgnoreCase(undoName)) {
+    		deleteNameRequest(req);
+    	}
+    	if("undoMaritalRequest".equalsIgnoreCase(undoName)) {
+    		deleteMaritalRequest(req);
+    	}
+    	if("undoDriverLicense".equalsIgnoreCase(undoName)) {
+    		deleteDriversLicenseRequest(req);
+    	}
+    	if("undoRestriction".equalsIgnoreCase(undoName)) {
+    		deleteRestrictionCodesRequest(req);
+    	}
+    	if("undoEmail".equalsIgnoreCase(undoName)) {
+    		deleteEmail(req);
+    	}
+    	if("undoEmergencyContact".equalsIgnoreCase(undoName)) {
+    		deleteEmergencyContact(req);
+    	}
+    	if("undoMailingAddress".equalsIgnoreCase(undoName)) {
+    		deleteMailAddr(req);
+    	}
+    	if("undoAlternative".equalsIgnoreCase(undoName)) {
+    		deleteAltMailAddr(req);
+    	}
+    	if("undoPhoneNumber".equalsIgnoreCase(undoName)) {
+    		deletePhone(req);
+    	}
+    	if("undoW4".equalsIgnoreCase(undoName)) {
+//    		deleteW4(req);
+    	}
+//    	deleteW4(req);
+    }
+    
+    
     
     public ModelAndView saveName(HttpServletRequest req,ModelAndView mav) {
     	
@@ -485,14 +527,13 @@ public class ProfileController{
         return mav;
     }
     
-    @RequestMapping("deleteNameRequest")
     public ModelAndView deleteNameRequest(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteNameRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -538,14 +579,13 @@ public class ProfileController{
         return mav;
     }
     
-    @RequestMapping("deleteMaritalRequest")
     public ModelAndView deleteMaritalRequest(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteMaritalRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     }
     
@@ -592,14 +632,13 @@ public class ProfileController{
         return mav;
     }
     
-    @RequestMapping("deleteDriversLicenseRequest")
     public ModelAndView deleteDriversLicenseRequest(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteDirversLicenseRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     }
     
@@ -646,14 +685,13 @@ public class ProfileController{
     }
     
     
-    @RequestMapping("deleteRestrictionCodesRequest")
     public ModelAndView deleteRestrictionCodesRequest(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteRestrictionCodesRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -702,14 +740,13 @@ public class ProfileController{
         return mav;
     }
     
-    @RequestMapping("deleteEmail")
     public ModelAndView deleteEmail(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteEmailRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -766,14 +803,13 @@ public class ProfileController{
         return mav;
     }
     
-    @RequestMapping("deleteEmergencyContact")
     public ModelAndView deleteEmergencyContact(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteEmergencyContactRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     }
     
@@ -831,14 +867,13 @@ public class ProfileController{
         return mav;
     }
     
-    @RequestMapping("deleteMailAddr")
     public ModelAndView deleteMailAddr(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteMailAddrRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     }
     
@@ -896,14 +931,13 @@ public class ProfileController{
         return mav;
     }
     
-    @RequestMapping("deleteAltMailAddr")
     public ModelAndView deleteAltMailAddr(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteAltMailAddrRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
@@ -1004,7 +1038,6 @@ public class ProfileController{
         return mav;
     }
     
-    @RequestMapping("deletePhone")
     public ModelAndView deletePhone(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
@@ -1013,7 +1046,7 @@ public class ProfileController{
         this.indexService.deleteHomePhoneRequest(demo.getEmpNbr());
         this.indexService.deleteCellPhoneRequest(demo.getEmpNbr());
         this.indexService.deleteBusinessPhoneRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     }
     
