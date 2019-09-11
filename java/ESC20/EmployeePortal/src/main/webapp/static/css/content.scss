@@ -1490,6 +1490,10 @@
     }
 }
 .profile {
+    #reset{
+        background-color: #ddd;
+        color: #000;
+    }
     .profile-top {
         width: 100%;
         display: flex;
@@ -1896,7 +1900,6 @@
     display: flex;
     .fc-content{
 
-<<<<<<< HEAD
     }
     b{
         flex: 0 0 16px;
@@ -1908,11 +1911,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     @media (max-height:629px){
-=======
-.fc-day-grid-event .fc-content {
-    white-space: normal;
-    @media (max-height: 629px) {
->>>>>>> refs/heads/defect133
         line-height: 1.1;
     }
     @media (max-width: 1200px) {
@@ -2217,7 +2215,6 @@
         }
     }
 }
-<<<<<<< HEAD
 .ui-autocomplete{max-height:250px; overflow-y: scroll; overflow-x: hidden;}
 @media (min-width:1321px){
     body{
@@ -2283,10 +2280,3 @@
         }
     }
 }
-=======
-.ui-autocomplete {
-    max-height: 250px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
->>>>>>> refs/heads/defect133
