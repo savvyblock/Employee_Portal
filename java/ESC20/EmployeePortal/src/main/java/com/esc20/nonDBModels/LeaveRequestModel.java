@@ -166,7 +166,9 @@ public class LeaveRequestModel implements Serializable {
 				}
 				
 				if (!StringUtils.isEmpty(type.code) && type.getCode().trim().equals(this.getLeaveType().trim())) {
-					daysHrs = type.getSubCode().trim();
+					if(!StringUtils.isEmpty(type.subCode)){
+						daysHrs = type.getSubCode().trim();
+					}
 				}
 			}
 		}
