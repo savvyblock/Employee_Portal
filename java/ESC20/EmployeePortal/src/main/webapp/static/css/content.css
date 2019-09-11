@@ -446,7 +446,8 @@
   margin: 0;
 }
 
-.requestForm .dateValidator, .requestForm .dateValidator01 {
+.requestForm .dateValidator,
+.requestForm .dateValidator01 {
   display: none;
 }
 
@@ -569,7 +570,8 @@
   margin: 0;
 }
 
-.EMP-detail .setApprovers-list thead th, .EMP-detail .setApprovers-list thead td {
+.EMP-detail .setApprovers-list thead th,
+.EMP-detail .setApprovers-list thead td {
   text-align: center;
 }
 
@@ -721,22 +723,26 @@
   margin-bottom: 15px;
 }
 
-.EMP-detail.info-1095 .money-table td, .EMP-detail.info-1095 .money-table th {
+.EMP-detail.info-1095 .money-table td,
+.EMP-detail.info-1095 .money-table th {
   min-width: 70px;
 }
 
-.EMP-detail.info-1095 .money-table td.tr-title, .EMP-detail.info-1095 .money-table th.tr-title {
+.EMP-detail.info-1095 .money-table td.tr-title,
+.EMP-detail.info-1095 .money-table th.tr-title {
   max-width: 150px;
 }
 
 @media (max-width: 768px) {
-  .EMP-detail.info-1095 .money-table td.tr-title, .EMP-detail.info-1095 .money-table th.tr-title {
+  .EMP-detail.info-1095 .money-table td.tr-title,
+  .EMP-detail.info-1095 .money-table th.tr-title {
     max-width: initial;
   }
 }
 
 @media (max-width: 1300px) {
-  .EMP-detail.info-1095 .money-table td, .EMP-detail.info-1095 .money-table th {
+  .EMP-detail.info-1095 .money-table td,
+  .EMP-detail.info-1095 .money-table th {
     min-width: initial;
   }
 }
@@ -782,7 +788,8 @@
   .EMP-detail .deduction-table {
     display: block;
   }
-  .EMP-detail .totalDeductionsBtn, .EMP-detail .totalEarningBtn {
+  .EMP-detail .totalDeductionsBtn,
+  .EMP-detail .totalEarningBtn {
     display: none;
   }
 }
@@ -929,7 +936,9 @@
   .self-insured-flex {
     display: block;
   }
-  .self-insured-flex .self-insured-tips, .self-insured-flex .self-insured-check, .self-insured-flex .self-insured-time {
+  .self-insured-flex .self-insured-tips,
+  .self-insured-flex .self-insured-check,
+  .self-insured-flex .self-insured-time {
     margin-bottom: 5px;
     padding: 0;
   }
@@ -976,11 +985,13 @@
   font-size: 12px;
 }
 
-#leaveBalanceSummary, #leaveBalanceSummaryStatic {
+#leaveBalanceSummary,
+#leaveBalanceSummaryStatic {
   display: none;
 }
 
-#leaveBalanceSummary.active, #leaveBalanceSummaryStatic.active {
+#leaveBalanceSummary.active,
+#leaveBalanceSummaryStatic.active {
   display: table-cell;
 }
 
@@ -1142,21 +1153,25 @@
   display: table-row;
 }
 
-.exportPDFBox .table th, .exportPDFBox .table td {
+.exportPDFBox .table th,
+.exportPDFBox .table td {
   font-size: 18px;
   color: #000 !important;
   line-height: 1.2;
 }
 
-.exportPDFBox .table th.td-title, .exportPDFBox .table td.td-title {
+.exportPDFBox .table th.td-title,
+.exportPDFBox .table td.td-title {
   width: 270px;
 }
 
-.exportPDFBox .table th .focused-value, .exportPDFBox .table td .focused-value {
+.exportPDFBox .table th .focused-value,
+.exportPDFBox .table td .focused-value {
   font-size: 16px;
 }
 
-.exportPDFBox .table th.sub-title, .exportPDFBox .table td.sub-title {
+.exportPDFBox .table th.sub-title,
+.exportPDFBox .table td.sub-title {
   font-size: 26px;
 }
 
@@ -1164,7 +1179,8 @@
   border-color: #000 !important;
 }
 
-.exportPDFBox .table.border-table th, .exportPDFBox .table.border-table td {
+.exportPDFBox .table.border-table th,
+.exportPDFBox .table.border-table td {
   border-color: #000 !important;
 }
 
@@ -1207,11 +1223,12 @@
   display: none !important;
 }
 
-.exportPDFBox .employee-info-table td.print-hide, .exportPDFBox .employee-info-table th.print-hide {
+.exportPDFBox .employee-info-table td.print-hide,
+.exportPDFBox .employee-info-table th.print-hide {
   display: none !important;
 }
 
-.exportPDFBox input[type="checkbox"] {
+.exportPDFBox input[type='checkbox'] {
   width: 18px;
   height: 18px;
   border: 1px solid #000;
@@ -1271,13 +1288,16 @@
   .exportPDFBox .table {
     font-size: 12px !important;
   }
-  .exportPDFBox .table th, .exportPDFBox .table td {
+  .exportPDFBox .table th,
+  .exportPDFBox .table td {
     font-size: 12px;
   }
-  .exportPDFBox .table th.td-title, .exportPDFBox .table td.td-title {
+  .exportPDFBox .table th.td-title,
+  .exportPDFBox .table td.td-title {
     width: 270px;
   }
-  .exportPDFBox .table th .focused-value, .exportPDFBox .table td .focused-value {
+  .exportPDFBox .table th .focused-value,
+  .exportPDFBox .table td .focused-value {
     font-size: 13px;
   }
   .print-show {
@@ -1302,7 +1322,7 @@
   body {
     color: #000;
   }
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     width: 18px;
     height: 18px;
     border: 1px solid #000;
@@ -1344,12 +1364,14 @@
   .EMP-detail .simple-info .info-block.first-block .info-flex-item.right-first {
     display: none;
   }
-  .EMP-detail .employee-info-table td, .EMP-detail .employee-info-table th {
+  .EMP-detail .employee-info-table td,
+  .EMP-detail .employee-info-table th {
     line-height: 1;
     padding: 3px 5px;
     display: table-cell !important;
   }
-  .EMP-detail .employee-info-table td.print-hide, .EMP-detail .employee-info-table th.print-hide {
+  .EMP-detail .employee-info-table td.print-hide,
+  .EMP-detail .employee-info-table th.print-hide {
     display: none !important;
   }
   .EMP-detail .earning-line {
@@ -1388,7 +1410,8 @@
   .EMP-detail.info-1095 .money-table .tr-title {
     max-width: 100px;
   }
-  .EMP-detail.info-1095 .money-table td, .EMP-detail.info-1095 .money-table th {
+  .EMP-detail.info-1095 .money-table td,
+  .EMP-detail.info-1095 .money-table th {
     min-width: initial;
   }
   .print-block {
@@ -1418,14 +1441,16 @@
   .table {
     margin-bottom: 5px;
   }
-  .table td, .table th {
+  .table td,
+  .table th {
     font-size: 10px;
     line-height: 1;
     padding: 3px 5px;
     display: table-cell !important;
     vertical-align: center;
   }
-  .table td.print-hide, .table th.print-hide {
+  .table td.print-hide,
+  .table th.print-hide {
     display: none !important;
   }
   .table .print-td {
@@ -1454,13 +1479,16 @@
   .table.print-table tr.no-print {
     display: none;
   }
-  .table.print-table th, .table.print-table td {
+  .table.print-table th,
+  .table.print-table td {
     padding: 3px 2px;
   }
-  .table.print-table th.td-content, .table.print-table td.td-content {
+  .table.print-table th.td-content,
+  .table.print-table td.td-content {
     text-align: right;
   }
-  .table.print-table th.text-right, .table.print-table td.text-right {
+  .table.print-table th.text-right,
+  .table.print-table td.text-right {
     text-align: right !important;
   }
   .table.print-table td {
@@ -1479,7 +1507,8 @@
   .table.print-table td.print-hide {
     display: none !important;
   }
-  .table.print-table.tableColumn4 td, .table.print-table.tableColumn4 th {
+  .table.print-table.tableColumn4 td,
+  .table.print-table.tableColumn4 th {
     width: 25%;
   }
   .table.print-table.bankAccountTable {
@@ -1487,7 +1516,8 @@
     border-spacing: 5px;
     border-collapse: separate;
   }
-  .table.print-table.bankAccountTable th, .table.print-table.bankAccountTable td {
+  .table.print-table.bankAccountTable th,
+  .table.print-table.bankAccountTable td {
     border: 0 !important;
     vertical-align: middle;
   }
@@ -1497,13 +1527,16 @@
   .table.border-table {
     border-color: 1px solid #000 !important;
   }
-  .table.border-table thead td, .table.border-table thead th {
+  .table.border-table thead td,
+  .table.border-table thead th {
     border-width: 1px;
   }
-  .table.border-table thead td.print-hide, .table.border-table thead th.print-hide {
+  .table.border-table thead td.print-hide,
+  .table.border-table thead th.print-hide {
     display: none !important;
   }
-  .table.border-table td, .table.border-table th {
+  .table.border-table td,
+  .table.border-table th {
     border-color: #000 !important;
     border-width: 1px;
     border: 1px solid #000 !important;
@@ -1514,7 +1547,8 @@
   .table.border-table tbody td:first-child {
     text-align: left;
   }
-  .table.noNumTable tbody th.td-content, .table.noNumTable tbody td.td-content {
+  .table.noNumTable tbody th.td-content,
+  .table.noNumTable tbody td.td-content {
     text-align: left;
   }
   .table.noNumTable tbody td {
@@ -1544,10 +1578,12 @@
     width: 15px !important;
     height: 15px !important;
   }
-  .tableSelf td:last-child, th:last-child {
+  .tableSelf td:last-child,
+  th:last-child {
     width: 38px !important;
   }
-  .print-table.tableSelf td:last-child, th:last-child {
+  .print-table.tableSelf td:last-child,
+  th:last-child {
     width: 38px !important;
   }
 }
@@ -1564,7 +1600,8 @@
   display: none;
 }
 
-.earningPage .earning-detail, .earningPage .deduction-table {
+.earningPage .earning-detail,
+.earningPage .deduction-table {
   display: block;
 }
 
@@ -1802,6 +1839,10 @@
   display: block;
 }
 
+.profile .profile-item .profile-btn .save-btn.hide {
+  display: none;
+}
+
 .profile .profile-item .profile-btn .edit {
   display: none;
 }
@@ -1926,11 +1967,16 @@
   }
 }
 
+.profile .bankAccountBlock {
+  margin-bottom: 20px;
+}
+
 .profile .bankAccountBlock.isDelete {
   background: #e28088 !important;
 }
 
-.profile .bankAccountBlock.isDelete .profile-btn .saveOrCancel .save-btn, .profile .bankAccountBlock.isDelete .profile-btn .saveOrCancel .delete-btn {
+.profile .bankAccountBlock.isDelete .profile-btn .saveOrCancel .save-btn,
+.profile .bankAccountBlock.isDelete .profile-btn .saveOrCancel .delete-btn {
   display: none;
 }
 
@@ -1977,6 +2023,68 @@
 
 .profile .profileTitle .newTitle {
   flex: 0 0 180px;
+}
+
+.profile .profile-item .bankPart {
+  width: 100%;
+  display: flex;
+}
+
+.profile .profile-item .bankPart .profileTitle.profileInfo {
+  padding-left: 120px;
+}
+
+.profile .profile-item .bankPart .profileTitle .primaryTitle {
+  flex: 0 0 80px;
+}
+
+.profile .profile-item .bankPart .primaryBank {
+  flex: 0 0 80px;
+}
+
+.profile .profile-item .bankPart .profile-title {
+  flex: 0 0 120px;
+  align-items: flex-start;
+}
+
+@media (max-width: 1130px) {
+  .profile .profile-item .bankPart {
+    display: block;
+  }
+  .profile .profile-item .bankPart .profile-btn {
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  .profile .profile-item .bankPart .profile-btn .saveOrCancel .btn {
+    display: inline-block;
+  }
+}
+
+@media (max-width: 900px) {
+  .profile .profile-item .bankPart .profileTitle {
+    justify-content: flex-end;
+  }
+  .profile .profile-item .bankPart .profileTitle .currentTitle, .profile .profile-item .bankPart .profileTitle .newTitle {
+    display: none;
+  }
+  .profile .profile-item .bankPart .profileTitle .primaryTitle {
+    text-align: center;
+  }
+  .profile .profile-item .bankPart .profile-item-line {
+    display: block;
+  }
+  .profile .profile-item .bankPart .profile-item-line .primaryBank {
+    float: right;
+    margin-top: -30px;
+    width: 80px;
+    text-align: center;
+  }
+  .profile .profile-item .bankPart .profile-item-line .profile-title {
+    margin-bottom: 10px;
+  }
+  .profile .profile-item .bankPart .profile-item-line .profile-desc {
+    display: block;
+  }
 }
 
 #selectBank .form-group {
@@ -2033,7 +2141,8 @@
   }
 }
 
-.fc-basic-view .fc-day-number, .fc-basic-view .fc-week-number {
+.fc-basic-view .fc-day-number,
+.fc-basic-view .fc-week-number {
   padding: 0 3px;
 }
 
@@ -2096,7 +2205,8 @@
   display: block;
 }
 
-.icheckRadioBank, .consentRadio {
+.icheckRadioBank,
+.consentRadio {
   width: 20px;
   height: 20px;
 }

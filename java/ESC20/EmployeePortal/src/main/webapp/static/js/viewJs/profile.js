@@ -96,7 +96,7 @@ $(function() {
             })
         }
     })
-    var bankInputName, bankInputCode
+    
     $('.edit-btn').click(function() {
         $('.addBankForm').hide()
         $('.add-bank-btn').show()
@@ -173,218 +173,63 @@ $(function() {
 
             $('#saveBankHidden').submit()
         }
-    })
-    var getBankBtn
-    $('.getBank').click(function() {
-        var page = {
-            currentPage: 1,
-            perPageRows: 10
-        }
-        var that = this
-        getBankBtn = this
-        $.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: urlMain +'/profile/getAllBanks',
-            data: JSON.stringify(page),
-            contentType: 'application/json;charset=UTF-8',
-            success: function(result) {
-                console.log(result)
-                //$('#bankTable').find('tr').remove();
-                $('#bankTable  tbody').empty()
-                var res = result.result
-                for (var p in res) {
-                    var bankTr =
-                        "<tr><td scope='"+routingNumberLabel+"'>"
-                    bankTr =
-                        bankTr +
-                        "<button class='a-btn bankNumberBtn' type='button' value='" +
-                        res[p].bankCd +
-                        "' data-title='" +
-                        res[p].bankName +
-                        "' > " +
-                        res[p].transitRoute +
-                        ' </button> </td>'
-                    bankTr =
-                        bankTr +
-                        " <td scope='"+bankNameLabel+"'>" +
-                        res[p].bankName +
-                        '</td> </tr>'
-                    $('#bankTable').append(bankTr)
-                }
-
-                // $('#selectBankModal').modal('show')
-                bankInputName = $(that)
-                    .parent()
-                    .find('.form-control.name')
-                bankInputBankCode = $(that)
-                    .parent()
-                    .find('.form-control.bankcode')
-                bankInputCode = $(that)
-                    .parent()
-                    .find('.form-control.code')
-                bankInputNewCode = $(that)
-                    .parents('.profile-desc')
-                    .find('.bankNewCode')
-                newBankCode = $(that).parent().find("#newBankCode")
-                console.log(newBankCode)
-                console.log(bankInputName)
-                $('.bankNumberBtn').on('click',function() {
-                    var number = $(this).text()
-                    var code = $(this).val()
-                    var name = $(this).attr('data-title')
-                    console.log(number)
-                    console.log(name)
-                    console.log(code)
-                    console.log(bankInputName)
-                    newBankCode.val(code).change()
-                    bankInputName.val(name).change()
-                    bankInputBankCode.val(code)
-                    bankInputCode.val(number).change()
-                    bankInputNewCode.val(code)
-                    $('#selectBankModal').modal('hide')
-                })
-
-                
-            },
-            error: function(e) {
-                console.log(e)
-            }
-        })
-    })
-    $('#searchBankBtn').on('click',function() {
-        var page = {
-            currentPage: 1,
-            perPageRows: 10
-        }
-
-        var searchCode = $('#codeCriteriaSearchCode').val()
-        var searchDescription = $('#codeCriteriaSearchDescription').val()
-
-        var criteria = {
-            searchCode: searchCode,
-            searchDescription: searchDescription
-        }
-
-        var searchCriteria = { page: page, criteria: criteria }
-        var that = getBankBtn
-        $.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: urlMain + '/profile/searchBanks',
-            data: JSON.stringify(searchCriteria),
-            contentType: 'application/json;charset=UTF-8',
-            success: function(result) {
-                console.log(result)
-                $('#bankTable  tbody').empty()
-                if (result.result && result.result.length > 0) {
-                    var res = result.result
-                    for (var p in res) {
-                        var bankTr =
-                            "<tr><td scope='"+routingNumberLabel+"'>"
-                        bankTr =
-                            bankTr +
-                            "<button class='a-btn bankNumberBtn' type='button' value='" +
-                            res[p].bankCd +
-                            "' data-title='" +
-                            res[p].bankName +
-                            "' > " +
-                            res[p].transitRoute +
-                            ' </button> </td>'
-                        bankTr =
-                            bankTr +
-                            " <td scope='"+bankNameLabel+"'>" +
-                            res[p].bankName +
-                            '</td> </tr>'
-                        $('#bankTable').append(bankTr)
-                    }
-
-                    //$('#selectBankModal').modal('show')
-                    bankInputName = $(that)
-                        .parent()
-                        .find('.form-control.name')
-                    bankInputBankCode = $(that)
-                        .parent()
-                        .find('.form-control.bankcode')
-                    bankInputCode = $(that)
-                        .parent()
-                        .find('.form-control.code')
-                    newBankCode = $(that).parent().find("#newBankCode")
-                    $('.bankNumberBtn').on('click',function() {
-                        var number = $(this).text()
-                        var code = $(this).val()
-                        var name = $(this).attr('data-title')
-                        console.log(number)
-                        console.log(name)
-                        console.log(code)
-                        console.log(bankInputName)
-                        newBankCode.val(code).change()
-                        bankInputName.val(name).change()
-                        bankInputBankCode.val(code)
-                        bankInputCode.val(number).change()
-                        bankInputNewCode.val(code)
-                        $('#selectBankModal').modal('hide')
-                    })
-                } else {
-                    $('#bankTable tbody').empty()
-                    var noResult = '<tr><td colspan="2"> <span>'+noDataLabel+'</span></td></tr>'
-                    $('#bankTable tbody').append(noResult)
-                }
-
-            },
-            error: function(e) {
-                console.log(e)
-                $('#bankTable tbody').empty()
-                var noResult = '<tr><td colspan="2"> <span>'+noDataLabel+'</span></td></tr>'
-                $('#bankTable tbody').append(noResult)
-            }
-        })
-    })
-    
+    })   
     $('#undoNameRequest').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteNameRequest')
+    	$('#undoName').val("deleteNameRequest");
+//        formSelect = $('#deleteNameRequest')
     })
     $('#undoMaritalRequest').click(function(e) {
         e.preventDefault()
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteMaritalRequest')
+//        formSelect = $('#deleteMaritalRequest')
+        $('#undoName').val("deleteMaritalRequest");
     })
     $('#undoDriverLicense').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteDriversLicense')
+//        formSelect = $('#deleteDriversLicense')
+        $('#undoName').val("deleteDriversLicenseRequest");
     })
     $('#undoRestriction').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteRestrictionCodesRequest')
+//        formSelect = $('#deleteRestrictionCodesRequest')
+        $('#undoName').val("deleteRestrictionCodesRequest");
     })
     $('#undoEmail').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteEmail')
+//        formSelect = $('#deleteEmail')
+        $('#undoName').val("deleteEmail");
     })
     $('#undoEmergencyContact').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteEmergencyContact')
+//        formSelect = $('#deleteEmergencyContact')
+        $('#undoName').val("deleteEmergencyContact");
     })
     $('#undoMailingAddress').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteMailAddr')
+//        formSelect = $('#deleteMailAddr')
+        $('#undoName').val("deleteMailAddr");
     })
     $('#undoAlternative').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteAltMailAddr')
+//        formSelect = $('#deleteAltMailAddr')
+        $('#undoName').val("deleteAltMailAddr");
     })
     $('#undoPhoneNumber').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deletePhone')
+//        formSelect = $('#deletePhone')
+        $('#undoName').val("deletePhone");
     })
     $('#undoW4').click(function() {
         // $('#undoModal').modal('show')
-        formSelect = $('#deleteW4')
+//        formSelect = $('#deleteW4')
+        $('#undoName').val("deleteW4");
     })
     $('.sureUndo').click(function() {
         console.log('modal -- undo')
-        formSelect.submit()
+        profileForm = $('#profileForm')
+        var t = $("#profileForm").serializeArray();
+       profileForm.submit();
         
     })
     $('.sureDelete').click(function() {
@@ -392,6 +237,20 @@ $(function() {
         willSubmitFormDelete.submit()
     })
     
+    //133
+    $('#saveAll').click(function() {
+        console.log('save -- all')
+        $('#undoName').val("");
+        profileForm = $('#profileForm')
+         var t = $("#profileForm").serializeArray();
+        profileForm.submit();
+    })
+//    $('#reset').click(function() {
+//        console.log('reset')
+//        profileForm = $('#profileForm')
+//         var t = $("#profileForm").serializeArray();
+//        profileForm.submit();
+//    })
 })
 function clearNoNum(obj){
     obj.value = obj.value.replace(/[^\d.]/g, ""); //  

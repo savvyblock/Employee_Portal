@@ -3,6 +3,7 @@ package com.esc20.controller;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Currency;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -91,7 +92,7 @@ public class ProfileController{
     public JSONObject getAllBanks(HttpServletRequest req,@RequestBody Page page){
     	
     	Page p = new Page();
-    	p.setCurrentPage(1);
+    	p.setCurrentPage(page.getCurrentPage());
     	p.setPerPageRows(10);
     	
     	List<BthrBankCodes> allbanks = bankService.getAllBanks();
@@ -410,12 +411,82 @@ public class ProfileController{
         getProfileDetails(session, mav,null);
         return mav;
     }
+    @RequestMapping("saveAll")
+    public ModelAndView saveAll(HttpServletRequest req) {
+    	ModelAndView mav = new ModelAndView();
+    	
+    	Enumeration<String> names = req.getParameterNames();
+    	while(names.hasMoreElements()) {
+    		String name = names.nextElement();
+    		System.out.println(name + ":" + req.getParameter(name));
+    	}
+    	saveName(req, mav);
+    	saveMarital(req, mav);
+    	saveDriversLicense(req, mav);
+    	saveRestrictionCodes(req, mav);
+    	saveEmail(req, mav);
+    	saveEmergencyContact(req, mav);
+    	saveMailAddr(req, mav);
+    	saveAltMailAddr(req, mav);
+    	savePhone(req, mav);
+    	
+    	//undo check
+    	undoHandle(req);
+    	
+    	
+    	this.getProfileDetails(req.getSession(), mav,null);
+    	return mav;
+    }
     
-    @RequestMapping("saveName")
-    public ModelAndView saveName(HttpServletRequest req, 
-    		String empNbr, String reqDts, String namePreNew, String nameFNew, String nameLNew, String nameMNew, String nameGenNew) {
+    public void undoHandle(HttpServletRequest req) {
+    	
+    	String undoName = req.getParameter("undoName");
+    	if("deleteNameRequest".equalsIgnoreCase(undoName)) {
+    		deleteNameRequest(req);
+    	}
+    	if("deleteMaritalRequest".equalsIgnoreCase(undoName)) {
+    		deleteMaritalRequest(req);
+    	}
+    	if("deleteDriversLicenseRequest".equalsIgnoreCase(undoName)) {
+    		deleteDriversLicenseRequest(req);
+    	}
+    	if("deleteRestrictionCodesRequest".equalsIgnoreCase(undoName)) {
+    		deleteRestrictionCodesRequest(req);
+    	}
+    	if("deleteEmail".equalsIgnoreCase(undoName)) {
+    		deleteEmail(req);
+    	}
+    	if("deleteEmergencyContact".equalsIgnoreCase(undoName)) {
+    		deleteEmergencyContact(req);
+    	}
+    	if("deleteMailAddr".equalsIgnoreCase(undoName)) {
+    		deleteMailAddr(req);
+    	}
+    	if("deleteAltMailAddr".equalsIgnoreCase(undoName)) {
+    		deleteAltMailAddr(req);
+    	}
+    	if("deletePhone".equalsIgnoreCase(undoName)) {
+    		deletePhone(req);
+    	}
+    	if("deleteW4".equalsIgnoreCase(undoName)) {
+//    		deleteW4(req);
+    	}
+//    	deleteW4(req);
+    }
+    
+    
+    
+    public ModelAndView saveName(HttpServletRequest req,ModelAndView mav) {
+    	
+		String empNbr = req.getParameter("empNbr"); 
+		String reqDts = req.getParameter("nameReqDts");
+		String namePreNew = req.getParameter("namePreNew");
+		String nameFNew = req.getParameter("nameFNew");
+		String nameLNew = req.getParameter("nameLNew");
+		String nameMNew = req.getParameter("nameMNew");
+		String nameGenNew = req.getParameter("nameGenNew");
         HttpSession session = req.getSession();
-        ModelAndView mav = new ModelAndView();
+//        ModelAndView mav = new ModelAndView();
         
 		if(empNbr==null||reqDts==null||namePreNew==null||nameFNew==null||nameLNew==null||nameMNew==null||nameGenNew==null) {
 			mav.setViewName("visitFailed");
@@ -451,27 +522,28 @@ public class ProfileController{
         	this.indexService.saveNameRequest(nameRequest);
         }
         
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "nameRequest");
         return mav;
     }
     
-    @RequestMapping("deleteNameRequest")
     public ModelAndView deleteNameRequest(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteNameRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
-    @RequestMapping("saveMarital")
-    public ModelAndView saveMarital(HttpServletRequest req, 
-    		String empNbr, String reqDts, String maritalStatNew) {
+    public ModelAndView saveMarital(HttpServletRequest req, ModelAndView mav) {
         HttpSession session = req.getSession();
-        ModelAndView mav = new ModelAndView();
+        
+    	String empNbr = req.getParameter("empNbr");
+    	String reqDts = req.getParameter("mrtlReqDts");
+    	String maritalStatNew = req.getParameter("maritalStatNew");
+        
  		if(empNbr==null||reqDts==null||maritalStatNew==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
@@ -502,28 +574,30 @@ public class ProfileController{
         	this.indexService.saveMaritalRequest(maritalStatusRequest);
         }
         
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "maritalStatusRequest");
         return mav;
     }
     
-    @RequestMapping("deleteMaritalRequest")
     public ModelAndView deleteMaritalRequest(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteMaritalRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     }
     
-    @RequestMapping("saveDriversLicense")
-    public ModelAndView saveDriversLicense(HttpServletRequest req, 
-    		String empNbr, String reqDts, String driversLicNbrNew, String driversLicStNew) {
+    public ModelAndView saveDriversLicense(HttpServletRequest req, ModelAndView mav
+    		) {
         HttpSession session = req.getSession();
-        ModelAndView mav = new ModelAndView();
- 		if(empNbr==null||reqDts==null||driversLicNbrNew==null||driversLicStNew==null) {
+        String empNbr = req.getParameter("empNbr");
+        String reqDts = req.getParameter("licReqDts");
+        String driversLicNbrNew = req.getParameter("driversLicNbrNew");
+        String driversLicStNew = req.getParameter("driversLicStNew");
+        
+        if(empNbr==null||reqDts==null||driversLicNbrNew==null||driversLicStNew==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Save marital status request");
@@ -553,27 +627,28 @@ public class ProfileController{
         	driversLicenseRequest = new BeaDrvsLic(demo, empNbr, reqDts,driversLicNbrNew,driversLicStNew,'P');
         	this.indexService.saveDriversLicenseRequest(driversLicenseRequest);
         }
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "driversLicenseRequest");
         return mav;
     }
     
-    @RequestMapping("deleteDriversLicenseRequest")
     public ModelAndView deleteDriversLicenseRequest(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteDirversLicenseRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     }
     
-    @RequestMapping("saveRestrictionCodes")
-    public ModelAndView saveRestrictionCodes(HttpServletRequest req, 
-    		String empNbr, String reqDts, String restrictCdNew, String restrictCdPublicNew) {
+    public ModelAndView saveRestrictionCodes(HttpServletRequest req,  ModelAndView mav) {
         HttpSession session = req.getSession();
-        ModelAndView mav = new ModelAndView();
+        String empNbr = req.getParameter("empNbr");
+        String reqDts = req.getParameter("restrictReqDts");
+        String restrictCdNew = req.getParameter("restrictCdNew");
+        String restrictCdPublicNew = req.getParameter("restrictCdPublicNew");
+        
  		if(empNbr==null||reqDts==null||restrictCdNew==null||restrictCdPublicNew==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
@@ -604,28 +679,32 @@ public class ProfileController{
         	restrictionCodesRequest = new BeaRestrict(demo, empNbr, reqDts, restrictCdNew, restrictCdPublicNew, 'P');
         	this.indexService.saveRestrictionCodesRequest(restrictionCodesRequest);
         }
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "restrictionCodesRequest");
         return mav;
     }
     
-    @RequestMapping("deleteRestrictionCodesRequest")
+    
     public ModelAndView deleteRestrictionCodesRequest(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteRestrictionCodesRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
-    @RequestMapping("saveEmail")
-    public ModelAndView saveEmail(HttpServletRequest req, 
-    		String empNbr, String reqDts, String emailNew, String hmEmailNew) {
+    public ModelAndView saveEmail(HttpServletRequest req, ModelAndView mav
+    		) {
         HttpSession session = req.getSession();
-        ModelAndView mav = new ModelAndView();
- 		if(empNbr==null||reqDts==null) {
+
+        String empNbr = req.getParameter("empNbr");
+        String reqDts = req.getParameter("emailReqDts");
+        String emailNew = req.getParameter("emailNew");
+        String hmEmailNew = req.getParameter("hmEmailNew");
+        
+        if(empNbr==null||reqDts==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Save user email address request");
@@ -656,29 +735,35 @@ public class ProfileController{
         	this.indexService.saveEmailRequest(emailRequest);
         }
         
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "emailRequest");
         return mav;
     }
     
-    @RequestMapping("deleteEmail")
     public ModelAndView deleteEmail(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteEmailRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
-    @RequestMapping("saveEmergencyContact")
-    public ModelAndView saveEmergencyContact(HttpServletRequest req, 
-    		String empNbr, String reqDts, String emerContactNew, String emerPhoneAcNew
-    		, String emerPhoneNbrNew, String emerPhoneExtNew, String emerRelNew, String emerNoteNew) {
+    public ModelAndView saveEmergencyContact(HttpServletRequest req, ModelAndView mav
+    		) {
         HttpSession session = req.getSession();
-        ModelAndView mav = new ModelAndView();
- 		if(empNbr==null||reqDts==null) {
+
+        String empNbr = req.getParameter("empNbr");
+        String reqDts = req.getParameter("emerReqDts");
+        String emerContactNew = req.getParameter("emerContactNew");
+        String emerPhoneAcNew = req.getParameter("emerPhoneAcNew");
+		String emerPhoneNbrNew = req.getParameter("emerPhoneNbrNew");
+		String emerPhoneExtNew = req.getParameter("emerPhoneExtNew");
+		String emerRelNew = req.getParameter("emerRelNew");
+		String emerNoteNew = req.getParameter("emerNoteNew");
+        
+        if(empNbr==null||reqDts==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Save user emergency contact request");
@@ -718,23 +803,29 @@ public class ProfileController{
         return mav;
     }
     
-    @RequestMapping("deleteEmergencyContact")
     public ModelAndView deleteEmergencyContact(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteEmergencyContactRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     }
     
-    @RequestMapping("saveMailAddr")
-    public ModelAndView saveMailAddr(HttpServletRequest req, 
-    		String empNbr, String reqDts, String addrNbrNew, String addrStrNew,String addrAptNew,
-			String addrCityNew, String addrStNew, String addrZipNew,String addrZip4New) {
+    public ModelAndView saveMailAddr(HttpServletRequest req,  ModelAndView mav 
+    		) {
         HttpSession session = req.getSession();
-        ModelAndView mav = new ModelAndView();
+        String empNbr = req.getParameter("empNbr");
+        String reqDts = req.getParameter("mailAddrReqDts");
+        String addrNbrNew = req.getParameter("addrNbrNew");
+        String addrStrNew = req.getParameter("addrStrNew");
+        String addrAptNew = req.getParameter("addrAptNew");
+		String addrCityNew = req.getParameter("addrCityNew");
+		String addrStNew = req.getParameter("addrStNew");
+		String addrZipNew = req.getParameter("addrZipNew");
+		String addrZip4New = req.getParameter("addrZip4New");
+		
  		if(empNbr==null||reqDts==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
@@ -771,29 +862,35 @@ public class ProfileController{
         	this.indexService.saveMailAddrRequest(mailingAddressRequest);
         }
        
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "mailingAddressRequest");
         return mav;
     }
     
-    @RequestMapping("deleteMailAddr")
     public ModelAndView deleteMailAddr(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteMailAddrRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     }
     
-    @RequestMapping("saveAltMailAddr")
-    public ModelAndView saveAltMailAddr(HttpServletRequest req, 
-    		String empNbr, String reqDts, String smrAddrNbrNew, String smrAddrStrNew,String smrAddrAptNew,
-			String smrAddrCityNew, String smrAddrStNew, String smrAddrZipNew,String smrAddrZip4New) {
+    public ModelAndView saveAltMailAddr(HttpServletRequest req, ModelAndView mav
+    		) {
         HttpSession session = req.getSession();
-        ModelAndView mav = new ModelAndView();
- 		if(empNbr==null||reqDts==null) {
+        String empNbr = req.getParameter("empNbr");
+        String reqDts = req.getParameter("altMailAddrReqDts");
+        String smrAddrNbrNew = req.getParameter("smrAddrNbrNew");
+        String smrAddrStrNew = req.getParameter("smrAddrStrNew");
+        String smrAddrAptNew = req.getParameter("smrAddrAptNew");
+		String smrAddrCityNew = req.getParameter("smrAddrCityNew");
+		String smrAddrStNew = req.getParameter("smrAddrStNew");
+		String smrAddrZipNew = req.getParameter("smrAddrZipNew");
+		String smrAddrZip4New = req.getParameter("smrAddrZip4New");
+		
+        if(empNbr==null||reqDts==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Save user alternative mailing address request");
@@ -829,29 +926,35 @@ public class ProfileController{
         	this.indexService.saveAltMailAddrRequest(altMailingAddressRequest);
         }
         
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "altMailingAddressRequest");
         return mav;
     }
     
-    @RequestMapping("deleteAltMailAddr")
     public ModelAndView deleteAltMailAddr(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
         BhrEmpDemo demo = ((BhrEmpDemo)session.getAttribute("userDetail"));
         this.indexService.deleteAltMailAddrRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     } 
     
-    @RequestMapping("savePhone")
-    public ModelAndView savePhone(HttpServletRequest req, 
-    		String empNbr, String reqDts, String phoneAreaNew, String phoneNbrNew,String phoneAreaCellNew,
-			String phoneNbrCellNew, String phoneAreaBusNew, String phoneNbrBusNew,String busPhoneExtNew) {
+    public ModelAndView savePhone(HttpServletRequest req, ModelAndView mav
+    		) {
         HttpSession session = req.getSession();
-        ModelAndView mav = new ModelAndView();
- 		if(empNbr==null||reqDts==null) {
+        String empNbr = req.getParameter("empNbr");
+        String reqDts = req.getParameter("hmReqDts");
+        String phoneAreaNew = req.getParameter("phoneAreaNew");
+        String phoneNbrNew = req.getParameter("phoneNbrNew");
+        String phoneAreaCellNew = req.getParameter("phoneAreaCellNew");
+		String phoneNbrCellNew = req.getParameter("phoneNbrCellNew");
+		String phoneAreaBusNew = req.getParameter("phoneAreaBusNew");
+		String phoneNbrBusNew = req.getParameter("phoneNbrBusNew");
+		String busPhoneExtNew = req.getParameter("busPhoneExtNew");
+		
+        if(empNbr==null||reqDts==null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Save user phone number request");
@@ -929,13 +1032,12 @@ public class ProfileController{
         	businessPhoneRequest = new BeaBusPhone(demo, empNbr, reqDts, phoneAreaBusNew, phoneNbrBusNew, busPhoneExtNew, 'P');
         	this.indexService.saveBusinessPhoneRequest(businessPhoneRequest);
         }
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         mav.addObject("activeTab", "businessPhoneRequest");
         
         return mav;
     }
     
-    @RequestMapping("deletePhone")
     public ModelAndView deletePhone(HttpServletRequest req) {
         HttpSession session = req.getSession();
         ModelAndView mav = new ModelAndView();
@@ -944,7 +1046,7 @@ public class ProfileController{
         this.indexService.deleteHomePhoneRequest(demo.getEmpNbr());
         this.indexService.deleteCellPhoneRequest(demo.getEmpNbr());
         this.indexService.deleteBusinessPhoneRequest(demo.getEmpNbr());
-        this.getProfileDetails(session, mav,null);
+//        this.getProfileDetails(session, mav,null);
         return mav;
     }
     

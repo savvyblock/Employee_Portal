@@ -1316,6 +1316,10 @@ input:focus {
   font-size: 15px;
 }
 
+.pageGroup .pageBtn:disabled {
+  opacity: 0.6;
+}
+
 .pageGroup .pageBtn:hover {
   border: 0;
   background: none;
