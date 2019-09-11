@@ -252,6 +252,14 @@ $(function() {
 //        profileForm.submit();
 //    })
 })
+function showPasswordModal(){
+    $('#updatePassword')[0].reset()
+    $('#updatePassword')
+        .data('bootstrapValidator')
+        .destroy()
+    $('#updatePassword').data('bootstrapValidator', null)
+        formPasswordValidator();
+}
 function clearNoNum(obj){
     obj.value = obj.value.replace(/[^\d.]/g, ""); //  
     obj.value = obj.value.replace(/^\./g, ""); //

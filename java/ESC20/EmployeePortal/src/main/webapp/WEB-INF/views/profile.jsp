@@ -15,7 +15,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                     <div class="content-white no-title profile">
                             <c:if test="${sessionScope.enableSelfServiceDemographic}">
                                 <div class="profile-item">
-                                        <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal">
+                                        <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal" onclick="showPasswordModal()">
                                                 <span>${sessionScope.languageJSON.label.changePassword}</span>
                                             </button>
                                 </div>

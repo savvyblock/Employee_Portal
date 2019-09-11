@@ -1,7 +1,7 @@
 
-	formValidator();
+	formPasswordValidator();
 	
-    function formValidator() {
+    function formPasswordValidator() {
         $('#updatePassword').bootstrapValidator({
                 live: 'enable',
                 trigger: null,
