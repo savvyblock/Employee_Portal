@@ -80,6 +80,49 @@ $(function() {
                 event.preventDefault();
             }
         })
+        $("#startDateInput").blur(function(){
+            var fromValue = convertRightFormat($("#startDateInput").val())
+            var toValue = convertRightFormat($("#endDateInput").val())
+            var leaveFrom = fromValue?changeDateYMD(fromValue):null
+            var leaveTo = toValue?changeDateYMD(toValue):null
+            if(fromValue && toValue){
+                if( leaveFrom<=leaveTo){
+                    $('.dateValidator01').hide()
+                    calcDays()
+                }else{
+                    $('.dateValidator01').show()
+                    setTimeout(function(){
+                        $("#endDateInput").val('')
+                    },500)
+                }
+            }
+            
+        });
+        
+        $("#endDateInput").blur(function(){
+        var fromValue = convertRightFormat($("#startDateInput").val())
+        var toValue = convertRightFormat($("#endDateInput").val())
+        var leaveFrom = changeDateYMD(fromValue)
+        var leaveTo = changeDateYMD(toValue)
+        if(fromValue && toValue){
+                if( leaveFrom<=leaveTo){
+                    $('.dateValidator01').hide()
+                }else{
+                    $('.dateValidator01').show()
+                    setTimeout(function(){
+                        $("#startDateInput").val('')
+                    },500)
+                }
+                calcDays()
+            }
+            
+        });
+    
+        $("#leaveHoursDaily").blur(function(){
+            var val = $(this).val()
+            $(this).val(Number(val).toFixed(3))
+            calcDaysOrHours()
+        });
 })
 function changeLeaveType(){
     var leaveType = $("#modalLeaveType").val()
@@ -116,7 +159,6 @@ function changeLeaveType(){
         })
         calUnit = false
     }
-    
     showTimeUnit()
     $("#absenceReason").change()
 }
@@ -227,50 +269,6 @@ function formValidator() {
     })
     // setGlobal()
 }
-$("#startDateInput").blur(function(){
-    var fromValue = convertRightFormat($("#startDateInput").val())
-    var toValue = convertRightFormat($("#endDateInput").val())
-    var leaveFrom = fromValue?changeDateYMD(fromValue):null
-    var leaveTo = toValue?changeDateYMD(toValue):null
-    if(fromValue && toValue){
-        if( leaveFrom<=leaveTo){
-            $('.dateValidator01').hide()
-            calcDays()
-        }else{
-            $('.dateValidator01').show()
-            setTimeout(function(){
-                $("#endDateInput").val('')
-            },500)
-        }
-    }
-    
-});
-
- $("#endDateInput").blur(function(){
-    var fromValue = convertRightFormat($("#startDateInput").val())
-    var toValue = convertRightFormat($("#endDateInput").val())
-    var leaveFrom = changeDateYMD(fromValue)
-    var leaveTo = changeDateYMD(toValue)
-    if(fromValue && toValue){
-            if( leaveFrom<=leaveTo){
-                $('.dateValidator01').hide()
-            }else{
-                $('.dateValidator01').show()
-                setTimeout(function(){
-                    $("#startDateInput").val('')
-                },500)
-            }
-            calcDays()
-        }
-        
-    });
-
-
-$("#leaveHoursDaily").change(function(){
-    var val = $(this).val()
-    $(this).val(Number(val).toFixed(3))
-    calcDaysOrHours()
-});
 
 var timeError = false
 function calcTime(){
@@ -454,14 +452,6 @@ function saveRequest(isAdd){
         $(".leaveHoursDailyNotZero").hide()
         $(".leaveHoursDailyWrap").removeClass('has-error')
         
-        // var absenceReason = $("#absenceReason").val()
-        // if(Number(absenceReason) == 0){
-        //     $(".absenceReasonNotEmpty").show()
-        //     $(".absenceReasonWrap").addClass('has-error')
-        //     return false
-        // }
-        // $(".absenceReasonNotEmpty").hide()
-        // $(".absenceReasonWrap").removeClass('has-error')
         var startDate = $('#startDateInput').val()
         var endDate = $('#endDateInput').val()
         var start = new Date(startDate)
@@ -495,17 +485,22 @@ function saveRequest(isAdd){
                     	cache: false,
                     	contentType: "application/json; charset=utf-8",
                     	success: function (result) {
-                                    console.log(result);
-			                    	if(result.sucess){
-			                    		 $(".dateTimePeriodOverlap").hide()
-                                         $(".dateTimePeriodOverlapWrap").removeClass('has-error')
-			                             $('#requestForm')[0].submit()
-			                    	}else{
-			                    		$(".dateTimePeriodOverlap").show()
-			                            $(".dateTimePeriodOverlapWrap").addClass('has-error')
-			                    	}
-			                    }
-			                })	
+                            console.log(result);
+                            if(result.sucess){
+                                    $(".dateTimePeriodOverlap").hide()
+                                    $(".dateTimePeriodOverlapWrap").removeClass('has-error')
+                                    console.log("submit...")
+                                    // return false
+                                    $('#requestForm')[0].submit()
+                            }else{
+                                $(".dateTimePeriodOverlap").show()
+                                $(".dateTimePeriodOverlapWrap").addClass('has-error')
+                            }
+                        },
+                        error:function(res){
+                            console.log(res)
+                        }
+			        })	
                     
                    
                 }else{
@@ -550,7 +545,7 @@ function showTimeUnit(){
                 calcDaysOrHours()
             },
             error:function(res){
-                    console.log(res);
+                console.log(res);
             }
         })
     }
@@ -560,8 +555,6 @@ function calcDaysOrHours(){
     var startDate = changeDateYMD($('#startDateInput').val())
     var endDate = changeDateYMD($('#endDateInput').val())
     var leaveHoursDaily = Number($('#leaveHoursDaily').val().trim())
-    // var day1 = new Date(startDate);
-    // var day2 = new Date(endDate);
     var day1 = startDate;
     var day2 = endDate;
     var dayDate = ((day2 - day1) / (1000 * 60 * 60 * 24));

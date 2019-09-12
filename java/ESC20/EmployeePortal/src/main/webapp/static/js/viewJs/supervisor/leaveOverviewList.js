@@ -129,15 +129,15 @@ function changeLevel() {
     }
 }
 function showRequestForm() {
-    $('#leaveId').attr('value', '')
-    $("[name='Remarks']").text('')
     $('#requestForm')[0].reset()
     $('#requestForm')
         .data('bootstrapValidator')
         .destroy()
     $('#requestForm').data('bootstrapValidator', null)
     formValidator()
-    $("#absenceReason").html(reasonOption)
+
+    $('#leaveId').attr('value', '')
+    $("#Remarks").text('')
     $('#cancelAdd').show()
     $('#deleteLeave').hide()
     $('.modal-title').hide()
@@ -153,8 +153,13 @@ function showRequestForm() {
     $('#requestForm').attr('action', 'updateLeaveFromLeaveOverview')
     $("#commentList").html("")
     $(".timeUnit").hide()
+
+    // remove all validator message
+    $(".availableError").hide()
     $(".leaveHoursDailyNotZero").hide()
     $(".leaveHoursDailyWrap").removeClass('has-error')
+    $('.dateValidator').hide()
+    $('.dateValidator01').hide()
     $(".dateTimePeriodOverlap").hide()
 }
 function changeFreq() {
@@ -195,8 +200,6 @@ function editLeave(
         .data('bootstrapValidator')
         .destroy()
     $('#requestForm').data('bootstrapValidator', null)
-    $('.dateValidator').hide()
-	$('.dateValidator01').hide()
     formValidator()
     console.log(leaveStartDate)
     console.log(leaveEndDate)
@@ -236,7 +239,6 @@ function editLeave(
     // $('#deleteLeave').show()
     $('.modal-title').hide()
     $('.firstSubmit').hide()
-    $(".availableError").hide()
     $('.secondSubmit').show()
     $("#leaveModalTitle").show()
     $("#leaveModalTitle .editSpan").show()
@@ -254,6 +256,13 @@ function editLeave(
     $('#endDateInput').val(end_arry[0])//changeMMDDFormat(end_arry[0])
     $('#leaveHoursDaily').val(lvUnitsDaily)
     $('#totalRequested').val(lvUnitsUsed)
+
+    // remove all validator message
+    $(".availableError").hide()
+    $(".leaveHoursDailyNotZero").hide()
+    $(".leaveHoursDailyWrap").removeClass('has-error')
+    $('.dateValidator').hide()
+    $('.dateValidator01').hide()
     $(".dateTimePeriodOverlap").hide()
 }
 

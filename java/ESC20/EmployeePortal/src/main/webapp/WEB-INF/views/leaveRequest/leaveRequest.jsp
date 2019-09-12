@@ -234,7 +234,6 @@
 </body>
 <script>
 var leaveList = eval(${leaves});
-var isAddValue = '${addRow}'
 </script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/leaveRequest/leaveRequest.js"></script>
 

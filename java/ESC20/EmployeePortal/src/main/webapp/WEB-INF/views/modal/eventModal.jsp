@@ -21,7 +21,7 @@
                     <button
                     type="button" role="button"
                     class="close closeModal"
-                    data-dismiss="modal"
+                    data-dismiss="modal" onclick="closeRequestForm()"
                     aria-label="${sessionScope.languageJSON.label.closeModal}">
                     &times;
                 </button>
@@ -280,6 +280,7 @@
 <script>
 var leaveTypesAbsrsnsMap = eval(${leaveTypesAbsrsnsMap});
 var  enterNonZeroValueValidator = '${sessionScope.languageJSON.validator.enterNonZeroValue}'
+var isAddValue = '${addRow}'
 </script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/eventModal.js"></script>
 

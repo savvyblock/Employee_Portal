@@ -76,13 +76,12 @@ function editLeave(id,leaveType,absenceReason,leaveStartDate,leaveEndDate,lvUnit
 			comments = element.comments
 		}
 	});
-		$('#requestForm')
+	$('#requestForm')
 	.data('bootstrapValidator')
 	.destroy()
-		$('#requestForm').data('bootstrapValidator', null)
-		$('.dateValidator').hide()
-		$('.dateValidator01').hide()
+	$('#requestForm').data('bootstrapValidator', null)
 	formValidator()
+
 	var start_arry = leaveStartDate.split(" ")
 	var end_arry = leaveEndDate.split(" ")
 	var startTime = start_arry[1].split(":")
@@ -105,12 +104,12 @@ function editLeave(id,leaveType,absenceReason,leaveStartDate,leaveEndDate,lvUnit
 	$("#startMinute").val(startTime[1])
 	$("#endMinute").val(endTime[1])
 	// $("#cancelAdd").hide();
-	// $("#deleteLeave").show();	
+	// $("#deleteLeave").show();
+		
 	$(".firstSubmit").hide();
 	$(".secondSubmit").show();
 	$(".edit-title").show();
 	$(".new-title").hide();
-	$(".availableError").hide()
 	$("#commentList").html("")
 	for(var i=0;i<comments.length;i++){
 			var html = '<p>'+comments[i].detail+'</p>'
@@ -124,8 +123,12 @@ function editLeave(id,leaveType,absenceReason,leaveStartDate,leaveEndDate,lvUnit
 	$("#endDateInput").val(end_arry[0]);
 	$("#leaveHoursDaily").val(lvUnitsDaily);
 	$("#totalRequested").val(lvUnitsUsed);
-	// var empNbr = $("#sessionEmpNbr").val()
-	// $("#empNbrModal").val(empNbr);
+	// remove all validator message
+	$(".availableError").hide()
+	$(".leaveHoursDailyNotZero").hide()
+	$(".leaveHoursDailyWrap").removeClass('has-error')
+	$('.dateValidator').hide()
+	$('.dateValidator01').hide()
 	$(".dateTimePeriodOverlap").hide()
 }
 
@@ -138,31 +141,30 @@ function changeMMDDFormat(date){
 	return dateArry[1]+"-"+dateArry[2]+"-"+dateArry[0]
 }
 function showRequestForm() {
-		$('#leaveId').attr('value', '')
-		$("[name='Remarks']").text('')
 		$('#requestForm')[0].reset()
 		$('#requestForm')
 			.data('bootstrapValidator')
 			.destroy()
 		$('#requestForm').data('bootstrapValidator', null)
 		formValidator()
-		$("#absenceReason").html(reasonOption)
+
+		$('#leaveId').attr('value', '')
+		$("#Remarks").text('')
+		$(".timeUnit").hide()
 		$('#cancelAdd').show()
 		$('#deleteLeave').hide()
 		$(".edit-title").hide();
-		$('.dateValidator').hide()
-		$('.dateValidator01').hide()
 		$(".new-title").show();
+		$("#commentList").html("")
 		$(".firstSubmit").show();
 		$(".secondSubmit").hide();
+		
+		// remove all validator message
 		$(".availableError").hide()
-//Initializes the time control when edit event modal show
-		$("#commentList").html("")
-		$(".timeUnit").hide()
 		$(".leaveHoursDailyNotZero").hide()
 		$(".leaveHoursDailyWrap").removeClass('has-error')
-		// var empNbr = $("#sessionEmpNbr").val()
-		// $("#empNbrModal").val(empNbr);
+		$('.dateValidator').hide()
+		$('.dateValidator01').hide()
 		$(".dateTimePeriodOverlap").hide()
 }
 function changeFormatTimeAm(value){

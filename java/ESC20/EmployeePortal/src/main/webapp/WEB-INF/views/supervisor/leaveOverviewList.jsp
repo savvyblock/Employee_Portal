@@ -284,7 +284,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <script>
 	    var directReportEmployee = eval(${directReportEmployee});
         var chain = eval(${chain});
-        var isAddValue = '${addRow}'
     </script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/supervisor/leaveOverviewList.js"></script>
 

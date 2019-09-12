@@ -24,6 +24,12 @@ function convertDay24(day,m){
 console.log(leaveListArry)
 $(document).ready(function() {
     formValidator()
+    if(isAddValue == 'true'){
+        $("#requestModal").modal('show')
+        $(".edit-title").hide()
+        $(".secondSubmit").hide();
+        $("#deleteLeave").hide();	
+    }
     reasonOption = $("#absenceReason").html()
     $('#requestForm').attr('action', 'submitLeaveRequestFromCalendar')
     initThemeChooser({
@@ -48,13 +54,11 @@ $(document).ready(function() {
                 eventClick: function(calEvent, jsEvent, view) {
                     console.log(calEvent)
                     if (calEvent.statusCd != 'A') {
-                        $('.dateValidator').hide()
                         $('#requestForm')
                             .data('bootstrapValidator')
                             .destroy()
                         $('#requestForm').data('bootstrapValidator', null)
                         formValidator()
-                        $('.dateValidator').hide()
                         var leaveStartDate = calEvent.start._i
                         var leaveEndDate = calEvent.end._i
 
@@ -99,7 +103,6 @@ $(document).ready(function() {
                         $('.edit-title').show()
                         $('.new-title').hide()
                         $('.firstSubmit').hide()
-                        $(".availableError").hide()
                         $('.secondSubmit').show()
                         // $('#requestModal').modal('show')
                         $("[name='leaveType']").val(calEvent.LeaveType)
@@ -111,7 +114,13 @@ $(document).ready(function() {
                         $("#leaveHoursDaily").val(Number(calEvent.lvUnitsDaily).toFixed(3));
 		                $("#totalRequested").val(Number(calEvent.lvUnitsUsed).toFixed(3));
                         
-                        //Initializes the time control when edit event modal show
+                        // remove all validator message
+                        $(".availableError").hide()
+                        $(".leaveHoursDailyNotZero").hide()
+                        $(".leaveHoursDailyWrap").removeClass('has-error')
+                        $('.dateValidator').hide()
+                        $('.dateValidator01').hide()
+                        $(".dateTimePeriodOverlap").hide()
                     } else {
                         var leaveRequest = calEvent
                         console.log(leaveRequest)
@@ -243,27 +252,35 @@ $(document).ready(function() {
     })
 })
 function newEvent(dom) {
-    $('.dateValidator').hide()
     var date = changeMMDDFormat($(dom).attr('data-title')?$(dom).attr('data-title'):$(dom).attr('data-date'))
-    $('#leaveId').attr('value', '')
-    $("[name='Remarks']").text('')
+    
     $('#requestForm')[0].reset()
     $('#requestForm')
         .data('bootstrapValidator')
         .destroy()
     $('#requestForm').data('bootstrapValidator', null)
     formValidator()
+
+    $('#leaveId').attr('value', '')
+    $("#Remarks").text('')
+    $(".timeUnit").hide()
     $('#cancelAdd').show()
     $('#deleteLeave').hide()
     $('.edit-title').hide()
-    $(".availableError").hide()
     $('.new-title').show()
     $('#startDateInput').val(date)
     $('#endDateInput').val(date)
     $('#commentList').html('')
     $('.firstSubmit').show()
     $('.secondSubmit').hide()
-    //Initializes the time control when new event modal show
+    
+    // remove all validator message
+    $(".availableError").hide()
+    $(".leaveHoursDailyNotZero").hide()
+    $(".leaveHoursDailyWrap").removeClass('has-error')
+    $('.dateValidator').hide()
+    $('.dateValidator01').hide()
+    $(".dateTimePeriodOverlap").hide()
 }
 
 function changeMMDDFormat(date) {
