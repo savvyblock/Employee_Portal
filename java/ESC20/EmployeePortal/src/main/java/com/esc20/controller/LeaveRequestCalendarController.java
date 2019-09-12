@@ -46,7 +46,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 	private final String module = "Leave Request Calendar View";
 	
 	@RequestMapping("eventCalendar")
-	public ModelAndView getEventCalendar(HttpServletRequest req, String freq) {
+	public ModelAndView getEventCalendar(HttpServletRequest req, String freq,Boolean isAdd) {
 		HttpSession session = req.getSession();
 	
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
@@ -71,6 +71,15 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/leaveRequest/fullCalendar");
+		if(isAdd == null) {
+			isAdd = false;
+		}
+		if(isAdd) {
+			mav.addObject("addRow", true);
+		}
+		else {
+			mav.addObject("addRow", false);
+		}
 		AppLeaveRequest request = new AppLeaveRequest();
 		//BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
@@ -208,7 +217,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 	@RequestMapping("submitLeaveRequestFromCalendar")
 	public ModelAndView submitLeaveRequestFromCalendar(HttpServletRequest req, String leaveId, String leaveType,
 			String absenseReason, String LeaveStartDate, String startTimeValue, String LeaveEndDate,
-			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq, Long token)
+			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq, Boolean isAdd,Long token)
 			throws ParseException, MessagingException {
 		HttpSession session = req.getSession();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
@@ -223,11 +232,11 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 		}
 		Long sessionToken = (Long) session.getAttribute("token");
 		if(!sessionToken.equals(token)) {
-			return this.getEventCalendar(req, freq);
+			return this.getEventCalendar(req, freq,isAdd);
 		}
 		this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate,
 				endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo);
-		return this.getEventCalendar(req, freq);
+		return this.getEventCalendar(req, freq,isAdd);
 	}
 	
 	@RequestMapping("deleteLeaveRequestFromCalendar")
@@ -243,9 +252,9 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 		}
 		Long sessionToken = (Long) session.getAttribute("token");
 		if(!sessionToken.equals(token)) {
-			return this.getEventCalendar(req, freq);
+			return this.getEventCalendar(req, freq,false);
 		}
 		deleteLeaveRequest(id);
-		return this.getEventCalendar(req, freq);
+		return this.getEventCalendar(req, freq,false);
 	}
 }
