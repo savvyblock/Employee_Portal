@@ -103,12 +103,26 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController{
 					requestModels.add(model);
 				}
 				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, false);
-				List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
+				Code emptyCode = new Code();
+				//List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
+				List<Code> absRsns =  new ArrayList<Code>();
+				//Add a blank for absRsns for default shown
+				emptyCode = new Code();
+				emptyCode.setDescription(" ");
+				absRsns.add(emptyCode);
+				absRsns.addAll(this.service.getAbsRsns(demo.getEmpNbr(), freq, ""));
+				
 				JSONArray absRsnsJson = new JSONArray();
 				for (int i = 0; i < absRsns.size(); i++) {
 					absRsnsJson.add(absRsns.get(i).toJSON());
 				}
-				List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
+				List<Code> leaveTypes = new ArrayList<Code>();
+				
+				//Add a blank for leave Types for default shown
+				emptyCode = new Code();
+				emptyCode.setDescription(" ");
+				leaveTypes.add(emptyCode);
+				leaveTypes.addAll(this.service.getLeaveTypes(demo.getEmpNbr(), freq, ""));
 				JSONArray leaveTypesJson = new JSONArray();
 				for (int i = 0; i < leaveTypes.size(); i++) {
 					leaveTypesJson.add(leaveTypes.get(i).toJSON());
