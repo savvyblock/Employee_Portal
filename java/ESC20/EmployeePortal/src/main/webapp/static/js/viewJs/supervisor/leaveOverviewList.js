@@ -137,7 +137,7 @@ function showRequestForm() {
     formValidator()
 
     $('#leaveId').attr('value', '')
-    $("#Remarks").text('')
+    $("#Remarks").text('').val('')
     $('#cancelAdd').show()
     $('#deleteLeave').hide()
     $('.modal-title').hide()
@@ -248,6 +248,7 @@ function editLeave(
         var html = '<p>' + comments[i].detail + '</p>'
         $('#commentList').append(html)
     }
+    $("#Remarks").text('').val('')
     $("[name='leaveId']").attr('value', id + '')
     $("[name='leaveType']").val(leaveType)
     changeLeaveType()

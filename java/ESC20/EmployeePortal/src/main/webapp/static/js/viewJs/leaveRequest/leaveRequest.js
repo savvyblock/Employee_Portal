@@ -115,6 +115,7 @@ function editLeave(id,leaveType,absenceReason,leaveStartDate,leaveEndDate,lvUnit
 			var html = '<p>'+comments[i].detail+'</p>'
 			$("#commentList").append(html)
 	}
+	$("#Remarks").text('').val('')
 	$("[name='leaveId']").attr("value", id+"");
 	$("[name='leaveType']").val(leaveType);
 	changeLeaveType()
@@ -149,7 +150,7 @@ function showRequestForm() {
 		formValidator()
 
 		$('#leaveId').attr('value', '')
-		$("#Remarks").text('')
+		$("#Remarks").text('').val('')
 		$(".timeUnit").hide()
 		$('#cancelAdd').show()
 		$('#deleteLeave').hide()

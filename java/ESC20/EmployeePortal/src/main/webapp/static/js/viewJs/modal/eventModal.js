@@ -479,7 +479,7 @@ function saveRequest(isAdd){
                     var empNbr = $("#empNbrModal").val();
                     $.ajax({
                         type: "POST", 
-                        url: "/EmployeePortal/leaveRequest/validateLeaveRequestCommand", 
+                        url: urlMain +"/leaveRequest/validateLeaveRequestCommand", 
                         data: JSON.stringify({ 'leaveStartDate': leaveStartDate,'leaveEndDate':leaveEndDate,'startTimeValue':startTimeValue,'endTimeValue':endTimeValue,'empNbr': empNbr}), // this creates formatted JSON string for ajax post to asmx service
                         dataType: "json",
                     	cache: false,

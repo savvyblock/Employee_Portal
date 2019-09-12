@@ -100,6 +100,7 @@ $(document).ready(function() {
                         }
                         // $('#cancelAdd').hide()
                         // $('#deleteLeave').show()
+                        $("#Remarks").text('').val('')
                         $('.edit-title').show()
                         $('.new-title').hide()
                         $('.firstSubmit').hide()
@@ -262,7 +263,7 @@ function newEvent(dom) {
     formValidator()
 
     $('#leaveId').attr('value', '')
-    $("#Remarks").text('')
+    $("#Remarks").text('').val('')
     $(".timeUnit").hide()
     $('#cancelAdd').show()
     $('#deleteLeave').hide()
