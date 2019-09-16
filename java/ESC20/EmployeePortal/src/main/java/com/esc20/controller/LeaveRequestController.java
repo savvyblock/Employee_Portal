@@ -256,6 +256,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
         String startTimeValue = param.getString("startTimeValue");
         String endTimeValue = param.getString("endTimeValue");
         String empNbr = param.getString("empNbr");
+        String leaveId = param.getString("leaveId");
         
 	/*	HttpSession session = req.getSession();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
@@ -281,6 +282,10 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 		} 
 		boolean validDateRange = true;
 		for (AppLeaveRequest savedRequest : savedRequests) {
+			if(!leaveId.equals("0")&&!leaveId.equals("")&& savedRequest.getId().toString().equals(leaveId)) {
+				continue;
+			}
+		
 			try {
 				Calendar calendarFrom = Calendar.getInstance();
 				calendarFrom.setTime(savedRequest.getDatetimeFrom());
