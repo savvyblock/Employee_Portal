@@ -194,6 +194,7 @@ function closeRequestForm() {
         .destroy()
     $('#requestForm').data('bootstrapValidator', null)
     formValidator()
+    leaveId = null
 }
 function formValidator() {
     $('#requestForm').bootstrapValidator({
@@ -320,6 +321,7 @@ function calcDays(){
 function calValueTime(){
     var start = $("#startHour").val() + ":" + $("#startMinute").val() + " " + $("#startAmOrPm").val()
     var end = $("#endHour").val() + ":" + $("#endMinute").val() + " " + $("#endAmOrPm").val()
+    console.log(start)
     $("#startTimeValue").val(start)
     $("#endTimeValue").val(end)
 }
@@ -440,6 +442,21 @@ function saveRequest(isAdd){
         $("#isAdd").val(isAdd)
     }
     $(event.currentTarget).parents(".modal").focus()
+
+    var dateTotal = $("#totalRequested").val()
+    var typeCode = $("#modalLeaveType").val()
+    var balanceAvailable = $("#available"+typeCode+"").text()
+
+    var leaveStartDate = $("#startDateInput").val();
+    var leaveEndDate = $("#endDateInput").val();
+    var startTimeValue = $("#startTimeValue").val();
+    var endTimeValue = $("#endTimeValue").val();
+    var empNbr = $("#empNbrModal").val();
+
+    console.log(leaveStartDate)
+    console.log(leaveEndDate)
+    console.log(leaveId)
+
     var bootstrapValidator = $('#requestForm').data('bootstrapValidator')
     bootstrapValidator.validate()
     if (bootstrapValidator.isValid()) {
@@ -452,14 +469,6 @@ function saveRequest(isAdd){
         $(".leaveHoursDailyNotZero").hide()
         $(".leaveHoursDailyWrap").removeClass('has-error')
         
-        var startDate = $('#startDateInput').val()
-        var endDate = $('#endDateInput').val()
-        var start = new Date(startDate)
-        var end = new Date(endDate)
-        var dateTotal = $("#totalRequested").val()
-        var typeCode = $("#modalLeaveType").val()
-        var balanceAvailable = $("#available"+typeCode+"").text()
-        // if (start.valueOf() > end.valueOf()) {
         if (timeError) {
             $('.dateValidator').show()
             $("#endHour").focus()
@@ -472,15 +481,18 @@ function saveRequest(isAdd){
                 if(parseFloat(dateTotal)<=parseFloat(balanceAvailable)){
                     $(".availableError").hide()
                     // return false
-                    var leaveStartDate = $("#startDateInput").val();
-                    var leaveEndDate = $("#endDateInput").val();
-                    var startTimeValue = $("#startTimeValue").val();
-                    var endTimeValue = $("#endTimeValue").val();
-                    var empNbr = $("#empNbrModal").val();
+                    var obj = { 
+                        'leaveStartDate': leaveStartDate,
+                        'leaveEndDate':leaveEndDate,
+                        'startTimeValue':startTimeValue,
+                        'endTimeValue':endTimeValue,
+                        'empNbr': empNbr,
+                        'leaveId':leaveId
+                    }
                     $.ajax({
                         type: "POST", 
                         url: urlMain +"/leaveRequest/validateLeaveRequestCommand", 
-                        data: JSON.stringify({ 'leaveStartDate': leaveStartDate,'leaveEndDate':leaveEndDate,'startTimeValue':startTimeValue,'endTimeValue':endTimeValue,'empNbr': empNbr}), // this creates formatted JSON string for ajax post to asmx service
+                        data: JSON.stringify(obj), // this creates formatted JSON string for ajax post to asmx service
                         dataType: "json",
                     	cache: false,
                     	contentType: "application/json; charset=utf-8",

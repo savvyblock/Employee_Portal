@@ -1,4 +1,6 @@
 var reasonOption
+var leaveId
+console.log(leaveList)
 $(document).ready(function() {
 	if(isAddValue == 'true'){
         $("#requestModal").modal('show')
@@ -70,6 +72,7 @@ $(document).ready(function() {
 });
 
 function editLeave(id,leaveType,absenceReason,leaveStartDate,leaveEndDate,lvUnitsDaily,lvUnitsUsed){
+	leaveId = id
 	var comments;
 	leaveList.forEach(function(element) {
 		if(element.id == id){

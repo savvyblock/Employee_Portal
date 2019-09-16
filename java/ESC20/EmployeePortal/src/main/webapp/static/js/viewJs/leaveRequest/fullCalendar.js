@@ -60,7 +60,7 @@ $(document).ready(function() {
                         $('#requestForm').data('bootstrapValidator', null)
                         formValidator()
                         var leaveStartDate = calEvent.start._i
-                        var leaveEndDate = calEvent.end._i
+                        var leaveEndDate = calEvent.end._i?calEvent.end._i:calEvent.start._i
 
                         var start_arry = leaveStartDate.split(' ')
                         var end_arry = leaveEndDate.split(' ')
@@ -84,10 +84,9 @@ $(document).ready(function() {
                         $('#endHour').val(endH)
                         $('#startAmOrPm').val(startAMOrPM)
                         $('#endAmOrPm').val(endAMOrPM)
-                        var startTimeValue =
-                            startH + ':' + time12ArryStart[0] + ' ' + startAMOrPM
-                        var endTimeValue =
-                            endH + ':' + time12ArryEnd[0] + ' ' + endAMOrPM
+                        var startTimeValue = time12ArryStart[0] + ' ' + startAMOrPM
+                        var endTimeValue = time12ArryEnd[0] + ' ' + endAMOrPM
+                            console.log(startTimeValue)
                         $('#startTimeValue').val(startTimeValue)
                         $('#endTimeValue').val(endTimeValue)
                         $('#startMinute').val(startTime[1])
@@ -302,12 +301,8 @@ function changeFormatTimeAm(value) {
     var array = value.split(/[,: ]/)
     var hour, minute, time
     hour = parseInt(array[0])
-    minute = parseInt(array[1])
-    if (minute >= 0 && minute < 30) {
-        minute = '00'
-    } else {
-        minute = '30'
-    }
+    minute = parseInt(array[1])>9?parseInt(array[1]):'0'+parseInt(array[1])
+
     if (hour > 12) {
         hour = hour - 12 < 10 ? '0' + (hour - 12) : hour - 12
         time = hour + ':' + minute + ' PM'
