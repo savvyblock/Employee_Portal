@@ -487,7 +487,7 @@ function saveRequest(isAdd){
                         'startTimeValue':startTimeValue,
                         'endTimeValue':endTimeValue,
                         'empNbr': empNbr,
-                        'leaveId':leaveId
+                        'leaveId':leaveId?leaveId:0
                     }
                     $.ajax({
                         type: "POST", 
