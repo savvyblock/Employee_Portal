@@ -198,11 +198,17 @@ function changeFormatTimeAm(value){
 function changeFreq(){
 		$("#changeFreqForm")[0].submit();
 }
-function changeDateYMD(date){
-	if(!date){
-		return
-	}
-	var dateArry = date.split("-")
-	var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
-	return DateFormat
+
+function changeDateYMD(date,notFormat){
+    if(!date){
+        return
+    }
+    var dateArry = date.split("-")
+    if(notFormat){
+        return dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1]
+    }else{
+        var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
+        return DateFormat
+    }
+    
 }

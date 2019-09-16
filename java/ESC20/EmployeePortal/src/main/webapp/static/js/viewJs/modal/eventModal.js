@@ -11,17 +11,6 @@ $(function() {
     mealBreakHours = Number(mealBreakHours)
     
     formValidator()
-    var nowTemp = new Date()
-    var now = new Date(
-        nowTemp.getFullYear(),
-        nowTemp.getMonth(),
-        nowTemp.getDate(),
-        0,
-        0,
-        0,
-        0
-    )
-    var haveEndDate = false
     var checkin = $('#startDate')
         .fdatepicker({
             // startDate: now,
@@ -32,13 +21,11 @@ $(function() {
         .on('changeDate', function(ev) {
             var endDate = $('#endDateInput').val()
             var startDate = $('#startDateInput').val()
+
             if (
                 ev.date &&
                 !endDate
-                // (ev.date.valueOf() >= checkout.date.valueOf() || !endDate)
             ) {
-                // var newDate = new Date(ev.date)
-                // newDate.setDate(newDate.getDate())
                 startDate = new Date(startDate)
                 startDate.setDate(startDate.getDate())
                 checkout.update(startDate)
@@ -46,10 +33,10 @@ $(function() {
                 $('#startDateInput').change()
                 calcTime()
             }
-            if(ev.date){
-                $(".dateTimePeriodOverlap").hide()
-			    $(".dateTimePeriodOverlapWrap").removeClass('has-error')
-            }
+            // if(ev.date){
+            //     $(".dateTimePeriodOverlap").hide()
+			//     $(".dateTimePeriodOverlapWrap").removeClass('has-error')
+            // }
         })
         .data('datepicker')
     var checkout = $('#endDate')
@@ -65,6 +52,8 @@ $(function() {
             }
         })
         .on('changeDate', function(ev) {
+            $('#startDateNote').val(startNote)
+            $('#endDateNote').val(endNote)
             calcTime()
         })
         .data('datepicker')
@@ -411,13 +400,18 @@ function isMinuteKey(keyPressEvent) {
     return true;
 }
 
-function changeDateYMD(date){
+function changeDateYMD(date,notFormat){
     if(!date){
         return
     }
     var dateArry = date.split("-")
-    var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
-    return DateFormat
+    if(notFormat){
+        return dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1]
+    }else{
+        var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
+        return DateFormat
+    }
+    
 }
 
 function convertRightFormat(str){
@@ -453,13 +447,30 @@ function saveRequest(isAdd){
     var endTimeValue = $("#endTimeValue").val();
     var empNbr = $("#empNbrModal").val();
 
-    console.log(leaveStartDate)
-    console.log(leaveEndDate)
-    console.log(leaveId)
+    if(leaveStartDate && leaveStartDate != '' && startTimeValue && startTimeValue!=''){
+        var startFullTimeNote = new Date(changeDateYMD(leaveStartDate,true) + ' ' + changeFormatTime(startTimeValue))
+    }
+    if(leaveEndDate && leaveEndDate != '' && endTimeValue && endTimeValue!=''){
+        var endFullTimeNote = new Date(changeDateYMD(leaveEndDate,true) + ' ' + changeFormatTime(endTimeValue))
+    }
+    var sameTimeError = false
+    if(startFullTimeNote && endFullTimeNote){
+        if(startFullTimeNote.valueOf() == endFullTimeNote.valueOf()){
+            $(".timeControlStart").addClass('has-error')
+            $(".timeControlEnd").addClass('has-error')
+            $(".sameTimeError").show()
+            sameTimeError = true
+        }else{
+            $(".timeControlStart").removeClass('has-error')
+            $(".timeControlEnd").removeClass('has-error')
+            $(".sameTimeError").hide()
+            sameTimeError = false
+        }
+    }
 
     var bootstrapValidator = $('#requestForm').data('bootstrapValidator')
     bootstrapValidator.validate()
-    if (bootstrapValidator.isValid()) {
+    if (bootstrapValidator.isValid() && !sameTimeError) {
         var leaveHoursDaily = $("#leaveHoursDaily").val()
         if(Number(leaveHoursDaily) == 0){
             $(".leaveHoursDailyNotZero").show()

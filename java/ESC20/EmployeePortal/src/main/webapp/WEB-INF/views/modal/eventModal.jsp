@@ -82,17 +82,6 @@
                                         title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                         value=""/>
 							    </div>
-                                <!-- <input
-                                    class="form-control"
-                                    type="text"
-                                    name="LeaveStartDate"
-                                    id="startDate"
-                                    data-date-format="mm/dd/yyyy"  autocomplete="off"
-                                    aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
-                                    placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
-                                    title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
-                                    value=""
-                                /> -->
                                 <small class="help-block dateTimePeriodOverlap" role="alert" aria-atomic="true" style="display:none">
                                     ${sessionScope.languageJSON.validator.dateTimePeriodOverlapsWithAPriorOne}
                                 </small>
@@ -114,17 +103,6 @@
                                         placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
                                         title="${sessionScope.languageJSON.label.mmddyyyyFormat}"/>
                                     </div>
-                                    <!-- <input
-                                        class="form-control"
-                                        type="text"
-                                        name="LeaveEndDate"
-                                        value=""
-                                        id="endDate"
-                                        data-date-format="mm/dd/yyyy"  autocomplete="off"
-                                        aria-label="${sessionScope.languageJSON.label.mmddyyyyFormat}"
-                                        placeholder="${sessionScope.languageJSON.label.mmddyyyyFormat}"
-                                        title="${sessionScope.languageJSON.label.mmddyyyyFormat}"
-                                    /> -->
                                 </div>
                             
                         </div>
@@ -133,7 +111,7 @@
                         <small class="help-block" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.startNotBeGreaterThanEndDate}</small>
                     </div>
                     <div class="date-group">
-                        <div class="form-group calendar-left dateTimePeriodOverlapWrap">
+                        <div class="form-group calendar-left dateTimePeriodOverlapWrap timeControlStart">
                                 <label class="form-title" for="startTimeValue"><span>${sessionScope.languageJSON.leaveRequest.startTime}</span>: </label>
                                 <div class="valid-wrap flex-middle">
                                     <input class="form-control timeControl" type="text" name="startHour" 
@@ -151,9 +129,10 @@
                                     </select>
                                     <input hidden="hidden" type="text" name="startTimeValue" id="startTimeValue" >
                                 </div>
+                                <small class="help-block sameTimeError" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.startAndEndBeDifferent}</small>
                         </div>
 
-                        <div class="form-group time-right dateTimePeriodOverlapWrap">
+                        <div class="form-group time-right dateTimePeriodOverlapWrap timeControlEnd">
                             <label class="form-title" for="endTimeValue"><span>${sessionScope.languageJSON.leaveRequest.endTime}</span>: </label>
                             <div class="valid-wrap flex-middle">
                                 <input class="form-control timeControl" type="text" name="endHour" 
@@ -171,6 +150,7 @@
                                 </select>
                                 <input hidden="hidden" type="text" name="endTimeValue" id="endTimeValue">
                             </div>
+                            <small class="help-block sameTimeError" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.startAndEndBeDifferent}</small>
                             <div class="form-group has-error dateValidator">
                                     <small class="help-block" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.startNotBeGreaterThanEndTime}</small>
                                 </div>
