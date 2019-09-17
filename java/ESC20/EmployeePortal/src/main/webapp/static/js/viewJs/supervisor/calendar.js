@@ -58,7 +58,7 @@ $(document).ready(function() {
                         }
                     })
                     var leaveStartDate = leaveRequest.start._i
-                    var leaveEndDate = leaveRequest.end._i
+                    var leaveEndDate = leaveRequest.end?leaveRequest.end._i:leaveRequest.start._i
 
                     var start_arry = leaveStartDate.split(' ')
                     var end_arry = leaveEndDate.split(' ')

@@ -1,5 +1,6 @@
 var reasonOption
 var leaveListArry = new Array()
+var leaveId
 for(var i = 0,len = leaveList.length;i<len;i++){
     var item = leaveList[i]
     item.start = item.start?convertSlashDate(item.start):''
@@ -52,6 +53,7 @@ $(document).ready(function() {
                 events: leaveListArry,
                 locale: initialLocaleCode,
                 eventClick: function(calEvent, jsEvent, view) {
+                    leaveId = calEvent.id
                     console.log(calEvent)
                     if (calEvent.statusCd != 'A') {
                         $('#requestForm')
@@ -137,7 +139,7 @@ $(document).ready(function() {
                             }
                         })
                         var leaveStartDate = leaveRequest.start._i
-                        var leaveEndDate = leaveRequest.end._i
+                        var leaveEndDate = leaveRequest.end?leaveRequest.end._i:leaveRequest.start._i
 
                         var start_arry = leaveStartDate.split(' ')
                         var end_arry = leaveEndDate.split(' ')

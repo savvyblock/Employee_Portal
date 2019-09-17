@@ -1,5 +1,6 @@
 var chainString = JSON.stringify(chain)
 var reasonOption
+var leaveId
 console.log(chainString)
 $(function() {
     if(isAddValue == 'true'){
@@ -188,6 +189,7 @@ function editLeave(
     lvUnitsDaily,
     lvUnitsUsed
 ) {
+    leaveId = id
     $('#requestForm').attr('action', 'updateLeaveFromLeaveOverview')
     var comments
     leaveList.forEach(function(element) {
