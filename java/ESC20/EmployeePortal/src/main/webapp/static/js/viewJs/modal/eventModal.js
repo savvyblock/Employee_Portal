@@ -178,6 +178,9 @@ function deleteRequest() {
     $("#deleteModal").modal("show")
 }
 function closeRequestForm() {
+    $(".timeControlStart").removeClass('has-error')
+    $(".timeControlEnd").removeClass('has-error')
+    $(".sameTimeError").hide()
     $('#requestForm')
         .data('bootstrapValidator')
         .destroy()
@@ -228,20 +231,68 @@ function formValidator() {
             startHour: {
                 validators: {
                     notEmpty: {
-                        message: startTimeCannotBeEmptyValidator
+                        message: enterAStartHour
                     }
                 }
             },
             endHour: {
                 validators: {
                     notEmpty: {
-                        message: endTimeCannotBeEmptyValidator
+                        message: enterAnEndHour
+                    }
+                }
+            },
+            startMinute: {
+                validators: {
+                    notEmpty: {
+                        message: enterAStartMinute
+                    }
+                }
+            },
+            endMinute: {
+                validators: {
+                    notEmpty: {
+                        message: enterAnEndMinute
+                    }
+                }
+            },
+            startTimeValue: {
+                trigger:'change',
+                validators: {
+                    callback: {
+                        message: startAndEndBeDifferent,
+                        callback: function(value, validator) {
+                            var flag = true;
+                            console.log(value)
+                            flag = compareTime('endTimeValue')
+                            if(flag){
+                                validator.updateStatus('endTimeValue', 'VALID');
+                            }
+                            return flag;
+                        }
+                    }
+                }
+            },
+            endTimeValue: {
+                trigger:'change',
+                validators: {
+                    callback: {
+                        message: startAndEndBeDifferent,
+                        callback: function(value, validator) {
+                            var flag = false;
+                            console.log(value)
+                            flag = compareTime('startTimeValue')
+                            if(flag){
+                                validator.updateStatus('startTimeValue', 'VALID');
+                            }
+                            return flag;
+                        }
                     }
                 }
             },
             lvUnitsDaily:{
                 validators: {
-                    trigger:"change",
+                    // trigger:"change",
                     greaterThan: {
                         value : 0.001,
                         message : enterNonZeroValueValidator
@@ -291,10 +342,11 @@ function calcTime(){
         timeError = true
         hours = Number(0) .toFixed(3)
     }
-    if(leaveHoursRequestedEntry == 'false'){
+    if(leaveHoursRequestedEntry == 'false'&&end&&start){
         hours = hours > 5 ? hours - mealBreakHours:hours
         $('#leaveHoursDaily').val(Number(hours).toFixed(3)).change()
         if(Number(hours).toFixed(3) > 0){
+            console.log("tet")
             updateStatusDaily()
         }
         
@@ -311,8 +363,8 @@ function calValueTime(){
     var start = $("#startHour").val() + ":" + $("#startMinute").val() + " " + $("#startAmOrPm").val()
     var end = $("#endHour").val() + ":" + $("#endMinute").val() + " " + $("#endAmOrPm").val()
     console.log(start)
-    $("#startTimeValue").val(start)
-    $("#endTimeValue").val(end)
+    $("#startTimeValue").val(start).change()
+    $("#endTimeValue").val(end).change()
 }
 
 function isHourKey(keyPressEvent) {
@@ -430,6 +482,34 @@ function convertRightFormat(str){
         return false
     }
 }
+var compareTimeValue = false
+function compareTime(name){
+    var leaveStartDate = $("#startDateInput").val();
+    var leaveEndDate = $("#endDateInput").val();
+    var startTimeValue = $("#startTimeValue").val();
+    var endTimeValue = $("#endTimeValue").val();
+
+    if(leaveStartDate && leaveStartDate != '' && startTimeValue && startTimeValue!=''){
+        var startFullTimeNote = new Date(changeDateYMD(leaveStartDate,true) + ' ' + changeFormatTime(startTimeValue))
+    }
+    if(leaveEndDate && leaveEndDate != '' && endTimeValue && endTimeValue!=''){
+        var endFullTimeNote = new Date(changeDateYMD(leaveEndDate,true) + ' ' + changeFormatTime(endTimeValue))
+    }
+    console.log(startFullTimeNote.valueOf())
+    console.log(endFullTimeNote.valueOf())
+    if(startFullTimeNote && endFullTimeNote){
+        if(startFullTimeNote.valueOf() == endFullTimeNote.valueOf()){
+            compareTimeValue = false
+            return false
+        }else{
+            if(!compareTimeValue){
+                compareTimeValue = true
+                // $("#requestForm").data('bootstrapValidator').updateStatus(name, 'callback').validateField(name);
+            }
+            return true
+        }
+    }
+}
 
 function saveRequest(isAdd){
     if(isAdd){
@@ -447,30 +527,9 @@ function saveRequest(isAdd){
     var endTimeValue = $("#endTimeValue").val();
     var empNbr = $("#empNbrModal").val();
 
-    if(leaveStartDate && leaveStartDate != '' && startTimeValue && startTimeValue!=''){
-        var startFullTimeNote = new Date(changeDateYMD(leaveStartDate,true) + ' ' + changeFormatTime(startTimeValue))
-    }
-    if(leaveEndDate && leaveEndDate != '' && endTimeValue && endTimeValue!=''){
-        var endFullTimeNote = new Date(changeDateYMD(leaveEndDate,true) + ' ' + changeFormatTime(endTimeValue))
-    }
-    var sameTimeError = false
-    if(startFullTimeNote && endFullTimeNote){
-        if(startFullTimeNote.valueOf() == endFullTimeNote.valueOf()){
-            $(".timeControlStart").addClass('has-error')
-            $(".timeControlEnd").addClass('has-error')
-            $(".sameTimeError").show()
-            sameTimeError = true
-        }else{
-            $(".timeControlStart").removeClass('has-error')
-            $(".timeControlEnd").removeClass('has-error')
-            $(".sameTimeError").hide()
-            sameTimeError = false
-        }
-    }
-
     var bootstrapValidator = $('#requestForm').data('bootstrapValidator')
     bootstrapValidator.validate()
-    if (bootstrapValidator.isValid() && !sameTimeError) {
+    if (bootstrapValidator.isValid()) {
         var leaveHoursDaily = $("#leaveHoursDaily").val()
         if(Number(leaveHoursDaily) == 0){
             $(".leaveHoursDailyNotZero").show()

@@ -647,6 +647,10 @@
         "pressContinue":"Press OK to continue, or Cancel to stay on the current page.",
         "dateTimePeriodOverlapsWithAPriorOne":"Date/Time period overlaps with a prior one.",
         "startAndEndBeDifferent":"Start and End times must be different.",
+        "enterAnEndMinute":"Enter an End Minute.",
+        "enterAnEndHour":"Enter an End Hour.",
+        "enterAStartMinute":"Enter a Start Minute.",
+        "enterAStartHour":"Enter a Start Hour.",
         "": ""
     },
     "accessHint": {

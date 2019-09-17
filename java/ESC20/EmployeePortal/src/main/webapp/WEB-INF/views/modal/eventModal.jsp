@@ -127,9 +127,9 @@
                                             <option value="AM">${sessionScope.languageJSON.leaveRequest.AM}</option>
                                             <option value="PM">${sessionScope.languageJSON.leaveRequest.PM}</option>
                                     </select>
-                                    <input hidden="hidden" type="text" name="startTimeValue" id="startTimeValue" >
+                                    
                                 </div>
-                                <small class="help-block sameTimeError" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.startAndEndBeDifferent}</small>
+                                <div class="form-group"><input type="hidden" name="startTimeValue" id="startTimeValue" ></div>
                         </div>
 
                         <div class="form-group time-right dateTimePeriodOverlapWrap timeControlEnd">
@@ -148,9 +148,9 @@
                                     <option value="AM">${sessionScope.languageJSON.leaveRequest.AM}</option>
                                     <option value="PM">${sessionScope.languageJSON.leaveRequest.PM}</option>
                                 </select>
-                                <input hidden="hidden" type="text" name="endTimeValue" id="endTimeValue">
+                                
                             </div>
-                            <small class="help-block sameTimeError" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.startAndEndBeDifferent}</small>
+                            <div class="form-group"><input type="hidden" name="endTimeValue" id="endTimeValue"></div>
                             <div class="form-group has-error dateValidator">
                                     <small class="help-block" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.startNotBeGreaterThanEndTime}</small>
                                 </div>
@@ -260,6 +260,11 @@
 <script>
 var leaveTypesAbsrsnsMap = eval(${leaveTypesAbsrsnsMap});
 var  enterNonZeroValueValidator = '${sessionScope.languageJSON.validator.enterNonZeroValue}'
+var  startAndEndBeDifferent= '${sessionScope.languageJSON.validator.startAndEndBeDifferent}'
+var  enterAnEndHour= '${sessionScope.languageJSON.validator.enterAnEndHour}'
+var  enterAnEndMinute= '${sessionScope.languageJSON.validator.enterAnEndMinute}'
+var  enterAStartHour= '${sessionScope.languageJSON.validator.enterAStartHour}'
+var  enterAStartMinute= '${sessionScope.languageJSON.validator.enterAStartMinute}'
 var isAddValue = '${addRow}'
 </script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/eventModal.js"></script>

@@ -60,7 +60,7 @@ $(document).ready(function() {
                         $('#requestForm').data('bootstrapValidator', null)
                         formValidator()
                         var leaveStartDate = calEvent.start._i
-                        var leaveEndDate = calEvent.end._i?calEvent.end._i:calEvent.start._i
+                        var leaveEndDate = calEvent.end?calEvent.end._i:calEvent.start._i
 
                         var start_arry = leaveStartDate.split(' ')
                         var end_arry = leaveEndDate.split(' ')
