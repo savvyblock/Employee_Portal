@@ -172,9 +172,11 @@ public class LeaveRequestModel implements Serializable {
 				}
 			}
 		}
+		String middleName="";
 		String title = this.getFirstName()+" "+this.getLastName()+ typeDesc;
 		if((!StringUtil.isNullOrEmpty(this.getMiddleName())) && this.getMiddleName().trim().length()>0) {
 			title = this.getFirstName()+" "+this.getMiddleName().trim()+ " "+this.getLastName()+ typeDesc;
+			middleName = this.getMiddleName().trim();
 		}
 		jo.put("title", title);
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
@@ -208,7 +210,7 @@ public class LeaveRequestModel implements Serializable {
 		}
 		jo.put("empNbr", this.getEmpNbr());
 		jo.put("firstName", this.getFirstName());
-		jo.put("middleName", this.getMiddleName());
+		jo.put("middleName", middleName);
 		jo.put("lastName", this.getLastName());
 		String genStr = this.getGeneration();
 		String nameGen = "";
