@@ -319,7 +319,7 @@
         "single": "SOLTERO(A)",
         "stipendInfo": "Información sobre estipendios",
         "username": "Nombre de usuario",
-        "w-2Consent": "Consentimiento W-2",
+        "w2Consent": "Consentimiento W-2",
         "consentElectronicAccess": "Sí, consiento al acceso electrónico. Acepto el acceso a mi formulario 1095 de manera electrónica, como se describió antes, e imprimir mi formulario 1095. No necesito que se me entregue una copia impresa. ",
         "donotConsentElectronicAccess": "No, no consiento al acceso electrónico. Solicito que se me entregue una copia impresa.",
         "customMessageHere": "Mensaje personalizado aquí",
