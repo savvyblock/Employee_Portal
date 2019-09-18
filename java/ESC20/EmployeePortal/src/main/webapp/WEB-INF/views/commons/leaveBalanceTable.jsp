@@ -26,12 +26,17 @@
                     <span id="available${leave.type.code}">${leave.availableBalanceLabel}</span>
                 </td>
                 <td class="text-left" data-title="${sessionScope.languageJSON.leaveBalance.units}">
-                        <c:if test="${leave.daysHrs == 'D'}">													
-                        	<span>${sessionScope.languageJSON.label.days}</span>
-                        </c:if> 
-                        <c:if test="${leave.daysHrs == 'H'}">													
-                        	<span>${sessionScope.languageJSON.label.hours}</span>
-                        </c:if>
+                        <c:choose> 
+                            <c:when test="${leave.daysHrs == 'D'}">   
+                                <span>${sessionScope.languageJSON.label.days}</span>
+                            </c:when> 
+                            <c:when test="${leave.daysHrs == 'H'}">   
+                                <span>${sessionScope.languageJSON.label.hours}</span>
+                            </c:when> 
+                            <c:otherwise>   
+                                <span>${sessionScope.languageJSON.label.days}</span>
+                            </c:otherwise> 
+                        </c:choose> 
                 </td>
             </tr>
         </c:forEach>
