@@ -46,6 +46,7 @@ public class LeaveInfo implements Serializable{
 		jo.put("postAgainstZeroBalanceValue", postAgainstZeroBalanceValue);
 		jo.put("postAgainstZeroBalance", postAgainstZeroBalance);
 		jo.put("availableBalance", this.getAvailableBalance());
+		jo.put("totalPendingUsed",this.getTotalPendingUsed());
 		return jo;
 	}
 	
