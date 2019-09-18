@@ -246,7 +246,7 @@ function showBalance(id){
                 parseFloat(leaveBalance[i].used).toFixed(3) +
                 '</td>'+
                 '<td class="text-right" data-title="'+pendingUsedType+'">'+
-                parseFloat(leaveBalance[i].pendingUsed).toFixed(3) +
+                parseFloat(leaveBalance[i].totalPendingUsed).toFixed(3) +
                 '</td>'+
                 '<td class="text-right" data-title="'+availableType+'">'+
                 parseFloat(leaveBalance[i].availableBalance).toFixed(3)+
