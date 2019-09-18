@@ -245,7 +245,11 @@ public class LeaveRequestModel implements Serializable {
 			}
 			jo.put("infos", infos);
 		}
-		jo.put("approver", this.getApprover());
+		String approver = "";
+		if((!StringUtil.isNullOrEmpty(this.getApprover())) && this.getApprover().trim().length()>0) {
+			approver = this.getApprover().trim();
+		}
+		jo.put("approver", approver);
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy hh:mm a", Locale.ENGLISH);
 		String startDate = sdf.format(this.getLeaveStartDate());
 		String endDate = sdf.format(this.getLeaveEndDate());
