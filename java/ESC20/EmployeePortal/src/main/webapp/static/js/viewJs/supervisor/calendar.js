@@ -76,7 +76,7 @@ $(document).ready(function() {
                     // $("#leaveIdStatic").attr("value", leaveRequest.id+"");
                     $('#disIdStatic').attr('value', leaveRequest.id + '')
                     $('#appIdStatic').attr('value', leaveRequest.id + '')
-                    $('#employeeStatic').text(leaveRequest.lastName)
+                    $('#employeeStatic').text(leaveRequest.lastName + ',' +leaveRequest.firstName + ' ' + leaveRequest.middleName)
                     $('#startDateStatic').html(start)
                     $('#endDateStatic').html(end)
                     $('#leaveTypeStatic').html(type)
