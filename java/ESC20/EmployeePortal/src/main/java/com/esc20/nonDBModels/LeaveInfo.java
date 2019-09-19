@@ -88,11 +88,13 @@ public class LeaveInfo implements Serializable{
 		} else {
 			availableBalanceBD = beginBalance.add(advancedEarned).add(pendingEarned);
 		}
-		if (availableBalanceBD.compareTo(BigDecimal.ZERO)< 0) {
+		
+		return availableBalanceBD;
+		/*if (availableBalanceBD.compareTo(BigDecimal.ZERO)< 0) {
 			return new BigDecimal(0);
 		} else {
 			return availableBalanceBD;
-		}
+		}*/
 	}
 	
 	public String getAvailableBalanceLabel() {
