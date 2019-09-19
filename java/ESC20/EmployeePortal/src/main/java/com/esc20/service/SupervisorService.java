@@ -116,7 +116,7 @@ public class SupervisorService {
 		for(int i=0;i<supervisorPending.size();i++) {
 			if(supervisorPending.get(i).getStatusCd()=='P')
 				supervisorPending.get(i).setInfo(leaveRequestDao.getLeaveInfo(supervisorPending.get(i).getEmpNbr(), supervisorPending.get(i).getPayFreq().toString()));
-			if(supervisorPending.get(i).getStatusCd()=='A')
+			if(supervisorPending.get(i).getStatusCd()=='A' || supervisorPending.get(i).getStatusCd()=='P')
 				supervisorPending.get(i).setApprover(supervisorDao.getApprover(supervisorPending.get(i).getId()));
 			else
 				supervisorPending.get(i).setApprover("");
@@ -137,7 +137,7 @@ public class SupervisorService {
 				if(employeeResult.get(i).getStatusCd()=='P')
 					employeeResult.get(i).setInfo(leaveRequestDao.getLeaveInfo(employeeResult.get(i).getEmpNbr(), employeeResult.get(i).getPayFreq().toString()));
 				employeeResult.get(i).setComments(leaveRequestDao.getLeaveComments(employeeResult.get(i).getId()));
-				if(employeeResult.get(i).getStatusCd()=='A')
+				if(employeeResult.get(i).getStatusCd()=='A' || employeeResult.get(i).getStatusCd()=='P')
 					employeeResult.get(i).setApprover(supervisorDao.getApprover(employeeResult.get(i).getId()));
 				else
 					employeeResult.get(i).setApprover("");
