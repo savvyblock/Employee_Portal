@@ -153,7 +153,7 @@
 									<td data-title="${sessionScope.languageJSON.leaveBalance.leaveEarned}" class="text-right">${leave.lvUnitsEarned}</td>
 									<td data-title="${sessionScope.languageJSON.leaveBalance.status}" class="text-left">
 											<c:choose>
-                                                  <c:when test="${not empty leave.processDt}">
+                                                  <c:when test="${not empty fn:trim(leave.processDt)}">
                                                      <span>${sessionScope.languageJSON.label.processed}</span>
 												  </c:when>
 												  <c:otherwise>
