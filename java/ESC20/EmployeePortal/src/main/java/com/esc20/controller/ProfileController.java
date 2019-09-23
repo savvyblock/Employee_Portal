@@ -757,6 +757,7 @@ public class ProfileController {
 		String emerPhoneExtNew = req.getParameter("emerPhoneExtNew");
 		String emerRelNew = req.getParameter("emerRelNew");
 		String emerNoteNew = req.getParameter("emerNoteNew");
+		emerPhoneNbrNew = emerPhoneNbrNew.replaceAll("-", "");
 
 		if (empNbr == null || reqDts == null) {
 			mav.setViewName("visitFailed");
@@ -951,6 +952,10 @@ public class ProfileController {
 		String phoneAreaBusNew = req.getParameter("phoneAreaBusNew");
 		String phoneNbrBusNew = req.getParameter("phoneNbrBusNew");
 		String busPhoneExtNew = req.getParameter("busPhoneExtNew");
+		
+		phoneNbrCellNew = phoneNbrCellNew.replaceAll("-", "");
+		phoneNbrBusNew = phoneNbrBusNew.replaceAll("-", "");
+		phoneNbrNew = phoneNbrNew.replaceAll("-", "");
 
 		if (empNbr == null || reqDts == null) {
 			mav.setViewName("visitFailed");
