@@ -1586,6 +1586,11 @@
         &:last-child {
             border: 0;
         }
+        &.addBankForm{
+            .profile-title{
+                flex: 0 0 410px;
+            }
+        }
         .profile-title {
             display: flex;
             align-items: center;
@@ -1880,6 +1885,11 @@
                 }
             }
         }
+    }
+}
+@media (max-width:900px){
+    .profile .profile-item.addBankForm .profile-item-line{
+        display: block;
     }
 }
 #selectBank {

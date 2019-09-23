@@ -1742,6 +1742,10 @@
   border: 0;
 }
 
+.profile .profile-item.addBankForm .profile-title {
+  flex: 0 0 410px;
+}
+
 .profile .profile-item .profile-title {
   display: flex;
   align-items: center;
@@ -2088,6 +2092,12 @@
     margin-bottom: 10px;
   }
   .profile .profile-item .bankPart .profile-item-line .profile-desc {
+    display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .profile .profile-item.addBankForm .profile-item-line {
     display: block;
   }
 }
