@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html> 
 <html lang="en">
     <head>
@@ -657,7 +659,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     (${sessionScope.userDetail.emerPhoneAc})
-                                                    ${sessionScope.userDetail.emerPhoneNbr}
+                                                    <c:set var="nbr" scope="page" value="${fn:replace(sessionScope.userDetail.emerPhoneNbr, '-', '')}"/>
+                                                    <c:set var="nbr1" scope="page" value="${fn:substring(nbr, 0, 3)}"/>
+                                                    <c:set var="nbr2" scope="page" value="${fn:substring(nbr, 3, 7)}"/>
+                                                    ${nbr1}-${nbr2}
+                                                    <!-- ${sessionScope.userDetail.emerPhoneNbr} -->
                                                     &nbsp;&nbsp; <span>${sessionScope.languageJSON.profile.ext}</span>
                                                     ${sessionScope.userDetail.emerPhoneExt}
                                                 </span>
@@ -1153,7 +1159,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     (${sessionScope.userDetail.phoneArea})
-                                                    ${sessionScope.userDetail.phoneNbr}
+                                                    <c:set var="phoneNbr" scope="page" value="${fn:replace(sessionScope.userDetail.phoneNbr, '-', '')}"/>
+                                                    <c:set var="phoneNbr1" scope="page" value="${fn:substring(phoneNbr, 0, 3)}"/>
+                                                    <c:set var="phoneNbr2" scope="page" value="${fn:substring(phoneNbr, 3, 7)}"/>
+                                                    ${phoneNbr1}-${phoneNbr2}
+                                                    <!-- ${sessionScope.userDetail.phoneNbr} -->
                                                 </span>
                                                 <div class="valueInput flex">
                                                     <div class="form-group">
