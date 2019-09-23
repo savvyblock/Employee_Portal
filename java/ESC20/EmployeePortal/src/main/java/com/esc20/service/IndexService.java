@@ -328,9 +328,18 @@ public class IndexService {
 		
 	}
 	
-	public Boolean isSupervisor(String empNbr) {
+/*	public Boolean isSupervisor(String empNbr) {
 		return userDao.isSupervisor(empNbr);
 	}
+	*/
+	public boolean isSupervisor(String employeeNumber, boolean usePMISSupervisorLevels) {
+		if (usePMISSupervisorLevels) {
+			return userDao.isLeavePMISSupervisor(employeeNumber);
+		} else {
+			return userDao.isSupervisor(employeeNumber);
+		}
+	}
+	
 	public Boolean isTempApprover(String empNbr) {
 		return userDao.isTempApprover(empNbr);
 	}

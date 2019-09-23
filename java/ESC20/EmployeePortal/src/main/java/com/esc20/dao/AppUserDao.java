@@ -3,6 +3,7 @@ package com.esc20.dao;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -27,6 +28,7 @@ import com.esc20.model.BeaRestrict;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.District;
+import com.esc20.nonDBModels.LeaveEmployeePMISData;
 import com.esc20.nonDBModels.SearchUser;
 
 @Repository
@@ -717,6 +719,35 @@ public class AppUserDao extends HibernateDaoSupport{
 		q.setParameter("empNbr", empNbr);
 		Long result = (Long) q.uniqueResult();
 		return result>0L;
+	}
+	
+	public boolean isLeavePMISSupervisor(String employeeNumber) {
+		Session session = this.getSession();
+		LeaveEmployeePMISData empPMISData=null;
+		String sqlPMISData = "SELECT TOP 1 PPC.BILLET_NBR, PPC.POS_NBR FROM BHR_PMIS_POS_CTRL PPC WHERE PPC.OCC_EMP_NBR=:employeeNumber AND PPC.POS_TYP='P' AND PPC.CYR_NYR_FLG='C' ORDER BY PPC.PAY_FREQ DESC";
+		Query q = session.createSQLQuery(sqlPMISData.toString());
+		q.setParameter("employeeNumber", employeeNumber);
+		
+		 Object[] res = (Object[]) q.uniqueResult();
+        if(res!=null) {
+        	empPMISData = new LeaveEmployeePMISData();
+        	empPMISData.setBilletNumber((String) res[0]);
+			empPMISData.setPosNumber((String) res[1]);
+        }
+		
+		if (empPMISData==null) {
+			return false;
+		} else {
+			String sqlCount = "SELECT COUNT(*) FROM BHR_PMIS_POS_CTRL PPC WHERE PPC.SPVSR_BILLET_NBR=:billetNumber AND PPC.SPVSR_POS_NBR=:posNumber " +
+					"AND PPC.PAY_FREQ=(SELECT MAX(PPC2.PAY_FREQ) FROM BHR_PMIS_POS_CTRL PPC2 WHERE PPC2.OCC_EMP_NBR=PPC.OCC_EMP_NBR AND PPC2.POS_TYP='P' AND PPC2.CYR_NYR_FLG='C') " +
+					"AND PPC.POS_TYP='P' AND PPC.CYR_NYR_FLG='C'";
+			
+			Query q1 = session.createSQLQuery(sqlCount.toString());
+			q1.setParameter("billetNumber", empPMISData.getBilletNumber().trim());
+			q1.setParameter("posNumber", empPMISData.getPosNumber().trim());
+			Integer count = (Integer) q1.uniqueResult();
+			return count>0;
+		}		
 	}
 
 	public Boolean isTempApprover(String empNbr) {

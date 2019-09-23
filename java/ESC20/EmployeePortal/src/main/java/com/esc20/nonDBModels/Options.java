@@ -141,7 +141,7 @@ public class Options implements Serializable {
 		else
 			this.setEnableLeaveReq(false);
 		
-		if ("Y".equals(opt.getUsePmisSpvsrLevels().toString()))
+		if ("Y".equals(opt.getUsePmisSpvsrLevels().toString().trim()))
 			this.setUsePMISSpvsrLevels(true);
 		else
 			this.setUsePMISSpvsrLevels(false);
