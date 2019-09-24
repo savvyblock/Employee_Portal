@@ -646,7 +646,7 @@
         "employeeInvalid":"Employee Number entered is invalid. Enter or Select an Employee Number.",
         "areUDeleteRow":"Are you sure you want to delete the row?",
         "pressContinue":"Press OK to continue, or Cancel to stay on the current page.",
-        "dateTimePeriodOverlapsWithAPriorOne":"Date/Time period overlaps with a prior one.",
+        "dateTimePeriodOverlapsWithAPriorOne":"Date/Time period overlaps with a submitted request.",
         "startAndEndBeDifferent":"Start and End times must be different.",
         "enterAnEndMinute":"Enter an End Minute.",
         "enterAnEndHour":"Enter an End Hour.",
