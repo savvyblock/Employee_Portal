@@ -1384,7 +1384,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="maritalStatusLabel"
                                                     name="maritalStatTaxNew"
                                                     class="form-control  <c:if test="${payInfo.maritalStatTax != w4Request.maritalStatTaxNew}">active</c:if>"
-                                                    aria-label="${sessionScope.languageJSON.profile.MaritalStatus}"
+                                                    aria-label="${sessionScope.languageJSON.profile.W4MaritalStatus}"
                                                    
                                                     
                                                 >
