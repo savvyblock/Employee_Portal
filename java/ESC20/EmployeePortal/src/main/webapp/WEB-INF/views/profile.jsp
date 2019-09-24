@@ -659,10 +659,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     (${sessionScope.userDetail.emerPhoneAc})
-                                                    <c:set var="nbr" scope="page" value="${fn:replace(sessionScope.userDetail.emerPhoneNbr, '-', '')}"/>
-                                                    <c:set var="nbr1" scope="page" value="${fn:substring(nbr, 0, 3)}"/>
-                                                    <c:set var="nbr2" scope="page" value="${fn:substring(nbr, 3, 7)}"/>
-                                                    ${nbr1}-${nbr2}
+                                                    <c:if test="${sessionScope.userDetail.emerPhoneNbr != null && fn:trim(sessionScope.userDetail.emerPhoneNbr) != ''}">
+                                                        <c:set var="nbr" scope="page" value="${fn:replace(sessionScope.userDetail.emerPhoneNbr, '-', '')}"/>
+                                                        <c:set var="nbr1" scope="page" value="${fn:substring(nbr, 0, 3)}"/>
+                                                        <c:set var="nbr2" scope="page" value="${fn:substring(nbr, 3, 7)}"/>
+                                                        ${nbr1}-${nbr2}
+                                                    </c:if>
                                                     <!-- ${sessionScope.userDetail.emerPhoneNbr} -->
                                                     &nbsp;&nbsp; <span>${sessionScope.languageJSON.profile.ext}</span>
                                                     ${sessionScope.userDetail.emerPhoneExt}
@@ -687,7 +689,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label="${sessionScope.languageJSON.profile.emergencyContactPhoneNumber}"
                                                            
                                                             value="${emerRequest.emerPhoneNbrNew}"
-                                                            oninput="value=value.replace(/[^\d]/g,'')"
+                                                            oninput="value=value.replace(/[^\d\-]/g,'')"
                                                         />
                                                     </div>
 
@@ -1159,10 +1161,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     (${sessionScope.userDetail.phoneArea})
-                                                    <c:set var="phoneNbr" scope="page" value="${fn:replace(sessionScope.userDetail.phoneNbr, '-', '')}"/>
-                                                    <c:set var="phoneNbr1" scope="page" value="${fn:substring(phoneNbr, 0, 3)}"/>
-                                                    <c:set var="phoneNbr2" scope="page" value="${fn:substring(phoneNbr, 3, 7)}"/>
-                                                    ${phoneNbr1}-${phoneNbr2}
+                                                    <c:if test="${sessionScope.userDetail.phoneNbr != null && fn:trim(sessionScope.userDetail.phoneNbr) != ''}">
+                                                        <c:set var="phoneNbr" scope="page" value="${fn:replace(sessionScope.userDetail.phoneNbr, '-', '')}"/>
+                                                        <c:set var="phoneNbr1" scope="page" value="${fn:substring(phoneNbr, 0, 3)}"/>
+                                                        <c:set var="phoneNbr2" scope="page" value="${fn:substring(phoneNbr, 3, 7)}"/>
+                                                        ${phoneNbr1}-${phoneNbr2}
+                                                    </c:if>
                                                     <!-- ${sessionScope.userDetail.phoneNbr} -->
                                                 </span>
                                                 <div class="valueInput flex">
@@ -1186,7 +1190,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label="${sessionScope.languageJSON.profile.homePhonePhoneNumber}"
                                                            
                                                             value="${hmRequest.phoneNbrNew}"
-                                                            oninput="value=value.replace(/[^\d]/g,'')"
+                                                            oninput="value=value.replace(/[^\d\-]/g,'')"
                                                         />
                                                     </div>
                                                 </div>
@@ -1197,7 +1201,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     (${sessionScope.userDetail.phoneAreaCell})
-                                                    ${sessionScope.userDetail.phoneNbrCell}
+                                                    <c:if test="${sessionScope.userDetail.phoneNbrCell != null && fn:trim(sessionScope.userDetail.phoneNbrCell) != ''}">
+                                                        <c:set var="phoneNbrCell" scope="page" value="${fn:replace(sessionScope.userDetail.phoneNbrCell, '-', '')}"/>
+                                                        <c:set var="phoneNbrCell1" scope="page" value="${fn:substring(phoneNbrCell, 0, 3)}"/>
+                                                        <c:set var="phoneNbrCell2" scope="page" value="${fn:substring(phoneNbrCell, 3, 7)}"/>
+                                                        ${phoneNbrCell1}-${phoneNbrCell2}
+                                                    </c:if>
+                                                    <!-- ${sessionScope.userDetail.phoneNbrCell} -->
                                                 </span>
                                                 <div class="valueInput flex">
                                                     <div class="form-group">
@@ -1220,7 +1230,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label="${sessionScope.languageJSON.profile.cellPhonePhoneNumber}"
                                                            
                                                             value="${cellRequest.phoneNbrCellNew}"
-                                                            oninput="value=value.replace(/[^\d]/g,'')"
+                                                            oninput="value=value.replace(/[^\d\-]/g,'')"
                                                         />
                                                     </div>
                                                 </div>
@@ -1231,7 +1241,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="profile-desc">
                                                 <span class="haveValue">
                                                     (${sessionScope.userDetail.phoneAreaBus})
-                                                    ${sessionScope.userDetail.phoneNbrBus}&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <c:if test="${sessionScope.userDetail.phoneNbrBus != null && fn:trim(sessionScope.userDetail.phoneNbrBus) != ''}">
+                                                        <c:set var="phoneNbrBus" scope="page" value="${fn:replace(sessionScope.userDetail.phoneNbrBus, '-', '')}"/>
+                                                        <c:set var="phoneNbrBus1" scope="page" value="${fn:substring(phoneNbrBus, 0, 3)}"/>
+                                                        <c:set var="phoneNbrBus2" scope="page" value="${fn:substring(phoneNbrBus, 3, 7)}"/>
+                                                        ${phoneNbrBus1}-${phoneNbrBus2}
+                                                    </c:if>
+                                                    <!-- ${sessionScope.userDetail.phoneNbrBus} -->
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
                                                     <span>${sessionScope.languageJSON.profile.ext}</span>
                                                     ${sessionScope.userDetail.busPhoneExt}
                                                 </span>
@@ -1256,7 +1273,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label="${sessionScope.languageJSON.profile.workPhonePhoneNumber}"
                                                            
                                                             value="${busRequest.phoneNbrBusNew}"
-                                                            oninput="value=value.replace(/[^\d]/g,'')"
+                                                            oninput="value=value.replace(/[^\d\-]/g,'')"
                                                         />
                                                     </div>
 
