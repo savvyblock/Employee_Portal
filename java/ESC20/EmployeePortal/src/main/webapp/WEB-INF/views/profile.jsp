@@ -66,18 +66,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input type="hidden" id="undoName" name="undoName" value="">
                                                     <div class="form-group valueInput">
                                                         <select
-                                                            class="form-control <c:if test="${sessionScope.userDetail.namePre != nameRequest.namePreNew }">active</c:if>"
+                                                            class="form-control <c:if test="${fn:trim(sessionScope.userDetail.namePre) != fn:trim(nameRequest.namePreNew) }">active</c:if>"
                                                             aria-label="${sessionScope.languageJSON.profile.title}"
                                                             name="namePreNew"
                                                             id="titleString"
                                                         >
                                                         <c:forEach var="title" items="${titleOptions}" varStatus="count">
                                                                 <c:choose>
-                                                                        <c:when test="${title.description==''}">
-                                                                                <option value="${title.description}" <c:if test="${title.description == nameRequest.namePreNew }">selected</c:if>>&nbsp;</option>
+                                                                        <c:when test="${fn:trim(title.description)==''}">
+                                                                                <option value="${fn:trim(title.description)}" <c:if test="${fn:trim(title.description) == fn:trim(nameRequest.namePreNew) }">selected</c:if>>&nbsp;</option>
                                                                         </c:when>
                                                                         <c:otherwise>
-                                                                                <option value="${title.description}" <c:if test="${title.description == nameRequest.namePreNew }">selected</c:if>>${title.description}</option>
+                                                                                <option value="${fn:trim(title.description)}" <c:if test="${fn:trim(title.description) == fn:trim(nameRequest.namePreNew) }">selected</c:if>>${fn:trim(title.description)}</option>
                                                                         </c:otherwise>
                                                                      </c:choose>
                                                         </c:forEach>
