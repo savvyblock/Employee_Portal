@@ -56,7 +56,9 @@ public class BeaMrtlStat implements java.io.Serializable {
 		id.setEmpNbr(empNbr);
 		id.setReqDts(reqDts);
 		this.id = id;
-		this.maritalStat = demo.getMaritalStat()==null?'S':demo.getMaritalStat();
+		this.maritalStat = demo.getMaritalStat();
+		//this.maritalStatNew = maritalStatNew==null?'\0':maritalStatNew.charAt(0);
+	
 		if(maritalStatNew==null) {
 			this.maritalStatNew='S';
 		}else {
