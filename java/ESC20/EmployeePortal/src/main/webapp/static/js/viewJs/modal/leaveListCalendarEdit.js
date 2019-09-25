@@ -57,7 +57,7 @@ function initialLeaveCalendarStaticModal(){
                     right: ''
                 },
                 height: h_c,
-                timeFormat: 'hh:mm A',
+                // timeFormat: 'hh:mm A',
                 displayEventEnd: true,
                 defaultDate: new Date(),
                 weekNumbers: false,

@@ -32,7 +32,7 @@ $(document).ready(function() {
                     right: ''
                     // right: 'month,agendaWeek,agendaDay,listMonth'
                 },
-                timeFormat: 'hh:mm A',
+                // timeFormat: 'hh:mm A',
                 displayEventEnd: true,
                 defaultDate: new Date(),
                 weekNumbers: false,

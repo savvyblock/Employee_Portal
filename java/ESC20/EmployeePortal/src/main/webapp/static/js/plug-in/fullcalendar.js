@@ -13849,6 +13849,8 @@ var TimeGridEventRenderer = /** @class */ (function (_super) {
             fullTimeText = this.getTimeText(seg.footprint, 'LT');
             startTimeText = this.getTimeText(seg.footprint, null, false); // displayEnd=false
         }
+        console.log(timeText)
+        console.log(timeText)
         return '<a class="' + classes.join(' ') + '"' +
             (eventDef.url ?
                 ' href="' + util_1.htmlEscape(eventDef.url) + '"' :
@@ -14504,7 +14506,9 @@ var DayGridEventRenderer = /** @class */ (function (_super) {
         classes.unshift('fc-day-grid-event', 'fc-h-event');
         // Only display a timed events time if it is the starting segment
         if (seg.isStart) {
+            console.log(seg)
             timeText = this.getTimeText(seg.footprint);
+            console.log(timeText)
             if (timeText) {
                 timeHtml = '<span class="fc-time">' + util_1.htmlEscape(timeText) + '</span>';
             }
