@@ -721,11 +721,11 @@ public class AppUserDao extends HibernateDaoSupport{
 		return result>0L;
 	}
 	
-	public boolean isLeavePMISSupervisor(String employeeNumber) {
+	public Boolean isLeavePMISSupervisor(String employeeNumber) {
 		Session session = this.getSession();
 		LeaveEmployeePMISData empPMISData=null;
-		String sqlPMISData = "SELECT TOP 1 PPC.BILLET_NBR, PPC.POS_NBR FROM BHR_PMIS_POS_CTRL PPC WHERE PPC.OCC_EMP_NBR=:employeeNumber AND PPC.POS_TYP='P' AND PPC.CYR_NYR_FLG='C' ORDER BY PPC.PAY_FREQ DESC";
-		Query q = session.createSQLQuery(sqlPMISData.toString());
+		String sqlPMISData = "SELECT TOP 1 PPC.BILLET_NBR, PPC.POS_NBR FROM BHR_PMIS_POS_CTRL PPC WHERE PPC.OCC_EMP_NBR= :employeeNumber AND PPC.POS_TYP='P' AND PPC.CYR_NYR_FLG='C' ORDER BY PPC.PAY_FREQ DESC";
+		Query q = session.createSQLQuery(sqlPMISData);
 		q.setParameter("employeeNumber", employeeNumber);
 		
 		 Object[] res = (Object[]) q.uniqueResult();
@@ -738,11 +738,11 @@ public class AppUserDao extends HibernateDaoSupport{
 		if (empPMISData==null) {
 			return false;
 		} else {
-			String sqlCount = "SELECT COUNT(*) FROM BHR_PMIS_POS_CTRL PPC WHERE PPC.SPVSR_BILLET_NBR=:billetNumber AND PPC.SPVSR_POS_NBR=:posNumber " +
+			String sqlCount = "SELECT COUNT(*) FROM BHR_PMIS_POS_CTRL PPC WHERE PPC.SPVSR_BILLET_NBR=:billetNumber AND PPC.SPVSR_POS_NBR= :posNumber " +
 					"AND PPC.PAY_FREQ=(SELECT MAX(PPC2.PAY_FREQ) FROM BHR_PMIS_POS_CTRL PPC2 WHERE PPC2.OCC_EMP_NBR=PPC.OCC_EMP_NBR AND PPC2.POS_TYP='P' AND PPC2.CYR_NYR_FLG='C') " +
 					"AND PPC.POS_TYP='P' AND PPC.CYR_NYR_FLG='C'";
 			
-			Query q1 = session.createSQLQuery(sqlCount.toString());
+			Query q1 = session.createSQLQuery(sqlCount);
 			q1.setParameter("billetNumber", empPMISData.getBilletNumber().trim());
 			q1.setParameter("posNumber", empPMISData.getPosNumber().trim());
 			Integer count = (Integer) q1.uniqueResult();
