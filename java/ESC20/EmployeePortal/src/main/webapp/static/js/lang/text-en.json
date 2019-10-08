@@ -601,7 +601,7 @@
         "lengthNotLessThan6_9": "The length should not be less than 6 bits and not be more than 9.",
         "lengthNotLessThan6_8": "The length should not be less than 6 bits and not be more than 8.",
         "pleaseEnterCorrectFormatBankAmount2": "Please enter correct format,and the bank account amount cannot exceed 9,999,999.99.",
-        "emailNotMatch": "The two email you entered did not match.",
+        "emailNotMatch": "The two emails you entered do not match.",
         "passwordNotMatch": "The two passwords you entered did not match.",
         "startNotBeGreaterThanEndDate": "The start date can not be greater than the end date!",
         "oldPasswordWrong": "Old password is wrong!",
