@@ -215,34 +215,32 @@
                     <%@ include file="../commons/leaveBalanceTable.jsp"%>
                     <input type="hidden" name="isAdd" id="isAdd">
                 </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary firstSubmit save" onclick="saveRequest(true)"
+                    <div class="modal-footer requestModalBtn">
+                        <div class="clearfix" style="display:inline-block;">
+                            <button class="btn btn-primary firstSubmit save highlight pull-right submitClose"  onclick="saveRequest()"
+                                type="button" role="button"
+                                name="save">
+                                ${sessionScope.languageJSON.leaveBalance.submitAndClose}
+                            </button>
+                            <button class="btn btn-primary firstSubmit save pull-left submitAdd" onclick="saveRequest(true)"
                             type="button" role="button"
-                            id="saveCreate"
                             name="save">
                         	${sessionScope.languageJSON.leaveBalance.submitAndAdd}
                         </button>
-                        <button class="btn btn-primary firstSubmit save"  onclick="saveRequest()"
-                            type="button" role="button"
-                            id="saveCreate"
-                            name="save">
-                        	${sessionScope.languageJSON.leaveBalance.submitAndClose}
-                        </button>
-                        <button class="btn btn-primary secondSubmit save"  onclick="saveRequest()"
+                        
+                        </div><button class="btn btn-primary secondSubmit save"  onclick="saveRequest()"
                             type="button" role="button"
                             id="saveEdit"
                             name="save">
                         	${sessionScope.languageJSON.leaveBalance.reSubmitForApproval}
-                        </button>
-                        <button
+                        </button><button
                             class="btn btn-secondary"
                             id="deleteLeave"
                             type="button" role="button"
                             onclick="deleteRequest()"
                         >
                         	${sessionScope.languageJSON.label.delete}
-                        </button>
-                        <button
+                        </button><button
                             class="btn btn-secondary closeModal"
                             data-dismiss="modal"
                             id="cancelAdd"

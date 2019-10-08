@@ -112,6 +112,9 @@ $(function() {
             $(this).val(Number(val).toFixed(3))
             calcDaysOrHours()
         });
+        $(".requestModalBtn .btn").focus(function(){
+            $(".submitClose").removeClass('highlight')
+        })
 })
 function changeLeaveType(){
     var leaveType = $("#modalLeaveType").val()
@@ -187,6 +190,7 @@ function closeRequestForm() {
     $('#requestForm').data('bootstrapValidator', null)
     formValidator()
     leaveId = null
+    $(".submitClose").addClass('highlight')
 }
 function formValidator() {
     $('#requestForm').bootstrapValidator({
