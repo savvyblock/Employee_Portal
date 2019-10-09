@@ -50,44 +50,44 @@ $('#createNewUserForm').bootstrapValidator({
                 }
             }
         },
-        // workEmail: {
-        //     validators: {
-        //         emailAddress: {
-        //             message: pleaseEnterCorrectFormatValidator
-        //         }
-        //     }
-        // },
-        // workEmailVerify: {
-        //     trigger: null,
-        //     validators: {
-        //         identical: {
-        //             field: 'workEmail',
-        //             message:emailNotMatchValidator
-        //         },
-        //         emailAddress: {
-        //             message: pleaseEnterCorrectFormatValidator
-        //         }
-        //     }
-        // },
-        // homeEmail: {
-        //     validators: {
-        //       emailAddress: {
-        //             message: pleaseEnterCorrectFormatValidator
-        //         }
-        //     }
-        // },
-        // homeEmailVerify: {
-        //     trigger: null,
-        //     validators: {
-        //         identical: {
-        //             field: 'homeEmail',
-        //             message:emailNotMatchValidator
-        //         },
-        //         emailAddress: {
-        //             message: pleaseEnterCorrectFormatValidator
-        //         }
-        //     }
-        // },
+        workEmail: {
+            validators: {
+                emailAddress: {
+                    message: pleaseEnterCorrectFormatValidator
+                }
+            }
+        },
+        workEmailVerify: {
+            trigger: null,
+            validators: {
+                identical: {
+                    field: 'workEmail',
+                    message:emailNotMatchValidator
+                },
+                emailAddress: {
+                    message: pleaseEnterCorrectFormatValidator
+                }
+            }
+        },
+        homeEmail: {
+            validators: {
+              emailAddress: {
+                    message: pleaseEnterCorrectFormatValidator
+                }
+            }
+        },
+        homeEmailVerify: {
+            trigger: null,
+            validators: {
+                identical: {
+                    field: 'homeEmail',
+                    message:emailNotMatchValidator
+                },
+                emailAddress: {
+                    message: pleaseEnterCorrectFormatValidator
+                }
+            }
+        },
         hintQuestion: {
             validators: {
                 notEmpty: {
