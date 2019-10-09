@@ -140,8 +140,6 @@ $(function(){
         if (newUserFormValidator.isValid()) {
            
             if(workE===workEV && homeE===homeEV){
-                console.log("1111dsfsdfdf")
-                return false
                 $.ajax({
                     type: 'post',
                     url: urlMain+'/createUser/saveNewUser',
@@ -158,8 +156,6 @@ $(function(){
                     }
                 })
             }else{
-                console.log("2222dsfsdfdf")
-                return false
                 if(workE!=workEV){
                     $("#workEmail").parents(".form-group").addClass("has-error").removeClass('has-success')
                     $("#verifyWorkEmail").parents(".form-group")
