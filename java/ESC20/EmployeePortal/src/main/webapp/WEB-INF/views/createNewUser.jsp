@@ -72,7 +72,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group error-vertical">
-                                <label class="form-title" for="newPassword">${sessionScope.languageJSON.label.newPassword}</label>
+                                <label class="form-title" for="newPassword">${sessionScope.languageJSON.label.passwordVerification}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -95,7 +95,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     />
                                 </div>
                             </div>
-                            <div class="form-group error-vertical">
+                            <!-- <div class="form-group error-vertical">
                                 <label class="form-title" for="workEmail">${sessionScope.languageJSON.profile.verifyEmail}</label>
                                 <div class="valid-wrap">
                                     <input
@@ -106,7 +106,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         value="${emailShowRequest.emailNew}"
                                     />
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group error-vertical">
                                 <label class="form-title" for="homeEmail">${sessionScope.languageJSON.label.homeEmail}</label>
                                 <div class="valid-wrap">
@@ -119,7 +119,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     />
                                 </div>
                             </div>
-                            <div class="form-group error-vertical">
+                            <!-- <div class="form-group error-vertical">
                                 <label class="form-title" for="homeEmail">${sessionScope.languageJSON.profile.verifyEmail}</label>
                                 <div class="valid-wrap">
                                     <input
@@ -130,7 +130,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         value="${emailShowRequest.hmEmailNew}"
                                     />
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label class="form-title" for="hintQuestion">${sessionScope.languageJSON.label.hintQuestion}</label>
                                 <div class="valid-wrap">
@@ -144,14 +144,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                             <div class="form-group">
                                 <label class="form-title" for="hintAnswer">${sessionScope.languageJSON.label.hintAnswer}</label>
-                                <div class="valid-wrap">
+                                <div class="valid-wrap button-group">
                                     <input
                                         type="text"
                                         class="form-control"
                                         name="hintAnswer"
                                         id="hintAnswer"
                                     />
+                                    <button class="clear-btn hide" type="button" role="button" onclick="clearDate(this)" aria-label="${sessionScope.languageJSON.label.removeContent}">
+                                        <i class="fa fa-times"></i>
+                                    </button>
                                 </div>
+                                <small class="help-block sameAnswer" role="alert" aria-atomic="true" style="display: none;">
+                                    ${sessionScope.languageJSON.validator.notSameAnswer}
+                                </small>
                             </div>
 
  							<c:if test="${isUserExist!=null && isUserExist=='true'}">

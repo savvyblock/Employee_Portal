@@ -1,5 +1,5 @@
 $('#createNewUserForm').bootstrapValidator({
-    live: 'enable',
+    live: 'disabled',
     trigger: null,
     feedbackIcons: {
         valid: 'fa fa-check ',
@@ -50,44 +50,44 @@ $('#createNewUserForm').bootstrapValidator({
                 }
             }
         },
-        workEmail: {
-            validators: {
-                emailAddress: {
-                    message: pleaseEnterCorrectFormatValidator
-                }
-            }
-        },
-        workEmailVerify: {
-            trigger: null,
-            validators: {
-                identical: {
-                    field: 'workEmail',
-                    message:emailNotMatchValidator
-                },
-                emailAddress: {
-                    message: pleaseEnterCorrectFormatValidator
-                }
-            }
-        },
-        homeEmail: {
-            validators: {
-              emailAddress: {
-                    message: pleaseEnterCorrectFormatValidator
-                }
-            }
-        },
-        homeEmailVerify: {
-            trigger: null,
-            validators: {
-                identical: {
-                    field: 'homeEmail',
-                    message:emailNotMatchValidator
-                },
-                emailAddress: {
-                    message: pleaseEnterCorrectFormatValidator
-                }
-            }
-        },
+        // workEmail: {
+        //     validators: {
+        //         emailAddress: {
+        //             message: pleaseEnterCorrectFormatValidator
+        //         }
+        //     }
+        // },
+        // workEmailVerify: {
+        //     trigger: null,
+        //     validators: {
+        //         identical: {
+        //             field: 'workEmail',
+        //             message:emailNotMatchValidator
+        //         },
+        //         emailAddress: {
+        //             message: pleaseEnterCorrectFormatValidator
+        //         }
+        //     }
+        // },
+        // homeEmail: {
+        //     validators: {
+        //       emailAddress: {
+        //             message: pleaseEnterCorrectFormatValidator
+        //         }
+        //     }
+        // },
+        // homeEmailVerify: {
+        //     trigger: null,
+        //     validators: {
+        //         identical: {
+        //             field: 'homeEmail',
+        //             message:emailNotMatchValidator
+        //         },
+        //         emailAddress: {
+        //             message: pleaseEnterCorrectFormatValidator
+        //         }
+        //     }
+        // },
         hintQuestion: {
             validators: {
                 notEmpty: {
@@ -105,7 +105,12 @@ $('#createNewUserForm').bootstrapValidator({
       
   }
 })
-
+$("#hintAnswer").keydown(function(){
+    $(".sameAnswer").hide()
+})
+$("#hintAnswer").change(function(){
+    $(".sameAnswer").hide()
+})
 $(function(){
     $("#saveNewUser").on('click',function(){
     	var empNbr = $("#empNbr").val();
@@ -120,10 +125,23 @@ $(function(){
         var newUserFormValidator = $('#createNewUserForm').data(
             'bootstrapValidator'
         )
+        
+        // console.log(newUserFormValidator.isValid())
+        if(hintQuestion!='' && hintAnswer!='' && hintQuestion == hintAnswer){
+            $("#password").val('')
+            $("#newPassword").val('')
+            $("#hintAnswer").parents('.form-group').removeClass('has-success').addClass('has-error')
+            $(".sameAnswer").show()
+            return
+        }else{
+            $(".sameAnswer").hide()
+        }
         newUserFormValidator.validate()
-        console.log(newUserFormValidator.isValid())
         if (newUserFormValidator.isValid()) {
+           
             if(workE===workEV && homeE===homeEV){
+                console.log("1111dsfsdfdf")
+                return false
                 $.ajax({
                     type: 'post',
                     url: urlMain+'/createUser/saveNewUser',
@@ -140,6 +158,8 @@ $(function(){
                     }
                 })
             }else{
+                console.log("2222dsfsdfdf")
+                return false
                 if(workE!=workEV){
                     $("#workEmail").parents(".form-group").addClass("has-error").removeClass('has-success')
                     $("#verifyWorkEmail").parents(".form-group")

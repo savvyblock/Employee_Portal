@@ -499,6 +499,7 @@
         "noSupervisorFound": "Salir No se puede capturar la solicitud. No se encontró el supervisor.",
         "showLeaveBalanceOf": "mostrar detalles de saldo de permisos",
         "calendarForSuper": "Calendario del supervisor",
+        "passwordVerification":"Password Verification",
         "": ""
     },
     "language": {
@@ -652,6 +653,7 @@
         "enterAnEndHour":"Enter an End Hour.",
         "enterAStartMinute":"Enter a Start Minute.",
         "enterAStartHour":"Enter a Start Hour.",
+        "notSameAnswer":"Hint answer may not be the same as Hint question",
         "": ""
     },
     "accessHint": {

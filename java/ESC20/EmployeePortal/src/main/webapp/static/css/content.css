@@ -101,7 +101,7 @@
 }
 
 .account-wrap .account-top .account-inner.sm {
-  max-width: 380px;
+  max-width: 480px;
   padding: 20px;
   background-color: #fff;
   margin: 20px 10px;
@@ -2249,6 +2249,25 @@
 
 .chooseEmailGroup .emailType {
   margin-left: 15px;
+}
+
+.chooseEmailGroup .emailAddress {
+  flex: 0 0 170px;
+  word-break: break-all;
+  word-break: break-word;
+}
+
+.chooseEmailGroup .emailType {
+  flex: 0 0 142px;
+}
+
+@media (max-width: 400px) {
+  .chooseEmailGroup {
+    display: block;
+  }
+  .chooseEmailGroup .emailType {
+    display: block;
+  }
 }
 
 .bankAccountBlock.asPrimary .bankAmount {
