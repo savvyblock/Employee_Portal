@@ -81,39 +81,64 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         type="password"
                                         id="newPassword"
                                     />
-                                   
                                 </div>
                             </div>
                             <div class="form-group error-vertical">
                                 <label class="form-title" for="workEmail">${sessionScope.languageJSON.label.workEmail}</label>
                                 <div class="valid-wrap">
-                                    <!-- <input
+                                <c:choose>
+									<c:when test="${empty user.userEmail}">
+										 <input
                                         type="text"
                                         class="form-control"
                                         name="workEmail"
                                         id="workEmail"
-                                        value="${emailShowRequest.emailNew}"
-                                    /> -->
-                                    <div style="min-height:20px;">
-                                            ${user.userEmail}
-                                    </div>
+                                        value=""
+                                       />
+									</c:when>
+									<c:otherwise>
+	                                    <div style="min-height:20px;">
+	                                            ${user.userEmail}
+	                                    </div>
+									</c:otherwise>
+								</c:choose>
+                                   
                                 </div>
                             </div>
-                            <!-- <div class="form-group error-vertical">
-                                <label class="form-title" for="workEmail">${sessionScope.languageJSON.profile.verifyEmail}</label>
+                            <c:if test="${empty user.userEmail}">
+                            <div class="form-group error-vertical">
+                                <label class="form-title" for="workEmail">${sessionScope.languageJSON.label.workEmailVerify}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
                                         class="form-control"
                                         name="workEmailVerify"
                                         id="verifyWorkEmail"
-                                        value="${emailShowRequest.emailNew}"
+                                        value=""
                                     />
                                 </div>
-                            </div> -->
+                            </div>
+                            </c:if>
                             <div class="form-group error-vertical">
                                 <label class="form-title" for="homeEmail">${sessionScope.languageJSON.label.homeEmail}</label>
                                 <div class="valid-wrap">
+                                 <c:choose>
+									<c:when test="${empty user.userHomeEmail}">
+										<input
+                                        type="text"
+                                        class="form-control"
+                                        name="homeEmail"
+                                        id="homeEmail"
+                                        value=""/>
+									</c:when>
+									<c:otherwise>
+									  <div style="min-height:20px;">
+                                            ${user.userHomeEmail}
+                                    </div>
+									</c:otherwise>
+								</c:choose>
+                                   
+                                   
                                     <!-- <input
                                         type="text"
                                         class="form-control"
@@ -121,23 +146,23 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         id="homeEmail"
                                         value="${emailShowRequest.hmEmailNew}"
                                     /> -->
-                                    <div style="min-height:20px;">
-                                            ${user.userHomeEmail}
-                                    </div>
+                                  
                                 </div>
                             </div>
-                            <!-- <div class="form-group error-vertical">
-                                <label class="form-title" for="homeEmail">${sessionScope.languageJSON.profile.verifyEmail}</label>
+                            <c:if test="${empty user.userHomeEmail}">
+                            <div class="form-group error-vertical">
+                                <label class="form-title" for="homeEmail">${sessionScope.languageJSON.label.homeEmailVerify}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
                                         class="form-control"
                                         name="homeEmailVerify"
                                         id="verifyHomeEmail"
-                                        value="${emailShowRequest.hmEmailNew}"
+                                        value=""
                                     />
                                 </div>
-                            </div> -->
+                            </div>
+                            </c:if>
                             <div class="form-group">
                                 <label class="form-title" for="hintQuestion">${sessionScope.languageJSON.label.hintQuestion}</label>
                                 <div class="valid-wrap">
