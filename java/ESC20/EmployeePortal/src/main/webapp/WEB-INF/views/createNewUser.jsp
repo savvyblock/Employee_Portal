@@ -81,18 +81,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         type="password"
                                         id="newPassword"
                                     />
+                                   
                                 </div>
                             </div>
                             <div class="form-group error-vertical">
                                 <label class="form-title" for="workEmail">${sessionScope.languageJSON.label.workEmail}</label>
                                 <div class="valid-wrap">
-                                    <input
+                                    <!-- <input
                                         type="text"
                                         class="form-control"
                                         name="workEmail"
                                         id="workEmail"
                                         value="${emailShowRequest.emailNew}"
-                                    />
+                                    /> -->
+                                    <div style="min-height:20px;">
+                                            ${user.userEmail}
+                                    </div>
                                 </div>
                             </div>
                             <!-- <div class="form-group error-vertical">
@@ -110,13 +114,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <div class="form-group error-vertical">
                                 <label class="form-title" for="homeEmail">${sessionScope.languageJSON.label.homeEmail}</label>
                                 <div class="valid-wrap">
-                                    <input
+                                    <!-- <input
                                         type="text"
                                         class="form-control"
                                         name="homeEmail"
                                         id="homeEmail"
                                         value="${emailShowRequest.hmEmailNew}"
-                                    />
+                                    /> -->
+                                    <div style="min-height:20px;">
+                                            ${user.userHomeEmail}
+                                    </div>
                                 </div>
                             </div>
                             <!-- <div class="form-group error-vertical">
