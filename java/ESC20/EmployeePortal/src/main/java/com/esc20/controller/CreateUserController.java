@@ -151,6 +151,8 @@ public class CreateUserController {
 			BeaEmail emailRequest = this.indexService.getBeaEmail(bed);
 			searchUser.setNameF(bed.getNameF());
 			searchUser.setNameL(bed.getNameL());
+			searchUser.setUserEmail(bed.getEmail());
+			searchUser.setUserHomeEmail(bed.getHmEmail());
 			mav.setViewName("createNewUser");
 			mav.addObject("user", searchUser);
 			mav.addObject("emailShowRequest", emailRequest);

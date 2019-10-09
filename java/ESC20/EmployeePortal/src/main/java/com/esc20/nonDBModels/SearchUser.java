@@ -60,7 +60,7 @@ public class SearchUser {
 	}
 	
 	public String getSearchFormattedDateofBirth() {
-		return dateMonth+"/"+dateDay+"/"+dateYear;
+		return dateMonth+"-"+dateDay+"-"+dateYear;
 	}
 	public String getNameF() {
 		return nameF;
