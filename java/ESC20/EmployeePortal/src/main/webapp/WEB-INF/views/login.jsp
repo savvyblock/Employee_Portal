@@ -29,7 +29,7 @@
                                 
                             </div>
                             <div class="form-group">
-                                <label  class="form-title" for="inputPassword">${sessionScope.languageJSON.label.password} ${isUserLoginFailure}</label>
+                                <label  class="form-title" for="inputPassword">${sessionScope.languageJSON.label.password}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-lock left-icon"></i>
                                     <input type="password" id="inputPassword" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password"/>
