@@ -1,8 +1,11 @@
 var reasonOption
 var leaveListArry = new Array()
 var leaveId
+console.log(leaveList)
+
 for(var i = 0,len = leaveList.length;i<len;i++){
     var item = leaveList[i]
+        console.log(item)
     item.start = item.start?convertSlashDate(item.start):''
     item.end = item.end?convertSlashDate(item.end):''
     leaveListArry.push(item)
@@ -14,11 +17,22 @@ function convertSlashDate(date){
     return fullDate + ' ' + convertDay24(dateArry[1],dateArry[2])
 }
 function convertDay24(day,m){
+    var dayArry = day.split(':')
     if(m == 'PM'){
-        var dayArry = day.split(':')
-        return (Number(dayArry[0])+12) + ':'+dayArry[1]
+        if(dayArry[0] == '12'){
+            console.log(Number(12) + ':'+dayArry[1])
+            return Number(12) + ':'+dayArry[1]
+        }else{
+            return (Number(dayArry[0])+12) + ':'+dayArry[1]
+        }
+        
     }else{
-        return day
+        if(dayArry[0] == '12'){
+            return '00' + ':'+dayArry[1]
+        }else{
+            return day
+        }
+        
     }
 }
 
@@ -189,6 +203,7 @@ $(document).ready(function() {
                     $("#absenceReason").html(reasonOption)
                 },
                 eventRender: function(event, element, view) {
+                    console.log(event)
                     if (event.statusCd != 'A') {
                         element.attr('data-toggle', 'modal')
                         element.attr('data-target', '#requestModal')
@@ -312,8 +327,13 @@ function changeFormatTimeAm(value) {
         if (hour == 12) {
             time = hour + ':' + minute + ' PM'
         } else {
-            hour = hour < 10 ? '0' + hour : hour
-            time = hour + ':' + minute + ' AM'
+            if(hour == 0){
+                time = 12 + ':' + minute + ' AM'
+            }else{
+                hour = hour < 10 ? '0' + hour : hour
+                time = hour + ':' + minute + ' AM'
+            }
+            
         }
     }
     return time

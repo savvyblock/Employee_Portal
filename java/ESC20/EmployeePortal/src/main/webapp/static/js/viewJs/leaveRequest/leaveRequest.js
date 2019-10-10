@@ -188,8 +188,12 @@ function changeFormatTimeAm(value){
 			if(hour==12){
 				time = hour+ ":" +minute+" PM"
 			}else{
-				hour = hour < 10 ? "0" + hour : hour;
-				time = hour+ ":" +minute+" AM"
+				if(hour == 0){
+					time = 12 + ':' + minute + ' AM'
+				}else{
+					hour = hour < 10 ? '0' + hour : hour
+					time = hour + ':' + minute + ' AM'
+				}
 			}
 
 		}

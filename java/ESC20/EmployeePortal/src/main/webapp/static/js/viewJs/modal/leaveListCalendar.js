@@ -14,11 +14,22 @@ function convertSlashDate(date){
     return fullDate + ' ' + convertDay24(dateArry[1],dateArry[2])
 }
 function convertDay24(day,m){
+    var dayArry = day.split(':')
     if(m == 'PM'){
-        var dayArry = day.split(':')
-        return (Number(dayArry[0])+12) + ':'+dayArry[1]
+        if(dayArry[0] == '12'){
+            console.log(Number(12) + ':'+dayArry[1])
+            return Number(12) + ':'+dayArry[1]
+        }else{
+            return (Number(dayArry[0])+12) + ':'+dayArry[1]
+        }
+        
     }else{
-        return day
+        if(dayArry[0] == '12'){
+            return '00' + ':'+dayArry[1]
+        }else{
+            return day
+        }
+        
     }
 }
 console.log(leaveListArry)
@@ -145,8 +156,12 @@ function changeFormatTimeAm(value){
     if(hour==12){
         time = hour+ ":" +minute+" PM"
     }else{
-        hour = hour < 10 ? "0" + hour : hour;
-        time = hour+ ":" +minute+" AM"
+        if(hour == 0){
+            time = 12 + ':' + minute + ' AM'
+        }else{
+            hour = hour < 10 ? '0' + hour : hour
+            time = hour + ':' + minute + ' AM'
+        }
     }
 
     }
