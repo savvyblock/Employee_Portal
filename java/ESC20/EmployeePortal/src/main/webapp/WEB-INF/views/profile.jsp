@@ -66,7 +66,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input type="hidden" id="undoName" name="undoName" value="">
                                                     <div class="form-group valueInput">
                                                         <select
-                                                            class="form-control <c:if test="${fn:trim(sessionScope.userDetail.namePre) != fn:trim(nameRequest.namePreNew) }">active</c:if>"
+                                                            class="form-control <c:if test="${fn:trim(sessionScope.userDetail.namePre) != fn:trim(nameRequest.namePreNew)}">active</c:if>"
                                                             aria-label="${sessionScope.languageJSON.profile.title}"
                                                             name="namePreNew"
                                                             id="titleString"
@@ -161,7 +161,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     >
                                                     <div class="form-group valueInput">
                                                         <select
-                                                            class="form-control <c:if test="${sessionScope.userDetail.nameGen != nameRequest.nameGenNew}">active</c:if>"
+                                                            class="form-control <c:if test="${fn:trim(sessionScope.userDetail.nameGen) != fn:trim(nameRequest.nameGenNew)}">active</c:if>"
                                                             aria-label="${sessionScope.languageJSON.profile.generation}"
                                                            
                                                             name="nameGenNew"
@@ -260,7 +260,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <select
                                                         id="maritalStatus"
                                                         name="maritalStatNew"
-                                                        class="form-control <c:if test="${sessionScope.userDetail.maritalStat != mrtlRequest.maritalStatNew }">active</c:if>"
+                                                        class="form-control <c:if test="${fn:trim(sessionScope.userDetail.maritalStat) != fn:trim(mrtlRequest.maritalStatNew) }">active</c:if>"
                                                         aria-label="${sessionScope.languageJSON.profile.local}"
                                                     >
                                                         <c:forEach var="marital" items="${maritalOptions}" varStatus="count">

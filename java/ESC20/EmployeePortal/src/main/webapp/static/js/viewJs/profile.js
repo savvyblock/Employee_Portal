@@ -246,11 +246,43 @@ $(function() {
     
     //133
     $('#saveAll').click(function() {
-        console.log('save -- all')
-        $('#undoName').val("");
-        profileForm = $('#profileForm')
-         var t = $("#profileForm").serializeArray();
-        profileForm.submit();
+        var personalFormValidator = $('#personalForm').data(
+            'bootstrapValidator'
+        )
+        var maritalStatusFormValidator = $('#maritalStatusForm').data(
+            'bootstrapValidator'
+        )
+        var driverLicenseFormValidator = $('#driverLicenseForm').data(
+            'bootstrapValidator'
+        )
+        var emailFormValidator = $('#emailForm').data(
+            'bootstrapValidator'
+        )
+        var emergencyContactFormValidator = $('#emergencyContactForm').data(
+            'bootstrapValidator'
+        )
+        var mailingAddressFormValidator = $('#mailingAddressForm').data(
+            'bootstrapValidator'
+        )
+        var phoneFormValidator = $('#phoneForm').data(
+            'bootstrapValidator'
+        )
+        personalFormValidator.validate()
+        maritalStatusFormValidator.validate()
+        driverLicenseFormValidator.validate()
+        emailFormValidator.validate()
+        emergencyContactFormValidator.validate()
+        mailingAddressFormValidator.validate()
+        phoneFormValidator.validate()
+        if(personalFormValidator.isValid()&&maritalStatusFormValidator.isValid()&&emailFormValidator.isValid()&&emergencyContactFormValidator.isValid()
+        &&mailingAddressFormValidator.isValid()&&phoneFormValidator.isValid()&&driverLicenseFormValidator.isValid()) {
+            console.log('save -- all')
+            $('#undoName').val("");
+            profileForm = $('#profileForm')
+             var t = $("#profileForm").serializeArray();
+            profileForm.submit();
+        }
+        
     })
 //    $('#reset').click(function() {
 //        console.log('reset')
@@ -661,33 +693,29 @@ function restrictionCodeFormValidator() {
         }
     })
 }
-
 function emailFormValidator() {
     $('#emailForm').bootstrapValidator({
         live: 'enable',
         fields: {
             emailNew: {
-                trigger: null,
+                trigger:'change',
                 validators: {
-                    emailAddress: {
-                        message: pleaseEnterCorrectFormatValidator
+                    stringLength: {
+                        max: 26,
+                        message: maxLength26Validator
                     }
                 }
             },
             emailNewVerify: {
-                trigger: null,
                 validators: {
                     identical: {
                         field: 'emailNew',
                         message:emailNotMatchValidator
-                    },
-                    emailAddress: {
-                        message: pleaseEnterCorrectFormatValidator
                     }
                 }
             },
             hmEmailNew: {
-                trigger: null,
+                trigger:'change',
                 validators: {
                     emailAddress: {
                         message: pleaseEnterCorrectFormatValidator

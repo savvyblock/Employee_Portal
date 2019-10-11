@@ -52,8 +52,8 @@ $(function() {
             }
         })
         .on('changeDate', function(ev) {
-            $('#startDateNote').val(startNote)
-            $('#endDateNote').val(endNote)
+            // $('#startDateNote').val(startNote)
+            // $('#endDateNote').val(endNote)
             calcTime()
         })
         .data('datepicker')
