@@ -142,10 +142,59 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         data-title="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}">
                                                         <input type="hidden" class="empId" value="${tem.tmpApprvrEmpNbr}">
                                                         <input type="hidden" class="trId" value="${tem.id}">
-                                                        ${tem.tmpApprvrEmpNbr}: ${tem.approverName}
+                                                        <!-- ${tem.tmpApprvrEmpNbr}: ${tem.approverName} -->
+                                                        <div class="form-group">
+                                                            <input
+                                                                class="form-control empControl"
+                                                                type="text"
+                                                                aria-label="${sessionScope.languageJSON.setTemporaryApprovers.temporaryApprover}"
+                                                                name="name_add_${status.index + 1}"
+                                                                id="name_add_${status.index + 1}"
+                                                                onblur="onBlurTempApproverEntry(event)"
+                                                                value="${tem.tmpApprvrEmpNbr} : ${tem.approverName}"
+                                                                autocomplete="newEmp"
+                                                            />
+                                                            <small class="help-block invalid" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.employeeInvalid}</small>
+                                                            <small class="help-block required" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.enterSelectEmp}</small>
+                                                        </div>
                                                     </td>
-                                                        <td class="empFrom" data-title="${sessionScope.languageJSON.setTemporaryApprovers.from}">${tem.datetimeFrom}</td>
-                                                        <td class="empTo" data-title="${sessionScope.languageJSON.setTemporaryApprovers.to}" >${tem.datetimeTo}</td>
+                                                        <td class="empFrom" data-title="${sessionScope.languageJSON.setTemporaryApprovers.from}">
+                                                            <!-- ${tem.datetimeFrom} -->
+                                                            <div class="form-group">
+                                                                    <div class="fDateGroup date dateFromControl" data-date-format="mm-dd-yyyy">
+                                                                        <button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
+                                                                        <input class="form-control dateInput date-control"
+                                                                        aria-label="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}"
+                                                                        data-title="from"
+                                                                        type="text"
+                                                                        name="temporaryApprovers_add[${status.index + 1}].fromDateString"
+                                                                        id="fromDate_add_${status.index + 1}" autocomplete="off"
+                                                                        placeholder="mm-dd-yyyy"
+                                                                        value="${tem.datetimeFrom}"
+                                                                    />
+                                                                </div>
+                                                                <small class="help-block required" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.selectAFromDate}</small>
+                                                                <small class="help-block overlapsDate" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.overlapsDate}</small>
+                                                            </div>
+                                                        </td>
+                                                        <td class="empTo" data-title="${sessionScope.languageJSON.setTemporaryApprovers.to}" >
+                                                            <!-- ${tem.datetimeTo} -->
+                                                            <div class="form-group">
+                                                                    <div class="fDateGroup date dateToControl" data-date-format="mm-dd-yyyy">
+                                                                        <button class="prefix" type="button" aria-label="${sessionScope.languageJSON.label.showDatepicker}"><i class="fa fa-calendar"></i></button>
+                                                                        <input class="form-control dateInput  date-control"
+                                                                        aria-label="${sessionScope.languageJSON.setTemporaryApprovers.toDate}"
+                                                                        type="text"
+                                                                        name="temporaryApprovers_add[${status.index + 1}].toDateString"
+                                                                        id="toDate_add_${status.index + 1}" autocomplete="off"
+                                                                        placeholder="mm-dd-yyyy"
+                                                                        value="${tem.datetimeTo}"
+                                                                    />
+                                                                    </div>
+                                                                    <small class="help-block required" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.selectAToDate}</small>
+                                                                    <small class="help-block overlapsDate" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.overlapsDate}</small>                  
+                                                            </div>
+                                                        </td>
                                                      
                                                     </tr>
                                         </c:forEach>
@@ -173,6 +222,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="name_01"
                                                         id="name_01"
                                                         onblur="onBlurTempApproverEntry(event)"
+                                                        autocomplete="newEmp"
                                                     />
                                                     <small class="help-block invalid" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.employeeInvalid}</small>
                                                     <small class="help-block required" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.enterSelectEmp}</small>
@@ -192,16 +242,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         />
                                                     </div>
                                                     <small class="help-block required" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.selectAFromDate}</small>
-                                                    <small class="help-block overlapsDate" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.overlapsDate}</small>
-                                                    <!-- <input
-                                                        class="form-control date-control dateFromControl"
-                                                        aria-label="${sessionScope.languageJSON.setTemporaryApprovers.fromDate}"
-                                                        data-title="from"
-                                                        type="text"
-                                                        name="temporaryApprovers[${row.index}].fromDateString"
-                                                        id="fromDate_01" autocomplete="off"
-                                                        placeholder="mm-dd-yyyy"
-                                                    /> -->
+                                                    <small class="help-block overlapsDate" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.overlapsDate}</small>    
                                                 </div>
                                             </td>
                                             <td data-title="${sessionScope.languageJSON.setTemporaryApprovers.to}">
@@ -218,19 +259,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         </div>
                                                         <small class="help-block required" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.selectAToDate}</small>
                                                         <small class="help-block overlapsDate" role="alert" aria-atomic="true" style="display:none;">${sessionScope.languageJSON.validator.overlapsDate}</small>
-                                                    <!-- <input
-                                                        class="form-control  date-control dateToControl"
-                                                        aria-label="${sessionScope.languageJSON.setTemporaryApprovers.toDate}"
-                                                        type="text"
-                                                        data-title="to"
-                                                        name="temporaryApprovers[${row.index}].toDateString"
-                                                        id="toDate_01" autocomplete="off"
-                                                        placeholder="mm-dd-yyyy"
-                                                    /> -->
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <tr class="add-tr">
                                             <td class="no-title" colspan="5">
                                                 <button
                                                     type="button" role="button"

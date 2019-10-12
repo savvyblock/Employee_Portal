@@ -43,6 +43,7 @@ $(function() {
         judgeContent()
         console.log(emptyRow)
         console.log(overlapsRow)
+        console.log(resultDeleteApprover)
         var resultApprover = []
         if(emptyRow == 0 && !overlapsRow){
             approverJson.forEach(function(item) {
@@ -51,15 +52,15 @@ $(function() {
                     resultApprover.push(item)
                 }
             })
-            resultDeleteApprover.forEach(function(item, index){
-                var approver = {
-                    id: '',
-                    empNbr: item.tmpApprvrEmpNbr,
-                    from: item.datetimeFrom,
-                    to: item.datetimeTo
-                }
-                resultApprover.push(approver)
-            })
+            // resultDeleteApprover.forEach(function(item, index){
+            //     var approver = {
+            //         id: '',
+            //         empNbr: item.tmpApprvrEmpNbr,
+            //         from: item.datetimeFrom,
+            //         to: item.datetimeTo
+            //     }
+            //     resultApprover.push(approver)
+            // })
             console.log(resultApprover)
             $('#approverJson').val(JSON.stringify(resultApprover))
             if(showDeleteConfirm){
@@ -106,10 +107,30 @@ $(function() {
                 }
             })
         }
-        
-        // console.log("approver saved")
         console.log(resultDeleteApprover)
-        // verifyRepeat()
+    })
+    $(".dateFromControl .date-control").change(function(){
+        var tr = $(this).parents('tr')
+        var fromDate = $(this).val()
+        if(tr.hasClass('redTd')){
+            // var id = $(this).parents('tr').find('.trId').val()
+            // for(var i =0,len = addedApprover.length;i<len;i++){
+            //     if(addedApprover[i].id == id){
+            //         resultDeleteApprover.push(addedApprover[i])
+            //     }
+            // }
+
+        }else{
+            var id = $(this).parents('tr').find('.trId').val()
+            resultDeleteApprover = resultDeleteApprover.filter(function(value) {
+                if(value.id == id){
+                    console.log(fromDate)
+                    value.datetimeFrom = fromDate
+                }
+                return value
+            })
+        }
+        console.log(resultDeleteApprover)
     })
     // $(document).on('blur','.empControl', function() {
     //     var numberData = $(this).attr('data-number')
@@ -133,7 +154,7 @@ $(function() {
     //     })
     // })
     $(document).on('blur','.dateToControl', function() {
-        var fromValue=$(this).parents('.approver_tr').find('.dateFromControl .date-control').val()
+        var fromValue=$(this).parents('tr').find('.dateFromControl .date-control').val()
         var toValue=$(this).val()
         var fromInput = changeDateYMD(fromValue)
         var toInput = changeDateYMD(toValue)
@@ -148,7 +169,7 @@ $(function() {
         }
     })
     $(document).on('input','.dateToControl .date-control', function() {
-        var fromValue=$(this).parents('.approver_tr').find('.dateFromControl .date-control').val()
+        var fromValue=$(this).parents('tr').find('.dateFromControl .date-control').val()
         var toValue=$(this).val()
         var fromInput = changeDateYMD(fromValue)
         var toInput = changeDateYMD(toValue)
@@ -162,7 +183,7 @@ $(function() {
     })
     $(document).on('blur','.dateFromControl .date-control', function() {
         console.log(">>>>>>>>>>>>")
-        var toValue=$(this).parents('.approver_tr').find('.dateToControl .date-control').val()
+        var toValue=$(this).parents('tr').find('.dateToControl .date-control').val()
         var fromValue=$(this).val()
         var fromInput = changeDateYMD(fromValue)
         var toInput = changeDateYMD(toValue)
@@ -177,7 +198,7 @@ $(function() {
         }
     })
     $(document).on('input','.dateFromControl .date-control', function() {
-        var toValue=$(this).parents('.approver_tr').find('.dateToControl .date-control').val()
+        var toValue=$(this).parents('tr').find('.dateToControl .date-control').val()
         var fromValue=$(this).val()
         var fromInput = changeDateYMD(fromValue)
         var toInput = changeDateYMD(toValue)
@@ -320,7 +341,7 @@ function deleteRow(dom) {
 var checkin = []
 var checkout = []
 function initDateControl() {
-    $('.approver_tr').each(function(index) {
+    $('.setApprovers-list tr').each(function(index) {
         var fromCalendar = $(this).find('.dateFromControl')
         var toCalendar = $(this).find('.dateToControl')
         var fromDateDom = $(this).find('.dateFromControl .date-control')
@@ -411,53 +432,55 @@ function judgeContent() {
     if(lengthRed>0){
         showDeleteConfirm = true
     }
-    $('.approver_tr').each(function(index) {
-        var empNbr = $(this)
-            .find('.empControl')
-            .val()
-        var empArry = empNbr.split(':')
-        var from = $(this)
-            .find('.dateFromControl .date-control')
-            .val()
-        var to = $(this)
-            .find('.dateToControl .date-control')
-            .val()
-        // Verify that the input is complete
-        if((empNbr == ''&& from == '' && to == '')||(empNbr != ''&& from != '' && to != '')){
-            $(this).find('.empControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
-            $(this).find('.dateFromControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
-            $(this).find('.dateToControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
-        }else{
-            emptyRow++
-            if(empNbr == ''){
-                $(this).find('.empControl').parents('.form-group').addClass('has-error').find('.help-block.required').show().addClass("shown")
-            }else{
+    $('.setApprovers-list tbody tr').each(function(index) {
+        if(!$(this).hasClass('redTd') && !$(this).hasClass('add-tr')){
+            var empNbr = $(this)
+                .find('.empControl')
+                .val()
+            var empArry = empNbr&&empNbr!=''?empNbr.split(':'):[]
+            var from = $(this)
+                .find('.dateFromControl .date-control')
+                .val()
+            var to = $(this)
+                .find('.dateToControl .date-control')
+                .val()
+            // Verify that the input is complete
+            if((empNbr == ''&& from == '' && to == '')||(empNbr != ''&& from != '' && to != '')){
                 $(this).find('.empControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
-            }
-            if(from == ''){
-                $(this).find('.dateFromControl').parents('.form-group').addClass('has-error').find('.help-block.required').show().addClass("shown")
-            }else{
                 $(this).find('.dateFromControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
-            }
-            if(to == ''){
-                $(this).find('.dateToControl').parents('.form-group').addClass('has-error').find('.help-block.required').show().addClass("shown")
-            }else{
                 $(this).find('.dateToControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
+            }else{
+                emptyRow++
+                if(empNbr == ''){
+                    $(this).find('.empControl').parents('.form-group').addClass('has-error').find('.help-block.required').show().addClass("shown")
+                }else{
+                    $(this).find('.empControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
+                }
+                if(from == ''){
+                    $(this).find('.dateFromControl').parents('.form-group').addClass('has-error').find('.help-block.required').show().addClass("shown")
+                }else{
+                    $(this).find('.dateFromControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
+                }
+                if(to == ''){
+                    $(this).find('.dateToControl').parents('.form-group').addClass('has-error').find('.help-block.required').show().addClass("shown")
+                }else{
+                    $(this).find('.dateToControl').parents('.form-group').removeClass('has-error').find('.help-block.required').hide().removeClass("shown")
+                }
             }
-        }
-        // Verify that there are overlapping dates
-        var obj
-        if(from != '' && to != ''){
-            obj = {
-                id: '',
-                dom:$(this),
-                domId: index,
-                empNbr: empArry[0].trim(),
-                from: from,
-                to: to
+            // Verify that there are overlapping dates
+            var obj
+            if(empNbr.trim() != '' && from != '' && to != ''){
+                obj = {
+                    id: '',
+                    dom:$(this),
+                    domId: index,
+                    empNbr: empArry[0].trim(),
+                    from: from,
+                    to: to
+                }
+                approverJson.push(obj)
             }
-            approverJson.push(obj)
-        }
+        }   
     })
     overlapsRow = verifyOverlappingDate(approverJson)
     console.log(overlapsRow)
@@ -468,18 +491,19 @@ function judgeContent() {
 }
 function verifyOverlappingDate(json){
     var jsonArry =  []
-    resultDeleteApprover.forEach(function(item, index){
-        var approver = {
-            id: '',
-            empNbr: item.tmpApprvrEmpNbr,
-            from: item.datetimeFrom,
-            to: item.datetimeTo
-        }
-        jsonArry.push(approver)
-    })
+    // resultDeleteApprover.forEach(function(item, index){
+    //     var approver = {
+    //         id: '',
+    //         empNbr: item.tmpApprvrEmpNbr,
+    //         from: item.datetimeFrom,
+    //         to: item.datetimeTo
+    //     }
+    //     jsonArry.push(approver)
+    // })
     json.forEach(function(item, index){
         jsonArry.push(item)
     })
+    console.log(jsonArry)
     var repeatDate = 0
     for(var i = 0;i< jsonArry.length-1;i++){
         for(var j=i+1;j<jsonArry.length;j++){
