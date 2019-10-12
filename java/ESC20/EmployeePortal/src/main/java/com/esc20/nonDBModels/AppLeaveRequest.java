@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import com.esc20.model.BeaEmpLvRqst;
 import com.esc20.model.BhrEmpDemo;
@@ -94,13 +95,16 @@ public class AppLeaveRequest implements Serializable {
 	}
 
 	public AppLeaveRequest(BhrEmpLvXmital item,BhrEmpDemo demo) throws ParseException {
-		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
+		//SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd HH:mm");
+       // SimpleDateFormat aa = new SimpleDateFormat("yyyyMMdd HH:mm aa", Locale.ENGLISH);
+      //  String DtOfAbsTime = aa.format(sdf2.parse(item.getDtOfAbs()+" 08:00"));
 		this.payFreq = item.getId().getPayFreq();
 		this.empNbr = demo.getEmpNbr();
 		this.lvTyp = item.getLvTyp();
 		this.absRsn = item.getAbsRsn();
-		this.datetimeFrom = DateUtil.getLocalTime(sdf2.parse(item.getDtOfAbs()));
-		this.datetimeTo = DateUtil.getLocalTime(sdf2.parse(item.getDtOfAbs()));
+		this.datetimeFrom = DateUtil.getLocalTime(sdf2.parse(item.getDtOfAbs()+" 08:00"));
+		this.datetimeTo = DateUtil.getLocalTime(sdf2.parse(item.getDtOfAbs()+" 08:00"));
 		this.lvUnitsUsed = item.getLvUnitsUsed();
 		this.daysHrs = "D";
 		this.firstName = demo.getNameF();

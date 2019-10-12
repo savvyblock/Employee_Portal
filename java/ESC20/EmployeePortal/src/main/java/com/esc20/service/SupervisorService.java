@@ -129,7 +129,7 @@ public class SupervisorService {
 			employeeResult = supervisorDao.getLeaveRequestSummital(directEmployee.getEmpNbr(), payFreq, start, end, directEmployee);
 			for(int i=0;i<employeeResult.size();i++) {
 				employeeResult.get(i).setComments(emptyList);
-				employeeResult.get(i).setApprover("");
+				//employeeResult.get(i).setApprover("");
 			}
 			result.addAll(employeeResult);
 			employeeResult = supervisorDao.getLeaveRequestPending(directEmployee.getEmpNbr(), payFreq, start, end, directEmployee);

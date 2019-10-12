@@ -18,6 +18,7 @@ import com.esc20.model.BhrEmpLvXmital;
 import com.esc20.model.SecUsers;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.LeaveEmployeeData;
+import com.esc20.util.StringUtil;
 
 @Repository
 public class SupervisorDao {
@@ -93,6 +94,8 @@ public class SupervisorDao {
         AppLeaveRequest request;
         for(BhrEmpLvXmital item : result) {
         	request = new AppLeaveRequest(item,demo);
+        	request.setApprover(this.getApproverXmital(item.getUserId()));
+        	request.setDaysHrs(this.getDaysHrs(payFreq,item.getLvTyp()));
         	res.add(request);
         }
 		return res;
@@ -128,6 +131,30 @@ public class SupervisorDao {
         
 		return res;
 	}
+	
+	public String getDaysHrs(String payFreq,String LvType) {
+		Session session = this.getSession();
+		payFreq = payFreq==null?"":payFreq.trim();
+		LvType = LvType==null?"":LvType.trim();
+		String sql = "SELECT DAYS_HRS FROM BTHR_LV_TYP where PAY_FREQ=:payFreq and LV_TYP=:LvType" ;
+		Query q = session.createSQLQuery(sql);
+		q.setParameter("payFreq", payFreq);
+		q.setParameter("LvType", LvType);
+		@SuppressWarnings("unchecked")
+		List<String> res = q.list();
+		if(res !=null && res.size()>0) {
+			String result = res.get(0);
+			if(StringUtil.isNullOrEmpty(result)) {
+				return "D";
+			}
+			else {
+				return result.trim();
+			}
+			
+		} else
+			return "D";
+	}
+	
 	public String getApprover(Integer id) {
 		Session session = this.getSession();
 		String sql = "FROM SecUsers sec WHERE sec.empNbr in (select flow.apprvrEmpNbr from BeaEmpLvWorkflow flow where flow.apprvrEmpNbr = sec.empNbr and "
@@ -139,7 +166,27 @@ public class SupervisorDao {
 		SecUsers result;
 		if(res !=null && res.size()>0) {
 			result = res.get(0);
-			return result.getUsrNameF()+" "+ result.getUsrNameL();
+			return result.getUsrNameL()+", "+result.getUsrNameF();
+		} else
+			return "";
+	}
+	
+	public String getApproverXmital(String userId) {
+		Session session = this.getSession();
+		userId = userId==null?"":userId.trim();
+		String sql = "select  isnull(U.USR_NAME_L + ', ' + U.USR_NAME_F, '') as approver  from sec_users U where USR_LOG_NAME=:userId" ;
+		Query q = session.createSQLQuery(sql);
+		q.setParameter("userId", userId);
+		@SuppressWarnings("unchecked")
+		List<String> res = q.list();
+		if(res !=null && res.size()>0) {
+			String result = res.get(0);
+			if(StringUtil.isNullOrEmpty(result)) {
+				return "";
+			}
+			else {
+				return result.trim();
+			}
 		} else
 			return "";
 	}
