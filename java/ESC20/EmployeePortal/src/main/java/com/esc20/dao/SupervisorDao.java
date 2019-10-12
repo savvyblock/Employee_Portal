@@ -157,16 +157,25 @@ public class SupervisorDao {
 	
 	public String getApprover(Integer id) {
 		Session session = this.getSession();
-		String sql = "FROM SecUsers sec WHERE sec.empNbr in (select flow.apprvrEmpNbr from BeaEmpLvWorkflow flow where flow.apprvrEmpNbr = sec.empNbr and "
-				+ " flow.lvId =:id) and sec.empNbr is not null" ;
-		Query q = session.createQuery(sql);
+		/*String sql = "FROM SecUsers sec WHERE sec.empNbr in (select flow.apprvrEmpNbr from BeaEmpLvWorkflow flow where flow.apprvrEmpNbr = sec.empNbr and "
+				+ " flow.lvId =:id) and sec.empNbr is not null" ;*/
+		String sql = "select  isnull(sec.USR_NAME_L + ', ' + sec.USR_NAME_F, '') as approver FROM sec_users sec  " + 
+				"WHERE sec.emp_Nbr in (select flow.apprvr_Emp_Nbr from Bea_Emp_Lv_Workflow flow where flow.apprvr_Emp_Nbr = sec.emp_Nbr and  flow.lv_Id =:id) and sec.emp_Nbr is not null";
+		Query q = session.createSQLQuery(sql);
 		q.setParameter("id", id);
 		@SuppressWarnings("unchecked")
-		List<SecUsers> res = q.list();
-		SecUsers result;
+		//List<SecUsers> res = q.list();
+		List<String> res = q.list();
+		//SecUsers result;
 		if(res !=null && res.size()>0) {
-			result = res.get(0);
-			return result.getUsrNameL()+", "+result.getUsrNameF();
+			String result = res.get(0);
+			//return result.getUsrNameL()+", "+result.getUsrNameF();
+			if(StringUtil.isNullOrEmpty(result)) {
+				return "";
+			}
+			else {
+				return result.trim();
+			}
 		} else
 			return "";
 	}
