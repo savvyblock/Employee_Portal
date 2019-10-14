@@ -49,7 +49,13 @@ $(function() {
             approverJson.forEach(function(item) {
                 console.log(item)
                 if(item.empNbr&&item.from&&item.to&&item.empNbr!=''&&item.from!=''&&item.to!=''){
-                    resultApprover.push(item)
+                    var approver = {
+                                id: '',
+                                empNbr: item.empNbr,
+                                from: item.from + " 0:00",
+                                to: item.to + " 23:59"
+                            }
+                    resultApprover.push(approver)
                 }
             })
             // resultDeleteApprover.forEach(function(item, index){
