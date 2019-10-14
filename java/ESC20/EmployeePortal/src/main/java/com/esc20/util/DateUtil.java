@@ -234,4 +234,15 @@ private static long msInDay = 24 * 60 * 60 * 1000;
 //    	cal.add(java.util.Calendar.MILLISECOND, (zoneOffset + dstOffset));
     	return cal.getTime();
     }
+    
+    public static Date minusDays(Date localDate, int days) {
+    	//Date dNow = new Date();  
+    	Date dBefore = new Date();
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.setTime(localDate);
+    	calendar.add(Calendar.DAY_OF_MONTH, -days);  
+    	dBefore = calendar.getTime();  
+    	
+    	return dBefore;
+    }
 }

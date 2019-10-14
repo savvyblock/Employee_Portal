@@ -2,6 +2,7 @@ package com.esc20.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,9 @@ public class BaseSupervisorController{
 		jo.put("spvsrEmpNbr", record.getSpvsrEmpNbr());
 		jo.put("tmpApprvrEmpNbr", record.getTmpApprvrEmpNbr());
 		jo.put("datetimeFrom", sdf1.format(DateUtil.getLocalTime(record.getDatetimeFrom())));
-		jo.put("datetimeTo", sdf1.format(DateUtil.getLocalTime(record.getDatetimeTo())));
+		Date toDate = record.getDatetimeTo();
+		toDate = DateUtil.minusDays(toDate, 1);
+		jo.put("datetimeTo", sdf1.format(DateUtil.getLocalTime(toDate)));
 		jo.put("approverName", approver.getNameL() + ", " + approver.getNameF());
 		return jo;
 	}
