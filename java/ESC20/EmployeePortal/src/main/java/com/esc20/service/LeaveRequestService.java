@@ -162,6 +162,44 @@ public class LeaveRequestService {
 	}
 
 	
+	public String getMessageBodyRequestModified2EmployeeNotification (String supervisorName, String employeeName, String fromDate, String toDate, String fromTime, String toTime, String url, boolean createFlag) {
+		String returnBody = "";
+		StringBuilder emailBody = new StringBuilder();
+		emailBody.append("<p>%s:</p>");
+		if (createFlag) {
+			emailBody.append("<p>This is to notify you that a leave request for you has been created and submitted by %s.  No action is needed on your part.  ");
+			emailBody.append("The leave dates and times for the request are as follows:</p>");
+		} else {
+			emailBody.append("<p>This is to notify you that a leave request previously submitted for you has been modified and resubmitted by %s.  No action is needed on your part.  ");			
+			emailBody.append("The current leave dates and times for the modified request are as follows:</p>");
+		}
+		emailBody.append("<p style='margin-left: 12pt;'>Dates:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s<br/>Times:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s</p>");		
+
+		if (url==null || url.trim().length()==0) {
+			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal if you wish to access the leave request system.</p>");
+		} else {
+			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal if you wish to access the leave request system by clicking on this link:<br/>");
+			emailBody.append("<span style='text-decoration: underline;'>%s</span></p>");
+		}
+		emailBody.append("<p>Thank You</p>");
+		if (url==null || url.trim().length()==0) {
+			returnBody = String.format(emailBody.toString(), employeeName, supervisorName, fromDate, toDate, fromTime, toTime);
+		} else {
+			returnBody = String.format(emailBody.toString(), employeeName, supervisorName, fromDate, toDate, fromTime, toTime, url);
+		}
+		
+		return returnBody;
+	}
+	
+	public void SendEmailToEmpoyee(String subject,String employeeEmail, String messaage) throws MessagingException{
+		try {
+			MailUtil.sendEmail(employeeEmail.trim(), subject, messaage);
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
 	public void sendEmail(BeaEmpLvRqst request,BhrEmpDemo demo,LeaveEmployeeData supervisorData ) throws MessagingException{
 		String supervisorEmail = supervisorData ==null?null:supervisorData.getEmailAddress();
 		if(!StringUtil.isNullOrEmpty(supervisorEmail)) {

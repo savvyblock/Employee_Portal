@@ -7,20 +7,24 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.aspectj.weaver.loadtime.Options;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BeaEmpLvComments;
 import com.esc20.model.BeaEmpLvRqst;
+import com.esc20.model.BeaEmpLvWorkflow;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.AppLeaveRequest;
@@ -354,7 +358,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 	public ModelAndView updateLeaveFromLeaveOverview(HttpServletRequest req, String level, String chain, String leaveId,
 			String leaveType, String absenseReason, String LeaveStartDate, String startTimeValue, String LeaveEndDate,
 			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String empNbr, String freq,
-			String startDate, String endDate,Boolean isAdd, Long token) throws ParseException {
+			String startDate, String endDate,Boolean isAdd, Long token) throws ParseException, MessagingException {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = req.getSession();
 		if(chain==null||leaveType==null||absenseReason==null||LeaveStartDate==null||startTimeValue==null||
@@ -391,7 +395,8 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 		request.setLvUnitsUsed(BigDecimal.valueOf(Double.parseDouble(lvUnitsUsed)));
 		request.setDtOfPay(request.getDtOfPay() == null ? "" : request.getDtOfPay());
 		request.setStatusCd('A');
-		Integer id = this.service.saveLeaveRequest(request, (leaveId != null && !("").equals(leaveId)));
+		boolean isUpdate = leaveId != null && !("").equals(leaveId);
+		Integer id = this.service.saveLeaveRequest(request, isUpdate);
 		// Create Comments
 		if (Remarks != null && !("").equals(Remarks)) {
 			BeaEmpLvComments comments = new BeaEmpLvComments();
@@ -402,6 +407,40 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 			comments.setLvCommentTyp('C');
 			this.service.saveLvComments(comments);
 		}
+		
+		//Send email to employee
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
+		String currentUserFullName = demo.getNameF().trim() + " " + demo.getNameL().trim();
+		BhrEmpDemo empUserDetail = this.indexService.getUserDetail(empNbr);
+		String EmployeeUserFullName = empUserDetail.getNameF().trim() + " " + empUserDetail.getNameL().trim();
+		SimpleDateFormat sdfD = new SimpleDateFormat("MM-dd-yyyy");
+		SimpleDateFormat sdfT = new SimpleDateFormat("hh:mm a");
+		String messageToEmployee =this.service.getMessageBodyRequestModified2EmployeeNotification(currentUserFullName,EmployeeUserFullName , sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
+				sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())), "", !isUpdate);
+		String subject ="";
+		if(isUpdate) {
+			subject = "Leave request modified and resubmitted on your behalf by "+currentUserFullName;
+		}
+		else {
+			subject = "Leave request created and submitted on your behalf by "+currentUserFullName;
+		}
+		
+		String EmpoyeeEmail = empUserDetail ==null?null:empUserDetail.getEmail();
+		if (!StringUtils.isEmpty(EmpoyeeEmail)) {
+			
+			this.service.SendEmailToEmpoyee(subject, EmpoyeeEmail, messageToEmployee);
+		}
+		
+		//Send email first line supervisor
+		LeaveParameters params = this.service.getLeaveParameters();
+		LeaveEmployeeData supervisorData = this.service.getFirstLineSupervisor(empNbr, params.isUsePMIS());
+		String supervisorEmpNbr = supervisorData ==null?null:supervisorData.getEmployeeNumber();
+		if (!StringUtils.isEmpty(supervisorEmpNbr)) {
+			
+			this.service.sendEmail(request, empUserDetail, supervisorData);
+		}
+		
 		mav = this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false,isAdd);
 		mav.addObject("chain", levels);
 		return mav;
