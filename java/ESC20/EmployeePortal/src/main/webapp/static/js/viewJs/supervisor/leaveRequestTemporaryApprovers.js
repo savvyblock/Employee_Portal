@@ -49,11 +49,12 @@ $(function() {
             approverJson.forEach(function(item) {
                 console.log(item)
                 if(item.empNbr&&item.from&&item.to&&item.empNbr!=''&&item.from!=''&&item.to!=''){
+                    var toDate = getMoreDay(item.to)
                     var approver = {
                                 id: '',
                                 empNbr: item.empNbr,
-                                from: item.from + " 0:00",
-                                to: item.to + " 23:59"
+                                from: item.from,
+                                to: toDate
                             }
                     resultApprover.push(approver)
                 }
@@ -222,7 +223,16 @@ function changeDateYMD(date){
     var DateFormat = new Date(dateArry[2]+"-"+dateArry[0]+"-"+dateArry[1])
     return DateFormat
 }
-
+function getMoreDay(date){
+    var dateArry = date.split("-")
+    var dateNew = new Date(dateArry[2]+"-" +dateArry[0] +"-"+dateArry[1]);
+    dateNew.setDate(dateNew.getDate() + 1);
+    var year = dateNew.getFullYear()
+    var month = dateNew.getMonth() + 1 >9?(dateNew.getMonth() + 1):'0'+ (dateNew.getMonth() + 1)
+    var day = dateNew.getDate() >9?dateNew.getDate():'0'+dateNew.getDate()
+    var DateFormat = month +"-" +day +"-" + year
+    return DateFormat
+}
 
 function initialCompleteList(dataList) {
     $('.empControl').each(function() {
