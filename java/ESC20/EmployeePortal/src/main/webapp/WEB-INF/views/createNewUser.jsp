@@ -97,7 +97,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                        />
 									</c:when>
 									<c:otherwise>
-	                                    <div style="min-height:20px;">
+	                                    <div style="min-height:20px;" id="staticWorkEmail">
 	                                            ${user.userEmail}
 	                                    </div>
 									</c:otherwise>
@@ -132,9 +132,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         value=""/>
 									</c:when>
 									<c:otherwise>
-									  <div style="min-height:20px;">
-                                            ${user.userHomeEmail}
-                                    </div>
+									  <div style="min-height:20px;" id="staticHomeEmail">${user.userHomeEmail}</div>
 									</c:otherwise>
 								</c:choose>
                                    
