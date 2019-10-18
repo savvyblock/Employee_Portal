@@ -94,13 +94,20 @@ public class CreateUserController {
 			res.put("success", "false");
 			return res;
 		} else {
-			this.indexService.updateEmailEmployee(newUser.getEmpNbr(), req.getParameter("workEmail"),
-					req.getParameter("homeEmail"));
-			indexService.saveBeaUsers(newUser);
-			res.put("isUserExist", "true");
-			res.put("success", "true");
-			res.put("username", req.getParameter("username"));
-			res.put("password", req.getParameter("password"));
+			try {
+				this.indexService.updateEmailEmployee(newUser.getEmpNbr(), req.getParameter("workEmail"),
+						req.getParameter("homeEmail"));
+				indexService.saveBeaUsers(newUser);
+				res.put("isUserExist", "true");
+				res.put("success", "true");
+				res.put("username", req.getParameter("username"));
+				res.put("password", req.getParameter("password"));
+			}
+			catch (Exception ex) {
+				ex.printStackTrace();
+				res.put("success", "false");
+				return res;
+			}
 		}
 
 		return res;

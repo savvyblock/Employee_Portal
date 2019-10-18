@@ -30,6 +30,7 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.LeaveEmployeePMISData;
 import com.esc20.nonDBModels.SearchUser;
+import com.esc20.util.StringUtil;
 
 @Repository
 public class AppUserDao extends HibernateDaoSupport{
@@ -699,8 +700,25 @@ public class AppUserDao extends HibernateDaoSupport{
 	{
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE BhrEmpDemo SET email = :workEmail, hmEmail = :homeEmail ");
-		sql.append(" WHERE empNbr = :employeeNumber ");
+		if(StringUtil.isNullOrEmpty(workEmail) && (!StringUtil.isNullOrEmpty(workEmail))) {
+			sql.append("UPDATE BhrEmpDemo SET hmEmail = :homeEmail ");
+			sql.append(" WHERE empNbr = :employeeNumber ");
+		}
+		else if((!StringUtil.isNullOrEmpty(workEmail)) && StringUtil.isNullOrEmpty(workEmail)) {
+		
+			sql.append("UPDATE BhrEmpDemo SET email = :workEmail ");
+			sql.append(" WHERE empNbr = :employeeNumber ");
+		}
+		else if((!StringUtil.isNullOrEmpty(workEmail)) && (!StringUtil.isNullOrEmpty(workEmail))) {
+			sql.append("UPDATE BhrEmpDemo SET email = :workEmail, hmEmail = :homeEmail ");
+			sql.append(" WHERE empNbr = :employeeNumber ");
+		}
+		else {
+			return;
+		}
+		
+		/*sql.append("UPDATE BhrEmpDemo SET email = :workEmail, hmEmail = :homeEmail ");
+		sql.append(" WHERE empNbr = :employeeNumber ");*/
 		
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("workEmail", workEmail);
