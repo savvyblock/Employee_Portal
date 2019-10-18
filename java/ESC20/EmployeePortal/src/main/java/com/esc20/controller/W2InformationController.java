@@ -52,50 +52,57 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 @RequestMapping("/w2Information")
-public class W2InformationController{
-   private Logger logger = LoggerFactory.getLogger(W2InformationController.class);
-   
+public class W2InformationController {
+	private Logger logger = LoggerFactory.getLogger(W2InformationController.class);
+
 	@Autowired
 	private IndexService indexService;
 
 	@Autowired
 	private InquiryService service;
-	
-    @Autowired
-    private PDFService pDFService;
-    
-    @Autowired
+
+	@Autowired
+	private PDFService pDFService;
+
+	@Autowired
 	private ReferenceService referenceService;
-    
+
 	private final String module = "W2 Information";
-	
+
 	@RequestMapping("w2Information")
 	public ModelAndView getW2Information(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-        Options options = this.indexService.getOptions();
-        String district = (String)session.getAttribute("districtId");
-        District districtInfo = this.indexService.getDistrict(district);
-        userDetail.setEmpNbr(user.getEmpNbr());
-        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-        List<Code> gens = referenceService.getGenerations();
-		 	for(Code gen: gens) {
-		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
-		    		userDetail.setGenDescription(gen.getDescription());
-		    	}
-		    }
-		
-        String phone = districtInfo.getPhone();
-        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
 
-		 session.setAttribute("userDetail", userDetail);
-         session.setAttribute("companyId", district);
-         session.setAttribute("options", options);
-         session.setAttribute("district", districtInfo);
-		
+		Options options = this.indexService.getOptions();
+		Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(), options.getUsePMISSpvsrLevels());
+		Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+		session.setAttribute("isSupervisor", isSupervisor);
+		session.setAttribute("isTempApprover", isTempApprover);
+		String district = (String) session.getAttribute("districtId");
+		District districtInfo = this.indexService.getDistrict(district);
+		userDetail.setEmpNbr(user.getEmpNbr());
+		userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		List<Code> gens = referenceService.getGenerations();
+		for (Code gen : gens) {
+			if (userDetail.getNameGen() != null
+					&& gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+				userDetail.setGenDescription(gen.getDescription());
+			}
+		}
+
+		String phone = districtInfo.getPhone();
+		districtInfo.setPhone(
+				StringUtil.left(phone, 3) + "-" + StringUtil.mid(phone, 4, 3) + "-" + StringUtil.right(phone, 4));
+
+		session.setAttribute("userDetail", userDetail);
+		session.setAttribute("companyId", district);
+		session.setAttribute("options", options);
+		session.setAttribute("district", districtInfo);
+
 		ModelAndView mav = new ModelAndView();
-		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		// BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		List<String> years = this.service.getW2Years(employeeNumber);
 		String latestYear = DateUtil.getLatestYear(years);
@@ -110,34 +117,36 @@ public class W2InformationController{
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-        Options options = this.indexService.getOptions();
-        String district = (String)session.getAttribute("districtId");
-        District districtInfo = this.indexService.getDistrict(district);
-        userDetail.setEmpNbr(user.getEmpNbr());
-        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-        List<Code> gens = referenceService.getGenerations();
-		 	for(Code gen: gens) {
-		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
-		    		userDetail.setGenDescription(gen.getDescription());
-		    	}
-		    }
-        String phone = districtInfo.getPhone();
-        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+		Options options = this.indexService.getOptions();
+		String district = (String) session.getAttribute("districtId");
+		District districtInfo = this.indexService.getDistrict(district);
+		userDetail.setEmpNbr(user.getEmpNbr());
+		userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		List<Code> gens = referenceService.getGenerations();
+		for (Code gen : gens) {
+			if (userDetail.getNameGen() != null
+					&& gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+				userDetail.setGenDescription(gen.getDescription());
+			}
+		}
+		String phone = districtInfo.getPhone();
+		districtInfo.setPhone(
+				StringUtil.left(phone, 3) + "-" + StringUtil.mid(phone, 4, 3) + "-" + StringUtil.right(phone, 4));
 
-		 session.setAttribute("userDetail", userDetail);
-         session.setAttribute("companyId", district);
-         session.setAttribute("options", options);
-         session.setAttribute("district", districtInfo);
-         
+		session.setAttribute("userDetail", userDetail);
+		session.setAttribute("companyId", district);
+		session.setAttribute("options", options);
+		session.setAttribute("district", districtInfo);
+
 		ModelAndView mav = new ModelAndView();
-		if(year==null) {
+		if (year == null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Get W2 information by year");
 			mav.addObject("errorMsg", "Year is not provided.");
 			return mav;
 		}
-		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		// BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		BhrW2 w2Info = this.service.getW2Info(employeeNumber, year);
 		if (isSuccess == null) {
@@ -198,7 +207,7 @@ public class W2InformationController{
 	public ModelAndView updateW2Consent_old(HttpServletRequest req, String year, String consent) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
-		if(year==null||consent==null) {
+		if (year == null || consent == null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Update W2 consent");
@@ -209,38 +218,42 @@ public class W2InformationController{
 		String employeeNumber = userDetail.getEmpNbr();
 		Boolean isSuccess = this.service.updateW2ElecConsent(employeeNumber, consent);
 		mav = this.getW2InformationByYear(req, year, isSuccess);
-		this.sendEmail(userDetail.getNameF(), userDetail.getNameL(), userDetail.getEmail(), userDetail.getHmEmail(), consent);
+		this.sendEmail(userDetail.getNameF(), userDetail.getNameL(), userDetail.getEmail(), userDetail.getHmEmail(),
+				consent);
 		mav.addObject("isUpdate", true);
 		mav.addObject("isSuccess", isSuccess);
 		return mav;
 	}
-	
-	 @RequestMapping(value = "updateW2Consent", method = RequestMethod.POST)
-	 @ResponseBody
-	 public Map<String, Boolean> updateW2Consent(HttpServletRequest req, String year, String consent) throws IOException{
+
+	@RequestMapping(value = "updateW2Consent", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Boolean> updateW2Consent(HttpServletRequest req, String year, String consent)
+			throws IOException {
 		HttpSession session = req.getSession();
-    	Map<String, Boolean> res = new HashMap<>();
-    	BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		Map<String, Boolean> res = new HashMap<>();
+		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		Boolean isSuccess = this.service.updateW2ElecConsent(employeeNumber, consent);
-		this.sendEmail(userDetail.getNameF(), userDetail.getNameL(), userDetail.getEmail(), userDetail.getHmEmail(), consent);
-		
-    	res.put("isUpdate", true);
-    	res.put("isSuccess", isSuccess);
-    	return res;
-	 }
-	
+		this.sendEmail(userDetail.getNameF(), userDetail.getNameL(), userDetail.getEmail(), userDetail.getHmEmail(),
+				consent);
+
+		res.put("isUpdate", true);
+		res.put("isSuccess", isSuccess);
+		return res;
+	}
+
 	@RequestMapping(value = "cancelW2Consent", method = RequestMethod.POST)
 	@ResponseBody
 	public Boolean cancel1095Consent(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		session.setAttribute("cancelW2Consent", true);
-	    return (Boolean)session.getAttribute("cancelW2Consent");
+		return (Boolean) session.getAttribute("cancelW2Consent");
 	}
-	
-	public Integer sendEmail(String userFirstName, String userLastName, String userWorkEmail, String userHomeEmail, String elecConsntW2) {
+
+	public Integer sendEmail(String userFirstName, String userLastName, String userWorkEmail, String userHomeEmail,
+			String elecConsntW2) {
 		StringBuilder messageContents = new StringBuilder();
-		messageContents.append(userFirstName + " " +userLastName + ", \n\n");
+		messageContents.append(userFirstName + " " + userLastName + ", \n\n");
 		messageContents.append("This receipt confirms you selected ");
 		messageContents.append((elecConsntW2.equals("Y") ? " YES " : " NO "));
 		messageContents.append("in participating in the W-2 Electronic Process. \n");
@@ -253,137 +266,130 @@ public class W2InformationController{
 		String subject = "A MESSAGE FROM W2 ELECTRONIC CONSENT";
 
 		if (!"".equals(userWorkEmail)) {
-			try{
+			try {
 				MailUtil.sendEmail(userWorkEmail, subject, messageContents.toString());
-			}
-			catch(Exception ex) {
+			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-		}
-		else if (!"".equals(userHomeEmail)) {
-			try{
+		} else if (!"".equals(userHomeEmail)) {
+			try {
 				MailUtil.sendEmail(userHomeEmail, subject, messageContents.toString());
-			} 
-			catch(Exception ex) {
+			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}
 		return 0;
 	}
-	
+
 	@RequestMapping("exportPDF")
 	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
 		response.setContentType("application/x-msdownload;charset=UTF-8");
-		response.setHeader("Content-Disposition", "attachment;filename=W-2 Substitute Form for "+year+".pdf");
-		
+		response.setHeader("Content-Disposition", "attachment;filename=W-2 Substitute Form for " + year + ".pdf");
+
 		String path = request.getServletContext().getRealPath("/");
 		if (path != null && !path.endsWith("\\")) {
 			path = path.concat("\\");
 		}
 		pDFService.setRealPath(path);
-		
+
 		ParameterReport report = new ParameterReport();
 		report.setTitle("W-2 Substitute Form for" + year);
 		report.setId("w2Report");
 		report.setFileName("W-2 Substitute Form for" + year);
 		report.setSortable(false);
 		report.setFilterable(false);
-		
+
 		W2Print w2Print = generateW2Print(request, year);
 		IReport ireport = setupReport(report, w2Print, year);
-		
-	    JasperPrint jasperPrint = pDFService.buildReport(ireport);
-    	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+
+		JasperPrint jasperPrint = pDFService.buildReport(ireport);
+		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 	}
 
 	@RequestMapping("printPDF")
 	@ResponseBody
 	public void printPDF(HttpServletRequest request, HttpServletResponse response, String year) throws Exception {
 		response.setContentType("application/pdf;charset=UTF-8");
-		response.setHeader("Content-Disposition", "application/pdf;filename=W-2 Substitute Form for "+year+".pdf");
-		
+		response.setHeader("Content-Disposition", "application/pdf;filename=W-2 Substitute Form for " + year + ".pdf");
+
 		String path = request.getServletContext().getRealPath("/");
 		if (path != null && !path.endsWith("\\")) {
 			path = path.concat("\\");
 		}
 		pDFService.setRealPath(path);
-		
+
 		ParameterReport report = new ParameterReport();
 		report.setTitle("W-2 Substitute Form for" + year);
 		report.setId("w2Report");
 		report.setFileName("W-2 Substitute Form for" + year);
 		report.setSortable(false);
 		report.setFilterable(false);
-		
+
 		W2Print w2Print = generateW2Print(request, year);
 		IReport ireport = setupReport(report, w2Print, year);
-		
-	    JasperPrint jasperPrint = pDFService.buildReport(ireport);
-    	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+
+		JasperPrint jasperPrint = pDFService.buildReport(ireport);
+		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 	}
-	
-	public W2Print generateW2Print(HttpServletRequest req, String year)
-	{
+
+	public W2Print generateW2Print(HttpServletRequest req, String year) {
 		W2Print print = new W2Print();
 		HttpSession session = req.getSession();
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		District district = (District) session.getAttribute("district");
 		BhrW2 w2Info = this.service.getW2Info(employeeNumber, year);
-		if(w2Info == null || userDetail == null)
-		{
+		if (w2Info == null || userDetail == null) {
 			return print;
 		}
 
-		if(!StringUtil.isNullOrEmpty(userDetail.getStaffId()) && userDetail.getStaffId().length() == 9)
-		{
-			String ssn1 = userDetail.getStaffId().substring(0,3);
-			String ssn2 = userDetail.getStaffId().substring(3,5);
-			String ssn3 = userDetail.getStaffId().substring(5,9);
+		if (!StringUtil.isNullOrEmpty(userDetail.getStaffId()) && userDetail.getStaffId().length() == 9) {
+			String ssn1 = userDetail.getStaffId().substring(0, 3);
+			String ssn2 = userDetail.getStaffId().substring(3, 5);
+			String ssn3 = userDetail.getStaffId().substring(5, 9);
 			print.setSsn(ssn1 + "-" + ssn2 + "-" + ssn3);
 		}
 
-		if(!StringUtil.isNullOrEmpty(userDetail.getEmpNbr()) && userDetail.getEmpNbr().length() == 6)
-		{
-			String ein1 = district.getEin().substring(0,2);
-			String ein2 = district.getEin().substring(2,district.getEin().length());
+		if (!StringUtil.isNullOrEmpty(userDetail.getEmpNbr()) && userDetail.getEmpNbr().length() == 6) {
+			String ein1 = district.getEin().substring(0, 2);
+			String ein2 = district.getEin().substring(2, district.getEin().length());
 			print.setEin(ein1 + "-" + ein2);
 		}
 
 		print.setEname(district.getName());
 		print.setEaddress(district.getAddress());
 		print.setEcityst(district.getCity() + ", " + district.getState() + " " + district.getZip());
-		
+
 		logger.info("W2 Infomation Controller Zip4: " + district.getZip4());
-		if(district.getZip4()!=null && district.getZip4().trim().length() > 0)
-		{
+		if (district.getZip4() != null && district.getZip4().trim().length() > 0) {
 			print.setEcityst(print.getEcityst() + "-" + district.getZip4());
 		}
 
 		String middleName = userDetail.getNameM();
-		if (middleName!=null && (middleName.trim()).length() > 0) {
+		if (middleName != null && (middleName.trim()).length() > 0) {
 			middleName = middleName.trim() + " ";
 		} else {
 			middleName = "";
 		}
 
-		print.setEmpname(userDetail.getNameF() + " " + middleName + userDetail.getNameL() + " " + (userDetail.getGenDescription()==null?"":userDetail.getGenDescription()));   //jf20150113 Display description instead of code fix
-		print.setEmpaddress(StringUtil.trim(userDetail.getAddrNbr())+ " "+ StringUtil.trim(userDetail.getAddrStr()));
+		print.setEmpname(userDetail.getNameF() + " " + middleName + userDetail.getNameL() + " "
+				+ (userDetail.getGenDescription() == null ? "" : userDetail.getGenDescription())); // jf20150113 Display
+																									// description
+																									// instead of code
+																									// fix
+		print.setEmpaddress(StringUtil.trim(userDetail.getAddrNbr()) + " " + StringUtil.trim(userDetail.getAddrStr()));
 		String apt = StringUtil.trim(userDetail.getAddrApt());
-		if(apt.length() > 0)
-		{
+		if (apt.length() > 0) {
 			print.setEmpaddress(print.getEmpaddress() + " " + apt);
 		}
 		print.setEmpcityst(userDetail.getAddrCity() + ", " + userDetail.getAddrSt() + " " + userDetail.getAddrZip());
 
 		logger.info("W2 Infomation Controller Zip4: " + userDetail.getAddrZip4());
-		if(userDetail.getAddrZip4()!=null && userDetail.getAddrZip4().trim().length() > 0)
-		{
+		if (userDetail.getAddrZip4() != null && userDetail.getAddrZip4().trim().length() > 0) {
 			print.setEmpcityst(print.getEmpcityst() + "-" + userDetail.getAddrZip4().trim());
 		}
 
-		if(w2Info != null)
-		{
+		if (w2Info != null) {
 			print.setTgross(w2Info.getWhGross().toString());
 			print.setWhold(w2Info.getWhTax().toString());
 			print.setFgross(w2Info.getFicaGross().toString());
@@ -394,7 +400,7 @@ public class W2InformationController{
 			print.setMtax(w2Info.getMedTax().toString());
 		}
 
-		String path = System.getProperty("EmployeeAccess.root")+"\\";
+		String path = System.getProperty("EmployeeAccess.root") + "\\";
 		String unchecked = "uncheckedbox";
 		String checked = "checkedbox";
 
@@ -402,110 +408,113 @@ public class W2InformationController{
 		String retplan = unchecked;
 		String thrdsick = unchecked;
 
-		if(w2Info.getPension() == 'Y')
-		{
+		if (w2Info.getPension() == 'Y') {
 			retplan = checked;
 		}
-		
+
 		BigDecimal sickPay = this.service.getThirdPartySickPay(employeeNumber, year);
-		if(sickPay == null)
+		if (sickPay == null)
 			sickPay = new BigDecimal(0);
-		if(sickPay.doubleValue() > 0)
-		{
+		if (sickPay.doubleValue() > 0) {
 			thrdsick = checked;
 		}
 
 		print.setStatemp(path + "reportImages\\" + statemp + ".gif");
-		print.setRetplan(path + "reportImages\\"+ retplan +".gif");
+		print.setRetplan(path + "reportImages\\" + retplan + ".gif");
 		print.setThrdsick(path + "reportImages\\" + thrdsick + ".gif");
 
 		print.setCopy("Copy B, To Be Filed With Employee\'s FEDERAL Tax Return");
 
-		//*********************************************************************************************************************************
+		// *********************************************************************************************************************************
 		// BOX12
-		DecimalFormat d2Digit = new DecimalFormat("#.00");   //jf20130108 makes sure double value prints .00, instead of .0
+		DecimalFormat d2Digit = new DecimalFormat("#.00"); // jf20130108 makes sure double value prints .00, instead of
+															// .0
 		int row = 0;
 		double ld_data = w2Info.getTaxEmplrLifeGrp().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 		ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 		if (ld_data != 0.00) {
-			row ++;
-			this.populatePrint(print, row, "C", d2Digit.format(ld_data));   //20130108 print .00, instead of .0
+			row++;
+			this.populatePrint(print, row, "C", d2Digit.format(ld_data)); // 20130108 print .00, instead of .0
 		}
 
 		ld_data = w2Info.getEmp457Contrib().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 		ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 		if (ld_data != 0.00) {
-			row ++;
-			this.populatePrint(print, row, "E", d2Digit.format(ld_data));   //20130108 print .00, instead of .0
+			row++;
+			this.populatePrint(print, row, "E", d2Digit.format(ld_data)); // 20130108 print .00, instead of .0
 		}
 
-		ld_data = (w2Info.getEmp457Contrib().add(w2Info.getEmplrContrib457())).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		ld_data = (w2Info.getEmp457Contrib().add(w2Info.getEmplrContrib457())).setScale(2, BigDecimal.ROUND_HALF_UP)
+				.doubleValue();
 		ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 		if (ld_data != 0.00) {
-			row ++;
-			this.populatePrint(print, row, "G", d2Digit.format(ld_data));   //20130108 print .00, instead of .0
+			row++;
+			this.populatePrint(print, row, "G", d2Digit.format(ld_data)); // 20130108 print .00, instead of .0
 		}
 
 		ld_data = w2Info.getSickPayNontax().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 		ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 		if (ld_data != 0.00) {
-			row ++;
-			this.populatePrint(print, row, "J", d2Digit.format(ld_data));   //20130108 print .00, instead of .0
+			row++;
+			this.populatePrint(print, row, "J", d2Digit.format(ld_data)); // 20130108 print .00, instead of .0
 		}
 
 		ld_data = w2Info.getEmpBusinessExpense().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 		ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 		if (ld_data != 0.00) {
-			row ++;
-			this.populatePrint(print, row, "L", d2Digit.format(ld_data));   //20130108 print .00, instead of .0
+			row++;
+			this.populatePrint(print, row, "L", d2Digit.format(ld_data)); // 20130108 print .00, instead of .0
 		}
 
 		ld_data = w2Info.getMovingExpReimbr().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 		ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 		if (ld_data != 0.00) {
-			row ++;
-			this.populatePrint(print, row, "P", d2Digit.format(ld_data));   //20130108 print .00, instead of .0
+			row++;
+			this.populatePrint(print, row, "P", d2Digit.format(ld_data)); // 20130108 print .00, instead of .0
 		}
 
 		ld_data = w2Info.getHsaContrib().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 		ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 		if (ld_data != 0.00) {
-			row ++;
-			this.populatePrint(print, row, "W", d2Digit.format(ld_data));   //20130108 print .00, instead of .0
+			row++;
+			this.populatePrint(print, row, "W", d2Digit.format(ld_data)); // 20130108 print .00, instead of .0
 		}
 
 		ld_data = w2Info.getAnnuityRoth().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 		ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 		if (ld_data != 0.00) {
-			row ++;
-			this.populatePrint(print, row, "BB", d2Digit.format(ld_data));   //20130108 print .00, instead of .0
+			row++;
+			this.populatePrint(print, row, "BB", d2Digit.format(ld_data)); // 20130108 print .00, instead of .0
 		}
 
-		//For calendar year >= 2010
-		if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("") && Integer.valueOf(w2Info.getId().getCalYr()) >= 2010) {
+		// For calendar year >= 2010
+		if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("")
+				&& Integer.valueOf(w2Info.getId().getCalYr()) >= 2010) {
 			ld_data = w2Info.getHireExemptWgs().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 			ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 			if (ld_data != 0.00) {
-				row ++;
+				row++;
 				this.populatePrint(print, row, "CC", d2Digit.format(ld_data));
 			}
 		}
 
-		if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("") && Integer.valueOf(w2Info.getId().getCalYr()) >= 2012) {
+		if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("")
+				&& Integer.valueOf(w2Info.getId().getCalYr()) >= 2012) {
 			ld_data = w2Info.getEmplrPrvdHlthcare().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 			ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 			if (ld_data != 0.00) {
-				row ++;
+				row++;
 				this.populatePrint(print, row, "DD", d2Digit.format(ld_data));
-				
+
 			}
 		}
-		//Annuity Roth 457b reporting starts 2016   
-		if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("") && Integer.valueOf(w2Info.getId().getCalYr()) >= 2012) {
+		// Annuity Roth 457b reporting starts 2016
+		if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("")
+				&& Integer.valueOf(w2Info.getId().getCalYr()) >= 2012) {
 			ld_data = w2Info.getAnnuityRoth457b().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 			ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 			if (ld_data != 0.00) {
-				row ++;
+				row++;
 				this.populatePrint(print, row, "EE", d2Digit.format(ld_data));
 			}
 		}
@@ -519,8 +528,8 @@ public class W2InformationController{
 		box14List.add("Tax Fringe Benefits");
 		box14List.add("Dummy Last Entry");
 
-		Map<String,BigDecimal> box14Map = new HashMap<String,BigDecimal>();
-		box14Map.put(box14List.get(0),w2Info.getNontrsNontaxBusAllow());
+		Map<String, BigDecimal> box14Map = new HashMap<String, BigDecimal>();
+		box14Map.put(box14List.get(0), w2Info.getNontrsNontaxBusAllow());
 		box14Map.put(box14List.get(1), w2Info.getCafeAmt());
 		box14Map.put(box14List.get(2), w2Info.getTrsDeposit());
 		box14Map.put(box14List.get(3), w2Info.getHlthInsDed());
@@ -528,7 +537,7 @@ public class W2InformationController{
 		box14Map.put(box14List.get(5), w2Info.getTaxedBenefits());
 		box14Map.put(box14List.get(6), new BigDecimal(0.00));
 
-		Iterator<String> iter14 = new CodeIterator(box14List,box14Map);
+		Iterator<String> iter14 = new CodeIterator(box14List, box14Map);
 		print.setCode1401(iter14.next());
 		print.setAmt1401(toString(box14Map.get(print.getCode1401())));
 		print.setCode1402(iter14.next());
@@ -549,83 +558,69 @@ public class W2InformationController{
 		if (row == 1) {
 			print.setCode1201(code);
 			print.setAmt1201(value);
-		}
-		else if (row == 2) {
+		} else if (row == 2) {
 			print.setCode1202(code);
 			print.setAmt1202(value);
-		}
-		else if (row == 3) {
+		} else if (row == 3) {
 			print.setCode1203(code);
 			print.setAmt1203(value);
-		}
-		else if (row == 4) {
+		} else if (row == 4) {
 			print.setCode1204(code);
 			print.setAmt1204(value);
-		}
-		else if (row == 5) {
+		} else if (row == 5) {
 			print.setCode1205(code);
 			print.setAmt1205(value);
-		}
-		else if (row == 6) {
+		} else if (row == 6) {
 			print.setCode1206(code);
 			print.setAmt1206(value);
-		}
-		else if (row == 7) {
+		} else if (row == 7) {
 			print.setCode1207(code);
 			print.setAmt1207(value);
-		}
-		else if (row == 8) {
+		} else if (row == 8) {
 			print.setCode1208(code);
 			print.setAmt1208(value);
-		}
-		else if (row == 9) {
+		} else if (row == 9) {
 			print.setCode1209(code);
 			print.setAmt1209(value);
-		}
-		else if (row == 10) {
+		} else if (row == 10) {
 			print.setCode1210(code);
 			print.setAmt1210(value);
-		}
-		else if (row == 11) {
+		} else if (row == 11) {
 			print.setCode1211(code);
 			print.setAmt1211(value);
 		}
 	}
-	
+
 	private String toString(BigDecimal b) {
-		if(b != null) {
+		if (b != null) {
 			return b.toString();
-		}
-		else {
+		} else {
 			return "";
 		}
 	}
-	
-	private IReport setupReport(ParameterReport report, W2Print data, String year) throws Exception 
-	{
-				
+
+	private IReport setupReport(ParameterReport report, W2Print data, String year) throws Exception {
+
 		report.getParameters().clear();
 		ReportParameterConnection parameter = new ReportParameterConnection();
 		parameter.setName("subRptConnection");
 		parameter.setConnection(pDFService.getConn());
-		report.getParameters().add(parameter);	
+		report.getParameters().add(parameter);
 		if (year == null) {
 			return report;
 		} else {
 			report.setFileName("W2_" + year);
 		}
-	
+
 		List<W2Print> forms = new ArrayList<W2Print>();
 		forms.add(data);
 		forms.add(generateW2Copy(data));
-		report.setDataSource(new JRBeanCollectionDataSource(forms));		
+		report.setDataSource(new JRBeanCollectionDataSource(forms));
 		return report;
 	}
-	
 
-	private W2Print generateW2Copy(W2Print print)
-	{
-		W2Print copy = (W2Print)print.clone();
+	private W2Print generateW2Copy(W2Print print) {
+		W2Print copy = (W2Print) print.clone();
 		copy.setCopy("Copy C, For Employee\'s RECORDS");
 		return copy;
 	}

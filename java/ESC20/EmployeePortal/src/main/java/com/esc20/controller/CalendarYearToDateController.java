@@ -77,8 +77,11 @@ public class CalendarYearToDateController {
 		session.setAttribute("options", options);
 		session.setAttribute("userDetail", userDetail);
       //  session.setAttribute("companyId", district);
-        session.setAttribute("options", options);
        // session.setAttribute("district", districtInfo);
+		  Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(),options.getUsePMISSpvsrLevels());
+		  Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+		  session.setAttribute("isSupervisor", isSupervisor);
+		  session.setAttribute("isTempApprover", isTempApprover);
 		
 		ModelAndView mav = new ModelAndView();
 		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
@@ -123,6 +126,11 @@ public class CalendarYearToDateController {
 		    }
 		
    	 	session.setAttribute("userDetail", userDetail);
+   	    Options options = this.indexService.getOptions();
+   	    Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(),options.getUsePMISSpvsrLevels());
+   	    Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+   	    session.setAttribute("isSupervisor", isSupervisor);
+   	    session.setAttribute("isTempApprover", isTempApprover);
 
 		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();

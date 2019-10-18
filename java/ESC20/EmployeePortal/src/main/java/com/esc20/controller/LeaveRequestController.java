@@ -48,44 +48,51 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 
 	@Autowired
 	private IndexService indexService;
-	
+
 	@Autowired
 	private LeaveRequestService service;
 
 	@Autowired
 	private ReferenceService referenceService;
-	
-	private final String module= "Leave Request List View";
-	private SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm aa",Locale.ENGLISH);
+
+	private final String module = "Leave Request List View";
+	private SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm aa", Locale.ENGLISH);
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-	
+
 	@RequestMapping("leaveRequest")
 	public ModelAndView leaveRequest(HttpServletRequest req, String SearchType, String SearchStart, String SearchEnd,
-			String freq,Boolean isAdd) throws ParseException {
+			String freq, Boolean isAdd) throws ParseException {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-        Options options = this.indexService.getOptions();
-        String district = (String)session.getAttribute("districtId");
-        District districtInfo = this.indexService.getDistrict(district);
-        userDetail.setEmpNbr(user.getEmpNbr());
-        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-        List<Code> gens = referenceService.getGenerations();
-		 	for(Code gen: gens) {
-		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
-		    		userDetail.setGenDescription(gen.getDescription());
-		    	}
-		    }
-		
+		Options options = this.indexService.getOptions();
+		String district = (String) session.getAttribute("districtId");
+		District districtInfo = this.indexService.getDistrict(district);
+		userDetail.setEmpNbr(user.getEmpNbr());
+		userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		List<Code> gens = referenceService.getGenerations();
+		for (Code gen : gens) {
+			if (userDetail.getNameGen() != null
+					&& gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+				userDetail.setGenDescription(gen.getDescription());
+			}
+		}
 
-        String phone = districtInfo.getPhone();
-        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+		String phone = districtInfo.getPhone();
+		districtInfo.setPhone(
+				StringUtil.left(phone, 3) + "-" + StringUtil.mid(phone, 4, 3) + "-" + StringUtil.right(phone, 4));
 
-		 session.setAttribute("userDetail", userDetail);
-         session.setAttribute("companyId", district);
-         session.setAttribute("options", options);
-         session.setAttribute("district", districtInfo);
-		
+		session.setAttribute("userDetail", userDetail);
+		session.setAttribute("companyId", district);
+		session.setAttribute("options", options);
+		session.setAttribute("district", districtInfo);
+
+		Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(), options.getUsePMISSpvsrLevels());
+		Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+
+		session.setAttribute("isSupervisor", isSupervisor);
+		session.setAttribute("isTempApprover", isTempApprover);
+
 		ModelAndView mav = new ModelAndView();
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
 		mav.setViewName("/leaveRequest/leaveRequest");
@@ -94,20 +101,19 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 		LeaveParameters params = this.service.getLeaveParameters();
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
 		LeaveEmployeeData supervisorData = this.service.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
-		String supervisorEmpNbr = supervisorData==null?null:supervisorData.getEmployeeNumber();
+		String supervisorEmpNbr = supervisorData == null ? null : supervisorData.getEmployeeNumber();
 		if (supervisorEmpNbr == null) {
 			supervisorEmpNbr = "";
 			mav.addObject("haveSupervisor", false);
-		}else {
+		} else {
 			mav.addObject("haveSupervisor", true);
 		}
-		if(isAdd == null) {
+		if (isAdd == null) {
 			isAdd = false;
 		}
-		if(isAdd) {
+		if (isAdd) {
 			mav.addObject("addRow", true);
-		}
-		else {
+		} else {
 			mav.addObject("addRow", false);
 		}
 		request.setLvTyp(SearchType);
@@ -118,7 +124,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			request.setDatetimeTo(sdf1.parse(SearchEnd + " 23:59:59"));
 		}
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
-		//List<Code> gens = referenceService.getGenerations();
+		// List<Code> gens = referenceService.getGenerations();
 		if (freq == null || ("").equals(freq)) {
 			if (availableFreqs.size() > 0) {
 				freq = availableFreqs.get(0).getCode();
@@ -134,8 +140,8 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 					requestModels.add(model);
 				}
 				Code empty = new Code();
-				List<Code> absRsns =  new ArrayList<Code>();
-				//Add a blank for absRsns for default shown
+				List<Code> absRsns = new ArrayList<Code>();
+				// Add a blank for absRsns for default shown
 				empty = new Code();
 				empty.setDescription(" ");
 				absRsns.add(empty);
@@ -145,7 +151,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 				empty = new Code();
 				empty.setDescription("ALL");
 				leaveTypesforSearch.add(empty);
-				//Add a blank for leave Types for default shown
+				// Add a blank for leave Types for default shown
 				empty = new Code();
 				empty.setDescription(" ");
 				leaveTypes.add(empty);
@@ -155,17 +161,17 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 				JSONArray json = new JSONArray();
 
 				for (int i = 0; i < requestModels.size(); i++) {
-					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null,gens));
+					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes, null, gens));
 				}
-				
+
 				List<String[]> map = this.service.mapReasonsAndLeaveTypes();
 				JSONArray mapJson = new JSONArray();
 				JSONObject tempMap;
 				for (int i = 0; i < map.size(); i++) {
 					tempMap = new JSONObject();
 					tempMap.put("absRsn", map.get(i)[0]);
-					for(int j=0;j<absRsns.size();j++) {
-						if(absRsns.get(j).getCode().equals(map.get(i)[0])) {
+					for (int j = 0; j < absRsns.size(); j++) {
+						if (absRsns.get(j).getCode().equals(map.get(i)[0])) {
 							tempMap.put("absRsnDescrption", absRsns.get(j).getDescription());
 						}
 					}
@@ -193,8 +199,8 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 				requestModels.add(model);
 			}
 			Code empty = new Code();
-			List<Code> absRsns =  new ArrayList<Code>();
-			//Add a blank for absRsns for default shown
+			List<Code> absRsns = new ArrayList<Code>();
+			// Add a blank for absRsns for default shown
 			empty = new Code();
 			empty.setDescription(" ");
 			absRsns.add(empty);
@@ -204,7 +210,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			empty = new Code();
 			empty.setDescription("ALL");
 			leaveTypesforSearch.add(empty);
-			//Add a blank for leave Types for default shown
+			// Add a blank for leave Types for default shown
 			empty = new Code();
 			empty.setDescription(" ");
 			leaveTypes.add(empty);
@@ -213,7 +219,7 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
 			JSONArray json = new JSONArray();
 			for (int i = 0; i < requestModels.size(); i++) {
-				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null,gens));
+				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes, null, gens));
 			}
 			List<String[]> map = this.service.mapReasonsAndLeaveTypes();
 			JSONArray mapJson = new JSONArray();
@@ -221,8 +227,8 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			for (int i = 0; i < map.size(); i++) {
 				tempMap = new JSONObject();
 				tempMap.put("absRsn", map.get(i)[0]);
-				for(int j=0;j<absRsns.size();j++) {
-					if(absRsns.get(j).getCode().equals(map.get(i)[0])) {
+				for (int j = 0; j < absRsns.size(); j++) {
+					if (absRsns.get(j).getCode().equals(map.get(i)[0])) {
 						tempMap.put("absRsnDescrption", absRsns.get(j).getDescription());
 					}
 				}
@@ -246,122 +252,130 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 		mav.addObject("supervisorEmpNbr", supervisorEmpNbr);
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "validateLeaveRequestCommand", method = RequestMethod.POST)
-    @ResponseBody
+	@ResponseBody
 	public Map<String, Object> validateLeaveRequestCommand(HttpServletRequest req, @RequestBody JSONObject param) {
 		Map<String, Object> data = new HashMap<>();
-        String leaveStartDate = param.getString("leaveStartDate");
-        String leaveEndDate = param.getString("leaveEndDate");
-        String startTimeValue = param.getString("startTimeValue");
-        String endTimeValue = param.getString("endTimeValue");
-        String empNbr = param.getString("empNbr");
-        String leaveId = param.getString("leaveId");
-        
-	/*	HttpSession session = req.getSession();
-		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
-		
-	*/
-		
-		List<AppLeaveRequest> savedRequests =  null;
-		// set up the list of saved leave requests to validate against the leave periods of the requests being created/edited
+		String leaveStartDate = param.getString("leaveStartDate");
+		String leaveEndDate = param.getString("leaveEndDate");
+		String startTimeValue = param.getString("startTimeValue");
+		String endTimeValue = param.getString("endTimeValue");
+		String empNbr = param.getString("empNbr");
+		String leaveId = param.getString("leaveId");
+
+		/*
+		 * HttpSession session = req.getSession(); BhrEmpDemo demo = ((BhrEmpDemo)
+		 * session.getAttribute("userDetail"));
+		 * 
+		 */
+
+		List<AppLeaveRequest> savedRequests = null;
+		// set up the list of saved leave requests to validate against the leave periods
+		// of the requests being created/edited
 		savedRequests = this.service.getEmployeeLeaveRequestsPeriods(empNbr);
-		// check if there is an overlap with a previously saved leave request other than any being edited
-		Date toDateObj=null;
-		
-		Date fromDateFromTimeObj=null;
-		Date fromDateToTimeObj=null;
-		Date endDateToTimeObj=null;
+		// check if there is an overlap with a previously saved leave request other than
+		// any being edited
+		Date toDateObj = null;
+
+		Date fromDateFromTimeObj = null;
+		Date fromDateToTimeObj = null;
+		Date endDateToTimeObj = null;
 		try {
-			fromDateFromTimeObj = dateTimeFormat.parse(leaveStartDate+" "+startTimeValue.trim());
-			fromDateToTimeObj = dateTimeFormat.parse(leaveStartDate+" "+endTimeValue.trim());
-			
-			endDateToTimeObj = dateTimeFormat.parse(leaveEndDate+" "+endTimeValue.trim());
+			fromDateFromTimeObj = dateTimeFormat.parse(leaveStartDate + " " + startTimeValue.trim());
+			fromDateToTimeObj = dateTimeFormat.parse(leaveStartDate + " " + endTimeValue.trim());
+
+			endDateToTimeObj = dateTimeFormat.parse(leaveEndDate + " " + endTimeValue.trim());
 		} catch (Exception e) {
-			
-		} 
+
+		}
 		boolean validDateRange = true;
 		for (AppLeaveRequest savedRequest : savedRequests) {
-			if(!leaveId.equals("0")&&!leaveId.equals("")&& savedRequest.getId().toString().equals(leaveId)) {
+			if (!leaveId.equals("0") && !leaveId.equals("") && savedRequest.getId().toString().equals(leaveId)) {
 				continue;
 			}
-		
+
 			try {
 				Calendar calendarFrom = Calendar.getInstance();
 				calendarFrom.setTime(savedRequest.getDatetimeFrom());
 				Calendar calendarTo = Calendar.getInstance();
 				calendarTo.setTime(savedRequest.getDatetimeTo());
-				toDateObj = dateTimeFormat.parse((calendarFrom.get(Calendar.MONTH)+1)+"-"+calendarFrom.get(Calendar.DAY_OF_MONTH)+"-"+calendarFrom.get(Calendar.YEAR)+" "+calendarTo.get(Calendar.HOUR)+":"+calendarTo.get(Calendar.MINUTE)+" "+(calendarTo.get(Calendar.AM_PM)==0?"AM":"PM"));	
+				toDateObj = dateTimeFormat.parse((calendarFrom.get(Calendar.MONTH) + 1) + "-"
+						+ calendarFrom.get(Calendar.DAY_OF_MONTH) + "-" + calendarFrom.get(Calendar.YEAR) + " "
+						+ calendarTo.get(Calendar.HOUR) + ":" + calendarTo.get(Calendar.MINUTE) + " "
+						+ (calendarTo.get(Calendar.AM_PM) == 0 ? "AM" : "PM"));
 			} catch (Exception e) {
-				
+
 			}
 			boolean overlapping = false;
 			if (toDateObj != null) {
-				overlapping = this.service.isLeavePeriodsOverlapping(savedRequest.getDatetimeFrom(), toDateObj, getRequestNumberDays(savedRequest.getDatetimeFrom(),savedRequest.getDatetimeTo()), 
-						fromDateFromTimeObj, fromDateToTimeObj, getRequestNumberDays(fromDateFromTimeObj,endDateToTimeObj));
+				overlapping = this.service.isLeavePeriodsOverlapping(savedRequest.getDatetimeFrom(), toDateObj,
+						getRequestNumberDays(savedRequest.getDatetimeFrom(), savedRequest.getDatetimeTo()),
+						fromDateFromTimeObj, fromDateToTimeObj,
+						getRequestNumberDays(fromDateFromTimeObj, endDateToTimeObj));
 			}
-		    if (overlapping) {
-		    	validDateRange = false;
+			if (overlapping) {
+				validDateRange = false;
 				break;
-		    }					
+			}
 		}
-		
-		if(validDateRange) {
+
+		if (validDateRange) {
 			data.put("sucess", true);
-		}else {
+		} else {
 			data.put("sucess", false);
 		}
 		return data;
 	}
-	public int getRequestNumberDays (Date fromDate,Date toDate) {
+
+	public int getRequestNumberDays(Date fromDate, Date toDate) {
 		int leaveNumberDays = 0;
-		
+
 		try {
-			leaveNumberDays = ((int)((toDate.getTime() - fromDate.getTime())/(1000*60*60*24))) + 1;
+			leaveNumberDays = ((int) ((toDate.getTime() - fromDate.getTime()) / (1000 * 60 * 60 * 24))) + 1;
 		} catch (Exception e) {
 		}
 		return leaveNumberDays;
 	}
-	
-	
+
 	@RequestMapping("leaveRequestByFreqency")
 	public ModelAndView leaveRequestByFrequency(HttpServletRequest req, String freq) throws ParseException {
-		return this.leaveRequest(req, null, null, null, freq,false);
+		return this.leaveRequest(req, null, null, null, freq, false);
 	}
-	
+
 	@RequestMapping("submitLeaveRequest")
 	public ModelAndView submitLeaveRequest(HttpServletRequest req, String leaveId, String leaveType,
 			String absenseReason, String LeaveStartDate, String startTimeValue, String LeaveEndDate,
-			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq,Boolean isAdd, Long token)
-			throws ParseException, MessagingException {
+			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq, Boolean isAdd,
+			Long token) throws ParseException, MessagingException {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
-		if(leaveType==null||absenseReason==null||LeaveStartDate==null||startTimeValue==null||
-				LeaveEndDate==null||endTimeValue==null||lvUnitsDaily==null||lvUnitsUsed==null||freq==null) {
+		if (leaveType == null || absenseReason == null || LeaveStartDate == null || startTimeValue == null
+				|| LeaveEndDate == null || endTimeValue == null || lvUnitsDaily == null || lvUnitsUsed == null
+				|| freq == null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Create or update leave information from leave request list view");
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
 		}
-		
+
 		Long sessionToken = (Long) session.getAttribute("token");
-		if(!sessionToken.equals(token)) {
-			return this.leaveRequest(req, null, null, null, null,isAdd);
+		if (!sessionToken.equals(token)) {
+			return this.leaveRequest(req, null, null, null, null, isAdd);
 		}
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate,
 				endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo);
-		
-		
-		return this.leaveRequest(req, null, null, null, null,isAdd);
+
+		return this.leaveRequest(req, null, null, null, null, isAdd);
 	}
-	
+
 	@RequestMapping("deleteLeaveRequest")
 	public ModelAndView deleteLeaveRequest(HttpServletRequest req, String id, Long token) throws ParseException {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = req.getSession();
-		if(id==null) {
+		if (id == null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Delete leave information from leave request list view");
@@ -369,26 +383,27 @@ public class LeaveRequestController extends BaseLeaveRequestController {
 			return mav;
 		}
 		Long sessionToken = (Long) session.getAttribute("token");
-		if(!sessionToken.equals(token)) {
-			return this.leaveRequest(req, null, null, null, null,false);
+		if (!sessionToken.equals(token)) {
+			return this.leaveRequest(req, null, null, null, null, false);
 		}
 		deleteLeaveRequest(id);
-		return this.leaveRequest(req, null, null, null, null,false);
+		return this.leaveRequest(req, null, null, null, null, false);
 	}
-	
-	
+
 	@RequestMapping(value = "getMinutesToHoursConversionRecs", method = RequestMethod.POST)
 	@ResponseBody
-	public List<LeaveUnitsConversion> getMinutesToHoursConversionRecs(HttpServletRequest req,String payFrequency, String leaveType) throws Exception{  
-	    	List<LeaveUnitsConversion> minutesToHours = this.service.getMinutesToHoursConversionRecs(payFrequency, leaveType);
-	        return minutesToHours;
-	    }
-	
-	
+	public List<LeaveUnitsConversion> getMinutesToHoursConversionRecs(HttpServletRequest req, String payFrequency,
+			String leaveType) throws Exception {
+		List<LeaveUnitsConversion> minutesToHours = this.service.getMinutesToHoursConversionRecs(payFrequency,
+				leaveType);
+		return minutesToHours;
+	}
+
 	@RequestMapping(value = "getHoursToDaysConversionRecs", method = RequestMethod.POST)
 	@ResponseBody
-	public List<LeaveUnitsConversion> getHoursToDaysConversionRecs(HttpServletRequest req,String payFrequency, String leaveType) throws Exception{  
-	    	List<LeaveUnitsConversion> minutesToHours = this.service.getHoursToDaysConversionRecs(payFrequency, leaveType);
-	        return minutesToHours;
-	    }
+	public List<LeaveUnitsConversion> getHoursToDaysConversionRecs(HttpServletRequest req, String payFrequency,
+			String leaveType) throws Exception {
+		List<LeaveUnitsConversion> minutesToHours = this.service.getHoursToDaysConversionRecs(payFrequency, leaveType);
+		return minutesToHours;
+	}
 }

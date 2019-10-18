@@ -952,7 +952,7 @@ public class ProfileController {
 		String phoneAreaBusNew = req.getParameter("phoneAreaBusNew");
 		String phoneNbrBusNew = req.getParameter("phoneNbrBusNew");
 		String busPhoneExtNew = req.getParameter("busPhoneExtNew");
-		
+
 		phoneNbrCellNew = phoneNbrCellNew.replaceAll("-", "");
 		phoneNbrBusNew = phoneNbrBusNew.replaceAll("-", "");
 		phoneNbrNew = phoneNbrNew.replaceAll("-", "");
@@ -1147,6 +1147,10 @@ public class ProfileController {
 		}
 
 		Options options = this.indexService.getOptions();
+		Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(), options.getUsePMISSpvsrLevels());
+		Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+		session.setAttribute("isSupervisor", isSupervisor);
+		session.setAttribute("isTempApprover", isTempApprover);
 		String district = (String) session.getAttribute("districtId");
 		District districtInfo = this.indexService.getDistrict(district);
 		demo.setEmpNbr(user.getEmpNbr());

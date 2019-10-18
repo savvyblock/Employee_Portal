@@ -25,6 +25,7 @@ import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequest;
 import com.esc20.nonDBModels.LeaveRequestModel;
+import com.esc20.nonDBModels.Options;
 import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
@@ -76,6 +77,12 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		    	}
 		    }
 		 session.setAttribute("userDetail", demo);
+		 
+		  Options options = this.indexService.getOptions();
+		  Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(),options.getUsePMISSpvsrLevels());
+		  Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+		  session.setAttribute("isSupervisor", isSupervisor);
+		  session.setAttribute("isTempApprover", isTempApprover);
 		
 	//	BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		boolean supervisorsOnly = true;
