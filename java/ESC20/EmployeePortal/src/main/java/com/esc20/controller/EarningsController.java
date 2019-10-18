@@ -49,13 +49,13 @@ public class EarningsController {
 
 	@Autowired
 	private InquiryService service;
-	
+
 	@Autowired
 	private ReferenceService referenceService;
 
-    @Autowired
-    private PDFService pDFService;
-	
+	@Autowired
+	private PDFService pDFService;
+
 	private final String module = "Earnings";
 
 	@RequestMapping("earnings")
@@ -63,27 +63,34 @@ public class EarningsController {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-        Options options = this.indexService.getOptions();
-        String district = (String)session.getAttribute("districtId");
-        District districtInfo = this.indexService.getDistrict(district);
-        userDetail.setEmpNbr(user.getEmpNbr());
-        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-        List<Code> gens = referenceService.getGenerations();
-		 	for(Code gen: gens) {
-		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
-		    		userDetail.setGenDescription(gen.getDescription());
-		    	}
-		    }
-        String phone = districtInfo.getPhone();
-        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+		Options options = this.indexService.getOptions();
+		String district = (String) session.getAttribute("districtId");
+		District districtInfo = this.indexService.getDistrict(district);
+		userDetail.setEmpNbr(user.getEmpNbr());
+		userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		List<Code> gens = referenceService.getGenerations();
+		for (Code gen : gens) {
+			if (userDetail.getNameGen() != null
+					&& gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+				userDetail.setGenDescription(gen.getDescription());
+			}
+		}
+		String phone = districtInfo.getPhone();
+		districtInfo.setPhone(
+				StringUtil.left(phone, 3) + "-" + StringUtil.mid(phone, 4, 3) + "-" + StringUtil.right(phone, 4));
 
 		session.setAttribute("options", options);
 		session.setAttribute("userDetail", userDetail);
-        session.setAttribute("companyId", district);
-        session.setAttribute("district", districtInfo);
-		
+		session.setAttribute("companyId", district);
+		session.setAttribute("district", districtInfo);
+
+		Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(), options.getUsePMISSpvsrLevels());
+		Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+		session.setAttribute("isSupervisor", isSupervisor);
+		session.setAttribute("isTempApprover", isTempApprover);
+
 		ModelAndView mav = new ModelAndView();
-		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
+		// BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
 		Integer days = ((Options) session.getAttribute("options")).getMaxDays();
 		if (days == null)
@@ -101,7 +108,7 @@ public class EarningsController {
 			message = ((Options) session.getAttribute("options")).getMessageEarnings();
 			earnings = this.service.retrieveEarnings(employeeNumber, latestPayDate);
 			YTDEarnings = this.service.getTYDEarnings(employeeNumber, payDates, latestPayDate);
-			if(earnings!=null && YTDEarnings!=null) {
+			if (earnings != null && YTDEarnings != null) {
 				for (int i = 0; i < earnings.getOther().size(); i++) {
 					for (int j = 0; j < YTDEarnings.getOther().size(); j++) {
 						if (earnings.getOther().get(i).getCode().equals(YTDEarnings.getOther().get(j).getCode())) {
@@ -115,26 +122,26 @@ public class EarningsController {
 			freq = Frequency.getFrequency(StringUtil.mid(latestPayDate.getDateFreq(), 9, 1));
 			year = latestPayDate.getDateFreq().substring(0, 4);
 		}
-		if(earnings !=null && earnings.getOther() !=null && earnings.getOther().size()>0) {
-			//Sort for earnings.others
-			  Collections.sort(earnings.getOther(), new Comparator<EarningsOther>() {
-					@Override
-					public int compare(EarningsOther o1, EarningsOther o2) {
-						String s1 = String.valueOf(o1.getDescription());
-		                String s2 = String.valueOf(o2.getDescription());
-		                return s1.compareTo(s2);
-					}
-		    	});
+		if (earnings != null && earnings.getOther() != null && earnings.getOther().size() > 0) {
+			// Sort for earnings.others
+			Collections.sort(earnings.getOther(), new Comparator<EarningsOther>() {
+				@Override
+				public int compare(EarningsOther o1, EarningsOther o2) {
+					String s1 = String.valueOf(o1.getDescription());
+					String s2 = String.valueOf(o2.getDescription());
+					return s1.compareTo(s2);
+				}
+			});
 		}
-		
+
 		mav.setViewName("/inquiry/earnings");
 		mav.addObject("days", days);
 		mav.addObject("selectedPayDate", latestPayDate);
 		mav.addObject("message", message);
 		mav.addObject("earnings", earnings);
 		mav.addObject("YTDEarnings", YTDEarnings);
-		if(earnings !=null && earnings.getSupplemental() !=null && earnings.getSupplemental().size()>0) {
-			if(!(earnings.getSupplemental().size()==1 && earnings.getSupplemental().get(0).getCode().equals("ZZZ")))
+		if (earnings != null && earnings.getSupplemental() != null && earnings.getSupplemental().size() > 0) {
+			if (!(earnings.getSupplemental().size() == 1 && earnings.getSupplemental().get(0).getCode().equals("ZZZ")))
 				mav.addObject("isSupplemental", true);
 		}
 		mav.addObject("year", year);
@@ -180,8 +187,8 @@ public class EarningsController {
 		mav.addObject("selectedPayDate", payDate);
 		mav.addObject("message", message);
 		mav.addObject("earnings", earnings);
-		if(earnings.getSupplemental().size()>0) {
-			if(!(earnings.getSupplemental().size()==1 && earnings.getSupplemental().get(0).getCode().equals("ZZZ")))
+		if (earnings.getSupplemental().size() > 0) {
+			if (!(earnings.getSupplemental().size() == 1 && earnings.getSupplemental().get(0).getCode().equals("ZZZ")))
 				mav.addObject("isSupplemental", true);
 		}
 		mav.addObject("YTDEarnings", YTDEarnings);
@@ -191,7 +198,8 @@ public class EarningsController {
 	}
 
 	@RequestMapping("exportPDF")
-	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String selectedPayDate) throws Exception {
+	public void exportPDF(HttpServletRequest request, HttpServletResponse response, String selectedPayDate)
+			throws Exception {
 		HttpSession session = request.getSession();
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
@@ -200,39 +208,41 @@ public class EarningsController {
 			days = 0;
 		response.setContentType("application/x-msdownload;charset=UTF-8");
 		PayDate payDate;
-		if(selectedPayDate !=null)
+		if (selectedPayDate != null)
 			payDate = PayDate.getPaydate(selectedPayDate);
 		else {
 			List<PayDate> payDates = this.service.getAvailablePayDates(employeeNumber, days);
 			payDate = this.service.getLatestPayDate(payDates);
 		}
-		response.setHeader("Content-Disposition", "attachment;filename=Earnings for "+payDate.getFormatedDate()+".pdf");
-		
+		response.setHeader("Content-Disposition",
+				"attachment;filename=Earnings for " + payDate.getFormatedDate() + ".pdf");
+
 		String path = request.getServletContext().getRealPath("/");
 		if (path != null && !path.endsWith("\\")) {
 			path = path.concat("\\");
 		}
 		pDFService.setRealPath(path);
-		
+
 		ParameterReport report = new ParameterReport();
 		report.setTitle("Earnings Report");
 		report.setId("earningsReport");
 		report.setFileName("DHrs2500WageandearningstmtTab");
 		report.setSortable(false);
 		report.setFilterable(false);
-		
+
 		EarningsPrint earningsPrint = generateEarningsPrint(request, response, selectedPayDate);
 		JSONArray jsonArray = JSONArray.fromObject(earningsPrint);
-		System.out.println("Earnings Print: "+jsonArray.toString());
+		System.out.println("Earnings Print: " + jsonArray.toString());
 		IReport ireport = setupReport(report, earningsPrint);
-		
-	    JasperPrint jasperPrint = pDFService.buildReport(ireport);
-    	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+
+		JasperPrint jasperPrint = pDFService.buildReport(ireport);
+		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 	}
 
 	@RequestMapping("printPDF")
 	@ResponseBody
-	public void printPDF(HttpServletRequest request, HttpServletResponse response, String selectedPayDate) throws Exception {
+	public void printPDF(HttpServletRequest request, HttpServletResponse response, String selectedPayDate)
+			throws Exception {
 		HttpSession session = request.getSession();
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
@@ -241,36 +251,37 @@ public class EarningsController {
 			days = 0;
 		response.setContentType("application/pdf;charset=UTF-8");
 		PayDate payDate;
-		if(selectedPayDate !=null)
+		if (selectedPayDate != null)
 			payDate = PayDate.getPaydate(selectedPayDate);
 		else {
 			List<PayDate> payDates = this.service.getAvailablePayDates(employeeNumber, days);
 			payDate = this.service.getLatestPayDate(payDates);
 		}
-		response.setHeader("Content-Disposition", "application/pdf;filename=Earnings for "+payDate.getFormatedDate()+".pdf");
-		
+		response.setHeader("Content-Disposition",
+				"application/pdf;filename=Earnings for " + payDate.getFormatedDate() + ".pdf");
+
 		String path = request.getServletContext().getRealPath("/");
 		if (path != null && !path.endsWith("\\")) {
 			path = path.concat("\\");
 		}
 		pDFService.setRealPath(path);
-		
+
 		ParameterReport report = new ParameterReport();
 		report.setTitle("Earnings Report");
 		report.setId("earningsReport");
 		report.setFileName("DHrs2500WageandearningstmtTab");
 		report.setSortable(false);
 		report.setFilterable(false);
-		
+
 		EarningsPrint earningsPrint = generateEarningsPrint(request, response, selectedPayDate);
 		JSONArray jsonArray = JSONArray.fromObject(earningsPrint);
-		System.out.println("Earnings Print: "+jsonArray.toString());
+		System.out.println("Earnings Print: " + jsonArray.toString());
 		IReport ireport = setupReport(report, earningsPrint);
-		
-	    JasperPrint jasperPrint = pDFService.buildReport(ireport);
-    	JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+
+		JasperPrint jasperPrint = pDFService.buildReport(ireport);
+		JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 	}
-	
+
 	public EarningsPrint generateEarningsPrint(HttpServletRequest request, HttpServletResponse response,
 			String selectedPayDate) {
 		EarningsPrint print = new EarningsPrint();
@@ -306,7 +317,7 @@ public class EarningsController {
 		print.setBhr_emp_demo_addr_city(userDetail.getAddrCity());
 		print.setBhr_emp_demo_addr_st(userDetail.getAddrSt());
 		print.setBhr_emp_demo_addr_zip(userDetail.getAddrZip());
-		print.setBhr_emp_demo_addr_zip4(userDetail.getAddrZip4()==null?"":userDetail.getAddrZip4().trim());
+		print.setBhr_emp_demo_addr_zip4(userDetail.getAddrZip4() == null ? "" : userDetail.getAddrZip4().trim());
 		print.setBhr_emp_pay_pay_campus(earnings.getInfo().getCampusId());
 		print.setBhr_emp_pay_emp_nbr(userDetail.getEmpNbr());
 		print.setBhr_emp_job_campus_id(primaryCampusId);
@@ -315,21 +326,20 @@ public class EarningsController {
 		return print;
 	}
 
-	private IReport setupReport(ParameterReport report, EarningsPrint data) throws Exception 
-	{
+	private IReport setupReport(ParameterReport report, EarningsPrint data) throws Exception {
 		report.getParameters().clear();
 		ReportParameterConnection parameter = new ReportParameterConnection();
 		parameter.setName("subRptConnection");
 		parameter.setConnection(pDFService.getConn());
 		report.getParameters().add(parameter);
-		
+
 		report.setFileName("DHrs2500WageandearningstmtTab");
-		
+
 		List<EarningsPrint> forms = new ArrayList<EarningsPrint>();
 		forms.add(data);
 		report.setDataSource(new JRBeanCollectionDataSource(forms));
-		
+
 		return report;
 	}
-	
+
 }

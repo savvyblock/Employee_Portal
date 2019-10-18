@@ -74,6 +74,11 @@ public class CurrentPayInformationController{
          session.setAttribute("companyId", district);
          session.setAttribute("options", options);
          session.setAttribute("district", districtInfo);
+
+		  Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(),options.getUsePMISSpvsrLevels());
+		  Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+		  session.setAttribute("isSupervisor", isSupervisor);
+		  session.setAttribute("isTempApprover", isTempApprover);
 		
 		ModelAndView mav = new ModelAndView();
 		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");

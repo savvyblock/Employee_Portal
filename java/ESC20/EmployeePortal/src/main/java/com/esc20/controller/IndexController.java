@@ -35,80 +35,93 @@ import net.sf.json.JSONObject;
 public class IndexController {
 	@Autowired
 	private IndexService indexService;
-	
+
 	@Autowired
 	private ReferenceService referenceService;
-    
-    @RequestMapping(value="login", method=RequestMethod.GET)
-    public ModelAndView getIndexPage(HttpServletRequest req, String Id,HttpServletResponse response){
-    	ModelAndView mav = new ModelAndView();
-        mav.setViewName("login");
+
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public ModelAndView getIndexPage(HttpServletRequest req, String Id, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("login");
 		Boolean isUserLoginFailure = (Boolean) req.getSession().getAttribute("isUserLoginFailure");
-		if(isUserLoginFailure!=null && isUserLoginFailure) {
+		if (isUserLoginFailure != null && isUserLoginFailure) {
 			req.getSession().removeAttribute("isUserLoginFailure");
 			mav.addObject("isUserLoginFailure", "true");
 		}
-        return mav;
-    }
-    
-    @RequestMapping("markTimeout")
-    @ResponseBody
-    public JSONObject markTimeout(HttpServletRequest req, String Id,HttpServletResponse response){
-    	HttpSession session = req.getSession();
-    	JSONObject result=new JSONObject();
-        session.setAttribute("isTimeOut", true);
-        result.put("isSuccess", "true");
-        return result;
-    }
-    
-    @RequestMapping("home")
-    public ModelAndView getHome(HttpServletRequest req,HttpServletResponse response){
-        HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers) session.getAttribute("user");
+		return mav;
+	}
+
+	@RequestMapping("markTimeout")
+	@ResponseBody
+	public JSONObject markTimeout(HttpServletRequest req, String Id, HttpServletResponse response) {
+		HttpSession session = req.getSession();
+		JSONObject result = new JSONObject();
+		session.setAttribute("isTimeOut", true);
+		result.put("isSuccess", "true");
+		return result;
+	}
+
+	@RequestMapping("home")
+	public ModelAndView getHome(HttpServletRequest req, HttpServletResponse response) {
+		HttpSession session = req.getSession();
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-        Options options = this.indexService.getOptions();
-        /*String district = (String)session.getAttribute("districtId");
-        District districtInfo = this.indexService.getDistrict(district);*/
-        userDetail.setEmpNbr(user.getEmpNbr());
-        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-        List<Code> gens = referenceService.getGenerations();
-		 	for(Code gen: gens) {
-		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
-		    		userDetail.setGenDescription(gen.getDescription());
-		    	}
-		    }
-       /* String phone = districtInfo.getPhone();
-        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));*/
+		Options options = this.indexService.getOptions();
+
+		Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(), options.getUsePMISSpvsrLevels());
+		Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+		session.setAttribute("isSupervisor", isSupervisor);
+		session.setAttribute("isTempApprover", isTempApprover);
+		/*
+		 * String district = (String)session.getAttribute("districtId"); District
+		 * districtInfo = this.indexService.getDistrict(district);
+		 */
+		userDetail.setEmpNbr(user.getEmpNbr());
+		userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		List<Code> gens = referenceService.getGenerations();
+		for (Code gen : gens) {
+			if (userDetail.getNameGen() != null
+					&& gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+				userDetail.setGenDescription(gen.getDescription());
+			}
+		}
+		/*
+		 * String phone = districtInfo.getPhone();
+		 * districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4,
+		 * 3)+"-"+StringUtil.right(phone, 4));
+		 */
 
 		session.setAttribute("options", options);
 		session.setAttribute("userDetail", userDetail);
-		
-       // BhrEmpDemo userDetail = (BhrEmpDemo)session.getAttribute("userDetail");
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("home");
-        mav.addObject("userDetail", userDetail);
-        return mav;
-    }
 
-    @RequestMapping(value = "changeLanguage", method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String, Boolean> changeLanguage(HttpServletRequest req, String language) throws IOException{
-    	Map<String, Boolean> res = new HashMap<>();
-    	req.getSession().setAttribute("language",language);
-		String path = req.getSession().getServletContext().getRealPath("/") +"/static/js/lang/text-"+language+".json";
+		// BhrEmpDemo userDetail = (BhrEmpDemo)session.getAttribute("userDetail");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("home");
+		mav.addObject("userDetail", userDetail);
+		return mav;
+	}
+
+	@RequestMapping(value = "changeLanguage", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Boolean> changeLanguage(HttpServletRequest req, String language) throws IOException {
+		Map<String, Boolean> res = new HashMap<>();
+		req.getSession().setAttribute("language", language);
+		String path = req.getSession().getServletContext().getRealPath("/") + "/static/js/lang/text-" + language
+				+ ".json";
 		File file = new File(path);
 		String input = FileUtils.readFileToString(file, "UTF-8");
 		JSONObject jsonObject = JSONObject.fromObject(input);
 		req.getSession().setAttribute("languageJSON", jsonObject);
-		
-		//these strings should never be translated per esc20
-		String path1 = req.getSession().getServletContext().getRealPath("/") +"/static/js/constant/text-non-translate.json";
+
+		// these strings should never be translated per esc20
+		String path1 = req.getSession().getServletContext().getRealPath("/")
+				+ "/static/js/constant/text-non-translate.json";
 		File file1 = new File(path1);
 		String input1 = FileUtils.readFileToString(file1, "UTF-8");
 		JSONObject jsonObject1 = JSONObject.fromObject(input1);
 		req.getSession().setAttribute("constantJSON", jsonObject1);
-		
+
 		res.put("success", true);
-	    return res;
-    }
+		return res;
+	}
 }

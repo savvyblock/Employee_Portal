@@ -26,6 +26,7 @@ import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequestModel;
+import com.esc20.nonDBModels.Options;
 import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
@@ -45,41 +46,48 @@ public class TempApproverController extends BaseSupervisorController {
 
 	@Autowired
 	private SupervisorService supService;
-	
+
 	@Autowired
 	private ReferenceService referenceService;
 
 	@Autowired
 	private IndexService indexService;
-	
+
 	private final String module = "Set Temp Approvers";
-	
+
 	@RequestMapping("leaveRequestTemporaryApprovers")
 	public ModelAndView getLeaveRequestTemporaryApprovers(HttpServletRequest req, String empNbr) throws ParseException {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
-        String district = (String)session.getAttribute("districtId");
-        District districtInfo = this.indexService.getDistrict(district);
-        demo.setEmpNbr(user.getEmpNbr());
-        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-        List<Code> gens = referenceService.getGenerations();
-	 	for(Code gen: gens) {
-	    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
-	    		demo.setGenDescription(gen.getDescription());
-	    	}
-	    }
+		String district = (String) session.getAttribute("districtId");
+		District districtInfo = this.indexService.getDistrict(district);
+		demo.setEmpNbr(user.getEmpNbr());
+		demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		List<Code> gens = referenceService.getGenerations();
+		for (Code gen : gens) {
+			if (demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+				demo.setGenDescription(gen.getDescription());
+			}
+		}
 
-        String phone = districtInfo.getPhone();
-        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+		String phone = districtInfo.getPhone();
+		districtInfo.setPhone(
+				StringUtil.left(phone, 3) + "-" + StringUtil.mid(phone, 4, 3) + "-" + StringUtil.right(phone, 4));
 
-		 session.setAttribute("userDetail", demo);
-         session.setAttribute("companyId", district);
-         session.setAttribute("district", districtInfo);
-         
+		session.setAttribute("userDetail", demo);
+		session.setAttribute("companyId", district);
+		session.setAttribute("district", districtInfo);
+		
+		Options options = this.indexService.getOptions();
+		Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(), options.getUsePMISSpvsrLevels());
+		Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+		session.setAttribute("isSupervisor", isSupervisor);
+		session.setAttribute("isTempApprover", isTempApprover);
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/supervisor/leaveRequestTemporaryApprovers");
-		//BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		// BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		LeaveParameters params = this.service.getLeaveParameters();
 		boolean supervisorsOnly = true;
 		boolean excludeTempApprovers = false;
@@ -116,36 +124,36 @@ public class TempApproverController extends BaseSupervisorController {
 		if (demo.getEmpNbr().equals(empNbr)) {
 			mav.addObject("chain", chain);
 		}
-		
+
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
-		
-		 List<Code> leaveTypes = new ArrayList<Code>();
-		   
-		//Add a blank for leave Types for default shown
-        Code emptyType = new Code();
-        emptyType.setDescription(" ");
-    	leaveTypes.add(emptyType);
-        leaveTypes.addAll(this.referenceService.getLeaveTypes());
-        
-    	JSONArray leaveTypesJson = new JSONArray();
+
+		List<Code> leaveTypes = new ArrayList<Code>();
+
+		// Add a blank for leave Types for default shown
+		Code emptyType = new Code();
+		emptyType.setDescription(" ");
+		leaveTypes.add(emptyType);
+		leaveTypes.addAll(this.referenceService.getLeaveTypes());
+
+		JSONArray leaveTypesJson = new JSONArray();
 		for (int i = 0; i < leaveTypes.size(); i++) {
 			leaveTypesJson.add(leaveTypes.get(i).toJSON());
 		}
-		
-		List<Code> absRsns =  new ArrayList<Code>();
-		//Add a blank for absRsns for default shown
+
+		List<Code> absRsns = new ArrayList<Code>();
+		// Add a blank for absRsns for default shown
 		emptyType = new Code();
 		emptyType.setDescription(" ");
 		absRsns.add(emptyType);
 		absRsns.addAll(this.referenceService.getAbsRsns());
-		
+
 		JSONArray absRsnsJson = new JSONArray();
 		for (int i = 0; i < absRsns.size(); i++) {
 			absRsnsJson.add(absRsns.get(i).toJSON());
 		}
-		//List<Code> gens = referenceService.getGenerations();
+		// List<Code> gens = referenceService.getGenerations();
 		List<AppLeaveRequest> leavesCalendar = this.supService.getLeaveDetailsForCalendar(demo.getEmpNbr(), null, null,
-				null);		
+				null);
 		List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
 		LeaveRequestModel model;
 		JSONArray calendar = new JSONArray();
@@ -154,16 +162,15 @@ public class TempApproverController extends BaseSupervisorController {
 			requestModels.add(model);
 		}
 		for (int i = 0; i < requestModels.size(); i++) {
-			calendar.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null,gens));
+			calendar.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes, null, gens));
 		}
-        mav.addObject("leavesCalendar", calendar);
-        
-       
-        
-      //  List<Code> testApproves = this.supService.getEmployeeTempApproverSearch(user.getEmpNbr(), "0");
+		mav.addObject("leavesCalendar", calendar);
+
+		// List<Code> testApproves =
+		// this.supService.getEmployeeTempApproverSearch(user.getEmpNbr(), "0");
 		mav.addObject("absRsns", absRsnsJson);
-    	mav.addObject("leaveTypes", leaveTypesJson);
-    	mav.addObject("params", params);
+		mav.addObject("leaveTypes", leaveTypesJson);
+		mav.addObject("params", params);
 		mav.addObject("tmpApprovers", tmpApprovers);
 		mav.addObject("directReportEmployee", employeeDataJSON);
 		return mav;
@@ -173,7 +180,7 @@ public class TempApproverController extends BaseSupervisorController {
 	public ModelAndView nextLevelFromTempApprovers(HttpServletRequest req, String level, String chain,
 			String selectEmpNbr) throws ParseException {
 		ModelAndView mav = new ModelAndView();
-		if(chain==null||selectEmpNbr==null) {
+		if (chain == null || selectEmpNbr == null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Next level from set temp approvers");
@@ -211,7 +218,7 @@ public class TempApproverController extends BaseSupervisorController {
 	public ModelAndView previousLevelFromTempApprovers(HttpServletRequest req, String level, String chain)
 			throws ParseException {
 		ModelAndView mav = new ModelAndView();
-		if(chain==null) {
+		if (chain == null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Previous level from set temp approvers");
@@ -233,7 +240,7 @@ public class TempApproverController extends BaseSupervisorController {
 			String approverJson) throws ParseException {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
-		if(chain==null||approverJson==null) {
+		if (chain == null || approverJson == null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Save temp approvers");
@@ -258,7 +265,9 @@ public class TempApproverController extends BaseSupervisorController {
 			isDelete = true;
 			for (int i = 0; i < inputs.size(); i++) {
 				temp = ((JSONObject) inputs.get(i));
-				if (temp.getString("id") != null && !("").equals(temp.getString("id")) && !("0").equals(temp.getString("id")) && Integer.parseInt(temp.getString("id")) == records.get(j).getId()) {
+				if (temp.getString("id") != null && !("").equals(temp.getString("id"))
+						&& !("0").equals(temp.getString("id"))
+						&& Integer.parseInt(temp.getString("id")) == records.get(j).getId()) {
 					isDelete = false;
 				}
 			}
@@ -274,7 +283,8 @@ public class TempApproverController extends BaseSupervisorController {
 			tempApprover.setDatetimeTo(DateUtil.getUTCTime(sdf1.parse(temp.getString("to"))));
 			tempApprover.setSpvsrEmpNbr(empNbr);
 			tempApprover.setTmpApprvrEmpNbr(temp.getString("empNbr"));
-			this.supService.saveTempApprover(tempApprover, !(temp.getString("id") == null || temp.getString("id").equals("") || temp.getString("id").equals("0")));
+			this.supService.saveTempApprover(tempApprover, !(temp.getString("id") == null
+					|| temp.getString("id").equals("") || temp.getString("id").equals("0")));
 		}
 		mav = this.getLeaveRequestTemporaryApprovers(req, empNbr);
 		mav.addObject("chain", levels);
@@ -284,49 +294,50 @@ public class TempApproverController extends BaseSupervisorController {
 
 	@RequestMapping(value = "getEmployeeTempApproverSearch", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, List<Code>> getEmployeeTempApproverSearch(HttpServletRequest req,String searchStr, String excludeNbr) throws Exception{
-	    	HttpSession session = req.getSession();
-	    	Map<String, List<Code>> res = new HashMap<>();
-	        BeaUsers user = (BeaUsers)session.getAttribute("user");
-	    	BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
-	        demo.setEmpNbr(user.getEmpNbr());
-	        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-	        List<Code> gens = referenceService.getGenerations();
-		 	for(Code gen: gens) {
-		    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
-		    		demo.setGenDescription(gen.getDescription());
-		    	}
-		    }
+	public Map<String, List<Code>> getEmployeeTempApproverSearch(HttpServletRequest req, String searchStr,
+			String excludeNbr) throws Exception {
+		HttpSession session = req.getSession();
+		Map<String, List<Code>> res = new HashMap<>();
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
+		demo.setEmpNbr(user.getEmpNbr());
+		demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		List<Code> gens = referenceService.getGenerations();
+		for (Code gen : gens) {
+			if (demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+				demo.setGenDescription(gen.getDescription());
+			}
+		}
 
-			session.setAttribute("userDetail", demo);
-	    	if(demo==null)
-	    		return null;
-	    	List<Code> testApproves = this.supService.getEmployeeTempApproverSearch(excludeNbr, searchStr);
-	        res.put("tempApprover", testApproves);
-	        return res;
-	    }
-	
+		session.setAttribute("userDetail", demo);
+		if (demo == null)
+			return null;
+		List<Code> testApproves = this.supService.getEmployeeTempApproverSearch(excludeNbr, searchStr);
+		res.put("tempApprover", testApproves);
+		return res;
+	}
+
 	@RequestMapping(value = "isEmpNumberCorrect", method = RequestMethod.POST)
 	@ResponseBody
-	public Boolean isEmpNumberCorrect(HttpServletRequest req,String number) {
+	public Boolean isEmpNumberCorrect(HttpServletRequest req, String number) {
 		Boolean isCorrect = true;
 		HttpSession session = req.getSession();
-        BeaUsers user = (BeaUsers)session.getAttribute("user");
-    	BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
-        demo.setEmpNbr(user.getEmpNbr());
-        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-        List<Code> gens = referenceService.getGenerations();
-	 	for(Code gen: gens) {
-	    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
-	    		demo.setGenDescription(gen.getDescription());
-	    	}
-	    }
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
+		demo.setEmpNbr(user.getEmpNbr());
+		demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		List<Code> gens = referenceService.getGenerations();
+		for (Code gen : gens) {
+			if (demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+				demo.setGenDescription(gen.getDescription());
+			}
+		}
 		session.setAttribute("userDetail", demo);
-    	List<Code> testApproves = this.supService.getEmployeeTempApproverByNumber(user.getEmpNbr(), number);
-        if(testApproves == null || testApproves.size() == 0) {
-        	isCorrect = false;
-        }
-        
-	    return isCorrect;
+		List<Code> testApproves = this.supService.getEmployeeTempApproverByNumber(user.getEmpNbr(), number);
+		if (testApproves == null || testApproves.size() == 0) {
+			isCorrect = false;
+		}
+
+		return isCorrect;
 	}
 }

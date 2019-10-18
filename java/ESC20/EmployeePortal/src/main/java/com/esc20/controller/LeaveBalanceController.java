@@ -30,47 +30,54 @@ import com.esc20.util.StringUtil;
 
 @Controller
 @RequestMapping("/leaveBalance")
-public class LeaveBalanceController{
+public class LeaveBalanceController {
 	@Autowired
 	private IndexService indexService;
 
 	@Autowired
 	private LeaveRequestService service;
-	
+
 	@Autowired
 	private ReferenceService referenceService;
-	
+
 	private final String module = "Leave Balance";
-	
+
 	@RequestMapping("leaveBalance")
 	public ModelAndView leaveBalance(HttpServletRequest req, String SearchType, String SearchStart, String SearchEnd,
 			String freq) throws ParseException {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-        Options options = this.indexService.getOptions();
-        String district = (String)session.getAttribute("districtId");
-        District districtInfo = this.indexService.getDistrict(district);
-        userDetail.setEmpNbr(user.getEmpNbr());
-        userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-        List<Code> gens = referenceService.getGenerations();
-		 	for(Code gen: gens) {
-		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
-		    		userDetail.setGenDescription(gen.getDescription());
-		    	}
-		    }
-        String phone = districtInfo.getPhone();
-        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+		Options options = this.indexService.getOptions();
 
-		 session.setAttribute("userDetail", userDetail);
-         session.setAttribute("companyId", district);
-         session.setAttribute("options", options);
-         session.setAttribute("district", districtInfo);
-		
+		Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(), options.getUsePMISSpvsrLevels());
+		Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+		session.setAttribute("isSupervisor", isSupervisor);
+		session.setAttribute("isTempApprover", isTempApprover);
+		String district = (String) session.getAttribute("districtId");
+		District districtInfo = this.indexService.getDistrict(district);
+		userDetail.setEmpNbr(user.getEmpNbr());
+		userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		List<Code> gens = referenceService.getGenerations();
+		for (Code gen : gens) {
+			if (userDetail.getNameGen() != null
+					&& gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
+				userDetail.setGenDescription(gen.getDescription());
+			}
+		}
+		String phone = districtInfo.getPhone();
+		districtInfo.setPhone(
+				StringUtil.left(phone, 3) + "-" + StringUtil.mid(phone, 4, 3) + "-" + StringUtil.right(phone, 4));
+
+		session.setAttribute("userDetail", userDetail);
+		session.setAttribute("companyId", district);
+		session.setAttribute("options", options);
+		session.setAttribute("district", districtInfo);
+
 		ModelAndView mav = new ModelAndView();
 		SimpleDateFormat sdf1 = new SimpleDateFormat("MM-dd-yyyy");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
-		
+
 		String start = SearchStart;
 		String end = SearchEnd;
 		if (SearchStart != null && !("").equals(SearchStart)) {
@@ -80,7 +87,7 @@ public class LeaveBalanceController{
 			if (SearchEnd != null && !("").equals(SearchEnd)) {
 				endL = DateUtil.getUTCTime(sdf1.parse(SearchEnd));
 			} else {
-				endL =  new Date();
+				endL = new Date();
 			}
 			Calendar fromC = Calendar.getInstance();
 			fromC.setTime(endL);
@@ -90,23 +97,18 @@ public class LeaveBalanceController{
 		if (SearchEnd != null && !("").equals(SearchEnd)) {
 			end = sdf2.format(DateUtil.getUTCTime(sdf1.parse(SearchEnd)));
 		} else {
-			end =  sdf2.format(new Date());
+			end = sdf2.format(new Date());
 		}
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> availableFreqs = this.service.getAvailableFrequencies(demo.getEmpNbr());
 		if (availableFreqs.size() > 0) {
 			for (int i = 0; i < availableFreqs.size(); i++) {
 				String freqCode = availableFreqs.get(i).getCode();
-				if("4".equals(freqCode) || "Biweekly".equals(freqCode))
-				{
+				if ("4".equals(freqCode) || "Biweekly".equals(freqCode)) {
 					availableFreqs.get(i).setDescription("Biweekly");
-				}
-				else if("5".equals(freqCode) || "Semimonthly".equals(freqCode)) 
-				{
+				} else if ("5".equals(freqCode) || "Semimonthly".equals(freqCode)) {
 					availableFreqs.get(i).setDescription("Semimonthly");
-				}
-				else if("6".equals(freqCode) || "Monthly".equals(freqCode))
-				{
+				} else if ("6".equals(freqCode) || "Monthly".equals(freqCode)) {
 					availableFreqs.get(i).setDescription("Monthly");
 				}
 			}
@@ -117,11 +119,13 @@ public class LeaveBalanceController{
 		if (freq == null || ("").equals(freq)) {
 			if (availableFreqs.size() > 0) {
 				freq = availableFreqs.get(0).getCode();
-				//List<LeaveBalance> approvedLeaves = this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType,
-				//		start, end, freq);
+				// List<LeaveBalance> approvedLeaves =
+				// this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType,
+				// start, end, freq);
 				List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
-				//List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");	
-				List<Code> leaveTypes = this.service.getAvailableLeaveTypes(demo.getEmpNbr(), freq);	
+				// List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq,
+				// "");
+				List<Code> leaveTypes = this.service.getAvailableLeaveTypes(demo.getEmpNbr(), freq);
 				List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
 				leaveTypesWithAll.addAll(leaveTypes);
 				mav.setViewName("/leaveBalance/leaveBalance");
@@ -129,14 +133,15 @@ public class LeaveBalanceController{
 				mav.addObject("absRsns", absRsns);
 				mav.addObject("leaveTypes", leaveTypesWithAll);
 				mav.addObject("leaveInfo", leaveInfo);
-				//mav.addObject("leaves", approvedLeaves);
+				// mav.addObject("leaves", approvedLeaves);
 			}
 		} else {
-			List<LeaveBalance> approvedLeaves = this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType, start,
-					end, freq);
+			List<LeaveBalance> approvedLeaves = this.service.getApprovedLeaves(demo.getEmpNbr(), SearchType, start, end,
+					freq);
 			List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
-			//List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq, "");
-			List<Code> leaveTypes = this.service.getAvailableLeaveTypes(demo.getEmpNbr(), freq);	
+			// List<Code> leaveTypes = this.service.getLeaveTypes(demo.getEmpNbr(), freq,
+			// "");
+			List<Code> leaveTypes = this.service.getAvailableLeaveTypes(demo.getEmpNbr(), freq);
 			List<LeaveInfo> leaveInfo = this.service.getLeaveInfo(demo.getEmpNbr(), freq, true);
 			leaveTypesWithAll.addAll(leaveTypes);
 			mav.setViewName("/leaveBalance/leaveBalance");
@@ -156,7 +161,7 @@ public class LeaveBalanceController{
 	@RequestMapping("leaveBalanceByFreqency")
 	public ModelAndView leaveBalanceByFreqency(HttpServletRequest req, String freq) throws ParseException {
 		ModelAndView mav = new ModelAndView();
-		if(freq==null) {
+		if (freq == null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
 			mav.addObject("action", "Get leave balance by frequency");

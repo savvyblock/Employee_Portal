@@ -31,43 +31,48 @@ import net.sf.json.JSONArray;
 @RequestMapping("/supervisorCalendar")
 public class SupervisorCalendarController extends BaseSupervisorController {
 
-    @Autowired
-    private IndexService indexService;
-    
+	@Autowired
+	private IndexService indexService;
+
 	@Autowired
 	private SupervisorService supService;
 
 	@Autowired
 	private ReferenceService referenceService;
-	
+
 	@RequestMapping("calendarView")
 	public ModelAndView getCalendarView(HttpServletRequest req) throws ParseException {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
-        Options options = this.indexService.getOptions();
-        String district = (String)session.getAttribute("districtId");
-        District districtInfo = this.indexService.getDistrict(district);
-        demo.setEmpNbr(user.getEmpNbr());
-        demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-        List<Code> gens = referenceService.getGenerations();
-	 	for(Code gen: gens) {
-	    	if(demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
-	    		demo.setGenDescription(gen.getDescription());
-	    	}
-	    }
+		Options options = this.indexService.getOptions();
+		Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(), options.getUsePMISSpvsrLevels());
+		Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+		session.setAttribute("isSupervisor", isSupervisor);
+		session.setAttribute("isTempApprover", isTempApprover);
+		String district = (String) session.getAttribute("districtId");
+		District districtInfo = this.indexService.getDistrict(district);
+		demo.setEmpNbr(user.getEmpNbr());
+		demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+		List<Code> gens = referenceService.getGenerations();
+		for (Code gen : gens) {
+			if (demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+				demo.setGenDescription(gen.getDescription());
+			}
+		}
 
-        String phone = districtInfo.getPhone();
-        districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
+		String phone = districtInfo.getPhone();
+		districtInfo.setPhone(
+				StringUtil.left(phone, 3) + "-" + StringUtil.mid(phone, 4, 3) + "-" + StringUtil.right(phone, 4));
 
-		 session.setAttribute("userDetail", demo);
-         session.setAttribute("companyId", district);
-         session.setAttribute("options", options);
-         session.setAttribute("district", districtInfo);
-         
+		session.setAttribute("userDetail", demo);
+		session.setAttribute("companyId", district);
+		session.setAttribute("options", options);
+		session.setAttribute("district", districtInfo);
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/supervisor/calendar");
-		//BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		// BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		List<Code> absRsns = this.referenceService.getAbsRsns();
 		JSONArray absRsnsJson = new JSONArray();
 		for (int i = 0; i < absRsns.size(); i++) {
@@ -79,7 +84,7 @@ public class SupervisorCalendarController extends BaseSupervisorController {
 			leaveTypesJson.add(leaveTypes.get(i).toJSON());
 		}
 		List<Code> leaveStatus = this.referenceService.getLeaveStatus();
-	//	List<Code> gens = referenceService.getGenerations();
+		// List<Code> gens = referenceService.getGenerations();
 		List<AppLeaveRequest> leavesCalendar = this.supService.getLeaveDetailsForCalendar(demo.getEmpNbr(), null, null,
 				null);
 		List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
@@ -90,7 +95,7 @@ public class SupervisorCalendarController extends BaseSupervisorController {
 			requestModels.add(model);
 		}
 		for (int i = 0; i < requestModels.size(); i++) {
-			calendar.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes,null,gens));
+			calendar.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes, null, gens));
 		}
 		mav.addObject("absRsns", absRsnsJson);
 		mav.addObject("leaveTypes", leaveTypesJson);
