@@ -212,6 +212,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     </form>
                 </div>
             </div>
+            <div class="loadingOn" style="display:none;">
+                    <div class="loadEffect">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                </div>
+            </div>
     </body>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/createNewUser.js"></script>
 

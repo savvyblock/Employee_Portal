@@ -140,6 +140,7 @@ $(function(){
         if (newUserFormValidator.isValid()) {
            
             if(workE===workEV && homeE===homeEV){
+                $(".loadingOn").show()
                 $.ajax({
                     type: 'post',
                     url: urlMain+'/createUser/saveNewUser',
@@ -151,7 +152,8 @@ $(function(){
                     success: function(data) {
                     	console.log(data);
                     	$("#loginUsername").val(data.username);
-                    	$("#loginPassword").val(data.password);
+                        $("#loginPassword").val(data.password);
+                        $(".loadingOn").hide()
                     	$("#loginForm").submit();
                     }
                 })

@@ -68,23 +68,26 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                            </c:if>
                             <div class="form-group">
                                 <c:if test="${user.userEmail != ''}">
+                                    <label class="form-title">${sessionScope.languageJSON.label.workEmail}</label>
                                     <label class="chooseEmailGroup" for="workEmail">
-                                    <input type="radio" name="email" id="workEmail" checked value="${user.userEmail}" aria-label="${sessionScope.languageJSON.label.chooseWorkEmailSend}">
+                                    <input style="margin-left:0;" type="radio" name="email" id="workEmail" checked value="${user.userEmail}" aria-label="${sessionScope.languageJSON.label.chooseWorkEmailSend}">
                                     <span class="emailAddress">${user.userEmail}</span>
-                                    <span class="emailType">${sessionScope.languageJSON.label.workEmail}</span>
                                     </label>
                                 </c:if>
+                            </div>
+                            <div class="form-group">
                                 <c:if test="${user.userHomeEmail != ''}">
+                                    <label class="form-title" >${sessionScope.languageJSON.label.homeEmail}</label>
                                     <label class="chooseEmailGroup" for="homeEmail">
-                                        <input type="radio" name="email" id="homeEmail" value="${user.userHomeEmail}" aria-label="${sessionScope.languageJSON.label.chooseHomeEmailSend}">
+                                        <input style="margin-left:0;" type="radio" name="email" id="homeEmail" value="${user.userHomeEmail}" aria-label="${sessionScope.languageJSON.label.chooseHomeEmailSend}">
                                         <span class="emailAddress">${user.userHomeEmail}</span>
-                                        <span class="emailType" >${sessionScope.languageJSON.label.homeEmail}</span>
+                                        
                                     </label>
                                 </c:if>
                                 <c:if test="${user.userHomeEmail == '' && user.userEmail == ''}">
                                     <p class="error-hint" role="alert">${sessionScope.languageJSON.label.getPasswordNoEmail}</p>
                                 </c:if>
-                              </div>
+                            </div>
 
                             <c:if test="${errorMessage!=null && errorMessage!=''}">
                             	<p class="error-hint" role="alert" aria-atomic="true" id="noUserError">
