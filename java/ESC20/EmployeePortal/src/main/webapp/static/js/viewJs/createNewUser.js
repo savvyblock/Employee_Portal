@@ -118,8 +118,10 @@ $(function(){
     	var password= $("#password").val();
         var homeE = $("#homeEmail").val()
         var homeEV = $("#verifyHomeEmail").val()
+        var homeStatic = $("#staticHomeEmail").text()
         var workE = $("#workEmail").val()
         var workEV = $("#verifyWorkEmail").val()
+        var workStatic = $("#staticWorkEmail").text()
         var hintQuestion = $("#hintQuestion").val();
         var hintAnswer = $("#hintAnswer").val();
         var newUserFormValidator = $('#createNewUserForm').data(
@@ -141,12 +143,16 @@ $(function(){
            
             if(workE===workEV && homeE===homeEV){
                 $(".loadingOn").show()
+                var wEmail = (workE || workStatic).trim()
+                var hEmail = (homeE || homeStatic).trim()
+                console.log(wEmail)
+                console.log(hEmail)
                 $.ajax({
                     type: 'post',
                     url: urlMain+'/createUser/saveNewUser',
                     cache: false,
-                    data: {empNbr: empNbr, username: username, password: password, workEmail: workE,
-                    		homeEmail: homeE, hintQuestion: hintQuestion, hintAnswer: hintAnswer, 
+                    data: {empNbr: empNbr, username: username, password: password, workEmail: wEmail,
+                    		homeEmail: hEmail, hintQuestion: hintQuestion, hintAnswer: hintAnswer, 
                     		csrfmiddlewaretoken: $("#csrfmiddlewaretoken").val()},
                     dataType: 'json',
                     success: function(data) {
