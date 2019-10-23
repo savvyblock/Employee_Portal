@@ -40,12 +40,14 @@ import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Bank;
 import com.esc20.nonDBModels.BankRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.DemoOption;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Money;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.Page;
 import com.esc20.nonDBModels.PayInfo;
+import com.esc20.nonDBModels.PayrollOption;
 import com.esc20.nonDBModels.SearchCriteria;
 import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.BankService;
@@ -1309,6 +1311,9 @@ public class ProfileController {
 			}
 
 		}
+		
+	    DemoOption demoOption = this.indexService.getDemoOption();
+	    PayrollOption payrollOption = this.indexService.getPayrollOption(user.getEmpNbr(), freqCode);
 
 		List<Code> bankAccountTypes = this.referenceService.getDdAccountTypes();
 		mav.setViewName("profile");
@@ -1336,6 +1341,8 @@ public class ProfileController {
 		mav.addObject("banks", allBanks);
 		mav.addObject("w4Request", w4Request);
 		mav.addObject("bankAccountTypes", bankAccountTypes);
+		mav.addObject("demoOptions", demoOption);
+		mav.addObject("payrollOption", payrollOption);
 	}
 
 	@RequestMapping(value = "validatePassword", method = RequestMethod.POST)

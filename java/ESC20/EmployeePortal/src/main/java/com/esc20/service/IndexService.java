@@ -28,10 +28,13 @@ import com.esc20.model.BeaUsers;
 import com.esc20.model.BeaW4;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPay;
+import com.esc20.nonDBModels.DemoOption;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayInfo;
+import com.esc20.nonDBModels.PayrollOption;
 import com.esc20.nonDBModels.SearchUser;
+import com.esc20.util.StringUtil;
 
 
 @Service
@@ -89,6 +92,27 @@ public class IndexService {
 	public Options getOptions() {
 		return optionsDao.getOptions();
 	}
+	
+	public DemoOption getDemoOption() {
+		return optionsDao.getDemoOption();
+	}
+	
+	public PayrollOption getPayrollOption(String employeeNumber, String frequency) {
+		PayrollOption option = new PayrollOption();
+		option.setFieldDisplayOptionInfo(optionsDao.getPayInfoFieldDisplay(frequency));
+		option.setFieldDisplayOptionBank(optionsDao.getAccountInfoFieldDisplay(frequency));
+		
+		String payInactive = optionsDao.getActiveEmployee(employeeNumber,frequency);
+		
+		if((!StringUtil.isNullOrEmpty(payInactive)) && payInactive.trim().equals("2"))
+		{
+			option.setFieldDisplayOptionInfo("I");
+			option.setFieldDisplayOptionBank("I");
+		}
+		
+		return option;
+	}
+	
 	public District getDistrict(String district) {
 		return userDao.getDistrict(district);
 	}
