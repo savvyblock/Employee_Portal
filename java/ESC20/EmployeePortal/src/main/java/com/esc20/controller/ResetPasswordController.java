@@ -120,6 +120,7 @@ public class ResetPasswordController {
 		searchUser.setEmpNumber(empNbr);
 		searchUser.setUsername(user.getUsrname());
 		searchUser.setUserEmail(bed.getEmail());
+		searchUser.setUserHomeEmail(bed.getHmEmail());
 		searchUser.setNameF(bed.getNameF());
 		searchUser.setNameL(bed.getNameL());
 		searchUser.setHintQuestion(user.getHint());
