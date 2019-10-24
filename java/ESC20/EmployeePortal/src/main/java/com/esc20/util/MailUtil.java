@@ -55,14 +55,14 @@ public class MailUtil {
 
 	private static final Integer serverPort = 25;
 
-	private static final String fromAddress = "parentportal@txeis.net";
+	private static final String fromAddress = "employeeportal@txeis.net";
 	
 	public static void sendEmail(String to, String subject, String content) throws MessagingException{
 		Properties props = new Properties();
 		props.put("mail.smtp.host", serverHost);
 		props.put("mail.smtp.port", serverPort);
 		props.put("mail.smtp.auth", "false");
-		props.put("mail.transport.protocol", "smtp");
+		//props.put("mail.transport.protocol", "smtp");
 		Session session = Session.getInstance(props);
 		
 		MimeMessage message = new MimeMessage(session);
@@ -70,9 +70,10 @@ public class MailUtil {
 		message.setContent(content,"text/html;charset=UTF-8");
 		message.setFrom(new InternetAddress(fromAddress));
 		message.setRecipients(Message.RecipientType.TO, to);
-		Transport transport = session.getTransport();
+		Transport.send(message);
+		/*Transport transport = session.getTransport();
 		transport.sendMessage(message, message.getAllRecipients());
-		transport.close();
+		transport.close();*/
 	}
 	
 }

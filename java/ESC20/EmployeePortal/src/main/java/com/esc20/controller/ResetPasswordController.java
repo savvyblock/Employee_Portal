@@ -8,6 +8,8 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,8 @@ import com.esc20.util.MailUtil;
 @Controller
 @RequestMapping("/resetPassword")
 public class ResetPasswordController {
+	
+	private Logger logger = LoggerFactory.getLogger(ResetPasswordController.class);
 
 	@Autowired
 	private IndexService indexService;
@@ -223,6 +227,7 @@ public class ResetPasswordController {
 			this.indexService.updateUser(user);
 
 		} catch (Exception e) {
+			logger.info("resetPswFailed : "+ e.getMessage());
 			mav.addObject("resetPsw", "resetPswFaild");
 		}
 		mav.addObject("resetPsw", "resetPswSuccess");
@@ -284,7 +289,8 @@ public class ResetPasswordController {
 		try {
 			MailUtil.sendEmail(emailSelected, subject, messageContents.toString());
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			//ex.printStackTrace();
+			logger.info("send Email Failed when Reset Password : "+ ex.getMessage());
 			return 1;
 		}
 		return 0;
