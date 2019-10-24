@@ -188,7 +188,7 @@ public class ResetPasswordController {
 			mav.addObject("errorMessage", "The answer is wrong!");
 			mav.addObject("count", count);
 		}
-		// mav.addObject("user", searchUser);
+		mav.addObject("user", searchUser);
 		return mav;
 	}
 
