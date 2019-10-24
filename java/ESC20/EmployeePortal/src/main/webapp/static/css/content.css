@@ -1848,7 +1848,16 @@
   display: block;
 }
 
+.profile .profile-item .profile-btn .btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
 .profile .profile-item .profile-btn .save-btn.hide {
+  display: none;
+}
+
+.profile .profile-item .profile-btn .delete-btn.hide {
   display: none;
 }
 
@@ -1879,6 +1888,11 @@
   width: 205px;
 }
 
+.profile .profile-item .valueInput .form-control:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
 @media (max-width: 530px) {
   .profile .profile-item .valueInput .form-control {
     width: 160px;
@@ -1905,6 +1919,11 @@
 
 .profile .profile-item .valueInput.group-line .getBank {
   min-width: 35px;
+}
+
+.profile .profile-item .valueInput.group-line .getBank:disabled {
+  opacity: .5;
+  cursor: not-allowed;
 }
 
 .profile .profile-item.activeEdit .haveValue {
@@ -2684,4 +2703,13 @@
   bottom: 14px;
   left: 14px;
   -webkit-animation-delay: 1.04s;
+}
+
+:disabled {
+  cursor: not-allowed;
+}
+
+.disabledSpan, .btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
 }

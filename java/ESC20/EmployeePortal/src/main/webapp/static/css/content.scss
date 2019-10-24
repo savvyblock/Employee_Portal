@@ -1662,8 +1662,17 @@
                 min-width: 66px;
                 margin: 3px;
                 display: block;
+                &:disabled{
+                    opacity: .5;
+                    cursor: not-allowed;
+                }
             }
             .save-btn{
+                &.hide{
+                    display: none;
+                }
+            }
+            .delete-btn{
                 &.hide{
                     display: none;
                 }
@@ -1693,6 +1702,10 @@
                 padding: 0 5px;
                 min-width: 150px;
                 width: 205px;
+                &:disabled{
+                    opacity: .5;
+                    cursor: not-allowed;
+                }
                 @media (max-width: 530px) {
                     width: 160px;
                 }
@@ -1715,6 +1728,10 @@
                 // display: none;
                 .getBank {
                     min-width: 35px;
+                    &:disabled{
+                        opacity: .5;
+                        cursor: not-allowed;
+                    }
                 }
             }
         }
@@ -2396,4 +2413,11 @@
     bottom: 14px;
     left: 14px;
     -webkit-animation-delay:1.04s;
+}
+:disabled{
+    cursor: not-allowed;
+}
+.disabledSpan,.btn:disabled{
+    opacity: .5;
+    cursor: not-allowed;
 }

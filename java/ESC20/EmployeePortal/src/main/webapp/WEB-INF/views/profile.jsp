@@ -15,228 +15,262 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             <main class="content-wrapper" tabindex="-1">
                 <section class="content">
                     <div class="content-white no-title profile">
-                            <c:if test="${sessionScope.enableSelfServiceDemographic}">
-                                <div class="profile-item">
-                                        <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal" onclick="showPasswordModal()">
-                                                <span>${sessionScope.languageJSON.label.changePassword}</span>
-                                            </button>
-                                </div>
-                                <br/>
-                                
-                                <div class="text-left">
-                                    <button type="button" role="button" id="saveAll" class="btn btn-primary">
+                        <c:if test="${sessionScope.enableSelfServiceDemographic}">
+                            <div class="profile-item">
+                                    <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal" onclick="showPasswordModal()">
+                                        <span>${sessionScope.languageJSON.label.changePassword}</span>
+                                    </button>
+                            </div>
+                            <br/>
+                            <c:set var="canEditAll" value="false"/>
+                                <c:if test="${demoOptions.fieldDisplayOptionName == 'U' || demoOptions.fieldDisplayOptionMarital == 'U' || demoOptions.fieldDisplayOptionDriversLicense == 'U' 
+                                || demoOptions.fieldDisplayOptionRestrictionCodes == 'U' || demoOptions.fieldDisplayOptionEmergencyContact == 'U' || demoOptions.fieldDisplayOptionMailAddr == 'U'
+                                || demoOptions.fieldDisplayOptionAltAddr == 'U' || demoOptions.fieldDisplayOptionHomePhone =='U' || demoOptions.fieldDisplayOptionWorkPhone == 'U' 
+                                || demoOptions.fieldDisplayOptionEmail == 'U' || demoOptions.fieldDisplayOptionCellPhone == 'U'}"> 
+                                    <c:set var="canEditAll" value="true"/>
+                                </c:if>
+                            <div class="text-left">
+                                    <button type="button" role="button" id="saveAll" class="btn btn-primary"  <c:if test="${canEditAll == false}">disabled="disabled"</c:if>>
                                         <span>${sessionScope.languageJSON.label.save}</span>
                                     </button>  
-                                    <a href="/EmployeePortal/profile/profile" id="reset" class="btn btn-default">
-                                        <span>${sessionScope.languageJSON.label.reset}</span>
-                                    </a>
+                                    <c:if test="${canEditAll == true}">
+                                        <a href="/EmployeePortal/profile/profile" id="reset" class="btn btn-default">
+                                            <span>${sessionScope.languageJSON.label.reset}</span>
+                                        </a>
+                                    </c:if>
+                                    <c:if test="${canEditAll == false}">
+                                        <button id="reset" class="btn btn-default" disabled="disabled">
+                                            <span>${sessionScope.languageJSON.label.reset}</span>
+                                        </button>
+                                    </c:if>
                                 </div>
-                                <c:if test="${not empty sessionScope.options.messageSelfServiceDemographic}">
-	                            	<p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServiceDemographic}</p>
+                            <c:if test="${demoOptions.fieldDisplayOptionName == 'N' && demoOptions.fieldDisplayOptionMarital == 'N' && demoOptions.fieldDisplayOptionDriversLicense == 'N' 
+                                && demoOptions.fieldDisplayOptionRestrictionCodes == 'N' && demoOptions.fieldDisplayOptionEmergencyContact == 'N' && demoOptions.fieldDisplayOptionMailAddr == 'N'
+                                && demoOptions.fieldDisplayOptionAltAddr == 'N' && demoOptions.fieldDisplayOptionHomePhone =='N' && demoOptions.fieldDisplayOptionWorkPhone == 'N' 
+                                && demoOptions.fieldDisplayOptionEmail == 'N' && demoOptions.fieldDisplayOptionCellPhone == 'N' && payrollOption.fieldDisplayOptionBank == 'N' && payrollOption.fieldDisplayOptionInfo == 'N'}">
+                                
+                            
+                                <br/>
+                                <p class="topMsg error-hint" role="alert">${sessionScope.languageJSON.profile.approverNotSetNotifyBusinessOffice}</p>
+                                <br/>
+                            </c:if>
+                            <c:if test="${not empty sessionScope.options.messageSelfServiceDemographic}">
+                                <p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServiceDemographic}</p>
+                            </c:if>
+                            
+                            <form  id="profileForm" action="saveAll" method="POST">
+                                <c:set var="readOnlyName" value="false"/>
+                                <c:if test="${demoOptions.fieldDisplayOptionName =='I'}"> 
+                                    <c:set var="readOnlyName" value="true"/>
                                 </c:if>
-                                
-                                 <form  id="profileForm" action="saveAll" method="POST">
-                                
-	                        	<h2 class="sub-title">${sessionScope.languageJSON.profile.LegalName}</h2>
-                                <div class="profile-top first-child">
-                                    <div class="profile-item" id="personalForm" >
-                                    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                        <div class="profile-left">
-                                            <div class="profileTitle form-line profileInfo">
-                                                <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
-                                                <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
-                                            </div>
-                                            <div class="profile-item-line form-line">
-                                                <label class="profile-title">${sessionScope.languageJSON.profile.title}</label>
-                                                <div class="profile-desc">
-                                                    <span class="haveValue"
-                                                        >${sessionScope.userDetail.namePre}</span
-                                                    >
-                                                    <input type="hidden" name="empNbr" value="${nameRequest.id.empNbr}">
-                                                    <input type="hidden" name="nameReqDts" value="${nameRequest.id.reqDts}">
-                                                    <input type="hidden" name="mrtlReqDts" value="${mrtlRequest.id.reqDts}">
-													<input type="hidden" name="licReqDts" value="${licRequest.id.reqDts}">
-													<input type="hidden" name="restrictReqDts" value="${restrictRequest.id.reqDts}">
-													<input type="hidden" name="emailReqDts" value="${emailRequest.id.reqDts}">
-													<input type="hidden" name="emerReqDts" value="${emerRequest.id.reqDts}">
-													<input type="hidden" name="mailAddrReqDts" value="${mailAddrRequest.id.reqDts}">
-													<input type="hidden" name="altMailAddrReqDts" value="${altMailAddrRequest.id.reqDts}">
-													<input type="hidden" name="hmReqDts" value="${hmRequest.id.reqDts}">
-													<input type="hidden" name="w4ReqDts" value="${w4Request.id.reqDts}">
-                                                    <input type="hidden" id="undoName" name="undoName" value="">
-                                                    <div class="form-group valueInput">
-                                                        <select
-                                                            class="form-control <c:if test="${fn:trim(sessionScope.userDetail.namePre) != fn:trim(nameRequest.namePreNew)}">active</c:if>"
-                                                            aria-label="${sessionScope.languageJSON.profile.title}"
-                                                            name="namePreNew"
-                                                            id="titleString"
+                                <c:if test="${demoOptions.fieldDisplayOptionName !='N'}">
+                                    <h2 class="sub-title">${sessionScope.languageJSON.profile.LegalName}</h2>
+                                    
+                                    <div class="profile-top first-child">
+                                        <div class="profile-item" id="personalForm" >
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                            <div class="profile-left">
+                                                <div class="profileTitle form-line profileInfo">
+                                                    <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
+                                                    <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
+                                                </div>
+                                                <div class="profile-item-line form-line">
+                                                    <label class="profile-title">${sessionScope.languageJSON.profile.title}</label>
+                                                    <div class="profile-desc">
+                                                        <span class="haveValue"
+                                                            >${sessionScope.userDetail.namePre}</span
                                                         >
-                                                        <c:forEach var="title" items="${titleOptions}" varStatus="count">
-                                                                <c:choose>
+                                                        <input type="hidden" name="empNbr" value="${nameRequest.id.empNbr}">
+                                                        <input type="hidden" name="nameReqDts" value="${nameRequest.id.reqDts}">
+                                                        <input type="hidden" name="mrtlReqDts" value="${mrtlRequest.id.reqDts}">
+                                                        <input type="hidden" name="licReqDts" value="${licRequest.id.reqDts}">
+                                                        <input type="hidden" name="restrictReqDts" value="${restrictRequest.id.reqDts}">
+                                                        <input type="hidden" name="emailReqDts" value="${emailRequest.id.reqDts}">
+                                                        <input type="hidden" name="emerReqDts" value="${emerRequest.id.reqDts}">
+                                                        <input type="hidden" name="mailAddrReqDts" value="${mailAddrRequest.id.reqDts}">
+                                                        <input type="hidden" name="altMailAddrReqDts" value="${altMailAddrRequest.id.reqDts}">
+                                                        <input type="hidden" name="hmReqDts" value="${hmRequest.id.reqDts}">
+                                                        <input type="hidden" name="w4ReqDts" value="${w4Request.id.reqDts}">
+                                                        <input type="hidden" id="undoName" name="undoName" value="">
+                                                        <div class="form-group valueInput">
+                                                            <select
+                                                                class="form-control <c:if test="${fn:trim(sessionScope.userDetail.namePre) != fn:trim(nameRequest.namePreNew)}">active</c:if>"
+                                                                aria-label="${sessionScope.languageJSON.profile.title}"
+                                                                name="namePreNew" <c:if test="${readOnlyName == true}">disabled="disabled"</c:if>
+                                                                id="titleString">
+                                                                <c:forEach var="title" items="${titleOptions}" varStatus="count">
+                                                                    <c:choose>
                                                                         <c:when test="${fn:trim(title.description)==''}">
-                                                                                <option value="${fn:trim(title.description)}" <c:if test="${fn:trim(title.description) == fn:trim(nameRequest.namePreNew) }">selected</c:if>>&nbsp;</option>
+                                                                            <option value="${fn:trim(title.description)}" <c:if test="${fn:trim(title.description) == fn:trim(nameRequest.namePreNew) }">selected</c:if>>&nbsp;</option>
                                                                         </c:when>
                                                                         <c:otherwise>
-                                                                                <option value="${fn:trim(title.description)}" <c:if test="${fn:trim(title.description) == fn:trim(nameRequest.namePreNew) }">selected</c:if>>${fn:trim(title.description)}</option>
+                                                                            <option value="${fn:trim(title.description)}" <c:if test="${fn:trim(title.description) == fn:trim(nameRequest.namePreNew) }">selected</c:if>>${fn:trim(title.description)}</option>
                                                                         </c:otherwise>
-                                                                     </c:choose>
-                                                        </c:forEach>
-                                                        </select>
+                                                                    </c:choose>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                             <div class="profile-item-line form-line">
-                                                <label class="profile-title"
-                                                    >${sessionScope.languageJSON.profile.lastname}</label
-                                                >
-                                                <div class="profile-desc">
-                                                    <span class="haveValue"
-                                                        >${sessionScope.userDetail.nameL}</span
+                                                <div class="profile-item-line form-line">
+                                                    <label class="profile-title"
+                                                        >${sessionScope.languageJSON.profile.lastname}</label
                                                     >
-                                                    <div class="form-group valueInput">
-                                                        <input
-                                                            class="form-control <c:if test="${sessionScope.userDetail.nameL != nameRequest.nameLNew}">active</c:if>"
-                                                            type="text"
-                                                            value="${nameRequest.nameLNew}"
-                                                            aria-label="${sessionScope.languageJSON.profile.lastname}"
-                                                           
-                                                            name="nameLNew"
-                                                            id="lastName"
-                                                            maxlength="25"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="profile-item-line form-line">
-                                                <label class="profile-title" >${sessionScope.languageJSON.profile.firstname}</label>
-                                                <div class="profile-desc">
-                                                    <span class="haveValue"
-                                                        >${sessionScope.userDetail.nameF}</span
-                                                    >
-                                                    <div class="form-group valueInput">
-                                                        <input
-                                                            class="form-control <c:if test="${sessionScope.userDetail.nameF != nameRequest.nameFNew}">active</c:if>"
-                                                            type="text"
-                                                            value="${nameRequest.nameFNew}"
-                                                            aria-label="${sessionScope.languageJSON.profile.firstname}"
-                                                           
-                                                            name="nameFNew"
-                                                            id="firstName"
-                                                            maxlength="17"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="profile-item-line form-line">
-                                                <label class="profile-title">
-                                                        ${sessionScope.languageJSON.profile.middleName}
-                                                </label>
-                                                <div class="profile-desc">
-                                                    <span class="haveValue"
-                                                        >${sessionScope.userDetail.nameM}</span
-                                                    >
-                                                    <div class="form-group valueInput">
-                                                        <input
-                                                            class="form-control <c:if test="${sessionScope.userDetail.nameM != nameRequest.nameMNew}">active</c:if>"
-                                                            type="text"
-                                                            value="${nameRequest.nameMNew}"
-                                                            aria-label="${sessionScope.languageJSON.profile.middleName}"
-                                                           
-                                                            name="nameMNew"
-                                                            id="middleName"
-                                                            maxlength="14"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                           
-                                            
-                                            <div class="profile-item-line form-line">
-                                                <label class="profile-title"
-                                                    >${sessionScope.languageJSON.profile.generation}</label
-                                                >
-                                                <div class="profile-desc">
-                                                    <span class="haveValue"
-                                                        >${sessionScope.userDetail.genDescription}</span
-                                                    >
-                                                    <div class="form-group valueInput">
-                                                        <select
-                                                            class="form-control <c:if test="${fn:trim(sessionScope.userDetail.nameGen) != fn:trim(nameRequest.nameGenNew)}">active</c:if>"
-                                                            aria-label="${sessionScope.languageJSON.profile.generation}"
-                                                           
-                                                            name="nameGenNew"
-                                                            id="generation"
+                                                    <div class="profile-desc">
+                                                        <span class="haveValue"
+                                                            >${sessionScope.userDetail.nameL}</span
                                                         >
-                                                            <c:forEach var="gen" items="${generationOptions}" varStatus="count">
-                                                                <c:if test="${count.index<=2}">
-                                                                        <c:choose>
-                                                                                <c:when test="${gen.description==''}">
-                                                                                        <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>&nbsp;</option>
-                                                                                </c:when>
-                                                                                <c:otherwise>
-                                                                                        <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
-                                                                                </c:otherwise>
-                                                                             </c:choose>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                            <c:forEach var="gen" items="${generationOptions}" varStatus="count">
-                                                                <c:if test="${gen.code=='A'}">
-                                                                    <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                            <c:forEach var="gen" items="${generationOptions}" varStatus="count">
-                                                                <c:if test="${count.index>2&&gen.code!='A'}">
-                                                                    <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
-                                                                </c:if>
-                                                            </c:forEach>
-                                                        </select>
+                                                        <div class="form-group valueInput">
+                                                            <input
+                                                                class="form-control <c:if test="${sessionScope.userDetail.nameL != nameRequest.nameLNew}">active</c:if>"
+                                                                type="text" <c:if test="${readOnlyName == true}">disabled="disabled"</c:if>
+                                                                value="${nameRequest.nameLNew}"
+                                                                aria-label="${sessionScope.languageJSON.profile.lastname}"
+                                                            
+                                                                name="nameLNew"
+                                                                id="lastName"
+                                                                maxlength="25"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-item-line form-line">
+                                                    <label class="profile-title" >${sessionScope.languageJSON.profile.firstname}</label>
+                                                    <div class="profile-desc">
+                                                        <span class="haveValue"
+                                                            >${sessionScope.userDetail.nameF}</span
+                                                        >
+                                                        <div class="form-group valueInput">
+                                                            <input
+                                                                class="form-control <c:if test="${sessionScope.userDetail.nameF != nameRequest.nameFNew}">active</c:if>"
+                                                                type="text" <c:if test="${readOnlyName == true}">disabled="disabled"</c:if>
+                                                                value="${nameRequest.nameFNew}"
+                                                                aria-label="${sessionScope.languageJSON.profile.firstname}"
+                                                            
+                                                                name="nameFNew"
+                                                                id="firstName"
+                                                                maxlength="17"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="profile-item-line form-line">
+                                                    <label class="profile-title">
+                                                            ${sessionScope.languageJSON.profile.middleName}
+                                                    </label>
+                                                    <div class="profile-desc">
+                                                        <span class="haveValue"
+                                                            >${sessionScope.userDetail.nameM}</span
+                                                        >
+                                                        <div class="form-group valueInput">
+                                                            <input
+                                                                class="form-control <c:if test="${sessionScope.userDetail.nameM != nameRequest.nameMNew}">active</c:if>"
+                                                                type="text" <c:if test="${readOnlyName == true}">disabled="disabled"</c:if>
+                                                                value="${nameRequest.nameMNew}"
+                                                                aria-label="${sessionScope.languageJSON.profile.middleName}"
+                                                            
+                                                                name="nameMNew"
+                                                                id="middleName"
+                                                                maxlength="14"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                                
+                                                <div class="profile-item-line form-line">
+                                                    <label class="profile-title"
+                                                        >${sessionScope.languageJSON.profile.generation}</label
+                                                    >
+                                                    <div class="profile-desc">
+                                                        <span class="haveValue"
+                                                            >${sessionScope.userDetail.genDescription}</span
+                                                        >
+                                                        <div class="form-group valueInput">
+                                                            <select
+                                                                class="form-control <c:if test="${fn:trim(sessionScope.userDetail.nameGen) != fn:trim(nameRequest.nameGenNew)}">active</c:if>"
+                                                                aria-label="${sessionScope.languageJSON.profile.generation}"
+                                                                <c:if test="${readOnlyName == true}">disabled="disabled"</c:if>
+                                                                name="nameGenNew"
+                                                                id="generation"
+                                                            >
+                                                                <c:forEach var="gen" items="${generationOptions}" varStatus="count">
+                                                                    <c:if test="${count.index<=2}">
+                                                                            <c:choose>
+                                                                                    <c:when test="${gen.description==''}">
+                                                                                            <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>&nbsp;</option>
+                                                                                    </c:when>
+                                                                                    <c:otherwise>
+                                                                                            <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                                                    </c:otherwise>
+                                                                                </c:choose>
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                                <c:forEach var="gen" items="${generationOptions}" varStatus="count">
+                                                                    <c:if test="${gen.code=='A'}">
+                                                                        <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                                <c:forEach var="gen" items="${generationOptions}" varStatus="count">
+                                                                    <c:if test="${count.index>2&&gen.code!='A'}">
+                                                                        <option value="${gen.code}" <c:if test="${gen.code == nameRequest.nameGenNew }">selected</c:if>>${gen.description}</option>
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <c:if test="${!readOnlyName}">
+                                                <div class="profile-btn">
+                                                    <div class="edit">
+                                                        <button
+                                                            type="button" role="button"
+                                                            class="btn btn-primary edit-btn" <c:if test="${readOnlyName == true}">disabled="disabled"</c:if>
+                                                        >${sessionScope.languageJSON.label.edit}
+                                                        </button>
+                                                    </div>
+                                                    
+                                                    <div class="saveOrCancel">
+                                                        <button
+                                                            type="submit" role="button"
+                                                            class="btn btn-primary save-btn hide"
+                                                            id="savePersonal"  aria-label = "${sessionScope.languageJSON.label.updatePersonalInfo}"
+                                                        >
+                                                        ${sessionScope.languageJSON.label.update}
+                                                        </button>
+                                                        <button
+                                                            type="button" role="button"
+                                                            id="undoNameRequest" aria-label = "${sessionScope.languageJSON.label.undoPersonalInfo}"
+                                                            class="btn btn-secondary" data-toggle="modal" data-target="#undoModal" 
+                                                        >
+                                                        ${sessionScope.languageJSON.label.undo}
+                                                        </button>
+                                                        <button
+                                                            type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelPersonalInfo}"
+                                                            class="btn btn-secondary cancel-btn" 
+                                                        >
+                                                        ${sessionScope.languageJSON.label.cancel}
+                                                        </button>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </c:if>
                                         </div>
-                                        <div class="profile-btn">
-                                            <div class="edit">
-                                                <button
-                                                    type="button" role="button"
-                                                    class="btn btn-primary edit-btn"
-                                                >${sessionScope.languageJSON.label.edit}
-                                                </button>
-                                            </div>
-
-                                            <div class="saveOrCancel">
-                                                <button
-                                                    type="submit" role="button"
-                                                    class="btn btn-primary save-btn hide"
-                                                    id="savePersonal"  aria-label = "${sessionScope.languageJSON.label.updatePersonalInfo}"
-                                                >
-                                                ${sessionScope.languageJSON.label.update}
-                                                </button>
-                                                <button
-                                                    type="button" role="button"
-                                                    id="undoNameRequest" aria-label = "${sessionScope.languageJSON.label.undoPersonalInfo}"
-                                                    class="btn btn-secondary" data-toggle="modal" data-target="#undoModal" 
-                                                >
-                                                ${sessionScope.languageJSON.label.undo}
-                                                </button>
-                                                <button
-                                                    type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelPersonalInfo}"
-                                                    class="btn btn-secondary cancel-btn" 
-                                                >
-                                                ${sessionScope.languageJSON.label.cancel}
-                                                </button>
-                                            </div>
-                                        </div>
-                                      
+                                        <!-- 
+                                        
+                                        <form hidden="hidden" action="deleteNameRequest" id="deleteNameRequest" method="POST">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        </form>
+                                        -->
+                                        
                                     </div>
-                                       <!-- 
-                                      
-                                    <form hidden="hidden" action="deleteNameRequest" id="deleteNameRequest" method="POST">
-                                    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    </form>
-                                     -->
-                                      
-                                </div>
-
+                                </c:if>
+                                <c:set var="readOnlyMarital" value="false"/>
+                                <c:if test="${demoOptions.fieldDisplayOptionMarital =='I'}"> 
+                                    <c:set var="readOnlyMarital" value="true"/>
+                                </c:if>
+                                <c:if test="${demoOptions.fieldDisplayOptionMarital !='N'}">
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.MaritalStatus}</h2>
                                 
                                 <div class="profile-item" id="maritalStatusForm" >
@@ -259,7 +293,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="form-group valueInput">
                                                     <select
                                                         id="maritalStatus"
-                                                        name="maritalStatNew"
+                                                        name="maritalStatNew" <c:if test="${readOnlyMarital == true}">disabled="disabled"</c:if>
                                                         class="form-control <c:if test="${fn:trim(sessionScope.userDetail.maritalStat) != fn:trim(mrtlRequest.maritalStatNew) }">active</c:if>"
                                                         aria-label="${sessionScope.languageJSON.profile.local}"
                                                     >
@@ -279,6 +313,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                     </div>
+                                    <c:if test="${!readOnlyMarital}">
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
@@ -311,14 +346,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
-                                   
+                                </c:if>
                                 </div>
                                  <!-- 
                                 <form hidden="hidden" action="deleteMaritalRequest" id="deleteMaritalRequest" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
                                  -->
-                                
+                                </c:if>
+                                <c:set var="readOnlyDriversLicense" value="false"/>
+                                <c:if test="${demoOptions.fieldDisplayOptionDriversLicense =='I'}"> 
+                                    <c:set var="readOnlyDriversLicense" value="true"/>
+                                </c:if>
+                                <c:if test="${demoOptions.fieldDisplayOptionDriversLicense !='N'}">
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.driversLicense}</h2>
                                 <div class="profile-item" id="driverLicenseForm" >
                                     <div class="profile-left">
@@ -334,7 +374,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 >
                                                 <div class="form-group valueInput">
                                                     <input
-                                                        type="text"
+                                                        type="text" <c:if test="${readOnlyDriversLicense == true}">disabled="disabled"</c:if>
                                                         class="form-control <c:if test="${sessionScope.userDetail.driversLicNbr != licRequest.driversLicNbrNew }">active</c:if>"
                                                         value="${licRequest.driversLicNbrNew}"
                                                         name="driversLicNbrNew"
@@ -358,7 +398,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="form-group valueInput">
                                                     <select
                                                         id="driversState"
-                                                        name="driversLicStNew"
+                                                        name="driversLicStNew" <c:if test="${readOnlyDriversLicense == true}">disabled="disabled"</c:if>
                                                         class="form-control <c:if test="${sessionScope.userDetail.driversLicSt != licRequest.driversLicStNew }">active</c:if>"
                                                         aria-label="${sessionScope.languageJSON.profile.driversLicenseState}"
                                                        
@@ -372,45 +412,52 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="profile-btn">
-                                        <div class="edit">
-                                            <button
-                                                type="button" role="button"
-                                                class="btn btn-primary edit-btn"
-                                            >${sessionScope.languageJSON.label.edit}
-                                            
-                                            </button>
-                                        </div>
-                                        <div class="saveOrCancel">
-                                            <button
-                                                type="submit" role="button"
-                                                class="btn btn-primary save-btn hide"
-                                                id="saveDriver" aria-label = "${sessionScope.languageJSON.label.updateDriver}"
-                                            >
-                                            ${sessionScope.languageJSON.label.update}
-                                            </button>
-                                            <button
+                                    <c:if test="${!readOnlyDriversLicense}">
+                                        <div class="profile-btn">
+                                            <div class="edit">
+                                                <button
                                                     type="button" role="button"
-                                                    id="undoDriverLicense" aria-label = "${sessionScope.languageJSON.label.undoDriver}"
-                                                    class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
-                                                >
-                                                ${sessionScope.languageJSON.label.undo}
+                                                    class="btn btn-primary edit-btn"
+                                                >${sessionScope.languageJSON.label.edit}
+                                                
                                                 </button>
-                                            <button
-                                                type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelDriver}"
-                                                class="btn btn-secondary cancel-btn" 
-                                            >
-                                            ${sessionScope.languageJSON.label.cancel}
-                                            </button>
+                                            </div>
+                                            <div class="saveOrCancel">
+                                                <button
+                                                    type="submit" role="button"
+                                                    class="btn btn-primary save-btn hide"
+                                                    id="saveDriver" aria-label = "${sessionScope.languageJSON.label.updateDriver}"
+                                                >
+                                                ${sessionScope.languageJSON.label.update}
+                                                </button>
+                                                <button
+                                                        type="button" role="button"
+                                                        id="undoDriverLicense" aria-label = "${sessionScope.languageJSON.label.undoDriver}"
+                                                        class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
+                                                    >
+                                                    ${sessionScope.languageJSON.label.undo}
+                                                    </button>
+                                                <button
+                                                    type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelDriver}"
+                                                    class="btn btn-secondary cancel-btn" 
+                                                >
+                                                ${sessionScope.languageJSON.label.cancel}
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </c:if>
                                 </div>
                                 <!-- 
                                 <form hidden="hidden" action="deleteDriversLicenseRequest" id="deleteDriversLicense" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
                                  -->
-                                  
+                                </c:if>  
+                                <c:set var="readOnlyRestriction" value="false"/>
+                                <c:if test="${demoOptions.fieldDisplayOptionRestrictionCodes =='I'}"> 
+                                    <c:set var="readOnlyRestriction" value="true"/>
+                                </c:if>
+                                <c:if test="${demoOptions.fieldDisplayOptionRestrictionCodes !='N'}">
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.restrictionCodes}</h2>
                                 <div class="profile-item" id="restrictionCodeForm" >
                                     <div class="profile-left">
@@ -430,7 +477,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="form-group valueInput">
                                                     <select
                                                         id="restrictionCodesLocalRestriction"
-                                                        name="restrictCdNew"
+                                                        name="restrictCdNew" <c:if test="${readOnlyRestriction == true}">disabled="disabled"</c:if>
                                                         class="form-control <c:if test="${sessionScope.userDetail.restrictCd != restrictRequest.restrictCdNew }">active</c:if>"
                                                         aria-label="${sessionScope.languageJSON.profile.restrictionCodesLocal}"
                                                        
@@ -455,7 +502,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <div class="form-group valueInput">
                                                     <select
                                                         id="restrictionCodesPublicRestriction"
-                                                        name="restrictCdPublicNew"
+                                                        name="restrictCdPublicNew" <c:if test="${readOnlyRestriction == true}">disabled="disabled"</c:if>
                                                         class="form-control <c:if test="${sessionScope.userDetail.restrictCdPublic != restrictRequest.restrictCdPublicNew }">active</c:if>"
                                                         aria-label="${sessionScope.languageJSON.profile.restrictionCodesPublic}"
                                                        
@@ -468,45 +515,52 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="profile-btn">
-                                        <div class="edit">
-                                            <button
-                                                type="button" role="button"
-                                                class="btn btn-primary edit-btn"
-                                            >
-                                            ${sessionScope.languageJSON.label.edit}
-                                            </button>
-                                        </div>
-                                        <div class="saveOrCancel">
-                                            <button
-                                                type="submit" role="button"
-                                                class="btn btn-primary save-btn hide"
-                                                id="saveRestrict" aria-label = "${sessionScope.languageJSON.label.updateRestrict}"
-                                            >
-                                            ${sessionScope.languageJSON.label.update}
-                                            </button>
-                                            <button
+                                    <c:if test="${!readOnlyRestriction}">
+                                        <div class="profile-btn">
+                                            <div class="edit">
+                                                <button
                                                     type="button" role="button"
-                                                    id="undoRestriction" aria-label = "${sessionScope.languageJSON.label.undoRestrict}"
-                                                    class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
+                                                    class="btn btn-primary edit-btn"
                                                 >
-                                                ${sessionScope.languageJSON.label.undo}
+                                                ${sessionScope.languageJSON.label.edit}
                                                 </button>
-                                            <button
-                                                type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelRestrict}"
-                                                class="btn btn-secondary cancel-btn" 
-                                            >
-                                            ${sessionScope.languageJSON.label.cancel}
-                                            </button>
+                                            </div>
+                                            <div class="saveOrCancel">
+                                                <button
+                                                    type="submit" role="button"
+                                                    class="btn btn-primary save-btn hide"
+                                                    id="saveRestrict" aria-label = "${sessionScope.languageJSON.label.updateRestrict}"
+                                                >
+                                                ${sessionScope.languageJSON.label.update}
+                                                </button>
+                                                <button
+                                                        type="button" role="button"
+                                                        id="undoRestriction" aria-label = "${sessionScope.languageJSON.label.undoRestrict}"
+                                                        class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
+                                                    >
+                                                    ${sessionScope.languageJSON.label.undo}
+                                                    </button>
+                                                <button
+                                                    type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelRestrict}"
+                                                    class="btn btn-secondary cancel-btn" 
+                                                >
+                                                ${sessionScope.languageJSON.label.cancel}
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </c:if>
                                 </div>
                                 <!-- 
                                 <form hidden="hidden" action="deleteRestrictionCodesRequest" id="deleteRestrictionCodesRequest" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
                                  -->
-                               
+                                </c:if>  
+                                <c:set var="readOnlyEmail" value="false"/>
+                                <c:if test="${demoOptions.fieldDisplayOptionEmail =='I'}"> 
+                                    <c:set var="readOnlyEmail" value="true"/>
+                                </c:if>
+                                <c:if test="${demoOptions.fieldDisplayOptionEmail !='N'}">
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.email}</h2>
                                 <div class="profile-item" id="emailForm" >
                                     <div class="profile-left">
@@ -524,7 +578,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input
                                                         name="emailNew"
                                                         value="${emailRequest.emailNew}"
-                                                        id="emailWorkEmail"
+                                                        id="emailWorkEmail"  <c:if test="${readOnlyEmail == true}">disabled="disabled"</c:if>
                                                         class="form-control <c:if test="${sessionScope.userDetail.email != emailRequest.emailNew}">active</c:if>"
                                                         aria-label="${sessionScope.languageJSON.profile.workEmail}"
                                                        
@@ -543,7 +597,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="emailNewVerify"
                                                         value=""
                                                         id="emailVerifyWorkEmail"
-                                                        class="form-control"
+                                                        class="form-control"  <c:if test="${readOnlyEmail == true}">disabled="disabled"</c:if>
                                                         aria-label="${sessionScope.languageJSON.profile.verifyEmail}"
                                                        
                                                     />
@@ -560,7 +614,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input
                                                         class="form-control <c:if test="${sessionScope.userDetail.hmEmail != emailRequest.hmEmailNew}">active</c:if>"
                                                         name="hmEmailNew"
-                                                        id="emailHomeEmail"
+                                                        id="emailHomeEmail"  <c:if test="${readOnlyEmail == true}">disabled="disabled"</c:if>
                                                         aria-label="${sessionScope.languageJSON.profile.homeEmail}"
                                                        
                                                         value="${emailRequest.hmEmailNew}"
@@ -578,7 +632,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="hmEmailVerifyNew"
                                                         value=""
                                                         id="emailVerifyHomeEmail"
-                                                        class="form-control"
+                                                        class="form-control"  <c:if test="${readOnlyEmail == true}">disabled="disabled"</c:if>
                                                         aria-label="${sessionScope.languageJSON.profile.verifyEmail}"
                                                        
                                                     />
@@ -586,6 +640,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                     </div>
+                                    <c:if test="${!readOnlyEmail}"> 
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
@@ -618,13 +673,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
+                                    </c:if>
                                 </div>
                                 <!-- 
                                 <form hidden="hidden" action="deleteEmail" id="deleteEmail" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
                                  -->
-                                
+                                </c:if>
+                                <c:set var="readOnlyEmergency" value="false"/>
+                                <c:if test="${demoOptions.fieldDisplayOptionEmergencyContact =='I'}"> 
+                                    <c:set var="readOnlyEmergency" value="true"/>
+                                </c:if>
+                                <c:if test="${demoOptions.fieldDisplayOptionEmergencyContact !='N'}">
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.emergenceContactInfo}</h2>
                                 <div class="profile-item" id="emergencyContactForm" >
                                     <div class="profile-left">
@@ -646,7 +707,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="emerContactNew"
                                                         value="${emerRequest.emerContactNew}"
                                                         aria-label="${sessionScope.languageJSON.profile.emergencyContactName}"
-                                                       
+                                                        <c:if test="${readOnlyEmergency == true}">disabled="disabled"</c:if>
                                                         maxlength="26"
                                                     />
                                                 </div>
@@ -676,7 +737,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             name="emerPhoneAcNew"
                                                             id="emergencyContactAreaCode"
                                                             aria-label="${sessionScope.languageJSON.profile.emergencyContactAreaCode}"
-                                                           
+                                                            <c:if test="${readOnlyEmergency == true}">disabled="disabled"</c:if>
                                                             value="${emerRequest.emerPhoneAcNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
@@ -687,20 +748,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             name="emerPhoneNbrNew"
                                                             id="emergencyContactPhoneNumber"
                                                             aria-label="${sessionScope.languageJSON.profile.emergencyContactPhoneNumber}"
-                                                           
+                                                            <c:if test="${readOnlyEmergency == true}">disabled="disabled"</c:if>
                                                             value="${emerRequest.emerPhoneNbrNew}"
                                                             oninput="value=value.replace(/[^\d\-]/g,'')"
                                                         />
                                                     </div>
 
-                                                    &nbsp;&nbsp;<span>${sessionScope.languageJSON.profile.ext}</span>
+                                                    &nbsp;&nbsp;<span <c:if test="${readOnlyEmergency == true}">class="disabledSpan"</c:if>>${sessionScope.languageJSON.profile.ext}</span>
                                                     <div class="form-group">
                                                         <input
                                                             class="form-control phoneAreaCode <c:if test="${sessionScope.userDetail.emerPhoneExt != emerRequest.emerPhoneExtNew}">active</c:if>"
                                                             name="emerPhoneExtNew"
                                                             id="emergencyContactExtention"
                                                             aria-label="${sessionScope.languageJSON.profile.emergencyContactExtention}"
-                                                           
+                                                            <c:if test="${readOnlyEmergency == true}">disabled="disabled"</c:if>
                                                             value="${emerRequest.emerPhoneExtNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
@@ -722,7 +783,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="emerRelNew"
                                                         id="emergencyContactRelationship"
                                                         aria-label="${sessionScope.languageJSON.profile.relationship}"
-                                                       
+                                                        <c:if test="${readOnlyEmergency == true}">disabled="disabled"</c:if>
                                                         value="${emerRequest.emerRelNew}"
                                                         maxlength="25"
                                                     />
@@ -743,7 +804,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="emerNoteNew"
                                                         id="emergencyContactEmergencyNotes"
                                                         aria-label="${sessionScope.languageJSON.profile.emergencyNotes}"
-                                                       
+                                                        <c:if test="${readOnlyEmergency == true}">disabled="disabled"</c:if>
                                                         value="${emerRequest.emerNoteNew}"
                                                         maxlength="25"
                                                     />
@@ -751,6 +812,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                     </div>
+                                    <c:if test="${!readOnlyEmergency}"> 
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
@@ -783,12 +845,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
+                                    </c:if>
                                 </div>
                                 <!--  
                                 <form hidden="hidden" action="deleteEmergencyContact" id="deleteEmergencyContact" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
                                 -->
+                                </c:if>
+                                <c:set var="readOnlyMailAddr" value="false"/>
+                                <c:if test="${demoOptions.fieldDisplayOptionMailAddr =='I'}"> 
+                                    <c:set var="readOnlyMailAddr" value="true"/>
+                                </c:if>
+                                <c:if test="${demoOptions.fieldDisplayOptionMailAddr !='N'}">
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.mailingAddress}</h2>
                                 <div class="profile-item" id="mailingAddressForm" >
                                     
@@ -809,7 +878,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="addrNbrNew"
                                                         id="mailAddrNumber"
                                                         aria-label="${sessionScope.languageJSON.profile.mailingAddressNumber}"
-                                                       
+                                                        <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         value="${mailAddrRequest.addrNbrNew}"
                                                         
                                                     />
@@ -830,7 +899,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="addrStrNew"
                                                         id="mailAddrStr"
                                                         aria-label="${sessionScope.languageJSON.profile.streetBox}"
-                                                       
+                                                        <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         value="${mailAddrRequest.addrStrNew}"
                                                     />
                                                 </div>
@@ -848,6 +917,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="addrAptNew"
                                                         id="mailAddrApartment"
                                                         aria-label="${sessionScope.languageJSON.profile.apt}"
+                                                        <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         value="${mailAddrRequest.addrAptNew}"
                                                     />
                                                 </div>
@@ -865,7 +935,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="addrCityNew"
                                                         id="mailAddrCity"
                                                         aria-label="${sessionScope.languageJSON.profile.city}"
-                                                       
+                                                        <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         value="${mailAddrRequest.addrCityNew}"
                                                     />
                                                 </div>
@@ -884,7 +954,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="mailAddrState"
                                                         name="addrStNew"
                                                         aria-label="${sessionScope.languageJSON.profile.state}"
-                                                       
+                                                        <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         class="form-control  <c:if test="${fn:trim(sessionScope.userDetail.addrSt) != fn:trim(mailAddrRequest.addrStNew)}">active</c:if>"
                                                     >
                                                         <c:forEach var="states" items="${statesOptions}" varStatus="count">
@@ -906,7 +976,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="addrZipNew"
                                                         id="mailAddrZip"
                                                         aria-label="${sessionScope.languageJSON.profile.zip}"
-                                                       
+                                                        <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         value="${mailAddrRequest.addrZipNew}"
                                                     />
                                                 </div>
@@ -924,13 +994,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="addrZip4New"
                                                         id="mailAddrZipPlusFour"
                                                         aria-label="${sessionScope.languageJSON.profile.zip4}"
-                                                       
+                                                        <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         value="${mailAddrRequest.addrZip4New}"
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <c:if test="${!readOnlyMailAddr}"> 
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
@@ -963,12 +1034,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
+                                    </c:if>
                                 </div>
                                 <!-- 
                                 <form hidden="hidden" action="deleteMailAddr" id="deleteMailAddr" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
                                  -->
+                                </c:if>
+                                <c:set var="readOnlyAltAddr" value="false"/>
+                                <c:if test="${demoOptions.fieldDisplayOptionAltAddr =='I'}"> 
+                                    <c:set var="readOnlyAltAddr" value="true"/>
+                                </c:if>
+                                <c:if test="${demoOptions.fieldDisplayOptionAltAddr !='N'}">
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.altAddr}</h2>
                                 <div class="profile-item" id="alternativeAddressForm" >
                                        
@@ -989,7 +1067,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="smrAddrNbrNew"
                                                         id="altAddrNumber"
                                                         aria-label="${sessionScope.languageJSON.profile.altAddrNumber}"
-                                                       
+                                                        <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
                                                         value="${altMailAddrRequest.smrAddrNbrNew}"
                                                         
                                                     />
@@ -1010,7 +1088,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="smrAddrStrNew"
                                                         id="altAddrStr"
                                                         aria-label="${sessionScope.languageJSON.profile.streetBox}"
-                                                       
+                                                        <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
                                                         value="${altMailAddrRequest.smrAddrStrNew}"
                                                     />
                                                 </div>
@@ -1028,7 +1106,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="smrAddrAptNew"
                                                         id="altAddrApartment"
                                                         aria-label="${sessionScope.languageJSON.profile.apt}"
-                                                       
+                                                        <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
                                                         value="${altMailAddrRequest.smrAddrAptNew}"
                                                     />
                                                 </div>
@@ -1046,7 +1124,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="smrAddrCityNew"
                                                         id="altAddrCity"
                                                         aria-label="${sessionScope.languageJSON.profile.city}"
-                                                       
+                                                        <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
                                                         value="${altMailAddrRequest.smrAddrCityNew}"
                                                     />
                                                 </div>
@@ -1065,7 +1143,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="altAddrState"
                                                         name="smrAddrStNew"
                                                         aria-label="${sessionScope.languageJSON.profile.state}"
-                                                       
+                                                        <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrSt != altMailAddrRequest.smrAddrStNew}">active</c:if>"
                                                     >
                                                     <c:forEach var="states" items="${statesOptions}" varStatus="count">
@@ -1087,7 +1165,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="smrAddrZipNew"
                                                         id="altAddrZip"
                                                         aria-label="${sessionScope.languageJSON.profile.zip}"
-                                                       
+                                                        <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
                                                         value="${altMailAddrRequest.smrAddrZipNew}"
                                                     />
                                                 </div>
@@ -1100,7 +1178,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     >${sessionScope.userDetail.smrAddrZip4}</span
                                                 >
                                                 <div class="form-group valueInput">
-                                                    <input
+                                                    <input  <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrZip4 != altMailAddrRequest.smrAddrZip4New}">active</c:if>"
                                                         name="smrAddrZip4New"
                                                         id="altAddrZipPlusFour"
@@ -1111,6 +1189,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                     </div>
+                                    <c:if test="${!readOnlyAltAddr}"> 
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
@@ -1143,12 +1222,28 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
+                                    </c:if>
                                 </div>
                                 <!-- 
                                 <form hidden="hidden" action="deleteAltMailAddr" id="deleteAltMailAddr" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
                                  -->
+                                </c:if>
+                                 <c:set var="readOnlyHomePhone" value="false"/>
+                                 <c:if test="${demoOptions.fieldDisplayOptionHomePhone == 'I'}"> 
+                                     <c:set var="readOnlyHomePhone" value="true"/>
+                                 </c:if>
+                                 <c:set var="readOnlyWorkPhone" value="false"/>
+                                 <c:if test="${demoOptions.fieldDisplayOptionWorkPhone == 'I'}"> 
+                                     <c:set var="readOnlyWorkPhone" value="true"/>
+                                 </c:if>
+                                 <c:set var="readOnlyCellPhone" value="false"/>
+                                 <c:if test="${demoOptions.fieldDisplayOptionCellPhone == 'I'}"> 
+                                     <c:set var="readOnlyCellPhone" value="true"/>
+                                 </c:if>
+                             <c:if test="${demoOptions.fieldDisplayOptionHomePhone !='N' || demoOptions.fieldDisplayOptionWorkPhone != 'N' ||demoOptions.fieldDisplayOptionWorkPhone != 'N'}">
+ 
                                 <h2 class="sub-title">${sessionScope.languageJSON.profile.phoneNumbers}</h2>
                                 <div class="profile-item" id="phoneForm" >
                                     <div class="profile-left">
@@ -1156,6 +1251,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
                                                     <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                                 </div>
+                                        <c:if test="${demoOptions.fieldDisplayOptionHomePhone !='N'}">       
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title">${sessionScope.languageJSON.profile.home}</div>
                                             <div class="profile-desc">
@@ -1176,7 +1272,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             name="phoneAreaNew"
                                                             id="homePhoneAreaCode"
                                                             aria-label="${sessionScope.languageJSON.profile.homePhoneAreaCode}"
-                                                           
+                                                            <c:if test="${readOnlyHomePhone == true}">disabled="disabled"</c:if>
                                                             value="${hmRequest.phoneAreaNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                             
@@ -1188,7 +1284,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             name="phoneNbrNew"
                                                             id="homePhonePhoneNumber"
                                                             aria-label="${sessionScope.languageJSON.profile.homePhonePhoneNumber}"
-                                                           
+                                                            <c:if test="${readOnlyHomePhone == true}">disabled="disabled"</c:if>
                                                             value="${hmRequest.phoneNbrNew}"
                                                             oninput="value=value.replace(/[^\d\-]/g,'')"
                                                         />
@@ -1196,6 +1292,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </div>
                                         </div>
+                                    </c:if>
+                                    <c:if test="${demoOptions.fieldDisplayOptionCellPhone !='N'}"> 
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title">${sessionScope.languageJSON.profile.cell}</div>
                                             <div class="profile-desc">
@@ -1216,7 +1314,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             name="phoneAreaCellNew"
                                                             id="cellPhoneAreaCode"
                                                             aria-label="${sessionScope.languageJSON.profile.cellPhoneAreaCode}"
-                                                           
+                                                            <c:if test="${readOnlyCellPhone == true}">disabled="disabled"</c:if>
                                                             value="${cellRequest.phoneAreaCellNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
@@ -1228,7 +1326,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             name="phoneNbrCellNew"
                                                             id="cellPhonePhoneNumber"
                                                             aria-label="${sessionScope.languageJSON.profile.cellPhonePhoneNumber}"
-                                                           
+                                                            <c:if test="${readOnlyCellPhone == true}">disabled="disabled"</c:if>
                                                             value="${cellRequest.phoneNbrCellNew}"
                                                             oninput="value=value.replace(/[^\d\-]/g,'')"
                                                         />
@@ -1236,6 +1334,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </div>
                                         </div>
+                                    </c:if>
+                                    <c:if test="${demoOptions.fieldDisplayOptionWorkPhone !='N'}"> 
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title">${sessionScope.languageJSON.profile.business}</div>
                                             <div class="profile-desc">
@@ -1259,7 +1359,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             name="phoneAreaBusNew"
                                                             id="workPhoneAreaCode"
                                                             aria-label="${sessionScope.languageJSON.profile.workPhoneAreaCode}"
-                                                           
+                                                            <c:if test="${readOnlyWorkPhone == true}">disabled="disabled"</c:if>
                                                             value="${busRequest.phoneAreaBusNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
@@ -1271,20 +1371,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             name="phoneNbrBusNew"
                                                             id="workPhonePhoneNumber"
                                                             aria-label="${sessionScope.languageJSON.profile.workPhonePhoneNumber}"
-                                                           
+                                                            <c:if test="${readOnlyWorkPhone == true}">disabled="disabled"</c:if>
                                                             value="${busRequest.phoneNbrBusNew}"
                                                             oninput="value=value.replace(/[^\d\-]/g,'')"
                                                         />
                                                     </div>
 
-                                                    &nbsp;&nbsp;<span>${sessionScope.languageJSON.profile.ext}</span>
+                                                    &nbsp;&nbsp;<span <c:if test="${readOnlyWorkPhone == true}">class="disabledSpan"</c:if>>${sessionScope.languageJSON.profile.ext}</span>
                                                     <div class="form-group">
                                                         <input
                                                             class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.busPhoneExt != busRequest.busPhoneExtNew}">active</c:if>"
                                                             name="busPhoneExtNew"
                                                             id="workPhoneExtention"
                                                             aria-label="${sessionScope.languageJSON.profile.workPhoneExtention}"
-                                                           
+                                                            <c:if test="${readOnlyWorkPhone == true}">disabled="disabled"</c:if>
                                                             value="${busRequest.busPhoneExtNew}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
@@ -1292,7 +1392,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </div>
                                             </div>
                                         </div>
+                                    </c:if>
                                     </div>
+                                    <c:if test="${!readOnlyHomePhone && !readOnlyCellPhone &&!readOnlyWorkPhone }"> 
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
@@ -1325,12 +1427,14 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>
                                         </div>
                                     </div>
+                                    </c:if>
                                 </div>
                                 <!-- 
                                 <form hidden="hidden" action="deletePhone" id="deletePhone" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </form>
                                  -->
+                                </c:if>
                                  </form>
                         </c:if>
                         
@@ -1356,6 +1460,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </select>
                                 </div>
                             </form>
+                            <c:if test="${payrollOption.fieldDisplayOptionInfo == 'N' && payrollOption.fieldDisplayOptionBank == 'N'}">
+                                <br/>
+                                <p class="topMsg error-hint" role="alert">${sessionScope.languageJSON.profile.approverNotSetNotifyBusinessOffice}</p>
+                                <br/>
+                            </c:if>
+                            <c:if test="${payrollOption.fieldDisplayOptionInfo !='N'}">
+                                    <c:set var="readOnlyInfo" value="false"/>
+                                    <c:if test="${payrollOption.fieldDisplayOptionInfo =='I'}"> 
+                                        <c:set var="readOnlyInfo" value="true"/>
+                                    </c:if>
                              <h2 class="sub-title">${sessionScope.languageJSON.profile.W4MaritalStatusInfo}</h2>
                             <form class="profile-item" id="w4InfoForm" action="saveW4" method="POST">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -1382,7 +1496,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="form-group valueInput">
                                                 <select
                                                     id="maritalStatusLabel"
-                                                    name="maritalStatTaxNew"
+                                                    name="maritalStatTaxNew"  <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>
                                                     class="form-control  <c:if test="${payInfo.maritalStatTax != w4Request.maritalStatTaxNew}">active</c:if>"
                                                     aria-label="${sessionScope.languageJSON.profile.W4MaritalStatus}"
                                                    
@@ -1408,6 +1522,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control <c:if test="${payInfo.nbrTaxExempts != w4Request.nbrTaxExemptsNew}">active</c:if>"
                                                     id="nbrTaxExemptsNew"
                                                     name="nbrTaxExemptsNew"
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>
                                                     aria-label="${sessionScope.languageJSON.profile.NbrOfExemptions}" 
                                                     value="${w4Request.nbrTaxExemptsNew}"
                                                 />
@@ -1415,38 +1530,40 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="profile-btn">
-                                    <div class="edit">
-                                        <button
-                                            type="button" role="button"
-                                            class="btn btn-primary edit-btn"
-                                        >
-                                        ${sessionScope.languageJSON.label.edit}
-                                        </button>
-                                    </div>
-                                    <div class="saveOrCancel">
-                                        <button
-                                            type="submit" role="button"
-                                            class="btn btn-primary save-btn"
-                                            id="saveW4" aria-label = "${sessionScope.languageJSON.label.updateW4}"
-                                        >
-                                        ${sessionScope.languageJSON.label.update}
-                                        </button>
-                                        <button
+                                <c:if test="${!readOnlyInfo}">
+                                    <div class="profile-btn">
+                                        <div class="edit">
+                                            <button
                                                 type="button" role="button"
-                                                id="undoW4" aria-label = "${sessionScope.languageJSON.label.undoW4}"
-                                                class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
+                                                class="btn btn-primary edit-btn"
                                             >
-                                            ${sessionScope.languageJSON.label.undo}
+                                            ${sessionScope.languageJSON.label.edit}
                                             </button>
-                                        <button
-                                            type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelW4}"
-                                            class="btn btn-secondary cancel-btn" 
-                                        >
-                                        ${sessionScope.languageJSON.label.cancel}
-                                        </button>
+                                        </div>
+                                        <div class="saveOrCancel">
+                                            <button
+                                                type="submit" role="button"
+                                                class="btn btn-primary save-btn"
+                                                id="saveW4" aria-label = "${sessionScope.languageJSON.label.updateW4}"
+                                            >
+                                            ${sessionScope.languageJSON.label.update}
+                                            </button>
+                                            <button
+                                                    type="button" role="button"
+                                                    id="undoW4" aria-label = "${sessionScope.languageJSON.label.undoW4}"
+                                                    class="btn btn-secondary"   data-toggle="modal" data-target="#undoModal" 
+                                                >
+                                                ${sessionScope.languageJSON.label.undo}
+                                                </button>
+                                            <button
+                                                type="button" role="button" aria-label = "${sessionScope.languageJSON.label.cancelW4}"
+                                                class="btn btn-secondary cancel-btn" 
+                                            >
+                                            ${sessionScope.languageJSON.label.cancel}
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </c:if>
                             </form>
                             <form hidden="hidden" action="deleteW4" id="deleteW4" method="POST">
                             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -1456,6 +1573,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <input type="hidden" name="maritalStatTax" value="${payInfo.maritalStatTax}">
                                 <input type="hidden" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}">
                             </form>
+                        </c:if>
+                        <c:if test="${payrollOption.fieldDisplayOptionBank !='N'}">	
                             <h2 class="sub-title">${sessionScope.languageJSON.profile.directDepositBankAccounts}</h2>
                             <div class="profile-item" style="padding-bottom: 0;border-bottom:0;">
                                 <div class="bankPart">
@@ -1467,6 +1586,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </div>
                             </div>
                             <c:forEach var="bank" items="${banks}" varStatus="count">
+                                <c:set var="readOnlyBank" value="false"/>
+                                <c:if test="${payrollOption.fieldDisplayOptionBank =='I' || bank.invalidAccount}"> 
+                                    <c:set var="readOnlyBank" value="true"/>
+                                </c:if>
+                                
+                                <c:set var="hasInvalid" value=""/>
+                                <c:if test ="${bank.invalidAccount}">
+                                    <c:set var="hasInvalid" value="hasInvalid"/>
+                                </c:if>
+                                
+                                <c:set var="hideDelete" value=""/>
+                                <c:if test="${(bank.code.code =='' && bank.accountNumber ==''  && bank.accountType.code =='') ||  bank.invalidAccount}">
+                                    <c:set var="hideDelete" value="hide"/>
+                                </c:if>
                             <form class="profile-item border-0 bankAccountBlock updateBankForm  <c:if test="${bank.isDelete == false}">usedBank</c:if>  <c:if test="${bank.isDelete == true}">isDelete</c:if>"
                                     id="bankAccountForm_${count.index}"
                                     action="updateBank" method="POST" >
@@ -1483,7 +1616,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         type="radio"
                                                         aria-label="${sessionScope.languageJSON.accessHint.primaryAccountCheckbox}" 
                                                         aria-disabled="${bank.isDelete}"
-                                                        <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                        <c:if test="${bank.isDelete == true || readOnlyBank == true}">disabled="disabled"</c:if>
                                                         name="primaryAccount"
                                                     />
                                             </div>
@@ -1502,7 +1635,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label="${sessionScope.languageJSON.profile.bankName}" 
                                                             aria-disabled="${bank.isDelete}"
                                                             tabindex="-1"
-                                                            <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                            <c:if test="${bank.isDelete == true || readOnlyBank == true}">disabled="disabled"</c:if>
                                                             value="${bank.codeNew.description}"
                                                         />
                                                     </div>
@@ -1515,7 +1648,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             aria-label="${sessionScope.languageJSON.accessHint.bankCode}" 
                                                             aria-disabled="${bank.isDelete}"
                                                             tabindex="-1"
-                                                            <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                            <c:if test="${bank.isDelete == true || readOnlyBank == true}">disabled="disabled"</c:if>
                                                             value="${bank.codeNew.subCode}"
                                                         />
                                                     </div>
@@ -1527,7 +1660,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         data-target="#selectBankModal"
                                                         aria-label="${sessionScope.languageJSON.profile.chooseBank}"
                                                         aria-disabled="${bank.isDelete}"
-                                                        <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                        <c:if test="${bank.isDelete == true || readOnlyBank == true}">disabled="disabled"</c:if>
                                                     >
                                                         <i class="fa fa-ellipsis-h"></i>
                                                     </button>
@@ -1550,7 +1683,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         type="text"
                                                         aria-label="${sessionScope.languageJSON.profile.bankAcctNbr}"
                                                         aria-disabled="${bank.isDelete}"
-                                                        <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                        <c:if test="${bank.isDelete == true || readOnlyBank == true}">disabled="disabled"</c:if>
                                                         name="accountNumberNew"
                                                         id="accountNumberNew_${count.index}"
                                                         value="${bank.accountNumberNew}"
@@ -1574,7 +1707,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         aria-label="${sessionScope.languageJSON.profile.bankAcctType}"
                                                         id="accountTypeNew_${count.index}"
                                                         aria-disabled="${bank.isDelete}"
-                                                        <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                        <c:if test="${bank.isDelete == true || readOnlyBank == true}">disabled="disabled"</c:if>
                                                         name="accountTypeNew"
                                                     >
                                                     <c:forEach var="bankType" items="${bankAccountTypes}" varStatus="countBank">
@@ -1613,42 +1746,44 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         value="${bank.depositAmountNew.displayAmount}"
                                                         oninput="clearNoNum(this)"
                                                         aria-disabled="${bank.isDelete}"
-                                                        <c:if test="${bank.isDelete == true}">disabled="disabled"</c:if>
+                                                        <c:if test="${bank.isDelete == true || readOnlyBank == true}">disabled="disabled"</c:if>
                                                     />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="profile-btn">
-                                        <div class="saveOrCancel">
-                                            <button
-                                                type="button" role="button"
-                                                class="btn btn-primary save-btn saveUpdateBankBtn"
-                                                id="saveBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.updateBank}"
-                                                onclick="updateBank(${count.index})"
-                                            >
-                                            ${sessionScope.languageJSON.label.update}
-                                            </button>
-                                            <button
-                                                    type="button" role="button"
-                                                    id="undoBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.undoBank}"
-                                                    class="btn btn-secondary undo-btn"   data-toggle="modal" data-target="#undoModal" 
-                                                    onclick="undoBank(${count.index})"
-                                                >
-                                                ${sessionScope.languageJSON.label.undo}
-                                            </button>
-                                            <c:if test="${bank.code.subCode!=''}">
+                                    <c:if test="${!readOnlyBank}">
+                                        <div class="profile-btn">
+                                            <div class="saveOrCancel">
                                                 <button
                                                     type="button" role="button"
-                                                    id="deleteBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.deleteBank}"
-                                                    class="btn btn-secondary delete-btn"  onclick="deleteBankAmount(${count.index})"
-                                                    data-toggle="modal" data-target="#deleteModal"
+                                                    class="btn btn-primary save-btn saveUpdateBankBtn"
+                                                    id="saveBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.updateBank}"
+                                                    onclick="updateBank(${count.index})"
                                                 >
-                                                ${sessionScope.languageJSON.label.delete}
+                                                ${sessionScope.languageJSON.label.update}
                                                 </button>
-                                            </c:if>
+                                                <button
+                                                        type="button" role="button"
+                                                        id="undoBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.undoBank}"
+                                                        class="btn btn-secondary undo-btn"   data-toggle="modal" data-target="#undoModal" 
+                                                        onclick="undoBank(${count.index})"
+                                                    >
+                                                    ${sessionScope.languageJSON.label.undo}
+                                                </button>
+                                                <c:if test="${bank.code.subCode!=''}">
+                                                    <button
+                                                        type="button" role="button"
+                                                        id="deleteBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.deleteBank}"
+                                                        class="btn btn-secondary delete-btn ${hideDelete}"  onclick="deleteBankAmount(${count.index})"
+                                                        data-toggle="modal" data-target="#deleteModal"
+                                                    >
+                                                    ${sessionScope.languageJSON.label.delete}
+                                                    </button>
+                                                </c:if>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </c:if>
                                 </div>   
                             </form>
                             </c:forEach>
@@ -1836,7 +1971,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                 </form>
-                                <button
+                                <button <c:if test="${readOnlyBank == true}">disabled="disabled"</c:if>
                                     type="button" role="button" aria-label = "${sessionScope.languageJSON.label.addBank}"
                                     class="btn btn-primary add-bank-btn"
                                 >
@@ -1846,6 +1981,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         ${sessionScope.languageJSON.validator.maximumBankAmmount}
                                 </p>
                             </div>
+                        </c:if>
                         </c:if>
                     </div>
                 </section>
@@ -1858,5 +1994,5 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <%@ include file="modal/searchForBank.jsp"%>
     </body>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/profile.js"></script>
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/searchForBank.js"></script>
+    <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/searchForBank.js"></script>
 </html>

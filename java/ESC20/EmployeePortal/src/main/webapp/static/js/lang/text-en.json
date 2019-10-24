@@ -281,7 +281,8 @@
         "addANewBankAccount": "Add a new bank account",
         "restrictionCodesPublic": "Restriction Codes Public",
         "verifyEmail": "Verify E-mail Address",
-        "searchForBanks":"Search for banks"
+        "searchForBanks":"Search for banks",
+        "approverNotSetNotifyBusinessOffice":"The Approver has not been set by the district. Please notify Business office."
     },
     "label": {
         "back": "Go Back",
