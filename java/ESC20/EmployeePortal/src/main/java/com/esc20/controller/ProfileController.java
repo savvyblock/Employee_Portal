@@ -415,13 +415,18 @@ public class ProfileController {
 	@RequestMapping("saveAll")
 	public ModelAndView saveAll(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-
+		
+		DemoOption demoOptions = this.indexService.getDemoOption();
+		 
 		Enumeration<String> names = req.getParameterNames();
 		while (names.hasMoreElements()) {
 			String name = names.nextElement();
 			System.out.println(name + ":" + req.getParameter(name));
 		}
-		saveName(req, mav);
+		if(demoOptions.getFieldDisplayOptionName().trim().equals("U")) {
+			saveName(req, mav);
+		}
+	
 		saveMarital(req, mav);
 		saveDriversLicense(req, mav);
 		saveRestrictionCodes(req, mav);
