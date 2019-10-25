@@ -423,40 +423,57 @@ public class ProfileController {
 			String name = names.nextElement();
 			System.out.println(name + ":" + req.getParameter(name));
 		}
-		
+
 		String undoName = req.getParameter("undoName");
 
-		if (demoOptions.getFieldDisplayOptionName().trim().equals("U")) {
-			saveName(req, mav);
-		}
-		if (demoOptions.getFieldDisplayOptionMarital().trim().equals("U")) {
-			saveMarital(req, mav);
-		}
-		if (demoOptions.getFieldDisplayOptionDriversLicense().trim().equals("U")) {
-			saveDriversLicense(req, mav);
+		if (!"deleteNameRequest".equalsIgnoreCase(undoName)) {
+			if (demoOptions.getFieldDisplayOptionName().trim().equals("U")) {
+				saveName(req, mav);
+			}
 		}
 
-		if (demoOptions.getFieldDisplayOptionRestrictionCodes().trim().equals("U")) {
-			saveRestrictionCodes(req, mav);
+		if (!"deleteMaritalRequest".equalsIgnoreCase(undoName)) {
+			if (demoOptions.getFieldDisplayOptionMarital().trim().equals("U")) {
+				saveMarital(req, mav);
+			}
 		}
 
-		if (demoOptions.getFieldDisplayOptionEmail().trim().equals("U")) {
-			saveEmail(req, mav);
+		if ("deleteDriversLicenseRequest".equalsIgnoreCase(undoName)) {
+			if (demoOptions.getFieldDisplayOptionDriversLicense().trim().equals("U")) {
+				saveDriversLicense(req, mav);
+			}
 		}
 
-		if (demoOptions.getFieldDisplayOptionEmergencyContact().trim().equals("U")) {
-			saveEmergencyContact(req, mav);
+		if (!"deleteRestrictionCodesRequest".equalsIgnoreCase(undoName)) {
+			if (demoOptions.getFieldDisplayOptionRestrictionCodes().trim().equals("U")) {
+				saveRestrictionCodes(req, mav);
+			}
 		}
 
-		if (demoOptions.getFieldDisplayOptionMailAddr().trim().equals("U")) {
-			saveMailAddr(req, mav);
+		if (!"deleteEmail".equalsIgnoreCase(undoName)) {
+			if (demoOptions.getFieldDisplayOptionEmail().trim().equals("U")) {
+				saveEmail(req, mav);
+			}
 		}
 
-		if (demoOptions.getFieldDisplayOptionMailAddr().trim().equals("U")) {
-			saveAltMailAddr(req, mav);
+		if (!"deleteEmergencyContact".equalsIgnoreCase(undoName)) {
+			if (demoOptions.getFieldDisplayOptionEmergencyContact().trim().equals("U")) {
+				saveEmergencyContact(req, mav);
+			}
 		}
-		
-	
+
+		if (!"deleteMailAddr".equalsIgnoreCase(undoName)) {
+			if (demoOptions.getFieldDisplayOptionMailAddr().trim().equals("U")) {
+				saveMailAddr(req, mav);
+			}
+		}
+
+		if (!"deleteAltMailAddr".equalsIgnoreCase(undoName)) {
+			if (demoOptions.getFieldDisplayOptionMailAddr().trim().equals("U")) {
+				saveAltMailAddr(req, mav);
+			}
+		}
+
 		if (!"deletePhone".equalsIgnoreCase(undoName)) {
 			if (demoOptions.getFieldDisplayOptionCellPhone().trim().equals("U")
 					|| demoOptions.getFieldDisplayOptionHomePhone().trim().equals("U")
@@ -464,9 +481,9 @@ public class ProfileController {
 				savePhone(req, mav);
 			}
 		}
-		
-		// undo check
-		undoHandle(req);
+
+		// undo check --we do them in each step so we do not need to undoHandle here
+		// undoHandle(req);
 
 		this.getProfileDetails(req.getSession(), mav, null);
 		return mav;
