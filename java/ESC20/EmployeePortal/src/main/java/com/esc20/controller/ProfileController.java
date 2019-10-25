@@ -482,7 +482,7 @@ public class ProfileController {
 			}
 		}
 
-		// undo check
+		// undo check --need to undo changes for the ones with Pendings
 		 undoHandle(req);
 
 		this.getProfileDetails(req.getSession(), mav, null);
