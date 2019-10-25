@@ -482,8 +482,8 @@ public class ProfileController {
 			}
 		}
 
-		// undo check --we do them in each step so we do not need to undoHandle here
-		// undoHandle(req);
+		// undo check
+		 undoHandle(req);
 
 		this.getProfileDetails(req.getSession(), mav, null);
 		return mav;
