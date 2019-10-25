@@ -415,26 +415,50 @@ public class ProfileController {
 	@RequestMapping("saveAll")
 	public ModelAndView saveAll(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-		
+
 		DemoOption demoOptions = this.indexService.getDemoOption();
-		 
+
 		Enumeration<String> names = req.getParameterNames();
 		while (names.hasMoreElements()) {
 			String name = names.nextElement();
 			System.out.println(name + ":" + req.getParameter(name));
 		}
-		if(demoOptions.getFieldDisplayOptionName().trim().equals("U")) {
+
+		if (demoOptions.getFieldDisplayOptionName().trim().equals("U")) {
 			saveName(req, mav);
 		}
-	
-		saveMarital(req, mav);
-		saveDriversLicense(req, mav);
-		saveRestrictionCodes(req, mav);
-		saveEmail(req, mav);
-		saveEmergencyContact(req, mav);
-		saveMailAddr(req, mav);
-		saveAltMailAddr(req, mav);
-		savePhone(req, mav);
+		if (demoOptions.getFieldDisplayOptionMarital().trim().equals("U")) {
+			saveMarital(req, mav);
+		}
+		if (demoOptions.getFieldDisplayOptionDriversLicense().trim().equals("U")) {
+			saveDriversLicense(req, mav);
+		}
+
+		if (demoOptions.getFieldDisplayOptionRestrictionCodes().trim().equals("U")) {
+			saveRestrictionCodes(req, mav);
+		}
+
+		if (demoOptions.getFieldDisplayOptionEmail().trim().equals("U")) {
+			saveEmail(req, mav);
+		}
+
+		if (demoOptions.getFieldDisplayOptionEmergencyContact().trim().equals("U")) {
+			saveEmergencyContact(req, mav);
+		}
+
+		if (demoOptions.getFieldDisplayOptionMailAddr().trim().equals("U")) {
+			saveMailAddr(req, mav);
+		}
+
+		if (demoOptions.getFieldDisplayOptionMailAddr().trim().equals("U")) {
+			saveAltMailAddr(req, mav);
+		}
+
+		if (demoOptions.getFieldDisplayOptionCellPhone().trim().equals("U")
+				|| demoOptions.getFieldDisplayOptionHomePhone().trim().equals("U")
+				|| demoOptions.getFieldDisplayOptionWorkPhone().trim().equals("U")) {
+			savePhone(req, mav);
+		}
 
 		// undo check
 		undoHandle(req);
@@ -978,74 +1002,86 @@ public class ProfileController {
 		BeaCellPhone cellPhoneRequest;
 		BeaBusPhone businessPhoneRequest;
 
-		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_HM_PHONE")) {
-			homePhoneRequest = new BeaHmPhone(demo, empNbr, reqDts, phoneAreaNew, phoneNbrNew, 'A');
-			this.indexService.saveHomePhoneRequest(homePhoneRequest);
-			demo.setPhoneArea(phoneAreaNew);
-			demo.setPhoneNbr(phoneNbrNew);
-			this.indexService.updateDemoHomePhone(demo);
-			session.removeAttribute("userDetail");
-			List<Code> gens = referenceService.getGenerations();
-			for (Code gen : gens) {
-				if (demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
-					demo.setGenDescription(gen.getDescription());
+		DemoOption demoOptions = this.indexService.getDemoOption();
+
+		if (demoOptions.getFieldDisplayOptionHomePhone().trim().equals("U")) {
+
+			if (this.indexService.getBhrEapDemoAssgnGrp("BEA_HM_PHONE")) {
+				homePhoneRequest = new BeaHmPhone(demo, empNbr, reqDts, phoneAreaNew, phoneNbrNew, 'A');
+				this.indexService.saveHomePhoneRequest(homePhoneRequest);
+				demo.setPhoneArea(phoneAreaNew);
+				demo.setPhoneNbr(phoneNbrNew);
+				this.indexService.updateDemoHomePhone(demo);
+				session.removeAttribute("userDetail");
+				List<Code> gens = referenceService.getGenerations();
+				for (Code gen : gens) {
+					if (demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+						demo.setGenDescription(gen.getDescription());
+					}
 				}
+
+				session.setAttribute("userDetail", demo);
+			} else {
+				homePhoneRequest = new BeaHmPhone(demo, empNbr, reqDts, phoneAreaNew, phoneNbrNew, 'P');
+				this.indexService.saveHomePhoneRequest(homePhoneRequest);
 			}
-
-			session.setAttribute("userDetail", demo);
-		} else {
-			homePhoneRequest = new BeaHmPhone(demo, empNbr, reqDts, phoneAreaNew, phoneNbrNew, 'P');
-			this.indexService.saveHomePhoneRequest(homePhoneRequest);
-		}
 //        this.getProfileDetails(session, mav,null);
-		mav.addObject("activeTab", "homePhoneRequest");
+			mav.addObject("activeTab", "homePhoneRequest");
 
-		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_CELL_PHONE")) {
-			cellPhoneRequest = new BeaCellPhone(demo, empNbr, reqDts, phoneAreaCellNew, phoneNbrCellNew, 'A');
-			this.indexService.saveCellPhoneRequest(cellPhoneRequest);
-			demo.setPhoneAreaCell(phoneAreaCellNew);
-			demo.setPhoneNbrCell(phoneNbrCellNew);
-			this.indexService.updateDemoCellPhone(demo);
-			session.removeAttribute("userDetail");
-			List<Code> gens = referenceService.getGenerations();
-			for (Code gen : gens) {
-				if (demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
-					demo.setGenDescription(gen.getDescription());
+		}
+
+		if (demoOptions.getFieldDisplayOptionCellPhone().trim().equals("U")) {
+
+			if (this.indexService.getBhrEapDemoAssgnGrp("BEA_CELL_PHONE")) {
+				cellPhoneRequest = new BeaCellPhone(demo, empNbr, reqDts, phoneAreaCellNew, phoneNbrCellNew, 'A');
+				this.indexService.saveCellPhoneRequest(cellPhoneRequest);
+				demo.setPhoneAreaCell(phoneAreaCellNew);
+				demo.setPhoneNbrCell(phoneNbrCellNew);
+				this.indexService.updateDemoCellPhone(demo);
+				session.removeAttribute("userDetail");
+				List<Code> gens = referenceService.getGenerations();
+				for (Code gen : gens) {
+					if (demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+						demo.setGenDescription(gen.getDescription());
+					}
 				}
+
+				session.setAttribute("userDetail", demo);
+			} else {
+				cellPhoneRequest = new BeaCellPhone(demo, empNbr, reqDts, phoneAreaCellNew, phoneNbrCellNew, 'P');
+				this.indexService.saveCellPhoneRequest(cellPhoneRequest);
 			}
-
-			session.setAttribute("userDetail", demo);
-		} else {
-			cellPhoneRequest = new BeaCellPhone(demo, empNbr, reqDts, phoneAreaCellNew, phoneNbrCellNew, 'P');
-			this.indexService.saveCellPhoneRequest(cellPhoneRequest);
-		}
 //        this.getProfileDetails(session, mav,null);
-		mav.addObject("activeTab", "cellPhoneRequest");
+			mav.addObject("activeTab", "cellPhoneRequest");
+		}
 
-		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_BUS_PHONE")) {
-			businessPhoneRequest = new BeaBusPhone(demo, empNbr, reqDts, phoneAreaBusNew, phoneNbrBusNew,
-					busPhoneExtNew, 'A');
-			this.indexService.saveBusinessPhoneRequest(businessPhoneRequest);
-			demo.setPhoneAreaBus(phoneAreaBusNew);
-			demo.setPhoneNbrBus(phoneNbrBusNew);
-			demo.setBusPhoneExt(busPhoneExtNew);
-			this.indexService.updateDemoBusinessPhone(demo);
-			session.removeAttribute("userDetail");
-			List<Code> gens = referenceService.getGenerations();
-			for (Code gen : gens) {
-				if (demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
-					demo.setGenDescription(gen.getDescription());
+		if (demoOptions.getFieldDisplayOptionWorkPhone().trim().equals("U")) {
+
+			if (this.indexService.getBhrEapDemoAssgnGrp("BEA_BUS_PHONE")) {
+				businessPhoneRequest = new BeaBusPhone(demo, empNbr, reqDts, phoneAreaBusNew, phoneNbrBusNew,
+						busPhoneExtNew, 'A');
+				this.indexService.saveBusinessPhoneRequest(businessPhoneRequest);
+				demo.setPhoneAreaBus(phoneAreaBusNew);
+				demo.setPhoneNbrBus(phoneNbrBusNew);
+				demo.setBusPhoneExt(busPhoneExtNew);
+				this.indexService.updateDemoBusinessPhone(demo);
+				session.removeAttribute("userDetail");
+				List<Code> gens = referenceService.getGenerations();
+				for (Code gen : gens) {
+					if (demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+						demo.setGenDescription(gen.getDescription());
+					}
 				}
-			}
 
-			session.setAttribute("userDetail", demo);
-		} else {
-			businessPhoneRequest = new BeaBusPhone(demo, empNbr, reqDts, phoneAreaBusNew, phoneNbrBusNew,
-					busPhoneExtNew, 'P');
-			this.indexService.saveBusinessPhoneRequest(businessPhoneRequest);
-		}
+				session.setAttribute("userDetail", demo);
+			} else {
+				businessPhoneRequest = new BeaBusPhone(demo, empNbr, reqDts, phoneAreaBusNew, phoneNbrBusNew,
+						busPhoneExtNew, 'P');
+				this.indexService.saveBusinessPhoneRequest(businessPhoneRequest);
+			}
 //        this.getProfileDetails(session, mav,null);
-		mav.addObject("activeTab", "businessPhoneRequest");
+			mav.addObject("activeTab", "businessPhoneRequest");
+		}
 
 		return mav;
 	}
@@ -1055,9 +1091,21 @@ public class ProfileController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("profile");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
-		this.indexService.deleteHomePhoneRequest(demo.getEmpNbr());
-		this.indexService.deleteCellPhoneRequest(demo.getEmpNbr());
-		this.indexService.deleteBusinessPhoneRequest(demo.getEmpNbr());
+		DemoOption demoOptions = this.indexService.getDemoOption();
+
+		if (demoOptions.getFieldDisplayOptionHomePhone().trim().equals("U")) {
+			this.indexService.deleteHomePhoneRequest(demo.getEmpNbr());
+		}
+
+		if (demoOptions.getFieldDisplayOptionCellPhone().trim().equals("U")) {
+			this.indexService.deleteCellPhoneRequest(demo.getEmpNbr());
+		}
+		
+		if (demoOptions.getFieldDisplayOptionWorkPhone().trim().equals("U")) {
+			this.indexService.deleteBusinessPhoneRequest(demo.getEmpNbr());
+		}
+		
+		
 //        this.getProfileDetails(session, mav,null);
 		return mav;
 	}
@@ -1316,9 +1364,9 @@ public class ProfileController {
 			}
 
 		}
-		
-	    DemoOption demoOption = this.indexService.getDemoOption();
-	    PayrollOption payrollOption = this.indexService.getPayrollOption(user.getEmpNbr(), freqCode);
+
+		DemoOption demoOption = this.indexService.getDemoOption();
+		PayrollOption payrollOption = this.indexService.getPayrollOption(user.getEmpNbr(), freqCode);
 
 		List<Code> bankAccountTypes = this.referenceService.getDdAccountTypes();
 		mav.setViewName("profile");
