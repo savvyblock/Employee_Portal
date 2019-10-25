@@ -423,6 +423,8 @@ public class ProfileController {
 			String name = names.nextElement();
 			System.out.println(name + ":" + req.getParameter(name));
 		}
+		
+		String undoName = req.getParameter("undoName");
 
 		if (demoOptions.getFieldDisplayOptionName().trim().equals("U")) {
 			saveName(req, mav);
@@ -453,13 +455,16 @@ public class ProfileController {
 		if (demoOptions.getFieldDisplayOptionMailAddr().trim().equals("U")) {
 			saveAltMailAddr(req, mav);
 		}
-
-		if (demoOptions.getFieldDisplayOptionCellPhone().trim().equals("U")
-				|| demoOptions.getFieldDisplayOptionHomePhone().trim().equals("U")
-				|| demoOptions.getFieldDisplayOptionWorkPhone().trim().equals("U")) {
-			savePhone(req, mav);
+		
+	
+		if (!"deletePhone".equalsIgnoreCase(undoName)) {
+			if (demoOptions.getFieldDisplayOptionCellPhone().trim().equals("U")
+					|| demoOptions.getFieldDisplayOptionHomePhone().trim().equals("U")
+					|| demoOptions.getFieldDisplayOptionWorkPhone().trim().equals("U")) {
+				savePhone(req, mav);
+			}
 		}
-
+		
 		// undo check
 		undoHandle(req);
 
