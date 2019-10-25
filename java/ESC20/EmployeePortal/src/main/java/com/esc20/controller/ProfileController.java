@@ -984,10 +984,6 @@ public class ProfileController {
 		String phoneNbrBusNew = req.getParameter("phoneNbrBusNew");
 		String busPhoneExtNew = req.getParameter("busPhoneExtNew");
 
-		phoneNbrCellNew = phoneNbrCellNew.replaceAll("-", "");
-		phoneNbrBusNew = phoneNbrBusNew.replaceAll("-", "");
-		phoneNbrNew = phoneNbrNew.replaceAll("-", "");
-
 		if (empNbr == null || reqDts == null) {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", module);
@@ -1006,6 +1002,7 @@ public class ProfileController {
 
 		if (demoOptions.getFieldDisplayOptionHomePhone().trim().equals("U")) {
 
+			phoneNbrNew = phoneNbrNew.replaceAll("-", "");
 			if (this.indexService.getBhrEapDemoAssgnGrp("BEA_HM_PHONE")) {
 				homePhoneRequest = new BeaHmPhone(demo, empNbr, reqDts, phoneAreaNew, phoneNbrNew, 'A');
 				this.indexService.saveHomePhoneRequest(homePhoneRequest);
@@ -1032,6 +1029,7 @@ public class ProfileController {
 
 		if (demoOptions.getFieldDisplayOptionCellPhone().trim().equals("U")) {
 
+			phoneNbrCellNew = phoneNbrCellNew.replaceAll("-", "");
 			if (this.indexService.getBhrEapDemoAssgnGrp("BEA_CELL_PHONE")) {
 				cellPhoneRequest = new BeaCellPhone(demo, empNbr, reqDts, phoneAreaCellNew, phoneNbrCellNew, 'A');
 				this.indexService.saveCellPhoneRequest(cellPhoneRequest);
@@ -1057,6 +1055,7 @@ public class ProfileController {
 
 		if (demoOptions.getFieldDisplayOptionWorkPhone().trim().equals("U")) {
 
+			phoneNbrBusNew = phoneNbrBusNew.replaceAll("-", "");
 			if (this.indexService.getBhrEapDemoAssgnGrp("BEA_BUS_PHONE")) {
 				businessPhoneRequest = new BeaBusPhone(demo, empNbr, reqDts, phoneAreaBusNew, phoneNbrBusNew,
 						busPhoneExtNew, 'A');
@@ -1100,12 +1099,11 @@ public class ProfileController {
 		if (demoOptions.getFieldDisplayOptionCellPhone().trim().equals("U")) {
 			this.indexService.deleteCellPhoneRequest(demo.getEmpNbr());
 		}
-		
+
 		if (demoOptions.getFieldDisplayOptionWorkPhone().trim().equals("U")) {
 			this.indexService.deleteBusinessPhoneRequest(demo.getEmpNbr());
 		}
-		
-		
+
 //        this.getProfileDetails(session, mav,null);
 		return mav;
 	}
