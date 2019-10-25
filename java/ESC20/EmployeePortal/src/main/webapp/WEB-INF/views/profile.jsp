@@ -1269,6 +1269,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <c:set var="phoneNbr1" scope="page" value="${fn:substring(phoneNbr, 0, 3)}"/>
                                                         <c:set var="phoneNbr2" scope="page" value="${fn:substring(phoneNbr, 3, 7)}"/>
                                                         ${phoneNbr1}-${phoneNbr2}
+                                                        <c:set var="homeNumberCurrent" scope="page" value="${phoneNbr1}${phoneNbr2}"/>
+                                                    </c:if>
+                                                    <c:if test="${hmRequest.phoneNbrNew != null && fn:trim(hmRequest.phoneNbrNew) != ''}">
+                                                        <c:set var="phoneNbrNew" scope="page" value="${fn:replace(hmRequest.phoneNbrNew, '-', '')}"/>
+                                                        <c:set var="phoneNbr1New" scope="page" value="${fn:substring(phoneNbrNew, 0, 3)}"/>
+                                                        <c:set var="phoneNbr2New" scope="page" value="${fn:substring(phoneNbrNew, 3, 7)}"/>
+                                                        <c:set var="homeNumberNew" scope="page" value="${phoneNbr1New}${phoneNbr2New}"/>
                                                     </c:if>
                                                     <!-- ${sessionScope.userDetail.phoneNbr} -->
                                                 </span>
@@ -1287,7 +1294,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </div>
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phone-input  <c:if test="${sessionScope.userDetail.phoneNbr != hmRequest.phoneNbrNew}">active</c:if>"
+                                                            class="form-control phone-input  <c:if test="${homeNumberCurrent != homeNumberNew}">active</c:if>"
                                                             name="phoneNbrNew"
                                                             id="homePhonePhoneNumber"
                                                             aria-label="${sessionScope.languageJSON.profile.homePhonePhoneNumber}"
@@ -1311,6 +1318,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <c:set var="phoneNbrCell1" scope="page" value="${fn:substring(phoneNbrCell, 0, 3)}"/>
                                                         <c:set var="phoneNbrCell2" scope="page" value="${fn:substring(phoneNbrCell, 3, 7)}"/>
                                                         ${phoneNbrCell1}-${phoneNbrCell2}
+                                                        <c:set var="cellNumberCurrent" scope="page" value="${phoneNbrCell1}${phoneNbrCell2}"/>
+                                                    </c:if>
+                                                    <c:if test="${cellRequest.phoneNbrCellNew != null && fn:trim(cellRequest.phoneNbrCellNew) != ''}">
+                                                        <c:set var="phoneNbrCellNew" scope="page" value="${fn:replace(cellRequest.phoneNbrCellNew, '-', '')}"/>
+                                                        <c:set var="phoneNbrCell1New" scope="page" value="${fn:substring(phoneNbrCellNew, 0, 3)}"/>
+                                                        <c:set var="phoneNbrCell2New" scope="page" value="${fn:substring(phoneNbrCellNew, 3, 7)}"/>
+                                                        <c:set var="cellNumberNew" scope="page" value="${phoneNbrCell1New}${phoneNbrCell2New}"/>
                                                     </c:if>
                                                     <!-- ${sessionScope.userDetail.phoneNbrCell} -->
                                                 </span>
@@ -1329,7 +1343,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phone-input  <c:if test="${sessionScope.userDetail.phoneNbrCell != cellRequest.phoneNbrCellNew}">active</c:if>"
+                                                            class="form-control phone-input  <c:if test="${cellNumberCurrent != cellNumberNew}">active</c:if>"
                                                             name="phoneNbrCellNew"
                                                             id="cellPhonePhoneNumber"
                                                             aria-label="${sessionScope.languageJSON.profile.cellPhonePhoneNumber}"
@@ -1353,6 +1367,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <c:set var="phoneNbrBus1" scope="page" value="${fn:substring(phoneNbrBus, 0, 3)}"/>
                                                         <c:set var="phoneNbrBus2" scope="page" value="${fn:substring(phoneNbrBus, 3, 7)}"/>
                                                         ${phoneNbrBus1}-${phoneNbrBus2}
+                                                        <c:set var="workNumberCurrent" scope="page" value="${phoneNbrBus1}${phoneNbrBus2}"/>
+                                                    </c:if>
+                                                    <c:if test="${busRequest.phoneNbrBusNew != null && fn:trim(busRequest.phoneNbrBusNew) != ''}">
+                                                        <c:set var="phoneNbrBusNew" scope="page" value="${fn:replace(busRequest.phoneNbrBusNew, '-', '')}"/>
+                                                        <c:set var="phoneNbrBus1New" scope="page" value="${fn:substring(phoneNbrBusNew, 0, 3)}"/>
+                                                        <c:set var="phoneNbrBus2New" scope="page" value="${fn:substring(phoneNbrBusNew, 3, 7)}"/>
+                                                        <c:set var="workNumberNew" scope="page" value="${phoneNbrBus1New}${phoneNbrBus2New}"/>
                                                     </c:if>
                                                     <!-- ${sessionScope.userDetail.phoneNbrBus} -->
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -1374,7 +1395,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phone-input  <c:if test="${sessionScope.userDetail.phoneNbrBus != busRequest.phoneNbrBusNew}">active</c:if>"
+                                                            class="form-control phone-input  <c:if test="${workNumberCurrent != workNumberNew}">active</c:if>"
                                                             name="phoneNbrBusNew"
                                                             id="workPhonePhoneNumber"
                                                             aria-label="${sessionScope.languageJSON.profile.workPhonePhoneNumber}"
