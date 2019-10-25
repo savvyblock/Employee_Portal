@@ -22,28 +22,38 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     </button>
                             </div>
                             <br/>
-                            <c:set var="canEditAll" value="false"/>
+                                <c:set var="canEditAll" value="false"/>
                                 <c:if test="${demoOptions.fieldDisplayOptionName == 'U' || demoOptions.fieldDisplayOptionMarital == 'U' || demoOptions.fieldDisplayOptionDriversLicense == 'U' 
                                 || demoOptions.fieldDisplayOptionRestrictionCodes == 'U' || demoOptions.fieldDisplayOptionEmergencyContact == 'U' || demoOptions.fieldDisplayOptionMailAddr == 'U'
                                 || demoOptions.fieldDisplayOptionAltAddr == 'U' || demoOptions.fieldDisplayOptionHomePhone =='U' || demoOptions.fieldDisplayOptionWorkPhone == 'U' 
                                 || demoOptions.fieldDisplayOptionEmail == 'U' || demoOptions.fieldDisplayOptionCellPhone == 'U'}"> 
                                     <c:set var="canEditAll" value="true"/>
                                 </c:if>
-                            <div class="text-left">
-                                    <button type="button" role="button" id="saveAll" class="btn btn-primary"  <c:if test="${canEditAll == false}">disabled="disabled"</c:if>>
-                                        <span>${sessionScope.languageJSON.label.save}</span>
-                                    </button>  
-                                    <c:if test="${canEditAll == true}">
-                                        <a href="/EmployeePortal/profile/profile" id="reset" class="btn btn-default">
-                                            <span>${sessionScope.languageJSON.label.reset}</span>
-                                        </a>
-                                    </c:if>
-                                    <c:if test="${canEditAll == false}">
-                                        <button id="reset" class="btn btn-default" disabled="disabled">
-                                            <span>${sessionScope.languageJSON.label.reset}</span>
-                                        </button>
-                                    </c:if>
-                                </div>
+                                <c:set var="canResetAll" value="false"/>
+                                <c:if test="${demoOptions.fieldDisplayOptionName == 'U' || demoOptions.fieldDisplayOptionMarital == 'U' || demoOptions.fieldDisplayOptionDriversLicense == 'U' 
+                                || demoOptions.fieldDisplayOptionRestrictionCodes == 'U' || demoOptions.fieldDisplayOptionEmergencyContact == 'U' || demoOptions.fieldDisplayOptionMailAddr == 'U'
+                                || demoOptions.fieldDisplayOptionAltAddr == 'U' || demoOptions.fieldDisplayOptionHomePhone =='U' || demoOptions.fieldDisplayOptionWorkPhone == 'U' 
+                                || demoOptions.fieldDisplayOptionEmail == 'U' || demoOptions.fieldDisplayOptionCellPhone == 'U' || payrollOption.fieldDisplayOptionBank == 'U' || payrollOption.fieldDisplayOptionInfo == 'U'}"> 
+                                    <c:set var="canResetAll" value="true"/>
+                                </c:if>
+                                    <div class="text-left">
+                                            <c:if test="${canEditAll == true}">
+
+                                            <button type="button" role="button" id="saveAll" class="btn btn-primary"  <c:if test="${canEditAll == false}">disabled="disabled"</c:if>>
+                                                <span>${sessionScope.languageJSON.label.save}</span>
+                                            </button>  
+                                            </c:if>
+                                            <c:if test="${canResetAll == true}">
+                                                <a href="/EmployeePortal/profile/profile" id="reset" class="btn btn-default">
+                                                    <span>${sessionScope.languageJSON.label.reset}</span>
+                                                </a>
+                                            </c:if>
+                                    </div>
+                                
+                                    <c:if test="${not empty sessionScope.options.messageSelfServiceDemographic}">
+                                            <p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServiceDemographic}</p>
+                                        </c:if>
+                                        
                             <c:if test="${demoOptions.fieldDisplayOptionName == 'N' && demoOptions.fieldDisplayOptionMarital == 'N' && demoOptions.fieldDisplayOptionDriversLicense == 'N' 
                                 && demoOptions.fieldDisplayOptionRestrictionCodes == 'N' && demoOptions.fieldDisplayOptionEmergencyContact == 'N' && demoOptions.fieldDisplayOptionMailAddr == 'N'
                                 && demoOptions.fieldDisplayOptionAltAddr == 'N' && demoOptions.fieldDisplayOptionHomePhone =='N' && demoOptions.fieldDisplayOptionWorkPhone == 'N' 
@@ -54,11 +64,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <p class="topMsg error-hint" role="alert">${sessionScope.languageJSON.profile.approverNotSetNotifyBusinessOffice}</p>
                                 <br/>
                             </c:if>
-                            <c:if test="${not empty sessionScope.options.messageSelfServiceDemographic}">
-                                <p class="topMsg error-hint" role="alert">${sessionScope.options.messageSelfServiceDemographic}</p>
-                            </c:if>
                             
                             <form  id="profileForm" action="saveAll" method="POST">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <input type="hidden" name="empNbr" value="${nameRequest.id.empNbr}">
+                                    <input type="hidden" name="nameReqDts" value="${nameRequest.id.reqDts}">
+                                    <input type="hidden" name="mrtlReqDts" value="${mrtlRequest.id.reqDts}">
+                                    <input type="hidden" name="licReqDts" value="${licRequest.id.reqDts}">
+                                    <input type="hidden" name="restrictReqDts" value="${restrictRequest.id.reqDts}">
+                                    <input type="hidden" name="emailReqDts" value="${emailRequest.id.reqDts}">
+                                    <input type="hidden" name="emerReqDts" value="${emerRequest.id.reqDts}">
+                                    <input type="hidden" name="mailAddrReqDts" value="${mailAddrRequest.id.reqDts}">
+                                    <input type="hidden" name="altMailAddrReqDts" value="${altMailAddrRequest.id.reqDts}">
+                                    <input type="hidden" name="hmReqDts" value="${hmRequest.id.reqDts}">
+                                    <input type="hidden" name="w4ReqDts" value="${w4Request.id.reqDts}">
+                                    <input type="hidden" id="undoName" name="undoName" value="">
                                 <c:set var="readOnlyName" value="false"/>
                                 <c:if test="${demoOptions.fieldDisplayOptionName =='I'}"> 
                                     <c:set var="readOnlyName" value="true"/>
@@ -68,7 +88,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     
                                     <div class="profile-top first-child">
                                         <div class="profile-item" id="personalForm" >
-                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                             <div class="profile-left">
                                                 <div class="profileTitle form-line profileInfo">
                                                     <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
@@ -80,18 +99,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <span class="haveValue"
                                                             >${sessionScope.userDetail.namePre}</span
                                                         >
-                                                        <input type="hidden" name="empNbr" value="${nameRequest.id.empNbr}">
-                                                        <input type="hidden" name="nameReqDts" value="${nameRequest.id.reqDts}">
-                                                        <input type="hidden" name="mrtlReqDts" value="${mrtlRequest.id.reqDts}">
-                                                        <input type="hidden" name="licReqDts" value="${licRequest.id.reqDts}">
-                                                        <input type="hidden" name="restrictReqDts" value="${restrictRequest.id.reqDts}">
-                                                        <input type="hidden" name="emailReqDts" value="${emailRequest.id.reqDts}">
-                                                        <input type="hidden" name="emerReqDts" value="${emerRequest.id.reqDts}">
-                                                        <input type="hidden" name="mailAddrReqDts" value="${mailAddrRequest.id.reqDts}">
-                                                        <input type="hidden" name="altMailAddrReqDts" value="${altMailAddrRequest.id.reqDts}">
-                                                        <input type="hidden" name="hmReqDts" value="${hmRequest.id.reqDts}">
-                                                        <input type="hidden" name="w4ReqDts" value="${w4Request.id.reqDts}">
-                                                        <input type="hidden" id="undoName" name="undoName" value="">
                                                         <div class="form-group valueInput">
                                                             <select
                                                                 class="form-control <c:if test="${fn:trim(sessionScope.userDetail.namePre) != fn:trim(nameRequest.namePreNew)}">active</c:if>"
@@ -1394,7 +1401,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </c:if>
                                     </div>
-                                    <c:if test="${!readOnlyHomePhone || !readOnlyCellPhone || !readOnlyWorkPhone}"> 
+                                    <c:if test="${demoOptions.fieldDisplayOptionHomePhone =='U' || demoOptions.fieldDisplayOptionCellPhone =='U' || demoOptions.fieldDisplayOptionWorkPhone =='U'}"> 
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
