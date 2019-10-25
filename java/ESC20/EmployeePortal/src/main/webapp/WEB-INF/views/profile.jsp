@@ -1394,7 +1394,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </c:if>
                                     </div>
-                                    <c:if test="${!readOnlyHomePhone && !readOnlyCellPhone &&!readOnlyWorkPhone }"> 
+                                    <c:if test="${!readOnlyHomePhone || !readOnlyCellPhone || !readOnlyWorkPhone}"> 
                                     <div class="profile-btn">
                                         <div class="edit">
                                             <button
@@ -1993,6 +1993,23 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <%@ include file="modal/deleteModal.jsp"%>
         <%@ include file="modal/searchForBank.jsp"%>
     </body>
+    <script>
+        var personalValidatorValue = '${demoOptions.fieldDisplayOptionName}'
+        var maritalStatusValidatorValue = '${demoOptions.fieldDisplayOptionMarital}'
+        var driverLicenseValidatorValue = '${demoOptions.fieldDisplayOptionDriversLicense}'
+        var restrictionCodeFormValidatorValue = '${demoOptions.fieldDisplayOptionRestrictionCodes}'
+        var emailFormValidatorValue = '${demoOptions.fieldDisplayOptionEmail}'
+        var emergencyContactFormValidatorValue = '${demoOptions.fieldDisplayOptionEmergencyContact}'
+        var mailingAddressValidatorValue = '${demoOptions.fieldDisplayOptionMailAddr}'
+        var alternativeAddressValidatorValue = '${demoOptions.fieldDisplayOptionAltAddr}'
+
+        var cellPhoneValidatorValue = '${demoOptions.fieldDisplayOptionCellPhone}'
+        var homePhoneValidatorValue = '${demoOptions.fieldDisplayOptionHomePhone}'
+        var workPhoneValidatorValue = '${demoOptions.fieldDisplayOptionWorkPhone}'
+        
+        var w4InfoValidatorValue = '${payrollOption.fieldDisplayOptionInfo}'
+        var bankAccountValidatorValue = '${payrollOption.fieldDisplayOptionBank}'
+    </script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/profile.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/searchForBank.js"></script>
 </html>

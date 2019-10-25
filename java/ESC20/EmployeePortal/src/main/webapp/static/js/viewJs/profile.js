@@ -3,21 +3,21 @@ var formSelect,undoForm
 var formUndoSelect
 var willSubmitFormDelete
 $(function() {
-    personalValidator()
-    maritalStatusValidator()
-    driverLicenseValidator()
-    restrictionCodeFormValidator()
-    emailFormValidator()
-    emergencyContactFormValidator()
-    mailingAddressValidator()
-    alternativeAddressValidator()
-    phoneValidator()
-    w4InfoValidator()
+    personalValidatorValue == 'U'?personalValidator():''
+    maritalStatusValidatorValue == 'U'?maritalStatusValidator():''
+    driverLicenseValidatorValue == 'U'?driverLicenseValidator():''
+    restrictionCodeFormValidatorValue == 'U'?restrictionCodeFormValidator():''
+    emailFormValidatorValue == 'U'?emailFormValidator():''
+    emergencyContactFormValidatorValue == 'U'?emergencyContactFormValidator():''
+    mailingAddressValidatorValue == 'U'?mailingAddressValidator():''
+    alternativeAddressValidatorValue == 'U'?alternativeAddressValidator():''
+    workPhoneValidatorValue == 'U' ||homePhoneValidatorValue == 'U' ||cellPhoneValidatorValue == 'U' ?phoneValidator():''
+    w4InfoValidatorValue == 'U'?w4InfoValidator():''
     initSessionPws()
     //edit
-    bankAccountValidator()
+    bankAccountValidatorValue == 'U'?bankAccountValidator():''
     //add
-    bankAccountAddValidator()
+    bankAccountValidatorValue == 'U'?bankAccountAddValidator():''
     $("#saveEmail").on('click',function(){
         var workE = $("#emailWorkEmail").val()
         var workEV = $("#emailVerifyWorkEmail").val()
@@ -264,23 +264,44 @@ $(function() {
         var mailingAddressFormValidator = $('#mailingAddressForm').data(
             'bootstrapValidator'
         )
+        var alternativeAddressFormValidator = $('#alternativeAddressForm').data(
+            'bootstrapValidator'
+        )
         var phoneFormValidator = $('#phoneForm').data(
             'bootstrapValidator'
         )
-        personalFormValidator.validate()
-        maritalStatusFormValidator.validate()
-        driverLicenseFormValidator.validate()
-        emailFormValidator.validate()
-        emergencyContactFormValidator.validate()
-        mailingAddressFormValidator.validate()
-        phoneFormValidator.validate()
-        if(personalFormValidator.isValid()&&maritalStatusFormValidator.isValid()&&emailFormValidator.isValid()&&emergencyContactFormValidator.isValid()
-        &&mailingAddressFormValidator.isValid()&&phoneFormValidator.isValid()&&driverLicenseFormValidator.isValid()) {
+        personalFormValidator?personalFormValidator.validate():true;
+        maritalStatusFormValidator?maritalStatusFormValidator.validate():true;
+        driverLicenseFormValidator?driverLicenseFormValidator.validate():true;
+        emailFormValidator?emailFormValidator.validate():true;
+        emergencyContactFormValidator?emergencyContactFormValidator.validate():true;
+        mailingAddressFormValidator?mailingAddressFormValidator.validate():true;
+        alternativeAddressFormValidator?alternativeAddressFormValidator.validate():true;
+        phoneFormValidator?phoneFormValidator.validate():true;
+
+        var personalFormValid = personalFormValidator?personalFormValidator.isValid():true
+        var maritalStatusFormValid = maritalStatusFormValidator?maritalStatusFormValidator.isValid():true
+        var emailFormValid = emailFormValidator?emailFormValidator.isValid():true
+        var emergencyContactFormValid = emergencyContactFormValidator?emergencyContactFormValidator.isValid():true
+        var mailingAddressFormValid = mailingAddressFormValidator?mailingAddressFormValidator.isValid():true
+        var phoneFormValid = phoneFormValidator?phoneFormValidator.isValid():true
+        var driverLicenseFormValid = driverLicenseFormValidator?driverLicenseFormValidator.isValid():true
+        var alternativeAddressValid = alternativeAddressFormValidator?alternativeAddressFormValidator.isValid():true
+
+        if( personalFormValid&&
+            maritalStatusFormValid&&
+            emailFormValid&&
+            emergencyContactFormValid&&
+            mailingAddressFormValid&&
+            phoneFormValid&&
+            alternativeAddressValid&&
+            driverLicenseFormValid
+            ) {
             console.log('save -- all')
             $('#undoName').val("");
-            profileForm = $('#profileForm')
-             var t = $("#profileForm").serializeArray();
-            profileForm.submit();
+            // profileForm = $('#profileForm')
+            //  var t = $("#profileForm").serializeArray();
+            $('#profileForm')[0].submit();
         }
         
     })
@@ -564,9 +585,9 @@ function personalValidator() {
             nameFNew: {
                 trigger: null,
                 validators: {
-                    notEmpty: {
-                        message: requiredFieldValidator
-                    },
+                    // notEmpty: {
+                    //     message: requiredFieldValidator
+                    // },
                     stringLength: {
                         max: 25,
                         message: maxLength25Validator
@@ -576,9 +597,9 @@ function personalValidator() {
             nameLNew: {
                 trigger: null,
                 validators: {
-                    notEmpty: {
-                        message: requiredFieldValidator
-                    },
+                    // notEmpty: {
+                    //     message: requiredFieldValidator
+                    // },
                     stringLength: {
                         max: 25,
                         message: maxLength25Validator
@@ -617,14 +638,14 @@ function maritalStatusValidator() {
             validating: 'fa fa-refresh'
         },
         fields: {
-            maritalStatNew: {
-                trigger: null,
-                validators: {
-                    notEmpty: {
-                        message: requiredFieldValidator
-                    }
-                }
-            }
+            // maritalStatNew: {
+            //     trigger: null,
+            //     validators: {
+            //         notEmpty: {
+            //             message: requiredFieldValidator
+            //         }
+            //     }
+            // }
         }
     })
 }
@@ -759,9 +780,9 @@ function emergencyContactFormValidator() {
             emerPhoneAcNew: {
                 trigger: null,
                 validators: {
-                    notEmpty: {
-                        message: requiredFieldValidator
-                    },
+                    // notEmpty: {
+                    //     message: requiredFieldValidator
+                    // },
                     regexp: {
                         regexp: /^[0-9]\d{2}$/,
                         message: pleaseEnterCorrectFormatValidator
@@ -772,9 +793,9 @@ function emergencyContactFormValidator() {
                 trigger: null,
 
                 validators: {
-                    notEmpty: {
-                        message: requiredFieldValidator
-                    },
+                    // notEmpty: {
+                    //     message: requiredFieldValidator
+                    // },
                     regexp: {
                         regexp: /^[0-9][\d]{2}[\-]?[\d]{4}$/,
                         message: pleaseEnterCorrectFormatValidator
@@ -867,9 +888,9 @@ function mailingAddressValidator() {
             addrZipNew: {
                 trigger: null,
                 validators: {
-                    notEmpty: {
-                        message: requiredFieldValidator
-                    },
+                    // notEmpty: {
+                    //     message: requiredFieldValidator
+                    // },
                     regexp: {
                         regexp: /^[0-9]\d{4}$/,
                         message: pleaseEnterCorrectFormatValidator
@@ -947,9 +968,9 @@ function alternativeAddressValidator() {
             smrAddrZipNew: {
                 trigger: null,
                 validators: {
-                    notEmpty: {
-                        message: requiredFieldValidator
-                    },
+                    // notEmpty: {
+                    //     message: requiredFieldValidator
+                    // },
                     regexp: {
                         regexp: /^[0-9]\d{4}$/,
                         message: pleaseEnterCorrectFormatValidator
@@ -1057,20 +1078,20 @@ function w4InfoValidator() {
             validating: 'fa fa-refresh'
         },
         fields: {
-            maritalStatTaxNew: {
-                trigger: null,
-                validators: {
-                    notEmpty: {
-                        message: requiredFieldValidator
-                    }
-                }
-            },
+            // maritalStatTaxNew: {
+            //     trigger: null,
+            //     validators: {
+            //         notEmpty: {
+            //             message: requiredFieldValidator
+            //         }
+            //     }
+            // },
             nbrTaxExemptsNew: {
                 trigger: null,
                 validators: {
-                    notEmpty: {
-                        message: requiredFieldValidator
-                    },
+                    // notEmpty: {
+                    //     message: requiredFieldValidator
+                    // },
                     regexp: {
                         regexp: /^[0-9]\d{0,1}$/,
                         message: pleaseEnterCorrectFormatValidator
