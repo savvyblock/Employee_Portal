@@ -57,7 +57,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                             <c:if test="${demoOptions.fieldDisplayOptionName == 'N' && demoOptions.fieldDisplayOptionMarital == 'N' && demoOptions.fieldDisplayOptionDriversLicense == 'N' 
                                 && demoOptions.fieldDisplayOptionRestrictionCodes == 'N' && demoOptions.fieldDisplayOptionEmergencyContact == 'N' && demoOptions.fieldDisplayOptionMailAddr == 'N'
                                 && demoOptions.fieldDisplayOptionAltAddr == 'N' && demoOptions.fieldDisplayOptionHomePhone =='N' && demoOptions.fieldDisplayOptionWorkPhone == 'N' 
-                                && demoOptions.fieldDisplayOptionEmail == 'N' && demoOptions.fieldDisplayOptionCellPhone == 'N' && payrollOption.fieldDisplayOptionBank == 'N' && payrollOption.fieldDisplayOptionInfo == 'N'}">
+                                && demoOptions.fieldDisplayOptionEmail == 'N' && demoOptions.fieldDisplayOptionCellPhone == 'N'}">
                                 
                             
                                 <br/>
