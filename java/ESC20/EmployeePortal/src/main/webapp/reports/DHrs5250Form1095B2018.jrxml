@@ -407,126 +407,126 @@
 	</variable>
 	<variable name="nameBox23" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b23_personfirstnm}.trim()
-+ ($F{b23_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b23_personmiddlenm}.trim()))
++ ($F{b23_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b23_personmiddlenm}.substring(0,1).trim()))
 + ($F{b23_personlastnm}.trim().equals("") ? "" : (" " + $F{b23_personlastnm}.trim()))
 + ($F{b23_suffixnm}.trim().equals("") ? "" : (" " + $F{b23_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox24" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b24_personfirstnm}.trim()
-+ ($F{b24_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b24_personmiddlenm}.trim()))
++ ($F{b24_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b24_personmiddlenm}.substring(0,1).trim()))
 + ($F{b24_personlastnm}.trim().equals("") ? "" : (" " + $F{b24_personlastnm}.trim()))
 + ($F{b24_suffixnm}.trim().equals("") ? "" : (" " + $F{b24_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox25" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b25_personfirstnm}.trim()
-+ ($F{b25_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b25_personmiddlenm}.trim()))
++ ($F{b25_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b25_personmiddlenm}.substring(0,1).trim()))
 + ($F{b25_personlastnm}.trim().equals("") ? "" : (" " + $F{b25_personlastnm}.trim()))
 + ($F{b25_suffixnm}.trim().equals("") ? "" : (" " + $F{b25_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox26" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b26_personfirstnm}.trim()
-+ ($F{b26_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b26_personmiddlenm}.trim()))
++ ($F{b26_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b26_personmiddlenm}.substring(0,1).trim()))
 + ($F{b26_personlastnm}.trim().equals("") ? "" : (" " + $F{b26_personlastnm}.trim()))
 + ($F{b26_suffixnm}.trim().equals("") ? "" : (" " + $F{b26_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox27" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b27_personfirstnm}.trim()
-+ ($F{b27_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b27_personmiddlenm}.trim()))
++ ($F{b27_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b27_personmiddlenm}.substring(0,1).trim()))
 + ($F{b27_personlastnm}.trim().equals("") ? "" : (" " + $F{b27_personlastnm}.trim()))
 + ($F{b27_suffixnm}.trim().equals("") ? "" : (" " + $F{b27_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox28" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b28_personfirstnm}.trim()
-+ ($F{b28_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b28_personmiddlenm}.trim()))
++ ($F{b28_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b28_personmiddlenm}.substring(0,1).trim()))
 + ($F{b28_personlastnm}.trim().equals("") ? "" : (" " + $F{b28_personlastnm}.trim()))
 + ($F{b28_suffixnm}.trim().equals("") ? "" : (" " + $F{b28_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox29" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b29_personfirstnm}.trim()
-+ ($F{b29_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b29_personmiddlenm}.trim()))
++ ($F{b29_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b29_personmiddlenm}.substring(0,1).trim()))
 + ($F{b29_personlastnm}.trim().equals("") ? "" : (" " + $F{b29_personlastnm}.trim()))
 + ($F{b29_suffixnm}.trim().equals("") ? "" : (" " + $F{b29_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox30" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b30_personfirstnm}.trim()
-+ ($F{b30_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b30_personmiddlenm}.trim()))
++ ($F{b30_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b30_personmiddlenm}.substring(0,1).trim()))
 + ($F{b30_personlastnm}.trim().equals("") ? "" : (" " + $F{b30_personlastnm}.trim()))
 + ($F{b30_suffixnm}.trim().equals("") ? "" : (" " + $F{b30_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox31" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b31_personfirstnm}.trim()
-+ ($F{b31_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b31_personmiddlenm}.trim()))
++ ($F{b31_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b31_personmiddlenm}.substring(0,1).trim()))
 + ($F{b31_personlastnm}.trim().equals("") ? "" : (" " + $F{b31_personlastnm}.trim()))
 + ($F{b31_suffixnm}.trim().equals("") ? "" : (" " + $F{b31_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox32" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b32_personfirstnm}.trim()
-+ ($F{b32_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b32_personmiddlenm}.trim()))
++ ($F{b32_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b32_personmiddlenm}.substring(0,1).trim()))
 + ($F{b32_personlastnm}.trim().equals("") ? "" : (" " + $F{b32_personlastnm}.trim()))
 + ($F{b32_suffixnm}.trim().equals("") ? "" : (" " + $F{b32_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox33" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b33_personfirstnm}.trim()
-+ ($F{b33_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b33_personmiddlenm}.trim()))
++ ($F{b33_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b33_personmiddlenm}.substring(0,1).trim()))
 + ($F{b33_personlastnm}.trim().equals("") ? "" : (" " + $F{b33_personlastnm}.trim()))
 + ($F{b33_suffixnm}.trim().equals("") ? "" : (" " + $F{b33_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox34" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b34_personfirstnm}.trim()
-+ ($F{b34_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b34_personmiddlenm}.trim()))
++ ($F{b34_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b34_personmiddlenm}.substring(0,1).trim()))
 + ($F{b34_personlastnm}.trim().equals("") ? "" : (" " + $F{b34_personlastnm}.trim()))
 + ($F{b34_suffixnm}.trim().equals("") ? "" : (" " + $F{b34_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox35" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b35_personfirstnm}.trim()
-+ ($F{b35_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b35_personmiddlenm}.trim()))
++ ($F{b35_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b35_personmiddlenm}.substring(0,1).trim()))
 + ($F{b35_personlastnm}.trim().equals("") ? "" : (" " + $F{b35_personlastnm}.trim()))
 + ($F{b35_suffixnm}.trim().equals("") ? "" : (" " + $F{b35_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox36" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b36_personfirstnm}.trim()
-+ ($F{b36_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b36_personmiddlenm}.trim()))
++ ($F{b36_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b36_personmiddlenm}.substring(0,1).trim()))
 + ($F{b36_personlastnm}.trim().equals("") ? "" : (" " + $F{b36_personlastnm}.trim()))
 + ($F{b36_suffixnm}.trim().equals("") ? "" : (" " + $F{b36_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox37" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b37_personfirstnm}.trim()
-+ ($F{b37_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b37_personmiddlenm}.trim()))
++ ($F{b37_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b37_personmiddlenm}.substring(0,1).trim()))
 + ($F{b37_personlastnm}.trim().equals("") ? "" : (" " + $F{b37_personlastnm}.trim()))
 + ($F{b37_suffixnm}.trim().equals("") ? "" : (" " + $F{b37_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox38" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b38_personfirstnm}.trim()
-+ ($F{b38_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b38_personmiddlenm}.trim()))
++ ($F{b38_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b38_personmiddlenm}.substring(0,1).trim()))
 + ($F{b38_personlastnm}.trim().equals("") ? "" : (" " + $F{b38_personlastnm}.trim()))
 + ($F{b38_suffixnm}.trim().equals("") ? "" : (" " + $F{b38_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox39" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b39_personfirstnm}.trim()
-+ ($F{b39_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b39_personmiddlenm}.trim()))
++ ($F{b39_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b39_personmiddlenm}.substring(0,1).trim()))
 + ($F{b39_personlastnm}.trim().equals("") ? "" : (" " + $F{b39_personlastnm}.trim()))
 + ($F{b39_suffixnm}.trim().equals("") ? "" : (" " + $F{b39_suffixnm}.trim()))
 ).trim()]]></variableExpression>
 	</variable>
 	<variable name="nameBox40" class="java.lang.String" resetType="Column">
 		<variableExpression><![CDATA[($F{b40_personfirstnm}.trim()
-+ ($F{b40_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b40_personmiddlenm}.trim()))
++ ($F{b40_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b40_personmiddlenm}.substring(0,1).trim()))
 + ($F{b40_personlastnm}.trim().equals("") ? "" : (" " + $F{b40_personlastnm}.trim()))
 + ($F{b40_suffixnm}.trim().equals("") ? "" : (" " + $F{b40_suffixnm}.trim()))
 ).trim()]]></variableExpression>
