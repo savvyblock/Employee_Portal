@@ -56,6 +56,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="form-control"
                                         name="username"
                                         id="username"
+                                        size="12" maxlength="8"
                                     />
                                 </div>
                             </div>
@@ -63,11 +64,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <label class="form-title" for="password">${sessionScope.languageJSON.label.password}</label>
                                 <div class="valid-wrap">
                                     <input
-                                        type="text"
+                                        type="password"
                                         class="form-control"
                                         name="password"
                                         type="password"
                                         id="password"
+                                        maxlength="9"
                                     />
                                 </div>
                             </div>
@@ -75,11 +77,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <label class="form-title" for="newPassword">${sessionScope.languageJSON.label.passwordVerification}</label>
                                 <div class="valid-wrap">
                                     <input
-                                        type="text"
+                                        type="password"
                                         class="form-control"
                                         name="newPassword"
                                         type="password"
                                         id="newPassword"
+                                        maxlength="9"
                                     />
                                 </div>
                             </div>
@@ -94,6 +97,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         name="workEmail"
                                         id="workEmail"
                                         value=""
+                                        maxlength="70"
                                        />
 									</c:when>
 									<c:otherwise>
@@ -115,6 +119,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         name="workEmailVerify"
                                         id="verifyWorkEmail"
                                         value=""
+                                        maxlength="70"
                                     />
                                 </div>
                             </div>
@@ -129,6 +134,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="form-control"
                                         name="homeEmail"
                                         id="homeEmail"
+                                        maxlength="70"
                                         value=""/>
 									</c:when>
 									<c:otherwise>
@@ -157,6 +163,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         name="homeEmailVerify"
                                         id="verifyHomeEmail"
                                         value=""
+                                        maxlength="70"
                                     />
                                 </div>
                             </div>
@@ -169,6 +176,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="form-control"
                                         name="hintQuestion"
                                         id="hintQuestion"
+                                        maxlength="50"
                                     />
                                 </div>
                             </div>
@@ -180,6 +188,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         class="form-control"
                                         name="hintAnswer"
                                         id="hintAnswer"
+                                        maxlength="30"
                                     />
                                     <button class="clear-btn hide" type="button" role="button" onclick="clearDate(this)" aria-label="${sessionScope.languageJSON.label.removeContent}">
                                         <i class="fa fa-times"></i>
