@@ -51,7 +51,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 public class MailUtil {
 
-	private static final String serverHost = "tcc11smtp.txeis.net";
+	//private static final String serverHost = "tcc11smtp.txeis.net";
+	private static final String serverHost = "tcc20smtp.txeis.net"; 
 
 	private static final Integer serverPort = 25;
 
