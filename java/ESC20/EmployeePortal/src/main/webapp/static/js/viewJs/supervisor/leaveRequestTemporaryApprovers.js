@@ -49,12 +49,12 @@ $(function() {
             approverJson.forEach(function(item) {
                 console.log(item)
                 if(item.empNbr&&item.from&&item.to&&item.empNbr!=''&&item.from!=''&&item.to!=''){
-                    var toDate = getMoreDay(item.to)
+                   // var toDate = getMoreDay(item.to)
                     var approver = {
                                 id: item.id,
                                 empNbr: item.empNbr,
                                 from: item.from,
-                                to: toDate
+                                to: item.to
                             }
                     resultApprover.push(approver)
                 }

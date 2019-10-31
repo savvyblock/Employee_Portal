@@ -3,6 +3,7 @@ package com.esc20.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,7 @@ import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
 import com.esc20.service.SupervisorService;
 import com.esc20.util.DateUtil;
+import com.esc20.util.NumberUtil;
 import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONArray;
@@ -279,10 +281,18 @@ public class TempApproverController extends BaseSupervisorController {
 		for (int i = 0; i < inputs.size(); i++) {
 			temp = ((JSONObject) inputs.get(i));
 			tempApprover = new BeaEmpLvTmpApprovers();
-			tempApprover.setDatetimeFrom(DateUtil.getUTCTime(sdf1.parse(temp.getString("from"))));
-			tempApprover.setDatetimeTo(DateUtil.getUTCTime(sdf1.parse(temp.getString("to"))));
+			//tempApprover.setDatetimeFrom(DateUtil.getUTCTime(sdf1.parse(temp.getString("from"))));
+			//tempApprover.setDatetimeTo(DateUtil.getUTCTime(sdf1.parse(temp.getString("to"))));
+			Date fromDate = sdf1.parse(temp.getString("from"));
+			Date toDate = sdf1.parse(temp.getString("to"));
+			toDate = DateUtil.addDays(toDate, 1);
+			tempApprover.setDatetimeFrom(fromDate);
+			tempApprover.setDatetimeTo(toDate);
 			tempApprover.setSpvsrEmpNbr(empNbr);
 			tempApprover.setTmpApprvrEmpNbr(temp.getString("empNbr"));
+			String idStr =  temp.getString("id");
+			int tempId = NumberUtil.toLong(idStr);
+			tempApprover.setId(tempId);
 			this.supService.saveTempApprover(tempApprover, !(temp.getString("id") == null
 					|| temp.getString("id").equals("") || temp.getString("id").equals("0")));
 		}
