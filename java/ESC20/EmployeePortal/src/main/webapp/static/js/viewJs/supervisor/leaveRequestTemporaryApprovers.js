@@ -51,7 +51,7 @@ $(function() {
                 if(item.empNbr&&item.from&&item.to&&item.empNbr!=''&&item.from!=''&&item.to!=''){
                     var toDate = getMoreDay(item.to)
                     var approver = {
-                                id: '',
+                                id: item.id,
                                 empNbr: item.empNbr,
                                 from: item.from,
                                 to: toDate
@@ -226,10 +226,11 @@ function changeDateYMD(date){
 function getMoreDay(date){
     var dateArry = date.split("-")
     var dateNew = new Date(dateArry[2]+"-" +dateArry[0] +"-"+dateArry[1]);
-    dateNew.setDate(dateNew.getDate() + 1);
-    var year = dateNew.getFullYear()
-    var month = dateNew.getMonth() + 1 >9?(dateNew.getMonth() + 1):'0'+ (dateNew.getMonth() + 1)
-    var day = dateNew.getDate() >9?dateNew.getDate():'0'+dateNew.getDate()
+    var newDay = parseInt(dateArry[1]) + 1
+    // dateNew.setDate(dateNew.getDate() + 1);
+    var year = dateArry[2]
+    var month = dateArry[0]//dateNew.getMonth() + 1 >9?(dateNew.getMonth() + 1):'0'+ (dateNew.getMonth() + 1)
+    var day = newDay >9?newDay:'0'+newDay
     var DateFormat = month +"-" +day +"-" + year
     return DateFormat
 }
@@ -453,6 +454,7 @@ function judgeContent() {
             var empNbr = $(this)
                 .find('.empControl')
                 .val()
+            var trId = $(this).find('.trId').val()
             var empArry = empNbr&&empNbr!=''?empNbr.split(':'):[]
             var from = $(this)
                 .find('.dateFromControl .date-control')
@@ -487,7 +489,7 @@ function judgeContent() {
             var obj
             if(empNbr.trim() != '' && from != '' && to != ''){
                 obj = {
-                    id: '',
+                    id: trId,
                     dom:$(this),
                     domId: index,
                     empNbr: empArry[0].trim(),
