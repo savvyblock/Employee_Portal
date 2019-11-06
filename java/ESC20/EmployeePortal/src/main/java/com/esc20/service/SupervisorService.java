@@ -163,7 +163,7 @@ public class SupervisorService {
 		return result;
 	}
 
-	public void approveLeave(LeaveRequest request, BhrEmpDemo demo, String approverComment,LeaveEmployeeData employee) throws MessagingException {
+	public void approveLeave(LeaveRequest request, BhrEmpDemo demo, String approverComment,LeaveEmployeeData employee,String url) throws MessagingException {
 		//insert approver Comment;
         BeaEmpLvComments comments = new BeaEmpLvComments();
         comments.setLvId(request.getId());
@@ -190,13 +190,29 @@ public class SupervisorService {
 			emailBody.append("<p style='margin-left: 12pt;'>Dates:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s<br/>Times:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s</p>");		
 
 			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal if you wish to make changes to the leave requested and resubmit the request.</p>");
-			emailBody.append("<p>Thank You</p>");
 			
+			if (url==null || url.trim().length()==0) {
+				emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal if you wish to make changes to the leave requested and resubmit the request.</p>");
+			} else {
+				emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal if you wish to make changes to the leave requested and resubmit the request by clicking on this link:<br/>");
+				emailBody.append("<span style='text-decoration: underline;'>%s</span></p>");
+			}
+			
+			emailBody.append("<p>Thank You</p>");
+			emailBody.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
 			SimpleDateFormat sdfD = new SimpleDateFormat("MM-dd-yyyy");
 			SimpleDateFormat sdfT = new SimpleDateFormat("hh:mm a");
-			returnBody = String.format(emailBody.toString(), employee.getFullNameTitleCase(),  demo.getNameF().trim()+" " + demo.getNameL().trim(), 
-					sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
-					sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())));
+			
+			if (url==null || url.trim().length()==0) {
+				returnBody = String.format(emailBody.toString(), employee.getFullNameTitleCase(),  demo.getNameF().trim()+" " + demo.getNameL().trim(), 
+						sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
+						sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())));
+			} else {
+				returnBody = String.format(emailBody.toString(), employee.getFullNameTitleCase(),  demo.getNameF().trim()+" " + demo.getNameL().trim(), 
+						sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
+						sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())),url);
+			}
+			
 			try {
 				MailUtil.sendEmail(employee.getEmailAddress().trim(), subject, returnBody.trim());
 			}
@@ -207,7 +223,7 @@ public class SupervisorService {
 		
 	}
 
-	public void disApproveLeave(LeaveRequest request, BhrEmpDemo demo, String disapproveComment,LeaveEmployeeData employee) throws MessagingException {
+	public void disApproveLeave(LeaveRequest request, BhrEmpDemo demo, String disapproveComment,LeaveEmployeeData employee,String url) throws MessagingException {
 		//insert approver Comment;
         BeaEmpLvComments comments = new BeaEmpLvComments();
         comments.setLvId(request.getId());
@@ -230,15 +246,29 @@ public class SupervisorService {
 			emailBody.append("<p>%s:</p>");
 			emailBody.append("<p>The leave request you submitted has been disapproved by %s.  The leave dates and times requested are as follows:</p>");
 			emailBody.append("<p style='margin-left: 12pt;'>Dates:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s<br/>Times:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s</p>");		
-			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal to view comments entered by the supervisor or if you wish to make changes to the leave requested and resubmit the request.</p>");
-			
+			//emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal to view comments entered by the supervisor or if you wish to make changes to the leave requested and resubmit the request.</p>");
+			if (url==null || url.trim().length()==0) {
+				emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal to view comments entered by the supervisor or if you wish to make changes to the leave requested and resubmit the request.</p>");
+			} else {
+				emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal to view comments entered by the supervisor or if you wish to make changes to the leave requested and resubmit the request by clicking on this link:<br/>");
+				emailBody.append("<span style='text-decoration: underline;'>%s</span></p>");
+			}
 			emailBody.append("<p>Thank You</p>");
-			
+			emailBody.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
 			SimpleDateFormat sdfD = new SimpleDateFormat("MM-dd-yyyy");
 			SimpleDateFormat sdfT = new SimpleDateFormat("hh:mm a");
-			returnBody = String.format(emailBody.toString(), employee.getFullNameTitleCase(),  demo.getNameF().trim()+" " + demo.getNameL().trim(), 
-					sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
-					sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())));
+			
+			if (url==null || url.trim().length()==0) {
+				returnBody = String.format(emailBody.toString(), employee.getFullNameTitleCase(),  demo.getNameF().trim()+" " + demo.getNameL().trim(), 
+						sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
+						sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())));
+			} else {
+				returnBody = String.format(emailBody.toString(), employee.getFullNameTitleCase(),  demo.getNameF().trim()+" " + demo.getNameL().trim(), 
+						sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
+						sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())),url);
+			}
+			
+			
 			
 			try {
 				MailUtil.sendEmail(employee.getEmailAddress().trim(), subject, returnBody.trim());

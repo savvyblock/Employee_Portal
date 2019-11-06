@@ -420,11 +420,13 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 		String EmployeeUserFullName = empUserDetail.getNameF().trim() + " " + empUserDetail.getNameL().trim();
 		SimpleDateFormat sdfD = new SimpleDateFormat("MM-dd-yyyy");
 		SimpleDateFormat sdfT = new SimpleDateFormat("hh:mm a");
+		com.esc20.nonDBModels.Options option = this.indexService.getOptions();
+		String urlHM = option.getUrl() ==null? "":option.getUrl().trim();
 		String messageToEmployee = this.service.getMessageBodyRequestModified2EmployeeNotification(currentUserFullName,
 				EmployeeUserFullName, sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),
 				sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())),
 				sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),
-				sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())), "", !isUpdate);
+				sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())), urlHM, !isUpdate);
 		String subject = "";
 		if (isUpdate) {
 			subject = "Leave request modified and resubmitted on your behalf by " + currentUserFullName;
@@ -444,7 +446,7 @@ public class LeaveOverviewController extends BaseLeaveRequestController {
 		String supervisorEmpNbr = supervisorData == null ? null : supervisorData.getEmployeeNumber();
 		if (!StringUtils.isEmpty(supervisorEmpNbr)) {
 
-			this.service.sendEmail(request, empUserDetail, supervisorData);
+			this.service.sendEmail(request, empUserDetail, supervisorData,urlHM);
 		}
 
 		mav = this.getLeaveOverviewList(req, empNbr, chain, freq, startDate, endDate, false, isAdd);
