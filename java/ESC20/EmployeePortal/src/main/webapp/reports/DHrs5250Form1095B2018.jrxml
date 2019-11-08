@@ -1026,7 +1026,7 @@
 							<leftPen lineWidth="1.0" lineColor="#000000"/>
 						</box>
 						<textElement textAlignment="Center">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="true"/>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
 						</textElement>
 						<text><![CDATA[Part I]]></text>
 					</staticText>
@@ -1575,7 +1575,7 @@
 							<leftPen lineWidth="1.0" lineColor="#000000"/>
 						</box>
 						<textElement textAlignment="Center">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="true"/>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
 						</textElement>
 						<text><![CDATA[Part III]]></text>
 					</staticText>
@@ -1826,7 +1826,7 @@
 							<leftPen lineWidth="1.0" lineColor="#000000"/>
 						</box>
 						<textElement textAlignment="Center">
-							<font fontName="Microsoft Sans Serif" size="8" isBold="true"/>
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
 						</textElement>
 						<text><![CDATA[Part IV]]></text>
 					</staticText>
@@ -1881,7 +1881,7 @@
 							<textElement textAlignment="Center">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[(b) SSN or other TIN]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(b)</style> SSN or other TIN]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -1897,7 +1897,7 @@
 							<textElement textAlignment="Center" verticalAlignment="Top">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[(c) DOB (If SSN or other TIN is not available)]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(c)</style> DOB (If SSN or other TIN is not available)]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -1913,7 +1913,7 @@
 							<textElement>
 								<font fontName="Microsoft Sans Serif" size="6" isBold="false"/>
 							</textElement>
-							<text><![CDATA[(d) Covered all 12 months]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(d)</style> Covered all 12 months]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -1929,7 +1929,7 @@
 							<textElement textAlignment="Center">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[(e) Months of coverage]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(e)</style> Months of coverage]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -4992,7 +4992,7 @@
 							<textElement textAlignment="Center">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[(b) SSN or other TIN]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(b)</style> SSN or other TIN]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -5008,7 +5008,7 @@
 							<textElement textAlignment="Center">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[(c) DOB (If SSN or other TIN is not available)]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(c)</style> DOB (If SSN or other TIN is not available)]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -5024,7 +5024,7 @@
 							<textElement>
 								<font fontName="Microsoft Sans Serif" size="6" isBold="false"/>
 							</textElement>
-							<text><![CDATA[(d) Covered all 12 months]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(d)</style> Covered all 12 months]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -5040,7 +5040,7 @@
 							<textElement textAlignment="Center">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[(e) Months of coverage]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(e)</style> Months of coverage]]></text>
 						</staticText>
 					</frame>
 					<frame>
