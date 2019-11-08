@@ -1878,7 +1878,7 @@
 						</box>
 						<staticText>
 							<reportElement x="1" y="3" width="84" height="25" uuid="f621a7b1-2d5d-4631-93fa-8742c2acb970"/>
-							<textElement textAlignment="Center">
+							<textElement textAlignment="Center" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(b)</style> SSN or other TIN]]></text>
@@ -1894,7 +1894,7 @@
 						</box>
 						<staticText>
 							<reportElement x="0" y="3" width="70" height="25" uuid="16bf761d-32a0-49c7-93a4-bc527c2213ba"/>
-							<textElement textAlignment="Center" verticalAlignment="Top">
+							<textElement textAlignment="Center" verticalAlignment="Top" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(c)</style> DOB (If SSN or other TIN is not available)]]></text>
@@ -1910,7 +1910,7 @@
 						</box>
 						<staticText>
 							<reportElement x="1" y="3" width="34" height="25" uuid="0e703319-c51c-451e-b564-ac7fea1e5fef"/>
-							<textElement>
+							<textElement markup="styled">
 								<font fontName="Microsoft Sans Serif" size="6" isBold="false"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(d)</style> Covered all 12 months]]></text>
@@ -1926,7 +1926,7 @@
 						</box>
 						<staticText>
 							<reportElement x="1" y="10" width="342" height="8" uuid="ba7d0f28-8e0a-4ea5-a601-06c90c6336b2"/>
-							<textElement textAlignment="Center">
+							<textElement textAlignment="Center" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(e)</style> Months of coverage]]></text>
@@ -4989,7 +4989,7 @@
 						</box>
 						<staticText>
 							<reportElement x="1" y="10" width="84" height="25" uuid="e3d88ff7-6976-4a04-91a1-56285f2b79fc"/>
-							<textElement textAlignment="Center">
+							<textElement textAlignment="Center" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(b)</style> SSN or other TIN]]></text>
@@ -5005,7 +5005,7 @@
 						</box>
 						<staticText>
 							<reportElement x="1" y="5" width="70" height="24" uuid="72c730dd-233c-4d7b-be48-268ed6100a88"/>
-							<textElement textAlignment="Center">
+							<textElement textAlignment="Center" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(c)</style> DOB (If SSN or other TIN is not available)]]></text>
@@ -5021,7 +5021,7 @@
 						</box>
 						<staticText>
 							<reportElement x="1" y="2" width="34" height="31" uuid="07d461d8-977d-499d-a0c6-494d06c6ba55"/>
-							<textElement>
+							<textElement markup="styled">
 								<font fontName="Microsoft Sans Serif" size="6" isBold="false"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(d)</style> Covered all 12 months]]></text>
@@ -5037,7 +5037,7 @@
 						</box>
 						<staticText>
 							<reportElement x="1" y="10" width="342" height="8" uuid="81f3cfd4-27b9-4688-aa7e-071297cdb53c"/>
-							<textElement textAlignment="Center">
+							<textElement textAlignment="Center" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(e)</style> Months of coverage]]></text>
