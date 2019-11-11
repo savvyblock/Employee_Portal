@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,6 +56,7 @@ import com.esc20.service.BankService;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
+import com.esc20.util.MailUtil;
 import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONArray;
@@ -62,6 +65,8 @@ import net.sf.json.JSONObject;
 @Controller
 @RequestMapping("/profile")
 public class ProfileController {
+
+	private Logger logger = LoggerFactory.getLogger(ProfileController.class);
 
 	@Autowired
 	private IndexService indexService;
@@ -406,6 +411,9 @@ public class ProfileController {
 		user.setLkHint('N');
 		user.setHintCnt(0);
 		this.indexService.updateUser(user);
+		//Send out Email to User
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+		passwordChangeSendEmailConfirmation(user.getUsrname(),userDetail.getNameF(),userDetail.getNameL(),userDetail.getHmEmail(),userDetail.getEmail());
 		session.removeAttribute("user");
 		session.setAttribute("user", user);
 		getProfileDetails(session, mav, null);
@@ -1429,5 +1437,33 @@ public class ProfileController {
 		else
 			result.put("success", false);
 		return result;
+	}
+
+	private void passwordChangeSendEmailConfirmation (String userName, String userFirstName, String userLastName, String userHomeEmail, String userWorkEmail) {
+		String subject ="A MESSAGE FROM SELF SERVICE";
+		StringBuilder messageContents = new StringBuilder();
+		userFirstName = userFirstName== null ? "" : userFirstName.trim();
+		userLastName = userLastName== null ? "" : userLastName.trim();
+		messageContents.append("<p>"+userFirstName + " " +userLastName + ", </p>");
+		messageContents.append("<p>Your request to change your password was successful. </p>");		
+		messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
+		
+		String toEmail ="";
+		if (!"".equals(userWorkEmail)) {
+			toEmail = userWorkEmail;
+		} else if (!"".equals(userHomeEmail)) {
+			toEmail = userHomeEmail;
+		}
+		if (toEmail!=null && toEmail.trim().length() > 0) {
+			try{
+				MailUtil.sendEmail(toEmail, subject, messageContents.toString());
+			} 
+			catch(Exception ex) {
+				logger.info("Self Service Change Password: An exception has occured with mailing the user "+userName+".");
+			} 
+		} else {
+			logger.info("Self Service Change Password: Unable to send an email confirmation.  No email address is avaiable for user "+userName+".");
+		}
+		
 	}
 }
