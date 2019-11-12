@@ -247,10 +247,12 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		
 		String employeeNum = rqst ==null ? null:rqst.getEmpNbr();
 		LeaveEmployeeData employeeData = this.service.getEmployeeData(employeeNum);
-	
+		Options option = this.indexService.getOptions();
+		String urlHM = option.getUrl() ==null? "":option.getUrl().trim();
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
 		if (rqst.getStatusCd() == 'P') {
-			this.supService.approveLeave(rqst, demo, comment,employeeData);
+			this.supService.approveLeave(rqst, demo, comment,employeeData,urlHM);
 		} else {
 			return "Approve Leave Failed for leave request from " + sdf.format(rqst.getDatetimeFrom())+ " to " + sdf.format(rqst.getDatetimeTo())+".";
 		}
@@ -266,8 +268,10 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		String employeeNum = rqst ==null ? null:rqst.getEmpNbr();
 		LeaveEmployeeData employeeData = this.service.getEmployeeData(employeeNum);
 		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+		Options option = this.indexService.getOptions();
+		String urlHM = option.getUrl() ==null? "":option.getUrl().trim();
 		if (rqst.getStatusCd() == 'P') {
-			this.supService.disApproveLeave(rqst, demo, comment,employeeData);
+			this.supService.disApproveLeave(rqst, demo, comment,employeeData,urlHM);
 		} else {
 			return "Disapprove Leave Failed for leave request from " + sdf.format(rqst.getDatetimeFrom())+ " to " + sdf.format(rqst.getDatetimeTo())+".";
 		}

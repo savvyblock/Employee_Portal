@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +21,13 @@ import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.SearchUser;
 import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.IndexService;
+import com.esc20.util.MailUtil;
 
 @Controller
 @RequestMapping("/createUser")
 public class CreateUserController {
+	
+	private Logger logger = LoggerFactory.getLogger(CreateUserController.class);
 
 	@Autowired
 	private IndexService indexService;
@@ -98,6 +103,9 @@ public class CreateUserController {
 				this.indexService.updateEmailEmployee(newUser.getEmpNbr(), req.getParameter("workEmail"),
 						req.getParameter("homeEmail"));
 				indexService.saveBeaUsers(newUser);
+				//Send Out Emails
+				sendEmail(newUser.getUsrname(),bed.getHmEmail(),bed.getEmail());
+				
 				res.put("isUserExist", "true");
 				res.put("success", "true");
 				res.put("username", req.getParameter("username"));
@@ -167,4 +175,30 @@ public class CreateUserController {
 		}
 	}
 
+	private void sendEmail(String userName, String userHomeEmail, String userWorkEmail)
+	{
+		String subject ="New User Created";
+		StringBuilder messageContents = new StringBuilder();
+		messageContents.append("<p>Thank you for Registering for Employee Portal.  Your User ID is:"+userName +" </p>");		
+		messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
+		
+		String toEmail ="";
+		if (!"".equals(userWorkEmail)) {
+			toEmail = userWorkEmail;
+		} else if (!"".equals(userHomeEmail)) {
+			toEmail = userHomeEmail;
+		}
+		
+		if (toEmail!=null && toEmail.trim().length() > 0) {
+			try{
+				MailUtil.sendEmail(toEmail, subject, messageContents.toString());
+			} 
+			catch(Exception ex) {
+				logger.info("An exception has occured with mailing the user.");
+			} 
+		} else {
+			logger.info("Create new user: Unable to send an email.  No email address is avaiable for user "+userName+".");
+		}
+	}
+	
 }

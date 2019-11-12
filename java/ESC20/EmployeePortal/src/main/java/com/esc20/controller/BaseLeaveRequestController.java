@@ -19,6 +19,7 @@ import com.esc20.model.BeaEmpLvWorkflow;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveParameters;
+import com.esc20.service.IndexService;
 import com.esc20.service.LeaveRequestService;
 import com.esc20.util.DateUtil;
 
@@ -28,6 +29,10 @@ public class BaseLeaveRequestController{
 
 	@Autowired
 	private LeaveRequestService service;
+	
+	@Autowired
+	private IndexService indexService;
+
 
 	protected void saveLeaveRequest(String leaveId, String leaveType, String absenseReason, String LeaveStartDate,
 			String startTimeValue, String LeaveEndDate, String endTimeValue, String lvUnitsDaily, String lvUnitsUsed,
@@ -82,8 +87,10 @@ public class BaseLeaveRequestController{
 				flow.setApprvrEmpNbr(supervisorEmpNbr == null ? "" : supervisorEmpNbr);
 				flow.setTmpApprvrExpDatetime(null);
 				//String supervisorEmail = supervisorData ==null?null:supervisorData.getEmailAddress();
+				com.esc20.nonDBModels.Options option = this.indexService.getOptions();
+				String urlHM = option.getUrl() ==null? "":option.getUrl().trim();
 				this.service.saveLvWorkflow(flow, demo);
-				this.service.sendEmail(request, demo, supervisorData);
+				this.service.sendEmail(request, demo, supervisorData,urlHM);
 			}
 		}
 	}

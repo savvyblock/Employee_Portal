@@ -182,6 +182,7 @@ public class LeaveRequestService {
 			emailBody.append("<span style='text-decoration: underline;'>%s</span></p>");
 		}
 		emailBody.append("<p>Thank You</p>");
+		emailBody.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
 		if (url==null || url.trim().length()==0) {
 			returnBody = String.format(emailBody.toString(), employeeName, supervisorName, fromDate, toDate, fromTime, toTime);
 		} else {
@@ -200,8 +201,9 @@ public class LeaveRequestService {
 		}
 	}
 	
-	public void sendEmail(BeaEmpLvRqst request,BhrEmpDemo demo,LeaveEmployeeData supervisorData ) throws MessagingException{
+	public void sendEmail(BeaEmpLvRqst request,BhrEmpDemo demo,LeaveEmployeeData supervisorData,String url) throws MessagingException{
 		String supervisorEmail = supervisorData ==null?null:supervisorData.getEmailAddress();
+
 		if(!StringUtil.isNullOrEmpty(supervisorEmail)) {
 			//Send Email
 			String subject = "Leave request submitted for "+ demo.getNameF().trim() + " " + demo.getNameL().trim();
@@ -210,13 +212,28 @@ public class LeaveRequestService {
 			emailBody.append("<p>%s:</p>");
 			emailBody.append("<p>A leave request for %s, employee number %s, has been submitted and is ready for your approval.  The leave dates and times requested are as follows:</p>");
 			emailBody.append("<p style='margin-left: 12pt;'>Dates:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s<br/>Times:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s</p>");		
-			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal to process this submission.</p>");
+			//emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal to process this submission.</p>");
+			if (url==null || url.trim().length()==0) {
+				emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal to process this submission.</p>");
+			} else {
+				emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal to process this submission by clicking on this link:<br/>");
+				emailBody.append("<span style='text-decoration: underline;'>%s</span></p>");
+			}
 			emailBody.append("<p>Thank You</p>");
+			emailBody.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
 			SimpleDateFormat sdfD = new SimpleDateFormat("MM-dd-yyyy");
 			SimpleDateFormat sdfT = new SimpleDateFormat("hh:mm a");
-			returnBody = String.format(emailBody.toString(), supervisorData.getFullNameTitleCase(), demo.getNameF().trim() + " " + demo.getNameL().trim(),demo.getEmpNbr() ,
-					sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
-					sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())));
+			if (url==null || url.trim().length()==0) {
+				returnBody = String.format(emailBody.toString(), supervisorData.getFullNameTitleCase(), demo.getNameF().trim() + " " + demo.getNameL().trim(),demo.getEmpNbr() ,
+						sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
+						sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())));
+			} else {
+				returnBody = String.format(emailBody.toString(), supervisorData.getFullNameTitleCase(), demo.getNameF().trim() + " " + demo.getNameL().trim(),demo.getEmpNbr() ,
+						sdfD.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfD.format(DateUtil.getLocalTime(request.getDatetimeTo())), 
+						sdfT.format(DateUtil.getLocalTime(request.getDatetimeFrom())),  sdfT.format(DateUtil.getLocalTime(request.getDatetimeTo())),url);
+			}
+			
+			
 			try {
 				MailUtil.sendEmail(supervisorEmail.trim(), subject, returnBody.trim());
 			}
