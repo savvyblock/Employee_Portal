@@ -593,7 +593,7 @@ function personalValidator() {
                     //     message: requiredFieldValidator
                     // },
                     stringLength: {
-                        max: 25,
+                        max: 60,
                         message: maxLength25Validator
                     }
                 }
@@ -605,7 +605,7 @@ function personalValidator() {
                     //     message: requiredFieldValidator
                     // },
                     stringLength: {
-                        max: 25,
+                        max: 60,
                         message: maxLength25Validator
                     }
                 }
@@ -614,7 +614,7 @@ function personalValidator() {
                 trigger: null,
                 validators: {
                     stringLength: {
-                        max: 25,
+                        max: 60,
                         message: maxLength25Validator
                     }
                 }
