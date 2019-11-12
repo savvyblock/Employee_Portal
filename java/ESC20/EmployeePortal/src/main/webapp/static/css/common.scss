@@ -1318,3 +1318,12 @@ input {
     word-break: break-all;
     word-break: break-word;
 }
+.flexInline{
+    display: flex;
+    align-items: center;
+    input[type='radio'],input[type='checkbox']{
+        width:20px!important;
+        height: auto!important;
+        min-width: 0!important;
+    }
+}

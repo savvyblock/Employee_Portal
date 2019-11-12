@@ -134,7 +134,7 @@ var resetLockedValidator = "${sessionScope.languageJSON.validator.resetLocked}";
 var userNotRegisteredValidator = "${sessionScope.languageJSON.validator.userNotRegistered}";
 var pictureChooseValidator = "${sessionScope.languageJSON.validator.pictureChoose}";
 var availableErrorValidator = "${sessionScope.languageJSON.validator.availableError}";
-
+var pleaseEnterWholePositiveNum = "${sessionScope.languageJSON.validator.pleaseEnterWholePositiveNum}"
 
 
 var languageSet = "${sessionScope.language}"

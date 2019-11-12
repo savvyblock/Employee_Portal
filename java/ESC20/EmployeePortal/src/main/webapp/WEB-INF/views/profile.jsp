@@ -1511,7 +1511,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
                                                 <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                             </div>
-                                    <div class="profile-item-line form-line">
+                                    <!-- <div class="profile-item-line form-line">
                                         <div class="profile-title">
                                                 ${sessionScope.languageJSON.profile.W4MaritalStatus}
                                         </div>
@@ -1556,7 +1556,175 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 />
                                             </div>
                                         </div>
+                                    </div> -->
+
+                                    <div class="profile-item-line form-line">
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.fillingStatus}
+                                        </div>
+                                        <div class="profile-desc">
+                                            <span class="haveValue"
+                                                >test</span
+                                            >
+                                            <div class="form-group valueInput flexInline">
+                                                <label class="flexInline" for="fillingStatusYesNew">
+                                                    <input type="radio"
+                                                    class="form-control"
+                                                    id="fillingStatusYesNew"
+                                                    name="fillingStatusNew"
+                                                    aria-label="${sessionScope.languageJSON.profile.fillingStatus}" 
+                                                    value=""
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
+                                                    <span>${sessionScope.languageJSON.profile.yes}</span>
+                                                </label>
+
+                                                <label class="flexInline" for="fillingStatusNoNew">
+                                                    <input type="radio"
+                                                    class="form-control"
+                                                    id="fillingStatusNoNew"
+                                                    name="fillingStatusNew"
+                                                    aria-label="${sessionScope.languageJSON.profile.fillingStatus}" 
+                                                    value=""
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
+                                                    <span>${sessionScope.languageJSON.profile.no}</span>
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    <div class="profile-item-line form-line">
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.multiJobs}
+                                        </div>
+                                        <div class="profile-desc">
+                                            <span class="haveValue"
+                                                >test</span
+                                            >
+                                            <div class="form-group valueInput">
+                                                <select
+                                                    class="form-control"
+                                                    id="multiJobsNew"
+                                                    name="multiJobsNew"
+                                                    aria-label="${sessionScope.languageJSON.profile.multiJobs}" 
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>>
+                                                    <option value="0">&nbsp;</option>
+                                                    <option value="1">${sessionScope.languageJSON.profile.single}</option>
+                                                    <option value="2">${sessionScope.languageJSON.profile.marriedFillingSep}</option>
+                                                    <option value="3">${sessionScope.languageJSON.profile.marriedFillingJointly}</option>
+                                                    <option value="4">${sessionScope.languageJSON.profile.headOfHousehold}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-item-line form-line">
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.childrenUnder17}
+                                        </div>
+                                        <div class="profile-desc">
+                                            <span class="haveValue"
+                                                >test</span
+                                            >
+                                            <div class="form-group valueInput">
+                                                <input
+                                                    class="form-control"
+                                                    id="childrenUnder17New"
+                                                    name="childrenUnder17New"
+                                                    aria-label="${sessionScope.languageJSON.profile.childrenUnder17}" 
+                                                    value=""
+                                                    oninput="clearNoNumWhole(this)"
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-item-line form-line">
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.otherDependents}
+                                        </div>
+                                        <div class="profile-desc">
+                                            <span class="haveValue"
+                                                >test</span
+                                            >
+                                            <div class="form-group valueInput">
+                                                <input
+                                                    class="form-control"
+                                                    id="otherDependentsNew"
+                                                    name="otherDependentsNew"
+                                                    aria-label="${sessionScope.languageJSON.profile.otherDependents}" 
+                                                    value=""
+                                                    oninput="clearNoNumWhole(this)"
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-item-line form-line">
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.otherIncome}
+                                        </div>
+                                        <div class="profile-desc">
+                                            <span class="haveValue"
+                                                >test</span
+                                            >
+                                            <div class="form-group valueInput">
+                                                <input
+                                                    class="form-control"
+                                                    id="otherIncomeNew"
+                                                    name="otherIncomeNew"
+                                                    aria-label="${sessionScope.languageJSON.profile.otherIncome}" 
+                                                    value="0.00"
+                                                    oninput="clearNoNum(this)"
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-item-line form-line">
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.deductions}
+                                        </div>
+                                        <div class="profile-desc">
+                                            <span class="haveValue"
+                                                >test</span
+                                            >
+                                            <div class="form-group valueInput">
+                                                <input
+                                                    class="form-control"
+                                                    id="deductionsNew"
+                                                    name="deductionsNew"
+                                                    aria-label="${sessionScope.languageJSON.profile.deductions}" 
+                                                    value="0.00"
+                                                    oninput="clearNoNum(this)"
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="profile-item-line form-line">
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.otherExemption}
+                                        </div>
+                                        <div class="profile-desc">
+                                            <span class="haveValue"
+                                                >test</span
+                                            >
+                                            <div class="form-group valueInput">
+                                                <input
+                                                    class="form-control"
+                                                    id="otherExemptionNew"
+                                                    name="otherExemptionNew"
+                                                    aria-label="${sessionScope.languageJSON.profile.otherExemption}" 
+                                                    value="0.00"
+                                                    oninput="clearNoNum(this)"
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
                                 </div>
                                 <c:if test="${!readOnlyInfo}">
                                     <div class="profile-btn">

@@ -328,6 +328,10 @@ function clearNoNum(obj){
   obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');//
   $(obj).change()
 }
+function clearNoNumWhole(obj){
+    obj.value = obj.value.replace(/[^\d]/g, ""); //   
+    $(obj).change()
+}
 function deleteBankAmount(index) {
     // $('#deleteModal').modal('show')
     console.log('delete=' + index)
@@ -1086,15 +1090,31 @@ function w4InfoValidator() {
             //         }
             //     }
             // },
-            nbrTaxExemptsNew: {
+            // nbrTaxExemptsNew: {
+            //     trigger: null,
+            //     validators: {
+            //         // notEmpty: {
+            //         //     message: requiredFieldValidator
+            //         // },
+            //         regexp: {
+            //             regexp: /^[0-9]\d{0,1}$/,
+            //             message: pleaseEnterCorrectFormatValidator
+            //         }
+            //     }
+            // },
+            childrenUnder17New: {
                 trigger: null,
                 validators: {
-                    // notEmpty: {
-                    //     message: requiredFieldValidator
-                    // },
-                    regexp: {
-                        regexp: /^[0-9]\d{0,1}$/,
-                        message: pleaseEnterCorrectFormatValidator
+                    digits: {
+                        message: pleaseEnterWholePositiveNum
+                    }
+                }
+            },
+            otherDependentsNew:{
+                trigger: null,
+                validators: {
+                    digits: {
+                        message: pleaseEnterWholePositiveNum
                     }
                 }
             }

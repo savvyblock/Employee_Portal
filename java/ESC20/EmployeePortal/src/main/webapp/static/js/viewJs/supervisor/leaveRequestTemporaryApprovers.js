@@ -51,7 +51,7 @@ $(function() {
                 if(item.empNbr&&item.from&&item.to&&item.empNbr!=''&&item.from!=''&&item.to!=''){
                     var toDate = getMoreDay(item.to)
                     var approver = {
-                                id: item.id,
+                                id: item.id||'',
                                 empNbr: item.empNbr,
                                 from: item.from,
                                 to: toDate

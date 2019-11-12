@@ -282,7 +282,21 @@
         "restrictionCodesPublic": "Restriction Codes Public",
         "verifyEmail": "Verify E-mail Address",
         "searchForBanks":"Search for banks",
-        "approverNotSetNotifyBusinessOffice":"The Approver has not been set by the district. Please notify Business office."
+        "approverNotSetNotifyBusinessOffice":"The Approver has not been set by the district. Please notify Business office.",
+        "fillingStatus":"Filing Status",
+        "single":"Sigle",
+        "marriedFillingSep":"Married filling separately",
+        "marriedFillingJointly":"Married filling jointly",
+        "headOfHousehold":"Head of Household",
+        "yes":"Yes",
+        "no":"No",
+        "multiJobs":"Multi Jobs",
+        "childrenUnder17":"Children under 17",
+        "otherDependents":"Other dependents",
+        "otherIncome":"Other Income",
+        "deductions":"Deductions",
+        "otherExemption":"Other Exemptions",
+        "":""
     },
     "label": {
         "back": "Go Back",
@@ -657,6 +671,7 @@
         "enterAStartMinute":"Enter a Start Minute.",
         "enterAStartHour":"Enter a Start Hour.",
         "notSameAnswer":"Hint answer may not be the same as Hint question",
+        "pleaseEnterWholePositiveNum":"Please Enter whole positive number",
         "": ""
     },
     "accessHint": {
