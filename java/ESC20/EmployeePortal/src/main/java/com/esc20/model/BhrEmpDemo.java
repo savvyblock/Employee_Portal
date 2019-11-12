@@ -23,6 +23,9 @@ public class BhrEmpDemo implements java.io.Serializable {
 	private String nameF;
 	private String nameM;
 	private String nameL;
+	private String nameFLng;
+	private String nameMLng;
+	private String nameLLng;
 	private Character nameGen;
 	private String nameMaiden;
 	private String prvNamePre;
@@ -420,6 +423,34 @@ public class BhrEmpDemo implements java.io.Serializable {
 	public void setNameL(String nameL) {
 		this.nameL = nameL;
 	}
+	
+	@Column(name = "NAME_F_LNG", nullable = false, length = 60)
+	public String getNameFLng() {
+		return nameFLng;
+	}
+
+	public void setNameFLng(String nameFLng) {
+		this.nameFLng = nameFLng;
+	}
+
+	@Column(name = "NAME_M_LNG", nullable = false, length = 60)
+	public String getNameMLng() {
+		return nameMLng;
+	}
+
+	public void setNameMLng(String nameMLng) {
+		this.nameMLng = nameMLng;
+	}
+
+	@Column(name = "NAME_L_LNG", nullable = false, length = 60)
+	public String getNameLLng() {
+		return nameLLng;
+	}
+
+	public void setNameLLng(String nameLng) {
+		this.nameLLng = nameLng;
+	}
+
 
 	@Column(name = "NAME_GEN", nullable = false, length = 1)
 	public Character getNameGen() {
