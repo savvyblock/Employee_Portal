@@ -544,6 +544,20 @@ public class ProfileController {
 		String nameGenNew = req.getParameter("nameGenNew");
 		HttpSession session = req.getSession();
 //        ModelAndView mav = new ModelAndView();
+		
+		String nameLLNGNew = req.getParameter("nameLNew");
+		String nameMLNGNew = req.getParameter("nameMNew");
+		String nameFLNGNew = req.getParameter("nameFNew");
+		
+		if((!StringUtil.isNullOrEmpty(nameFNew)) && nameFNew.trim().length()>17) {
+			nameFNew = nameFLNGNew.trim().substring(0, 17);
+		}
+		if((!StringUtil.isNullOrEmpty(nameLNew)) && nameLNew.trim().length()>25) {
+			nameLNew = nameLLNGNew.trim().substring(0, 25);
+		}
+		if((!StringUtil.isNullOrEmpty(nameMNew)) && nameMNew.trim().length()>14) {
+			nameMNew = nameMLNGNew.trim().substring(0, 14);
+		}
 
 		if (empNbr == null || reqDts == null || namePreNew == null || nameFNew == null || nameLNew == null
 				|| nameMNew == null || nameGenNew == null) {
@@ -558,13 +572,16 @@ public class ProfileController {
 		BeaLglName nameRequest;
 
 		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_LGL_NAME")) {
-			nameRequest = new BeaLglName(demo, empNbr, reqDts, namePreNew, nameFNew, nameLNew, nameMNew,
+			nameRequest = new BeaLglName(demo, empNbr, reqDts, namePreNew, nameFLNGNew, nameLLNGNew, nameMLNGNew,
 					(nameGenNew == null || ("").equals(nameGenNew)) ? '\0' : nameGenNew.charAt(0), 'A');
 			this.indexService.saveNameRequest(nameRequest);
 			demo.setNamePre(namePreNew);
 			demo.setNameF(nameFNew);
 			demo.setNameL(nameLNew);
 			demo.setNameM(nameMNew);
+			demo.setNameFLng(nameFLNGNew);
+			demo.setNameLLng(nameLLNGNew);
+			demo.setNameMLng(nameMLNGNew);
 			demo.setNameGen((nameGenNew == null || ("").equals(nameGenNew)) ? '\0' : nameGenNew.charAt(0));
 			this.indexService.updateDemoName(demo);
 			List<Code> gens = referenceService.getGenerations();
@@ -577,7 +594,7 @@ public class ProfileController {
 			session.removeAttribute("userDetail");
 			session.setAttribute("userDetail", demo);
 		} else {
-			nameRequest = new BeaLglName(demo, empNbr, reqDts, namePreNew, nameFNew, nameLNew, nameMNew,
+			nameRequest = new BeaLglName(demo, empNbr, reqDts, namePreNew, nameFLNGNew, nameLLNGNew, nameMLNGNew,
 					(nameGenNew == null || ("").equals(nameGenNew)) ? '\0' : nameGenNew.charAt(0), 'P');
 			this.indexService.saveNameRequest(nameRequest);
 		}

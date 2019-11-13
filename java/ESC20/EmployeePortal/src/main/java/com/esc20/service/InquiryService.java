@@ -22,6 +22,7 @@ import com.esc20.dao.CurrentPayInformationDao;
 import com.esc20.dao.DeductionsDao;
 import com.esc20.dao.EA1095Dao;
 import com.esc20.dao.EarningsDao;
+import com.esc20.dao.OptionsDao;
 import com.esc20.dao.W2InformationDao;
 import com.esc20.model.BhrAca1095bCovrdHist;
 import com.esc20.model.BhrAca1095cCovrdHist;
@@ -53,6 +54,7 @@ import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.PayDate;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.Stipend;
+import com.esc20.nonDBModels.W2Option;
 import com.esc20.nonDBModels.W2Print;
 import com.esc20.util.CodeIterator;
 import com.esc20.util.DateUtil;
@@ -72,6 +74,9 @@ public class InquiryService {
 
 	@Autowired
 	private EarningsDao earningsDao;
+	
+	@Autowired
+	 private OptionsDao optionsDao;
 
 	@Autowired
 	private W2InformationDao w2InformationDao;
@@ -824,12 +829,36 @@ public class InquiryService {
 											// then Tax Fringe Benefits returned if have amount > 0.00
 
 		Map<String, BigDecimal> box14Map = new HashMap<String, BigDecimal>();
-		box14Map.put(box14List.get(0), w2Info.getNontrsBusAllow());
+		//Here we will use the option to control it they should show
+		W2Option w2Option =  optionsDao.getW2Option();
+		if (!StringUtil.isNullOrEmpty(w2Option.getNta()) && "Y".equals(w2Option.getNta().trim())) {
+			box14Map.put(box14List.get(0), w2Info.getNontrsNontaxBusAllow());
+		}
+
+		if (!StringUtil.isNullOrEmpty(w2Option.getCaf()) && "Y".equals(w2Option.getCaf().trim())) {
+			box14Map.put(box14List.get(1), w2Info.getCafeAmt());
+		}
+
+		if (!StringUtil.isNullOrEmpty(w2Option.getTrs()) && "Y".equals(w2Option.getTrs().trim())) {
+			box14Map.put(box14List.get(2), w2Info.getTrsDeposit());
+		}
+
+		if (!StringUtil.isNullOrEmpty(w2Option.getHlth()) && "Y".equals(w2Option.getHlth().trim())) {
+			box14Map.put(box14List.get(3), w2Info.getHlthInsDed());
+		}
+		if (!StringUtil.isNullOrEmpty(w2Option.getTxa()) && "Y".equals(w2Option.getTxa().trim())) {
+			box14Map.put(box14List.get(4), w2Info.getNontrsBusAllow());
+		}
+		if (!StringUtil.isNullOrEmpty(w2Option.getTfb()) && "Y".equals(w2Option.getTfb().trim())) {
+			box14Map.put(box14List.get(5), w2Info.getTaxedBenefits());
+		}
+
+		/*box14Map.put(box14List.get(0), w2Info.getNontrsBusAllow());
 		box14Map.put(box14List.get(1), w2Info.getCafeAmt());
 		box14Map.put(box14List.get(2), w2Info.getTrsDeposit());
 		box14Map.put(box14List.get(3), w2Info.getHlthInsDed());
 		box14Map.put(box14List.get(4), w2Info.getNontrsBusAllow());
-		box14Map.put(box14List.get(5), w2Info.getTaxedBenefits());
+		box14Map.put(box14List.get(5), w2Info.getTaxedBenefits());*/
 		box14Map.put(box14List.get(6), new BigDecimal(0.00)); // jf20130109 init Dummy Last Entry to zero
 
 		Iterator<String> iter14 = new CodeIterator(box14List, box14Map);

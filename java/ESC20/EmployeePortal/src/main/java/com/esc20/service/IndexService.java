@@ -34,6 +34,7 @@ import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.PayrollOption;
 import com.esc20.nonDBModels.SearchUser;
+import com.esc20.nonDBModels.W2Option;
 import com.esc20.util.StringUtil;
 
 
@@ -95,6 +96,10 @@ public class IndexService {
 	
 	public DemoOption getDemoOption() {
 		return optionsDao.getDemoOption();
+	}
+	
+	public W2Option getW2Option() {
+		return optionsDao.getW2Option();
 	}
 	
 	public PayrollOption getPayrollOption(String employeeNumber, String frequency) {

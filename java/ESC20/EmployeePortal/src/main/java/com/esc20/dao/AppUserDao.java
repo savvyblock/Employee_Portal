@@ -364,14 +364,17 @@ public class AppUserDao extends HibernateDaoSupport{
 	public void updateDemoName(BhrEmpDemo demo) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("UPDATE BhrEmpDemo SET demoRevCd = 1, namePre = :titleNew, nameF =:firstNameNew, nameL =:lastNameNew, nameM =:middleNameNew, nameGen =:generationNew ");
-		sql.append(", module ='Employee Acces'");
+		sql.append("UPDATE BhrEmpDemo SET demoRevCd = 1, namePre = :titleNew, nameF =:firstNameNew, nameL =:lastNameNew, nameM =:middleNameNew, nameFLng =:firstNameLNGNew, nameLLng =:lastNameLNGNew, nameMLng =:middleNameLNGNew, nameGen =:generationNew ");
+		sql.append(", module ='Employee Portal'");
 		sql.append(" WHERE empNbr = :employeeNumber ");
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("titleNew", demo.getNamePre());
 		q.setParameter("firstNameNew", demo.getNameF());
 		q.setParameter("lastNameNew", demo.getNameL());
 		q.setParameter("middleNameNew", demo.getNameM());
+		q.setParameter("firstNameLNGNew", demo.getNameFLng());
+		q.setParameter("lastNameLNGNew", demo.getNameLLng());
+		q.setParameter("middleNameLNGNew", demo.getNameMLng());
 		q.setParameter("generationNew", demo.getNameGen());
 		q.setParameter("employeeNumber", demo.getEmpNbr());
 		Integer res = q.executeUpdate();
