@@ -572,7 +572,7 @@ public class ProfileController {
 		BeaLglName nameRequest;
 
 		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_LGL_NAME")) {
-			nameRequest = new BeaLglName(demo, empNbr, reqDts, namePreNew, nameFNew, nameLNew, nameMNew,
+			nameRequest = new BeaLglName(demo, empNbr, reqDts, namePreNew, nameFLNGNew, nameLLNGNew, nameMLNGNew,
 					(nameGenNew == null || ("").equals(nameGenNew)) ? '\0' : nameGenNew.charAt(0), 'A');
 			this.indexService.saveNameRequest(nameRequest);
 			demo.setNamePre(namePreNew);
@@ -594,7 +594,7 @@ public class ProfileController {
 			session.removeAttribute("userDetail");
 			session.setAttribute("userDetail", demo);
 		} else {
-			nameRequest = new BeaLglName(demo, empNbr, reqDts, namePreNew, nameFNew, nameLNew, nameMNew,
+			nameRequest = new BeaLglName(demo, empNbr, reqDts, namePreNew, nameFLNGNew, nameLLNGNew, nameMLNGNew,
 					(nameGenNew == null || ("").equals(nameGenNew)) ? '\0' : nameGenNew.charAt(0), 'P');
 			this.indexService.saveNameRequest(nameRequest);
 		}
