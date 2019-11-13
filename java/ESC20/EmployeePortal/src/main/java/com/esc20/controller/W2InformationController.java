@@ -32,6 +32,7 @@ import com.esc20.model.BhrW2;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.W2Option;
 import com.esc20.nonDBModels.W2Print;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
@@ -529,12 +530,30 @@ public class W2InformationController {
 		box14List.add("Dummy Last Entry");
 
 		Map<String, BigDecimal> box14Map = new HashMap<String, BigDecimal>();
-		box14Map.put(box14List.get(0), w2Info.getNontrsNontaxBusAllow());
-		box14Map.put(box14List.get(1), w2Info.getCafeAmt());
-		box14Map.put(box14List.get(2), w2Info.getTrsDeposit());
-		box14Map.put(box14List.get(3), w2Info.getHlthInsDed());
-		box14Map.put(box14List.get(4), w2Info.getNontrsBusAllow());
-		box14Map.put(box14List.get(5), w2Info.getTaxedBenefits());
+		//Here we will use the option to control it they should show
+		W2Option w2Option = this.indexService.getW2Option();
+
+		if (!StringUtil.isNullOrEmpty(w2Option.getNta()) && "Y".equals(w2Option.getNta().trim())) {
+			box14Map.put(box14List.get(0), w2Info.getNontrsNontaxBusAllow());
+		}
+
+		if (!StringUtil.isNullOrEmpty(w2Option.getCaf()) && "Y".equals(w2Option.getCaf().trim())) {
+			box14Map.put(box14List.get(1), w2Info.getCafeAmt());
+		}
+
+		if (!StringUtil.isNullOrEmpty(w2Option.getTrs()) && "Y".equals(w2Option.getTrs().trim())) {
+			box14Map.put(box14List.get(2), w2Info.getTrsDeposit());
+		}
+
+		if (!StringUtil.isNullOrEmpty(w2Option.getHlth()) && "Y".equals(w2Option.getHlth().trim())) {
+			box14Map.put(box14List.get(3), w2Info.getHlthInsDed());
+		}
+		if (!StringUtil.isNullOrEmpty(w2Option.getTxa()) && "Y".equals(w2Option.getTxa().trim())) {
+			box14Map.put(box14List.get(4), w2Info.getNontrsBusAllow());
+		}
+		if (!StringUtil.isNullOrEmpty(w2Option.getTfb()) && "Y".equals(w2Option.getTfb().trim())) {
+			box14Map.put(box14List.get(5), w2Info.getTaxedBenefits());
+		}
 		box14Map.put(box14List.get(6), new BigDecimal(0.00));
 
 		Iterator<String> iter14 = new CodeIterator(box14List, box14Map);

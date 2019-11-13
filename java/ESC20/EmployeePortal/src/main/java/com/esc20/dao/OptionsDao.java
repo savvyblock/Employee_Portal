@@ -13,6 +13,7 @@ import com.esc20.model.BhrEapOpt;
 import com.esc20.nonDBModels.DemoOption;
 import com.esc20.nonDBModels.EarningsOther;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.W2Option;
 import com.esc20.util.StringUtil;
 
 @Repository
@@ -31,6 +32,29 @@ public class OptionsDao {
 		return option;
 	}
 	
+	public W2Option getW2Option() {
+		Session session = this.getSession();
+		W2Option option = new W2Option();
+		String sql = "SELECT  PRT_W2_TRS,PRT_W2_HLTH,PRT_W2_CAF,PRT_W2_NTA,PRT_W2_TXA,PRT_W2_TFB FROM BHR_OPTIONS";
+		Query q = session.createSQLQuery(sql);
+		List<Object[]> res = q.list();
+	   for(Object[] item : res) {
+	    	String PRT_W2_TRS =String.valueOf(item[0]);
+	    	String PRT_W2_HLTH =String.valueOf(item[1]);
+	    	String PRT_W2_CAF =String.valueOf(item[2]);
+	    	String PRT_W2_NTA =String.valueOf(item[3]);
+	    	String PRT_W2_TXA =String.valueOf(item[4]);
+	    	String PRT_W2_TFB =String.valueOf(item[5]);
+	    	option.setCaf(PRT_W2_CAF);
+	    	option.setHlth(PRT_W2_HLTH);
+	    	option.setNta(PRT_W2_NTA);
+	    	option.setTfb(PRT_W2_TFB);
+	    	option.setTrs(PRT_W2_TRS);
+	    	option.setTxa(PRT_W2_TXA);
+	   }
+
+		return option;
+	}
 	
 	public DemoOption getDemoOption() {
 		Session session = this.getSession();
