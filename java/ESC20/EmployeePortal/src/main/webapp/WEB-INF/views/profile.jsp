@@ -1511,7 +1511,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
                                                 <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                             </div>
-                                    <!-- <div class="profile-item-line form-line">
+                                    <div class="profile-item-line form-line">
                                         <div class="profile-title">
                                                 ${sessionScope.languageJSON.profile.W4MaritalStatus}
                                         </div>
@@ -1556,9 +1556,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 />
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
 
-                                    <div class="profile-item-line form-line">
+                                    <!-- <div class="profile-item-line form-line">
                                         <div class="profile-title">
                                                 ${sessionScope.languageJSON.profile.fillingStatus}
                                         </div>
@@ -1720,7 +1720,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
 
 
