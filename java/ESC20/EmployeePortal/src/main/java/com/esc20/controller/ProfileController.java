@@ -555,7 +555,7 @@ public class ProfileController {
 		if((!StringUtil.isNullOrEmpty(nameLNew)) && nameLNew.trim().length()>25) {
 			nameLNew = nameLLNGNew.trim().substring(0, 25);
 		}
-		if((!StringUtil.isNullOrEmpty(nameMNew)) && nameMNew.trim().length()>114) {
+		if((!StringUtil.isNullOrEmpty(nameMNew)) && nameMNew.trim().length()>14) {
 			nameMNew = nameMLNGNew.trim().substring(0, 14);
 		}
 
