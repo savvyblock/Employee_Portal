@@ -1581,7 +1581,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input type="radio"
                                                     class="form-control"
                                                     id="fillingStatusYesNew"
-                                                    name="fillingStatusNew"
+                                                    name="w4FileStatNew"
                                                     aria-label="${sessionScope.languageJSON.profile.fillingStatus}" 
                                                     value=""
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
@@ -1592,7 +1592,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <input type="radio"
                                                     class="form-control"
                                                     id="fillingStatusNoNew"
-                                                    name="fillingStatusNew"
+                                                    name="w4FileStatNew"
                                                     aria-label="${sessionScope.languageJSON.profile.fillingStatus}" 
                                                     value=""
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
