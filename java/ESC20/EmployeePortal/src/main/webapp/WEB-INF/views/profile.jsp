@@ -1580,29 +1580,21 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <span class="haveValue"
                                                 >${w4Request.w4FileStat}</span
                                             >
-                                            <div class="form-group valueInput flexInline">
-                                                <label class="flexInline" for="fillingStatusYesNew">
-                                                    <input type="radio"
+                                             <div class="form-group valueInput">
+                                                <select
                                                     class="form-control"
-                                                    id="fillingStatusYesNew"
-                                                    name="w4FileStatNew"
+                                                    id="w4MultiJobNew"
+                                                    name="w4MultiJobNew"
                                                     aria-label="${sessionScope.languageJSON.profile.fillingStatus}" 
-                                                    value=""
-                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
-                                                    <span>${sessionScope.languageJSON.profile.yes}</span>
-                                                </label>
-
-                                                <label class="flexInline" for="fillingStatusNoNew">
-                                                    <input type="radio"
-                                                    class="form-control"
-                                                    id="fillingStatusNoNew"
-                                                    name="w4FileStatNew"
-                                                    aria-label="${sessionScope.languageJSON.profile.fillingStatus}" 
-                                                    value=""
-                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
-                                                    <span>${sessionScope.languageJSON.profile.no}</span>
-                                                </label>
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>>
+                                                    <option value="0">&nbsp;</option>
+                                                    <option value="S">${sessionScope.languageJSON.profile.single}</option>
+                                                    <option value="M">${sessionScope.languageJSON.profile.marriedFillingSep}</option>
+                                                    <option value="J">${sessionScope.languageJSON.profile.marriedFillingJointly}</option>
+                                                    <option value="H">${sessionScope.languageJSON.profile.headOfHousehold}</option>
+                                                </select>
                                             </div>
+                                            
                                         </div>
                                     </div>
 
@@ -1614,19 +1606,28 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <span class="haveValue"
                                                 >${w4Request.w4MultiJob}</span
                                             >
-                                            <div class="form-group valueInput">
-                                                <select
+                                           <div class="form-group valueInput flexInline">
+                                                <label class="flexInline" for="fillingStatusYesNew">
+                                                    <input type="radio"
                                                     class="form-control"
-                                                    id="w4MultiJobNew"
-                                                    name="w4MultiJobNew"
+                                                    id="fillingStatusYesNew"
+                                                    name="w4FileStatNew"
                                                     aria-label="${sessionScope.languageJSON.profile.multiJobs}" 
-                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>>
-                                                    <option value="0">&nbsp;</option>
-                                                    <option value="1">${sessionScope.languageJSON.profile.single}</option>
-                                                    <option value="2">${sessionScope.languageJSON.profile.marriedFillingSep}</option>
-                                                    <option value="3">${sessionScope.languageJSON.profile.marriedFillingJointly}</option>
-                                                    <option value="4">${sessionScope.languageJSON.profile.headOfHousehold}</option>
-                                                </select>
+                                                    value="Y"
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
+                                                    <span>${sessionScope.languageJSON.profile.yes}</span>
+                                                </label>
+
+                                                <label class="flexInline" for="fillingStatusNoNew">
+                                                    <input type="radio"
+                                                    class="form-control"
+                                                    id="fillingStatusNoNew"
+                                                    name="w4FileStatNew"
+                                                    aria-label="${sessionScope.languageJSON.profile.multiJobs}" 
+                                                    value="N"
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
+                                                    <span>${sessionScope.languageJSON.profile.no}</span>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
