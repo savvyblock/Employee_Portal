@@ -1102,7 +1102,7 @@ function w4InfoValidator() {
             //         }
             //     }
             // },
-            childrenUnder17New: {
+        	w4NbrChldrnNew: {
                 trigger: null,
                 validators: {
                     digits: {
@@ -1110,7 +1110,7 @@ function w4InfoValidator() {
                     }
                 }
             },
-            otherDependentsNew:{
+            w4NbrOthrDepNew:{
                 trigger: null,
                 validators: {
                     digits: {

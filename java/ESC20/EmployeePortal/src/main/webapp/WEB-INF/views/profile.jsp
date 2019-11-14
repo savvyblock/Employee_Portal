@@ -1506,12 +1506,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <input type="hidden" name="payFreq" value="${w4Request.id.payFreq}">
                                 <input type="hidden" name="maritalStatTax" value="${payInfo.maritalStatTax}">
                                 <input type="hidden" name="nbrTaxExempts" value="${payInfo.nbrTaxExempts}">
+                                
+                                
+                                <input type="hidden" name="w4FileStat" value="${w4Request.w4FileStat}">
+                                <input type="hidden" name="w4MultiJob" value="${w4Request.w4MultiJob}">
+                                <input type="hidden" name="w4NbrChldrn" value="${w4Request.w4NbrChldrn}">
+                                <input type="hidden" name="w4NbrOthrDep" value="${w4Request.w4NbrOthrDep}">
+                                <input type="hidden" name="w4OthrIncAmt" value="${w4Request.w4OthrIncAmt}">
+                                <input type="hidden" name="w4OthrDedAmt" value="${w4Request.w4OthrDedAmt}">
+                                <input type="hidden" name="w4OthrExmptAmt" value="${w4Request.w4OthrExmptAmt}">
+                                
                                 <div class="profile-left">
                                         <div class="profileTitle form-line profileInfo">
                                                 <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
                                                 <div class="newTitle">${sessionScope.languageJSON.label.new}</div>
                                             </div>
-                                    <!-- <div class="profile-item-line form-line">
+                                    <div class="profile-item-line form-line">
                                         <div class="profile-title">
                                                 ${sessionScope.languageJSON.profile.W4MaritalStatus}
                                         </div>
@@ -1556,7 +1566,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 />
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
 
                                     <div class="profile-item-line form-line">
                                         <div class="profile-title">
@@ -1564,7 +1574,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue"
-                                                >test</span
+                                                >${w4Request.w4FileStat}</span
                                             >
                                             <div class="form-group valueInput flexInline">
                                                 <label class="flexInline" for="fillingStatusYesNew">
@@ -1598,13 +1608,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue"
-                                                >test</span
+                                                >${w4Request.w4MultiJob}</span
                                             >
                                             <div class="form-group valueInput">
                                                 <select
                                                     class="form-control"
-                                                    id="multiJobsNew"
-                                                    name="multiJobsNew"
+                                                    id="w4MultiJobNew"
+                                                    name="w4MultiJobNew"
                                                     aria-label="${sessionScope.languageJSON.profile.multiJobs}" 
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>>
                                                     <option value="0">&nbsp;</option>
@@ -1623,13 +1633,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue"
-                                                >test</span
+                                                >${w4Request.w4NbrChldrn}</span
                                             >
                                             <div class="form-group valueInput">
                                                 <input
                                                     class="form-control"
-                                                    id="childrenUnder17New"
-                                                    name="childrenUnder17New"
+                                                    id="w4NbrChldrnNew"
+                                                    name="w4NbrChldrnNew"
                                                     aria-label="${sessionScope.languageJSON.profile.childrenUnder17}" 
                                                     value=""
                                                     oninput="clearNoNumWhole(this)"
@@ -1644,13 +1654,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue"
-                                                >test</span
+                                                >${w4Request.w4NbrOthrDep}</span
                                             >
                                             <div class="form-group valueInput">
                                                 <input
                                                     class="form-control"
-                                                    id="otherDependentsNew"
-                                                    name="otherDependentsNew"
+                                                    id="w4NbrOthrDepNew"
+                                                    name="w4NbrOthrDepNew"
                                                     aria-label="${sessionScope.languageJSON.profile.otherDependents}" 
                                                     value=""
                                                     oninput="clearNoNumWhole(this)"
@@ -1665,13 +1675,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue"
-                                                >test</span
+                                                >${w4Request.w4OthrIncAmt}</span
                                             >
                                             <div class="form-group valueInput">
                                                 <input
                                                     class="form-control"
-                                                    id="otherIncomeNew"
-                                                    name="otherIncomeNew"
+                                                    id="w4OthrIncAmtNew"
+                                                    name="w4OthrIncAmtNew"
                                                     aria-label="${sessionScope.languageJSON.profile.otherIncome}" 
                                                     value="0.00"
                                                     oninput="clearNoNum(this)"
@@ -1686,13 +1696,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue"
-                                                >test</span
+                                                >${w4Request.w4OthrDedAmt}</span
                                             >
                                             <div class="form-group valueInput">
                                                 <input
                                                     class="form-control"
-                                                    id="deductionsNew"
-                                                    name="deductionsNew"
+                                                    id="w4OthrDedAmtNew"
+                                                    name="w4OthrDedAmtNew"
                                                     aria-label="${sessionScope.languageJSON.profile.deductions}" 
                                                     value="0.00"
                                                     oninput="clearNoNum(this)"
@@ -1707,13 +1717,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue"
-                                                >test</span
+                                                >${w4Request.w4OthrExmptAmt}</span
                                             >
                                             <div class="form-group valueInput">
                                                 <input
                                                     class="form-control"
-                                                    id="otherExemptionNew"
-                                                    name="otherExemptionNew"
+                                                    id="w4OthrExmptAmtNew"
+                                                    name="w4OthrExmptAmtNew"
                                                     aria-label="${sessionScope.languageJSON.profile.otherExemption}" 
                                                     value="0.00"
                                                     oninput="clearNoNum(this)"
@@ -1721,9 +1731,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                     </div>
-
-
-
 
                                 </div>
                                 <c:if test="${!readOnlyInfo}">

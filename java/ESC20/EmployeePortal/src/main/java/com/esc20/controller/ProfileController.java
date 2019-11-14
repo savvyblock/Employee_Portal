@@ -1157,7 +1157,9 @@ public class ProfileController {
 
 	@RequestMapping("saveW4")
 	public ModelAndView saveW4(HttpServletRequest req, String empNbr, String reqDts, String payFreq,
-			Character maritalStatTax, Character maritalStatTaxNew, Integer nbrTaxExempts, Integer nbrTaxExemptsNew) {
+			Character maritalStatTax, Character maritalStatTaxNew, Integer nbrTaxExempts, Integer nbrTaxExemptsNew,String w4FileStat, String w4MultiJob, Double w4NbrChldrn,
+			Double w4NbrOthrDep, Double w4OthrIncAmt, Double w4OthrDedAmt, Double w4OthrExmptAmt , String w4FileStatNew, String w4MultiJobNew, Double w4NbrChldrnNew,
+			Double w4NbrOthrDepNew, Double w4OthrIncAmtNew, Double w4OthrDedAmtNew, Double w4OthrExmptAmtNew ) {
 
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
@@ -1178,13 +1180,17 @@ public class ProfileController {
 		freq = Frequency.getFrequency(payFreq);
 		if (this.indexService.getBhrEapPayAssgnGrp("BEA_W4")) {
 			w4Request = new BeaW4(pay, empNbr, freq.getCode().charAt(0), reqDts, maritalStatTaxNew, nbrTaxExemptsNew,
-					'A');
+					'A', w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
+					 w4NbrOthrDepNew,  w4OthrIncAmtNew,  w4OthrDedAmtNew,  w4OthrExmptAmtNew, w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
+					 w4NbrOthrDepNew,  w4OthrIncAmtNew,  w4OthrDedAmtNew,  w4OthrExmptAmtNew);
 			this.indexService.saveW4Request(w4Request);
 			this.indexService.updatePayInfo(demo, pay, freq.getCode().charAt(0), maritalStatTaxNew, nbrTaxExemptsNew);
 
 		} else {
 			w4Request = new BeaW4(pay, empNbr, freq.getCode().charAt(0), reqDts, maritalStatTaxNew, nbrTaxExemptsNew,
-					'P');
+					'P',w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
+					 w4NbrOthrDepNew,  w4OthrIncAmtNew,  w4OthrDedAmtNew,  w4OthrExmptAmtNew, w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
+					 w4NbrOthrDepNew,  w4OthrIncAmtNew,  w4OthrDedAmtNew,  w4OthrExmptAmtNew);
 			this.indexService.saveW4Request(w4Request);
 		}
 

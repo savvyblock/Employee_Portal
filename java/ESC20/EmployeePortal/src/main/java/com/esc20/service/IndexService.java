@@ -162,7 +162,59 @@ public class IndexService {
 		userDao.saveBusinessPhoneRequest(businessPhoneRequest);
 	}
 	public void saveW4Request(BeaW4 w4Request) {
+		checkNullParamaterString(w4Request);
+		checkNullParamaterNumber(w4Request);
 		payDao.savew4Request(w4Request);
+	}
+	
+	private void checkNullParamaterString(BeaW4 w4Request) {
+		if(w4Request.getW4FileStat() == null) {
+			w4Request.setW4FileStat("N");
+		}
+		if(w4Request.getW4FileStatNew() == null) {
+			w4Request.setW4FileStatNew("N");
+		}
+		if(w4Request.getW4MultiJob() == null) {
+			w4Request.setW4MultiJob("N");
+		}
+		if(w4Request.getW4MultiJobNew() == null) {
+			w4Request.setW4MultiJobNew("N");
+		}
+	}
+	private void checkNullParamaterNumber(BeaW4 w4Request) {
+		if(w4Request.getW4NbrChldrn() == null) {
+			w4Request.setW4NbrChldrn(0D);
+		}
+		if(w4Request.getW4NbrChldrnNew() == null) {
+			w4Request.setW4NbrChldrnNew(0D);
+		}
+		if(w4Request.getW4NbrOthrDep() == null) {
+			w4Request.setW4NbrOthrDep(0D);
+		}
+		if(w4Request.getW4NbrOthrDepNew() == null) {
+			w4Request.setW4NbrOthrDepNew(0D);
+		}
+		
+		if(w4Request.getW4OthrDedAmt() == null) {
+			w4Request.setW4OthrDedAmt(0D);
+		}
+		if(w4Request.getW4OthrDedAmtNew() == null) {
+			w4Request.setW4OthrDedAmtNew(0D);
+		}
+		
+		if(w4Request.getW4OthrExmptAmt() == null) {
+			w4Request.setW4OthrExmptAmt(0D);
+		}
+		if(w4Request.getW4OthrExmptAmtNew() == null) {
+			w4Request.setW4OthrExmptAmtNew(0D);
+		}
+		
+		if(w4Request.getW4OthrIncAmt() == null) {
+			w4Request.setW4OthrIncAmt(0D);
+		}
+		if(w4Request.getW4OthrIncAmtNew() == null) {
+			w4Request.setW4OthrIncAmtNew(0D);
+		}
 	}
 	public BeaEmerContact getBeaEmerContact(BhrEmpDemo demo) {
 		BeaEmerContact result = userDao.getBeaEmerContact(demo.getEmpNbr());
