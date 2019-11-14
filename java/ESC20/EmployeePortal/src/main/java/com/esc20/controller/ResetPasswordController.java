@@ -280,10 +280,12 @@ public class ResetPasswordController {
 	public Integer sendEmail(SearchUser user, String emailSelected, String password) {
 		StringBuilder messageContents = new StringBuilder();
 		messageContents.append("Temporary Password: " + password + "\n");
-		messageContents.append("Your temporary password will expire within 24 hours.");
-		DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
+		messageContents.append("<p>Your temporary password will expire within 24 hours.</p>");
+		
+		/*DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
-		messageContents.append(dateFormat.format(cal.getTime()) + "\n");
+		messageContents.append(dateFormat.format(cal.getTime()) + "\n");*/
+		messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
 
 		String subject = "Temporary Password Generated";
 		try {
