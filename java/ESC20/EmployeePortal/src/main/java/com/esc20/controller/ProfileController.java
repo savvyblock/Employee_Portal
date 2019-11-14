@@ -1180,16 +1180,16 @@ public class ProfileController {
 		freq = Frequency.getFrequency(payFreq);
 		if (this.indexService.getBhrEapPayAssgnGrp("BEA_W4")) {
 			w4Request = new BeaW4(pay, empNbr, freq.getCode().charAt(0), reqDts, maritalStatTaxNew, nbrTaxExemptsNew,
-					'A', w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
-					 w4NbrOthrDepNew,  w4OthrIncAmtNew,  w4OthrDedAmtNew,  w4OthrExmptAmtNew, w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
-					 w4NbrOthrDepNew,  w4OthrIncAmtNew,  w4OthrDedAmtNew,  w4OthrExmptAmtNew);
+					'A', w4FileStat,  w4MultiJob,  w4NbrChldrn,
+					 w4NbrOthrDep,  w4OthrIncAmt,  w4OthrDedAmt,  w4OthrExmptAmt, w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
+					 w4NbrOthrDepNew,  w4OthrIncAmtNew, w4OthrDedAmtNew,  w4OthrExmptAmtNew);
 			this.indexService.saveW4Request(w4Request);
 			this.indexService.updatePayInfo(demo, pay, freq.getCode().charAt(0), maritalStatTaxNew, nbrTaxExemptsNew);
 
 		} else {
 			w4Request = new BeaW4(pay, empNbr, freq.getCode().charAt(0), reqDts, maritalStatTaxNew, nbrTaxExemptsNew,
-					'P',w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
-					 w4NbrOthrDepNew,  w4OthrIncAmtNew,  w4OthrDedAmtNew,  w4OthrExmptAmtNew, w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
+					'P',w4FileStat,  w4MultiJob,  w4NbrChldrn,
+					 w4NbrOthrDep,  w4OthrIncAmt,  w4OthrDedAmt, w4OthrExmptAmt, w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
 					 w4NbrOthrDepNew,  w4OthrIncAmtNew,  w4OthrDedAmtNew,  w4OthrExmptAmtNew);
 			this.indexService.saveW4Request(w4Request);
 		}

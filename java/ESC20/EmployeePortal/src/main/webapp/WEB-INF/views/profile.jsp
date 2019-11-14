@@ -1498,6 +1498,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <c:if test="${payrollOption.fieldDisplayOptionInfo =='I'}"> 
                                         <c:set var="readOnlyInfo" value="true"/>
                                     </c:if>
+                                    <c:set var="readOnlyInfoW4" value="false"/>
+                                    <c:if test="${payrollOption.fieldDisplayOptionInfo =='U'}"> 
+                                            <c:set var="readOnlyInfoW4" value="true"/>
+                                        </c:if>
                              <h2 class="sub-title">${sessionScope.languageJSON.profile.W4MaritalStatusInfo}</h2>
                             <form class="profile-item" id="w4InfoForm" action="saveW4" method="POST">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -1534,7 +1538,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="form-group valueInput">
                                                 <select
                                                     id="maritalStatusLabel"
-                                                    name="maritalStatTaxNew"  <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>
+                                                    name="maritalStatTaxNew"  <c:if test="${readOnlyInfo == true || readOnlyInfoW4 == true}">disabled="disabled"</c:if>
                                                     class="form-control  <c:if test="${payInfo.maritalStatTax != w4Request.maritalStatTaxNew}">active</c:if>"
                                                     aria-label="${sessionScope.languageJSON.profile.W4MaritalStatus}"
                                                    
@@ -1560,7 +1564,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     class="form-control <c:if test="${payInfo.nbrTaxExempts != w4Request.nbrTaxExemptsNew}">active</c:if>"
                                                     id="nbrTaxExemptsNew"
                                                     name="nbrTaxExemptsNew"
-                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>
+                                                    <c:if test="${readOnlyInfo == true || readOnlyInfoW4 == true}">disabled="disabled"</c:if>
                                                     aria-label="${sessionScope.languageJSON.profile.NbrOfExemptions}" 
                                                     value="${w4Request.nbrTaxExemptsNew}"
                                                 />
