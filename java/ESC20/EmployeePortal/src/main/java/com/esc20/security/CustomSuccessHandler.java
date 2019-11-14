@@ -84,7 +84,13 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
             session.setAttribute("district", districtInfo);
             session.setAttribute("cancel1095Consent", false);
             session.setAttribute("cancelW2Consent", false);
+            
+            String dts = user.getTmpDts();
+            
             String returnURL= "/"+request.getContextPath().split("/")[1]+"/home";
+            if(!StringUtil.isNullOrEmpty(dts)) {
+            	returnURL= "/"+request.getContextPath().split("/")[1]+"/profile/profile";
+            }
             response.sendRedirect(returnURL);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
