@@ -3,6 +3,9 @@ var formSelect,undoForm
 var formUndoSelect
 var willSubmitFormDelete
 $(function() {
+    if(passwordModalShow == 'true'){
+        $("#changePasswordModal").modal('show')
+    }
     personalValidatorValue == 'U'?personalValidator():''
     maritalStatusValidatorValue == 'U'?maritalStatusValidator():''
     driverLicenseValidatorValue == 'U'?driverLicenseValidator():''
