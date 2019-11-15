@@ -160,7 +160,25 @@ public class ReferenceDao {
 		}
 		return result;
 	}
-
+	
+	public List <Code> getW4MaritalActualStatuses()
+	{
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT DISTINCT W4_FILE_STAT, W4_DESCR FROM BTHR_W4_FILE_STAT");
+		Query q = session.createSQLQuery(sql.toString());
+		@SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
+		
+		List<Code> result = new ArrayList<Code>();
+		Code code;
+		for(Object[] item: res) {
+			code = new Code(((Character)item[0]==null?"":((Character)item[0]).toString()),"",(String)item[1]);
+			result.add(code);		
+		}
+		return result;
+	}
+	
 	public List<Code> getAbsRsns() {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();

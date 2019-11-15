@@ -1363,6 +1363,7 @@ public class ProfileController {
 			w4Request = this.indexService.getBeaW4(demo, payRollFrequenciesOptions.get(0).getDescription());
 		}
 		List<Code> maritalOptions = this.referenceService.getMaritalActualStatuses();
+		List<Code> w4MaritalOptions = this.referenceService.getW4MaritalActualStatuses();
 		List<Code> maritalTaxOptions = this.referenceService.getMaritalTaxStatuses();
 		List<Code> generationOptions = this.referenceService.getGenerations();
 		List<Code> titleOptions = this.referenceService.getTitles();
@@ -1434,6 +1435,7 @@ public class ProfileController {
 		mav.addObject("cellRequest", cellRequest);
 		mav.addObject("busRequest", busRequest);
 		mav.addObject("maritalOptions", maritalOptions);
+		mav.addObject("w4MaritalOptions", w4MaritalOptions);
 		mav.addObject("maritalTaxOptions", maritalTaxOptions);
 		mav.addObject("generationOptions", generationOptions);
 		mav.addObject("titleOptions", titleOptions);

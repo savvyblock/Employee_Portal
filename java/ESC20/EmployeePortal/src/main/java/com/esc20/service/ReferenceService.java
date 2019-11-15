@@ -25,6 +25,10 @@ public class ReferenceService {
 		return referenceDao.getMaritalActualStatuses();
 	}
 	
+	public List<Code> getW4MaritalActualStatuses() {
+		return referenceDao.getW4MaritalActualStatuses();
+	}
+	
 	public List<Code> getMaritalTaxStatuses() {
 		return referenceDao.getMaritalStatuses();
 	}
