@@ -2227,7 +2227,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         
         var w4InfoValidatorValue = '${payrollOption.fieldDisplayOptionInfo}'
         var bankAccountValidatorValue = '${payrollOption.fieldDisplayOptionBank}'
-        var passwordModalShow = 'false'
+        var passwordModalShow = '${changePSW}'
     </script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/profile.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/searchForBank.js"></script>

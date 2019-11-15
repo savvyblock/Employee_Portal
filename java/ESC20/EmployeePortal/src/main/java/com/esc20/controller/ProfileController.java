@@ -91,6 +91,12 @@ public class ProfileController {
 		ModelAndView mav = new ModelAndView();
 		getProfileDetails(session, mav, freq);
 		mav.addObject("decryptedPwd", user.getUsrpswd());
+		
+		String changePSW = req.getParameter("changePSW");
+		if(!StringUtil.isNullOrEmpty(changePSW)) {
+			mav.addObject("changePSW", changePSW);
+		}
+		
 		return mav;
 	}
 
