@@ -1577,9 +1577,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 ${sessionScope.languageJSON.profile.fillingStatus}
                                         </div>
                                         <div class="profile-desc">
-                                                <span class="haveValue"
-                                                    >${w4Request.w4FileStat}</span
-                                                >
+                                                <span class="haveValue">
+                                                    <c:forEach var="w4FileStat" items="${w4FileStatOptions}" varStatus="count">
+                                                        <c:if test="${w4FileStat.code == w4Request.w4FileStat }">
+                                                            ${w4FileStat.displayLabel}
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </span>
                                                 <div class="form-group valueInput">
                                                     <select
                                                         class="form-control <c:if test="${w4Request.w4FileStat != w4Request.w4FileStatNew}">active</c:if>"
@@ -1587,11 +1591,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="w4FileStatNew"
                                                         aria-label="${sessionScope.languageJSON.profile.fillingStatus}" 
                                                         <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>>
-                                                        <option value="0">&nbsp;</option>
-                                                        <option value="S" <c:if test="${w4Request.w4FileStatNew == 'S' }">selected</c:if>>${sessionScope.languageJSON.profile.single}</option>
-                                                        <option value="M" <c:if test="${w4Request.w4FileStatNew == 'M' }">selected</c:if>>${sessionScope.languageJSON.profile.marriedFillingSep}</option>
-                                                        <option value="J" <c:if test="${w4Request.w4FileStatNew == 'J' }">selected</c:if>>${sessionScope.languageJSON.profile.marriedFillingJointly}</option>
-                                                        <option value="H" <c:if test="${w4Request.w4FileStatNew == 'H' }">selected</c:if>>${sessionScope.languageJSON.profile.headOfHousehold}</option>
+                                                        <c:forEach var="w4FileStat" items="${w4FileStatOptions}" varStatus="count">
+                                                            <option 
+                                                                value="${w4FileStat.code}" 
+                                                                <c:if test="${w4FileStat.code == w4Request.w4FileStatNew }">selected</c:if>>
+                                                                ${w4FileStat.displayLabel}
+                                                            </option>
+                                                        </c:forEach>
                                                     </select>
                                                 </div>
                                             </div>
