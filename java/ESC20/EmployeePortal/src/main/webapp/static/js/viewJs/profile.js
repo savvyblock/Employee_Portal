@@ -176,7 +176,30 @@ $(function() {
 
             $('#saveBankHidden').submit()
         }
-    })   
+    })  
+    $(".decimal2").blur(function(){
+        var val = $(this).val()
+        if(!val || val==''){
+            return
+        }
+        var valArry = val.split('.')
+        if(valArry.length>1){
+            if(valArry[1].length<2){
+                var len = valArry[1].length
+                var res = valArry[1]
+                for(var i =0;i<len;i++){
+                    res = res + '0'
+                }
+                $(this).val(valArry[0] + '.' + res)
+            }
+        }else{
+            var res = ''
+            for(var i =0;i<2;i++){
+                res = res + '0'
+            }
+            $(this).val(valArry[0] + '.' + res)
+        }
+    }) 
     $('#undoNameRequest').click(function() {
         // $('#undoModal').modal('show')
     	$('#undoName').val("deleteNameRequest");
@@ -328,8 +351,8 @@ function clearNoNum(obj){
     obj.value = obj.value.replace(/^\./g, ""); //
     obj.value = obj.value.replace(/\.{2,}/g, ".");  
     obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");  
-  obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');//
-  $(obj).change()
+    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');//
+    $(obj).change()
 }
 function clearNoNumWhole(obj){
     obj.value = obj.value.replace(/[^\d]/g, ""); //   
@@ -1105,9 +1128,28 @@ function w4InfoValidator() {
             //         }
             //     }
             // },
+            w4FileStatNew:{
+                trigger: null,
+                validators: {
+                    notEmpty: {
+                        message: requiredFieldValidator
+                    }
+                }
+            },
+            w4MultiJobNew:{
+                trigger: null,
+                validators: {
+                    notEmpty: {
+                        message: requiredFieldValidator
+                    }
+                }
+            },
         	w4NbrChldrnNew: {
                 trigger: null,
                 validators: {
+                    notEmpty: {
+                        message: requiredFieldValidator
+                    },
                     digits: {
                         message: pleaseEnterWholePositiveNum
                     }
@@ -1116,8 +1158,35 @@ function w4InfoValidator() {
             w4NbrOthrDepNew:{
                 trigger: null,
                 validators: {
+                    notEmpty: {
+                        message: requiredFieldValidator
+                    },
                     digits: {
                         message: pleaseEnterWholePositiveNum
+                    }
+                }
+            },
+            w4OthrIncAmtNew:{
+                trigger: null,
+                validators: {
+                    notEmpty: {
+                        message: requiredFieldValidator
+                    }
+                }
+            },
+            w4OthrDedAmtNew:{
+                trigger: null,
+                validators: {
+                    notEmpty: {
+                        message: requiredFieldValidator
+                    }
+                }
+            },
+            w4OthrExmptAmtNew:{
+                trigger: null,
+                validators: {
+                    notEmpty: {
+                        message: requiredFieldValidator
                     }
                 }
             }
