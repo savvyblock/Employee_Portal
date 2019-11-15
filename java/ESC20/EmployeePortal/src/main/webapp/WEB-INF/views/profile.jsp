@@ -1519,6 +1519,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <input type="hidden" name="w4OthrIncAmt" value="${w4Request.w4OthrIncAmt}">
                                 <input type="hidden" name="w4OthrDedAmt" value="${w4Request.w4OthrDedAmt}">
                                 <input type="hidden" name="w4OthrExmptAmt" value="${w4Request.w4OthrExmptAmt}">
+                                <input type="hidden" name="maritalStatTaxNew" value="${w4Request.maritalStatTaxNew}">
+                                <input type="hidden" name="nbrTaxExemptsNew" value="${w4Request.nbrTaxExemptsNew}">
                                 
                                 <div class="profile-left">
                                         <div class="profileTitle form-line profileInfo">
@@ -1538,7 +1540,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="form-group valueInput">
                                                 <select
                                                     id="maritalStatusLabel"
-                                                    name="maritalStatTaxNew"  <c:if test="${readOnlyInfo == true || readOnlyInfoW4 == true}">disabled="disabled"</c:if>
+                                                      <c:if test="${readOnlyInfo == true || readOnlyInfoW4 == true}">disabled="disabled"</c:if>
                                                     class="form-control  <c:if test="${payInfo.maritalStatTax != w4Request.maritalStatTaxNew}">active</c:if>"
                                                     aria-label="${sessionScope.languageJSON.profile.W4MaritalStatus}"
                                                    
@@ -1563,7 +1565,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 <input
                                                     class="form-control <c:if test="${payInfo.nbrTaxExempts != w4Request.nbrTaxExemptsNew}">active</c:if>"
                                                     id="nbrTaxExemptsNew"
-                                                    name="nbrTaxExemptsNew"
+                                                    
                                                     <c:if test="${readOnlyInfo == true || readOnlyInfoW4 == true}">disabled="disabled"</c:if>
                                                     aria-label="${sessionScope.languageJSON.profile.NbrOfExemptions}" 
                                                     value="${w4Request.nbrTaxExemptsNew}"
@@ -1654,7 +1656,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="w4NbrChldrnNew"
                                                     name="w4NbrChldrnNew"
                                                     aria-label="${sessionScope.languageJSON.profile.childrenUnder17}" 
-                                                    value=""
+                                                    value="${w4Request.w4NbrChldrnNew}"
                                                     oninput="clearNoNumWhole(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
@@ -1675,7 +1677,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="w4NbrOthrDepNew"
                                                     name="w4NbrOthrDepNew"
                                                     aria-label="${sessionScope.languageJSON.profile.otherDependents}" 
-                                                    value=""
+                                                    value="${w4Request.w4NbrOthrDepNew}"
                                                     oninput="clearNoNumWhole(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
@@ -1696,7 +1698,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="w4OthrIncAmtNew"
                                                     name="w4OthrIncAmtNew"
                                                     aria-label="${sessionScope.languageJSON.profile.otherIncome}" 
-                                                    value="0.00"
+                                                    value="${w4Request.w4OthrIncAmtNew}"
                                                     oninput="clearNoNum(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
@@ -1717,7 +1719,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="w4OthrDedAmtNew"
                                                     name="w4OthrDedAmtNew"
                                                     aria-label="${sessionScope.languageJSON.profile.deductions}" 
-                                                    value="0.00"
+                                                    value="${w4Request.w4OthrDedAmtNew}"
                                                     oninput="clearNoNum(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
@@ -1738,7 +1740,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="w4OthrExmptAmtNew"
                                                     name="w4OthrExmptAmtNew"
                                                     aria-label="${sessionScope.languageJSON.profile.otherExemption}" 
-                                                    value="0.00"
+                                                    value="${w4Request.w4OthrExmptAmtNew}"
                                                     oninput="clearNoNum(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
@@ -2225,7 +2227,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         
         var w4InfoValidatorValue = '${payrollOption.fieldDisplayOptionInfo}'
         var bankAccountValidatorValue = '${payrollOption.fieldDisplayOptionBank}'
-        var passwordModalShow = 'true'
+        var passwordModalShow = 'false'
     </script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/profile.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/searchForBank.js"></script>
