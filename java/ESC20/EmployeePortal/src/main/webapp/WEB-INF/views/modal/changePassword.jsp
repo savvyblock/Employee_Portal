@@ -25,6 +25,9 @@
                     <input type="text" id="sessionPsd" value="${decryptedPwd}" style = "display:none" aria-label="${sessionScope.languageJSON.accessHint.sessionPassword}"/> 
                     <input type="text" name="id" id="userId" value="${sessionScope.user.empNbr}" style = "display:none" aria-label="${sessionScope.languageJSON.accessHint.employeeNumber}"/> 
                     <div class="modal-body">
+                            <div class="oldPsdNewPsdSame" style = "display:none">
+                                    <p class="error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.newPasswordDifferOld}</p>
+                            </div>
                       <div class="form-group">
                           <label class="form-title" for="oldPassword">${sessionScope.languageJSON.label.oldPassword}</label>
                           <div class="valid-wrap">
@@ -39,7 +42,7 @@
                       </div>  
                       <div class="form-group has-error oldPsdValidator" style = "display:none">
                             <small class="help-block" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.oldPasswordWrong}</small>
-                        </div>
+                    </div>
                     <div class="form-group">
                           <label class="form-title" for="newPassword">${sessionScope.languageJSON.label.newPassword}</label>
                           <div class="valid-wrap">
@@ -64,7 +67,9 @@
                               />
                           </div>
                       </div>
+                      
                     </div>
+                    
                     <div class="modal-footer">
                         <button type="button" role="button" id="changePsd" class="btn btn-primary">
                         	${sessionScope.languageJSON.label.submit}

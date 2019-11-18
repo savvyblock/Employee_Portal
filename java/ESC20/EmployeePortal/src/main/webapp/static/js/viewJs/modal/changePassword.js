@@ -62,7 +62,14 @@
     $(function(){
         $("#changePsd").click(function(e){
         	var bootstrapValidator = $("#updatePassword").data('bootstrapValidator');
-        	bootstrapValidator.validate();
+            bootstrapValidator.validate();
+            var oldPsd = $("#oldPassword").val()
+            var newPsd = $("#newPassword").val()
+            if(oldPsd == newPsd){
+                $(".oldPsdNewPsdSame").show()
+                return
+            }
+            $(".oldPsdNewPsdSame").hide()
             if (bootstrapValidator.isValid()) {
                 $.ajax({
                     type: 'post',
