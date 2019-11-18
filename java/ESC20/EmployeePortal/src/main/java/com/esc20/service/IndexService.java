@@ -35,6 +35,7 @@ import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.PayrollOption;
 import com.esc20.nonDBModels.SearchUser;
 import com.esc20.nonDBModels.W2Option;
+import com.esc20.util.MailUtil;
 import com.esc20.util.StringUtil;
 
 
@@ -426,5 +427,33 @@ public class IndexService {
 	}
 	public boolean isEmployeePayCampusLeaveCampus(String empNbr) {
 		return userDao.employeePayCampusLeaveCampusCount(empNbr)>0;
+	}
+	
+	public void passwordChangeSendEmailConfirmation (String userName, String userFirstName, String userLastName, String userHomeEmail, String userWorkEmail) {
+		String subject ="A MESSAGE FROM SELF SERVICE";
+		StringBuilder messageContents = new StringBuilder();
+		userFirstName = userFirstName== null ? "" : userFirstName.trim();
+		userLastName = userLastName== null ? "" : userLastName.trim();
+		messageContents.append("<p>"+userFirstName + " " +userLastName + ", </p>");
+		messageContents.append("<p>Your request to change your password was successful. </p>");		
+		messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
+		
+		String toEmail ="";
+		if (!"".equals(userWorkEmail)) {
+			toEmail = userWorkEmail;
+		} else if (!"".equals(userHomeEmail)) {
+			toEmail = userHomeEmail;
+		}
+		if (toEmail!=null && toEmail.trim().length() > 0) {
+			try{
+				MailUtil.sendEmail(toEmail, subject, messageContents.toString());
+			} 
+			catch(Exception ex) {
+				logger.info("Self Service Change Password: An exception has occured with mailing the user "+userName+".");
+			} 
+		} else {
+			logger.info("Self Service Change Password: Unable to send an email confirmation.  No email address is avaiable for user "+userName+".");
+		}
+		
 	}
 }

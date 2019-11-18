@@ -414,7 +414,7 @@ public class ProfileController {
 		this.indexService.updateUser(user);
 		//Send out Email to User
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-		passwordChangeSendEmailConfirmation(user.getUsrname(),userDetail.getNameF(),userDetail.getNameL(),userDetail.getHmEmail(),userDetail.getEmail());
+		this.indexService.passwordChangeSendEmailConfirmation(user.getUsrname(),userDetail.getNameF(),userDetail.getNameL(),userDetail.getHmEmail(),userDetail.getEmail());
 		session.removeAttribute("user");
 		session.setAttribute("user", user);
 		getProfileDetails(session, mav, null);
@@ -1465,7 +1465,7 @@ public class ProfileController {
 		return result;
 	}
 
-	private void passwordChangeSendEmailConfirmation (String userName, String userFirstName, String userLastName, String userHomeEmail, String userWorkEmail) {
+	/*private void passwordChangeSendEmailConfirmation (String userName, String userFirstName, String userLastName, String userHomeEmail, String userWorkEmail) {
 		String subject ="A MESSAGE FROM SELF SERVICE";
 		StringBuilder messageContents = new StringBuilder();
 		userFirstName = userFirstName== null ? "" : userFirstName.trim();
@@ -1491,5 +1491,5 @@ public class ProfileController {
 			logger.info("Self Service Change Password: Unable to send an email confirmation.  No email address is avaiable for user "+userName+".");
 		}
 		
-	}
+	}*/
 }

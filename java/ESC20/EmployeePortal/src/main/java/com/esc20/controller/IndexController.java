@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +23,11 @@ import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.Options;
+import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
+import com.esc20.util.MailUtil;
 import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONObject;
@@ -37,6 +40,9 @@ public class IndexController {
 
 	@Autowired
 	private ReferenceService referenceService;
+	
+	@Autowired
+	private CustomSHA256Encoder encoder;
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public ModelAndView getIndexPage(HttpServletRequest req, String Id, HttpServletResponse response) {
@@ -106,7 +112,37 @@ public class IndexController {
 		
 		return mav;
 	}
+	
+	@RequestMapping("updatePassword")
+	public ModelAndView updatePassword(HttpServletRequest req, String password) {
+		HttpSession session = req.getSession();
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		ModelAndView mav = new ModelAndView();
+		if (password == null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("module", "Home");
+			mav.addObject("action", "Update Password");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
+		if (StringUtils.isEmpty(password)) {
+			mav = new ModelAndView("redirect:/home");
+			return mav;
+		}
+		user.setUsrpswd(encoder.encode(password));
+		user.setTmpDts("");
+		user.setTmpCnt(0);
+		user.setLkHint('N');
+		user.setHintCnt(0);
+		this.indexService.updateUser(user);
+		//Send out Email to User
+		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+		this.indexService.passwordChangeSendEmailConfirmation(user.getUsrname(),userDetail.getNameF(),userDetail.getNameL(),userDetail.getHmEmail(),userDetail.getEmail());
 
+		mav = new ModelAndView("redirect:/home");
+		return mav;
+	}
+	
 	@RequestMapping(value = "changeLanguage", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Boolean> changeLanguage(HttpServletRequest req, String language) throws IOException {
