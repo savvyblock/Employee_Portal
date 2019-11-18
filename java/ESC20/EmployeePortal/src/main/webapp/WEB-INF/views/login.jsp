@@ -132,6 +132,23 @@
                         
                     </div>
                 </div>
+                <div>
+                <p class="webDESC">
+                        <b>${sessionScope.languageJSON.label.important}</b><br>
+                        ${sessionScope.languageJSON.label.thisIsSecurity}
+                        <br>
+                        <br>
+                        <b>${sessionScope.languageJSON.label.tccAccessStatement}</b><br>
+                        ${sessionScope.languageJSON.label.weRecognize}
+                        <a target="_blank" href="https://www.w3.org/TR/WCAG20/">
+                            ${sessionScope.languageJSON.label.webContent}
+                        </a> 
+                        ${sessionScope.languageJSON.label.andWenStrive}
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&amp;entry.372715739=Employee+Access+(TxEIS)" target="_blank"> 
+                            ${sessionScope.languageJSON.label.contactUsCo}
+                        </a>
+                    </p>
+                </div>
             </div>
     </body>
     

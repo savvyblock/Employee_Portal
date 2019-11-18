@@ -68,11 +68,19 @@
   height: calc(100vh - 60px);
   overflow: hidden;
   overflow-y: auto;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 @media (max-height: 530px) {
   .account-wrap .account-top {
     align-items: flex-start;
+  }
+}
+
+@media (max-height: 690px) {
+  .account-wrap .account-top {
+    align-content: flex-start;
   }
 }
 
@@ -188,6 +196,9 @@
 }
 
 @media (max-width: 1100px) {
+  .account-wrap .account-top {
+    align-content: flex-start;
+  }
   .account-wrap .account-top .account-inner {
     width: 100%;
     flex-flow: column;
@@ -2712,4 +2723,10 @@
 .disabledSpan, .btn:disabled {
   opacity: .5;
   cursor: not-allowed;
+}
+
+.webDESC {
+  max-width: 1100px;
+  margin: 0 15px;
+  margin-top: 20px;
 }
