@@ -89,7 +89,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
             
             String returnURL= "/"+request.getContextPath().split("/")[1]+"/home";
             if(!StringUtil.isNullOrEmpty(dts)) {
-            	returnURL= "/"+request.getContextPath().split("/")[1]+"/profile/profile?changePSW=true";
+            	returnURL= "/"+request.getContextPath().split("/")[1]+"/home?changePSW=true";
             }
             response.sendRedirect(returnURL);
 		} catch (ParseException e) {

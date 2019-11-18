@@ -26,6 +26,10 @@
     </main>
   </div>  
     <%@ include file="commons/footer.jsp"%>
-        
+    <%@ include file="modal/changePassword.jsp"%>    
 </body>
+  <script>
+        var passwordModalShow = '${changePSW}'
+    </script>
+    <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/home.js"></script>
 </html>
