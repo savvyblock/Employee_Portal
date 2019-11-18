@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Code;
-import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
@@ -94,10 +93,17 @@ public class IndexController {
 		session.setAttribute("options", options);
 		session.setAttribute("userDetail", userDetail);
 
+		
 		// BhrEmpDemo userDetail = (BhrEmpDemo)session.getAttribute("userDetail");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("home");
 		mav.addObject("userDetail", userDetail);
+		
+		String changePSW = req.getParameter("changePSW");
+		if(!StringUtil.isNullOrEmpty(changePSW)) {
+			mav.addObject("changePSW", changePSW);
+		}
+		
 		return mav;
 	}
 

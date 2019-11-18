@@ -92,11 +92,6 @@ public class ProfileController {
 		getProfileDetails(session, mav, freq);
 		mav.addObject("decryptedPwd", user.getUsrpswd());
 		
-		String changePSW = req.getParameter("changePSW");
-		if(!StringUtil.isNullOrEmpty(changePSW)) {
-			mav.addObject("changePSW", changePSW);
-		}
-		
 		return mav;
 	}
 
