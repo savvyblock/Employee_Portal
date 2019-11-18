@@ -179,7 +179,7 @@ public class CreateUserController {
 	{
 		String subject ="New User Created";
 		StringBuilder messageContents = new StringBuilder();
-		messageContents.append("<p>Thank you for Registering for Employee Portal.  Your User ID is:"+userName +" </p>");		
+		messageContents.append("<p>Thank you for Registering for Employee Portal.  Your User ID is: "+userName +" </p>");		
 		messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
 		
 		String toEmail ="";
