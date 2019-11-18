@@ -517,6 +517,7 @@
         "passwordVerification":"Password Verification",
         "workEmailVerify": "Work E-mail Verification",
         "homeEmailVerify": "Home E-mail Verification",
+        "enterNewPSDChange":"Please enter a new password and verify it to change your current password.",
         "": ""
     },
     "language": {
@@ -672,6 +673,7 @@
         "enterAStartHour":"Enter a Start Hour.",
         "notSameAnswer":"Hint answer may not be the same as Hint question",
         "pleaseEnterWholePositiveNum":"Please Enter whole positive number",
+        "newPasswordDifferOld":"New password must be different than old password.",
         "": ""
     },
     "accessHint": {

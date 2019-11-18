@@ -12,6 +12,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <%@ include file="commons/bar-account.jsp"%>
         <div class="account-top content-body" tabindex="-1">
             <div class="account-inner sm">
+                <p>
+                    <b> ${sessionScope.languageJSON.label.enterNewPSDChange}</b>
+                </p>
                 <form id="updatePassword" action="updatePassword" method="post">
                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="form-group">
@@ -38,6 +41,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             />
                         </div>
                     </div>
+                    <p class="error-hint" role="alert" aria-atomic="true">
+                            ${sessionScope.languageJSON.validator.newPasswordDifferOld}
+                    </p>
                     <div class="form-group account-btn">
                         <button type="submit" role="button" class="btn btn-primary">
                                 ${sessionScope.languageJSON.label.submit}
