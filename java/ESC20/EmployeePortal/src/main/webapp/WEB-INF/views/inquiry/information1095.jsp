@@ -275,7 +275,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </div>
                                             <div class="PageNext"></div>
                                             <div class="forAria">
-                                               1095${type}-${selectedYear}.jsp
+                                               1095${type}-${selectedYear}
                                             </div>
                                           
                                     </c:if>
