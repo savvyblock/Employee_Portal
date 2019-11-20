@@ -274,7 +274,10 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </table>
                                             </div>
                                             <div class="PageNext"></div>
-                                            <jsp:include page="../report-1095/1095${type}-${selectedYear}.jsp"></jsp:include>
+                                            <div class="forAria">
+                                               1095${type}-${selectedYear}.jsp
+                                            </div>
+                                          
                                     </c:if>
                                 </div>
                                 <form id="changePageFormC" hidden="hidden" action="sortOrChangePageForTypeC" method="POST">
