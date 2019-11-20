@@ -329,12 +329,12 @@ public class Information1095Controller {
 			else
 				mav.addObject("type", "C");
 		} else {
-			mav.addObject("type", type);
+			mav.addObject("type", type.trim());
 		}
 		String latestYear = DateUtil.getLatestYear(years);
 		mav.addObject("latestYear", latestYear);
 		mav.addObject("years", years);
-		mav.addObject("selectedYear", year);
+		mav.addObject("selectedYear", year.trim());
 		mav.addObject("consent", consent);
 		mav.addObject("message", message);
 		mav.addObject("bList", bList);
