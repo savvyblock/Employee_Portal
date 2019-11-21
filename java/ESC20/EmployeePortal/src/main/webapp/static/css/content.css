@@ -1754,7 +1754,12 @@
 }
 
 .profile .profile-item.addBankForm .profile-title {
-  flex: 0 0 410px;
+  flex: 0 0 120px;
+  align-items: flex-start;
+}
+
+.profile .profile-item.addBankForm .primaryBank {
+  flex: 0 0 280px;
 }
 
 .profile .profile-item .profile-title {

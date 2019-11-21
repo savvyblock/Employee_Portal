@@ -21,6 +21,7 @@ $(function() {
     bankAccountValidatorValue == 'U'?bankAccountValidator():''
     //add
     bankAccountValidatorValue == 'U'?bankAccountAddValidator():''
+    bankAccountAddValidator()
     $("#saveEmail").on('click',function(){
         var workE = $("#emailWorkEmail").val()
         var workEV = $("#emailVerifyWorkEmail").val()
@@ -63,7 +64,32 @@ $(function() {
             $(".bankAccountBlock").removeClass("asPrimary")
             $(this).parents(".bankAccountBlock").addClass("asPrimary")
             $(".bankAccountBlock input[name='displayAmountNew']").attr('type','text')
+            $("#saveBankDisplayAmount").attr('type','text')
             $(this).parents(".bankAccountBlock").find("input[name='displayAmountNew']").attr('type','hidden')
+            var indexBank = $('.icheckRadioBank').index(this)
+            $('.icheckRadioBank').each(function(index) {
+                if (index != indexBank) {
+                    $(this).prop('checked', false)
+                }
+            })
+        }
+    })
+    var currentAccountLen = $(".bankAccountBlock").length;
+    if(currentAccountLen==0){
+        $("#primary_add").prop('checked', true)
+        $("#saveBankDisplayAmount").attr('type','hidden')
+    }else{
+        $("#primary_add").prop('checked', false)
+        $("#saveBankDisplayAmount").attr('type','text')
+    }
+    $('#primary_add').on('click', function(event) {
+        if ($(this).is(':checked')) {
+            $(this).parents(".profile-item").find(".bankAmount .amount_2").val("0.00")
+            console.log($(this).parents(".profile-item").find(".bankAmount .amount_2").val())
+            $(".bankAccountBlock").removeClass("asPrimary")
+            // $(this).parents(".bankAccountBlock").addClass("asPrimary")
+            $(".bankAccountBlock input[name='displayAmountNew']").attr('type','text')
+            $(this).parents(".addBankForm").find("input#saveBankDisplayAmount").attr('type','hidden')
             var indexBank = $('.icheckRadioBank').index(this)
             $('.icheckRadioBank').each(function(index) {
                 if (index != indexBank) {
@@ -153,9 +179,7 @@ $(function() {
     })
 
     $('#saveNewBank').click(function() {
-        var bankAccountValidator = $('#addBankAccountForm').data(
-            'bootstrapValidator'
-        )
+        var bankAccountValidator = $('#addBankAccountForm').data('bootstrapValidator')
         bankAccountValidator.validate()
         console.log(bankAccountValidator.isValid())
         if (bankAccountValidator.isValid()) {
@@ -1270,6 +1294,7 @@ function bankAccountAddValidator() {
     $('#addBankAccountForm').bootstrapValidator({
         live: 'enable',
         submitButtons: '#saveNewBank',
+        excluded: [':disabled', ':hidden', ':not(:visible)'],
         feedbackIcons: {
             valid: 'fa fa-check ',
             // invalid: 'fa fa-times',

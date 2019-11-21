@@ -1826,7 +1826,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     id="bankAccountForm_${count.index}"
                                     action="updateBank" method="POST" >
                                 <input type="hidden" name="freq" class="hidden_freq_update" />
-                                <div class="bankPart" role="main" aria-label="<c:if test="${bank.isDelete == true}">${sessionScope.languageJSON.accessHint.deletedPart}</c:if>" class="profile-item border-0 bankAccountBlock  <c:if test="${bank.isDelete == false}">usedBank</c:if>  <c:if test="${bank.isDelete == true}">isDelete</c:if>">
+                                <div class="bankPart" role="main" aria-label="<c:if test="${bank.isDelete == true}">${sessionScope.languageJSON.accessHint.deletedPart}</c:if>">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="profile-left">
                                         <div class="profile-item-line form-line">
@@ -2071,6 +2071,15 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="profile-title">
                                                     ${sessionScope.languageJSON.profile.bankName}
                                             </div>
+                                            <div class="primaryBank">
+                                                    <input
+                                                        class="icheckRadioBank"
+                                                        id="primary_add"
+                                                        type="radio"
+                                                        aria-label="${sessionScope.languageJSON.accessHint.primaryAccountCheckbox}" 
+                                                        name="primaryAccount"
+                                                    />
+                                            </div>
                                             <div class="profile-desc">
                                                 <div class="valueInput group-line">
                                                     <div class="form-group inputDisabled">
@@ -2115,6 +2124,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="profile-title">
                                                     ${sessionScope.languageJSON.profile.bankAcctNbr}
                                             </div>
+                                            <div class="primaryBank"></div>
                                             <div class="profile-desc">
                                                 <div class="form-group valueInput">
                                                     <input
@@ -2132,6 +2142,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="profile-title">
                                                     ${sessionScope.languageJSON.profile.bankAcctType}
                                             </div>
+                                            <div class="primaryBank"></div>
                                             <div class="profile-desc">
                                                 <div class="form-group valueInput">
                                                     <select
@@ -2159,7 +2170,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="profile-title">
                                                     ${sessionScope.languageJSON.profile.bankAcctAmt}
                                             </div>
-                                            <div class="profile-desc">
+                                            <div class="primaryBank"></div>
+                                            <div class="profile-desc bankAmount">
                                                 <div class="form-group valueInput">
                                                     <input
                                                         class="form-control amount_2"
@@ -2193,7 +2205,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                 </form>
-                                <button <c:if test="${readOnlyBank == true}">disabled="disabled"</c:if>
+                                <button <c:if test="${payrollOption.fieldDisplayOptionBank !='U'}">disabled="disabled"</c:if>
                                     type="button" role="button" aria-label = "${sessionScope.languageJSON.label.addBank}"
                                     class="btn btn-primary add-bank-btn"
                                 >
