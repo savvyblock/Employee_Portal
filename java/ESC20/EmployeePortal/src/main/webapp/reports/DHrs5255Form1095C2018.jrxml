@@ -850,7 +850,7 @@ see IRS.gov.]]></text>
 						<staticText>
 							<reportElement x="3" y="3" width="419" height="17" uuid="8304f729-57dd-456b-bddd-9d27f97c0487"/>
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
-								<font fontName="Microsoft Sans Serif" size="15" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="15" isBold="false"/>
 							</textElement>
 							<text><![CDATA[Employer-Provided Health Insurance Offer and Coverage]]></text>
 						</staticText>
@@ -1008,9 +1008,9 @@ see IRS.gov.]]></text>
 							<text><![CDATA[Name of employee]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="16" y="11" width="198" height="12" uuid="34399a9f-932f-4be4-906d-2661f62a3858"/>
+							<reportElement x="16" y="11" width="214" height="12" uuid="34399a9f-932f-4be4-906d-2661f62a3858"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox1}]]></textFieldExpression>
 						</textField>
@@ -1040,7 +1040,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="16" y="11" width="98" height="12" uuid="5486f7bd-3a20-4046-97ad-9399df99d9b2"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b2_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -1070,7 +1070,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="16" y="11" width="203" height="12" uuid="d8de118f-4f82-4260-b9f1-8c804a501a00"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b7_businessnameline1txt}.trim() + " " + $F{b7_businessnameline2txt}.trim()).trim()]]></textFieldExpression>
 						</textField>
@@ -1100,7 +1100,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="20" y="11" width="83" height="12" uuid="0fde1a8a-a4ef-4a5f-97be-2f270e103000"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b8_ein}.trim()]]></textFieldExpression>
 						</textField>
@@ -1134,7 +1134,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="16" y="11" width="323" height="12" uuid="6acfb386-dabe-4eeb-b2cb-e10704cf7b55"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b3_addressline1txt}.trim() + " " + $F{b3_addressline2txt}.trim()).trim()]]></textFieldExpression>
 						</textField>
@@ -1164,7 +1164,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="16" y="11" width="130" height="12" uuid="3f3c3f8c-12d8-4cde-bc80-1ce9cf5560aa"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b9_addressline1txt}.trim() + " " + $F{b9_addressline2txt}.trim()).trim()]]></textFieldExpression>
 						</textField>
@@ -1194,7 +1194,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="16" y="11" width="118" height="12" uuid="0929eb25-f4d3-4119-a0d8-220b3618cca9"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b10_contactphonenum}.trim(), "(@@@) @@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -1229,7 +1229,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="16" y="11" width="91" height="12" uuid="2e55a2c0-0453-4aa3-a538-d9bad78041d1"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b4_citynm}.trim()]]></textFieldExpression>
 						</textField>
@@ -1259,7 +1259,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="16" y="11" width="107" height="12" uuid="f29b3608-2f1c-4300-b039-4a1517a32131"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b5_foreignprovincenm}.trim().equals("") ?
   $F{b5_usstatecd}.trim() :
@@ -1292,7 +1292,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="16" y="11" width="113" height="12" uuid="a3927fe9-f822-4ce1-a46b-fd67090f69f4"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b6_countrycd}.trim().toUpperCase().equals("US") ? new Boolean(true) : ($F{b6_countryname}.trim().toUpperCase().equals("UNITED STATES") ? new Boolean(true) : (($F{b6_countrycd} + $F{b6_countryname}).trim().equals("") ? new Boolean(true) : new Boolean(false)))) ?
     ($F{b6_uszipcd}.trim() + ($F{b6_uszipextensioncd}.trim().equals("") ? "" : ($F{b6_uszipcd}.trim().equals("") ? "" : "-") + $F{b6_uszipextensioncd}.trim())) :
@@ -1324,7 +1324,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="16" y="11" width="81" height="12" uuid="c707b95f-a09b-4c95-84b1-837bf8ad0ee0"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b11_citynm}.trim()]]></textFieldExpression>
 						</textField>
@@ -1354,7 +1354,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="16" y="11" width="88" height="12" uuid="6caf9568-84c5-42cf-8a39-d25fb0bc7c81"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b12_foreignprovincenm}.trim().equals("") ?
   $F{b12_usstatecd}.trim() :
@@ -1387,7 +1387,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="16" y="11" width="113" height="12" uuid="ae6d8fac-fa18-42db-8732-333ef205f20a"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b13_countrycd}.trim().toUpperCase().equals("US") ? new Boolean(true) : ($F{b13_countryname}.trim().toUpperCase().equals("UNITED STATES") ? new Boolean(true) : (($F{b13_countrycd} + $F{b13_countryname}).trim().equals("") ? new Boolean(true) : new Boolean(false)))) ?
     ($F{b13_uszipcd}.trim() + ($F{b13_uszipextensioncd}.trim().equals("") ? "" : ($F{b13_uszipcd}.trim().equals("") ? "" : "-") + $F{b13_uszipextensioncd}.trim())) :
@@ -1420,7 +1420,7 @@ see IRS.gov.]]></text>
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Middle">
-							<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+							<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 						</textElement>
 						<text><![CDATA[Employee Offer and Coverage]]></text>
 					</staticText>
@@ -1454,7 +1454,7 @@ see IRS.gov.]]></text>
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Middle">
-							<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+							<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$F{planStrtMon}]]></textFieldExpression>
 					</textField>
@@ -1719,7 +1719,7 @@ see IRS.gov.]]></text>
 ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_annualofferofcoveragecd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1748,7 +1748,7 @@ see IRS.gov.]]></text>
  $F{b14_annualofferofcoveragecd}.equals($F{b14_decoffercd})) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_janoffercd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1762,7 +1762,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="0" y="1" width="50" height="15" uuid="592116c9-4e11-4302-a34e-20312fe69a5a"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_feboffercd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1776,7 +1776,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="0" y="1" width="50" height="15" uuid="88262144-c60f-496c-92d9-6a2c757e9d74"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_maroffercd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1790,7 +1790,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="0" y="1" width="50" height="15" uuid="1b2d3ea7-87a1-4fd7-87c4-1a6246ae830b"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_aproffercd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1804,7 +1804,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="0" y="1" width="50" height="15" uuid="ca48d99b-3008-415c-8e99-9458c4445a69"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_mayoffercd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1818,7 +1818,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="0" y="1" width="50" height="15" uuid="46170705-b196-4d8f-8c1f-0a2227bf48ec"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_junoffercd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1832,7 +1832,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="0" y="1" width="50" height="15" uuid="dbef7c09-3d4e-410f-a13e-adcf3566a7f5"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_juloffercd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1846,7 +1846,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="0" y="1" width="50" height="15" uuid="1247d70c-8e57-4345-a56b-ad4c17aee2c1"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_augoffercd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1860,7 +1860,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="0" y="1" width="50" height="15" uuid="d7dfcad5-c527-4d2a-8661-fbd1f6a42fe1"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_sepoffercd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1874,7 +1874,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="0" y="1" width="50" height="15" uuid="0e43394b-a64d-4ff5-aa10-9da45959f8fd"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_octoffercd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1888,7 +1888,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="0" y="1" width="50" height="15" uuid="43785f26-fdf8-4cc3-aa8d-3bd866192806"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_novoffercd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1904,7 +1904,7 @@ see IRS.gov.]]></text>
 						<textField>
 							<reportElement x="0" y="1" width="50" height="15" uuid="5041d060-5f2b-41d8-8985-6d44f3c1a14a"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b14_decoffercd}.trim()]]></textFieldExpression>
 						</textField>
@@ -1976,7 +1976,7 @@ see IRS.gov.]]></text>
  "1K".equals($F{b14_annualofferofcoveragecd})) ? new Boolean(true) : new Boolean(false)) : new Boolean (false)]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_annualshrlowestcostmthlypremamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_annualshrlowestcostmthlypremamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2040,7 +2040,7 @@ $V{allOfferOfCoverage}
    "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_januaryamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_januaryamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2102,7 +2102,7 @@ $V{allOfferOfCoverage}
    "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_februaryamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_februaryamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2164,7 +2164,7 @@ $V{allOfferOfCoverage}
    "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_marchamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_marchamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2226,7 +2226,7 @@ $V{allOfferOfCoverage}
    "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_aprilamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_aprilamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2288,7 +2288,7 @@ $V{allOfferOfCoverage}
    "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_mayamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_mayamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2350,7 +2350,7 @@ $V{allOfferOfCoverage}
    "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_juneamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_juneamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2412,7 +2412,7 @@ $V{allOfferOfCoverage}
    "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_julyamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_julyamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2474,7 +2474,7 @@ $V{allOfferOfCoverage}
    "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_augustamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_augustamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2536,7 +2536,7 @@ $V{allOfferOfCoverage}
    "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_septemberamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_septemberamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2598,7 +2598,7 @@ $V{allOfferOfCoverage}
    "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_octoberamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_octoberamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2660,7 +2660,7 @@ $V{allOfferOfCoverage}
    "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_novemberamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_novemberamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2724,7 +2724,7 @@ $V{allOfferOfCoverage}
    "1K".equals($F{b14_annualofferofcoveragecd}))) ?  new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Right" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="9" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="9" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[( $F{b15_decemberamt}.doubleValue() != 0 ? com.esc20.util.StringUtil.string($F{b15_decemberamt}.doubleValue(), "####0.00") :"0.00")]]></textFieldExpression>
 						</textField>
@@ -2784,7 +2784,7 @@ $V{allOfferOfCoverage}
 ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_annualsafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -2813,7 +2813,7 @@ $V{allOfferOfCoverage}
  $F{b16_annualsafeharborcd}.equals($F{b16_decsafeharborcd})) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_jansafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -2840,7 +2840,7 @@ $V{allOfferOfCoverage}
  $F{b16_annualsafeharborcd}.equals($F{b16_decsafeharborcd})) ? new Boolean(false) : new Boolean(true)]]></printWhenExpression>
 							</reportElement>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_febsafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -2854,7 +2854,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="1" width="50" height="28" uuid="ef10a84d-dea9-4f2e-a99e-3c4a194994b5"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_marsafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -2868,7 +2868,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="1" width="50" height="28" uuid="05b05c61-4ed1-431e-8b58-0ad906a10014"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_aprsafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -2882,7 +2882,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="1" width="50" height="28" uuid="640643d3-fc8a-44a1-85e0-b7b77a5018ec"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_maysafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -2896,7 +2896,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="1" width="50" height="28" uuid="3f26a861-1b27-4f50-9b41-1d656186b794"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_junsafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -2910,7 +2910,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="1" width="50" height="28" uuid="522f61e5-3839-47b2-b45a-d6d6b4acca83"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_julsafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -2924,7 +2924,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="1" width="50" height="28" uuid="ec331aab-da77-4b10-aac0-6db0d1797a5d"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_augsafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -2938,7 +2938,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="1" width="50" height="28" uuid="1d44abcd-f842-4b48-a3cf-b08c6b7b9799"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_sepsafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -2952,7 +2952,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="1" width="50" height="28" uuid="7adb240f-fe93-4dfb-80e5-8d22977924f2"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_octsafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -2966,7 +2966,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="1" width="50" height="28" uuid="65944f32-5f27-4827-bcb6-71e7cb4382d2"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_novsafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -2982,7 +2982,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="1" width="50" height="28" uuid="6fa12c14-e937-4823-8f88-3bc9a288fa0e"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b16_decsafeharborcd}.trim()]]></textFieldExpression>
 						</textField>
@@ -3334,7 +3334,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox17}]]></textFieldExpression>
 						</textField>
@@ -3357,7 +3357,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="a40edaab-6577-48de-8b65-4c5a7611b473"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b17_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -3373,7 +3373,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="3" width="70" height="24" uuid="6ac5c450-27d6-44e5-8961-7fe50617ae46"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b17_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -3765,7 +3765,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox18}]]></textFieldExpression>
 						</textField>
@@ -3788,7 +3788,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="ef67b0ab-7099-4d57-ba7b-97e0a27997a9"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b18_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -3804,7 +3804,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="3" width="70" height="24" uuid="a6d578df-fe91-46bd-bb37-cda5346f14c7"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b18_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -4198,7 +4198,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox19}]]></textFieldExpression>
 						</textField>
@@ -4221,7 +4221,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="72885bc3-f028-42f9-8568-97192bd72927"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b19_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -4237,7 +4237,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="3" width="70" height="24" uuid="62dd131b-a1a0-46af-89dd-e7ddb07bcda3"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b19_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -4633,7 +4633,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox20}]]></textFieldExpression>
 						</textField>
@@ -4656,7 +4656,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="f53e5a1c-7664-4d41-95ec-ff497967f284"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b20_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -4672,7 +4672,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="3" width="70" height="24" uuid="f65e77b2-dca3-4d03-bf08-22839421e97e"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b20_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -5066,7 +5066,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox21}]]></textFieldExpression>
 						</textField>
@@ -5089,7 +5089,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="7068243b-3c85-4613-9cc5-67d3eae88d37"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b21_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -5105,7 +5105,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="3" width="70" height="24" uuid="40b82826-fc5d-4e11-b8ac-2fd585616987"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b21_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -5499,7 +5499,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox22}]]></textFieldExpression>
 						</textField>
@@ -5522,7 +5522,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="c2c5bb1f-6362-4325-966b-456abcdd65b9"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b22_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -5538,7 +5538,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="0" y="3" width="70" height="24" uuid="9bfde196-c1b7-46cc-8ef5-d3f907925547"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b22_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -6066,7 +6066,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="16" y="11" width="370" height="12" uuid="ef917ba7-f625-4456-9443-31a2c71a89d3"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox1}]]></textFieldExpression>
 						</textField>
@@ -6090,7 +6090,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="16" y="11" width="135" height="12" uuid="87545d46-7034-4416-bc81-9bf97174e4a5"/>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b2_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -6407,7 +6407,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox23}]]></textFieldExpression>
 						</textField>
@@ -6430,7 +6430,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="828b86a8-72a2-4832-a6f8-436271456af5"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b23_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -6446,7 +6446,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="70" height="24" uuid="21726c61-03af-4d35-b2e2-2f12fd380e08"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b23_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -6868,7 +6868,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox24}]]></textFieldExpression>
 						</textField>
@@ -6891,7 +6891,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="de65091a-c747-4407-adeb-e73dd7a55b88"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b24_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -6907,7 +6907,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="70" height="24" uuid="8b7a17fb-0c14-4250-98bb-356a8b136543"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b24_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -7301,7 +7301,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox25}]]></textFieldExpression>
 						</textField>
@@ -7324,7 +7324,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="f2686267-3347-47e2-9b51-d874ba42daee"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b25_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -7340,7 +7340,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="70" height="24" uuid="dd4d8525-c93c-445f-a75a-a5a4394ced68"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b25_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -7734,7 +7734,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox26}]]></textFieldExpression>
 						</textField>
@@ -7757,7 +7757,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="4258eeff-89e3-4105-927d-b2af8cd10c4c"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b26_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -7773,7 +7773,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="70" height="24" uuid="b2dc3bcd-5a77-4c37-a362-919f20a564bf"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b26_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -8167,7 +8167,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox27}]]></textFieldExpression>
 						</textField>
@@ -8190,7 +8190,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="5dfc1aeb-59ef-41ec-a89a-89b29c4ca622"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b27_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -8206,7 +8206,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="70" height="24" uuid="c9cc3cf3-9152-4ef8-a44b-657fc700bd7e"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b27_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -8600,7 +8600,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox28}]]></textFieldExpression>
 						</textField>
@@ -8623,7 +8623,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="52f6ee1a-da24-4c3c-a906-4f4555fe8769"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b28_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -8639,7 +8639,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="70" height="24" uuid="933448da-18c8-4836-b66e-e0b9007db41f"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b28_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -9033,7 +9033,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox29}]]></textFieldExpression>
 						</textField>
@@ -9056,7 +9056,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="24d5089b-ebdb-4204-b1c8-fca0966ad229"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b29_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -9070,7 +9070,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="70" height="24" uuid="b4fe4c9b-23ee-432b-a58b-9f7ddcafb9dc"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b29_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -9464,7 +9464,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox30}]]></textFieldExpression>
 						</textField>
@@ -9487,7 +9487,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="54bff096-7ef4-4269-a4c0-837df21b4fd2"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b30_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -9503,7 +9503,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="70" height="24" uuid="21a20934-51ce-465c-8f3a-04408fab7d12"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b30_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -9898,7 +9898,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox31}]]></textFieldExpression>
 						</textField>
@@ -9921,7 +9921,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="b3aa3b51-1aad-40a6-8608-cf3542076971"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b31_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -9937,7 +9937,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="70" height="24" uuid="96274616-d876-4817-8e4a-c7d305651dd0"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b31_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -10331,7 +10331,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox32}]]></textFieldExpression>
 						</textField>
@@ -10354,7 +10354,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="75ce3afa-211b-4d7e-acb0-8eff248b4aca"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b32_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -10370,7 +10370,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="70" height="24" uuid="b6e8bda0-222e-4348-9503-dfea19136ab5"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b32_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -10764,7 +10764,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox33}]]></textFieldExpression>
 						</textField>
@@ -10787,7 +10787,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="efc6fc03-7b80-4a47-8092-9f77930328d5"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b33_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -10803,7 +10803,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="70" height="24" uuid="61473b05-01c2-4e65-ba4c-eb8bc6596859"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b33_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -11197,7 +11197,7 @@ $V{allOfferOfCoverage}
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$V{nameBox34}]]></textFieldExpression>
 						</textField>
@@ -11220,7 +11220,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="84" height="24" uuid="25d06dd4-abf1-4e0a-b9d6-e0cb80be1dbb"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b34_ssn}.trim(), "@@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
@@ -11236,7 +11236,7 @@ $V{allOfferOfCoverage}
 						<textField>
 							<reportElement x="1" y="1" width="70" height="24" uuid="7f4e7ab7-6a7d-490b-91f6-13bb378e4f8b"/>
 							<textElement textAlignment="Center" verticalAlignment="Middle">
-								<font fontName="Microsoft Sans Serif" size="10" isBold="false" pdfFontName="Helvetica-Bold"/>
+								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[(com.esc20.util.StringUtil.format($F{b34_birthdt}.trim(), "@@-@@-@@@@"))]]></textFieldExpression>
 						</textField>
