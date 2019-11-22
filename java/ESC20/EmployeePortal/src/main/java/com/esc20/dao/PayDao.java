@@ -51,7 +51,7 @@ public class PayDao {
 		Query q;
 		StringBuilder sql = new StringBuilder();
 		sql.append("FROM BeaW4 ");
-		sql.append("WHERE id.empNbr = :empNbr AND id.payFreq =:frequency AND STAT_CD = 'P'");
+		sql.append("WHERE id.empNbr = :empNbr AND id.payFreq =:frequency");
         q = session.createQuery(sql.toString());
         q.setParameter("empNbr", empNbr);
         Frequency freq ;
