@@ -1653,12 +1653,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </span
                                             >
                                             <div class="form-group valueInput">
+                                                    <c:set var="w4NbrChldrnNewSet" value="${w4Request.w4NbrChldrnNew}"/>
+                                                    <c:if test="${w4Request.w4NbrChldrnNew =='' || w4Request.w4NbrChldrnNew ==null}"> 
+                                                            <c:set var="w4NbrChldrnNewSet" value="0"/>
+                                                    </c:if>
                                                 <input
                                                     class="form-control   <c:if test="${w4Request.w4NbrChldrn != w4Request.w4NbrChldrnNew}">active</c:if>"
                                                     id="w4NbrChldrnNew"
                                                     name="w4NbrChldrnNew"
                                                     aria-label="${sessionScope.languageJSON.profile.childrenUnder17}" 
-                                                    value="<fmt:formatNumber value='${w4Request.w4NbrChldrnNew}' pattern='#,##0'/>"
+                                                    value="<fmt:formatNumber value='${w4NbrChldrnNewSet}' pattern='#,##0'/>"
                                                     oninput="clearNoNumWhole(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
@@ -1674,12 +1678,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 ><fmt:formatNumber value="${w4Request.w4NbrOthrDep}" pattern="#,##0"/></span
                                             >
                                             <div class="form-group valueInput">
+                                                    <c:set var="w4NbrOthrDepNewSet" value="${w4Request.w4NbrOthrDepNew}"/>
+                                                    <c:if test="${w4Request.w4NbrOthrDepNew =='' || w4Request.w4NbrOthrDepNew ==null}"> 
+                                                            <c:set var="w4NbrOthrDepNewSet" value="0"/>
+                                                    </c:if>
                                                 <input
                                                     class="form-control  <c:if test="${w4Request.w4NbrOthrDep != w4Request.w4NbrOthrDepNew}">active</c:if>"
                                                     id="w4NbrOthrDepNew"
                                                     name="w4NbrOthrDepNew"
                                                     aria-label="${sessionScope.languageJSON.profile.otherDependents}" 
-                                                    value="<fmt:formatNumber value='${w4Request.w4NbrOthrDepNew}' pattern='#,##0'/>"
+                                                    value="<fmt:formatNumber value='${w4NbrOthrDepNewSet}' pattern='#,##0'/>"
                                                     oninput="clearNoNumWhole(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
@@ -1697,13 +1705,19 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </span
                                             >
                                             <div class="form-group valueInput">
+                                                    <c:set var="w4OthrIncAmtNewSet" value="${w4Request.w4OthrIncAmtNew}"/>
+                                                    <c:if test="${w4Request.w4OthrIncAmtNew =='' || w4Request.w4OthrIncAmtNew ==null}"> 
+                                                        test
+                                                            <c:set var="w4OthrIncAmtNewSet" value="0"/>
+                                                    </c:if>
+                                                    w4OthrIncAmtNewSet:${w4OthrIncAmtNewSet}-${w4Request.w4OthrIncAmtNew}
                                                 <input
                                                     class="form-control decimal2  <c:if test="${w4Request.w4OthrIncAmt != w4Request.w4OthrIncAmtNew}">active</c:if>"
                                                     id="w4OthrIncAmtNew"
                                                     name="w4OthrIncAmtNew"
                                                     oninput="clearNoNum(this)"
                                                     aria-label="${sessionScope.languageJSON.profile.otherIncome}" 
-                                                    value="<fmt:formatNumber value='${w4Request.w4OthrIncAmtNew}' pattern='#,##0.00'/>"
+                                                    value="<fmt:formatNumber value='${w4OthrIncAmtNewSet}' pattern='#,##0.00'/>"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
                                         </div>
@@ -1718,12 +1732,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 ><fmt:formatNumber value="${w4Request.w4OthrDedAmt}" pattern="#,##0.00"/></span
                                             >
                                             <div class="form-group valueInput">
+                                                    <c:set var="w4OthrDedAmtNewSet" value="${w4Request.w4OthrDedAmtNew}"/>
+                                                    <c:if test="${w4Request.w4OthrDedAmtNew =='' || w4Request.w4OthrDedAmtNew ==null}"> 
+                                                            <c:set var="w4OthrDedAmtNewSet" value="0"/>
+                                                    </c:if>
                                                 <input
                                                     class="form-control decimal2  <c:if test="${w4Request.w4OthrDedAmt != w4Request.w4OthrDedAmtNew}">active</c:if>"
                                                     id="w4OthrDedAmtNew"
                                                     name="w4OthrDedAmtNew"
                                                     aria-label="${sessionScope.languageJSON.profile.deductions}" 
-                                                    value="<fmt:formatNumber value='${w4Request.w4OthrDedAmtNew}' pattern='#,##0.00'/>"
+                                                    value="<fmt:formatNumber value='${w4OthrDedAmtNewSet}' pattern='#,##0.00'/>"
                                                     oninput="clearNoNum(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
@@ -1739,12 +1757,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 ><fmt:formatNumber value="${w4Request.w4OthrExmptAmt}" pattern="#,##0.00"/></span
                                             >
                                             <div class="form-group valueInput">
+                                                    <c:set var="w4OthrExmptAmtNewSet" value="${w4Request.w4OthrExmptAmtNew}"/>
+                                                    <c:if test="${w4Request.w4OthrExmptAmtNew =='' || w4Request.w4OthrExmptAmtNew ==null}"> 
+                                                            <c:set var="w4OthrExmptAmtNewSet" value="0"/>
+                                                    </c:if>
                                                 <input
                                                     class="form-control decimal2  <c:if test="${w4Request.w4OthrExmptAmt != w4Request.w4OthrExmptAmtNew}">active</c:if>"
                                                     id="w4OthrExmptAmtNew"
                                                     name="w4OthrExmptAmtNew"
                                                     aria-label="${sessionScope.languageJSON.profile.otherExemption}" 
-                                                    value="<fmt:formatNumber value='${w4Request.w4OthrExmptAmtNew}' pattern='#,##0.00'/>"
+                                                    value="<fmt:formatNumber value='${w4OthrExmptAmtNewSet}' pattern='#,##0.00'/>"
                                                     oninput="clearNoNum(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
