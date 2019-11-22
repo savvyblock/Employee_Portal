@@ -2,6 +2,7 @@ package com.esc20.filter;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -28,12 +29,21 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 			String language = (String)request.getSession().getAttribute("language");
 			try
 			{
+				String districtIdInSession = (String)request.getSession().getAttribute("districtId");
 				String distid = request.getParameter("distid");
 				if (distid != null && distid.matches("\\d{6}")) {
 					Cookie cookie = new Cookie("district",distid);
 					cookie.setMaxAge(60*60*24);
 					response.addCookie(cookie);
 					System.out.println("cookie is set "+ cookie.getValue());
+					
+					if(!distid.equals(districtIdInSession)) {
+						Enumeration em = request.getSession().getAttributeNames();
+						while (em.hasMoreElements()) {
+							request.getSession().removeAttribute(em.nextElement().toString());
+						}
+					}
+					
 					request.getSession().setAttribute("districtId", distid);
 					request.getSession().setAttribute("isSwitched", true);
 				}
@@ -47,6 +57,14 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 					    	if (cookie.getName().equals("district")) 
 					    	{
 					    		System.out.println("load from cookies "+cookie.getValue());
+					    		
+					    		if(!distid.equals(districtIdInSession)) {
+									Enumeration em = request.getSession().getAttributeNames();
+									while (em.hasMoreElements()) {
+										request.getSession().removeAttribute(em.nextElement().toString());
+									}
+								}
+					    		
 					    		request.getSession().setAttribute("districtId", cookie.getValue());
 					    		request.getSession().setAttribute("isSwitched", true);
 					    		database = cookie.getValue();
