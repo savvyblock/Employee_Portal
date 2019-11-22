@@ -1707,10 +1707,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             <div class="form-group valueInput">
                                                     <c:set var="w4OthrIncAmtNewSet" value="${w4Request.w4OthrIncAmtNew}"/>
                                                     <c:if test="${w4Request.w4OthrIncAmtNew =='' || w4Request.w4OthrIncAmtNew ==null}"> 
-                                                        test
                                                             <c:set var="w4OthrIncAmtNewSet" value="0"/>
                                                     </c:if>
-                                                    w4OthrIncAmtNewSet:${w4OthrIncAmtNewSet}-${w4Request.w4OthrIncAmtNew}
                                                 <input
                                                     class="form-control decimal2  <c:if test="${w4Request.w4OthrIncAmt != w4Request.w4OthrIncAmtNew}">active</c:if>"
                                                     id="w4OthrIncAmtNew"
