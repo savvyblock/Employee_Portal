@@ -1008,7 +1008,9 @@ see IRS.gov.]]></text>
 							<text><![CDATA[Name of employee]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="16" y="11" width="198" height="12" uuid="d6366ed0-b70e-4468-904c-7dd972854396"/>
+							<reportElement x="16" y="11" width="198" height="12" uuid="d6366ed0-b70e-4468-904c-7dd972854396">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>

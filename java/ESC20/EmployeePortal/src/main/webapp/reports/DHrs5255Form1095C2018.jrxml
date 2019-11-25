@@ -1008,7 +1008,9 @@ see IRS.gov.]]></text>
 							<text><![CDATA[Name of employee]]></text>
 						</staticText>
 						<textField>
-							<reportElement x="16" y="11" width="214" height="12" uuid="34399a9f-932f-4be4-906d-2661f62a3858"/>
+							<reportElement x="16" y="11" width="214" height="12" uuid="34399a9f-932f-4be4-906d-2661f62a3858">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
@@ -6147,7 +6149,9 @@ $V{allOfferOfCoverage}
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<staticText>
-							<reportElement x="3" y="3" width="120" height="25" uuid="01f1791a-6b89-409f-af1d-72c5ac3c0fc9"/>
+							<reportElement x="3" y="3" width="120" height="25" uuid="01f1791a-6b89-409f-af1d-72c5ac3c0fc9">
+								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+							</reportElement>
 							<textElement textAlignment="Left" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
