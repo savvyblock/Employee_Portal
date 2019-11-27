@@ -12,16 +12,11 @@
             <%@ include file="commons/bar-account.jsp"%>
             <div class="account-top content-body"  tabindex="-1">
                 <div class="account-inner loginBox">
-                    <div class="account-left">
-                    </div>
                     <div class="account-box">
-                        <div class="account-logo">
-                            <img src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="${sessionScope.languageJSON.logoName.esc}">
-                        </div>
                         <form id="loginForm" method="post" class="card bv-form" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
                             <h1 class="title">${sessionScope.languageJSON.label.pleaseSignIn}</h1>
                             <div class="form-group">
-                                <label class="form-title" for="inputEmail">${sessionScope.languageJSON.label.username}</label>
+                                <label for="inputEmail">${sessionScope.languageJSON.label.username}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-user left-icon"></i>
                                     <input type="text" id="inputEmail" class="form-control" placeholder="${sessionScope.languageJSON.label.username}"name="username"/>
@@ -29,7 +24,7 @@
                                 
                             </div>
                             <div class="form-group">
-                                <label  class="form-title" for="inputPassword">${sessionScope.languageJSON.label.password}</label>
+                                <label for="inputPassword">${sessionScope.languageJSON.label.password}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-lock left-icon"></i>
                                     <input type="password" id="inputPassword" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password"/>
@@ -63,18 +58,15 @@
                             <c:if test="${resetSuccess == false}">
                                 <p class="error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.sendEmailFailed}</p>
                             </c:if>
+                            <div class="form-group account-btn">
+                                <a class="btn btn-primary btn-secondary" href="/<%=request.getContextPath().split("/")[1]%>/createUser/searchUser">${sessionScope.languageJSON.label.newUser}</a>
+                                <button id="signin" type="submit" class="btn btn-primary pull-right">${sessionScope.languageJSON.label.login}</button>
+                            </div>
                             <div class="form-group clearfix">
                                 <a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&entry.372715739=Employee+Access+(TxEIS)" target="_blank">${sessionScope.languageJSON.label.contactUs}</a>
                                 <div class="pull-right">
                                     <a href="/<%=request.getContextPath().split("/")[1]%>/resetPassword/forgetPassword">${sessionScope.languageJSON.label.forgotPassword}</a>
                                 </div>
-                            </div>
-                            <div class="form-group account-btn">
-                                <button id="signin" type="submit" class="btn btn-primary">${sessionScope.languageJSON.label.login}</button>
-                            </div>
-                            <div class="text-center">
-                                <a class="a-line" href="/<%=request.getContextPath().split("/")[1]%>/createUser/searchUser">${sessionScope.languageJSON.label.newUser}
-                                </a>
                             </div>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </form>
@@ -132,8 +124,8 @@
                         
                     </div>
                 </div>
-                <div>
-                <p class="webDESC">
+                <div class="webDESC">
+                	<p>
                         <b>${sessionScope.languageJSON.label.important}</b><br>
                         ${sessionScope.languageJSON.label.thisIsSecurity}
                         <br>
@@ -142,9 +134,9 @@
                         ${sessionScope.languageJSON.label.weRecognize}
                         <a target="_blank" href="https://www.w3.org/TR/WCAG20/">
                             ${sessionScope.languageJSON.label.webContent}
-                        </a> 
+                        </a>
                         ${sessionScope.languageJSON.label.andWenStrive}
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&amp;entry.372715739=Employee+Access+(TxEIS)" target="_blank"> 
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&amp;entry.372715739=Employee+Access+(TxEIS)" target="_blank">
                             ${sessionScope.languageJSON.label.contactUsCo}
                         </a>
                     </p>

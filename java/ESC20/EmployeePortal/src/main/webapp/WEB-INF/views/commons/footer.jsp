@@ -1,13 +1,13 @@
 <footer class="main-footer">
 	<div class="footer-word">
-		<strong><span>${sessionScope.languageJSON.label.copyRight}</span>; 2018 <a
-			href="#"><span>${sessionScope.constantJSON.label.ESC20}</span></span></a>.</strong>
-			<span>${sessionScope.languageJSON.label.allRightReserved}</span></span>
+		<span>${sessionScope.constantJSON.label.copyRight}</span> 2020
+        <a class="ascender" href="#"><span>${sessionScope.constantJSON.label.ASCENDER}</span></a>
+        <span>${sessionScope.constantJSON.label.allRightReserved}</span>
 	</div>
-
-	<div class="footer-logo">
-		<img
-			src="/<%=request.getContextPath().split("/")[1]%>/images/logo.png"
-			alt="${sessionScope.languageJSON.logoName.esc}"/>
+	<div class="footer-help">
+        <a href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank"
+           aria-label="${sessionScope.constantJSON.accessHint.goHelp}" title="${sessionScope.constantJSON.accessHint.goHelp}">
+            Help <i class="fa fa-question-circle"></i>
+        </a>
 	</div>
 </footer>

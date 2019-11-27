@@ -15,32 +15,32 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         <form id="createNewUserForm" action="saveNewUser" method="post">
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="form-group">
-                                <label class="form-title">${sessionScope.languageJSON.label.employeeNumber}</label>
+                                <label>${sessionScope.languageJSON.label.employeeNumber}</label>
                                 <div class="valid-wrap">
                                    ${user.empNumber}
                                 </div>
                                 <input type="hidden" id="empNbr" name="empNbr" value="${user.empNumber}" />
                             </div>
                             <div class="form-group">
-                                <label class="form-title">${sessionScope.languageJSON.label.dateOfBirth}</label>
+                                <label>${sessionScope.languageJSON.label.dateOfBirth}</label>
                                 <div class="valid-wrap">
                                    ${user.searchFormattedDateofBirth}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title">${sessionScope.languageJSON.label.zipCode}</label>
+                                <label>${sessionScope.languageJSON.label.zipCode}</label>
                                 <div class="valid-wrap">
                                     ${user.zipCode}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title">${sessionScope.languageJSON.label.lastname}</label>
+                                <label>${sessionScope.languageJSON.label.lastname}</label>
                                 <div class="valid-wrap">
                                     ${user.nameL}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title">${sessionScope.languageJSON.label.firstname}</label>
+                                <label>${sessionScope.languageJSON.label.firstname}</label>
                                 <div class="valid-wrap">
                                     ${user.nameF}
                                 </div>
@@ -49,7 +49,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 <b>${sessionScope.languageJSON.label.pleaseEnterInformation}</b>
                             </div>
                             <div class="form-group error-vertical">
-                                <label class="form-title" for="username">${sessionScope.languageJSON.label.username}</label>
+                                <label for="username">${sessionScope.languageJSON.label.username}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -61,7 +61,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group error-vertical">
-                                <label class="form-title" for="password">${sessionScope.languageJSON.label.password}</label>
+                                <label for="password">${sessionScope.languageJSON.label.password}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="password"
@@ -74,7 +74,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group error-vertical">
-                                <label class="form-title" for="newPassword">${sessionScope.languageJSON.label.passwordVerification}</label>
+                                <label for="newPassword">${sessionScope.languageJSON.label.passwordVerification}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="password"
@@ -87,7 +87,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group error-vertical">
-                                <label class="form-title" for="workEmail">${sessionScope.languageJSON.label.workEmail}</label>
+                                <label for="workEmail">${sessionScope.languageJSON.label.workEmail}</label>
                                 <div class="valid-wrap">
                                 <c:choose>
 									<c:when test="${empty user.userEmail}">
@@ -106,12 +106,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	                                    </div>
 									</c:otherwise>
 								</c:choose>
-                                   
+
                                 </div>
                             </div>
                             <c:if test="${empty user.userEmail}">
                             <div class="form-group error-vertical">
-                                <label class="form-title" for="workEmail">${sessionScope.languageJSON.label.workEmailVerify}</label>
+                                <label for="workEmail">${sessionScope.languageJSON.label.workEmailVerify}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -125,7 +125,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                             </c:if>
                             <div class="form-group error-vertical">
-                                <label class="form-title" for="homeEmail">${sessionScope.languageJSON.label.homeEmail}</label>
+                                <label for="homeEmail">${sessionScope.languageJSON.label.homeEmail}</label>
                                 <div class="valid-wrap">
                                  <c:choose>
 									<c:when test="${empty user.userHomeEmail}">
@@ -141,8 +141,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 									  <div style="min-height:20px;" id="staticHomeEmail">${user.userHomeEmail}</div>
 									</c:otherwise>
 								</c:choose>
-                                   
-                                   
+
+
                                     <!-- <input
                                         type="text"
                                         class="form-control"
@@ -150,12 +150,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         id="homeEmail"
                                         value="${emailShowRequest.hmEmailNew}"
                                     /> -->
-                                  
+
                                 </div>
                             </div>
                             <c:if test="${empty user.userHomeEmail}">
                             <div class="form-group error-vertical">
-                                <label class="form-title" for="homeEmail">${sessionScope.languageJSON.label.homeEmailVerify}</label>
+                                <label for="homeEmail">${sessionScope.languageJSON.label.homeEmailVerify}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -169,7 +169,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                             </c:if>
                             <div class="form-group">
-                                <label class="form-title" for="hintQuestion">${sessionScope.languageJSON.label.hintQuestion}</label>
+                                <label for="hintQuestion">${sessionScope.languageJSON.label.hintQuestion}</label>
                                 <div class="valid-wrap">
                                     <input
                                         type="text"
@@ -181,7 +181,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title" for="hintAnswer">${sessionScope.languageJSON.label.hintAnswer}</label>
+                                <label for="hintAnswer">${sessionScope.languageJSON.label.hintAnswer}</label>
                                 <div class="valid-wrap button-group">
                                     <input
                                         type="text"

@@ -32,20 +32,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="form-group">
                                         <c:if test="${idType=='S'}">
-                                        	<label class="form-title" for="autoAdvance_1"><span>Social Security Number</span>&nbsp;(<span>${sessionScope.languageJSON.label.noDashes}</span>)</label>
+                                        	<label for="autoAdvance_1"><span>Social Security Number</span>&nbsp;(<span>${sessionScope.languageJSON.label.noDashes}</span>)</label>
 	                                        <div class="valid-wrap">
 	                                            <input type="text" id="autoAdvance_1" class="form-control autoAdvance" placeholder="" name="ssn" maxlength="9">
 	                                        </div>
                                         </c:if>
                                         <c:if test="${idType=='E'}">
-                                        	<label class="form-title" for="autoAdvance_1"><span>${sessionScope.languageJSON.label.employeeNumber}</span>&nbsp;(<span>${sessionScope.languageJSON.label.noDashes}</span>)</label>
+                                        	<label for="autoAdvance_1"><span>${sessionScope.languageJSON.label.employeeNumber}</span>&nbsp;(<span>${sessionScope.languageJSON.label.noDashes}</span>)</label>
 	                                        <div class="valid-wrap">
 	                                            <input type="text" id="autoAdvance_1" class="form-control autoAdvance" placeholder="" name="empNumber" maxlength="6">
 	                                        </div>
                                         </c:if>
                                     </div>
                                     <div class="m-b-10">
-                                        <label class="form-title"><span>${sessionScope.languageJSON.label.dateOfBirth}</span>	(<span>${sessionScope.languageJSON.label.mmddyyyy}</span>)</label>
+                                        <label><span>${sessionScope.languageJSON.label.dateOfBirth}</span>	(<span>${sessionScope.languageJSON.label.mmddyyyy}</span>)</label>
                                         <div class="valid-wrap inline">
                                                 <div class="form-group">
                                             <input type="text" id="autoAdvance_2" class="form-control autoAdvance" placeholder="${sessionScope.languageJSON.label.month}" aria-label="${sessionScope.languageJSON.label.month}" value="${user.dateMonth}" name="dateMonth" maxlength="2">
@@ -59,7 +59,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                            <label class="form-title" for="autoAdvance_5">${sessionScope.languageJSON.label.zipCode}</label>
+                                            <label for="autoAdvance_5">${sessionScope.languageJSON.label.zipCode}</label>
                                             <div class="valid-wrap">
                                                 <input type="text" id="autoAdvance_5" class="form-control autoAdvance" value="${user.zipCode}" name="zipCode" maxlength="5">
                                             </div>

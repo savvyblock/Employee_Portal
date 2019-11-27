@@ -35,12 +35,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 		                            	${sessionScope.languageJSON.label.print}
 		                            </button>
 	                            </form>
-	
+
 	                            <iframe style="display:none" name="printIframe" onload="load()" id="printIframe"></iframe> --%>
                             </div>
                     </div>
                     <div class="toPrint content-white EMP-detail">
-                            
+
                         <div class="exportPDFBox">
                                 <div class="print-block print-title">
                                         <div style="text-align:center;margin-bottom:10px;">
@@ -235,7 +235,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                         <b><span>${sessionScope.languageJSON.label.positions}</span></b>
                                     </h2>
                                     
-                                        <table class="table border-table responsive-table no-thead print-table smTitleTable" style="border:0;">
+                                        <table class="table border-table responsive-table no-thead print-table smTitleTable" >
                                             <tbody>
                                                     <c:forEach var="job" items="${jobs[frequency]}" varStatus="jobCount">
                                                 <tr>

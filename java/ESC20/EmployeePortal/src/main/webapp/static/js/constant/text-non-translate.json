@@ -124,7 +124,13 @@
         "juryDuty": "JURY DUTY",
         "schoolBusiness": "SCHOOL BUSINESS",
         "ESC20": "ESC20",
-        "welcomeToNewEmployeePortal": "Welcome to the new ASCENDER EmployeePortal."
+        "ASCENDER":"ASCENDER",
+        "welcomeToNewEmployeePortal": "Welcome to the new ASCENDER EmployeePortal.",
+        "allRightReserved":"All rights reserved",
+        "copyRight":"COPYRIGHT &copy"
+    },
+    "accessHint":{
+        "goHelp":"Go to help page"
     },
     "w2Notice": {
         "box": "Box ",

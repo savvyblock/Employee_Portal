@@ -1,17 +1,18 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
 <link rel="shortcut icon" type="images/x-icon" href="/<%=request.getContextPath().split("/")[1]%>/images/favicon.ico">
-<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/font-awesome.min.css"/>
-<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/animate.css" />
-<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/jquery.autocomplete.css"/>
-<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/foundation-datepicker.css" />
-<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/mobiscroll.css" />
-<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/icheck.css"/>
-<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/common.css"/>
-<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/gap.css"/>
-<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/button.css"/>
-<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/bar.css"/>
-<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/content.css"/>
+<link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/font-awesome.min.css"/>
+<link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/animate.css" />
+<link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/jquery.autocomplete.css"/>
+<link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/foundation-datepicker.css" />
+<link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/mobiscroll.css" />
+<link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/icheck.css"/>
+<link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/common.css"/>
+<link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/gap.css"/>
+<link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/button.css"/>
+<link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/bar.css"/>
+<link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/content.css"/>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.min.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/html2canvas.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jspdf.debug.js"></script>
