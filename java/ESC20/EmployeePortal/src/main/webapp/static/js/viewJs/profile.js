@@ -194,6 +194,7 @@ $(function() {
             $('#hiddenfreq').val(freq)
             $('#hiddendescription').val(saveBankDescription)
             $('#hiddensubCode').val(saveBankCode)
+            $('#hiddenCode').val(saveBankCode)
             $('#hiddenaccountNumber').val(saveBankAccountNumber)
             $('#hiddendisplayLabel').val(saveBankDisplayLabel)
             $('#hiddendisplayAmount').val(saveBankDisplayAmount)

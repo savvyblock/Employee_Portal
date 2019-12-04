@@ -2078,6 +2078,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <input type="hidden" name="displayLabel" id="hiddendisplayLabel" />
                                     <input type="hidden" name="accountNumber" id="hiddenaccountNumber" />
                                     <input type="hidden" name="subCode" id="hiddensubCode"  />
+                                    <input type="hidden" name="code" id="hiddenCode"  />
                                     <input type="hidden" name="description" id="hiddendescription" />
                                 </form>
                                 <form
@@ -2085,7 +2086,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     id="addBankAccountForm"
                                     method="POST"
                                 >
-                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <input type="hidden" class="form-control bankcode" id="newBankCode" name="code" />
                                     <div class="profile-left">
                                         <div class="profile-item-line form-line">
                                             <div class="profile-title">
@@ -2125,7 +2127,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             tabindex="-1"
                                                         />
                                                     </div>
-                                                    <input type="hidden" id="newBankCode" aria-label="${sessionScope.languageJSON.accessHint.bankCode}">
                                                     <button
                                                         class="btn btn-secondary xs getBank"
                                                         type="button" role="button"
