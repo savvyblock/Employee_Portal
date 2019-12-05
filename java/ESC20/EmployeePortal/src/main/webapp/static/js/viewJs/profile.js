@@ -278,7 +278,7 @@ $(function() {
         // $('#undoName').val("deleteW4");
     })
     $('.sureUndo').click(function() {
-        if(undoForm == 'deleteW4'){
+        if(undoForm == 'deleteW4' || undoForm == 'undoBank'){
             undoForm = null
             formSelect.submit()
         }else{
@@ -511,6 +511,7 @@ function undoBank(index) {
     $('#hidden_accountNumberNew_undo').val(accountNumberNew)
 
     // $('#undoModal').modal('show')
+    undoForm = 'undoBank'
     formSelect = $('#undoBankHidden')
 }
 

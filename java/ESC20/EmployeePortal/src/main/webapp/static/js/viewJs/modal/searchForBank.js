@@ -125,10 +125,10 @@ function goPage(num){
 
             // $('#selectBankModal').modal('show')
             bankInputName = $(getBankBtn)
-                .parent()
+                .parents(".bankPart")
                 .find('.form-control.name')
             bankInputBankCode = $(getBankBtn)
-                .parent()
+                .parents(".bankPart")
                 .find('.form-control.bankcode')
             bankInputCode = $(getBankBtn)
                 .parent()
