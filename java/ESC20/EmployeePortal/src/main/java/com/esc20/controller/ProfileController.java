@@ -681,6 +681,17 @@ public class ProfileController {
 		}
 		mav.setViewName("profile");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		Boolean isAnyChanges= ((Boolean) session.getAttribute("hasDemoChanged"));
+		DemoInfoFields demoInfoChanges =((DemoInfoFields)session.getAttribute("demoInfoChanges"));
+
+		//Compare current and new value so to decide if need to send out email
+		if(!maritalStatNew.equals(demo.getMaritalStat().toString())) {
+			isAnyChanges = true;
+			demoInfoChanges.setMaritalLocal(true);
+		}
+		
+		session.setAttribute("hasDemoChanged", isAnyChanges);
+		session.setAttribute("demoInfoChanges", demoInfoChanges);
 		BeaMrtlStat maritalStatusRequest;
 		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_MRTL_STAT")) {
 			maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts, maritalStatNew, 'A');
@@ -733,7 +744,22 @@ public class ProfileController {
 		}
 		mav.setViewName("profile");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		Boolean isAnyChanges= ((Boolean) session.getAttribute("hasDemoChanged"));
+		DemoInfoFields demoInfoChanges =((DemoInfoFields)session.getAttribute("demoInfoChanges"));
 		BeaDrvsLic driversLicenseRequest;
+		
+		//Compare current and new value so to decide if need to send out email
+		if(!driversLicNbrNew.equals(demo.getDriversLicNbr())) {
+			isAnyChanges = true;
+			demoInfoChanges.setDriversNum(true);
+		}
+		if(!driversLicStNew.equals(demo.getDriversLicSt())) {
+			isAnyChanges = true;
+			demoInfoChanges.setDriversState(true);
+		}
+		
+		session.setAttribute("hasDemoChanged", isAnyChanges);
+		session.setAttribute("demoInfoChanges", demoInfoChanges);
 
 		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_DRVS_LIC")) {
 			driversLicenseRequest = new BeaDrvsLic(demo, empNbr, reqDts, driversLicNbrNew, driversLicStNew, 'A');

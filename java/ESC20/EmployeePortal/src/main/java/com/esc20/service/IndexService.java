@@ -476,7 +476,7 @@ public class IndexService {
 		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_LGL_NAME");
 		
 		if (demoInfoChanges.getNameTitle()==null?false:demoInfoChanges.getNameTitle()) {
-			fieldName = "Title\n";
+			fieldName = "Title<br/>";
 			if (docRequiredFields.getNameTitle()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -494,7 +494,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getNameLast()==null?false:demoInfoChanges.getNameLast()) {
-			fieldName = "Last Name\n";
+			fieldName = "Last Name<br/>";
 			if (docRequiredFields.getNameLast()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -511,7 +511,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getNameFirst()==null?false:demoInfoChanges.getNameFirst()) {
-			fieldName = "First Name\n";
+			fieldName = "First Name<br/>";
 			if (docRequiredFields.getNameFirst()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -528,7 +528,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getNameMiddle()==null?false:demoInfoChanges.getNameMiddle()) {
-			fieldName = "Middle Name\n";
+			fieldName = "Middle Name<br/>";
 			if (docRequiredFields.getNameMiddle()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -545,7 +545,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getNameGeneration()==null?false:demoInfoChanges.getNameGeneration()) {
-			fieldName = "Generation\n";
+			fieldName = "Generation<br/>";
 			if (docRequiredFields.getNameGeneration()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -565,7 +565,7 @@ public class IndexService {
 		
 		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_MAIL_ADDR");
 		if(demoInfoChanges.getMailingAddress()==null?false:demoInfoChanges.getMailingAddress()) {
-			fieldName = "Main Address Number\n";
+			fieldName = "Main Address Number<br/>";
 			if (docRequiredFields.getMailingAddress()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -582,7 +582,7 @@ public class IndexService {
 			}
 		}
 		if(demoInfoChanges.getMailingPoBox()==null?false:demoInfoChanges.getMailingPoBox()) {
-			fieldName = "Main Address Street/P.O. Box\n";
+			fieldName = "Main Address Street/P.O. Box <br/>";
 			if (docRequiredFields.getMailingPoBox()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -599,7 +599,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getMailingApt()==null?false:demoInfoChanges.getMailingApt()) {
-			fieldName = "Main Address Apt\n";
+			fieldName = "Main Address Apt<br/>";
 			if (docRequiredFields.getMailingApt()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -616,7 +616,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getMailingCity()==null?false:demoInfoChanges.getMailingCity()) {
-			fieldName = "Main Address City\n";
+			fieldName = "Main Address City<br/>";
 			if (docRequiredFields.getMailingCity()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -633,7 +633,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getMailingState()==null?false:demoInfoChanges.getMailingState()) {
-			fieldName = "Main Address State\n";
+			fieldName = "Main Address State<br/>";
 			if (docRequiredFields.getMailingState()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -650,7 +650,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getMailingZip()==null?false:demoInfoChanges.getMailingZip()) {
-			fieldName = "Main Address Zip\n";
+			fieldName = "Main Address Zip<br/>";
 			if(docRequiredFields.getMailingZip()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -667,7 +667,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getMailingZip4()==null?false:demoInfoChanges.getMailingZip4()) {
-			fieldName = "Main Address Zip+4\n";
+			fieldName = "Main Address Zip+4<br/>";
 			if (docRequiredFields.getMailingZip4()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -687,7 +687,7 @@ public class IndexService {
 		
 		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_ALT_MAIL_ADDR");
 		if (demoInfoChanges.getAlternateAddress()==null?false:demoInfoChanges.getAlternateAddress()) {
-			fieldName = "Alt Address Number\n";
+			fieldName = "Alt Address Number<br/>";
 			if (docRequiredFields.getAlternateAddress()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -704,7 +704,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getAlternatePoBox()==null?false:demoInfoChanges.getAlternatePoBox()) {
-			fieldName = "Alt Address Street/P.O. Box\n";
+			fieldName = "Alt Address Street/P.O. Box<br/>";
 			if (docRequiredFields.getAlternatePoBox()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -721,7 +721,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getAlternateApt()==null?false:demoInfoChanges.getAlternateApt()) {
-			fieldName = "Alt Address Apt\n";
+			fieldName = "Alt Address Apt<br/>";
 			if (docRequiredFields.getAlternateApt()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -738,7 +738,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getAlternateCity()==null?false:demoInfoChanges.getAlternateCity()) {
-			fieldName = "Alt Address City\n";
+			fieldName = "Alt Address City<br/>";
 			if (docRequiredFields.getAlternateCity()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -755,7 +755,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getAlternateState()==null?false:demoInfoChanges.getAlternateState()) {
-			fieldName = "Alt Address State\n";
+			fieldName = "Alt Address State<br/>";
 			if (docRequiredFields.getAlternateState()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -772,7 +772,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getAlternateZip()==null?false:demoInfoChanges.getAlternateZip()) {
-			fieldName = "Alt Address Zip\n";
+			fieldName = "Alt Address Zip<br/>";
 			if (docRequiredFields.getAlternateZip()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -789,7 +789,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getAlternateZip4()==null?false:demoInfoChanges.getAlternateZip4()) {
-			fieldName = "Alt Address Zip+4\n";
+			fieldName = "Alt Address Zip+4<br/>";
 			if (docRequiredFields.getAlternateZip4()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -809,7 +809,7 @@ public class IndexService {
 	
 		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_HM_PHONE");
 		if (demoInfoChanges.getPhoneHomeArea()==null?false:demoInfoChanges.getPhoneHomeArea()) {
-			fieldName = "Home Phone Area Code\n";
+			fieldName = "Home Phone Area Code<br/>";
 			if (docRequiredFields.getPhoneHomeArea()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -826,7 +826,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getPhoneHomeNum()==null?false:demoInfoChanges.getPhoneHomeNum()) {
-			fieldName = "Home Phone Number\n";
+			fieldName = "Home Phone Number<br/>";
 			if (docRequiredFields.getPhoneHomeNum()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -845,7 +845,7 @@ public class IndexService {
 		
 		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_BUS_PHONE");
 		if (demoInfoChanges.getPhoneBusArea()==null?false:demoInfoChanges.getPhoneBusArea()) {
-			fieldName = "Business Phone Area Code\n";
+			fieldName = "Business Phone Area Code<br/>";
 			if (docRequiredFields.getPhoneBusArea()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -862,7 +862,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getPhoneBusNum()==null?false:demoInfoChanges.getPhoneBusNum()) {
-			fieldName = "Business Phone Number\n";
+			fieldName = "Business Phone Number<br/>";
 			if (docRequiredFields.getPhoneBusNum()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -879,7 +879,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getPhoneBusExt()==null?false:demoInfoChanges.getPhoneBusExt()) {
-			fieldName = "Business Extention\n";
+			fieldName = "Business Extention<br/>";
 			if (docRequiredFields.getPhoneBusExt()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -898,7 +898,7 @@ public class IndexService {
 		
 		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_CELL_PHONE");
 		if (demoInfoChanges.getPhoneCellArea()==null?false:demoInfoChanges.getPhoneCellArea()) {
-			fieldName = "Cell Phone Area Code\n";
+			fieldName = "Cell Phone Area Code<br/>";
 			if (docRequiredFields.getPhoneCellArea()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -915,7 +915,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getPhoneCellNum()==null?false:demoInfoChanges.getPhoneCellNum()) {
-			fieldName = "Cell Phone Number\n";
+			fieldName = "Cell Phone Number<br/>";
 			if (docRequiredFields.getPhoneCellNum()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -937,7 +937,7 @@ public class IndexService {
 		String newWorkEmail = "";
 		if (demoInfoChanges.getEmailHome()==null?false:demoInfoChanges.getEmailHome()) {
 			//newHomeEmail = demo.getDemoInfo().getEmail().getHomeEmail();
-			fieldName = "Home E-mail\n";
+			fieldName = "Home E-mail<br/>";
 			if (docRequiredFields.getEmailHome()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -955,7 +955,7 @@ public class IndexService {
 		}
 		if (demoInfoChanges.getEmailWork()==null?false:demoInfoChanges.getEmailWork()) {
 			//newWorkEmail = demo.getDemoInfo().getEmail().getWorkEmail();
-			fieldName = "Work E-mail\n";
+			fieldName = "Work E-mail<br/>";
 			if (docRequiredFields.getEmailWork()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -975,7 +975,7 @@ public class IndexService {
 		
 		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_RESTRICT");
 		if (demoInfoChanges.getRestrictionLocal()==null?false:demoInfoChanges.getRestrictionLocal()) {
-			fieldName = "Local Restriction Code\n";
+			fieldName = "Local Restriction Code<br/>";
 			if (docRequiredFields.getRestrictionLocal()){
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -993,7 +993,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getRestrictionPublic()==null?false:demoInfoChanges.getRestrictionPublic()) {
-			fieldName = "Public Restriction Code\n";
+			fieldName = "Public Restriction Code<br/>";
 			if (docRequiredFields.getRestrictionPublic()){
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1013,7 +1013,7 @@ public class IndexService {
 		
 		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_MRTL_STAT");
 		if (demoInfoChanges.getMaritalLocal()==null?false:demoInfoChanges.getMaritalLocal()) {
-			fieldName = "Marital Status\n";
+			fieldName = "Marital Status<br/>";
 			if (docRequiredFields.getMaritalLocal()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1032,7 +1032,7 @@ public class IndexService {
 		
 		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_DRVS_LIC");
 		if (demoInfoChanges.getDriversNum()==null?false:demoInfoChanges.getDriversNum()) {
-			fieldName = "Driver's License Number\n";
+			fieldName = "Driver's License Number<br/>";
 			if (docRequiredFields.getDriversNum()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1049,7 +1049,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getDriversState()==null?false:demoInfoChanges.getDriversState()) {
-			fieldName = "Driver's License State\n";
+			fieldName = "Driver's License State<br/>";
 			if (docRequiredFields.getDriversState()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1067,7 +1067,7 @@ public class IndexService {
 		}
 		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_EMER_CONTACT");
 		if (demoInfoChanges.getEmergencyName()==null?false:demoInfoChanges.getEmergencyName()) {
-			fieldName = "Emergency Contact Name\n";
+			fieldName = "Emergency Contact Name<br/>";
 			if (docRequiredFields.getEmergencyName()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1084,7 +1084,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getEmergencyAreaCode()==null?false:demoInfoChanges.getEmergencyAreaCode()) {
-			fieldName = "Emergency Contact Area Code\n";
+			fieldName = "Emergency Contact Area Code<br/>";
 			if (docRequiredFields.getEmergencyAreaCode()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1101,7 +1101,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getEmergencyPhoneNum()==null?false:demoInfoChanges.getEmergencyPhoneNum()) {
-			fieldName = "Emergency Contact Phone Number\n";
+			fieldName = "Emergency Contact Phone Number<br/>";
 			if (docRequiredFields.getEmergencyPhoneNum()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1118,7 +1118,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getEmergencyPhoneExt()==null?false:demoInfoChanges.getEmergencyPhoneExt()) {
-			fieldName = "Emergency Contact Phone Extention\n";
+			fieldName = "Emergency Contact Phone Extention<br/>";
 			if (docRequiredFields.getEmergencyPhoneExt()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1135,7 +1135,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getEmergencyRelationship()==null?false:demoInfoChanges.getEmergencyRelationship()) {
-			fieldName = "Emergency Contact Relationship\n";
+			fieldName = "Emergency Contact Relationship\n<br/>";
 			if (docRequiredFields.getEmergencyRelationship()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1152,7 +1152,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getEmergencyNotes()==null?false:demoInfoChanges.getEmergencyNotes()) {
-			fieldName = "Emergency Contact Notes\n";
+			fieldName = "Emergency Contact Notes\n<br/>";
 			if (docRequiredFields.getEmergencyNotes()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1184,16 +1184,16 @@ public class IndexService {
 		messageContents.append("<p>Your request for changes to personnel data has been submitted. </p>");	
 		if (hasDocChanges || hasApprovChanges || hasRequestReview) {
 			if (hasApprovChanges) {
-				messageContents.append("<p>The following data was automatically approved and updated:</p>");
-				messageContents.append("<p>"+employeeMessageAutoApprove.toString()+"</p>");
+				messageContents.append("The following data was automatically approved and updated:<br/>");
+				messageContents.append(employeeMessageAutoApprove.toString()+"<br/>");
 			}
 			if (hasDocChanges) {
-				messageContents.append("<p>The following request(s) requires documentation be provided:</p>");
-				messageContents.append("<p>"+employeeMessageDocRequired.toString()+"</p>");
+				messageContents.append("The following request(s) requires documentation be provided:<br/>");
+				messageContents.append(employeeMessageDocRequired.toString()+"<br/>");
 			}
 			if (hasRequestReview) {
-				messageContents.append("<p>The following request(s) is pending to be reviewed:</p>");
-				messageContents.append("<p>"+employeeMessageRequestReview.toString()+"</p>"); 
+				messageContents.append("The following request(s) is pending to be reviewed:<br/>");
+				messageContents.append(employeeMessageRequestReview.toString()+"<br/>"); 
 			}
 		}
 
