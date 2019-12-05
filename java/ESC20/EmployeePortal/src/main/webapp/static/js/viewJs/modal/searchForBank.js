@@ -1,61 +1,86 @@
-var nowPage = 1,total
+var nowPage = 1, total
 var bankInputName, bankInputCode
 var getBankBtn
-$(function(){
-    $('.getBank').click(function() {
+$(function () {
+    $('.getBank').click(function () {
         getBankBtn = this
         goPage(1)
     })
-    $('#searchBankBtn').on('click',function() {
+    $('#searchBankBtn').on('click', function () {
         searchPage(1)
     })
+    $('#selectBankModal').on('click','.bankNumberBtn', function () {
+        bankInputName = $(getBankBtn)
+            .parents(".bankPart")
+            .find('.form-control.name')
+        bankInputBankCode = $(getBankBtn)
+            .parents(".bankPart")
+            .find('.form-control.bankcode')
+        bankInputCode = $(getBankBtn)
+            .parent()
+            .find('.form-control.code')
+        newBankCode = $(getBankBtn).parents('.addBankForm').find("#newBankCode")
+
+        var number = $(this).text()
+        var code = $(this).val()
+        var name = $(this).attr('data-title')
+        console.log(number)
+        console.log(code)
+        console.log(name)
+        newBankCode.val(code).change()
+        bankInputName.val(name).change()
+        bankInputBankCode.val(code).change()
+        bankInputCode.val(number).change()
+
+        $('#selectBankModal').modal('hide')
+    })
 })
-function changePage(num){
-	
+function changePage (num) {
+
     var searchCode = $('#codeCriteriaSearchCode').val()
     var searchDescription = $('#codeCriteriaSearchDescription').val()
-    if((!searchCode||searchCode=='') && (!searchDescription||searchDescription=='')){
-    	
-    	if(num == 1){
+    if ((!searchCode || searchCode == '') && (!searchDescription || searchDescription == '')) {
+
+        if (num == 1) {
             goPage(num)
         }
-        if(num == 2){
+        if (num == 2) {
             goPage(nowPage - 1)
         }
-        if(num == 3){
+        if (num == 3) {
             goPage(nowPage + 1)
         }
-        if(num == 4){
+        if (num == 4) {
             goPage(total)
         }
-        if(num == 0){
-    		num = $('#pageNow').val();
-    		goPage(num)
-    	}
-    }else{
-    	
-        if(num == 1){
+        if (num == 0) {
+            num = $('#pageNow').val();
+            goPage(num)
+        }
+    } else {
+
+        if (num == 1) {
             searchPage(num)
         }
-        if(num == 2){
+        if (num == 2) {
             searchPage(nowPage - 1)
         }
-        if(num == 3){
+        if (num == 3) {
             searchPage(nowPage + 1)
         }
-        if(num == 4){
+        if (num == 4) {
             searchPage(total)
         }
-        if(num == 0){
-    		num = $('#pageNow').val();
-    		searchPage(num)
-    	}
+        if (num == 0) {
+            num = $('#pageNow').val();
+            searchPage(num)
+        }
     }
-    
+
 }
 
-function updateHtmlPage(currentPage,totalRows,totalPages){
-    if(totalRows != 0){
+function updateHtmlPage (currentPage, totalRows, totalPages) {
+    if (totalRows != 0) {
         $('#bankTable  tbody').empty()
     }
     $("#totalBank").text(totalRows)
@@ -63,31 +88,31 @@ function updateHtmlPage(currentPage,totalRows,totalPages){
     nowPage = currentPage
     total = totalPages
     $(".selectPage").empty()
-    for(var i =1,len = totalPages;i<=len;i++){
+    for (var i = 1, len = totalPages; i <= len; i++) {
         var selected = ""
-        if(nowPage == i){
+        if (nowPage == i) {
             selected = 'selected="selected"'
         }
-        var option = '<option value="'+i+'" '+selected+'>'+i+'</option>'
+        var option = '<option value="' + i + '" ' + selected + '>' + i + '</option>'
         $(".selectPage").append(option)
     }
-    if(nowPage<=1){
-        $(".firstPate").attr("disabled","disabled")
-        $(".prevPage").attr("disabled","disabled")
-    }else{
+    if (nowPage <= 1) {
+        $(".firstPate").attr("disabled", "disabled")
+        $(".prevPage").attr("disabled", "disabled")
+    } else {
         $(".firstPate").removeAttr("disabled")
         $(".prevPage").removeAttr("disabled")
     }
-    if(nowPage == totalPages){
-        $(".nextPate").attr("disabled","disabled")
-        $(".lastPate").attr("disabled","disabled")
-    }else{
+    if (nowPage == totalPages) {
+        $(".nextPate").attr("disabled", "disabled")
+        $(".lastPate").attr("disabled", "disabled")
+    } else {
         $(".nextPate").removeAttr("disabled")
         $(".lastPate").removeAttr("disabled")
     }
 }
 
-function goPage(num){
+function goPage (num) {
     var page = {
         currentPage: num,
         perPageRows: 10
@@ -95,17 +120,17 @@ function goPage(num){
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: urlMain +'/profile/getAllBanks',
+        url: urlMain + '/profile/getAllBanks',
         data: JSON.stringify(page),
         contentType: 'application/json;charset=UTF-8',
-        success: function(result) {
+        success: function (result) {
             console.log(result)
             //$('#bankTable').find('tr').remove();
-            updateHtmlPage(result.page.currentPage,result.page.totalRows,result.page.totalPages)
+            updateHtmlPage(result.page.currentPage, result.page.totalRows, result.page.totalPages)
             var res = result.result
             for (var p in res) {
                 var bankTr =
-                    "<tr><td scope='"+routingNumberLabel+"'>"
+                    "<tr><td scope='" + routingNumberLabel + "'>"
                 bankTr =
                     bankTr +
                     "<button class='a-btn bankNumberBtn' type='button' value='" +
@@ -117,53 +142,21 @@ function goPage(num){
                     ' </button> </td>'
                 bankTr =
                     bankTr +
-                    " <td scope='"+bankNameLabel+"'>" +
+                    " <td scope='" + bankNameLabel + "'>" +
                     res[p].bankName +
                     '</td> </tr>'
                 $('#bankTable').append(bankTr)
             }
 
-            // $('#selectBankModal').modal('show')
-            bankInputName = $(getBankBtn)
-                .parents(".bankPart")
-                .find('.form-control.name')
-            bankInputBankCode = $(getBankBtn)
-                .parents(".bankPart")
-                .find('.form-control.bankcode')
-            bankInputCode = $(getBankBtn)
-                .parent()
-                .find('.form-control.code')
-            // bankInputNewCode = $(getBankBtn)
-            //     .parents('.profile-desc')
-            //     .find('.bankNewCode')
-            newBankCode = $(getBankBtn).parents('.addBankForm').find("#newBankCode")
-            console.log(newBankCode)
-            console.log(bankInputName)
-            $('.bankNumberBtn').on('click',function() {
-                var number = $(this).text()
-                var code = $(this).val()
-                var name = $(this).attr('data-title')
-                console.log(number)
-                console.log(code)
-                console.log(name)
-                newBankCode.val(code).change()
-                bankInputName.val(name).change()
-                bankInputBankCode.val(code).change()
-                bankInputCode.val(number).change()
-                // bankInputNewCode.val(code)
-                $('#selectBankModal').modal('hide')
-            })
-
-            
         },
-        error: function(e) {
+        error: function (e) {
             console.log(e)
-            updateHtmlPage(1,0,0)
+            updateHtmlPage(1, 0, 0)
         }
     })
 }
 
-function searchPage(num){
+function searchPage (num) {
     var page = {
         currentPage: num,
         perPageRows: 10
@@ -184,15 +177,15 @@ function searchPage(num){
         url: urlMain + '/profile/searchBanks',
         data: JSON.stringify(searchCriteria),
         contentType: 'application/json;charset=UTF-8',
-        success: function(result) {
+        success: function (result) {
             console.log(result)
-            updateHtmlPage(result.page.currentPage,result.page.totalRows,result.page.totalPages)
+            updateHtmlPage(result.page.currentPage, result.page.totalRows, result.page.totalPages)
             $('#bankTable  tbody').empty()
             if (result.result && result.result.length > 0) {
                 var res = result.result
                 for (var p in res) {
                     var bankTr =
-                        "<tr><td scope='"+routingNumberLabel+"'>"
+                        "<tr><td scope='" + routingNumberLabel + "'>"
                     bankTr =
                         bankTr +
                         "<button class='a-btn bankNumberBtn' type='button' value='" +
@@ -204,51 +197,25 @@ function searchPage(num){
                         ' </button> </td>'
                     bankTr =
                         bankTr +
-                        " <td scope='"+bankNameLabel+"'>" +
+                        " <td scope='" + bankNameLabel + "'>" +
                         res[p].bankName +
                         '</td> </tr>'
                     $('#bankTable').append(bankTr)
                 }
 
-                //$('#selectBankModal').modal('show')
-                bankInputName = $(getBankBtn)
-                    .parent()
-                    .find('.form-control.name')
-                bankInputBankCode = $(getBankBtn)
-                    .parent()
-                    .find('.form-control.bankcode')
-                bankInputCode = $(getBankBtn)
-                    .parent()
-                    .find('.form-control.code')
-                newBankCode = $(getBankBtn).parent().find("#newBankCode")
-                $('.bankNumberBtn').on('click',function() {
-                    var number = $(this).text()
-                    var code = $(this).val()
-                    var name = $(this).attr('data-title')
-                    console.log(number)
-                    console.log(name)
-                    console.log(code)
-                    console.log(bankInputName)
-                    newBankCode.val(code).change()
-                    bankInputName.val(name).change()
-                    bankInputBankCode.val(code)
-                    bankInputCode.val(number).change()
-                    bankInputNewCode.val(code)
-                    $('#selectBankModal').modal('hide')
-                })
             } else {
                 $('#bankTable tbody').empty()
-                var noResult = '<tr><td colspan="2"> <span>'+noDataLabel+'</span></td></tr>'
+                var noResult = '<tr><td colspan="2"> <span>' + noDataLabel + '</span></td></tr>'
                 $('#bankTable tbody').append(noResult)
             }
 
         },
-        error: function(e) {
+        error: function (e) {
             console.log(e)
             $('#bankTable tbody').empty()
-            var noResult = '<tr><td colspan="2"> <span>'+noDataLabel+'</span></td></tr>'
+            var noResult = '<tr><td colspan="2"> <span>' + noDataLabel + '</span></td></tr>'
             console.log(noResult)
-            updateHtmlPage(1,0,0)
+            updateHtmlPage(1, 0, 0)
             $('#bankTable tbody').append(noResult)
         }
     })

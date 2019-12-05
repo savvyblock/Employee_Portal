@@ -179,10 +179,24 @@ $(function() {
     })
 
     $('#saveNewBank').click(function() {
+        var bankArry =  $(".updateBankForm");
+        var bankLen =  bankArry.length;
+        var arrayValidate = bankArry.map(function (index) {
+            var bankAccountForm = '#bankAccountForm_' + index
+            var bankAccountValidator = $(bankAccountForm).data('bootstrapValidator')
+            bankAccountValidator.validate()
+            if(bankAccountValidator.isValid()){
+                return true
+            }
+        });
+
         var bankAccountValidator = $('#addBankAccountForm').data('bootstrapValidator')
         bankAccountValidator.validate()
         console.log(bankAccountValidator.isValid())
-        if (bankAccountValidator.isValid()) {
+
+        
+
+        if (bankAccountValidator.isValid() && arrayValidate.length == bankLen) {
             var freq = $('#freq').val()
             var saveBankDescription = $('#saveBankDescription').val()
             var saveBankCode = $('#newBankCode').val()
@@ -199,6 +213,21 @@ $(function() {
             $('#hiddendisplayLabel').val(saveBankDisplayLabel)
             $('#hiddendisplayAmount').val(saveBankDisplayAmount)
 
+            var newBank = {
+                code:saveBankCode,
+                accountNumber:saveBankAccountNumber,
+                displayLabel:saveBankDisplayLabel,
+                displayAmount:saveBankDisplayAmount,
+            }
+            var result = checkDuplicate(newBank)
+            console.log(result.bankArray)
+            if(result.hasDuc){
+                $(".duplicateBankAccountError").show()
+                return false
+            }
+            $(".duplicateBankAccountError").hide()
+            $("#bankArrayGroup").val(JSON.stringify(result.bankArray))
+            // return false
             $('#saveBankHidden').submit()
         }
     })  
@@ -363,6 +392,40 @@ $(function() {
 //        profileForm.submit();
 //    })
 })
+
+function checkDuplicate(newBank){
+    var bankArryHave =  $(".updateBankForm");
+    var bankArry = new Array()
+    bankArry.push(newBank)
+    bankArryHave.each(function(index){
+        var bankCode = $(this).find('#code_'+index+'').val()
+        var bankAccountNumber = $(this).find('#accountNumberNew_'+index+'').val()
+        var bankDisplayLabel = $(this).find('#accountTypeNew_'+index+'').val()
+        var bankDisplayAmount = $(this).find('#displayAmountNew_'+index+'').val()
+        var obj = {
+            code:bankCode,
+            accountNumber:bankAccountNumber,
+            displayLabel:bankDisplayLabel,
+            displayAmount:bankDisplayAmount,
+        }
+        bankArry.push(obj)
+    })
+    console.log(bankArry)
+    var hasDuc = false
+    for(var i =0;i<bankArry.length;i++){
+        for(var n =i+1;n<bankArry.length;n++){
+            if(bankArry[i].bankCode == bankArry[n].bankCode && bankArry[i].accountNumber == bankArry[n].accountNumber){
+                hasDuc = true
+            }
+        }
+    }
+    var arrayObj = {
+        bankArray:bankArry,
+        hasDuc:hasDuc
+    }
+    return arrayObj
+}
+
 function showPasswordModal(){
     $('#updatePassword')[0].reset()
     $('#updatePassword')
@@ -386,7 +449,12 @@ function clearNoNumWhole(obj){
 function deleteBankAmount(index) {
     // $('#deleteModal').modal('show')
     console.log('delete=' + index)
-
+    var len = $(".bankAccountBlock").length
+    if(len<=1){
+        $(".atLeastOneBankRequiredError").show()
+        return false
+    }
+    $(".atLeastOneBankRequiredError").hide()
     var freq = $('#freq').val()
     var code = $('#code_' + index).val()
     var accountNumber = $('#accountNumber_' + index).text()
@@ -396,6 +464,11 @@ function deleteBankAmount(index) {
     console.log(accountNumber)
     console.log(accountType)
     console.log(displayAmount)
+    if(parseInt(displayAmount) == 0){
+        $(".selectAnotherAsPrimaryError").show()
+        return false
+    }
+    $(".selectAnotherAsPrimaryError").hide()
 
     $('#hidden_freq_delete').val(freq)
     $('#hidden_accountNumber_delete').val(accountNumber)
@@ -1295,7 +1368,7 @@ function bankAccountValidator() {
 function bankAccountAddValidator() {
     $('#addBankAccountForm').bootstrapValidator({
         live: 'enable',
-        submitButtons: '#saveNewBank',
+        // submitButtons: '#saveNewBank',
         excluded: [':disabled', ':hidden', ':not(:visible)'],
         feedbackIcons: {
             valid: 'fa fa-check ',

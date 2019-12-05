@@ -681,6 +681,9 @@
         "notSameAnswer":"Hint answer may not be the same as Hint question",
         "pleaseEnterWholePositiveNum":"Please Enter whole positive number",
         "newPasswordDifferOld":"New password must be different than old password.",
+        "atLeastOneBankRequired":"At least one bank account is required. Please add a valid account or reset one marked for deletion.",
+        "duplicateBankAccount":"Duplicate Bank Account and Bank Account Number found. Please ensure all accounts have a unique account number or bank.",
+        "selectAnotherAsPrimary":"Please select another account as your primary one before deleting this account.",
         "": ""
     },
     "accessHint": {

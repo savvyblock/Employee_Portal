@@ -162,6 +162,7 @@ public class ProfileController {
 		String displayLabel = req.getParameter("displayLabel");
 		String accountNumber = req.getParameter("accountNumber");
 		String code = req.getParameter("subCode");
+		String bankArray = req.getParameter("bankArray");
 
 		String employeeNumber = demo.getEmpNbr();
 
