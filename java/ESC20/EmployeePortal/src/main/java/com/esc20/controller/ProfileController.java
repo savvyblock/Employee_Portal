@@ -92,7 +92,7 @@ public class ProfileController {
 		ModelAndView mav = new ModelAndView();
 		getProfileDetails(session, mav, freq);
 		mav.addObject("decryptedPwd", user.getUsrpswd());
-		
+
 		return mav;
 	}
 
@@ -414,9 +414,10 @@ public class ProfileController {
 		user.setLkHint('N');
 		user.setHintCnt(0);
 		this.indexService.updateUser(user);
-		//Send out Email to User
+		// Send out Email to User
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-		this.indexService.passwordChangeSendEmailConfirmation(user.getUsrname(),userDetail.getNameF(),userDetail.getNameL(),userDetail.getHmEmail(),userDetail.getEmail());
+		this.indexService.passwordChangeSendEmailConfirmation(user.getUsrname(), userDetail.getNameF(),
+				userDetail.getNameL(), userDetail.getHmEmail(), userDetail.getEmail());
 		session.removeAttribute("user");
 		session.setAttribute("user", user);
 		getProfileDetails(session, mav, null);
@@ -427,7 +428,7 @@ public class ProfileController {
 	public ModelAndView saveAll(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
-		 
+
 		ModelAndView mav = new ModelAndView();
 
 		DemoOption demoOptions = this.indexService.getDemoOption();
@@ -439,13 +440,13 @@ public class ProfileController {
 		}
 
 		String undoName = req.getParameter("undoName");
-		
-		Boolean isAnyChanges =false;  // Use this to see if we need to send out email,if true then send out emails
+
+		Boolean isAnyChanges = false; // Use this to see if we need to send out email,if true then send out emails
 		session.setAttribute("hasDemoChanged", isAnyChanges);
-		
+
 		DemoInfoFields demoInfoChanges = new DemoInfoFields();
 		session.setAttribute("demoInfoChanges", demoInfoChanges);
-		
+
 		if (!"deleteNameRequest".equalsIgnoreCase(undoName)) {
 			if (demoOptions.getFieldDisplayOptionName().trim().equals("U")) {
 				saveName(req, mav);
@@ -458,7 +459,7 @@ public class ProfileController {
 			}
 		}
 
-		if ("deleteDriversLicenseRequest".equalsIgnoreCase(undoName)) {
+		if (!"deleteDriversLicenseRequest".equalsIgnoreCase(undoName)) {
 			if (demoOptions.getFieldDisplayOptionDriversLicense().trim().equals("U")) {
 				saveDriversLicense(req, mav);
 			}
@@ -503,18 +504,19 @@ public class ProfileController {
 		}
 
 		// undo check --need to undo changes for the ones with Pending to approve
-		 undoHandle(req);
-		 
-		//Send out Email to User
-		 isAnyChanges= (Boolean) session.getAttribute("hasDemoChanged");
-		 if(isAnyChanges) {
-			 BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-			 demoInfoChanges =((DemoInfoFields)session.getAttribute("demoInfoChanges"));
-			 DemoInfoFields  docRequiredFields = this.referenceService.populateDocRequiredFields();
-			 this.indexService.personDataChangeSendEmailConfirmation(user.getUsrname(),userDetail.getNameF(),userDetail.getNameL(),userDetail.getHmEmail(),userDetail.getEmail(),demoInfoChanges,docRequiredFields);
-				
-		 }
-	
+		undoHandle(req);
+
+		// Send out Email to User
+		isAnyChanges = (Boolean) session.getAttribute("hasDemoChanged");
+		if (isAnyChanges) {
+			BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+			demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
+			DemoInfoFields docRequiredFields = this.referenceService.populateDocRequiredFields();
+			this.indexService.personDataChangeSendEmailConfirmation(user.getUsrname(), userDetail.getNameF(),
+					userDetail.getNameL(), userDetail.getHmEmail(), userDetail.getEmail(), demoInfoChanges,
+					docRequiredFields);
+
+		}
 
 		this.getProfileDetails(req.getSession(), mav, null);
 		return mav;
@@ -567,20 +569,20 @@ public class ProfileController {
 		String nameGenNew = req.getParameter("nameGenNew");
 		HttpSession session = req.getSession();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
-		Boolean isAnyChanges= ((Boolean) session.getAttribute("hasDemoChanged"));
-		DemoInfoFields demoInfoChanges =((DemoInfoFields)session.getAttribute("demoInfoChanges"));
-		
+		Boolean isAnyChanges = ((Boolean) session.getAttribute("hasDemoChanged"));
+		DemoInfoFields demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
+
 		String nameLLNGNew = req.getParameter("nameLNew");
 		String nameMLNGNew = req.getParameter("nameMNew");
 		String nameFLNGNew = req.getParameter("nameFNew");
-		
-		if((!StringUtil.isNullOrEmpty(nameFNew)) && nameFNew.trim().length()>17) {
+
+		if ((!StringUtil.isNullOrEmpty(nameFNew)) && nameFNew.trim().length() > 17) {
 			nameFNew = nameFLNGNew.trim().substring(0, 17);
 		}
-		if((!StringUtil.isNullOrEmpty(nameLNew)) && nameLNew.trim().length()>25) {
+		if ((!StringUtil.isNullOrEmpty(nameLNew)) && nameLNew.trim().length() > 25) {
 			nameLNew = nameLLNGNew.trim().substring(0, 25);
 		}
-		if((!StringUtil.isNullOrEmpty(nameMNew)) && nameMNew.trim().length()>14) {
+		if ((!StringUtil.isNullOrEmpty(nameMNew)) && nameMNew.trim().length() > 14) {
 			nameMNew = nameMLNGNew.trim().substring(0, 14);
 		}
 
@@ -593,30 +595,30 @@ public class ProfileController {
 			return mav;
 		}
 		mav.setViewName("profile");
-		
-		//Compare current and new value so to decide if need to send out email
-		if(!namePreNew.equals(demo.getNamePre())) {
+
+		// Compare current and new value so to decide if need to send out email
+		if (!namePreNew.equals(demo.getNamePre())) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameTitle(true);
 		}
-		if(!nameFNew.equals(demo.getNameF())) {
+		if (!nameFNew.equals(demo.getNameF())) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameFirst(true);
 		}
-		if(!nameLNew.equals(demo.getNameL())) {
+		if (!nameLNew.equals(demo.getNameL())) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameLast(true);
 		}
-		if(!nameMNew.equals(demo.getNameM())) {
+		if (!nameMNew.equals(demo.getNameM())) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameMiddle(true);
 		}
-		
-		if(!nameGenNew.equals(demo.getNameGen().toString())) {
+
+		if (!nameGenNew.equals(demo.getNameGen().toString())) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameGeneration(true);
 		}
-		
+
 		session.setAttribute("hasDemoChanged", isAnyChanges);
 		session.setAttribute("demoInfoChanges", demoInfoChanges);
 
@@ -681,15 +683,15 @@ public class ProfileController {
 		}
 		mav.setViewName("profile");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
-		Boolean isAnyChanges= ((Boolean) session.getAttribute("hasDemoChanged"));
-		DemoInfoFields demoInfoChanges =((DemoInfoFields)session.getAttribute("demoInfoChanges"));
+		Boolean isAnyChanges = ((Boolean) session.getAttribute("hasDemoChanged"));
+		DemoInfoFields demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
 
-		//Compare current and new value so to decide if need to send out email
-		if(!maritalStatNew.equals(demo.getMaritalStat().toString())) {
+		// Compare current and new value so to decide if need to send out email
+		if (!maritalStatNew.equals(demo.getMaritalStat().toString())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMaritalLocal(true);
 		}
-		
+
 		session.setAttribute("hasDemoChanged", isAnyChanges);
 		session.setAttribute("demoInfoChanges", demoInfoChanges);
 		BeaMrtlStat maritalStatusRequest;
@@ -744,20 +746,20 @@ public class ProfileController {
 		}
 		mav.setViewName("profile");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
-		Boolean isAnyChanges= ((Boolean) session.getAttribute("hasDemoChanged"));
-		DemoInfoFields demoInfoChanges =((DemoInfoFields)session.getAttribute("demoInfoChanges"));
+		Boolean isAnyChanges = ((Boolean) session.getAttribute("hasDemoChanged"));
+		DemoInfoFields demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
 		BeaDrvsLic driversLicenseRequest;
-		
-		//Compare current and new value so to decide if need to send out email
-		if(!driversLicNbrNew.equals(demo.getDriversLicNbr())) {
+
+		// Compare current and new value so to decide if need to send out email
+		if (!driversLicNbrNew.equals(demo.getDriversLicNbr())) {
 			isAnyChanges = true;
 			demoInfoChanges.setDriversNum(true);
 		}
-		if(!driversLicStNew.equals(demo.getDriversLicSt())) {
+		if (!driversLicStNew.equals(demo.getDriversLicSt())) {
 			isAnyChanges = true;
 			demoInfoChanges.setDriversState(true);
 		}
-		
+
 		session.setAttribute("hasDemoChanged", isAnyChanges);
 		session.setAttribute("demoInfoChanges", demoInfoChanges);
 
@@ -811,7 +813,22 @@ public class ProfileController {
 		}
 		mav.setViewName("profile");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		Boolean isAnyChanges = ((Boolean) session.getAttribute("hasDemoChanged"));
+		DemoInfoFields demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
 		BeaRestrict restrictionCodesRequest;
+
+		// Compare current and new value so to decide if need to send out email
+		if (!restrictCdNew.equals(demo.getRestrictCd().toString())) {
+			isAnyChanges = true;
+			demoInfoChanges.setRestrictionLocal(true);
+		}
+		if (!restrictCdPublicNew.equals(demo.getRestrictCdPublic().toString())) {
+			isAnyChanges = true;
+			demoInfoChanges.setRestrictionPublic(true);
+		}
+
+		session.setAttribute("hasDemoChanged", isAnyChanges);
+		session.setAttribute("demoInfoChanges", demoInfoChanges);
 
 		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_RESTRICT")) {
 			restrictionCodesRequest = new BeaRestrict(demo, empNbr, reqDts, restrictCdNew, restrictCdPublicNew, 'A');
@@ -864,7 +881,22 @@ public class ProfileController {
 		}
 		mav.setViewName("profile");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		Boolean isAnyChanges = ((Boolean) session.getAttribute("hasDemoChanged"));
+		DemoInfoFields demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
 		BeaEmail emailRequest;
+
+		// Compare current and new value so to decide if need to send out email
+		if (!emailNew.equals(demo.getEmail())) {
+			isAnyChanges = true;
+			demoInfoChanges.setEmailWork(true);
+		}
+		if (!hmEmailNew.equals(demo.getHmEmail())) {
+			isAnyChanges = true;
+			demoInfoChanges.setEmailHome(true);
+		}
+
+		session.setAttribute("hasDemoChanged", isAnyChanges);
+		session.setAttribute("demoInfoChanges", demoInfoChanges);
 
 		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_EMAIL")) {
 			emailRequest = new BeaEmail(demo, empNbr, reqDts, emailNew, hmEmailNew, 'A');
@@ -923,7 +955,38 @@ public class ProfileController {
 		}
 		mav.setViewName("profile");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		Boolean isAnyChanges = ((Boolean) session.getAttribute("hasDemoChanged"));
+		DemoInfoFields demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
 		BeaEmerContact emergencyContactRequest;
+
+		// Compare current and new value so to decide if need to send out email
+		if (!emerContactNew.equals(demo.getEmerContact())) {
+			isAnyChanges = true;
+			demoInfoChanges.setEmergencyName(true);
+		}
+		if (!emerPhoneAcNew.equals(demo.getEmerPhoneAc())) {
+			isAnyChanges = true;
+			demoInfoChanges.setEmergencyAreaCode(true);
+		}
+		if (!emerPhoneNbrNew.equals(demo.getEmerPhoneNbr())) {
+			isAnyChanges = true;
+			demoInfoChanges.setEmergencyPhoneNum(true);
+		}
+		if (!emerPhoneExtNew.equals(demo.getEmerPhoneExt())) {
+			isAnyChanges = true;
+			demoInfoChanges.setEmergencyPhoneExt(true);
+		}
+		if (!emerRelNew.equals(demo.getEmerRel())) {
+			isAnyChanges = true;
+			demoInfoChanges.setEmergencyRelationship(true);
+		}
+		if (!emerNoteNew.equals(demo.getEmerNote())) {
+			isAnyChanges = true;
+			demoInfoChanges.setEmergencyNotes(true);
+		}
+
+		session.setAttribute("hasDemoChanged", isAnyChanges);
+		session.setAttribute("demoInfoChanges", demoInfoChanges);
 
 		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_EMER_CONTACT")) {
 			emergencyContactRequest = new BeaEmerContact(demo, empNbr, reqDts, emerContactNew, emerPhoneAcNew,
@@ -987,7 +1050,41 @@ public class ProfileController {
 		}
 		mav.setViewName("profile");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		Boolean isAnyChanges = ((Boolean) session.getAttribute("hasDemoChanged"));
+		DemoInfoFields demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
 		BeaMailAddr mailingAddressRequest;
+		// Compare current and new value so to decide if need to send out email
+		if (!addrNbrNew.equals(demo.getAddrNbr())) {
+			isAnyChanges = true;
+			demoInfoChanges.setMailingAddress(true);
+		}
+		if (!addrStrNew.equals(demo.getAddrStr())) {
+			isAnyChanges = true;
+			demoInfoChanges.setMailingPoBox(true);
+		}
+		if (!addrCityNew.equals(demo.getAddrCity())) {
+			isAnyChanges = true;
+			demoInfoChanges.setMailingCity(true);
+		}
+		if (!addrAptNew.equals(demo.getAddrApt())) {
+			isAnyChanges = true;
+			demoInfoChanges.setMailingApt(true);
+		}
+		if (!addrStNew.equals(demo.getAddrSt())) {
+			isAnyChanges = true;
+			demoInfoChanges.setMailingState(true);
+		}
+		if (!addrZipNew.equals(demo.getAddrZip())) {
+			isAnyChanges = true;
+			demoInfoChanges.setMailingZip(true);
+		}
+		if (!addrZip4New.equals(demo.getAddrZip4())) {
+			isAnyChanges = true;
+			demoInfoChanges.setMailingZip4(true);
+		}
+
+		session.setAttribute("hasDemoChanged", isAnyChanges);
+		session.setAttribute("demoInfoChanges", demoInfoChanges);
 
 		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_MAIL_ADDR")) {
 			mailingAddressRequest = new BeaMailAddr(demo, empNbr, reqDts, addrNbrNew, addrStrNew, addrAptNew,
@@ -1052,7 +1149,41 @@ public class ProfileController {
 		}
 		mav.setViewName("profile");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		Boolean isAnyChanges = ((Boolean) session.getAttribute("hasDemoChanged"));
+		DemoInfoFields demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
 		BeaAltMailAddr altMailingAddressRequest;
+		// Compare current and new value so to decide if need to send out email
+		if (!smrAddrNbrNew.equals(demo.getSmrAddrNbr())) {
+			isAnyChanges = true;
+			demoInfoChanges.setAlternateAddress(true);
+		}
+		if (!smrAddrStrNew.equals(demo.getSmrAddrStr())) {
+			isAnyChanges = true;
+			demoInfoChanges.setAlternatePoBox(true);
+		}
+		if (!smrAddrAptNew.equals(demo.getSmrAddrApt())) {
+			isAnyChanges = true;
+			demoInfoChanges.setAlternateApt(true);
+		}
+		if (!smrAddrCityNew.equals(demo.getSmrAddrCity())) {
+			isAnyChanges = true;
+			demoInfoChanges.setAlternateCity(true);
+		}
+		if (!smrAddrStNew.equals(demo.getSmrAddrSt())) {
+			isAnyChanges = true;
+			demoInfoChanges.setAlternateState(true);
+		}
+		if (!smrAddrZipNew.equals(demo.getSmrAddrZip())) {
+			isAnyChanges = true;
+			demoInfoChanges.setAlternateZip(true);
+		}
+		if (!smrAddrZip4New.equals(demo.getSmrAddrZip4())) {
+			isAnyChanges = true;
+			demoInfoChanges.setAlternateZip4(true);
+		}
+
+		session.setAttribute("hasDemoChanged", isAnyChanges);
+		session.setAttribute("demoInfoChanges", demoInfoChanges);
 
 		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_ALT_MAIL_ADDR")) {
 			altMailingAddressRequest = new BeaAltMailAddr(demo, empNbr, reqDts, smrAddrNbrNew, smrAddrStrNew,
@@ -1117,10 +1248,41 @@ public class ProfileController {
 		}
 		mav.setViewName("profile");
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		Boolean isAnyChanges= ((Boolean) session.getAttribute("hasDemoChanged"));
+		DemoInfoFields demoInfoChanges =((DemoInfoFields)session.getAttribute("demoInfoChanges"));
 
 		BeaHmPhone homePhoneRequest;
 		BeaCellPhone cellPhoneRequest;
 		BeaBusPhone businessPhoneRequest;
+		
+		//Compare current and new value so to decide if need to send out email
+		if(!phoneAreaNew.equals(demo.getPhoneArea())) {
+			isAnyChanges = true;
+			demoInfoChanges.setPhoneHomeArea(true);
+		}
+		if(!phoneNbrNew.equals(demo.getPhoneNbr())) {
+			isAnyChanges = true;
+			demoInfoChanges.setPhoneHomeNum(true);
+		}
+		if(!phoneAreaCellNew.equals(demo.getPhoneAreaCell())) {
+			isAnyChanges = true;
+			demoInfoChanges.setPhoneCellArea(true);
+		}
+		if(!phoneNbrCellNew.equals(demo.getPhoneNbrCell())) {
+			isAnyChanges = true;
+			demoInfoChanges.setPhoneCellNum(true);
+		}
+		if(!phoneAreaBusNew.equals(demo.getPhoneAreaBus())) {
+			isAnyChanges = true;
+			demoInfoChanges.setPhoneBusArea(true);
+		}
+		if(!phoneNbrBusNew.equals(demo.getPhoneNbrBus())) {
+			isAnyChanges = true;
+			demoInfoChanges.setPhoneBusNum(true);
+		}
+
+		session.setAttribute("hasDemoChanged", isAnyChanges);
+		session.setAttribute("demoInfoChanges", demoInfoChanges);
 
 		DemoOption demoOptions = this.indexService.getDemoOption();
 
@@ -1234,9 +1396,11 @@ public class ProfileController {
 
 	@RequestMapping("saveW4")
 	public ModelAndView saveW4(HttpServletRequest req, String empNbr, String reqDts, String payFreq,
-			Character maritalStatTax, Character maritalStatTaxNew, Integer nbrTaxExempts, Integer nbrTaxExemptsNew,String w4FileStat, String w4MultiJob, Double w4NbrChldrn,
-			Double w4NbrOthrDep, Double w4OthrIncAmt, Double w4OthrDedAmt, Double w4OthrExmptAmt , String w4FileStatNew, String w4MultiJobNew, Double w4NbrChldrnNew,
-			Double w4NbrOthrDepNew, Double w4OthrIncAmtNew, Double w4OthrDedAmtNew, Double w4OthrExmptAmtNew ) {
+			Character maritalStatTax, Character maritalStatTaxNew, Integer nbrTaxExempts, Integer nbrTaxExemptsNew,
+			String w4FileStat, String w4MultiJob, Double w4NbrChldrn, Double w4NbrOthrDep, Double w4OthrIncAmt,
+			Double w4OthrDedAmt, Double w4OthrExmptAmt, String w4FileStatNew, String w4MultiJobNew,
+			Double w4NbrChldrnNew, Double w4NbrOthrDepNew, Double w4OthrIncAmtNew, Double w4OthrDedAmtNew,
+			Double w4OthrExmptAmtNew) {
 
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
@@ -1257,17 +1421,17 @@ public class ProfileController {
 		freq = Frequency.getFrequency(payFreq);
 		if (this.indexService.getBhrEapPayAssgnGrp("BEA_W4")) {
 			w4Request = new BeaW4(pay, empNbr, freq.getCode().charAt(0), reqDts, maritalStatTaxNew, nbrTaxExemptsNew,
-					'A', w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
-					 w4NbrOthrDepNew,  w4OthrIncAmtNew,  w4OthrDedAmtNew,  w4OthrExmptAmtNew, w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
-					 w4NbrOthrDepNew,  w4OthrIncAmtNew, w4OthrDedAmtNew,  w4OthrExmptAmtNew);
+					'A', w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew,
+					w4OthrDedAmtNew, w4OthrExmptAmtNew, w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew,
+					w4OthrIncAmtNew, w4OthrDedAmtNew, w4OthrExmptAmtNew);
 			this.indexService.saveW4Request(w4Request);
 			this.indexService.updatePayInfo(demo, pay, freq.getCode().charAt(0), maritalStatTaxNew, nbrTaxExemptsNew);
 
 		} else {
 			w4Request = new BeaW4(pay, empNbr, freq.getCode().charAt(0), reqDts, maritalStatTaxNew, nbrTaxExemptsNew,
-					'P',w4FileStat,  w4MultiJob,  w4NbrChldrn,
-					 w4NbrOthrDep,  w4OthrIncAmt,  w4OthrDedAmt, w4OthrExmptAmt, w4FileStatNew,  w4MultiJobNew,  w4NbrChldrnNew,
-					 w4NbrOthrDepNew,  w4OthrIncAmtNew,  w4OthrDedAmtNew,  w4OthrExmptAmtNew);
+					'P', w4FileStat, w4MultiJob, w4NbrChldrn, w4NbrOthrDep, w4OthrIncAmt, w4OthrDedAmt, w4OthrExmptAmt,
+					w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew, w4OthrDedAmtNew,
+					w4OthrExmptAmtNew);
 			this.indexService.saveW4Request(w4Request);
 		}
 
@@ -1541,31 +1705,28 @@ public class ProfileController {
 		return result;
 	}
 
-	/*private void passwordChangeSendEmailConfirmation (String userName, String userFirstName, String userLastName, String userHomeEmail, String userWorkEmail) {
-		String subject ="A MESSAGE FROM SELF SERVICE";
-		StringBuilder messageContents = new StringBuilder();
-		userFirstName = userFirstName== null ? "" : userFirstName.trim();
-		userLastName = userLastName== null ? "" : userLastName.trim();
-		messageContents.append("<p>"+userFirstName + " " +userLastName + ", </p>");
-		messageContents.append("<p>Your request to change your password was successful. </p>");		
-		messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
-		
-		String toEmail ="";
-		if (!"".equals(userWorkEmail)) {
-			toEmail = userWorkEmail;
-		} else if (!"".equals(userHomeEmail)) {
-			toEmail = userHomeEmail;
-		}
-		if (toEmail!=null && toEmail.trim().length() > 0) {
-			try{
-				MailUtil.sendEmail(toEmail, subject, messageContents.toString());
-			} 
-			catch(Exception ex) {
-				logger.info("Self Service Change Password: An exception has occured with mailing the user "+userName+".");
-			} 
-		} else {
-			logger.info("Self Service Change Password: Unable to send an email confirmation.  No email address is avaiable for user "+userName+".");
-		}
-		
-	}*/
+	/*
+	 * private void passwordChangeSendEmailConfirmation (String userName, String
+	 * userFirstName, String userLastName, String userHomeEmail, String
+	 * userWorkEmail) { String subject ="A MESSAGE FROM SELF SERVICE"; StringBuilder
+	 * messageContents = new StringBuilder(); userFirstName = userFirstName== null ?
+	 * "" : userFirstName.trim(); userLastName = userLastName== null ? "" :
+	 * userLastName.trim(); messageContents.append("<p>"+userFirstName + " "
+	 * +userLastName + ", </p>"); messageContents.
+	 * append("<p>Your request to change your password was successful. </p>");
+	 * messageContents.
+	 * append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
+	 * 
+	 * String toEmail =""; if (!"".equals(userWorkEmail)) { toEmail = userWorkEmail;
+	 * } else if (!"".equals(userHomeEmail)) { toEmail = userHomeEmail; } if
+	 * (toEmail!=null && toEmail.trim().length() > 0) { try{
+	 * MailUtil.sendEmail(toEmail, subject, messageContents.toString()); }
+	 * catch(Exception ex) { logger.
+	 * info("Self Service Change Password: An exception has occured with mailing the user "
+	 * +userName+"."); } } else { logger.
+	 * info("Self Service Change Password: Unable to send an email confirmation.  No email address is avaiable for user "
+	 * +userName+"."); }
+	 * 
+	 * }
+	 */
 }
