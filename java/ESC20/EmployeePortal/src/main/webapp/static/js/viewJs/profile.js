@@ -34,7 +34,7 @@ $(function() {
         console.log(emailFormValidator.isValid())
         if (emailFormValidator.isValid()) {
             if(workE===workEV && homeE===homeEV){
-                $("#emailForm")[0].submit()
+                $("#profileForm")[0].submit()
             }else{
                 if(workE!=workEV){
                     $("#emailWorkEmail").parents(".form-group").addClass("has-error").removeClass('has-success')
