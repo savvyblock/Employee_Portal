@@ -42,6 +42,7 @@ import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Bank;
 import com.esc20.nonDBModels.BankRequest;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.DemoInfoFields;
 import com.esc20.nonDBModels.DemoOption;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Frequency;
@@ -161,7 +162,8 @@ public class ProfileController {
 		String displayAmount = req.getParameter("displayAmount");
 		String displayLabel = req.getParameter("displayLabel");
 		String accountNumber = req.getParameter("accountNumber");
-		String code = req.getParameter("subCode");
+		String subCode = req.getParameter("subCode");
+		String code = req.getParameter("code");
 
 		String employeeNumber = demo.getEmpNbr();
 
@@ -172,7 +174,7 @@ public class ProfileController {
 		c.setDisplayLabel(displayLabel);
 		payrollAccountInfo.setAccountNumber(accountNumber);
 		payrollAccountInfo.setAccountType(c);
-		payrollAccountInfo.setCode(this.bankService.getBank(code));
+		payrollAccountInfo.setCode(this.bankService.getBank(subCode));
 		payrollAccountInfo
 				.setDepositAmount(new Money(new Double(displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
 		payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
@@ -180,7 +182,7 @@ public class ProfileController {
 		Bank accountInfo = new Bank();
 		accountInfo.setAccountNumber("");
 		accountInfo.setAccountType(new Code());
-		accountInfo.setCode(new Code());
+		accountInfo.setCode(this.bankService.getBank(code));
 		accountInfo
 				.setDepositAmount(new Money(new Double(displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
 		accountInfo.setFrequency(Frequency.getFrequency(freq));
@@ -423,6 +425,9 @@ public class ProfileController {
 
 	@RequestMapping("saveAll")
 	public ModelAndView saveAll(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		 
 		ModelAndView mav = new ModelAndView();
 
 		DemoOption demoOptions = this.indexService.getDemoOption();
@@ -434,7 +439,13 @@ public class ProfileController {
 		}
 
 		String undoName = req.getParameter("undoName");
-
+		
+		Boolean isAnyChanges =false;  // Use this to see if we need to send out email,if true then send out emails
+		session.setAttribute("hasDemoChanged", isAnyChanges);
+		
+		DemoInfoFields demoInfoChanges = new DemoInfoFields();
+		session.setAttribute("demoInfoChanges", demoInfoChanges);
+		
 		if (!"deleteNameRequest".equalsIgnoreCase(undoName)) {
 			if (demoOptions.getFieldDisplayOptionName().trim().equals("U")) {
 				saveName(req, mav);
@@ -493,6 +504,17 @@ public class ProfileController {
 
 		// undo check --need to undo changes for the ones with Pending to approve
 		 undoHandle(req);
+		 
+		//Send out Email to User
+		 isAnyChanges= (Boolean) session.getAttribute("hasDemoChanged");
+		 if(isAnyChanges) {
+			 BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+			 demoInfoChanges =((DemoInfoFields)session.getAttribute("demoInfoChanges"));
+			 DemoInfoFields  docRequiredFields = this.referenceService.populateDocRequiredFields();
+			 this.indexService.personDataChangeSendEmailConfirmation(user.getUsrname(),userDetail.getNameF(),userDetail.getNameL(),userDetail.getHmEmail(),userDetail.getEmail(),demoInfoChanges,docRequiredFields);
+				
+		 }
+	
 
 		this.getProfileDetails(req.getSession(), mav, null);
 		return mav;
@@ -544,7 +566,9 @@ public class ProfileController {
 		String nameMNew = req.getParameter("nameMNew");
 		String nameGenNew = req.getParameter("nameGenNew");
 		HttpSession session = req.getSession();
-//        ModelAndView mav = new ModelAndView();
+		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		Boolean isAnyChanges= ((Boolean) session.getAttribute("hasDemoChanged"));
+		DemoInfoFields demoInfoChanges =((DemoInfoFields)session.getAttribute("demoInfoChanges"));
 		
 		String nameLLNGNew = req.getParameter("nameLNew");
 		String nameMLNGNew = req.getParameter("nameMNew");
@@ -569,7 +593,33 @@ public class ProfileController {
 			return mav;
 		}
 		mav.setViewName("profile");
-		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		
+		//Compare current and new value so to decide if need to send out email
+		if(!namePreNew.equals(demo.getNamePre())) {
+			isAnyChanges = true;
+			demoInfoChanges.setNameTitle(true);
+		}
+		if(!nameFNew.equals(demo.getNameF())) {
+			isAnyChanges = true;
+			demoInfoChanges.setNameFirst(true);
+		}
+		if(!nameLNew.equals(demo.getNameL())) {
+			isAnyChanges = true;
+			demoInfoChanges.setNameLast(true);
+		}
+		if(!nameMNew.equals(demo.getNameM())) {
+			isAnyChanges = true;
+			demoInfoChanges.setNameMiddle(true);
+		}
+		
+		if(!nameGenNew.equals(demo.getNameGen().toString())) {
+			isAnyChanges = true;
+			demoInfoChanges.setNameGeneration(true);
+		}
+		
+		session.setAttribute("hasDemoChanged", isAnyChanges);
+		session.setAttribute("demoInfoChanges", demoInfoChanges);
+
 		BeaLglName nameRequest;
 
 		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_LGL_NAME")) {

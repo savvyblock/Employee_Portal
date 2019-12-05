@@ -28,6 +28,7 @@ import com.esc20.model.BeaUsers;
 import com.esc20.model.BeaW4;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPay;
+import com.esc20.nonDBModels.DemoInfoFields;
 import com.esc20.nonDBModels.DemoOption;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
@@ -454,6 +455,795 @@ public class IndexService {
 		} else {
 			logger.info("Self Service Change Password: Unable to send an email confirmation.  No email address is avaiable for user "+userName+".");
 		}
+		
+	}
+	
+	public void personDataChangeSendEmailConfirmation (String userName, String userFirstName, String userLastName, String userHomeEmail, String userWorkEmail,DemoInfoFields demoInfoChanges,DemoInfoFields docRequiredFields) {
+		String subject ="A MESSAGE FROM SELF SERVICE";
+		StringBuilder messageContents = new StringBuilder();
+		StringBuilder employeeMessageAutoApprove = new StringBuilder();
+		StringBuilder employeeMessageDocRequired = new StringBuilder();
+		StringBuilder employeeMessageRequestReview = new StringBuilder();
+		
+		boolean hasDocChanges = false;
+		boolean hasApprovChanges = false;
+		boolean hasRequestReview = false;
+		
+		Boolean autoApprove;
+		String fieldName;
+		//HashMap<String, String> groupApproverNumbers = demoDao.getApproverEmployeeNumbers();
+		//List<String> approversToEmail = new ArrayList<String>();
+		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_LGL_NAME");
+		
+		if (demoInfoChanges.getNameTitle()==null?false:demoInfoChanges.getNameTitle()) {
+			fieldName = "Title\n";
+			if (docRequiredFields.getNameTitle()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			}
+			else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				//String approverNumber = groupApproverNumbers.get(ReferenceDataService.LEGAL_NAME_TABLE);
+				/*if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getNameLast()==null?false:demoInfoChanges.getNameLast()) {
+			fieldName = "Last Name\n";
+			if (docRequiredFields.getNameLast()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.LEGAL_NAME_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getNameFirst()==null?false:demoInfoChanges.getNameFirst()) {
+			fieldName = "First Name\n";
+			if (docRequiredFields.getNameFirst()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.LEGAL_NAME_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getNameMiddle()==null?false:demoInfoChanges.getNameMiddle()) {
+			fieldName = "Middle Name\n";
+			if (docRequiredFields.getNameMiddle()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.LEGAL_NAME_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getNameGeneration()==null?false:demoInfoChanges.getNameGeneration()) {
+			fieldName = "Generation\n";
+			if (docRequiredFields.getNameGeneration()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.LEGAL_NAME_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		
+		
+		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_MAIL_ADDR");
+		if(demoInfoChanges.getMailingAddress()==null?false:demoInfoChanges.getMailingAddress()) {
+			fieldName = "Main Address Number\n";
+			if (docRequiredFields.getMailingAddress()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+			/*	String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if(demoInfoChanges.getMailingPoBox()==null?false:demoInfoChanges.getMailingPoBox()) {
+			fieldName = "Main Address Street/P.O. Box\n";
+			if (docRequiredFields.getMailingPoBox()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getMailingApt()==null?false:demoInfoChanges.getMailingApt()) {
+			fieldName = "Main Address Apt\n";
+			if (docRequiredFields.getMailingApt()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				if( !approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getMailingCity()==null?false:demoInfoChanges.getMailingCity()) {
+			fieldName = "Main Address City\n";
+			if (docRequiredFields.getMailingCity()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getMailingState()==null?false:demoInfoChanges.getMailingState()) {
+			fieldName = "Main Address State\n";
+			if (docRequiredFields.getMailingState()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getMailingZip()==null?false:demoInfoChanges.getMailingZip()) {
+			fieldName = "Main Address Zip\n";
+			if(docRequiredFields.getMailingZip()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getMailingZip4()==null?false:demoInfoChanges.getMailingZip4()) {
+			fieldName = "Main Address Zip+4\n";
+			if (docRequiredFields.getMailingZip4()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+			/*	String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+
+		
+		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_ALT_MAIL_ADDR");
+		if (demoInfoChanges.getAlternateAddress()==null?false:demoInfoChanges.getAlternateAddress()) {
+			fieldName = "Alt Address Number\n";
+			if (docRequiredFields.getAlternateAddress()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getAlternatePoBox()==null?false:demoInfoChanges.getAlternatePoBox()) {
+			fieldName = "Alt Address Street/P.O. Box\n";
+			if (docRequiredFields.getAlternatePoBox()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+			/*	String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getAlternateApt()==null?false:demoInfoChanges.getAlternateApt()) {
+			fieldName = "Alt Address Apt\n";
+			if (docRequiredFields.getAlternateApt()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			} 
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getAlternateCity()==null?false:demoInfoChanges.getAlternateCity()) {
+			fieldName = "Alt Address City\n";
+			if (docRequiredFields.getAlternateCity()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getAlternateState()==null?false:demoInfoChanges.getAlternateState()) {
+			fieldName = "Alt Address State\n";
+			if (docRequiredFields.getAlternateState()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getAlternateZip()==null?false:demoInfoChanges.getAlternateZip()) {
+			fieldName = "Alt Address Zip\n";
+			if (docRequiredFields.getAlternateZip()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getAlternateZip4()==null?false:demoInfoChanges.getAlternateZip4()) {
+			fieldName = "Alt Address Zip+4\n";
+			if (docRequiredFields.getAlternateZip4()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+
+	
+		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_HM_PHONE");
+		if (demoInfoChanges.getPhoneHomeArea()==null?false:demoInfoChanges.getPhoneHomeArea()) {
+			fieldName = "Home Phone Area Code\n";
+			if (docRequiredFields.getPhoneHomeArea()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.HOME_PHONE_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getPhoneHomeNum()==null?false:demoInfoChanges.getPhoneHomeNum()) {
+			fieldName = "Home Phone Number\n";
+			if (docRequiredFields.getPhoneHomeNum()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.HOME_PHONE_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		
+		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_BUS_PHONE");
+		if (demoInfoChanges.getPhoneBusArea()==null?false:demoInfoChanges.getPhoneBusArea()) {
+			fieldName = "Business Phone Area Code\n";
+			if (docRequiredFields.getPhoneBusArea()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.WORK_PHONE_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getPhoneBusNum()==null?false:demoInfoChanges.getPhoneBusNum()) {
+			fieldName = "Business Phone Number\n";
+			if (docRequiredFields.getPhoneBusNum()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.WORK_PHONE_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getPhoneBusExt()==null?false:demoInfoChanges.getPhoneBusExt()) {
+			fieldName = "Business Extention\n";
+			if (docRequiredFields.getPhoneBusExt()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.WORK_PHONE_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		
+		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_CELL_PHONE");
+		if (demoInfoChanges.getPhoneCellArea()==null?false:demoInfoChanges.getPhoneCellArea()) {
+			fieldName = "Cell Phone Area Code\n";
+			if (docRequiredFields.getPhoneCellArea()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.CELL_PHONE_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getPhoneCellNum()==null?false:demoInfoChanges.getPhoneCellNum()) {
+			fieldName = "Cell Phone Number\n";
+			if (docRequiredFields.getPhoneCellNum()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.CELL_PHONE_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		
+		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_EMAIL");
+		String newHomeEmail = "";
+		String newWorkEmail = "";
+		if (demoInfoChanges.getEmailHome()==null?false:demoInfoChanges.getEmailHome()) {
+			//newHomeEmail = demo.getDemoInfo().getEmail().getHomeEmail();
+			fieldName = "Home E-mail\n";
+			if (docRequiredFields.getEmailHome()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMAIL_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getEmailWork()==null?false:demoInfoChanges.getEmailWork()) {
+			//newWorkEmail = demo.getDemoInfo().getEmail().getWorkEmail();
+			fieldName = "Work E-mail\n";
+			if (docRequiredFields.getEmailWork()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMAIL_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		
+		
+		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_RESTRICT");
+		if (demoInfoChanges.getRestrictionLocal()==null?false:demoInfoChanges.getRestrictionLocal()) {
+			fieldName = "Local Restriction Code\n";
+			if (docRequiredFields.getRestrictionLocal()){
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.RESTRICTION_CODE_TABLE);
+				if (!approversToEmail.contains(approverNumber)){
+					approversToEmail.add(approverNumber);
+				}*/
+			}
+		}
+		if (demoInfoChanges.getRestrictionPublic()==null?false:demoInfoChanges.getRestrictionPublic()) {
+			fieldName = "Public Restriction Code\n";
+			if (docRequiredFields.getRestrictionPublic()){
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.RESTRICTION_CODE_TABLE);
+				if (!approversToEmail.contains(approverNumber)){
+					approversToEmail.add(approverNumber);
+				}*/
+			}
+		}
+		
+		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_MRTL_STAT");
+		if (demoInfoChanges.getMaritalLocal()==null?false:demoInfoChanges.getMaritalLocal()) {
+			fieldName = "Marital Status\n";
+			if (docRequiredFields.getMaritalLocal()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.MARITAL_STATUS_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		
+		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_DRVS_LIC");
+		if (demoInfoChanges.getDriversNum()==null?false:demoInfoChanges.getDriversNum()) {
+			fieldName = "Driver's License Number\n";
+			if (docRequiredFields.getDriversNum()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.DRIVERS_LICENSE_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getDriversState()==null?false:demoInfoChanges.getDriversState()) {
+			fieldName = "Driver's License State\n";
+			if (docRequiredFields.getDriversState()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.DRIVERS_LICENSE_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_EMER_CONTACT");
+		if (demoInfoChanges.getEmergencyName()==null?false:demoInfoChanges.getEmergencyName()) {
+			fieldName = "Emergency Contact Name\n";
+			if (docRequiredFields.getEmergencyName()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMERGENCY_CONTACT_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getEmergencyAreaCode()==null?false:demoInfoChanges.getEmergencyAreaCode()) {
+			fieldName = "Emergency Contact Area Code\n";
+			if (docRequiredFields.getEmergencyAreaCode()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if(autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+			/*	String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMERGENCY_CONTACT_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getEmergencyPhoneNum()==null?false:demoInfoChanges.getEmergencyPhoneNum()) {
+			fieldName = "Emergency Contact Phone Number\n";
+			if (docRequiredFields.getEmergencyPhoneNum()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMERGENCY_CONTACT_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getEmergencyPhoneExt()==null?false:demoInfoChanges.getEmergencyPhoneExt()) {
+			fieldName = "Emergency Contact Phone Extention\n";
+			if (docRequiredFields.getEmergencyPhoneExt()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMERGENCY_CONTACT_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getEmergencyRelationship()==null?false:demoInfoChanges.getEmergencyRelationship()) {
+			fieldName = "Emergency Contact Relationship\n";
+			if (docRequiredFields.getEmergencyRelationship()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMERGENCY_CONTACT_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		if (demoInfoChanges.getEmergencyNotes()==null?false:demoInfoChanges.getEmergencyNotes()) {
+			fieldName = "Emergency Contact Notes\n";
+			if (docRequiredFields.getEmergencyNotes()) {
+				employeeMessageDocRequired.append(fieldName);
+				hasDocChanges = true;
+			}
+			if (autoApprove) {
+				employeeMessageAutoApprove.append(fieldName);
+				hasApprovChanges = true;
+			} else {
+				employeeMessageRequestReview.append(fieldName);
+				hasRequestReview = true;
+				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMERGENCY_CONTACT_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);*/
+			}
+		}
+		
+		
+		
+		//*********************SEND USER EMAIL***********************************
+		
+		userFirstName = userFirstName== null ? "" : userFirstName.trim();
+		userLastName = userLastName== null ? "" : userLastName.trim();
+		/*employeeMessageContents.append((userFirstName == null || userFirstName.trim().equals("")) ? "" : userFirstName.trim());
+		employeeMessageContents.append((userMiddleName == null || userMiddleName.trim().equals("")) ? "" : " " + userMiddleName.trim());
+		employeeMessageContents.append((userLastName == null || userLastName.trim().equals("")) ? "" : " " + userLastName.trim());
+		employeeMessageContents.append((userGeneration == null || userGeneration.trim().equals("")) ? "" : " " + userGeneration.trim());*/
+
+		messageContents.append("<p>"+userFirstName + " " +userLastName + ", </p>");
+		messageContents.append("<p>Your request for changes to personnel data has been submitted. </p>");	
+		if (hasDocChanges || hasApprovChanges || hasRequestReview) {
+			if (hasApprovChanges) {
+				messageContents.append("<p>The following data was automatically approved and updated:</p>");
+				messageContents.append("<p>"+employeeMessageAutoApprove.toString()+"</p>");
+			}
+			if (hasDocChanges) {
+				messageContents.append("<p>The following request(s) requires documentation be provided:</p>");
+				messageContents.append("<p>"+employeeMessageDocRequired.toString()+"</p>");
+			}
+			if (hasRequestReview) {
+				messageContents.append("<p>The following request(s) is pending to be reviewed:</p>");
+				messageContents.append("<p>"+employeeMessageRequestReview.toString()+"</p>"); 
+			}
+		}
+
+		
+		messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
+		
+		String toEmail ="";//need to add new userNewEmail too
+		if (!"".equals(userWorkEmail)) {
+			toEmail = userWorkEmail;
+		} else if (!"".equals(userHomeEmail)) {
+			toEmail = userHomeEmail;
+		}
+		if (toEmail!=null && toEmail.trim().length() > 0) {
+			try{
+				MailUtil.sendEmail(toEmail, subject, messageContents.toString());
+			} 
+			catch(Exception ex) {
+				logger.info("Self Service Change Demo Info: An exception has occured with mailing the user "+userName+".");
+			} 
+		} else {
+			logger.info("Self Service Change Demo Info: Unable to send an email confirmation.  No email address is avaiable for user "+userName+".");
+		}
+		
+		//*********************SEND APPROVER EMAIL***********************************
+				/*StringBuilder approverEmailMessage = new StringBuilder();
+
+				approverEmailMessage.append((userFirstName == null || userFirstName.trim().equals("")) ? "" : userFirstName.trim());
+				approverEmailMessage.append((userMiddleName == null || userMiddleName.trim().equals("")) ? "" : " " + userMiddleName.trim());
+				approverEmailMessage.append((userLastName == null || userLastName.trim().equals("")) ? "" : " " + userLastName.trim());
+				approverEmailMessage.append((userGeneration == null || userGeneration.trim().equals("")) ? "" : " " + userGeneration.trim());
+
+				approverEmailMessage.append(" has submitted a request to change personnel information.\n");
+				approverEmailMessage.append("The request is ready for your approval. \n");
+				approverEmailMessage.append("Login to HR to approve.");
+
+				for(String approverNumber : approversToEmail) {
+					try {
+						User approver = demoDao.getApproverById(approverNumber);
+
+						String approverWorkEmail = approver.getWorkEmail();
+						String approverHomeEmail = approver.getHomeEmail();
+
+						msg.setText(approver.getFirstName() + " " + approver.getLastName() + ",\n\n" + approverEmailMessage.toString());
+						msg.setTo( (approverWorkEmail == null || approverWorkEmail.equals("")) ? approverHomeEmail : approverWorkEmail );
+						mailUtilService.sendMail(msg);
+					} catch(Exception ex) {
+						log.error("An exception has occured with mailing the approver.", ex);
+						return false;
+					}
+				}*/
 		
 	}
 }
