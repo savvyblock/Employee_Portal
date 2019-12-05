@@ -1818,6 +1818,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                         </c:if>
                         <c:if test="${payrollOption.fieldDisplayOptionBank !='N'}">	
                             <h2 class="sub-title">${sessionScope.languageJSON.profile.directDepositBankAccounts}</h2>
+                            <p class="error-hint atLeastOneBankRequiredError" style="display: none;">${sessionScope.languageJSON.validator.atLeastOneBankRequired}</p>
+                            <p class="error-hint duplicateBankAccountError" style="display: none;">${sessionScope.languageJSON.validator.duplicateBankAccount}</p>
+                            <p class="error-hint selectAnotherAsPrimaryError" style="display: none;">${sessionScope.languageJSON.validator.selectAnotherAsPrimary}</p>
                             <div class="profile-item" style="padding-bottom: 0;border-bottom:0;">
                                 <div class="bankPart">
                                     <div class="profileTitle form-line profileInfo">
@@ -2014,14 +2017,25 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                                 <c:if test="${bank.code.subCode!=''}">
-                                                    <button
-                                                        type="button" role="button"
-                                                        id="deleteBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.deleteBank}"
-                                                        class="btn btn-secondary delete-btn ${hideDelete}"  onclick="deleteBankAmount(${count.index})"
-                                                        data-toggle="modal" data-target="#deleteModal"
-                                                    >
-                                                    ${sessionScope.languageJSON.label.delete}
-                                                    </button>
+                                                    <c:if test="${fn:length(banks)>1}">
+                                                        <button
+                                                            type="button" role="button"
+                                                            id="deleteBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.deleteBank}"
+                                                            class="btn btn-secondary delete-btn ${hideDelete}"  onclick="deleteBankAmount(${count.index})"
+                                                            data-toggle="modal" data-target="#deleteModal"
+                                                        >
+                                                        ${sessionScope.languageJSON.label.delete}
+                                                        </button>
+                                                    </c:if>
+                                                    <c:if test="${fn:length(banks)<=1}">
+                                                        <button
+                                                            type="button" role="button"
+                                                            id="deleteBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.deleteBank}"
+                                                            class="btn btn-secondary delete-btn ${hideDelete}"  onclick="deleteBankAmount(${count.index})"
+                                                        >
+                                                        ${sessionScope.languageJSON.label.delete}
+                                                        </button>
+                                                    </c:if>
                                                 </c:if>
                                             </div>
                                         </div>
@@ -2080,6 +2094,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <input type="hidden" name="subCode" id="hiddensubCode"  />
                                     <input type="hidden" name="code" id="hiddenCode"  />
                                     <input type="hidden" name="description" id="hiddendescription" />
+                                    <input type="hidden" name="bankArray" id="bankArrayGroup"  />
                                 </form>
                                 <form
                                     class="profile-item border-0 activeEdit addBankForm"
