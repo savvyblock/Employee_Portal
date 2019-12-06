@@ -1,16 +1,16 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib
-uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
-language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html> 
 <html lang="en">
-    <head>
-        <title>${sessionScope.languageJSON.headTitle.calendarYTD}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <% response.addHeader("x-frame-options","SAMEORIGIN");%>​​​​​​​
-        <%@ include file="../commons/header.jsp"%>
+	<head>
+		<title>${sessionScope.languageJSON.headTitle.calendarYTD}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<%@ include file="../commons/header.jsp"%>
+		<%response.addHeader("x-frame-options","SAMEORIGIN");%>
     </head>
-    <body class="hold-transition sidebar-mini" style="padding-top:32px;">
+    <body class="hold-transition sidebar-mini">
         <div class="wrapper">
             <%@ include file="../commons/bar.jsp"%>
 

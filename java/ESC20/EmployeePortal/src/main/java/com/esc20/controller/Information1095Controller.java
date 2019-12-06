@@ -58,6 +58,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @RequestMapping("/information1095")
 public class Information1095Controller {
 	private Logger logger = LoggerFactory.getLogger(Information1095Controller.class);
+	public static String newline = System.getProperty("line.separator");
 
 	@Autowired
 	private IndexService indexService;
@@ -269,6 +270,8 @@ public class Information1095Controller {
 			year = DateUtil.getLatestYear(years);
 		// Options options = ((Options) session.getAttribute("options"));
 		String message = options.getMessageElecConsent1095().trim();
+		message = message.replaceAll("\\s+\\*", newline+"*");
+		
 		String consent = this.service.get1095Consent(employeeNumber);
 		Integer BTotal = this.service.getBInfoTotal(employeeNumber, year);
 		Integer BTotalPage = BTotal / pageSize;

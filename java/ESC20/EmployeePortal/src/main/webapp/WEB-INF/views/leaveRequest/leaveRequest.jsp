@@ -205,7 +205,7 @@
 							</c:if>
 							<c:if test="${fn:length(leaves) == 0}">
                                  <tr>
-                                     <td colspan="7" class="text-left">
+                                     <td colspan="10" class="text-left">
                                          <span>${sessionScope.languageJSON.label.noData}</span>
                                      </td>
                                  </tr>

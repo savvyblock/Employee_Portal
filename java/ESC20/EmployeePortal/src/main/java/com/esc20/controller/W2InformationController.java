@@ -55,6 +55,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @RequestMapping("/w2Information")
 public class W2InformationController {
 	private Logger logger = LoggerFactory.getLogger(W2InformationController.class);
+	public static String newline = System.getProperty("line.separator");
 
 	@Autowired
 	private IndexService indexService;
@@ -164,6 +165,7 @@ public class W2InformationController {
 		List<String> years = this.service.getW2Years(employeeNumber);
 
 		String elecConsntMsgW2 = ((Options) session.getAttribute("options")).getMessageElecConsentW2().trim();
+		elecConsntMsgW2 = elecConsntMsgW2.replaceAll("\\s+\\*", newline+"*");
 		String consent = this.service.getW2Consent(employeeNumber);
 
 		List<BhrThirdPartySickPay> thirdPartyPay = this.service.getBhrThirdPartySickPay(employeeNumber, year);

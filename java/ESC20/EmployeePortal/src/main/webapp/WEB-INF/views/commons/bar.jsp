@@ -104,7 +104,7 @@
               <i class="nav-icon fa fa-list"></i>
               <p>
                 <span>${sessionScope.languageJSON.nav.inquiry}</span>
-                <i class="right fa fa-angle-down"></i>
+                <i class="right fa fa-angle-right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -178,7 +178,7 @@
               <i class="nav-icon fa fa-users"></i>
               <p>
                 <span>${sessionScope.languageJSON.nav.supervisor}</span>
-                <i class="right fa fa-angle-left"></i>
+                <i class="right fa fa-angle-right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">

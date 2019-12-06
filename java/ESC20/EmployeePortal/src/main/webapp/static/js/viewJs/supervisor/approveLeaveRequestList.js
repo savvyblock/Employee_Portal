@@ -218,7 +218,6 @@ function showBalance(id){
     var x = $(event.currentTarget).offset().left;
     console.log(x)
     console.log(y)
-    $("#balanceModal .modal-dialog").css({"left":x+35,"top":y})
     var leaveCurrent,leaveBalance
     for(var i = 0,len = leaves.length;i<len;i++){
         if(id == leaves[i].empNbr){

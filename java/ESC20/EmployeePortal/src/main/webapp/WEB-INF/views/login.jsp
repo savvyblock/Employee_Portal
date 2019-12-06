@@ -81,7 +81,7 @@
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <h1 class="title">${sessionScope.languageJSON.label.pleaseSignIn}</h1>
                             <div class="form-group">
-                                <label class="form-title" for="inputEmailSession">${sessionScope.languageJSON.label.username}</label>
+                                <label for="inputEmailSession">${sessionScope.languageJSON.label.username}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-user left-icon"></i>
                                     <input type="text" id="inputEmailSession" class="form-control" placeholder="${sessionScope.languageJSON.label.username}" name="username"/>
@@ -89,7 +89,7 @@
                                 
                             </div>
                             <div class="form-group">
-                                <label  class="form-title" for="inputPasswordSession">${sessionScope.languageJSON.label.password}</label>
+                                <label for="inputPasswordSession">${sessionScope.languageJSON.label.password}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-lock left-icon"></i>
                                     <input type="password" id="inputPasswordSession" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password">

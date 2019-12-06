@@ -7,7 +7,7 @@
     aria-hidden="true"
     data-backdrop="static"
 >
-    <div class="modal-dialog" style="max-width:800px;">
+    <div class="modal-dialog">
         <div class="modal-content">             
             <div class="modal-body">
                 <p><b>${sessionScope.languageJSON.label.leaveBalanceSummaryFor} <span id="leaveBalanceSummaryFor"></span></b></p>

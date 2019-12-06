@@ -91,7 +91,7 @@ function initList() {
             .addClass('disabled')
             .attr('disabled', 'disabled')
         var noResult = '<tr>'+
-                            '<td colspan="8">'+
+                            '<td colspan="10">'+
                                 '<span>'+ noDataLabel +'</span>'+
                             '</td>'+
                         '</tr>'
