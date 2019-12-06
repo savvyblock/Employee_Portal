@@ -1277,7 +1277,7 @@ function bankAccountValidator () {
         $('#bankAccountForm_' + i).bootstrapValidator({
             live: 'enable',
             excluded: [':disabled', ':hidden', ':not(:visible)'],
-            submitButtons: '.saveUpdateBankBtn',
+            // submitButtons: '.saveUpdateBankBtn',
             feedbackIcons: {
                 valid: 'fa fa-check ',
                 // invalid: 'fa fa-times',
