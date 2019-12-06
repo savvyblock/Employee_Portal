@@ -614,9 +614,17 @@ public class ProfileController {
 			demoInfoChanges.setNameMiddle(true);
 		}
 
-		if (!nameGenNew.equals(demo.getNameGen().toString())) {
-			isAnyChanges = true;
-			demoInfoChanges.setNameGeneration(true);
+		if(demo.getNameGen()==null) {
+			if(nameGenNew !="") {
+				isAnyChanges = true;
+				demoInfoChanges.setNameGeneration(true);
+			}
+		}
+		else  {
+			if(!nameGenNew.trim().equals(demo.getNameGen().toString().trim())) {
+				isAnyChanges = true;
+				demoInfoChanges.setNameGeneration(true);
+			}
 		}
 
 		session.setAttribute("hasDemoChanged", isAnyChanges);
@@ -687,10 +695,18 @@ public class ProfileController {
 		DemoInfoFields demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
 
 		// Compare current and new value so to decide if need to send out email
-		if (!maritalStatNew.equals(demo.getMaritalStat().toString())) {
-			isAnyChanges = true;
-			demoInfoChanges.setMaritalLocal(true);
+		if(demo.getMaritalStat()==null) {
+			if(maritalStatNew !="") {
+				isAnyChanges = true;
+				demoInfoChanges.setMaritalLocal(true);
+			}
+		}else {
+			if (!maritalStatNew.trim().equals(demo.getMaritalStat().toString().trim())) {
+				isAnyChanges = true;
+				demoInfoChanges.setMaritalLocal(true);
+			}
 		}
+		
 
 		session.setAttribute("hasDemoChanged", isAnyChanges);
 		session.setAttribute("demoInfoChanges", demoInfoChanges);
@@ -818,14 +834,32 @@ public class ProfileController {
 		BeaRestrict restrictionCodesRequest;
 
 		// Compare current and new value so to decide if need to send out email
-		if (!restrictCdNew.equals(demo.getRestrictCd().toString())) {
-			isAnyChanges = true;
-			demoInfoChanges.setRestrictionLocal(true);
+		if(demo.getRestrictCd()==null) {
+			if(restrictCdNew !="") {
+				isAnyChanges = true;
+				demoInfoChanges.setRestrictionLocal(true);
+			}
 		}
-		if (!restrictCdPublicNew.equals(demo.getRestrictCdPublic().toString())) {
-			isAnyChanges = true;
-			demoInfoChanges.setRestrictionPublic(true);
+		else {
+			if (!restrictCdNew.trim().equals(demo.getRestrictCd().toString().trim())) {
+				isAnyChanges = true;
+				demoInfoChanges.setRestrictionLocal(true);
+			}
 		}
+		
+		if(demo.getRestrictCdPublic()==null) {
+			if(restrictCdPublicNew !="") {
+				isAnyChanges = true;
+				demoInfoChanges.setRestrictionPublic(true);
+			}
+		}  else {
+			if (!restrictCdPublicNew.trim().equals(demo.getRestrictCdPublic().toString().trim())) {
+				isAnyChanges = true;
+				demoInfoChanges.setRestrictionPublic(true);
+			}
+		}
+		
+		
 
 		session.setAttribute("hasDemoChanged", isAnyChanges);
 		session.setAttribute("demoInfoChanges", demoInfoChanges);
