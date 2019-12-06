@@ -712,7 +712,8 @@ public class ProfileController {
 		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_MRTL_STAT")) {
 			maritalStatusRequest = new BeaMrtlStat(demo, empNbr, reqDts, maritalStatNew, 'A');
 			this.indexService.saveMaritalRequest(maritalStatusRequest);
-			demo.setMaritalStat(maritalStatNew.charAt(0));
+		
+			demo.setMaritalStat((maritalStatNew == null || ("").equals(maritalStatNew)) ? '\0' : maritalStatNew.charAt(0));
 			this.indexService.updateDemoMaritalStatus(demo);
 			session.removeAttribute("userDetail");
 
@@ -865,8 +866,8 @@ public class ProfileController {
 		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_RESTRICT")) {
 			restrictionCodesRequest = new BeaRestrict(demo, empNbr, reqDts, restrictCdNew, restrictCdPublicNew, 'A');
 			this.indexService.saveRestrictionCodesRequest(restrictionCodesRequest);
-			demo.setRestrictCd(restrictCdNew.charAt(0));
-			demo.setRestrictCdPublic(restrictCdPublicNew.charAt(0));
+			demo.setRestrictCd((restrictCdNew == null || ("").equals(restrictCdNew)) ? '\0' : restrictCdNew.charAt(0));
+			demo.setRestrictCdPublic((restrictCdPublicNew == null || ("").equals(restrictCdPublicNew)) ? '\0' : restrictCdPublicNew.charAt(0));
 			this.indexService.updateDemoRestrictionCodes(demo);
 			List<Code> gens = referenceService.getGenerations();
 			for (Code gen : gens) {
