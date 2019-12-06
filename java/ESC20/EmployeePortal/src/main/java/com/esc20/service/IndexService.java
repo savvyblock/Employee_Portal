@@ -1,7 +1,9 @@
 package com.esc20.service;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import com.esc20.dao.AlertDao;
 import com.esc20.dao.AppUserDao;
 import com.esc20.dao.OptionsDao;
 import com.esc20.dao.PayDao;
+import com.esc20.dao.ReferenceDao;
 import com.esc20.model.BeaAlert;
 import com.esc20.model.BeaAltMailAddr;
 import com.esc20.model.BeaBusPhone;
@@ -56,6 +59,9 @@ public class IndexService {
     
     @Autowired
     private PayDao payDao;
+    
+    @Autowired
+    private ReferenceDao referenceDao;
     
     public String getMessage() throws ParseException{
         String message = "Hello, JBoss has started!";
@@ -458,12 +464,16 @@ public class IndexService {
 		
 	}
 	
-	public void personDataChangeSendEmailConfirmation (String userName, String userFirstName, String userLastName, String userHomeEmail, String userWorkEmail,DemoInfoFields demoInfoChanges,DemoInfoFields docRequiredFields) {
+	public void personDataChangeSendEmailConfirmation (BhrEmpDemo oldValue,BhrEmpDemo newValue,DemoInfoFields demoInfoChanges,DemoInfoFields docRequiredFields) {
 		String subject ="A MESSAGE FROM SELF SERVICE";
 		StringBuilder messageContents = new StringBuilder();
 		StringBuilder employeeMessageAutoApprove = new StringBuilder();
 		StringBuilder employeeMessageDocRequired = new StringBuilder();
 		StringBuilder employeeMessageRequestReview = new StringBuilder();
+		String userFirstName = oldValue.getNameF();
+		String userLastName = oldValue.getNameL();
+		String userHomeEmail = oldValue.getHmEmail();
+		String userWorkEmail = oldValue.getEmail();
 		
 		boolean hasDocChanges = false;
 		boolean hasApprovChanges = false;
@@ -471,9 +481,10 @@ public class IndexService {
 		
 		Boolean autoApprove;
 		String fieldName;
-		//HashMap<String, String> groupApproverNumbers = demoDao.getApproverEmployeeNumbers();
-		//List<String> approversToEmail = new ArrayList<String>();
-		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_LGL_NAME");
+		ReferenceService rs = new ReferenceService();
+		Map<String, String> groupApproverNumbers = referenceDao.getApproverEmployeeNumbers();
+		List<String> approversToEmail = new ArrayList<String>();
+		autoApprove = this.getBhrEapDemoAssgnGrp(rs.LEGAL_NAME_TABLE);
 		
 		if (demoInfoChanges.getNameTitle()==null?false:demoInfoChanges.getNameTitle()) {
 			fieldName = "Title<br/>";
@@ -488,9 +499,9 @@ public class IndexService {
 			else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				//String approverNumber = groupApproverNumbers.get(ReferenceDataService.LEGAL_NAME_TABLE);
-				/*if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+				String approverNumber = groupApproverNumbers.get(rs.LEGAL_NAME_TABLE);
+				if (!approversToEmail.contains(approverNumber) )
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getNameLast()==null?false:demoInfoChanges.getNameLast()) {
@@ -505,9 +516,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.LEGAL_NAME_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.LEGAL_NAME_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getNameFirst()==null?false:demoInfoChanges.getNameFirst()) {
@@ -522,9 +533,11 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.LEGAL_NAME_TABLE);
+				
+				
+				String approverNumber = groupApproverNumbers.get(rs.LEGAL_NAME_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getNameMiddle()==null?false:demoInfoChanges.getNameMiddle()) {
@@ -539,9 +552,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.LEGAL_NAME_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.LEGAL_NAME_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getNameGeneration()==null?false:demoInfoChanges.getNameGeneration()) {
@@ -556,14 +569,14 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.LEGAL_NAME_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.LEGAL_NAME_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		
 		
-		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_MAIL_ADDR");
+		autoApprove = this.getBhrEapDemoAssgnGrp(rs.MAIL_ADDR_TABLE);
 		if(demoInfoChanges.getMailingAddress()==null?false:demoInfoChanges.getMailingAddress()) {
 			fieldName = "Main Address Number<br/>";
 			if (docRequiredFields.getMailingAddress()) {
@@ -576,9 +589,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-			/*	String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.MAIL_ADDR_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if(demoInfoChanges.getMailingPoBox()==null?false:demoInfoChanges.getMailingPoBox()) {
@@ -593,9 +606,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.MAIL_ADDR_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getMailingApt()==null?false:demoInfoChanges.getMailingApt()) {
@@ -610,9 +623,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.MAIL_ADDR_TABLE);
 				if( !approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getMailingCity()==null?false:demoInfoChanges.getMailingCity()) {
@@ -627,9 +640,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.MAIL_ADDR_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getMailingState()==null?false:demoInfoChanges.getMailingState()) {
@@ -644,9 +657,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.MAIL_ADDR_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getMailingZip()==null?false:demoInfoChanges.getMailingZip()) {
@@ -661,9 +674,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.MAIL_ADDR_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getMailingZip4()==null?false:demoInfoChanges.getMailingZip4()) {
@@ -678,14 +691,14 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-			/*	String approverNumber = groupApproverNumbers.get(ReferenceDataService.MAIL_ADDR_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.MAIL_ADDR_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 
 		
-		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_ALT_MAIL_ADDR");
+		autoApprove = this.getBhrEapDemoAssgnGrp(rs.ALT_MAIL_TABLE);
 		if (demoInfoChanges.getAlternateAddress()==null?false:demoInfoChanges.getAlternateAddress()) {
 			fieldName = "Alt Address Number<br/>";
 			if (docRequiredFields.getAlternateAddress()) {
@@ -698,9 +711,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.ALT_MAIL_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getAlternatePoBox()==null?false:demoInfoChanges.getAlternatePoBox()) {
@@ -715,9 +728,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-			/*	String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.ALT_MAIL_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getAlternateApt()==null?false:demoInfoChanges.getAlternateApt()) {
@@ -732,9 +745,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.ALT_MAIL_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getAlternateCity()==null?false:demoInfoChanges.getAlternateCity()) {
@@ -749,9 +762,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.ALT_MAIL_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getAlternateState()==null?false:demoInfoChanges.getAlternateState()) {
@@ -766,9 +779,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.ALT_MAIL_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getAlternateZip()==null?false:demoInfoChanges.getAlternateZip()) {
@@ -783,9 +796,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.ALT_MAIL_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getAlternateZip4()==null?false:demoInfoChanges.getAlternateZip4()) {
@@ -800,14 +813,14 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.ALT_MAIL_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.ALT_MAIL_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 
 	
-		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_HM_PHONE");
+		autoApprove = this.getBhrEapDemoAssgnGrp(rs.HOME_PHONE_TABLE);
 		if (demoInfoChanges.getPhoneHomeArea()==null?false:demoInfoChanges.getPhoneHomeArea()) {
 			fieldName = "Home Phone Area Code<br/>";
 			if (docRequiredFields.getPhoneHomeArea()) {
@@ -820,9 +833,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.HOME_PHONE_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.HOME_PHONE_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getPhoneHomeNum()==null?false:demoInfoChanges.getPhoneHomeNum()) {
@@ -837,13 +850,13 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.HOME_PHONE_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.HOME_PHONE_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		
-		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_BUS_PHONE");
+		autoApprove = this.getBhrEapDemoAssgnGrp(rs.WORK_PHONE_TABLE);
 		if (demoInfoChanges.getPhoneBusArea()==null?false:demoInfoChanges.getPhoneBusArea()) {
 			fieldName = "Business Phone Area Code<br/>";
 			if (docRequiredFields.getPhoneBusArea()) {
@@ -856,9 +869,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.WORK_PHONE_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.WORK_PHONE_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getPhoneBusNum()==null?false:demoInfoChanges.getPhoneBusNum()) {
@@ -873,9 +886,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.WORK_PHONE_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.WORK_PHONE_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getPhoneBusExt()==null?false:demoInfoChanges.getPhoneBusExt()) {
@@ -890,13 +903,13 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.WORK_PHONE_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.WORK_PHONE_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		
-		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_CELL_PHONE");
+		autoApprove = this.getBhrEapDemoAssgnGrp(rs.CELL_PHONE_TABLE);
 		if (demoInfoChanges.getPhoneCellArea()==null?false:demoInfoChanges.getPhoneCellArea()) {
 			fieldName = "Cell Phone Area Code<br/>";
 			if (docRequiredFields.getPhoneCellArea()) {
@@ -909,9 +922,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.CELL_PHONE_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.CELL_PHONE_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getPhoneCellNum()==null?false:demoInfoChanges.getPhoneCellNum()) {
@@ -926,17 +939,17 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.CELL_PHONE_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.CELL_PHONE_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		
-		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_EMAIL");
+		autoApprove = this.getBhrEapDemoAssgnGrp(rs.EMAIL_TABLE);
 		String newHomeEmail = "";
 		String newWorkEmail = "";
 		if (demoInfoChanges.getEmailHome()==null?false:demoInfoChanges.getEmailHome()) {
-			//newHomeEmail = demo.getDemoInfo().getEmail().getHomeEmail();
+			newHomeEmail = newValue.getHmEmail();
 			fieldName = "Home E-mail<br/>";
 			if (docRequiredFields.getEmailHome()) {
 				employeeMessageDocRequired.append(fieldName);
@@ -948,13 +961,13 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMAIL_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.EMAIL_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getEmailWork()==null?false:demoInfoChanges.getEmailWork()) {
-			//newWorkEmail = demo.getDemoInfo().getEmail().getWorkEmail();
+			newWorkEmail = newValue.getEmail();
 			fieldName = "Work E-mail<br/>";
 			if (docRequiredFields.getEmailWork()) {
 				employeeMessageDocRequired.append(fieldName);
@@ -966,14 +979,14 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMAIL_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.EMAIL_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		
 		
-		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_RESTRICT");
+		autoApprove = this.getBhrEapDemoAssgnGrp(rs.RESTRICTION_CODE_TABLE);
 		if (demoInfoChanges.getRestrictionLocal()==null?false:demoInfoChanges.getRestrictionLocal()) {
 			fieldName = "Local Restriction Code<br/>";
 			if (docRequiredFields.getRestrictionLocal()){
@@ -986,10 +999,10 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.RESTRICTION_CODE_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.RESTRICTION_CODE_TABLE);
 				if (!approversToEmail.contains(approverNumber)){
 					approversToEmail.add(approverNumber);
-				}*/
+				}
 			}
 		}
 		if (demoInfoChanges.getRestrictionPublic()==null?false:demoInfoChanges.getRestrictionPublic()) {
@@ -1004,14 +1017,14 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.RESTRICTION_CODE_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.RESTRICTION_CODE_TABLE);
 				if (!approversToEmail.contains(approverNumber)){
 					approversToEmail.add(approverNumber);
-				}*/
+				}
 			}
 		}
 		
-		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_MRTL_STAT");
+		autoApprove = this.getBhrEapDemoAssgnGrp(rs.MARITAL_STATUS_TABLE);
 		if (demoInfoChanges.getMaritalLocal()==null?false:demoInfoChanges.getMaritalLocal()) {
 			fieldName = "Marital Status<br/>";
 			if (docRequiredFields.getMaritalLocal()) {
@@ -1024,13 +1037,13 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.MARITAL_STATUS_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.MARITAL_STATUS_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		
-		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_DRVS_LIC");
+		autoApprove = this.getBhrEapDemoAssgnGrp(rs.DRIVERS_LICENSE_TABLE);
 		if (demoInfoChanges.getDriversNum()==null?false:demoInfoChanges.getDriversNum()) {
 			fieldName = "Driver's License Number<br/>";
 			if (docRequiredFields.getDriversNum()) {
@@ -1043,9 +1056,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.DRIVERS_LICENSE_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.DRIVERS_LICENSE_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getDriversState()==null?false:demoInfoChanges.getDriversState()) {
@@ -1060,12 +1073,12 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.DRIVERS_LICENSE_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.DRIVERS_LICENSE_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
-		autoApprove = this.getBhrEapDemoAssgnGrp("BEA_EMER_CONTACT");
+		autoApprove = this.getBhrEapDemoAssgnGrp(rs.EMERGENCY_CONTACT_TABLE);
 		if (demoInfoChanges.getEmergencyName()==null?false:demoInfoChanges.getEmergencyName()) {
 			fieldName = "Emergency Contact Name<br/>";
 			if (docRequiredFields.getEmergencyName()) {
@@ -1078,9 +1091,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMERGENCY_CONTACT_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.EMERGENCY_CONTACT_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getEmergencyAreaCode()==null?false:demoInfoChanges.getEmergencyAreaCode()) {
@@ -1095,9 +1108,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-			/*	String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMERGENCY_CONTACT_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.EMERGENCY_CONTACT_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getEmergencyPhoneNum()==null?false:demoInfoChanges.getEmergencyPhoneNum()) {
@@ -1112,9 +1125,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMERGENCY_CONTACT_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.EMERGENCY_CONTACT_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getEmergencyPhoneExt()==null?false:demoInfoChanges.getEmergencyPhoneExt()) {
@@ -1129,9 +1142,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMERGENCY_CONTACT_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.EMERGENCY_CONTACT_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getEmergencyRelationship()==null?false:demoInfoChanges.getEmergencyRelationship()) {
@@ -1146,9 +1159,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMERGENCY_CONTACT_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.EMERGENCY_CONTACT_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		if (demoInfoChanges.getEmergencyNotes()==null?false:demoInfoChanges.getEmergencyNotes()) {
@@ -1163,9 +1176,9 @@ public class IndexService {
 			} else {
 				employeeMessageRequestReview.append(fieldName);
 				hasRequestReview = true;
-				/*String approverNumber = groupApproverNumbers.get(ReferenceDataService.EMERGENCY_CONTACT_TABLE);
+				String approverNumber = groupApproverNumbers.get(rs.EMERGENCY_CONTACT_TABLE);
 				if (!approversToEmail.contains(approverNumber) )
-					approversToEmail.add(approverNumber);*/
+					approversToEmail.add(approverNumber);
 			}
 		}
 		
@@ -1200,7 +1213,7 @@ public class IndexService {
 		
 		messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
 		
-		String toEmail ="";//need to add new userNewEmail too
+		String toEmail ="";
 		if (!"".equals(userWorkEmail)) {
 			toEmail = userWorkEmail;
 		} else if (!"".equals(userHomeEmail)) {
@@ -1211,39 +1224,61 @@ public class IndexService {
 				MailUtil.sendEmail(toEmail, subject, messageContents.toString());
 			} 
 			catch(Exception ex) {
-				logger.info("Self Service Change Demo Info: An exception has occured with mailing the user "+userName+".");
+				logger.info("Self Service Change Demo Info: An exception has occured with mailing ");
 			} 
 		} else {
-			logger.info("Self Service Change Demo Info: Unable to send an email confirmation.  No email address is avaiable for user "+userName+".");
+			logger.info("Self Service Change Demo Info: Unable to send an email confirmation.  No email address is avaiable");
+		}
+		
+		String toNewEmail ="";
+		
+		if (!"".equals(newWorkEmail)) {
+			toNewEmail = newWorkEmail;
+		} else if (!"".equals(newHomeEmail)) {
+			toNewEmail = newHomeEmail;
+		}
+		if (toNewEmail!=null && toNewEmail.trim().length() > 0) {
+			try{
+				MailUtil.sendEmail(toNewEmail, subject, messageContents.toString());
+			} 
+			catch(Exception ex) {
+				logger.info("Self Service Change Demo Info: An exception has occured with mailing ");
+			} 
+		} else {
+			logger.info("Self Service Change Demo Info: Unable to send an email confirmation.  No email address is avaiable");
 		}
 		
 		//*********************SEND APPROVER EMAIL***********************************
-				/*StringBuilder approverEmailMessage = new StringBuilder();
+		StringBuilder approverEmailMessage = new StringBuilder();
 
-				approverEmailMessage.append((userFirstName == null || userFirstName.trim().equals("")) ? "" : userFirstName.trim());
-				approverEmailMessage.append((userMiddleName == null || userMiddleName.trim().equals("")) ? "" : " " + userMiddleName.trim());
-				approverEmailMessage.append((userLastName == null || userLastName.trim().equals("")) ? "" : " " + userLastName.trim());
-				approverEmailMessage.append((userGeneration == null || userGeneration.trim().equals("")) ? "" : " " + userGeneration.trim());
+		approverEmailMessage.append((userFirstName == null || userFirstName.trim().equals("")) ? "" : userFirstName.trim());
+		//approverEmailMessage.append((userMiddleName == null || userMiddleName.trim().equals("")) ? "" : " " + userMiddleName.trim());
+		approverEmailMessage.append((userLastName == null || userLastName.trim().equals("")) ? "" : " " + userLastName.trim());
+		//approverEmailMessage.append((userGeneration == null || userGeneration.trim().equals("")) ? "" : " " + userGeneration.trim());
 
-				approverEmailMessage.append(" has submitted a request to change personnel information.\n");
-				approverEmailMessage.append("The request is ready for your approval. \n");
-				approverEmailMessage.append("Login to HR to approve.");
+		approverEmailMessage.append(" has submitted a request to change personnel information.<br/>");
+		approverEmailMessage.append("The request is ready for your approval. <br/>");
+		approverEmailMessage.append("Login to HR to approve.");
+		
+		approverEmailMessage.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
 
-				for(String approverNumber : approversToEmail) {
-					try {
-						User approver = demoDao.getApproverById(approverNumber);
+		for(String approverNumber : approversToEmail) {
+			try {
+				BhrEmpDemo approver = userDao.getUserDetail(approverNumber);
 
-						String approverWorkEmail = approver.getWorkEmail();
-						String approverHomeEmail = approver.getHomeEmail();
-
-						msg.setText(approver.getFirstName() + " " + approver.getLastName() + ",\n\n" + approverEmailMessage.toString());
-						msg.setTo( (approverWorkEmail == null || approverWorkEmail.equals("")) ? approverHomeEmail : approverWorkEmail );
-						mailUtilService.sendMail(msg);
-					} catch(Exception ex) {
-						log.error("An exception has occured with mailing the approver.", ex);
-						return false;
-					}
-				}*/
+				String approverWorkEmail = approver.getEmail();
+				String approverHomeEmail = approver.getHmEmail();
+				StringBuilder appMessageContents = new StringBuilder();
+				appMessageContents.append(approver.getNameF()+ " " + approver.getNameL()+ ",<br/><br/>" + approverEmailMessage.toString());
+				String toApproverEmail =(approverWorkEmail == null || approverWorkEmail.equals("")) ? approverHomeEmail : approverWorkEmail;
+				if (toNewEmail!=null && toNewEmail.trim().length() > 0) {
+					MailUtil.sendEmail(toApproverEmail, subject, appMessageContents.toString());
+				}
+				
+			} catch(Exception ex) {
+				logger.info("Self Service Change Demo Info: An exception has occured with mailing the approver "+ex.toString());
+			}
+		}
 		
 	}
 }

@@ -428,6 +428,7 @@ public class ProfileController {
 	public ModelAndView saveAll(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));//this is old value before change, we need the old info when sending email
 
 		ModelAndView mav = new ModelAndView();
 
@@ -508,14 +509,11 @@ public class ProfileController {
 
 		// Send out Email to User
 		isAnyChanges = (Boolean) session.getAttribute("hasDemoChanged");
-		if (isAnyChanges) {
+		if (isAnyChanges) {		
 			BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
 			demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
 			DemoInfoFields docRequiredFields = this.referenceService.populateDocRequiredFields();
-			this.indexService.personDataChangeSendEmailConfirmation(user.getUsrname(), userDetail.getNameF(),
-					userDetail.getNameL(), userDetail.getHmEmail(), userDetail.getEmail(), demoInfoChanges,
-					docRequiredFields);
-
+			this.indexService.personDataChangeSendEmailConfirmation(demo,userDetail,demoInfoChanges,docRequiredFields);
 		}
 
 		this.getProfileDetails(req.getSession(), mav, null);
@@ -1289,40 +1287,20 @@ public class ProfileController {
 		BeaCellPhone cellPhoneRequest;
 		BeaBusPhone businessPhoneRequest;
 		
-		//Compare current and new value so to decide if need to send out email
-		if(!phoneAreaNew.equals(demo.getPhoneArea())) {
-			isAnyChanges = true;
-			demoInfoChanges.setPhoneHomeArea(true);
-		}
-		if(!phoneNbrNew.equals(demo.getPhoneNbr())) {
-			isAnyChanges = true;
-			demoInfoChanges.setPhoneHomeNum(true);
-		}
-		if(!phoneAreaCellNew.equals(demo.getPhoneAreaCell())) {
-			isAnyChanges = true;
-			demoInfoChanges.setPhoneCellArea(true);
-		}
-		if(!phoneNbrCellNew.equals(demo.getPhoneNbrCell())) {
-			isAnyChanges = true;
-			demoInfoChanges.setPhoneCellNum(true);
-		}
-		if(!phoneAreaBusNew.equals(demo.getPhoneAreaBus())) {
-			isAnyChanges = true;
-			demoInfoChanges.setPhoneBusArea(true);
-		}
-		if(!phoneNbrBusNew.equals(demo.getPhoneNbrBus())) {
-			isAnyChanges = true;
-			demoInfoChanges.setPhoneBusNum(true);
-		}
-
-		session.setAttribute("hasDemoChanged", isAnyChanges);
-		session.setAttribute("demoInfoChanges", demoInfoChanges);
 
 		DemoOption demoOptions = this.indexService.getDemoOption();
 
 		if (demoOptions.getFieldDisplayOptionHomePhone().trim().equals("U")) {
 
 			phoneNbrNew = phoneNbrNew.replaceAll("-", "");
+			if(!phoneAreaNew.equals(demo.getPhoneArea())) {
+				isAnyChanges = true;
+				demoInfoChanges.setPhoneHomeArea(true);
+			}
+			if(!phoneNbrNew.equals(demo.getPhoneNbr())) {
+				isAnyChanges = true;
+				demoInfoChanges.setPhoneHomeNum(true);
+			}
 			if (this.indexService.getBhrEapDemoAssgnGrp("BEA_HM_PHONE")) {
 				homePhoneRequest = new BeaHmPhone(demo, empNbr, reqDts, phoneAreaNew, phoneNbrNew, 'A');
 				this.indexService.saveHomePhoneRequest(homePhoneRequest);
@@ -1350,6 +1328,14 @@ public class ProfileController {
 		if (demoOptions.getFieldDisplayOptionCellPhone().trim().equals("U")) {
 
 			phoneNbrCellNew = phoneNbrCellNew.replaceAll("-", "");
+			if(!phoneAreaCellNew.equals(demo.getPhoneAreaCell())) {
+				isAnyChanges = true;
+				demoInfoChanges.setPhoneCellArea(true);
+			}
+			if(!phoneNbrCellNew.equals(demo.getPhoneNbrCell())) {
+				isAnyChanges = true;
+				demoInfoChanges.setPhoneCellNum(true);
+			}
 			if (this.indexService.getBhrEapDemoAssgnGrp("BEA_CELL_PHONE")) {
 				cellPhoneRequest = new BeaCellPhone(demo, empNbr, reqDts, phoneAreaCellNew, phoneNbrCellNew, 'A');
 				this.indexService.saveCellPhoneRequest(cellPhoneRequest);
@@ -1370,12 +1356,27 @@ public class ProfileController {
 				this.indexService.saveCellPhoneRequest(cellPhoneRequest);
 			}
 //        this.getProfileDetails(session, mav,null);
+
+			session.setAttribute("hasDemoChanged", isAnyChanges);
+			session.setAttribute("demoInfoChanges", demoInfoChanges);
 			mav.addObject("activeTab", "cellPhoneRequest");
 		}
 
 		if (demoOptions.getFieldDisplayOptionWorkPhone().trim().equals("U")) {
 
 			phoneNbrBusNew = phoneNbrBusNew.replaceAll("-", "");
+			if(!phoneAreaBusNew.equals(demo.getPhoneAreaBus())) {
+				isAnyChanges = true;
+				demoInfoChanges.setPhoneBusArea(true);
+			}
+			if(!phoneNbrBusNew.equals(demo.getPhoneNbrBus())) {
+				isAnyChanges = true;
+				demoInfoChanges.setPhoneBusNum(true);
+			}
+			if(!busPhoneExtNew.equals(demo.getBusPhoneExt())) {
+				isAnyChanges = true;
+				demoInfoChanges.setPhoneBusExt(true);
+			}
 			if (this.indexService.getBhrEapDemoAssgnGrp("BEA_BUS_PHONE")) {
 				businessPhoneRequest = new BeaBusPhone(demo, empNbr, reqDts, phoneAreaBusNew, phoneNbrBusNew,
 						busPhoneExtNew, 'A');

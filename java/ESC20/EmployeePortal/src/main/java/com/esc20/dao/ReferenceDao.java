@@ -1,7 +1,9 @@
 package com.esc20.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -293,5 +295,20 @@ public class ReferenceDao {
 		return result;
 	}
 
+	public Map<String,String> getApproverEmployeeNumbers() {
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT GRP_NAME, emp_nbr FROM SEC_USERS, BHR_EAP_DEMO_ASSGN_GRP ");
+		sql.append("WHERE BHR_EAP_DEMO_ASSGN_GRP.apprvr_usr_id = usr_id");
 
+		Query q = session.createSQLQuery(sql.toString());
+		@SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
+		
+		Map<String,String> result = new HashMap<>();
+		for(Object[] item: res) {
+			result.put(""+item[0], ""+item[1]);
+		}
+		return result;
+	}
 }
