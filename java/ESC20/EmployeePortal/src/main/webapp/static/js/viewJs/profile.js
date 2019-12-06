@@ -2,26 +2,21 @@ var bank01, bank02
 var formSelect, undoForm
 var formUndoSelect
 var willSubmitFormDelete
-var requestArray = location.pathname.split('/')
-var requestLen = requestArray.length
-document.onreadystatechange = function() { 
-    if (document.readyState === "interactive") { 
-        console.log(document.readyState);
-        if(requestArray[requestLen-1]=='saveAll'){
-            $(".loadingOn").show()
-        }
-    }
-    if (document.readyState === "complete") { 
-        console.log(document.readyState);
-    }
-}
-window.onload=function(){
-    $(".loadingOn").hide()
-} 
+// var requestArray = location.pathname.split('/')
+// var requestLen = requestArray.length
+// document.onreadystatechange = function() { 
+//     if (document.readyState === "interactive") { 
+//         console.log(document.readyState);
+//         if(requestArray[requestLen-1]=='saveAll'){
+//             $(".loadingOn").show()
+//         }
+//     }
+//     if (document.readyState === "complete") { 
+//         console.log(document.readyState);
+//         $(".loadingOn").hide()
+//     }
+// }
 $(function () {
-    if(requestArray[requestLen-1]=='saveAll'){
-        $(".loadingOn").show()
-    }
     if (passwordModalShow == 'true') {
         $("#changePasswordModal").modal('show')
     }
@@ -152,7 +147,9 @@ $(function () {
             })
         }
     })
-
+    $(".saveOrCancel .save-btn[type='submit']").click(function(){
+        $(".loadingOn").show()
+    })
     $('.edit-btn').click(function () {
         $('.addBankForm').hide()
         $('.add-bank-btn').show()
@@ -339,6 +336,7 @@ $(function () {
             formSelect.submit()
         } else {
             console.log('modal -- undo')
+            $(".loadingOn").show()
             profileForm = $('#profileForm')
             var t = $("#profileForm").serializeArray();
             profileForm.submit();
@@ -405,6 +403,7 @@ $(function () {
             driverLicenseFormValid
         ) {
             console.log('save -- all')
+            $(".loadingOn").show()
             $('#undoName').val("");
             // profileForm = $('#profileForm')
             //  var t = $("#profileForm").serializeArray();
