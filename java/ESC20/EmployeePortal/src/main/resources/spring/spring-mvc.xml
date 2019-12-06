@@ -25,4 +25,13 @@
 	        <property name="defaultErrorView" value="error"/>
 	        <property name="exceptionAttribute" value="ex"></property>
 	    </bean>
+	       <!-- Load ProperyFile -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">    
+        <property name="locations">    
+           <list>    
+           	  <value>classpath:txeis.properties</value>
+           </list>
+        </property>
+        <property name="fileEncoding" value="utf-8"/>
+    </bean> 
 </beans>

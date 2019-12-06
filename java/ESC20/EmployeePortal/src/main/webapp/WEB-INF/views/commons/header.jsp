@@ -137,6 +137,8 @@ var pictureChooseValidator = "${sessionScope.languageJSON.validator.pictureChoos
 var availableErrorValidator = "${sessionScope.languageJSON.validator.availableError}";
 var pleaseEnterWholePositiveNum = "${sessionScope.languageJSON.validator.pleaseEnterWholePositiveNum}"
 
+var helpLinkFromProperties = "${sessionScope.helpLinkFromProperties}"
+
 
 var languageSet = "${sessionScope.language}"
 </script>

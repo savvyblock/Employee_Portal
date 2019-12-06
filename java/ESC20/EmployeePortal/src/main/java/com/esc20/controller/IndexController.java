@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +28,6 @@ import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
-import com.esc20.util.MailUtil;
 import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONObject;
@@ -35,6 +35,10 @@ import net.sf.json.JSONObject;
 @Controller
 @RequestMapping("/")
 public class IndexController {
+	
+	@Value("${employeeportal.help.url}")
+    private String helpUrl;
+	
 	@Autowired
 	private IndexService indexService;
 
@@ -53,6 +57,9 @@ public class IndexController {
 			req.getSession().removeAttribute("isUserLoginFailure");
 			mav.addObject("isUserLoginFailure", "true");
 		}
+		
+		req.getSession().setAttribute("helpLinkFromProperties", helpUrl);
+		
 		return mav;
 	}
 

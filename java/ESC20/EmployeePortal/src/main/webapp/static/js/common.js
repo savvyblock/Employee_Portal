@@ -102,7 +102,7 @@ $(function() {
     var lastItem = itemUrlArry[itemUrlArry.length - 1]
     var lastTowItem = itemUrlArry[itemUrlArry.length - 2]
     var helpLinkParam = helpJson[lastItem] || helpJson[lastTowItem]
-    var helpLink = "https://help.ascendertx.com/employeeportaltest/doku.php/" + (helpLinkParam || '')
+    var helpLink = helpLinkFromProperties + '/'+ (helpLinkParam || '')
     $("a.helpLink").attr('href',helpLink)
 })
 function setGlobal(){

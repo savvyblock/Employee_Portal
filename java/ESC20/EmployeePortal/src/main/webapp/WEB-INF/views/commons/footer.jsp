@@ -5,7 +5,7 @@
         <span>${sessionScope.constantJSON.label.allRightReserved}</span>
 	</div>
 	<div class="footer-help">
-        <a href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank"
+        <a class="helpLink"  href="" target="_blank"
            aria-label="${sessionScope.constantJSON.accessHint.goHelp}" title="${sessionScope.constantJSON.accessHint.goHelp}">
             Help <i class="fa fa-question-circle"></i>
         </a>
