@@ -1177,7 +1177,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="altAddrNumber"
                                                         aria-label="${sessionScope.languageJSON.profile.altAddrNumber}"
                                                         <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
-                                                        value="${altMailAddrRequest.smrAddrNbrNew}"
+                                                        value="${fn:trim(altMailAddrRequest.smrAddrNbrNew)}"
                                                         
                                                     />
                                                 </div>
