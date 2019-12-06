@@ -1,28 +1,28 @@
 var bank01, bank02
-var formSelect,undoForm
+var formSelect, undoForm
 var formUndoSelect
 var willSubmitFormDelete
-$(function() {
-    if(passwordModalShow == 'true'){
+$(function () {
+    if (passwordModalShow == 'true') {
         $("#changePasswordModal").modal('show')
     }
-    personalValidatorValue == 'U'?personalValidator():''
-    maritalStatusValidatorValue == 'U'?maritalStatusValidator():''
-    driverLicenseValidatorValue == 'U'?driverLicenseValidator():''
-    restrictionCodeFormValidatorValue == 'U'?restrictionCodeFormValidator():''
-    emailFormValidatorValue == 'U'?emailFormValidator():''
-    emergencyContactFormValidatorValue == 'U'?emergencyContactFormValidator():''
-    mailingAddressValidatorValue == 'U'?mailingAddressValidator():''
-    alternativeAddressValidatorValue == 'U'?alternativeAddressValidator():''
-    workPhoneValidatorValue == 'U' ||homePhoneValidatorValue == 'U' ||cellPhoneValidatorValue == 'U' ?phoneValidator():''
-    w4InfoValidatorValue == 'U'?w4InfoValidator():''
+    personalValidatorValue == 'U' ? personalValidator() : ''
+    maritalStatusValidatorValue == 'U' ? maritalStatusValidator() : ''
+    driverLicenseValidatorValue == 'U' ? driverLicenseValidator() : ''
+    restrictionCodeFormValidatorValue == 'U' ? restrictionCodeFormValidator() : ''
+    emailFormValidatorValue == 'U' ? emailFormValidator() : ''
+    emergencyContactFormValidatorValue == 'U' ? emergencyContactFormValidator() : ''
+    mailingAddressValidatorValue == 'U' ? mailingAddressValidator() : ''
+    alternativeAddressValidatorValue == 'U' ? alternativeAddressValidator() : ''
+    workPhoneValidatorValue == 'U' || homePhoneValidatorValue == 'U' || cellPhoneValidatorValue == 'U' ? phoneValidator() : ''
+    w4InfoValidatorValue == 'U' ? w4InfoValidator() : ''
     initSessionPws()
     //edit
-    bankAccountValidatorValue == 'U'?bankAccountValidator():''
+    bankAccountValidatorValue == 'U' ? bankAccountValidator() : ''
     //add
-    bankAccountValidatorValue == 'U'?bankAccountAddValidator():''
+    bankAccountValidatorValue == 'U' ? bankAccountAddValidator() : ''
     bankAccountAddValidator()
-    $("#saveEmail").on('click',function(){
+    $("#saveEmail").on('click', function () {
         var workE = $("#emailWorkEmail").val()
         var workEV = $("#emailVerifyWorkEmail").val()
         var homeE = $("#emailHomeEmail").val()
@@ -33,41 +33,49 @@ $(function() {
         emailFormValidator.validate()
         console.log(emailFormValidator.isValid())
         if (emailFormValidator.isValid()) {
-            if(workE===workEV && homeE===homeEV){
+            if (workE === workEV && homeE === homeEV) {
                 $("#profileForm")[0].submit()
-            }else{
-                if(workE!=workEV){
+            } else {
+                if (workE != workEV) {
                     $("#emailWorkEmail").parents(".form-group").addClass("has-error").removeClass('has-success')
                     $("#emailVerifyWorkEmail").parents(".form-group")
-                    .addClass("has-error")
-                    .removeClass('has-success')
-                    .find(".help-block[data-bv-validator='identical']")
-                    .show()
+                        .addClass("has-error")
+                        .removeClass('has-success')
+                        .find(".help-block[data-bv-validator='identical']")
+                        .show()
                 }
-                if(homeE!=homeEV){
+                if (homeE != homeEV) {
                     $("#emailHomeEmail").parents(".form-group").addClass("has-error").removeClass('has-success')
                     $("#emailVerifyHomeEmail")
-                    .parents(".form-group")
-                    .addClass("has-error")
-                    .removeClass('has-success')
-                    .find(".help-block[data-bv-validator='identical']")
-                    .show()
+                        .parents(".form-group")
+                        .addClass("has-error")
+                        .removeClass('has-success')
+                        .find(".help-block[data-bv-validator='identical']")
+                        .show()
                 }
             }
-            
+
         }
     })
-    $('.icheckRadioBank').on('click', function(event) {
+    $('.icheckRadioBank').on('click', function (event) {
         if ($(this).is(':checked')) {
             $(this).parents(".profile-item").find(".bankAmount .amount_2").val("0.00")
+            var currentBankCode = $(this).parents(".profile-item").find("input[name='code']").val()
+            //if there is no value in "current bank"
+            $(".undo-btn.undoBankHaveModal").show()
+            $(".undo-btn.undoBankNoModal").hide()
+            if (!currentBankCode || currentBankCode == '') {
+                $(this).parents(".profile-item").find(".undo-btn.undoBankHaveModal").hide()
+                $(this).parents(".profile-item").find(".undo-btn.undoBankNoModal").show()
+            }
             console.log($(this).parents(".profile-item").find(".bankAmount .amount_2").val())
             $(".bankAccountBlock").removeClass("asPrimary")
             $(this).parents(".bankAccountBlock").addClass("asPrimary")
-            $(".bankAccountBlock input[name='displayAmountNew']").attr('type','text')
-            $("#saveBankDisplayAmount").attr('type','text')
-            $(this).parents(".bankAccountBlock").find("input[name='displayAmountNew']").attr('type','hidden')
+            $(".bankAccountBlock input[name='displayAmountNew']").attr('type', 'text')
+            $("#saveBankDisplayAmount").attr('type', 'text')
+            $(this).parents(".bankAccountBlock").find("input[name='displayAmountNew']").attr('type', 'hidden')
             var indexBank = $('.icheckRadioBank').index(this)
-            $('.icheckRadioBank').each(function(index) {
+            $('.icheckRadioBank').each(function (index) {
                 if (index != indexBank) {
                     $(this).prop('checked', false)
                 }
@@ -75,58 +83,58 @@ $(function() {
         }
     })
     var currentAccountLen = $(".bankAccountBlock").length;
-    if(currentAccountLen==0){
+    if (currentAccountLen == 0) {
         $("#primary_add").prop('checked', true)
-        $("#saveBankDisplayAmount").attr('type','hidden')
-    }else{
+        $("#saveBankDisplayAmount").attr('type', 'hidden')
+    } else {
         $("#primary_add").prop('checked', false)
-        $("#saveBankDisplayAmount").attr('type','text')
+        $("#saveBankDisplayAmount").attr('type', 'text')
     }
-    $('#primary_add').on('click', function(event) {
+    $('#primary_add').on('click', function (event) {
         if ($(this).is(':checked')) {
             $(this).parents(".profile-item").find(".bankAmount .amount_2").val("0.00")
             console.log($(this).parents(".profile-item").find(".bankAmount .amount_2").val())
             $(".bankAccountBlock").removeClass("asPrimary")
             // $(this).parents(".bankAccountBlock").addClass("asPrimary")
-            $(".bankAccountBlock input[name='displayAmountNew']").attr('type','text')
-            $(this).parents(".addBankForm").find("input#saveBankDisplayAmount").attr('type','hidden')
+            $(".bankAccountBlock input[name='displayAmountNew']").attr('type', 'text')
+            $(this).parents(".addBankForm").find("input#saveBankDisplayAmount").attr('type', 'hidden')
             var indexBank = $('.icheckRadioBank').index(this)
-            $('.icheckRadioBank').each(function(index) {
+            $('.icheckRadioBank').each(function (index) {
                 if (index != indexBank) {
                     $(this).prop('checked', false)
                 }
             })
         }
     })
-    $(".bankAccountBlock").each(function(){
+    $(".bankAccountBlock").each(function () {
         var bankAmount = $(this).find(".bankAmount .amount_2").val()
         console.log(bankAmount)
-        if(bankAmount == '0.00'){
+        if (bankAmount == '0.00') {
             $(this).find(".icheckRadioBank").prop('checked', true)
             $(".bankAccountBlock").removeClass("asPrimary")
             $(this).addClass("asPrimary")
-            $(".bankAccountBlock input[name='displayAmountNew']").attr('type','text')
-            $(this).find("input[name='displayAmountNew']").attr('type','hidden')
+            $(".bankAccountBlock input[name='displayAmountNew']").attr('type', 'text')
+            $(this).find("input[name='displayAmountNew']").attr('type', 'hidden')
             $(this).find(".yesPrimary").show()
             $(this).find(".noPrimary").hide()
             return false
         }
     })
-    $('.icheckRadioBank').keypress(function(e) {
+    $('.icheckRadioBank').keypress(function (e) {
         console.log(e)
         var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode
         if (eCode == 13) {
             $(this).click()
             var indexBank = $('.icheckRadioBank').index(this)
-            $('.icheckRadioBank').each(function(index) {
+            $('.icheckRadioBank').each(function (index) {
                 if (index != indexBank) {
                     $(this).prop('checked', false)
                 }
             })
         }
     })
-    
-    $('.edit-btn').click(function() {
+
+    $('.edit-btn').click(function () {
         $('.addBankForm').hide()
         $('.add-bank-btn').show()
         $('.profile-item').removeClass('activeEdit')
@@ -156,36 +164,36 @@ $(function() {
                 .focus()
         }
     })
-    $('.cancel-btn').click(function() {
+    $('.cancel-btn').click(function () {
         $(this)
             .parents('.profile-item')
             .removeClass('activeEdit')
         clearValidator()
     })
-    $('.cancel-add-btn').click(function() {
+    $('.cancel-add-btn').click(function () {
         $('.addBankForm').hide()
         $('.add-bank-btn').show()
     })
-    $('.add-bank-btn').click(function() {
+    $('.add-bank-btn').click(function () {
         var arrayBankLength = $('form.usedBank').length
         $('.profile-item').removeClass('activeEdit')
         $('.addBankForm').addClass('activeEdit')
-       if (arrayBankLength >= 2) {
-           $('.bankSizeError').show()
-       } else {
+        if (arrayBankLength >= 2) {
+            $('.bankSizeError').show()
+        } else {
             $('.addBankForm').show()
-           $(this).hide()
-       }
+            $(this).hide()
+        }
     })
 
-    $('#saveNewBank').click(function() {
-        var bankArry =  $(".updateBankForm");
-        var bankLen =  bankArry.length;
+    $('#saveNewBank').click(function () {
+        var bankArry = $(".updateBankForm");
+        var bankLen = bankArry.length;
         var arrayValidate = bankArry.map(function (index) {
             var bankAccountForm = '#bankAccountForm_' + index
             var bankAccountValidator = $(bankAccountForm).data('bootstrapValidator')
             bankAccountValidator.validate()
-            if(bankAccountValidator.isValid()){
+            if (bankAccountValidator.isValid()) {
                 return true
             }
         });
@@ -194,7 +202,7 @@ $(function() {
         bankAccountValidator.validate()
         console.log(bankAccountValidator.isValid())
 
-        
+
 
         if (bankAccountValidator.isValid() && arrayValidate.length == bankLen) {
             var freq = $('#freq').val()
@@ -214,14 +222,14 @@ $(function() {
             $('#hiddendisplayAmount').val(saveBankDisplayAmount)
 
             var newBank = {
-                code:saveBankCode,
-                accountNumber:saveBankAccountNumber,
-                displayLabel:saveBankDisplayLabel,
-                displayAmount:saveBankDisplayAmount,
+                code: saveBankCode,
+                accountNumber: saveBankAccountNumber,
+                displayLabel: saveBankDisplayLabel,
+                displayAmount: saveBankDisplayAmount,
             }
             var result = checkDuplicate(newBank)
             console.log(result.bankArray)
-            if(result.hasDuc){
+            if (result.hasDuc) {
                 $(".duplicateBankAccountError").show()
                 return false
             }
@@ -230,102 +238,102 @@ $(function() {
             // return false
             $('#saveBankHidden').submit()
         }
-    })  
-    $(".decimal2").blur(function(){
+    })
+    $(".decimal2").blur(function () {
         var val = $(this).val()
-        if(!val || val==''){
+        if (!val || val == '') {
             return
         }
         var valArry = val.split('.')
-        if(valArry.length>1){
-            if(valArry[1].length<2){
+        if (valArry.length > 1) {
+            if (valArry[1].length < 2) {
                 var len = valArry[1].length
                 var res = valArry[1]
-                for(var i =0;i<len;i++){
+                for (var i = 0; i < len; i++) {
                     res = res + '0'
                 }
                 $(this).val(valArry[0] + '.' + res)
             }
-        }else{
+        } else {
             var res = ''
-            for(var i =0;i<2;i++){
+            for (var i = 0; i < 2; i++) {
                 res = res + '0'
             }
             $(this).val(valArry[0] + '.' + res)
         }
-    }) 
-    $('#undoNameRequest').click(function() {
-        // $('#undoModal').modal('show')
-    	$('#undoName').val("deleteNameRequest");
-//        formSelect = $('#deleteNameRequest')
     })
-    $('#undoMaritalRequest').click(function(e) {
+    $('#undoNameRequest').click(function () {
+        // $('#undoModal').modal('show')
+        $('#undoName').val("deleteNameRequest");
+        //        formSelect = $('#deleteNameRequest')
+    })
+    $('#undoMaritalRequest').click(function (e) {
         e.preventDefault()
         // $('#undoModal').modal('show')
-//        formSelect = $('#deleteMaritalRequest')
+        //        formSelect = $('#deleteMaritalRequest')
         $('#undoName').val("deleteMaritalRequest");
     })
-    $('#undoDriverLicense').click(function() {
+    $('#undoDriverLicense').click(function () {
         // $('#undoModal').modal('show')
-//        formSelect = $('#deleteDriversLicense')
+        //        formSelect = $('#deleteDriversLicense')
         $('#undoName').val("deleteDriversLicenseRequest");
     })
-    $('#undoRestriction').click(function() {
+    $('#undoRestriction').click(function () {
         // $('#undoModal').modal('show')
-//        formSelect = $('#deleteRestrictionCodesRequest')
+        //        formSelect = $('#deleteRestrictionCodesRequest')
         $('#undoName').val("deleteRestrictionCodesRequest");
     })
-    $('#undoEmail').click(function() {
+    $('#undoEmail').click(function () {
         // $('#undoModal').modal('show')
-//        formSelect = $('#deleteEmail')
+        //        formSelect = $('#deleteEmail')
         $('#undoName').val("deleteEmail");
     })
-    $('#undoEmergencyContact').click(function() {
+    $('#undoEmergencyContact').click(function () {
         // $('#undoModal').modal('show')
-//        formSelect = $('#deleteEmergencyContact')
+        //        formSelect = $('#deleteEmergencyContact')
         $('#undoName').val("deleteEmergencyContact");
     })
-    $('#undoMailingAddress').click(function() {
+    $('#undoMailingAddress').click(function () {
         // $('#undoModal').modal('show')
-//        formSelect = $('#deleteMailAddr')
+        //        formSelect = $('#deleteMailAddr')
         $('#undoName').val("deleteMailAddr");
     })
-    $('#undoAlternative').click(function() {
+    $('#undoAlternative').click(function () {
         // $('#undoModal').modal('show')
-//        formSelect = $('#deleteAltMailAddr')
+        //        formSelect = $('#deleteAltMailAddr')
         $('#undoName').val("deleteAltMailAddr");
     })
-    $('#undoPhoneNumber').click(function() {
+    $('#undoPhoneNumber').click(function () {
         // $('#undoModal').modal('show')
-//        formSelect = $('#deletePhone')
+        //        formSelect = $('#deletePhone')
         $('#undoName').val("deletePhone");
     })
-    $('#undoW4').click(function() {
+    $('#undoW4').click(function () {
         // $('#undoModal').modal('show')
-       formSelect = $('#deleteW4')
-       undoForm = 'deleteW4'
+        formSelect = $('#deleteW4')
+        undoForm = 'deleteW4'
         // $('#undoName').val("deleteW4");
     })
-    $('.sureUndo').click(function() {
-        if(undoForm == 'deleteW4' || undoForm == 'undoBank'){
+    $('.sureUndo').click(function () {
+        if (undoForm == 'deleteW4' || undoForm == 'undoBank') {
             undoForm = null
             formSelect.submit()
-        }else{
+        } else {
             console.log('modal -- undo')
             profileForm = $('#profileForm')
             var t = $("#profileForm").serializeArray();
             profileForm.submit();
         }
-        
-        
+
+
     })
-    $('.sureDelete').click(function() {
+    $('.sureDelete').click(function () {
         console.log('modal -- delete')
         willSubmitFormDelete.submit()
     })
-    
+
     //133
-    $('#saveAll').click(function() {
+    $('#saveAll').click(function () {
         var personalFormValidator = $('#personalForm').data(
             'bootstrapValidator'
         )
@@ -350,107 +358,107 @@ $(function() {
         var phoneFormValidator = $('#phoneForm').data(
             'bootstrapValidator'
         )
-        personalFormValidator?personalFormValidator.validate():true;
-        maritalStatusFormValidator?maritalStatusFormValidator.validate():true;
-        driverLicenseFormValidator?driverLicenseFormValidator.validate():true;
-        emailFormValidator?emailFormValidator.validate():true;
-        emergencyContactFormValidator?emergencyContactFormValidator.validate():true;
-        mailingAddressFormValidator?mailingAddressFormValidator.validate():true;
-        alternativeAddressFormValidator?alternativeAddressFormValidator.validate():true;
-        phoneFormValidator?phoneFormValidator.validate():true;
+        personalFormValidator ? personalFormValidator.validate() : true;
+        maritalStatusFormValidator ? maritalStatusFormValidator.validate() : true;
+        driverLicenseFormValidator ? driverLicenseFormValidator.validate() : true;
+        emailFormValidator ? emailFormValidator.validate() : true;
+        emergencyContactFormValidator ? emergencyContactFormValidator.validate() : true;
+        mailingAddressFormValidator ? mailingAddressFormValidator.validate() : true;
+        alternativeAddressFormValidator ? alternativeAddressFormValidator.validate() : true;
+        phoneFormValidator ? phoneFormValidator.validate() : true;
 
-        var personalFormValid = personalFormValidator?personalFormValidator.isValid():true
-        var maritalStatusFormValid = maritalStatusFormValidator?maritalStatusFormValidator.isValid():true
-        var emailFormValid = emailFormValidator?emailFormValidator.isValid():true
-        var emergencyContactFormValid = emergencyContactFormValidator?emergencyContactFormValidator.isValid():true
-        var mailingAddressFormValid = mailingAddressFormValidator?mailingAddressFormValidator.isValid():true
-        var phoneFormValid = phoneFormValidator?phoneFormValidator.isValid():true
-        var driverLicenseFormValid = driverLicenseFormValidator?driverLicenseFormValidator.isValid():true
-        var alternativeAddressValid = alternativeAddressFormValidator?alternativeAddressFormValidator.isValid():true
+        var personalFormValid = personalFormValidator ? personalFormValidator.isValid() : true
+        var maritalStatusFormValid = maritalStatusFormValidator ? maritalStatusFormValidator.isValid() : true
+        var emailFormValid = emailFormValidator ? emailFormValidator.isValid() : true
+        var emergencyContactFormValid = emergencyContactFormValidator ? emergencyContactFormValidator.isValid() : true
+        var mailingAddressFormValid = mailingAddressFormValidator ? mailingAddressFormValidator.isValid() : true
+        var phoneFormValid = phoneFormValidator ? phoneFormValidator.isValid() : true
+        var driverLicenseFormValid = driverLicenseFormValidator ? driverLicenseFormValidator.isValid() : true
+        var alternativeAddressValid = alternativeAddressFormValidator ? alternativeAddressFormValidator.isValid() : true
 
-        if( personalFormValid&&
-            maritalStatusFormValid&&
-            emailFormValid&&
-            emergencyContactFormValid&&
-            mailingAddressFormValid&&
-            phoneFormValid&&
-            alternativeAddressValid&&
+        if (personalFormValid &&
+            maritalStatusFormValid &&
+            emailFormValid &&
+            emergencyContactFormValid &&
+            mailingAddressFormValid &&
+            phoneFormValid &&
+            alternativeAddressValid &&
             driverLicenseFormValid
-            ) {
+        ) {
             console.log('save -- all')
             $('#undoName').val("");
             // profileForm = $('#profileForm')
             //  var t = $("#profileForm").serializeArray();
             $('#profileForm')[0].submit();
         }
-        
+
     })
-//    $('#reset').click(function() {
-//        console.log('reset')
-//        profileForm = $('#profileForm')
-//         var t = $("#profileForm").serializeArray();
-//        profileForm.submit();
-//    })
+    //    $('#reset').click(function() {
+    //        console.log('reset')
+    //        profileForm = $('#profileForm')
+    //         var t = $("#profileForm").serializeArray();
+    //        profileForm.submit();
+    //    })
 })
 
-function checkDuplicate(newBank){
-    var bankArryHave =  $(".updateBankForm");
+function checkDuplicate (newBank) {
+    var bankArryHave = $(".updateBankForm");
     var bankArry = new Array()
     bankArry.push(newBank)
-    bankArryHave.each(function(index){
-        var bankCode = $(this).find('#code_'+index+'').val()
-        var bankAccountNumber = $(this).find('#accountNumberNew_'+index+'').val()
-        var bankDisplayLabel = $(this).find('#accountTypeNew_'+index+'').val()
-        var bankDisplayAmount = $(this).find('#displayAmountNew_'+index+'').val()
+    bankArryHave.each(function (index) {
+        var bankCode = $(this).find('#code_' + index + '').val()
+        var bankAccountNumber = $(this).find('#accountNumberNew_' + index + '').val()
+        var bankDisplayLabel = $(this).find('#accountTypeNew_' + index + '').val()
+        var bankDisplayAmount = $(this).find('#displayAmountNew_' + index + '').val()
         var obj = {
-            code:bankCode,
-            accountNumber:bankAccountNumber,
-            displayLabel:bankDisplayLabel,
-            displayAmount:bankDisplayAmount,
+            code: bankCode,
+            accountNumber: bankAccountNumber,
+            displayLabel: bankDisplayLabel,
+            displayAmount: bankDisplayAmount,
         }
         bankArry.push(obj)
     })
     console.log(bankArry)
     var hasDuc = false
-    for(var i =0;i<bankArry.length;i++){
-        for(var n =i+1;n<bankArry.length;n++){
-            if(bankArry[i].bankCode == bankArry[n].bankCode && bankArry[i].accountNumber == bankArry[n].accountNumber){
+    for (var i = 0; i < bankArry.length; i++) {
+        for (var n = i + 1; n < bankArry.length; n++) {
+            if (bankArry[i].bankCode == bankArry[n].bankCode && bankArry[i].accountNumber == bankArry[n].accountNumber) {
                 hasDuc = true
             }
         }
     }
     var arrayObj = {
-        bankArray:bankArry,
-        hasDuc:hasDuc
+        bankArray: bankArry,
+        hasDuc: hasDuc
     }
     return arrayObj
 }
 
-function showPasswordModal(){
+function showPasswordModal () {
     $('#updatePassword')[0].reset()
     $('#updatePassword')
         .data('bootstrapValidator')
         .destroy()
     $('#updatePassword').data('bootstrapValidator', null)
-        formPasswordValidator();
+    formPasswordValidator();
 }
-function clearNoNum(obj){
+function clearNoNum (obj) {
     obj.value = obj.value.replace(/[^\d.]/g, ""); //  
     obj.value = obj.value.replace(/^\./g, ""); //
-    obj.value = obj.value.replace(/\.{2,}/g, ".");  
-    obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");  
-    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');//
+    obj.value = obj.value.replace(/\.{2,}/g, ".");
+    obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+    obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');//
     // $(obj).change()
 }
-function clearNoNumWhole(obj){
+function clearNoNumWhole (obj) {
     obj.value = obj.value.replace(/[^\d]/g, ""); //   
     // $(obj).change()
 }
-function deleteBankAmount(index) {
+function deleteBankAmount (index) {
     // $('#deleteModal').modal('show')
     console.log('delete=' + index)
     var len = $(".bankAccountBlock").length
-    if(len<=1){
+    if (len <= 1) {
         $(".atLeastOneBankRequiredError").show()
         return false
     }
@@ -464,7 +472,7 @@ function deleteBankAmount(index) {
     console.log(accountNumber)
     console.log(accountType)
     console.log(displayAmount)
-    if(parseInt(displayAmount) == 0){
+    if (parseInt(displayAmount) == 0) {
         $(".selectAnotherAsPrimaryError").show()
         return false
     }
@@ -478,14 +486,14 @@ function deleteBankAmount(index) {
     $('#hidden_displayAmount_delete').val(displayAmount)
     willSubmitFormDelete = $('#deleteBankHidden')
 }
-function updateBank() {
-    var bankArry =  $(".updateBankForm");
-    var bankLen =  bankArry.length;
+function updateBank () {
+    var bankArry = $(".updateBankForm");
+    var bankLen = bankArry.length;
     var arrayValidate = bankArry.map(function (index) {
         var bankAccountForm = '#bankAccountForm_' + index
         var bankAccountValidator = $(bankAccountForm).data('bootstrapValidator')
         bankAccountValidator.validate()
-        if(bankAccountValidator.isValid()){
+        if (bankAccountValidator.isValid()) {
             return true
         }
     });
@@ -493,89 +501,59 @@ function updateBank() {
     console.log(arrayValidate)
     var freq = $('#freq').val()
     $('.hidden_freq_update').val(freq)
-    if(arrayValidate.length == bankLen){
+    if (arrayValidate.length == bankLen) {
         var successNum = 0;
         var currentBankIndex = 0;
-        $(".updateBankForm").each(function(index){
+        $(".updateBankForm").each(function (index) {
             var one = {};
             var t = $(this).serializeArray();
-            $.each(t, function() {
+            $.each(t, function () {
                 one[this.name] = this.value;
             });
-            console.log("one",one)
-            console.log("string",JSON.stringify(one))
+            console.log("one", one)
+            console.log("string", JSON.stringify(one))
             $.ajax({
-                type:'POST',
-                url:'/'+ctx+'/profile/updateBank',
-                dataType:'JSON',
-                contentType:'application/json;charset=UTF-8',
-                data:JSON.stringify(one),
-                success : function (res) {
-                    currentBankIndex ++;
-                    if(res.success){
-                        successNum ++;
-                        if(currentBankIndex == bankLen){
-                            if(successNum == bankLen){
-                                window.location.reload()
-                            }else{
+                type: 'POST',
+                url: '/' + ctx + '/profile/updateBank',
+                dataType: 'JSON',
+                contentType: 'application/json;charset=UTF-8',
+                data: JSON.stringify(one),
+                success: function (res) {
+                    currentBankIndex++;
+                    if (res.success) {
+                        successNum++;
+                        if (currentBankIndex == bankLen) {
+                            if (successNum == bankLen) {
+                                location.href = '/' + ctx + '/profile/profile'
+                            } else {
                                 $(".updateMessageFailed").removeClass("hide")
                             }
                         }
                     }
                 },
-                error:function(res){
+                error: function (res) {
                     console.log(res)
                     $(".updateMessageFailed").removeClass("hide")
                 }
             });
         })
-       
-    }
-    
-    return false
-    console.log('updateBank=' + index)
-    var bankAccountForm = '#bankAccountForm_' + index
-    var bankAccountValidator = $(bankAccountForm).data('bootstrapValidator')
-    console.log($(bankAccountForm))
-    console.log(bankAccountValidator)
-    bankAccountValidator.validate()
-    console.log(bankAccountValidator.isValid())
-    if (bankAccountValidator.isValid()) {
-        var freq = $('#freq').val()
-        var code = $('#code_' + index).val()
-        var accountNumber = $('#accountNumber_' + index).text()
-        var accountType = $('#accountType_' + index).text()
-        var displayAmount = $('#displayAmount_' + index).text()
 
-        var codeNew = $('#codeNew_' + index).val()
-        console.log('codeNew' + codeNew)
-        var accountNumberNew = $('#accountNumberNew_' + index).val()
-
-        var accountTypeNew = $('#accountTypeNew_' + index).val()
-        console.log(accountTypeNew)
-        var displayAmountNew = $('#displayAmountNew_' + index).val()
-        
-        // console.log(parseFloat(parseFloat(displayAmountNew).toFixed(2)))
-
-        $('#hidden_freq_update').val(freq)
-        $('#hidden_code_update').val(code)
-        $('#hidden_codeNew_update').val(codeNew)
-        $('#hidden_accountNumber_update').val(accountNumber)
-        $('#hidden_accountNumberNew_update').val(accountNumberNew)
-
-        $('#hidden_accountType_update').val(accountType)
-        $('#hidden_accountTypeNew_update').val(accountTypeNew)
-        $('#hidden_displayAmount_update').val(displayAmount)
-        $('#hidden_displayAmountNew_update').val(parseFloat(displayAmountNew))
-        $('#updateBankHidden').submit()
     }
 }
-function undoBank(index) {
+function undoBank (index) {
     var freq = $('#freq').val()
     var code = $('#code_' + index).val()
     var codeNew = $('#codeNew_' + index).val()
     var accountNumber = $('#accountNumber_' + index).text()
     var accountNumberNew = $('#accountNumberNew_' + index).val()
+
+    var accountAmount = $("#displayAmountNew_" + index + "").val()
+    var primaryCheck = $("#primary_" + index + "").is(':checked')
+    if (parseInt(accountAmount) == 0 && primaryCheck && code.trim()=='') {
+        $(".selectAnotherAsPrimaryError").show()
+        return false
+    }
+    $(".selectAnotherAsPrimaryError").hide()
 
     $('#hidden_freq_undo').val(freq)
     $('#hidden_code_undo').val(code)
@@ -588,10 +566,10 @@ function undoBank(index) {
     formSelect = $('#undoBankHidden')
 }
 
-function changeFreq() {
+function changeFreq () {
     $('#changeFreqForm')[0].submit()
 }
-function clearValidator() {
+function clearValidator () {
     // reset  #personalForm form
     $('#personalForm')
         .data('bootstrapValidator')
@@ -691,10 +669,10 @@ function clearValidator() {
     $('#addBankAccountForm')[0].reset()
     bankAccountAddValidator()
 }
-function personalValidator() {
+function personalValidator () {
     $('#personalForm').bootstrapValidator({
         live: 'enable',
-        excluded : [':disabled'],
+        excluded: [':disabled'],
         submitButtons: '#savePersonal',
         feedbackIcons: {
             valid: 'fa fa-check ',
@@ -702,7 +680,7 @@ function personalValidator() {
             validating: 'fa fa-refresh'
         },
         fields: {
-            namePreNew:{
+            namePreNew: {
                 trigger: null,
                 validators: {
                     stringLength: {
@@ -744,7 +722,7 @@ function personalValidator() {
                     }
                 }
             },
-            nameGenNew:{
+            nameGenNew: {
                 trigger: null,
                 validators: {
                     stringLength: {
@@ -757,7 +735,7 @@ function personalValidator() {
     })
 }
 
-function maritalStatusValidator() {
+function maritalStatusValidator () {
     $('#maritalStatusForm').bootstrapValidator({
         live: 'enable',
         submitButtons: '#saveMarital',
@@ -779,7 +757,7 @@ function maritalStatusValidator() {
     })
 }
 
-function driverLicenseValidator() {
+function driverLicenseValidator () {
     $('#driverLicenseForm').bootstrapValidator({
         live: 'enable',
         submitButtons: '#saveDriver',
@@ -799,7 +777,7 @@ function driverLicenseValidator() {
                     }
                 }
             },
-            driversLicStNew:{
+            driversLicStNew: {
                 trigger: null,
                 validators: {
                     stringLength: {
@@ -812,7 +790,7 @@ function driverLicenseValidator() {
     })
 }
 
-function restrictionCodeFormValidator() {
+function restrictionCodeFormValidator () {
     $('#restrictionCodeForm').bootstrapValidator({
         live: 'enable',
         submitButtons: '#saveRestrict',
@@ -822,7 +800,7 @@ function restrictionCodeFormValidator() {
             validating: 'fa fa-refresh'
         },
         fields: {
-            restrictCdNew:{
+            restrictCdNew: {
                 trigger: null,
                 validators: {
                     stringLength: {
@@ -831,7 +809,7 @@ function restrictionCodeFormValidator() {
                     }
                 }
             },
-            restrictCdPublicNew:{
+            restrictCdPublicNew: {
                 trigger: null,
                 validators: {
                     stringLength: {
@@ -843,12 +821,12 @@ function restrictionCodeFormValidator() {
         }
     })
 }
-function emailFormValidator() {
+function emailFormValidator () {
     $('#emailForm').bootstrapValidator({
         live: 'enable',
         fields: {
             emailNew: {
-                trigger:'change',
+                trigger: 'change',
                 validators: {
                     stringLength: {
                         max: 26,
@@ -860,12 +838,12 @@ function emailFormValidator() {
                 validators: {
                     identical: {
                         field: 'emailNew',
-                        message:emailNotMatchValidator
+                        message: emailNotMatchValidator
                     }
                 }
             },
             hmEmailNew: {
-                trigger:'change',
+                trigger: 'change',
                 validators: {
                     emailAddress: {
                         message: pleaseEnterCorrectFormatValidator
@@ -877,7 +855,7 @@ function emailFormValidator() {
                 validators: {
                     identical: {
                         field: 'hmEmailNew',
-                        message:emailNotMatchValidator
+                        message: emailNotMatchValidator
                     },
                     emailAddress: {
                         message: pleaseEnterCorrectFormatValidator
@@ -888,7 +866,7 @@ function emailFormValidator() {
     })
 }
 
-function emergencyContactFormValidator() {
+function emergencyContactFormValidator () {
     $('#emergencyContactForm').bootstrapValidator({
         live: 'enable',
         submitButtons: '#saveEmergency',
@@ -958,7 +936,7 @@ function emergencyContactFormValidator() {
     })
 }
 
-function mailingAddressValidator() {
+function mailingAddressValidator () {
     $('#mailingAddressForm').bootstrapValidator({
         live: 'enable',
         submitButtons: '#saveMailingAddress',
@@ -1005,7 +983,7 @@ function mailingAddressValidator() {
                     }
                 }
             },
-            addrStNew:{
+            addrStNew: {
                 trigger: null,
                 validators: {
                     stringLength: {
@@ -1038,7 +1016,7 @@ function mailingAddressValidator() {
         }
     })
 }
-function alternativeAddressValidator() {
+function alternativeAddressValidator () {
     $('#alternativeAddressForm').bootstrapValidator({
         live: 'enable',
         submitButtons: '#saveAltAddress',
@@ -1085,7 +1063,7 @@ function alternativeAddressValidator() {
                     }
                 }
             },
-            smrAddrStNew:{
+            smrAddrStNew: {
                 trigger: null,
                 validators: {
                     stringLength: {
@@ -1119,7 +1097,7 @@ function alternativeAddressValidator() {
     })
 }
 
-function phoneValidator() {
+function phoneValidator () {
     $('#phoneForm').bootstrapValidator({
         live: 'enable',
         submitButtons: '#savePhone',
@@ -1197,7 +1175,7 @@ function phoneValidator() {
     })
 }
 
-function w4InfoValidator() {
+function w4InfoValidator () {
     $('#w4InfoForm').bootstrapValidator({
         live: 'enable',
         submitButtons: '#saveW4',
@@ -1227,7 +1205,7 @@ function w4InfoValidator() {
             //         }
             //     }
             // },
-            w4FileStatNew:{
+            w4FileStatNew: {
                 trigger: null,
                 validators: {
                     notEmpty: {
@@ -1235,7 +1213,7 @@ function w4InfoValidator() {
                     }
                 }
             },
-            w4MultiJobNew:{
+            w4MultiJobNew: {
                 trigger: null,
                 validators: {
                     notEmpty: {
@@ -1243,18 +1221,7 @@ function w4InfoValidator() {
                     }
                 }
             },
-        	w4NbrChldrnNew: {
-                trigger: null,
-                validators: {
-                    notEmpty: {
-                        message: requiredFieldValidator
-                    },
-                    digits: {
-                        message: pleaseEnterWholePositiveNum
-                    }
-                }
-            },
-            w4NbrOthrDepNew:{
+            w4NbrChldrnNew: {
                 trigger: null,
                 validators: {
                     notEmpty: {
@@ -1265,7 +1232,18 @@ function w4InfoValidator() {
                     }
                 }
             },
-            w4OthrIncAmtNew:{
+            w4NbrOthrDepNew: {
+                trigger: null,
+                validators: {
+                    notEmpty: {
+                        message: requiredFieldValidator
+                    },
+                    digits: {
+                        message: pleaseEnterWholePositiveNum
+                    }
+                }
+            },
+            w4OthrIncAmtNew: {
                 trigger: null,
                 validators: {
                     notEmpty: {
@@ -1273,7 +1251,7 @@ function w4InfoValidator() {
                     }
                 }
             },
-            w4OthrDedAmtNew:{
+            w4OthrDedAmtNew: {
                 trigger: null,
                 validators: {
                     notEmpty: {
@@ -1281,7 +1259,7 @@ function w4InfoValidator() {
                     }
                 }
             },
-            w4OthrExmptAmtNew:{
+            w4OthrExmptAmtNew: {
                 trigger: null,
                 validators: {
                     notEmpty: {
@@ -1293,7 +1271,7 @@ function w4InfoValidator() {
     })
 }
 
-function bankAccountValidator() {
+function bankAccountValidator () {
     var arrayBankLength = $('.bankAccountBlock').length
     for (var i = 0; i < arrayBankLength; i++) {
         $('#bankAccountForm_' + i).bootstrapValidator({
@@ -1365,7 +1343,7 @@ function bankAccountValidator() {
         })
     }
 }
-function bankAccountAddValidator() {
+function bankAccountAddValidator () {
     $('#addBankAccountForm').bootstrapValidator({
         live: 'enable',
         // submitButtons: '#saveNewBank',
@@ -1428,7 +1406,7 @@ function bankAccountAddValidator() {
     })
 }
 
-function initSessionPws() {
+function initSessionPws () {
     const psd = $('#sessionPsd').val()
     if (psd !== '') {
         sessionStorage.setItem('sessionPws', psd)

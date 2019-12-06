@@ -8,6 +8,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <title>${sessionScope.languageJSON.headTitle.profile}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <%@ include file="commons/header.jsp"%>
+        <style>
+            .profile .profile-item .profile-btn .saveOrCancel button.undoBankHaveModal,
+            .profile .profile-item .profile-btn .saveOrCancel button.undoBankNoModal{
+                display: none;
+            }
+        </style>
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -2010,8 +2016,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 </button>
                                                 <button
                                                         type="button" role="button"
+                                                        <c:if test="${fn:trim(bank.code.code)!=''||(bank.depositAmountNew.displayAmount!=0&&fn:trim(bank.depositAmountNew.displayAmount)!='0.00')}">style="display:block;"</c:if>
                                                         id="undoBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.undoBank}"
-                                                        class="btn btn-secondary undo-btn"   data-toggle="modal" data-target="#undoModal" 
+                                                        class="btn btn-secondary undo-btn undoBankHaveModal"   data-toggle="modal" data-target="#undoModal" 
+                                                        onclick="undoBank(${count.index})"
+                                                    >
+                                                    ${sessionScope.languageJSON.label.undo}
+                                                </button>
+                                                <button
+                                                        type="button" role="button" 
+                                                        <c:if test="${fn:trim(bank.code.code)==''&&(bank.depositAmountNew.displayAmount==0||fn:trim(bank.depositAmountNew.displayAmount)=='0.00')}">style="display:block;"</c:if>
+                                                        id="undoBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.undoBank}"
+                                                        class="btn btn-secondary undo-btn undoBankNoModal"
                                                         onclick="undoBank(${count.index})"
                                                     >
                                                     ${sessionScope.languageJSON.label.undo}
