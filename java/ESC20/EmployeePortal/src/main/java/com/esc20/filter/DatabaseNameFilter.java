@@ -58,12 +58,14 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 					    	{
 					    		System.out.println("load from cookies "+cookie.getValue());
 					    		
-					    		if(!distid.equals(districtIdInSession)) {
-									Enumeration em = request.getSession().getAttributeNames();
-									while (em.hasMoreElements()) {
-										request.getSession().removeAttribute(em.nextElement().toString());
+					    		if(districtIdInSession != null && distid !=null) {
+					    			if(!distid.equals(districtIdInSession)) {
+										Enumeration em = request.getSession().getAttributeNames();
+										while (em.hasMoreElements()) {
+											request.getSession().removeAttribute(em.nextElement().toString());
+										}
 									}
-								}
+					    		}
 					    		
 					    		request.getSession().setAttribute("districtId", cookie.getValue());
 					    		request.getSession().setAttribute("isSwitched", true);

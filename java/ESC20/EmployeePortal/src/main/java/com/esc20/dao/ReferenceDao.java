@@ -268,5 +268,30 @@ public class ReferenceDao {
 		}
 		return payrollFrequencies;
 	}
+	
+	public List <List <String>> getDemoRequiredFields() {
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT * FROM BHR_EAP_DEMO_ASSGN_MBR");
+		Query q = session.createSQLQuery(sql.toString());
+		@SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
+		List <List <String>> result = new ArrayList();
+		for(Object[] item: res) {
+			List <String> list = new ArrayList<String>();
+			
+			for(int i=0; i<=4; i++){
+				list.add(""+item[i]);
+			}
+			   
+			/*list.add((String)item[0]);
+			list.add((String)item[1]);
+			list.add((String)item[2]);
+			list.add((String)item[3]);*/
+			result.add(list);		
+		}
+		return result;
+	}
+
 
 }
