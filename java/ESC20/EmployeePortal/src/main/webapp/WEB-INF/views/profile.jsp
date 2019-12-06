@@ -22,7 +22,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                 right: 0;
                 bottom: 0;
                 background: rgba(0,0,0,.6);
-                z-index: 999;
+                z-index: 1999;
                 
             }
             .loadingOn .loadEffect{
@@ -827,6 +827,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         <c:set var="nbr1" scope="page" value="${fn:substring(nbr, 0, 3)}"/>
                                                         <c:set var="nbr2" scope="page" value="${fn:substring(nbr, 3, 7)}"/>
                                                         ${nbr1}-${nbr2}
+                                                        <c:set var="emerPhoneNbrCurrent" scope="page" value="${nbr1}${nbr2}"/>
+                                                    </c:if>
+                                                    <c:if test="${emerRequest.emerPhoneNbrNew != null && fn:trim(emerRequest.emerPhoneNbrNew) != ''}">
+                                                        <c:set var="emerPhoneNbr" scope="page" value="${fn:replace(emerRequest.emerPhoneNbrNew, '-', '')}"/>
+                                                        <c:set var="emerPhoneNbr1New" scope="page" value="${fn:substring(emerPhoneNbr, 0, 3)}"/>
+                                                        <c:set var="emerPhoneNbr2New" scope="page" value="${fn:substring(emerPhoneNbr, 3, 7)}"/>
+                                                        <c:set var="emerPhoneNbrNew" scope="page" value="${emerPhoneNbr1New}${emerPhoneNbr2New}"/>
                                                     </c:if>
                                                     <!-- ${sessionScope.userDetail.emerPhoneNbr} -->
                                                     &nbsp;&nbsp; <span>${sessionScope.languageJSON.profile.ext}</span>
@@ -846,7 +853,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </div>
                                                     <div class="form-group">
                                                         <input
-                                                            class="form-control phone-input <c:if test="${sessionScope.userDetail.emerPhoneNbr != emerRequest.emerPhoneNbrNew}">active</c:if>"
+                                                            class="form-control phone-input <c:if test="${emerPhoneNbrCurrent != emerPhoneNbrNew}">active</c:if>"
                                                             name="emerPhoneNbrNew"
                                                             id="emergencyContactPhoneNumber"
                                                             aria-label="${sessionScope.languageJSON.profile.emergencyContactPhoneNumber}"
