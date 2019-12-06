@@ -139,7 +139,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </button>  
                                             </c:if>
                                             <c:if test="${canResetAll == true}">
-                                                <a href="/EmployeePortal/profile/profile" id="reset" class="btn btn-default">
+                                                <a href="/EmployeePortal/profile/profile" id="reset" class="btn btn-primary">
                                                     <span>${sessionScope.languageJSON.label.reset}</span>
                                                 </a>
                                             </c:if>
