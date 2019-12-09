@@ -74,16 +74,6 @@
       <!-- Sidebar user panel (optional) -->
 
       <div class="user-panel">
-        <div class="image">
-          <a
-            <c:if test="${sessionScope.enableSelfServiceDemographic||sessionScope.enableSelfServicePayroll}">
-              href="/<%=request.getContextPath().split("/")[1]%>/profile/profile"
-            </c:if>
-            aria-label="${sessionScope.languageJSON.accessHint.goMyAccount}" class="d-block noImage">
-            <i class="fa fa-user"></i>
-          </a>
-
-        </div>
         <div class="info">
           <a
           <c:if test="${sessionScope.enableSelfServiceDemographic||sessionScope.enableSelfServicePayroll}">
