@@ -7,7 +7,7 @@
     aria-hidden="true"
     data-backdrop="static"
 >
-    <div class="modal-dialog approveForm warn-modal" style="max-width:350px;">
+    <div class="modal-dialog approveForm warn-modal">
         <div class="modal-content text-center">
             <div class="modal-body">
                 <i class="fa fa-exclamation-circle warn-icon"></i>

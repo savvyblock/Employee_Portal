@@ -17,32 +17,32 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         	<input type="hidden" name="empNbr" value="${user.empNumber}"/>
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <div class="form-group">
-                                <label class="form-title">${sessionScope.languageJSON.label.employeeNumber}</label>
+                                <label >${sessionScope.languageJSON.label.employeeNumber}</label>
                                 <div class="valid-wrap">
                                    ${user.empNumber}
                                 </div>
                                 <input type="hidden" name="empNumber" value="${newUser.empNumber}" />
                             </div>
                             <div class="form-group">
-                                <label class="form-title">${sessionScope.languageJSON.label.dateOfBirth}</label>
+                                <label >${sessionScope.languageJSON.label.dateOfBirth}</label>
                                 <div class="valid-wrap">
                                    ${ user.searchFormattedDateofBirth}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title">${sessionScope.languageJSON.label.zipCode}</label>
+                                <label >${sessionScope.languageJSON.label.zipCode}</label>
                                 <div class="valid-wrap">
                                     ${user.zipCode}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title">${sessionScope.languageJSON.label.lastname}</label>
+                                <label >${sessionScope.languageJSON.label.lastname}</label>
                                 <div class="valid-wrap">
                                     ${user.nameL}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-title">${sessionScope.languageJSON.label.firstname}</label>
+                                <label >${sessionScope.languageJSON.label.firstname}</label>
                                 <div class="valid-wrap">
                                     ${user.nameF}
                                 </div>
@@ -53,7 +53,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	                            </p>
 	                        
 	                            <div class="form-group">
-		                                <label class="form-title" for="answerQuestion">
+		                                <label  for="answerQuestion">
 		                                 	${user.hintQuestion}
 		                                </label>
 		                                <div class="valid-wrap">
@@ -68,7 +68,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                            </c:if>
                             <div class="form-group">
                                 <c:if test="${user.userEmail != ''}">
-                                    <label class="form-title">${sessionScope.languageJSON.label.workEmail}</label>
+                                    <label >${sessionScope.languageJSON.label.workEmail}</label>
                                     <label class="chooseEmailGroup" for="workEmail">
                                     <input style="margin-left:0;" type="radio" name="email" id="workEmail" checked value="${user.userEmail}" aria-label="${sessionScope.languageJSON.label.chooseWorkEmailSend}">
                                     <span class="emailAddress">${user.userEmail}</span>
@@ -77,7 +77,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             </div>
                             <div class="form-group">
                                 <c:if test="${user.userHomeEmail != ''}">
-                                    <label class="form-title" >${sessionScope.languageJSON.label.homeEmail}</label>
+                                    <label  >${sessionScope.languageJSON.label.homeEmail}</label>
                                     <label class="chooseEmailGroup" for="homeEmail">
                                         <input style="margin-left:0;" type="radio" name="email" id="homeEmail" value="${user.userHomeEmail}" aria-label="${sessionScope.languageJSON.label.chooseHomeEmailSend}">
                                         <span class="emailAddress">${user.userHomeEmail}</span>

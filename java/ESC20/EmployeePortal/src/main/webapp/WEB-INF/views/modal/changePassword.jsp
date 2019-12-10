@@ -7,7 +7,7 @@
     aria-hidden="true"
     data-backdrop="static"
 >
-    <div class="modal-dialog approveForm" style="max-width:350px;">
+    <div class="modal-dialog approveForm">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">${sessionScope.languageJSON.label.changePassword}</h4>
@@ -20,7 +20,7 @@
                 </button>
             </div>
               
-                  <form id="updatePassword" action="updatePassword" method="post" style="max-width:350px;">
+                  <form id="updatePassword" action="updatePassword" method="post">
                   	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="text" id="sessionPsd" value="${decryptedPwd}" style = "display:none" aria-label="${sessionScope.languageJSON.accessHint.sessionPassword}"/> 
                     <input type="text" name="id" id="userId" value="${sessionScope.user.empNbr}" style = "display:none" aria-label="${sessionScope.languageJSON.accessHint.employeeNumber}"/> 
