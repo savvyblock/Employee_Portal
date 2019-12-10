@@ -36,7 +36,7 @@ import net.sf.json.JSONObject;
 @RequestMapping("/")
 public class IndexController {
 	
-	@Value("${employeeportal.help.url}")
+	@Value("${portal.help.url}")
     private String helpUrl;
 	
 	@Autowired
@@ -58,7 +58,7 @@ public class IndexController {
 			mav.addObject("isUserLoginFailure", "true");
 		}
 		
-		req.getSession().setAttribute("helpLinkFromProperties", helpUrl);
+		req.getSession().setAttribute("helpLinkFromProperties", helpUrl+"employeeportal/doku.php");
 		
 		return mav;
 	}
