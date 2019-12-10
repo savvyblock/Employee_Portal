@@ -1,6 +1,7 @@
 package com.esc20.util;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 
 public class NumberUtil {
 	
@@ -446,5 +447,17 @@ public class NumberUtil {
     		scale = scale1;
     	dec = dec.setScale(scale,BigDecimal.ROUND_HALF_UP);
     	return dec.doubleValue();
+    }
+    
+    public static String getDoubleString(double number) {
+        String numberStr;
+        if (((int) number * 1000) == (int) (number * 1000)) {
+            //if int          
+        	numberStr = String.valueOf((int) number);
+        } else {
+            DecimalFormat df = new DecimalFormat("######0.00");
+            numberStr = df.format(number);
+        }
+        return numberStr;
     }
 }

@@ -294,6 +294,27 @@ public class ReferenceDao {
 		}
 		return result;
 	}
+	
+	public List <List <String>> getPayrollRequiredFields(String payFreq) {
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT * FROM BHR_EAP_PAY_ASSGN_MBR WHERE pay_freq = :frequency");
+		Query q = session.createSQLQuery(sql.toString());
+	    q.setParameter("frequency", payFreq);
+		@SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
+		List <List <String>> result = new ArrayList();
+		for(Object[] item: res) {
+			int len = item.length;
+			List <String> list = new ArrayList<String>();
+			
+			for(int i=0; i<=len-1; i++){
+				list.add(""+item[i]);
+			}
+			result.add(list);		
+		}
+		return result;
+	}
 
 	public Map<String,String> getApproverEmployeeNumbers() {
 		Session session = this.getSession();
@@ -311,4 +332,26 @@ public class ReferenceDao {
 		}
 		return result;
 	}
+	
+	public String getApproverEmployeeNumber(String frequency, String table)
+	{
+		Session session = this.getSession();
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT DISTINCT emp_nbr FROM SEC_USERS, BHR_EAP_PAY_ASSGN_GRP ");
+		sql.append("WHERE BHR_EAP_PAY_ASSGN_GRP.grp_name=:table AND BHR_EAP_PAY_ASSGN_GRP.apprvr_usr_id = usr_id ");
+		sql.append("AND BHR_EAP_PAY_ASSGN_GRP.pay_freq = :frequency");
+		Query q = session.createSQLQuery(sql.toString());
+		q.setParameter("frequency", frequency);
+		q.setParameter("table", table);
+		@SuppressWarnings("unchecked")
+		List<Object[]> res = q.list();
+		
+		String result="";
+		for(Object[] item: res) {
+			result = ""+item[0];
+		}
+		return result;
+	}
+	
+	
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.esc20.dao.ReferenceDao;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.DemoInfoFields;
+import com.esc20.nonDBModels.PayrollFields;
 import com.esc20.util.StringUtil;
 
 @Service
@@ -242,5 +243,72 @@ public class ReferenceService {
 		}
 		
 		return docRequriedFields;
+	}
+
+
+	public PayrollFields populatePayrollDocRequiredFields(String payFreq) {
+		List<List<String>> result = referenceDao.getPayrollRequiredFields(payFreq);
+		PayrollFields req = new PayrollFields();
+		for(List <String> entry: result)
+		{
+			if("BEA_W4".equals(entry.get(0)))
+			{
+				if("Marital Status".equals(entry.get(1)))
+				{
+					req.setMaritalStatus(StringUtil.convertToBoolean(entry.get(3)));
+				}
+				else if("Nbr of Exemptions".equals(entry.get(1)))
+				{
+					req.setNumberOfExemptions(StringUtil.convertToBoolean(entry.get(3)));
+				}
+				else if("Filing Status".equals(entry.get(1))) {
+					req.setFilingStatus(StringUtil.convertToBoolean(entry.get(3)));
+				}
+				else if("Multi Job".equals(entry.get(1)))
+				{
+					req.setMultiJob(StringUtil.convertToBoolean(entry.get(3)));
+				}
+				else if("Nbr Children".equals(entry.get(1))) {
+					req.setNumberOfChildren(StringUtil.convertToBoolean(entry.get(3)));
+				}
+				else if("Nbr Other Depend".equals(entry.get(1)))
+				{
+					req.setNumberOfOtherDepend(StringUtil.convertToBoolean(entry.get(3)));
+				}
+				else if("Other Deduct Amt".equals(entry.get(1))) {
+					req.setOtherDeductAmt(StringUtil.convertToBoolean(entry.get(3)));
+				}
+				else if("Other Exempt Amt".equals(entry.get(1))) {
+					req.setOtherExemptAmt(StringUtil.convertToBoolean(entry.get(3)));
+				}
+				else if("Other Income Amt".equals(entry.get(1))) {
+					req.setOtherIncomeAmt(StringUtil.convertToBoolean(entry.get(3)));
+				}
+			}
+			else if("BEA_DRCT_DPST_BNK_ACCT".equals(entry.get(0)))
+			{
+				if("Bank".equals(entry.get(1)))
+				{
+					req.setCode(StringUtil.convertToBoolean(entry.get(3)));
+				}
+				
+				else if("Bank Account Nbr".equals(entry.get(1)))
+				{
+					req.setAccountNumber(StringUtil.convertToBoolean(entry.get(3)));
+				}
+				
+				else if("Bank Account Type".equals(entry.get(1)))
+				{
+					req.setAccountType(StringUtil.convertToBoolean(entry.get(3)));
+				}
+				
+				else if("Bank Account Amount".equals(entry.get(1)))
+				{
+					req.setDepositAmount(StringUtil.convertToBoolean(entry.get(3)));
+				}
+			}
+		}
+		return req;
+		
 	}
 }

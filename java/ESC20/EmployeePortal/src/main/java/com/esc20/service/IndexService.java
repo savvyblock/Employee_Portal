@@ -31,15 +31,21 @@ import com.esc20.model.BeaUsers;
 import com.esc20.model.BeaW4;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPay;
+import com.esc20.nonDBModels.Bank;
+import com.esc20.nonDBModels.BankChanges;
 import com.esc20.nonDBModels.DemoInfoFields;
 import com.esc20.nonDBModels.DemoOption;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayInfo;
+import com.esc20.nonDBModels.PayInfoChanges;
+import com.esc20.nonDBModels.PayrollFields;
 import com.esc20.nonDBModels.PayrollOption;
 import com.esc20.nonDBModels.SearchUser;
 import com.esc20.nonDBModels.W2Option;
+import com.esc20.nonDBModels.W4Info;
 import com.esc20.util.MailUtil;
+import com.esc20.util.NumberUtil;
 import com.esc20.util.StringUtil;
 
 
@@ -1148,7 +1154,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getEmergencyRelationship()==null?false:demoInfoChanges.getEmergencyRelationship()) {
-			fieldName = "Emergency Contact Relationship\n<br/>";
+			fieldName = "Emergency Contact Relationship<br/><br/>";
 			if (docRequiredFields.getEmergencyRelationship()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1165,7 +1171,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getEmergencyNotes()==null?false:demoInfoChanges.getEmergencyNotes()) {
-			fieldName = "Emergency Contact Notes\n<br/>";
+			fieldName = "Emergency Contact Notes<br/><br/>";
 			if (docRequiredFields.getEmergencyNotes()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1282,13 +1288,7 @@ public class IndexService {
 		
 	}
 
-    public void payrollDataChangeSendEmailConfirmation(BhrEmpDemo userDemo, boolean payrollSame, boolean accountSame) {
-    	//used to track changes for current session on page for emailing purposes
-		/*List <BankChanges> currentAccountInfoChanges = setAccountInfoChanges(accountInfoPending, payroll.getAccountInfo());
-		PayInfoChanges currentPayInfoChanges = setPayInfoChanges(payInfoPending, payroll.getPayInfo());
-		
-		PayrollFields docRequired = getDocumentationRequiredFields(Frequency.getFrequency(payroll.getFrequency()).getCode());*/
-	
+    public void payrollDataChangeSendEmailConfirmation(BhrEmpDemo userDemo,String payFreq, boolean payrollSame, boolean accountSame,PayInfoChanges currentPayInfoChanges,W4Info w4Info,Boolean autoApproveBank,List <BankChanges> currentAccountInfoChanges,Bank bank,PayrollFields docRequired) {
 		boolean hasDocChanges = false;
 		boolean hasApprovChanges = false;
 		boolean hasPayInfoChanges = false;
@@ -1309,5 +1309,335 @@ public class IndexService {
 		String header = "<p>The following data was automatically approved and updated: </p>";
 		StringBuilder contents = new StringBuilder();
 		StringBuilder bankContents = new StringBuilder();
+		Boolean autoApprove;
+		autoApprove = this.getBhrEapPayAssgnGrp("BEA_W4");
+		if (currentPayInfoChanges.getFilingStatusChanged() && autoApprove && !payrollSame) {
+			contents.append("Filing Status: \t\t" +w4Info.getW4FileStat()+"<br/>");
+			hasApprovChanges = true;
+			hasPayInfoChanges = true;
+		}
+		if (currentPayInfoChanges.getMultiJobChanged() && autoApprove && !payrollSame) {
+			contents.append("Multi Jobs:\t\t" +w4Info.getW4MultiJob()+"<br/>");
+			hasApprovChanges = true;
+			hasPayInfoChanges = true;
+		}
+		if (currentPayInfoChanges.getNumberOfChildrenChanged() && autoApprove && !payrollSame) {
+			contents.append("Children under 17: \t\t" +NumberUtil.getDoubleString(w4Info.getW4NbrChldrn()) +"<br/>");
+			hasApprovChanges = true;
+			hasPayInfoChanges = true;
+		}
+		if (currentPayInfoChanges.getNumberOfOtherDependChanged() && autoApprove && !payrollSame) {
+			contents.append("Other dependents: \t\t" +NumberUtil.getDoubleString(w4Info.getW4NbrOthrDep())+"<br/>");
+			hasApprovChanges = true;
+			hasPayInfoChanges = true;
+		}
+		if (currentPayInfoChanges.getOtherIncomeAmtChanged() && autoApprove && !payrollSame) {
+			contents.append("Other Income:\t\t" +NumberUtil.getDoubleString(w4Info.getW4OthrIncAmt())+"<br/>");
+			hasApprovChanges = true;
+			hasPayInfoChanges = true;
+		}
+		if (currentPayInfoChanges.getOtherDeductAmtChanged() && autoApprove && !payrollSame) {
+			contents.append("Deductions: \t\t" +NumberUtil.getDoubleString(w4Info.getW4OthrDedAmt())+"<br/>");
+			hasApprovChanges = true;
+			hasPayInfoChanges = true;
+		}
+		if (currentPayInfoChanges.getOtherExemptAmtChanged() && autoApprove && !payrollSame) {
+			contents.append("Other Exemptions:\t\t" +NumberUtil.getDoubleString(w4Info.getW4OthrExmptAmt())+"<br/>");
+			hasApprovChanges = true;
+			hasPayInfoChanges = true;
+		}
+		
+		int index =0;
+		for (BankChanges b: currentAccountInfoChanges) {
+			boolean tempChanges = false;
+			bankContents = new StringBuilder();
+			
+			if (b.getCodeChanged() && autoApproveBank && !accountSame) {
+				bankContents.append("Bank Account Information: \t\t" +bank.getCode().getDescription()+"\t"+bank.getCode().getSubCode()+"<br/>");
+				hasApprovChanges = true;
+				hasAccountChanges = true;
+				tempChanges = true;
+			}
+			if (b.getAccountNumberChanged() && autoApproveBank && !accountSame) {
+				bankContents.append("Bank Account Number:\t\t" +bank.getAccountNumberLabel()+"<br/>");
+				hasApprovChanges = true;
+				hasAccountChanges = true;
+				tempChanges = true;
+			}
+			if (b.getAccountTypeChanged() && autoApproveBank && !accountSame) {
+				bankContents.append("Bank Account Type:\t\t" +bank.getAccountType().getDisplayLabel()+"<br/>");
+				hasApprovChanges = true;
+				hasAccountChanges = true;
+				tempChanges = true;
+			}
+			if (b.getDepositAmountChanged() && autoApproveBank && !accountSame) {
+				bankContents.append("Bank Account Deposit Amount:\t\t" +bank.getDepositAmount().getDisplayAmount()+"<br/>");
+				hasApprovChanges = true;
+				hasAccountChanges = true;
+				tempChanges = true;
+			}
+			
+			if (tempChanges) {
+				contents.append("Bank Account " +bank.getCode().getDescription()+": <br/>");
+				contents.append(bankContents);
+			}
+			
+			index++;
+			
+		}
+		if (hasApprovChanges) {
+			messageContents.append(header);
+			messageContents.append(contents);
+		}
+		
+		header = "<br/>The following request(s) requires documentation be provided: <br/>";
+		contents = new StringBuilder();
+		StringBuilder employeeMessageRequestReview = new StringBuilder();
+		
+		if (currentPayInfoChanges.getFilingStatusChanged() && !payrollSame) {
+			hasPayInfoChanges = true;
+			employeeMessageRequestReview.append("Filing Status<br/>");
+			if (docRequired.getFilingStatus()) {
+				contents.append("Filing Status: \t\t" +w4Info.getW4FileStat()+"<br/>");
+				hasDocChanges = true;
+			}
+		}
+		if (currentPayInfoChanges.getMultiJobChanged() && !payrollSame) {
+			hasPayInfoChanges = true;
+			employeeMessageRequestReview.append("Multi Jobs<br/>");
+			if (docRequired.getMultiJob()) {
+				contents.append("Multi Jobs:\t\t" +w4Info.getW4MultiJob()+"<br/>");
+				hasDocChanges = true;
+			}
+		}
+		if (currentPayInfoChanges.getNumberOfChildrenChanged() && !payrollSame) {
+			hasPayInfoChanges = true;
+			employeeMessageRequestReview.append("Children under 17<br/>");
+			if (docRequired.getNumberOfChildren()) {
+				contents.append("Children under 17: \t\t" +w4Info.getW4NbrChldrn()+"<br/>");
+				hasDocChanges = true;
+			}
+		}
+		if (currentPayInfoChanges.getNumberOfOtherDependChanged() && !payrollSame) {
+			hasPayInfoChanges = true;
+			employeeMessageRequestReview.append("Other dependents<br/>");
+			if (docRequired.getNumberOfOtherDepend()) {
+				contents.append("Other dependents: \t\t" +w4Info.getW4NbrOthrDep()+"<br/>");
+				hasDocChanges = true;
+			}
+		}
+		if (currentPayInfoChanges.getOtherIncomeAmtChanged() && !payrollSame) {
+			hasPayInfoChanges = true;
+			employeeMessageRequestReview.append("Other Income<br/>");
+			if (docRequired.getOtherIncomeAmt()) {
+				contents.append("Other Income:\t\t" +w4Info.getW4OthrIncAmt()+"<br/>");
+				hasDocChanges = true;
+			}
+		}
+		if (currentPayInfoChanges.getOtherDeductAmtChanged() && !payrollSame) {
+			hasPayInfoChanges = true;
+			employeeMessageRequestReview.append("Deductions<br/>");
+			if (docRequired.getOtherDeductAmt()) {
+				contents.append("Deductions: \t\t" +w4Info.getW4OthrDedAmt()+"<br/>");
+				hasDocChanges = true;
+			}
+		}
+		if (currentPayInfoChanges.getOtherExemptAmtChanged() && !payrollSame) {
+			hasPayInfoChanges = true;
+			employeeMessageRequestReview.append("Other Exemptions<br/>");
+			if (docRequired.getOtherExemptAmt()) {
+				contents.append("Other Exemptions:\t\t" +w4Info.getW4OthrExmptAmt()+"<br/>");
+				hasDocChanges = true;
+			}
+		}
+		
+		index = 0;
+		
+		for (BankChanges b: currentAccountInfoChanges) {
+			boolean tempChanges = false;
+			bankContents = new StringBuilder();
+			
+			if (b.getCodeChanged() && !accountSame) {
+				hasAccountChanges = true;
+				tempChanges = true;
+				employeeMessageRequestReview.append("Bank Account Information<br/>");
+				if (docRequired.getCode()) {
+					bankContents.append("Bank Account Information: \t\t" + bank.getCode().getDescription()+"\t"+bank.getCode().getSubCode()+"<br/>");
+					hasDocChanges = true;
+				}
+			}
+			if (b.getAccountNumberChanged() && !accountSame) {
+				hasAccountChanges = true;
+				tempChanges = true;
+				employeeMessageRequestReview.append("Bank Account Number<br/>");
+				if (docRequired.getAccountNumber()) {
+					bankContents.append("Bank Account Number: \t\t" +bank.getAccountNumberLabel()+"<br/>");
+					hasDocChanges = true;
+				}
+			}
+			if (b.getAccountTypeChanged() && !accountSame) {
+				hasAccountChanges = true;
+				tempChanges = true;
+				employeeMessageRequestReview.append("Bank Account Type<br/>");
+				if (docRequired.getAccountType()) {
+					bankContents.append("Bank Account Type:\t\t" +bank.getAccountType().getDisplayLabel()+"<br/>");
+					hasDocChanges = true;
+				}
+			}
+			if (b.getDepositAmountChanged() && !accountSame) {
+				double amount = bank.getDepositAmount().getAmount();
+				boolean newprim = false;
+				if (amount == 0) {
+					newprim = true;
+				}
+
+				hasAccountChanges = true;
+				tempChanges = true;
+				if (docRequired.getDepositAmount()) {
+					if (newprim) {
+						bankContents.append("Bank Account Deposit Amount:\t\t" +bank.getDepositAmount().getDisplayAmount()+" (New Primary Account)<br/>");
+					} else {
+						bankContents.append("Bank Account Deposit Amount:\t\t" +bank.getDepositAmount().getDisplayAmount()+"<br/>");
+					}
+					hasDocChanges = true;
+				}
+			}
+			if (tempChanges) {
+				contents.append("Bank Account " +bank.getCode().getDescription()+": <br/>");
+				contents.append(bankContents);
+			}
+			
+			index++;
+		}
+		
+		if (hasDocChanges) {
+			messageContents.append(header);
+		}
+		if (hasPayInfoChanges || hasAccountChanges) {
+			messageContents.append(contents);
+
+			messageContents.append("<br/>The following request(s) is pending to be reviewed:<br/>");
+			messageContents.append(employeeMessageRequestReview.toString()); 
+		}
+		
+		messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
+		
+		
+		if (hasPayInfoChanges || hasAccountChanges) {
+			String toEmail ="";
+			if (!"".equals(userWorkEmail)) {
+				toEmail = userWorkEmail;
+			}
+			else if (!"".equals(userHomeEmail)) {
+				toEmail = userHomeEmail;
+			}	
+			
+			if (toEmail!=null && toEmail.trim().length() > 0) {
+				try{
+					MailUtil.sendEmail(toEmail, subject, messageContents.toString());
+				} 
+				catch(Exception ex) {
+					logger.info("Self Service Change Payroll Info: An exception has occured with mailing ");
+				} 
+			} else {
+				logger.info("Self Service Change Payroll Info: Unable to send an email confirmation.  No email address is avaiable");
+			}
+		}
+		Integer emailChanges =0;
+		if (!payrollSame && accountSame)
+			emailChanges =1;
+		else if (payrollSame && !accountSame)
+			emailChanges = 2;
+		else if (!payrollSame && !accountSame)
+			emailChanges = 3;
+		
+		
+		//Send ApproverEmail
+		autoApprove = this.getBhrEapPayAssgnGrp("BEA_W4");
+		if((emailChanges == 1 || emailChanges == 3) && !payrollSame)
+		{
+			if(!autoApprove)
+			{
+				String employeeNumber  = referenceDao.getApproverEmployeeNumber(payFreq, "BEA_W4");
+				if(employeeNumber == null || "".equals(employeeNumber))
+				{
+					return;
+				}
+				BhrEmpDemo approver = userDao.getUserDetail(employeeNumber);
+				
+				if(approver == null)
+				{
+					return;
+				}
+				
+				String approverFirstName = approver.getNameF()== null ? "" : approver.getNameF();
+				String approverLastName = approver.getNameL()== null ? "" : approver.getNameL();
+				
+				messageContents = new StringBuilder();
+				messageContents.append(approverFirstName + " " + approverLastName + ", <br/><br/>");
+				messageContents.append(userFirstName + " " + userLastName + " has submitted a request to change payroll information. <br/>");
+				messageContents.append("The request is ready for your approval. <br/>");
+				messageContents.append("Login to Human Resources to approve. <br/>");
+				
+				messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
+				
+				String toApproverEmail =(approver.getEmail() == null || approver.getEmail().equals("")) ? approver.getHmEmail() : approver.getHmEmail();
+	
+				if (toApproverEmail!=null && toApproverEmail.trim().length() > 0) {
+					try {
+						MailUtil.sendEmail(toApproverEmail, subject, messageContents.toString());
+					}
+
+					catch(Exception ex) {
+						logger.info("Self Service Change Payroll Pay Info: An exception has occured with mailing the approver "+ex.toString());
+					}
+					
+				}
+			}
+		}
+		
+		else if((emailChanges == 2 || emailChanges == 3) && !accountSame)
+		{
+			if(!autoApproveBank)
+			{
+				String employeeNumber  = referenceDao.getApproverEmployeeNumber(payFreq, "BEA_DRCT_DPST_BNK_ACCT");
+				
+				if(employeeNumber == null || "".equals(employeeNumber))
+				{
+					return;
+				}
+				BhrEmpDemo approver = userDao.getUserDetail(employeeNumber);
+				
+				if(approver == null)
+				{
+					return;
+				}
+	
+				String approverFirstName = approver.getNameF()== null ? "" : approver.getNameF();
+				String approverLastName = approver.getNameL()== null ? "" : approver.getNameL();
+				
+				messageContents = new StringBuilder();
+				messageContents.append(approverFirstName == null ? "" : approverFirstName + " " + approverLastName == null ? "" : approverLastName + ", <br/><br/>");
+				messageContents.append(userFirstName + " " + userLastName+ "\t\t has submitted a request<br/>");
+				messageContents.append("to change payroll information. <br/>");
+				messageContents.append("The request is ready for your approval. <br/>");
+				messageContents.append("Login to Human Resources to approve. <br/>");
+				messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
+				
+				String toApproverEmail =(approver.getEmail() == null || approver.getEmail().equals("")) ? approver.getHmEmail() : approver.getHmEmail();
+				
+				if (toApproverEmail!=null && toApproverEmail.trim().length() > 0) {
+					try {
+						MailUtil.sendEmail(toApproverEmail, subject, messageContents.toString());
+					}
+
+					catch(Exception ex) {
+						logger.info("Self Service Change Payroll Bank Info: An exception has occured with mailing the approver "+ex.toString());
+					}
+					
+				}
+			}
+		}
+		
     }
 }

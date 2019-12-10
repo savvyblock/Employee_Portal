@@ -40,6 +40,7 @@ import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPay;
 import com.esc20.model.BthrBankCodes;
 import com.esc20.nonDBModels.Bank;
+import com.esc20.nonDBModels.BankChanges;
 import com.esc20.nonDBModels.BankRequest;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.DemoInfoFields;
@@ -50,8 +51,11 @@ import com.esc20.nonDBModels.Money;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.Page;
 import com.esc20.nonDBModels.PayInfo;
+import com.esc20.nonDBModels.PayInfoChanges;
+import com.esc20.nonDBModels.PayrollFields;
 import com.esc20.nonDBModels.PayrollOption;
 import com.esc20.nonDBModels.SearchCriteria;
+import com.esc20.nonDBModels.W4Info;
 import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.BankService;
 import com.esc20.service.IndexService;
@@ -1309,11 +1313,12 @@ public class ProfileController {
 		if (demoOptions.getFieldDisplayOptionHomePhone().trim().equals("U")) {
 
 			phoneNbrNew = phoneNbrNew.replaceAll("-", "");
-			if(!phoneAreaNew.equals(demo.getPhoneArea())) {
+			BeaHmPhone hmRequest = this.indexService.getBeaHmPhone(demo);
+			if(!phoneAreaNew.equals(hmRequest.getPhoneAreaNew())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneHomeArea(true);
 			}
-			if(!phoneNbrNew.equals(demo.getPhoneNbr())) {
+			if(!phoneNbrNew.equals(hmRequest.getPhoneNbrNew())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneHomeNum(true);
 			}
@@ -1344,11 +1349,12 @@ public class ProfileController {
 		if (demoOptions.getFieldDisplayOptionCellPhone().trim().equals("U")) {
 
 			phoneNbrCellNew = phoneNbrCellNew.replaceAll("-", "");
-			if(!phoneAreaCellNew.equals(demo.getPhoneAreaCell())) {
+			BeaCellPhone cellRequest = this.indexService.getBeaCellPhone(demo);
+			if(!phoneAreaCellNew.equals(cellRequest.getPhoneAreaCellNew())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneCellArea(true);
 			}
-			if(!phoneNbrCellNew.equals(demo.getPhoneNbrCell())) {
+			if(!phoneNbrCellNew.equals(cellRequest.getPhoneNbrCellNew())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneCellNum(true);
 			}
@@ -1381,15 +1387,16 @@ public class ProfileController {
 		if (demoOptions.getFieldDisplayOptionWorkPhone().trim().equals("U")) {
 
 			phoneNbrBusNew = phoneNbrBusNew.replaceAll("-", "");
-			if(!phoneAreaBusNew.equals(demo.getPhoneAreaBus())) {
+			BeaBusPhone busRequest = this.indexService.getBeaBusPhone(demo);
+			if(!phoneAreaBusNew.equals(busRequest.getPhoneAreaBusNew())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneBusArea(true);
 			}
-			if(!phoneNbrBusNew.equals(demo.getPhoneNbrBus())) {
+			if(!phoneNbrBusNew.equals(busRequest.getPhoneNbrBusNew())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneBusNum(true);
 			}
-			if(!busPhoneExtNew.equals(demo.getBusPhoneExt())) {
+			if(!busPhoneExtNew.equals(busRequest.getBusPhoneExtNew())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneBusExt(true);
 			}
@@ -1470,6 +1477,47 @@ public class ProfileController {
 		BeaW4 w4Request;
 		Frequency freq;
 		freq = Frequency.getFrequency(payFreq);
+		boolean payrollSame = true;
+		PayInfoChanges currentPayInfoChanges = new PayInfoChanges();
+		// Compare current and new value so to decide if need to send out email
+		BeaW4 w4Pending;
+		if (payFreq != null && !("").equals(payFreq)) {
+			w4Pending = this.indexService.getBeaW4(demo, payFreq);
+		} else {
+			List<Code> payRollFrequenciesOptions = this.referenceService.getPayrollFrequencies(demo.getEmpNbr());
+			w4Pending = this.indexService.getBeaW4(demo, payRollFrequenciesOptions.get(0).getDescription());
+		}
+		
+		if (!w4FileStatNew.equals(w4Pending.getW4FileStatNew())) {
+			payrollSame = false;
+			currentPayInfoChanges.setFilingStatusChanged(true);
+		}
+		if (!w4MultiJobNew.equals(w4Pending.getW4MultiJobNew())) {
+			payrollSame = false;
+			currentPayInfoChanges.setMultiJobChanged(true);
+		}
+		if (!w4NbrChldrnNew.equals(w4Pending.getW4NbrChldrnNew())) {
+			payrollSame = false;
+			currentPayInfoChanges.setNumberOfChildrenChanged(true);
+		}
+		
+		if (!w4NbrOthrDepNew.equals(w4Pending.getW4NbrOthrDepNew())) {
+			payrollSame = false;
+			currentPayInfoChanges.setNumberOfOtherDependChanged(true);
+		}
+		if (!w4OthrIncAmtNew.equals(w4Pending.getW4OthrIncAmtNew())) {
+			payrollSame = false;
+			currentPayInfoChanges.setOtherIncomeAmtChanged(true);
+		}
+		if (!w4OthrDedAmtNew.equals(w4Pending.getW4OthrDedAmtNew())) {
+			payrollSame = false;
+			currentPayInfoChanges.setOtherDeductAmtChanged(true);
+		}
+		if (!w4OthrExmptAmtNew.equals(w4Pending.getW4OthrExmptAmtNew())) {
+			payrollSame = false;
+			currentPayInfoChanges.setOtherExemptAmtChanged(true);
+		}
+		
 		if (this.indexService.getBhrEapPayAssgnGrp("BEA_W4")) {
 			w4Request = new BeaW4(pay, empNbr, freq.getCode().charAt(0), reqDts, maritalStatTaxNew, nbrTaxExemptsNew,
 					'A', w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew,
@@ -1484,6 +1532,25 @@ public class ProfileController {
 					w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew, w4OthrDedAmtNew,
 					w4OthrExmptAmtNew);
 			this.indexService.saveW4Request(w4Request);
+		}
+		
+		//Send Out Email
+		if (!payrollSame) {		
+			W4Info w4Info = new W4Info();
+			w4Info.setW4FileStat(w4FileStatNew);
+			w4Info.setW4MultiJob(w4MultiJobNew);
+			w4Info.setW4NbrChldrn(w4NbrChldrnNew);
+			w4Info.setW4NbrOthrDep(w4NbrOthrDepNew);
+			w4Info.setW4OthrDedAmt(w4OthrDedAmtNew);
+			w4Info.setW4OthrExmptAmt(w4OthrExmptAmtNew);
+			w4Info.setW4OthrIncAmt(w4OthrIncAmtNew);
+			Boolean autoApproveBank = true; //Since we do not need to update Bank here we make it as true;
+			//autoApproveBank = this.bankService.getAutoApproveAccountInfo(freq.getCode()); // will use when save or Update Bank
+			PayrollFields docRequiredFields = this.referenceService.populatePayrollDocRequiredFields(payFreq);
+			//When only update W4 then Bank account will always same
+			List <BankChanges> currentAccountInfoChanges = new ArrayList<>();
+			Bank bank = new Bank();
+			this.indexService.payrollDataChangeSendEmailConfirmation(demo, freq.getCode(),payrollSame,true,currentPayInfoChanges,w4Info,autoApproveBank,currentAccountInfoChanges,bank,docRequiredFields);
 		}
 
 		this.getProfileDetails(session, mav, freq.getCode());
