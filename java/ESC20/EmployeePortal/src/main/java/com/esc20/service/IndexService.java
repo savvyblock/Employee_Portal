@@ -892,7 +892,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getPhoneBusExt()==null?false:demoInfoChanges.getPhoneBusExt()) {
-			fieldName = "Business Extention<br/>";
+			fieldName = "Business Extension<br/>";
 			if (docRequiredFields.getPhoneBusExt()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1131,7 +1131,7 @@ public class IndexService {
 			}
 		}
 		if (demoInfoChanges.getEmergencyPhoneExt()==null?false:demoInfoChanges.getEmergencyPhoneExt()) {
-			fieldName = "Emergency Contact Phone Extention<br/>";
+			fieldName = "Emergency Contact Phone Extension<br/>";
 			if (docRequiredFields.getEmergencyPhoneExt()) {
 				employeeMessageDocRequired.append(fieldName);
 				hasDocChanges = true;
@@ -1281,4 +1281,33 @@ public class IndexService {
 		}
 		
 	}
+
+    public void payrollDataChangeSendEmailConfirmation(BhrEmpDemo userDemo, boolean payrollSame, boolean accountSame) {
+    	//used to track changes for current session on page for emailing purposes
+		/*List <BankChanges> currentAccountInfoChanges = setAccountInfoChanges(accountInfoPending, payroll.getAccountInfo());
+		PayInfoChanges currentPayInfoChanges = setPayInfoChanges(payInfoPending, payroll.getPayInfo());
+		
+		PayrollFields docRequired = getDocumentationRequiredFields(Frequency.getFrequency(payroll.getFrequency()).getCode());*/
+	
+		boolean hasDocChanges = false;
+		boolean hasApprovChanges = false;
+		boolean hasPayInfoChanges = false;
+		boolean hasAccountChanges = false;
+		
+		String userFirstName = userDemo.getNameF();
+		String userLastName = userDemo.getNameL();
+		String userHomeEmail = userDemo.getHmEmail();
+		String userWorkEmail = userDemo.getEmail();
+		userFirstName = userFirstName== null ? "" : userFirstName;
+		userLastName = userLastName== null ? "" : userLastName;
+		
+		String subject ="A MESSAGE FROM SELF SERVICE";
+		StringBuilder messageContents = new StringBuilder();
+		messageContents.append(userFirstName + " " +userLastName + ", <br/><br/>");
+		messageContents.append("Your request for changes to payroll data has been submitted. <br/>");
+		
+		String header = "<p>The following data was automatically approved and updated: </p>";
+		StringBuilder contents = new StringBuilder();
+		StringBuilder bankContents = new StringBuilder();
+    }
 }

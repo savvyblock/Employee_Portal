@@ -595,31 +595,33 @@ public class ProfileController {
 		mav.setViewName("profile");
 
 		// Compare current and new value so to decide if need to send out email
-		if (!namePreNew.equals(demo.getNamePre())) {
+		BeaLglName nameOldRequest = this.indexService.getBeaLglName(demo);
+		
+		if (!namePreNew.equals(nameOldRequest.getNamePreNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameTitle(true);
 		}
-		if (!nameFNew.equals(demo.getNameF())) {
+		if (!nameFNew.equals(nameOldRequest.getNameFNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameFirst(true);
 		}
-		if (!nameLNew.equals(demo.getNameL())) {
+		if (!nameLNew.equals(nameOldRequest.getNameLNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameLast(true);
 		}
-		if (!nameMNew.equals(demo.getNameM())) {
+		if (!nameMNew.equals(nameOldRequest.getNameMNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameMiddle(true);
 		}
 
-		if(demo.getNameGen()==null) {
+		if(nameOldRequest.getNameGenNew()==null) {
 			if(nameGenNew !="") {
 				isAnyChanges = true;
 				demoInfoChanges.setNameGeneration(true);
 			}
 		}
 		else  {
-			if(!nameGenNew.trim().equals(demo.getNameGen().toString().trim())) {
+			if(!nameGenNew.trim().equals(nameOldRequest.getNameGenNew().toString().trim())) {
 				isAnyChanges = true;
 				demoInfoChanges.setNameGeneration(true);
 			}
@@ -693,13 +695,15 @@ public class ProfileController {
 		DemoInfoFields demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
 
 		// Compare current and new value so to decide if need to send out email
-		if(demo.getMaritalStat()==null) {
+		BeaMrtlStat mrtlRequest = this.indexService.getBeaMrtlStat(demo);
+		
+		if(mrtlRequest.getMaritalStatNew()==null) {
 			if(maritalStatNew !="") {
 				isAnyChanges = true;
 				demoInfoChanges.setMaritalLocal(true);
 			}
 		}else {
-			if (!maritalStatNew.trim().equals(demo.getMaritalStat().toString().trim())) {
+			if (!maritalStatNew.trim().equals(mrtlRequest.getMaritalStatNew().toString().trim())) {
 				isAnyChanges = true;
 				demoInfoChanges.setMaritalLocal(true);
 			}
@@ -766,11 +770,13 @@ public class ProfileController {
 		BeaDrvsLic driversLicenseRequest;
 
 		// Compare current and new value so to decide if need to send out email
-		if (!driversLicNbrNew.equals(demo.getDriversLicNbr())) {
+		BeaDrvsLic licRequest = this.indexService.getBeaDrvsLic(demo);
+	
+		if (!driversLicNbrNew.equals(licRequest.getDriversLicNbrNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setDriversNum(true);
 		}
-		if (!driversLicStNew.equals(demo.getDriversLicSt())) {
+		if (!driversLicStNew.equals(licRequest.getDriversLicStNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setDriversState(true);
 		}
@@ -833,26 +839,28 @@ public class ProfileController {
 		BeaRestrict restrictionCodesRequest;
 
 		// Compare current and new value so to decide if need to send out email
-		if(demo.getRestrictCd()==null) {
+		BeaRestrict restrictRequest = this.indexService.getBeaRestrict(demo);
+		
+		if(restrictRequest.getRestrictCdNew()==null) {
 			if(restrictCdNew !="") {
 				isAnyChanges = true;
 				demoInfoChanges.setRestrictionLocal(true);
 			}
 		}
 		else {
-			if (!restrictCdNew.trim().equals(demo.getRestrictCd().toString().trim())) {
+			if (!restrictCdNew.trim().equals(restrictRequest.getRestrictCdNew().toString().trim())) {
 				isAnyChanges = true;
 				demoInfoChanges.setRestrictionLocal(true);
 			}
 		}
 		
-		if(demo.getRestrictCdPublic()==null) {
+		if(restrictRequest.getRestrictCdPublicNew()==null) {
 			if(restrictCdPublicNew !="") {
 				isAnyChanges = true;
 				demoInfoChanges.setRestrictionPublic(true);
 			}
 		}  else {
-			if (!restrictCdPublicNew.trim().equals(demo.getRestrictCdPublic().toString().trim())) {
+			if (!restrictCdPublicNew.trim().equals(restrictRequest.getRestrictCdPublicNew().toString().trim())) {
 				isAnyChanges = true;
 				demoInfoChanges.setRestrictionPublic(true);
 			}
@@ -919,11 +927,14 @@ public class ProfileController {
 		BeaEmail emailRequest;
 
 		// Compare current and new value so to decide if need to send out email
-		if (!emailNew.equals(demo.getEmail())) {
+		BeaEmail emailPendingRequest = this.indexService.getBeaEmail(demo);
+		
+		
+		if (!emailNew.equals(emailPendingRequest.getEmailNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmailWork(true);
 		}
-		if (!hmEmailNew.equals(demo.getHmEmail())) {
+		if (!hmEmailNew.equals(emailPendingRequest.getHmEmailNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmailHome(true);
 		}
@@ -993,27 +1004,29 @@ public class ProfileController {
 		BeaEmerContact emergencyContactRequest;
 
 		// Compare current and new value so to decide if need to send out email
-		if (!emerContactNew.equals(demo.getEmerContact())) {
+		BeaEmerContact emerRequest = this.indexService.getBeaEmerContact(demo);
+	
+		if (!emerContactNew.equals(emerRequest.getEmerContactNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmergencyName(true);
 		}
-		if (!emerPhoneAcNew.equals(demo.getEmerPhoneAc())) {
+		if (!emerPhoneAcNew.equals(emerRequest.getEmerPhoneAcNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmergencyAreaCode(true);
 		}
-		if (!emerPhoneNbrNew.equals(demo.getEmerPhoneNbr())) {
+		if (!emerPhoneNbrNew.equals(emerRequest.getEmerPhoneNbrNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmergencyPhoneNum(true);
 		}
-		if (!emerPhoneExtNew.equals(demo.getEmerPhoneExt())) {
+		if (!emerPhoneExtNew.equals(emerRequest.getEmerPhoneExtNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmergencyPhoneExt(true);
 		}
-		if (!emerRelNew.equals(demo.getEmerRel())) {
+		if (!emerRelNew.equals(emerRequest.getEmerRelNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmergencyRelationship(true);
 		}
-		if (!emerNoteNew.equals(demo.getEmerNote())) {
+		if (!emerNoteNew.equals(emerRequest.getEmerNoteNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmergencyNotes(true);
 		}
@@ -1087,31 +1100,32 @@ public class ProfileController {
 		DemoInfoFields demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
 		BeaMailAddr mailingAddressRequest;
 		// Compare current and new value so to decide if need to send out email
-		if (!addrNbrNew.equals(demo.getAddrNbr())) {
+		BeaMailAddr mailAddrRequest = this.indexService.getBeaMailAddr(demo);
+		if (!addrNbrNew.equals(mailAddrRequest.getAddrNbrNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingAddress(true);
 		}
-		if (!addrStrNew.equals(demo.getAddrStr())) {
+		if (!addrStrNew.equals(mailAddrRequest.getAddrStrNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingPoBox(true);
 		}
-		if (!addrCityNew.equals(demo.getAddrCity())) {
+		if (!addrCityNew.equals(mailAddrRequest.getAddrCityNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingCity(true);
 		}
-		if (!addrAptNew.equals(demo.getAddrApt())) {
+		if (!addrAptNew.equals(mailAddrRequest.getAddrAptNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingApt(true);
 		}
-		if (!addrStNew.equals(demo.getAddrSt())) {
+		if (!addrStNew.equals(mailAddrRequest.getAddrStNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingState(true);
 		}
-		if (!addrZipNew.equals(demo.getAddrZip())) {
+		if (!addrZipNew.equals(mailAddrRequest.getAddrZipNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingZip(true);
 		}
-		if (!addrZip4New.equals(demo.getAddrZip4())) {
+		if (!addrZip4New.equals(mailAddrRequest.getAddrZip4New())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingZip4(true);
 		}
@@ -1186,31 +1200,32 @@ public class ProfileController {
 		DemoInfoFields demoInfoChanges = ((DemoInfoFields) session.getAttribute("demoInfoChanges"));
 		BeaAltMailAddr altMailingAddressRequest;
 		// Compare current and new value so to decide if need to send out email
-		if (!smrAddrNbrNew.equals(demo.getSmrAddrNbr())) {
+		BeaAltMailAddr altMailAddrRequest = this.indexService.getBeaAltMailAddr(demo);
+		if (!smrAddrNbrNew.equals(altMailAddrRequest.getSmrAddrNbrNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setAlternateAddress(true);
 		}
-		if (!smrAddrStrNew.equals(demo.getSmrAddrStr())) {
+		if (!smrAddrStrNew.equals(altMailAddrRequest.getSmrAddrStrNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setAlternatePoBox(true);
 		}
-		if (!smrAddrAptNew.equals(demo.getSmrAddrApt())) {
+		if (!smrAddrAptNew.equals(altMailAddrRequest.getSmrAddrAptNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setAlternateApt(true);
 		}
-		if (!smrAddrCityNew.equals(demo.getSmrAddrCity())) {
+		if (!smrAddrCityNew.equals(altMailAddrRequest.getSmrAddrCityNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setAlternateCity(true);
 		}
-		if (!smrAddrStNew.equals(demo.getSmrAddrSt())) {
+		if (!smrAddrStNew.equals(altMailAddrRequest.getSmrAddrStNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setAlternateState(true);
 		}
-		if (!smrAddrZipNew.equals(demo.getSmrAddrZip())) {
+		if (!smrAddrZipNew.equals(altMailAddrRequest.getSmrAddrZipNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setAlternateZip(true);
 		}
-		if (!smrAddrZip4New.equals(demo.getSmrAddrZip4())) {
+		if (!smrAddrZip4New.equals(altMailAddrRequest.getSmrAddrZip4New())) {
 			isAnyChanges = true;
 			demoInfoChanges.setAlternateZip4(true);
 		}
