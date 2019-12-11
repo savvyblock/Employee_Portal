@@ -10,7 +10,8 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
         <%@ include file="commons/header.jsp"%>
         <style>
             .profile .profile-item .profile-btn .saveOrCancel button.undoBankHaveModal,
-            .profile .profile-item .profile-btn .saveOrCancel button.undoBankNoModal{
+            .profile .profile-item .profile-btn .saveOrCancel button.undoBankNoModal,
+            .profile .profile-item .profile-btn .saveOrCancel .delete-btn{
                 display: none;
             }
             
@@ -2132,25 +2133,23 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     ${sessionScope.languageJSON.label.undo}
                                                 </button>
                                                 <c:if test="${bank.code.subCode!=''}">
-                                                    <c:if test="${fn:length(banks)>1}">
                                                         <button
                                                             type="button" role="button"
+                                                            <c:if test="${fn:length(banks)>1 && (bank.depositAmountNew.displayAmount!=0&&fn:trim(bank.depositAmountNew.displayAmount)!='0.00')}">style="display:block;"</c:if>
                                                             id="deleteBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.deleteBank}"
-                                                            class="btn btn-secondary delete-btn ${hideDelete}"  onclick="deleteBankAmount(${count.index})"
+                                                            class="btn btn-secondary delete-btn ${hideDelete} deleteHasModal"  onclick="deleteBankAmount(${count.index})"
                                                             data-toggle="modal" data-target="#deleteModal"
                                                         >
                                                         ${sessionScope.languageJSON.label.delete}
                                                         </button>
-                                                    </c:if>
-                                                    <c:if test="${fn:length(banks)<=1}">
                                                         <button
                                                             type="button" role="button"
+                                                            <c:if test="${fn:length(banks)<=1 || (bank.depositAmountNew.displayAmount==0||fn:trim(bank.depositAmountNew.displayAmount)=='0.00')}">style="display:block;"</c:if>
                                                             id="deleteBank_${count.index}" aria-label = "${sessionScope.languageJSON.label.deleteBank}"
-                                                            class="btn btn-secondary delete-btn ${hideDelete}"  onclick="deleteBankAmount(${count.index})"
+                                                            class="btn btn-secondary delete-btn ${hideDelete} deleteNoModal"  onclick="deleteBankAmount(${count.index})"
                                                         >
                                                         ${sessionScope.languageJSON.label.delete}
                                                         </button>
-                                                    </c:if>
                                                 </c:if>
                                             </div>
                                         </div>

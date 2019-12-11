@@ -72,16 +72,21 @@ $(function () {
         }
     })
     $('.icheckRadioBank').on('click', function (event) {
+        $(".selectAnotherAsPrimaryError").hide()
         if ($(this).is(':checked')) {
             $(this).parents(".profile-item").find(".bankAmount .amount_2").val("0.00")
             var currentBankCode = $(this).parents(".profile-item").find("input[name='code']").val()
             //if there is no value in "current bank"
             $(".undo-btn.undoBankHaveModal").show()
             $(".undo-btn.undoBankNoModal").hide()
+            $(".delete-btn.deleteHasModal").show()
+            $(".delete-btn.deleteNoModal").hide()
             if (!currentBankCode || currentBankCode == '') {
                 $(this).parents(".profile-item").find(".undo-btn.undoBankHaveModal").hide()
                 $(this).parents(".profile-item").find(".undo-btn.undoBankNoModal").show()
             }
+            $(this).parents(".profile-item").find(".delete-btn.deleteHasModal").hide()
+            $(this).parents(".profile-item").find(".delete-btn.deleteNoModal").show()
             console.log($(this).parents(".profile-item").find(".bankAmount .amount_2").val())
             $(".bankAccountBlock").removeClass("asPrimary")
             $(this).parents(".bankAccountBlock").addClass("asPrimary")
@@ -497,7 +502,8 @@ function deleteBankAmount (index) {
     console.log(accountNumber)
     console.log(accountType)
     console.log(displayAmount)
-    if (parseInt(displayAmount) == 0) {
+    var primaryCheck = $("#primary_" + index + "").is(':checked')
+    if (parseInt(displayAmount) == 0 && primaryCheck) {
         $(".selectAnotherAsPrimaryError").show()
         return false
     }
