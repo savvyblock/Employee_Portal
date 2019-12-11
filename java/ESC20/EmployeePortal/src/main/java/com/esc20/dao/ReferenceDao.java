@@ -344,11 +344,11 @@ public class ReferenceDao {
 		q.setParameter("frequency", frequency);
 		q.setParameter("table", table);
 		@SuppressWarnings("unchecked")
-		List<Object[]> res = q.list();
+		List<String> res = q.list();
 		
 		String result="";
-		for(Object[] item: res) {
-			result = ""+item[0];
+		for(String item: res) {
+			result = ""+item;
 		}
 		return result;
 	}

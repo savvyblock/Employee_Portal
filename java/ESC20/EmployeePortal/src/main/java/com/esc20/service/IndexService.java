@@ -1503,7 +1503,7 @@ public class IndexService {
 				}
 			}
 			if (tempChanges) {
-				contents.append("Bank Account " + b.getBank().getCode().getDescription()+": <br/>");
+				contents.append("Bank Account  	" + b.getBank().getCode().getDescription()+": <br/>");
 				contents.append(bankContents);
 			}
 			
