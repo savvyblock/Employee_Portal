@@ -519,6 +519,7 @@ function updateBank () {
         var successNum = 0;
         var currentBankIndex = 0;
         var accountList = new Array()
+        var _csrf
         $(".updateBankForm").each(function (index) {
             var one = {};
             var t = $(this).serializeArray();
@@ -527,6 +528,7 @@ function updateBank () {
             });
             console.log("one", one)
             console.log("string", JSON.stringify(one))
+            _csrf = one._csrf
             accountList.push(one)
             // $.ajax({
             //     type: 'POST',
@@ -554,12 +556,16 @@ function updateBank () {
             // });
         })
         console.log(accountList)
+        var accountObj = {
+            bankArray:accountList,
+            _csrf:_csrf
+        }
         $.ajax({
                 type: 'POST',
                 url: '/' + ctx + '/profile/updateBank',
                 dataType: 'JSON',
                 contentType: 'application/json;charset=UTF-8',
-                data: JSON.stringify(accountList),
+                data: JSON.stringify(accountObj),
                 success: function (res) {
                     if (res.success) {
                         location.href = '/' + ctx + '/profile/profile'
