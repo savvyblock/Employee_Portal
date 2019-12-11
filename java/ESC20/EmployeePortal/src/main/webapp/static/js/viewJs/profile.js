@@ -238,10 +238,10 @@ $(function () {
             $('#hiddendisplayAmount').val(saveBankDisplayAmount)
 
             var newBank = {
-                code: saveBankCode,
-                accountNumber: saveBankAccountNumber,
-                displayLabel: saveBankDisplayLabel,
-                displayAmount: saveBankDisplayAmount,
+                codeNew: saveBankCode,
+                accountNumberNew: saveBankAccountNumber,
+                accountTypeNew: saveBankDisplayLabel,
+                displayAmountNew: saveBankDisplayAmount,
             }
             var result = checkDuplicate(newBank)
             console.log(result.bankArray)
@@ -251,7 +251,6 @@ $(function () {
             }
             $(".duplicateBankAccountError").hide()
             $("#bankArrayGroup").val(JSON.stringify(result.bankArray))
-            // return false
             $('#saveBankHidden').submit()
         }
     })
@@ -420,21 +419,18 @@ $(function () {
 })
 
 function checkDuplicate (newBank) {
+    var freq = $('#freq').val()
+    $('.hidden_freq_update').val(freq)
     var bankArryHave = $(".updateBankForm");
     var bankArry = new Array()
     bankArry.push(newBank)
     bankArryHave.each(function (index) {
-        var bankCode = $(this).find('#code_' + index + '').val()
-        var bankAccountNumber = $(this).find('#accountNumberNew_' + index + '').val()
-        var bankDisplayLabel = $(this).find('#accountTypeNew_' + index + '').val()
-        var bankDisplayAmount = $(this).find('#displayAmountNew_' + index + '').val()
-        var obj = {
-            code: bankCode,
-            accountNumber: bankAccountNumber,
-            displayLabel: bankDisplayLabel,
-            displayAmount: bankDisplayAmount,
-        }
-        bankArry.push(obj)
+        var one = {};
+        var t = $(this).serializeArray();
+        $.each(t, function () {
+            one[this.name] = this.value;
+        });
+        bankArry.push(one)
     })
     console.log(bankArry)
     var hasDuc = false
@@ -522,6 +518,7 @@ function updateBank () {
     if (arrayValidate.length == bankLen) {
         var successNum = 0;
         var currentBankIndex = 0;
+        var accountList = new Array()
         $(".updateBankForm").each(function (index) {
             var one = {};
             var t = $(this).serializeArray();
@@ -530,23 +527,42 @@ function updateBank () {
             });
             console.log("one", one)
             console.log("string", JSON.stringify(one))
-            $.ajax({
+            accountList.push(one)
+            // $.ajax({
+            //     type: 'POST',
+            //     url: '/' + ctx + '/profile/updateBank',
+            //     dataType: 'JSON',
+            //     contentType: 'application/json;charset=UTF-8',
+            //     data: JSON.stringify(one),
+            //     success: function (res) {
+            //         currentBankIndex++;
+            //         if (res.success) {
+            //             successNum++;
+            //             if (currentBankIndex == bankLen) {
+            //                 if (successNum == bankLen) {
+            //                     location.href = '/' + ctx + '/profile/profile'
+            //                 } else {
+            //                     $(".updateMessageFailed").removeClass("hide")
+            //                 }
+            //             }
+            //         }
+            //     },
+            //     error: function (res) {
+            //         console.log(res)
+            //         $(".updateMessageFailed").removeClass("hide")
+            //     }
+            // });
+        })
+        console.log(accountList)
+        $.ajax({
                 type: 'POST',
                 url: '/' + ctx + '/profile/updateBank',
                 dataType: 'JSON',
                 contentType: 'application/json;charset=UTF-8',
-                data: JSON.stringify(one),
+                data: JSON.stringify(accountList),
                 success: function (res) {
-                    currentBankIndex++;
                     if (res.success) {
-                        successNum++;
-                        if (currentBankIndex == bankLen) {
-                            if (successNum == bankLen) {
-                                location.href = '/' + ctx + '/profile/profile'
-                            } else {
-                                $(".updateMessageFailed").removeClass("hide")
-                            }
-                        }
+                        location.href = '/' + ctx + '/profile/profile'
                     }
                 },
                 error: function (res) {
@@ -554,8 +570,6 @@ function updateBank () {
                     $(".updateMessageFailed").removeClass("hide")
                 }
             });
-        })
-
     }
 }
 function undoBank (index) {

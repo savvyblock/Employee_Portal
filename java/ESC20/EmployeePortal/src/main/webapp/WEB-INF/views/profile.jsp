@@ -1972,7 +1972,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                 
                                                 <input type="hidden"  class="form-control bankcode bankNewCode"  name="codeNew"  id="codeNew_${count.index}" value="${bank.codeNew.code}" />
                                                 <input type="hidden" id="code_${count.index}" name="code" value="${bank.code.code}" />
-                                                
+                                                <input type="hidden" name="codePending" value="${bank.codeNew.code}">
                                                 <div class="valueInput group-line">
                                                     <div class="form-group inputDisabled">
                                                         <input
@@ -2035,6 +2035,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="accountNumberNew_${count.index}"
                                                         value="${bank.accountNumberNew}"
                                                     />
+                                                    <input type="hidden" name="accountNumberPending" value="${bank.accountNumberNew}">
                                                 </div>
                                             </div>
                                         </div>
@@ -2070,6 +2071,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </c:forEach>
 
                                                     </select>
+                                                    <input type="hidden" name="accountTypePending" value="${bank.accountTypeNew.displayLabel}">
                                                 </div>
                                             </div>
                                         </div>
@@ -2095,6 +2097,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         aria-disabled="${bank.isDelete}"
                                                         <c:if test="${bank.isDelete == true || readOnlyBank == true}">disabled="disabled"</c:if>
                                                     />
+                                                    <input type="hidden" name="displayAmountPending" value="${bank.depositAmountNew.displayAmount}">
                                                 </div>
                                             </div>
                                         </div>
