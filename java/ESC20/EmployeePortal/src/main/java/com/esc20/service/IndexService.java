@@ -1288,7 +1288,7 @@ public class IndexService {
 		
 	}
 
-    public void payrollDataChangeSendEmailConfirmation(BhrEmpDemo userDemo,String payFreq, boolean payrollSame, boolean accountSame,PayInfoChanges currentPayInfoChanges,W4Info w4Info,Boolean autoApproveBank,List <BankChanges> currentAccountInfoChanges,Bank bank,PayrollFields docRequired) {
+    public void payrollDataChangeSendEmailConfirmation(BhrEmpDemo userDemo,String payFreq, boolean payrollSame, boolean accountSame,PayInfoChanges currentPayInfoChanges,W4Info w4Info,Boolean autoApproveBank,List <BankChanges> currentAccountInfoChanges,PayrollFields docRequired) {
 		boolean hasDocChanges = false;
 		boolean hasApprovChanges = false;
 		boolean hasPayInfoChanges = false;
@@ -1353,32 +1353,32 @@ public class IndexService {
 			bankContents = new StringBuilder();
 			
 			if (b.getCodeChanged() && autoApproveBank && !accountSame) {
-				bankContents.append("Bank Account Information: \t\t" +bank.getCode().getDescription()+"\t"+bank.getCode().getSubCode()+"<br/>");
+				bankContents.append("Bank Account Information: \t\t" +b.getBank().getCode().getDescription()+"\t"+b.getBank().getCode().getSubCode()+"<br/>");
 				hasApprovChanges = true;
 				hasAccountChanges = true;
 				tempChanges = true;
 			}
 			if (b.getAccountNumberChanged() && autoApproveBank && !accountSame) {
-				bankContents.append("Bank Account Number:\t\t" +bank.getAccountNumberLabel()+"<br/>");
+				bankContents.append("Bank Account Number:\t\t" +b.getBank().getAccountNumberLabel()+"<br/>");
 				hasApprovChanges = true;
 				hasAccountChanges = true;
 				tempChanges = true;
 			}
 			if (b.getAccountTypeChanged() && autoApproveBank && !accountSame) {
-				bankContents.append("Bank Account Type:\t\t" +bank.getAccountType().getDisplayLabel()+"<br/>");
+				bankContents.append("Bank Account Type:\t\t" +b.getBank().getAccountType().getDisplayLabel()+"<br/>");
 				hasApprovChanges = true;
 				hasAccountChanges = true;
 				tempChanges = true;
 			}
 			if (b.getDepositAmountChanged() && autoApproveBank && !accountSame) {
-				bankContents.append("Bank Account Deposit Amount:\t\t" +bank.getDepositAmount().getDisplayAmount()+"<br/>");
+				bankContents.append("Bank Account Deposit Amount:\t\t" +b.getBank().getDepositAmount().getDisplayAmount()+"<br/>");
 				hasApprovChanges = true;
 				hasAccountChanges = true;
 				tempChanges = true;
 			}
 			
 			if (tempChanges) {
-				contents.append("Bank Account " +bank.getCode().getDescription()+": <br/>");
+				contents.append("Bank Account " + b.getBank().getCode().getDescription()+": <br/>");
 				contents.append(bankContents);
 			}
 			
@@ -1462,7 +1462,7 @@ public class IndexService {
 				tempChanges = true;
 				employeeMessageRequestReview.append("Bank Account Information<br/>");
 				if (docRequired.getCode()) {
-					bankContents.append("Bank Account Information: \t\t" + bank.getCode().getDescription()+"\t"+bank.getCode().getSubCode()+"<br/>");
+					bankContents.append("Bank Account Information: \t\t" + b.getBank().getCode().getDescription()+"\t"+ b.getBank().getCode().getSubCode()+"<br/>");
 					hasDocChanges = true;
 				}
 			}
@@ -1471,7 +1471,7 @@ public class IndexService {
 				tempChanges = true;
 				employeeMessageRequestReview.append("Bank Account Number<br/>");
 				if (docRequired.getAccountNumber()) {
-					bankContents.append("Bank Account Number: \t\t" +bank.getAccountNumberLabel()+"<br/>");
+					bankContents.append("Bank Account Number: \t\t" + b.getBank().getAccountNumberLabel()+"<br/>");
 					hasDocChanges = true;
 				}
 			}
@@ -1480,12 +1480,12 @@ public class IndexService {
 				tempChanges = true;
 				employeeMessageRequestReview.append("Bank Account Type<br/>");
 				if (docRequired.getAccountType()) {
-					bankContents.append("Bank Account Type:\t\t" +bank.getAccountType().getDisplayLabel()+"<br/>");
+					bankContents.append("Bank Account Type:\t\t" +b.getBank().getAccountType().getDisplayLabel()+"<br/>");
 					hasDocChanges = true;
 				}
 			}
 			if (b.getDepositAmountChanged() && !accountSame) {
-				double amount = bank.getDepositAmount().getAmount();
+				double amount = b.getBank().getDepositAmount().getAmount();
 				boolean newprim = false;
 				if (amount == 0) {
 					newprim = true;
@@ -1495,15 +1495,15 @@ public class IndexService {
 				tempChanges = true;
 				if (docRequired.getDepositAmount()) {
 					if (newprim) {
-						bankContents.append("Bank Account Deposit Amount:\t\t" +bank.getDepositAmount().getDisplayAmount()+" (New Primary Account)<br/>");
+						bankContents.append("Bank Account Deposit Amount:\t\t" + b.getBank().getDepositAmount().getDisplayAmount()+" (New Primary Account)<br/>");
 					} else {
-						bankContents.append("Bank Account Deposit Amount:\t\t" +bank.getDepositAmount().getDisplayAmount()+"<br/>");
+						bankContents.append("Bank Account Deposit Amount:\t\t" + b.getBank().getDepositAmount().getDisplayAmount()+"<br/>");
 					}
 					hasDocChanges = true;
 				}
 			}
 			if (tempChanges) {
-				contents.append("Bank Account " +bank.getCode().getDescription()+": <br/>");
+				contents.append("Bank Account " + b.getBank().getCode().getDescription()+": <br/>");
 				contents.append(bankContents);
 			}
 			

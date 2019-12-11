@@ -10,7 +10,14 @@ public class BankChanges implements Serializable {
 	private Boolean accountNumberChanged = false;
 	private Boolean accountTypeChanged = false;
 	private Boolean depositAmountChanged = false;
+	private Bank bank;
 	
+	public Bank getBank() {
+		return bank;
+	}
+	public void setBank(Bank bank) {
+		this.bank = bank;
+	}
 	public Boolean getCodeChanged() {
 		return codeChanged;
 	}

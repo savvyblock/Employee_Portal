@@ -168,6 +168,7 @@ public class ProfileController {
 		String accountNumber = req.getParameter("accountNumber");
 		String subCode = req.getParameter("subCode");
 		String code = req.getParameter("code");
+		String bankArray = req.getParameter("bankArray");
 
 		String employeeNumber = demo.getEmpNbr();
 
@@ -211,54 +212,104 @@ public class ProfileController {
 		HttpSession session = req.getSession();
 		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		Map<String, Boolean> res = new HashMap<>();
-		String freq = json.getString("freq");
+		//String bankArray = json.getString("bankArray");
+		JSONArray bankArrs = json.getJSONArray("bankArray");
+		String freq = "";
+		Boolean autoApprove = false;
+		boolean accountSame = true;
+		List <BankChanges> currentAccountInfoChanges = new ArrayList<>();
+		
+		for (int i =0; i < bankArrs.size(); i++){
+			JSONObject bankJson = bankArrs.getJSONObject(i); 
+			freq = bankJson.getString("freq");
+			
+			String displayAmount = bankJson.getString("displayAmount");
+			String displayLabel = bankJson.getString("accountType");
+			String accountNumber = bankJson.getString("accountNumber");
+			String code = bankJson.getString("code");
 
-		String displayAmount = json.getString("displayAmount");
-		String displayLabel = json.getString("accountType");
-		String accountNumber = json.getString("accountNumber");
-		String code = json.getString("code");
+			String displayAmountNew = bankJson.getString("displayAmountNew");
+			String displayLabelNew = bankJson.getString("accountTypeNew");
+			String accountNumberNew = bankJson.getString("accountNumberNew");
+			String codeNew = bankJson.getString("codeNew");
+			
+			String displayAmountPending = bankJson.getString("displayAmountPending");
+			String displayLabelPending = bankJson.getString("accountTypePending");
+			String accountNumberPending = bankJson.getString("accountNumberPending");
+			String codePending = bankJson.getString("codePending");
+			BankChanges bc = new BankChanges();
 
-		String displayAmountNew = json.getString("displayAmountNew");
-		String displayLabelNew = json.getString("accountTypeNew");
-		String accountNumberNew = json.getString("accountNumberNew");
-		String codeNew = json.getString("codeNew");
-		if (displayAmount == null || displayLabel == null || accountNumber == null || code == null
-				|| displayAmountNew == null || displayLabelNew == null || accountNumberNew == null || codeNew == null) {
-			res.put("success", false);
-			return res;
+			// Compare current and new value so to decide if need to send out email
+			if (!displayAmountNew.equals(displayAmountPending)) {
+				accountSame = false;
+				bc.setDepositAmountChanged(true);
+			}
+			if (!displayLabelNew.equals(displayLabelPending)) {
+				accountSame = false;
+				bc.setAccountTypeChanged(true);
+			}
+			if (!accountNumberNew.equals(accountNumberPending)) {
+				accountSame = false;
+				bc.setAccountNumberChanged(true);
+			}
+			if (!codeNew.equals(codePending)) {
+				accountSame = false;
+				bc.setCodeChanged(true);
+			}
+			
+			if (displayAmount == null || displayLabel == null || accountNumber == null || code == null
+					|| displayAmountNew == null || displayLabelNew == null || accountNumberNew == null || codeNew == null) {
+				res.put("success", false);
+				return res;
+			}
+
+			String employeeNumber = demo.getEmpNbr();
+
+			autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
+
+			Bank accountInfo = new Bank();
+
+			accountInfo.setAccountNumber(accountNumber);
+			Code c = new Code();
+			c.setDisplayLabel(displayLabel);
+			accountInfo.setAccountType(c);
+			accountInfo.setCode(this.bankService.getBank(code));
+			accountInfo.setDepositAmount(new Money(new Double(displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
+			accountInfo.setFrequency(Frequency.getFrequency(freq));
+
+			Bank payrollAccountInfo = new Bank();
+			c.setDisplayLabel(displayLabelNew);
+			payrollAccountInfo.setAccountNumber(accountNumberNew);
+			payrollAccountInfo.setAccountType(c);
+			payrollAccountInfo.setCode(this.bankService.getBank(codeNew));
+			payrollAccountInfo.setDepositAmount(
+					new Money(new Double(displayAmountNew).doubleValue(), Currency.getInstance(Locale.US)));
+			payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
+			
+			bc.setBank(payrollAccountInfo);
+
+			this.bankService.deleteAccountRequest(employeeNumber, freq, accountInfo, null);
+			this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
+
+			if (autoApprove) {
+				this.bankService.updateAccountApprove(employeeNumber, freq, payrollAccountInfo, accountInfo);
+			}
+			
+			currentAccountInfoChanges.add(bc);
+		}
+		
+		//Send Out Email
+		if (!accountSame) {		
+			PayrollFields docRequiredFields = this.referenceService.populatePayrollDocRequiredFields(freq);
+			//When only update Bank account then W4 will always same
+			W4Info w4Info = new W4Info();
+			PayInfoChanges currentPayInfoChanges = new PayInfoChanges();
+			autoApprove = false;
+			this.indexService.payrollDataChangeSendEmailConfirmation(demo,freq,true,accountSame,currentPayInfoChanges,w4Info,autoApprove,currentAccountInfoChanges,docRequiredFields);
 		}
 
-		String employeeNumber = demo.getEmpNbr();
-
-		Boolean autoApprove = this.bankService.getAutoApproveAccountInfo(freq);
-
-		Bank accountInfo = new Bank();
-
-		accountInfo.setAccountNumber(accountNumber);
-		Code c = new Code();
-		c.setDisplayLabel(displayLabel);
-		accountInfo.setAccountType(c);
-		accountInfo.setCode(this.bankService.getBank(code));
-		accountInfo
-				.setDepositAmount(new Money(new Double(displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
-		accountInfo.setFrequency(Frequency.getFrequency(freq));
-
-		Bank payrollAccountInfo = new Bank();
-		c.setDisplayLabel(displayLabelNew);
-		payrollAccountInfo.setAccountNumber(accountNumberNew);
-		payrollAccountInfo.setAccountType(c);
-		payrollAccountInfo.setCode(this.bankService.getBank(codeNew));
-		payrollAccountInfo.setDepositAmount(
-				new Money(new Double(displayAmountNew).doubleValue(), Currency.getInstance(Locale.US)));
-		payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
-
-		this.bankService.deleteAccountRequest(employeeNumber, freq, accountInfo, null);
-		this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
-
-		if (autoApprove) {
-			this.bankService.updateAccountApprove(employeeNumber, freq, payrollAccountInfo, accountInfo);
-		}
 		res.put("success", true);
+		
 		return res;
 	}
 
@@ -1549,8 +1600,7 @@ public class ProfileController {
 			PayrollFields docRequiredFields = this.referenceService.populatePayrollDocRequiredFields(payFreq);
 			//When only update W4 then Bank account will always same
 			List <BankChanges> currentAccountInfoChanges = new ArrayList<>();
-			Bank bank = new Bank();
-			this.indexService.payrollDataChangeSendEmailConfirmation(demo, freq.getCode(),payrollSame,true,currentPayInfoChanges,w4Info,autoApproveBank,currentAccountInfoChanges,bank,docRequiredFields);
+			this.indexService.payrollDataChangeSendEmailConfirmation(demo, freq.getCode(),payrollSame,true,currentPayInfoChanges,w4Info,autoApproveBank,currentAccountInfoChanges,docRequiredFields);
 		}
 
 		this.getProfileDetails(session, mav, freq.getCode());
