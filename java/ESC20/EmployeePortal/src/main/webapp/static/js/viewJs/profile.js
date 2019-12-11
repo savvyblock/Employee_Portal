@@ -251,6 +251,7 @@ $(function () {
             }
             $(".duplicateBankAccountError").hide()
             $("#bankArrayGroup").val(JSON.stringify(result.bankArray))
+            $(".loadingOn").show()
             $('#saveBankHidden').submit()
         }
     })
@@ -560,10 +561,12 @@ function updateBank () {
             bankArray:accountList,
             _csrf:_csrf
         }
+        $(".loadingOn").show()
         $.ajax({
                 type: 'POST',
                 url: '/' + ctx + '/profile/updateBank',
                 dataType: 'JSON',
+                async:true,
                 contentType: 'application/json;charset=UTF-8',
                 data: JSON.stringify(accountObj),
                 success: function (res) {
@@ -574,6 +577,7 @@ function updateBank () {
                 error: function (res) {
                     console.log(res)
                     $(".updateMessageFailed").removeClass("hide")
+                    $(".loadingOn").hide()
                 }
             });
     }
