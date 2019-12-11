@@ -238,10 +238,19 @@ $(function () {
             $('#hiddendisplayAmount').val(saveBankDisplayAmount)
 
             var newBank = {
+                isnew:true,
                 codeNew: saveBankCode,
                 accountNumberNew: saveBankAccountNumber,
                 accountTypeNew: saveBankDisplayLabel,
                 displayAmountNew: saveBankDisplayAmount,
+                code: null,
+                accountNumber: null,
+                accountType: null,
+                displayAmount: null,
+                codePending: null,
+                accountNumberPending: null,
+                accountTypePending: null,
+                displayAmountPending: null,
             }
             var result = checkDuplicate(newBank)
             console.log(result.bankArray)
@@ -431,6 +440,7 @@ function checkDuplicate (newBank) {
         $.each(t, function () {
             one[this.name] = this.value;
         });
+        one.isnew = false
         bankArry.push(one)
     })
     console.log(bankArry)
