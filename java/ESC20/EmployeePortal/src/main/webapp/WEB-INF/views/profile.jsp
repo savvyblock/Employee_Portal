@@ -875,7 +875,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             maxlength="4"
                                                             aria-label="${sessionScope.languageJSON.profile.emergencyContactExtention}"
                                                             <c:if test="${readOnlyEmergency == true}">disabled="disabled"</c:if>
-                                                            value="${emerRequest.emerPhoneExtNew}"
+                                                            value="${fn:trim(emerRequest.emerPhoneExtNew)}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>
@@ -992,7 +992,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="mailAddrNumber"
                                                         aria-label="${sessionScope.languageJSON.profile.mailingAddressNumber}"
                                                         <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
-                                                        value="${mailAddrRequest.addrNbrNew}"
+                                                        value="${fn:trim(mailAddrRequest.addrNbrNew)}"
                                                         
                                                     />
                                                 </div>
@@ -1526,7 +1526,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             maxlength="4"
                                                             aria-label="${sessionScope.languageJSON.profile.workPhoneExtention}"
                                                             <c:if test="${readOnlyWorkPhone == true}">disabled="disabled"</c:if>
-                                                            value="${busRequest.busPhoneExtNew}"
+                                                            value="${fn:trim(busRequest.busPhoneExtNew)}"
                                                             oninput="value=value.replace(/[^\d]/g,'')"
                                                         />
                                                     </div>

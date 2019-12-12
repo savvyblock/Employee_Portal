@@ -75,7 +75,7 @@ public class BeaEmerContact implements java.io.Serializable {
 		this.emerContactNew = demo.getEmerContact();
 		this.emerPhoneAcNew = demo.getEmerPhoneAc();
 		this.emerPhoneNbrNew = demo.getEmerPhoneNbr();
-		this.emerPhoneExtNew = demo.getEmerPhoneExt();
+		this.emerPhoneExtNew = demo.getEmerPhoneExt()==null?demo.getEmerPhoneExt():demo.getEmerPhoneExt().trim();
 		this.emerRelNew = demo.getEmerRel();
 		this.emerNoteNew = demo.getEmerNote();
 		this.apprvdDts = "";

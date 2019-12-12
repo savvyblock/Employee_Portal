@@ -70,8 +70,8 @@ public class BeaAltMailAddr implements java.io.Serializable {
 		id.setEmpNbr(demo.getEmpNbr());
 		id.setReqDts(sdf.format(new Date()).substring(0, 16));
 		this.id = id;
-		this.smrAddrNbr = demo.getSmrAddrNbr();
-		this.smrAddrStr = demo.getSmrAddrStr();
+		this.smrAddrNbr = demo.getSmrAddrNbr()==null?demo.getSmrAddrNbr():demo.getSmrAddrNbr().trim();
+		this.smrAddrStr = demo.getSmrAddrStr()==null?demo.getSmrAddrStr():demo.getSmrAddrStr().trim();
 		this.smrAddrApt = demo.getSmrAddrApt();
 		this.smrAddrCity = demo.getSmrAddrCity();
 		this.smrAddrSt = demo.getSmrAddrSt();
