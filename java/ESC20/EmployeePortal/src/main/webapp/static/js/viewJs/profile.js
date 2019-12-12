@@ -1381,17 +1381,10 @@ function bankAccountValidator () {
                 displayAmountNew: {
                     trigger: null,
                     validators: {
+                        notEmpty: {
+                            message: pleaseEnterCorrectFormatBankAmountValidator
+                        },
                         regexp: {
-                            // regexp: /^[1-9]{1,7}[\.]{1}\d{1}$/,
-                            // regexp: /^[0][\.]{1}[1-9]{1}$/,
-
-                            // regexp: /^[0][\.]{1}\d{1}[1-9]{1}$/,
-                            // regexp: /^[0][\.]{1}[1-9]{1}\d{1}$/,
-
-                            // regexp: /^[1-9]{1}\d{0,6}[\.]{1}\d{1,2}$/,
-
-                            // regexp: /^[1-9]{1}\d{0,6}$/,
-
                             regexp: /^[1-9]{1}\d{0,6}$|^[1-9]{1}\d{0,6}[\.]{1}\d{1,2}|^[0][\.]{1}[1-9]{1}\d{1}|^[0][\.]{1}\d{1}[1-9]{1}|^[1-9]{1,7}[\.]{1}\d{1}|^[0][\.]{1}[1-9]{1}$/,
                             message: pleaseEnterCorrectFormatBankAmountValidator
                         }

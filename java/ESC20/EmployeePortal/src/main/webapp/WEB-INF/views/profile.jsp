@@ -846,6 +846,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode <c:if test="${sessionScope.userDetail.emerPhoneAc != emerRequest.emerPhoneAcNew}">active</c:if>"
                                                             name="emerPhoneAcNew"
                                                             id="emergencyContactAreaCode"
+                                                            maxlength="3"
                                                             aria-label="${sessionScope.languageJSON.profile.emergencyContactAreaCode}"
                                                             <c:if test="${readOnlyEmergency == true}">disabled="disabled"</c:if>
                                                             value="${emerRequest.emerPhoneAcNew}"
@@ -857,6 +858,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phone-input <c:if test="${emerPhoneNbrCurrent != emerPhoneNbrNew}">active</c:if>"
                                                             name="emerPhoneNbrNew"
                                                             id="emergencyContactPhoneNumber"
+                                                            maxlength="8"
                                                             aria-label="${sessionScope.languageJSON.profile.emergencyContactPhoneNumber}"
                                                             <c:if test="${readOnlyEmergency == true}">disabled="disabled"</c:if>
                                                             value="${emerRequest.emerPhoneNbrNew}"
@@ -870,6 +872,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode <c:if test="${sessionScope.userDetail.emerPhoneExt != emerRequest.emerPhoneExtNew}">active</c:if>"
                                                             name="emerPhoneExtNew"
                                                             id="emergencyContactExtention"
+                                                            maxlength="4"
                                                             aria-label="${sessionScope.languageJSON.profile.emergencyContactExtention}"
                                                             <c:if test="${readOnlyEmergency == true}">disabled="disabled"</c:if>
                                                             value="${emerRequest.emerPhoneExtNew}"
@@ -1388,6 +1391,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.phoneArea != hmRequest.phoneAreaNew}">active</c:if>"
                                                             name="phoneAreaNew"
                                                             id="homePhoneAreaCode"
+                                                            maxlength="3"
                                                             aria-label="${sessionScope.languageJSON.profile.homePhoneAreaCode}"
                                                             <c:if test="${readOnlyHomePhone == true}">disabled="disabled"</c:if>
                                                             value="${hmRequest.phoneAreaNew}"
@@ -1400,6 +1404,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phone-input  <c:if test="${homeNumberCurrent != homeNumberNew}">active</c:if>"
                                                             name="phoneNbrNew"
                                                             id="homePhonePhoneNumber"
+                                                            maxlength="8"
                                                             aria-label="${sessionScope.languageJSON.profile.homePhonePhoneNumber}"
                                                             <c:if test="${readOnlyHomePhone == true}">disabled="disabled"</c:if>
                                                             value="${hmRequest.phoneNbrNew}"
@@ -1437,6 +1442,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.phoneAreaCell != cellRequest.phoneAreaCellNew}">active</c:if>"
                                                             name="phoneAreaCellNew"
                                                             id="cellPhoneAreaCode"
+                                                            maxlength="3"
                                                             aria-label="${sessionScope.languageJSON.profile.cellPhoneAreaCode}"
                                                             <c:if test="${readOnlyCellPhone == true}">disabled="disabled"</c:if>
                                                             value="${cellRequest.phoneAreaCellNew}"
@@ -1449,6 +1455,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phone-input  <c:if test="${cellNumberCurrent != cellNumberNew}">active</c:if>"
                                                             name="phoneNbrCellNew"
                                                             id="cellPhonePhoneNumber"
+                                                            maxlength="8"
                                                             aria-label="${sessionScope.languageJSON.profile.cellPhonePhoneNumber}"
                                                             <c:if test="${readOnlyCellPhone == true}">disabled="disabled"</c:if>
                                                             value="${cellRequest.phoneNbrCellNew}"
@@ -1489,6 +1496,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.phoneAreaBus != busRequest.phoneAreaBusNew}">active</c:if>"
                                                             name="phoneAreaBusNew"
                                                             id="workPhoneAreaCode"
+                                                            maxlength="3"
                                                             aria-label="${sessionScope.languageJSON.profile.workPhoneAreaCode}"
                                                             <c:if test="${readOnlyWorkPhone == true}">disabled="disabled"</c:if>
                                                             value="${busRequest.phoneAreaBusNew}"
@@ -1501,6 +1509,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phone-input  <c:if test="${workNumberCurrent != workNumberNew}">active</c:if>"
                                                             name="phoneNbrBusNew"
                                                             id="workPhonePhoneNumber"
+                                                            maxlength="8"
                                                             aria-label="${sessionScope.languageJSON.profile.workPhonePhoneNumber}"
                                                             <c:if test="${readOnlyWorkPhone == true}">disabled="disabled"</c:if>
                                                             value="${busRequest.phoneNbrBusNew}"
@@ -1514,6 +1523,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             class="form-control phoneAreaCode  <c:if test="${sessionScope.userDetail.busPhoneExt != busRequest.busPhoneExtNew}">active</c:if>"
                                                             name="busPhoneExtNew"
                                                             id="workPhoneExtention"
+                                                            maxlength="4"
                                                             aria-label="${sessionScope.languageJSON.profile.workPhoneExtention}"
                                                             <c:if test="${readOnlyWorkPhone == true}">disabled="disabled"</c:if>
                                                             value="${busRequest.busPhoneExtNew}"
