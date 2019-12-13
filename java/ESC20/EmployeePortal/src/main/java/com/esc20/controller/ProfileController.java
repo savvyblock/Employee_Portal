@@ -218,19 +218,19 @@ public class ProfileController {
 			
 			
 			if(isNew.equals("true")) {
-				displayAmount = req.getParameter("displayAmount");
+			/*	displayAmount = req.getParameter("displayAmount");
 				displayLabel = req.getParameter("displayLabel");
-				accountNumber = req.getParameter("accountNumber");
+				accountNumber = req.getParameter("accountNumber");*/
 				subCode = req.getParameter("subCode");
 				code = req.getParameter("code");
 				Bank payrollAccountInfo = new Bank();
 				Code c = new Code();
-				c.setDisplayLabel(displayLabel);
-				payrollAccountInfo.setAccountNumber(accountNumber);
+				c.setDisplayLabel(displayLabelNew);
+				payrollAccountInfo.setAccountNumber(accountNumberNew);
 				payrollAccountInfo.setAccountType(c);
-				payrollAccountInfo.setCode(this.bankService.getBank(subCode));
+				payrollAccountInfo.setCode(this.bankService.getBank(codeNew));
 				payrollAccountInfo
-						.setDepositAmount(new Money(new Double(displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
+						.setDepositAmount(new Money(new Double(displayAmountNew).doubleValue(), Currency.getInstance(Locale.US)));
 				payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
 
 				Bank accountInfo = new Bank();
@@ -239,7 +239,7 @@ public class ProfileController {
 				//accountInfo.setCode(this.bankService.getBank(code));
 				Code bcode = new Code();
 				accountInfo.setCode(bcode);
-				accountInfo.setDepositAmount(new Money(new Double(displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
+				accountInfo.setDepositAmount(new Money(new Double("0.00").doubleValue(), Currency.getInstance(Locale.US)));
 				accountInfo.setFrequency(Frequency.getFrequency(freq));
 
 				this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
@@ -548,10 +548,11 @@ public class ProfileController {
 			pendingAccountInfo.setDepositAmount(new Money(new Double(displayAmountPending).doubleValue(), Currency.getInstance(Locale.US)));
 			pendingAccountInfo.setFrequency(Frequency.getFrequency(freq));
 			
-			Bank payrollAccountInfo = new Bank();
+			/*Bank payrollAccountInfo = new Bank();
 			payrollAccountInfo.setAccountNumber(accountNumber);
 			payrollAccountInfo.setCode(this.bankService.getBank(code));
-			payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
+			payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));*/
+			
 			this.bankService.deleteAccountRequest(employeeNumber, freq, accountInfo, pendingAccountInfo);
 		}
 		
