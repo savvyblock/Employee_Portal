@@ -430,35 +430,38 @@ $(function () {
     //         var t = $("#profileForm").serializeArray();
     //        profileForm.submit();
     //    })
-    $(".saveOrCancel .save-btn[type='submit']").click(function(){
-        var form = $(this).parents(".bv-form")
-        var formValidator = form.data(
-            'bootstrapValidator'
-        )
-        if(!formValidator){
-            $(".loadingOn").show()
-        }else{
-            formValidator.validate()
-            console.log(formValidator.isValid())
-            if (formValidator.isValid()) {
-                $(".loadingOn").show()
-            }
-        }
+    // $(".saveOrCancel .save-btn[type='submit']").click(function(){
+    //     var form = $(this).parents(".bv-form")
+    //     var formValidator = form.data(
+    //         'bootstrapValidator'
+    //     )
+    //     if(!formValidator){
+    //         $(".loadingOn").show()
+    //     }else{
+    //         formValidator.validate()
+    //         console.log(formValidator.isValid())
+    //         if (formValidator.isValid()) {
+    //             $(".loadingOn").show()
+    //         }
+    //     }
         
-    })
-    $("#saveMarital").click(function(){
-        var form = $(this).parents(".bv-form")
-        var formValidator = form.data(
-            'bootstrapValidator'
-        )
-            formValidator.validate()
-            console.log(formValidator.isValid())
-            if (formValidator.isValid()) {
-                $(".loadingOn").show()
-                $("#profileForm")[0].submit()
-            }        
-    })
+    // })
+
 })
+
+function updateInfo(){
+    var form = $(event.currentTarget).parents(".bv-form")
+    var formWrap = $(event.currentTarget).parents("form")
+    var formValidator = form.data(
+        'bootstrapValidator'
+    )
+    formValidator.validate()
+    console.log(formValidator.isValid())
+    if (formValidator.isValid()) {
+        $(".loadingOn").show()
+        formWrap[0].submit()
+    }
+}
 
 function checkDuplicate (newBank) {
     var freq = $('#freq').val()

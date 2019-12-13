@@ -336,8 +336,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     
                                                     <div class="saveOrCancel">
                                                         <button
-                                                            type="submit" role="button"
+                                                            type="button" role="button"
                                                             class="btn btn-primary save-btn hide"
+                                                            onclick="updateInfo()"
                                                             id="savePersonal"  aria-label = "${sessionScope.languageJSON.label.updatePersonalInfo}"
                                                         >
                                                         ${sessionScope.languageJSON.label.update}
@@ -428,8 +429,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary save-btn hide"
+                                                onclick="updateInfo()"
                                                 id="saveMarital" aria-label = "${sessionScope.languageJSON.label.updateMaritalStatus}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
@@ -527,8 +529,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                             <div class="saveOrCancel">
                                                 <button
-                                                    type="submit" role="button"
+                                                    type="button" role="button"
                                                     class="btn btn-primary save-btn hide"
+                                                    onclick="updateInfo()"
                                                     id="saveDriver" aria-label = "${sessionScope.languageJSON.label.updateDriver}"
                                                 >
                                                 ${sessionScope.languageJSON.label.update}
@@ -630,8 +633,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                             <div class="saveOrCancel">
                                                 <button
-                                                    type="submit" role="button"
+                                                    type="button" role="button"
                                                     class="btn btn-primary save-btn hide"
+                                                    onclick="updateInfo()"
                                                     id="saveRestrict" aria-label = "${sessionScope.languageJSON.label.updateRestrict}"
                                                 >
                                                 ${sessionScope.languageJSON.label.update}
@@ -937,8 +941,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary save-btn hide"
+                                                onclick="updateInfo()"
                                                 id="saveEmergency" aria-label = "${sessionScope.languageJSON.label.updateEmergency}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
@@ -1126,8 +1131,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary save-btn hide"
+                                                onclick="updateInfo()"
                                                 id="saveMailingAddress" aria-label = "${sessionScope.languageJSON.label.updateMailingAddress}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
@@ -1314,8 +1320,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary save-btn hide"
+                                                onclick="updateInfo()"
                                                 id="saveAltAddress" aria-label = "${sessionScope.languageJSON.label.updateAltAddress}"
                                             >${sessionScope.languageJSON.label.update}
                                             
@@ -1547,8 +1554,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary save-btn hide"
+                                                onclick="updateInfo()"
                                                 id="savePhone" aria-label = "${sessionScope.languageJSON.label.updatePhone}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
@@ -1898,8 +1906,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="saveOrCancel">
                                             <button
-                                                type="submit" role="button"
+                                                type="button" role="button"
                                                 class="btn btn-primary save-btn"
+                                                onclick="updateInfo()"
                                                 id="saveW4" aria-label = "${sessionScope.languageJSON.label.updateW4}"
                                             >
                                             ${sessionScope.languageJSON.label.update}
