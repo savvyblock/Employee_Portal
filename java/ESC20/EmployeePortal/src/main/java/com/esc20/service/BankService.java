@@ -160,7 +160,20 @@ public class BankService {
 	public Boolean checkSameRequest(BankRequest b, BankRequest br) {
 
 		if (b.getAccountNumber().equals(br.getAccountNumber()) && b.getCode().equals(br.getCode())
-//				&& b.getAccountType().equals(br.getAccountType())
+		   // && b.getAccountNumberNew().equals(br.getAccountNumberNew()) && b.getCodeNew().equals(br.getCodeNew())		
+ 			//&& b.getAccountType().equals(br.getAccountType()) && (b.getDepositAmount().getAmount()==br.getDepositAmount().getAmount())
+				) {
+			return true;
+		}
+
+		return false;
+	}
+	
+	public Boolean checkSameAddedRequest(BankRequest b, BankRequest br) {
+
+		if (b.getAccountNumber().equals(br.getAccountNumber()) && b.getCode().equals(br.getCode())
+		    && b.getAccountNumberNew().equals(br.getAccountNumberNew()) && b.getCodeNew().equals(br.getCodeNew())		
+ 			//&& b.getAccountType().equals(br.getAccountType()) && (b.getDepositAmount().getAmount()==br.getDepositAmount().getAmount())
 				) {
 			return true;
 		}

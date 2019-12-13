@@ -421,8 +421,24 @@ public class BankDao {
 		sql.append("' AND bnk_acct_nbr = '");
 		sql.append(accountInfo.getAccountNumber());
 		sql.append("' AND stat_cd = 'P' ");
+		sql.append("  AND BNK_ACCT_TYP = '");
+		sql.append(accountInfo.getAccountType().getCode());
+		sql.append("' AND BNK_ACCT_AMT = '");
+		sql.append(accountInfo.getDepositAmount().getAmount());
+		sql.append("'");
 		
-
+		if(accountInfoPending !=null) {
+			sql.append(" AND bnk_cd_new = '");
+			sql.append(accountInfoPending.getCode().getCode());
+			sql.append("' AND bnk_acct_nbr_new = '");
+			sql.append(accountInfoPending.getAccountNumber());
+			sql.append("' AND BNK_ACCT_TYP_NEW = '");
+			sql.append(accountInfoPending.getAccountType().getCode());
+			sql.append("' AND BNK_ACCT_AMT_NEW = '");
+			sql.append(accountInfoPending.getDepositAmount().getAmount());
+			sql.append("'");
+		}
+		
 		Session session = this.getSession();
 		Query q = session.createSQLQuery(sql.toString());
 		int res = q.executeUpdate();

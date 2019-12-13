@@ -236,9 +236,10 @@ public class ProfileController {
 				Bank accountInfo = new Bank();
 				accountInfo.setAccountNumber("");
 				accountInfo.setAccountType(new Code());
-				accountInfo.setCode(this.bankService.getBank(code));
-				accountInfo
-						.setDepositAmount(new Money(new Double(displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
+				//accountInfo.setCode(this.bankService.getBank(code));
+				Code bcode = new Code();
+				accountInfo.setCode(bcode);
+				accountInfo.setDepositAmount(new Money(new Double(displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
 				accountInfo.setFrequency(Frequency.getFrequency(freq));
 
 				this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
@@ -261,11 +262,23 @@ public class ProfileController {
 				accountInfo.setCode(this.bankService.getBank(code));
 				accountInfo.setDepositAmount(new Money(new Double(displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
 				accountInfo.setFrequency(Frequency.getFrequency(freq));
+				
+				
+				Bank pendingAccountInfo = new Bank();
+				Code pc = new Code();
+				pc.setDisplayLabel(displayLabelPending);
+				pendingAccountInfo.setAccountNumber(accountNumberPending);
+				pendingAccountInfo.setAccountType(pc);
+				pendingAccountInfo.setCode(this.bankService.getBank(codePending));
+				pendingAccountInfo.setDepositAmount(new Money(new Double(displayAmountPending).doubleValue(), Currency.getInstance(Locale.US)));
+				pendingAccountInfo.setFrequency(Frequency.getFrequency(freq));
+				
 
 				Bank payrollAccountInfo = new Bank();
-				c.setDisplayLabel(displayLabelNew);
+				Code nc = new Code();
+				nc.setDisplayLabel(displayLabelNew);
 				payrollAccountInfo.setAccountNumber(accountNumberNew);
-				payrollAccountInfo.setAccountType(c);
+				payrollAccountInfo.setAccountType(nc);
 				payrollAccountInfo.setCode(this.bankService.getBank(codeNew));
 				payrollAccountInfo.setDepositAmount(
 						new Money(new Double(displayAmountNew).doubleValue(), Currency.getInstance(Locale.US)));
@@ -273,7 +286,7 @@ public class ProfileController {
 				
 				bc.setBank(payrollAccountInfo);
 
-				this.bankService.deleteAccountRequest(employeeNumber, freq, accountInfo, null);
+				this.bankService.deleteAccountRequest(employeeNumber, freq, accountInfo, pendingAccountInfo);
 				this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
 
 				if (autoApprove) {
@@ -372,11 +385,22 @@ public class ProfileController {
 			accountInfo.setCode(this.bankService.getBank(code));
 			accountInfo.setDepositAmount(new Money(new Double(displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
 			accountInfo.setFrequency(Frequency.getFrequency(freq));
+			
+			Bank pendingAccountInfo = new Bank();
+			Code pc = new Code();
+			pc.setDisplayLabel(displayLabelPending);
+			pendingAccountInfo.setAccountNumber(accountNumberPending);
+			pendingAccountInfo.setAccountType(pc);
+			pendingAccountInfo.setCode(this.bankService.getBank(codePending));
+			pendingAccountInfo.setDepositAmount(new Money(new Double(displayAmountPending).doubleValue(), Currency.getInstance(Locale.US)));
+			pendingAccountInfo.setFrequency(Frequency.getFrequency(freq));
+			
 
 			Bank payrollAccountInfo = new Bank();
-			c.setDisplayLabel(displayLabelNew);
+			Code nc = new Code();
+			nc.setDisplayLabel(displayLabelNew);
 			payrollAccountInfo.setAccountNumber(accountNumberNew);
-			payrollAccountInfo.setAccountType(c);
+			payrollAccountInfo.setAccountType(nc);
 			payrollAccountInfo.setCode(this.bankService.getBank(codeNew));
 			payrollAccountInfo.setDepositAmount(
 					new Money(new Double(displayAmountNew).doubleValue(), Currency.getInstance(Locale.US)));
@@ -384,7 +408,7 @@ public class ProfileController {
 			
 			bc.setBank(payrollAccountInfo);
 
-			this.bankService.deleteAccountRequest(employeeNumber, freq, accountInfo, null);
+			this.bankService.deleteAccountRequest(employeeNumber, freq, accountInfo, pendingAccountInfo);
 			this.bankService.insertAccountRequest(autoApprove, employeeNumber, freq, payrollAccountInfo, accountInfo);
 
 			if (autoApprove) {
@@ -1137,6 +1161,7 @@ public class ProfileController {
 		String emerPhoneAcNew = req.getParameter("emerPhoneAcNew");
 		String emerPhoneNbrNew = req.getParameter("emerPhoneNbrNew");
 		String emerPhoneExtNew = req.getParameter("emerPhoneExtNew");
+		emerPhoneExtNew = emerPhoneExtNew==null?emerPhoneExtNew:emerPhoneExtNew.trim();
 		String emerRelNew = req.getParameter("emerRelNew");
 		String emerNoteNew = req.getParameter("emerNoteNew");
 		emerPhoneNbrNew = emerPhoneNbrNew.replaceAll("-", "");
@@ -1352,6 +1377,7 @@ public class ProfileController {
 		BeaAltMailAddr altMailingAddressRequest;
 		// Compare current and new value so to decide if need to send out email
 		BeaAltMailAddr altMailAddrRequest = this.indexService.getBeaAltMailAddr(demo);
+		
 		if (!smrAddrNbrNew.equals(altMailAddrRequest.getSmrAddrNbrNew())) {
 			isAnyChanges = true;
 			demoInfoChanges.setAlternateAddress(true);
@@ -1895,19 +1921,34 @@ public class ProfileController {
 			br.setDepositAmount(b.getDepositAmount());
 			br.setDepositAmountNew(b.getDepositAmount());
 			br.setFrequency(b.getFrequency());
+			br.setIsFromAccount(true);
 			allBanks.add(br);
 		}
 		for (BankRequest b : banksRequest) {
 			boolean isNewBank = true;
 			for (BankRequest ab : allBanks) {
-				if (this.bankService.checkSameRequest(b, ab)) {
-					ab.setAccountNumberNew(b.getAccountNumberNew());
-					ab.setAccountTypeNew(b.getAccountTypeNew());
-					ab.setDepositAmountNew(b.getDepositAmountNew());
-					ab.setCodeNew(b.getCodeNew());
-					ab.setIsDelete(b.getIsDelete());
-					isNewBank = false;
+				if(ab.getIsFromAccount()) {
+					if (this.bankService.checkSameRequest(b, ab)) {
+						ab.setAccountNumberNew(b.getAccountNumberNew());
+						ab.setAccountTypeNew(b.getAccountTypeNew());
+						ab.setDepositAmountNew(b.getDepositAmountNew());
+						ab.setCodeNew(b.getCodeNew());
+						ab.setIsDelete(b.getIsDelete());
+						isNewBank = false;
+					}
 				}
+				else
+				{
+					if (this.bankService.checkSameAddedRequest(b, ab)) {
+						ab.setAccountNumberNew(b.getAccountNumberNew());
+						ab.setAccountTypeNew(b.getAccountTypeNew());
+						ab.setDepositAmountNew(b.getDepositAmountNew());
+						ab.setCodeNew(b.getCodeNew());
+						ab.setIsDelete(b.getIsDelete());
+						isNewBank = false;
+					}
+				}
+				
 			}
 			if (isNewBank) {
 				if (b.getCodeNew() != null && !b.getAccountNumberNew().isEmpty()) {
