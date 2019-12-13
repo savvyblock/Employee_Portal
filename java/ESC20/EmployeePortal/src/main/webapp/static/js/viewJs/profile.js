@@ -74,7 +74,13 @@ $(function () {
     })
     $('.icheckRadioBank').on('click', function (event) {
         $(".selectAnotherAsPrimaryError").hide()
+        // $("#saveBankDisplayAmount").validator('update')
+        
         if ($(this).is(':checked')) {
+            var amountName = $(this).parents("form").find(".amount_2").attr('name')
+            $(this).parents("form").bootstrapValidator("addField",amountName);
+            $(this).parents("form").find(".amount_2").parent(".form-group").removeClass('has-error')
+
             $(this).parents(".profile-item").find(".bankAmount .amount_2").val("0.00")
             var currentBankCode = $(this).parents(".profile-item").find("input[name='code']").val()
             //if there is no value in "current bank"
@@ -194,6 +200,12 @@ $(function () {
         $('.addBankForm').hide()
         $('.add-bank-btn').show()
         $('.saveUpdateBankBtn').show()
+        $('#addBankAccountForm')[0].reset()
+        $('#addBankAccountForm')
+            .data('bootstrapValidator')
+            .destroy()
+        $('#addBankAccountForm').data('bootstrapValidator', null)
+        bankAccountAddValidator();
     })
     $('.add-bank-btn').click(function () {
         var arrayBankLength = $('form.usedBank').length
@@ -1385,7 +1397,7 @@ function bankAccountValidator () {
             },
             fields: {
                 description: {
-                    trigger: null,
+                    trigger: 'change',
                     validators: {
                         notEmpty: {
                             message: requiredFieldValidator
@@ -1393,7 +1405,7 @@ function bankAccountValidator () {
                     }
                 },
                 subCode: {
-                    trigger: null,
+                    trigger: 'change',
                     validators: {
                         notEmpty: {
                             message: requiredFieldValidator
@@ -1440,7 +1452,7 @@ function bankAccountAddValidator () {
     $('#addBankAccountForm').bootstrapValidator({
         live: 'enable',
         // submitButtons: '#saveNewBank',
-        excluded: [':disabled', ':hidden', ':not(:visible)'],
+        excluded: [ ':hidden', ':not(:visible)'],
         feedbackIcons: {
             valid: 'fa fa-check ',
             // invalid: 'fa fa-times',
@@ -1448,7 +1460,7 @@ function bankAccountAddValidator () {
         },
         fields: {
             description: {
-                trigger: null,
+                trigger: 'change',
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
@@ -1456,7 +1468,7 @@ function bankAccountAddValidator () {
                 }
             },
             subCode: {
-                trigger: null,
+                trigger: 'change',
                 validators: {
                     notEmpty: {
                         message: requiredFieldValidator
