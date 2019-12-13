@@ -509,12 +509,59 @@ public class ProfileController {
 		String code = req.getParameter("code");
 		String accountNumber = req.getParameter("accountNumber");
 		String employeeNumber = demo.getEmpNbr();
+		String bankArray = req.getParameter("bankArray");
+		JSONArray bankArrs=JSONArray.fromObject(bankArray);
+		for (int i =0; i < bankArrs.size(); i++){
+			JSONObject bankJson = bankArrs.getJSONObject(i); 
+			//String isNew = bankJson.getString("isnew"); 
+			
+			String displayAmount = bankJson.getString("displayAmount");
+			String displayLabel = bankJson.getString("accountType");
+			accountNumber = bankJson.getString("accountNumber");
+			code = bankJson.getString("code");
 
-		Bank payrollAccountInfo = new Bank();
+//			String displayAmountNew = bankJson.getString("displayAmountNew");
+//			String displayLabelNew = bankJson.getString("accountTypeNew");
+//			String accountNumberNew = bankJson.getString("accountNumberNew");
+//			String codeNew = bankJson.getString("codeNew");
+			
+			String displayAmountPending = bankJson.getString("displayAmountPending");
+			String displayLabelPending = bankJson.getString("accountTypePending");
+			String accountNumberPending = bankJson.getString("accountNumberPending");
+			String codePending = bankJson.getString("codePending");
+			
+			Bank accountInfo = new Bank();
+			accountInfo.setAccountNumber(accountNumber);
+			Code c = new Code();
+			c.setDisplayLabel(displayLabel);
+			accountInfo.setAccountType(c);
+			accountInfo.setCode(this.bankService.getBank(code));
+			accountInfo.setDepositAmount(new Money(new Double(displayAmount).doubleValue(), Currency.getInstance(Locale.US)));
+			accountInfo.setFrequency(Frequency.getFrequency(freq));
+			
+			Bank pendingAccountInfo = new Bank();
+			Code pc = new Code();
+			pc.setDisplayLabel(displayLabelPending);
+			pendingAccountInfo.setAccountNumber(accountNumberPending);
+			pendingAccountInfo.setAccountType(pc);
+			pendingAccountInfo.setCode(this.bankService.getBank(codePending));
+			pendingAccountInfo.setDepositAmount(new Money(new Double(displayAmountPending).doubleValue(), Currency.getInstance(Locale.US)));
+			pendingAccountInfo.setFrequency(Frequency.getFrequency(freq));
+			
+			Bank payrollAccountInfo = new Bank();
+			payrollAccountInfo.setAccountNumber(accountNumber);
+			payrollAccountInfo.setCode(this.bankService.getBank(code));
+			payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
+			this.bankService.deleteAccountRequest(employeeNumber, freq, accountInfo, pendingAccountInfo);
+		}
+		
+		/*Bank payrollAccountInfo = new Bank();
 		payrollAccountInfo.setAccountNumber(accountNumber);
 		payrollAccountInfo.setCode(this.bankService.getBank(code));
 		payrollAccountInfo.setFrequency(Frequency.getFrequency(freq));
 		this.bankService.deleteAccountRequest(employeeNumber, freq, payrollAccountInfo, null);
+*/
+		
 		getProfileDetails(session, mav, freq);
 		return mav;
 	}

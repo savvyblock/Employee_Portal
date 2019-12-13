@@ -422,7 +422,12 @@ public class BankDao {
 		sql.append(accountInfo.getAccountNumber());
 		sql.append("' AND stat_cd = 'P' ");
 		sql.append("  AND BNK_ACCT_TYP = '");
-		sql.append(accountInfo.getAccountType().getCode());
+		if(accountInfo.getAccountType() ==null) {
+		}
+		else
+		{
+			sql.append(accountInfo.getAccountType().getCode());
+		}
 		sql.append("' AND BNK_ACCT_AMT = '");
 		sql.append(accountInfo.getDepositAmount().getAmount());
 		sql.append("'");
