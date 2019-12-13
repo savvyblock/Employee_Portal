@@ -486,7 +486,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         value="${licRequest.driversLicNbrNew}"
                                                         name="driversLicNbrNew"
                                                         id="driversLicenseNumber"
-                                                       
+                                                        maxlength="19"
                                                         aria-label="${sessionScope.languageJSON.profile.driverLicenseNum}"
                                                         
                                                     />
@@ -690,8 +690,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="emailWorkEmail"  <c:if test="${readOnlyEmail == true}">disabled="disabled"</c:if>
                                                         class="form-control <c:if test="${sessionScope.userDetail.email != emailRequest.emailNew}">active</c:if>"
                                                         aria-label="${sessionScope.languageJSON.profile.workEmail}"
-                                                       
-                                                        
+                                                        maxlength="45"
                                                     />
                                                 </div>
                                             </div>
@@ -708,7 +707,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="emailVerifyWorkEmail"
                                                         class="form-control"  <c:if test="${readOnlyEmail == true}">disabled="disabled"</c:if>
                                                         aria-label="${sessionScope.languageJSON.profile.verifyEmail}"
-                                                       
+                                                        maxlength="45"
                                                     />
                                                 </div>
                                             </div>
@@ -725,7 +724,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="hmEmailNew"
                                                         id="emailHomeEmail"  <c:if test="${readOnlyEmail == true}">disabled="disabled"</c:if>
                                                         aria-label="${sessionScope.languageJSON.profile.homeEmail}"
-                                                       
+                                                        maxlength="45"
                                                         value="${emailRequest.hmEmailNew}"
                                                     />
                                                 </div>
@@ -743,7 +742,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         id="emailVerifyHomeEmail"
                                                         class="form-control"  <c:if test="${readOnlyEmail == true}">disabled="disabled"</c:if>
                                                         aria-label="${sessionScope.languageJSON.profile.verifyEmail}"
-                                                       
+                                                        maxlength="45"
                                                     />
                                                 </div>
                                             </div>
@@ -997,6 +996,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${fn:trim(sessionScope.userDetail.addrNbr) != fn:trim(mailAddrRequest.addrNbrNew)}">active</c:if>"
                                                         name="addrNbrNew"
                                                         id="mailAddrNumber"
+                                                        maxlength="8"
                                                         aria-label="${sessionScope.languageJSON.profile.mailingAddressNumber}"
                                                         <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         value="${fn:trim(mailAddrRequest.addrNbrNew)}"
@@ -1018,6 +1018,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${fn:trim(sessionScope.userDetail.addrStr) != fn:trim(mailAddrRequest.addrStrNew)}">active</c:if>"
                                                         name="addrStrNew"
                                                         id="mailAddrStr"
+                                                        maxlength="20"
                                                         aria-label="${sessionScope.languageJSON.profile.streetBox}"
                                                         <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         value="${mailAddrRequest.addrStrNew}"
@@ -1036,6 +1037,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${fn:trim(sessionScope.userDetail.addrApt) != fn:trim(mailAddrRequest.addrAptNew)}">active</c:if>"
                                                         name="addrAptNew"
                                                         id="mailAddrApartment"
+                                                        maxlength="7"
                                                         aria-label="${sessionScope.languageJSON.profile.apt}"
                                                         <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         value="${mailAddrRequest.addrAptNew}"
@@ -1054,6 +1056,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${fn:trim(sessionScope.userDetail.addrCity) != fn:trim(mailAddrRequest.addrCityNew)}">active</c:if>"
                                                         name="addrCityNew"
                                                         id="mailAddrCity"
+                                                        maxlength="17"
                                                         aria-label="${sessionScope.languageJSON.profile.city}"
                                                         <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         value="${mailAddrRequest.addrCityNew}"
@@ -1095,6 +1098,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control  <c:if test="${fn:trim(sessionScope.userDetail.addrZip) != fn:trim(mailAddrRequest.addrZipNew)}">active</c:if>"
                                                         name="addrZipNew"
                                                         id="mailAddrZip"
+                                                        maxlength="5"
                                                         aria-label="${sessionScope.languageJSON.profile.zip}"
                                                         <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         value="${mailAddrRequest.addrZipNew}"
@@ -1113,6 +1117,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${fn:trim(sessionScope.userDetail.addrZip4) != fn:trim(mailAddrRequest.addrZip4New)}">active</c:if>"
                                                         name="addrZip4New"
                                                         id="mailAddrZipPlusFour"
+                                                        maxlength="4"
                                                         aria-label="${sessionScope.languageJSON.profile.zip4}"
                                                         <c:if test="${readOnlyMailAddr == true}">disabled="disabled"</c:if>
                                                         value="${mailAddrRequest.addrZip4New}"
@@ -1187,6 +1192,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrNbr != altMailAddrRequest.smrAddrNbrNew}">active</c:if>"
                                                         name="smrAddrNbrNew"
                                                         id="altAddrNumber"
+                                                        maxlength="8"
                                                         aria-label="${sessionScope.languageJSON.profile.altAddrNumber}"
                                                         <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
                                                         value="${fn:trim(altMailAddrRequest.smrAddrNbrNew)}"
@@ -1208,6 +1214,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrStr != altMailAddrRequest.smrAddrStrNew}">active</c:if>"
                                                         name="smrAddrStrNew"
                                                         id="altAddrStr"
+                                                        maxlength="20"
                                                         aria-label="${sessionScope.languageJSON.profile.streetBox}"
                                                         <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
                                                         value="${altMailAddrRequest.smrAddrStrNew}"
@@ -1226,6 +1233,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrApt != altMailAddrRequest.smrAddrAptNew}">active</c:if>"
                                                         name="smrAddrAptNew"
                                                         id="altAddrApartment"
+                                                        maxlength="7"
                                                         aria-label="${sessionScope.languageJSON.profile.apt}"
                                                         <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
                                                         value="${altMailAddrRequest.smrAddrAptNew}"
@@ -1244,6 +1252,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrCity != altMailAddrRequest.smrAddrCityNew}">active</c:if>"
                                                         name="smrAddrCityNew"
                                                         id="altAddrCity"
+                                                        maxlength="17"
                                                         aria-label="${sessionScope.languageJSON.profile.city}"
                                                         <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
                                                         value="${altMailAddrRequest.smrAddrCityNew}"
@@ -1285,6 +1294,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrZip != altMailAddrRequest.smrAddrZipNew}">active</c:if>"
                                                         name="smrAddrZipNew"
                                                         id="altAddrZip"
+                                                        maxlength="5"
                                                         aria-label="${sessionScope.languageJSON.profile.zip}"
                                                         <c:if test="${readOnlyAltAddr == true}">disabled="disabled"</c:if>
                                                         value="${altMailAddrRequest.smrAddrZipNew}"
@@ -1303,6 +1313,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         class="form-control <c:if test="${sessionScope.userDetail.smrAddrZip4 != altMailAddrRequest.smrAddrZip4New}">active</c:if>"
                                                         name="smrAddrZip4New"
                                                         id="altAddrZipPlusFour"
+                                                        maxlength="4"
                                                         aria-label="${sessionScope.languageJSON.profile.zip4}"
                                                         value="${altMailAddrRequest.smrAddrZip4New}"
                                                     />
