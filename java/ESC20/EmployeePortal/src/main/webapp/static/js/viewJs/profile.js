@@ -665,15 +665,16 @@ function undoBank (index) {
 
     // $('#undoModal').modal('show')
     undoForm = 'undoBank'
-    var one = {};
+    var one = {},bankArray = new Array();
     var t = $("#bankAccountForm_"+index+"").serializeArray();
     $.each(t, function () {
         one[this.name] = this.value;
     });
     one.freq = freq
+    bankArray.push(one)
     // console.log("one", one)
     // console.log("string", JSON.stringify(one))
-    $("#undoBankArry").val(JSON.stringify(one))
+    $("#undoBankArry").val(JSON.stringify(bankArray))
     formSelect = $('#undoBankHidden')
 }
 

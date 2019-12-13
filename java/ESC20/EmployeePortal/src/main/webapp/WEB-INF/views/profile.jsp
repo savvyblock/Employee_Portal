@@ -2378,15 +2378,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
                                 </form>
+                                <p class="error-hint hide bankSizeError" role="alert" aria-atomic="true">
+                                        ${sessionScope.languageJSON.validator.maximumBankAmmount}
+                                </p>
                                 <button <c:if test="${payrollOption.fieldDisplayOptionBank !='U'}">disabled="disabled"</c:if>
                                     type="button" role="button" aria-label = "${sessionScope.languageJSON.label.addBank}"
                                     class="btn btn-primary add-bank-btn"
                                 >
                                 <span>${sessionScope.languageJSON.label.add}</span>
                                 </button>
-                                <p class="error-hint hide bankSizeError" role="alert" aria-atomic="true">
-                                        ${sessionScope.languageJSON.validator.maximumBankAmmount}
-                                </p>
+                                
                             </div>
                         </c:if>
                         </c:if>
