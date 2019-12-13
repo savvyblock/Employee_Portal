@@ -234,7 +234,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             
                                                                 name="nameLNew"
                                                                 id="lastName"
-                                                                maxlength="60"
+                                                                maxlength="25"
                                                             />
                                                         </div>
                                                     </div>
@@ -254,7 +254,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             
                                                                 name="nameFNew"
                                                                 id="firstName"
-                                                                maxlength="60"
+                                                                maxlength="17"
                                                             />
                                                         </div>
                                                     </div>
@@ -276,7 +276,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             
                                                                 name="nameMNew"
                                                                 id="middleName"
-                                                                maxlength="60"
+                                                                maxlength="14"
                                                             />
                                                         </div>
                                                     </div>
