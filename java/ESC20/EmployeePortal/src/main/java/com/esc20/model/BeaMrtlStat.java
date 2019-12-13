@@ -66,7 +66,8 @@ public class BeaMrtlStat implements java.io.Serializable {
 				this.maritalStatNew = maritalStatNew.charAt(0);
 			}
 			else {
-				this.maritalStatNew='S';
+				this.maritalStatNew = '\0';
+				//this.maritalStatNew='S';
 			}
 		}
 		
