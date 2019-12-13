@@ -193,6 +193,7 @@ $(function () {
     $('.cancel-add-btn').click(function () {
         $('.addBankForm').hide()
         $('.add-bank-btn').show()
+        $('.saveUpdateBankBtn').show()
     })
     $('.add-bank-btn').click(function () {
         var arrayBankLength = $('form.usedBank').length
@@ -202,6 +203,7 @@ $(function () {
             $('.bankSizeError').show()
         } else {
             $('.addBankForm').show()
+            $('.saveUpdateBankBtn').hide()
             $(this).hide()
         }
     })
@@ -651,6 +653,15 @@ function undoBank (index) {
 
     // $('#undoModal').modal('show')
     undoForm = 'undoBank'
+    var one = {};
+    var t = $("#bankAccountForm_"+index+"").serializeArray();
+    $.each(t, function () {
+        one[this.name] = this.value;
+    });
+    one.freq = freq
+    // console.log("one", one)
+    // console.log("string", JSON.stringify(one))
+    $("#undoBankArry").val(JSON.stringify(one))
     formSelect = $('#undoBankHidden')
 }
 

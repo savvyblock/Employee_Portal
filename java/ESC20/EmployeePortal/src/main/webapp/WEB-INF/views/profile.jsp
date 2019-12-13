@@ -14,7 +14,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             .profile .profile-item .profile-btn .saveOrCancel .delete-btn{
                 display: none;
             }
-            
+            .bankAccountBlock.asPrimary .bankAmount{
+                display: block!important;
+            }
             .loadingOn{
                 background: #fff;
                 position: fixed;
@@ -2210,6 +2212,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <input type="hidden" name="accountNumber" id="hidden_accountNumber_undo" />
                                     <input type="hidden" name="code" id="hidden_code_undo"  />
                                     <input type="hidden" name="codeNew" id="hidden_codeNew_undo"/>
+                                    <input type="hidden" name="bankArry" id="undoBankArry">
                                 </form>
                                 <form hidden="hidden" action="deleteBank"  id="deleteBankHidden" method="POST">
                                 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
