@@ -1706,6 +1706,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                         name="w4FileStatNew"
                                                         aria-label="${sessionScope.languageJSON.profile.fillingStatus}" 
                                                         <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>>
+                                                        <option value="">&nbsp;</option>
                                                         <c:forEach var="w4FileStat" items="${w4FileStatOptions}" varStatus="count">
                                                             <option 
                                                                 value="${w4FileStat.code}" 

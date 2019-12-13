@@ -48,6 +48,7 @@ $(function () {
         console.log(emailFormValidator.isValid())
         if (emailFormValidator.isValid()) {
             if (workE === workEV && homeE === homeEV) {
+                $(".loadingOn").show()
                 $("#profileForm")[0].submit()
             } else {
                 if (workE != workEV) {
@@ -152,9 +153,7 @@ $(function () {
             })
         }
     })
-    $(".saveOrCancel .save-btn[type='submit']").click(function(){
-        $(".loadingOn").show()
-    })
+    
     $('.edit-btn').click(function () {
         $('.addBankForm').hide()
         $('.add-bank-btn').show()
@@ -431,6 +430,34 @@ $(function () {
     //         var t = $("#profileForm").serializeArray();
     //        profileForm.submit();
     //    })
+    $(".saveOrCancel .save-btn[type='submit']").click(function(){
+        var form = $(this).parents(".bv-form")
+        var formValidator = form.data(
+            'bootstrapValidator'
+        )
+        if(!formValidator){
+            $(".loadingOn").show()
+        }else{
+            formValidator.validate()
+            console.log(formValidator.isValid())
+            if (formValidator.isValid()) {
+                $(".loadingOn").show()
+            }
+        }
+        
+    })
+    $("#saveMarital").click(function(){
+        var form = $(this).parents(".bv-form")
+        var formValidator = form.data(
+            'bootstrapValidator'
+        )
+            formValidator.validate()
+            console.log(formValidator.isValid())
+            if (formValidator.isValid()) {
+                $(".loadingOn").show()
+                $("#profileForm")[0].submit()
+            }        
+    })
 })
 
 function checkDuplicate (newBank) {
@@ -796,6 +823,7 @@ function personalValidator () {
 function maritalStatusValidator () {
     $('#maritalStatusForm').bootstrapValidator({
         live: 'enable',
+        excluded: [':disabled'],
         submitButtons: '#saveMarital',
         feedbackIcons: {
             valid: 'fa fa-check ',
@@ -1263,14 +1291,14 @@ function w4InfoValidator () {
             //         }
             //     }
             // },
-            w4FileStatNew: {
-                trigger: null,
-                validators: {
-                    notEmpty: {
-                        message: requiredFieldValidator
-                    }
-                }
-            },
+            // w4FileStatNew: {
+            //     trigger: null,
+            //     validators: {
+            //         notEmpty: {
+            //             message: requiredFieldValidator
+            //         }
+            //     }
+            // },
             w4MultiJobNew: {
                 trigger: null,
                 validators: {
@@ -1385,7 +1413,7 @@ function bankAccountValidator () {
                             message: pleaseEnterCorrectFormatBankAmountValidator
                         },
                         regexp: {
-                            regexp: /^[1-9]{1}\d{0,6}$|^[1-9]{1}\d{0,6}[\.]{1}\d{1,2}|^[0][\.]{1}[1-9]{1}\d{1}|^[0][\.]{1}\d{1}[1-9]{1}|^[1-9]{1,7}[\.]{1}\d{1}|^[0][\.]{1}[1-9]{1}$/,
+                            regexp: /^[1-9]{1}\d{0,6}$|^[1-9]{1}\d{0,6}[\.]{1}|^[1-9]{1}\d{0,6}[\.]{1}\d{1,2}|^[0][\.]{1}[1-9]{1}\d{1}|^[0][\.]{1}\d{1}[1-9]{1}|^[1-9]{1,7}[\.]{1}\d{1}|^[0][\.]{1}[1-9]{1}$/,
                             message: pleaseEnterCorrectFormatBankAmountValidator
                         }
                     }
@@ -1445,10 +1473,10 @@ function bankAccountAddValidator () {
                 trigger: null,
                 validators: {
                     notEmpty: {
-                        message: requiredFieldValidator
+                        message: pleaseEnterCorrectFormatBankAmountValidator
                     },
                     regexp: {
-                        regexp: /^[1-9]{1}\d{0,6}$|^[1-9]{1}\d{0,6}[\.]{1}\d{1,2}|^[0][\.]{1}[1-9]{1}\d{1}|^[0][\.]{1}\d{1}[1-9]{1}|^[1-9]{1,7}[\.]{1}\d{1}|^[0][\.]{1}[1-9]{1}$/,
+                        regexp: /^[1-9]{1}\d{0,6}$|^[1-9]{1}\d{0,6}[\.]{1}|^[1-9]{1}\d{0,6}[\.]{1}\d{1,2}|^[0][\.]{1}[1-9]{1}\d{1}|^[0][\.]{1}\d{1}[1-9]{1}|^[1-9]{1,7}[\.]{1}\d{1}|^[0][\.]{1}[1-9]{1}$/,
                         message: pleaseEnterCorrectFormatBankAmountValidator
                     }
                 }
