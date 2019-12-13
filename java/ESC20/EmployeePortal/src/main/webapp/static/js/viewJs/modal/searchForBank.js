@@ -12,13 +12,13 @@ $(function () {
     $('#selectBankModal').on('click','.bankNumberBtn', function () {
         bankInputName = $(getBankBtn)
             .parents(".bankPart")
-            .find('.form-control.name')
+            .find('.form-control.name').change()
         bankInputBankCode = $(getBankBtn)
             .parents(".bankPart")
-            .find('.form-control.bankcode')
+            .find('.form-control.bankcode').change()
         bankInputCode = $(getBankBtn)
             .parent()
-            .find('.form-control.code')
+            .find('.form-control.code').change()
         newBankCode = $(getBankBtn).parents('.addBankForm').find("#newBankCode")
 
         var number = $(this).text()
