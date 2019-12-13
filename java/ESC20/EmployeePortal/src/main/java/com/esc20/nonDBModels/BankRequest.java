@@ -21,6 +21,14 @@ public class BankRequest implements Serializable
 	private Boolean isDelete = false;
 	private Boolean invalidAccount = false;
 	
+	private Boolean isFromAccount = false; //is true from getAccounts  else is from getAccountRequests
+	
+	public Boolean getIsFromAccount() {
+		return isFromAccount;
+	}
+	public void setIsFromAccount(Boolean isFromAccount) {
+		this.isFromAccount = isFromAccount;
+	}
 	public Boolean getInvalidAccount() {
 		return invalidAccount;
 	}
