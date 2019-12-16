@@ -1425,8 +1425,9 @@ public class ProfileController {
 		BeaAltMailAddr altMailingAddressRequest;
 		// Compare current and new value so to decide if need to send out email
 		BeaAltMailAddr altMailAddrRequest = this.indexService.getBeaAltMailAddr(demo);
-		
-		if (!smrAddrNbrNew.equals(altMailAddrRequest.getSmrAddrNbrNew())) {
+		smrAddrNbrNew= smrAddrNbrNew==null?"":smrAddrNbrNew.trim();
+		String altAddrNbr = altMailAddrRequest.getSmrAddrNbrNew()==null?"":altMailAddrRequest.getSmrAddrNbrNew().trim();
+		if (!smrAddrNbrNew.equals(altAddrNbr)) {
 			isAnyChanges = true;
 			demoInfoChanges.setAlternateAddress(true);
 		}
