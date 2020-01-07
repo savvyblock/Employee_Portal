@@ -1,5 +1,6 @@
 package com.esc20.controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +54,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 	private final String module = "Approve Leave Request";
 	
 	@RequestMapping("approveLeaveRequestList")
-	public ModelAndView getApproveLeaveRequestList(HttpServletRequest req, String empNbr) throws ParseException {
+	public ModelAndView getApproveLeaveRequestList(HttpServletRequest req, String empNbr, HttpServletResponse response) throws ParseException {
 		HttpSession session = req.getSession();
 		
 		ModelAndView mav = new ModelAndView();
@@ -86,8 +88,15 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 //			isSupervisor
 //			Boolean isSupervisor  =(Boolean)session.getAttribute("isSupervisor");
 			if(isSupervisor == null || !isSupervisor) {
-				mav = new ModelAndView("redirect:/logoutEA");
-				return mav;
+				String returnURL = "/"+"logoutEA";
+				 try {
+					response.sendRedirect(returnURL);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+//				mav = new ModelAndView("redirect:/logoutEA");
+//				return mav;
 			}
 		  
 		  
@@ -158,7 +167,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 
 	@RequestMapping("nextLevelFromApproveLeave")
 	public ModelAndView nextLevelFromApproveLeave(HttpServletRequest req, String level, String chain,
-			String selectEmpNbr) throws ParseException {
+			String selectEmpNbr, HttpServletResponse response) throws ParseException {
 		ModelAndView mav = new ModelAndView();
 		if(chain==null||selectEmpNbr==null) {
 			mav.setViewName("visitFailed");
@@ -185,17 +194,17 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 			currentLevelDetail.put("middleName", nextLevelSupervisor.getNameM());
 			currentLevelDetail.put("employeeNumber", nextLevelSupervisor.getEmpNbr());
 			levels.add(currentLevelDetail);
-			mav = this.getApproveLeaveRequestList(req, nextLevelSupervisor.getEmpNbr());
+			mav = this.getApproveLeaveRequestList(req, nextLevelSupervisor.getEmpNbr(),response);
 			mav.addObject("chain", levels);
 		} else {
-			mav = this.getApproveLeaveRequestList(req, currentSupervisorEmployeeNumber);
+			mav = this.getApproveLeaveRequestList(req, currentSupervisorEmployeeNumber,response);
 			mav.addObject("chain", levels);
 		}
 		return mav;
 	}
 
 	@RequestMapping("previousLevelFromApproveLeave")
-	public ModelAndView previousLevelFromApproveLeave(HttpServletRequest req, String level, String chain)
+	public ModelAndView previousLevelFromApproveLeave(HttpServletRequest req, String level, String chain, HttpServletResponse response)
 			throws ParseException {
 		ModelAndView mav = new ModelAndView();
 		if(chain==null) {
@@ -210,13 +219,13 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		Integer prevLevel = levels.size() - 2;
 		String empNbr = ((JSONObject) levels.get(prevLevel)).getString("employeeNumber");
 		levels.remove(levels.size() - 1);
-		mav = this.getApproveLeaveRequestList(req, empNbr);
+		mav = this.getApproveLeaveRequestList(req, empNbr,response);
 		mav.addObject("chain", levels);
 		return mav;
 	}
 	
 	@RequestMapping("submitRequests")
-	public ModelAndView submitRequests(HttpServletRequest req, String level, String chain, String actionList) throws ParseException, MessagingException {
+	public ModelAndView submitRequests(HttpServletRequest req, String level, String chain, String actionList, HttpServletResponse response) throws ParseException, MessagingException {
 		ModelAndView mav = new ModelAndView();
 		if(actionList==null||chain==null) {
 			mav.setViewName("visitFailed");
@@ -239,7 +248,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 				errorMessage += this.approveLeave(req, level, chain, item.getString("id"), item.getString("comments"));
 			}
 		}
-		mav = this.getApproveLeaveRequestList(req, currentSupervisorEmployeeNumber);
+		mav = this.getApproveLeaveRequestList(req, currentSupervisorEmployeeNumber,response);
 		mav.addObject("chain", levels);
 		if(!errorMessage.equals(""))
 			mav.addObject("actionErrors", errorMessage);
