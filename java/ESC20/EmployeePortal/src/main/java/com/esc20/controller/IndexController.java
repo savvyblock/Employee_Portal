@@ -27,6 +27,7 @@ import com.esc20.nonDBModels.Options;
 import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
+import com.esc20.util.DataSourceContextHolder;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
 
@@ -172,5 +173,21 @@ public class IndexController {
 
 		res.put("success", true);
 		return res;
+	}
+	
+	@RequestMapping(value = "logoutEA", method = RequestMethod.GET)
+	public void logoutEA(ModelAndView mav, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		String database = DataSourceContextHolder.getDataSourceType();
+		database = database.split("/")[1];
+		database = database.substring(2);
+		Boolean isTimeOut = DataSourceContextHolder.getIstimeout();
+		
+        String returnURL = "/"+request.getContextPath().split("/")[1]+"/login?distid=" + database;
+        if(isTimeOut)
+        	returnURL += "&isTimeOut=true";
+        request.getSession().setAttribute("districtId", database);
+        response.sendRedirect(returnURL);
+		
 	}
 }

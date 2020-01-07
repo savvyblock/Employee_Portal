@@ -1,6 +1,5 @@
 package com.esc20.controller;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -85,18 +84,11 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		  session.setAttribute("isTempApprover", isTempApprover);
 		
 			
-//			isSupervisor
+//			check is Supervisor
 //			Boolean isSupervisor  =(Boolean)session.getAttribute("isSupervisor");
 			if(isSupervisor == null || !isSupervisor) {
-				String returnURL = "/"+"logoutEA";
-				 try {
-					response.sendRedirect(returnURL);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-//				mav = new ModelAndView("redirect:/logoutEA");
-//				return mav;
+				mav = new ModelAndView("redirect:/logoutEA");
+				return mav;
 			}
 		  
 		  
