@@ -15,12 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.esc20.model.BeaEmpLvRqst;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.AppLeaveRequest;
 import com.esc20.nonDBModels.Code;
-import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveParameters;
 import com.esc20.nonDBModels.LeaveRequest;
@@ -31,7 +29,6 @@ import com.esc20.service.LeaveRequestService;
 import com.esc20.service.ReferenceService;
 import com.esc20.service.SupervisorService;
 import com.esc20.util.DateUtil;
-import com.esc20.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -57,6 +54,7 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 	@RequestMapping("approveLeaveRequestList")
 	public ModelAndView getApproveLeaveRequestList(HttpServletRequest req, String empNbr) throws ParseException {
 		HttpSession session = req.getSession();
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/supervisor/approveLeaveRequestList");
 		LeaveParameters params = this.service.getLeaveParameters();
@@ -84,6 +82,16 @@ public class ApproveLeaveRequestController extends BaseSupervisorController {
 		  session.setAttribute("isSupervisor", isSupervisor);
 		  session.setAttribute("isTempApprover", isTempApprover);
 		
+			
+//			isSupervisor
+//			Boolean isSupervisor  =(Boolean)session.getAttribute("isSupervisor");
+			if(isSupervisor == null || !isSupervisor) {
+				mav = new ModelAndView("redirect:/logoutEA");
+				return mav;
+			}
+		  
+		  
+		  
 	//	BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
 		boolean supervisorsOnly = true;
 		boolean excludeTempApprovers = false;
