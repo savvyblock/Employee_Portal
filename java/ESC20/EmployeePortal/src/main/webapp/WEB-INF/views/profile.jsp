@@ -113,7 +113,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
             <main class="content-wrapper" tabindex="-1">
                 <section class="content">
                     <div class="content-white no-title profile">
-                        <c:if test="${sessionScope.enableSelfServiceDemographic}">
                             <div class="profile-item">
                                     <button type="button" role="button" class="btn btn-primary sm" data-toggle="modal" data-target="#changePasswordModal" onclick="showPasswordModal()">
                                         <span>${sessionScope.languageJSON.label.changePassword}</span>
@@ -1598,7 +1597,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                  -->
                                 </c:if>
                                  </form>
-                        </c:if>
                         
                         <c:if test="${sessionScope.enableSelfServicePayroll}">
                             <c:if test="${not empty sessionScope.options.messageSelfServicePayroll}">
@@ -1655,7 +1653,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 <input type="hidden" name="w4OthrExmptAmt" value="${w4Request.w4OthrExmptAmt}">
                                 <input type="hidden" name="maritalStatTaxNew" value="${w4Request.maritalStatTaxNew}">
                                 <input type="hidden" name="nbrTaxExemptsNew" value="${w4Request.nbrTaxExemptsNew}">
-                                
+                               
                                 <div class="profile-left">
                                         <div class="profileTitle form-line profileInfo">
                                                 <span class="currentTitle">${sessionScope.languageJSON.label.current}</span>
@@ -1663,7 +1661,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                     <div class="profile-item-line form-line">
                                         <div class="profile-title">
-                                                ${sessionScope.languageJSON.profile.W4MaritalStatus}
+                                                 ${sessionScope.languageJSON.profile.W4MaritalStatus}
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue">
@@ -1721,7 +1719,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     </c:forEach>
                                                 </span>
                                                 <div class="form-group valueInput">
-                                                    <select
+                                                    <select required
                                                         class="form-control <c:if test="${w4Request.w4FileStat != w4Request.w4FileStatNew}">active</c:if>"
                                                         id="w4FileStatNew"
                                                         name="w4FileStatNew"
@@ -1828,6 +1826,31 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    <div class="profile-item-line form-line">
+                                        <div class="profile-title">
+                                                ${sessionScope.languageJSON.profile.otherExemption}
+                                        </div>
+                                        <div class="profile-desc">
+                                            <span class="haveValue"
+                                                ><fmt:formatNumber value="${w4Request.w4OthrExmptAmt}" pattern="#,##0.00"/></span
+                                            >
+                                            <div class="form-group valueInput">
+                                                    <c:set var="w4OthrExmptAmtNewSet" value="${w4Request.w4OthrExmptAmtNew}"/>
+                                                    <c:if test="${w4Request.w4OthrExmptAmtNew =='' || w4Request.w4OthrExmptAmtNew ==null}"> 
+                                                            <c:set var="w4OthrExmptAmtNewSet" value="0"/>
+                                                    </c:if>
+                                                <input
+                                                    class="form-control decimal2  <c:if test="${w4Request.w4OthrExmptAmt != w4Request.w4OthrExmptAmtNew}">active</c:if>"
+                                                    id="w4OthrExmptAmtNew"
+                                                    name="w4OthrExmptAmtNew"
+                                                    aria-label="${sessionScope.languageJSON.profile.otherExemption}" 
+                                                    value="<fmt:formatNumber value='${w4OthrExmptAmtNewSet}' pattern='#,##0.00'/>"
+                                                    oninput="clearNoNum(this)"
+                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="profile-item-line form-line">
                                         <div class="profile-title">
@@ -1881,30 +1904,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                     </div>
 
-                                    <div class="profile-item-line form-line">
-                                        <div class="profile-title">
-                                                ${sessionScope.languageJSON.profile.otherExemption}
-                                        </div>
-                                        <div class="profile-desc">
-                                            <span class="haveValue"
-                                                ><fmt:formatNumber value="${w4Request.w4OthrExmptAmt}" pattern="#,##0.00"/></span
-                                            >
-                                            <div class="form-group valueInput">
-                                                    <c:set var="w4OthrExmptAmtNewSet" value="${w4Request.w4OthrExmptAmtNew}"/>
-                                                    <c:if test="${w4Request.w4OthrExmptAmtNew =='' || w4Request.w4OthrExmptAmtNew ==null}"> 
-                                                            <c:set var="w4OthrExmptAmtNewSet" value="0"/>
-                                                    </c:if>
-                                                <input
-                                                    class="form-control decimal2  <c:if test="${w4Request.w4OthrExmptAmt != w4Request.w4OthrExmptAmtNew}">active</c:if>"
-                                                    id="w4OthrExmptAmtNew"
-                                                    name="w4OthrExmptAmtNew"
-                                                    aria-label="${sessionScope.languageJSON.profile.otherExemption}" 
-                                                    value="<fmt:formatNumber value='${w4OthrExmptAmtNewSet}' pattern='#,##0.00'/>"
-                                                    oninput="clearNoNum(this)"
-                                                    <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
 
                                 </div>
                                 <c:if test="${!readOnlyInfo}">

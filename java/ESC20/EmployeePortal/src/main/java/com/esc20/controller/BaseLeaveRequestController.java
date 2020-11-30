@@ -53,7 +53,7 @@ public class BaseLeaveRequestController{
 		request.setLvUnitsDaily(BigDecimal.valueOf(Double.parseDouble(lvUnitsDaily)));
 		request.setLvUnitsUsed(BigDecimal.valueOf(Double.parseDouble(lvUnitsUsed)));
 		Boolean isDisapproveUpdate = false;
-		if (leaveId == null || ("").equals(leaveId)) {
+		if (leaveId == null || ("").equals(leaveId) || 'A'==request.getStatusCd()) {
 			request.setStatusCd('P');
 			request.setDtOfPay("");
 		} else {

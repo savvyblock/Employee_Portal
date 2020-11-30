@@ -1,9 +1,10 @@
 package com.esc20.nonDBModels;
 
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+
+import com.esc20.model.BhrCalYtd;
 
 public class Earnings implements Serializable
 {
@@ -32,7 +33,17 @@ public class Earnings implements Serializable
 	private BigDecimal EarningsOvertimeTotal;
 	private BigDecimal EarningsOtherTydTotal;
 	private BigDecimal emplrPrvdHlthcare;
-	
+
+	public Earnings() {
+	}
+
+	public Earnings(BhrCalYtd record, BigDecimal totalOtherDeductions, List<EarningsOther> otherDeductions) {
+		// BRM-735 added new constructor to handle cal_ytd conversion
+		this.setDeductions(new EarningsDeductions(record, totalOtherDeductions));
+		this.setEmplrPrvdHlthcare(record.getEmplrPrvdHlthcare());
+		this.setOther(otherDeductions);
+	}
+
 	public BigDecimal getEarningsOvertimeTotal() {
 		return EarningsOvertimeTotal;
 	}

@@ -101,6 +101,17 @@ public class AppUserDao extends HibernateDaoSupport{
         return res;
 	}
 	
+	public BhrEmpDemo getUserNameFromSsn(String ssn){
+			Session session = this.getSession();
+			Query q;
+			String sql= "from BhrEmpDemo where staffId =:ssn";
+	        q = session.createQuery(sql);
+	        q.setParameter("ssn", ssn);
+	        BhrEmpDemo res = (BhrEmpDemo) q.uniqueResult();
+	        
+	        return res;
+	}
+	
 	public BeaUsers getUserByUsername(String username) {
 		Session session = this.getSession();
 		Query q;

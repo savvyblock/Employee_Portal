@@ -63,7 +63,7 @@ public class EA1095Dao {
 
 	public boolean update1095ElecConsent(String employeeNumber, String elecConsnt1095) {
 		Session session = this.getSession();
-		String update1095ElecConsntSql = "UPDATE BhrEmpEmply SET elecConsnt1095 =:elecConsnt1095, module = 'Employee Access' WHERE empNbr =:employeeNumber";
+		String update1095ElecConsntSql = "UPDATE BhrEmpEmply SET elecConsnt1095 =:elecConsnt1095, module = 'Employee Portal' WHERE empNbr =:employeeNumber";
 		Query q = session.createQuery(update1095ElecConsntSql);
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("elecConsnt1095", elecConsnt1095.charAt(0));

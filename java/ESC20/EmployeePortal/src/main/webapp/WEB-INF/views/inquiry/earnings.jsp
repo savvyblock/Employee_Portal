@@ -232,13 +232,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 class="no-print no-thead table no-border-table responsive-table earning-title-table"
                                             >
                                                 <tbody>
-                                                    <tr>
-                                                        <th id="campus" class="td-title column1"><span>${sessionScope.languageJSON.earningTable.campus}</span>:</th>
-                                                        <td headers="campus" class="td-content text-right left-td" data-title="${sessionScope.languageJSON.earningTable.campus}">
-                                                        ${earnings.info.campusId} ${earnings.info.campusName}
-                                                        </td>
-                                                        <td colspan="2"></td>
-                                                    </tr>
+                                                  
                                                     <tr>
                                                         <th id="checkNumber" class="td-title column1"><span>${sessionScope.languageJSON.earningTable.checkNumber}</span>:</th>
                                                         <td headers="checkNumber"
@@ -257,37 +251,118 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         ${earnings.info.periodEndingDate}
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <th id="withholdingStatus" class="td-title column1">
-                                                                <span>${sessionScope.languageJSON.earningTable.withholdingStatus}</span>:
-                                                        </th>
-                                                        <td headers="withholdingStatus"
-                                                        data-title="${sessionScope.languageJSON.earningTable.withholdingStatus}"
-                                                            class="td-content left-td"
-                                                           
-                                                        >
-                                                            <c:if test="${earnings.info.withholdingStatus =='M'}">
-                                                                <span>${earnings.info.withholdingStatus}-${sessionScope.languageJSON.label.married}</span>
-                                                            </c:if>
-                                                            <c:if test="${earnings.info.withholdingStatus =='S'}">
-                                                                    <span>${earnings.info.withholdingStatus}-${sessionScope.languageJSON.label.single}</span>
-                                                            </c:if>
-                                                        </td>
-                                                        <th id="numberOfExemptions" class="td-title">
-                                                                <span>${sessionScope.languageJSON.earningTable.numberOfExemptions}</span>:
-                                                        </th>
-                                                        <td headers="numberOfExemptions"
-                                                            class="td-content" data-title="${sessionScope.languageJSON.earningTable.numberOfExemptions}"
-                                                           
-                                                        >
-                                                        ${earnings.info.numExceptions}
-                                                        </td>
-                                                    </tr>
+                                                   
                                                 </tbody>
                                             </table>
                                         </div>
                                            
-                                    </div>                            
+                                    </div>    
+
+                                    <table
+                                    class="table border-table responsive-table no-thead print-table noNumTable smTitleTable">
+                                    <tbody>
+                                        <tr>
+                                            <th id="martialStatus_${count.index}" class="td-title">
+                                                <b>${sessionScope.languageJSON.currentPayTable.martialStatus}</b>
+                                            </th>
+                                            <td headers="martialStatus_${count.index}" class="td-content"
+                                                data-title="${sessionScope.languageJSON.currentPayTable.martialStatus}">
+                                                <c:if test="${payInfos[freq].maritalStatTax =='M'}">
+                                                    ${payInfos[freq].maritalStatTax} -
+                                                    <span>${sessionScope.languageJSON.label.married}</span>
+                                                </c:if>
+                                                <c:if test="${payInfos[freq].maritalStatTax =='S'}">
+                                                    ${payInfos[freq].maritalStatTax} -
+                                                    <span>${sessionScope.languageJSON.label.single}</span>
+                                                </c:if>
+                                            </td>
+                                            <th id="numOfExemptions_${count.index}" class="td-title">
+                                                <b>${sessionScope.languageJSON.currentPayTable.numOfExemptions}</b>
+                                            </th>
+                                            <td headers="numOfExemptions_${count.index}" class="td-content"
+                                                data-title="${sessionScope.languageJSON.currentPayTable.numOfExemptions}">
+                                                ${payInfos[freq].nbrTaxExempts}
+                                            </td>
+                                            <th id="payCampus_${count.index}" class="td-title">
+                                                <b>${sessionScope.languageJSON.currentPayTable.payCampus}</b></th>
+                                            <td headers="payCampus_${count.index}" class="td-content"
+                                                data-title="${sessionScope.languageJSON.currentPayTable.payCampus}">
+                                                ${payCampuses[freq]}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        <th id="fillingStatus_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.fillingStatus}</b></th>
+
+                                                <td headers="fillingStatus_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.fillingStatus}">
+                                                    <input type="hidden" name="w4FileStat" value="${w4Request[freq].w4FileStat }">
+
+                                                    <!-- ${payInfos[freq].w4FileStat} -->
+                                                    <c:forEach var="w4FileStat" items="${w4FileStatOptions}"
+                                                        varStatus="count">
+                                                        <c:if
+                                                            test="${w4FileStat.code == w4Request[freq].w4FileStat }">
+                                                            ${w4FileStat.displayLabel}
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </td>
+                                               
+                                                <th id="multiJobs_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.multiJobs}</b></th>
+
+                                                <td headers="multiJobs_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.multiJobs}">
+                                                    ${w4Request[freq].w4MultiJob}
+                                                </td>
+
+                                                <th id="childrenUnder17_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.childrenUnder17}</b></th>
+
+                                                <td headers="childrenUnder17_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.childrenUnder17}" colspan="3">
+                                                    <fmt:formatNumber value="${w4Request[freq].w4NbrChldrn}"
+                                                        pattern="#,##0" />
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <th id="otherDependents_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.otherDependents}</b></th>
+
+                                                <td headers="otherDependents_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.otherDependents}">
+                                                    <fmt:formatNumber value="${w4Request[freq].w4NbrOthrDep}"
+                                                        pattern="#,##0" />
+                                                </td>
+                                                
+                                                    <th id="otherd_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.otherExemption}</b></th>
+
+                                                    <td headers="otherd_${count.index}" class="text-left"
+                                                        data-title="${sessionScope.languageJSON.profile.otherExemption}">
+                                                        <fmt:formatNumber value="${w4Request[freq].w4OthrExmptAmt}" pattern="#,##0.00"/>
+                                                    </td>
+
+                                                <th id="otherIncome_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.otherIncome}</b></th>
+
+                                                <td headers="otherIncome_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.otherIncome}">
+                                                    <fmt:formatNumber value="${w4Request[freq].w4OthrIncAmt}"
+                                                        pattern="#,##0" />
+                                                </td>
+
+                                                <th id="deductions_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.deductions}</b></th>
+
+                                                <td headers="deductions_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.deductions}">
+                                                    <fmt:formatNumber value="${w4Request[freq].w4OthrDedAmt}"
+                                                        pattern="#,##0" />
+                                                </td>
+                                            </tr>
+                                    </tbody>
+                                </table>                        
                                     
                                     <div class="hr-black"></div>
                                     <div class="earning-body">

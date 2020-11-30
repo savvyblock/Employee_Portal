@@ -187,7 +187,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 		<td style="padding:0;">
 			<table class="table border-table responsive-table no-thead print-table middle-td-table tableSelf" style="margin-bottom:5px;">
 				<thead>
-					<tr>
+					<tr class="tr-title">
 						<th class="print-hide"><span>${sessionScope.constantJSON.info1095Table.firstName}</span></th>
 						<th>
 							<span class="print-hide">${sessionScope.constantJSON.info1095Table.middleName}</span>

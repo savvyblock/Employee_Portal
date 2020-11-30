@@ -14,12 +14,12 @@
                 <div class="account-inner loginBox">
                     <div class="account-box">
                         <form id="loginForm" method="post" class="card bv-form" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
-                            <h1 class="title">${sessionScope.languageJSON.label.pleaseSignIn}</h1>
+                            <h1 class="title empPortColor">${sessionScope.languageJSON.label.pleaseSignIn}</h1>
                             <div class="form-group">
                                 <label for="inputEmail">${sessionScope.languageJSON.label.username}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-user left-icon"></i>
-                                    <input type="text" id="inputEmail" class="form-control" placeholder="${sessionScope.languageJSON.label.username}"name="username"/>
+                                    <input type="text" id="inputEmail" class="initial_focus wrap_field form-control" placeholder="${sessionScope.languageJSON.label.username}"name="username" tabindex="1"/>
                                 </div>
                                 
                             </div>
@@ -27,7 +27,7 @@
                                 <label for="inputPassword">${sessionScope.languageJSON.label.password}</label>
                                 <div class="valid-wrap icon-group">
                                     <i class="fa fa-lock left-icon"></i>
-                                    <input type="password" id="inputPassword" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password"/>
+                                    <input type="password" id="inputPassword" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password" tabindex="1"/>
                                 </div>
                                 
                             </div>
@@ -59,27 +59,36 @@
                                 <p class="error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.sendEmailFailed}</p>
                             </c:if>
                             <div class="form-group account-btn">
-                                <a class="btn btn-primary btn-secondary" href="/<%=request.getContextPath().split("/")[1]%>/createUser/searchUser">${sessionScope.languageJSON.label.newUser}</a>
-                                <button id="signin" type="submit" class="btn btn-primary pull-right">${sessionScope.languageJSON.label.login}</button>
+                                <a class="btn btn-primary btn-secondary" href="/<%=request.getContextPath().split("/")[1]%>/createUser/searchUser" tabindex="1">${sessionScope.languageJSON.label.newUser}</a>
+                                <button id="signin" type="submit" class="btn btn-primary pull-right" tabindex="1">${sessionScope.languageJSON.label.login}</button>
                             </div>
                             <div class="form-group clearfix">
-                                <a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&entry.372715739=Employee+Access+(TxEIS)" target="_blank">${sessionScope.languageJSON.label.contactUs}</a>
+                            	<div class="hidden">
+                               		<a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&entry.372715739=Employee+Access+(TxEIS)" target="_blank">${sessionScope.languageJSON.label.contactUs}</a>
+                                </div>
                                 <div class="pull-right">
-                                    <a href="/<%=request.getContextPath().split("/")[1]%>/resetPassword/forgetPassword">${sessionScope.languageJSON.label.forgotPassword}</a>
+                                    <a href="/<%=request.getContextPath().split("/")[1]%>/resetPassword/forgetPassword" tabindex="1" class="last_field">${sessionScope.languageJSON.label.forgotPassword}</a>
                                 </div>
                             </div>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </form>
                         
                     </div>
-                </div>
+					<div id="alertbox">
+						<br/>
+							<p id="alert">
+								${alertMsg}
+							</p>
+					</div>
+				</div>
+									
                 <div class="account-inner logBackBox hide">
                     <h1 class="logBackTitle">${sessionScope.languageJSON.label.sessionTimeOut}</h1>
                     <div class="logBackWord">${sessionScope.languageJSON.label.sessionTimeOutWord}</div>
                     <div class="account-box">
                         <form id="loginBackForm" class="card" method="post" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            <h1 class="title">${sessionScope.languageJSON.label.pleaseSignIn}</h1>
+                            <h1 class="title empPortColor">${sessionScope.languageJSON.label.pleaseSignIn}</h1>
                             <div class="form-group">
                                 <label for="inputEmailSession">${sessionScope.languageJSON.label.username}</label>
                                 <div class="valid-wrap icon-group">
@@ -121,27 +130,14 @@
                             </div>
                             
                         </form>
-                        
+                       
                     </div>
-                </div>
-                <div class="webDESC">
-                	<p>
-                        <b>${sessionScope.languageJSON.label.important}</b><br>
-                        ${sessionScope.languageJSON.label.thisIsSecurity}
-                        <br>
-                        <br>
-                        <b>${sessionScope.languageJSON.label.tccAccessStatement}</b><br>
-                        ${sessionScope.languageJSON.label.weRecognize}
-                        <a target="_blank" href="https://www.w3.org/TR/WCAG20/">
-                            ${sessionScope.languageJSON.label.webContent}
-                        </a>
-                        ${sessionScope.languageJSON.label.andWenStrive}
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&amp;entry.372715739=Employee+Access+(TxEIS)" target="_blank">
-                            ${sessionScope.languageJSON.label.contactUsCo}
-                        </a>
-                    </p>
-                </div>
+                    
+                </div>              
+                 
             </div>
+            
+            <%@ include file="commons/footer.jsp"%>
     </body>
     
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/login.js"></script>

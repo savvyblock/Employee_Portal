@@ -59,7 +59,6 @@ public class W2InformationDao {
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("year", year);
 		BhrW2 w2 = (BhrW2)q.uniqueResult();
-		
 		return w2;
 	}
 	
@@ -82,7 +81,7 @@ public class W2InformationDao {
 	
 	public boolean updateW2ElecConsent(String employeeNumber, String elecConsntW2) {
 		Session session = this.getSession();
-		String updateW2ElecConsntSql = "UPDATE BhrEmpEmply SET elecConsntW2 =:elecConsntW2, module = 'Employee Access' WHERE empNbr =:employeeNumber";
+		String updateW2ElecConsntSql = "UPDATE BhrEmpEmply SET elecConsntW2 =:elecConsntW2, module = 'EmployeePortal' WHERE empNbr =:employeeNumber";
 		Query q = session.createQuery(updateW2ElecConsntSql);
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("elecConsntW2", elecConsntW2.charAt(0));

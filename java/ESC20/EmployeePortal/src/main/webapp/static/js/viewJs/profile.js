@@ -1420,7 +1420,7 @@ function bankAccountValidator () {
                             message: requiredFieldValidator
                         },
                         regexp: {
-                            regexp: /^[0-9]\d{0,16}$/,
+                            regexp: /^[a-zA-Z0-9\.]{1,17}$/,
                             message: pleaseEnterCorrectFormatValidator
                         }
                     }
@@ -1483,7 +1483,7 @@ function bankAccountAddValidator () {
                         message: requiredFieldValidator
                     },
                     regexp: {
-                        regexp: /^[0-9]\d{0,16}$/,
+                        regexp: /^[a-zA-Z0-9\.]{1,17}$/,
                         message: pleaseEnterCorrectFormatValidator
                     }
                 }

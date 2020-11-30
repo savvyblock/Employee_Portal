@@ -1,8 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html> 
 <html lang="en">
+	<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/employeePortal.css">
     <head>
         <title>${sessionScope.languageJSON.headTitle.forgotPassword}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,7 +19,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                         <form action="answerHintQuestion" method="post">
                         	<input type="hidden" name="count" value="${count}"/>
                         	<input type="hidden" name="empNbr" value="${user.empNumber}"/>
+                        	<input type="hidden" name="socialSn" value="${user.ssn}"/>
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        	<c:set var="empNum" value="${user.empNumber}" scope="request"/>
+                        	<c:set var="socNum" value="${user.ssn }" scope="request"/>
+                        	<c:if test ="${fn:length(empNum) != 0}">
                             <div class="form-group">
                                 <label >${sessionScope.languageJSON.label.employeeNumber}</label>
                                 <div class="valid-wrap">
@@ -23,6 +31,18 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                                 <input type="hidden" name="empNumber" value="${newUser.empNumber}" />
                             </div>
+                            </c:if>
+                            <c:if test ="${fn:length(empNum) == 0}">
+                            <div class="form-group">
+                                <label >Social Security Number</label>
+                                <div class="valid-wrap">
+	                                <c:set var="firstFiveChar" value="${fn:substring(user.ssn,0,5)}" scope="request"/>
+	                                ${fn:replace (user.ssn , firstFiveChar , 'XXX-XX-')}
+                                  
+                                </div>
+                                <input type="hidden" name="ssn" value="${newUser.ssn}" />
+                            </div>
+                            </c:if>
                             <div class="form-group">
                                 <label >${sessionScope.languageJSON.label.dateOfBirth}</label>
                                 <div class="valid-wrap">

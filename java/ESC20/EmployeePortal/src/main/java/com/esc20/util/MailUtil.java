@@ -8,16 +8,23 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.esc20.dao.PreferencesDao;
+
+@Component
 public class MailUtil {
 
-	//private static final String serverHost = "tcc11smtp.txeis.net";
-	private static final String serverHost = "tcc20smtp.txeis.net"; 
-
-	private static final Integer serverPort = 25;
-
-	private static final String fromAddress = "employeeportal@txeis.net";
+    @Autowired
+    private PreferencesDao preferencesDao;
 	
-	public static void sendEmail(String to, String subject, String content) throws MessagingException{
+	public void sendEmail(String to, String subject, String content) throws MessagingException{
+		String serverHost = preferencesDao.getPrefenceByPrefName("email_smtp_addr").getPrefValue();
+		Integer serverPort = Integer.parseInt(preferencesDao.getPrefenceByPrefName("email_smtp_port").getPrefValue());
+		String fromAddress = preferencesDao.getPrefenceByPrefName("email_sender_addr").getPrefValue();
+		
 		Properties props = new Properties();
 		props.put("mail.smtp.host", serverHost);
 		props.put("mail.smtp.port", serverPort);

@@ -78,6 +78,12 @@ public class W2Print implements Serializable, Cloneable
 	private String amt1407;
 	private String code1408;
 	private String amt1408;
+	private String code1409;
+	private String amt1409; //EPSLA
+	private String code1410;
+	private String amt1410;
+	private String code1411;
+	private String amt1411;
 	private String code31401;
 	private String amt31401;
 	private String code31402;
@@ -499,6 +505,42 @@ public class W2Print implements Serializable, Cloneable
 	public void setAmt1407(String amt1407) {
 		this.amt1407 = amt1407;
 	}
+	public String getCode1409() {
+		return code1409;
+	}
+	public void setCode1409(String code1409) {
+		this.code1409 = code1409;
+	}
+	public String getCode1410() {
+		return code1410;
+	}
+	public void setCode1410(String code1410) {
+		this.code1410 = code1410;
+	}
+	public String getCode1411() {
+		return code1411;
+	}
+	public void setCode1411(String code1411) {
+		this.code1411 = code1411;
+	}
+	public String getAmt1409() {
+		return amt1409;
+	}
+	public void setAmt1409(String amt1409) {
+		this.amt1409 = amt1409;
+	}
+	public String getAmt1410() {
+		return amt1410;
+	}
+	public void setAmt1410(String amt1410) {
+		this.amt1410 = amt1410;
+	}
+	public String getAmt1411() {
+		return amt1411;
+	}
+	public void setAmt1411(String amt1411) {
+		this.amt1411 = amt1411;
+	}
 	public String getCode31401() {
 		return code31401;
 	}
@@ -697,6 +739,10 @@ public class W2Print implements Serializable, Cloneable
 		p.setAmt1405(this.getAmt1405());
 		p.setAmt1406(this.getAmt1406());
 		p.setAmt1407(this.getAmt1407());
+		p.setAmt1408(this.getAmt1408());
+		p.setAmt1409(this.getAmt1409());
+		p.setAmt1410(this.getAmt1410());
+		p.setAmt1411(this.getAmt1411());
 		p.setCode1201(this.getCode1201());
 		p.setCode1202(this.getCode1202());
 		p.setCode1203(this.getCode1203());
@@ -715,6 +761,10 @@ public class W2Print implements Serializable, Cloneable
 		p.setCode1405(this.getCode1405());
 		p.setCode1406(this.getCode1406());
 		p.setCode1407(this.getCode1407());
+		p.setCode1408(this.getCode1408());
+		p.setCode1409(this.getCode1409());
+		p.setCode1410(this.getCode1410());
+		p.setCode1411(this.getCode1411());
 		p.setCopy(this.getCopy());
 		p.setDcare(this.getDcare());
 		p.setEaddress(this.getEaddress());

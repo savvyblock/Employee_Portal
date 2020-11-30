@@ -1,5 +1,6 @@
 package com.esc20.controller;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Currency;
@@ -61,8 +62,9 @@ import com.esc20.service.BankService;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
-import com.esc20.util.MailUtil;
 import com.esc20.util.StringUtil;
+
+
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -1427,63 +1429,71 @@ public class ProfileController {
 		BeaAltMailAddr altMailAddrRequest = this.indexService.getBeaAltMailAddr(demo);
 		smrAddrNbrNew= smrAddrNbrNew==null?"":smrAddrNbrNew.trim();
 		String altAddrNbr = altMailAddrRequest.getSmrAddrNbrNew()==null?"":altMailAddrRequest.getSmrAddrNbrNew().trim();
-		if (!smrAddrNbrNew.equals(altAddrNbr)) {
-			isAnyChanges = true;
-			demoInfoChanges.setAlternateAddress(true);
-		}
-		if (!smrAddrStrNew.equals(altMailAddrRequest.getSmrAddrStrNew())) {
-			isAnyChanges = true;
-			demoInfoChanges.setAlternatePoBox(true);
-		}
-		if (!smrAddrAptNew.equals(altMailAddrRequest.getSmrAddrAptNew())) {
-			isAnyChanges = true;
-			demoInfoChanges.setAlternateApt(true);
-		}
-		if (!smrAddrCityNew.equals(altMailAddrRequest.getSmrAddrCityNew())) {
-			isAnyChanges = true;
-			demoInfoChanges.setAlternateCity(true);
-		}
-		if (!smrAddrStNew.equals(altMailAddrRequest.getSmrAddrStNew())) {
-			isAnyChanges = true;
-			demoInfoChanges.setAlternateState(true);
-		}
-		if (!smrAddrZipNew.equals(altMailAddrRequest.getSmrAddrZipNew())) {
-			isAnyChanges = true;
-			demoInfoChanges.setAlternateZip(true);
-		}
-		if (!smrAddrZip4New.equals(altMailAddrRequest.getSmrAddrZip4New())) {
-			isAnyChanges = true;
-			demoInfoChanges.setAlternateZip4(true);
-		}
-
-		session.setAttribute("hasDemoChanged", isAnyChanges);
-		session.setAttribute("demoInfoChanges", demoInfoChanges);
-
-		if (this.indexService.getBhrEapDemoAssgnGrp("BEA_ALT_MAIL_ADDR")) {
-			altMailingAddressRequest = new BeaAltMailAddr(demo, empNbr, reqDts, smrAddrNbrNew, smrAddrStrNew,
-					smrAddrAptNew, smrAddrCityNew, smrAddrStNew, smrAddrZipNew, smrAddrZip4New, 'A');
-			this.indexService.saveAltMailAddrRequest(altMailingAddressRequest);
-			demo.setSmrAddrNbr(smrAddrNbrNew);
-			demo.setSmrAddrStr(smrAddrStrNew);
-			demo.setSmrAddrApt(smrAddrAptNew);
-			demo.setSmrAddrCity(smrAddrCityNew);
-			demo.setSmrAddrSt(smrAddrStNew);
-			demo.setSmrAddrZip(smrAddrZipNew);
-			demo.setSmrAddrZip4(smrAddrZip4New);
-			this.indexService.updateDemoAltMailAddr(demo);
-			session.removeAttribute("userDetail");
-			List<Code> gens = referenceService.getGenerations();
-			for (Code gen : gens) {
-				if (demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
-					demo.setGenDescription(gen.getDescription());
+		try {
+			if (!smrAddrNbrNew.equals(altAddrNbr)) {
+				isAnyChanges = true;
+				demoInfoChanges.setAlternateAddress(true);
+			}
+			
+			if (!smrAddrStrNew.equals(altMailAddrRequest.getSmrAddrStrNew())) {
+				isAnyChanges = true;
+				demoInfoChanges.setAlternatePoBox(true);
 				}
+			
+
+			if (!smrAddrAptNew.equals(altMailAddrRequest.getSmrAddrAptNew())) {
+				isAnyChanges = true;
+				demoInfoChanges.setAlternateApt(true);
+			}
+			if (!smrAddrCityNew.equals(altMailAddrRequest.getSmrAddrCityNew())) {
+				isAnyChanges = true;
+				demoInfoChanges.setAlternateCity(true);
+			}
+			if (!smrAddrStNew.equals(altMailAddrRequest.getSmrAddrStNew())) {
+				isAnyChanges = true;
+				demoInfoChanges.setAlternateState(true);
+			}
+			if (!smrAddrZipNew.equals(altMailAddrRequest.getSmrAddrZipNew())) {
+				isAnyChanges = true;
+				demoInfoChanges.setAlternateZip(true);
+			}
+			if (!smrAddrZip4New.equals(altMailAddrRequest.getSmrAddrZip4New())) {
+				isAnyChanges = true;
+				demoInfoChanges.setAlternateZip4(true);
 			}
 
-			session.setAttribute("userDetail", demo);
-		} else {
-			altMailingAddressRequest = new BeaAltMailAddr(demo, empNbr, reqDts, smrAddrNbrNew, smrAddrStrNew,
-					smrAddrAptNew, smrAddrCityNew, smrAddrStNew, smrAddrZipNew, smrAddrZip4New, 'P');
-			this.indexService.saveAltMailAddrRequest(altMailingAddressRequest);
+			session.setAttribute("hasDemoChanged", isAnyChanges);
+			session.setAttribute("demoInfoChanges", demoInfoChanges);
+
+			if (this.indexService.getBhrEapDemoAssgnGrp("BEA_ALT_MAIL_ADDR")) {
+				altMailingAddressRequest = new BeaAltMailAddr(demo, empNbr, reqDts, smrAddrNbrNew, smrAddrStrNew,
+						smrAddrAptNew, smrAddrCityNew, smrAddrStNew, smrAddrZipNew, smrAddrZip4New, 'A');
+				this.indexService.saveAltMailAddrRequest(altMailingAddressRequest);
+				demo.setSmrAddrNbr(smrAddrNbrNew);
+				demo.setSmrAddrStr(smrAddrStrNew);
+				demo.setSmrAddrApt(smrAddrAptNew);
+				demo.setSmrAddrCity(smrAddrCityNew);
+				demo.setSmrAddrSt(smrAddrStNew);
+				demo.setSmrAddrZip(smrAddrZipNew);
+				demo.setSmrAddrZip4(smrAddrZip4New);
+				this.indexService.updateDemoAltMailAddr(demo);
+				session.removeAttribute("userDetail");
+				List<Code> gens = referenceService.getGenerations();
+				for (Code gen : gens) {
+					if (demo.getNameGen() != null && gen.getCode().trim().equals(demo.getNameGen().toString().trim())) {
+						demo.setGenDescription(gen.getDescription());
+					}
+				}
+
+				session.setAttribute("userDetail", demo);
+			} else {
+				altMailingAddressRequest = new BeaAltMailAddr(demo, empNbr, reqDts, smrAddrNbrNew, smrAddrStrNew,
+						smrAddrAptNew, smrAddrCityNew, smrAddrStNew, smrAddrZipNew, smrAddrZip4New, 'P');
+				this.indexService.saveAltMailAddrRequest(altMailingAddressRequest);
+			}
+		}
+		catch(NullPointerException e) {
+			System.out.println("NullPointerException thrown!");
 		}
 
 //        this.getProfileDetails(session, mav,null);
@@ -1677,9 +1687,9 @@ public class ProfileController {
 	@RequestMapping("saveW4")
 	public ModelAndView saveW4(HttpServletRequest req, String empNbr, String reqDts, String payFreq,
 			Character maritalStatTax, Character maritalStatTaxNew, Integer nbrTaxExempts, Integer nbrTaxExemptsNew,
-			String w4FileStat, String w4MultiJob, Double w4NbrChldrn, Double w4NbrOthrDep, Double w4OthrIncAmt,
+			String w4FileStat, String w4MultiJob, Integer w4NbrChldrn, Integer w4NbrOthrDep, Double w4OthrIncAmt,
 			Double w4OthrDedAmt, Double w4OthrExmptAmt, String w4FileStatNew, String w4MultiJobNew,
-			Double w4NbrChldrnNew, Double w4NbrOthrDepNew, Double w4OthrIncAmtNew, Double w4OthrDedAmtNew,
+			Integer w4NbrChldrnNew, Integer w4NbrOthrDepNew, Double w4OthrIncAmtNew, Double w4OthrDedAmtNew,
 			Double w4OthrExmptAmtNew) {
 
 		HttpSession session = req.getSession();
@@ -1696,6 +1706,14 @@ public class ProfileController {
 		BhrEmpPay pay = new BhrEmpPay();
 		pay.setMaritalStatTax(maritalStatTax);
 		pay.setNbrTaxExempts(nbrTaxExempts);
+		pay.setW4FileStat(w4FileStat);
+		pay.setW4MultiJob(w4MultiJob);
+		pay.setW4NbrChldrn(w4NbrChldrn);
+		pay.setW4NbrOthrDep(w4NbrOthrDep);
+		pay.setW4OthrIncAmt(w4OthrIncAmt);
+		pay.setW4OthrDedAmt(w4OthrDedAmt);
+		pay.setW4OthrExmptAmt(w4OthrExmptAmt);
+
 		BeaW4 w4Request;
 		Frequency freq;
 		freq = Frequency.getFrequency(payFreq);
@@ -1743,15 +1761,15 @@ public class ProfileController {
 		if (this.indexService.getBhrEapPayAssgnGrp("BEA_W4")) {
 			w4Request = new BeaW4(pay, empNbr, freq.getCode().charAt(0), reqDts, maritalStatTaxNew, nbrTaxExemptsNew,
 					'A', w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew,
-					w4OthrDedAmtNew, w4OthrExmptAmtNew, w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew,
-					w4OthrIncAmtNew, w4OthrDedAmtNew, w4OthrExmptAmtNew);
+					w4OthrDedAmtNew, w4OthrExmptAmtNew);
 			this.indexService.saveW4Request(w4Request);
-			this.indexService.updatePayInfo(demo, pay, freq.getCode().charAt(0), maritalStatTaxNew, nbrTaxExemptsNew);
+			this.indexService.updatePayInfo(demo, pay, freq.getCode().charAt(0), maritalStatTaxNew, nbrTaxExemptsNew, 
+					w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew,
+					w4OthrDedAmtNew, w4OthrExmptAmtNew);
 
 		} else {
 			w4Request = new BeaW4(pay, empNbr, freq.getCode().charAt(0), reqDts, maritalStatTaxNew, nbrTaxExemptsNew,
-					'P', w4FileStat, w4MultiJob, w4NbrChldrn, w4NbrOthrDep, w4OthrIncAmt, w4OthrDedAmt, w4OthrExmptAmt,
-					w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew, w4OthrDedAmtNew,
+					'P', w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew, w4OthrDedAmtNew,
 					w4OthrExmptAmtNew);
 			this.indexService.saveW4Request(w4Request);
 		}

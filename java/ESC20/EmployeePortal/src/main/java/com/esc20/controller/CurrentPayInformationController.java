@@ -36,6 +36,8 @@ import com.esc20.service.PDFService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
+import com.esc20.model.BeaW4;
+
 
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -89,15 +91,21 @@ public class CurrentPayInformationController{
 		    		userDetail.setGenDescription(gen.getDescription());
 		    	}
 		    }
+		//get w4 info 
 		
+		// BeaW4 w4Request = this.indexService.getBeaW4Info(userDetail);
+	
+
 		Map<Frequency, List<CurrentPayInformation>> jobs = this.service.getJob(employeeNumber);
 		Map<Frequency, List<Stipend>> stipends = this.service.getStipends(employeeNumber);
 		Map<Frequency, List<Account>> accounts = this.service.getAccounts(employeeNumber);
 		List<Frequency> frequencies = this.service.getFrequencies(jobs);
 		Map<Frequency, PayInfo> payInfos = this.service.retrievePayInfo(employeeNumber, frequencies);
-		Map<Frequency, String> payCampuses = this.service.retrievePayCampuses(employeeNumber);
+		Map<Frequency, BeaW4> w4Request = this.indexService.getBeaW4Info(employeeNumber, frequencies);
+		Map<Frequency, String> payCampuses = this.service.retrievePayCampuses(employeeNumber, frequencies);
 		EmployeeInfo employeeInfo = this.service.getEmployeeInfo(employeeNumber);
-		
+		List<Code> w4FileStatOptions = this.referenceService.getW4MaritalActualStatuses();
+
 		String message = ((Options) session.getAttribute("options")).getMessageCurrentPayInformation();
 		mav.setViewName("/inquiry/currentPayInformation");
 		mav.addObject("jobs", jobs);
@@ -109,6 +117,10 @@ public class CurrentPayInformationController{
 		mav.addObject("payCampuses", payCampuses);
 		mav.addObject("employeeInfo", employeeInfo);
 		mav.addObject("isPrintPDF", true);
+		mav.addObject("w4Request", w4Request);
+		mav.addObject("w4FileStatOptions", w4FileStatOptions);
+
+
 		return mav;
 	}
 	

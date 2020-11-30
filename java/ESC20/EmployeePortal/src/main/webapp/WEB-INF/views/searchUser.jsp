@@ -16,12 +16,12 @@
                         <form id="retrieveUser" action="retrieveEmployee" method="post" >
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <c:if test="${idType=='E'}">
-	                            <p>
+	                            <p class="empPortColor">
 	                            	<b>${sessionScope.languageJSON.label.pleaseEnterEmpBirthZipCode}</b>
 	                            </p>
                             </c:if>
                             <c:if test="${idType=='S'}">
-	                            <p>
+	                            <p class="empPortColor">
 	                            	<b>${sessionScope.languageJSON.label.pleaseEnterSSoBirthZipCode}</b>
 	                            </p>
                             </c:if>
@@ -33,7 +33,7 @@
 	                                        </div>
                                         </c:if>
                                         <c:if test="${idType=='E'}">
-                                        	<label for="autoAdvance_1"><span>${sessionScope.languageJSON.label.employeeNumber}</span>&nbsp;(<span>${sessionScope.languageJSON.label.noDashes}</span>)</label>
+                                        	<label for="autoAdvance_1"><span>${sessionScope.languageJSON.label.employeeNumber}</span></label>
 	                                        <div class="valid-wrap">
 	                                            <input type="text" id="autoAdvance_1" class="form-control autoAdvance" placeholder="" name="empNumber" maxlength="6">
 	                                        </div>
@@ -72,6 +72,7 @@
                             </form>
                 </div>
             </div>
+            <%@ include file="commons/footer.jsp"%>
     </body>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/searchUser.js"></script>
 </html>

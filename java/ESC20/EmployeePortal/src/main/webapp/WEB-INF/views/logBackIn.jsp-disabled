@@ -17,7 +17,7 @@
                     <div class="account-box">
                         <form class="card" method="post" action="/<%=request.getContextPath().split("/")[1]%>/logBackInEA">
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            <h1 class="title" data-localize="label.pleaseSignIn"></h1>
+                            <h1 class="title empPortColor" data-localize="label.pleaseSignIn"></h1>
                             <div class="form-group">
                                 <label class="form-title" for="inputEmail" data-localize="label.username"></label>
                                 <div class="valid-wrap icon-group">
@@ -53,5 +53,6 @@
             </div>
     </body>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/index.js"></script>
+
 
 </html>

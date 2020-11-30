@@ -8,8 +8,8 @@ public class W4Info implements Serializable
 	
 	private String w4FileStat;
 	private String w4MultiJob;
-	private Double w4NbrChldrn ;
-	private Double w4NbrOthrDep ;
+	private Integer w4NbrChldrn ;
+	private Integer w4NbrOthrDep ;
 	private Double w4OthrIncAmt ;
 	private Double w4OthrDedAmt ;
 	private Double w4OthrExmptAmt ;
@@ -25,16 +25,16 @@ public class W4Info implements Serializable
 	public void setW4MultiJob(String w4MultiJob) {
 		this.w4MultiJob = w4MultiJob;
 	}
-	public Double getW4NbrChldrn() {
+	public Integer getW4NbrChldrn() {
 		return w4NbrChldrn;
 	}
-	public void setW4NbrChldrn(Double w4NbrChldrn) {
+	public void setW4NbrChldrn(Integer w4NbrChldrn) {
 		this.w4NbrChldrn = w4NbrChldrn;
 	}
-	public Double getW4NbrOthrDep() {
+	public Integer getW4NbrOthrDep() {
 		return w4NbrOthrDep;
 	}
-	public void setW4NbrOthrDep(Double w4NbrOthrDep) {
+	public void setW4NbrOthrDep(Integer w4NbrOthrDep) {
 		this.w4NbrOthrDep = w4NbrOthrDep;
 	}
 	public Double getW4OthrIncAmt() {

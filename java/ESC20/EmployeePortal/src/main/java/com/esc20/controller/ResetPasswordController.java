@@ -31,6 +31,9 @@ public class ResetPasswordController {
 	private Logger logger = LoggerFactory.getLogger(ResetPasswordController.class);
 
 	@Autowired
+	private MailUtil mailUtil;
+	
+	@Autowired
 	private IndexService indexService;
 
 	@Autowired
@@ -100,7 +103,7 @@ public class ResetPasswordController {
 	}
 
 	@RequestMapping("answerHintQuestion")
-	public ModelAndView answerHintQuestion(HttpServletRequest req, String answer, String empNbr, String email) {
+	public ModelAndView answerHintQuestion(HttpServletRequest req, String answer, String empNbr, String socialSn, String email) {
 		ModelAndView mav = new ModelAndView();
 		if (answer == null || empNbr == null) {
 			mav.setViewName("visitFailedUnAuth");
@@ -108,6 +111,10 @@ public class ResetPasswordController {
 			mav.addObject("action", "Answer hint question");
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
+		}
+		if(empNbr.length() == 0){
+		BhrEmpDemo userInQuestion = this.indexService.getUserNameFromSsn(socialSn);
+		empNbr = userInQuestion.getEmpNbr();
 		}
 		SearchUser searchUser = new SearchUser();
 		BeaUsers beaUser = this.indexService.getUserByEmpNbr(empNbr);
@@ -289,7 +296,7 @@ public class ResetPasswordController {
 
 		String subject = "Temporary Password Generated";
 		try {
-			MailUtil.sendEmail(emailSelected, subject, messageContents.toString());
+			mailUtil.sendEmail(emailSelected, subject, messageContents.toString());
 		} catch (Exception ex) {
 			//ex.printStackTrace();
 			logger.info("send Email Failed when Reset Password : "+ ex.getMessage());

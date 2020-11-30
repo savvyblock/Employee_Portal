@@ -1,19 +1,24 @@
 package com.esc20.dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.engine.query.spi.sql.NativeSQLQueryReturn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.SessionFactoryUtils;
 import org.springframework.stereotype.Repository;
 
 import com.esc20.model.BhrCalYtd;
+import com.esc20.model.BhrCalYtdId;
 import com.esc20.model.BhrEmpJob;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.util.StringUtil;
@@ -74,18 +79,34 @@ public class CalendarYearToDateDao {
 		return years;
 	}
 
-	public BhrCalYtd getCalenderYTD(String employeeNumber, String year) {
+	public List<BhrCalYtd> getCalenderYTD(String employeeNumber, String year) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("FROM BhrCalYtd bcy WHERE");
-		sql.append(" bcy.id.empNbr = :employeeNumber");
-		sql.append(" AND bcy.id.cyrNyrFlg = 'C'");
-		sql.append(" AND bcy.id.calYr = :year");
-		Query q = session.createQuery(sql.toString());
+		sql.append("select * FROM bhr_cal_ytd ");
+		sql.append("WHERE emp_nbr = :employeeNumber ");
+		sql.append("AND CYR_NYR_FLG = 'C' ");
+		sql.append("AND cal_yr = :year ");
+		SQLQuery q = session.createSQLQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("year", year);
-		BhrCalYtd res = (BhrCalYtd) q.list().get(0);
-		return res;
+		List<Object[]> results = (List<Object[]>) q.list();
+		List<BhrCalYtd> ret = new ArrayList<BhrCalYtd>();
+		results.forEach(res -> {
+		BhrCalYtdId id = new BhrCalYtdId((char) res[1], (String) res[2], (char) res[0], (String) res[3]);
+			ret.add(new BhrCalYtd(id, (char) res[4], (BigDecimal) res[5], (BigDecimal) res[6], (BigDecimal) res[7],
+				(BigDecimal) res[8], (BigDecimal) res[9], (BigDecimal) res[10], (BigDecimal) res[11],
+				(BigDecimal) res[12], (BigDecimal) res[13], (BigDecimal) res[14], (BigDecimal) res[15],
+				(BigDecimal) res[16], (BigDecimal) res[17], (BigDecimal) res[18], (BigDecimal) res[19],
+				(BigDecimal) res[20], (BigDecimal) res[21], (BigDecimal) res[22], (BigDecimal) res[23],
+				(BigDecimal) res[24], (BigDecimal) res[25], (BigDecimal) res[26], (BigDecimal) res[27],
+				(BigDecimal) res[28], (BigDecimal) res[29], (BigDecimal) res[30], (BigDecimal) res[31],
+				(BigDecimal) res[32], (BigDecimal) res[33], (BigDecimal) res[34], (BigDecimal) res[35],
+				(BigDecimal) res[36], (BigDecimal) res[37], (BigDecimal) res[38], (BigDecimal) res[39],
+				(BigDecimal) res[40], (BigDecimal) res[41], (BigDecimal) res[42], (BigDecimal) res[43],
+				(BigDecimal) res[44], (BigDecimal) res[45], (BigDecimal) res[46], (BigDecimal) res[47],
+					(String) res[48], (BigDecimal) res[49], (BigDecimal) res[50]));
+		});
+		return ret;
 	}
 
 	public String getLatestPayDate(String employeeNumber, Frequency freq) {

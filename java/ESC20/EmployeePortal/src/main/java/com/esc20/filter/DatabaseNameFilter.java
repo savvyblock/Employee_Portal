@@ -31,7 +31,7 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 			{
 				String districtIdInSession = (String)request.getSession().getAttribute("districtId");
 				String distid = request.getParameter("distid");
-				if (distid != null && distid.matches("\\d{6}")) {
+				if (distid != null) {
 					Cookie cookie = new Cookie("district",distid);
 					cookie.setMaxAge(60*60*24);
 					response.addCookie(cookie);

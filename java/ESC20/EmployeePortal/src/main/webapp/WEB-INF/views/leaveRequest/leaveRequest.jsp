@@ -187,16 +187,15 @@
 									</td>
 									<td data-title="${sessionScope.languageJSON.leaveRequest.status}">${leave.statusDescr}</td>
 									<td style="width:150px;">
-											<c:if test="${leave.statusCd != 'A'}">
 													<button class="btn btn-primary sm edit-btn" data-toggle="modal" data-target="#requestModal" 
 													onClick='editLeave("${leave.id}","${leave.LeaveType}","${leave.AbsenseReason}","${leave.start}",
 													"${leave.end}", "${leave.lvUnitsDaily}","${leave.lvUnitsUsed}")'>
 														${sessionScope.languageJSON.label.edit}
 													</button>
+													
 													<button class="btn btn-secondary sm"  data-toggle="modal" data-target="#deleteModal"  onClick="deleteLeave(${leave.id})">
 														${sessionScope.languageJSON.label.delete}
 													</button>
-											</c:if>
 										
 									</td>
 								</tr>

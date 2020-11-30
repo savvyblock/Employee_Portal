@@ -1,7 +1,9 @@
 package com.esc20.service;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,11 +33,11 @@ import com.esc20.model.BeaUsers;
 import com.esc20.model.BeaW4;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrEmpPay;
-import com.esc20.nonDBModels.Bank;
 import com.esc20.nonDBModels.BankChanges;
 import com.esc20.nonDBModels.DemoInfoFields;
 import com.esc20.nonDBModels.DemoOption;
 import com.esc20.nonDBModels.District;
+import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.PayInfoChanges;
@@ -54,6 +56,9 @@ public class IndexService {
 
     private Logger logger = LoggerFactory.getLogger(IndexService.class);
 
+	@Autowired
+	private MailUtil mailUtil;
+	
     @Autowired
     private AppUserDao userDao;
     
@@ -86,6 +91,11 @@ public class IndexService {
 	public BeaUsers getUserByEmpNbr(String id) {
 		
 		return userDao.getUserByEmpNbr(id);
+	}
+	
+	public BhrEmpDemo getUserNameFromSsn(String ssn){
+		
+		return userDao.getUserNameFromSsn(ssn);
 	}
 	
 	public BeaUsers getUserByUsername(String username) {
@@ -197,39 +207,40 @@ public class IndexService {
 	}
 	private void checkNullParamaterNumber(BeaW4 w4Request) {
 		if(w4Request.getW4NbrChldrn() == null) {
-			w4Request.setW4NbrChldrn(0D);
+			w4Request.setW4NbrChldrn(0);
 		}
 		if(w4Request.getW4NbrChldrnNew() == null) {
-			w4Request.setW4NbrChldrnNew(0D);
+			w4Request.setW4NbrChldrnNew(0);
 		}
 		if(w4Request.getW4NbrOthrDep() == null) {
-			w4Request.setW4NbrOthrDep(0D);
+			w4Request.setW4NbrOthrDep(0);
 		}
 		if(w4Request.getW4NbrOthrDepNew() == null) {
-			w4Request.setW4NbrOthrDepNew(0D);
+			w4Request.setW4NbrOthrDepNew(0);
 		}
 		
 		if(w4Request.getW4OthrDedAmt() == null) {
-			w4Request.setW4OthrDedAmt(0D);
+			w4Request.setW4OthrDedAmt(0.00);
 		}
 		if(w4Request.getW4OthrDedAmtNew() == null) {
-			w4Request.setW4OthrDedAmtNew(0D);
+			w4Request.setW4OthrDedAmtNew(0.00);
 		}
 		
 		if(w4Request.getW4OthrExmptAmt() == null) {
-			w4Request.setW4OthrExmptAmt(0D);
+			w4Request.setW4OthrExmptAmt(0.00);
 		}
 		if(w4Request.getW4OthrExmptAmtNew() == null) {
-			w4Request.setW4OthrExmptAmtNew(0D);
+			w4Request.setW4OthrExmptAmtNew(0.00);
 		}
 		
 		if(w4Request.getW4OthrIncAmt() == null) {
-			w4Request.setW4OthrIncAmt(0D);
+			w4Request.setW4OthrIncAmt(0.00);
 		}
 		if(w4Request.getW4OthrIncAmtNew() == null) {
-			w4Request.setW4OthrIncAmtNew(0D);
+			w4Request.setW4OthrIncAmtNew(0.00);
 		}
 	}
+
 	public BeaEmerContact getBeaEmerContact(BhrEmpDemo demo) {
 		BeaEmerContact result = userDao.getBeaEmerContact(demo.getEmpNbr());
 		if(result == null) {
@@ -306,7 +317,7 @@ public class IndexService {
 	{
 		PayInfo result = payDao.getPayInfo(demo.getEmpNbr(), frequency);
 		if(result == null) {
-			result = new PayInfo(demo.getEmpNbr(),"");
+			result = new PayInfo(demo.getEmpNbr(),"", "", "", 0, 0, 0.00, 0.00, 0.00);
 		}
 		return result; 
 	}
@@ -319,6 +330,20 @@ public class IndexService {
 			result = new BeaW4(info,demo,frequency);
 		}
 		return result; 
+	}
+
+	public Map<Frequency, BeaW4> getBeaW4Info(String employeeNumber, List<Frequency> frequencies) {
+		Map<Frequency, BeaW4> w4 = new HashMap<Frequency, BeaW4>();
+
+		for (Frequency frequency : frequencies) {
+			try {
+				w4.put(frequency, payDao.getW4(employeeNumber, frequency.getCode()));
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+
+		return w4;
 	}
 	
 	public boolean getBhrEapDemoAssgnGrp(String tableName) {
@@ -361,9 +386,14 @@ public class IndexService {
 	public void updateDemoBusinessPhone(BhrEmpDemo demo) {
 		userDao.updateDemoBusinessPhone(demo);
 	}
-	public void updatePayInfo(BhrEmpDemo demo, BhrEmpPay pay, Character payFreq, Character maritalStatTaxNew, Integer nbrTaxExemptsNew) {
-		payDao.updatePayInfo(demo,pay,payFreq,maritalStatTaxNew,nbrTaxExemptsNew);
+	public void updatePayInfo(BhrEmpDemo demo, BhrEmpPay pay, Character payFreq, Character maritalStatTaxNew, 
+			Integer nbrTaxExemptsNew, String w4FileStatNew, String w4MultiJobNew, Integer w4NbrChldrnNew, Integer w4NbrOthrDepNew, 
+			Double w4OthrIncAmtNew, Double w4OthrDedAmtNew, Double w4OthrExmptAmtNew) {
+		payDao.updatePayInfo(demo,pay,payFreq,maritalStatTaxNew,nbrTaxExemptsNew, 
+				w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew,
+				w4OthrDedAmtNew, w4OthrExmptAmtNew);
 	}
+	
 	public void deleteNameRequest(String empNbr) {
 		userDao.deleteNamerequest(empNbr);
 	}
@@ -459,7 +489,7 @@ public class IndexService {
 		}
 		if (toEmail!=null && toEmail.trim().length() > 0) {
 			try{
-				MailUtil.sendEmail(toEmail, subject, messageContents.toString());
+				mailUtil.sendEmail(toEmail, subject, messageContents.toString());
 			} 
 			catch(Exception ex) {
 				logger.info("Self Service Change Password: An exception has occured with mailing the user "+userName+".");
@@ -1227,7 +1257,7 @@ public class IndexService {
 		}
 		if (toEmail!=null && toEmail.trim().length() > 0) {
 			try{
-				MailUtil.sendEmail(toEmail, subject, messageContents.toString());
+				mailUtil.sendEmail(toEmail, subject, messageContents.toString());
 			} 
 			catch(Exception ex) {
 				logger.info("Self Service Change Demo Info: An exception has occured with mailing ");
@@ -1245,7 +1275,7 @@ public class IndexService {
 		}
 		if (toNewEmail!=null && toNewEmail.trim().length() > 0) {
 			try{
-				MailUtil.sendEmail(toNewEmail, subject, messageContents.toString());
+				mailUtil.sendEmail(toNewEmail, subject, messageContents.toString());
 			} 
 			catch(Exception ex) {
 				logger.info("Self Service Change Demo Info: An exception has occured with mailing ");
@@ -1278,7 +1308,7 @@ public class IndexService {
 				appMessageContents.append(approver.getNameF()+ " " + approver.getNameL()+ ",<br/><br/>" + approverEmailMessage.toString());
 				String toApproverEmail =(approverWorkEmail == null || approverWorkEmail.equals("")) ? approverHomeEmail : approverWorkEmail;
 				if (toNewEmail!=null && toNewEmail.trim().length() > 0) {
-					MailUtil.sendEmail(toApproverEmail, subject, appMessageContents.toString());
+					mailUtil.sendEmail(toApproverEmail, subject, appMessageContents.toString());
 				}
 				
 			} catch(Exception ex) {
@@ -1332,17 +1362,17 @@ public class IndexService {
 			hasPayInfoChanges = true;
 		}
 		if (currentPayInfoChanges.getOtherIncomeAmtChanged() && autoApprove && !payrollSame) {
-			contents.append("Other Income:\t\t" +NumberUtil.getDoubleString(w4Info.getW4OthrIncAmt())+"<br/>");
+			contents.append("Other Income:\t\t" +NumberUtil.getDoubleString(w4Info.getW4OthrIncAmt().doubleValue())+"<br/>");
 			hasApprovChanges = true;
 			hasPayInfoChanges = true;
 		}
 		if (currentPayInfoChanges.getOtherDeductAmtChanged() && autoApprove && !payrollSame) {
-			contents.append("Deductions: \t\t" +NumberUtil.getDoubleString(w4Info.getW4OthrDedAmt())+"<br/>");
+			contents.append("Deductions: \t\t" +NumberUtil.getDoubleString(w4Info.getW4OthrDedAmt().doubleValue())+"<br/>");
 			hasApprovChanges = true;
 			hasPayInfoChanges = true;
 		}
 		if (currentPayInfoChanges.getOtherExemptAmtChanged() && autoApprove && !payrollSame) {
-			contents.append("Other Exemptions:\t\t" +NumberUtil.getDoubleString(w4Info.getW4OthrExmptAmt())+"<br/>");
+			contents.append("Other Exemptions:\t\t" +NumberUtil.getDoubleString(w4Info.getW4OthrExmptAmt().doubleValue())+"<br/>");
 			hasApprovChanges = true;
 			hasPayInfoChanges = true;
 		}
@@ -1534,7 +1564,7 @@ public class IndexService {
 			
 			if (toEmail!=null && toEmail.trim().length() > 0) {
 				try{
-					MailUtil.sendEmail(toEmail, subject, messageContents.toString());
+					mailUtil.sendEmail(toEmail, subject, messageContents.toString());
 				} 
 				catch(Exception ex) {
 					logger.info("Self Service Change Payroll Info: An exception has occured with mailing ");
@@ -1585,7 +1615,7 @@ public class IndexService {
 	
 				if (toApproverEmail!=null && toApproverEmail.trim().length() > 0) {
 					try {
-						MailUtil.sendEmail(toApproverEmail, subject, messageContents.toString());
+						mailUtil.sendEmail(toApproverEmail, subject, messageContents.toString());
 					}
 
 					catch(Exception ex) {
@@ -1628,7 +1658,7 @@ public class IndexService {
 				
 				if (toApproverEmail!=null && toApproverEmail.trim().length() > 0) {
 					try {
-						MailUtil.sendEmail(toApproverEmail, subject, messageContents.toString());
+						mailUtil.sendEmail(toApproverEmail, subject, messageContents.toString());
 					}
 
 					catch(Exception ex) {

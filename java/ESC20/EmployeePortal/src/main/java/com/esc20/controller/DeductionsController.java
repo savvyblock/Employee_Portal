@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BeaUsers;
+import com.esc20.model.BeaW4;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.Deduction;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Frequency;
@@ -78,6 +80,18 @@ public class DeductionsController {
 		Map<Frequency, List<Deduction>> deductions = this.service.retrieveAllDeductions(employeeNumber, frequencies);
 		// Options options = this.indexService.getOptions();
 		// session.setAttribute("options", options);
+
+		Map<Frequency, List<CurrentPayInformation>> jobs = this.service.getJob(employeeNumber);
+		// List<Frequency> frequencies = this.service.getFrequencies(jobs);
+		// Map<Frequency, PayInfo> payInfos = this.service.retrievePayInfo(employeeNumber, frequencies);
+		Map<Frequency, BeaW4> w4Request = this.indexService.getBeaW4Info(employeeNumber, frequencies);
+		List<Code> w4FileStatOptions = this.referenceService.getW4MaritalActualStatuses();
+		Map<Frequency, String> payCampuses = this.service.retrievePayCampuses(employeeNumber, frequencies);
+
+		mav.addObject("payCampuses", payCampuses);
+		mav.addObject("w4Request", w4Request);
+		mav.addObject("payInfos", payInfos);
+		mav.addObject("w4FileStatOptions", w4FileStatOptions);
 		mav.setViewName("/inquiry/deductions");
 		mav.addObject("frequencies", frequencies);
 		mav.addObject("payInfos", payInfos);

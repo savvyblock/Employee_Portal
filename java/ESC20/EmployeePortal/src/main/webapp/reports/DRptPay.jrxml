@@ -354,7 +354,7 @@
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<text><![CDATA[Non Professional Years Experience]]></text>
+						<text><![CDATA[Non-Professional Years Experience]]></text>
 					</staticText>
 					<textField pattern="#0" isBlankWhenNull="true">
 						<reportElement key="textField" x="152" y="1" width="167" height="11" backcolor="#C0C0C0" uuid="a26a33e3-0ecf-45bf-8d38-701c1b0bad41">
@@ -374,7 +374,7 @@
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<text><![CDATA[Non Professional District Experience]]></text>
+						<text><![CDATA[Non-Professional District Experience]]></text>
 					</staticText>
 					<textField pattern="#0" isBlankWhenNull="true">
 						<reportElement key="textField" x="475" y="1" width="80" height="11" backcolor="#C0C0C0" uuid="075b095a-edbe-4437-bff2-439429338326">

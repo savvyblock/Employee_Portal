@@ -38,6 +38,9 @@ import com.esc20.util.StringUtil;
 public class LeaveRequestService {
 
 	@Autowired
+	private MailUtil mailUtil;
+	
+	@Autowired
 	private LeaveRequestDao leaveRequestDao;
 	@Autowired
 	private AlertDao alertDao;
@@ -128,7 +131,8 @@ public class LeaveRequestService {
 	public List<LeaveInfo> getLeaveInfo(String empNbr, String freq, boolean removeZeroedOutLeaveTypes) {
 		List<LeaveInfo> leaveInfos = leaveRequestDao.getLeaveInfo(empNbr, freq);
 
-		if (removeZeroedOutLeaveTypes) {
+		//BRM-640 - per Maria remove this and allow all leave types to display.
+		/*if (removeZeroedOutLeaveTypes) {
 			for (int i = 0; i < leaveInfos.size(); i++) {
 				if (leaveInfos.get(i).getBeginBalance().doubleValue() == 0
 						&& leaveInfos.get(i).getAdvancedEarned().doubleValue() == 0
@@ -143,6 +147,7 @@ public class LeaveRequestService {
 				}
 			}
 		}
+		*/
 
 		return leaveInfos;
 	}
@@ -176,9 +181,9 @@ public class LeaveRequestService {
 		emailBody.append("<p style='margin-left: 12pt;'>Dates:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s<br/>Times:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s</p>");		
 
 		if (url==null || url.trim().length()==0) {
-			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal if you wish to access the leave request system.</p>");
+			emailBody.append("<p style='font-weight:bold'>Please log in to EmployeePortal if you wish to access the leave request system.</p>");
 		} else {
-			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal if you wish to access the leave request system by clicking on this link:<br/>");
+			emailBody.append("<p style='font-weight:bold'>Please log in to EmployeePortal if you wish to access the leave request system by clicking on this link:<br/>");
 			emailBody.append("<span style='text-decoration: underline;'>%s</span></p>");
 		}
 		emailBody.append("<p>Thank You</p>");
@@ -194,7 +199,7 @@ public class LeaveRequestService {
 	
 	public void SendEmailToEmpoyee(String subject,String employeeEmail, String messaage) throws MessagingException{
 		try {
-			MailUtil.sendEmail(employeeEmail.trim(), subject, messaage);
+			mailUtil.sendEmail(employeeEmail.trim(), subject, messaage);
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
@@ -212,11 +217,11 @@ public class LeaveRequestService {
 			emailBody.append("<p>%s:</p>");
 			emailBody.append("<p>A leave request for %s, employee number %s, has been submitted and is ready for your approval.  The leave dates and times requested are as follows:</p>");
 			emailBody.append("<p style='margin-left: 12pt;'>Dates:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s<br/>Times:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s</p>");		
-			//emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal to process this submission.</p>");
+			//emailBody.append("<p style='font-weight:bold'>Please log in to EmployeePortal to process this submission.</p>");
 			if (url==null || url.trim().length()==0) {
-				emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal to process this submission.</p>");
+				emailBody.append("<p style='font-weight:bold'>Please log in to EmployeePortal to process this submission.</p>");
 			} else {
-				emailBody.append("<p style='font-weight:bold'>Please log in to Employee Portal to process this submission by clicking on this link:<br/>");
+				emailBody.append("<p style='font-weight:bold'>Please log in to EmployeePortal to process this submission by clicking on this link:<br/>");
 				emailBody.append("<span style='text-decoration: underline;'>%s</span></p>");
 			}
 			emailBody.append("<p>Thank You</p>");
@@ -235,7 +240,7 @@ public class LeaveRequestService {
 			
 			
 			try {
-				MailUtil.sendEmail(supervisorEmail.trim(), subject, returnBody.trim());
+				mailUtil.sendEmail(supervisorEmail.trim(), subject, returnBody.trim());
 			}
 			catch(Exception ex) {
 				ex.printStackTrace();

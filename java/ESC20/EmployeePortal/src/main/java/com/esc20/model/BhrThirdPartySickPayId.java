@@ -10,7 +10,6 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class BhrThirdPartySickPayId implements java.io.Serializable {
 
-	private char payFreq;
 	private String empNbr;
 	private char cyrNyrFlg;
 	private String calYr;
@@ -18,21 +17,12 @@ public class BhrThirdPartySickPayId implements java.io.Serializable {
 	public BhrThirdPartySickPayId() {
 	}
 
-	public BhrThirdPartySickPayId(char payFreq, String empNbr, char cyrNyrFlg, String calYr) {
-		this.payFreq = payFreq;
+	public BhrThirdPartySickPayId(String empNbr, char cyrNyrFlg, String calYr) {
 		this.empNbr = empNbr;
 		this.cyrNyrFlg = cyrNyrFlg;
 		this.calYr = calYr;
 	}
 
-	@Column(name = "PAY_FREQ", nullable = false, length = 1)
-	public char getPayFreq() {
-		return this.payFreq;
-	}
-
-	public void setPayFreq(char payFreq) {
-		this.payFreq = payFreq;
-	}
 
 	@Column(name = "EMP_NBR", nullable = false, length = 6)
 	public String getEmpNbr() {
@@ -70,8 +60,7 @@ public class BhrThirdPartySickPayId implements java.io.Serializable {
 			return false;
 		BhrThirdPartySickPayId castOther = (BhrThirdPartySickPayId) other;
 
-		return (this.getPayFreq() == castOther.getPayFreq())
-				&& ((this.getEmpNbr() == castOther.getEmpNbr()) || (this.getEmpNbr() != null
+		return ((this.getEmpNbr() == castOther.getEmpNbr()) || (this.getEmpNbr() != null
 						&& castOther.getEmpNbr() != null && this.getEmpNbr().equals(castOther.getEmpNbr())))
 				&& (this.getCyrNyrFlg() == castOther.getCyrNyrFlg())
 				&& ((this.getCalYr() == castOther.getCalYr()) || (this.getCalYr() != null
@@ -81,7 +70,7 @@ public class BhrThirdPartySickPayId implements java.io.Serializable {
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result + this.getPayFreq();
+
 		result = 37 * result + (getEmpNbr() == null ? 0 : this.getEmpNbr().hashCode());
 		result = 37 * result + this.getCyrNyrFlg();
 		result = 37 * result + (getCalYr() == null ? 0 : this.getCalYr().hashCode());

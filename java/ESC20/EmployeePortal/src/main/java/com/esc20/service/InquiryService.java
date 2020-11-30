@@ -88,7 +88,7 @@ public class InquiryService {
 		return calendarYearToDateDao.getAvailableYears(employeeNumber);
 	}
 
-	public BhrCalYtd getCalenderYTD(String employeeNumber, String year) {
+	public List<BhrCalYtd> getCalenderYTD(String employeeNumber, String year) {
 		return calendarYearToDateDao.getCalenderYTD(employeeNumber, year);
 	}
 
@@ -171,8 +171,20 @@ public class InquiryService {
 		return payMap;
 	}
 
-	public Map<Frequency, String> retrievePayCampuses(String employeeNumber) {
-		return currentPayInformationDao.getPayCampuses(employeeNumber);
+	public Map<Frequency, String> retrievePayCampuses(String employeeNumber, List<Frequency> frequencies) {
+//		return currentPayInformationDao.getPayCampuses(employeeNumber);
+		Map<Frequency, String> campusMap = new HashMap<Frequency, String>();
+
+		for (Frequency frequency : frequencies) {
+			try {
+				campusMap.putAll(currentPayInformationDao.getPayCampuses(employeeNumber, frequency));
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+
+		return campusMap;
+		
 	}
 
 	public EmployeeInfo getEmployeeInfo(String employeeNumber) {
@@ -207,137 +219,36 @@ public class InquiryService {
 		return deductions;
 	}
 
-	public Earnings getTYDEarnings(String employeeNumber, List<PayDate> payDates, PayDate payDate) {
+	public Earnings getTYDEarnings(String employeeNumber, PayDate payDate) {
 		if (payDate == null) {
 			Earnings earnings = new Earnings();
 			earnings.setInfo(new EarningsInfo());
 			return earnings;
 		}
 
-		String year = payDate.getDateFreq().substring(0, 4);
-		// remove not selected year PayDates
-		List<PayDate> tempDates = new ArrayList<PayDate>();
-		tempDates.addAll(payDates);
-		for (int i = 0; i < tempDates.size(); i++) {
-			if (!year.equals(tempDates.get(i).getDateFreq().substring(0, 4))) {
-				tempDates.remove(i);
-				i--;
-				continue;
-			}
-			if (payDate.getDateFreq().equals(tempDates.get(i).getDateFreq())) {
-				tempDates.remove(i);
-				i--;
-			}
-		}
-		Earnings ytdEarnings = this.retrieveEarnings(employeeNumber, payDate);
+		// BRM-735 added call to new DAO which returns a properly formatted and summed
+		// Earnings object, removed old methods that were calculating the values on each
+		// page access
+		Earnings ytdEarnings = earningsDao.getBhrCalYTDEarnings(employeeNumber, payDate);
 		if(ytdEarnings==null) {
 			return null;
 		}
+
 		List<EarningsOther> earningsOther = ytdEarnings.getOther();
-		ytdEarnings.setEarningsOtherTydTotal(new BigDecimal(0));
 		for (int i = 0; i < earningsOther.size(); i++) {
 			earningsOther.get(i).setTydAmt(
 					earningsOther.get(i).getAmt() == null ? BigDecimal.valueOf(0) : earningsOther.get(i).getAmt());
 			earningsOther.get(i).setTydContrib(earningsOther.get(i).getContrib() == null ? BigDecimal.valueOf(0)
 					: earningsOther.get(i).getContrib());
+		}
 
-		}
+		List<EarningsOther> ytdOther = ytdEarnings.getOther();
 		ytdEarnings.setEarningsOtherTydTotal(new BigDecimal(0));
-		Earnings fetchedEarnings;
-		for (int i = 0; i < tempDates.size(); i++) {
-			fetchedEarnings = this.retrieveEarnings(employeeNumber, tempDates.get(i));
-			ytdEarnings = this.sumUpEarnings(ytdEarnings, fetchedEarnings);
-		}
-		for (int i = 0; i < ytdEarnings.getOther().size(); i++) {
+		for (int i = 0; i < ytdOther.size(); i++) {
 			ytdEarnings.setEarningsOtherTydTotal(
 					ytdEarnings.getEarningsOtherTydTotal().add(ytdEarnings.getOther().get(i).getTydAmt()));
 		}
-		return ytdEarnings;
-	}
 
-	private Earnings sumUpEarnings(Earnings ytdEarnings, Earnings fetchedEarnings) {
-		EarningsDeductions ytd = ytdEarnings.getDeductions();
-		EarningsDeductions fetched = fetchedEarnings.getDeductions();
-		ytd.setStandardGross(ytd.getStandardGross().add(fetched.getStandardGross()));
-		ytd.setTotalEarnings(ytd.getTotalEarnings().add(fetched.getTotalEarnings()));
-		ytd.setWithholdingTax(ytd.getWithholdingTax().add(fetched.getWithholdingTax()));
-		ytd.setMedicareTax(ytd.getMedicareTax().add(fetched.getMedicareTax()));
-		ytd.setNonTrsNonPayNonTax(ytd.getNonTrsNonPayNonTax().add(fetched.getNonTrsNonPayNonTax()));
-		ytd.setSupplementalPay(ytd.getSupplementalPay().add(fetched.getSupplementalPay()));
-		ytd.setOvertimePay(ytd.getOvertimePay().add(fetched.getOvertimePay()));
-		ytd.setAbsenceRefund(ytd.getAbsenceRefund().add(fetched.getAbsenceRefund()));
-		ytd.setTaxedFringe(ytd.getTaxedFringe().add(fetched.getTaxedFringe()));
-		ytd.setEarnedIncomeCred(ytd.getEarnedIncomeCred().add(fetched.getEarnedIncomeCred()));
-		ytd.setNonTrsTax(ytd.getNonTrsTax().add(fetched.getNonTrsTax()));
-		ytd.setNonTrsNonTax(ytd.getNonTrsNonTax().add(fetched.getNonTrsNonTax()));
-		ytd.setTrsSupplemental(ytd.getTrsSupplemental().add(fetched.getTrsSupplemental()));
-		ytd.setAbsenceDed(ytd.getAbsenceDed().add(fetched.getAbsenceDed()));
-		ytd.setFicaTax(ytd.getFicaTax().add(fetched.getFicaTax()));
-		ytd.setTrsSalaryRed(ytd.getTrsSalaryRed().add(fetched.getTrsSalaryRed()));
-		ytd.setTrsInsurance(ytd.getTrsInsurance().add(fetched.getTrsInsurance()));
-		ytd.setTotOtherDed(ytd.getTotOtherDed().add(fetched.getTotOtherDed()));
-		ytd.setTotDed(ytd.getTotDed().add(fetched.getTotDed()));
-		ytd.setNetPay(ytd.getNetPay().add(fetched.getNetPay()));
-		ytd.setNonTrsNonPayTax(ytd.getNonTrsNonPayTax().add(fetched.getNonTrsNonPayTax()));
-		ytd.setTaxableWage(ytd.getTaxableWage().add(fetched.getTaxableWage()));
-		ytd.setFicaWage(ytd.getFicaWage().add(fetched.getFicaWage()));
-		ytd.setMedGross(ytd.getMedGross().add(fetched.getMedGross()));
-		ytdEarnings.setDeductions(ytd);
-		List<EarningsOther> earningsOther = ytdEarnings.getOther();
-
-		List<EarningsOther> fetchedOther = fetchedEarnings.getOther();
-		for (int i = 0; i < earningsOther.size(); i++) {
-			for (int j = 0; j < fetchedOther.size(); j++) {
-				if (earningsOther.get(i).getCode().equals(fetchedOther.get(j).getCode())) {
-					earningsOther.get(i)
-							.setTydAmt(earningsOther.get(i).getTydAmt()
-									.add(fetchedOther.get(j).getAmt() == null ? BigDecimal.valueOf(0)
-											: fetchedOther.get(j).getAmt()));
-					earningsOther.get(i)
-							.setTydContrib(earningsOther.get(i).getTydContrib()
-									.add(fetchedOther.get(j).getContrib() == null ? BigDecimal.valueOf(0)
-											: fetchedOther.get(j).getContrib()));
-				}
-			}
-
-		}
-		ytdEarnings.setOther(earningsOther);
-		List<EarningsJob> earningsJob = ytdEarnings.getJob();
-		earningsJob.addAll(fetchedEarnings.getJob());
-		ytdEarnings.setJob(earningsJob);
-		List<EarningsSupplemental> earningsSupplemental = ytdEarnings.getSupplemental();
-		earningsSupplemental.addAll(fetchedEarnings.getSupplemental());
-		ytdEarnings.setSupplemental(earningsSupplemental);
-		List<EarningsSupplemental> earningsNonTrsTax = ytdEarnings.getNonTrsTax();
-		earningsNonTrsTax.addAll(fetchedEarnings.getNonTrsTax());
-		ytdEarnings.setNonTrsTax(earningsNonTrsTax);
-		List<EarningsSupplemental> earningsNonTrsNonTax = ytdEarnings.getNonTrsNonTax();
-		earningsNonTrsNonTax.addAll(earningsNonTrsNonTax);
-		ytdEarnings.setNonTrsNonTax(earningsNonTrsNonTax);
-		List<EarningsBank> earningsBank = ytdEarnings.getBank();
-		earningsBank.addAll(fetchedEarnings.getBank());
-		ytdEarnings.setBank(earningsBank);
-		List<EarningsLeave> earningsLeave = ytdEarnings.getLeave();
-		earningsLeave.addAll(fetchedEarnings.getLeave());
-		ytdEarnings.setLeave(earningsLeave);
-		List<EarningsOvertime> earningsOvertime = ytdEarnings.getOvertime();
-		earningsOvertime.addAll(fetchedEarnings.getOvertime());
-		ytdEarnings.setOvertime(earningsOvertime);
-		ytdEarnings.setEarningsOtherTotal(
-				ytdEarnings.getEarningsOtherTotal().add(fetchedEarnings.getEarningsOtherTotal()));
-		ytdEarnings.setEarningsOtherContribTotal(
-				ytdEarnings.getEarningsOtherContribTotal().add(fetchedEarnings.getEarningsOtherContribTotal()));
-		ytdEarnings.setEarningsJobTotal(ytdEarnings.getEarningsJobTotal().add(fetchedEarnings.getEarningsJobTotal()));
-		ytdEarnings.setEarningsSupplementalTotal(
-				ytdEarnings.getEarningsSupplementalTotal().add(fetchedEarnings.getEarningsSupplementalTotal()));
-		ytdEarnings.setEarningsNonTrsTaxTotal(
-				ytdEarnings.getEarningsNonTrsTaxTotal().add(fetchedEarnings.getEarningsNonTrsTaxTotal()));
-		ytdEarnings.setEarningsNonTrsNonTaxTotal(
-				ytdEarnings.getEarningsNonTrsNonTaxTotal().add(fetchedEarnings.getEarningsNonTrsNonTaxTotal()));
-		ytdEarnings
-				.setEarningsBankTotal(ytdEarnings.getEarningsBankTotal().add(fetchedEarnings.getEarningsBankTotal()));
-		ytdEarnings.setEarningsOvertimeTotal(
-				ytdEarnings.getEarningsOvertimeTotal().add(fetchedEarnings.getEarningsOvertimeTotal()));
 		return ytdEarnings;
 	}
 
@@ -701,7 +612,7 @@ public class InquiryService {
 			print.setEic(w2Info.getEicAmt().toString());
 			print.setDcare(w2Info.getDependCare().toString());
 			print.setMgross(w2Info.getMedGross().toString());
-			print.setMtax(w2Info.getMedGross().toString());
+			print.setMtax(w2Info.getMedTax().toString());
 		}
 		String unchecked = "uncheckedbox";
 		String checked = "checkedbox";
@@ -824,9 +735,13 @@ public class InquiryService {
 		box14List.add("Health Ins Ded");
 		box14List.add("Taxable Allowance");
 		box14List.add("Tax Fringe Benefits");
+		box14List.add("EPSL1"); // EPSLA 
+		box14List.add("EPSL2");
+		box14List.add("EFMLEA");
 		box14List.add("Dummy Last Entry"); // jf20130109 the iter14.next does not return Tax Fringe Benefits,
 											// because it is last in the list. if put Dummy Last Entry
 											// then Tax Fringe Benefits returned if have amount > 0.00
+
 
 		Map<String, BigDecimal> box14Map = new HashMap<String, BigDecimal>();
 		//Here we will use the option to control it they should show
@@ -852,14 +767,21 @@ public class InquiryService {
 		if (!StringUtil.isNullOrEmpty(w2Option.getTfb()) && "Y".equals(w2Option.getTfb().trim())) {
 			box14Map.put(box14List.get(5), w2Info.getTaxedBenefits());
 		}
+		if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("")
+				&& Integer.valueOf(w2Info.getId().getCalYr()) == 2020) {
+		box14Map.put(box14List.get(6), w2Info.getEpslaRegAmt());
+		box14Map.put(box14List.get(7), w2Info.getEpslaTwoThirdsAmt());
+		box14Map.put(box14List.get(8), w2Info.getEfmleaAmt());
+		}
 
+		
 		/*box14Map.put(box14List.get(0), w2Info.getNontrsBusAllow());
 		box14Map.put(box14List.get(1), w2Info.getCafeAmt());
 		box14Map.put(box14List.get(2), w2Info.getTrsDeposit());
 		box14Map.put(box14List.get(3), w2Info.getHlthInsDed());
 		box14Map.put(box14List.get(4), w2Info.getNontrsBusAllow());
 		box14Map.put(box14List.get(5), w2Info.getTaxedBenefits());*/
-		box14Map.put(box14List.get(6), new BigDecimal(0.00)); // jf20130109 init Dummy Last Entry to zero
+		box14Map.put(box14List.get(9), new BigDecimal(0.00)); // jf20130109 init Dummy Last Entry to zero
 
 		Iterator<String> iter14 = new CodeIterator(box14List, box14Map);
 		print.setCode1401(iter14.next());
@@ -874,7 +796,14 @@ public class InquiryService {
 		print.setAmt1405(toString(box14Map.get(print.getCode1405())));
 		print.setCode1406(iter14.next());
 		print.setAmt1406(toString(box14Map.get(print.getCode1406())));
-
+		print.setCode1407(iter14.next());
+		print.setAmt1407(toString(box14Map.get(print.getCode1407())));
+		print.setCode1408(iter14.next());
+		print.setAmt1408(toString(box14Map.get(print.getCode1408())));
+		print.setCode1409(iter14.next());
+		print.setAmt1409(toString(box14Map.get(print.getCode1409())));
+		print.setCode1410(iter14.next());
+		print.setAmt1410(toString(box14Map.get(print.getCode1410())));
 		return print;
 	}
 

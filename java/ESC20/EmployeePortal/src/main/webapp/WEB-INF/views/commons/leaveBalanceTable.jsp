@@ -38,6 +38,10 @@
                             </c:otherwise> 
                         </c:choose> 
                 </td>
+                <td class="hidden" data-title="${sessionScope.languageJSON.leaveBalance.postAgainstZeroBalanceValue}">
+                    <span id="postAgnstZeroBal${leave.type.code}">${leave.postAgainstZeroBalanceValue}</span>
+                </td>
+                     
             </tr>
         </c:forEach>
     </tbody>

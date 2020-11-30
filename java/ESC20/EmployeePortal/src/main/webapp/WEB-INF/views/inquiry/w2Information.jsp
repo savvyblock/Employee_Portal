@@ -8,6 +8,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <title >${sessionScope.languageJSON.headTitle.w2Info}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <%@ include file="../commons/header.jsp"%>
+        
+        <style type="text/css">	
+		.page-content, .content-wrapper > .content {
+		/* height:auto; */
+		}
+ </style>
+ 
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -18,12 +25,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <div class="clearfix no-print section-title">
                                 <h1 class="pageTitle" >${sessionScope.languageJSON.title.w2Info}</h1>
                                 <div class="right-btn pull-right">
-                                    <c:if test="${sessionScope.options.enableElecConsntW2}">
+                                    <%-- <c:if test="${sessionScope.options.enableElecConsntW2}"> --%>
                                         <button class="btn btn-primary" data-toggle="modal" data-target="#electronicConsent" >${sessionScope.languageJSON.label.w2Consent}</button>
-                                    </c:if>
+                                    <%-- </c:if>
                                     <c:if test="${sessionScope.options.enableElecConsntW2 == false}">
                                             <button class="btn btn-primary disabled"  disabled>${sessionScope.languageJSON.label.w2Consent}</button>
                                     </c:if>
+                                    --%>
                                     <c:if test="${selectedYear >= '2009' && selectedYear <= sessionScope.options.w2Latest}">
                                         <form class="no-print" action="exportPDF" method="POST">
 											<input type="hidden" name="${_csrf.parameterName}"
@@ -49,7 +57,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                        
-                            <div class="toPrint content-white EMP-detail w-2">
+                            <div class="toPrint content-white EMP-detail w-2 heightFull">
                                     <c:if test="${not empty sessionScope.options.messageW2}">
                                             <p class="topMsg error-hint" role="alert">${sessionScope.options.messageW2}</p>
                                         </c:if>
@@ -362,13 +370,54 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </tr>
+                                           <c:choose>
+                                            <c:when test="${selectedYear >= '2020'}">
+                                             <!--  Start - Add FFCRA Information -->
+                                            <tr>
+                                                <td colspan="6">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <th id="ePSLAregularrate" class="td-title" >
+                                                        ${sessionScope.constantJSON.w2InformationTable.ePSLAregularrate}
+                                                </th>
+                                                <td
+                                                    class="td-content" data-title="${sessionScope.constantJSON.w2InformationTable.ePSLAregularrate}"  headers="ePSLAregularrate" 
+                                                    
+                                                >                                                
+                                                <fmt:formatNumber value="${w2Info.epslaRegAmt}" pattern="#,##0.00"/>
+                                                </td>
+                                                <th id="ePSLAtwothirdsrate" class="td-title" >
+                                                        ${sessionScope.constantJSON.w2InformationTable.ePSLAtwothirdsrate}
+                                                </th>
+                                                <td
+                                                    class="td-content" data-title="${sessionScope.constantJSON.w2InformationTable.ePSLAtwothirdsrate}"  headers="ePSLAtwothirdsrate" 
+                                                    
+                                                >
+                                                <fmt:formatNumber value="${w2Info.epslaTwoThirdsAmt}" pattern="#,##0.00"/>
+                                                </td>
+                                                <th id="eFMLEA" class="td-title" >
+                                                        ${sessionScope.constantJSON.w2InformationTable.eFMLEA}
+                                                </th>
+                                                <td
+                                                    class="td-content" data-title="${sessionScope.constantJSON.w2InformationTable.eFMLEA}"  headers="eFMLEA" 
+                                                    
+                                                >
+                                                <fmt:formatNumber value="${w2Info.efmleaAmt}" pattern="#,##0.00"/>
+                                                </td>                                                
+                                            </tr>                                                
+                                              <!--  end - Add FFCRA Information -->
+                                           </c:when>                                              
+                                           <c:otherwise>
+
+                                           </c:otherwise> 
+                                          </c:choose>  
                                         </tbody>
                                     </table> 
 
                                     <c:forEach var="sick" items="${thirdPartyPay}"  varStatus="counter">
                                             <div class="groupTitle no-print">
-                                                <span >${sessionScope.languageJSON.label.thirdPartySickPayW2Amounts}</span> - 
-                                                ${sick.frequency.label}
+                                                <span >${sessionScope.languageJSON.label.thirdPartySickPayW2Amounts}</span> - Frequency 
+                                                ${sick.payFreq}
                                             </div>
                                             <table class="table border-table responsive-table no-thead print-table no-print">
                                                 <tr>
@@ -421,9 +470,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </tr>
                                                 <tr>
                                                     <th id="nontaxablePay_${counter.index}" class="td-title" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.nontaxablePay}
+                                                            ${sessionScope.constantJSON.w2InformationTable.nonTaxSickPay}
                                                     </th>
-                                                    <td class="td-content" data-title="${sessionScope.constantJSON.w2InformationTable.nontaxablePay}"  headers="nontaxablePay_${counter.index}">
+                                                    <td class="td-content" data-title="${sessionScope.constantJSON.w2InformationTable.nonTaxSickPay}"  headers="nontaxablePay_${counter.index}">
                                                             <fmt:formatNumber value="${sick.sickNontax}" pattern="#,##0.00"/>
                                                     </td>
                                                     <td class="td-title"></td>
@@ -433,752 +482,6 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 </tr>
                                             </table>
                                     </c:forEach>
-
-                                    
-                                    <table class="table border-table mb-5 print-block-table noNumTable pdfPage">
-                                        <tr>
-                                            <td class="header" colspan="3">
-                                                <span >${sessionScope.constantJSON.w2InformationTable.formW2WageAndTaxStatement}</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="boxtitle" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.aEmployeeSocial}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.ssn}
-                                                </div>
-                                                <div class="boxtitle">
-                                                    &nbsp;
-                                                </div>
-                                            </td>
-                                            <td class="doubleborder">
-                                                <div class="boxtitle" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.WagesTipsOtherCompensation}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.tgross}
-                                                </div>
-                                                <div class="boxtitle">
-                                                    &nbsp;
-                                                </div>
-                                            </td>
-                                            <td class="doubleborder">
-                                                <div class="boxtitle" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.FederalIncomeTaxWithheld}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.whold}
-                                                </div>
-                                                <div class="boxtitle">
-                                                    &nbsp;
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="boxtitle" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.bEIN}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.ein}
-                                                </div>
-                                                <div class="boxtitle">
-                                                    &nbsp;
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="boxtitle" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.SocialSecurityWages}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.fgross}
-                                                </div>
-                                                <div class="boxtitle">
-                                                    &nbsp;
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="boxtitle" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.SocialSecurityTaxWithheld}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.ftax}
-                                                </div>
-                                                <div class="boxtitle">
-                                                    &nbsp;
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2">
-                                                <div class="boxtitle" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.cEmployerNameAddressZip}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.ename}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.eaddress}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.ecityst}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="boxtitle" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.MedicareWagesAndTips}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.mgross}
-                                                </div>
-                                                <div class="boxtitle">
-                                                    &nbsp;
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="boxtitle" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.MedicareTaxWithheld}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.mtax}
-                                                </div>
-                                                <div class="boxtitle">
-                                                    &nbsp;
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="doubleborder">
-                                                <div class="boxtitle" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.AdvancedEICpayment}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.eic}
-                                                </div>
-                                                <div class="boxtitle">
-                                                    &nbsp;
-                                                </div>
-                                            </td>
-                                            <td class="doubleborder">
-                                                <div class="boxtitle" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.dependentCareBenefits}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.dcare}
-                                                </div>
-                                                <div class="boxtitle">
-                                                    &nbsp;
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2">
-                                                <div class="boxtitle" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.eEmployeeName}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.empname}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.empaddress}
-                                                </div>
-                                                <div class="boxvalue">
-                                                    ${w2Print.empcityst}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                    <table class="table no-border-table">
-                                                        <tr>
-                                                            <td class="boxtitle" colspan="2">
-                                                                <span >${sessionScope.constantJSON.w2InformationTable.seeInstrs12}</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1201}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1201}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1202}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1202}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1203}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1203}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1204}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1204}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1205}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1205}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1206}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1206}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1207}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1207}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                            </td>
-                                            <td>
-                                                    <table class="table no-border-table">
-                                                        <tr>
-                                                            <td class="boxtitle" colspan="2">
-                                                                <span >${sessionScope.constantJSON.w2InformationTable.seeInstrs14}</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1401}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1401}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1402}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1402}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1403}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1403}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1404}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1404}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1405}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1405}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1406}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1406}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="boxvalue">
-                                                                ${w2Print.code1407}&nbsp;
-                                                            </td>
-                                                            <td class="boxvaluerj">
-                                                                ${w2Print.amt1407}&nbsp;
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                            </td>
-                                        </tr>
-            
-                                        <tr>
-                                                <td colspan="2">
-                                                    <table class="table no-border-table w2Check-table">
-                                                        <tr>
-                                                            <td>
-                                                                <div class="boxtitle">
-                                                                    13
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="boxtitle" >
-                                                                        ${sessionScope.constantJSON.w2InformationTable.statutoryEmployee}
-                                                                </div>
-                                                                <div class="boximage">
-                                                                    <c:if test="${w2Print.statemp == 'checkedbox'}">
-                                                                            <span class="print-check-disabled">
-                                                                                    <i class="fa fa-times"></i>
-                                                                                </span>
-                                                                    </c:if>
-                                                                    <c:if test="${w2Print.statemp=='uncheckedbox'}">
-                                                                            <input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.accessHint.statutoryEmployeeCheckbox}"  />
-                                                                    </c:if>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="boxtitle" >
-                                                                        ${sessionScope.constantJSON.w2InformationTable.retirementPlan}
-                                                                </div>
-                                                                <div class="boximage">
-                                                                    <c:if test="${w2Print.retplan == 'checkedbox'}">
-                                                                            <span class="print-check-disabled">
-                                                                                    <i class="fa fa-times"></i>
-                                                                                </span>
-                                                                    </c:if>
-                                                                    <c:if test="${w2Print.retplan=='uncheckedbox'}">
-                                                                            <input class="checkBoxOld" type="checkbox"  aria-label="${sessionScope.languageJSON.accessHint.retirementPlanCheckbox}" />
-                                                                    </c:if>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="boxtitle" >
-                                                                        ${sessionScope.constantJSON.w2InformationTable.thirdPartySickPay}
-                                                                </div>
-                                                                <div class="boximage">
-                                                                    <c:if test="${w2Print.thrdsick == 'checkedbox'}">
-                                                                            <span class="print-check-disabled">
-                                                                                    <i class="fa fa-times"></i>
-                                                                                </span>
-                                                                    </c:if>
-                                                                    <c:if test="${w2Print.thrdsick=='uncheckedbox'}">
-                                                                            <input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.accessHint.thirdPartySickPayCheckbox}" />
-                                                                    </c:if>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <div class="boxtitle">
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        <tr>
-                                            <td colspan="3" class="no-border-td">
-                                                <div class="footer-left pull-left">
-                                                    <span >
-                                                            ${sessionScope.constantJSON.w2InformationTable.copyB}
-                                                    </span>
-                                                </div>
-                                                <div class="footer-right pull-right" >
-                                                        ${sessionScope.constantJSON.w2InformationTable.departmentOfTheTreasury}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="no-border-td" colspan="3"
-                                                style="text-align: center">
-                                                <h1 class="selectYearSpan">${selectedYear}</h1>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    
-                                    <div class="PageNext"></div>
-                                    <c:if test="${selectedYear >= '2009' && selectedYear <= sessionScope.options.w2Latest}">
-                                        <jsp:include page="../report-w2/${selectedYear}-1.jsp"></jsp:include> 
-                                    </c:if>
-                                    
-                                    <div class="PageNext"></div>
-                                
-                                    <table class="table border-table mb-5 print-block-table noNumTable  pdfPage">
-                                            <tr>
-                                                <td class="header" colspan="3">
-                                                    <span >${sessionScope.constantJSON.w2InformationTable.formW2WageAndTaxStatement}</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="boxtitle" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.aEmployeeSocial}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.ssn}
-                                                    </div>
-                                                    <div class="boxtitle">
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                                <td class="doubleborder">
-                                                    <div class="boxtitle" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.WagesTipsOtherCompensation}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.tgross}
-                                                    </div>
-                                                    <div class="boxtitle">
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                                <td class="doubleborder">
-                                                    <div class="boxtitle" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.FederalIncomeTaxWithheld}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.whold}
-                                                    </div>
-                                                    <div class="boxtitle">
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="boxtitle" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.bEIN}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.ein}
-                                                    </div>
-                                                    <div class="boxtitle">
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="boxtitle" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.SocialSecurityWages}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.fgross}
-                                                    </div>
-                                                    <div class="boxtitle">
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="boxtitle" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.SocialSecurityTaxWithheld}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.ftax}
-                                                    </div>
-                                                    <div class="boxtitle">
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="2">
-                                                    <div class="boxtitle" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.cEmployerNameAddressZip}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.ename}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.eaddress}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.ecityst}
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="boxtitle" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.MedicareWagesAndTips}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.mgross}
-                                                    </div>
-                                                    <div class="boxtitle">
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="boxtitle" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.MedicareTaxWithheld}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.mtax}
-                                                    </div>
-                                                    <div class="boxtitle">
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="doubleborder">
-                                                    <div class="boxtitle" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.AdvancedEICpayment}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.eic}
-                                                    </div>
-                                                    <div class="boxtitle">
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                                <td class="doubleborder">
-                                                    <div class="boxtitle" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.dependentCareBenefits}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.dcare}
-                                                    </div>
-                                                    <div class="boxtitle">
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="2">
-                                                    <div class="boxtitle" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.eEmployeeName}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.empname}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.empaddress}
-                                                    </div>
-                                                    <div class="boxvalue">
-                                                        ${w2Print.empcityst}
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                        <table class="table no-border-table">
-                                                            <tr>
-                                                                <td class="boxtitle" colspan="2">
-                                                                    <span >${sessionScope.constantJSON.w2InformationTable.seeInstrs12}</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1201}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1201}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1202}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1202}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1203}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1203}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1204}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1204}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1205}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1205}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1206}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1206}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1207}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1207}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                </td>
-                                                <td>
-                                                        <table class="table no-border-table">
-                                                            <tr>
-                                                                <td class="boxtitle" colspan="2">
-                                                                    <span >${sessionScope.constantJSON.w2InformationTable.seeInstrs14}</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1401}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1401}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1402}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1402}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1403}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1403}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1404}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1404}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1405}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1405}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1406}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1406}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="boxvalue">
-                                                                    ${w2Print.code1407}&nbsp;
-                                                                </td>
-                                                                <td class="boxvaluerj">
-                                                                    ${w2Print.amt1407}&nbsp;
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                </td>
-                                            </tr>
-                
-                                            <tr>
-                                                <td colspan="2">
-                                                    <table class="table no-border-table w2Check-table">
-                                                        <tr>
-                                                            <td>
-                                                                <div class="boxtitle">
-                                                                    13
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="boxtitle" >
-                                                                        ${sessionScope.constantJSON.w2InformationTable.statutoryEmployee}
-                                                                </div>
-                                                                <div class="boximage">
-                                                                    <c:if test="${w2Print.statemp == 'checkedbox'}">
-                                                                            <span class="print-check-disabled">
-                                                                                    <i class="fa fa-times"></i>
-                                                                                </span>
-                                                                    </c:if>
-                                                                    <c:if test="${w2Print.statemp=='uncheckedbox'}">
-                                                                            <input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.accessHint.statutoryEmployeeCheckbox}"  />
-                                                                    </c:if>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="boxtitle" >
-                                                                        ${sessionScope.constantJSON.w2InformationTable.retirementPlan}
-                                                                </div>
-                                                                <div class="boximage">
-                                                                    <c:if test="${w2Print.retplan == 'checkedbox'}">
-                                                                            <span class="print-check-disabled">
-                                                                                    <i class="fa fa-times"></i>
-                                                                                </span>
-                                                                    </c:if>
-                                                                    <c:if test="${w2Print.retplan=='uncheckedbox'}">
-                                                                            <input class="checkBoxOld" type="checkbox" aria-label="${sessionScope.languageJSON.accessHint.retirementPlanCheckbox}" />
-                                                                    </c:if>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <div class="boxtitle" >
-                                                                        ${sessionScope.constantJSON.w2InformationTable.thirdPartySickPay}
-                                                                </div>
-                                                                <div class="boximage">
-                                                                    <c:if test="${w2Print.thrdsick == 'checkedbox'}">
-                                                                            <span class="print-check-disabled">
-                                                                                    <i class="fa fa-times"></i>
-                                                                                </span>
-                                                                    </c:if>
-                                                                    <c:if test="${w2Print.thrdsick=='uncheckedbox'}">
-                                                                            <input class="checkBoxOld" type="checkbox"   aria-label="${sessionScope.languageJSON.accessHint.thirdPartySickPayCheckbox}" />
-                                                                    </c:if>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <div class="boxtitle">
-                                                        &nbsp;
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3" class="no-border-td">
-                                                    <div class="footer-left pull-left">
-                                                        <span >
-                                                                ${sessionScope.constantJSON.w2InformationTable.copyC}
-                                                        </span>
-                                                    </div>
-                                                    <div class="footer-right pull-right" >
-                                                            ${sessionScope.constantJSON.w2InformationTable.departmentOfTheTreasury}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="no-border-td" colspan="3"
-                                                    style="text-align: center">
-                                                    <h1 class="selectYearSpan">${selectedYear}</h1>
-                                                </td>
-                                            </tr>
-                                        </table>
-
-                                    <div class="PageNext"></div>
-                                    <c:if test="${selectedYear >= '2009' && selectedYear <= sessionScope.options.w2Latest}">
-                                        <jsp:include page="../report-w2/${selectedYear}-2.jsp"></jsp:include>
-                                    </c:if>
-                                </div>
                             </div>
                         </section>
             </main>

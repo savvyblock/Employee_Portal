@@ -3,6 +3,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html> 
 <html lang="en">
+</style>
     <head>
         <title>${sessionScope.languageJSON.headTitle.info1095}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,19 +18,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <div class="clearfix no-print section-title">
                                 <h1 class="pageTitle">${sessionScope.languageJSON.nav.info1095}</h1>
                                 <div class="right-btn pull-right">
-                                    <c:if test="${sessionScope.options.enableElecConsnt1095 == true}">
+                                   <%--  <c:if test="${sessionScope.options.enableElecConsnt1095 == true}"> --%>
                                             <button
                                             class="btn btn-primary"
                                             data-toggle="modal"
                                             data-target="#electronicConsent"
                                            >${sessionScope.languageJSON.label.consent1095}</button>
-                                    </c:if>
+                                    <%-- </c:if>
                                     <c:if test="${sessionScope.options.enableElecConsnt1095 == false}">
                                             <button
                                             class="btn btn-primary disabled"
                                             disabled
                                            >${sessionScope.languageJSON.label.consent1095}</button>
                                     </c:if>
+                                    --%>
                                     <c:if test="${sessionScope.options.enable1095 == true && selectedYear <= latestYear }">
 	                                    <form class="no-print" action="exportPDF" method="POST">
 												<input type="hidden" name="${_csrf.parameterName}"
@@ -62,7 +64,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                         
-                            <div class="toPrint content-white EMP-detail info-1095">
+                            <div class="toPrint content-white EMP-detail info-1095 heightFull">
                                     <c:if test="${not empty sessionScope.options.message1095}">
                                             <p class="topMsg error-hint" role="alert">${sessionScope.options.message1095}</p>
                                         </c:if>

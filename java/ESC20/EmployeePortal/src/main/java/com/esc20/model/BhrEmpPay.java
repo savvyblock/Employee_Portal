@@ -73,7 +73,14 @@ public class BhrEmpPay implements java.io.Serializable {
 	private String dtEnd90DayPer;
 	private String module;
 	private Character newPmisEmpFlg;
-
+	private String w4FileStat;
+	private String w4MultiJob;
+	private Integer w4NbrChldrn ;
+	private Integer w4NbrOthrDep ;
+	private Double w4OthrIncAmt ;
+	private Double w4OthrDedAmt ;
+	private Double w4OthrExmptAmt ;
+	
 	public BhrEmpPay() {
 	}
 
@@ -88,7 +95,9 @@ public class BhrEmpPay implements java.io.Serializable {
 			String nonInstrParaProCd, Integer stp0Salary, String excPersBusSem, String stOldPayGrd, BigDecimal whollySepAmt,
 			Character eoyAccruFlg, String certMon, BigDecimal busAllowanceTax, String busAllowancePaymntsTax,
 			Character trsActiveCareEligFlg, BigDecimal trsSupplRemainComp, Short trsSupplNbrRemainPymts,
-			boolean trsSupplCompFactor, Character trsSupplEligCd, String dtEnd90DayPer, String module, Character newPmisEmpFlg) {
+			boolean trsSupplCompFactor, Character trsSupplEligCd, String dtEnd90DayPer, String module, Character newPmisEmpFlg, 
+			String w4FileStat, String w4MultiJob, Integer w4NbrChldrn, Integer w4NbrOthrDep, Double w4OthrIncAmt, 
+			Double w4OthrDedAmt, Double w4OthrExmptAmt ) {
 		this.id = id;
 		this.statCd = statCd;
 		this.payCampus = payCampus;
@@ -145,7 +154,15 @@ public class BhrEmpPay implements java.io.Serializable {
 		this.dtEnd90DayPer = dtEnd90DayPer;
 		this.module = module;
 		this.newPmisEmpFlg = newPmisEmpFlg;
+		this.w4FileStat = w4FileStat;
+		this.w4MultiJob = w4MultiJob;
+		this.w4NbrChldrn = w4NbrChldrn;
+		this.w4NbrOthrDep = w4NbrOthrDep;
+		this.w4OthrIncAmt = w4OthrIncAmt;
+		this.w4OthrDedAmt = w4OthrDedAmt;
+		this.w4OthrExmptAmt = w4OthrExmptAmt;
 	}
+	
 
 	@EmbeddedId
 
@@ -655,4 +672,68 @@ public class BhrEmpPay implements java.io.Serializable {
 	public void setNewPmisEmpFlg(Character newPmisEmpFlg) {
 		this.newPmisEmpFlg = newPmisEmpFlg;
 	}
+	
+	@Column(name = "W4_FILE_STAT", nullable = false, length = 1)
+	public String getW4FileStat() {
+		return this.w4FileStat;
+	}
+
+	public void setW4FileStat(String w4FileStat) {
+		this.w4FileStat = w4FileStat;
+	}
+	
+	@Column(name = "W4_MULTI_JOB", nullable = false, length = 1)
+	public String getW4MultiJob() {
+		return this.w4MultiJob;
+	}
+
+	public void setW4MultiJob(String w4MultiJob) {
+		this.w4MultiJob = w4MultiJob;
+	}
+
+	@Column(name = "W4_NBR_CHLDRN", nullable = false, precision = 2, scale = 0)
+	public Integer getW4NbrChldrn() {
+		return this.w4NbrChldrn;
+	}
+
+	public void setW4NbrChldrn(Integer w4NbrChldrn) {
+		this.w4NbrChldrn = w4NbrChldrn;
+	}
+
+	@Column(name = "W4_NBR_OTHR_DEP", nullable = false, precision = 2, scale = 0)
+	public Integer getW4NbrOthrDep() {
+		return this.w4NbrOthrDep;
+	}
+
+	public void setW4NbrOthrDep(Integer w4NbrOthrDep) {
+		this.w4NbrOthrDep = w4NbrOthrDep;
+	}
+
+	@Column(name = "W4_OTHR_INC_AMT", nullable = false, precision = 9)
+	public Double getW4OthrIncAmt() {
+		return this.w4OthrIncAmt;
+	}
+
+	public void setW4OthrIncAmt(Double w4OthrIncAmt) {
+		this.w4OthrIncAmt = w4OthrIncAmt;
+	}
+
+	@Column(name = "W4_OTHR_DED_AMT", nullable = false, precision = 9)
+	public Double getW4OthrDedAmt() {
+		return this.w4OthrDedAmt;
+	}
+
+	public void setW4OthrDedAmt(Double w4OthrDedAmt) {
+		this.w4OthrDedAmt = w4OthrDedAmt;
+	}
+	
+	@Column(name = "W4_OTHR_EXMPT_AMT", nullable = false, precision = 9)
+	public Double getW4OthrExmptAmt() {
+		return this.w4OthrExmptAmt;
+	}
+
+	public void setW4OthrExmptAmt(Double w4OthrExmptAmt) {
+		this.w4OthrExmptAmt = w4OthrExmptAmt;
+	}
+
 }

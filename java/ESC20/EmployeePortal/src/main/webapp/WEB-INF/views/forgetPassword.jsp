@@ -2,7 +2,10 @@
 uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> <%@ page
 language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html> 
+
 <html lang="en">
+	<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/employeePortal.css">
+	
     <head>
         <title>${sessionScope.languageJSON.headTitle.forgotPassword}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,12 +17,12 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             <div class="account-inner sm">
                 <div class="tab-head">
                             <c:if test="${idType=='E'}">
-	                            <p>
+	                            <p class="empPortColor">
 	                            	<b>${sessionScope.languageJSON.label.pleaseEnterEmpBirthZipCode}</b>
 	                            </p>
                             </c:if>
                             <c:if test="${idType=='S'}">
-	                            <p>
+	                            <p class="empPortColor">
 	                            	<b>${sessionScope.languageJSON.label.pleaseEnterSSoBirthZipCode}</b>
 	                            </p>
                             </c:if>
@@ -38,7 +41,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	                                        </div>
                                         </c:if>
                                         <c:if test="${idType=='E'}">
-                                        	<label for="autoAdvance_1"><span>${sessionScope.languageJSON.label.employeeNumber}</span>&nbsp;(<span>${sessionScope.languageJSON.label.noDashes}</span>)</label>
+                                        	<label for="autoAdvance_1"><span>${sessionScope.languageJSON.label.employeeNumber}</span></label>
 	                                        <div class="valid-wrap">
 	                                            <input type="text" id="autoAdvance_1" class="form-control autoAdvance" placeholder="" name="empNumber" maxlength="6">
 	                                        </div>
@@ -80,7 +83,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                     </c:if>
                 </form>
             </div>
-        </div>
+        </div>        
     </body>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/forgetPassword.js"></script>
 

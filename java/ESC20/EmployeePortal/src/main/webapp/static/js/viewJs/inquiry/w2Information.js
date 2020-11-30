@@ -61,6 +61,13 @@ $(function(){
         }else{
             if(!consentOption || consentOption==''){
                 $("#noChooseError").show()
+            } else {
+            	var data = {
+                    csrfmiddlewaretoken: $("#csrfmiddlewaretokenConsent").val(),
+                    year:year,
+                    consent:consentOption
+                }
+                saveConsent(data)
             }
         }
     })

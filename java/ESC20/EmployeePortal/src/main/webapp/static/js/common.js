@@ -78,24 +78,26 @@ $(function() {
     }
     $(".currentTime").html(cuMonth+'-'+cuDay+'-'+cuYear + '  ' +time)
     var helpJson = {
-        "login":"aboutemployeeaccess",
+        "login":"",
         "createUser":"newuser",
         "forgetPassword":"forgotpassword",
         "updatePassword":"changepassword",
-        "profile":"employeeportalselfservice",
+        "profile":"",
         "calendarYearToDate":"inquiry/calendaryeartodate",
         "currentPayInformation":"inquiry/currentpayinformation",
         "deductions":"inquiry/deductions",
         "earnings":"inquiry/earnings",
         "w2Information":"inquiry/w2information",
         "information1095":"inquiry/1095information",
-        "leaveBalance":"leavebalances",
-        "leaveRequest":"leaverequests",
-        "approveLeaveRequest":"supervisor/approveleaverequests",
-        "leaveOverview":"supervisor/leaveoverview",
-        "supervisorCalendar":"supervisor/calendar",
-        "leaveRequestTemporaryApprovers":"supervisor/settemporaryapprovers"
+        "leaveBalance":"leave/leavebalances",
+        "leaveRequest":"leave/leaverequests",
+        "approveLeaveRequest":"leave/supervisor/approveleaverequests",
+        "leaveOverview":"leave/supervisor/leaveoverview",
+        "supervisorCalendar":"leave/supervisor/calendar",
+        "leaveRequestTemporaryApprovers":"leave/supervisor/settemporaryapprovers"
     }
+
+    console.log("L  :" + value)
     var url = window.location.href
     var urlArry = url.split('?')
     var itemUrlArry = urlArry[0].split('/')
@@ -103,7 +105,12 @@ $(function() {
     var lastTowItem = itemUrlArry[itemUrlArry.length - 2]
     var helpLinkParam = helpJson[lastItem] || helpJson[lastTowItem]
     var helpLink = helpLinkFromProperties + '/'+ (helpLinkParam || '')
-    $("a.helpLink").attr('href',helpLink)
+    var value = $('#globalSet').val();
+
+    if(value == "es"){
+        helpLink += "?culture=es-ES"
+    }
+    $("a.helpLink").attr('href', "https://"+helpLink )
 })
 function setGlobal(){
     if (getCookie(name)&&getCookie(name) != '') {

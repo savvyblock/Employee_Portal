@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.2.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CalYTDPrint" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="293e8560-1632-4a46-9499-be1c136f20b8">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -16,6 +17,15 @@
 	<field name="dname" class="java.lang.String"/>
 	<field name="daddress" class="java.lang.String"/>
 	<field name="dcityst" class="java.lang.String"/>
+	<field name="w4FileStat" class="java.lang.String"/>
+	<field name="maritalStatTax" class="java.lang.Character"/>
+	<field name="w4MultiJob" class="java.lang.String"/>
+	<field name="nbrTaxExempts" class="java.lang.Integer"/>
+	<field name="w4NbrChldrn" class="java.lang.Integer"/>
+	<field name="w4OthrDedAmt" class="java.lang.Double"/>
+	<field name="w4OthrIncAmt" class="java.lang.Double"/>
+	<field name="w4NbrOthrDep" class="java.lang.Integer"/>
+	<field name="w4OthrExmptAmt" class="java.lang.Double"/>
 	<field name="ename" class="java.lang.String"/>
 	<field name="employeeNumber" class="java.lang.String"/>
 	<field name="calYr" class="java.lang.String"/>
@@ -119,7 +129,7 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="689">
+		<band height="398">
 			<frame>
 				<reportElement x="11" y="1" width="590" height="77" uuid="99cd78ab-9bbc-4dfb-abd3-7039ca410d8a">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
@@ -247,8 +257,9 @@
 				</frame>
 			</frame>
 			<frame>
-				<reportElement x="11" y="89" width="600" height="239" uuid="4235faff-60a5-4766-b0e4-3a3ef48ffc85">
+				<reportElement x="11" y="159" width="600" height="239" uuid="4235faff-60a5-4766-b0e4-3a3ef48ffc85">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
 				<frame>
 					<reportElement x="1" y="1" width="595" height="12" uuid="f0bbada7-1f39-4194-8bd7-3c41923935db">
@@ -973,6 +984,237 @@
 						</textElement>
 						<text><![CDATA[Annuity Roth 457b:]]></text>
 					</staticText>
+				</frame>
+			</frame>
+			<frame>
+				<reportElement x="10" y="80" width="591" height="15" uuid="5bf2e7d0-5c07-4038-a218-bcbf0c6bb0ed">
+					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+				</reportElement>
+				<frame>
+					<reportElement x="1" y="1" width="590" height="14" uuid="daf7d310-4eda-4448-804a-7d126a373da3">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="4" y="0" width="56" height="11" backcolor="#C0C0C0" uuid="7cc7d5eb-4b00-4f10-b01b-bc43c2729acf">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Marital Status]]></text>
+					</staticText>
+					<staticText>
+						<reportElement key="staticText" x="200" y="2" width="91" height="11" backcolor="#C0C0C0" uuid="6e827cda-cd82-4ddd-a998-9ac41671f0be">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Number of Exemptions]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="298" y="2" width="72" height="11" uuid="5a90824d-13d5-419a-8514-d364fc4f0b9d"/>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{nbrTaxExempts}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="406" y="3" width="91" height="11" backcolor="#C0C0C0" uuid="0e6ed190-ace8-4736-97b1-d66cdfb0b133">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Other Exemptions]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="506" y="3" width="84" height="11" uuid="28a1748e-4e9b-4b9e-90de-c36fd18cc056">
+							<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{w4OthrExmptAmt}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="-1" y="20" width="592" height="14" uuid="88d579bb-febe-4000-a4b0-a14da9c3f94d">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="6" y="0" width="56" height="11" backcolor="#C0C0C0" uuid="2b99d630-3d5f-43c4-b3ea-32210a33478f">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Filling Status]]></text>
+					</staticText>
+					<staticText>
+						<reportElement key="staticText" x="202" y="2" width="56" height="11" backcolor="#C0C0C0" uuid="8a5acc24-eb61-4be3-b9b7-0df56b31e87a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Multi-Jobs	]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="87" y="1" width="70" height="12" uuid="4fb423c6-544a-4b0c-ba2b-b59bfdc269c3"/>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{w4FileStat}.equals( "M" ) ? "Married filing jointly": $F{w4FileStat}.equals( "H" )? "Head of household" :  $F{w4FileStat}.equals( "S" )? "Single or Married filing separately" : ""]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="408" y="3" width="84" height="11" backcolor="#C0C0C0" uuid="0eab2fc6-0f61-40d6-b50b-a749da2e2d5a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Children under 17	]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="87" y="-18" width="71" height="12" uuid="451c6088-d968-4da2-9f3e-0e7107ad34e2"/>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{maritalStatTax}.equals( "M" ) ? "M - Married" : "S - Single"]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="506" y="3" width="72" height="14" uuid="23b69aff-ef69-44d7-8168-9788ff552e7e"/>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{w4NbrChldrn}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="298" y="1" width="76" height="13" uuid="25b0554c-f521-4674-b79d-bd9d26f19a0f"/>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{w4MultiJob}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<frame>
+					<reportElement x="0" y="36" width="591" height="14" uuid="c15fe1b0-4c5e-4da4-b16e-4bae2bfb21ac">
+						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
+					</reportElement>
+					<staticText>
+						<reportElement key="staticText" x="4" y="0" width="80" height="11" backcolor="#C0C0C0" uuid="ceaa892f-90d3-41de-b11e-ac9319fbf81c">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Other dependents	]]></text>
+					</staticText>
+					<staticText>
+						<reportElement key="staticText" x="202" y="2" width="56" height="11" backcolor="#C0C0C0" uuid="4267270e-6b8c-468f-96ec-cf188a808075">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Other Income	]]></text>
+					</staticText>
+					<staticText>
+						<reportElement key="staticText" x="407" y="2" width="84" height="11" backcolor="#C0C0C0" uuid="d5b41779-6b91-4f29-a6d0-4804129fbc51">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Deductions	]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="506" y="3" width="70" height="13" uuid="196d92d5-499e-4826-874d-b8a7fdef0b50">
+							<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						</reportElement>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{w4OthrDedAmt}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="86" y="0" width="70" height="11" uuid="cc393384-b7e5-4633-84ca-1fb88552be0a"/>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{w4NbrOthrDep}]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement x="295" y="3" width="70" height="13" uuid="0e7ea75b-5889-46ac-b047-3c9c399d1280"/>
+						<textElement>
+							<font fontName="Microsoft Sans Serif" size="8"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{w4OthrIncAmt}]]></textFieldExpression>
+					</textField>
 				</frame>
 			</frame>
 		</band>

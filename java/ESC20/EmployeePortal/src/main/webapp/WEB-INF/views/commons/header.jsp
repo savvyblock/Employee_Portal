@@ -13,11 +13,18 @@
 <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/button.css"/>
 <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/bar.css"/>
 <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/content.css"/>
+<link rel="stylesheet" href="<spring:theme code="commonBase" />styles/login-colors.css" type="text/css" media="all" />
+<link rel="stylesheet" href="<spring:theme code="commonBase" />styles/layout.css" type="text/css" media="all" />
+<link rel="stylesheet" href="<spring:theme code="commonBase" />styles/login-layout.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/employeePortal.css">
+
+
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.min.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/html2canvas.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jspdf.debug.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bluebird.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bootstrap.min.js"></script>
+<script type="text/javascript" src="<spring:theme code="commonBase" />scripts/focus.js"></script>
 <script>
 	var urlMain = '<%=request.getContextPath()%>'
 	console.log('url'+urlMain)

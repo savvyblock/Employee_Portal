@@ -125,7 +125,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                             </td>
                                                             <td data-title="${sessionScope.languageJSON.approveRequest.absenceReason}" >
                                                                     <c:forEach var="reason" items="${absRsns}" varStatus="statusReason">
-                                                                            <c:if test="${reason.code==item.LeaveType}">${reason.description}</c:if>
+                                                                            <c:if test="${reason.code==item.AbsenseReason}">${reason.description}</c:if>
                                                                     </c:forEach>
                                                             </td>
                                                             

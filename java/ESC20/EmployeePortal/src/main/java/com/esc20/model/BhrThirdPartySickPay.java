@@ -26,13 +26,14 @@ public class BhrThirdPartySickPay implements java.io.Serializable {
 	private BigDecimal sickPayMedGross;
 	private BigDecimal sickPayMedTax;
 	private String module;
+	private String payFreq;
 
 	public BhrThirdPartySickPay() {
 	}
 
 	public BhrThirdPartySickPay(BhrThirdPartySickPayId id, char ficaTyp, BigDecimal sickNontax,
 			BigDecimal sickPayWhGross, BigDecimal sickPayWhTax, BigDecimal sickPayFicaGross, BigDecimal sickPayFicaTax,
-			BigDecimal sickPayMedGross, BigDecimal sickPayMedTax, String module) {
+			BigDecimal sickPayMedGross, BigDecimal sickPayMedTax, String module, String payFreq) {
 		this.id = id;
 		this.ficaTyp = ficaTyp;
 		this.sickNontax = sickNontax;
@@ -43,12 +44,12 @@ public class BhrThirdPartySickPay implements java.io.Serializable {
 		this.sickPayMedGross = sickPayMedGross;
 		this.sickPayMedTax = sickPayMedTax;
 		this.module = module;
+		this.payFreq = payFreq;
 	}
 
 	@EmbeddedId
 
 	@AttributeOverrides({
-			@AttributeOverride(name = "payFreq", column = @Column(name = "PAY_FREQ", nullable = false, length = 1)),
 			@AttributeOverride(name = "empNbr", column = @Column(name = "EMP_NBR", nullable = false, length = 6)),
 			@AttributeOverride(name = "cyrNyrFlg", column = @Column(name = "CYR_NYR_FLG", nullable = false, length = 1)),
 			@AttributeOverride(name = "calYr", column = @Column(name = "CAL_YR", nullable = false, length = 4)) })
@@ -139,6 +140,15 @@ public class BhrThirdPartySickPay implements java.io.Serializable {
 
 	public void setModule(String module) {
 		this.module = module;
+	}
+	
+	@Column(name = "PAY_FREQ", nullable = false, length = 1)
+	public String getPayFreq() {
+		return this.payFreq;
+	}
+
+	public void setPayFreq(String payFreq) {
+		this.payFreq = payFreq;
 	}
 
 }

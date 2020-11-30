@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningBnkTab" pageWidth="612" pageHeight="792" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="2e80e945-3fff-4db6-a7bc-996a9f39bbbe">
+<!-- Created with Jaspersoft Studio version 6.4.2.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningBnkTab" pageWidth="612" pageHeight="792" whenNoDataType="NoPages" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="2e80e945-3fff-4db6-a7bc-996a9f39bbbe">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="2.0"/>
@@ -26,16 +26,12 @@
 		 bhr_bank_deposit_hist.bank_cd as bhr_bank_deposit_hist_bank_cd,
 		 bhr_pay_hist.chk_nbr as bhr_pay_hist_chk_nbr,
 		 bhr_bank_deposit_hist.bank_acct_typ as bhr_bank_deposit_hist_bank_acct_typ,
-case when isnull(trim(bhr_bank_deposit_hist.bank_acct_nbr), '') = ''
-          then ''
-     when length(trim(bhr_bank_deposit_hist.bank_acct_nbr)) <= 4
-          then trim(bhr_bank_deposit_hist.bank_acct_nbr)
-     ELSE
-          left('*************', length(trim(bhr_bank_deposit_hist.bank_acct_nbr)) - 4)
- || right(trim(bhr_bank_deposit_hist.bank_acct_nbr), 4)
-end as bhr_bank_deposit_hist_bank_acct_nbr,
-bhr_bank_deposit_hist.bank_acct_amt as bhr_bank_deposit_hist_bank_acct_amt,
-bthr_bank_acct_typ.bank_acct_typ_descr as bthr_bank_acct_typ_bank_acct_typ_descr
+		 CASE
+                WHEN LEN(bhr_bank_deposit_hist.bank_acct_nbr) > 4 THEN STUFF(bhr_bank_deposit_hist.bank_acct_nbr, 1, LEN(bhr_bank_deposit_hist.bank_acct_nbr) - 4, REPLICATE('*', LEN(bhr_bank_deposit_hist.bank_acct_nbr) - 4))
+                ELSE bhr_bank_deposit_hist.bank_acct_nbr
+          END as bhr_bank_deposit_hist_bank_acct_nbr,
+	      bhr_bank_deposit_hist.bank_acct_amt as bhr_bank_deposit_hist_bank_acct_amt,
+          bthr_bank_acct_typ.bank_acct_typ_descr as bthr_bank_acct_typ_bank_acct_typ_descr
 From  bhr_pay_hist,
       {oj bhr_bank_deposit_hist left outer join bthr_bank_codes
                                              on bthr_bank_codes.bank_cd = bhr_bank_deposit_hist.bank_cd},

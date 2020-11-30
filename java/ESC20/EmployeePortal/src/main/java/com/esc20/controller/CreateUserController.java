@@ -30,6 +30,9 @@ public class CreateUserController {
 	private Logger logger = LoggerFactory.getLogger(CreateUserController.class);
 
 	@Autowired
+	private MailUtil mailUtil;
+	
+	@Autowired
 	private IndexService indexService;
 
 	@Autowired
@@ -179,7 +182,7 @@ public class CreateUserController {
 	{
 		String subject ="New User Created";
 		StringBuilder messageContents = new StringBuilder();
-		messageContents.append("<p>Thank you for Registering for Employee Portal.  Your User ID is: "+userName +" </p>");		
+		messageContents.append("<p>Thank you for Registering for EmployeePortal.  Your User ID is: "+userName +" </p>");		
 		messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
 		
 		String toEmail ="";
@@ -191,7 +194,7 @@ public class CreateUserController {
 		
 		if (toEmail!=null && toEmail.trim().length() > 0) {
 			try{
-				MailUtil.sendEmail(toEmail, subject, messageContents.toString());
+				mailUtil.sendEmail(toEmail, subject, messageContents.toString());
 			} 
 			catch(Exception ex) {
 				logger.info("An exception has occured with mailing the user.");

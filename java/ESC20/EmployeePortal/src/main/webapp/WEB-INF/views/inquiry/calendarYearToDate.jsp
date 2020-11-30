@@ -42,7 +42,7 @@
                             <iframe style="display:none" name="printIframe" onload="load()" id="printIframe"></iframe> --%>
                         </div>
                     </div>
-                    <div class="toPrint content-white EMP-detail">
+                    <div class="toPrint content-white EMP-detail" style="height: 100vw">
                         
                         <div class="exportPDFBox">
                                 <div class="print-block print-title">
@@ -107,12 +107,119 @@
                                 </select>
                             </div>
                         </form>
-                       
+                                               <c:forEach items="${pageValues}" var="value">
                         <h2 class="no-print table-top-title">
-                            <b><span>${sessionScope.languageJSON.label.frequency}</span>: ${freq}</b>
+                            <b><span>${sessionScope.languageJSON.label.frequency}</span>: ${value['freq']}</b>
                         </h2>
+                        <table
+                                    class="table border-table responsive-table no-thead print-table noNumTable smTitleTable">
+                                    <tbody>
+                                        <tr>
+                                            <th id="martialStatus_${count.index}" class="td-title">
+                                                <b>${sessionScope.languageJSON.currentPayTable.martialStatus}</b>
+                                            </th>
+                                            <td headers="martialStatus_${count.index}" class="td-content"
+                                                data-title="${sessionScope.languageJSON.currentPayTable.martialStatus}">
+                                                <c:if test="${payInfos[value['freq']].maritalStatTax =='M'}">
+                                                    ${payInfos[value['freq']].maritalStatTax} -
+                                                    <span>${sessionScope.languageJSON.label.married}</span>
+                                                </c:if>
+                                                <c:if test="${payInfos[value['freq']].maritalStatTax =='S'}">
+                                                    ${payInfos[value['freq']].maritalStatTax} -
+                                                    <span>${sessionScope.languageJSON.label.single}</span>
+                                                </c:if>
+                                            </td>
+                                            <th id="numOfExemptions_${count.index}" class="td-title">
+                                                <b>${sessionScope.languageJSON.currentPayTable.numOfExemptions}</b>
+                                            </th>
+                                            <td headers="numOfExemptions_${count.index}" class="td-content"
+                                                data-title="${sessionScope.languageJSON.currentPayTable.numOfExemptions}">
+                                                ${payInfos[value['freq']].nbrTaxExempts}
+                                            </td>
+                                            <th id="payCampus_${count.index}" class="td-title">
+                                                <b>${sessionScope.languageJSON.currentPayTable.payCampus}</b></th>
+                                            <td headers="payCampus_${count.index}" class="td-content"
+                                                data-title="${sessionScope.languageJSON.currentPayTable.payCampus}">
+                                                ${payCampuses[value['freq']]}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        <th id="fillingStatus_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.fillingStatus}</b></th>
+
+                                                <td headers="fillingStatus_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.fillingStatus}">
+                                                    <input type="hidden" name="w4FileStat" value="${w4Request[value['freq']].w4FileStat }">
+
+                                                    <!-- ${payInfos[value['freq']].w4FileStat} -->
+                                                    <c:forEach var="w4FileStat" items="${w4FileStatOptions}"
+                                                        varStatus="count">
+                                                        <c:if
+                                                            test="${w4FileStat.code == w4Request[value['freq']].w4FileStat }">
+                                                            ${w4FileStat.displayLabel}
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </td>
+                                               
+                                                <th id="multiJobs_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.multiJobs}</b></th>
+
+                                                <td headers="multiJobs_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.multiJobs}">
+                                                    ${w4Request[value['freq']].w4MultiJob}
+                                                </td>
+
+                                                <th id="childrenUnder17_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.childrenUnder17}</b></th>
+
+                                                <td headers="childrenUnder17_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.multiJobs}" colspan="3">
+                                                    <fmt:formatNumber value="${w4Request[value['freq']].w4NbrChldrn}"
+                                                        pattern="#,##0" />
+                                                </td>
+                                                </tr>
+                                                <tr>
+                                                <th id="otherDependents_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.otherDependents}</b></th>
+
+                                                <td headers="otherDependents_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.otherDependents}">
+                                                    <fmt:formatNumber value="${w4Request[value['freq']].w4NbrOthrDep}"
+                                                        pattern="#,##0" />
+                                                </td>
+                                                
+                                                    <th id="otherd_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.otherExemption}</b></th>
+
+                                                    <td headers="otherd_${count.index}" class="text-left"
+                                                        data-title="${sessionScope.languageJSON.profile.otherExemption}">
+                                                        <fmt:formatNumber value="${w4Request[value['freq']].w4OthrExmptAmt}" pattern="#,##0.00"/>
+                                                    </td>
+
+                                                <th id="otherIncome_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.otherIncome}</b></th>
+
+                                                <td headers="otherIncome_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.otherIncome}">
+                                                    <fmt:formatNumber value="${w4Request[value['freq']].w4OthrIncAmt}"
+                                                        pattern="#,##0" />
+                                                </td>
+
+                                                <th id="deductions_${count.index}">
+                                                    <b>${sessionScope.languageJSON.profile.deductions}</b></th>
+
+                                                <td headers="deductions_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.deductions}">
+                                                    <fmt:formatNumber value="${w4Request[value['freq']].w4OthrDedAmt}"
+                                                        pattern="#,##0" />
+                                                </td>
+                                            </tr>
+                                    </tbody>
+                        </table>
+                       
+                       
                         <p class="no-print">
-                            <span>${sessionScope.languageJSON.label.lastPostedPayDate}</span>: ${latestPayDate}
+                            <span>${sessionScope.languageJSON.label.lastPostedPayDate}</span>: ${value['latestPayDate']}
                         </p>
                         <table
                             class="table border-table responsive-table no-thead print-table calendarYTDTable"
@@ -124,21 +231,21 @@
                                         headers="contractPay" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.contractPay}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.contrAmt}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].contrAmt}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="nonContractPay" class="td-title">${sessionScope.languageJSON.calendarTable.nonContractPay}</th>
                                     <td
                                         headers="nonContractPay" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.nonContractPay}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.noncontrAmt}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].noncontrAmt}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="supplementalPay" class="td-title">${sessionScope.languageJSON.calendarTable.supplementalPay}</th>
                                     <td
                                         headers="supplementalPay" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.supplementalPay}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.supplPayAmt}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].supplPayAmt}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -147,14 +254,14 @@
                                         headers="withholdingGross" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.withholdingGross}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.whGross}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].whGross}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="withholdingTax" class="td-title">${sessionScope.languageJSON.calendarTable.withholdingTax}</th>
                                     <td
                                         headers="withholdingTax" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.withholdingTax}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.whTax}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].whTax}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="earnedIncomeCredit" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.earnedIncomeCredit}
@@ -163,7 +270,7 @@
                                         headers="earnedIncomeCredit" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.earnedIncomeCredit}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.eicAmt}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].eicAmt}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -172,14 +279,14 @@
                                         headers="ficaGross" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.ficaGross}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.ficaGross}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].ficaGross}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="ficaTax" class="td-title">${sessionScope.languageJSON.calendarTable.ficaTax}</th>
                                     <td
                                         headers="ficaTax" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.ficaTax}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.ficaTax}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].ficaTax}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" colspan="2"></td>
                                 </tr>
@@ -191,7 +298,7 @@
                                         headers="dependentCare" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.dependentCare}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.dependCare}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].dependCare}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="dependentCareEmployer" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.dependentCareEmployer}
@@ -200,7 +307,7 @@
                                         headers="dependentCareEmployer" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.dependentCareEmployer}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.emplrDependCare}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].emplrDependCare}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="dependentCareExceeds" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.dependentCareExceeds}
@@ -209,7 +316,7 @@
                                         headers="dependentCareExceeds" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.dependentCareExceeds}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.emplrDependCareTax}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].emplrDependCareTax}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -218,14 +325,14 @@
                                         headers="medicareGross" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.medicareGross}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.medGross}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].medGross}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="medicareTax" class="td-title">${sessionScope.languageJSON.calendarTable.medicareTax}</th>
                                     <td
                                         headers="medicareTax" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.medicareTax}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.medTax}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].medTax}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" colspan="2"></td>
                                 </tr>
@@ -238,7 +345,7 @@
                                         headers="annuityDeduction" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.annuityDeduction}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.annuityDed}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].annuityDed}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="roth403BAfterTax" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.roth403BAfterTax}
@@ -247,14 +354,14 @@
                                         headers="roth403BAfterTax" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.roth403BAfterTax}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.annuityRoth}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].annuityRoth}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="taxableBenefits" class="td-title">${sessionScope.languageJSON.calendarTable.taxableBenefits}</th>
                                     <td
                                         headers="taxableBenefits" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.taxableBenefits}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.taxedBenefits}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].taxedBenefits}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -265,7 +372,7 @@
                                         headers="annuity457Employee" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.annuity457Employee}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.emp457Contrib}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].emp457Contrib}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="annuity457Employer" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.annuity457Employer}
@@ -274,14 +381,14 @@
                                         headers="annuity457Employer" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.annuity457Employer}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.emplr457Contrib}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].emplr457Contrib}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="annuity457Withdraw" class="td-title">${sessionScope.languageJSON.calendarTable.annuity457Withdraw}</th>
                                     <td
                                         headers="annuity457Withdraw" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.annuity457Withdraw}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.withdraw457}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].withdraw457}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -295,7 +402,7 @@
                                         headers="nonTrsBusinessExpense" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.nonTrsBusinessExpense}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.nontrsBusAllow}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].nontrsBusAllow}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="nonTrsReimbursementBase" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.nonTrsReimbursementBase}
@@ -304,7 +411,7 @@
                                         headers="nonTrsReimbursementBase" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.nonTrsReimbursementBase}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.nontrsReimbrBase}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].nontrsReimbrBase}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="nonTrsReimbursementExcess" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.nonTrsReimbursementExcess}
@@ -313,7 +420,7 @@
                                         headers="nonTrsReimbursementExcess" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.nonTrsReimbursementExcess}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.nontrsReimbrExcess}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].nontrsReimbrExcess}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -324,7 +431,7 @@
                                         headers="movingExpenseReimbursement" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.movingExpenseReimbursement}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.movingExpReimbr}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].movingExpReimbr}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="nonTrsNonTaxBusinessAllow" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.nonTrsNonTaxBusinessAllow}
@@ -333,7 +440,7 @@
                                         headers="nonTrsNonTaxBusinessAllow" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.nonTrsNonTaxBusinessAllow}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.nontrsNontaxBusAllow}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].nontrsNontaxBusAllow}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="nonTrsNonTaxNonPayAllow" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.nonTrsNonTaxNonPayAllow}
@@ -342,7 +449,7 @@
                                         headers="nonTrsNonTaxNonPayAllow" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.nonTrsNonTaxNonPayAllow}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.nontrsNontaxNonpayAllow}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].nontrsNontaxNonpayAllow}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -356,14 +463,14 @@
                                         headers="salaryReduction" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.salaryReduction}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.trsSalaryRed}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].trsSalaryRed}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="trsInsurance" class="td-title">${sessionScope.languageJSON.calendarTable.trsInsurance}</th>
                                     <td
                                         headers="trsInsurance" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.trsInsurance}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${trsIns}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['trsIns']}" pattern="#,##0.00"/>
                                     </td>
                                     <td class="td-title" colspan="2"></td>
                                 </tr>
@@ -375,7 +482,7 @@
                                         headers="hsaEmployerContribution" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.hsaEmployerContribution}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.hsaEmplrContrib}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].hsaEmplrContrib}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="hsaEmployeeSalaryReductionContribution" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.hsaEmployeeSalaryReductionContribution}
@@ -384,7 +491,7 @@
                                         headers="hsaEmployeeSalaryReductionContribution" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.hsaEmployeeSalaryReductionContribution}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.hsaEmpSalRedctnContrib}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].hsaEmpSalRedctnContrib}" pattern="#,##0.00"/>
                                     </td>
 
                                     <th id="hireExemptWgs" class="td-title">${sessionScope.languageJSON.calendarTable.hireExemptWgs}</th>
@@ -392,7 +499,7 @@
                                         headers="hireExemptWgs" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.hireExemptWgs}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.hireExemptWgs}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].hireExemptWgs}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -403,7 +510,7 @@
                                         headers="taxedLifeContribution" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.taxedLifeContribution}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.taxEmplrLife}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].taxEmplrLife}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="taxedGroupContribution" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.taxedGroupContribution}
@@ -412,7 +519,7 @@
                                         headers="taxedGroupContribution" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.taxedGroupContribution}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.taxEmplrLifeGrp}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].taxEmplrLifeGrp}" pattern="#,##0.00"/>
                                     </td>
                                     <th id="healthInsuranceDeduction" class="td-title">
                                             ${sessionScope.languageJSON.calendarTable.healthInsuranceDeduction}
@@ -421,7 +528,7 @@
                                         headers="healthInsuranceDeduction" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.healthInsuranceDeduction}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.hlthInsDed}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].hlthInsDed}" pattern="#,##0.00"/>
                                     </td>
                                 </tr>
 
@@ -436,7 +543,7 @@
                                         headers="emplrPrvdHlthcare" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.emplrPrvdHlthcare}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.emplrPrvdHlthcare}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].emplrPrvdHlthcare}" pattern="#,##0.00"/>
                                     </td>
 
                                     <th id="annuityRoth457b" class="td-title">${sessionScope.languageJSON.calendarTable.annuityRoth457b}</th>
@@ -444,7 +551,7 @@
                                         headers="annuityRoth457b" class="td-content" data-title="${sessionScope.languageJSON.calendarTable.annuityRoth457b}" 
                                        
                                     >
-                                    <fmt:formatNumber value="${calendar.annuityRoth457b}" pattern="#,##0.00"/>
+                                    <fmt:formatNumber value="${value['calendar'].annuityRoth457b}" pattern="#,##0.00"/>
                                     </td>
 
                                     <td class="td-title" colspan="2"></td>
@@ -452,6 +559,7 @@
                             </tbody>
                         
                         </table>
+                        </c:forEach>
                     </div>
                 </section>
             </main>

@@ -281,8 +281,17 @@
           <version>2.20.1</version>
         </plugin>
         <plugin>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.0</version>
+        	<artifactId>maven-war-plugin</artifactId>
+        	<configuration>
+				<archive>
+					<manifestEntries>
+						<Project-Version>${project.version}</Project-Version>
+						<Timestamp>${maven.build.timestamp}</Timestamp>
+						<Build_To_Be_Released>false</Build_To_Be_Released> <!--  "This is a flag to determine when a timestamp is used for the build, or when versionLastNumber is used" -->
+					</manifestEntries>
+				</archive>
+    		</configuration>
+        	<version>3.2.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>

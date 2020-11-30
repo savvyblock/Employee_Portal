@@ -5,8 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.esc20.dao.EA1095Dao;
+
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrAca1095cEmpHist;
 import com.esc20.model.BhrEmpDemo;
@@ -36,7 +35,7 @@ import com.esc20.nonDBModels.CCoveredHistory;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.EA1095CEmployerShare;
-import com.esc20.nonDBModels.EarningsOther;
+
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
@@ -60,6 +59,9 @@ public class Information1095Controller {
 	private Logger logger = LoggerFactory.getLogger(Information1095Controller.class);
 	public static String newline = System.getProperty("line.separator");
 
+	@Autowired
+	private MailUtil mailUtil;
+	
 	@Autowired
 	private IndexService indexService;
 
@@ -151,13 +153,13 @@ public class Information1095Controller {
 
 		if (!"".equals(userWorkEmail)) {
 			try {
-				MailUtil.sendEmail(userWorkEmail, subject, messageContents.toString());
+				mailUtil.sendEmail(userWorkEmail, subject, messageContents.toString());
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		} else if (!"".equals(userHomeEmail)) {
 			try {
-				MailUtil.sendEmail(userHomeEmail, subject, messageContents.toString());
+				mailUtil.sendEmail(userHomeEmail, subject, messageContents.toString());
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
@@ -166,7 +168,7 @@ public class Information1095Controller {
 	}
 
 	@RequestMapping("information1095ByYear")
-	public ModelAndView getInformation1095ByYear(HttpServletRequest req, String year) {
+	public ModelAndView getInformation1095ByYear(HttpServletRequest req, String year, String employeeNumber) {
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
 		if (year == null) {
@@ -178,6 +180,13 @@ public class Information1095Controller {
 		}
 		mav.setViewName("/inquiry/information1095");
 		mav = init1095(mav, session, year, 1, 1, null, null, null);
+		String elecConsntMsg1095 = ((Options) session.getAttribute("options")).getMessageElecConsent1095().trim();
+		elecConsntMsg1095 = elecConsntMsg1095.replaceAll("\\s+\\*", newline+"*");
+		String consent = this.service.getW2Consent(employeeNumber);
+		mav.addObject("consent", consent);
+		mav.addObject("elecConsntMsg1095", elecConsntMsg1095);
+
+
 		return mav;
 	}
 
@@ -257,8 +266,14 @@ public class Information1095Controller {
 				userDetail.setGenDescription(gen.getDescription());
 			}
 		}
-
+		
 		String employeeNumber = userDetail.getEmpNbr();
+		String consent = this.service.get1095Consent(employeeNumber);
+		String elecConsntMsg1095 = ((Options) session.getAttribute("options")).getMessageElecConsent1095().trim();
+		elecConsntMsg1095 = elecConsntMsg1095.replaceAll("\\s+\\*", newline+"*");
+		
+		mav.addObject("consent", consent);
+		mav.addObject("message", elecConsntMsg1095);
 		List<String> years = this.service.retrieveAvailable1095CalYrs(employeeNumber);
 		if (years != null && years.size() > 0) {
 			mav.addObject("empty", false);
@@ -269,10 +284,10 @@ public class Information1095Controller {
 		if (year == null)
 			year = DateUtil.getLatestYear(years);
 		// Options options = ((Options) session.getAttribute("options"));
-		String message = options.getMessageElecConsent1095().trim();
-		message = message.replaceAll("\\s+\\*", newline+"*");
+//		String message = options.getMessageElecConsent1095().trim();
+//		message = message.replaceAll("\\s+\\*", newline+"*");
 		
-		String consent = this.service.get1095Consent(employeeNumber);
+//		String consent = this.service.get1095Consent(employeeNumber);
 		Integer BTotal = this.service.getBInfoTotal(employeeNumber, year);
 		Integer BTotalPage = BTotal / pageSize;
 		Integer BRemainingList = BTotal % pageSize;
@@ -339,7 +354,7 @@ public class Information1095Controller {
 		mav.addObject("years", years);
 		mav.addObject("selectedYear", year.trim());
 		mav.addObject("consent", consent);
-		mav.addObject("message", message);
+		mav.addObject("message", elecConsntMsg1095);
 		mav.addObject("bList", bList);
 		mav.addObject("cList", cList);
 		if (bList.isEmpty() || cList.isEmpty()) {

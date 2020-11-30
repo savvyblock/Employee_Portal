@@ -1,0 +1,12 @@
+.empPortColor {
+	color: #D3D3D3 !important;
+}
+
+@-moz-document url-prefix() {
+	.modal-dialog.requestFormDialog {
+		padding: 5% !important;
+	}
+}
+.heightFull{
+	height: 100% !important;
+  }

@@ -26,6 +26,7 @@ public class BeaW4 implements java.io.Serializable {
 	private Character maritalStatTaxNew;
 	private Integer nbrTaxExemptsNew;
 	private String apprvdDts;
+	
 	private Integer apprvrUsrId;
 	private Character statCd;
 
@@ -33,10 +34,10 @@ public class BeaW4 implements java.io.Serializable {
 	private String w4FileStatNew ;
 	private String w4MultiJob;
 	private String w4MultiJobNew;
-	private Double w4NbrChldrn ;
-	private Double w4NbrChldrnNew ;
-	private Double w4NbrOthrDep ;
-	private Double w4NbrOthrDepNew ;
+	private Integer w4NbrChldrn ;
+	private Integer w4NbrChldrnNew ;
+	private Integer w4NbrOthrDep ;
+	private Integer w4NbrOthrDepNew ;
 	private Double w4OthrIncAmt ;
 	private Double w4OthrIncAmtNew ;
 	private Double w4OthrDedAmt ;
@@ -58,10 +59,28 @@ public class BeaW4 implements java.io.Serializable {
 		this.apprvdDts = "";
 		this.apprvrUsrId = -1;
 		this.statCd = 'P';
+		this.w4FileStat = pay.getW4FileStat();
+		this.w4FileStatNew = pay.getW4FileStat();
+		this.w4MultiJob = pay.getW4MultiJob();
+		this.w4MultiJobNew = pay.getW4MultiJob();
+		this.w4NbrChldrn = pay.getW4NbrChldrn();
+		this.w4NbrChldrnNew = pay.getW4NbrChldrn();
+		this.w4NbrOthrDep = pay.getW4NbrOthrDep();
+		this.w4NbrOthrDepNew = pay.getW4NbrOthrDep();
+		this.w4OthrIncAmt = pay.getW4OthrIncAmt();
+		this.w4OthrIncAmtNew = pay.getW4OthrIncAmt();
+		this.w4OthrDedAmt = pay.getW4OthrDedAmt();
+		this.w4OthrDedAmtNew = pay.getW4OthrDedAmt();
+		this.w4OthrExmptAmt = pay.getW4OthrExmptAmt();
+		this.w4OthrExmptAmtNew = pay.getW4OthrExmptAmt();
+		
+		
 	}
 
 	public BeaW4(BeaW4Id id, Character maritalStatTax, Integer nbrTaxExempts, Character maritalStatTaxNew, Integer nbrTaxExemptsNew,
-			String apprvdDts, Integer apprvrUsrId, Character statCd) {
+			String apprvdDts, Integer apprvrUsrId, Character statCd,
+			String w4FileStatNew, String w4MultiJobNew,	Integer w4NbrChldrnNew, Integer w4NbrOthrDepNew, 
+			Double w4OthrIncAmtNew, Double w4OthrDedAmtNew,  Double w4OthrExmptAmtNew) {
 		this.id = id;
 		this.maritalStatTax = maritalStatTax;
 		this.nbrTaxExempts = nbrTaxExempts;
@@ -70,12 +89,25 @@ public class BeaW4 implements java.io.Serializable {
 		this.apprvdDts = apprvdDts;
 		this.apprvrUsrId = apprvrUsrId;
 		this.statCd = statCd;
+		this.w4FileStat = w4FileStat;
+		this.w4FileStatNew = w4FileStatNew;
+		this.w4MultiJob = w4MultiJob;
+		this.w4MultiJob = w4MultiJobNew;
+		this.w4NbrChldrn = w4NbrChldrn;
+		this.w4NbrChldrnNew = w4NbrChldrnNew;
+		this.w4NbrOthrDep = w4NbrOthrDep;
+		this.w4NbrOthrDepNew = w4NbrOthrDepNew;
+		this.w4OthrIncAmt = w4OthrIncAmt;
+		this.w4OthrIncAmtNew = w4OthrIncAmtNew;
+		this.w4OthrDedAmt = w4OthrDedAmt;
+		this.w4OthrDedAmtNew = w4OthrDedAmtNew;
+		this.w4OthrExmptAmt = w4OthrExmptAmt;
+		this.w4OthrExmptAmtNew = w4OthrExmptAmtNew;
 	}
 	
+	
 	public BeaW4(BhrEmpPay pay, String empNbr,Character payFreq, String reqDts, Character maritalStatTaxNew, Integer nbrTaxExemptsNew, Character statCd,
-			String w4FileStat, String w4MultiJob, Double w4NbrChldrn, Double w4NbrOthrDep, Double w4OthrIncAmt,
-			Double w4OthrDedAmt, Double w4OthrExmptAmt,
-			String w4FileStatNew, String w4MultiJobNew, Double w4NbrChldrnNew, Double w4NbrOthrDepNew, Double w4OthrIncAmtNew,
+			String w4FileStatNew, String w4MultiJobNew, Integer w4NbrChldrnNew, Integer w4NbrOthrDepNew, Double w4OthrIncAmtNew,
 				Double w4OthrDedAmtNew, Double w4OthrExmptAmtNew) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSS");
 		BeaW4Id id = new BeaW4Id();
@@ -97,19 +129,19 @@ public class BeaW4 implements java.io.Serializable {
 		}
 		this.statCd = statCd;
 		
-		this.w4FileStat = w4FileStat;
+		this.w4FileStat =  pay.getW4FileStat()==null?"":pay.getW4FileStat();
 		this.w4FileStatNew = w4FileStatNew;
-		this.w4MultiJob = w4MultiJob;
+		this.w4MultiJob = pay.getW4MultiJob()==null?"":pay.getW4MultiJob();
 		this.w4MultiJobNew = w4MultiJobNew;
-		this.w4NbrChldrn = w4NbrChldrn;
+		this.w4NbrChldrn = pay.getW4NbrChldrn()==null?0:pay.getW4NbrChldrn();
 		this.w4NbrChldrnNew = w4NbrChldrnNew;
-		this.w4NbrOthrDep = w4NbrOthrDep;
+		this.w4NbrOthrDep = pay.getW4NbrOthrDep()==null?0:pay.getW4NbrOthrDep();
 		this.w4NbrOthrDepNew  = w4NbrOthrDepNew;
-		this.w4OthrIncAmt = w4OthrIncAmt;
+		this.w4OthrIncAmt = pay.getW4OthrIncAmt()==null?0.00:pay.getW4OthrIncAmt();
 		this.w4OthrIncAmtNew = w4OthrIncAmtNew;
-		this.w4OthrDedAmt = w4OthrDedAmt;
+		this.w4OthrDedAmt = pay.getW4OthrDedAmt()==null?0.00:pay.getW4OthrDedAmt();
 		this.w4OthrDedAmtNew = w4OthrDedAmtNew;
-		this.w4OthrExmptAmt = w4OthrExmptAmt;
+		this.w4OthrExmptAmt = pay.getW4OthrExmptAmt()==null?0.00:pay.getW4OthrExmptAmt();
 		this.w4OthrExmptAmtNew = w4OthrExmptAmtNew;
 	}
 	
@@ -117,8 +149,10 @@ public class BeaW4 implements java.io.Serializable {
 	
 
 	public BeaW4(BeaW4Id id, Character maritalStatTax, Integer nbrTaxExempts, Character maritalStatTaxNew, Integer nbrTaxExemptsNew,
-			String apprvdDts, Integer apprvrUsrId, Character statCd, String w4FileStatNew,
-			String w4MultiJobNew, Double w4NbrChldrnNew, Double w4NbrOthrDepNew, Double w4OthrIncAmtNew,
+			String apprvdDts, Integer apprvrUsrId, Character statCd, String w4FileStat,
+			String w4MultiJob, Integer w4NbrChldrn, Integer w4NbrOthrDep, Double w4OthrIncAmt,
+			Double w4OthrDedAmt, Double w4OthrExmptAmt, String w4FileStatNew,
+			String w4MultiJobNew, Integer w4NbrChldrnNew, Integer w4NbrOthrDepNew, Double w4OthrIncAmtNew,
 			Double w4OthrDedAmtNew, Double w4OthrExmptAmtNew) {
 		super();
 		this.id = id;
@@ -129,6 +163,13 @@ public class BeaW4 implements java.io.Serializable {
 		this.apprvdDts = apprvdDts;
 		this.apprvrUsrId = apprvrUsrId;
 		this.statCd = statCd;
+		this.w4FileStat = w4FileStat;
+		this.w4MultiJob = w4MultiJob;
+		this.w4NbrChldrn = w4NbrChldrn;
+		this.w4NbrOthrDep = w4NbrOthrDep;
+		this.w4OthrIncAmt = w4OthrIncAmt;
+		this.w4OthrDedAmt = w4OthrDedAmt;
+		this.w4OthrExmptAmt = w4OthrExmptAmt;
 		this.w4FileStatNew = w4FileStatNew;
 		this.w4MultiJobNew = w4MultiJobNew;
 		this.w4NbrChldrnNew = w4NbrChldrnNew;
@@ -155,6 +196,20 @@ public class BeaW4 implements java.io.Serializable {
 		this.apprvdDts = "";
 		this.apprvrUsrId = -1;
 		this.statCd = 'P';
+		this.w4FileStat = info.getW4FileStat()==null?"":info.getW4FileStat();
+		this.w4FileStatNew = info.getW4FileStat()==null?"":info.getW4FileStat();
+		this.w4MultiJob = info.getW4MultiJob()==null?"":info.getW4MultiJob();
+		this.w4MultiJobNew = info.getW4MultiJob()==null?"":info.getW4MultiJob();
+		this.w4NbrChldrn = info.getW4NbrChldrn()==null?0:info.getW4NbrChldrn();
+		this.w4NbrChldrnNew = info.getW4NbrChldrn()==null?0:info.getW4NbrChldrn();
+		this.w4NbrOthrDep = info.getW4NbrOthrDep()==null?0:info.getW4NbrOthrDep();
+		this.w4NbrOthrDepNew = info.getW4NbrOthrDep()==null?0:info.getW4NbrOthrDep();
+		this.w4OthrIncAmt = info.getW4OthrIncAmt()==null?0.00:info.getW4OthrIncAmt();
+		this.w4OthrIncAmtNew = info.getW4OthrIncAmt()==null?0.00:info.getW4OthrIncAmt();
+		this.w4OthrDedAmt = info.getW4OthrDedAmt()==null?0.00:info.getW4OthrDedAmt();
+		this.w4OthrDedAmtNew = info.getW4OthrDedAmt()==null?0.00:info.getW4OthrDedAmt();
+		this.w4OthrExmptAmt = info.getW4OthrExmptAmt()==null?0.00:info.getW4OthrExmptAmt();
+		this.w4OthrExmptAmtNew = info.getW4OthrExmptAmt()==null?0.00:info.getW4OthrExmptAmt();
 	}
 
 	@EmbeddedId
@@ -271,38 +326,38 @@ public class BeaW4 implements java.io.Serializable {
 	}
 
 	@Column(name = "W4_NBR_CHLDRN", nullable = false, length = 2)
-	public Double getW4NbrChldrn() {
+	public Integer getW4NbrChldrn() {
 		return w4NbrChldrn;
 	}
 	
-	public void setW4NbrChldrn(Double w4NbrChldrn) {
+	public void setW4NbrChldrn(Integer w4NbrChldrn) {
 		this.w4NbrChldrn = w4NbrChldrn;
 	}
 
 	@Column(name = "W4_NBR_CHLDRN_NEW", nullable = false, length = 2)
-	public Double getW4NbrChldrnNew() {
+	public Integer getW4NbrChldrnNew() {
 		return w4NbrChldrnNew;
 	}
 
-	public void setW4NbrChldrnNew(Double w4NbrChldrnNew) {
+	public void setW4NbrChldrnNew(Integer w4NbrChldrnNew) {
 		this.w4NbrChldrnNew = w4NbrChldrnNew;
 	}
 	
 	@Column(name = "W4_NBR_OTHR_DEP", nullable = false, length = 2)
-	public Double getW4NbrOthrDep() {
+	public Integer getW4NbrOthrDep() {
 		return w4NbrOthrDep;
 	}
 
-	public void setW4NbrOthrDep(Double w4NbrOthrDep) {
+	public void setW4NbrOthrDep(Integer w4NbrOthrDep) {
 		this.w4NbrOthrDep = w4NbrOthrDep;
 	}
 
 	@Column(name = "W4_NBR_OTHR_DEP_NEW", nullable = false, length = 2)
-	public Double getW4NbrOthrDepNew() {
+	public Integer getW4NbrOthrDepNew() {
 		return w4NbrOthrDepNew;
 	}
 
-	public void setW4NbrOthrDepNew(Double w4NbrOthrDepNew) {
+	public void setW4NbrOthrDepNew(Integer w4NbrOthrDepNew) {
 		this.w4NbrOthrDepNew = w4NbrOthrDepNew;
 	}
 

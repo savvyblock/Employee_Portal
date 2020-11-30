@@ -8,7 +8,6 @@
         "FICATax": "FICA Tax",
         "medicareGross": "Medicare Gross",
         "medicareTax": "Medicare Tax",
-        "nontaxablePay": "Nontaxable Pay",
         "earnedIncomeCredit": "Earned Income Credit",
         "dependentCare": "Dependent Care",
         "annuityDeduction": "Annuity Deduction",
@@ -27,6 +26,9 @@
         "healthInsuranceDeduction": "Health Insurance Deduction",
         "taxableFringeBenefits": "Taxable Fringe Benefits",
         "healthSavingsAccount": "Health Savings Account",
+        "ePSLAregularrate": "EPSL1",
+        "ePSLAtwothirdsrate": "EPSL2",
+        "eFMLEA": "EFMLEA",
         "nonTaxSickPay": "Non-Tax Sick Pay",
         "hireExemptWages": "HIRE Exempt Wages",
         "formW2WageAndTaxStatement": "Form W-2 Wage and Tax Statement",
@@ -127,6 +129,10 @@
         "ASCENDER":"ASCENDER",
         "welcomeToNewEmployeePortal": "Welcome to the new ASCENDER EmployeePortal.",
         "allRightReserved":"All rights reserved",
+        "footerVersion":"Version 3.0.9.0",
+        "versionLabel":"Version:",
+        "version":"4.0.1",
+        "versionLastNumber": "17",
         "copyRight":"COPYRIGHT &copy"
     },
     "accessHint":{

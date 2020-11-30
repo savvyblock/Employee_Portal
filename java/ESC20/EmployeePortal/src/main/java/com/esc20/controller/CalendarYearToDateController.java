@@ -10,21 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.codec.Base64;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.esc20.model.BeaUsers;
+import com.esc20.model.BeaW4;
 import com.esc20.model.BhrCalYtd;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.CalYTDPrint;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.service.IndexService;
@@ -33,6 +29,12 @@ import com.esc20.service.PDFService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -88,18 +90,38 @@ public class CalendarYearToDateController {
 		String employeeNumber = userDetail.getEmpNbr();
 		List<String> years = service.getAvailableYears(employeeNumber);
 		String latestYear = DateUtil.getLatestYear(years);
-		BhrCalYtd calYTD = service.getCalenderYTD(employeeNumber, latestYear);
-		BigDecimal trsIns = calYTD.getTrsDeposit().subtract(calYTD.getTrsSalaryRed());
-		Frequency freq = Frequency.getFrequency(calYTD.getId().getPayFreq() + "");
-		String latestPayDate = service.getLatestPayDate(employeeNumber, freq);
-	
+		List<BhrCalYtd> calYTDs = service.getCalenderYTD(employeeNumber, latestYear);
+
+		List<HashMap<String, Object>> pageValues = new ArrayList<HashMap<String, Object>>();
+		calYTDs.forEach(calYTD -> {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			BigDecimal trsIns = calYTD.getTrsDeposit().subtract(calYTD.getTrsSalaryRed());
+			Frequency freq = Frequency.getFrequency(calYTD.getId().getPayFreq() + "");
+			String latestPayDate = service.getLatestPayDate(employeeNumber, freq);
+			Map<Frequency, List<CurrentPayInformation>> jobs = this.service.getJob(employeeNumber);
+			List<Frequency> frequencies = this.service.getFrequencies(jobs);
+
+			Map<Frequency, PayInfo> payInfos = this.service.retrievePayInfo(employeeNumber, frequencies);
+			Map<Frequency, BeaW4> w4Request = this.indexService.getBeaW4Info(employeeNumber, frequencies);
+			List<Code> w4FileStatOptions = this.referenceService.getW4MaritalActualStatuses();
+			Map<Frequency, String> payCampuses = this.service.retrievePayCampuses(employeeNumber, frequencies);
+
+			mav.addObject("payCampuses", payCampuses);
+			mav.addObject("w4Request", w4Request);
+			mav.addObject("payInfos", payInfos);
+			mav.addObject("w4FileStatOptions", w4FileStatOptions);
+
+			map.put("latestPayDate", latestPayDate);
+			map.put("trsIns", trsIns);
+			map.put("freq", freq);
+			map.put("calendar", calYTD);
+			pageValues.add(map);
+		});
+
 		mav.setViewName("/inquiry/calendarYearToDate");
 		mav.addObject("years", years);
 		mav.addObject("selectedYear", latestYear);
-		mav.addObject("calendar", calYTD);
-		mav.addObject("latestPayDate", latestPayDate);
-		mav.addObject("trsIns", trsIns);
-		mav.addObject("freq", freq);
+		mav.addObject("pageValues", pageValues);
 		return mav;
 	}
 
@@ -119,7 +141,7 @@ public class CalendarYearToDateController {
         userDetail.setEmpNbr(user.getEmpNbr());
         userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
         List<Code> gens = referenceService.getGenerations();
-		 	for(Code gen: gens) {
+		for(Code gen: gens) {
 		    	if(userDetail.getNameGen() != null && gen.getCode().trim().equals(userDetail.getNameGen().toString().trim())) {
 		    		userDetail.setGenDescription(gen.getDescription());
 		    	}
@@ -134,18 +156,27 @@ public class CalendarYearToDateController {
 
 		//BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		String employeeNumber = userDetail.getEmpNbr();
-		BhrCalYtd calYTD = service.getCalenderYTD(employeeNumber, year);
-		BigDecimal trsIns = calYTD.getTrsDeposit().subtract(calYTD.getTrsSalaryRed());
 		List<String> years = service.getAvailableYears(employeeNumber);
+		List<BhrCalYtd> calYTDs = service.getCalenderYTD(employeeNumber, year);
+
+		List<HashMap<String, Object>> pageValues = new ArrayList<HashMap<String, Object>>();
+		calYTDs.forEach(calYTD -> {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			BigDecimal trsIns = calYTD.getTrsDeposit().subtract(calYTD.getTrsSalaryRed());
 		Frequency freq = Frequency.getFrequency(calYTD.getId().getPayFreq() + "");
 		String latestPayDate = service.getLatestPayDate(employeeNumber, freq);
+
+			map.put("calendar", calYTD);
+			map.put("latestPayDate", latestPayDate);
+			map.put("trsIns", trsIns);
+			map.put("freq", freq);
+			pageValues.add(map);
+		});
+
 		mav.setViewName("/inquiry/calendarYearToDate");
 		mav.addObject("years", years);
 		mav.addObject("selectedYear", year);
-		mav.addObject("calendar", calYTD);
-		mav.addObject("latestPayDate", latestPayDate);
-		mav.addObject("trsIns", trsIns);
-		mav.addObject("freq", freq);
+		mav.addObject("pageValues", pageValues);
 		return mav;
 	}
 	
@@ -175,7 +206,7 @@ public class CalendarYearToDateController {
 		//BhrEmpDemo userDetail = (BhrEmpDemo) request.getSession().getAttribute("userDetail");
 		//District district = (District) request.getSession().getAttribute("district");
 		
-		BhrCalYtd b = service.getCalenderYTD(userDetail.getEmpNbr(), year);
+		List<BhrCalYtd> b = service.getCalenderYTD(userDetail.getEmpNbr(), year);
 		
 		List<CalYTDPrint> parameters = this.generateCalYTDPrint(userDetail, district, b);
 		
@@ -218,7 +249,7 @@ public class CalendarYearToDateController {
 		//BhrEmpDemo userDetail = (BhrEmpDemo) request.getSession().getAttribute("userDetail");
 		//District district = (District) request.getSession().getAttribute("district");
 		
-		BhrCalYtd b = service.getCalenderYTD(userDetail.getEmpNbr(), year);
+		List<BhrCalYtd> b = service.getCalenderYTD(userDetail.getEmpNbr(), year);
 		
 		List<CalYTDPrint> parameters = this.generateCalYTDPrint(userDetail, district, b);
 		
@@ -237,7 +268,7 @@ public class CalendarYearToDateController {
 	}
 	
 	//jf20140110 Print Report on Calendar YTD screen
-	public List<CalYTDPrint> generateCalYTDPrint(BhrEmpDemo user, District district , BhrCalYtd calendar)
+	public List<CalYTDPrint> generateCalYTDPrint(BhrEmpDemo user, District district, List<BhrCalYtd> calList)
 	{
 		String dCitySt = "";
 		
@@ -247,7 +278,7 @@ public class CalendarYearToDateController {
 		{
 			dCitySt = dCitySt + "-" + district.getZip4().trim();
 		}
-		
+		final String fDCitySt = dCitySt;
 		String eName = "";
 		String middleName = user.getNameM().trim();
 		if (middleName.length() > 0) {
@@ -257,20 +288,46 @@ public class CalendarYearToDateController {
 		}
 		
 		eName = user.getNameF() + " " + middleName + user.getNameL() + " " + (user.getGenDescription()==null?"":user.getGenDescription());   //jf20150113 Display description instead of code fix
-		
 		List<CalYTDPrint> calYTDRpt = new ArrayList<CalYTDPrint>();
-		CalYTDPrint print = null;
+		// CalYTDPrint print = new CalYTDPrint();
+
 		
-			print = new CalYTDPrint();
+		
+		final String fEName = eName;
+
+		List<CalYTDPrint> reportList = new ArrayList<CalYTDPrint>();
+
+		calList.forEach(calendar -> {
+			CalYTDPrint print = new CalYTDPrint();
+
+		Frequency freq = Frequency.getFrequency(calendar.getId().getPayFreq() + "");
+
+			
+		// w4
+
+		PayInfo payInfos = this.indexService.getPayInfo(user, freq.getLabel());
+		BeaW4 w4Request = this.indexService.getBeaW4(user, freq.getLabel());
+
+		print.setMaritalStatTax(payInfos.getMaritalStatTax());
+		print.setNbrTaxExempts(payInfos.getNbrTaxExempts());
+		print.setW4FileStat(w4Request.getW4FileStat());
+		print.setW4MultiJob(w4Request.getW4MultiJob());
+		print.setW4NbrChldrn(w4Request.getW4NbrChldrn());
+		print.setW4OthrIncAmt(w4Request.getW4OthrIncAmt());
+		print.setW4OthrDedAmt(w4Request.getW4OthrDedAmt());
+		print.setW4OthrExmptAmt(w4Request.getW4OthrExmptAmt() );
+		print.setW4NbrOthrDep(w4Request.getW4NbrOthrDep());
+
+		// w4
+
 			print.setDname(district.getName().trim());
 			print.setDaddress(district.getAddress().trim());
-			print.setDcityst(dCitySt.trim());
+			print.setDcityst(fDCitySt.trim());
 			
-			print.setEname(eName);
+			print.setEname(fEName);
 			print.setEmployeeNumber(user.getEmpNbr());
 			
 			print.setCalYr(calendar.getId().getCalYr());
-			Frequency freq = Frequency.getFrequency(calendar.getId().getPayFreq() + "");
 			print.setFrequency(freq.getLabel());
 
 			String latestPayDate = service.getLatestPayDate(user.getEmpNbr(), freq);
@@ -323,8 +380,9 @@ public class CalendarYearToDateController {
 			print.setAnnuityRoth457b(calendar.getAnnuityRoth457b());
 			BigDecimal trsIns = calendar.getTrsDeposit().subtract(calendar.getTrsSalaryRed());
 			print.setTrsInsurance(trsIns);
-			calYTDRpt.add(print);
+			reportList.add(print);
+		});
 		
-		return calYTDRpt;
+		return reportList;
 	}
 }

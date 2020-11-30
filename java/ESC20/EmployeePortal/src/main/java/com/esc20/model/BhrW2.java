@@ -51,7 +51,9 @@ public class BhrW2 implements java.io.Serializable {
 	private BigDecimal hireExemptWgs;
 	private BigDecimal emplrPrvdHlthcare;
 	private BigDecimal annuityRoth457b;
-
+	private BigDecimal epslaRegAmt;
+	private BigDecimal epslaTwoThirdsAmt;
+	private BigDecimal efmleaAmt;
 	public BhrW2() {
 	}
 
@@ -63,7 +65,7 @@ public class BhrW2 implements java.io.Serializable {
 			BigDecimal cafeAmt, BigDecimal sickPayNontax, BigDecimal nontrsReimbrExcess, BigDecimal nontrsReimbrBase,
 			BigDecimal nontrsBusAllow, BigDecimal nontrsNontaxBusAllow, BigDecimal empBusinessExpense,
 			BigDecimal annuityRoth, BigDecimal hsaContrib, BigDecimal hireExemptWgs, BigDecimal emplrPrvdHlthcare,
-			BigDecimal annuityRoth457b) {
+			BigDecimal annuityRoth457b,BigDecimal epslaRegAmt, BigDecimal epslaTwoThirdsAmt,BigDecimal efmleaAmt) {
 		this.id = id;
 		this.ficaTyp = ficaTyp;
 		this.whTax = whTax;
@@ -99,6 +101,9 @@ public class BhrW2 implements java.io.Serializable {
 		this.hireExemptWgs = hireExemptWgs;
 		this.emplrPrvdHlthcare = emplrPrvdHlthcare;
 		this.annuityRoth457b = annuityRoth457b;
+		this.epslaRegAmt = epslaRegAmt;
+		this.epslaTwoThirdsAmt = epslaTwoThirdsAmt;
+		this.efmleaAmt = efmleaAmt;
 	}
 
 	@EmbeddedId
@@ -420,4 +425,31 @@ public class BhrW2 implements java.io.Serializable {
 		this.annuityRoth457b = annuityRoth457b;
 	}
 
+	@Column(name = "EPSLA_REG_AMT", nullable = false, precision = 7)
+	public BigDecimal getEpslaRegAmt() {
+		return this.epslaRegAmt;
+	}
+
+	public void setEpslaRegAmt(BigDecimal epslaRegAmt) {
+		this.epslaRegAmt = epslaRegAmt;
+	}
+	
+	@Column(name = "EPSLA_TWO_THIRDS_AMT", nullable = false, precision = 7)
+	public BigDecimal getEpslaTwoThirdsAmt() {
+		return this.epslaTwoThirdsAmt;
+	}
+
+	public void setEpslaTwoThirdsAmt(BigDecimal epslaTwoThirdsAmt) {
+		this.epslaTwoThirdsAmt = epslaTwoThirdsAmt;
+	}
+	
+	@Column(name = "EFMLEA_AMT", nullable = false, precision = 7)
+	public BigDecimal getEfmleaAmt() {
+		return this.efmleaAmt;
+	}
+
+	public void setEfmleaAmt(BigDecimal efmleaAmt) {
+		this.efmleaAmt = efmleaAmt;
+	}
+	
 }

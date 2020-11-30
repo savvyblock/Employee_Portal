@@ -26,8 +26,11 @@ $(function() {
                 ev.date &&
                 !endDate
             ) {
-                startDate = new Date(startDate)
+                var dateArray = startDate.split('-')
+                startDate = new Date(dateArray[2]+'/'+dateArray[0]+'/'+dateArray[1]+' 12:00:00')
+                
                 startDate.setDate(startDate.getDate())
+                // startDate.setMonth(startDate.getMonth() -1)
                 checkout.update(startDate)
                 $('#endDateInput').change()
                 $('#startDateInput').change()
@@ -52,8 +55,8 @@ $(function() {
             }
         })
         .on('changeDate', function(ev) {
-            // $('#startDateNote').val(startNote)
-            // $('#endDateNote').val(endNote)
+            //$('#startDateNote').val(startNote)
+            //$('#endDateNote').val(endNote)
             calcTime()
         })
         .data('datepicker')
@@ -497,7 +500,7 @@ function compareTime(name){
         var startFullTimeNote = new Date(changeDateYMD(leaveStartDate,true) + ' ' + changeFormatTime(startTimeValue))
     }
     if(leaveEndDate && leaveEndDate != '' && endTimeValue && endTimeValue!=''){
-        var endFullTimeNote = new Date(changeDateYMD(leaveEndDate,true) + ' ' + changeFormatTime(endTimeValue))
+        var endFullTimeNote = (new Date(changeDateYMD(leaveEndDate,true) + ' ' + changeFormatTime(endTimeValue))).getTime()
     }
     console.log(startFullTimeNote.valueOf())
     console.log(endFullTimeNote.valueOf())
@@ -524,12 +527,14 @@ function saveRequest(isAdd){
     var dateTotal = $("#totalRequested").val()
     var typeCode = $("#modalLeaveType").val()
     var balanceAvailable = $("#available"+typeCode+"").text()
+    var postAgnstZeroBal = $("#postAgnstZeroBal"+typeCode+"").text()
 
     var leaveStartDate = $("#startDateInput").val();
     var leaveEndDate = $("#endDateInput").val();
     var startTimeValue = $("#startTimeValue").val();
     var endTimeValue = $("#endTimeValue").val();
     var empNbr = $("#empNbrModal").val();
+
 
     var bootstrapValidator = $('#requestForm').data('bootstrapValidator')
     bootstrapValidator.validate()
@@ -551,8 +556,9 @@ function saveRequest(isAdd){
             $('.dateValidator').hide()
             if(parseFloat(dateTotal)>0){
                 $(".dateValidator01").hide()
-
-                if(parseFloat(dateTotal)<=parseFloat(balanceAvailable)){
+                
+                if(parseFloat(dateTotal)<=parseFloat(balanceAvailable) ||
+                   postAgnstZeroBal == 'Y'){
                     $(".availableError").hide()
                     // return false
                     var obj = { 
@@ -640,6 +646,7 @@ function showTimeUnit(){
 function calcDaysOrHours(){
     var startDate = changeDateYMD($('#startDateInput').val())
     var endDate = changeDateYMD($('#endDateInput').val())
+
     var leaveHoursDaily = Number($('#leaveHoursDaily').val().trim())
     var day1 = startDate;
     var day2 = endDate;

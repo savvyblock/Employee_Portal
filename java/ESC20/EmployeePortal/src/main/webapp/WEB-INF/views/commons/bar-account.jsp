@@ -13,8 +13,38 @@
     <div class="global-wrap">
             <%@ include file="global-select.jsp"%>
     </div>
-    <a class="a-line help helpLink" href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank" role="link"
-          aria-label="${sessionScope.languageJSON.accessHint.goHelp}" title="${sessionScope.languageJSON.accessHint.goHelp}">
-		<i class="fa fa-question-circle"></i>
-    </a>
+
+    <a class=" help helpLink" href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank" role="link"
+   	      aria-label="${sessionScope.languageJSON.accessHint.goHelp}" title="${sessionScope.languageJSON.accessHint.goHelp}">
+   	 	Help &nbsp;<i class="fa fa-question-circle"></i>
+   	</a>
+   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
+	<a 	style="line-height:0; " 
+		title="Facebook"
+		aria-label="Facebook" 
+		class="link-on-login-header link-color" 
+		href="https://www.facebook.com/Ascendertx/" 
+		target="_blank"><i class="fa fa-facebook"></i>
+	</a> 	
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				
+
+	<a 	style="line-height:0; " 
+		title="Twitter"
+		aria-label="Twitter" 
+		class="link-on-login-header link-color" 
+		href="https://twitter.com/ascendertx"
+		target="_blank"><i class="fa fa-twitter"></i>
+	</a>	
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;					
+
+	<a 	style="line-height:0;" 
+		title="Linkedin"
+		aria-label="Linkedin" 
+		class="link-on-login-header link-color" 
+		href="https://www.linkedin.com/company/ascendertx/"
+		target="_blank"><i class="fa fa-linkedin"></i>
+	</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
 </div>

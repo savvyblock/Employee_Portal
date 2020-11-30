@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<!-- Created with Jaspersoft Studio version 6.4.2.final using JasperReports Library version 6.4.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DHrs2500WageandearningEarnTab" pageWidth="282" pageHeight="792" whenNoDataType="NoPages" columnWidth="282" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="2" uuid="34ff9a40-5fd7-4126-a3b4-a0b92250b022">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
@@ -18,7 +18,6 @@
 	<parameter name="vs_payfreq" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="vs_empnbr" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="vs_dtofpay" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="vs_drctdeposit" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="vs_void_iss" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="vs_chk_nbr" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="vs_adj_nbr" class="java.lang.String" isForPrompting="false"/>
@@ -116,9 +115,6 @@
 	 bhr_pay_hist.pay_freq = $P{vs_payfreq} and
 	 bhr_pay_hist.emp_nbr = $P{vs_empnbr} and
 	 bhr_pay_hist.dt_of_pay = $P{vs_dtofpay} and
-	 bhr_pay_hist.drct_deposit_flg = (CASE WHEN LENGTH(TRIM($P{vs_drctdeposit})) = 0
-					       THEN bhr_pay_hist.drct_deposit_flg
-					       ELSE $P{vs_drctdeposit} END) and
 	 bhr_pay_hist.void_or_iss = $P{vs_void_iss} and
 	 bhr_pay_deduct_hist.emp_nbr = bhr_pay_hist.emp_nbr  and
 	 bhr_pay_deduct_hist.cyr_nyr_flg = 'C' and
@@ -288,10 +284,6 @@ union SELECT distinct bhr_pay_hist.std_gross,
 	 bhr_pay_hist.pay_freq = $P{vs_payfreq} and
 	 bhr_pay_hist.emp_nbr = $P{vs_empnbr} and
 	 bhr_pay_hist.dt_of_pay = $P{vs_dtofpay} and
-	 bhr_pay_hist.drct_deposit_flg = (CASE
-			WHEN LENGTH(TRIM($P{vs_drctdeposit})) = 0
-			THEN bhr_pay_hist.drct_deposit_flg
-			ELSE $P{vs_drctdeposit}	END) and
 	 not exists (select 'x' from bhr_pay_deduct_hist
  			where bhr_pay_deduct_hist.emp_nbr = bhr_pay_hist.emp_nbr  and
 				bhr_pay_deduct_hist.cyr_nyr_flg = 'C' and
@@ -1641,7 +1633,7 @@ $F{tot_ytd_ded}.doubleValue())]]></textFieldExpression>
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<textFieldExpression><![CDATA[new Double($F{bhr_pay_hist_wh_gross}.doubleValue() + $F{bhr_pay_hist_nontrs_nontax_bus_allow}.doubleValue() + $F{bhr_pay_hist_nontrs_nontax_nonpay_allow}.doubleValue())]]></textFieldExpression>
+						<textFieldExpression><![CDATA[new Double($F{bhr_pay_hist_wh_gross}.doubleValue() + $F{bhr_pay_hist_nontrs_nontax_bus_allow}.doubleValue())]]></textFieldExpression>
 					</textField>
 					<textField pattern="###,###.00" isBlankWhenNull="true">
 						<reportElement key="textField" x="194" y="1" width="70" height="11" backcolor="#C0C0C0" uuid="92907581-9049-4845-b3c1-0794376878be">
@@ -1657,7 +1649,7 @@ $F{tot_ytd_ded}.doubleValue())]]></textFieldExpression>
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<textFieldExpression><![CDATA[new Double($F{bhr_cal_ytd_wh_gross}.doubleValue() + $F{bhr_cal_ytd_nontrs_nontax_bus_allow}.doubleValue()+$F{bhr_cal_ytd_nontrs_nontax_nonpay_allow}.doubleValue())]]></textFieldExpression>
+						<textFieldExpression><![CDATA[new Double($F{bhr_cal_ytd_wh_gross}.doubleValue() + $F{bhr_cal_ytd_nontrs_nontax_bus_allow}.doubleValue())]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>

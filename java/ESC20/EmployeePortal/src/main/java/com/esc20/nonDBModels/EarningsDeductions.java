@@ -3,6 +3,7 @@ package com.esc20.nonDBModels;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import com.esc20.model.BhrCalYtd;
 import com.esc20.util.NumberUtil;
 
 public class EarningsDeductions implements Serializable{
@@ -52,10 +53,10 @@ private static final long serialVersionUID = -1023249528812172648L;
 		BigDecimal nonTrsTax = NumberUtil.value(nontrsTaxPymtAmt).add(NumberUtil.value(nontrsSuppl));
 		BigDecimal total = BigDecimal.ZERO.setScale(2, BigDecimal.ROUND_HALF_UP);
 		if (value.compareTo(BigDecimal.ZERO) > 0) {
-			total = grossPayTot.add(absDedAmt).add(nontrsNonpayBusAllow).add(absDedCoded);
+			total = grossPayTot.add(absDedAmt).add(absDedCoded).subtract(nontrsNonpayBusAllow);
 		}
 		else {
-			total = grossPayTot.add(absDedAmt).add(nontrsNonpayBusAllow);
+			total = grossPayTot.add(absDedAmt).subtract(nontrsNonpayBusAllow);
 		}
 		total = total.setScale(2, BigDecimal.ROUND_HALF_UP);
 		BigDecimal absenceDeduct = BigDecimal.ZERO.setScale(2, BigDecimal.ROUND_HALF_UP);
@@ -100,12 +101,43 @@ private static final long serialVersionUID = -1023249528812172648L;
 		this.setNetPay(NumberUtil.value(netPay));
 		this.setNonTrsNonPayTax(NumberUtil.value(nontrsNonpayBusAllow));
 		this.setNonTrsNonPayNonTax(NumberUtil.value(nontrsNontaxNonpayAllow));
-		this.setTaxableWage(NumberUtil.value(nontrsNonpayBusAllow).add(NumberUtil.value(nontrsNontaxNonpayAllow)).add(NumberUtil.value(whGross)));
+		this.setTaxableWage(NumberUtil.value(whGross));
 		this.setFicaWage(NumberUtil.value(ficaGross));
 		this.setMedGross(NumberUtil.value(medGross));
 	}
 	public EarningsDeductions() {
 
+	}
+
+	public EarningsDeductions(BhrCalYtd record, BigDecimal totalOtherDeductions) {
+		// BRM-735 added new constructor to handle cal_ytd conversion
+		this.setStandardGross(record.getNoncontrAmt().add(record.getContrAmt()));
+		this.setSupplementalPay(record.getSupplPayAmt());
+		this.setTaxedFringe(record.getTaxedBenefits());
+		this.setEarnedIncomeCred(record.getEicAmt());
+		this.setNonTrsTax(record.getNontrsBusAllow().add(record.getNontrsReimbrExcess()));
+		this.setNonTrsNonTax(record.getNontrsNontaxBusAllow().add(record.getNontrsReimbrBase()));
+		this.setTrsSupplemental(record.getTrsSupplComp());
+		this.setTotalEarnings(this.getStandardGross().add(this.getSupplementalPay()).add(this.getTaxedFringe())
+				.add(this.getEarnedIncomeCred()).add(this.getNonTrsTax()).add(this.getNonTrsNonTax())
+				.add(this.getTrsSupplemental()));
+
+		this.setWithholdingTax(record.getWhTax());
+		this.setFicaTax(record.getFicaTax());
+		this.setMedicareTax(record.getMedTax());
+		this.setTrsSalaryRed(record.getTrsSalaryRed());
+		this.setTrsInsurance(record.getTrsDeposit().subtract(record.getTrsSalaryRed()));
+		this.setTotOtherDed(totalOtherDeductions);
+		this.setTotDed(this.getWithholdingTax().add(this.getFicaTax()).add(this.getMedicareTax())
+				.add(this.getTotOtherDed()).add(record.getTrsDeposit()));
+
+		this.setNonTrsNonPayTax(record.getNontrsNonpayBusAllow());
+		this.setNonTrsNonPayNonTax(record.getNontrsNontaxNonpayAllow());
+	//	this.setTaxableWage(
+	//			record.getWhGross().add(record.getNontrsNontaxBusAllow()));
+		this.setTaxableWage(record.getWhGross());
+		this.setFicaWage(record.getFicaGross());
+		this.setMedGross(record.getMedGross());
 	}
 	public BigDecimal getStandardGross() {
 		return standardGross;

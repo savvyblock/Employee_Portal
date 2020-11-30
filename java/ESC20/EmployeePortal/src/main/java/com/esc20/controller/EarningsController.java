@@ -1,9 +1,14 @@
 package com.esc20.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,8 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BeaUsers;
+import com.esc20.model.BeaW4;
+import com.esc20.model.BhrCalYtd;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.CurrentPayInformation;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Earnings;
 import com.esc20.nonDBModels.EarningsOther;
@@ -26,6 +34,7 @@ import com.esc20.nonDBModels.EarningsPrint;
 import com.esc20.nonDBModels.Frequency;
 import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.PayDate;
+import com.esc20.nonDBModels.PayInfo;
 import com.esc20.nonDBModels.report.IReport;
 import com.esc20.nonDBModels.report.ParameterReport;
 import com.esc20.nonDBModels.report.ReportParameterConnection;
@@ -104,20 +113,34 @@ public class EarningsController {
 		Frequency freq = null;
 		String year = null;
 		if (!CollectionUtils.isEmpty(payDates)) {
-			latestPayDate = this.service.getLatestPayDate(payDates);
+			latestPayDate = service.getLatestPayDate(payDates);
 			message = ((Options) session.getAttribute("options")).getMessageEarnings();
-			earnings = this.service.retrieveEarnings(employeeNumber, latestPayDate);
-			YTDEarnings = this.service.getTYDEarnings(employeeNumber, payDates, latestPayDate);
+			earnings = service.retrieveEarnings(employeeNumber, latestPayDate);
+			YTDEarnings = service.getTYDEarnings(employeeNumber, latestPayDate);
 			if (earnings != null && YTDEarnings != null) {
+
+				// BRM-735 add any YTD EarningsOthers to the "this period" EarningsOthers with a
+				// 0 balance
+				List<EarningsOther> difference = new ArrayList<EarningsOther>(YTDEarnings.getOther());
+				Set<String> earningsCodes = earnings.getOther().stream().map(earns -> earns.getCode())
+						.collect(Collectors.toSet());
+				difference = difference.stream().filter(diff -> !earningsCodes.contains(diff.getCode()))
+						.collect(Collectors.toList());
+				if (difference.size() > 0) {
+					for (EarningsOther earningsOther : difference) {
+						earningsOther.setAmt(BigDecimal.valueOf(0.00));
+						earnings.getOther().add(earningsOther);
+					}
+				}
+
 				for (int i = 0; i < earnings.getOther().size(); i++) {
 					for (int j = 0; j < YTDEarnings.getOther().size(); j++) {
 						if (earnings.getOther().get(i).getCode().equals(YTDEarnings.getOther().get(j).getCode())) {
 							earnings.getOther().get(i).setTydAmt(YTDEarnings.getOther().get(j).getTydAmt());
 							earnings.getOther().get(i).setTydContrib(YTDEarnings.getOther().get(j).getContrib());
-						}
+						} 
 					}
 				}
-				YTDEarnings.setEmplrPrvdHlthcare(this.service.getEmplrPrvdHlthcare(employeeNumber, latestPayDate));
 			}
 			freq = Frequency.getFrequency(StringUtil.mid(latestPayDate.getDateFreq(), 9, 1));
 			year = latestPayDate.getDateFreq().substring(0, 4);
@@ -134,6 +157,17 @@ public class EarningsController {
 			});
 		}
 
+		Map<Frequency, List<CurrentPayInformation>> jobs = this.service.getJob(employeeNumber);
+		List<Frequency> frequencies = this.service.getFrequencies(jobs);
+		Map<Frequency, PayInfo> payInfos = this.service.retrievePayInfo(employeeNumber, frequencies);
+		Map<Frequency, BeaW4> w4Request = this.indexService.getBeaW4Info(employeeNumber, frequencies);
+		List<Code> w4FileStatOptions = this.referenceService.getW4MaritalActualStatuses();
+		Map<Frequency, String> payCampuses = this.service.retrievePayCampuses(employeeNumber, frequencies);
+
+		mav.addObject("payCampuses", payCampuses);
+		mav.addObject("w4Request", w4Request);
+		mav.addObject("payInfos", payInfos);
+		mav.addObject("w4FileStatOptions", w4FileStatOptions);
 		mav.setViewName("/inquiry/earnings");
 		mav.addObject("days", days);
 		mav.addObject("selectedPayDate", latestPayDate);
@@ -169,8 +203,8 @@ public class EarningsController {
 		mav.addObject("payDates", payDates);
 		PayDate payDate = PayDate.getPaydate(payDateString);
 		String message = ((Options) session.getAttribute("options")).getMessageEarnings();
-		Earnings earnings = this.service.retrieveEarnings(employeeNumber, payDate);
-		Earnings YTDEarnings = this.service.getTYDEarnings(employeeNumber, payDates, payDate);
+		Earnings earnings = service.retrieveEarnings(employeeNumber, payDate);
+		Earnings YTDEarnings = service.getTYDEarnings(employeeNumber, payDate);
 		for (int i = 0; i < earnings.getOther().size(); i++) {
 			for (int j = 0; j < YTDEarnings.getOther().size(); j++) {
 				if (earnings.getOther().get(i).getCode().equals(YTDEarnings.getOther().get(j).getCode())) {
@@ -311,9 +345,9 @@ public class EarningsController {
 		print.setBhr_pay_hist_void_or_iss(payDate.getVoidIssue());
 		print.setBhr_pay_hist_adj_nbr(payDate.getAdjNumber());
 		print.setBhr_pay_hist_adj_nbr(StringUtil.mid(selectedPayDate, 11, 1));
-		print.setBhr_emp_demo_addr_nbr("");
+		print.setBhr_emp_demo_addr_nbr(userDetail.getAddrNbr());
 		print.setBhr_emp_demo_addr_str(userDetail.getAddrStr());
-		print.setBhr_emp_demo_addr_apt("");
+		print.setBhr_emp_demo_addr_apt(userDetail.getAddrApt());
 		print.setBhr_emp_demo_addr_city(userDetail.getAddrCity());
 		print.setBhr_emp_demo_addr_st(userDetail.getAddrSt());
 		print.setBhr_emp_demo_addr_zip(userDetail.getAddrZip());
@@ -323,6 +357,20 @@ public class EarningsController {
 		print.setBhr_emp_job_campus_id(primaryCampusId);
 		print.setBhr_emp_job_campus_id_displayvalue(primaryCampusId + " " + primaryCampusName);
 		print.setBhr_emp_pay_pay_campus_displayvalue(primaryCampusId + " " + primaryCampusName);
+		// w4
+
+		PayInfo payInfos = this.indexService.getPayInfo(userDetail, print.getBhr_emp_pay_pay_freq());
+		BeaW4 w4Request = this.indexService.getBeaW4(userDetail, print.getBhr_emp_pay_pay_freq());
+
+		print.setMaritalStatTax(payInfos.getMaritalStatTax());
+		print.setNbrTaxExempts(payInfos.getNbrTaxExempts());
+		print.setW4FileStat(w4Request.getW4FileStat());
+		print.setW4MultiJob(w4Request.getW4MultiJob());
+		print.setW4NbrChldrn(w4Request.getW4NbrChldrn());
+		print.setW4OthrIncAmt(w4Request.getW4OthrIncAmt());
+		print.setW4OthrDedAmt(w4Request.getW4OthrDedAmt());
+		print.setW4OthrExmptAmt(w4Request.getW4OthrExmptAmt() );
+		print.setW4NbrOthrDep(w4Request.getW4NbrOthrDep());
 		return print;
 	}
 

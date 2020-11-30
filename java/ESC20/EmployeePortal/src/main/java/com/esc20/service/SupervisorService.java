@@ -37,6 +37,9 @@ import com.esc20.util.StringUtil;
 @Service
 public class SupervisorService {
 
+	@Autowired
+	private MailUtil mailUtil;
+	
     @Autowired
     private OptionsDao optionsDao;
 	
@@ -214,7 +217,7 @@ public class SupervisorService {
 			}
 			
 			try {
-				MailUtil.sendEmail(employee.getEmailAddress().trim(), subject, returnBody.trim());
+				mailUtil.sendEmail(employee.getEmailAddress().trim(), subject, returnBody.trim());
 			}
 			catch(Exception ex) {
 				ex.printStackTrace();
@@ -271,7 +274,7 @@ public class SupervisorService {
 			
 			
 			try {
-				MailUtil.sendEmail(employee.getEmailAddress().trim(), subject, returnBody.trim());
+				mailUtil.sendEmail(employee.getEmailAddress().trim(), subject, returnBody.trim());
 			}
 			catch(Exception ex) {
 				ex.printStackTrace();

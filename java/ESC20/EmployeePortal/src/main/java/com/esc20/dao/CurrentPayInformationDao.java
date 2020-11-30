@@ -171,7 +171,8 @@ public class CurrentPayInformationDao {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT pay.maritalStatTax,");
-		sql.append(" pay.nbrTaxExempts");
+		sql.append(" pay.nbrTaxExempts,  pay.w4FileStat, pay.w4MultiJob, pay.w4NbrChldrn, ");
+		sql.append(" pay.w4NbrOthrDep, pay.w4OthrIncAmt, pay.w4OthrDedAmt, pay.w4OthrExmptAmt  ");
 		sql.append(" FROM BhrEmpPay pay");
 		sql.append(" WHERE pay.id.cyrNyrFlg = 'C'");
 		sql.append(" AND pay.id.payFreq = :frequency");
@@ -180,24 +181,27 @@ public class CurrentPayInformationDao {
 		q.setParameter("employeeNumber", employeeNumber);
 		q.setParameter("frequency", frequency.getCode().charAt(0));
 		Object[] res = (Object[]) q.uniqueResult();
-		PayInfo payinfo = new PayInfo(res[0], res[1]);
+		PayInfo payinfo = new PayInfo(res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7], res[8]);
 		
 		return payinfo;
 	}
 
-	public Map<Frequency, String> getPayCampuses(String employeeNumber) {
+	public Map<Frequency, String> getPayCampuses(String employeeNumber, Frequency frequency) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT pay.id.payFreq, pay.payCampus FROM BhrEmpPay pay ");
-		sql.append("WHERE pay.id.cyrNyrFlg = 'C'");
-		sql.append(" AND pay.id.empNbr = :employeeNumber");
+		sql.append("SELECT pay.id.payFreq, pay.payCampus + ' : ' + ");
+		sql.append(" isnull((select c.campusName from CrDemo c where pay.payCampus = c.id.campusId and c.id.schYr = isnull((select max(d.id.schYr) from CrDemo d where c.id.campusId = d.id.campusId),'')), '') ");
+		sql.append(" FROM BhrEmpPay pay ");
+		sql.append(" WHERE pay.id.cyrNyrFlg = 'C' ");
+		sql.append(" AND pay.id.empNbr = :employeeNumber and pay.id.payFreq = :frequency ");
 		Query q = session.createQuery(sql.toString());
 		q.setParameter("employeeNumber", employeeNumber);
+		q.setParameter("frequency", frequency.getCode().charAt(0));
 		Object[] res = (Object[]) q.uniqueResult();
 		Map<Frequency, String> result = new HashMap<Frequency, String>();
-		String frequency = ((Character) res[0]).toString();
+		String resFreq = ((Character) res[0]).toString();
 		String payCampus = (String) res[1];
-		result.put(Frequency.getFrequency(frequency), payCampus);
+		result.put(Frequency.getFrequency(resFreq), payCampus);
 		
 		return result;
 	}

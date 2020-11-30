@@ -58,6 +58,9 @@ public class W2InformationController {
 	public static String newline = System.getProperty("line.separator");
 
 	@Autowired
+	private MailUtil mailUtil;
+	
+	@Autowired
 	private IndexService indexService;
 
 	@Autowired
@@ -109,7 +112,7 @@ public class W2InformationController {
 		List<String> years = this.service.getW2Years(employeeNumber);
 		String latestYear = DateUtil.getLatestYear(years);
 		BhrW2 w2Info = this.service.getW2Info(employeeNumber, latestYear);
-		mav = setW2ValuesByCalYr(session, mav, employeeNumber, w2Info, latestYear, true);
+		mav = setW2ValuesByCalYr(session, mav, employeeNumber, w2Info, latestYear, true);	
 		mav.addObject("isSuccess", false);
 		return mav;
 	}
@@ -156,6 +159,7 @@ public class W2InformationController {
 			mav.addObject("isSuccess", false);
 		} else
 			mav = setW2ValuesByCalYr(session, mav, employeeNumber, w2Info, year, isSuccess);
+
 		return mav;
 	}
 
@@ -169,31 +173,36 @@ public class W2InformationController {
 		String consent = this.service.getW2Consent(employeeNumber);
 
 		List<BhrThirdPartySickPay> thirdPartyPay = this.service.getBhrThirdPartySickPay(employeeNumber, year);
-		if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("")
-				&& Integer.valueOf(w2Info.getId().getCalYr()) >= 2010) {
-			mav.addObject("hireExemptWgs", NumberUtil.value(w2Info.getHireExemptWgs()));
-		} else {
-			mav.addObject("hireExemptWgs", BigDecimal.valueOf(0.00).setScale(2, BigDecimal.ROUND_HALF_UP));
-		}
-
-		// For calendar year >= 2012
-		if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("")
-				&& Integer.valueOf(w2Info.getId().getCalYr()) >= 2012) {
-			mav.addObject("emplrPrvdHlthcare", NumberUtil.value(w2Info.getEmplrPrvdHlthcare()));
-		} else {
-			mav.addObject("emplrPrvdHlthcare", BigDecimal.valueOf(0.00).setScale(2, BigDecimal.ROUND_HALF_UP));
-		}
-
-		// For calendar year >= 2016
-		if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("")
-				&& Integer.valueOf(w2Info.getId().getCalYr()) >= 2016) {
-			mav.addObject("annuityRoth457b", NumberUtil.value(w2Info.getAnnuityRoth457b()));
-		} else {
-			mav.addObject("annuityRoth457b", BigDecimal.valueOf(0.00).setScale(2, BigDecimal.ROUND_HALF_UP));
+		if (null != w2Info) {
+			if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("")
+					&& Integer.valueOf(w2Info.getId().getCalYr()) >= 2010) {
+				mav.addObject("hireExemptWgs", NumberUtil.value(w2Info.getHireExemptWgs()));
+			} else {
+				mav.addObject("hireExemptWgs", BigDecimal.valueOf(0.00).setScale(2, BigDecimal.ROUND_HALF_UP));
+			}
+	
+			// For calendar year >= 2012
+			if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("")
+					&& Integer.valueOf(w2Info.getId().getCalYr()) >= 2012) {
+				mav.addObject("emplrPrvdHlthcare", NumberUtil.value(w2Info.getEmplrPrvdHlthcare()));
+			} else {
+				mav.addObject("emplrPrvdHlthcare", BigDecimal.valueOf(0.00).setScale(2, BigDecimal.ROUND_HALF_UP));
+			}
+	
+			// For calendar year >= 2016
+			if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("")
+					&& Integer.valueOf(w2Info.getId().getCalYr()) >= 2016) {
+				mav.addObject("annuityRoth457b", NumberUtil.value(w2Info.getAnnuityRoth457b()));
+			} else {
+				mav.addObject("annuityRoth457b", BigDecimal.valueOf(0.00).setScale(2, BigDecimal.ROUND_HALF_UP));
+			}
 		}
 		BhrEmpDemo userDetail = (BhrEmpDemo) session.getAttribute("userDetail");
 		District employer = (District) session.getAttribute("district");
-		W2Print print = this.service.getW2Print(w2Info, userDetail, employer);
+		if (null != w2Info) {
+			W2Print print = this.service.getW2Print(w2Info, userDetail, employer);
+			mav.addObject("w2Print", print);
+		}
 		mav.addObject("isSuccess", isSuccess);
 		mav.setViewName("/inquiry/w2Information");
 		mav.addObject("years", years);
@@ -202,7 +211,7 @@ public class W2InformationController {
 		mav.addObject("elecConsntMsgW2", elecConsntMsgW2);
 		mav.addObject("w2Info", w2Info);
 		mav.addObject("thirdPartyPay", thirdPartyPay);
-		mav.addObject("w2Print", print);
+		
 		return mav;
 	}
 
@@ -270,13 +279,13 @@ public class W2InformationController {
 
 		if (!"".equals(userWorkEmail)) {
 			try {
-				MailUtil.sendEmail(userWorkEmail, subject, messageContents.toString());
+				mailUtil.sendEmail(userWorkEmail, subject, messageContents.toString());
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		} else if (!"".equals(userHomeEmail)) {
 			try {
-				MailUtil.sendEmail(userHomeEmail, subject, messageContents.toString());
+				mailUtil.sendEmail(userHomeEmail, subject, messageContents.toString());
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
@@ -426,7 +435,7 @@ public class W2InformationController {
 		print.setRetplan(path + "reportImages\\" + retplan + ".gif");
 		print.setThrdsick(path + "reportImages\\" + thrdsick + ".gif");
 
-		print.setCopy("Copy B, To Be Filed With Employee\'s FEDERAL Tax Return");
+		print.setCopy("Copy B-To Be Filed With Employee\'s FEDERAL Tax Return");
 
 		// *********************************************************************************************************************************
 		// BOX12
@@ -440,7 +449,7 @@ public class W2InformationController {
 			this.populatePrint(print, row, "C", d2Digit.format(ld_data)); // 20130108 print .00, instead of .0
 		}
 
-		ld_data = w2Info.getEmp457Contrib().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		ld_data = w2Info.getAnnuityDed().setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
 		ld_data = Double.isNaN(ld_data) ? 0.00 : ld_data;
 		if (ld_data != 0.00) {
 			row++;
@@ -529,6 +538,9 @@ public class W2InformationController {
 		box14List.add("Health Ins Ded");
 		box14List.add("Taxable Allowance");
 		box14List.add("Tax Fringe Benefits");
+		box14List.add("EPSL1"); // EPSLA 
+		box14List.add("EPSL2");
+		box14List.add("EFMLEA");
 		box14List.add("Dummy Last Entry");
 
 		Map<String, BigDecimal> box14Map = new HashMap<String, BigDecimal>();
@@ -556,7 +568,14 @@ public class W2InformationController {
 		if (!StringUtil.isNullOrEmpty(w2Option.getTfb()) && "Y".equals(w2Option.getTfb().trim())) {
 			box14Map.put(box14List.get(5), w2Info.getTaxedBenefits());
 		}
-		box14Map.put(box14List.get(6), new BigDecimal(0.00));
+		
+		if (w2Info.getId().getCalYr() != null && !w2Info.getId().getCalYr().trim().equals("")
+				&& Integer.valueOf(w2Info.getId().getCalYr()) == 2020) {
+		box14Map.put(box14List.get(6), w2Info.getEpslaRegAmt());
+		box14Map.put(box14List.get(7), w2Info.getEpslaTwoThirdsAmt());
+		box14Map.put(box14List.get(8), w2Info.getEfmleaAmt());
+		}
+		box14Map.put(box14List.get(9), new BigDecimal(0.00));
 
 		Iterator<String> iter14 = new CodeIterator(box14List, box14Map);
 		print.setCode1401(iter14.next());
@@ -571,7 +590,14 @@ public class W2InformationController {
 		print.setAmt1405(toString(box14Map.get(print.getCode1405())));
 		print.setCode1406(iter14.next());
 		print.setAmt1406(toString(box14Map.get(print.getCode1406())));
-
+		print.setCode1407(iter14.next());
+		print.setAmt1407(toString(box14Map.get(print.getCode1407())));
+		print.setCode1408(iter14.next());
+		print.setAmt1408(toString(box14Map.get(print.getCode1408())));
+		print.setCode1409(iter14.next());
+		print.setAmt1409(toString(box14Map.get(print.getCode1409())));
+		print.setCode1410(iter14.next());
+		print.setAmt1410(toString(box14Map.get(print.getCode1410())));
 		return print;
 	}
 
@@ -642,7 +668,7 @@ public class W2InformationController {
 
 	private W2Print generateW2Copy(W2Print print) {
 		W2Print copy = (W2Print) print.clone();
-		copy.setCopy("Copy C, For Employee\'s RECORDS");
+		copy.setCopy("Copy C-For Employee\'s RECORDS");
 		return copy;
 	}
 }

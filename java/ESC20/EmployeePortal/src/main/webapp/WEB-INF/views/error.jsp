@@ -22,7 +22,7 @@
                   if (ex != null)  ex.printStackTrace(new java.io.PrintStream(ostr));
               %>
               <p>&nbsp;</p>
-              <div style="display: block">
+              <div style="display: block; color: #ffffff;">
               <%=ostr.toString()%>
               </div>
             </div>
