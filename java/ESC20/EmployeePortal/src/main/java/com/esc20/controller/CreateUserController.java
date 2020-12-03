@@ -56,6 +56,10 @@ public class CreateUserController {
 	@RequestMapping("createNewUser")
 	public ModelAndView createNewUser(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
+		//ALC-26 update EP password to get settings from DB
+		Map<String, String> preferences = indexService.getTxeisPreferences();
+		req.getSession().setAttribute("txeisPreferences", preferences);
+		
 		mav.setViewName("createNewUser");
 		return mav;
 	}

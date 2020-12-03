@@ -16,6 +16,7 @@ import com.esc20.dao.AlertDao;
 import com.esc20.dao.AppUserDao;
 import com.esc20.dao.OptionsDao;
 import com.esc20.dao.PayDao;
+import com.esc20.dao.PreferencesDao;
 import com.esc20.dao.ReferenceDao;
 import com.esc20.model.BeaAlert;
 import com.esc20.model.BeaAltMailAddr;
@@ -73,6 +74,9 @@ public class IndexService {
     
     @Autowired
     private ReferenceDao referenceDao;
+    
+    @Autowired
+    private PreferencesDao preferencesDao;
     
     public String getMessage() throws ParseException{
         String message = "Hello, JBoss has started!";
@@ -1670,4 +1674,10 @@ public class IndexService {
 		}
 		
     }
+
+
+    //ALC-26 update EP password to get settings from DB
+    public Map<String, String> getTxeisPreferences() {
+		return preferencesDao.getTxeisPreferences();
+	}
 }

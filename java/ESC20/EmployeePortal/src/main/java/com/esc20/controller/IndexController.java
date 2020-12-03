@@ -67,6 +67,11 @@ public class IndexController {
 	public ModelAndView getIndexPage(HttpServletRequest req, String Id, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("login");
+		
+		//ALC-26 update EP password to get settings from DB
+		Map<String, String> preferences = indexService.getTxeisPreferences();
+		req.getSession().setAttribute("txeisPreferences", preferences);
+		
 		Boolean isUserLoginFailure = (Boolean) req.getSession().getAttribute("isUserLoginFailure");
 		if (isUserLoginFailure != null && isUserLoginFailure) {
 			req.getSession().removeAttribute("isUserLoginFailure");
@@ -183,6 +188,11 @@ public class IndexController {
 	public ModelAndView updatePassword(HttpServletRequest req, String password) {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		
+		//ALC-26 update EP password to get settings from DB
+		Map<String, String> preferences = indexService.getTxeisPreferences();
+		req.getSession().setAttribute("txeisPreferences", preferences);
+		
 		ModelAndView mav = new ModelAndView();
 		if (password == null) {
 			mav.setViewName("visitFailed");

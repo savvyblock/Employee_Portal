@@ -994,4 +994,15 @@ public class StringUtil {
 			return ((String) object).trim().charAt(0);
 		}
 	}
+	
+	
+	//ALC-26 update EP password to get settings from DB
+	public static String getString(Object o) {
+		try {
+			return o.toString().trim();
+		} catch (Exception ex) {
+			return "";
+		}
+	}
+	
 }

@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,6 +54,7 @@ public class ResetPasswordController {
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
 		}
+			
 		Options options = this.indexService.getOptions();
 		if(options.getIdType().equals(Options.IdType.Ssn)) {
 			mav.addObject("idType", "S");
@@ -204,6 +206,10 @@ public class ResetPasswordController {
 	public ModelAndView forgetPassword(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("forgetPassword");
+		//ALC-26 update EP password to get settings from DB
+		Map<String, String> preferences = indexService.getTxeisPreferences();
+		req.getSession().setAttribute("txeisPreferences", preferences);
+		
 		Options options = this.indexService.getOptions();
 		if(options.getIdType().equals(Options.IdType.Ssn)) {
 			mav.addObject("idType", "S");
@@ -216,6 +222,10 @@ public class ResetPasswordController {
 	@RequestMapping("updatePassword")
 	public ModelAndView updatePassword(HttpServletRequest req, String password, String id) {
 		ModelAndView mav = new ModelAndView();
+		//ALC-26 update EP password to get settings from DB
+		Map<String, String> preferences = indexService.getTxeisPreferences();
+		req.getSession().setAttribute("txeisPreferences", preferences);
+		
 		if (password == null || id == null) {
 			mav.setViewName("visitFailedUnAuth");
 			mav.addObject("module", module);
