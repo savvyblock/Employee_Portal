@@ -1,7 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<link rel="shortcut icon" type="images/x-icon" href="/<%=request.getContextPath().split("/")[1]%>/images/favicon.ico">
+<link rel="shortcut icon" type="images/x-icon" href="<spring:theme code="commonBase"/>images/EmployeePortal/favicon.ico">
 <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/font-awesome.min.css"/>
 <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/animate.css" />
 <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/jquery.autocomplete.css"/>

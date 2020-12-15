@@ -1,0 +1,102 @@
+//ALC-13 UI Alignment of ASCENDER and portals
+$portal-theme-color: #3281a5;
+.loginBody {
+  height: auto!important;
+  // overflow: hidden;
+  background: url(/CommonWebPortals/images/EmployeePortal/AscendarBkGrndLogin.png) no-repeat center center fixed!important;
+  .tab-content > .tab-pane{
+      margin-top: 0;
+  }
+  .login-footer{
+      #AccessibilityLink{
+          color: $portal-theme-color;
+      }
+      .modalAccessibility{
+          div.modalAccessibility-content {
+              border: 2px solid $portal-theme-color;
+              a{
+                  color: $portal-theme-color;
+              }
+          }
+      }
+      .col-md-8,.col-md-4{
+          float: left;
+          position: relative;
+          min-height: 1px;
+          padding-right: 15px;
+          padding-left: 15px;
+      }
+      @media (min-width: 992px){
+        .col-md-8 {
+            width: 66.66666667%;
+        }
+        .col-md-4 {
+            width: 33.33333333%;
+        }
+    }
+  }
+  .btn-new{
+      border-color: $portal-theme-color;
+      background-color: $portal-theme-color;
+      background: $portal-theme-color;
+      box-shadow: 0px 0px 0px $portal-theme-color;
+      border-width: 1px;
+      &:hover{
+          background: $portal-theme-color;
+      }
+  }
+  .form-warp{
+      .form-group{
+          .icon-group .left-icon{
+              color: $portal-theme-color;
+          }
+          // input.form-control{
+          //     border: 1px solid $portal-theme-color;
+          // }
+      }
+  }
+  #btn_submit,
+  #btn_submit2{
+      border-color: $portal-theme-color;
+      background-color: $portal-theme-color;
+      background: $portal-theme-color;
+      box-shadow: 0px 0px 0px $portal-theme-color;
+  }
+  p.error-hint{
+      color: #ea2623;
+
+  }
+
+}
+.has-hint-box{
+  .input-hint-message{
+      border-color: $portal-theme-color;
+      &:before{
+          border-bottom-color: $portal-theme-color;
+      }
+  }
+}
+.step-wizard{
+  .step-anchor{
+      &.account-common-step{
+          .nav-item{
+              .nav-link{
+                  &.active{
+                      color: $portal-theme-color;
+                      ::after{
+                          background-color: $portal-theme-color;
+                      } 
+                  }
+              }
+          }
+      }
+  }
+}
+.langSelect{
+    ul li{
+        float: left;
+        a{
+            color: #ffffff!important;
+        }
+    }
+}

@@ -1,0 +1,89 @@
+.loginBody {
+  height: auto !important;
+  background: url(/CommonWebPortals/images/EmployeePortal/AscendarBkGrndLogin.png) no-repeat center center fixed !important;
+}
+
+.loginBody .tab-content > .tab-pane {
+  margin-top: 0;
+}
+
+.loginBody .login-footer #AccessibilityLink {
+  color: #3281a5;
+}
+
+.loginBody .login-footer .modalAccessibility div.modalAccessibility-content {
+  border: 2px solid #3281a5;
+}
+
+.loginBody .login-footer .modalAccessibility div.modalAccessibility-content a {
+  color: #3281a5;
+}
+
+.loginBody .login-footer .col-md-8, .loginBody .login-footer .col-md-4 {
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media (min-width: 992px) {
+  .loginBody .login-footer .col-md-8 {
+    width: 66.66666667%;
+  }
+  .loginBody .login-footer .col-md-4 {
+    width: 33.33333333%;
+  }
+}
+
+.loginBody .btn-new {
+  border-color: #3281a5;
+  background-color: #3281a5;
+  background: #3281a5;
+  box-shadow: 0px 0px 0px #3281a5;
+  border-width: 1px;
+}
+
+.loginBody .btn-new:hover {
+  background: #3281a5;
+}
+
+.loginBody .form-warp .form-group .icon-group .left-icon {
+  color: #3281a5;
+}
+
+.loginBody #btn_submit,
+.loginBody #btn_submit2 {
+  border-color: #3281a5;
+  background-color: #3281a5;
+  background: #3281a5;
+  box-shadow: 0px 0px 0px #3281a5;
+}
+
+.loginBody p.error-hint {
+  color: #ea2623;
+}
+
+.has-hint-box .input-hint-message {
+  border-color: #3281a5;
+}
+
+.has-hint-box .input-hint-message:before {
+  border-bottom-color: #3281a5;
+}
+
+.step-wizard .step-anchor.account-common-step .nav-item .nav-link.active {
+  color: #3281a5;
+}
+
+.step-wizard .step-anchor.account-common-step .nav-item .nav-link.active ::after {
+  background-color: #3281a5;
+}
+
+.langSelect ul li {
+  float: left;
+}
+
+.langSelect ul li a {
+  color: #ffffff !important;
+}

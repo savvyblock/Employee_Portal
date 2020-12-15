@@ -745,6 +745,16 @@
         "currentPage": "página actual",
         "deletedPart": "Parte eliminada",
         "deletedRowSummary": "Una fila sin botón de eliminar en la columna Eliminar indica que esa fila fue eliminada."
+    },
+    "login":{
+        "authorizedText":"Only authorized personnel are allowed to use the system for authorized purposes. By logging on, you acknowledge that you are an authorized user.",
+        "footerCopyright": "&copy; 2020 Texas Computer Cooperative",
+        "titleTccAccessibilityStatement": "TCC Accessibility Statement",
+        "textTccAccessibilityStatement1": "We recognize the importance of providing an application that is accessible to the widest possible audience, regardless of technology or ability. This application endeavors to conform to the World Wide Web Consortium (W3C)",
+        "textTccAccessibilityStatement2": "Web Content Accessibility Guidelines 2.0 ",
+        "textTccAccessibilityStatement3": "and we strive to adhere to the accepted guidelines and standards for accessibility and usability as comprehensively as possible. Should you experience any difficulty accessing this application please ",
+        "textTccAccessibilityStatement4": "Contact Us",
+        "browserReuirements": "Supported Browsers: "
     }
 
 }
