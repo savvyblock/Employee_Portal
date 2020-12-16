@@ -6,6 +6,7 @@
         <title>${sessionScope.languageJSON.headTitle.login}</title>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/bootstrap.min.css">
         <%@ include file="commons/header.jsp"%>
         <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600&display=swap" rel="stylesheet"> </link>
         <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/newStyle.css"/>
@@ -17,7 +18,8 @@
             <div class="grayBg"></div>
             <div class="mainContent loginBox">
                 <ul id="homeTab" class="nav nav-tabs clearfix">
-                    <li><a id="loginTab" href="#loginPanel" data-toggle="tab" class="active">Login</a></li>
+                    <li><a id="loginTab" href="#loginPanel" data-toggle="tab" class="active">${sessionScope.languageJSON.label.login}</a></li>
+                    <li><a id="createTab" href="#createBody" data-toggle="tab">${sessionScope.languageJSON.createAccount.createAccount}</a></li>
                 </ul>
                 <div id="homeTabContent" class="tab-content">
                     <div class="tab-pane fade active in" id="loginPanel">
@@ -89,6 +91,360 @@
                             </form>
                         </div>
                     </div>
+                    <div class="tab-pane fade" id="createBody">
+                            <div class="panel-body step-wizard p-l-r-50">
+                                    <ul class="nav nav-tabs step-anchor account-common-step" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="step1-tab" role="tab" aria-controls="step1" aria-selected="true" tabindex="0"> 
+                                                <span class="step-number">
+                                                    ${sessionScope.languageJSON.createAccount.userInformation}
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="step2-tab" role="tab" aria-controls="step2" aria-selected="false" tabindex="0" aria-disabled="true"> 
+                                                <span class="step-number">
+                                                        ${sessionScope.languageJSON.createAccount.basicInformation}
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="step3-tab" role="tab" aria-controls="step3" aria-selected="false" tabindex="0" aria-disabled="true"> 
+                                                <span class="step-number">
+                                                        ${sessionScope.languageJSON.createAccount.securityQuestion}
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="step4-tab" role="tab" aria-controls="step4" aria-selected="false" tabindex="0" aria-disabled="true"> 
+                                                <span class="step-number">
+                                                        ${sessionScope.languageJSON.createAccount.complete}
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                    
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step1-tab">
+                                            <c:if test="${isExistUser!=null && isExistUser=='true'}">
+                                                <p class="error-hint" role="alert" aria-atomic="true" id="noUserError">${sessionScope.languageJSON.validator.noUserAccountAssociated}</p>
+                                            </c:if>
+                                            <c:if test="${isSuccess!=null && isSuccess=='false'}">
+                                                <p class="error-hint" role="alert" aria-atomic="true" id="noEmployeeError">${sessionScope.languageJSON.validator.noEmployeeAccountAssociated}</p>
+                                            </c:if>
+                                            <form class="form-horizontal form-signin" id="personalDetailForm" method="post" role="form" autocomplete="off">
+                                                <c:if test="${idType=='S'}">
+                                                    <div class="form-group has-right-msg">
+                                                        <label for="SSNumber" class="control-label-title col-md-3 text-right">
+                                                            ${sessionScope.languageJSON.createAccount.ssn}(<span>${sessionScope.languageJSON.label.noDashes}</span>):
+                                                        </label>
+                                                        <div class="col-md-5">
+                                                            <div class="input-group-relative icon-group has-hint-box">
+                                                                <i class="fa fa-user left-icon" aria-hidden="true"></i> 
+                                                                <input type="text" id="SSNumber" class="form-control" name="ssn" required="required" autocomplete="off" maxlength="9"> 
+                                                                <div class="input-hint-message">
+                                                                    <p>
+                                                                        ${sessionScope.languageJSON.createAccount.SSNFormat}
+                                                                    </p>
+                                                                </div> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </c:if>
+                                                <c:if test="${idType=='E'}">
+                                                    <div class="form-group has-right-msg">
+                                                        <label for="employeeNumber" class="control-label-title col-md-3 text-right">
+                                                            ${sessionScope.languageJSON.label.employeeNumber}:
+                                                        </label>
+                                                        <div class="col-md-5">
+                                                            <div class="input-group-relative icon-group has-hint-box">
+                                                                <i class="fa fa-user left-icon" aria-hidden="true"></i> 
+                                                                <input type="text" id="employeeNumber" class="form-control" name="empNumber" required="required" autocomplete="off" maxlength="9"> 
+                                                                <div class="input-hint-message">
+                                                                    <p>
+                                                                        ${sessionScope.languageJSON.createAccount.empNumFormat}
+                                                                    </p>
+                                                                </div> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </c:if>
+                                                <div class="form-group has-right-msg">
+                                                    <label for="birthDate" class="control-label-title col-md-3 text-right">
+                                                            ${sessionScope.languageJSON.label.dateOfBirth}(${sessionScope.languageJSON.label.mmddyyyy}):
+                                                    </label>
+                                                    <div class="col-md-5">
+                                                        <div class="input-group-relative icon-group has-hint-box">
+                                                            <i class="fa fa-calendar left-icon" aria-hidden="true"></i> 
+                                                            <input type="text" id="birthDate" class="form-control" onfocus="jsMasking(this);" data-type="DATE" placeholder="" name="birthDate" required="required" autocomplete="off">
+                                                            <input type="hidden" name="dateMonth">
+                                                            <input type="hidden" name="dateDay">
+                                                            <input type="hidden" name="dateYear">
+                                                        </div>
+                                                    </div>
+                                                
+                                                </div>
+                                                <div class="form-group has-right-msg">
+                                                    <label for="zipCode" class="control-label-title col-md-3 text-right">
+                                                            ${sessionScope.languageJSON.label.zipCode}:
+                                                    </label>
+                                                    <div class="col-md-5">
+                                                        <div class="input-group-relative icon-group has-hint-box">
+                                                            <i class="fa fa-key left-icon" aria-hidden="true"></i> 
+                                                            <input type="text" id="zipCode" class="form-control" name="zipCode" required="required" autocomplete="off">
+                                                            <div class="input-hint-message">
+                                                                <p>
+                                                                    ${sessionScope.languageJSON.createAccount.zipCodeFormat}
+                                                                </p>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="text-right">
+                                                    <button type="button" class="btn btn-success next-step1">
+                                                        ${sessionScope.languageJSON.buttons.next}
+                                                    </button>
+                                                    <button type="button" class="btn btn-default-red cancel-btn" onClick="backToLogin('<%=request.getContextPath().split("/")[1]%>', '${sessionScope.districtId}')">
+                                                        ${sessionScope.languageJSON.buttons.cancel}
+                                                    </button>
+                    
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="step2" role="tabpanel" aria-labelledby="step2-tab">
+                                            <c:if test="${isUserExist!=null && isUserExist=='true'}">
+                                                <p class="error-hint"  role="alert" aria-atomic="true" id="noUserError">${sessionScope.languageJSON.validator.userExist}</p>
+                                            </c:if>
+                                            <form class="form-horizontal form-signin" role="form" id="accountDetailForm">
+                                                <div class="form-group has-right-msg">
+                                                    <label for="usernameCreate" class="control-label-title col-md-3 text-right">
+                                                            ${sessionScope.languageJSON.label.username}:
+                                                    </label>
+                                                    <div class="col-md-5">
+                                                        <div class="input-group-relative icon-group has-hint-box">
+                                                            <i class="fa fa-user left-icon" aria-hidden="true"></i> 
+                                                            <input type="text" id="usernameCreate" class="form-control" name="txtUsername" required="required" autocomplete="off">
+                                                            <small class="help-block userNameError" style="display: none;"></small>
+                                                            <div class="input-hint-message">
+                                                                <p>
+                                                                    ${sessionScope.languageJSON.createAccount.usernameValid}
+                                                                </p>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                
+                                                </div>
+                                                <div class="form-group form-group-password invalidMore has-right-msg">
+                                                    <label for="passwordCreate" class="control-label-title col-md-3 text-right">
+                                                            ${sessionScope.languageJSON.label.password}:
+                                                    </label>
+                                                    <div class="col-md-5">
+                                                        <div class="input-group-relative icon-group has-hint-box">
+                                                            <i class="fa fa-key left-icon" aria-hidden="true"></i>
+                                                            <!-- ALC-26  password validation-->
+                                                            <input type="password" id="passwordCreate"  maxlength="${sessionScope.txeisPreferences.pwd_max_length}" class="form-control" data-toggle="password"  name="txtPassword" required="required" autocomplete="new-password">
+                                                                <div class="input-group-addon">
+                                                                    <span class="input-group-text"><i class="fa fa-eye"></i></span>
+                                                                </div>
+                                                                <div class="input-hint-message">
+                                                                    <ul class="validate-list">
+                                                                        <li>${sessionScope.languageJSON.createAccount.usernameValid}</li>
+                                                                        <li class="noneStyle">
+                                                                            <ol>
+                                                                                <li>${sessionScope.languageJSON.createAccount.uservalidate}</li>
+                                                                                <li>${sessionScope.languageJSON.createAccount.userlowercase}</li>
+                                                                                <li>${sessionScope.languageJSON.createAccount.useruppercase}</li>
+                                                                                <li>${sessionScope.languageJSON.createAccount.userNumbers}</li>
+                                                                            </ol>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div> 
+                                                                <small class="help-block passwordError" style="display: none;"></small>
+                                                        </div>
+                    
+                                                    </div>
+                                                </div>
+                    
+                                                <div class="form-group form-group-password has-right-msg">
+                                                    <label for="newPassword" class="control-label-title col-md-3 text-right">
+                                                            ${sessionScope.languageJSON.label.passwordVerification}:
+                                                    </label>
+                                                    <div class="col-md-5">
+                                                        <div class="input-group-relative icon-group has-hint-box">
+                                                            <span class="">
+                                                                <i class="fa fa-key left-icon" aria-hidden="true"></i> 
+                                                            </span>
+                                                            <!-- ALC-29  password validation-->
+                                                            <input type="password" id="newPassword" maxlength="${sessionScope.txeisPreferences.pwd_max_length}" class="form-control" data-toggle="password" name="newPassword" required="required">
+                                                            <div class="input-group-addon">
+                                                                <span class="input-group-text"><i class="fa fa-eye"></i></span>
+                                                            </div> 
+                                                            <div class="input-hint-message">
+                                                                <p>${sessionScope.languageJSON.createAccount.psdMatchEx}</p>
+                                                            </div> 
+                                                            <small class="help-block repasswordError" style="display: none;"></small>
+                                                        </div>
+                    
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-password has-right-msg">
+                                                    <label for="workEmail" class="control-label-title col-md-3 text-right">
+                                                        ${sessionScope.languageJSON.label.workEmail}:
+                                                    </label>
+                                                    <div class="col-md-5">
+                                                        <div class="input-group-relative icon-group has-hint-box">
+                                                            <i class="fa fa-envelope left-icon" aria-hidden="true"></i> 
+                                                            <c:choose>
+                                                                <c:when test="${empty user.userEmail}">
+                                                                    <input type="text" id="workEmail" class="form-control" name="workEmail" required="required">
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <div id="staticWorkEmail">
+                                                                            ${user.userEmail}
+                                                                    </div>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </div>
+                    
+                                                    </div>
+                                                </div>
+                                                <c:if test="${empty user.userEmail}">
+                                                    <div class="form-group form-group-password has-right-msg">
+                                                        <label for="verifyWorkEmail" class="control-label-title col-md-3 text-right">
+                                                            ${sessionScope.languageJSON.label.workEmailVerify}:
+                                                        </label>
+                                                        <div class="col-md-5">
+                                                            <div class="input-group-relative icon-group has-hint-box">
+                                                                <i class="fa fa-envelope left-icon" aria-hidden="true"></i> 
+                                                                <input type="text" id="verifyWorkEmail" class="form-control" name="workEmailVerify" required="required">
+                                                            </div>
+                        
+                                                        </div>
+                                                    </div>
+                                                </c:if>
+                                                <div class="form-group form-group-password has-right-msg">
+                                                        <label for="homeEmail" class="control-label-title col-md-3 text-right">
+                                                            ${sessionScope.languageJSON.label.homeEmail}:
+                                                        </label>
+                                                        <div class="col-md-5">
+                                                            <div class="input-group-relative icon-group has-hint-box">
+                                                                <i class="fa fa-envelope left-icon" aria-hidden="true"></i> 
+                                                                <c:choose>
+                                                                    <c:when test="${empty user.userHomeEmail}">
+                                                                        <input type="text" id="homeEmail" class="form-control" name="homeEmail" required="required">
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <div id="staticWorkEmail">
+                                                                                ${user.userHomeEmail}
+                                                                        </div>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </div>
+                        
+                                                        </div>
+                                                    </div>
+                                                    <c:if test="${empty user.userHomeEmail}">
+                                                        <div class="form-group form-group-password has-right-msg">
+                                                            <label for="verifyHomeEmail" class="control-label-title col-md-3 text-right">
+                                                                ${sessionScope.languageJSON.label.homeEmailVerify}:
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <div class="input-group-relative icon-group has-hint-box">
+                                                                    <i class="fa fa-envelope left-icon" aria-hidden="true"></i> 
+                                                                    <input type="text" id="verifyHomeEmail" class="form-control" name="homeEmailVerify" required="required">
+                                                                </div>
+                            
+                                                            </div>
+                                                        </div>
+                                                    </c:if>
+                                                <hr />
+                                                <div class="text-right">
+                                                    <button type="button" class="btn btn-default back-step1">
+                                                        ${sessionScope.languageJSON.buttons.back}
+                                                    </button>
+                                                    <button type="button" class="btn btn-success next-step2">
+                                                            ${sessionScope.languageJSON.buttons.next}
+                                                    </button>
+                                                    <button type="button" class="btn btn-default-red cancel-btn" onClick="backToLogin('<%=request.getContextPath().split("/")[1]%>','${sessionScope.districtId}')">
+                                                        ${sessionScope.languageJSON.buttons.cancel}
+                                                    </button>
+                    
+                                                </div>
+                                            </form>
+                    
+                    
+                                        </div>
+                                        <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="step3-tab">
+                                            <form class="form-horizontal form-signin" role="form" id="securityForm">
+                                                <div class="form-group">
+                                                    <label for="question1" class="control-label-title col-md-3 text-right">
+                                                            ${sessionScope.languageJSON.label.hintQuestion}:
+                                                    </label>
+                                                    <div class="col-md-5">
+                                                        <div class="input-group-relative has-hint-box">
+                                                            <input type="text" class="form-control" id="hintQuestion" name="hintQuestion" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                    
+                                                </div>
+                                                <div class="form-group has-right-msg">
+                                                        <label for="question1" class="control-label-title col-md-3 text-right">
+                                                                ${sessionScope.languageJSON.label.hintAnswer}:
+                                                        </label>
+                                                        <div class="col-md-5">
+                                                            <div class="input-group-relative has-hint-box">
+                                                                <input type="password" class="form-control" id="hintAnswer" name="hintAnswer" autocomplete="off">
+                                                                <small class="help-block sameAnswer" role="alert" aria-atomic="true" style="display: none;">
+                                                                    ${sessionScope.languageJSON.validator.notSameAnswer}
+                                                                </small>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                </div>
+                                            </form>
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    
+                                            <hr />
+                                            <div class="text-right">
+                                                <button type="button" class="btn btn-default back-step2">${sessionScope.languageJSON.buttons.back}</button>
+                                                <button class="btn btn-success" id="createAccount">
+                                                        ${sessionScope.languageJSON.buttons.next}
+                                                </button>
+                                                <button type="button" class="btn btn-default-red cancel-btn" onClick="backToLogin('<%=request.getContextPath().split("/")[1]%>', '${sessionScope.districtId}')" >
+                                                    ${sessionScope.languageJSON.buttons.cancel}
+                                                </button>
+                    
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="step4-tab">
+                    
+                    
+                                            <div class="row finish-content">
+                                                <div class="text-center">
+                                                    <div class="text-primary completeMsg">
+                                                        ${sessionScope.languageJSON.createAccount.thankU}
+                                                    </div>
+                    
+                                                </div>
+                    
+                                            </div>
+                                            <hr />
+                                            <form id="loginForm" method="post" style="visibility: hidden" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
+                                                <input type="hidden" id="loginUsername" class="form-control" placeholder="${sessionScope.languageJSON.label.username}"name="username"/>
+                                                <input type="hidden" id="loginPassword" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password"/>
+                                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                            </form>
+                                            <div class="text-right">
+                                                <a href="javascript:void(0)" class="btn btn-success" id="finishBtn">
+                                                    ${sessionScope.languageJSON.buttons.finish}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                    
+                                </div>
+                    </div>
 
                 </div>
                 <c:if test="${not empty alertMsg}"> 
@@ -155,7 +511,15 @@
             
             <%@ include file="commons/footerNotLoginNew.jsp"%>
     </body>
-    
+    <!-- ALC-26  password validation from back-end-->
+	<script>
+            var minPSDLen = "${sessionScope.txeisPreferences.pwd_length}"
+            var maxPSDLen = "${sessionScope.txeisPreferences.pwd_max_length}"
+    </script>
+    <script src="<spring:theme code="commonBase"/>scripts/commonValid.js"></script>
+    <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bootstrap-show-password.js"></script>
+    <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.maskedinput-1.3.1.js"></script>
+        <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/searchUser.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/login.js"></script>
 
 </html>

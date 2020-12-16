@@ -602,8 +602,8 @@
         "pleaseEnterCorrectMailFormat": "Capture el formato de correo correcto.",
         "twoPasswordsNotMatch": "Las dos contraseñas que capturó no coinciden.",
         "passwordLengthNotLessThan6": "La longitud de la contraseña no debe ser menor a 6 caracteres.",
-        "usernameCannotBeEmpty": "El nombre de usuario es obligatorio y no puede estar vacío",
-        "passwordCannotBeEmpty": "La contraseña es obligatoria y no puede estar vacía",
+        "usernameCannotBeEmpty": "Se requiere el nombre de usuario",
+        "passwordCannotBeEmpty": "Se requiere la contraseña",
         "maximumBankAmmount": "Se alcanzó la cantidad máxima permitida de cuentas para depósito directo. No es posible añadir una cuenta nueva.",
         "pleaseEnterCorrectFormat": "Capture el formato correcto",
         "pleaseSelectOne": "Seleccione por lo menos una.",
@@ -747,14 +747,44 @@
         "deletedRowSummary": "Una fila sin botón de eliminar en la columna Eliminar indica que esa fila fue eliminada."
     },
     "login":{
-        "authorizedText":"Only authorized personnel are allowed to use the system for authorized purposes. By logging on, you acknowledge that you are an authorized user.",
+        "authorizedText":"Solo el personal autorizado puede utilizar el sistema para fines autorizados. Al iniciar sesión, reconoce que es un usuario autorizado.",
         "footerCopyright": "&copy; 2020 Texas Computer Cooperative",
-        "titleTccAccessibilityStatement": "TCC Accessibility Statement",
-        "textTccAccessibilityStatement1": "We recognize the importance of providing an application that is accessible to the widest possible audience, regardless of technology or ability. This application endeavors to conform to the World Wide Web Consortium (W3C)",
-        "textTccAccessibilityStatement2": "Web Content Accessibility Guidelines 2.0 ",
-        "textTccAccessibilityStatement3": "and we strive to adhere to the accepted guidelines and standards for accessibility and usability as comprehensively as possible. Should you experience any difficulty accessing this application please ",
-        "textTccAccessibilityStatement4": "Contact Us",
-        "browserReuirements": "Supported Browsers: "
+        "titleTccAccessibilityStatement": "Declaración de accesibilidad de TCC",
+        "textTccAccessibilityStatement1": "Reconocemos la importancia de proporcionar una aplicación que sea accesible para la audiencia más amplia posible, independientemente de la tecnología o la capacidad. Esta aplicación se esfuerza por cumplir con el Consorcio World Wide Web (W3C)",
+        "textTccAccessibilityStatement2": "Pautas de accesibilidad al contenido web 2.0 ",
+        "textTccAccessibilityStatement3": "y nos esforzamos por cumplir con las pautas y los estándares aceptados de accesibilidad y usabilidad de la manera más completa posible. Si tiene alguna dificultad para acceder a esta aplicación ",
+        "textTccAccessibilityStatement4": "Contacta con nosotros",
+        "browserReuirements": "Navegadores compatibles: "
+    },
+    "createAccount":{
+        "createAccount":"Crear una cuenta",
+        "userInformation": "informacion del usuario",
+        "securityQuestion": "Pregunta de Seguridad",
+        "basicInformation": "Información básica",
+        "selectQuestion": "Pregunta",
+        "complete": "Completo",
+        "ssn":"Número de seguridad social",
+        "usernameValid": "6-25 caracteres alfanuméricos (por ejemplo, AbC1234)",
+        "uservalidate": "8-46 caracteres usando 3 de los siguientes:",
+        "userlowercase": "Letras minusculas",
+        "useruppercase": "Letras mayúsculas",
+        "userNumbers": "Números (0-9)",
+        "specialCharacters": "Caracteres especiales",
+        "psdMatchEx": "La contraseña debe coincidir exactamente con la entrada en el campo de contraseña (distingue entre mayúsculas y minúsculas)",
+        "thankU": "Se ha creado su cuenta de ASCENDER EmployeePortal.",
+        "invalidPassword": "8-46 caracteres con 3 de los siguientes: MAYÚSCULAS y minúsculas, números (0-9), caracteres especiales",
+        "passwordmatch": "Las contraseñas no coinciden",
+        "empNumFormat":"Ingrese 6 números",
+        "SSNFormat":"Ingrese 6 números",
+        "zipCodeFormat":"Ingrese 5 números",
+        "somethingWrong":"¡Hay algo mal! Inténtalo de nuevo.",
+        "":""
+    },
+    "buttons":{
+        "next": "Próximo",
+        "cancel":"Cancelar",
+        "finish":"Terminar",
+        "back":"atrás"
     }
 
 }
