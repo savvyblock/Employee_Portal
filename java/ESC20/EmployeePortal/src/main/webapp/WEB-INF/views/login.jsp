@@ -394,7 +394,7 @@
                                                         </label>
                                                         <div class="col-md-5">
                                                             <div class="input-group-relative has-hint-box">
-                                                                <input type="password" class="form-control" id="hintAnswer" name="hintAnswer" autocomplete="off">
+                                                                <input type="text" class="form-control" id="hintAnswer" name="hintAnswer" autocomplete="off">
                                                                 <small class="help-block sameAnswer" role="alert" aria-atomic="true" style="display: none;">
                                                                     ${sessionScope.languageJSON.validator.notSameAnswer}
                                                                 </small>
@@ -431,7 +431,7 @@
                                             </div>
                                             <hr />
                                             <form id="loginFormCreate" method="post" style="visibility: hidden" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
-                                                <input type="hidden" id="loginUsername" class="form-control" placeholder="${sessionScope.languageJSON.label.username}"name="username"/>
+                                                <input type="hidden" id="loginUsername" class="form-control" placeholder="${sessionScope.languageJSON.label.username}" name="username"/>
                                                 <input type="hidden" id="loginPassword" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password"/>
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                             </form>

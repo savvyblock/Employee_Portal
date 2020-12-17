@@ -218,6 +218,8 @@ $(function(){
                 dataType: 'json',
                 success: function(data) {
                     console.log(data);
+                    $("#loginUsername").val(username)
+                    $("#loginPassword").val(password)
                     $('#step3').removeClass('show active')
                     $('#step3-tab').removeClass('active')
                     $('#step3-tab').addClass('done')
