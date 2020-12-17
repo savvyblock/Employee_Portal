@@ -265,10 +265,10 @@ public class IndexController {
     
     //ALC-13 add method to check if the user exist or not
 	@RequestMapping(value = "isUserExisted", method = RequestMethod.POST)
-	public Map<String, Boolean> isUserExisted(String empolyeeNumber) {
+	public Map<String, Boolean> isUserExisted(String username) {
 		Map<String, Boolean> res = new HashMap<>();
 		Boolean isExisted = false;
-		BeaUsers user = this.indexService.getUserByEmpNbr(empolyeeNumber);
+		BeaUsers user = this.indexService.getUserByUsername(username);
 		if (user != null) {
 			isExisted = true;
 		} 
