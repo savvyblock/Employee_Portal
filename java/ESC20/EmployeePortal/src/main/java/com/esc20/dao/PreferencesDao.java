@@ -49,7 +49,7 @@ public class PreferencesDao extends HibernateDaoSupport{
 	        StringBuilder sql = new StringBuilder();
 	        sql.append("SELECT PREF_NAME, PREF_VALUE FROM ");
 	        sql.append(" TXEIS_PREFERENCES ");
-			Query query = this.getSession().createQuery(sql.toString());
+			Query query = this.getSession().createSQLQuery(sql.toString());
 			query.setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
 			List<Map<String, Object>> list = query.list();
 			String value;
