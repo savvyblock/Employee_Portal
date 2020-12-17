@@ -17,6 +17,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		<security:intercept-url pattern="/visitFailedUnAuth" access="permitAll"/>
 		<security:intercept-url pattern="/createUser/**" access="permitAll"/>
 		<security:intercept-url pattern="/getDistrictPicture/**" access="permitAll" />
+		<security:intercept-url pattern="/isUserExisted/**" access="permitAll" />
 		<security:intercept-url pattern="/resetPassword/**" access="permitAll"/>
 		<security:intercept-url pattern="/changeLanguage" access="permitAll"/>
 		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
