@@ -124,8 +124,8 @@ public class FileUtil {
 		String defaultPicturePath = getPathDir(picturesDirectory) + "default_dist_logo.jpg";
 		if (!isFileExist(defaultPicturePath)) {
 			String url = req.getRequestURL().toString();
-			int postion = url.indexOf("EmployeelPortal");
-			String urlPath = url.substring(0, postion) + "EmployeelPortal/images/bestview_logo.gif";
+			int postion = url.indexOf("EmployeePortal");
+			String urlPath = url.substring(0, postion) + "EmployeePortal/images/bestview_logo.gif";
 
 			downloadDefaultPicture(urlPath, defaultPicturePath);
 		}
@@ -138,8 +138,8 @@ public class FileUtil {
 		String defaultPicturePath = getPathDir(picturesDirectory) + "default.jpg";
 		if (!isFileExist(defaultPicturePath)) {
 			String url = req.getRequestURL().toString();
-			int postion = url.indexOf("EmployeelPortal");
-			String urlPath = url.substring(0, postion) + "EmployeelPortal/images/GetStudentPicture.png";
+			int postion = url.indexOf("EmployeePortal");
+			String urlPath = url.substring(0, postion) + "EmployeePortal/images/GetStudentPicture.png";
 
 			downloadDefaultPicture(urlPath, defaultPicturePath);
 		}
@@ -182,8 +182,8 @@ public class FileUtil {
 		String defaultPicturePath = getPathDir(picturesDirectory) + "dist_picture_TP.jpg";
 		if (!isFileExist(defaultPicturePath)) {
 			String url = req.getRequestURL().toString();
-			int postion = url.indexOf("EmployeelPortal");
-			String urlPath = url.substring(0, postion) + "EmployeelPortal/images/ascender_pecan_logo.jpg";
+			int postion = url.indexOf("EmployeePortal");
+			String urlPath = url.substring(0, postion) + "EmployeePortal/images/ascender_pecan_logo.jpg";
 
 			// downloadDefaultPicture(urlPath, defaultPicturePath);
 
