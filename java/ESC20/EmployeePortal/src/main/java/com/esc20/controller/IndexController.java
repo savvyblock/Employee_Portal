@@ -28,10 +28,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.esc20.model.BeaEmail;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.SearchUser;
 import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
@@ -259,6 +261,17 @@ public class IndexController {
 			@PathVariable String districtId) {
 		String picturePath = FileUtil.getDistrictPicPhysicalPath(request);
 		FileDownloadUtil.downloadPictureFile(request, picturePath, response);
+	}
+    
+    //ALC-13 add method to check if the user exist or not
+	@RequestMapping(value = "isUserExisted", method = RequestMethod.POST)
+	public boolean isUserExisted(String empolyeeNumber) {
+		boolean isExisted = false;
+		BeaUsers user = this.indexService.getUserByEmpNbr(empolyeeNumber);
+		if (user != null) {
+			isExisted = true;
+		} 
+		return isExisted;
 	}
 	
 }
