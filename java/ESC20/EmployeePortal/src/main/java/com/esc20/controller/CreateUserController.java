@@ -127,6 +127,51 @@ public class CreateUserController {
 
 		return res;
 	}
+	
+	//ALC-13 change the retrieve method to ajax
+	public  Map<String, String> retrieveEmployeeUser(HttpServletRequest req) {
+		Map<String, String> res = new HashMap<>();
+		if (req.getParameter("dateDay") == null || req.getParameter("dateMonth") == null
+				|| req.getParameter("dateYear") == null
+				|| (req.getParameter("empNumber") == null && req.getParameter("ssn") == null)
+				|| req.getParameter("zipCode") == null) {
+			res.put("success", "false");
+			res.put("errorMsg", "Not all mandotary fields provided.");
+			return res;
+		}
+		
+		SearchUser searchUser = new SearchUser();
+		searchUser.setDateDay(req.getParameter("dateDay"));
+		searchUser.setDateMonth(req.getParameter("dateMonth"));
+		searchUser.setDateYear(req.getParameter("dateYear"));
+		searchUser.setEmpNumber(req.getParameter("empNumber"));
+		searchUser.setSsn(req.getParameter("ssn"));
+		searchUser.setZipCode(req.getParameter("zipCode"));
+		BhrEmpDemo bed = this.indexService.retrieveEmployee(searchUser);
+		
+		if (bed == null) {	
+			res.put("success", "false");
+			res.put("errorMsg", "failed to get the employee");
+			return res;
+		}
+		BeaUsers user = this.indexService.getUserByEmpNbr(bed.getEmpNbr());
+		if (user != null) {
+			res.put("success", "false");
+			res.put("errorMsg", "This user is existing");
+			return res;
+		} else {
+			searchUser.setEmpNumber(bed.getEmpNbr());
+			BeaEmail emailRequest = this.indexService.getBeaEmail(bed);
+			searchUser.setNameF(bed.getNameF());
+			searchUser.setNameL(bed.getNameL());
+			searchUser.setUserEmail(bed.getEmail());
+			searchUser.setUserHomeEmail(bed.getHmEmail());
+			res.put("success", "true");
+			return res;
+		}
+	}
+
+	
 
 	@RequestMapping(value = "retrieveEmployee", method = RequestMethod.POST)
 	public ModelAndView retrieveEmployee(HttpServletRequest req) {
@@ -158,7 +203,8 @@ public class CreateUserController {
 		BhrEmpDemo bed = this.indexService.retrieveEmployee(searchUser);
 		
 		if (bed == null) {
-			//mav.setViewName("searchUser");
+			//mav.setViewName("searchUser");	
+			mav.setViewName("login");
 			mav.addObject("isSuccess", "false");
 			mav.addObject("newUser", searchUser);
 			return mav;
@@ -166,6 +212,7 @@ public class CreateUserController {
 		BeaUsers user = this.indexService.getUserByEmpNbr(bed.getEmpNbr());
 		if (user != null) {
 		//	mav.setViewName("searchUser");
+			mav.setViewName("login");
 			mav.addObject("isExistUser", "true");
 			mav.addObject("newUser", searchUser);
 			return mav;
