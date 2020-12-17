@@ -81,6 +81,13 @@ public class IndexController {
 			mav.addObject("isUserLoginFailure", "true");
 		}
 
+		//ALC-13 add iType to Login page for search
+		Options options = this.indexService.getOptions();
+		if (options.getIdType().equals(Options.IdType.Ssn)) {
+			mav.addObject("idType", "S");
+		} else {
+			mav.addObject("idType", "E");
+		}
 		
 		//alert message
         Properties properties = new Properties();
