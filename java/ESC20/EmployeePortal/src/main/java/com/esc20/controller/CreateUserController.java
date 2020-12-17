@@ -23,6 +23,9 @@ import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.IndexService;
 import com.esc20.util.MailUtil;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 @Controller
 @RequestMapping("/createUser")
 public class CreateUserController {
@@ -129,8 +132,10 @@ public class CreateUserController {
 	}
 	
 	//ALC-13 change the retrieve method to ajax
-	public  Map<String, String> retrieveEmployeeUser(HttpServletRequest req) {
-		Map<String, String> res = new HashMap<>();
+	@RequestMapping(value = "retrieveEmployeeUser", method = RequestMethod.POST)
+	@ResponseBody
+	public  JSONObject retrieveEmployeeUser(HttpServletRequest req) {	
+		JSONObject res = new JSONObject();
 		if (req.getParameter("dateDay") == null || req.getParameter("dateMonth") == null
 				|| req.getParameter("dateYear") == null
 				|| (req.getParameter("empNumber") == null && req.getParameter("ssn") == null)
@@ -167,6 +172,10 @@ public class CreateUserController {
 			searchUser.setUserEmail(bed.getEmail());
 			searchUser.setUserHomeEmail(bed.getHmEmail());
 			res.put("success", "true");
+			JSONArray userjson = JSONArray.fromObject(searchUser);
+			JSONArray emailRequestJson = JSONArray.fromObject(emailRequest);
+			res.put("user", userjson);
+			res.put("emailShowRequest", emailRequestJson);
 			return res;
 		}
 	}
