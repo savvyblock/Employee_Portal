@@ -519,7 +519,7 @@
     <script src="<spring:theme code="commonBase"/>scripts/commonValid.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bootstrap-show-password.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.maskedinput-1.3.1.js"></script>
-        <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/searchUser.js"></script>
+        <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/createAccount.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/login.js"></script>
 
 </html>

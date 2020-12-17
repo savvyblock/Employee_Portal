@@ -151,6 +151,7 @@ var invalidPasswordWord = "${sessionScope.languageJSON.createAccount.invalidPass
 var passwordMatchWord = "${sessionScope.languageJSON.createAccount.passwordmatch}"
 var somethingWrongWord = '${sessionScope.languageJSON.createAccount.somethingWrong}'
 var helpLinkFromProperties = "${sessionScope.helpLinkFromProperties}"
+var userExistWord ='${sessionScope.languageJSON.validator.userExist}'
 
 
 var languageSet = "${sessionScope.language}"
