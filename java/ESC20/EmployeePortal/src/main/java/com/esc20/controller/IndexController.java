@@ -273,7 +273,7 @@ public class IndexController {
 		if (user != null) {
 			isExisted = true;
 		} 
-		res.put("isExisted", isExisted);	
+		res.put("valid", !isExisted);	
 		return res;
 	}
 	
