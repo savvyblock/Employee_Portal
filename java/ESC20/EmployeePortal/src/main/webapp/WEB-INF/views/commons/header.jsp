@@ -1,7 +1,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <meta name="_csrf" content="${_csrf.token}" />
 <meta name="_csrf_header" content="${_csrf.headerName}" />
-<link rel="shortcut icon" type="images/x-icon" href="/<%=request.getContextPath().split("/")[1]%>/images/favicon.ico">
+<!-- ALC-13 icon from commonwebPortals -->
+<link rel="shortcut icon" type="images/x-icon" href="<spring:theme code="commonBase"/>images/EmployeePortal/favicon.ico">
 <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/font-awesome.min.css"/>
 <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/animate.css" />
 <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/jquery.autocomplete.css"/>
@@ -144,6 +145,11 @@ var pictureChooseValidator = "${sessionScope.languageJSON.validator.pictureChoos
 var availableErrorValidator = "${sessionScope.languageJSON.validator.availableError}";
 var pleaseEnterWholePositiveNum = "${sessionScope.languageJSON.validator.pleaseEnterWholePositiveNum}"
 
+// ALC-26 Error messages from back-end
+var usernameValidWord = "${sessionScope.languageJSON.createAccount.usernameValid}"
+var invalidPasswordWord = "${sessionScope.languageJSON.createAccount.invalidPassword}"
+var passwordMatchWord = "${sessionScope.languageJSON.createAccount.passwordmatch}"
+var somethingWrongWord = '${sessionScope.languageJSON.createAccount.somethingWrong}'
 var helpLinkFromProperties = "${sessionScope.helpLinkFromProperties}"
 
 

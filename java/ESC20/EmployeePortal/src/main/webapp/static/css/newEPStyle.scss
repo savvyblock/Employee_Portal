@@ -1,0 +1,342 @@
+//ALC-13 UI Alignment of ASCENDER and portals
+$portal-theme-color: #3281a5;
+$theme-background-color: #414042;
+.step-wizard > ul.step-anchor > li{
+    a{
+        cursor: default;
+    }
+    
+    &.done,&.active{
+        a{
+            cursor: pointer;
+        }
+    }
+}
+.step-wizard {
+    h4 {
+        margin-top: 20px;
+        font-size: 22px;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+        .form-control-feedback.fa {
+            top: 15px !important;
+        }
+        &.form-group-password .form-control-feedback.fa {
+            right: auto;
+            left: 177px;
+        }
+    }
+    .step-anchor {
+        position: relative;
+        border: 0 !important;
+        list-style: none;
+        border: 0;
+        z-index: 9;
+        &:before {
+            content: ' ';
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            background-color: #f5f5f5;
+            border-radius: 3px;
+            z-index: 10;
+        }
+        &::before {
+            top: 45px;
+        }
+        li {
+            a {
+                border: 0;
+                &:hover,
+                &:active,
+                &:focus {
+                    cursor: default;
+                    background: transparent;
+                    border: 0;
+                }
+                .step-number {
+                    font-size: 15px;
+                    font-weight: bold;
+                }
+
+                :after {
+                    content: ' ';
+                    position: relative;
+                    left: 40%;
+                    bottom: 9px;
+                    margin-top: 10px;
+                    display: block;
+                    width: 30px;
+                    height: 30px;
+                    background: #f5f5f5;
+                    border-radius: 50%;
+                    z-index: 20;
+                    border: 8px solid #f5f5f5;
+                }
+            }
+
+            .done {
+                ::after {
+                    background: #fff9f5;
+                }
+            }
+            &:last-child {
+                a {
+                    :after {
+                        left: 30%;
+                    }
+                }
+            }
+        }
+    }
+}
+.validate-list {
+    margin-left: 20px;
+    font-size: 13px;
+    color: #666;
+    margin-top: 7px;
+    li {
+        list-style: disc;
+    }
+    ol {
+        margin-left: 20px;
+        li {
+            list-style: circle;
+        }
+    }
+    li.noneStyle{
+        list-style: none;
+    }
+}
+
+
+.form-group-password{
+    .input-group.icon-group{
+        .form-control{
+            border-radius: 15px;
+        }
+        .left-icon,.input-group-addon{
+            z-index: 9;
+        }
+    }
+}
+.icon-group{
+    position: relative;
+    .left-icon{
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+    .form-control{
+        padding-left: 30px;
+    }
+
+}
+.icon-group {
+    position: relative;
+    .input-group-addon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-top-right-radius: 15px!important;
+        border-bottom-right-radius: 15px!important;
+        width: 30px;
+        padding-left: 0;
+        padding-right: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+@media (min-width: 768px) {
+    .form-horizontal .control-label-title {
+        padding-top: 7px;
+        margin-bottom: 0;
+        text-align: right;
+    }
+}
+.flexInline {
+    display: flex;
+    align-items: center;
+    &.between {
+        justify-content: space-between;
+    }
+    &.alignTop {
+        align-items: flex-start;
+    }
+    &.justifyEnd {
+        justify-content: flex-end;
+    }
+    &.flexWrap {
+        flex-wrap: wrap;
+    }
+    input[type='checkbox'],
+    input[type='radio'] {
+        margin: 0;
+        margin-right: 5px;
+    }
+    label,
+    .label {
+        flex: 0 0 auto;
+        min-height: 1px;
+        margin: 0;
+        margin-right: 10px;
+        &:empty {
+            display: block;
+        }
+        &.m-b-10{
+            margin-bottom: 10px;
+        }
+    }
+    .form-group {
+        margin-bottom: 10px;
+    }
+}
+
+.step-wizard {
+    .step-anchor {
+        &::before {
+            background-color: $theme-background-color;
+        }
+        li {
+            a {
+                color: $theme-background-color;
+            }
+            .active {
+                color: #d9534f;
+                background: transparent !important;
+                ::after {
+                    // background: @theme-accent-color;
+                    background-color: #d9534f;
+                }
+            }
+        }
+    }
+    .tab-content > .active {
+        background: transparent !important;
+    }
+}
+.loginBody {
+  height: auto!important;
+  // overflow: hidden;
+  background: url(/CommonWebPortals/images/EmployeePortal/AscendarBkGrndLogin.png) no-repeat center center fixed!important;
+  background-size: cover!important;
+  .tab-content > .tab-pane{
+      margin-top: 0;
+  }
+  .login-footer{
+      #AccessibilityLink{
+          color: $portal-theme-color;
+      }
+      .modalAccessibility{
+          div.modalAccessibility-content {
+              border: 2px solid $portal-theme-color;
+              a{
+                  color: $portal-theme-color;
+              }
+          }
+      }
+      .col-md-8,.col-md-4{
+          float: left;
+          position: relative;
+          min-height: 1px;
+          padding-right: 15px;
+          padding-left: 15px;
+      }
+      @media (min-width: 992px){
+        .col-md-8 {
+            width: 66.66666667%;
+        }
+        .col-md-4 {
+            width: 33.33333333%;
+        }
+    }
+  }
+  .btn-new{
+      border-color: $portal-theme-color;
+      background-color: $portal-theme-color;
+      background: $portal-theme-color;
+      box-shadow: 0px 0px 0px $portal-theme-color;
+      border-width: 1px;
+      &:hover{
+          background: $portal-theme-color;
+      }
+  }
+  .form-warp{
+      .form-group{
+          .icon-group .left-icon{
+              color: $portal-theme-color;
+          }
+          // input.form-control{
+          //     border: 1px solid $portal-theme-color;
+          // }
+      }
+  }
+  #btn_submit,
+  #btn_submit2{
+      border-color: $portal-theme-color;
+      background-color: $portal-theme-color;
+      background: $portal-theme-color;
+      box-shadow: 0px 0px 0px $portal-theme-color;
+  }
+  p.error-hint{
+      color: #ea2623;
+
+  }
+  .tab-pane{
+        &.active{
+            opacity: 1!important;
+        }
+    }
+
+}
+.has-hint-box{
+  .input-hint-message{
+      border-color: $portal-theme-color;
+      &:before{
+          border-bottom-color: $portal-theme-color;
+      }
+  }
+}
+.step-wizard{
+  .step-anchor{
+      &.account-common-step{
+          .nav-item{
+              .nav-link{
+                  &.active{
+                      color: $portal-theme-color;
+                      ::after{
+                          background-color: $portal-theme-color;
+                      } 
+                  }
+              }
+          }
+      }
+  }
+}
+.langSelect{
+    ul li{
+        float: left;
+        a{
+            color: #ffffff!important;
+            &:hover{
+                background: none;
+            }
+        }
+    }
+}
+a:focus{
+    outline: none;
+}
+.loginBody .login-footer {
+    padding: 15px 10px;
+}

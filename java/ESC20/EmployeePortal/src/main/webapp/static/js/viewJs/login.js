@@ -1,4 +1,11 @@
 $(function(){
+    //ALC-13 UI Alignment of ASCENDER and portals
+    $("#AccessibilityLink").click(function(){
+        $("#AccessibilityModal").show()
+    })
+    $(".modalAccessibility-content .close").click(function(){
+        $("#AccessibilityModal").hide()
+    })
     $('#loginForm').bootstrapValidator({
         live: 'enable',
         feedbackIcons: {
@@ -9,6 +16,7 @@ $(function(){
         fields: {
             username: {
                 trigger: null,
+                container:"#inputEmailLabel",
                 validators: {
                     notEmpty: {
                         message: usernameCannotBeEmptyValidator
@@ -17,6 +25,7 @@ $(function(){
             },
             password: {
                 trigger: null,
+                container:"#inputPasswordLabel",
                 validators: {
                     notEmpty: {
                         message: passwordCannotBeEmptyValidator

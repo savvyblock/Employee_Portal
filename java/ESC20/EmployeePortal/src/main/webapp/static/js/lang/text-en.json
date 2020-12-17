@@ -602,8 +602,8 @@
         "pleaseEnterCorrectMailFormat": "Please enter the correct mail format.",
         "twoPasswordsNotMatch": "The two passwords you entered did not match.",
         "passwordLengthNotLessThan6": "Password length should not be less than 6 characters.",
-        "usernameCannotBeEmpty": "The username is required and cannot be empty",
-        "passwordCannotBeEmpty": "The password is required and cannot be empty",
+        "usernameCannotBeEmpty": "The username is required",
+        "passwordCannotBeEmpty": "The password is required",
         "maximumBankAmmount": "Maximum allowed number of Direct Deposit accounts reached. Unable to add new account.",
         "pleaseEnterCorrectFormat": "Please enter correct format",
         "pleaseSelectOne": "Please select one at least.",
@@ -745,5 +745,45 @@
         "currentPage": "current Page",
         "deletedPart": "Deleted Part",
         "deletedRowSummary": "Row without delete button in Delete column means that row was deleted."
+    },
+    "login":{
+        "authorizedText":"Only authorized personnel are allowed to use the system for authorized purposes. By logging on, you acknowledge that you are an authorized user.",
+        "footerCopyright": "&copy; 2020 Texas Computer Cooperative",
+        "titleTccAccessibilityStatement": "TCC Accessibility Statement",
+        "textTccAccessibilityStatement1": "We recognize the importance of providing an application that is accessible to the widest possible audience, regardless of technology or ability. This application endeavors to conform to the World Wide Web Consortium (W3C)",
+        "textTccAccessibilityStatement2": "Web Content Accessibility Guidelines 2.0 ",
+        "textTccAccessibilityStatement3": "and we strive to adhere to the accepted guidelines and standards for accessibility and usability as comprehensively as possible. Should you experience any difficulty accessing this application please ",
+        "textTccAccessibilityStatement4": "Contact Us",
+        "browserReuirements": "Supported Browsers: "
+    },
+    "createAccount":{
+        "createAccount":"Create Account",
+        "userInformation": "User Information",
+        "securityQuestion": "Security Question",
+        "basicInformation": "Basic Information",
+        "selectQuestion": "Question",
+        "complete": "Complete",
+        "ssn":"Social Security Number",
+        "usernameValid": "6-25 alphanumeric characters (e.g., AbC1234)",
+        "uservalidate": "8-46 characters using 3 of the following:",
+        "userlowercase": "Lowercase letters",
+        "useruppercase": "UPPERCASE letters",
+        "userNumbers": "Numbers (0-9)",
+        "specialCharacters": "Special characters",
+        "psdMatchEx": "Password must match entry in password field exactly (case sensitive)",
+        "thankU": "Your ASCENDER EmployeePortal account has been created.",
+        "invalidPassword": "8-46 characters using 3 of the following:UPPERCASE and Lowercase letters,Numbers (0-9),Special characters",
+        "passwordmatch": "Passwords do not match",
+        "empNumFormat":"Please enter 6 numbers",
+        "SSNFormat":"Please enter 6 numbers",
+        "zipCodeFormat":"Please enter 5 numbers",
+        "somethingWrong":"There is something wrong! Please try again.",
+        "":""
+    },
+    "buttons":{
+        "next": "Next",
+        "cancel":"Cancel",
+        "finish":"Finish",
+        "back":"Back"
     }
 }
