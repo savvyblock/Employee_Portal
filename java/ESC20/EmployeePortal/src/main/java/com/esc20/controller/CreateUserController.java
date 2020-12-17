@@ -141,12 +141,13 @@ public class CreateUserController {
 			mav.addObject("errorMsg", "Not all mandotary fields provided.");
 			return mav;
 		}
-		Options options = this.indexService.getOptions();
+		//ALC-13 remove useless codes
+		/*Options options = this.indexService.getOptions();
 		if (options.getIdType().equals(Options.IdType.Ssn)) {
 			mav.addObject("idType", "S");
 		} else {
 			mav.addObject("idType", "E");
-		}
+		}*/
 		SearchUser searchUser = new SearchUser();
 		searchUser.setDateDay(req.getParameter("dateDay"));
 		searchUser.setDateMonth(req.getParameter("dateMonth"));
