@@ -158,14 +158,14 @@ public class CreateUserController {
 		BhrEmpDemo bed = this.indexService.retrieveEmployee(searchUser);
 		
 		if (bed == null) {
-			mav.setViewName("searchUser");
+			//mav.setViewName("searchUser");
 			mav.addObject("isSuccess", "false");
 			mav.addObject("newUser", searchUser);
 			return mav;
 		}
 		BeaUsers user = this.indexService.getUserByEmpNbr(bed.getEmpNbr());
 		if (user != null) {
-			mav.setViewName("searchUser");
+		//	mav.setViewName("searchUser");
 			mav.addObject("isExistUser", "true");
 			mav.addObject("newUser", searchUser);
 			return mav;
