@@ -376,6 +376,8 @@
                     
                                         </div>
                                         <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="step3-tab">
+                                            <p>${sessionScope.languageJSON.createAccount.securityQuestionDes}</p>
+                                            <hr>
                                             <form class="form-horizontal form-signin" role="form" id="securityForm">
                                                 <div class="form-group">
                                                     <label for="question1" class="control-label-title col-md-3 text-right">
