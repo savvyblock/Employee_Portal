@@ -89,6 +89,7 @@
                                 </div>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             </form>
+                            <!-- ALC-13 update the login form show when session timeout -->
                             <form id="loginBackForm" style="display: none;" class="card" method="post" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
                                 <p class="logBackWord">${sessionScope.languageJSON.label.sessionTimeOutWord}</p>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -422,6 +423,7 @@
                     
                                         </div>
                                         <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="step3-tab">
+                                                <!-- ALC-13 Added description for security question tab -->
                                             <p>${sessionScope.languageJSON.createAccount.securityQuestionDes}</p>
                                             <hr>
                                             <form class="form-horizontal form-signin" role="form" id="securityForm">

@@ -6,6 +6,7 @@ $(function(){
     $(".modalAccessibility-content .close").click(function(){
         $("#AccessibilityModal").hide()
     })
+    // ALC-13 improved function for  validation
     $('#loginForm').bootstrapValidator({
         live: 'enable',
         trigger:'blur',
