@@ -95,8 +95,9 @@ public class FileUtil {
 				return studentPicturePath;
 			}
 		}
-
-		return getDefaultDistrictPicPhysicalPath(req);
+        //ALC-13  if there is not pic in folder then did not show up the picture
+		return "";
+		//return getDefaultDistrictPicPhysicalPath(req);
 	}
 
 	public static String getDistrictLogoPhysicalPath(HttpServletRequest req) {

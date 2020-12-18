@@ -260,7 +260,10 @@ public class IndexController {
 	public void getDistrictPicture(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable String districtId) {
 		String picturePath = FileUtil.getDistrictPicPhysicalPath(request);
-		FileDownloadUtil.downloadPictureFile(request, picturePath, response);
+		//ALC-13  if there is not pic in folder then did not show up the picture
+		if(!StringUtil.isNullOrEmpty(picturePath)) {
+			FileDownloadUtil.downloadPictureFile(request, picturePath, response);
+		}	
 	}
     
     //ALC-13 add method to check if the user exist or not
