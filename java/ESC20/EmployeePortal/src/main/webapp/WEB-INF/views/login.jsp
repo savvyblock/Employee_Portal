@@ -89,6 +89,10 @@
                                 </div>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             </form>
+                            <div class="on-screen-message-content-right">
+                                <div class="district-photo" style="background-image: url('/<%=request.getContextPath().split("/")[1]%>/getDistrictPicture/${sessionScope.districtId}')">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="createBody">
@@ -126,12 +130,8 @@
                     
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step1-tab">
-                                            <c:if test="${isExistUser!=null && isExistUser=='true'}">
-                                                <p class="error-hint" role="alert" aria-atomic="true" id="noUserError">${sessionScope.languageJSON.validator.noUserAccountAssociated}</p>
-                                            </c:if>
-                                            <c:if test="${isSuccess!=null && isSuccess=='false'}">
-                                                <p class="error-hint" role="alert" aria-atomic="true" id="noEmployeeError">${sessionScope.languageJSON.validator.noEmployeeAccountAssociated}</p>
-                                            </c:if>
+                                            <p class="error-hint" style="display:none" role="alert" aria-atomic="true" id="EmpExitError">${sessionScope.languageJSON.validator.noUserAccountAssociated}</p>
+                                            <p class="error-hint" style="display:none" role="alert" aria-atomic="true" id="noEmployeeError">${sessionScope.languageJSON.validator.noEmployeeAccountAssociated}</p>
                                             <form class="form-horizontal form-signin" id="personalDetailForm" method="post" role="form" autocomplete="off">
                                                 <c:if test="${idType=='S'}">
                                                     <div class="form-group has-right-msg">
@@ -376,6 +376,8 @@
                     
                                         </div>
                                         <div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="step3-tab">
+                                            <p>${sessionScope.languageJSON.createAccount.securityQuestionDes}</p>
+                                            <hr>
                                             <form class="form-horizontal form-signin" role="form" id="securityForm">
                                                 <div class="form-group">
                                                     <label for="question1" class="control-label-title col-md-3 text-right">
@@ -394,7 +396,7 @@
                                                         </label>
                                                         <div class="col-md-5">
                                                             <div class="input-group-relative has-hint-box">
-                                                                <input type="password" class="form-control" id="hintAnswer" name="hintAnswer" autocomplete="off">
+                                                                <input type="text" class="form-control" id="hintAnswer" name="hintAnswer" autocomplete="off">
                                                                 <small class="help-block sameAnswer" role="alert" aria-atomic="true" style="display: none;">
                                                                     ${sessionScope.languageJSON.validator.notSameAnswer}
                                                                 </small>
@@ -430,8 +432,8 @@
                     
                                             </div>
                                             <hr />
-                                            <form id="loginForm" method="post" style="visibility: hidden" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
-                                                <input type="hidden" id="loginUsername" class="form-control" placeholder="${sessionScope.languageJSON.label.username}"name="username"/>
+                                            <form id="loginFormCreate" method="post" style="visibility: hidden" action="/<%=request.getContextPath().split("/")[1]%>/loginEA">
+                                                <input type="hidden" id="loginUsername" class="form-control" placeholder="${sessionScope.languageJSON.label.username}" name="username"/>
                                                 <input type="hidden" id="loginPassword" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password"/>
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                             </form>

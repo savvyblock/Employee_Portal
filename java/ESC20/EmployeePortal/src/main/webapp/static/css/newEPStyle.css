@@ -303,6 +303,16 @@
   opacity: 1 !important;
 }
 
+.loginBody .btn-success {
+  background-color: #3281a5;
+  border-color: #3281a5;
+}
+
+.loginBody .btn-success:focus {
+  background-color: #3281a5;
+  border-color: #3281a5;
+}
+
 .has-hint-box .input-hint-message {
   border-color: #3281a5;
 }

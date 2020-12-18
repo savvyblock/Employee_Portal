@@ -778,6 +778,7 @@
         "SSNFormat":"Please enter 6 numbers",
         "zipCodeFormat":"Please enter 5 numbers",
         "somethingWrong":"There is something wrong! Please try again.",
+        "securityQuestionDes": "The information will assist you in resetting your password.",
         "":""
     },
     "buttons":{

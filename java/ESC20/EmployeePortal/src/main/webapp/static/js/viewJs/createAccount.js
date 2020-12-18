@@ -26,13 +26,15 @@ $(function(){
             // to to ajax, retrieve user
             $.ajax({
                 type: 'post',
-                url: urlMain+'/createUser/retrieveEmployee',
+                url: urlMain+'/createUser/retrieveEmployeeUser',
                 cache: false,
                 data: userObj,
                 dataType: 'json',
                 success: function(data) {
                     console.log(data);
-                    if(data.isSuccess){
+                    $("#EmpExitError").hide()
+                    $("#noEmployeeError").hide()
+                    if(data.success){
                         $('#step1').removeClass('show active')
                         $('#step1-tab').addClass('done')
                         $('#step2').addClass('show active')
@@ -42,6 +44,15 @@ $(function(){
                         $('#step2-tab').attr("aria-selected",true)
                         $('#step3-tab').attr("aria-selected",false)
                         $('#step4-tab').attr("aria-disabled",false)
+                    }else{
+                        if(data.isExistUser){
+                            $("#EmpExitError").show()
+                            $("#noEmployeeError").hide()
+                        }else{
+                            $("#EmpExitError").hide()
+                            $("#noEmployeeError").show()
+                        }
+                        
                     }
                     
                 },
@@ -207,6 +218,8 @@ $(function(){
                 dataType: 'json',
                 success: function(data) {
                     console.log(data);
+                    $("#loginUsername").val(username)
+                    $("#loginPassword").val(password)
                     $('#step3').removeClass('show active')
                     $('#step3-tab').removeClass('active')
                     $('#step3-tab').addClass('done')
@@ -247,7 +260,7 @@ $(function(){
         $('#step4-tab').attr("aria-disabled",false)
     })
     $("#finishBtn").click(function(){
-        $("#loginForm").submit();
+        $("#loginFormCreate").submit();
     })
 })
 function stepValidator01() {
@@ -313,7 +326,7 @@ function stepValidator02(){
 						message: userExistWord,
                         url: urlMain+'/isUserExisted',
                         type:"post",
-                        data : {empolyeeNumber:function() {
+                        data : {username:function() {
                             return $('input[name="txtUsername"]').val() }
                          },
                         delay:2000,

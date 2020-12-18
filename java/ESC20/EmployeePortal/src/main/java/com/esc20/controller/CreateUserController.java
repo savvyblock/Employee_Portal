@@ -155,14 +155,14 @@ public class CreateUserController {
 		BhrEmpDemo bed = this.indexService.retrieveEmployee(searchUser);
 		
 		if (bed == null) {	
-			res.put("success", "false");
-			res.put("errorMsg", "failed to get the employee");
+			res.put("success", false);
+			res.put("isExistUser", false);
 			return res;
 		}
 		BeaUsers user = this.indexService.getUserByEmpNbr(bed.getEmpNbr());
 		if (user != null) {
-			res.put("success", "false");
-			res.put("errorMsg", "This user is existing");
+			res.put("success", false);
+			res.put("isExistUser", true);
 			return res;
 		} else {
 			searchUser.setEmpNumber(bed.getEmpNbr());
@@ -171,7 +171,7 @@ public class CreateUserController {
 			searchUser.setNameL(bed.getNameL());
 			searchUser.setUserEmail(bed.getEmail());
 			searchUser.setUserHomeEmail(bed.getHmEmail());
-			res.put("success", "true");
+			res.put("success", true);
 			JSONArray userjson = JSONArray.fromObject(searchUser);
 			JSONArray emailRequestJson = JSONArray.fromObject(emailRequest);
 			res.put("user", userjson);
