@@ -8,27 +8,21 @@ $(function(){
     })
     $('#loginForm').bootstrapValidator({
         live: 'enable',
-        feedbackIcons: {
-            valid: 'fa fa-check ',
-            // invalid: 'fa fa-times',
-            validating: 'fa fa-refresh'
-        },
+        trigger:'blur',
         fields: {
             username: {
-                trigger: null,
                 container:"#inputEmailLabel",
                 validators: {
                     notEmpty: {
-                        message: usernameCannotBeEmptyValidator
+                        message: requiredWord
                     }
                 }
             },
             password: {
-                trigger: null,
                 container:"#inputPasswordLabel",
                 validators: {
                     notEmpty: {
-                        message: passwordCannotBeEmptyValidator
+                        message: requiredWord
                     }
                 }
             }
@@ -37,25 +31,21 @@ $(function(){
     });
     $('#loginBackForm').bootstrapValidator({
         live: 'enable',
-        feedbackIcons: {
-            valid: 'fa fa-check ',
-            // invalid: 'fa fa-times',
-            validating: 'fa fa-refresh'
-        },
+        trigger:'blur',
         fields: {
             username: {
-                trigger: null,
+                container:"#inputEmailLabelBack",
                 validators: {
                     notEmpty: {
-                        message: usernameCannotBeEmptyValidator
+                        message: requiredWord
                     }
                 }
             },
             password: {
-                trigger: null,
+                container:"#inputPasswordLabelBack",
                 validators: {
                     notEmpty: {
-                        message: passwordCannotBeEmptyValidator
+                        message: requiredWord
                     }
                 }
             }
@@ -74,14 +64,14 @@ $(function(){
     var isTimeout = isTimeoutArry[1]?isTimeoutArry[1].split("="):false;
     if(isTimeout[1]){
         console.log("session end")
-        $(".loginPage .account-inner.loginBox").hide()
-        $(".loginPage .account-inner.logBackBox").show()
-        $(".loginPage .account-top").addClass("sessionEnd")
+        $("#loginForm").hide()
+        $("#loginBackForm").show()
+        // $(".loginPage .account-top").addClass("sessionEnd")
     }else{
         console.log("login ")
-        $(".loginPage .account-inner.loginBox").show()
-        $(".loginPage .account-inner.logBackBox").hide()
-        $(".loginPage .account-top").removeClass("sessionEnd")
+        $("#loginForm").show()
+        $("#loginBackForm").hide()
+        // $(".loginPage .account-top").removeClass("sessionEnd")
     }
 //    $('#signin').on('click',function(){
 //        var userName = $('#inputEmail').val();

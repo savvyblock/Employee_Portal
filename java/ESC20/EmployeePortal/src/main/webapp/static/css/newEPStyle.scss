@@ -230,6 +230,7 @@ $theme-background-color: #414042;
   // overflow: hidden;
   background: url(/CommonWebPortals/images/EmployeePortal/AscendarBkGrndLogin.png) no-repeat center center fixed!important;
   background-size: cover!important;
+  padding-top: 0!important;
   .tab-content > .tab-pane{
       margin-top: 0;
   }
@@ -304,6 +305,22 @@ $theme-background-color: #414042;
             background-color: $portal-theme-color;
             border-color:  $portal-theme-color;
         }
+    }
+    #loginBackForm{
+        @media (min-width:992px){
+            width: 280px;
+        }
+    }
+    .btn.btn-login{
+        border-color: #3281a5;
+        background-color: #3281a5;
+        background: #3281a5;
+        box-shadow: 0px 0px 0px #3281a5;
+        border-width: 1px;
+        width: 100%!important;
+    }
+    .nav-tabs>li{
+        margin-bottom: 0;
     }
 
 }

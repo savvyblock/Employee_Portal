@@ -576,7 +576,7 @@
         "changePassword": "ASCENDER : EmployeePortal -  Change Password",
         "forgotPassword": "ASCENDER : EmployeePortal - Forgot Password",
         "home": "ASCENDER : EmployeePortal -  Home",
-        "login": "ASCENDER : EmployeePortal -  Login",
+        "login": "ASCENDER EmployeePortal Login",
         "notifications": "ASCENDER : EmployeePortal -  Notifications",
         "profile": "ASCENDER : EmployeePortal - Profile",
         "resetPassword": "ASCENDER : EmployeePortal -  Reset Password",
@@ -779,6 +779,7 @@
         "zipCodeFormat":"Please enter 5 numbers",
         "somethingWrong":"There is something wrong! Please try again.",
         "securityQuestionDes": "The information will assist you in resetting your password.",
+        "required":"Required",
         "":""
     },
     "buttons":{

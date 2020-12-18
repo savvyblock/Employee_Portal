@@ -236,6 +236,7 @@
   height: auto !important;
   background: url(/CommonWebPortals/images/EmployeePortal/AscendarBkGrndLogin.png) no-repeat center center fixed !important;
   background-size: cover !important;
+  padding-top: 0 !important;
 }
 
 .loginBody .tab-content > .tab-pane {
@@ -311,6 +312,25 @@
 .loginBody .btn-success:focus {
   background-color: #3281a5;
   border-color: #3281a5;
+}
+
+@media (min-width: 992px) {
+  .loginBody #loginBackForm {
+    width: 280px;
+  }
+}
+
+.loginBody .btn.btn-login {
+  border-color: #3281a5;
+  background-color: #3281a5;
+  background: #3281a5;
+  box-shadow: 0px 0px 0px #3281a5;
+  border-width: 1px;
+  width: 100% !important;
+}
+
+.loginBody .nav-tabs > li {
+  margin-bottom: 0;
 }
 
 .has-hint-box .input-hint-message {

@@ -779,6 +779,7 @@
         "zipCodeFormat":"Ingrese 5 números",
         "somethingWrong":"¡Hay algo mal! Inténtalo de nuevo.",
         "securityQuestionDes": "La información le ayudará a restablecer su contraseña.",
+        "required":"Necesario",
         "":""
     },
     "buttons":{
