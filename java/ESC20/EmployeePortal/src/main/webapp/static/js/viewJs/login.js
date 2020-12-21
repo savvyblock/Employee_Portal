@@ -1,4 +1,21 @@
 $(function(){
+    //ALC-13 get district picture
+    $.ajax({
+        type: 'get',
+        url: '/'+ctx+'/getDistrictPicture/' + districtID,
+        success: function(data) {
+           if(data =='') {
+            $(".district-photo img").addClass("hidden")
+           }else{
+               $(".district-photo img").removeClass("hidden")
+           }
+            
+        },
+        error:function(err){
+            console.log(err)
+            $(".district-photo img").addClass("hidden")
+        }
+    })
     //ALC-13 UI Alignment of ASCENDER and portals
     $("#AccessibilityLink").click(function(){
         $("#AccessibilityModal").show()

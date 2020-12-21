@@ -137,7 +137,9 @@
                                 
                             </form>
                             <div class="on-screen-message-content-right">
-                                <div class="district-photo" style="background-image: url('/<%=request.getContextPath().split("/")[1]%>/getDistrictPicture/${sessionScope.districtId}')">
+                                <!-- ALC-13 show the picture via img tag -->
+                                <div class="district-photo">
+                                    <img class="hidden" src="/<%=request.getContextPath().split("/")[1]%>/getDistrictPicture/${sessionScope.districtId}" alt="District picture">
                                 </div>
                             </div>
                         </div>
@@ -563,6 +565,8 @@
 	<script>
             var minPSDLen = "${sessionScope.txeisPreferences.pwd_length}"
             var maxPSDLen = "${sessionScope.txeisPreferences.pwd_max_length}"
+            //ALC-13 get the district ID
+            var districtID = '${sessionScope.districtId}'
     </script>
     <script src="<spring:theme code="commonBase"/>scripts/commonValid.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bootstrap-show-password.js"></script>
