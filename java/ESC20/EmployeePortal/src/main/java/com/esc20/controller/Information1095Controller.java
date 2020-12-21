@@ -696,6 +696,8 @@ public class Information1095Controller {
 	}
 
 	private void fillPartIEmpBoxesC(BhrEmpDemo userDetail, Aca1095CPrint print) {
+		int yearOfBirth = Integer.parseInt(userDetail.getDob().substring( userDetail.getDob().length() -4, userDetail.getDob().length()))  ;
+		print.setyearOfBirth(yearOfBirth);
 		print.setB1_personfirstnm(userDetail.getNameF() == null ? "" : userDetail.getNameF());
 		print.setB1_personmiddlenm(userDetail.getNameM() == null ? "" : userDetail.getNameM());
 		print.setB1_personlastnm(userDetail.getNameL() == null ? "" : userDetail.getNameL());

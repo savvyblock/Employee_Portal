@@ -1318,14 +1318,14 @@ function w4InfoValidator () {
             //         }
             //     }
             // },
-            // w4FileStatNew: {
-            //     trigger: null,
-            //     validators: {
-            //         notEmpty: {
-            //             message: requiredFieldValidator
-            //         }
-            //     }
-            // },
+            w4FileStatNew: {
+                trigger: null,
+                validators: {
+                    notEmpty: {
+                        message: requiredFieldValidator
+                    }
+                }
+            },
             w4MultiJobNew: {
                 trigger: null,
                 validators: {

@@ -1782,7 +1782,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="profile-desc">
                                             <span class="haveValue"
                                                 >
-                                                <fmt:formatNumber value="${w4Request.w4NbrChldrn}" pattern="#,##0"/>
+                                                <fmt:formatNumber value="${w4Request.w4NbrChldrn}"/>
                                                 </span
                                             >
                                             <div class="form-group valueInput">
@@ -1795,7 +1795,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="w4NbrChldrnNew"
                                                     name="w4NbrChldrnNew"
                                                     aria-label="${sessionScope.languageJSON.profile.childrenUnder17}" 
-                                                    value="<fmt:formatNumber value='${w4NbrChldrnNewSet}' pattern='#,##0'/>"
+                                                    value="${w4NbrChldrnNewSet}"
                                                     oninput="clearNoNumWhole(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
@@ -1808,7 +1808,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue"
-                                                ><fmt:formatNumber value="${w4Request.w4NbrOthrDep}" pattern="#,##0"/></span
+                                                ><fmt:formatNumber value="${w4Request.w4NbrOthrDep}" /></span
                                             >
                                             <div class="form-group valueInput">
                                                     <c:set var="w4NbrOthrDepNewSet" value="${w4Request.w4NbrOthrDepNew}"/>
@@ -1820,7 +1820,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="w4NbrOthrDepNew"
                                                     name="w4NbrOthrDepNew"
                                                     aria-label="${sessionScope.languageJSON.profile.otherDependents}" 
-                                                    value="<fmt:formatNumber value='${w4NbrOthrDepNewSet}' pattern='#,##0'/>"
+                                                    value="${w4NbrOthrDepNewSet}"
                                                     oninput="clearNoNumWhole(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
@@ -1833,7 +1833,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue"
-                                                ><fmt:formatNumber value="${w4Request.w4OthrExmptAmt}" pattern="#,##0.00"/></span
+                                                ><fmt:formatNumber value="${w4Request.w4OthrExmptAmt}" /></span
                                             >
                                             <div class="form-group valueInput">
                                                     <c:set var="w4OthrExmptAmtNewSet" value="${w4Request.w4OthrExmptAmtNew}"/>
@@ -1845,7 +1845,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="w4OthrExmptAmtNew"
                                                     name="w4OthrExmptAmtNew"
                                                     aria-label="${sessionScope.languageJSON.profile.otherExemption}" 
-                                                    value="<fmt:formatNumber value='${w4OthrExmptAmtNewSet}' pattern='#,##0.00'/>"
+                                                    value="${w4OthrExmptAmtNewSet}"
                                                     oninput="clearNoNum(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
@@ -1859,7 +1859,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         <div class="profile-desc">
                                             <span class="haveValue"
                                                 >
-                                                <fmt:formatNumber value="${w4Request.w4OthrIncAmt}" pattern="#,##0.00"/>
+                                                <fmt:formatNumber value="${w4Request.w4OthrIncAmt}" />
                                                 </span
                                             >
                                             <div class="form-group valueInput">
@@ -1873,7 +1873,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     name="w4OthrIncAmtNew"
                                                     oninput="clearNoNum(this)"
                                                     aria-label="${sessionScope.languageJSON.profile.otherIncome}" 
-                                                    value="<fmt:formatNumber value='${w4OthrIncAmtNewSet}' pattern='#,##0.00'/>"
+                                                    value="${w4OthrIncAmtNewSet}"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>
                                         </div>
@@ -1885,7 +1885,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                         </div>
                                         <div class="profile-desc">
                                             <span class="haveValue"
-                                                ><fmt:formatNumber value="${w4Request.w4OthrDedAmt}" pattern="#,##0.00"/></span
+                                                ><fmt:formatNumber value="${w4Request.w4OthrDedAmt}"/></span
                                             >
                                             <div class="form-group valueInput">
                                                     <c:set var="w4OthrDedAmtNewSet" value="${w4Request.w4OthrDedAmtNew}"/>
@@ -1897,7 +1897,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     id="w4OthrDedAmtNew"
                                                     name="w4OthrDedAmtNew"
                                                     aria-label="${sessionScope.languageJSON.profile.deductions}" 
-                                                    value="<fmt:formatNumber value='${w4OthrDedAmtNewSet}' pattern='#,##0.00'/>"
+                                                    value="${w4OthrDedAmtNewSet}"
                                                     oninput="clearNoNum(this)"
                                                     <c:if test="${readOnlyInfo == true}">disabled="disabled"</c:if>/>
                                             </div>

@@ -148,10 +148,9 @@ public class OptionsDao {
 	    
 	    if(q.list() == null || q.list().isEmpty()) {
 	    	result = "N";
+        } else {
+        	result = String.valueOf(q.list().get(0));
         }
-	    
-        result = String.valueOf(q.list().get(0));
-        
         return result;
 	}
 	
@@ -167,10 +166,9 @@ public class OptionsDao {
 	    
 	    if(q.list() == null || q.list().isEmpty()) {
 	    	result = "N";
+        } else {	
+        	result = String.valueOf(q.list().get(0));
         }
-	    
-        result = String.valueOf(q.list().get(0));
-        
         return result;
 	}
 	
@@ -185,7 +183,13 @@ public class OptionsDao {
 	    q.setParameter("employeeNumber", employeeNumber);
 	    q.setParameter("frequency", frequency);
 		
-		String result = String.valueOf(q.list().get(0));
+		String result;
+		if(q.list() == null || q.list().isEmpty()) {
+	    	result = "N";
+        } else {	
+        	result = String.valueOf(q.list().get(0));
+        }
+		
 		return result;
 	}
 	

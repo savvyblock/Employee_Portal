@@ -2,10 +2,7 @@ $(document).ready(function() {
     var path = (window.location + '').split('/')
     var menuItem
     var item = path[path.length - 2]
-    // var item = path[path.length - 1]
-    console.log(path)
-    console.log(menuItem)
-    console.log(item)
+    
     if (
         item == 'calendarYearToDate' ||
         item == 'currentPayInformation' ||
@@ -16,7 +13,7 @@ $(document).ready(function() {
     ) {
         menuItem = 'inquiry'
     }
-    if (
+     if (
         item == 'approveLeaveRequest' ||
         item == 'leaveOverview' ||
         item == 'supervisorCalendar' ||
@@ -26,13 +23,14 @@ $(document).ready(function() {
     }
     var menuElement = $('#' + menuItem)
     var itemElement = $('#' + item)
-    console.log(itemElement)
     if (menuElement) {
         menuElement.addClass('menu-open')
-        menuElement.children('ul').attr('style', 'display: block;')
+        menuElement.children('ul')
+        .attr('style', 'display: block;')
     }
-    if (itemElement) itemElement.addClass('active')
-    //update budgeCount and info every second
+    if (itemElement){
+        itemElement.addClass('active')
+    }
     getBudgeDetail()
     updateBudgeCountAndInfo()
 })

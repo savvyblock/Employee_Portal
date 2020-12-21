@@ -305,7 +305,7 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 							</reportElement>
 							<staticText>
-								<reportElement key="staticText" x="0" y="0" width="66" height="11" backcolor="#C0C0C0" uuid="7e226fa2-e163-47f1-b9a7-aa62b203b5ef">
+								<reportElement key="staticText" x="0" y="3" width="66" height="11" backcolor="#C0C0C0" uuid="7e226fa2-e163-47f1-b9a7-aa62b203b5ef">
 									<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								</reportElement>
 								<box>
@@ -318,10 +318,10 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 									<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
-								<text><![CDATA[Marital Status]]></text>
+								<text><![CDATA[Marital Status:]]></text>
 							</staticText>
 							<staticText>
-								<reportElement key="staticText" x="241" y="0" width="99" height="11" backcolor="#C0C0C0" uuid="9709a347-8785-41de-8d00-9a18b52bde53">
+								<reportElement key="staticText" x="241" y="3" width="99" height="11" backcolor="#C0C0C0" uuid="9709a347-8785-41de-8d00-9a18b52bde53">
 									<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								</reportElement>
 								<box>
@@ -334,17 +334,17 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 									<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
-								<text><![CDATA[Number of Exemptions]]></text>
+								<text><![CDATA[Number of Exemptions:]]></text>
 							</staticText>
 							<textField isBlankWhenNull="true">
-								<reportElement x="350" y="0" width="33" height="11" uuid="7716b64d-ae13-460e-a0c9-454374d62392"/>
+								<reportElement x="350" y="3" width="33" height="11" uuid="7716b64d-ae13-460e-a0c9-454374d62392"/>
 								<textElement>
 									<font fontName="Microsoft Sans Serif" size="8"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{nbrTaxExempts}]]></textFieldExpression>
 							</textField>
 							<staticText>
-								<reportElement key="staticText" x="410" y="3" width="87" height="11" backcolor="#C0C0C0" uuid="dd5ba463-c7a9-475c-ba33-f2f7e22b0317">
+								<reportElement key="staticText" x="410" y="3" width="96" height="11" backcolor="#C0C0C0" uuid="dd5ba463-c7a9-475c-ba33-f2f7e22b0317">
 									<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								</reportElement>
 								<box>
@@ -357,9 +357,9 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 									<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
-								<text><![CDATA[Other Exemptions]]></text>
+								<text><![CDATA[W4 Other Exemptions:]]></text>
 							</staticText>
-							<textField isBlankWhenNull="true">
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
 								<reportElement x="506" y="3" width="63" height="11" uuid="8db9e489-890b-4187-9098-71642a1f6b84">
 									<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 								</reportElement>
@@ -368,6 +368,15 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 								</textElement>
 								<textFieldExpression><![CDATA[$F{w4OthrExmptAmt}]]></textFieldExpression>
 							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement x="79" y="3" width="132" height="12" uuid="59a07422-189b-4a16-a483-9926008df4a8">
+									<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+								</reportElement>
+								<textElement>
+									<font fontName="Microsoft Sans Serif" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{maritalStatTax}.toString().equals( "M" ) ? "M - Married" : "S - Single"]]></textFieldExpression>
+							</textField>
 						</frame>
 						<frame>
 							<reportElement x="-2" y="-1" width="581" height="14" uuid="51ba46d5-0292-4754-9b65-2220b75e80c2">
@@ -375,7 +384,7 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 							</reportElement>
 							<staticText>
-								<reportElement key="staticText" x="13" y="0" width="55" height="11" backcolor="#C0C0C0" uuid="52550d2d-d6ff-4fe7-b55b-a208f728ca8d">
+								<reportElement key="staticText" x="13" y="3" width="77" height="11" backcolor="#C0C0C0" uuid="52550d2d-d6ff-4fe7-b55b-a208f728ca8d">
 									<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								</reportElement>
 								<box>
@@ -388,10 +397,10 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 									<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
-								<text><![CDATA[Filling Status]]></text>
+								<text><![CDATA[W4 Filing Status:]]></text>
 							</staticText>
 							<staticText>
-								<reportElement key="staticText" x="254" y="0" width="55" height="11" backcolor="#C0C0C0" uuid="f00e4955-ed61-465c-88d6-e59c80d9b300">
+								<reportElement key="staticText" x="254" y="3" width="55" height="11" backcolor="#C0C0C0" uuid="f00e4955-ed61-465c-88d6-e59c80d9b300">
 									<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								</reportElement>
 								<box>
@@ -404,17 +413,17 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 									<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
-								<text><![CDATA[Multi-Jobs	]]></text>
+								<text><![CDATA[W4 Multi-Job:	]]></text>
 							</staticText>
 							<textField isBlankWhenNull="true">
-								<reportElement x="93" y="1" width="70" height="12" uuid="9d18c43e-cf65-44eb-8607-644d26393b78"/>
+								<reportElement x="93" y="3" width="145" height="12" uuid="9d18c43e-cf65-44eb-8607-644d26393b78"/>
 								<textElement>
 									<font fontName="Microsoft Sans Serif" size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{w4FileStat}.equals( "M" ) ? "Married filing jointly": $F{w4FileStat}.equals( "H" )? "Head of household" :  $F{w4FileStat}.equals( "S" )? "Single or Married filing separately" : ""]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{w4FileStat}.equals( "M" ) ? "Married filing jointly": $F{w4FileStat}.equals( "H" )? "Head of household" :  $F{w4FileStat}.equals( "S" )? "Single or Married filing separately" : $F{bhr_pay_hist_marital_stat_tax}]]></textFieldExpression>
 							</textField>
 							<staticText>
-								<reportElement key="staticText" x="422" y="3" width="70" height="11" backcolor="#C0C0C0" uuid="ed9401d9-8e2b-46f4-b98f-0a1678d73dce">
+								<reportElement key="staticText" x="422" y="3" width="111" height="11" backcolor="#C0C0C0" uuid="ed9401d9-8e2b-46f4-b98f-0a1678d73dce">
 									<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								</reportElement>
 								<box>
@@ -427,24 +436,17 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 									<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
-								<text><![CDATA[Children under 17	]]></text>
+								<text><![CDATA[W4 Nbr Children under 17:]]></text>
 							</staticText>
 							<textField isBlankWhenNull="true">
-								<reportElement x="93" y="-18" width="71" height="12" uuid="01b70d30-ca2d-4183-bbef-45e16c45943c"/>
-								<textElement>
-									<font fontName="Microsoft Sans Serif" size="8"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{maritalStatTax}.equals( "M" ) ? "M - Married" : "S - Single"]]></textFieldExpression>
-							</textField>
-							<textField isBlankWhenNull="true">
-								<reportElement x="506" y="3" width="72" height="14" uuid="4eaae2bf-8e94-464a-923c-139c27e4bbb4"/>
+								<reportElement x="533" y="3" width="46" height="14" uuid="4eaae2bf-8e94-464a-923c-139c27e4bbb4"/>
 								<textElement>
 									<font fontName="Microsoft Sans Serif" size="8"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{w4NbrChldrn}]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
-								<reportElement x="314" y="-1" width="76" height="13" uuid="ef1a3d44-5a29-4574-b69a-57b796730e3e"/>
+								<reportElement x="314" y="2" width="76" height="13" uuid="ef1a3d44-5a29-4574-b69a-57b796730e3e"/>
 								<textElement>
 									<font fontName="Microsoft Sans Serif" size="8"/>
 								</textElement>
@@ -457,7 +459,7 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 							</reportElement>
 							<staticText>
-								<reportElement key="staticText" x="12" y="0" width="78" height="11" backcolor="#C0C0C0" uuid="53b979ad-2491-4068-a0f0-2c93e6c1c719">
+								<reportElement key="staticText" x="12" y="3" width="115" height="11" backcolor="#C0C0C0" uuid="53b979ad-2491-4068-a0f0-2c93e6c1c719">
 									<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								</reportElement>
 								<box>
@@ -470,10 +472,10 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 									<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
-								<text><![CDATA[Other dependents	]]></text>
+								<text><![CDATA[W4 Nbr Other Dependents:	]]></text>
 							</staticText>
 							<staticText>
-								<reportElement key="staticText" x="253" y="0" width="56" height="11" backcolor="#C0C0C0" uuid="e7aa1415-03b0-4440-a5f5-fac6b4afc63f">
+								<reportElement key="staticText" x="253" y="3" width="73" height="11" backcolor="#C0C0C0" uuid="e7aa1415-03b0-4440-a5f5-fac6b4afc63f">
 									<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								</reportElement>
 								<box>
@@ -486,10 +488,10 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 									<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
-								<text><![CDATA[Other Income	]]></text>
+								<text><![CDATA[W4 Other Income:]]></text>
 							</staticText>
 							<staticText>
-								<reportElement key="staticText" x="421" y="2" width="70" height="11" backcolor="#C0C0C0" uuid="3804b503-389f-4c58-ae2b-10e53e5add5e">
+								<reportElement key="staticText" x="421" y="3" width="97" height="11" backcolor="#C0C0C0" uuid="3804b503-389f-4c58-ae2b-10e53e5add5e">
 									<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								</reportElement>
 								<box>
@@ -498,14 +500,14 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
-								<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None">
 									<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
-								<text><![CDATA[Deductions	]]></text>
+								<text><![CDATA[W4 Other Deductions:	]]></text>
 							</staticText>
-							<textField isBlankWhenNull="true">
-								<reportElement x="506" y="3" width="70" height="13" uuid="2f9333c7-14c2-4026-ab92-86342982baab">
+							<textField pattern="##,###,##0.00" isBlankWhenNull="true">
+								<reportElement x="516" y="3" width="64" height="13" uuid="2f9333c7-14c2-4026-ab92-86342982baab">
 									<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 								</reportElement>
 								<textElement>
@@ -514,14 +516,14 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 								<textFieldExpression><![CDATA[$F{w4OthrDedAmt}]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
-								<reportElement x="92" y="0" width="70" height="11" uuid="cf6cd3b6-6212-4677-afb2-c22021dc8d7d"/>
+								<reportElement x="127" y="3" width="70" height="11" uuid="cf6cd3b6-6212-4677-afb2-c22021dc8d7d"/>
 								<textElement>
 									<font fontName="Microsoft Sans Serif" size="8"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{w4NbrOthrDep}]]></textFieldExpression>
 							</textField>
-							<textField isBlankWhenNull="true">
-								<reportElement x="313" y="1" width="70" height="13" uuid="60f01127-352d-434b-8ec2-86ed2b01e753"/>
+							<textField pattern="#,##0.00" isBlankWhenNull="true">
+								<reportElement x="329" y="3" width="70" height="13" uuid="60f01127-352d-434b-8ec2-86ed2b01e753"/>
 								<textElement>
 									<font fontName="Microsoft Sans Serif" size="8"/>
 								</textElement>

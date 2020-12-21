@@ -283,19 +283,19 @@
         "verifyEmail": "Verificar dirección de correo electrónico",
         "searchForBanks":"Search for banks",
         "approverNotSetNotifyBusinessOffice":"The Approver has not been set by the district. Please notify Business office.",
-        "fillingStatus":"Filing Status",
-        "single":"Sigle",
-        "marriedFillingSep":"Married filling separately",
-        "marriedFillingJointly":"Married filling jointly",
+        "fillingStatus":"W4 Filing Status",
+        "single":"Single",
+        "marriedFillingSep":"Married filing separately",
+        "marriedFillingJointly":"Married filing jointly",
         "headOfHousehold":"Head of Household",
         "yes":"Yes",
         "no":"No",
-        "multiJobs":"Multi Jobs",
-        "childrenUnder17":"Children under 17",
-        "otherDependents":"Other dependents",
-        "otherIncome":"Other Income",
-        "deductions":"Deductions",
-        "otherExemption":"Other Exemptions",
+        "multiJobs":"W4 Multi-Jobs",
+        "childrenUnder17":"W4 Children under 17",
+        "otherDependents":"W4 Other Dependents",
+        "otherIncome":"W4 Other Income",
+        "deductions":"W4 Other Deductions",
+        "otherExemption":"W4 Other Exemptions",
         "":""    
     },
     "label": {
@@ -602,7 +602,6 @@
         "pleaseEnterCorrectMailFormat": "Capture el formato de correo correcto.",
         "twoPasswordsNotMatch": "Las dos contraseñas que capturó no coinciden.",
         "passwordLengthNotLessThan6": "La longitud de la contraseña no debe ser menor a 6 caracteres.",
-        "usernameCannotBeEmpty": "Se requiere el nombre de usuario",
         "passwordCannotBeEmpty": "Se requiere la contraseña",
         "maximumBankAmmount": "Se alcanzó la cantidad máxima permitida de cuentas para depósito directo. No es posible añadir una cuenta nueva.",
         "pleaseEnterCorrectFormat": "Capture el formato correcto",
@@ -746,7 +745,7 @@
         "deletedPart": "Parte eliminada",
         "deletedRowSummary": "Una fila sin botón de eliminar en la columna Eliminar indica que esa fila fue eliminada."
     },
-    "login":{
+	 "login":{
         "authorizedText":"Solo el personal autorizado puede utilizar el sistema para fines autorizados. Al iniciar sesión, reconoce que es un usuario autorizado.",
         "footerCopyright": "&copy; 2020 Texas Computer Cooperative",
         "titleTccAccessibilityStatement": "Declaración de accesibilidad de TCC",
@@ -778,8 +777,8 @@
         "SSNFormat":"Ingrese 6 números",
         "zipCodeFormat":"Ingrese 5 números",
         "somethingWrong":"¡Hay algo mal! Inténtalo de nuevo.",
-        "securityQuestionDes": "La información le ayudará a restablecer su contraseña.",
-        "required":"Necesario",
+		"securityQuestionDes": "La información le ayudará a restablecer su contraseña.",
+		"required":"Necesario",
         "":""
     },
     "buttons":{

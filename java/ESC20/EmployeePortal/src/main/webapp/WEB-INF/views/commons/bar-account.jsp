@@ -14,7 +14,7 @@
             <%@ include file="global-select.jsp"%>
     </div>
 
-    <a class=" help helpLink" href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank" role="link"
+    <a class=" help helpLink" href="https://help.ascendertx.com/employeeportal/doku.php" target="_blank" role="link"
    	      aria-label="${sessionScope.languageJSON.accessHint.goHelp}" title="${sessionScope.languageJSON.accessHint.goHelp}">
    	 	Help &nbsp;<i class="fa fa-question-circle"></i>
    	</a>

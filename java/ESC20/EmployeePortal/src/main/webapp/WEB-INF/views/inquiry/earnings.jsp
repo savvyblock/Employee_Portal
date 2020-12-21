@@ -42,7 +42,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             	</c:if>
                             </div>
                        
-                            <div class="toPrint content-white EMP-detail earningPage">
+                            <div class="toPrint content-white EMP-detail earningPage" style="height: auto;">
                                 <div class="exportPDFBox" id="exportPDFBox">
                                         <div class="print-block print-title">
                                                 <div style="text-align:center;margin-bottom:10px;">
@@ -349,7 +349,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td headers="otherIncome_${count.index}" class="text-left"
                                                     data-title="${sessionScope.languageJSON.profile.otherIncome}">
                                                     <fmt:formatNumber value="${w4Request[freq].w4OthrIncAmt}"
-                                                        pattern="#,##0" />
+                                                        pattern="#,##0.00" />
                                                 </td>
 
                                                 <th id="deductions_${count.index}">
@@ -358,7 +358,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                 <td headers="deductions_${count.index}" class="text-left"
                                                     data-title="${sessionScope.languageJSON.profile.deductions}">
                                                     <fmt:formatNumber value="${w4Request[freq].w4OthrDedAmt}"
-                                                        pattern="#,##0" />
+                                                        pattern="#,##0.00" />
                                                 </td>
                                             </tr>
                                     </tbody>

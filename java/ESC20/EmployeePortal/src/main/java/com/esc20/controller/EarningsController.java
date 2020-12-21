@@ -216,6 +216,19 @@ public class EarningsController {
 		YTDEarnings.setEmplrPrvdHlthcare(this.service.getEmplrPrvdHlthcare(employeeNumber, payDate));
 		Frequency freq = Frequency.getFrequency(StringUtil.mid(payDate.getDateFreq(), 9, 1));
 		String year = payDate.getDateFreq().substring(0, 4);
+
+		
+		Map<Frequency, List<CurrentPayInformation>> jobs = this.service.getJob(employeeNumber);
+		List<Frequency> frequencies = this.service.getFrequencies(jobs);
+		Map<Frequency, PayInfo> payInfos = this.service.retrievePayInfo(employeeNumber, frequencies);
+		Map<Frequency, BeaW4> w4Request = this.indexService.getBeaW4Info(employeeNumber, frequencies);
+		List<Code> w4FileStatOptions = this.referenceService.getW4MaritalActualStatuses();
+		Map<Frequency, String> payCampuses = this.service.retrievePayCampuses(employeeNumber, frequencies);
+
+		mav.addObject("payCampuses", payCampuses);
+		mav.addObject("w4Request", w4Request);
+		mav.addObject("payInfos", payInfos);
+		mav.addObject("w4FileStatOptions", w4FileStatOptions);
 		mav.setViewName("/inquiry/earnings");
 		mav.addObject("days", days);
 		mav.addObject("selectedPayDate", payDate);
@@ -356,11 +369,17 @@ public class EarningsController {
 		print.setBhr_emp_pay_emp_nbr(userDetail.getEmpNbr());
 		print.setBhr_emp_job_campus_id(primaryCampusId);
 		print.setBhr_emp_job_campus_id_displayvalue(primaryCampusId + " " + primaryCampusName);
-		print.setBhr_emp_pay_pay_campus_displayvalue(primaryCampusId + " " + primaryCampusName);
 		// w4
+		Map<Frequency, List<CurrentPayInformation>> jobs = this.service.getJob(userDetail.getEmpNbr());
+		List<Frequency> frequencies = this.service.getFrequencies(jobs);
 
 		PayInfo payInfos = this.indexService.getPayInfo(userDetail, print.getBhr_emp_pay_pay_freq());
 		BeaW4 w4Request = this.indexService.getBeaW4(userDetail, print.getBhr_emp_pay_pay_freq());
+		Map<Frequency, String> payCampuses = this.service.retrievePayCampuses(userDetail.getEmpNbr(), frequencies);
+		Frequency freq = Frequency.getFrequency(StringUtil.mid(payDate.getDateFreq(), 9, 1));
+
+		String camp = payCampuses.get(freq);
+		print.setBhr_emp_pay_pay_campus_displayvalue(camp);
 
 		print.setMaritalStatTax(payInfos.getMaritalStatTax());
 		print.setNbrTaxExempts(payInfos.getNbrTaxExempts());

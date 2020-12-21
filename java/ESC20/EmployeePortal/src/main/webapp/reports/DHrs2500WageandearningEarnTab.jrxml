@@ -1633,7 +1633,7 @@ $F{tot_ytd_ded}.doubleValue())]]></textFieldExpression>
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<textFieldExpression><![CDATA[new Double($F{bhr_pay_hist_wh_gross}.doubleValue() + $F{bhr_pay_hist_nontrs_nontax_bus_allow}.doubleValue())]]></textFieldExpression>
+						<textFieldExpression><![CDATA[new Double($F{bhr_pay_hist_wh_gross}.doubleValue())]]></textFieldExpression>
 					</textField>
 					<textField pattern="###,###.00" isBlankWhenNull="true">
 						<reportElement key="textField" x="194" y="1" width="70" height="11" backcolor="#C0C0C0" uuid="92907581-9049-4845-b3c1-0794376878be">
@@ -1649,7 +1649,7 @@ $F{tot_ytd_ded}.doubleValue())]]></textFieldExpression>
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<textFieldExpression><![CDATA[new Double($F{bhr_cal_ytd_wh_gross}.doubleValue() + $F{bhr_cal_ytd_nontrs_nontax_bus_allow}.doubleValue())]]></textFieldExpression>
+						<textFieldExpression><![CDATA[new Double($F{bhr_cal_ytd_wh_gross}.doubleValue() )]]></textFieldExpression>
 					</textField>
 				</frame>
 				<frame>

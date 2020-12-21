@@ -277,5 +277,5 @@
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>
 <%@ include file="../modal/logoutModal.jsp"%>
-<script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs / commons / bar.js">
+<script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/commons/bar.js">
 </script>

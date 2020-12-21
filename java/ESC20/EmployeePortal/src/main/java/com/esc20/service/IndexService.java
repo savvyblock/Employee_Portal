@@ -74,8 +74,8 @@ public class IndexService {
     
     @Autowired
     private ReferenceDao referenceDao;
-    
-    @Autowired
+	
+	 @Autowired
     private PreferencesDao preferencesDao;
     
     public String getMessage() throws ParseException{
@@ -330,6 +330,7 @@ public class IndexService {
 	{
 		BeaW4 result = payDao.getW4(demo.getEmpNbr(), frequency);
 		if(result == null) {
+			System.out.println("freq  ="+ frequency);
 			PayInfo info = payDao.getPayInfo(demo.getEmpNbr(), frequency);
 			result = new BeaW4(info,demo,frequency);
 		}
@@ -341,7 +342,14 @@ public class IndexService {
 
 		for (Frequency frequency : frequencies) {
 			try {
-				w4.put(frequency, payDao.getW4(employeeNumber, frequency.getCode()));
+				BeaW4 result = payDao.getW4(employeeNumber, frequency.getCode());
+				if(result == null) {
+        		BhrEmpDemo demo = userDao.getUserDetail(employeeNumber);
+					PayInfo info = payDao.getPayInfo(employeeNumber, frequency.getLabel());
+					result = new BeaW4(info,demo,frequency.getLabel());
+				}
+				w4.put(frequency, result);
+				
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
@@ -1674,8 +1682,7 @@ public class IndexService {
 		}
 		
     }
-
-
+	
     //ALC-26 update EP password to get settings from DB
     public Map<String, String> getTxeisPreferences() {
 		return preferencesDao.getTxeisPreferences();

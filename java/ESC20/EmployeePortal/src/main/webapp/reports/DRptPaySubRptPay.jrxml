@@ -21,18 +21,16 @@
 		<![CDATA[SELECT BHR_EMP_PAY.MARITAL_STAT_TAX as marital_status,
  BHR_EMP_PAY.NBR_TAX_EXEMPTS as number_of_exemptions,
  PAY_CAMPUS as pay_campus,
-BEA_W4.W4_FILE_STAT as file_stat,
-BEA_W4.W4_MULTI_JOB as multi_job,
-BEA_W4.W4_NBR_CHLDRN as children,
-BEA_W4.W4_NBR_OTHR_DEP as depend,
-BEA_W4.W4_OTHR_INC_AMT as other_inc,
-BEA_W4.W4_OTHR_DED_AMT as deduc ,
-BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
+BHR_EMP_PAY.W4_FILE_STAT as file_stat,
+BHR_EMP_PAY.W4_MULTI_JOB as multi_job,
+BHR_EMP_PAY.W4_NBR_CHLDRN as children,
+BHR_EMP_PAY.W4_NBR_OTHR_DEP as depend,
+BHR_EMP_PAY.W4_OTHR_INC_AMT as other_inc,
+BHR_EMP_PAY.W4_OTHR_DED_AMT as deduc ,
+BHR_EMP_PAY.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
  FROM BHR_EMP_PAY
- JOIN BEA_W4 on BEA_W4.EMP_NBR = BHR_EMP_PAY.EMP_NBR 
  WHERE BHR_EMP_PAY.CYR_NYR_FLG = 'C'
  AND BHR_EMP_PAY.PAY_FREQ = $P{as_payfreq}
- AND BEA_W4.PAY_FREQ = $P{as_payfreq}
  AND BHR_EMP_PAY.EMP_NBR = $P{as_empnbr}]]>
 	</queryString>
 	<field name="marital_status" class="java.lang.String"/>
@@ -42,9 +40,9 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 	<field name="multi_job" class="java.lang.String"/>
 	<field name="children" class="java.lang.String"/>
 	<field name="depend" class="java.lang.String"/>
-	<field name="other_inc" class="java.lang.String"/>
-	<field name="deduc" class="java.lang.String"/>
-	<field name="w4OthrExmptAmt" class="java.lang.String"/>
+	<field name="other_inc" class="java.lang.Double"/>
+	<field name="deduc" class="java.lang.Double"/>
+	<field name="w4OthrExmptAmt" class="java.lang.Double"/>
 	<background>
 		<band/>
 	</background>
@@ -95,7 +93,7 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 		<band/>
 	</columnHeader>
 	<detail>
-		<band height="47">
+		<band height="15">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<frame>
 				<reportElement x="2" y="0" width="600" height="15" uuid="c40b1789-26e0-4c80-9ba4-0457081ec910">
@@ -201,8 +199,8 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						</textElement>
 						<textFieldExpression><![CDATA[$F{pay_campus}]]></textFieldExpression>
 					</textField>
-					<textField isBlankWhenNull="true">
-						<reportElement x="548" y="1" width="32" height="11" uuid="16f2976b-cef9-40d0-91a8-22f694d8f6a4">
+					<textField pattern="#,##0.00" isBlankWhenNull="true">
+						<reportElement x="522" y="1" width="51" height="11" uuid="16f2976b-cef9-40d0-91a8-22f694d8f6a4">
 							<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						</reportElement>
 						<textElement>
@@ -211,7 +209,7 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						<textFieldExpression><![CDATA[$F{w4OthrExmptAmt}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="470" y="0" width="72" height="11" backcolor="#C0C0C0" uuid="ed215c08-60b5-43e9-abd9-505f0c6b0b09">
+						<reportElement key="staticText" x="430" y="0" width="92" height="11" backcolor="#C0C0C0" uuid="ed215c08-60b5-43e9-abd9-505f0c6b0b09">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 							<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 						</reportElement>
@@ -225,7 +223,7 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<text><![CDATA[Other Exemptions]]></text>
+						<text><![CDATA[W4 Other Exemptions]]></text>
 					</staticText>
 				</frame>
 				<frame>
@@ -233,7 +231,7 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
-						<reportElement key="staticText" x="9" y="0" width="56" height="11" backcolor="#C0C0C0" uuid="cac1c1b8-5150-4cf4-b7b8-10ae127e3933">
+						<reportElement key="staticText" x="9" y="0" width="68" height="11" backcolor="#C0C0C0" uuid="cac1c1b8-5150-4cf4-b7b8-10ae127e3933">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -246,10 +244,10 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<text><![CDATA[Filling Status]]></text>
+						<text><![CDATA[W4 Filing Status]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="77" y="0" width="75" height="11" backcolor="#C0C0C0" uuid="84f981a9-3611-476e-be24-5024bbf68ca4">
+						<reportElement key="textField" x="83" y="0" width="97" height="11" backcolor="#C0C0C0" uuid="84f981a9-3611-476e-be24-5024bbf68ca4">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -262,10 +260,10 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$F{file_stat}.equals( "M" ) ? "Married filing jointly": $F{file_stat}.equals( "H" )? "Head of household" :  $F{file_stat}.equals( "S" )? "Single or Married filing separately" : ""]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{file_stat}.equals( "M" ) ? "M - Married filing jointly": $F{file_stat}.equals( "H" )? "H - Head of household" :  $F{file_stat}.equals( "S" )? "S - Single or Married filing separately" : ""]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="172" y="0" width="56" height="11" backcolor="#C0C0C0" uuid="7f3911d0-dfbb-4727-93cf-754d83f0e21a">
+						<reportElement key="staticText" x="172" y="0" width="68" height="11" backcolor="#C0C0C0" uuid="7f3911d0-dfbb-4727-93cf-754d83f0e21a">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -278,7 +276,7 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<text><![CDATA[Multi-Jobs	]]></text>
+						<text><![CDATA[W4 Multi-Jobs	]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
 						<reportElement key="textField" x="240" y="0" width="75" height="11" backcolor="#C0C0C0" uuid="b4da5782-f1ac-4403-8a39-f2399f8da927">
@@ -313,7 +311,7 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						<textFieldExpression><![CDATA[$F{children}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="324" y="0" width="84" height="11" backcolor="#C0C0C0" uuid="5f5d7cea-23f0-4ee3-8380-62f17b4f1c9a">
+						<reportElement key="staticText" x="324" y="0" width="96" height="11" backcolor="#C0C0C0" uuid="5f5d7cea-23f0-4ee3-8380-62f17b4f1c9a">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -326,7 +324,7 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<text><![CDATA[Children under 17	]]></text>
+						<text><![CDATA[W4 Children under 17	]]></text>
 					</staticText>
 				</frame>
 				<frame>
@@ -334,7 +332,7 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
-						<reportElement key="staticText" x="9" y="0" width="80" height="11" backcolor="#C0C0C0" uuid="061190b9-6679-461c-bd39-695ad7a89436">
+						<reportElement key="staticText" x="9" y="0" width="91" height="11" backcolor="#C0C0C0" uuid="061190b9-6679-461c-bd39-695ad7a89436">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -347,10 +345,10 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<text><![CDATA[Other dependents	]]></text>
+						<text><![CDATA[W4 Other Dependents	]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="90" y="0" width="61" height="11" backcolor="#C0C0C0" uuid="bfc73db8-234d-4b98-82d9-dc8b2c0b93db">
+						<reportElement key="textField" x="100" y="0" width="51" height="11" backcolor="#C0C0C0" uuid="bfc73db8-234d-4b98-82d9-dc8b2c0b93db">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -366,8 +364,9 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						<textFieldExpression><![CDATA[$F{depend}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="172" y="0" width="56" height="11" backcolor="#C0C0C0" uuid="0069c315-f52c-4465-b733-1cc719758ec7">
+						<reportElement key="staticText" x="172" y="0" width="70" height="11" backcolor="#C0C0C0" uuid="0069c315-f52c-4465-b733-1cc719758ec7">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 						</reportElement>
 						<box>
 							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -379,10 +378,10 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<text><![CDATA[Other Income	]]></text>
+						<text><![CDATA[W4 Other Income	]]></text>
 					</staticText>
-					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="240" y="0" width="75" height="11" backcolor="#C0C0C0" uuid="90f0df3b-ae6b-44c8-9cfa-52e45db7a524">
+					<textField pattern="#,##0.00" isBlankWhenNull="true">
+						<reportElement key="textField" x="242" y="0" width="73" height="11" backcolor="#C0C0C0" uuid="90f0df3b-ae6b-44c8-9cfa-52e45db7a524">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -397,8 +396,8 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						</textElement>
 						<textFieldExpression><![CDATA[$F{other_inc}]]></textFieldExpression>
 					</textField>
-					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="420" y="0" width="30" height="11" backcolor="#C0C0C0" uuid="5bca7753-f1ed-466b-b27c-9e359773e30b">
+					<textField pattern="#,##0.00" isBlankWhenNull="true">
+						<reportElement key="textField" x="420" y="0" width="70" height="11" backcolor="#C0C0C0" uuid="5bca7753-f1ed-466b-b27c-9e359773e30b">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -414,7 +413,7 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						<textFieldExpression><![CDATA[$F{deduc}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="324" y="0" width="84" height="11" backcolor="#C0C0C0" uuid="574c0532-aa3e-4759-9d92-9da8799012a1">
+						<reportElement key="staticText" x="324" y="0" width="94" height="11" backcolor="#C0C0C0" uuid="574c0532-aa3e-4759-9d92-9da8799012a1">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -427,7 +426,7 @@ BEA_W4.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 							<paragraph lineSpacing="Single"/>
 						</textElement>
-						<text><![CDATA[Deductions	]]></text>
+						<text><![CDATA[W4 Other Deductions	]]></text>
 					</staticText>
 				</frame>
 			</frame>

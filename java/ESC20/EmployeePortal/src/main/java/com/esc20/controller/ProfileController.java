@@ -822,19 +822,19 @@ public class ProfileController {
 		// Compare current and new value so to decide if need to send out email
 		BeaLglName nameOldRequest = this.indexService.getBeaLglName(demo);
 		
-		if (!namePreNew.equals(nameOldRequest.getNamePreNew())) {
+		if (!namePreNew.equals(nameOldRequest.getNamePreNew()) && !(nameOldRequest.getNamePreNew().trim().isEmpty() && namePreNew.isEmpty() ) ) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameTitle(true);
 		}
-		if (!nameFNew.equals(nameOldRequest.getNameFNew())) {
+		if (!nameFNew.equals(nameOldRequest.getNameFNew()) && !(nameOldRequest.getNameFNew().trim().isEmpty() && nameFNew.isEmpty() )) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameFirst(true);
 		}
-		if (!nameLNew.equals(nameOldRequest.getNameLNew())) {
+		if (!nameLNew.equals(nameOldRequest.getNameLNew()) && !(nameOldRequest.getNameLNew().trim().isEmpty() && nameLNew.isEmpty() )) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameLast(true);
 		}
-		if (!nameMNew.equals(nameOldRequest.getNameMNew())) {
+		if (!nameMNew.equals(nameOldRequest.getNameMNew()) && !(nameOldRequest.getNamePreNew().trim().isEmpty() && nameMNew.isEmpty() )) {
 			isAnyChanges = true;
 			demoInfoChanges.setNameMiddle(true);
 		}
@@ -928,7 +928,10 @@ public class ProfileController {
 				demoInfoChanges.setMaritalLocal(true);
 			}
 		}else {
-			if (!maritalStatNew.trim().equals(mrtlRequest.getMaritalStatNew().toString().trim())) {
+			if (
+				!maritalStatNew.trim().equals(mrtlRequest.getMaritalStatNew().toString().trim())
+				&& !(maritalStatNew.isEmpty() && mrtlRequest.getMaritalStatNew().toString().isEmpty())
+			) {
 				isAnyChanges = true;
 				demoInfoChanges.setMaritalLocal(true);
 			}
@@ -1232,27 +1235,27 @@ public class ProfileController {
 		// Compare current and new value so to decide if need to send out email
 		BeaEmerContact emerRequest = this.indexService.getBeaEmerContact(demo);
 	
-		if (!emerContactNew.equals(emerRequest.getEmerContactNew())) {
+		if (!emerContactNew.equals(emerRequest.getEmerContactNew()) && !(emerContactNew.isEmpty() && emerRequest.getEmerContactNew().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmergencyName(true);
 		}
-		if (!emerPhoneAcNew.equals(emerRequest.getEmerPhoneAcNew())) {
+		if (!emerPhoneAcNew.equals(emerRequest.getEmerPhoneAcNew()) && !(emerPhoneAcNew.isEmpty() && emerRequest.getEmerPhoneAcNew().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmergencyAreaCode(true);
 		}
-		if (!emerPhoneNbrNew.equals(emerRequest.getEmerPhoneNbrNew())) {
+		if (!emerPhoneNbrNew.equals(emerRequest.getEmerPhoneNbrNew()) && !(emerPhoneNbrNew.isEmpty() && emerRequest.getEmerPhoneNbrNew().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmergencyPhoneNum(true);
 		}
-		if (!emerPhoneExtNew.equals(emerRequest.getEmerPhoneExtNew())) {
+		if (!emerPhoneExtNew.equals(emerRequest.getEmerPhoneExtNew()) && !(emerPhoneExtNew.isEmpty() && emerRequest.getEmerPhoneExtNew().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmergencyPhoneExt(true);
 		}
-		if (!emerRelNew.equals(emerRequest.getEmerRelNew())) {
+		if (!emerRelNew.equals(emerRequest.getEmerRelNew()) && !(emerRelNew.isEmpty() && emerRequest.getEmerRelNew().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmergencyRelationship(true);
 		}
-		if (!emerNoteNew.equals(emerRequest.getEmerNoteNew())) {
+		if (!emerNoteNew.equals(emerRequest.getEmerNoteNew()) && !(emerNoteNew.isEmpty() && emerRequest.getEmerNoteNew().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setEmergencyNotes(true);
 		}
@@ -1327,31 +1330,32 @@ public class ProfileController {
 		BeaMailAddr mailingAddressRequest;
 		// Compare current and new value so to decide if need to send out email
 		BeaMailAddr mailAddrRequest = this.indexService.getBeaMailAddr(demo);
-		if (!addrNbrNew.equals(mailAddrRequest.getAddrNbrNew())) {
+
+		if (!addrNbrNew.equals(mailAddrRequest.getAddrNbrNew()) && !( addrNbrNew.isEmpty() && mailAddrRequest.getAddrNbrNew().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingAddress(true);
 		}
-		if (!addrStrNew.equals(mailAddrRequest.getAddrStrNew())) {
+		if (!addrStrNew.equals(mailAddrRequest.getAddrStrNew()) && !( addrStrNew.isEmpty() && mailAddrRequest.getAddrStrNew().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingPoBox(true);
 		}
-		if (!addrCityNew.equals(mailAddrRequest.getAddrCityNew())) {
+		if (!addrCityNew.equals(mailAddrRequest.getAddrCityNew()) && !( addrCityNew.isEmpty() && mailAddrRequest.getAddrCityNew().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingCity(true);
 		}
-		if (!addrAptNew.equals(mailAddrRequest.getAddrAptNew())) {
+		if (!addrAptNew.equals(mailAddrRequest.getAddrAptNew()) && !( addrAptNew.isEmpty() && mailAddrRequest.getAddrAptNew().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingApt(true);
 		}
-		if (!addrStNew.equals(mailAddrRequest.getAddrStNew())) {
+		if (!addrStNew.equals(mailAddrRequest.getAddrStNew()) && !( addrStNew.isEmpty() && mailAddrRequest.getAddrStNew().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingState(true);
 		}
-		if (!addrZipNew.equals(mailAddrRequest.getAddrZipNew())) {
+		if (!addrZipNew.equals(mailAddrRequest.getAddrZipNew())&& !( addrZipNew.isEmpty() && mailAddrRequest.getAddrZipNew().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingZip(true);
 		}
-		if (!addrZip4New.equals(mailAddrRequest.getAddrZip4New())) {
+		if (!addrZip4New.equals(mailAddrRequest.getAddrZip4New()) && !( addrZip4New.isEmpty() && mailAddrRequest.getAddrZip4New().trim().isEmpty())) {
 			isAnyChanges = true;
 			demoInfoChanges.setMailingZip4(true);
 		}
@@ -1430,34 +1434,34 @@ public class ProfileController {
 		smrAddrNbrNew= smrAddrNbrNew==null?"":smrAddrNbrNew.trim();
 		String altAddrNbr = altMailAddrRequest.getSmrAddrNbrNew()==null?"":altMailAddrRequest.getSmrAddrNbrNew().trim();
 		try {
-			if (!smrAddrNbrNew.equals(altAddrNbr)) {
+			if (!smrAddrNbrNew.equals(altAddrNbr) && !(smrAddrNbrNew.isEmpty() && altAddrNbr.isEmpty()) ) {
 				isAnyChanges = true;
 				demoInfoChanges.setAlternateAddress(true);
 			}
 			
-			if (!smrAddrStrNew.equals(altMailAddrRequest.getSmrAddrStrNew())) {
+			if (!smrAddrStrNew.equals(altMailAddrRequest.getSmrAddrStrNew()) && !(smrAddrStrNew.isEmpty() && altMailAddrRequest.getSmrAddrStrNew().trim().isEmpty()) ) {
 				isAnyChanges = true;
 				demoInfoChanges.setAlternatePoBox(true);
 				}
 			
 
-			if (!smrAddrAptNew.equals(altMailAddrRequest.getSmrAddrAptNew())) {
+			if (!smrAddrAptNew.equals(altMailAddrRequest.getSmrAddrAptNew()) && !(smrAddrAptNew.isEmpty() && altMailAddrRequest.getSmrAddrAptNew().trim().isEmpty()) ) {
 				isAnyChanges = true;
 				demoInfoChanges.setAlternateApt(true);
 			}
-			if (!smrAddrCityNew.equals(altMailAddrRequest.getSmrAddrCityNew())) {
+			if (!smrAddrCityNew.equals(altMailAddrRequest.getSmrAddrCityNew()) && !(smrAddrCityNew.isEmpty() && altMailAddrRequest.getSmrAddrCityNew().trim().isEmpty())) {
 				isAnyChanges = true;
 				demoInfoChanges.setAlternateCity(true);
 			}
-			if (!smrAddrStNew.equals(altMailAddrRequest.getSmrAddrStNew())) {
+			if (!smrAddrStNew.equals(altMailAddrRequest.getSmrAddrStNew()) && !(smrAddrStNew.isEmpty() && altMailAddrRequest.getSmrAddrStNew().trim().isEmpty())) {
 				isAnyChanges = true;
 				demoInfoChanges.setAlternateState(true);
 			}
-			if (!smrAddrZipNew.equals(altMailAddrRequest.getSmrAddrZipNew())) {
+			if (!smrAddrZipNew.equals(altMailAddrRequest.getSmrAddrZipNew()) && !(smrAddrZipNew.isEmpty() && altMailAddrRequest.getSmrAddrZipNew().trim().isEmpty())) {
 				isAnyChanges = true;
 				demoInfoChanges.setAlternateZip(true);
 			}
-			if (!smrAddrZip4New.equals(altMailAddrRequest.getSmrAddrZip4New())) {
+			if (!smrAddrZip4New.equals(altMailAddrRequest.getSmrAddrZip4New()) && !(smrAddrZip4New.isEmpty() && altMailAddrRequest.getSmrAddrZip4New().trim().isEmpty() )) {
 				isAnyChanges = true;
 				demoInfoChanges.setAlternateZip4(true);
 			}
@@ -1546,11 +1550,11 @@ public class ProfileController {
 
 			phoneNbrNew = phoneNbrNew.replaceAll("-", "");
 			BeaHmPhone hmRequest = this.indexService.getBeaHmPhone(demo);
-			if(!phoneAreaNew.equals(hmRequest.getPhoneAreaNew())) {
+			if(!phoneAreaNew.equals(hmRequest.getPhoneAreaNew()) && !(phoneAreaNew.isEmpty() && hmRequest.getPhoneAreaNew().trim().isEmpty())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneHomeArea(true);
 			}
-			if(!phoneNbrNew.equals(hmRequest.getPhoneNbrNew())) {
+			if(!phoneNbrNew.equals(hmRequest.getPhoneNbrNew()) && !(phoneNbrNew.isEmpty() && hmRequest.getPhoneNbrNew().trim().isEmpty())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneHomeNum(true);
 			}
@@ -1582,11 +1586,11 @@ public class ProfileController {
 
 			phoneNbrCellNew = phoneNbrCellNew.replaceAll("-", "");
 			BeaCellPhone cellRequest = this.indexService.getBeaCellPhone(demo);
-			if(!phoneAreaCellNew.equals(cellRequest.getPhoneAreaCellNew())) {
+			if(!phoneAreaCellNew.equals(cellRequest.getPhoneAreaCellNew()) && !(phoneAreaCellNew.isEmpty() && cellRequest.getPhoneAreaCellNew().trim().isEmpty())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneCellArea(true);
 			}
-			if(!phoneNbrCellNew.equals(cellRequest.getPhoneNbrCellNew())) {
+			if(!phoneNbrCellNew.equals(cellRequest.getPhoneNbrCellNew()) && !(phoneNbrCellNew.isEmpty() && cellRequest.getPhoneNbrCellNew().trim().isEmpty())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneCellNum(true);
 			}
@@ -1620,15 +1624,15 @@ public class ProfileController {
 
 			phoneNbrBusNew = phoneNbrBusNew.replaceAll("-", "");
 			BeaBusPhone busRequest = this.indexService.getBeaBusPhone(demo);
-			if(!phoneAreaBusNew.equals(busRequest.getPhoneAreaBusNew())) {
+			if(!phoneAreaBusNew.equals(busRequest.getPhoneAreaBusNew())  && !(phoneAreaBusNew.isEmpty() && busRequest.getPhoneAreaBusNew().trim().isEmpty())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneBusArea(true);
 			}
-			if(!phoneNbrBusNew.equals(busRequest.getPhoneNbrBusNew())) {
+			if(!phoneNbrBusNew.equals(busRequest.getPhoneNbrBusNew())  && !(phoneNbrBusNew.isEmpty() && busRequest.getPhoneNbrBusNew().trim().isEmpty())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneBusNum(true);
 			}
-			if(!busPhoneExtNew.equals(busRequest.getBusPhoneExtNew())) {
+			if(!busPhoneExtNew.equals(busRequest.getBusPhoneExtNew())  && !(busPhoneExtNew.isEmpty() && busRequest.getBusPhoneExtNew().trim().isEmpty())) {
 				isAnyChanges = true;
 				demoInfoChanges.setPhoneBusExt(true);
 			}
@@ -1689,8 +1693,16 @@ public class ProfileController {
 			Character maritalStatTax, Character maritalStatTaxNew, Integer nbrTaxExempts, Integer nbrTaxExemptsNew,
 			String w4FileStat, String w4MultiJob, Integer w4NbrChldrn, Integer w4NbrOthrDep, Double w4OthrIncAmt,
 			Double w4OthrDedAmt, Double w4OthrExmptAmt, String w4FileStatNew, String w4MultiJobNew,
-			Integer w4NbrChldrnNew, Integer w4NbrOthrDepNew, Double w4OthrIncAmtNew, Double w4OthrDedAmtNew,
-			Double w4OthrExmptAmtNew) {
+			Integer w4NbrChldrnNew, Integer w4NbrOthrDepNew, 
+			String w4OthrIncAmtNew,
+			String w4OthrDedAmtNew,
+			String w4OthrExmptAmtNew) {
+
+		// Integer w4OthrIncAmtNew2 = Integer.parseInt(w4OthrIncAmtNew.replaceAll(",", ""));
+		
+		Double w4OthrIncAmtNew2 = Double.valueOf(w4OthrIncAmtNew.replace(",", ""));
+		Double w4OthrDedAmtNew2 = Double.valueOf(w4OthrDedAmtNew.replace(",", ""));
+		Double w4OthrExmptAmtNew2 = Double.valueOf(w4OthrExmptAmtNew.replace(",", ""));
 
 		HttpSession session = req.getSession();
 		ModelAndView mav = new ModelAndView();
@@ -1745,32 +1757,32 @@ public class ProfileController {
 			payrollSame = false;
 			currentPayInfoChanges.setNumberOfOtherDependChanged(true);
 		}
-		if (!w4OthrIncAmtNew.equals(w4Pending.getW4OthrIncAmtNew())) {
+		if (!w4OthrIncAmtNew2.equals(w4Pending.getW4OthrIncAmtNew())) {
 			payrollSame = false;
 			currentPayInfoChanges.setOtherIncomeAmtChanged(true);
 		}
-		if (!w4OthrDedAmtNew.equals(w4Pending.getW4OthrDedAmtNew())) {
+		if (!w4OthrDedAmtNew2.equals(w4Pending.getW4OthrDedAmtNew())) {
 			payrollSame = false;
 			currentPayInfoChanges.setOtherDeductAmtChanged(true);
 		}
-		if (!w4OthrExmptAmtNew.equals(w4Pending.getW4OthrExmptAmtNew())) {
+		if (!w4OthrExmptAmtNew2.equals(w4Pending.getW4OthrExmptAmtNew())) {
 			payrollSame = false;
 			currentPayInfoChanges.setOtherExemptAmtChanged(true);
 		}
 		
 		if (this.indexService.getBhrEapPayAssgnGrp("BEA_W4")) {
 			w4Request = new BeaW4(pay, empNbr, freq.getCode().charAt(0), reqDts, maritalStatTaxNew, nbrTaxExemptsNew,
-					'A', w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew,
-					w4OthrDedAmtNew, w4OthrExmptAmtNew);
+					'A', w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew2,
+					w4OthrDedAmtNew2, w4OthrExmptAmtNew2);
 			this.indexService.saveW4Request(w4Request);
 			this.indexService.updatePayInfo(demo, pay, freq.getCode().charAt(0), maritalStatTaxNew, nbrTaxExemptsNew, 
-					w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew,
-					w4OthrDedAmtNew, w4OthrExmptAmtNew);
+					w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew2,
+					w4OthrDedAmtNew2, w4OthrExmptAmtNew2);
 
 		} else {
 			w4Request = new BeaW4(pay, empNbr, freq.getCode().charAt(0), reqDts, maritalStatTaxNew, nbrTaxExemptsNew,
-					'P', w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew, w4OthrDedAmtNew,
-					w4OthrExmptAmtNew);
+					'P', w4FileStatNew, w4MultiJobNew, w4NbrChldrnNew, w4NbrOthrDepNew, w4OthrIncAmtNew2, w4OthrDedAmtNew2,
+					w4OthrExmptAmtNew2);
 			this.indexService.saveW4Request(w4Request);
 		}
 		
@@ -1781,9 +1793,9 @@ public class ProfileController {
 			w4Info.setW4MultiJob(w4MultiJobNew);
 			w4Info.setW4NbrChldrn(w4NbrChldrnNew);
 			w4Info.setW4NbrOthrDep(w4NbrOthrDepNew);
-			w4Info.setW4OthrDedAmt(w4OthrDedAmtNew);
-			w4Info.setW4OthrExmptAmt(w4OthrExmptAmtNew);
-			w4Info.setW4OthrIncAmt(w4OthrIncAmtNew);
+			w4Info.setW4OthrDedAmt(w4OthrDedAmtNew2);
+			w4Info.setW4OthrExmptAmt(w4OthrExmptAmtNew2);
+			w4Info.setW4OthrIncAmt(w4OthrIncAmtNew2);
 			Boolean autoApproveBank = true; //Since we do not need to update Bank here we make it as true;
 			//autoApproveBank = this.bankService.getAutoApproveAccountInfo(freq.getCode()); // will use when save or Update Bank
 			PayrollFields docRequiredFields = this.referenceService.populatePayrollDocRequiredFields(payFreq);

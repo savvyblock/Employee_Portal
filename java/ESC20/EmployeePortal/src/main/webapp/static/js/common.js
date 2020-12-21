@@ -82,21 +82,25 @@ $(function() {
         "createUser":"newuser",
         "forgetPassword":"forgotpassword",
         "updatePassword":"changepassword",
-        "profile":"",
         "calendarYearToDate":"inquiry/calendaryeartodate",
         "currentPayInformation":"inquiry/currentpayinformation",
         "deductions":"inquiry/deductions",
         "earnings":"inquiry/earnings",
         "w2Information":"inquiry/w2information",
         "information1095":"inquiry/1095information",
-        "leaveBalance":"leave/leavebalances",
-        "leaveRequest":"leave/leaverequests",
-        "approveLeaveRequest":"leave/supervisor/approveleaverequests",
-        "leaveOverview":"leave/supervisor/leaveoverview",
-        "supervisorCalendar":"leave/supervisor/calendar",
-        "leaveRequestTemporaryApprovers":"leave/supervisor/settemporaryapprovers"
+        "leaveBalance":"leavebalances",
+        "leaveRequest":"leaverequests",
+        "approveLeaveRequest":"supervisor/approveleaverequests",
+        "leaveOverview":"supervisor/leaveoverview",
+        "supervisorCalendar":"supervisor/calendar",
+        "leaveRequestTemporaryApprovers":"supervisor/settemporaryapprovers",
+        "profile":"employeeportalselfservice"
     }
-
+    
+    let helpurl;
+    if(helpLinkFromProperties.includes("/test/")){
+        helpurl = helpLinkFromProperties.replace('/test','');
+    }
     console.log("L  :" + value)
     var url = window.location.href
     var urlArry = url.split('?')
@@ -104,13 +108,13 @@ $(function() {
     var lastItem = itemUrlArry[itemUrlArry.length - 1]
     var lastTowItem = itemUrlArry[itemUrlArry.length - 2]
     var helpLinkParam = helpJson[lastItem] || helpJson[lastTowItem]
-    var helpLink = helpLinkFromProperties + '/'+ (helpLinkParam || '')
+    var helpLink = helpurl + '/'+ (helpLinkParam || '')
     var value = $('#globalSet').val();
 
     if(value == "es"){
         helpLink += "?culture=es-ES"
     }
-    $("a.helpLink").attr('href', "https://"+helpLink )
+    $("a.helpLink").attr('href', helpLink )
 })
 function setGlobal(){
     if (getCookie(name)&&getCookie(name) != '') {

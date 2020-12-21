@@ -173,7 +173,7 @@
                                                     <b>${sessionScope.languageJSON.profile.childrenUnder17}</b></th>
 
                                                 <td headers="childrenUnder17_${count.index}" class="text-left"
-                                                    data-title="${sessionScope.languageJSON.profile.multiJobs}" colspan="3">
+                                                    data-title="${sessionScope.languageJSON.profile.childrenUnder17}" colspan="3">
                                                     <fmt:formatNumber value="${w4Request[value['freq']].w4NbrChldrn}"
                                                         pattern="#,##0" />
                                                 </td>
@@ -202,7 +202,7 @@
                                                 <td headers="otherIncome_${count.index}" class="text-left"
                                                     data-title="${sessionScope.languageJSON.profile.otherIncome}">
                                                     <fmt:formatNumber value="${w4Request[value['freq']].w4OthrIncAmt}"
-                                                        pattern="#,##0" />
+                                                        pattern="#,##0.00" />
                                                 </td>
 
                                                 <th id="deductions_${count.index}">
@@ -211,7 +211,7 @@
                                                 <td headers="deductions_${count.index}" class="text-left"
                                                     data-title="${sessionScope.languageJSON.profile.deductions}">
                                                     <fmt:formatNumber value="${w4Request[value['freq']].w4OthrDedAmt}"
-                                                        pattern="#,##0" />
+                                                        pattern="#,##0.00" />
                                                 </td>
                                             </tr>
                                     </tbody>

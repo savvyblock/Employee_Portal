@@ -424,6 +424,13 @@ public class Aca1095CPrint implements Serializable {
 	private String b34_octoberind = "";
 	private String b34_novemberind = "";
 	private String b34_decemberind = "";
+	private Integer yearOfBirth = 0 ;
+	public Integer getyearOfBirth() {
+		return yearOfBirth;
+	}
+	public void setyearOfBirth(Integer yearOfBirth) {
+		this.yearOfBirth = yearOfBirth;
+	}
 	public String getFormpagenbr() {
 		return formpagenbr;
 	}

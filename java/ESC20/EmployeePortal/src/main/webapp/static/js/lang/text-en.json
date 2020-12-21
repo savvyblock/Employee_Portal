@@ -283,19 +283,19 @@
         "verifyEmail": "Verify E-mail Address",
         "searchForBanks":"Search for banks",
         "approverNotSetNotifyBusinessOffice":"The Approver has not been set by the district. Please notify Business office.",
-        "fillingStatus":"Filing Status",
-        "single":"Sigle",
-        "marriedFillingSep":"Married filling separately",
-        "marriedFillingJointly":"Married filling jointly",
+        "fillingStatus":"W4 Filing Status",
+        "single":"Single",
+        "marriedFillingSep":"Married filing separately",
+        "marriedFillingJointly":"Married filing jointly",
         "headOfHousehold":"Head of Household",
         "yes":"Yes",
         "no":"No",
-        "multiJobs":"Multi-Jobs",
-        "childrenUnder17":"Children under 17",
-        "otherDependents":"Other dependents",
-        "otherIncome":"Other Income",
-        "deductions":"Deductions",
-        "otherExemption":"Other Exemptions",
+        "multiJobs":"W4 Multi-Jobs",
+        "childrenUnder17":"W4 Children under 17",
+        "otherDependents":"W4 Other Dependents",
+        "otherIncome":"W4 Other Income",
+        "deductions":"W4 Other Deductions",
+        "otherExemption":"W4 Other Exemptions",
         "":""
     },
     "label": {
@@ -746,7 +746,7 @@
         "deletedPart": "Deleted Part",
         "deletedRowSummary": "Row without delete button in Delete column means that row was deleted."
     },
-    "login":{
+	"login":{
         "authorizedText":"Only authorized personnel are allowed to use the system for authorized purposes. By logging on, you acknowledge that you are an authorized user.",
         "footerCopyright": "&copy; 2020 Texas Computer Cooperative",
         "titleTccAccessibilityStatement": "TCC Accessibility Statement",
@@ -756,7 +756,7 @@
         "textTccAccessibilityStatement4": "Contact Us",
         "browserReuirements": "Supported Browsers: "
     },
-    "createAccount":{
+	"createAccount":{
         "createAccount":"Create Account",
         "userInformation": "User Information",
         "securityQuestion": "Security Question",
@@ -778,8 +778,8 @@
         "SSNFormat":"Please enter 6 numbers",
         "zipCodeFormat":"Please enter 5 numbers",
         "somethingWrong":"There is something wrong! Please try again.",
-        "securityQuestionDes": "The information will assist you in resetting your password.",
-        "required":"Required",
+		"securityQuestionDes": "The information will assist you in resetting your password.",
+		  "required":"Required",
         "":""
     },
     "buttons":{

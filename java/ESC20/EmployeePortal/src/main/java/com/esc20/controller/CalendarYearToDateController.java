@@ -172,6 +172,20 @@ public class CalendarYearToDateController {
 			map.put("freq", freq);
 			pageValues.add(map);
 		});
+		
+		Map<Frequency, List<CurrentPayInformation>> jobs = this.service.getJob(employeeNumber);
+		
+		List<Frequency> frequencies = this.service.getFrequencies(jobs);
+
+		Map<Frequency, PayInfo> payInfos = this.service.retrievePayInfo(employeeNumber, frequencies);
+		Map<Frequency, BeaW4> w4Request = this.indexService.getBeaW4Info(employeeNumber, frequencies);
+		List<Code> w4FileStatOptions = this.referenceService.getW4MaritalActualStatuses();
+		Map<Frequency, String> payCampuses = this.service.retrievePayCampuses(employeeNumber, frequencies);
+
+		mav.addObject("payCampuses", payCampuses);
+		mav.addObject("w4Request", w4Request);
+		mav.addObject("payInfos", payInfos);
+		mav.addObject("w4FileStatOptions", w4FileStatOptions);
 
 		mav.setViewName("/inquiry/calendarYearToDate");
 		mav.addObject("years", years);

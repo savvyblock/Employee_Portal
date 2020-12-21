@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,29 +19,27 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.esc20.model.BeaEmail;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.Options;
-import com.esc20.nonDBModels.SearchUser;
 import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
+import com.esc20.util.StringUtil;
 import com.esc20.util.FileDownloadUtil;
 import com.esc20.util.FileUtil;
-import com.esc20.util.StringUtil;
-import com.google.inject.spi.Message;
 import com.esc20.util.BrowserInfoService;
+import com.esc20.nonDBModels.SearchUser;
 
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -53,7 +50,7 @@ import org.slf4j.LoggerFactory;
 public class IndexController {
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 	
-//	@Value("${portal.help.url}")
+	@Value("${portal.help.url}")
     private String helpUrl;
 	
 	@Autowired
@@ -72,10 +69,10 @@ public class IndexController {
 	public ModelAndView getIndexPage(HttpServletRequest req, String Id, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("login");
-		
 		//ALC-26 update EP password to get settings from DB
 		Map<String, String> preferences = indexService.getTxeisPreferences();
 		req.getSession().setAttribute("txeisPreferences", preferences);
+		
 		
 		Boolean isUserLoginFailure = (Boolean) req.getSession().getAttribute("isUserLoginFailure");
 		if (isUserLoginFailure != null && isUserLoginFailure) {
@@ -117,7 +114,7 @@ public class IndexController {
             }
         }
         mav.addObject("alertMsg", sbf.toString());
-        req.getSession().setAttribute("helpLinkFromProperties", helpUrl+"employeeportal/doku.php");
+        req.getSession().setAttribute("helpLinkFromProperties", helpUrl +"employeeportal/doku.php");
         return mav;
     }
 
@@ -189,8 +186,8 @@ public class IndexController {
 		session.setAttribute("browserVersion", browserService.getBrowserVersion());
 		
 //		mav.addObject("userName", SecurityContextHolder.getContext().getAuthentication().getName());
-		String localHostAddress = InetAddress.getLocalHost().getHostAddress();
-		String maskedLocalHostAddress = "XXX.XXX.XXX." + localHostAddress.substring(localHostAddress.length()-2);
+		String[] octets =  InetAddress.getLocalHost().getHostAddress().split("\\.");
+		String maskedLocalHostAddress = "XXX.XXX.XXX." + octets[3];
 		session.setAttribute("hostAddress", maskedLocalHostAddress);
 		
 		return mav;
@@ -200,7 +197,6 @@ public class IndexController {
 	public ModelAndView updatePassword(HttpServletRequest req, String password) {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
-		
 		//ALC-26 update EP password to get settings from DB
 		Map<String, String> preferences = indexService.getTxeisPreferences();
 		req.getSession().setAttribute("txeisPreferences", preferences);
@@ -210,7 +206,7 @@ public class IndexController {
 			mav.setViewName("visitFailed");
 			mav.addObject("module", "Home");
 			mav.addObject("action", "Update Password");
-			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			mav.addObject("errorMsg", "Not all mandatory fields provided.");
 			return mav;
 		}
 		if (StringUtils.isEmpty(password)) {
@@ -254,7 +250,7 @@ public class IndexController {
 		res.put("success", true);
 		return res;
 	}
-
+	
 	 //ALC-13 added the picture in login page
     @RequestMapping("/getDistrictPicture/{districtId}")
 	public void getDistrictPicture(HttpServletRequest request, HttpServletResponse response,
@@ -276,8 +272,7 @@ public class IndexController {
 		if (user != null) {
 			isExisted = true;
 		} 
-		res.put("valid", !isExisted);	
+		res.put("isExisted", isExisted);	
 		return res;
 	}
-	
 }
