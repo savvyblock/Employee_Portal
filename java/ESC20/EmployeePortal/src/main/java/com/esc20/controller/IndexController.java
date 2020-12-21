@@ -271,8 +271,10 @@ public class IndexController {
 		BeaUsers user = this.indexService.getUserByUsername(username);
 		if (user != null) {
 			isExisted = true;
-		} 
-		res.put("isExisted", isExisted);	
+		}
+		//ALC-13 the name "valid" must be hard code according to the boostrap validator
+		//and returning true indicates user name is available, otherwise it's not available
+		res.put("valid", !isExisted);
 		return res;
 	}
 }
