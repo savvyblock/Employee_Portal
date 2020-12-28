@@ -499,8 +499,9 @@
                     </div>
 
                 </div>
+                <!-- ALC-13 Update UI for server box -->
                 <c:if test="${not empty alertMsg}"> 
-                        <div class="serverMsg" id="alert">
+                        <div class="serverMsg">
                             ${alertMsg}
                         </div>
                 </c:if>
