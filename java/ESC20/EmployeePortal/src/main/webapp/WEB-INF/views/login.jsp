@@ -176,7 +176,7 @@
                                             </a>
                                         </li>
                                     </ul>
-                    
+                                    <!-- ALC-13 make input consistent with other portals-->
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step1-tab">
                                             <p class="error-hint" style="display:none" role="alert" aria-atomic="true" id="EmpExitError">${sessionScope.languageJSON.validator.noUserAccountAssociated}</p>
@@ -190,7 +190,7 @@
                                                         <div class="col-md-5">
                                                             <div class="input-group-relative icon-group has-hint-box">
                                                                 <i class="fa fa-user left-icon" aria-hidden="true"></i> 
-                                                                <input type="text" id="SSNumber" class="form-control" name="ssn" required="required" autocomplete="off" maxlength="9"> 
+                                                                <input type="text" id="SSNumber" class="form-control" name="ssn" placeholder="${sessionScope.languageJSON.createAccount.ssn}" required="required" autocomplete="off" maxlength="9"> 
                                                                 <div class="input-hint-message">
                                                                     <p>
                                                                         ${sessionScope.languageJSON.createAccount.SSNFormat}
@@ -208,7 +208,7 @@
                                                         <div class="col-md-5">
                                                             <div class="input-group-relative icon-group has-hint-box">
                                                                 <i class="fa fa-user left-icon" aria-hidden="true"></i> 
-                                                                <input type="text" id="employeeNumber" class="form-control" name="empNumber" required="required" autocomplete="off" maxlength="9"> 
+                                                                <input type="text" id="employeeNumber" class="form-control" name="empNumber" placeholder="${sessionScope.languageJSON.label.employeeNumber}" required="required" autocomplete="off" maxlength="9"> 
                                                                 <div class="input-hint-message">
                                                                     <p>
                                                                         ${sessionScope.languageJSON.createAccount.empNumFormat}
@@ -225,7 +225,7 @@
                                                     <div class="col-md-5">
                                                         <div class="input-group-relative icon-group has-hint-box">
                                                             <i class="fa fa-calendar left-icon" aria-hidden="true"></i> 
-                                                            <input type="text" id="birthDate" class="form-control" onfocus="jsMasking(this);" data-type="DATE" placeholder="" name="birthDate" required="required" autocomplete="off">
+                                                            <input type="text" id="birthDate" class="form-control" placeholder="${sessionScope.languageJSON.label.dateOfBirth}" onfocus="jsMasking(this);" data-type="DATE" placeholder="" name="birthDate" required="required" autocomplete="off">
                                                             <input type="hidden" name="dateMonth">
                                                             <input type="hidden" name="dateDay">
                                                             <input type="hidden" name="dateYear">
@@ -240,7 +240,7 @@
                                                     <div class="col-md-5">
                                                         <div class="input-group-relative icon-group has-hint-box">
                                                             <i class="fa fa-key left-icon" aria-hidden="true"></i> 
-                                                            <input type="text" id="zipCode" class="form-control" name="zipCode" required="required" autocomplete="off">
+                                                            <input type="text" id="zipCode" class="form-control" name="zipCode" placeholder="${sessionScope.languageJSON.label.zipCode}" required="required" autocomplete="off">
                                                             <div class="input-hint-message">
                                                                 <p>
                                                                     ${sessionScope.languageJSON.createAccount.zipCodeFormat}
@@ -273,7 +273,7 @@
                                                     <div class="col-md-5">
                                                         <div class="input-group-relative icon-group has-hint-box">
                                                             <i class="fa fa-user left-icon" aria-hidden="true"></i> 
-                                                            <input type="text" id="usernameCreate" class="form-control" name="txtUsername" required="required" autocomplete="off">
+                                                            <input type="text" id="usernameCreate" class="form-control" name="txtUsername" placeholder="${sessionScope.languageJSON.label.username}" required="required" autocomplete="off">
                                                             <small class="help-block userNameError" style="display: none;"></small>
                                                             <div class="input-hint-message">
                                                                 <p>
@@ -292,7 +292,7 @@
                                                         <div class="input-group-relative icon-group has-hint-box">
                                                             <i class="fa fa-key left-icon" aria-hidden="true"></i>
                                                             <!-- ALC-26  password validation-->
-                                                            <input type="password" id="passwordCreate"  maxlength="${sessionScope.txeisPreferences.pwd_max_length}" class="form-control" data-toggle="password"  name="txtPassword" required="required" autocomplete="new-password">
+                                                            <input type="password" id="passwordCreate" placeholder="${sessionScope.languageJSON.label.password}"  maxlength="${sessionScope.txeisPreferences.pwd_max_length}" class="form-control" data-toggle="password"  name="txtPassword" required="required" autocomplete="new-password">
                                                                 <div class="input-group-addon">
                                                                     <span class="input-group-text"><i class="fa fa-eye"></i></span>
                                                                 </div>
@@ -325,7 +325,7 @@
                                                                 <i class="fa fa-key left-icon" aria-hidden="true"></i> 
                                                             </span>
                                                             <!-- ALC-29  password validation-->
-                                                            <input type="password" id="newPassword" maxlength="${sessionScope.txeisPreferences.pwd_max_length}" class="form-control" data-toggle="password" name="newPassword" required="required">
+                                                            <input type="password" id="newPassword" placeholder="${sessionScope.languageJSON.label.passwordVerification}" maxlength="${sessionScope.txeisPreferences.pwd_max_length}" class="form-control" data-toggle="password" name="newPassword" required="required">
                                                             <div class="input-group-addon">
                                                                 <span class="input-group-text"><i class="fa fa-eye"></i></span>
                                                             </div> 
@@ -346,7 +346,7 @@
                                                             <i class="fa fa-envelope left-icon" aria-hidden="true"></i> 
                                                             <c:choose>
                                                                 <c:when test="${empty user.userEmail}">
-                                                                    <input type="text" id="workEmail" class="form-control" name="workEmail" required="required">
+                                                                    <input type="text" id="workEmail" placeholder="${sessionScope.languageJSON.label.workEmail}" class="form-control" name="workEmail" required="required">
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <div id="staticWorkEmail">
@@ -366,7 +366,7 @@
                                                         <div class="col-md-5">
                                                             <div class="input-group-relative icon-group has-hint-box">
                                                                 <i class="fa fa-envelope left-icon" aria-hidden="true"></i> 
-                                                                <input type="text" id="verifyWorkEmail" class="form-control" name="workEmailVerify" required="required">
+                                                                <input type="text" id="verifyWorkEmail" placeholder="${sessionScope.languageJSON.label.workEmailVerify}" class="form-control" name="workEmailVerify" required="required">
                                                             </div>
                         
                                                         </div>
@@ -381,7 +381,7 @@
                                                                 <i class="fa fa-envelope left-icon" aria-hidden="true"></i> 
                                                                 <c:choose>
                                                                     <c:when test="${empty user.userHomeEmail}">
-                                                                        <input type="text" id="homeEmail" class="form-control" name="homeEmail" required="required">
+                                                                        <input type="text" id="homeEmail" class="form-control" placeholder="${sessionScope.languageJSON.label.homeEmail}" name="homeEmail" required="required">
                                                                     </c:when>
                                                                     <c:otherwise>
                                                                         <div id="staticWorkEmail">
@@ -401,7 +401,7 @@
                                                             <div class="col-md-5">
                                                                 <div class="input-group-relative icon-group has-hint-box">
                                                                     <i class="fa fa-envelope left-icon" aria-hidden="true"></i> 
-                                                                    <input type="text" id="verifyHomeEmail" class="form-control" name="homeEmailVerify" required="required">
+                                                                    <input type="text" id="verifyHomeEmail" class="form-control" name="homeEmailVerify" placeholder="${sessionScope.languageJSON.label.homeEmailVerify}" required="required">
                                                                 </div>
                             
                                                             </div>
@@ -435,7 +435,7 @@
                                                     </label>
                                                     <div class="col-md-5">
                                                         <div class="input-group-relative has-hint-box">
-                                                            <input type="text" class="form-control" id="hintQuestion" name="hintQuestion" autocomplete="off">
+                                                            <input type="text" class="form-control" id="hintQuestion" name="hintQuestion" placeholder="${sessionScope.languageJSON.label.hintQuestion}" autocomplete="off">
                                                         </div>
                                                     </div>
                     
@@ -446,7 +446,7 @@
                                                         </label>
                                                         <div class="col-md-5">
                                                             <div class="input-group-relative has-hint-box">
-                                                                <input type="text" class="form-control" id="hintAnswer" name="hintAnswer" autocomplete="off">
+                                                                <input type="text" class="form-control" id="hintAnswer" name="hintAnswer" placeholder="${sessionScope.languageJSON.label.hintAnswer}" autocomplete="off">
                                                                 <small class="help-block sameAnswer" role="alert" aria-atomic="true" style="display: none;">
                                                                     ${sessionScope.languageJSON.validator.notSameAnswer}
                                                                 </small>
