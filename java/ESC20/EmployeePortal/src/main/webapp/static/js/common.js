@@ -48,11 +48,26 @@ $(function() {
         }
     })
     console.log(languageSet)
+    //ALC-13 language setting
     if(languageSet&&languageSet!=''){
         $("#globalSet").val(languageSet)
+        $(".langSelectInner .dropdown-menu li").each(function(){
+            var titleA = $(this).find("a").attr("title")
+            var valueA = $(this).find("a").text()
+            if(titleA == languageSet){
+                $('#globalSet2 span').text(valueA)
+            }
+        })
         initialLocaleCode = languageSet
     }else{
         $("#globalSet").val(language)
+        $(".langSelectInner .dropdown-menu li").each(function(){
+            var titleA = $(this).find("a").attr("title")
+            var valueA = $(this).find("a").text()
+            if(titleA == language){
+                $('#globalSet2 span').text(valueA)
+            }
+        })
         initialLocaleCode = language
     }
     var dateCu = new Date();

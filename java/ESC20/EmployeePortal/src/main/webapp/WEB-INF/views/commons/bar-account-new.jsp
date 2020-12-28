@@ -29,7 +29,7 @@
 				<ul class="dropdown-menu" role="menu" aria-labelledby="globalSet2">
 					<li>
 						<a
-							title=""
+							title="en"
 							href=""
 							onclick="showText('en')"
 						>
@@ -38,7 +38,7 @@
 					</li>
 					<li>
 						<a
-							title=""
+							title="es"
 							href=""
 							onclick="showText('es')"
 						>
