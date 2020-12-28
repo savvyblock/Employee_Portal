@@ -11,11 +11,42 @@
         </a>
     </div>
     
-    <div class="global-wrap">
-            <%@ include file="global-select.jsp"%>
-	</div>&nbsp;&nbsp;&nbsp;&nbsp;
 	<div class="langSelect">
 		<ul class="nav navbar-nav langSelectInner">
+			<!--AUS-13 add language dropdown-->
+			<li class="dropdown">
+				<a
+					href="javascript:void(0);"
+					data-toggle="dropdown"
+					class="dropdown-toggle tab-click"
+					id="globalSet2"
+					tabindex="0"
+					aria-label="${sessionScope.languageJSON.label.chooseLanguage}"
+				>
+					<span>${sessionScope.languageJSON.language.english}</span>
+					&nbsp;
+				</a>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="globalSet2">
+					<li>
+						<a
+							title=""
+							href=""
+							onclick="showText('en')"
+						>
+						${sessionScope.languageJSON.language.english}
+						</a>
+					</li>
+					<li>
+						<a
+							title=""
+							href=""
+							onclick="showText('es')"
+						>
+						${sessionScope.languageJSON.language.spanish}
+						</a>
+					</li>
+				</ul>
+			</li>
             <li>
 				<a class=" help helpLink" href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank" role="link"
 				aria-label="${sessionScope.languageJSON.accessHint.goHelp}" title="${sessionScope.languageJSON.accessHint.goHelp}">
