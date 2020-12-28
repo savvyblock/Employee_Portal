@@ -145,6 +145,23 @@ function chgLang() {
         }
    });
 }
+//ALC-13 add language jquery
+function showText(lang){
+    var value = lang;
+    console.log(value)
+    //SetCookie(name, value);
+    $.ajax({
+        type: 'post',
+        url: urlMain + '/changeLanguage',
+        cache: false,
+        data: {csrfmiddlewaretoken: $("#csrfmiddlewaretoken").val(), language:value},
+        dataType: 'json',
+        success: function(data) {
+        	// alert('data success');
+        	location.reload(true);
+        }
+   });
+}
 function SetCookie(name, value) {
     var Days = 30; // cookie will stay 30 days
     var exp = new Date(); //new Date("December 31, 9998");
