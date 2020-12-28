@@ -239,6 +239,30 @@
   padding-top: 0 !important;
 }
 
+.loginBody .langSelect .langSelectInner a {
+  cursor: pointer;
+  color: #fff;
+  border: 0 !important;
+  background: none !important;
+}
+
+.loginBody .langSelect .langSelectInner a:hover {
+  background: none;
+}
+
+.loginBody .langSelect .langSelectInner a::after {
+  color: #fff;
+}
+
+.loginBody .langSelect .langSelectInner .dropdown-menu {
+  max-width: 110px;
+  min-width: 110px;
+}
+
+.loginBody .langSelect .langSelectInner .dropdown-menu a {
+  color: #000 !important;
+}
+
 .loginBody .tab-content > .tab-pane {
   margin-top: 0;
 }
