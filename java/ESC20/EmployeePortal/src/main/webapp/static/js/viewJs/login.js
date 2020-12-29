@@ -25,8 +25,8 @@ $(function(){
     })
     // ALC-13 improved function for  validation
     $('#loginForm').bootstrapValidator({
-        live: 'enable',
-        trigger:'blur',
+        live: 'disabled',
+        // trigger:'blur',
         fields: {
             username: {
                 container:"#inputEmailLabel",
@@ -48,8 +48,8 @@ $(function(){
 
     });
     $('#loginBackForm').bootstrapValidator({
-        live: 'enable',
-        trigger:'blur',
+        live: 'disabled',
+        // trigger:'blur',
         fields: {
             username: {
                 container:"#inputEmailLabelBack",
