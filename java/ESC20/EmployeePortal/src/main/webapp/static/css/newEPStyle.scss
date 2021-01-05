@@ -302,14 +302,6 @@ $theme-background-color: #414042;
             opacity: 1!important;
         }
     }
-    .btn-success{
-        background-color: $portal-theme-color;
-        border-color:  $portal-theme-color;
-        &:focus{
-            background-color: $portal-theme-color;
-            border-color:  $portal-theme-color;
-        }
-    }
     #loginBackForm{
         @media (min-width:992px){
             width: 280px;
@@ -331,8 +323,15 @@ $theme-background-color: #414042;
 .has-hint-box{
   .input-hint-message{
       border-color: $portal-theme-color;
-      &:before{
-          border-bottom-color: $portal-theme-color;
+      @media (min-width:992px){
+        &:before{
+          border-right-color: $portal-theme-color;
+        }
+      }
+      @media (max-width:991px){
+        &:before{
+            border-bottom-color: $portal-theme-color;
+        }
       }
   }
 }

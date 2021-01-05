@@ -144,6 +144,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- ALC-13 changed UI of error messages and button -->
                     <div class="tab-pane fade" id="createBody">
                             <div class="panel-body step-wizard p-l-r-50">
                                     <ul class="nav nav-tabs step-anchor account-common-step" id="myTab" role="tablist">
@@ -179,8 +180,8 @@
                                     <!-- ALC-13 make input consistent with other portals-->
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step1-tab">
-                                            <p class="error-hint" style="display:none" role="alert" aria-atomic="true" id="EmpExitError">${sessionScope.languageJSON.validator.noUserAccountAssociated}</p>
-                                            <p class="error-hint" style="display:none" role="alert" aria-atomic="true" id="noEmployeeError">${sessionScope.languageJSON.validator.noEmployeeAccountAssociated}</p>
+                                            <p class="alert alert-error" style="display:none" role="alert" aria-atomic="true" id="EmpExitError">${sessionScope.languageJSON.validator.noUserAccountAssociated}</p>
+                                            <p class="alert alert-error" style="display:none" role="alert" aria-atomic="true" id="noEmployeeError">${sessionScope.languageJSON.validator.noEmployeeAccountAssociated}</p>
                                             <form class="form-horizontal form-signin" id="personalDetailForm" method="post" role="form" autocomplete="off">
                                                 <c:if test="${idType=='S'}">
                                                     <div class="form-group has-right-msg">
@@ -263,7 +264,7 @@
                                         </div>
                                         <div class="tab-pane fade" id="step2" role="tabpanel" aria-labelledby="step2-tab">
                                             <c:if test="${isUserExist!=null && isUserExist=='true'}">
-                                                <p class="error-hint"  role="alert" aria-atomic="true" id="noUserError">${sessionScope.languageJSON.validator.userExist}</p>
+                                                <p class="alert alert-error"  role="alert" aria-atomic="true" id="noUserError">${sessionScope.languageJSON.validator.userExist}</p>
                                             </c:if>
                                             <form class="form-horizontal form-signin" role="form" id="accountDetailForm">
                                                 <div class="form-group has-right-msg">
@@ -409,7 +410,7 @@
                                                     </c:if>
                                                 <hr />
                                                 <div class="text-right">
-                                                    <button type="button" class="btn btn-default back-step1">
+                                                    <button type="button" class="btn btn-success back-step1">
                                                         ${sessionScope.languageJSON.buttons.back}
                                                     </button>
                                                     <button type="button" class="btn btn-success next-step2">
@@ -459,7 +460,7 @@
                     
                                             <hr />
                                             <div class="text-right">
-                                                <button type="button" class="btn btn-default back-step2">${sessionScope.languageJSON.buttons.back}</button>
+                                                <button type="button" class="btn btn-success back-step2">${sessionScope.languageJSON.buttons.back}</button>
                                                 <button class="btn btn-success" id="createAccount">
                                                         ${sessionScope.languageJSON.buttons.next}
                                                 </button>
@@ -488,9 +489,9 @@
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                             </form>
                                             <div class="text-right">
-                                                <a href="javascript:void(0)" class="btn btn-success" id="finishBtn">
+                                                <button class="btn btn-success" id="finishBtn">
                                                     ${sessionScope.languageJSON.buttons.finish}
-                                                </a>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

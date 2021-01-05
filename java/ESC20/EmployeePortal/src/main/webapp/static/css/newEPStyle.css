@@ -316,16 +316,6 @@
   opacity: 1 !important;
 }
 
-.loginBody .btn-success {
-  background-color: #3281a5;
-  border-color: #3281a5;
-}
-
-.loginBody .btn-success:focus {
-  background-color: #3281a5;
-  border-color: #3281a5;
-}
-
 @media (min-width: 992px) {
   .loginBody #loginBackForm {
     width: 280px;
@@ -349,8 +339,16 @@
   border-color: #3281a5;
 }
 
-.has-hint-box .input-hint-message:before {
-  border-bottom-color: #3281a5;
+@media (min-width: 992px) {
+  .has-hint-box .input-hint-message:before {
+    border-right-color: #3281a5;
+  }
+}
+
+@media (max-width: 991px) {
+  .has-hint-box .input-hint-message:before {
+    border-bottom-color: #3281a5;
+  }
 }
 
 .step-wizard .step-anchor.account-common-step .nav-item .nav-link.active {
