@@ -30,7 +30,8 @@
 					<i class="fa fa-safari link-color"></i>
 				  </a>
 				</p>
-				<div id="AccessibilityModal" class="modalAccessibility" >
+				<!--ALC-13 hide modal When you go to the page-->
+				<div id="AccessibilityModal" class="modalAccessibility" style="display: none;">
 					<div class="modalAccessibility-content">
 					  <p>
 						  <span class="close">&times;</span>

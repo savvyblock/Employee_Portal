@@ -267,16 +267,8 @@
   margin-top: 0;
 }
 
-.loginBody .login-footer #AccessibilityLink {
-  color: #3281a5;
-}
-
-.loginBody .login-footer .modalAccessibility div.modalAccessibility-content {
-  border: 2px solid #3281a5;
-}
-
-.loginBody .login-footer .modalAccessibility div.modalAccessibility-content a {
-  color: #3281a5;
+.loginBody .grayBg {
+  background: #021116;
 }
 
 .loginBody .login-footer .col-md-8, .loginBody .login-footer .col-md-4 {
@@ -306,10 +298,6 @@
 
 .loginBody .btn-new:hover {
   background: #3281a5;
-}
-
-.loginBody .form-warp .form-group .icon-group .left-icon {
-  color: #3281a5;
 }
 
 .loginBody #btn_submit,

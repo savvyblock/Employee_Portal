@@ -256,18 +256,10 @@ $theme-background-color: #414042;
   .tab-content > .tab-pane{
       margin-top: 0;
   }
+  .grayBg{
+    background: #021116;
+  }
   .login-footer{
-      #AccessibilityLink{
-          color: $portal-theme-color;
-      }
-      .modalAccessibility{
-          div.modalAccessibility-content {
-              border: 2px solid $portal-theme-color;
-              a{
-                  color: $portal-theme-color;
-              }
-          }
-      }
       .col-md-8,.col-md-4{
           float: left;
           position: relative;
@@ -292,16 +284,6 @@ $theme-background-color: #414042;
       border-width: 1px;
       &:hover{
           background: $portal-theme-color;
-      }
-  }
-  .form-warp{
-      .form-group{
-          .icon-group .left-icon{
-              color: $portal-theme-color;
-          }
-          // input.form-control{
-          //     border: 1px solid $portal-theme-color;
-          // }
       }
   }
   #btn_submit,
