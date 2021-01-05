@@ -1,5 +1,5 @@
      <a class="nav-logo" href="/<%=request.getContextPath().split("/")[1]%>/home">
-         <img src="<spring:theme code="commonBase"/>images/EmployeePortal/ascender_logo.png" alt="${sessionScope.languageJSON.logoName.esc}"/>
+         <img src="<spring:theme code="commonBase"/>images/EmployeePortal/EmployeePortalLogo.png" alt="${sessionScope.languageJSON.logoName.esc}"/>
      </a>
 
 

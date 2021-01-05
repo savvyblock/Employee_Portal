@@ -2,7 +2,7 @@
 <button id="skipNav">${sessionScope.languageJSON.label.skipNav}</button>
 <div class="account-header">
     <a href="/<%=request.getContextPath().split("/")[1]%>/login" role="link">
-            <img class="logo logo-lg" src="<spring:theme code="commonBase"/>images/EmployeePortal/ascender_logo.png" alt="${sessionScope.languageJSON.logoName.esc}"/>
+            <img class="logo logo-lg" src="<spring:theme code="commonBase"/>images/EmployeePortal/EmployeePortalLogo.png" alt="${sessionScope.languageJSON.logoName.esc}"/>
             <img class="logo logo-sm" src="/<%=request.getContextPath().split("/")[1]%>/images/logo-account.png" alt="${sessionScope.languageJSON.logoName.esc}"/>
     </a>
     <div class="header-btn">
