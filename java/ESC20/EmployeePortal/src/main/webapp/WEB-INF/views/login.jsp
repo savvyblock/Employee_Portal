@@ -220,7 +220,7 @@
                                                 </c:if>
                                                 <div class="form-group has-right-msg">
                                                     <label for="birthDate" class="control-label-title col-md-3 text-right">
-                                                            ${sessionScope.languageJSON.label.dateOfBirth}(${sessionScope.languageJSON.label.mmddyyyy}):
+                                                            ${sessionScope.languageJSON.label.dateOfBirth}(mm/dd/yyyy):
                                                     </label>
                                                     <div class="col-md-5">
                                                         <div class="input-group-relative icon-group has-hint-box">
