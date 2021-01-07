@@ -14,6 +14,15 @@
     </head>
     <!--ALC-13 UI Alignment of ASCENDER and portals-->
     <body class="account-wrap loginPage loginBody">
+        <!-- ALC-26 set default min and max length for password-->
+		<c:set var="pwd_max_length" value="${sessionScope.txeisPreferences.pwd_max_length}"></c:set>
+        <c:if test="${empty sessionScope.txeisPreferences.pwd_max_length}">
+            <c:set var="pwd_max_length" value="46"></c:set>
+        </c:if>
+        <c:set var="pwd_min_length" value="${sessionScope.txeisPreferences.pwd_length}"></c:set>
+        <c:if test="${empty sessionScope.txeisPreferences.pwd_length}">
+            <c:set var="pwd_min_length" value="8"></c:set>
+        </c:if>
             <%@ include file="commons/bar-account-new.jsp"%>
             <div class="grayBg"></div>
             <div class="mainContent loginBox">
@@ -32,7 +41,7 @@
                                         </label>
                                         <div class="valid-wrap icon-group">
                                             <i class="fa fa-user left-icon"></i>
-                                            <input type="text" id="inputEmail" class="initial_focus wrap_field form-control" placeholder="${sessionScope.languageJSON.label.username}"name="username" tabindex="1"/>
+                                            <input type="text" id="inputEmail" class="initial_focus wrap_field form-control" placeholder="${sessionScope.languageJSON.label.username}" name="username" tabindex="1"/>
                                         </div>
                                         
                                     </div>
@@ -42,7 +51,7 @@
                                         </label>
                                         <div class="valid-wrap icon-group">
                                             <i class="fa fa-lock left-icon"></i>
-                                            <input type="password" id="inputPassword" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password" tabindex="1"/>
+                                            <input type="password" id="inputPassword" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password" tabindex="1"  maxlength="${pwd_max_length}"/>
                                         </div>
                                         
                                     </div>
@@ -106,7 +115,7 @@
                                         <label class="control-field-label" id="inputPasswordLabelBack" for="inputPasswordSession">${sessionScope.languageJSON.label.password}</label>
                                         <div class="valid-wrap icon-group">
                                             <i class="fa fa-lock left-icon"></i>
-                                            <input type="password" id="inputPasswordSession" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password">
+                                            <input type="password" id="inputPasswordSession" class="form-control" placeholder="${sessionScope.languageJSON.label.password}" name="password" maxlength="${pwd_max_length}">
                                         </div>
                                         
                                     </div>
@@ -293,7 +302,7 @@
                                                         <div class="input-group-relative icon-group has-hint-box">
                                                             <i class="fa fa-key left-icon" aria-hidden="true"></i>
                                                             <!-- ALC-26  password validation-->
-                                                            <input type="password" id="passwordCreate" placeholder="${sessionScope.languageJSON.label.password}"  maxlength="${sessionScope.txeisPreferences.pwd_max_length}" class="form-control" data-toggle="password"  name="txtPassword" required="required" autocomplete="new-password">
+                                                            <input type="password" id="passwordCreate" placeholder="${sessionScope.languageJSON.label.password}"  maxlength="${pwd_max_length}" class="form-control" data-toggle="password"  name="txtPassword" required="required" autocomplete="new-password">
                                                                 <div class="input-group-addon">
                                                                     <span class="input-group-text"><i class="fa fa-eye"></i></span>
                                                                 </div>
@@ -325,8 +334,8 @@
                                                             <span class="">
                                                                 <i class="fa fa-key left-icon" aria-hidden="true"></i> 
                                                             </span>
-                                                            <!-- ALC-29  password validation-->
-                                                            <input type="password" id="newPassword" placeholder="${sessionScope.languageJSON.label.passwordVerification}" maxlength="${sessionScope.txeisPreferences.pwd_max_length}" class="form-control" data-toggle="password" name="newPassword" required="required">
+                                                            <!-- ALC-26  password validation-->
+                                                            <input type="password" id="newPassword" placeholder="${sessionScope.languageJSON.label.passwordVerification}" maxlength="${pwd_max_length}" class="form-control" data-toggle="password" name="newPassword" required="required">
                                                             <div class="input-group-addon">
                                                                 <span class="input-group-text"><i class="fa fa-eye"></i></span>
                                                             </div> 
@@ -565,8 +574,8 @@
     </body>
     <!-- ALC-26  password validation from back-end-->
 	<script>
-            var minPSDLen = "${sessionScope.txeisPreferences.pwd_length}"
-            var maxPSDLen = "${sessionScope.txeisPreferences.pwd_max_length}"
+            var minPSDLen = "${pwd_min_length}"
+            var maxPSDLen = "${pwd_max_length}"
             //ALC-13 get the district ID
             var districtID = '${sessionScope.districtId}'
     </script>
