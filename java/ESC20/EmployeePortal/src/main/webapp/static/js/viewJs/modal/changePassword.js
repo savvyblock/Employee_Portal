@@ -34,6 +34,15 @@
     }
     
     $(function(){
+        // ALC-26 when related input was set to null, hide the error message in case error message overlap
+        $("#newPassword,#newCheckPassword").keyup(function(){
+            if($("#newPassword").val()==''){
+                $(".passwordError").hide()
+            }
+            if($("#newCheckPassword").val()==''){
+                $(".repasswordError").hide()
+            }
+        })
         $("#changePsd").click(function(e){
         	var bootstrapValidator = $("#updatePassword").data('bootstrapValidator');
             bootstrapValidator.validate();
