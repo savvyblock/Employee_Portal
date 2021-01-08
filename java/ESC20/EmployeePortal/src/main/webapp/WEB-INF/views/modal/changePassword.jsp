@@ -1,3 +1,12 @@
+<!-- ALC-26 set default min and max length for password-->
+<c:set var="pwd_max_length" value="${sessionScope.txeisPreferences.pwd_max_length}"></c:set>
+<c:if test="${empty sessionScope.txeisPreferences.pwd_max_length}">
+    <c:set var="pwd_max_length" value="46"></c:set>
+</c:if>
+<c:set var="pwd_min_length" value="${sessionScope.txeisPreferences.pwd_length}"></c:set>
+<c:if test="${empty sessionScope.txeisPreferences.pwd_length}">
+    <c:set var="pwd_min_length" value="8"></c:set>
+</c:if>
 <div
     class="modal fade"
     id="changePasswordModal"
@@ -37,6 +46,7 @@
                                   placeholder="${sessionScope.languageJSON.label.oldPassword}"
                                   name="oldPassword"
                                   id="oldPassword"
+                                  maxlength="${pwd_max_length}"
                               />
                           </div>
                       </div>  
@@ -52,8 +62,10 @@
                                   placeholder="${sessionScope.languageJSON.label.newPassword}"
                                   name="password"
                                   id="newPassword"
+                                  maxlength="${pwd_max_length}"
                               />
                           </div>
+                          <small class="help-block passwordError" style="display: none;"></small>
                       </div>
                       <div class="form-group">
                           <label class="form-title" for="newCheckPassword">${sessionScope.languageJSON.label.confirmPassword}</label>
@@ -64,8 +76,10 @@
                                   placeholder="${sessionScope.languageJSON.label.confirmPassword}"
                                   name="newPassword"
                                   id="newCheckPassword"
+                                  maxlength="${pwd_max_length}"
                               />
                           </div>
+                          <small class="help-block repasswordError" style="display: none;"></small>
                       </div>
                       
                     </div>
@@ -91,5 +105,10 @@
     </div>
     <!-- /.modal -->
 </div>
-
+ <!-- ALC-26  password validation from back-end-->
+ <script>
+        var minPSDLen = "${pwd_min_length}"
+        var maxPSDLen = "${pwd_max_length}"
+</script>
+<script src="<spring:theme code="commonBase"/>scripts/commonValid.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/modal/changePassword.js"></script>

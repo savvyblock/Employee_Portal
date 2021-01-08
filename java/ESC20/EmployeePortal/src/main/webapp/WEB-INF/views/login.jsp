@@ -308,13 +308,13 @@
                                                                 </div>
                                                                 <div class="input-hint-message">
                                                                     <ul class="validate-list">
-                                                                        <li>${sessionScope.languageJSON.createAccount.usernameValid}</li>
+                                                                        <li>${sessionScope.languageJSON.createAccount.uservalidate}</li>
                                                                         <li class="noneStyle">
                                                                             <ol>
-                                                                                <li>${sessionScope.languageJSON.createAccount.uservalidate}</li>
-                                                                                <li>${sessionScope.languageJSON.createAccount.userlowercase}</li>
                                                                                 <li>${sessionScope.languageJSON.createAccount.useruppercase}</li>
+                                                                                <li>${sessionScope.languageJSON.createAccount.userlowercase}</li>
                                                                                 <li>${sessionScope.languageJSON.createAccount.userNumbers}</li>
+                                                                                <li>${sessionScope.languageJSON.createAccount.specialCharacters}</li>
                                                                             </ol>
                                                                         </li>
                                                                     </ul>

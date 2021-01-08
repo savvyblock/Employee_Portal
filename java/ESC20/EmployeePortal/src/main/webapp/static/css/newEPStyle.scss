@@ -341,7 +341,6 @@ $theme-background-color: #414042;
           .nav-item{
               .nav-link{
                   &.active{
-                      color: $portal-theme-color;
                       ::after{
                           background-color: $portal-theme-color;
                       } 

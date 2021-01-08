@@ -10,3 +10,9 @@
 .heightFull{
 	height: 100% !important;
   }
+  .account-wrap .account-top.answerQuestion p:not(.error-hint){
+    color: #fff;
+}
+.form-group:not(.has-error) .help-block {
+    display: none!important;
+}

@@ -351,10 +351,6 @@
   }
 }
 
-.step-wizard .step-anchor.account-common-step .nav-item .nav-link.active {
-  color: #3281a5;
-}
-
 .step-wizard .step-anchor.account-common-step .nav-item .nav-link.active ::after {
   background-color: #3281a5;
 }
