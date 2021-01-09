@@ -182,8 +182,9 @@ public class Information1095Controller {
 		mav = init1095(mav, session, year, 1, 1, null, null, null);
 		String elecConsntMsg1095 = ((Options) session.getAttribute("options")).getMessageElecConsent1095().trim();
 		elecConsntMsg1095 = elecConsntMsg1095.replaceAll("\\s+\\*", newline+"*");
-		String consent = this.service.getW2Consent(employeeNumber);
-		mav.addObject("consent", consent);
+		String consent = this.service.get1095Consent(employeeNumber);
+		System.out.println("HEEEEEEEERE  : "+consent);
+		// mav.addObject("consent", consent);
 		mav.addObject("elecConsntMsg1095", elecConsntMsg1095);
 
 
@@ -271,7 +272,8 @@ public class Information1095Controller {
 		String consent = this.service.get1095Consent(employeeNumber);
 		String elecConsntMsg1095 = ((Options) session.getAttribute("options")).getMessageElecConsent1095().trim();
 		elecConsntMsg1095 = elecConsntMsg1095.replaceAll("\\s+\\*", newline+"*");
-		
+		System.out.println("HEEEEEEEERE11111111111  : "+consent);
+
 		mav.addObject("consent", consent);
 		mav.addObject("message", elecConsntMsg1095);
 		List<String> years = this.service.retrieveAvailable1095CalYrs(employeeNumber);
@@ -353,7 +355,6 @@ public class Information1095Controller {
 		mav.addObject("latestYear", latestYear);
 		mav.addObject("years", years);
 		mav.addObject("selectedYear", year.trim());
-		mav.addObject("consent", consent);
 		mav.addObject("message", elecConsntMsg1095);
 		mav.addObject("bList", bList);
 		mav.addObject("cList", cList);

@@ -247,7 +247,7 @@ BHR_EMP_PAY.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						<text><![CDATA[W4 Filing Status]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="83" y="0" width="97" height="11" backcolor="#C0C0C0" uuid="84f981a9-3611-476e-be24-5024bbf68ca4">
+						<reportElement key="textField" x="79" y="0" width="130" height="11" backcolor="#C0C0C0" uuid="84f981a9-3611-476e-be24-5024bbf68ca4">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -263,7 +263,7 @@ BHR_EMP_PAY.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						<textFieldExpression><![CDATA[$F{file_stat}.equals( "M" ) ? "M - Married filing jointly": $F{file_stat}.equals( "H" )? "H - Head of household" :  $F{file_stat}.equals( "S" )? "S - Single or Married filing separately" : ""]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="172" y="0" width="68" height="11" backcolor="#C0C0C0" uuid="7f3911d0-dfbb-4727-93cf-754d83f0e21a">
+						<reportElement key="staticText" x="218" y="0" width="68" height="11" backcolor="#C0C0C0" uuid="7f3911d0-dfbb-4727-93cf-754d83f0e21a">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -279,7 +279,7 @@ BHR_EMP_PAY.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						<text><![CDATA[W4 Multi-Jobs	]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="240" y="0" width="75" height="11" backcolor="#C0C0C0" uuid="b4da5782-f1ac-4403-8a39-f2399f8da927">
+						<reportElement key="textField" x="286" y="0" width="75" height="11" backcolor="#C0C0C0" uuid="b4da5782-f1ac-4403-8a39-f2399f8da927">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -295,7 +295,7 @@ BHR_EMP_PAY.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						<textFieldExpression><![CDATA[$F{multi_job}]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="420" y="0" width="30" height="11" backcolor="#C0C0C0" uuid="e2dbca23-ad7c-45a1-b46c-6ab09fe6f553">
+						<reportElement key="textField" x="466" y="0" width="30" height="11" backcolor="#C0C0C0" uuid="e2dbca23-ad7c-45a1-b46c-6ab09fe6f553">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -311,7 +311,7 @@ BHR_EMP_PAY.W4_OTHR_EXMPT_AMT as w4OthrExmptAmt
 						<textFieldExpression><![CDATA[$F{children}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="324" y="0" width="96" height="11" backcolor="#C0C0C0" uuid="5f5d7cea-23f0-4ee3-8380-62f17b4f1c9a">
+						<reportElement key="staticText" x="370" y="0" width="96" height="11" backcolor="#C0C0C0" uuid="5f5d7cea-23f0-4ee3-8380-62f17b4f1c9a">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>

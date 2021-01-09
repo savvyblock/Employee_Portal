@@ -302,7 +302,7 @@ public class W2InformationController {
 		if (path != null && !path.endsWith("\\")) {
 			path = path.concat("\\");
 		}
-		pDFService.setRealPath(path);
+		pDFService.setRealPath(System.getProperty("EmployeeAccess.root") + "\\");
 
 		ParameterReport report = new ParameterReport();
 		report.setTitle("W-2 Substitute Form for" + year);
@@ -312,6 +312,9 @@ public class W2InformationController {
 		report.setFilterable(false);
 
 		W2Print w2Print = generateW2Print(request, year);
+		w2Print.seturl(path);
+		System.out.println("path to the report : "+ w2Print.geturl());
+
 		IReport ireport = setupReport(report, w2Print, year);
 
 		JasperPrint jasperPrint = pDFService.buildReport(ireport);
@@ -338,6 +341,7 @@ public class W2InformationController {
 		report.setFilterable(false);
 
 		W2Print w2Print = generateW2Print(request, year);
+
 		IReport ireport = setupReport(report, w2Print, year);
 
 		JasperPrint jasperPrint = pDFService.buildReport(ireport);
@@ -416,7 +420,7 @@ public class W2InformationController {
 		String unchecked = "uncheckedbox";
 		String checked = "checkedbox";
 
-		String statemp = unchecked;
+		String statemp = "W2_Instr_2020_EP_page2";
 		String retplan = unchecked;
 		String thrdsick = unchecked;
 
@@ -431,7 +435,7 @@ public class W2InformationController {
 			thrdsick = checked;
 		}
 
-		print.setStatemp(path + "reportImages\\" + statemp + ".gif");
+		print.setStatemp(path + "reportImages\\" + statemp + ".png");
 		print.setRetplan(path + "reportImages\\" + retplan + ".gif");
 		print.setThrdsick(path + "reportImages\\" + thrdsick + ".gif");
 
@@ -598,6 +602,10 @@ public class W2InformationController {
 		print.setAmt1409(toString(box14Map.get(print.getCode1409())));
 		print.setCode1410(iter14.next());
 		print.setAmt1410(toString(box14Map.get(print.getCode1410())));
+		print.seturl(path);
+
+		System.out.println("path to the report : "+ print.geturl());
+
 		return print;
 	}
 

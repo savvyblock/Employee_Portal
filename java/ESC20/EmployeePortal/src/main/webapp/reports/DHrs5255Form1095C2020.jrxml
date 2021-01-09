@@ -588,7 +588,7 @@
 						<textElement textAlignment="Right" verticalAlignment="Bottom">
 							<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 						</textElement>
-						<text><![CDATA[600216]]></text>
+						<text><![CDATA[600220]]></text>
 					</staticText>
 					<frame>
 						<reportElement x="1" y="13" width="718" height="14" uuid="3e7fe54b-3ea9-4ba5-bdd3-e1c12340de79"/>
@@ -633,9 +633,33 @@
 							<textElement verticalAlignment="Top">
 								<font fontName="Microsoft Sans Serif" size="7"/>
 							</textElement>
-							<text><![CDATA[You are receiving this Form 1095-C because your employer is an Applicable Large Employer subject to the employer shared responsibility provision in the Affordable Care Act. This Form 1095-C includes information about the health insurance coverage offered to you by your employer. Form 1095-C, Part II, includes information about the coverage, if any, your employer offered to you and your spouse and dependent(s). If you purchased health insurance coverage through the Health Insurance Marketplace and wish to claim the premium tax credit, this information will assist you in determining whether you are eligible. For more information about the premium tax credit, see Pub. 974, Premium Tax Credit (PTC). You may receive multiple Forms 1095-C if you had multiple employers during the year that were Applicable Large Employers (for example, you left employment with one Applicable Large Employer and began a new position of employment with another Applicable Large Employer). In that situation, each Form 1095-C would have information only about the health insurance coverage offered to you by the employer identified on the form. If your employer is not an Applicable Large Employer, it is not required to furnish you a Form 1095-C providing information about the health coverage it offered.
-   In addition, if you, or any other individual who is offered health coverage because of their relationship to you (referred to here as family members), enrolled in your employer's health plan and that plan is a type of plan referred to as a "self-insured" plan, Form 1095-C, Part III provides information to assist you in completing your income tax return by showing you or those family members had qualifying health coverage (referred to as "minimum essential coverage") for some or all months during the year.
-   If your employer provided you or a family member health coverage through an insured health plan or in another manner, the issuer of the insurance or the sponsor of the plan providing the coverage will furnish you information about the coverage separately on Form 1095-B, Health Coverage. Similarly, if you or a family member obtained minimum essential coverage from another source, such as a government-sponsored program, an individual market plan, or miscellaneous coverage designated by the Department of Health and Human Services, the provider of that coverage will furnish you information about that coverage on Form 1095-B. If you or a family member enrolled in a qualified health plan through a Health Insurance Marketplace, the Health Insurance Marketplace will report information about that coverage on Form 1095-A, Health Insurance Marketplace Statement.]]></text>
+							<text><![CDATA[You are receiving this Form 1095-C because your employer is an Applicable Large Employer subject to
+the employer shared responsibility provisions in the Affordable Care Act. This Form 1095-C includes
+information about the health insurance coverage offered to you by your employer. Form 1095-C, Part
+II, includes information about the coverage, if any, your employer offered to you and your spouse and
+dependent(s). If you purchased health insurance coverage through the Health Insurance Marketplace
+and wish to claim the premium tax credit, this information will assist you in determining whether you
+are eligible. For more information about the premium tax credit, see Pub. 974, Premium Tax Credit
+(PTC). You may receive multiple Forms 1095-C if you had multiple employers during the year that were
+Applicable Large Employers (for example, you left employment with one Applicable Large Employer
+and began a new position of employment with another Applicable Large Employer). In that situation,
+each Form 1095-C would have information only about the health insurance coverage offered to you by
+the employer identified on the form. If your employer is not an Applicable Large Employer, it is not
+required to furnish you a Form 1095-C providing information about the health coverage it offered.
+    In addition, if you, or any other individual who is offered health coverage because of their relationship
+to you (referred to here as family members), enrolled in your employer’s health plan and that plan is a
+type of plan referred to as a “self-insured” plan, Form 1095-C, Part III, provides information about you
+and your family members who had certain health coverage (referred to as “minimum essential
+coverage”) for some or all months during the year. If you or your family members are eligible for certain
+types of minimum essential coverage, you may not be eligible for the premium tax credit.
+    If your employer provided you or a family member health coverage through an insured health plan or
+in another manner, you may receive information about the coverage separately on Form 1095-B,
+Health Coverage. Similarly, if you or a family member obtained minimum essential coverage from
+another source, such as a government-sponsored program, an individual market plan, or
+miscellaneous coverage designated by the Department of Health and Human Services, you may
+receive information about that coverage on Form 1095-B. If you or a family member enrolled in a
+qualified health plan through a Health Insurance Marketplace, the Health Insurance Marketplace will
+report information about that coverage on Form 1095-A, Health Insurance Marketplace Statement]]></text>
 						</staticText>
 						<frame>
 							<reportElement x="1" y="241" width="37" height="37" uuid="73e2c16f-25e5-462b-958a-35822b517434"/>
@@ -668,7 +692,10 @@
 							<textElement verticalAlignment="Middle" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7" isItalic="false"/>
 							</textElement>
-							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >Additional information.</style>  For additional information about the tax provisions of the Affordable Care Act (ACA), including the individual shared responsibility provisions, the premium tax credit, and the employer shared responsibility provisions, see <style isBold="true" pdfFontName="Helvetica-Bold" >www.irs.gov/Affordable-Care-Act/Individuals-and-Families</style> or call the IRS Healthcare Hotline for ACA questions (1-800-919-0452).]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >Additional information.</style> For additional information about the tax provisions of the Affordable Care Act
+(ACA), including the individual shared responsibility provisions, the premium tax credit, and the
+employer shared responsibility provisions, visit www.irs.gov/ACA or call the IRS Healthcare Hotline for
+ACA questions (800-919-0452).]]></text>
 						</staticText>
 						<staticText>
 							<reportElement x="1" y="325" width="336" height="12" uuid="04761a48-9f09-4ecd-986a-d1a8edcf3c37"/>
@@ -715,10 +742,10 @@
 							<textElement verticalAlignment="Top">
 								<font fontName="Microsoft Sans Serif" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
-							<text><![CDATA[Part II. Employer Offer and Coverage, Lines 14-16]]></text>
+							<text><![CDATA[Part II. Employer Offer of Coverage, Lines 14-17]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="1" y="15" width="373" height="334" uuid="7dbad92b-a935-4545-ae7e-3c268e55f323"/>
+							<reportElement x="1" y="15" width="373" height="417" uuid="7dbad92b-a935-4545-ae7e-3c268e55f323"/>
 							<textElement verticalAlignment="Top" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7"/>
 							</textElement>
@@ -730,11 +757,11 @@
 <style isBold="true" pdfFontName="Helvetica-Bold" >1F.</style> Minimum essential coverage NOT providing minimum value offered to you, or you and your spouse or dependent(s), or you, your spouse, and dependent(s).
 <style isBold="true" pdfFontName="Helvetica-Bold" >1G.</style> You were NOT a full-time employee for any month of the calendar year but were enrolled in self-insured employer-sponsored coverage for one or more months of the calendar year. This code will be entered in the <style >All 12 Months</style> box or in the separate monthly boxes for all 12 calendar months on line14.
 <style isBold="true" pdfFontName="Helvetica-Bold" >1H.</style> No offer of coverage (you were NOT offered any health coverage or you were offered coverage that is NOT minimum essential coverage).
-<style isBold="true" pdfFontName="Helvetica-Bold" >1I.</style> Reserved.
+<style isBold="true" pdfFontName="Helvetica-Bold" >1I.</style> Reserved for future use.
 <style isBold="true" pdfFontName="Helvetica-Bold" >1J.</style> Minimum essential coverage providing minimum value offered to you; minimum essential coverage conditionally offered to your spouse; and minimum essential coverage NOT offered to your dependent(s).
 <style isBold="true" pdfFontName="Helvetica-Bold" >1K.</style> Minimum essential coverage providing minimum value offered to you; minimum essential coverage conditionally offered to your spouse; and minimum essential coverage offered to your dependent(s).
-<style isBold="true" pdfFontName="Helvetica-Bold" >1L.</style> Individual coverage health reimbursement arrangement (HRA) offered to you only with affordability determined by using employee’s primary residence location ZIP code
-<style isBold="true" pdfFontName="Helvetica-Bold" >1M.</style> Individual coverage health reimbursement arrangement (HRA) offered to you only with affordability determined by using employee’s primary residence location ZIP code
+<style isBold="true" pdfFontName="Helvetica-Bold" >1L.</style> Individual coverage health reimbursement arrangement (HRA) offered to you only with affordability determined by using employee’s primary residence location ZIP code.
+<style isBold="true" pdfFontName="Helvetica-Bold" >1M.</style>  Individual coverage HRA offered to you and dependent(s) (not spouse) with affordability determined by using employee’s primary residence location ZIP code.
 <style isBold="true" pdfFontName="Helvetica-Bold" >1N.</style> Individual coverage HRA offered to you, spouse and dependent(s) with affordability determined by using employee’s primary residence location ZIP code.
 <style isBold="true" pdfFontName="Helvetica-Bold" >1O.</style> Individual coverage HRA offered to you only using the employee’s primary employment site ZIP code affordability safe harbor.
 <style isBold="true" pdfFontName="Helvetica-Bold" >1P.</style> Individual coverage HRA offered to you and dependent(s) (not spouse) using the employee’s primary employment site ZIP code affordability safe harbor.
@@ -749,12 +776,19 @@
 <style isBold="true" pdfFontName="Helvetica-Bold" >1Y.</style> Reserved for future use.
 <style isBold="true" pdfFontName="Helvetica-Bold" >1Z.</style> Reserved for future use.]]></text>
 						</staticText>
+						<staticText>
+							<reportElement x="271" y="488" width="103" height="18" uuid="fdf97531-c6bc-45c4-8143-10557bce2988"/>
+							<textElement>
+								<font fontName="SansSerif"/>
+							</textElement>
+							<text><![CDATA[(continued on page 4)]]></text>
+						</staticText>
 					</frame>
 				</frame>
 			</band>
 			<band height="551">
 				<frame>
-					<reportElement key="Part III" x="-1" y="5" width="719" height="23" uuid="1b39e9a9-f4a3-436d-abf1-f19f095f6ebe">
+					<reportElement key="Part III" x="-1" y="15" width="719" height="23" uuid="1b39e9a9-f4a3-436d-abf1-f19f095f6ebe">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<box>
@@ -830,7 +864,7 @@
 							<textElement textAlignment="Right" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
-							<text><![CDATA[600216]]></text>
+							<text><![CDATA[600220]]></text>
 						</staticText>
 						<staticText>
 							<reportElement x="53" y="6" width="15" height="8" uuid="9ced87cc-8fdb-462a-a4f5-85db3ccdb4cb"/>
@@ -849,7 +883,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement x="-2" y="28" width="720" height="35" uuid="4191a83a-929f-43ee-8636-c69e0a493a19">
+					<reportElement x="-2" y="38" width="720" height="35" uuid="4191a83a-929f-43ee-8636-c69e0a493a19">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<frame>
@@ -876,7 +910,7 @@
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<staticText>
-							<reportElement x="1" y="3" width="84" height="8" uuid="713f9734-8e4d-4495-baad-a481e3380761"/>
+							<reportElement stretchType="RelativeToBandHeight" x="1" y="3" width="84" height="8" uuid="713f9734-8e4d-4495-baad-a481e3380761"/>
 							<textElement textAlignment="Center">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
@@ -892,7 +926,7 @@
 							<bottomPen lineWidth="0.5"/>
 						</box>
 						<staticText>
-							<reportElement x="0" y="3" width="70" height="25" uuid="94415cac-5ca5-4638-92b1-cdec7b676de7"/>
+							<reportElement x="8" y="3" width="60" height="25" uuid="94415cac-5ca5-4638-92b1-cdec7b676de7"/>
 							<textElement verticalAlignment="Top">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
@@ -1105,7 +1139,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement x="-2" y="63" width="720" height="35" uuid="4ec5299d-1ec0-450c-bfa5-3ed6761fa7a5">
+					<reportElement x="-2" y="73" width="720" height="35" uuid="4ec5299d-1ec0-450c-bfa5-3ed6761fa7a5">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<frame>
@@ -1539,7 +1573,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement x="-2" y="98" width="720" height="35" uuid="46310560-ea0e-4fc8-b88f-eb4e2eb9ca87">
+					<reportElement x="-2" y="108" width="720" height="35" uuid="46310560-ea0e-4fc8-b88f-eb4e2eb9ca87">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<frame>
@@ -1976,7 +2010,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement x="-2" y="133" width="720" height="35" uuid="9050546d-3286-4251-8b10-6f77751c79e6">
+					<reportElement x="-2" y="143" width="720" height="35" uuid="9050546d-3286-4251-8b10-6f77751c79e6">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<frame>
@@ -2415,7 +2449,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement x="-2" y="168" width="720" height="35" uuid="110e85fb-2e12-464d-afa6-7f93a611c9ad">
+					<reportElement x="-2" y="178" width="720" height="35" uuid="110e85fb-2e12-464d-afa6-7f93a611c9ad">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<frame>
@@ -2852,7 +2886,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement x="-2" y="203" width="720" height="35" uuid="67df3afe-11fe-4ac6-85c7-6339bc5c2f7f">
+					<reportElement x="-2" y="213" width="720" height="35" uuid="67df3afe-11fe-4ac6-85c7-6339bc5c2f7f">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<frame>
@@ -3289,7 +3323,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement x="-2" y="236" width="720" height="35" uuid="ca26d3e4-8aac-47b1-bfe6-48e644de9fb5">
+					<reportElement x="-2" y="246" width="720" height="35" uuid="ca26d3e4-8aac-47b1-bfe6-48e644de9fb5">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					</reportElement>
@@ -3759,7 +3793,7 @@
 					</textField>
 				</frame>
 				<frame>
-					<reportElement key="Box 31" x="-2" y="342" width="719" height="35" uuid="2e43fdae-0813-4dc4-b227-e0b1860f4157">
+					<reportElement key="Box 31" x="-2" y="352" width="719" height="35" uuid="2e43fdae-0813-4dc4-b227-e0b1860f4157">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
@@ -4198,7 +4232,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement key="Box 33" x="-2" y="413" width="719" height="35" uuid="b7e224fe-b3b5-4588-b56e-e22f9d447339">
+					<reportElement key="Box 33" x="-2" y="423" width="719" height="35" uuid="b7e224fe-b3b5-4588-b56e-e22f9d447339">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
@@ -4637,7 +4671,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement key="Box 34" x="-2" y="448" width="719" height="35" uuid="4bbf4bd7-ab50-439f-9a7b-baaaf81a4e03">
+					<reportElement key="Box 34" x="-2" y="458" width="719" height="35" uuid="4bbf4bd7-ab50-439f-9a7b-baaaf81a4e03">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					</reportElement>
@@ -5075,7 +5109,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement key="Box 35" x="-2" y="483" width="719" height="35" uuid="ce81bbfd-0b5a-424b-a3b9-b9f2ea61b18d">
+					<reportElement key="Box 35" x="-2" y="493" width="719" height="35" uuid="ce81bbfd-0b5a-424b-a3b9-b9f2ea61b18d">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
@@ -5512,7 +5546,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement key="Box 30" x="-2" y="306" width="719" height="35" uuid="91ddfcf6-a1d3-42cc-a413-c474aa79ed8f">
+					<reportElement key="Box 30" x="-2" y="316" width="719" height="35" uuid="91ddfcf6-a1d3-42cc-a413-c474aa79ed8f">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
@@ -5951,7 +5985,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement key="Box 32" x="-2" y="377" width="719" height="35" uuid="e3feb9a6-a0dc-4968-9ea4-5d781c8d62f0">
+					<reportElement key="Box 32" x="-2" y="387" width="719" height="35" uuid="e3feb9a6-a0dc-4968-9ea4-5d781c8d62f0">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					</reportElement>
@@ -6389,7 +6423,7 @@
 					</frame>
 				</frame>
 				<frame>
-					<reportElement key="Box 29" x="-2" y="271" width="719" height="35" uuid="0ef3959a-f92e-4b17-abba-abab8dcf85a2">
+					<reportElement key="Box 29" x="-2" y="281" width="719" height="35" uuid="0ef3959a-f92e-4b17-abba-abab8dcf85a2">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					</reportElement>
@@ -6854,6 +6888,13 @@
 						</textField>
 					</frame>
 				</frame>
+				<textField>
+					<reportElement x="1" y="4" width="120" height="9" uuid="d48684b1-c8a3-487d-ac9f-5c13fcfe001c"/>
+					<textElement>
+						<font fontName="Microsoft Sans Serif" size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Form 1095-C (" + $F{taxyr} + ")"]]></textFieldExpression>
+				</textField>
 			</band>
 			<band height="539">
 				<frame>
@@ -6865,7 +6906,7 @@
 						<textElement textAlignment="Right" verticalAlignment="Bottom">
 							<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 						</textElement>
-						<text><![CDATA[600216]]></text>
+						<text><![CDATA[600220]]></text>
 					</staticText>
 					<frame>
 						<reportElement x="1" y="13" width="718" height="14" uuid="d1ad9072-8c74-4c8e-8ad7-34e7a5b35db9"/>
@@ -6907,7 +6948,7 @@
 						</staticText>
 						<staticText>
 							<reportElement x="1" y="16" width="336" height="222" uuid="af7e133b-e0c4-48fa-a45f-3204c0e57687"/>
-							<textElement verticalAlignment="Top">
+							<textElement verticalAlignment="Top" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >Line 15.</style> This line reports the employee required contribution, which is the monthly cost to you for the lowest-cost self-only minimum essential coverage providing minimum value that your employer offered you. For an individual coverage HRA, the employee required contribution is the excess of the monthly premium based on the employee’s applicable age for the applicable lowest cost silver plan over the monthly individual coverage HRA amount (generally, the annual individual coverage HRA amount divided by 12). See the Instructions for Forms 1094-C and 1095-C for more details. The amount reported on line 15 may not be the amount you paid for coverage if, for example, you chose to enroll in more expensive coverage such as family coverage. Line 15 will show an amount only if code 1B, 1C, 1D, 1E, 1J, 1K, 1L, 1M, 1N, 1O, 1P, or 1Q is entered on line 14. If you were offered coverage but there is no cost to you for the coverage, this line will report  “0.00” for the amount. For more information, including on how your eligibility for other healthcare arrangements might affect the amount reported on line 15, visit IRS.gov.
@@ -6927,11 +6968,18 @@
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >Line 17.</style> This line reports the applicable ZIP code your employer used for determining affordability if you were offered an individual coverage HRA. If code 1L, 1M, or 1N was used on line 14, this will be your primary residence location. If code 1O, 1P, or 1Q was used on line 14, this will be your primary work location. For more information about individual coverage HRAs, visit IRS.gov.]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="1" y="70" width="373" height="34" uuid="ed5b7ca6-3a53-47ad-8e54-2bcdc098b41a"/>
+							<reportElement x="1" y="70" width="373" height="99" uuid="ed5b7ca6-3a53-47ad-8e54-2bcdc098b41a"/>
 							<textElement verticalAlignment="Top" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7"/>
 							</textElement>
-							<text><![CDATA[Part III reports the name, SSN (or TIN for covered individuals other than the employee listed in Part I), and coverage information about each individual (including any full-time employee and non-full-time employee, and any employee’s family members) covered under the employer’s health plan, if the plan is “self-insured.” A date of birth will be entered in column (c) only if an SSN (or TIN for covered individuals other than the employee listed in Part I) is not entered in column (b). Column (d) will be checked if the individual was covered for at least one day in every month of the year. For individuals who were covered for some but not all months, information will be entered in column (e) indicating the months for which these individuals were covered.]]></text>
+							<text><![CDATA[Part III reports the name, SSN (or TIN for covered individuals other than the employee listed in Part I),
+and coverage information about each individual (including any full-time employee and non-full-time
+employee, and any employee’s family members) covered under the employer’s health plan, if the plan
+is “self-insured.” A date of birth will be entered in column (c) only if an SSN (or TIN for covered
+individuals other than the employee listed in Part I) is not entered in column (b). Column (d) will be
+checked if the individual was covered for at least one day in every month of the year. For individuals
+who were covered for some but not all months, information will be entered in column (e) indicating the
+months for which these individuals were covered.]]></text>
 						</staticText>
 						<staticText>
 							<reportElement x="1" y="54" width="336" height="16" uuid="c8ec73af-a67e-4730-838a-a4ca8939e286">
@@ -6962,7 +7010,7 @@
 							<textElement textAlignment="Right" verticalAlignment="Top">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
-							<text><![CDATA[600318]]></text>
+							<text><![CDATA[600320]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -7022,8 +7070,7 @@
 								<textFieldExpression><![CDATA[$F{b1_personfirstnm}.trim()
 + ($F{b1_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b1_personmiddlenm}.trim()))
 + ($F{b1_personlastnm}.trim().equals("") ? "" : (" " + $F{b1_personlastnm}.trim()))
-+ ($F{b1_suffixnm}.trim().equals("") ? "" : (" " + $F{b1_suffixnm}.trim()))
-]]></textFieldExpression>
++ ($F{b1_suffixnm}.trim().equals("") ? "" : (" " + $F{b1_suffixnm}.trim()))]]></textFieldExpression>
 							</textField>
 						</frame>
 						<frame>
@@ -7806,8 +7853,7 @@
 + ($F{b31_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b31_personmiddlenm}.trim()))
 + ($F{b31_personlastnm}.trim().equals("") ? "" : (" " + $F{b31_personlastnm}.trim()))
 + ($F{b31_suffixnm}.trim().equals("") ? "" : (" " + $F{b31_suffixnm}.trim()))
-)
-]]></textFieldExpression>
+)]]></textFieldExpression>
 							</textField>
 							<staticText>
 								<reportElement x="1" y="27" width="11" height="8" uuid="55eea51d-7205-4317-86f3-d3c6899d1c6d"/>
@@ -9590,7 +9636,7 @@
 						<textElement textAlignment="Right" verticalAlignment="Bottom">
 							<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 						</textElement>
-						<text><![CDATA[600118]]></text>
+						<text><![CDATA[600120]]></text>
 					</staticText>
 				</frame>
 				<frame>
@@ -9813,7 +9859,7 @@
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b1_personfirstnm}.trim()]]></textFieldExpression>
 						</textField>
-						<textField>
+						<textField isBlankWhenNull="true">
 							<reportElement x="108" y="13" width="33" height="12" uuid="ebeaa206-7169-4b5c-ac0e-ce401586a34f">
 								<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 							</reportElement>
@@ -9827,7 +9873,7 @@
 							<textElement textAlignment="Left" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
-							<textFieldExpression><![CDATA[$F{b1_personmiddlenm}.trim()]]></textFieldExpression>
+							<textFieldExpression><![CDATA[" "+$F{b1_personmiddlenm}.substring(0,1).trim()]]></textFieldExpression>
 						</textField>
 						<textField>
 							<reportElement x="141" y="13" width="92" height="12" uuid="7287b207-84d9-41dd-bd42-f306817ac692">
@@ -10252,7 +10298,7 @@
 						<textElement textAlignment="Left" verticalAlignment="Middle">
 							<font fontName="Microsoft Sans Serif" size="9" isBold="true"/>
 						</textElement>
-						<text><![CDATA[Employee Offer and Coverage]]></text>
+						<text><![CDATA[Employee Offer of Coverage]]></text>
 					</staticText>
 					<staticText>
 						<reportElement mode="Opaque" x="415" y="1" width="79" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="861e32ac-94f1-4145-a66a-05f518613dd2">
