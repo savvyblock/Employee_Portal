@@ -49,16 +49,14 @@ public class EA1095Dao {
 
 	public String get1095Consent(String employeeNumber) {
 		Session session = this.getSession();
-		String retrieveSQL = "SELECT elecConsnt1095 FROM BhrEmpEmply A WHERE A.empNbr = :employeeNumber";
-        Query q = session.createQuery(retrieveSQL);
+		String retrieveSQL = "SELECT ELEC_CONSNT_1095 FROM BHR_EMP_EMPLY where EMP_NBR = :employeeNumber";
+        Query q = session.createSQLQuery(retrieveSQL);
         q.setParameter("employeeNumber", employeeNumber);
 		Character result = ((Character)q.uniqueResult());
 		String res = result==null?"":result.toString();
 		
-		if(res!=null)
-			return res.trim();
-		else
-			return "";
+		return res.trim();
+		
 	}
 
 	public boolean update1095ElecConsent(String employeeNumber, String elecConsnt1095) {

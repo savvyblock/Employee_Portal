@@ -106,9 +106,16 @@ public class W2Print implements Serializable, Cloneable
 	private String statemp;
 	private String retplan;
 	private String thrdsick;
-	
+	private String url;
+
 	private String copy;
 	
+	public String geturl() {
+		return url;
+	}
+	public void seturl(String url) {
+		this.url = url;
+	}
 	public String getSsn() {
 		return ssn;
 	}
@@ -720,7 +727,7 @@ public class W2Print implements Serializable, Cloneable
 	
 	public Object clone() {
 		W2Print p = new W2Print();
-
+		p.seturl(this.url);
 		p.setAmt1201(this.getAmt1201());
 		p.setAmt1202(this.getAmt1202());
 		p.setAmt1203(this.getAmt1203());

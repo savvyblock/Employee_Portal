@@ -18,20 +18,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                             <div class="clearfix no-print section-title">
                                 <h1 class="pageTitle">${sessionScope.languageJSON.nav.info1095}</h1>
                                 <div class="right-btn pull-right">
-                                   <%--  <c:if test="${sessionScope.options.enableElecConsnt1095 == true}"> --%>
+                                    <c:if test="${sessionScope.options.enableElecConsnt1095 == true }">
                                             <button
                                             class="btn btn-primary"
                                             data-toggle="modal"
                                             data-target="#electronicConsent"
                                            >${sessionScope.languageJSON.label.consent1095}</button>
-                                    <%-- </c:if>
-                                    <c:if test="${sessionScope.options.enableElecConsnt1095 == false}">
-                                            <button
-                                            class="btn btn-primary disabled"
-                                            disabled
-                                           >${sessionScope.languageJSON.label.consent1095}</button>
                                     </c:if>
-                                    --%>
                                     <c:if test="${sessionScope.options.enable1095 == true && selectedYear <= latestYear }">
 	                                    <form class="no-print" action="exportPDF" method="POST">
 												<input type="hidden" name="${_csrf.parameterName}"
@@ -45,22 +38,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 												<button type="submit" role="button" class="btn btn-primary" 
 													aria-label="${sessionScope.languageJSON.label.print}">${sessionScope.languageJSON.label.print}</button>
 	                                    </form>
-			                          <%--   <form class="no-print" action="printPDF" method="POST" target="printIframe">
-											<input type="hidden" name="${_csrf.parameterName}"
-												value="${_csrf.token}" />
-												<input type="hidden" name="year" value="${selectedYear}" />
-												<input type="hidden" name="type" value="${type}" />
-												<input type="hidden" name="BPageNo" value="${BPageNo}" />
-												<input type="hidden" name="CPageNo" value="${CPageNo}" />
-												<input type="hidden" name="sortOrder" value="${sortOrder}" />
-												<input type="hidden" name="sortBy" value="${sortBy}" />
-				                            <button type="submit" role="button" class="btn btn-primary">
-				                            	${sessionScope.languageJSON.label.print}
-				                            </button>
-			                            </form>
-			
-			                            <iframe style="display:none" name="printIframe" onload="load()" id="printIframe"></iframe> --%>
-                                    </c:if>
+                                         </c:if>
                                 </div>
                             </div>
                         
@@ -300,7 +278,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         </div>
         <input type="hidden" name="consentCancel" id="elecConsnt1095Cancel" value="${sessionScope.cancel1095Consent}" aria-hidden="true">
         <%@ include file="../commons/footer.jsp"%>
-        <c:if test="${sessionScope.options.enableElecConsnt1095 == true}">
+        <c:if test="${sessionScope.options.enableElecConsnt1095 == true && empty consent}">
             <div
                 class="modal fade"
                 id="electronicConsent"

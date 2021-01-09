@@ -420,7 +420,7 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 								<textElement>
 									<font fontName="Microsoft Sans Serif" size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{w4FileStat}.equals( "M" ) ? "Married filing jointly": $F{w4FileStat}.equals( "H" )? "Head of household" :  $F{w4FileStat}.equals( "S" )? "Single or Married filing separately" : $F{bhr_pay_hist_marital_stat_tax}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{w4FileStat}.equals( "M" ) ? "M - Married filing jointly": $F{w4FileStat}.equals( "H" )? "H - Head of household" :  $F{w4FileStat}.equals( "S" )? "S - Single or Married filing separately" : ""]]></textFieldExpression>
 							</textField>
 							<staticText>
 								<reportElement key="staticText" x="422" y="3" width="111" height="11" backcolor="#C0C0C0" uuid="ed9401d9-8e2b-46f4-b98f-0a1678d73dce">
