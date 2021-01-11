@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.esc20.dao.AppUserDao;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.nonDBModels.Code;
@@ -32,6 +33,9 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
     @Autowired
     private ReferenceService referenceService;
     
+    @Autowired
+	AppUserDao userDao;
+    
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
@@ -46,6 +50,8 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
             District districtInfo = this.indexService.getDistrict(district);
             userDetail.setEmpNbr(user.getEmpNbr());
             userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
+            
+            userDao.clearUserPWDFailed(userName);
             
         	List<Code> gens = referenceService.getGenerations();
    		 	for(Code gen: gens) {
