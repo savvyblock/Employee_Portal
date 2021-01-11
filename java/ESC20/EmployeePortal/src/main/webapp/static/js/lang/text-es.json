@@ -778,7 +778,8 @@
         "zipCodeFormat":"Ingrese 5 números",
         "somethingWrong":"¡Hay algo mal! Inténtalo de nuevo.",
 		"securityQuestionDes": "La información le ayudará a restablecer su contraseña.",
-		"required":"Necesario",
+        "required":"Necesario",
+        "lockMsg":"Esta cuenta ha sido bloqueada. Comuníquese con su administrador para obtener ayuda.",
         "":""
     },
     "buttons":{

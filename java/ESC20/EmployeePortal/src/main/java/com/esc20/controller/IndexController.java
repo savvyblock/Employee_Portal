@@ -38,6 +38,7 @@ import com.esc20.util.DateUtil;
 import com.esc20.util.StringUtil;
 import com.esc20.util.FileDownloadUtil;
 import com.esc20.util.FileUtil;
+import com.esc20.util.SessionKeys;
 import com.esc20.util.BrowserInfoService;
 import com.esc20.nonDBModels.SearchUser;
 
@@ -76,8 +77,13 @@ public class IndexController {
 		
 		Boolean isUserLoginFailure = (Boolean) req.getSession().getAttribute("isUserLoginFailure");
 		if (isUserLoginFailure != null && isUserLoginFailure) {
+			//ALC-26 Lock account on the 5th login failed
+			String userLoginErrorMsg = (String) req.getSession().getAttribute(SessionKeys.USER_LOGIN_ERROR_MSG);
 			req.getSession().removeAttribute("isUserLoginFailure");
-			mav.addObject("isUserLoginFailure", "true");
+			mav.addObject("isUserLoginFailure", "true");			
+			req.getSession().removeAttribute(SessionKeys.IS_USER_LOGIN_FAILURE);
+			req.getSession().removeAttribute("userLoginErrorMsg");
+			mav.addObject("userLoginErrorMsg", userLoginErrorMsg);
 		}
 
 		//ALC-13 add iType to Login page for search
