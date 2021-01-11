@@ -41,7 +41,12 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 		<security:authentication-provider>
 			<security:password-encoder ref="customSHA256Encoder"/>    
         	<security:jdbc-user-service data-source-ref="dataSource" 
-        							users-by-username-query="select usrname as 'username', usrpswd as 'password', CASE WHEN lk_pswd = 'N' AND (bea_users.tmp_dts ='' OR DATEDIFF (HH, convert(datetime, bea_users.tmp_dts||':00',23), GETDATE()) &lt; 24 ) then 'true' when lk_pswd = 'Y' OR usrpswd='' then 'false' END as 'enabled' from BEA_USERS where usrname= UPPER ( ? )"
+        							users-by-username-query="select usrname as 'username', usrpswd as 'password', 
+        							 CASE  when ACCOUNT_LOCKED_UNTIL is null then 'true'
+             							  when ACCOUNT_LOCKED_UNTIL &lt; dateadd(minute,-(select PREF_VALUE from  TXEIS_PREFERENCES where PREF_NAME = 'lock_timeout'),getdate()) then 'true'
+          								  ELSE 'false' END
+										 AS enabled
+										  from BEA_USERS where usrname= UPPER ( ? )"
         							authorities-by-username-query="select usrname as 'username', 'ROLE_USER' as authority from BEA_USERS where usrname=?"/>
 		
 		</security:authentication-provider>

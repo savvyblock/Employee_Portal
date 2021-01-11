@@ -3,6 +3,7 @@ package com.esc20.dao;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -802,4 +803,61 @@ public class AppUserDao extends HibernateDaoSupport{
 		Integer result = (Integer) q.uniqueResult();
 		return result;
 	}
+	
+	 
+    public int getLockTries(){
+    	try {
+    		Query query = this.getSession()
+                    .createSQLQuery("SELECT PREF_VALUE FROM TXEIS_PREFERENCES where PREF_NAME ='lock_tries'");
+    		Integer res = query.uniqueResult()==null?0:Integer.parseInt(((String) query.uniqueResult()).toString());
+    		return   res;
+    	}
+    	catch(Exception ex) {
+    		return 3; //default as 3 times
+    	}
+        
+    }
+    public int getLockTimes(){
+    	try {
+    		Query query = this.getSession()
+                    .createSQLQuery("SELECT PREF_VALUE FROM TXEIS_PREFERENCES where PREF_NAME ='lock_timeout'");
+    		Integer res = query.uniqueResult()==null?0:Integer.parseInt(((String) query.uniqueResult()).toString());
+    		return   res;
+    	}
+    	catch(Exception ex) {
+    		return 15; //default as 15 minutes
+    	}
+        
+    }
+
+    public Integer getUserPWDFailed(String userName) {
+        Query query = this.getSession()
+                          .createSQLQuery("SELECT LOGIN_ATTEMPTS FROM BCP_USER bcp WHERE bcp.USER_NAME=? " );
+        query.setParameter(0, userName);
+        Integer res = (Integer) query.uniqueResult();
+        return res;
+    }
+
+    public int updateUserPWDFailed(String userName) {
+        Query query = this.getSession()
+                          .createSQLQuery("Update  BCP_USER  set LOGIN_ATTEMPTS = case when LOGIN_ATTEMPTS is null then 1 else LOGIN_ATTEMPTS+1 end WHERE USER_NAME=  ? ");
+        query.setParameter(0, userName);
+       return query.executeUpdate();
+    }
+
+    public Integer clearUserPWDFailed(String userName) {
+        Query query = this.getSession()
+                          .createSQLQuery("Update  BCP_USER bcp set bcp.LOGIN_ATTEMPTS = 0 WHERE bcp.USER_NAME= ? ");
+        query.setParameter(0, userName);
+        Integer res = query.executeUpdate();
+        return res;
+    }
+    
+    public int lockedSPUsers(String userName){
+        Query query = this.getSession()
+                          .createSQLQuery("Update  BCP_USER bcp set bcp.ACCOUNT_LOCKED_UNTIL=:lockDate WHERE bcp.USER_NAME= :userName ");
+        query.setParameter("userName", userName);
+        query.setParameter("lockDate", new Date());
+      return   query.executeUpdate();
+    }
 }
