@@ -779,7 +779,8 @@
         "zipCodeFormat":"Please enter 5 numbers",
         "somethingWrong":"There is something wrong! Please try again.",
 		"securityQuestionDes": "The information will assist you in resetting your password.",
-		  "required":"Required",
+        "required":"Required",
+        "lockMsg":"This account has been locked. Please contact your administrator for assistance.",
         "":""
     },
     "buttons":{

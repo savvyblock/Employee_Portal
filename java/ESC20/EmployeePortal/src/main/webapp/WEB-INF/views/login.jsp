@@ -60,9 +60,9 @@
                                 
                                 <p class="error-hint hide errorMessage" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.usernameOrPasswordError}</p>
                                 <p class="error-hint hide incorrectMessage" role="alert" aria-atomic="true">>${sessionScope.languageJSON.validator.usernameOrPasswordIncorrect}</p>
-                                <c:if test="${isUserLoginFailure=='true'}">
+                                <!-- <c:if test="${isUserLoginFailure=='true'}">
                                     <p class="error-hint authenticateFailed" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.authenticateFailed}</p>
-                                </c:if>                            
+                                </c:if>                             -->
                                 <c:if test="${times3}">
                                     <p class="error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.haveEnteredThree}</p>
                                 </c:if>
@@ -83,6 +83,25 @@
                                 </c:if>
                                 <c:if test="${resetSuccess == false}">
                                     <p class="error-hint" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.sendEmailFailed}</p>
+                                </c:if>
+                                <!-- ALC-26 Lock account on the 5th login failed -->
+                                <c:if test="${isUserLoginFailure}">
+                                    <c:choose>
+                                        <c:when test="${userLoginErrorMsg == 'Locked'}">
+                                                <p class="error-hint" style="display: block;" role="alert" aria-atomic="true">
+                                                    ${sessionScope.languageJSON.createAccount.lockMsg}
+                                                </p>
+                                        </c:when>
+                                        <c:when test="${userLoginErrorMsg == 'WillLocked'}">
+                                            <p class="error-hint" style="display: block;" role="alert" aria-atomic="true">
+                                                ${sessionScope.languageJSON.createAccount.lockMsg}
+                                            </p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p class="error-hint authenticateFailed" role="alert" aria-atomic="true">${sessionScope.languageJSON.validator.authenticateFailed}</p>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </c:if>
                                 <div class="form-group">
                                     <!-- <a class="btn btn-primary btn-secondary" href="/<%=request.getContextPath().split("/")[1]%>/createUser/searchUser" tabindex="1">${sessionScope.languageJSON.label.newUser}</a> -->
