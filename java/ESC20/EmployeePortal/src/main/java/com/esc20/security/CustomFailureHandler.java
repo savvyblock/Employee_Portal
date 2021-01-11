@@ -27,7 +27,7 @@ public class CustomFailureHandler implements AuthenticationFailureHandler {
 		String returnURL = "/"+request.getContextPath().split("/")[1]+"/login?distid=" + database;
 		request.getSession().setAttribute("districtId", database);
 		request.getSession().setAttribute("isUserLoginFailure", true);
-		
+		// ALC-26 Lock account on the 5th login failed
 		String username = request.getParameter("username");
 		if(exception instanceof DisabledException)
 			request.getSession().setAttribute(SessionKeys.USER_LOGIN_ERROR_MSG, AuthenticationResponseType.Locked.toString());
@@ -43,7 +43,7 @@ public class CustomFailureHandler implements AuthenticationFailureHandler {
 		
         response.sendRedirect(returnURL);
 	}
-	
+	// ALC-26 Lock account on the 5th login failed
 	private boolean  updateUserPwdFailedAndLockUser(String username){
 		userDao.updateUserPWDFailed(username);
 		Integer passwordTryTimes = userDao.getUserPWDFailed(username);
