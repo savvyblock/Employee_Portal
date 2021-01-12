@@ -840,7 +840,7 @@ public class AppUserDao extends HibernateDaoSupport{
 
     public int updateUserPWDFailed(String userName) {
         Query query = this.getSession()
-                          .createSQLQuery("Update  BEA_USERS  set USR_LOG_TRIES = case when USR_LOG_TRIES is null then 1 else LOGIN_ATTEMPTS+1 end WHERE USRNAME=  ? ");
+                          .createSQLQuery("Update  BEA_USERS  set USR_LOG_TRIES = case when USR_LOG_TRIES is null then 1 else USR_LOG_TRIES+1 end WHERE USRNAME=  ? ");
         query.setParameter(0, userName);
        return query.executeUpdate();
     }
