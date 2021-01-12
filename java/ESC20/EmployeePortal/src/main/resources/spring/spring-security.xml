@@ -43,8 +43,8 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 			<!-- // ALC-26 Lock account on the 5th login failed -->
         	<security:jdbc-user-service data-source-ref="dataSource" 
         							users-by-username-query="select usrname as 'username', usrpswd as 'password', 
-        							 CASE  when ACCOUNT_LOCKED_UNTIL is null then 'true'
-             							  when ACCOUNT_LOCKED_UNTIL &lt; dateadd(minute,-(select PREF_VALUE from  TXEIS_PREFERENCES where PREF_NAME = 'lock_timeout'),getdate()) then 'true'
+        							 CASE  when USR_TIMEOUT_DT is null then 'true'
+             							  when USR_TIMEOUT_DT &lt; dateadd(minute,-(select PREF_VALUE from  TXEIS_PREFERENCES where PREF_NAME = 'lock_timeout'),getdate()) then 'true'
           								  ELSE 'false' END
 										 AS enabled
 										  from BEA_USERS where usrname= UPPER ( ? )"

@@ -832,7 +832,7 @@ public class AppUserDao extends HibernateDaoSupport{
 
     public Integer getUserPWDFailed(String userName) {
         Query query = this.getSession()
-                          .createSQLQuery("SELECT LOGIN_ATTEMPTS FROM BEA_USERS bcp WHERE bcp.USRNAME=? " );
+                          .createSQLQuery("SELECT USR_LOG_TRIES FROM BEA_USERS bcp WHERE bcp.USRNAME=? " );
         query.setParameter(0, userName);
         Integer res = (Integer) query.uniqueResult();
         return res;
@@ -840,14 +840,14 @@ public class AppUserDao extends HibernateDaoSupport{
 
     public int updateUserPWDFailed(String userName) {
         Query query = this.getSession()
-                          .createSQLQuery("Update  BEA_USERS  set LOGIN_ATTEMPTS = case when LOGIN_ATTEMPTS is null then 1 else LOGIN_ATTEMPTS+1 end WHERE USRNAME=  ? ");
+                          .createSQLQuery("Update  BEA_USERS  set USR_LOG_TRIES = case when USR_LOG_TRIES is null then 1 else LOGIN_ATTEMPTS+1 end WHERE USRNAME=  ? ");
         query.setParameter(0, userName);
        return query.executeUpdate();
     }
 
     public Integer clearUserPWDFailed(String userName) {
         Query query = this.getSession()
-                          .createSQLQuery("Update  BEA_USERS bcp set bcp.LOGIN_ATTEMPTS = 0 WHERE bcp.USRNAME= ? ");
+                          .createSQLQuery("Update  BEA_USERS bcp set bcp.USR_LOG_TRIES = 0 WHERE bcp.USRNAME= ? ");
         query.setParameter(0, userName);
         Integer res = query.executeUpdate();
         return res;
@@ -855,7 +855,7 @@ public class AppUserDao extends HibernateDaoSupport{
     
     public int lockedSPUsers(String userName){
         Query query = this.getSession()
-                          .createSQLQuery("Update  BEA_USERS bcp set bcp.ACCOUNT_LOCKED_UNTIL=:lockDate WHERE bcp.USRNAME= :userName ");
+                          .createSQLQuery("Update  BEA_USERS bcp set bcp.USR_TIMEOUT_DT=:lockDate WHERE bcp.USRNAME= :userName ");
         query.setParameter("userName", userName);
         query.setParameter("lockDate", new Date());
       return   query.executeUpdate();
