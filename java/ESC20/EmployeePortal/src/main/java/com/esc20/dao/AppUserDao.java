@@ -804,7 +804,7 @@ public class AppUserDao extends HibernateDaoSupport{
 		return result;
 	}
 	
-	//ALC-27 update CP password
+	// ALC-26 Lock account on the 5th login failed
     public int getLockTries(){
     	try {
     		Query query = this.getSession()
@@ -813,7 +813,7 @@ public class AppUserDao extends HibernateDaoSupport{
     		return   res;
     	}
     	catch(Exception ex) {
-    		return 3; //default as 5 times
+    		return 5; //default as 5 times
     	}
         
     }

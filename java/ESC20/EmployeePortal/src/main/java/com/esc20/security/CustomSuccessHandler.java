@@ -50,7 +50,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
             District districtInfo = this.indexService.getDistrict(district);
             userDetail.setEmpNbr(user.getEmpNbr());
             userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
-            
+            // ALC-26 Lock account on the 5th login failed
             userDao.clearUserPWDFailed(userName);
             
         	List<Code> gens = referenceService.getGenerations();

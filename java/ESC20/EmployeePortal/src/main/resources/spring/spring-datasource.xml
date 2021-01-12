@@ -70,6 +70,7 @@
     </tx:advice>
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
     <aop:config proxy-target-class="true">
+    <!-- // ALC-26 Lock account on the 5th login failed -->
         <aop:pointcut expression="execution(* *..service..*Service*.*(..))|| execution(* com.esc20.dao.AppUserDao.*(..))" id="serviceMethod" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod" />
     </aop:config>
