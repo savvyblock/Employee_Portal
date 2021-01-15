@@ -781,6 +781,9 @@
 		"securityQuestionDes": "The information will assist you in resetting your password.",
         "required":"Required",
         "lockMsg":"This account has been locked. Please contact your administrator for assistance.",
+        "resetTimeout":"Reset Timeout",
+        "sessionWillTimeoutIn":"Session will timeout in",
+        "minutes":"minute(s)",
         "":""
     },
     "buttons":{

@@ -374,3 +374,19 @@ a:focus {
 .loginBody .login-footer {
   padding: 15px 10px;
 }
+
+#sessionNotLoginModal.modal.fade.show {
+  opacity: 1;
+}
+
+#sessionNotLoginModal.modal .modal-dialog {
+  margin-left: 0;
+  padding: 0 15px;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+#sessionNotLoginModal.modal .modal-dialog .modal-body {
+  padding: 30px 15px;
+}

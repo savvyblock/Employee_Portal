@@ -780,6 +780,9 @@
 		"securityQuestionDes": "La información le ayudará a restablecer su contraseña.",
         "required":"Necesario",
         "lockMsg":"Esta cuenta ha sido bloqueada. Comuníquese con su administrador para obtener ayuda.",
+        "resetTimeout":"Restablecer tiempo de espera",
+        "sessionWillTimeoutIn":"La sesión expirará en",
+        "minutes":"minuto(s)",
         "":""
     },
     "buttons":{
