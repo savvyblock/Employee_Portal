@@ -1685,6 +1685,13 @@ public class IndexService {
 	
     //ALC-26 update EP password to get settings from DB
     public Map<String, String> getTxeisPreferences() {
-		return preferencesDao.getTxeisPreferences();
+    	try {
+    		return preferencesDao.getTxeisPreferences();
+    	}
+    	catch(Exception ex) { //ALC-26 fixed error issue when districtid did not correct
+    		Map<String, String> ret = new HashMap<String, String>();
+    		return ret;
+    	}
+		
 	}
 }
