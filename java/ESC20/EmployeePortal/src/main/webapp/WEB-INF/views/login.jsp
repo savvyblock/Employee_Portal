@@ -587,8 +587,8 @@
                     </div>
                     
                 </div>					                           
-
-            
+            <!-- ALC-26 Show modal when Session time is out -->
+            <%@ include file="modal/sessionWarnModal.jsp"%>
             <%@ include file="commons/footerNotLoginNew.jsp"%>
     </body>
     <!-- ALC-26  password validation from back-end-->

@@ -471,3 +471,51 @@ function splitDate(date){
     }
     return dateObj
 }
+// ALC-26 Show modal when Session time is out
+var intervalId,intervalId,maxCountDown
+initialTime()
+$('body').on('keydown mousedown',function(e) {
+    if(e.target.id=="resetTimeBtn"){
+        // to do refresh
+        location.reload() 
+        $("#sessionNotLoginModal").modal("hide")
+    }
+})
+
+function initialTime(){
+    maxTime = 20; // minutes
+    maxCountDown = 5; // minutes
+    if (!maxTime ||  maxTime == "") {
+        maxTime = 30;
+    }
+    if (!maxCountDown ||  maxCountDown == "") {
+        maxCountDown = 10;
+    }
+    maxTime = parseInt(maxTime) * 60
+    maxCountDown = parseInt(maxCountDown) * 60
+    time = maxTime;
+    clearInterval(intervalId)
+    startCountTime();
+}
+
+function startCountTime() {
+    intervalId = setInterval(function() {
+        time--;
+        if(time <= maxCountDown){
+            var m = Math.ceil(time / 60)
+            setCountText(m)
+            if($('#sessionNotLoginModal').css('display')=="none"){
+                $("#sessionNotLoginModal").modal('show')
+            }
+            if(time == 0){
+                // to do refresh
+                location.reload() 
+            }
+        }
+    }, 1000)
+}
+
+function setCountText(m){
+    $("#timeCountdown").text(m)
+}
+
