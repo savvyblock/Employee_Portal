@@ -471,6 +471,7 @@ function splitDate(date){
     }
     return dateObj
 }
+// ALC-26 Show modal when Session time is out
 var intervalId,intervalId,maxCountDown
 initialTime()
 $('body').on('keydown mousedown',function(e) {
