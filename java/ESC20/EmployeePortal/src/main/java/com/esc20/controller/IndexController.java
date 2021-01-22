@@ -87,12 +87,18 @@ public class IndexController {
 		}
 
 		//ALC-13 add iType to Login page for search
-		Options options = this.indexService.getOptions();
-		if (options.getIdType().equals(Options.IdType.Ssn)) {
-			mav.addObject("idType", "S");
-		} else {
+		try {
+			Options options = this.indexService.getOptions();
+			if (options.getIdType().equals(Options.IdType.Ssn)) {
+				mav.addObject("idType", "S");
+			} else {
+				mav.addObject("idType", "E");
+			}
+		}
+		catch(Exception ex) { //ALC-26 fixed error issue when districtid did not correct
 			mav.addObject("idType", "E");
 		}
+		
 		
 		//alert message
         Properties properties = new Properties();
