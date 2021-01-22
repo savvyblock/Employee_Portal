@@ -445,8 +445,8 @@
         "pleaseAnswerYourHintQuestion": "Conteste su pregunta de seguridad (la respuesta distingue mayúsculas y minúsculas) y seleccione la dirección de correo electrónico para enviar la contraseña.",
         "workEmail": "Dirección de correo electrónico del trabajo",
         "homeEmail": "Dirección de correo electrónico personal",
-        "hintQuestion": "Pregunta de seguridad",
-        "hintAnswer": "Respuesta a la pregunta de seguridad",
+        "hintQuestion": "Pregunta de Seguridad",
+        "hintAnswer": "Respuesta de seguridad",
         "pleaseEnterEmpBirthZipCode": "Capture su número de empleado, fecha de nacimiento y código postal, y oprima Recuperar.",
         "pleaseEnterSSoBirthZipCode": "Capture su número de seguro social, fecha de nacimiento y código postal, y oprima Recuperar.",
         "markAsRead": "Marcar como leído",
@@ -783,6 +783,10 @@
         "resetTimeout":"Restablecer tiempo de espera",
         "sessionWillTimeoutIn":"La sesión expirará en",
         "minutes":"minuto(s)",
+        "workEmailReMsg":"El correo electrónico del trabajo debe coincidir exactamente con la entrada en el campo Correo electrónico del trabajo",
+        "homeEmailReMsg":"El correo electrónico de casa debe coincidir exactamente con la entrada en el campo Correo electrónico de casa",
+        "workEmailMsg":"Necesario",
+        "homeEmailMsg":"Necesario",
         "":""
     },
     "buttons":{
