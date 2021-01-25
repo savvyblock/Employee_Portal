@@ -111,8 +111,11 @@
                                     <div class="hidden">
                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&entry.372715739=Employee+Access+(TxEIS)" target="_blank">${sessionScope.languageJSON.label.contactUs}</a>
                                     </div>
-                                    <div class="pull-right">
+                                    <div class="pull-left">
                                         <a href="/<%=request.getContextPath().split("/")[1]%>/resetPassword/forgetPassword" tabindex="1" class="last_field">${sessionScope.languageJSON.label.forgotPassword}</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="/<%=request.getContextPath().split("/")[1]%>/createUser/recoverUsername/forgetUsername" tabindex="1" class="last_field">${sessionScope.languageJSON.label.forgotUsername}</a>
                                     </div>
                                 </div>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

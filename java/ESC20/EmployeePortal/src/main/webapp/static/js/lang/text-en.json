@@ -360,7 +360,8 @@
         "emailAddress": "Email Address",
         "welcome": "Welcome",
         "pleaseSignIn": "Login to your account",
-        "forgotPassword": "Forgot Password?",
+        "forgotPassword": "Forgot password?",
+        "forgotUsername":"Forgot username?",
         "signIn": "Sign In",
         "edit": "Edit",
         "save": "Save",
@@ -795,5 +796,12 @@
         "cancel":"Cancel",
         "finish":"Finish",
         "back":"Back"
+    },
+    "forgotUsername":{
+        "recoverUsername":"Recover User Name",
+        "congratulation":"Congratulations! You recovered your user name successfully!",
+        "hereItIs":"Here it is",
+        "step2Des": "Answer Security Question to verify identity",
+        "":""
     }
 }
