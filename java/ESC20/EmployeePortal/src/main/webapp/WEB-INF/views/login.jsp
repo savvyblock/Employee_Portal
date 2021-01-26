@@ -115,7 +115,7 @@
                                         <a href="/<%=request.getContextPath().split("/")[1]%>/resetPassword/forgetPassword" tabindex="1" class="last_field">${sessionScope.languageJSON.label.forgotPassword}</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="/<%=request.getContextPath().split("/")[1]%>/createUser/recoverUsername/forgetUsername" tabindex="1" class="last_field">${sessionScope.languageJSON.label.forgotUsername}</a>
+                                        <a href="/<%=request.getContextPath().split("/")[1]%>/resetPassword/forgetUsername" tabindex="1" class="last_field">${sessionScope.languageJSON.label.forgotUsername}</a>
                                     </div>
                                 </div>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

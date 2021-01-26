@@ -5,18 +5,12 @@ $(function(){
     stepValidator02()
 
     $(".next-step1").click(function(){
-        $('#infoStep').removeClass('show active')
-        $('#infoTab').addClass('done')
-        $('#securityStep').addClass('show active')
-        $('#infoTab').removeClass('active')
-        $('#securityTab').addClass('active')
-        $('#infoTab').attr("aria-selected",false)
-        $('#securityTab').attr("aria-selected",true)
-        return
-        var bootstrapValidator01 = $('#personalDetailForm').data('bootstrapValidator')
-        bootstrapValidator01.validate()
-        if (bootstrapValidator01.isValid()) {
+    	
+//        var bootstrapValidator01 = $('#personalDetailForm').data('bootstrapValidator')
+//        bootstrapValidator01.validate()
+//        if (bootstrapValidator01.isValid()) {
             var empNumber = $("#employeeNumber").val()
+            var ssn = $("#SSNumber").val()
             var birthDate = $("#birthDate").val()
             var zipCode = $("#zipCode").val()
             var dateMonth = splitDate(birthDate)['month']
@@ -25,23 +19,23 @@ $(function(){
 
             var userObj = {
                 empNumber:empNumber,
+                ssn:ssn,
                 dateMonth:dateMonth,
                 dateDay:dateDay,
                 dateYear:dateYear,
                 zipCode:zipCode
             }
-            // to do ajax, retrieve user
             $.ajax({
                 type: 'post',
-                url: urlMain+'/createUser/retrieveEmployeeUser',
+                url: urlMain+'/resetPassword/recoverUserNameStep1',
                 cache: false,
                 data: userObj,
                 dataType: 'json',
-                success: function(data) {
-                    console.log(data);
+                success: function(result) {
+                    console.log(result);
                     $("#EmpExitError").hide()
                     $("#noEmployeeError").hide()
-                    if(data.success){
+                    if(result.code === 2){
                         $('#infoStep').removeClass('show active')
                         $('#infoTab').addClass('done')
                         $('#securityStep').addClass('show active')
@@ -49,43 +43,58 @@ $(function(){
                         $('#securityTab').addClass('active')
                         $('#infoTab').attr("aria-selected",false)
                         $('#securityTab').attr("aria-selected",true)
+                        
+                        getQuestionAndAnswer(result.data);
+                        
                     }else{
-                        if(data.isExistUser){
+                    	if(result.code === 1){
                             $("#EmpExitError").show()
                             $("#noEmployeeError").hide()
                         }else{
                             $("#EmpExitError").hide()
                             $("#noEmployeeError").show()
                         }
-                        
+                    	$("#errorMsgStep1").slideDown(500);
                     }
-                    
                 },
                 error:function(err){
                     alert(somethingWrongWord)
                 }
             })
-        }
+//        }
     })
 
     $("#getUsernameBtn").click(function(){
         // to do test security answer
-
-        $('#securityStep').removeClass('show active')
-        $('#securityTab').removeClass('active')
-        $('#securityTab').addClass('done')
-        $('#completeStep').addClass('show active')
-        $('#completeTab').addClass('active')
-        $('#infoStep').attr("aria-selected",false)
-        $('#securityStep').attr("aria-selected",false)
-        $('#completeStep').attr("aria-selected",true)
-
-        $("#usernameShow").text("test lynn")
-
+    	var answers = {
+      			 hintAns : $('#answerHidden').val(),
+      			 answer :  $('#hintAnswer').val()
+               }
         var bootstrapValidator02 = $('#securityForm').data('bootstrapValidator')
         bootstrapValidator02.validate()
         if (bootstrapValidator02.isValid()) {
 
+        	
+          $.ajax({
+	          url: urlMain+'/resetPassword/recoverUserNameStep2',
+	          type:"POST",
+	          data: answers,
+	          success:function(result){
+	        	  if(result.code === 2){
+		        	  $('#securityStep').removeClass('show active')
+		              $('#securityTab').removeClass('active')
+		              $('#securityTab').addClass('done')
+		              $('#completeStep').addClass('show active')
+		              $('#completeTab').addClass('active')
+		              $('#infoStep').attr("aria-selected",false)
+		              $('#securityStep').attr("aria-selected",false)
+		              $('#completeStep').attr("aria-selected",true)
+	        	  }else{
+	        		  alert(" a aaaa aa aa ");
+	        	  }
+	          }
+	      });
+        	
         }
     })
     $(".back-step1").click(function(){
@@ -98,6 +107,15 @@ $(function(){
         $('#securityTab').attr("aria-selected",false)
     })
 })
+function getQuestionAndAnswer(data) {
+	
+	console.log(data);
+	$('#questionText').html(data.hintQuestion);
+	$('#answerHidden').val(data.hintAnswer);
+	$("#usernameShow").text(data.username);
+
+}
+
 function stepValidator01() {
     $('#personalDetailForm').bootstrapValidator({
             trigger: 'blur',

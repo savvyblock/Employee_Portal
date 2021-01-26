@@ -124,9 +124,8 @@
                                                             ${sessionScope.languageJSON.label.hintQuestion}:
                                                     </label>
                                                     <div class="col-md-5">
-                                                        <div style="padding-top: 11px;">
-                                                            <!-- to do  set security question-->
-                                                            question??????
+                                                        <div id="questionText" style="padding-top: 11px;">
+                                                            
                                                         </div>
                                                     </div>
                     
@@ -138,6 +137,7 @@
                                                         <div class="col-md-5">
                                                             <div class="input-group-relative has-hint-box">
                                                                 <input type="text" class="form-control" id="hintAnswer" name="hintAnswer" placeholder="${sessionScope.languageJSON.label.hintAnswer}" autocomplete="off">
+                                                                <input type="hidden" name="answerHidden">
                                                             </div>
                                                         </div>
                                                         
