@@ -801,7 +801,7 @@
         "congratulation":"¡Felicidades! ¡Recuperó su nombre de usuario con éxito!",
         "hereItIs":"Aquí está",
         "step2Des": "Responda la pregunta de seguridad para verificar la identidad",
-        "":""
+        "forgotUsername":"Olvidó su nombre de usuario"
     }
 
 }

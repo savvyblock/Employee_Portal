@@ -802,6 +802,6 @@
         "congratulation":"Congratulations! You recovered your user name successfully!",
         "hereItIs":"Here it is",
         "step2Des": "Answer Security Question to verify identity",
-        "":""
+        "forgotUsername":"Forgot Username"
     }
 }
