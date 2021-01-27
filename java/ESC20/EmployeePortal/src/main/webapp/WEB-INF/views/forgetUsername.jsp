@@ -3,7 +3,7 @@
 <!DOCTYPE html> 
 <html lang="en">
     <head>
-        <title>${sessionScope.languageJSON.headTitle.login}</title>
+        <title>${sessionScope.languageJSON.forgotUsername.forgotUsername}</title>
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/bootstrap.min.css">
@@ -48,7 +48,6 @@
                                     </ul>
                                     <div class="tab-content" id="recoverNameContent">
                                         <div class="tab-pane fade show active" id="infoStep" role="tabpanel" aria-labelledby="infoTab">
-                                            <p class="alert alert-error" style="display:none" role="alert" aria-atomic="true" id="EmpExitError">${sessionScope.languageJSON.validator.noUserAccountAssociated}</p>
                                             <p class="alert alert-error" style="display:none" role="alert" aria-atomic="true" id="noEmployeeError">${sessionScope.languageJSON.validator.noEmployeeAccountAssociated}</p>
                                             <form class="form-horizontal form-signin" id="personalDetailForm" method="post" role="form" autocomplete="off">
                                                 <c:if test="${idType=='S'}">
@@ -118,6 +117,9 @@
                                         <div class="tab-pane fade" id="securityStep" role="tabpanel" aria-labelledby="securityTab">
                                             <p>${sessionScope.languageJSON.forgotUsername.step2Des}</p>
                                             <hr>
+                                            <p class="alert alert-error" style="display:none" role="alert" aria-atomic="true" id="answerError">
+                                                    ${sessionScope.languageJSON.validator.answerError}
+                                            </p>
                                             <form class="form-horizontal form-signin" role="form" id="securityForm">
                                                 <div class="form-group">
                                                     <label for="question1" class="control-label-title col-md-3 text-right">
@@ -191,5 +193,6 @@
 	<script>
             var districtID = '${sessionScope.districtId}'
     </script>
+    <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.maskedinput-1.3.1.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/forgotUsername.js"></script>
 </html>

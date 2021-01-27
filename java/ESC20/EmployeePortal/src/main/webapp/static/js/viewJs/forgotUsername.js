@@ -6,9 +6,9 @@ $(function(){
 
     $(".next-step1").click(function(){
     	
-//        var bootstrapValidator01 = $('#personalDetailForm').data('bootstrapValidator')
-//        bootstrapValidator01.validate()
-//        if (bootstrapValidator01.isValid()) {
+       var bootstrapValidator01 = $('#personalDetailForm').data('bootstrapValidator')
+       bootstrapValidator01.validate()
+       if (bootstrapValidator01.isValid()) {
             var empNumber = $("#employeeNumber").val()
             var ssn = $("#SSNumber").val()
             var birthDate = $("#birthDate").val()
@@ -33,7 +33,6 @@ $(function(){
                 dataType: 'json',
                 success: function(result) {
                     console.log(result);
-                    $("#EmpExitError").hide()
                     $("#noEmployeeError").hide()
                     if(result.code === 2){
                         $('#infoStep').removeClass('show active')
@@ -47,27 +46,20 @@ $(function(){
                         getQuestionAndAnswer(result.data);
                         
                     }else{
-                    	if(result.code === 1){
-                            $("#EmpExitError").show()
-                            $("#noEmployeeError").hide()
-                        }else{
-                            $("#EmpExitError").hide()
-                            $("#noEmployeeError").show()
-                        }
-                    	$("#errorMsgStep1").slideDown(500);
+                    	$("#noEmployeeError").show()
                     }
                 },
                 error:function(err){
                     alert(somethingWrongWord)
                 }
             })
-//        }
+       }
     })
 
     $("#getUsernameBtn").click(function(){
         // to do test security answer
     	var answers = {
-      			 hintAns : $('#answerHidden').val(),
+      			 hintAns : $('#hintAnswer').val(),
       			 answer :  $('#hintAnswer').val()
                }
         var bootstrapValidator02 = $('#securityForm').data('bootstrapValidator')
@@ -80,6 +72,7 @@ $(function(){
 	          type:"POST",
 	          data: answers,
 	          success:function(result){
+                $("#answerError").hide()
 	        	  if(result.code === 2){
 		        	  $('#securityStep').removeClass('show active')
 		              $('#securityTab').removeClass('active')
@@ -90,9 +83,12 @@ $(function(){
 		              $('#securityStep').attr("aria-selected",false)
 		              $('#completeStep').attr("aria-selected",true)
 	        	  }else{
-	        		  alert(" a aaaa aa aa ");
+	        		  $("#answerError").show()
 	        	  }
-	          }
+	          },
+              error:function(err){
+                  alert(somethingWrongWord)
+              }
 	      });
         	
         }
@@ -111,7 +107,6 @@ function getQuestionAndAnswer(data) {
 	
 	console.log(data);
 	$('#questionText').html(data.hintQuestion);
-	$('#answerHidden').val(data.hintAnswer);
 	$("#usernameShow").text(data.username);
 
 }
@@ -138,7 +133,7 @@ function stepValidator01() {
                                 message: requiredFieldValidator
                             },
                             regexp: {
-                                regexp: /^[0-9]\d{5}$/,
+                                regexp: /^[0-9]\d{8}$/,
                                 message: pleaseEnterCorrectFormatValidator
                             }
                     }
