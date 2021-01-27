@@ -71,14 +71,20 @@ public class CreateUserController {
     @ResponseBody
 	public Map<String, String> saveNewUser(HttpServletRequest req) {
 		Map<String, String> res = new HashMap<>();
-		if (req.getParameter("empNbr") == null || req.getParameter("username") == null
+		//ALC-13 do changes so that user can use ssn to registrater
+		if ((req.getParameter("empNbr") == null && req.getParameter("ssn") == null )|| req.getParameter("username") == null
 				|| req.getParameter("hintQuestion") == null || req.getParameter("hintAnswer") == null
 				|| req.getParameter("password") == null) {
-			res.put("success", "false");
+			res.put("success", "false"); 
 			return res;
 		}
 		BeaUsers newUser = new BeaUsers();
-		newUser.setEmpNbr(req.getParameter("empNbr"));
+		if(req.getParameter("empNbr") == null){
+			newUser.setEmpNbr(req.getParameter("ssn"));
+		}
+		else {
+			newUser.setEmpNbr(req.getParameter("empNbr"));
+		}
 		newUser.setUsrname(req.getParameter("username"));// username
 		newUser.setHint(req.getParameter("hintQuestion"));// hintQuestion
 		newUser.setHintAns(encoder.encode(req.getParameter("hintAnswer")));// hintAnswer
