@@ -139,7 +139,7 @@
                                                         <div class="col-md-5">
                                                             <div class="input-group-relative has-hint-box">
                                                                 <input type="text" class="form-control" id="hintAnswer" name="hintAnswer" placeholder="${sessionScope.languageJSON.label.hintAnswer}" autocomplete="off">
-                                                                <input type="hidden" name="answerHidden">
+                                                                <input type="hidden" id="answerHidden" name="answerHidden">
                                                             </div>
                                                         </div>
                                                         
