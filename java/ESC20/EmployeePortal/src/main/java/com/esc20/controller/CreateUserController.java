@@ -71,7 +71,7 @@ public class CreateUserController {
     @ResponseBody
 	public Map<String, String> saveNewUser(HttpServletRequest req) {
 		Map<String, String> res = new HashMap<>();
-		//ALC-13 do changes so that user can use ssn to registrater
+		//ALC-13 do changes so that user can use ssn to create account
 		if ((req.getParameter("empNbr") == null && req.getParameter("ssn") == null )|| req.getParameter("username") == null
 				|| req.getParameter("hintQuestion") == null || req.getParameter("hintAnswer") == null
 				|| req.getParameter("password") == null) {
@@ -79,11 +79,16 @@ public class CreateUserController {
 			return res;
 		}
 		BeaUsers newUser = new BeaUsers();
+		
+		//ALC-13 do changes so that user can use ssn to create account
+		String usernumber = "";
 		if(req.getParameter("empNbr") == null){
 			newUser.setEmpNbr(req.getParameter("ssn"));
+			usernumber =req.getParameter("ssn");
 		}
 		else {
-			newUser.setEmpNbr(req.getParameter("empNbr"));
+			//newUser.setEmpNbr(req.getParameter("empNbr"));
+			usernumber =req.getParameter("empNbr");
 		}
 		newUser.setUsrname(req.getParameter("username"));// username
 		newUser.setHint(req.getParameter("hintQuestion"));// hintQuestion
@@ -97,13 +102,29 @@ public class CreateUserController {
 		newUser.setTmpDts("");
 		newUser.setTmpCnt(0);
 		newUser.setHintCnt(0);
+		
+		
 
-		BhrEmpDemo bed = this.indexService.getUserDetail(req.getParameter("empNbr"));
+		BhrEmpDemo bed = new BhrEmpDemo();
+		if(req.getParameter("empNbr") == null) {
+			bed = this.indexService.getUserDetailBySSN(usernumber);
+			newUser.setEmpNbr(bed.getEmpNbr());
+		}
+		else {
+			bed = this.indexService.getUserDetail(usernumber);
+		}
 		SearchUser searchUser = new SearchUser();
 		searchUser.setDateDay(bed.getDob().substring(6, 8));
 		searchUser.setDateMonth(bed.getDob().substring(4, 6));
 		searchUser.setDateYear(bed.getDob().substring(0, 4));
-		searchUser.setEmpNumber(req.getParameter("empNbr"));
+		if(req.getParameter("empNbr") == null) {
+			searchUser.setSsn(usernumber);
+		}
+		else
+		{
+			searchUser.setEmpNumber(usernumber);
+		}
+		
 		searchUser.setUserEmail(bed.getEmail());
 		searchUser.setNameF(bed.getNameF());
 		searchUser.setNameL(bed.getNameL());

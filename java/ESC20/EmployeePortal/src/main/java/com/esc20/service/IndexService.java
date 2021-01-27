@@ -118,6 +118,12 @@ public class IndexService {
 	public BhrEmpDemo getUserDetail(String empNbr) {
 		return userDao.getUserDetail(empNbr);
 	}
+	
+	//ALC-13 do changes so that user can use ssn to create account
+	public BhrEmpDemo getUserDetailBySSN(String staffId) {
+		return userDao.getUserDetailBySSN(staffId);
+	}
+	
 	public Options getOptions() {
 		return optionsDao.getOptions();
 	}

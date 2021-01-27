@@ -144,6 +144,18 @@ public class AppUserDao extends HibernateDaoSupport{
         return result;
 	}
 	
+	//ALC-13 do changes so that user can use ssn to registrater
+	public BhrEmpDemo getUserDetailBySSN(String staffId) {
+		Session session = this.getSession();
+		Query q;
+		String sql= "from BhrEmpDemo where staffId =:staffId";
+        q = session.createQuery(sql);
+        q.setParameter("staffId", staffId);
+        BhrEmpDemo res = (BhrEmpDemo) q.uniqueResult();
+        
+        return res;
+	}
+	
 	public District getDistrict(String district) {
 		Session session = this.getSession();
 		StringBuilder sql = new StringBuilder();
