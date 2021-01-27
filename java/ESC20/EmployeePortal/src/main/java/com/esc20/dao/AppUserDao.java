@@ -809,7 +809,7 @@ public class AppUserDao extends HibernateDaoSupport{
     	try {
     		Query query = this.getSession()
                     .createSQLQuery("SELECT PREF_VALUE FROM TXEIS_PREFERENCES where PREF_NAME ='lock_tries'");
-    		Integer res = query.uniqueResult()==null?0:Integer.parseInt(((String) query.uniqueResult()).toString());
+    		Integer res = query.uniqueResult()==null?5:Integer.parseInt(((String) query.uniqueResult()).toString());
     		return   res;
     	}
     	catch(Exception ex) {
@@ -821,7 +821,7 @@ public class AppUserDao extends HibernateDaoSupport{
     	try {
     		Query query = this.getSession()
                     .createSQLQuery("SELECT PREF_VALUE FROM TXEIS_PREFERENCES where PREF_NAME ='lock_timeout'");
-    		Integer res = query.uniqueResult()==null?0:Integer.parseInt(((String) query.uniqueResult()).toString());
+    		Integer res = query.uniqueResult()==null?15:Integer.parseInt(((String) query.uniqueResult()).toString());
     		return   res;
     	}
     	catch(Exception ex) {

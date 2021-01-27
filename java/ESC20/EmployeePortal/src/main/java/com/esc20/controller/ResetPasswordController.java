@@ -12,9 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esc20.model.BeaUsers;
@@ -23,6 +28,7 @@ import com.esc20.nonDBModels.Options;
 import com.esc20.nonDBModels.SearchUser;
 import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.IndexService;
+import com.esc20.util.CommonResult;
 import com.esc20.util.MailUtil;
 
 @Controller
@@ -103,6 +109,64 @@ public class ResetPasswordController {
 
 		return mav;
 	}
+	
+	//ALC-13 add new page called forgot username
+	@RequestMapping(value = "recoverUserNameStep1", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<CommonResult> recoverUserNameStep1(@RequestParam(required = false) String empNumber,@RequestParam(required = false) String ssn, @RequestParam String dateMonth, @RequestParam String dateDay, @RequestParam String dateYear, @RequestParam String zipCode) {
+	 
+		SearchUser searchUser = new SearchUser();
+		searchUser.setDateDay(dateDay);
+		searchUser.setDateMonth(dateMonth);
+		searchUser.setDateYear(dateYear);
+		searchUser.setEmpNumber(empNumber);
+		searchUser.setZipCode(zipCode);
+		searchUser.setSsn(ssn);
+		
+		CommonResult result = new CommonResult(0,"");
+		BhrEmpDemo bed = this.indexService.retrieveEmployee(searchUser);
+		if (bed != null) {
+			BeaUsers user = this.indexService.getUserByEmpNbr(bed.getEmpNbr());
+			if (user == null) {
+				result.setCode(0);
+			} else if (user.getLkHint() == 'Y') {
+				result.setCode(1);
+			} else {
+				searchUser.setUsername(user.getUsrname());
+				searchUser.setUserEmail(bed.getEmail());
+				searchUser.setUserHomeEmail(bed.getHmEmail());
+				searchUser.setNameF(bed.getNameF());
+				searchUser.setNameL(bed.getNameL());
+				searchUser.setHintQuestion(user.getHint());
+				searchUser.setHintAnswer(user.getHintAns());
+				result.setData(searchUser);
+				result.setCode(2);
+			}
+		}
+        
+        return new ResponseEntity(result, HttpStatus.OK);
+	 }
+	
+	//ALC-13 add new page called forgot username
+	@RequestMapping(value = "recoverUserNameStep2", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<CommonResult> recoverUserNameStep2(@RequestParam(required = false) String answer,  @RequestParam(required = false)  String hintAns) {
+	 
+		
+		boolean match = false;
+		try {
+			match = encoder.matches(answer, hintAns) || BCrypt.checkpw(answer,hintAns);
+		} catch (Exception e) {
+			match = false;
+		}
+		
+		CommonResult result = new CommonResult(0,"");
+		if(match) {
+			result.setCode(2);
+		}
+		
+        return new ResponseEntity(result, HttpStatus.OK);
+	 }
 
 	@RequestMapping("answerHintQuestion")
 	public ModelAndView answerHintQuestion(HttpServletRequest req, String answer, String empNbr, String socialSn, String email) {
@@ -207,6 +271,23 @@ public class ResetPasswordController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("forgetPassword");
 		//ALC-26 update EP password to get settings from DB
+		Map<String, String> preferences = indexService.getTxeisPreferences();
+		req.getSession().setAttribute("txeisPreferences", preferences);
+		
+		Options options = this.indexService.getOptions();
+		if(options.getIdType().equals(Options.IdType.Ssn)) {
+			mav.addObject("idType", "S");
+		} else {
+			mav.addObject("idType", "E");
+		}
+		return mav;
+	}
+	
+	//ALC-13 add new page called forgot username
+	@RequestMapping("forgetUsername")
+	public ModelAndView forgetUsername(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("forgetUsername");
 		Map<String, String> preferences = indexService.getTxeisPreferences();
 		req.getSession().setAttribute("txeisPreferences", preferences);
 		

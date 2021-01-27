@@ -111,8 +111,11 @@
                                     <div class="hidden">
                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&entry.372715739=Employee+Access+(TxEIS)" target="_blank">${sessionScope.languageJSON.label.contactUs}</a>
                                     </div>
-                                    <div class="pull-right">
+                                    <div class="pull-left">
                                         <a href="/<%=request.getContextPath().split("/")[1]%>/resetPassword/forgetPassword" tabindex="1" class="last_field">${sessionScope.languageJSON.label.forgotPassword}</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="/<%=request.getContextPath().split("/")[1]%>/resetPassword/forgetUsername" tabindex="1" class="last_field">${sessionScope.languageJSON.label.forgotUsername}</a>
                                     </div>
                                 </div>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -206,6 +209,7 @@
                                         </li>
                                     </ul>
                                     <!-- ALC-13 make input consistent with other portals-->
+                                    <!-- ALC-13 made UI based on AscenderUI standard-->
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step1-tab">
                                             <p class="alert alert-error" style="display:none" role="alert" aria-atomic="true" id="EmpExitError">${sessionScope.languageJSON.validator.noUserAccountAssociated}</p>
@@ -214,17 +218,12 @@
                                                 <c:if test="${idType=='S'}">
                                                     <div class="form-group has-right-msg">
                                                         <label for="SSNumber" class="control-label-title col-md-3 text-right">
-                                                            ${sessionScope.languageJSON.createAccount.ssn}(<span>${sessionScope.languageJSON.label.noDashes}</span>):
+                                                            ${sessionScope.languageJSON.createAccount.ssn} (<span>123456789</span>):
                                                         </label>
                                                         <div class="col-md-5">
                                                             <div class="input-group-relative icon-group has-hint-box">
                                                                 <i class="fa fa-user left-icon" aria-hidden="true"></i> 
                                                                 <input type="text" id="SSNumber" class="form-control" name="ssn" placeholder="${sessionScope.languageJSON.createAccount.ssn}" required="required" autocomplete="off" maxlength="9"> 
-                                                                <div class="input-hint-message">
-                                                                    <p>
-                                                                        ${sessionScope.languageJSON.createAccount.SSNFormat}
-                                                                    </p>
-                                                                </div> 
                                                             </div>
                                                         </div>
                                                     </div>
@@ -232,24 +231,19 @@
                                                 <c:if test="${idType=='E'}">
                                                     <div class="form-group has-right-msg">
                                                         <label for="employeeNumber" class="control-label-title col-md-3 text-right">
-                                                            ${sessionScope.languageJSON.label.employeeNumber}:
+                                                            ${sessionScope.languageJSON.label.employeeNumber} (000100):
                                                         </label>
                                                         <div class="col-md-5">
                                                             <div class="input-group-relative icon-group has-hint-box">
                                                                 <i class="fa fa-user left-icon" aria-hidden="true"></i> 
                                                                 <input type="text" id="employeeNumber" class="form-control" name="empNumber" placeholder="${sessionScope.languageJSON.label.employeeNumber}" required="required" autocomplete="off" maxlength="9"> 
-                                                                <div class="input-hint-message">
-                                                                    <p>
-                                                                        ${sessionScope.languageJSON.createAccount.empNumFormat}
-                                                                    </p>
-                                                                </div> 
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </c:if>
                                                 <div class="form-group has-right-msg">
                                                     <label for="birthDate" class="control-label-title col-md-3 text-right">
-                                                            ${sessionScope.languageJSON.label.dateOfBirth}(mm/dd/yyyy):
+                                                            ${sessionScope.languageJSON.label.dateOfBirth} (mm/dd/yyyy):
                                                     </label>
                                                     <div class="col-md-5">
                                                         <div class="input-group-relative icon-group has-hint-box">
@@ -264,17 +258,12 @@
                                                 </div>
                                                 <div class="form-group has-right-msg">
                                                     <label for="zipCode" class="control-label-title col-md-3 text-right">
-                                                            ${sessionScope.languageJSON.label.zipCode}:
+                                                            ${sessionScope.languageJSON.label.zipCode}  (12345):
                                                     </label>
                                                     <div class="col-md-5">
                                                         <div class="input-group-relative icon-group has-hint-box">
                                                             <i class="fa fa-key left-icon" aria-hidden="true"></i> 
                                                             <input type="text" id="zipCode" class="form-control" name="zipCode" placeholder="${sessionScope.languageJSON.label.zipCode}" required="required" autocomplete="off">
-                                                            <div class="input-hint-message">
-                                                                <p>
-                                                                    ${sessionScope.languageJSON.createAccount.zipCodeFormat}
-                                                                </p>
-                                                            </div> 
                                                         </div>
                                                     </div>
                                                 </div>
@@ -376,6 +365,9 @@
                                                             <c:choose>
                                                                 <c:when test="${empty user.userEmail}">
                                                                     <input type="text" id="workEmail" placeholder="${sessionScope.languageJSON.label.workEmail}" class="form-control" name="workEmail" required="required">
+                                                                    <div class="input-hint-message">
+                                                                        <p>${sessionScope.languageJSON.createAccount.workEmailMsg}</p>
+                                                                    </div> 
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <div id="staticWorkEmail">
@@ -396,6 +388,9 @@
                                                             <div class="input-group-relative icon-group has-hint-box">
                                                                 <i class="fa fa-envelope left-icon" aria-hidden="true"></i> 
                                                                 <input type="text" id="verifyWorkEmail" placeholder="${sessionScope.languageJSON.label.workEmailVerify}" class="form-control" name="workEmailVerify" required="required">
+                                                                <div class="input-hint-message">
+                                                                    <p>${sessionScope.languageJSON.createAccount.workEmailReMsg}</p>
+                                                                </div> 
                                                             </div>
                         
                                                         </div>
@@ -411,6 +406,9 @@
                                                                 <c:choose>
                                                                     <c:when test="${empty user.userHomeEmail}">
                                                                         <input type="text" id="homeEmail" class="form-control" placeholder="${sessionScope.languageJSON.label.homeEmail}" name="homeEmail" required="required">
+                                                                        <div class="input-hint-message">
+                                                                            <p>${sessionScope.languageJSON.createAccount.homeEmailMsg}</p>
+                                                                        </div> 
                                                                     </c:when>
                                                                     <c:otherwise>
                                                                         <div id="staticWorkEmail">
@@ -431,6 +429,9 @@
                                                                 <div class="input-group-relative icon-group has-hint-box">
                                                                     <i class="fa fa-envelope left-icon" aria-hidden="true"></i> 
                                                                     <input type="text" id="verifyHomeEmail" class="form-control" name="homeEmailVerify" placeholder="${sessionScope.languageJSON.label.homeEmailVerify}" required="required">
+                                                                    <div class="input-hint-message">
+                                                                        <p>${sessionScope.languageJSON.createAccount.homeEmailReMsg}</p>
+                                                                    </div> 
                                                                 </div>
                             
                                                             </div>

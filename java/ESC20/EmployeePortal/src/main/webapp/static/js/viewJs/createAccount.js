@@ -10,6 +10,7 @@ $(function(){
         bootstrapValidator01.validate()
         if (bootstrapValidator01.isValid()) {
             var empNumber = $("#employeeNumber").val()
+            var ssn = $("#SSNumber").val()
             var birthDate = $("#birthDate").val()
             var zipCode = $("#zipCode").val()
             var dateMonth = splitDate(birthDate)['month']
@@ -18,6 +19,7 @@ $(function(){
 
             var userObj = {
                 empNumber:empNumber,
+                ssn:ssn,
                 dateMonth:dateMonth,
                 dateDay:dateDay,
                 dateYear:dateYear,
@@ -174,6 +176,7 @@ $(function(){
     })
     $("#createAccount").click(function(){
         var empNbr = $("#employeeNumber").val();
+        var ssn = $("#SSNumber").val();
         var username = $("#usernameCreate").val();
         var password= $("#passwordCreate").val();
         var homeE = $("#homeEmail").val()
@@ -202,6 +205,7 @@ $(function(){
         if (bootstrapValidator03.isValid()) {
             var userObj = {
                 empNbr: empNbr, 
+                ssn:ssn,
                 username: username, 
                 password: password, 
                 workEmail: wEmail,
@@ -218,17 +222,23 @@ $(function(){
                 dataType: 'json',
                 success: function(data) {
                     console.log(data);
-                    $("#loginUsername").val(username)
-                    $("#loginPassword").val(password)
-                    $('#step3').removeClass('show active')
-                    $('#step3-tab').removeClass('active')
-                    $('#step3-tab').addClass('done')
-                    $('#step4').addClass('show active')
-                    $('#step4-tab').addClass('active')
-                    $('#step1-tab').attr("aria-selected",false)
-                    $('#step2-tab').attr("aria-selected",false)
-                    $('#step3-tab').attr("aria-selected",false)
-                    $('#step4-tab').attr("aria-selected",true)
+                    if(data.success){
+                        $("#loginUsername").val(username)
+                        $("#loginPassword").val(password)
+                        $('#step3').removeClass('show active')
+                        $('#step3-tab').removeClass('active')
+                        $('#step3-tab').addClass('done')
+                        $('#step4').addClass('show active')
+                        $('#step4-tab').addClass('active')
+                        $('#step1-tab').attr("aria-selected",false)
+                        $('#step2-tab').attr("aria-selected",false)
+                        $('#step3-tab').attr("aria-selected",false)
+                        $('#step4-tab').attr("aria-selected",true)
+                    }else{
+                        // to do
+                        //create user failed, show error message
+                    }
+                    
                 },
                 error:function(err){
                     alert(somethingWrongWord)
@@ -285,7 +295,7 @@ function stepValidator01() {
                                 message: requiredFieldValidator
                             },
                             regexp: {
-                                regexp: /^[0-9]\d{5}$/,
+                                regexp: /^[0-9]\d{8}$/,
                                 message: pleaseEnterCorrectFormatValidator
                             }
                     }
