@@ -59,7 +59,7 @@ $(function(){
     $("#getUsernameBtn").click(function(){
         // to do test security answer
     	var answers = {
-      			 hintAns : $('#hintAnswer').val(),
+      			 hintAns : $('#answerHidden').val(),
       			 answer :  $('#hintAnswer').val()
                }
         var bootstrapValidator02 = $('#securityForm').data('bootstrapValidator')
@@ -108,6 +108,7 @@ function getQuestionAndAnswer(data) {
 	console.log(data);
 	$('#questionText').html(data.hintQuestion);
 	$("#usernameShow").text(data.username);
+	$("#answerHidden").val(data.hintAnswer);
 
 }
 
