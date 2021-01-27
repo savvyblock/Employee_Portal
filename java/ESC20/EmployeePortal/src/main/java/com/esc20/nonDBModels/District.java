@@ -2,6 +2,8 @@ package com.esc20.nonDBModels;
 
 import java.io.Serializable;
 
+import com.esc20.util.StringUtil;
+
 public class District implements Serializable
 {
 	private static final long serialVersionUID = -6380079004967418787L;
@@ -18,13 +20,14 @@ public class District implements Serializable
 	
 	public District(Object distName, Object strNbrDist, Object strNameDist, Object cityNameDist, Object stateCd, Object zipDist,
 			Object zip4Dist, Object areaCdDist, Object phoneNbrDist) {
-		this.setAddress(((String) strNbrDist).trim() + " " +((String)strNameDist).trim());
-		this.setName(((String) distName).trim());
-		this.setCity(((String) cityNameDist).trim());
-		this.setState(((String) stateCd).trim());
-		this.setZip(((String) zipDist).trim());
-		this.setZip4(((String) zip4Dist).trim());
-		this.setPhone(((String)areaCdDist).trim() + ((String)phoneNbrDist).trim());
+		//ALC-13 to fixed null pointer issues
+		this.setAddress((StringUtil.trim(strNbrDist)) + " " +(StringUtil.trim(strNameDist)));
+		this.setName((StringUtil.trim( distName)));
+		this.setCity((StringUtil.trim(cityNameDist)));
+		this.setState((StringUtil.trim( stateCd)));
+		this.setZip((StringUtil.trim( zipDist)));
+		this.setZip4((StringUtil.trim(zip4Dist)));
+		this.setPhone((StringUtil.trim(areaCdDist)) + (StringUtil.trim(phoneNbrDist)));
 	}
 	public District() {
 

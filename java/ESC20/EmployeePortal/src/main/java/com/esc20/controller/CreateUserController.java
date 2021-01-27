@@ -83,11 +83,11 @@ public class CreateUserController {
 		//ALC-13 do changes so that user can use ssn to create account
 		String usernumber = "";
 		if(req.getParameter("empNbr") == null){
-			newUser.setEmpNbr(req.getParameter("ssn"));
+			//newUser.setEmpNbr(req.getParameter("ssn"));
 			usernumber =req.getParameter("ssn");
 		}
 		else {
-			//newUser.setEmpNbr(req.getParameter("empNbr"));
+			newUser.setEmpNbr(req.getParameter("empNbr"));
 			usernumber =req.getParameter("empNbr");
 		}
 		newUser.setUsrname(req.getParameter("username"));// username
