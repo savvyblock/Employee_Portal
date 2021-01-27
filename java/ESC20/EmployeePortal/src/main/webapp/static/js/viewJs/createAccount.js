@@ -222,7 +222,8 @@ $(function(){
                 dataType: 'json',
                 success: function(data) {
                     console.log(data);
-                    if(data.success){
+                    $("#errorTryAgain").hide()
+                    if(data.success == "true"){
                         $("#loginUsername").val(username)
                         $("#loginPassword").val(password)
                         $('#step3').removeClass('show active')
@@ -235,8 +236,7 @@ $(function(){
                         $('#step3-tab').attr("aria-selected",false)
                         $('#step4-tab').attr("aria-selected",true)
                     }else{
-                        // to do
-                        //create user failed, show error message
+                        $("#errorTryAgain").show()
                     }
                     
                 },

@@ -146,7 +146,7 @@ public class CreateUserController {
 				|| req.getParameter("dateYear") == null
 				|| (req.getParameter("empNumber") == null && req.getParameter("ssn") == null)
 				|| req.getParameter("zipCode") == null) {
-			res.put("success", "false");
+			res.put("success", false);
 			res.put("errorMsg", "Not all mandotary fields provided.");
 			return res;
 		}
