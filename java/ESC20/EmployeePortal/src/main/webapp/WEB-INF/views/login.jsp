@@ -458,6 +458,9 @@
                                                 <!-- ALC-13 Added description for security question tab -->
                                             <p>${sessionScope.languageJSON.createAccount.securityQuestionDes}</p>
                                             <hr>
+                                            <p class="alert alert-error"  role="alert" aria-atomic="true" id="errorTryAgain" style="display: none;">
+                                                ${sessionScope.languageJSON.createAccount.somethingWrong}
+                                            </p>
                                             <form class="form-horizontal form-signin" role="form" id="securityForm">
                                                 <div class="form-group">
                                                     <label for="question1" class="control-label-title col-md-3 text-right">
