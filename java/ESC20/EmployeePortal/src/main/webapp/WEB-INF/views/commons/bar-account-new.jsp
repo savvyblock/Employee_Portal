@@ -73,8 +73,8 @@
 			</li>
 			<li>
 				<a 	
-					title="Linkedin"
-					aria-label="Linkedin" 
+					title="LinkedIn"
+					aria-label="LinkedIn" 
 					class="link-on-login-header link-color helpLink" 
 					href="https://www.linkedin.com/company/ascendertx/"
 					target="_blank"><i class="fa fa-linkedin-square"></i>

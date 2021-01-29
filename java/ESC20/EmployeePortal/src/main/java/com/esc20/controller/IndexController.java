@@ -113,7 +113,9 @@ public class IndexController {
                 {
                     while ((line = br.readLine()) != null) 
                     {
-                        sbf.append(line);
+                    	//ALC-13 formatted text
+						line+='\n';
+                    	sbf.append(line);
                         logger.debug(line);
                     }
                 }

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html> 
 <html lang="en">
     <head>
@@ -535,7 +536,12 @@
                 <!-- ALC-13 Update UI for server box -->
                 <c:if test="${not empty alertMsg}"> 
                         <div class="serverMsg">
-                            ${alertMsg}
+                            <div class="serverInner">
+                                <!-- ALC-13 Formatted the alert message -->
+                                <%request.setAttribute("vEnter", "\n");%>
+                                <c:set var="alertMsg01" value="${fn:replace(alertMsg,vEnter,'<br>')}"></c:set>
+                                ${alertMsg01}
+                            </div>
                         </div>
                 </c:if>
             </div>

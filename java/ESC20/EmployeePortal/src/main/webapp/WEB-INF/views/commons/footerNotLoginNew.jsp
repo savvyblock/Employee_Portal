@@ -40,7 +40,7 @@
 						  <span>${sessionScope.languageJSON.login.textTccAccessibilityStatement1}</span>
 						  <a href="https://www.w3.org/TR/WCAG20/" target="_blank">${sessionScope.languageJSON.login.textTccAccessibilityStatement2}</a>
 						  <span>${sessionScope.languageJSON.login.textTccAccessibilityStatement3} </span>
-						  <a  href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?entry.372715739=txConnect" target="_blank" role="link" aria-label="" data-localize="login.goToContact"  data-localize-notText="true">
+						  <a  href="https://docs.google.com/forms/d/e/1FAIpQLScVEpUzBsCM1XLzRVieEoJAaFWRZoPEmUU2fZcWz2TyDTsb7g/viewform?usp=pp_url&entry.372715739=TxEIS" target="_blank" role="link" aria-label="" data-localize="login.goToContact"  data-localize-notText="true">
 							  <span>${sessionScope.languageJSON.login.textTccAccessibilityStatement4}</span></a>.
 					  </p>
 					</div>
