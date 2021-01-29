@@ -463,7 +463,7 @@
                                                 ${sessionScope.languageJSON.createAccount.somethingWrong}
                                             </p>
                                             <form class="form-horizontal form-signin" role="form" id="securityForm">
-                                                <div class="form-group">
+                                                <div class="form-group has-right-msg">
                                                     <label for="question1" class="control-label-title col-md-3 text-right">
                                                             ${sessionScope.languageJSON.label.hintQuestion}:
                                                     </label>

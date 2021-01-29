@@ -81,6 +81,21 @@ var answerErrorValidator = "${sessionScope.languageJSON.validator.answerError}";
 var selectLeaveTypeValidator = "${sessionScope.languageJSON.validator.selectLeaveType}";
 var selectAbsenceReasonValidator = "${sessionScope.languageJSON.validator.selectAbsenceReason}";
 var requiredFieldValidator = "${sessionScope.languageJSON.validator.requiredField}";
+
+var ssnRequiredValidator = "${sessionScope.languageJSON.validator.ssnRequired}";
+var dobRequiredValidator = "${sessionScope.languageJSON.validator.dobRequired}";
+var zipRequiredValidator = "${sessionScope.languageJSON.validator.zipRequired}";
+var enRequiredValidator = "${sessionScope.languageJSON.validator.enRequired}";
+var usRequiredValidator = "${sessionScope.languageJSON.validator.usRequired}";
+var psdRequiredValidator = "${sessionScope.languageJSON.validator.psdRequired}";
+var psdReRequiredValidator = "${sessionScope.languageJSON.validator.psdReRequired}";
+var weRequiredValidator = "${sessionScope.languageJSON.validator.weRequired}";
+var wereRequiredValidator = "${sessionScope.languageJSON.validator.wereRequired}";
+var heRequiredValidator = "${sessionScope.languageJSON.validator.heRequired}";
+var hereRequiredValidator = "${sessionScope.languageJSON.validator.hereRequired}";
+var sqRequiredValidator = "${sessionScope.languageJSON.validator.sqRequired}";
+var saRequiredValidator = "${sessionScope.languageJSON.validator.saRequired}";
+
 var notValidValidator = "${sessionScope.languageJSON.validator.notValid}";
 var pleaseEnterCorrectMailFormatValidator = "${sessionScope.languageJSON.validator.pleaseEnterCorrectMailFormat}";
 var twoPasswordsNotMatchValidator = "${sessionScope.languageJSON.validator.twoPasswordsNotMatch}";

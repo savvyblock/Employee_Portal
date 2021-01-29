@@ -281,7 +281,7 @@ function stepValidator01() {
                 empNumber: {
                     validators: {
                         notEmpty: {
-                                message: requiredFieldValidator
+                                message: enRequiredValidator
                             },
                             regexp: {
                                 regexp: /^[0-9]\d{5}$/,
@@ -292,7 +292,7 @@ function stepValidator01() {
                 ssn:{
                     validators: {
                         notEmpty: {
-                                message: requiredFieldValidator
+                                message: ssnRequiredValidator
                             },
                             regexp: {
                                 regexp: /^[0-9]\d{8}$/,
@@ -303,14 +303,14 @@ function stepValidator01() {
                 birthDate: {
                     validators: {
                         notEmpty: {
-                                message: requiredFieldValidator
+                                message: dobRequiredValidator
                             },
                     }
                 },
                 zipCode: {
                     validators: {
                         notEmpty: {
-                                message: requiredFieldValidator
+                                message: zipRequiredValidator
                             },
                             regexp: {
                                 regexp: /^[0-9]\d{4}$/,
@@ -330,7 +330,7 @@ function stepValidator02(){
             txtUsername: {
                   validators: {
                       notEmpty: {
-                          message: requiredFieldValidator
+                          message: usRequiredValidator
                       },
                       remote: {
 						message: userExistWord,
@@ -348,14 +348,14 @@ function stepValidator02(){
               txtPassword: {
                   validators: {
                       notEmpty: {
-                          message: requiredFieldValidator
+                          message: psdRequiredValidator
                       }
                   }
               },
               newPassword: {
                   validators: {
                       notEmpty: {
-                          message: requiredFieldValidator
+                          message: psdReRequiredValidator
                       }
                   }
               },
@@ -408,14 +408,14 @@ function stepValidator03(){
             hintQuestion: {
                 validators: {
                     notEmpty: {
-                        message: requiredFieldValidator
+                        message: sqRequiredValidator
                     }
                 }
             },
 			hintAnswer: {
                 validators: {
                     notEmpty: {
-                        message: requiredFieldValidator
+                        message: saRequiredValidator
                     },
                     // regexp: {
                     // 	regexp: /^[\S\s]{1,250}$/,
