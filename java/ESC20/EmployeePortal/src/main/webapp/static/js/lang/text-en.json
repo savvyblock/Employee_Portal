@@ -634,7 +634,7 @@
         "oldPasswordWrong": "Old password is wrong",
         "usernameOrPasswordError": "User name or password error",
         "usernameOrPasswordIncorrect": "Incorrect User name or password",
-        "authenticateFailed": "Invalid User ID or Password. Try again.",
+        "authenticateFailed": "Invalid User Name or Password. Try again.",
         "emailNotExit": "The email address does not exist",
         "userNotExist": "Employee does not exist",
         "userExist": "User name is already associated with another employee. Please choose a different user name",

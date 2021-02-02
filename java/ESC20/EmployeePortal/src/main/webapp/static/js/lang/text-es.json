@@ -633,7 +633,7 @@
         "oldPasswordWrong": "La contraseña anterior está equivocada..",
         "usernameOrPasswordError": "Error en el nombre de usuario o la contraseña.",
         "usernameOrPasswordIncorrect": "Nombre de usuario o contraseña incorrectos.",
-        "authenticateFailed": "ID de usuario o contraseña no válidos. Inténtalo de nuevo.",
+        "authenticateFailed": "Usuario o contraseña invalido. Inténtalo de nuevo.",
         "emailNotExit": "La dirección de correo electrónico no existe",
         "userNotExist": "El empleado no existe",
         "userExist": "El nombre de usuario ya está asignado a otro empleado. Elija un nombre de usuario diferente.",
