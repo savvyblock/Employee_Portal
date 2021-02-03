@@ -214,3 +214,5 @@ var languageSet = "${sessionScope.language}"
 }
 </style>
 </c:if>
+<!-- AUS-643 Improved function of left bar-->
+<script src="<spring:theme code="commonBase"/>scripts/leftBar.js"></script>

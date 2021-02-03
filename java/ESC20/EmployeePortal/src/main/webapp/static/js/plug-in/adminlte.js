@@ -335,8 +335,9 @@ var PushMenu = function ($) {
     SHOWN: 'shown' + EVENT_KEY
   };
 
+  // AUS-643 Set default width for screen,when the screen size equal or less than this width,the menu will collapse automatically
   var Default = {
-    screenCollapseSize: 768
+    screenCollapseSize: 992
   };
 
   var Selector = {
