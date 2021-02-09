@@ -434,6 +434,10 @@ public class ResetPasswordController {
 		
 		try {
 			user.setUsrpswd(encoder.encode(newPass));
+			user.setTmpDts(user.getTmpDts() == null ? "" : user.getTmpDts());
+			user.setTmpCnt(0);
+			user.setLkHint('N');
+			user.setHintCnt(0);
 			user.setUsrChgPwdDt(new Date());
 			this.indexService.updateUser(user);
 			
