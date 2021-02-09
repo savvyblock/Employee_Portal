@@ -1,6 +1,8 @@
 package com.esc20.model;
 // Generated Jan 4, 2019 3:30:30 PM by Hibernate Tools 4.3.5.Final
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,7 +27,8 @@ public class BeaUsers implements java.io.Serializable {
 	private char lkHint;
 	private Integer hintCnt;
 	private String tmpDts;
-
+	private Date usrChgPwdDt; //ALC-26 The Login needs to validate for Password Expiration
+ 
 	public BeaUsers() {
 	}
 
@@ -153,6 +156,17 @@ public class BeaUsers implements java.io.Serializable {
 
 	public void setTmpDts(String tmpDts) {
 		this.tmpDts = tmpDts;
+	}
+	
+	
+	 //ALC-26 The Login needs to validate for Password Expiration
+	@Column(name = "USR_CHG_PWD_DT", nullable = true)
+	public Date getUsrChgPwdDt() {
+		return this.usrChgPwdDt;
+	}
+
+	public void setUsrChgPwdDt(Date usrChgPwdDt) {
+		this.usrChgPwdDt = usrChgPwdDt;
 	}
 
 }
