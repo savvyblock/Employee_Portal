@@ -29,6 +29,7 @@ public class Options implements Serializable {
 	private Boolean showUnprocessedLeave;
 	private Boolean restrictEarnings;
 	private Boolean enableLeaveReq;
+	private Boolean enableTrvl;
 	private Boolean usePMISSpvsrLevels;
 	private Integer maxDays;
 	private Integer w2Latest;
@@ -46,6 +47,7 @@ public class Options implements Serializable {
 	private String messageW2;
 	private String message1095;
 	private String messageLeaveRequest;
+	private String messageTrvl;
 	private String messageElecConsentW2;
 	private String messageElecConsent1095;
 	
@@ -75,6 +77,11 @@ public class Options implements Serializable {
 			this.setEnableLeave(true);
 		else
 			this.setEnableLeave(false);
+		
+		if("Y".equals(opt.getEnblTrvl().toString()))
+			this.setEnableTrvl(true);
+		else
+			this.setEnableTrvl(false);
 		
 		if("Y".equals(opt.getEnblW2().toString()))
 			this.setEnableW2(true);
@@ -163,6 +170,7 @@ public class Options implements Serializable {
 		this.setMessageW2(opt.getMsgW2());
 		this.setMessage1095(opt.getMsg1095());
 		this.setMessageLeaveRequest(opt.getMsgLvReq());
+		this.setMessageTrvl(opt.getMsgTrvl());
 		this.setMessageElecConsentW2(opt.getMsgElecConsntW2());
 		this.setMessageElecConsent1095(opt.getMsgElecConsnt1095());
 	}
@@ -302,6 +310,14 @@ public class Options implements Serializable {
 	public void setEnableLeaveReq(Boolean enableLeaveReq) {
 		this.enableLeaveReq = enableLeaveReq;
 	}
+	
+	public Boolean getEnableTrvl() {
+		return enableTrvl;
+	}
+
+	public void setEnableTrvl(Boolean enableTrvl) {
+		this.enableTrvl = enableTrvl;
+	}
 
 	public Boolean getUsePMISSpvsrLevels() {
 		return usePMISSpvsrLevels;
@@ -397,6 +413,14 @@ public class Options implements Serializable {
 
 	public void setMessageLeave(String messageLeave) {
 		this.messageLeave = messageLeave;
+	}
+	
+	public String getMessageTrvl() {
+		return messageTrvl;
+	}
+
+	public void setMessageTrvl(String messageTrvl) {
+		this.messageTrvl = messageTrvl;
 	}
 
 	public String getMessageSelfServiceDemographic() {

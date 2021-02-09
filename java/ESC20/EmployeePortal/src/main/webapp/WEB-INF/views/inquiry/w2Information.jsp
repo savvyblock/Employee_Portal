@@ -473,7 +473,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         </div>
         <input type="hidden" name="consentCancel" id="elecConsntW2Cancel" value="${sessionScope.cancelW2Consent}" aria-hidden="true">
         <%@ include file="../commons/footer.jsp"%>
-        <c:if test="${sessionScope.options.enableElecConsntW2 == true && empty consent}">
+        <c:if test="${sessionScope.options.enableElecConsntW2 == true}">
             <div
                 class="modal fade"
                 id="electronicConsent"

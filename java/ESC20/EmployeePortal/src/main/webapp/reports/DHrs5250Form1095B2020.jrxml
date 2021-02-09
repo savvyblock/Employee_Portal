@@ -534,11 +534,11 @@
 	<group name="WhenToPrintInstructionsBreak" isStartNewPage="true" keepTogether="true">
 		<groupExpression><![CDATA[$V{REPORT_COUNT}]]></groupExpression>
 		<groupFooter>
-			<band height="551">
+			<band height="552">
 				<printWhenExpression><![CDATA[$F{both_side}.equals("Y") ? new Boolean(true) :
     ($F{formpagenbr}.equals( "1" ) ? new Boolean(true) : new Boolean(false))]]></printWhenExpression>
 				<frame>
-					<reportElement key="Page 2 Instructions" x="2" y="0" width="717" height="538" uuid="ed52e5ab-05af-485c-90e4-0b950694f821">
+					<reportElement key="Page 2 Instructions" x="2" y="0" width="717" height="552" uuid="ed52e5ab-05af-485c-90e4-0b950694f821">
 						<printWhenExpression><![CDATA[$F{formpagenbr}.equals( "1" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
 					</reportElement>
 					<staticText>
@@ -560,7 +560,7 @@
 						<textElement textAlignment="Right" verticalAlignment="Bottom">
 							<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 						</textElement>
-						<text><![CDATA[560216]]></text>
+						<text><![CDATA[560220]]></text>
 					</staticText>
 					<frame>
 						<reportElement x="1" y="13" width="716" height="14" uuid="2b36a49e-b6f2-41f1-bc50-e85582bbcaaf"/>
@@ -578,7 +578,7 @@
 					<frame>
 						<reportElement key="Instructions 1st Column" x="1" y="32" width="365" height="504" uuid="0d56237c-c480-4681-aa57-8cfb50704f96"/>
 						<staticText>
-							<reportElement x="1" y="1" width="340" height="23" uuid="84180623-cf51-45ef-be09-9a725c287894">
+							<reportElement x="1" y="-3" width="340" height="23" uuid="84180623-cf51-45ef-be09-9a725c287894">
 								<property name="net.sf.jasperreports.export.pdf.tag.h1" value="full"/>
 							</reportElement>
 							<textElement verticalAlignment="Middle">
@@ -587,177 +587,181 @@
 							<text><![CDATA[Instructions for Recipient]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="1" y="24" width="354" height="166" uuid="007a5f1c-4e1f-4015-9b36-bb28b80991b3"/>
+							<reportElement x="2" y="20" width="362" height="178" uuid="007a5f1c-4e1f-4015-9b36-bb28b80991b3"/>
 							<textElement verticalAlignment="Top" markup="styled">
 								<font fontName="Microsoft Sans Serif" pdfFontName="Helvetica"/>
 							</textElement>
-							<text><![CDATA[This Form 1095-B provides information about the individuals in your tax family (yourself, spouse, and dependents) who had certain health coverage (referred to as “minimum essential coverage”) for some or all months during the year. Minimum essential coverage includes government-sponsored programs, eligible employer-sponsored plans, individual market plans, and other coverage the Department of Health and Human Services designates as minimum essential coverage.Before 2019, individuals who did not have minimum essential coverage and did not qualify for an exemption from this requirement could be liable for the individual shared responsibility payment. Beginning in 2019, individuals will not be responsible for the individual shared responsibility payment because the payment amount is reduced to $0. However, if individuals in your tax family are eligible for certain types of minimum essential coverage, you may not be eligible for the premium tax credit. For more information on the premium tax credit, see Pub. 974, Premium Tax Credit (PTC).]]></text>
+							<text><![CDATA[This Form 1095-B provides information about the individuals in your tax family (yourself, spouse, and dependents) who had certain health coverage (referred to as “minimum essential coverage”) for some or all months during the year. Minimum essential coverage includes government-sponsored programs, eligible employer-sponsored plans, individual market plans, and other coverage the Department of Health and Human Services designates as minimum essential coverage.
+Before 2019, individuals who did not have minimum essential coverage and did not qualify for an exemption from this requirement could be liable for the individual shared responsibility payment. Beginning in 2019, individuals will not be responsible for the individual shared responsibility payment because the payment amount is reduced to $0. However, if individuals in your tax family are eligible for certain types of minimum essential coverage, you may not be eligible for the premium tax credit. For more information on the premium tax credit, see Pub. 974, Premium Tax Credit (PTC).]]></text>
 						</staticText>
 						<rectangle radius="3">
-							<reportElement x="2" y="189" width="36" height="36" backcolor="#000000" uuid="099fab65-5e8a-40d0-9a25-63d373d575a9"/>
+							<reportElement x="1" y="192" width="37" height="38" backcolor="#000000" uuid="099fab65-5e8a-40d0-9a25-63d373d575a9"/>
 						</rectangle>
 						<ellipse>
-							<reportElement x="3" y="191" width="34" height="34" uuid="4dfefda3-04ba-4bf4-b160-2ad380e1cfd9"/>
+							<reportElement x="2" y="194" width="35" height="36" uuid="4dfefda3-04ba-4bf4-b160-2ad380e1cfd9"/>
 							<graphicElement>
 								<pen lineWidth="0.0"/>
 							</graphicElement>
 						</ellipse>
 						<staticText>
-							<reportElement x="11" y="202" width="19" height="13" uuid="c0c3829e-385a-4dd4-951d-2f46f2479fcd"/>
+							<reportElement x="11" y="207" width="19" height="13" uuid="c0c3829e-385a-4dd4-951d-2f46f2479fcd"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" size="11" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<text><![CDATA[TIP]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="49" y="189" width="290" height="37" uuid="c515fd49-5d18-4460-bbad-0e208ec5cf52"/>
+							<reportElement x="49" y="194" width="290" height="37" uuid="c515fd49-5d18-4460-bbad-0e208ec5cf52"/>
 							<textElement verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" isItalic="true" pdfFontName="Helvetica-Oblique"/>
 							</textElement>
 							<text><![CDATA[Providers of minimum essential coverage are required to furnish only one Form 1095-B for all individuals whose coverage is reported on that form. As the recipient of this Form 1095-B, you]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="2" y="226" width="330" height="24" uuid="1c4618ec-cd7a-40c1-aced-be9ee866b390"/>
+							<reportElement x="2" y="231" width="330" height="24" uuid="1c4618ec-cd7a-40c1-aced-be9ee866b390"/>
 							<textElement verticalAlignment="Top">
 								<font fontName="Microsoft Sans Serif" isItalic="true" pdfFontName="Helvetica-Oblique"/>
 							</textElement>
 							<text><![CDATA[should provide a copy to other individuals covered under the policy if they request it for their records.]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="3" y="250" width="337" height="78" uuid="a0dbf83f-14fe-4361-a1fc-4be128557aad"/>
+							<reportElement x="3" y="260" width="357" height="78" uuid="a0dbf83f-14fe-4361-a1fc-4be128557aad"/>
 							<textElement verticalAlignment="Top" markup="styled">
 								<font fontName="Microsoft Sans Serif" isBold="false"/>
 							</textElement>
-							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Additional information.</style> For additional information about the tax provisions of the Affordable Care Act (ACA), including the individual shared responsibility provisions, the premium tax credit, and the employer shared responsibility provisions, see <style pdfFontName="Helvetica-Oblique">www.irs.gov/Affordable-Care-Act/Individuals-and-Families</style> or call the IRS Healthcare Hotline for ACA questions                (1-800-919-0452).]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Additional information.</style> For additional information about the tax provisions
+of the Affordable Care Act (ACA), including the individual shared
+responsibility provisions, and the premium tax credit, see www.irs.gov/ACA
+or call the IRS Healthcare Hotline for ACA questions (800-919-0452).]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="3" y="320" width="337" height="24" uuid="263e272e-4135-446f-81e8-eb83fb52b012"/>
+							<reportElement x="1" y="310" width="356" height="24" uuid="263e272e-4135-446f-81e8-eb83fb52b012"/>
 							<textElement verticalAlignment="Top" markup="styled">
 								<font fontName="Microsoft Sans Serif" isBold="false"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Part I. Responsible Individual, lines 1-9.</style> Part I reports information about you and the coverage.]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="2" y="344" width="347" height="57" uuid="61e567dc-7b5b-48d8-ba7f-a29b66bf226c"/>
+							<reportElement x="2" y="338" width="360" height="57" uuid="61e567dc-7b5b-48d8-ba7f-a29b66bf226c"/>
 							<textElement verticalAlignment="Top" markup="styled">
 								<font fontName="Microsoft Sans Serif" isBold="false"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Lines 2 and 3.</style> Line 2 reports your social security number (SSN) or other taxpayer identification number (TIN), if applicable. For your protection, this form may show only the last four digits. However, the coverage provider is required to report your complete SSN or other TIN, if applicable, to the IRS. Your date of birth will be entered on line 3 only if line 2 is blank.]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="-1" y="406" width="34" height="12" uuid="a547e8e4-ec1c-48b7-b92f-aa18ba93c1cb"/>
+							<reportElement x="0" y="400" width="34" height="12" uuid="a547e8e4-ec1c-48b7-b92f-aa18ba93c1cb"/>
 							<textElement verticalAlignment="Top">
 								<font fontName="Microsoft Sans Serif" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<text><![CDATA[Line 8.]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="36" y="406" width="304" height="12" uuid="7c45a6fe-76e5-4bce-97ee-724597489edc"/>
+							<reportElement x="37" y="400" width="304" height="12" uuid="7c45a6fe-76e5-4bce-97ee-724597489edc"/>
 							<textElement verticalAlignment="Top">
 								<font fontName="Microsoft Sans Serif"/>
 							</textElement>
 							<text><![CDATA[This is the code for the type of coverage in which you or other]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="-1" y="417" width="340" height="12" uuid="a9a04e7d-4d12-492c-a022-fea676521bbe"/>
+							<reportElement x="0" y="411" width="340" height="12" uuid="a9a04e7d-4d12-492c-a022-fea676521bbe"/>
 							<textElement verticalAlignment="Top">
 								<font fontName="Microsoft Sans Serif"/>
 							</textElement>
 							<text><![CDATA[covered individuals were enrolled. Only one letter will be entered on this line.]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="10" y="430" width="15" height="12" uuid="cfc86aca-8bce-4dc3-bf06-4aa20b9b723f"/>
+							<reportElement x="11" y="424" width="15" height="12" uuid="cfc86aca-8bce-4dc3-bf06-4aa20b9b723f"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<text><![CDATA[A.]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="30" y="430" width="250" height="12" uuid="b83e0e6f-f1b8-4027-9ab6-1fcf14356338"/>
+							<reportElement x="31" y="424" width="250" height="12" uuid="b83e0e6f-f1b8-4027-9ab6-1fcf14356338"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="false"/>
 							</textElement>
 							<text><![CDATA[Small Business Health Options Program (SHOP)]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="10" y="442" width="15" height="12" uuid="85c31db2-43fb-4056-b5cb-405787eb31d3"/>
+							<reportElement x="11" y="436" width="15" height="12" uuid="85c31db2-43fb-4056-b5cb-405787eb31d3"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<text><![CDATA[B.]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="30" y="442" width="250" height="12" uuid="87426e91-d576-47a8-baa0-a73ffb649df9"/>
+							<reportElement x="31" y="436" width="250" height="12" uuid="87426e91-d576-47a8-baa0-a73ffb649df9"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="false"/>
 							</textElement>
 							<text><![CDATA[Employer-sponsored coverage]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="10" y="454" width="15" height="12" uuid="010068fc-2e4f-455e-a40d-21e5523a10d4"/>
+							<reportElement x="11" y="448" width="15" height="12" uuid="010068fc-2e4f-455e-a40d-21e5523a10d4"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<text><![CDATA[C.]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="30" y="454" width="250" height="12" uuid="0e46dfd5-a516-4083-ad4a-e96feb05f2c9"/>
+							<reportElement x="31" y="448" width="250" height="12" uuid="0e46dfd5-a516-4083-ad4a-e96feb05f2c9"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="false"/>
 							</textElement>
 							<text><![CDATA[Government-sponsored program]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="10" y="466" width="15" height="12" uuid="b231bb5d-fa7d-42c9-a11c-3f8df3dc2a0a"/>
+							<reportElement x="11" y="460" width="15" height="12" uuid="b231bb5d-fa7d-42c9-a11c-3f8df3dc2a0a"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<text><![CDATA[D.]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="30" y="466" width="250" height="12" uuid="0ad427dd-a158-4872-a763-4614ec1c5ee6"/>
+							<reportElement x="31" y="460" width="250" height="12" uuid="0ad427dd-a158-4872-a763-4614ec1c5ee6"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="false"/>
 							</textElement>
 							<text><![CDATA[Individual market insurance]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="10" y="478" width="15" height="12" uuid="326a40cd-bd69-4b5f-90a9-e5d93cdf40ab"/>
+							<reportElement x="11" y="472" width="15" height="12" uuid="326a40cd-bd69-4b5f-90a9-e5d93cdf40ab"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<text><![CDATA[E.]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="30" y="478" width="250" height="12" uuid="81dc517b-85e9-4cc1-a686-9bf7df531241"/>
+							<reportElement x="31" y="472" width="250" height="12" uuid="81dc517b-85e9-4cc1-a686-9bf7df531241"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="false"/>
 							</textElement>
 							<text><![CDATA[Multiemployer plan]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="10" y="490" width="15" height="12" uuid="7a7ee500-861d-4cc7-a2dc-f95a5af514c8"/>
+							<reportElement x="11" y="484" width="15" height="12" uuid="7a7ee500-861d-4cc7-a2dc-f95a5af514c8"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
 							<text><![CDATA[F.]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="30" y="490" width="250" height="12" uuid="215081c8-1a90-4375-a708-697d8c3c6ddc"/>
+							<reportElement x="31" y="484" width="250" height="12" uuid="215081c8-1a90-4375-a708-697d8c3c6ddc"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="false"/>
 							</textElement>
 							<text><![CDATA[Other designated minimum essential coverage]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="30" y="502" width="286" height="12" uuid="4dc8ed62-12a9-47c4-8305-462945a66c99"/>
+							<reportElement x="31" y="496" width="286" height="12" uuid="4dc8ed62-12a9-47c4-8305-462945a66c99"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="false"/>
 							</textElement>
 							<text><![CDATA[Individual coverage health reimbursement arrangement (HRA)]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="10" y="502" width="15" height="12" uuid="4fe65d75-4503-4e09-abe4-843a10925d3c"/>
+							<reportElement x="11" y="496" width="15" height="12" uuid="4fe65d75-4503-4e09-abe4-843a10925d3c"/>
 							<textElement>
 								<font fontName="Microsoft Sans Serif" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
@@ -806,7 +810,7 @@
 						<textElement verticalAlignment="Top" markup="styled">
 							<font fontName="Microsoft Sans Serif" isItalic="false"/>
 						</textElement>
-						<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Part II. Information about Certain Employer-Sponsored Coverage, lines 10-15.</style> If you had employer-sponsored health coverage, this part may provide information about the employer sponsoring the coverage. This part may show only the last four digits of the employer's EIN. This part may also be left blank, even if you had employer-sponsored health coverage. If this part is blank, you do not need to fill in the information or return it to your employer or other coverage provider.]]></text>
+						<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Part II. Information About Certain Employer-Sponsored Coverage, lines 10-15.</style> If you had employer-sponsored health coverage, this part may provide information about the employer sponsoring the coverage. This part may show only the last four digits of the employer's EIN. This part may also be left blank, even if you had employer-sponsored health coverage. If this part is blank, you do not need to fill in the information or return it to your employer or other coverage provider.]]></text>
 					</staticText>
 					<staticText>
 						<reportElement x="370" y="249" width="344" height="81" uuid="55b22899-4761-4e39-a587-414ef16faf64"/>
@@ -820,7 +824,7 @@
 						<textElement verticalAlignment="Top" markup="styled">
 							<font fontName="Microsoft Sans Serif" isItalic="false"/>
 						</textElement>
-						<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Part IV. Covered Individuals, lines 23-28.</style> This part reports the name, SSN or other TIN, and coverage information for each covered individual. A date of birth will be entered in column (c) only if the SSN or other TIN isn't entered in column (b). Column (d) will be checked if the individual was covered for at least one day in every month of the year. For individuals who were covered for some but not all months, information will be entered in column (e) indicating the months for which these individuals were covered. If there are more than six covered individuals, see Part IV, Continuation Sheet(s), for information about the additional covered individuals.]]></text>
+						<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Part IV. Covered Individuals, lines 23-28.</style> This part reports the name, SSN or other TIN, and coverage information for each covered individual. A date of birth will be entered in column (c) only if the SSN or other TIN is not entered in column (b). Column (d) will be checked if the individual was covered for at least one day in every month of the year. For individuals who were covered for some but not all months, information will be entered in column (e) indicating the months for which these individuals were covered. If there are more than six covered individuals, see Part IV, Continuation Sheet(s), for information about the additional covered individuals.]]></text>
 					</staticText>
 				</frame>
 			</band>
@@ -907,7 +911,7 @@
 							<rightPen lineWidth="1.0"/>
 						</box>
 						<staticText>
-							<reportElement x="45" y="0" width="342" height="17" uuid="0b725ae9-788c-4ec4-9a1c-7ffe59deba9a"/>
+							<reportElement x="0" y="0" width="420" height="17" uuid="0b725ae9-788c-4ec4-9a1c-7ffe59deba9a"/>
 							<textElement textAlignment="Center" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="15" isBold="true" pdfFontName="Helvetica-Bold"/>
 							</textElement>
@@ -1298,7 +1302,7 @@
 						</frame>
 					</frame>
 					<frame>
-						<reportElement key="Box 9" x="388" y="0" width="331" height="25" uuid="571dc001-e67c-4f09-83e8-3cd4ea70358a">
+						<reportElement key="Box 9" mode="Transparent" x="388" y="0" width="331" height="25" backcolor="#949494" uuid="571dc001-e67c-4f09-83e8-3cd4ea70358a">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<box>
@@ -1313,12 +1317,26 @@
 							<text><![CDATA[9]]></text>
 						</staticText>
 						<staticText>
-							<reportElement x="16" y="1" width="310" height="8" uuid="9da0346a-a433-42c7-bc8e-afc353c1621c"/>
+							<reportElement x="16" y="1" width="36" height="8" uuid="9da0346a-a433-42c7-bc8e-afc353c1621c"/>
 							<textElement textAlignment="Left">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
 							<text><![CDATA[Reserved]]></text>
 						</staticText>
+						<rectangle>
+							<reportElement x="53" y="0" width="277" height="24" backcolor="#A3A3A3" uuid="f521bc48-06d6-4b87-b438-f98d1d435200">
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							</reportElement>
+							<graphicElement>
+								<pen lineWidth="0.0"/>
+							</graphicElement>
+						</rectangle>
+						<rectangle>
+							<reportElement x="0" y="9" width="273" height="15" backcolor="#A3A3A3" uuid="e7d5b482-3e3b-4c78-9062-6320a2596126">
+								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+								<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+							</reportElement>
+						</rectangle>
 					</frame>
 				</frame>
 				<frame>
@@ -1348,7 +1366,7 @@
 						<textElement textAlignment="Left" markup="styled">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="false" pdfFontName="Helvetica"/>
 						</textElement>
-						<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Information about Certain Employer-Sponsored Coverage</style> (see instructions)
+						<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold">Information About Certain Employer-Sponsored Coverage</style> (see instructions)
 
 ]]></text>
 					</staticText>
@@ -4778,6 +4796,7 @@
 			<frame>
 				<reportElement key="Page 3 Part IV Continuation Sheet" x="0" y="0" width="720" height="540" uuid="ba094b5a-6f7c-4602-b70b-65c9ba94ac0e">
 					<property name="net.sf.jasperreports.export.pdf.tag.table" value="full"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<printWhenExpression><![CDATA[$F{formpagenbr}.equals( "3" ) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
 				</reportElement>
 				<frame>
@@ -4929,9 +4948,10 @@
 						<text><![CDATA[Part IV]]></text>
 					</staticText>
 					<staticText>
-						<reportElement mode="Opaque" x="45" y="1" width="85" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="40f087d2-9718-48ae-828f-2bfb3f11768e">
+						<reportElement mode="Opaque" x="34" y="1" width="96" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="40f087d2-9718-48ae-828f-2bfb3f11768e">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
+						<box leftPadding="2"/>
 						<textElement textAlignment="Left">
 							<font fontName="Microsoft Sans Serif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
 						</textElement>
@@ -4960,7 +4980,7 @@
 						</box>
 						<staticText>
 							<reportElement x="1" y="10" width="178" height="25" uuid="0c5ee3eb-895c-40c8-98ee-e404d2516945"/>
-							<textElement textAlignment="Left" markup="styled">
+							<textElement textAlignment="Center" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(a)</style> Name of covered individual(s)     		      First name, middle initial, last name]]></text>

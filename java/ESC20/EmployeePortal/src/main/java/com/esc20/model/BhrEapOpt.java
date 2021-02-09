@@ -51,6 +51,8 @@ public class BhrEapOpt implements java.io.Serializable {
 	private String msgElecConsnt1095;
 	private Character enblLvReq;
 	private String msgLvReq;
+	private Character enblTrvl;
+	private String msgTrvl;
 	private Character ignCutoffDt;
 	private Character usePmisSpvsrLevels;
 	private Character reqLvHrsReqstd;
@@ -65,11 +67,12 @@ public class BhrEapOpt implements java.io.Serializable {
 			String msgDed, String msgEarn, String msgLv, String msgDemo, String msgPay, String msgW2, String module,
 			Character enblElecConsntW2, Character enbl1095, Character enblElecConsnt1095, String msgElecConsntW2, String msg1095,
 			String msgElecConsnt1095, Character enblLvReq, String msgLvReq, Character ignCutoffDt, Character usePmisSpvsrLevels,
-			Character reqLvHrsReqstd, BigDecimal lvMealBreakHrs) {
+			Character reqLvHrsReqstd, BigDecimal lvMealBreakHrs, Character enblTrvl, String msgTrvl) {
 		this.idTyp = idTyp;
 		this.enblEap = enblEap;
 		this.enblEarn = enblEarn;
 		this.enblLv = enblLv;
+		this.enblTrvl = enblTrvl;
 		this.enblW2 = enblW2;
 		this.enblCalYtd = enblCalYtd;
 		this.enblCpi = enblCpi;
@@ -468,6 +471,24 @@ public class BhrEapOpt implements java.io.Serializable {
 
 	public void setLvMealBreakHrs(BigDecimal lvMealBreakHrs) {
 		this.lvMealBreakHrs = lvMealBreakHrs;
+	}
+	
+	@Column(name = "MSG_TRVL", nullable = false, length = 3270)
+	public String getMsgTrvl() {
+		return this.msgTrvl;
+	}
+
+	public void setMsgTrvl(String msgTrvl) {
+		this.msgTrvl = msgTrvl;
+	}
+	
+	@Column(name = "ENBL_TRVL", nullable = false, length = 1)
+	public Character getEnblTrvl() {
+		return enblTrvl;
+	}
+
+	public void setEnblTrvl(Character enblTrvl) {
+		this.enblTrvl = enblTrvl;
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.esc20.model;
 // Generated Jan 4, 2019 3:40:12 PM by Hibernate Tools 4.3.5.Final
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -102,6 +104,7 @@ public class BhrEmpDemo implements java.io.Serializable {
 	private String txUniqueStfId;
 	private Character nonEmp;
 	private BhrEmpEmply bhrEmpEmply;
+	private BigDecimal trvlCommuteDist;
 
 	private transient String genDescription;
 	
@@ -122,7 +125,7 @@ public class BhrEmpDemo implements java.io.Serializable {
 			String dtLastChanged, String supplAddr, String supplCntry, String supplDelivName, String phoneAreaCell,
 			String phoneNbrCell, String dtDlExpr, Character ethnHispanic, Character raceAmerIndian, Character raceAsian,
 			Character raceBlack, Character racePacificIsl, Character raceWhite, String hmEmail, String addrCtry, String module,
-			String txUniqueStfId, Character nonEmp) {
+			String txUniqueStfId, Character nonEmp, BigDecimal trvlCommuteDist) {
 		this.empNbr = empNbr;
 		this.staffId = staffId;
 		this.priorStaffId = priorStaffId;
@@ -205,6 +208,7 @@ public class BhrEmpDemo implements java.io.Serializable {
 		this.module = module;
 		this.txUniqueStfId = txUniqueStfId;
 		this.nonEmp = nonEmp;
+		this.trvlCommuteDist=trvlCommuteDist;
 	}
 
 	public BhrEmpDemo(String empNbr, String staffId, String priorStaffId, String namePre, String nameF, String nameM,
@@ -221,7 +225,7 @@ public class BhrEmpDemo implements java.io.Serializable {
 			String dtLastChanged, String supplAddr, String supplCntry, String supplDelivName, String phoneAreaCell,
 			String phoneNbrCell, String dtDlExpr, Character ethnHispanic, Character raceAmerIndian, Character raceAsian,
 			Character raceBlack, Character racePacificIsl, Character raceWhite, String hmEmail, String addrCtry, String module,
-			String txUniqueStfId, Character nonEmp, BhrEmpEmply bhrEmpEmply) {
+			String txUniqueStfId, Character nonEmp, BhrEmpEmply bhrEmpEmply, BigDecimal trvlCommuteDist) {
 		this.empNbr = empNbr;
 		this.staffId = staffId;
 		this.priorStaffId = priorStaffId;
@@ -305,6 +309,7 @@ public class BhrEmpDemo implements java.io.Serializable {
 		this.txUniqueStfId = txUniqueStfId;
 		this.nonEmp = nonEmp;
 		this.bhrEmpEmply = bhrEmpEmply;
+		this.trvlCommuteDist=trvlCommuteDist;
 	}
 
 	public BhrEmpDemo(String empNbr, String staffId, String nameF, String nameM, String nameL, Character nameGen,
@@ -1142,10 +1147,17 @@ public class BhrEmpDemo implements java.io.Serializable {
 		return genDescription;
 	}
 
-
 	@Transient 
 	public void setGenDescription(String genDescription) {
 		this.genDescription = genDescription;
 	}
 
+	@Column(name = "TRVL_COMMUTE_DIST", nullable = false, precision = 4, scale=1)
+	public BigDecimal getTrvlCommuteDist() {
+		return trvlCommuteDist;
+	}
+
+	public void setTrvlCommuteDist(BigDecimal trvlCommuteDist) {
+		this.trvlCommuteDist = trvlCommuteDist;
+	}
 }

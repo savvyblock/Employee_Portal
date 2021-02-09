@@ -864,7 +864,7 @@ ACA questions (800-919-0452).]]></text>
 							<textElement textAlignment="Right" verticalAlignment="Bottom">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
-							<text><![CDATA[600220]]></text>
+							<text><![CDATA[600320]]></text>
 						</staticText>
 						<staticText>
 							<reportElement x="53" y="6" width="15" height="8" uuid="9ced87cc-8fdb-462a-a4f5-85db3ccdb4cb"/>
@@ -898,7 +898,7 @@ ACA questions (800-919-0452).]]></text>
 							<textElement textAlignment="Left" markup="styled">
 								<font fontName="Microsoft Sans Serif" size="7" isBold="false"/>
 							</textElement>
-							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(a)</style> Name of covered individual(s)     (First name, middle initial, last name)]]></text>
+							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >(a)</style> Name of covered individual(s)     First name, middle initial, last name]]></text>
 						</staticText>
 					</frame>
 					<frame>
@@ -1157,7 +1157,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{b17_personfirstnm}.trim()
-+ ($F{b17_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b17_personmiddlenm}.trim()))
++ ($F{b17_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b17_personmiddlenm}.substring(0,1).trim()))
 + ($F{b17_personlastnm}.trim().equals("") ? "" : (" " + $F{b17_personlastnm}.trim()))
 + ($F{b17_suffixnm}.trim().equals("") ? "" : (" " + $F{b17_suffixnm}.trim()))]]></textFieldExpression>
 						</textField>
@@ -1591,7 +1591,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b18_personfirstnm}.trim()
-+ ($F{b18_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b18_personmiddlenm}.trim()))
++ ($F{b18_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b18_personmiddlenm}.substring(0,1).trim()))
 + ($F{b18_personlastnm}.trim().equals("") ? "" : (" " + $F{b18_personlastnm}.trim()))
 + ($F{b18_suffixnm}.trim().equals("") ? "" : (" " + $F{b18_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -2028,7 +2028,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b19_personfirstnm}.trim()
-+ ($F{b19_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b19_personmiddlenm}.trim()))
++ ($F{b19_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b19_personmiddlenm}.substring(0,1).trim()))
 + ($F{b19_personlastnm}.trim().equals("") ? "" : (" " + $F{b19_personlastnm}.trim()))
 + ($F{b19_suffixnm}.trim().equals("") ? "" : (" " + $F{b19_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -2467,7 +2467,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b20_personfirstnm}.trim()
-+ ($F{b20_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b20_personmiddlenm}.trim()))
++ ($F{b20_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b20_personmiddlenm}.substring(0,1).trim()))
 + ($F{b20_personlastnm}.trim().equals("") ? "" : (" " + $F{b20_personlastnm}.trim()))
 + ($F{b20_suffixnm}.trim().equals("") ? "" : (" " + $F{b20_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -2904,7 +2904,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b21_personfirstnm}.trim()
-+ ($F{b21_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b21_personmiddlenm}.trim()))
++ ($F{b21_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b21_personmiddlenm}.substring(0,1).trim()))
 + ($F{b21_personlastnm}.trim().equals("") ? "" : (" " + $F{b21_personlastnm}.trim()))
 + ($F{b21_suffixnm}.trim().equals("") ? "" : (" " + $F{b21_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -3342,7 +3342,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b22_personfirstnm}.trim()
-+ ($F{b22_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b22_personmiddlenm}.trim()))
++ ($F{b22_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b22_personmiddlenm}.substring(0,1).trim()))
 + ($F{b22_personlastnm}.trim().equals("") ? "" : (" " + $F{b22_personlastnm}.trim()))
 + ($F{b22_suffixnm}.trim().equals("") ? "" : (" " + $F{b22_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -3813,7 +3813,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b25_personfirstnm}.trim()
-+ ($F{b25_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b25_personmiddlenm}.trim()))
++ ($F{b25_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b25_personmiddlenm}.substring(0,1).trim()))
 + ($F{b25_personlastnm}.trim().equals("") ? "" : (" " + $F{b25_personlastnm}.trim()))
 + ($F{b25_suffixnm}.trim().equals("") ? "" : (" " + $F{b25_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -4252,7 +4252,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b27_personfirstnm}.trim()
-+ ($F{b27_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b27_personmiddlenm}.trim()))
++ ($F{b27_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b27_personmiddlenm}.substring(0,1).trim()))
 + ($F{b27_personlastnm}.trim().equals("") ? "" : (" " + $F{b27_personlastnm}.trim()))
 + ($F{b27_suffixnm}.trim().equals("") ? "" : (" " + $F{b27_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -4690,7 +4690,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b28_personfirstnm}.trim()
-+ ($F{b28_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b28_personmiddlenm}.trim()))
++ ($F{b28_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b28_personmiddlenm}.substring(0,1).trim()))
 + ($F{b28_personlastnm}.trim().equals("") ? "" : (" " + $F{b28_personlastnm}.trim()))
 + ($F{b28_suffixnm}.trim().equals("") ? "" : (" " + $F{b28_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -5129,7 +5129,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b29_personfirstnm}.trim()
-+ ($F{b29_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b29_personmiddlenm}.trim()))
++ ($F{b29_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b29_personmiddlenm}.substring(0,1).trim()))
 + ($F{b29_personlastnm}.trim().equals("") ? "" : (" " + $F{b29_personlastnm}.trim()))
 + ($F{b29_suffixnm}.trim().equals("") ? "" : (" " + $F{b29_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -5566,7 +5566,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b24_personfirstnm}.trim()
-+ ($F{b24_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b24_personmiddlenm}.trim()))
++ ($F{b24_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b24_personmiddlenm}.substring(0,1).trim()))
 + ($F{b24_personlastnm}.trim().equals("") ? "" : (" " + $F{b24_personlastnm}.trim()))
 + ($F{b24_suffixnm}.trim().equals("") ? "" : (" " + $F{b24_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -6004,7 +6004,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b26_personfirstnm}.trim()
-+ ($F{b26_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b26_personmiddlenm}.trim()))
++ ($F{b26_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b26_personmiddlenm}.substring(0,1).trim()))
 + ($F{b26_personlastnm}.trim().equals("") ? "" : (" " + $F{b26_personlastnm}.trim()))
 + ($F{b26_suffixnm}.trim().equals("") ? "" : (" " + $F{b26_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -6442,7 +6442,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
 							<textFieldExpression><![CDATA[($F{b23_personfirstnm}.trim()
-+ ($F{b23_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b23_personmiddlenm}.trim()))
++ ($F{b23_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b23_personmiddlenm}.substring(0,1).trim()))
 + ($F{b23_personlastnm}.trim().equals("") ? "" : (" " + $F{b23_personlastnm}.trim()))
 + ($F{b23_suffixnm}.trim().equals("") ? "" : (" " + $F{b23_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -6906,7 +6906,7 @@ ACA questions (800-919-0452).]]></text>
 						<textElement textAlignment="Right" verticalAlignment="Bottom">
 							<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 						</textElement>
-						<text><![CDATA[600220]]></text>
+						<text><![CDATA[600420]]></text>
 					</staticText>
 					<frame>
 						<reportElement x="1" y="13" width="718" height="14" uuid="d1ad9072-8c74-4c8e-8ad7-34e7a5b35db9"/>
@@ -6952,7 +6952,7 @@ ACA questions (800-919-0452).]]></text>
 								<font fontName="Microsoft Sans Serif" size="7"/>
 							</textElement>
 							<text><![CDATA[<style isBold="true" pdfFontName="Helvetica-Bold" >Line 15.</style> This line reports the employee required contribution, which is the monthly cost to you for the lowest-cost self-only minimum essential coverage providing minimum value that your employer offered you. For an individual coverage HRA, the employee required contribution is the excess of the monthly premium based on the employee’s applicable age for the applicable lowest cost silver plan over the monthly individual coverage HRA amount (generally, the annual individual coverage HRA amount divided by 12). See the Instructions for Forms 1094-C and 1095-C for more details. The amount reported on line 15 may not be the amount you paid for coverage if, for example, you chose to enroll in more expensive coverage such as family coverage. Line 15 will show an amount only if code 1B, 1C, 1D, 1E, 1J, 1K, 1L, 1M, 1N, 1O, 1P, or 1Q is entered on line 14. If you were offered coverage but there is no cost to you for the coverage, this line will report  “0.00” for the amount. For more information, including on how your eligibility for other healthcare arrangements might affect the amount reported on line 15, visit IRS.gov.
-<style isBold="true" pdfFontName="Helvetica-Bold" >Line 16</style> This code provides the IRS information to administer the employer shared responsibility provisions. Other than a code 2C, which reflects your enrollment in your employer’s coverage, none of this information affects your eligibility for the premium tax credit. For more information about the employer shared responsibility provisions, visit IRS.gov.]]></text>
+<style isBold="true" pdfFontName="Helvetica-Bold" >Line 16.</style> This code provides the IRS information to administer the employer shared responsibility provisions. Other than a code 2C, which reflects your enrollment in your employer’s coverage, none of this information affects your eligibility for the premium tax credit. For more information about the employer shared responsibility provisions, visit IRS.gov.]]></text>
 						</staticText>
 						<frame>
 							<reportElement x="1" y="241" width="37" height="37" uuid="60041417-5fee-4a80-87f3-f7dba48f3d19"/>
@@ -7068,7 +7068,7 @@ months for which these individuals were covered.]]></text>
 									<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{b1_personfirstnm}.trim()
-+ ($F{b1_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b1_personmiddlenm}.trim()))
++ ($F{b1_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b1_personmiddlenm}.substring(0,1).trim()))
 + ($F{b1_personlastnm}.trim().equals("") ? "" : (" " + $F{b1_personlastnm}.trim()))
 + ($F{b1_suffixnm}.trim().equals("") ? "" : (" " + $F{b1_suffixnm}.trim()))]]></textFieldExpression>
 							</textField>
@@ -7412,7 +7412,7 @@ months for which these individuals were covered.]]></text>
 									<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 								</textElement>
 								<textFieldExpression><![CDATA[($F{b30_personfirstnm}.trim()
-+ ($F{b30_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b30_personmiddlenm}.trim()))
++ ($F{b30_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b30_personmiddlenm}.substring(0,1).trim()))
 + ($F{b30_personlastnm}.trim().equals("") ? "" : (" " + $F{b30_personlastnm}.trim()))
 + ($F{b30_suffixnm}.trim().equals("") ? "" : (" " + $F{b30_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -7850,7 +7850,7 @@ months for which these individuals were covered.]]></text>
 									<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 								</textElement>
 								<textFieldExpression><![CDATA[($F{b31_personfirstnm}.trim()
-+ ($F{b31_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b31_personmiddlenm}.trim()))
++ ($F{b31_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b31_personmiddlenm}.substring(0,1).trim()))
 + ($F{b31_personlastnm}.trim().equals("") ? "" : (" " + $F{b31_personlastnm}.trim()))
 + ($F{b31_suffixnm}.trim().equals("") ? "" : (" " + $F{b31_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -8287,7 +8287,7 @@ months for which these individuals were covered.]]></text>
 									<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 								</textElement>
 								<textFieldExpression><![CDATA[($F{b32_personfirstnm}.trim()
-+ ($F{b32_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b32_personmiddlenm}.trim()))
++ ($F{b32_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b32_personmiddlenm}.substring(0,1).trim()))
 + ($F{b32_personlastnm}.trim().equals("") ? "" : (" " + $F{b32_personlastnm}.trim()))
 + ($F{b32_suffixnm}.trim().equals("") ? "" : (" " + $F{b32_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -8724,7 +8724,7 @@ months for which these individuals were covered.]]></text>
 									<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 								</textElement>
 								<textFieldExpression><![CDATA[($F{b33_personfirstnm}.trim()
-+ ($F{b33_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b33_personmiddlenm}.trim()))
++ ($F{b33_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b33_personmiddlenm}.substring(0,1).trim()))
 + ($F{b33_personlastnm}.trim().equals("") ? "" : (" " + $F{b33_personlastnm}.trim()))
 + ($F{b33_suffixnm}.trim().equals("") ? "" : (" " + $F{b33_suffixnm}.trim()))
 )]]></textFieldExpression>
@@ -9161,7 +9161,7 @@ months for which these individuals were covered.]]></text>
 									<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 								</textElement>
 								<textFieldExpression><![CDATA[($F{b34_personfirstnm}.trim()
-+ ($F{b34_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b34_personmiddlenm}.trim()))
++ ($F{b34_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b34_personmiddlenm}.substring(0,1).trim()))
 + ($F{b34_personlastnm}.trim().equals("") ? "" : (" " + $F{b34_personlastnm}.trim()))
 + ($F{b34_suffixnm}.trim().equals("") ? "" : (" " + $F{b34_suffixnm}.trim()))
 )]]></textFieldExpression>

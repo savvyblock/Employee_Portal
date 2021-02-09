@@ -335,13 +335,13 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         pattern="#,##0" />
                                                 </td>
                                                 
-                                                    <th id="otherd_${count.index}">
+                                                <th id="otherd_${count.index}">
                                                     <b>${sessionScope.languageJSON.profile.otherExemption}</b></th>
 
-                                                    <td headers="otherd_${count.index}" class="text-left"
-                                                        data-title="${sessionScope.languageJSON.profile.otherExemption}">
-                                                        <fmt:formatNumber value="${w4Request[freq].w4OthrExmptAmt}" pattern="#,##0.00"/>
-                                                    </td>
+                                                <td headers="otherd_${count.index}" class="text-left"
+                                                    data-title="${sessionScope.languageJSON.profile.otherExemption}">
+                                                    <fmt:formatNumber value="${w4Request[freq].w4OthrExmptAmt}" pattern="#,##0.00"/>
+                                                </td>
 
                                                 <th id="otherIncome_${count.index}">
                                                     <b>${sessionScope.languageJSON.profile.otherIncome}</b></th>

@@ -77,6 +77,64 @@
         "cafeteriaFlag": "Cafeteria Flag",
         "employerContributionAmount": "Employer Contribution Amount"
     },
+    "travelInfoTable": {
+        "vendorNbr": "Vendor Nbr",
+        "address": "Address",
+        "commuteDistance": "Commute Distance",
+        "changeCommute": "Please enter your one-way commute",
+        "addTravelRemReq": "Add Travel Reimbursement Request",
+        "noVendorMsgOne":"Employee ",
+        "noVendorMsgTwo":" does not currently have a vendor number or vendor is inactive in Finance. Travel reimbursement cannot be entered. Please contact the Business Office.",
+        "noData":"Your profile is not set up to submit travel reimbursement requests",
+        "contact":"Contact your system administrator for assistance.",
+        "noRecords": "No records",
+        "payCampus": "Pay Campus",
+        "overnightTrip": "Overnight Trip?",
+        "campus": "Campus",
+        "status": "Status",
+        "fromDate": "From Date",
+        "toDate": "To Date",
+        "fromTime":"From Time",
+        "toTime":"To Time",
+        "retrieve": "Retrieve",
+        "trvlNbr":"Travel Nbr",
+        "firstDate": "First Date",
+        "requestTotal":"Request Total",
+        "checkNbr":"Check Nbr",
+        "checkDate":"Check Date",
+        "add":"Add",
+        "all":"All",
+        "saved":"Saved",
+        "pending":"Pending",
+        "approved":"Approved",
+        "view":"View",
+        "edit":"Edit"
+	},
+   "mileageInfoTable": {
+        "travelNbr": "Travel Nbr",
+        "poNbr": "PO Nbr",
+		"status": "Status",
+		"dateEntered": "Date Entered",
+		"totalMiles": "Total Miles",
+		"totalMisc": "Total Misc",
+		"totalRequest": "Total Request",
+		"dateOfTravelTime": "Date of Travel Time",
+		"pointOfOrigin": "Point of Origin",
+		"destination": "Destination",
+		"purpose": "Purpose",
+		"milage": "Milage",
+		"city": "City",
+		"roundTrip": "Round Trip",
+		"commute": "Commute",
+		"state": "State",
+		"zip": "Zip",
+		"milageRate" : "Milage Rate",
+		"totMilageAmnt": "Total Milage Amount",
+		"miscAmnt": "Misc Amnt",
+		"accntCodes": "Account Codes",
+		"totReiumbersment": "Total Reiumbersment"
+		
+	},
     "earningTable": {
         "empNbr": "Emp Nbr",
         "frequency": "Frequency",
@@ -367,6 +425,7 @@
         "save": "Save",
         "delete": "Delete",
         "add": "Add",
+        "change":"Change",
         "search": "Search",
         "pleaseSelectFre": "Please select a frequency type",
         "removeContent": "clear date",
@@ -417,6 +476,7 @@
         "notProcessed": "Not Processed",
         "unprocessedLeaveRequest": "Unprocessed Leave Requests",
         "newRequest": "Create Leave Requests",
+        "travelNewRequest": "Add Travel Reimbursement Request",
         "editRequest": "Edit Leave Requests",
         "consent1095": "1095 Consent",
         "employeeNumber": "Employee Number",
@@ -515,6 +575,7 @@
         "getPasswordNoEmail": "No email address exists on file for employee. Please contact your personnel office to have your security information deleted. You may then re-register as a new user. ",
         "saveSuperAction": "Save Supervisor Action",
         "noSupervisorFound": "Leave Request cannot be entered. No supervisor found.",
+        "noSupervisorFoundTravel": "Travel Reimbursement Request cannot be entered. No supervisor found.",
         "showLeaveBalanceOf": "show leave balance detail of",
         "calendarForSuper": "Calendar for supervisor",
         "passwordVerification":"Password Verification",
@@ -526,6 +587,8 @@
         "webContent":"Web Content Accessibility Guidelines 2.0",
         "andWenStrive":"and we strive to adhere to the accepted guidelines and standards for accessibility and usability as comprehensively as possible.  Should you experience any difficulty accessing this application please",
         "contactUsCo":"contact us.",
+        "assignAccountCodes" : "Assign Account Codes",
+        "documents" : "Documents",
         "": ""
     },
     "language": {
@@ -547,6 +610,7 @@
         "changePassword": "Change Password",
         "leaveBalances": "Leave Balances",
         "leaveRequests": "Leave Requests",
+        "travelRequests": "Travel Reimbursement Requests",
         "supervisor": "Supervisor",
         "approveLeaveRequests": "Approve Leave Requests",
         "leaveOverview": "Leave Overview",
@@ -568,6 +632,9 @@
         "info1095": "1095-C Information",
         "leaveBalances": "Leave Balances",
         "leaveRequest": "Leave Requests",
+        "travelRequests": "Travel Reimbursement Requests",
+        "mileageRequests": "Travel Reimbursement Requests - Mileage Requests",
+        "extendedRequests": "Travel Reimbursement Requests - Extended Requests",
         "approveLeaveRequests": "Approve Leave Requests",
         "calendar": "Calendar",
         "leaveOverview": "Leave Overview",
@@ -588,6 +655,7 @@
         "info1095": "ASCENDER : EmployeePortal - 1095 Information",
         "w2Info": "ASCENDER : EmployeePortal - W-2 Information",
         "leaveBalance": "ASCENDER : EmployeePortal - Leave Balance & History",
+        "travelRequests": "ASCENDER : EmployeePortal - Travel Reimbursement Requests",
         "leaveRequestCalendar": "ASCENDER : EmployeePortal -  Calendar Leave Request",
         "leaveRequestList": "ASCENDER : EmployeePortal - Leave Request List",
         "approveLeaveRequest": "ASCENDER : EmployeePortal -  Approve Leave Requests",
@@ -809,7 +877,7 @@
         "cancel":"Cancel",
         "finish":"Finish",
         "back":"Back",
-        "submit":"Submit"
+       "submit":"Submit"
     },
     "forgotUsername":{
         "recoverUsername":"Recover User Name",
@@ -818,7 +886,7 @@
         "step2Des": "Answer Security Question to verify identity",
         "forgotUsername":"Forgot Username"
     },
-    "changePasswordExpired":{
+ "changePasswordExpired":{
         "psdExpired":"Password Expired",
         "psdExpiredDesc":"Your current password has expired. You must create a new password.",
         "currentPsd":"Current Password",
@@ -830,4 +898,5 @@
         "loginAgain":"Update successfully. Please login again.",
         "":""
     }
+
 }

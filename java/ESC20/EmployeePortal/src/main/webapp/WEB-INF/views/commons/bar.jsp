@@ -181,6 +181,15 @@
             </a>
           </li>
         </c:if>
+         <c:if test="${sessionScope.enableTrvl}">
+          <li class="nav-item">
+            <a id="travelRequest" href="/<%=request.getContextPath().split("/")[1]%>/travelRequest/travelRequest"
+              class="nav-link">
+              <i class="nav-icon fa  fa-pencil-square-o text-info"></i>
+              <p class="empPortColor">${sessionScope.languageJSON.nav.travelRequests}</p>
+            </a>
+          </li>
+        </c:if>
         <c:if test="${sessionScope.isSupervisor || sessionScope.isTempApprover}">
           <li class="nav-item has-treeview" id="supervisor">
             <a href="#" class="nav-link">

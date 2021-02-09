@@ -420,7 +420,7 @@ public class W2InformationController {
 		String unchecked = "uncheckedbox";
 		String checked = "checkedbox";
 
-		String statemp = "W2_Instr_2020_EP_page2";
+		String statemp = unchecked;
 		String retplan = unchecked;
 		String thrdsick = unchecked;
 
@@ -435,7 +435,7 @@ public class W2InformationController {
 			thrdsick = checked;
 		}
 
-		print.setStatemp(path + "reportImages\\" + statemp + ".png");
+		print.setStatemp(path + "reportImages\\" + statemp + ".gif");
 		print.setRetplan(path + "reportImages\\" + retplan + ".gif");
 		print.setThrdsick(path + "reportImages\\" + thrdsick + ".gif");
 
