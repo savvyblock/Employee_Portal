@@ -423,7 +423,7 @@ public class ResetPasswordController {
 			return new CommonResult(0, "There was an error changing your password");
 		}
 		
-		if (!encoder.encode(oldPass).equals(user.getUsrpswd())) {
+		if (!encoder.matches(oldPass, user.getUsrpswd())) {
 			return new CommonResult(2, "The old password is invalid");
 		}
 		
@@ -436,6 +436,11 @@ public class ResetPasswordController {
 			user.setUsrpswd(encoder.encode(newPass));
 			user.setUsrChgPwdDt(new Date());
 			this.indexService.updateUser(user);
+			
+			//Send out Email to User
+			BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
+			this.indexService.passwordChangeSendEmailConfirmation(user.getUsrname(),userDetail.getNameF(),userDetail.getNameL(),userDetail.getHmEmail(),userDetail.getEmail());
+
 			return new CommonResult(1, "Update Password successfully");
 		}
 		catch (Exception e) {

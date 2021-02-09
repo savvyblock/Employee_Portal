@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Currency;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -638,6 +639,7 @@ public class ProfileController {
 		user.setTmpCnt(0);
 		user.setLkHint('N');
 		user.setHintCnt(0);
+		user.setUsrChgPwdDt(new Date());//ALC-26 Change password issues when password expired
 		this.indexService.updateUser(user);
 		// Send out Email to User
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
