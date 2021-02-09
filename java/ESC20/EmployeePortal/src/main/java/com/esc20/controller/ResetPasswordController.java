@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +29,9 @@ import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.IndexService;
 import com.esc20.util.CommonResult;
 import com.esc20.util.MailUtil;
+import com.esc20.util.StringUtil;
+
+import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/resetPassword")
@@ -321,6 +325,7 @@ public class ResetPasswordController {
 			user.setTmpCnt(0);
 			user.setLkHint('N');
 			user.setHintCnt(0);
+			user.setUsrChgPwdDt(new Date());//ALC-26 The Login needs to validate for Password Expiration
 			this.indexService.updateUser(user);
 
 		} catch (Exception e) {
@@ -393,4 +398,52 @@ public class ResetPasswordController {
 		}
 		return 0;
 	}
+
+
+	//ALC-26 Change password issues when password expired
+  	@RequestMapping(value = "changePasswordToContinue", method = RequestMethod.GET)
+  	public ModelAndView changePasswordToContinue(ModelAndView mav, HttpServletRequest request) {
+  		mav.setViewName("changePasswordExpired");
+  		return mav;
+  	}
+
+  	
+    @RequestMapping(value = "changePassword", method = RequestMethod.POST)
+	@ResponseBody
+	public CommonResult changePassword(@RequestBody JSONObject json, HttpServletRequest request) {	
+		String userName= (String) request.getSession().getAttribute("expiredUserName");
+		if (StringUtil.isNullOrEmpty(userName)) {
+			return new CommonResult(0, "There was an error changing your password");
+		}
+		
+		String oldPass = json.getString("oldPass");
+		String newPass = json.getString("newPass");		
+		BeaUsers user = this.indexService.getUserByUsername(userName);
+		if(user == null) {
+			return new CommonResult(0, "There was an error changing your password");
+		}
+		
+		if (!encoder.encode(oldPass).equals(user.getUsrpswd())) {
+			return new CommonResult(2, "The old password is invalid");
+		}
+		
+		
+		if (oldPass.equals(newPass)) {
+			return new CommonResult(3, "The new password cannot be same as the old password");
+		}
+		
+		try {
+			user.setUsrpswd(encoder.encode(newPass));
+			user.setUsrChgPwdDt(new Date());
+			this.indexService.updateUser(user);
+			return new CommonResult(1, "Update Password successfully");
+		}
+		catch (Exception e) {
+			return new CommonResult(0, "There was an error changing your password");
+		}
+
+	}
+
+
+	
 }

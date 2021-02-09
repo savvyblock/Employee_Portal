@@ -2,6 +2,7 @@ package com.esc20.security;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ import com.esc20.nonDBModels.Options;
 import com.esc20.service.IndexService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
+import com.esc20.util.NumberUtil;
 import com.esc20.util.StringUtil;
 
 public class CustomSuccessHandler implements AuthenticationSuccessHandler{
@@ -52,6 +54,21 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
             userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
             // ALC-26 Lock account on the 5th login failed
             userDao.clearUserPWDFailed(userName);
+            
+        	//ALC-26 to check if the password is expired
+		    Date userchangedPwdDate = user.getUsrChgPwdDt();
+		    if(userchangedPwdDate !=null) {
+		    	int allow_pwd_expire_days =  NumberUtil.toLong(this.indexService.getTXEISPreferencebyName("pwd_expire"));
+			    if(allow_pwd_expire_days >0 ) {
+			    	int pwd_expire_days =  DateUtil.differentDays(userchangedPwdDate, new Date());
+			    	if(allow_pwd_expire_days < pwd_expire_days) {//password expired
+			    		session.setAttribute("expiredUserName", loginUser.getUsername());
+			    		String returnURL = "/" + request.getContextPath().split("/")[1] + "/resetPassword/changePasswordToContinue";
+						response.sendRedirect(returnURL);
+			    	}
+			    }
+		    }
+		    
             
         	List<Code> gens = referenceService.getGenerations();
    		 	for(Code gen: gens) {

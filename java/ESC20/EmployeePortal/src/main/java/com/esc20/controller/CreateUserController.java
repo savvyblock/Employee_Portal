@@ -1,5 +1,6 @@
 package com.esc20.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -102,7 +103,7 @@ public class CreateUserController {
 		newUser.setTmpDts("");
 		newUser.setTmpCnt(0);
 		newUser.setHintCnt(0);
-		
+		newUser.setUsrChgPwdDt(new Date());//ALC-26 The Login needs to validate for Password Expiration
 		
 
 		BhrEmpDemo bed = new BhrEmpDemo();
