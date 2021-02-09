@@ -38,7 +38,7 @@
                                         <div>
                                             <form class="form-horizontal form-signin" role="form" id="changePdsExpired">
                                                     <div class="alert alert-error" role="alert" id="errorOldPsd" style="display:none">${sessionScope.languageJSON.changePasswordExpired.oldpassErrorMsg}</div>
-                                                    <div class="alert alert-error" role="alert" id="notSameError" style="display:none">${sessionScope.languageJSON.changePasswordExpired.notSameErro}</div>
+                                                    <div class="alert alert-error" role="alert" id="notSameError" style="display:none">${sessionScope.languageJSON.changePasswordExpired.notSameError}</div>
                                                     <div class="alert alert-success" role="alert" id="successSubmit" style="display:none">${sessionScope.languageJSON.changePasswordExpired.loginAgain}</div>
                                
                                                 <div class="form-group form-group-password invalidMore has-right-msg">
@@ -126,6 +126,18 @@
                                 </div>
                     </div>
 
+                </div>
+            </div>
+            <div class="loadingOn" style="display:none;">
+                    <div class="loadEffect">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
                 </div>
             </div>
             <%@ include file="modal/sessionWarnModal.jsp"%>

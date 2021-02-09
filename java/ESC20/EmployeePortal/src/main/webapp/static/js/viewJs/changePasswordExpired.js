@@ -53,6 +53,7 @@ $(function() {
                 'oldPass': $('#currentPsd').val(),
                 'newPass': $('#inputPassword').val()
             }
+            $(".loadingOn").show()
             $.ajax({
                 url:"changePassword",
                 type:"POST",
@@ -67,7 +68,7 @@ $(function() {
                       //success
                       $("#successSubmit").show()
                       setTimeout(function(){
-                        window.location.href = "/StudentPortal/login?distid="+districtID;
+                        window.location.href = "/EmployeePortal/login?distid="+districtID;
                       },2500)
                   }else if(result.code == 2){
                         //wrong old password
@@ -78,9 +79,11 @@ $(function() {
                     }else{
                         alert(somethingWrongWord)
                     }
+                    $(".loadingOn").hide()
                 },
                 error:function(err){
                     alert(somethingWrongWord)
+                    $(".loadingOn").hide()
                 }
            });
            
