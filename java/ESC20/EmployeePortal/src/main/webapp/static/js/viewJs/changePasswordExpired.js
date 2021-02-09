@@ -60,6 +60,7 @@ $(function() {
                 data : JSON.stringify(psdObj),
                 dataType:"json",
                 contentType : "application/json; charset=utf-8",
+                async: true,
                 success:function(result){
                     $("#errorOldPsd").hide()
                     $("#notSameError").hide()
@@ -79,11 +80,15 @@ $(function() {
                     }else{
                         alert(somethingWrongWord)
                     }
-                    $(".loadingOn").hide()
+                    setTimeout(function(){
+                        $(".loadingOn").hide()
+                    },200)
                 },
                 error:function(err){
                     alert(somethingWrongWord)
-                    $(".loadingOn").hide()
+                    setTimeout(function(){
+                        $(".loadingOn").hide()
+                    },200)
                 }
            });
            
