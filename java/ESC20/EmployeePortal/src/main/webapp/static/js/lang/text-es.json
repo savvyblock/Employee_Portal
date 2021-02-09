@@ -807,7 +807,8 @@
         "next": "Próximo",
         "cancel":"Cancelar",
         "finish":"Terminar",
-        "back":"atrás"
+        "back":"atrás",
+        "submit":"Enviar"
     },
     "forgotUsername":{
         "recoverUsername":"Recuperar nombre de usuario",
@@ -815,6 +816,18 @@
         "hereItIs":"Aquí está",
         "step2Des": "Responda la pregunta de seguridad para verificar la identidad",
         "forgotUsername":"Olvidó su nombre de usuario"
+    },
+    "changePasswordExpired":{
+        "psdExpired":"La contraseña expiró",
+        "psdExpiredDesc":"Tu contraseña actual ha caducado. Debes crear una nueva contraseña.",
+        "currentPsd":"Contraseña actual",
+        "newPsd":"Nueva contraseña",
+        "psdVerify":"Verificación de contraseña",
+        "somethingWrong":"¡Hay algo mal! Inténtalo de nuevo.",
+        "notSameError":"La nueva contraseña no puede ser la misma que la anterior.",
+        "oldpassErrorMsg":"La contraseña anterior no es correcta.",
+        "loginAgain":"Actualizar correctamente. Ingrese nuevamente.",
+        "":""
     }
 
 }

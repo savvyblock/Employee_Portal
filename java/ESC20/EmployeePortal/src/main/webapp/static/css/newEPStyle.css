@@ -144,8 +144,6 @@
   right: 0;
   top: 0;
   bottom: 0;
-  border-top-right-radius: 15px !important;
-  border-bottom-right-radius: 15px !important;
   width: 30px;
   padding-left: 0;
   padding-right: 2px;
@@ -389,4 +387,16 @@ a:focus {
 
 #sessionNotLoginModal.modal .modal-dialog .modal-body {
   padding: 30px 15px;
+}
+
+body .panel-common .panel-body {
+  border-top: 3px solid #3281a5;
+}
+
+#homeTabContent.panel {
+  padding: 25px;
+}
+
+#homeTabContent.panel-common .panel-heading h4 {
+  margin: 2px 0;
 }

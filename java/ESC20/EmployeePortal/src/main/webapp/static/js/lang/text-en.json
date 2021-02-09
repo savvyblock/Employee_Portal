@@ -808,7 +808,8 @@
         "next": "Next",
         "cancel":"Cancel",
         "finish":"Finish",
-        "back":"Back"
+        "back":"Back",
+        "submit":"Submit"
     },
     "forgotUsername":{
         "recoverUsername":"Recover User Name",
@@ -816,5 +817,17 @@
         "hereItIs":"Here it is",
         "step2Des": "Answer Security Question to verify identity",
         "forgotUsername":"Forgot Username"
+    },
+    "changePasswordExpired":{
+        "psdExpired":"Password Expired",
+        "psdExpiredDesc":"Your current password has expired. You must create a new password.",
+        "currentPsd":"Current Password",
+        "newPsd":"New Password",
+        "psdVerify":"Password Verification",
+        "somethingWrong":"There is something wrong! Please try again.",
+        "notSameError":"The new password cannot be same as the old password.",
+        "oldpassErrorMsg":"The old password is not correct.",
+        "loginAgain":"Update successfully. Please login again.",
+        "":""
     }
 }
