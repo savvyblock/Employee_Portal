@@ -1,0 +1,79 @@
+#uploadFileBtn{
+
+  
+	background: #3498db!important;
+	color: #fff!important;
+	border-color: rgba(52, 152, 219, 0.88)!important;
+	display:block;
+	margin: 10px auto; 
+
+  /* background: #3498db;
+  color: #fff;
+  border-color: rgba(52, 152, 219, 0.88);
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 4px;  */
+ 
+  }
+
+  .docContent{
+	font-size:12px;
+  }
+  .docContent b,.docContent label{
+	font-weight:normal;
+  }
+  .docContent .panel{
+	border:0;
+	box-shadow:none;
+  }
+  .docContent .panel-heading{
+	border: 0;
+	border-bottom: 3px solid #ddd; 
+  }
+
+  .docContent .panel-title{ 
+    color:#666666;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 5px;  
+  }
+  .docContent table.dataTable{
+	border:1px solid #ddd;
+  border-radius: 10px;
+  }
+
+  .docContent table.dataTable tr th{
+	border-right:0;
+	border-bottom:0;
+  background: linear-gradient(#D4D4D4, #EDEDED);
+  color: #515356;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 5px;
+
+
+  }
+  .docContent table.dataTable tr td:first-child{
+    border-right: 0;
+    background-color: #ffffff;
+  }
+  
+  /* .docContent table.dataTable tr th:first-child{
+    background-color: #ededed;
+    color: #515356;
+  	border-left:0;
+  } */
+
+  #uploadForm .form-group{
+	  margin-bottom:0;
+   }
+   #desList{
+	 height: 22px;
+	 padding:0 3px;
+   }

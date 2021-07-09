@@ -183,7 +183,6 @@ public class Information1095Controller {
 		String elecConsntMsg1095 = ((Options) session.getAttribute("options")).getMessageElecConsent1095().trim();
 		elecConsntMsg1095 = elecConsntMsg1095.replaceAll("\\s+\\*", newline+"*");
 		String consent = this.service.get1095Consent(employeeNumber);
-		System.out.println("HEEEEEEEERE  : "+consent);
 		// mav.addObject("consent", consent);
 		mav.addObject("elecConsntMsg1095", elecConsntMsg1095);
 
@@ -235,7 +234,7 @@ public class Information1095Controller {
 		Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
 		session.setAttribute("isSupervisor", isSupervisor);
 		session.setAttribute("isTempApprover", isTempApprover);
-		String district = (String) session.getAttribute("districtId");
+		String district = (String) session.getAttribute("srvcId");
 		District districtInfo = this.indexService.getDistrict(district);
 		userDetail.setEmpNbr(user.getEmpNbr());
 		userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
@@ -272,7 +271,6 @@ public class Information1095Controller {
 		String consent = this.service.get1095Consent(employeeNumber);
 		String elecConsntMsg1095 = ((Options) session.getAttribute("options")).getMessageElecConsent1095().trim();
 		elecConsntMsg1095 = elecConsntMsg1095.replaceAll("\\s+\\*", newline+"*");
-		System.out.println("HEEEEEEEERE11111111111  : "+consent);
 
 		mav.addObject("consent", consent);
 		mav.addObject("message", elecConsntMsg1095);

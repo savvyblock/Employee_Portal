@@ -62,7 +62,7 @@ public class CalendarYearToDateController {
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
         Options options = this.indexService.getOptions();
-       /* String district = (String)session.getAttribute("districtId");
+       /* String district = (String)session.getAttribute("srvcId");
         District districtInfo = this.indexService.getDistrict(district);*/
         userDetail.setEmpNbr(user.getEmpNbr());
         userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
@@ -209,7 +209,7 @@ public class CalendarYearToDateController {
 		
 		BeaUsers user = (BeaUsers) request.getSession().getAttribute("user");
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-        String districtId = (String)request.getSession().getAttribute("districtId");
+        String districtId = (String)request.getSession().getAttribute("srvcId");
         District district = this.indexService.getDistrict(districtId);
         userDetail.setEmpNbr(user.getEmpNbr());
         userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
@@ -252,7 +252,7 @@ public class CalendarYearToDateController {
 		
 		BeaUsers user = (BeaUsers) request.getSession().getAttribute("user");
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
-        String districtId = (String)request.getSession().getAttribute("districtId");
+        String districtId = (String)request.getSession().getAttribute("srvcId");
         District district = this.indexService.getDistrict(districtId);
         userDetail.setEmpNbr(user.getEmpNbr());
         userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));

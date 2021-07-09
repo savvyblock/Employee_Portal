@@ -20,6 +20,9 @@
 	<parameter name="DHrs2500WageandearningBnkTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
 	<parameter name="DHrs2500WageandearningLvTab" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false"/>
 	<parameter name="subRptConnection" class="java.sql.Connection" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
 	<field name="w4FileStat" class="java.lang.String"/>
 	<field name="maritalStatTax" class="java.lang.Character"/>
 	<field name="w4MultiJob" class="java.lang.String"/>
@@ -85,7 +88,30 @@
 			<band/>
 		</groupHeader>
 		<groupFooter>
-			<band/>
+			<band>
+				<subreport isUsingCache="true">
+					<reportElement key="DHrs2500WageandearningOvtmTab" positionType="Float" x="118" y="-105" width="312" height="10" isRemoveLineWhenBlank="true" uuid="95d804d0-a523-42e5-92f3-5233838e5dc7">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="vs_payfreq">
+						<subreportParameterExpression><![CDATA[$F{bhr_emp_pay_pay_freq}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="vi_adjnbr">
+						<subreportParameterExpression><![CDATA[$V{vi_adjnbr}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="vs_dtofpay">
+						<subreportParameterExpression><![CDATA[$F{bhr_pay_hist_dt_of_pay}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="vs_empnbr">
+						<subreportParameterExpression><![CDATA[$F{bhr_emp_pay_emp_nbr}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningOvtmTab.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
 		</groupFooter>
 	</group>
 	<pageHeader>
@@ -205,7 +231,7 @@
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
-						<reportElement key="staticText" x="0" y="1" width="77" height="11" backcolor="#C0C0C0" uuid="67a5d324-b9d1-4d73-8548-c9fb04e7d767">
+						<reportElement key="staticText" x="0" y="-4" width="77" height="11" backcolor="#C0C0C0" uuid="67a5d324-b9d1-4d73-8548-c9fb04e7d767">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
@@ -215,7 +241,7 @@
 						<text><![CDATA[Employee Name:]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="80" y="1" width="167" height="11" backcolor="#C0C0C0" uuid="ca2f556e-fec8-4735-8c07-9eed8a4a8aae">
+						<reportElement key="textField" x="80" y="-6" width="167" height="11" backcolor="#C0C0C0" uuid="ca2f556e-fec8-4735-8c07-9eed8a4a8aae">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
@@ -247,13 +273,33 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 						</textElement>
 						<textFieldExpression><![CDATA[$F{bhr_emp_pay_pay_campus_displayvalue}]]></textFieldExpression>
 					</textField>
+					<staticText>
+						<reportElement key="staticText" x="0" y="10" width="77" height="11" backcolor="#C0C0C0" uuid="db458d87-aacf-4717-b987-eaafcd8dc3b0">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Pay Date:]]></text>
+					</staticText>
+					<textField pattern="" isBlankWhenNull="true">
+						<reportElement key="textField" x="80" y="10" width="167" height="11" backcolor="#C0C0C0" uuid="304416d9-730a-41a9-8212-4113486e488e">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[($F{bhr_pay_hist_dt_of_pay}.substring( 4, 6) + "-" + $F{bhr_pay_hist_dt_of_pay}.substring( 6, 8) + "-"  + $F{bhr_pay_hist_dt_of_pay}.substring( 0, 4))]]></textFieldExpression>
+					</textField>
 				</frame>
 				<frame>
-					<reportElement x="1" y="42" width="595" height="58" uuid="bb5aa089-bcfa-4b3f-98b4-1e6d2b34f5bd">
+					<reportElement x="1" y="45" width="595" height="58" uuid="bb5aa089-bcfa-4b3f-98b4-1e6d2b34f5bd">
 						<property name="net.sf.jasperreports.export.pdf.tag.tr" value="full"/>
 					</reportElement>
 					<staticText>
-						<reportElement key="staticText" x="252" y="-20" width="50" height="11" backcolor="#C0C0C0" uuid="25ab872b-209c-4b3f-aff3-282e8419bd03">
+						<reportElement key="staticText" x="252" y="-27" width="50" height="11" backcolor="#C0C0C0" uuid="25ab872b-209c-4b3f-aff3-282e8419bd03">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
@@ -264,7 +310,7 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 						<text><![CDATA[Check Nbr:]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="312" y="-20" width="49" height="11" backcolor="#C0C0C0" uuid="5b920f85-8010-4153-815a-39401494de5c">
+						<reportElement key="textField" x="312" y="-27" width="49" height="11" backcolor="#C0C0C0" uuid="5b920f85-8010-4153-815a-39401494de5c">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 						</reportElement>
 						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
@@ -274,7 +320,7 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 						<textFieldExpression><![CDATA[$F{bhr_pay_hist_chk_nbr}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement key="staticText" x="420" y="-20" width="74" height="11" backcolor="#C0C0C0" uuid="09edc5e7-880a-4d46-92ef-966e805add7e">
+						<reportElement key="staticText" x="420" y="-27" width="74" height="11" backcolor="#C0C0C0" uuid="09edc5e7-880a-4d46-92ef-966e805add7e">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 							<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						</reportElement>
@@ -285,7 +331,7 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 						<text><![CDATA[Withhold Stat:]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement key="textField" x="497" y="-20" width="53" height="11" backcolor="#C0C0C0" uuid="a45101b4-1a6a-4960-837f-cfb54d49bc0c">
+						<reportElement key="textField" x="497" y="-27" width="53" height="11" backcolor="#C0C0C0" uuid="a45101b4-1a6a-4960-837f-cfb54d49bc0c">
 							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 							<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 						</reportElement>
@@ -321,7 +367,7 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 								<text><![CDATA[Marital Status:]]></text>
 							</staticText>
 							<staticText>
-								<reportElement key="staticText" x="241" y="3" width="99" height="11" backcolor="#C0C0C0" uuid="9709a347-8785-41de-8d00-9a18b52bde53">
+								<reportElement key="staticText" x="241" y="5" width="99" height="11" backcolor="#C0C0C0" uuid="9709a347-8785-41de-8d00-9a18b52bde53">
 									<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								</reportElement>
 								<box>
@@ -337,14 +383,14 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 								<text><![CDATA[Number of Exemptions:]]></text>
 							</staticText>
 							<textField isBlankWhenNull="true">
-								<reportElement x="350" y="3" width="33" height="11" uuid="7716b64d-ae13-460e-a0c9-454374d62392"/>
+								<reportElement x="350" y="5" width="33" height="11" uuid="7716b64d-ae13-460e-a0c9-454374d62392"/>
 								<textElement>
 									<font fontName="Microsoft Sans Serif" size="8"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{nbrTaxExempts}]]></textFieldExpression>
 							</textField>
 							<staticText>
-								<reportElement key="staticText" x="410" y="3" width="96" height="11" backcolor="#C0C0C0" uuid="dd5ba463-c7a9-475c-ba33-f2f7e22b0317">
+								<reportElement key="staticText" x="410" y="5" width="96" height="11" backcolor="#C0C0C0" uuid="dd5ba463-c7a9-475c-ba33-f2f7e22b0317">
 									<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								</reportElement>
 								<box>
@@ -360,7 +406,7 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 								<text><![CDATA[W4 Other Exemptions:]]></text>
 							</staticText>
 							<textField pattern="#,##0.00" isBlankWhenNull="true">
-								<reportElement x="506" y="3" width="63" height="11" uuid="8db9e489-890b-4187-9098-71642a1f6b84">
+								<reportElement x="506" y="5" width="63" height="11" uuid="8db9e489-890b-4187-9098-71642a1f6b84">
 									<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 								</reportElement>
 								<textElement>
@@ -369,7 +415,7 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 								<textFieldExpression><![CDATA[$F{w4OthrExmptAmt}]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
-								<reportElement x="79" y="3" width="132" height="12" uuid="59a07422-189b-4a16-a483-9926008df4a8">
+								<reportElement x="79" y="5" width="132" height="12" uuid="59a07422-189b-4a16-a483-9926008df4a8">
 									<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 								</reportElement>
 								<textElement>
@@ -475,7 +521,7 @@ $F{bhr_emp_demo_name_f}.trim()+" "+ $F{bhr_emp_demo_name_m}.trim()]]></textField
 								<text><![CDATA[W4 Nbr Other Dependents:	]]></text>
 							</staticText>
 							<staticText>
-								<reportElement key="staticText" x="253" y="3" width="73" height="11" backcolor="#C0C0C0" uuid="e7aa1415-03b0-4440-a5f5-fac6b4afc63f">
+								<reportElement key="staticText" x="255" y="2" width="73" height="11" backcolor="#C0C0C0" uuid="e7aa1415-03b0-4440-a5f5-fac6b4afc63f">
 									<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
 								</reportElement>
 								<box>
@@ -608,6 +654,50 @@ $F{bhr_emp_demo_addr_zip} +
 							<graphicElement fill="Solid"/>
 						</line>
 					</frame>
+					<staticText>
+						<reportElement key="staticText" x="252" y="-11" width="70" height="11" backcolor="#C0C0C0" uuid="1072b105-d02d-463e-8c94-f89ce810c964">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
+							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Period Begin:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="325" y="-11" width="49" height="11" backcolor="#C0C0C0" uuid="a5f23ef0-1e09-4123-aea5-9c83955fdf3f">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bthr_pay_dates_dt_payper_beg}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement key="staticText" x="420" y="-11" width="74" height="11" backcolor="#C0C0C0" uuid="ae6997b6-b02f-4260-aa69-3a85f0a216f2">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[Period End:]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement key="textField" x="497" y="-11" width="53" height="11" backcolor="#C0C0C0" uuid="b6df845d-a564-4a41-9c20-072b88a3634a">
+							<property name="net.sf.jasperreports.export.pdf.tag.td" value="full"/>
+							<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						</reportElement>
+						<textElement textAlignment="Left" verticalAlignment="Top" rotation="None">
+							<font fontName="Microsoft Sans Serif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bthr_pay_dates_dt_payper_end}]]></textFieldExpression>
+					</textField>
 				</frame>
 			</frame>
 		</band>
@@ -760,28 +850,6 @@ $F{bhr_emp_demo_addr_zip} +
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
 				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningSupplTab.jasper"]]></subreportExpression>
-			</subreport>
-			<subreport isUsingCache="true">
-				<reportElement key="DHrs2500WageandearningOvtmTab" positionType="Float" x="291" y="44" width="312" height="10" isRemoveLineWhenBlank="true" uuid="95d804d0-a523-42e5-92f3-5233838e5dc7">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-				</reportElement>
-				<subreportParameter name="SUBREPORT_DIR">
-					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="vs_payfreq">
-					<subreportParameterExpression><![CDATA[$F{bhr_emp_pay_pay_freq}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="vi_adjnbr">
-					<subreportParameterExpression><![CDATA[$V{vi_adjnbr}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="vs_dtofpay">
-					<subreportParameterExpression><![CDATA[$F{bhr_pay_hist_dt_of_pay}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="vs_empnbr">
-					<subreportParameterExpression><![CDATA[$F{bhr_emp_pay_emp_nbr}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{subRptConnection}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DHrs2500WageandearningOvtmTab.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport isUsingCache="true">
 				<reportElement key="DHrs2500WageandearningDedTab" positionType="Float" x="291" y="54" width="312" height="19" isRemoveLineWhenBlank="true" uuid="7bc2fe75-ee8e-4ee9-80d4-f9c386e46162">

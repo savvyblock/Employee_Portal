@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,7 +49,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
 			BeaUsers user = this.indexService.getUserPwd(userName);
 			BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
             Options options = this.indexService.getOptions();
-            String district = (String)session.getAttribute("districtId");
+            String district = (String)session.getAttribute("srvcId");
             District districtInfo = this.indexService.getDistrict(district);
             userDetail.setEmpNbr(user.getEmpNbr());
             userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));
@@ -81,7 +82,11 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
    		 	}
             String phone = districtInfo.getPhone();
             districtInfo.setPhone(StringUtil.left(phone, 3)+"-"+StringUtil.mid(phone, 4, 3)+"-"+StringUtil.right(phone, 4));
-            
+            String sessionID = request.getSession().getId();
+            Cookie cookie = new Cookie("sessionId", sessionID);
+            cookie.setMaxAge(86400);
+            response.addCookie(cookie);
+            this.indexService.UpdateSessionToken(userName, sessionID);
             
             Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(),options.getUsePMISSpvsrLevels());
             Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
@@ -106,6 +111,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
             session.setAttribute("companyId", district);
             session.setAttribute("options", options);
             session.setAttribute("district", districtInfo);
+            session.setAttribute("enableTrvl", options.getEnableTrvl());
             session.setAttribute("cancel1095Consent", false);
             session.setAttribute("cancelW2Consent", false);
             

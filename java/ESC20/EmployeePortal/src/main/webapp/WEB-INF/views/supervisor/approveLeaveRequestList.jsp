@@ -73,7 +73,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                 </form>
                                 <h2 id="approveTableTitle" class="tableTitle" style="padding:0 10px;margin-top: 5px;">
                                     <b>
-                                        <span>${sessionScope.languageJSON.approveRequest.leavePendingActionBy}</span>
+                                        <span>${sessionScope.languageJSON.approveLeaveRequest.leavePendingActionBy}</span>
                                         <span>
                                                 <c:forEach var="item" items="${chain}" varStatus="status">
                                                      <c:if test="${status.last}"> 
@@ -88,16 +88,16 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                     <table class="table request-list responsive-table-1320">
                                             <thead>
                                                 <tr>
-                                                        <th scope="col" style="width:10%">${sessionScope.languageJSON.approveRequest.employee}</th>
-                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.leaveStartDate}</th>
-                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.leaveEndDate}</th>
-                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.startTime}</th>
-                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveRequest.endTime}</th>
-                                                        <th scope="col" style="width:10%">${sessionScope.languageJSON.approveRequest.leaveType}</th>
-                                                        <th scope="col" style="width:10%">${sessionScope.languageJSON.approveRequest.absenceReason}</th>
-                                                        <th scope="col" style="width:10%">${sessionScope.languageJSON.approveRequest.leaveRequested}</th>
-                                                        <th class="commentLog15" scope="col">${sessionScope.languageJSON.approveRequest.commentLog}</th>
-                                                        <th scope="col" style="width:11%">${sessionScope.languageJSON.approveRequest.supervisorAction}</th>
+                                                        <th scope="col" style="width:10%">${sessionScope.languageJSON.approveLeaveRequest.employee}</th>
+                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveLeaveRequest.leaveStartDate}</th>
+                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveLeaveRequest.leaveEndDate}</th>
+                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveLeaveRequest.startTime}</th>
+                                                        <th scope="col" style="width:8%">${sessionScope.languageJSON.approveLeaveRequest.endTime}</th>
+                                                        <th scope="col" style="width:10%">${sessionScope.languageJSON.approveLeaveRequest.leaveType}</th>
+                                                        <th scope="col" style="width:10%">${sessionScope.languageJSON.approveLeaveRequest.absenceReason}</th>
+                                                        <th scope="col" style="width:10%">${sessionScope.languageJSON.approveLeaveRequest.leaveRequested}</th>
+                                                        <th class="commentLog15" scope="col">${sessionScope.languageJSON.approveLeaveRequest.commentLog}</th>
+                                                        <th scope="col" style="width:11%">${sessionScope.languageJSON.approveLeaveRequest.supervisorAction}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -105,7 +105,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                     <c:forEach var="item" items="${leaves}" varStatus="status">
                                                         <c:if test="${item.statusCd !='A' && item.statusCd !='D'}">
                                                         <tr id="actionList_${status.index}">
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.employee}"> 
+                                                            <td data-title="${sessionScope.languageJSON.approveLeaveRequest.employee}"> 
                                                                 <div>
                                                                         ${item.empNbr}: 
                                                                         <div class="empNameTd">${item.lastName}, ${item.firstName} ${item.middleName} ${item.generation}</div>
@@ -114,22 +114,22 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                         </button>
                                                                 </div>
                                                             </td>
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.leaveStartDate}">${item.LeaveStartDate}</td>
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.leaveEndDate}" >${item.LeaveEndDate}</td>
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.startTime}">${item.LeaveStartTime}</td>
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.endTime}" >${item.LeaveEndTime}</td>
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.leaveType}">
+                                                            <td data-title="${sessionScope.languageJSON.approveLeaveRequest.leaveStartDate}">${item.LeaveStartDate}</td>
+                                                            <td data-title="${sessionScope.languageJSON.approveLeaveRequest.leaveEndDate}" >${item.LeaveEndDate}</td>
+                                                            <td data-title="${sessionScope.languageJSON.approveLeaveRequest.startTime}">${item.LeaveStartTime}</td>
+                                                            <td data-title="${sessionScope.languageJSON.approveLeaveRequest.endTime}" >${item.LeaveEndTime}</td>
+                                                            <td data-title="${sessionScope.languageJSON.approveLeaveRequest.leaveType}">
                                                                     <c:forEach var="type" items="${leaveTypes}" varStatus="statusType">
                                                                             <c:if test="${type.code==item.LeaveType}">${type.code} - ${type.description}</c:if>
                                                                     </c:forEach>
                                                             </td>
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.absenceReason}" >
+                                                            <td data-title="${sessionScope.languageJSON.approveLeaveRequest.absenceReason}" >
                                                                     <c:forEach var="reason" items="${absRsns}" varStatus="statusReason">
                                                                             <c:if test="${reason.code==item.AbsenseReason}">${reason.description}</c:if>
                                                                     </c:forEach>
                                                             </td>
                                                             
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.leaveRequested}"> 
+                                                            <td data-title="${sessionScope.languageJSON.approveLeaveRequest.leaveRequested}"> 
                                                                     ${item.lvUnitsUsed}
                                                                   <c:if test="${item.daysHrs=='D'}">
                                                                            <span>${sessionScope.languageJSON.label.days}</span>
@@ -138,7 +138,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                          <span>${sessionScope.languageJSON.label.hours}</span>
                                                                        </c:if>
                                                             </td>
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.commentLog}">
+                                                            <td data-title="${sessionScope.languageJSON.approveLeaveRequest.commentLog}">
                                                                     <div>
                                                                             <c:forEach var="comment" items="${item.comments}" varStatus="statusComment">
                                                                                     <p>${comment.detail}</p>
@@ -149,11 +149,11 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
                                                                                 </div>
                                                                     </div>
                                                             </td>
-                                                            <td data-title="${sessionScope.languageJSON.approveRequest.supervisorAction}"  style="width:150px;">
+                                                            <td data-title="${sessionScope.languageJSON.approveLeaveRequest.supervisorAction}"  style="width:150px;">
                                                                 <!-- <button class="btn btn-primary sm" data-toggle="modal" data-target="#approveModal" 
                                                                 onClick="actionLeave('${item.id}')"><span>${sessionScope.languageJSON.label.action}</span></button> -->
                                                                 <div role="group" aria-labelledby="groupLabelAction_${status.index}">
-                                                                    <div class="forAria" aria-hidden="true" id="groupLabelAction_${status.index}">${sessionScope.languageJSON.approveRequest.supervisorAction} ${sessionScope.languageJSON.label.for}  ${item.lastName} ${item.firstName}</div>
+                                                                    <div class="forAria" aria-hidden="true" id="groupLabelAction_${status.index}">${sessionScope.languageJSON.approveLeaveRequest.supervisorAction} ${sessionScope.languageJSON.label.for}  ${item.lastName} ${item.firstName}</div>
                                                                     <div class="form-group">
                                                                             <input class="approveRadio" type="radio" name="actionRadio_${status.index}" id="approveAction_${status.index}" value="1" data-id="${item.id}" data-index="${status.index}">
                                                                             <label for="approveAction_${status.index}">${sessionScope.languageJSON.label.approve}</label>

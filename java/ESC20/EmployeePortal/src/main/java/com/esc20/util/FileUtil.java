@@ -36,7 +36,7 @@ public class FileUtil {
 	public static String DEFAULT_DISTRICT_PIC_FILE = "images/ascender_pecan_logo.jpg";
 
 	public static String getStuPicPhysicalPath(HttpServletRequest req, String pStudentId) {
-		String districtId = (String) req.getSession().getAttribute("districtId");
+		String districtId = (String) req.getSession().getAttribute("srvcId");
 		String studentPicturePath = getStudentPictureUploadPath(districtId);
 
 		List<String> fileExtensionsList = Arrays.asList(".jpg", ".jpeg", ".gif", ".png", ".JPG", ".JPEG", ".GIF",
@@ -76,7 +76,7 @@ public class FileUtil {
 
 	
 	public static String getDistrictPicPhysicalPath(HttpServletRequest req) {
-		String districtId = (String) req.getSession().getAttribute("districtId");
+		String districtId = (String) req.getSession().getAttribute("srvcId");
 		String studentPicturePath = getStudentPictureUploadPath(districtId);
 
 //        studentPicturePath =  getPathDir(studentPicturePath) + "dist_picture/dist_picture.jpg";
@@ -101,7 +101,7 @@ public class FileUtil {
 	}
 
 	public static String getDistrictLogoPhysicalPath(HttpServletRequest req) {
-		String districtId = (String) req.getSession().getAttribute("districtId");
+		String districtId = (String) req.getSession().getAttribute("srvcId");
 		String logoPicturePath = getStudentPictureUploadPath(districtId);
 
 		List<String> fileExtensionsList = Arrays.asList(".jpg", ".jpeg", ".gif", ".png", ".JPG", ".JPEG", ".GIF",

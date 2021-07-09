@@ -29,6 +29,7 @@ import com.esc20.model.BhrAca1095cCovrdHist;
 import com.esc20.model.BhrAca1095cEmpHist;
 import com.esc20.model.BhrCalYtd;
 import com.esc20.model.BhrEmpDemo;
+import com.esc20.model.BhrEmpJob;
 import com.esc20.model.BhrThirdPartySickPay;
 import com.esc20.model.BhrW2;
 import com.esc20.model.BrRptngContact;
@@ -96,6 +97,7 @@ public class InquiryService {
 		return calendarYearToDateDao.getLatestPayDate(employeeNumber, freq);
 	}
 
+	
 	public Map<Frequency, List<CurrentPayInformation>> getJob(String employeeNumber) {
 		List<CurrentPayInformation> jobs = currentPayInformationDao.getJob(employeeNumber);
 		Map<Frequency, List<CurrentPayInformation>> jobMap = new HashMap<Frequency, List<CurrentPayInformation>>();
@@ -113,6 +115,10 @@ public class InquiryService {
 		return jobMap;
 	}
 
+	public List<CurrentPayInformation> getEmpJobs(String employeeNumber){
+		List<CurrentPayInformation> jobs = currentPayInformationDao.getJob(employeeNumber);
+		return jobs;
+	}
 	public List<Frequency> getFrequencies(Map<Frequency, ?> map) {
 		List<Frequency> frequencies = new ArrayList<Frequency>(map.keySet());
 		Collections.sort(frequencies);

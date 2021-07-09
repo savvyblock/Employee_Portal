@@ -14,12 +14,17 @@ import org.springframework.stereotype.Component;
 
 import com.esc20.dao.PreferencesDao;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 @Component
 public class MailUtil {
 
     @Autowired
     private PreferencesDao preferencesDao;
 	
+	private Logger logger = LoggerFactory.getLogger(MailUtil.class);
+
+
 	public void sendEmail(String to, String subject, String content) throws MessagingException{
 		String serverHost = preferencesDao.getPrefenceByPrefName("email_smtp_addr").getPrefValue();
 		Integer serverPort = Integer.parseInt(preferencesDao.getPrefenceByPrefName("email_smtp_port").getPrefValue());
@@ -37,7 +42,13 @@ public class MailUtil {
 		message.setContent(content,"text/html;charset=UTF-8");
 		message.setFrom(new InternetAddress(fromAddress));
 		message.setRecipients(Message.RecipientType.TO, to);
-		Transport.send(message);
+		try {
+			Transport.send(message);
+		}catch (Exception ex) {
+			logger.info(
+					"sending email failed for "+ message.getSubject() + " occuring error : "
+							+ ex.toString());
+		}
 		/*Transport transport = session.getTransport();
 		transport.sendMessage(message, message.getAllRecipients());
 		transport.close();*/

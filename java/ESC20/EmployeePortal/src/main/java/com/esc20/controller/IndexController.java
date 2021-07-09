@@ -4,54 +4,81 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.InetAddress;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Scanner;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.esc20.model.BeaEmpLvComments;
+import com.esc20.model.BeaEmpLvRqst;
+import com.esc20.model.BeaEmpLvWorkflow;
+import com.esc20.model.BeaEmpWrkJrnl;
+import com.esc20.model.BeaUsers;
+import com.esc20.model.BhrEapOpt;
+import com.esc20.model.BhrEmpDemo;
+import com.esc20.nonDBModels.AppLeaveRequest;
+import com.esc20.nonDBModels.Code;
+import com.esc20.nonDBModels.CurrentPayInformation;
+import com.esc20.nonDBModels.LeaveEmployeeData;
+import com.esc20.nonDBModels.LeaveInfo;
+import com.esc20.nonDBModels.LeaveParameters;
+import com.esc20.nonDBModels.LeaveRequestModel;
+import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.TravelRequestCalendar;
+import com.esc20.nonDBModels.TravelRequestInfo;
+import com.esc20.security.CustomSHA256Encoder;
+import com.esc20.service.IndexService;
+import com.esc20.service.InquiryService;
+import com.esc20.service.LeaveRequestService;
+import com.esc20.service.ReferenceService;
+import com.esc20.service.TravelRequestService;
+import com.esc20.service.WrkjlService;
+import com.esc20.util.BrowserInfoService;
+import com.esc20.util.DateUtil;
+import com.esc20.util.FileDownloadUtil;
+import com.esc20.util.FileUtil;
+import com.esc20.util.SessionKeys;
+import com.esc20.util.StringUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import com.esc20.model.BeaEmail;
-import com.esc20.model.BeaUsers;
-import com.esc20.model.BhrEmpDemo;
-import com.esc20.nonDBModels.Code;
-import com.esc20.nonDBModels.Options;
-import com.esc20.security.CustomSHA256Encoder;
-import com.esc20.service.IndexService;
-import com.esc20.service.ReferenceService;
-import com.esc20.util.DateUtil;
-import com.esc20.util.StringUtil;
-import com.esc20.util.FileDownloadUtil;
-import com.esc20.util.FileUtil;
-import com.esc20.util.SessionKeys;
-import com.esc20.util.BrowserInfoService;
-import com.esc20.nonDBModels.SearchUser;
-
+import net.esc20.txeis.WorkflowLibrary.domain.WorkflowType;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Controller
 @RequestMapping("/")
 public class IndexController {
 	private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 	
-	@Value("${portal.help.url}")
+//	@Value("${portal.help.url}")
+//	@Value("https://help.ascendertx.com/test/")
     private String helpUrl;
 	
 	@Autowired
@@ -64,8 +91,20 @@ public class IndexController {
 	private CustomSHA256Encoder encoder;
 	
 	@Autowired
-	private BrowserInfoService browserService;	
+	private BrowserInfoService browserService;
+	
+	@Autowired
+	private LeaveRequestService leaveRequestService;
+	
+	@Autowired
+	private TravelRequestService travelRequestService;
 
+	@Autowired
+	private InquiryService inquiryService;
+	
+	@Autowired
+	private WrkjlService wrkjlService;
+	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public ModelAndView getIndexPage(HttpServletRequest req, String Id, HttpServletResponse response) {
 		ModelAndView mav = new ModelAndView();
@@ -119,6 +158,7 @@ public class IndexController {
                         logger.debug(line);
                     }
                 }
+				br.close();
         }
         catch (IOException e) {
             logger.debug("Login", e);
@@ -128,6 +168,7 @@ public class IndexController {
             }
         }
         mav.addObject("alertMsg", sbf.toString());
+        helpUrl = properties.getProperty("portal.help.url");
         req.getSession().setAttribute("helpLinkFromProperties", helpUrl +"employeeportal/doku.php");
         return mav;
     }
@@ -143,7 +184,7 @@ public class IndexController {
 	}
 
 	@RequestMapping("home")
-	public ModelAndView getHome(HttpServletRequest req, HttpServletResponse response) throws Exception {
+	public ModelAndView getHome(HttpServletRequest req, HttpServletResponse response, String freq, Boolean isAdd) throws Exception {
 		HttpSession session = req.getSession();
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
@@ -151,9 +192,11 @@ public class IndexController {
 
 		Boolean isSupervisor = this.indexService.isSupervisor(user.getEmpNbr(), options.getUsePMISSpvsrLevels());
 		Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
+		Boolean isTravelApprover = this.travelRequestService.isTravelApprover(user.getEmpNbr(), WorkflowType.TRAVEL.getId());
 		session.setAttribute("isSupervisor", isSupervisor);
 		session.setAttribute("isTempApprover", isTempApprover);
-		String districtId = (String)session.getAttribute("districtId"); 
+		session.setAttribute("isTravelApprover", isTravelApprover);
+		String districtId = (String)session.getAttribute("srvcId"); 
 		// District  districtInfo = this.indexService.getDistrict(district);
 		
 		userDetail.setEmpNbr(user.getEmpNbr());
@@ -178,6 +221,235 @@ public class IndexController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("home");
 		mav.addObject("userDetail", userDetail);
+		
+		// Appended Leave Request Calendar View Start
+		if (isAdd == null) {
+			isAdd = false;
+		}
+		if (isAdd) {
+			mav.addObject("addRow", true);
+		} else {
+			mav.addObject("addRow", false);
+		}
+		AppLeaveRequest request = new AppLeaveRequest();
+		// BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		List<Code> availableFreqs = leaveRequestService.getAvailableFrequencies(userDetail.getEmpNbr());
+		mav.addObject("availableFreqs", availableFreqs);
+		LeaveParameters params = leaveRequestService.getLeaveParameters();
+		mav.addObject("params", params);
+		String supervisorEmpNbr = leaveRequestService.getFirstLineSupervisor(userDetail.getEmpNbr(),
+				params.isUsePMIS()) == null ? null
+						: leaveRequestService.getFirstLineSupervisor(userDetail.getEmpNbr(), params.isUsePMIS())
+								.getEmployeeNumber();
+		if (supervisorEmpNbr == null) {
+			supervisorEmpNbr = "";
+			mav.addObject("haveSupervisor", false);
+		} else {
+			mav.addObject("haveSupervisor", true);
+		}
+		List<AppLeaveRequest> requests = new ArrayList<AppLeaveRequest>();
+		if (freq == null || ("").equals(freq)) {
+			if (availableFreqs.size() > 0) {
+				freq = availableFreqs.get(0).getCode();
+				requests = leaveRequestService.getLeaveRequests(request, userDetail.getEmpNbr(), freq);
+				List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
+				List<Code> leaveStatus = this.referenceService.getLeaveStatus();
+				// List<Code> gens = referenceService.getGenerations();
+				LeaveRequestModel model;
+				JSONArray json = new JSONArray();
+				AppLeaveRequest temp;
+				for (int i = 0; i < requests.size(); i++) {
+					temp = requests.get(i);
+					temp.setFirstName(userDetail.getNameF());
+					temp.setLastName(userDetail.getNameL());
+					model = new LeaveRequestModel(temp);
+					requestModels.add(model);
+				}
+				List<LeaveInfo> leaveInfo = leaveRequestService.getLeaveInfo(userDetail.getEmpNbr(), freq, false);
+				Code emptyCode = new Code();
+				// List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
+				List<Code> absRsns = new ArrayList<Code>();
+				// Add a blank for absRsns for default shown
+				emptyCode = new Code();
+				emptyCode.setDescription(" ");
+				absRsns.add(emptyCode);
+				absRsns.addAll(leaveRequestService.getAbsRsns(userDetail.getEmpNbr(), freq, ""));
+
+				JSONArray absRsnsJson = new JSONArray();
+				for (int i = 0; i < absRsns.size(); i++) {
+					absRsnsJson.add(absRsns.get(i).toJSON());
+				}
+				List<Code> leaveTypes = new ArrayList<Code>();
+
+				// Add a blank for leave Types for default shown
+				emptyCode = new Code();
+				emptyCode.setDescription(" ");
+				leaveTypes.add(emptyCode);
+				leaveTypes.addAll(leaveRequestService.getLeaveTypes(userDetail.getEmpNbr(), freq, ""));
+				JSONArray leaveTypesJson = new JSONArray();
+				for (int i = 0; i < leaveTypes.size(); i++) {
+					leaveTypesJson.add(leaveTypes.get(i).toJSON());
+				}
+				for (int i = 0; i < requestModels.size(); i++) {
+					json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes, null, gens));
+				}
+				
+				//add a blank for job code for default shown
+				List<CurrentPayInformation> empJobCd = new ArrayList<CurrentPayInformation>();
+				CurrentPayInformation emptyJobCd = new CurrentPayInformation();
+				empJobCd.add(emptyJobCd);
+				empJobCd.addAll(inquiryService.getEmpJobs(userDetail.getEmpNbr()));
+				
+
+				List<String[]> map = leaveRequestService.mapReasonsAndLeaveTypes();
+				JSONArray mapJson = new JSONArray();
+				JSONObject tempMap;
+				for (int i = 0; i < map.size(); i++) {
+					tempMap = new JSONObject();
+					tempMap.put("absRsn", map.get(i)[0]);
+					for (int j = 0; j < absRsns.size(); j++) {
+						if (absRsns.get(j).getCode().equals(map.get(i)[0])) {
+							tempMap.put("absRsnDescrption", absRsns.get(j).getDescription());
+						}
+					}
+					tempMap.put("leaveType", map.get(i)[1]);
+					mapJson.add(tempMap);
+				}
+				mav.addObject("selectedFreq", freq);
+				mav.addObject("absRsns", absRsnsJson);
+				mav.addObject("leaveTypes", leaveTypesJson);
+				mav.addObject("leaveTypesAbsrsnsMap", mapJson);
+				mav.addObject("leaveInfo", leaveInfo);
+				mav.addObject("leaves", json);
+				mav.addObject("empJobCd", empJobCd);
+
+			}
+		} else {
+			requests = leaveRequestService.getLeaveRequests(request, userDetail.getEmpNbr(), freq);
+			List<LeaveRequestModel> requestModels = new ArrayList<LeaveRequestModel>();
+			List<Code> leaveStatus = this.referenceService.getLeaveStatus();
+			// List<Code> gens = referenceService.getGenerations();
+			LeaveRequestModel model;
+			JSONArray json = new JSONArray();
+			AppLeaveRequest temp;
+			for (int i = 0; i < requests.size(); i++) {
+				temp = requests.get(i);
+				temp.setFirstName(userDetail.getNameF());
+				temp.setLastName(userDetail.getNameL());
+				model = new LeaveRequestModel(temp);
+				requestModels.add(model);
+			}
+			List<LeaveInfo> leaveInfo = leaveRequestService.getLeaveInfo(userDetail.getEmpNbr(), freq, false);
+			Code emptyCode = new Code();
+			// List<Code> absRsns = this.service.getAbsRsns(demo.getEmpNbr(), freq, "");
+			List<Code> absRsns = new ArrayList<Code>();
+			// Add a blank for absRsns for default shown
+			emptyCode = new Code();
+			emptyCode.setDescription(" ");
+			absRsns.add(emptyCode);
+			absRsns.addAll(leaveRequestService.getAbsRsns(userDetail.getEmpNbr(), freq, ""));
+			JSONArray absRsnsJson = new JSONArray();
+			for (int i = 0; i < absRsns.size(); i++) {
+				absRsnsJson.add(absRsns.get(i).toJSON());
+			}
+			List<Code> leaveTypes = new ArrayList<Code>();
+
+			// Add a blank for leave Types for default shown
+			emptyCode = new Code();
+			emptyCode.setDescription(" ");
+			leaveTypes.add(emptyCode);
+			leaveTypes.addAll(leaveRequestService.getLeaveTypes(userDetail.getEmpNbr(), freq, ""));
+			JSONArray leaveTypesJson = new JSONArray();
+			for (int i = 0; i < leaveTypes.size(); i++) {
+				leaveTypesJson.add(leaveTypes.get(i).toJSON());
+			}
+			for (int i = 0; i < requestModels.size(); i++) {
+				json.add(requestModels.get(i).toJSON(leaveStatus, leaveTypes, null, gens));
+			}
+			List<String[]> map = leaveRequestService.mapReasonsAndLeaveTypes();
+			JSONArray mapJson = new JSONArray();
+			JSONObject tempMap;
+			for (int i = 0; i < map.size(); i++) {
+				tempMap = new JSONObject();
+				tempMap.put("absRsn", map.get(i)[0]);
+				for (int j = 0; j < absRsns.size(); j++) {
+					if (absRsns.get(j).getCode().equals(map.get(i)[0])) {
+						tempMap.put("absRsnDescrption", absRsns.get(j).getDescription());
+					}
+				}
+				tempMap.put("leaveType", map.get(i)[1]);
+				mapJson.add(tempMap);
+			}
+			mav.addObject("selectedFreq", freq);
+			mav.addObject("absRsns", absRsnsJson);
+			mav.addObject("leaveTypes", leaveTypesJson);
+			mav.addObject("leaveTypesAbsrsnsMap", mapJson);
+			mav.addObject("leaveInfo", leaveInfo);
+			mav.addObject("leaves", json);
+		}
+		// Appended Leave Request Calendar View End
+		
+		// Appended Travel Request Calendar View Start
+		TravelRequestInfo travelRequestInfo = new TravelRequestInfo();
+		List<TravelRequestInfo> travelcampuses = travelRequestService.getCampusPay(userDetail.getEmpNbr());
+		if (travelcampuses.size() > 1) {
+			mav.addObject("travelcampuses", travelcampuses);
+		}
+		
+		travelRequestInfo.setCampus(travelRequestService.getReimburseCampus(userDetail.getEmpNbr()));
+		mav.addObject("travelRequestInfo", travelRequestInfo);
+
+		List<TravelRequestCalendar> travelList = new ArrayList<TravelRequestCalendar>();
+		List<String> distinctTripNbr = travelRequestService.getDistinctTripNumber(userDetail.getEmpNbr());
+		
+		for (String tripNums : distinctTripNbr) {
+			String firstName = userDetail.getNameF();
+			String lastName = userDetail.getNameL();
+			int tripColspan = travelRequestService.getTripCount(userDetail.getEmpNbr(), tripNums);
+			if (tripColspan > 1) {
+				List<TravelRequestCalendar> travelRequestExtended = new ArrayList<TravelRequestCalendar>();
+				travelRequestExtended = travelRequestService.getTravelRequestCalendarParameters(userDetail.getEmpNbr(), tripNums);
+				TravelRequestCalendar firstList = travelRequestExtended.get(0);
+				TravelRequestCalendar lastList = travelRequestExtended.get(travelRequestExtended.size() - 1);
+				String purposeTitle = compareTravelPurpose(travelRequestExtended);
+				String title = firstName + " " + lastName + " : " + purposeTitle;
+				String firstDate = firstList.getTrvlDt();
+				String lastDate = getNextDate(lastList.getTrvlDt(), 1);
+				travelRequestExtended.get(0).setTitle(title);
+				travelRequestExtended.get(0).setStart(firstDate);
+				travelRequestExtended.get(0).setEnd(lastDate);
+				travelList.addAll(travelRequestExtended);
+			} else {
+				List<TravelRequestCalendar> travelRequestMileage = new ArrayList<TravelRequestCalendar>();
+				travelRequestMileage = travelRequestService.getTravelRequestCalendarParameters(userDetail.getEmpNbr(), tripNums);
+				for (TravelRequestCalendar itemsMileage : travelRequestMileage) {
+					String title = firstName + " " + lastName + " : " + itemsMileage.getPurpose();
+					itemsMileage.setTitle(title);
+					itemsMileage.setStart(itemsMileage.getTrvlDt());
+					itemsMileage.setEnd(itemsMileage.getTrvlDt());
+					travelList.addAll(travelRequestMileage);
+				}
+			}
+		}
+		ObjectMapper objectMapper = new ObjectMapper();
+		String json = null;
+		try {
+			json = objectMapper.writeValueAsString(travelList);
+		} catch (JsonProcessingException e) {
+			logger.error("Error in parsing json object parsing :", e);
+		}
+		mav.addObject("trvlReqCalParams", json);
+		
+		//wrkjl
+		
+		List<BeaEmpWrkJrnl> wrkjlList= wrkjlService.getWrkjl(userDetail.getEmpNbr());
+		mav.addObject("wrkjlList", objectMapper.writeValueAsString(wrkjlList));
+
+//		EAP OPTION FOR CALENDAR OPTIONS ENABLE
+		BhrEapOpt o = indexService.getEapOptCal();
+		mav.addObject("eapOption", o);
+
+		// Appended Travel Request Calendar End	
 		
 		String changePSW = req.getParameter("changePSW");
 		if(!StringUtil.isNullOrEmpty(changePSW)) {
@@ -290,5 +562,155 @@ public class IndexController {
 		//and returning true indicates user name is available, otherwise it's not available
 		res.put("valid", !isExisted);
 		return res;
+	}
+	
+	@RequestMapping("submitLeaveRequestFromCalendar")
+	public ModelAndView submitLeaveRequestFromCalendar(HttpServletRequest req, HttpServletResponse response, String leaveId, String leaveType,
+			String absenseReason, String LeaveStartDate, String startTimeValue, String LeaveEndDate,
+			String endTimeValue, String lvUnitsDaily, String lvUnitsUsed, String Remarks, String freq, Boolean isAdd,
+			Long token) throws Exception {
+		HttpSession session = req.getSession();
+		BhrEmpDemo demo = ((BhrEmpDemo) session.getAttribute("userDetail"));
+		ModelAndView mav = new ModelAndView();
+		if (leaveType == null || absenseReason == null || LeaveStartDate == null || startTimeValue == null
+				|| LeaveEndDate == null || endTimeValue == null || lvUnitsDaily == null || lvUnitsUsed == null
+				|| freq == null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("action", "Create or update leave information from leave request calendar view");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
+		Long sessionToken = (Long) session.getAttribute("token");
+		if (!sessionToken.equals(token)) {
+			return this.getHome(req, response, freq, isAdd);
+		}
+		this.saveLeaveRequest(leaveId, leaveType, absenseReason, LeaveStartDate, startTimeValue, LeaveEndDate,
+				endTimeValue, lvUnitsDaily, lvUnitsUsed, Remarks, freq, demo);
+		return this.getHome(req, response, freq, isAdd);
+	}
+
+	@RequestMapping("deleteLeaveRequestFromCalendar")
+	public ModelAndView deleteLeaveRequestFromCalendar(HttpServletRequest req, HttpServletResponse response, String id, String freq, Long token) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = req.getSession();
+		if (id == null) {
+			mav.setViewName("visitFailed");
+			mav.addObject("action", "Delete leave information from leave overview");
+			mav.addObject("errorMsg", "Not all mandotary fields provided.");
+			return mav;
+		}
+		Long sessionToken = (Long) session.getAttribute("token");
+		if (!sessionToken.equals(token)) {
+			return this.getHome(req, response, freq, false);
+		}
+		deleteLeaveRequest(id);
+		return this.getHome(req, response, freq, false);
+	}
+	
+	protected void saveLeaveRequest(String leaveId, String leaveType, String absenseReason, String LeaveStartDate,
+			String startTimeValue, String LeaveEndDate, String endTimeValue, String lvUnitsDaily, String lvUnitsUsed,
+			String Remarks, String freq, BhrEmpDemo demo) throws ParseException, MessagingException {
+		BeaEmpLvRqst request;
+		if (leaveId == null || ("").equals(leaveId))
+			request = new BeaEmpLvRqst();
+		else
+			request = leaveRequestService.getleaveRequestById(Integer.parseInt(leaveId + ""));
+		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy hh:mm a", Locale.ENGLISH);
+		request.setEmpNbr(demo.getEmpNbr());
+		request.setPayFreq(freq.charAt(0));
+		request.setLvTyp(leaveType);
+		request.setAbsRsn(absenseReason);
+		request.setDatetimeFrom(DateUtil.getUTCTime(formatter.parse(LeaveStartDate + " " + startTimeValue)));
+		request.setDatetimeTo(DateUtil.getUTCTime(formatter.parse(LeaveEndDate + " " + endTimeValue)));
+		request.setDatetimeSubmitted(new Date());
+		request.setLvUnitsDaily(BigDecimal.valueOf(Double.parseDouble(lvUnitsDaily)));
+		request.setLvUnitsUsed(BigDecimal.valueOf(Double.parseDouble(lvUnitsUsed)));
+		Boolean isDisapproveUpdate = false;
+		if (leaveId == null || ("").equals(leaveId) || 'A'==request.getStatusCd()) {
+			request.setStatusCd('P');
+			request.setDtOfPay("");
+		} else {
+			if('D'==request.getStatusCd()) {
+				request.setStatusCd('P');
+				isDisapproveUpdate = true;
+			}
+			request.setDtOfPay(request.getDtOfPay() == null ? "" : request.getDtOfPay());
+		}
+		Integer id = leaveRequestService.saveLeaveRequest(request, (leaveId != null && !("").equals(leaveId)));
+		// Create Comments
+		if (Remarks != null && !("").equals(Remarks)) {
+			BeaEmpLvComments comments = new BeaEmpLvComments();
+			comments.setLvId(id);
+			comments.setLvCommentEmpNbr(demo.getEmpNbr());
+			comments.setLvCommentDatetime(DateUtil.getUTCTime(new Date()));
+			comments.setLvComment(Remarks);
+			comments.setLvCommentTyp('C');
+			leaveRequestService.saveLvComments(comments);
+		}
+		// Create Workflow upon first creation or modify disapproved leave
+		if ((leaveId == null || ("").equals(leaveId)) || ((leaveId != null && !("").equals(leaveId) && isDisapproveUpdate))) {
+			LeaveParameters params = leaveRequestService.getLeaveParameters();
+			LeaveEmployeeData supervisorData = leaveRequestService.getFirstLineSupervisor(demo.getEmpNbr(), params.isUsePMIS());
+			String supervisorEmpNbr = supervisorData ==null?null:supervisorData.getEmployeeNumber();
+			if (!StringUtils.isEmpty(supervisorEmpNbr)) {
+				BeaEmpLvWorkflow flow = new BeaEmpLvWorkflow();
+				flow.setLvId(id);
+				flow.setInsertDatetime(DateUtil.getUTCTime(new Date()));
+				flow.setSeqNum(1);
+				flow.setApprvrEmpNbr(supervisorEmpNbr == null ? "" : supervisorEmpNbr);
+				flow.setTmpApprvrExpDatetime(null);
+				//String supervisorEmail = supervisorData ==null?null:supervisorData.getEmailAddress();
+				com.esc20.nonDBModels.Options option = this.indexService.getOptions();
+				String urlHM = option.getUrl() ==null? "":option.getUrl().trim();
+				leaveRequestService.saveLvWorkflow(flow, demo);
+				leaveRequestService.sendEmail(request, demo, supervisorData,urlHM);
+			}
+		}
+	}
+
+	protected void deleteLeaveRequest(String id) {
+		BeaEmpLvComments comments = new BeaEmpLvComments();
+		comments.setLvId(Integer.parseInt(id));
+		leaveRequestService.deleteLeaveComments(Integer.parseInt(id));
+		leaveRequestService.deleteLeaveFlow(Integer.parseInt(id));
+		leaveRequestService.deleteLeaveRequest(Integer.parseInt(id));
+	}
+	
+	private String getNextDate(String givenDate, int noOfDays) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		Calendar cal = Calendar.getInstance();
+		String nextDaysDate = null;
+		try {
+			cal.setTime(dateFormat.parse(givenDate));
+			cal.add(Calendar.DATE, noOfDays);
+
+			nextDaysDate = dateFormat.format(cal.getTime());
+
+		} catch (ParseException ex) {
+		} finally {
+			dateFormat = null;
+			cal = null;
+		}
+		return nextDaysDate;
+	}
+	
+	private String compareTravelPurpose(List<TravelRequestCalendar> list) {
+		String purpose = null;
+		for (int i = 0; i < list.size(); i++) {
+			TravelRequestCalendar itemI = list.get(i);
+			String purposeI = itemI.getPurpose().trim();
+			for (int j = 0; j < list.size(); j++) {
+				TravelRequestCalendar itemJ = list.get(j);
+				String purposeJ = itemJ.getPurpose().trim();
+				if (i != j) {
+					if (purposeI.compareTo(purposeJ) == 0) {
+						purpose = purposeI;
+					} else {
+						purpose = "multi";
+					}
+				}
+			}
+		}
+		return purpose;
 	}
 }

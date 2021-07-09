@@ -9873,7 +9873,7 @@ months for which these individuals were covered.]]></text>
 							<textElement textAlignment="Left" verticalAlignment="Middle">
 								<font fontName="Microsoft Sans Serif" size="10" isBold="false"/>
 							</textElement>
-							<textFieldExpression><![CDATA[" "+$F{b1_personmiddlenm}.substring(0,1).trim()]]></textFieldExpression>
+							<textFieldExpression><![CDATA[" " + ($F{b1_personmiddlenm}.trim().equals("") ? "" : (" " + $F{b1_personmiddlenm}.substring(0,1).trim()))]]></textFieldExpression>
 						</textField>
 						<textField>
 							<reportElement x="141" y="13" width="92" height="12" uuid="7287b207-84d9-41dd-bd42-f306817ac692">

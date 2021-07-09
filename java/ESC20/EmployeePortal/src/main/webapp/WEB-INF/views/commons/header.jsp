@@ -18,9 +18,11 @@
 <link rel="stylesheet" href="<spring:theme code="commonBase" />styles/layout.css" type="text/css" media="all" />
 <link rel="stylesheet" href="<spring:theme code="commonBase" />styles/login-layout.css" type="text/css" media="all" />
 <link rel="stylesheet" href="/<%=request.getContextPath().split("/")[1]%>/css/employeePortal.css">
+<link rel="stylesheet" href="<spring:theme code="commonBase" />styles/dataTables/jquery.dataTables.css">
 
 
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.min.js"></script>
+<script type="text/javascript" src="<spring:theme code="commonBase" />scripts/dataTables/jquery.dataTables.js" defer></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/html2canvas.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jspdf.debug.js"></script>
 <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/bluebird.js"></script>
@@ -109,6 +111,7 @@ var passwordNotMatchValidator = "${sessionScope.languageJSON.validator.passwordN
 var emailNotMatchValidator = "${sessionScope.languageJSON.validator.emailNotMatch}";
 var maximumBankAmmountValidator = "${sessionScope.languageJSON.validator.maximumBankAmmount}";
 var pleaseEnterCorrectFormatValidator = "${sessionScope.languageJSON.validator.pleaseEnterCorrectFormat}";
+var pleaseEnterCorrectFormatTravelCommuteValidator = "${sessionScope.languageJSON.validator.pleaseEnterCorrectFormatTravelCommute}";
 var pleaseEnterCorrectFormatBankAmountValidator = "${sessionScope.languageJSON.validator.pleaseEnterCorrectFormatBankAmount}";
 var pleaseSelectOneValidator = "${sessionScope.languageJSON.validator.pleaseSelectOne}";
 var pleaseEnterCommentValidator = "${sessionScope.languageJSON.validator.pleaseEnterComment}";

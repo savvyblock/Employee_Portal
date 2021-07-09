@@ -73,7 +73,7 @@ public class EarningsController {
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo userDetail = this.indexService.getUserDetail(user.getEmpNbr());
 		Options options = this.indexService.getOptions();
-		String district = (String) session.getAttribute("districtId");
+		String district = (String) session.getAttribute("srvcId");
 		District districtInfo = this.indexService.getDistrict(district);
 		userDetail.setEmpNbr(user.getEmpNbr());
 		userDetail.setDob(DateUtil.formatDate(userDetail.getDob(), "yyyyMMdd", "MM-dd-yyyy"));

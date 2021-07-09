@@ -14510,11 +14510,11 @@ var DayGridEventRenderer = /** @class */ (function (_super) {
             timeText = this.getTimeText(seg.footprint);
             console.log(timeText)
             if (timeText) {
-                timeHtml = '<span class="fc-time">' + util_1.htmlEscape(timeText) + '</span>';
+//                timeHtml = '<span class="fc-time" style="font-weight: normal;">' + util_1.htmlEscape(timeText) + '</span>';
             }
         }
         titleHtml =
-            '<span class="fc-title">' +
+            '<span class="fc-title" style="font-weight: normal;">' +
                 (util_1.htmlEscape(eventDef.title || '') || '&nbsp;') + // we always want one line of height
                 '</span>';
         return '<a class="' + classes.join(' ') + '"' +
@@ -14528,7 +14528,7 @@ var DayGridEventRenderer = /** @class */ (function (_super) {
             '<div class="fc-content">' +
             (this.dayGrid.isRTL ?
                 titleHtml + ' ' + timeHtml : // put a natural space in between
-                timeHtml + ' ' + titleHtml //
+                titleHtml + ' ' + timeHtml //
             ) +
             '</div>' +
             (isResizableFromStart ?

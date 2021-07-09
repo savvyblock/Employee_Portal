@@ -26,6 +26,12 @@
   </ul>
   <%@ include file="logo.jsp"%>
   <!-- Right navbar links -->
+  <c:if test="${not empty sessionScope.options.messageEmployeeAccessSystem}">
+		 <p class="empCalendarMessageColor">${sessionScope.options.messageEmployeeAccessSystem}</p>
+  </c:if>
+  <c:if test="${empty sessionScope.options.messageEmployeeAccessSystem}">
+        <p class="empCalendarMessageColor">${sessionScope.constantJSON.label.welcomeToNewEmployeePortal}</p>
+  </c:if>
   <ul class="navbar-nav nav-right">
     <!-- Notifications Dropdown Menu -->
     <li class="nav-item dropdown">
@@ -181,13 +187,34 @@
             </a>
           </li>
         </c:if>
-         <c:if test="${sessionScope.enableTrvl}">
-          <li class="nav-item">
-            <a id="travelRequest" href="/<%=request.getContextPath().split("/")[1]%>/travelRequest/travelRequest"
-              class="nav-link">
-              <i class="nav-icon fa  fa-pencil-square-o text-info"></i>
-              <p class="empPortColor">${sessionScope.languageJSON.nav.travelRequests}</p>
+        <c:if test="${sessionScope.enableTrvl}">
+          <li class="nav-item has-treeview" id="travelRequests">
+            <a href="#" class="nav-link">
+              <!--  active -->
+              <i class="nav-icon fa fa-pencil-square-o text-info"></i>
+              <p class="empPortColor">
+                <span>${sessionScope.languageJSON.nav.travelReimbursementRequests}</span>
+                <i class="right fa fa-angle-right"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a id="travelRequest" href="/<%=request.getContextPath().split("/")[1]%>/travelRequest/travelRequest"
+                  class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p class="empPortColor">${sessionScope.languageJSON.nav.travelRequests}</p>
+                </a>
+                </li>            
+              <c:if test="${sessionScope.isTravelApprover}">
+                <li class="nav-item">
+                  <a href="/<%=request.getContextPath().split("/")[1]%>/approveTravelRequest/approveTravelRequestList"
+                    class="nav-link" id="approveTravelRequest">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p class="empPortColor">${sessionScope.languageJSON.nav.approveTravelRequests}</p>
+                  </a>
+                </li>
+              </c:if>
+            </ul>
           </li>
         </c:if>
         <c:if test="${sessionScope.isSupervisor || sessionScope.isTempApprover}">
@@ -208,6 +235,7 @@
                   <p class="empPortColor">${sessionScope.languageJSON.nav.approveLeaveRequests}</p>
                 </a>
               </li>
+             
               <c:if test="${sessionScope.isSupervisor}">
                 <li class="nav-item">
                   <a href="/<%=request.getContextPath().split("/")[1]%>/leaveOverview/leaveOverviewList"

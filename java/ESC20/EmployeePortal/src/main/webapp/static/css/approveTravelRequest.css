@@ -1,0 +1,18 @@
+
+
+.btn {
+
+	width : 150px !important
+	
+}
+
+.wrapper{
+	height: calc(100% - 45px);
+    overflow: auto;
+	background: #E8F2F4;
+	
+}
+
+#ApproveTravelRequestForm{
+	display: initial;
+}

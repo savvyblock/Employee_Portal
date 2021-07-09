@@ -13,13 +13,19 @@ $(document).ready(function() {
     ) {
         menuItem = 'inquiry'
     }
-     if (
+    if (
         item == 'approveLeaveRequest' ||
         item == 'leaveOverview' ||
         item == 'supervisorCalendar' ||
         item == 'leaveRequestTemporaryApprovers'
     ) {
         menuItem = 'supervisor'
+    }
+    if (
+        item == 'travelRequest' ||
+        item == 'approveTravelRequest'        
+    ) {
+        menuItem = 'travelRequests'
     }
     var menuElement = $('#' + menuItem)
     var itemElement = $('#' + item)
@@ -66,9 +72,9 @@ function startCountTime() {
 }
 function updateBudgeCountAndInfo() {
     console.log('here')
-    var budgeCount = setInterval(function() {
+    // var budgeCount = setInterval(function() {
         getBudgeDetail()
-    }, 3000)
+    // }, 3000)
 }
 function getBudgeDetail() {
     $.ajax({

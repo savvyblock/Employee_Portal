@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
-    <context:component-scan base-package="com.esc20.controller"/>
+    <context:component-scan base-package="com.esc20.controller, net.esc20.txeis.WorkflowLibrary.service, net.esc20.txeis.WorkflowLibrary.rules.RulesFactory"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/" />
@@ -34,4 +34,48 @@
         </property>
         <property name="fileEncoding" value="utf-8"/>
     </bean> 
+    <!-- ************************************************************************************************************** -->
+	<!-- Workflow -->
+	<bean id="WorkflowService" class="net.esc20.txeis.WorkflowLibrary.service.WorkflowService" scope="singleton" >
+		<property name="workflowDao" ref="WorkflowDao" />
+        <property name="ruleFactory" ref="RulesFactory"/>
+	</bean>
+		
+	<bean id="WorkflowDao" class="net.esc20.txeis.WorkflowLibrary.dao.WorkflowDao" scope="singleton" >
+		<property name="dataSource" ref="TxeisDB" />
+	</bean>
+
+    <bean id="RulesFactory" class="net.esc20.txeis.WorkflowLibrary.rules.RulesFactory" scope="singleton">
+		<property name="rulesMap">
+			<map>
+				<entry key="Travel Reimbursement">
+					<ref bean="TravelReimbursementBusinessRules"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+    <bean id="TravelReimbursementBusinessRules" class="net.esc20.txeis.WorkflowLibrary.rules.TravelReimbursementBusinessRules" scope="singleton">
+		<property name="dao" ref="TravelReimbursementBusinessRulesDao"/>
+		<property name="workflowDao" ref="WorkflowDao"/>
+	</bean>
+	
+		<bean id="TravelReimbursementBusinessRulesDao" class="net.esc20.txeis.WorkflowLibrary.dao.TravelReimbursementBusinessRulesDao" scope="singleton">
+		<property name="dataSource" ref="TxeisDB" />
+	</bean>
+    <bean id="preferenceFactory" class="net.esc20.txeis.common.domainobjects.RoutedPreferenceFactory">
+		<property name="txeisPreferenceDAO" ref="txeispreferenceDAO" />
+	</bean>
+
+	<bean id="txeispreferenceDAO" class="net.esc20.txeis.common.dao.TxeisPreferenceDAO">
+		<property name="dataSource" ref="TxeisDB" />
+	</bean>
+	
+	<bean id="applicationDAO" class="net.esc20.txeis.common.dao.ApplicationDAO" >
+		<property name="dataSource" ref="TxeisDB" />
+	</bean>
+	
+	<bean id="documentStorageDao" class="net.esc20.txeis.common.dao.DocumentStorageDao">
+    		<property name="dataSource" ref="TxeisDB" />
+    	</bean>	
 </beans>

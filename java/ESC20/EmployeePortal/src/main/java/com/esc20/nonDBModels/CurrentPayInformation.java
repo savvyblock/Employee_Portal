@@ -39,6 +39,10 @@ public class CurrentPayInformation implements Serializable {
 		this.setPayFreq(Frequency.getFrequency((((Character) payFreq).toString()).trim()));
     }
     
+	public CurrentPayInformation() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getJobCd() {
 		return jobCd;
 	}

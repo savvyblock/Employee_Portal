@@ -14,10 +14,29 @@
             <%@ include file="global-select.jsp"%>
     </div>
 
-    <a class=" help helpLink" href="https://help.ascendertx.com/employeeportal/doku.php" target="_blank" role="link"
+   <%--  <a class=" help helpLink" href="https://help.ascendertx.com/employeeportal/doku.php" target="_blank" role="link"
    	      aria-label="${sessionScope.languageJSON.accessHint.goHelp}" title="${sessionScope.languageJSON.accessHint.goHelp}">
    	 	Help &nbsp;<i class="fa fa-question-circle"></i>
    	</a>
+   	--%>
+   	<a
+            id="helpLink"
+            class="helpLink"
+            href="javascript:void(0);"
+            aria-label=""
+            title=""
+            data-localize="nav.help"
+            data-localize-notText="true"
+            tabindex="0"
+            target="_blank"
+        >Help&nbsp;
+            <i class="fa fa-question-circle" aria-hidden="true"></i>
+            <span class="sr-only" title="" data-localize="login.help">
+                Help
+            </span>
+        </a>
+       &nbsp;&nbsp;&nbsp;		
+   	
    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
 	<a 	style="line-height:0; " 
 		title="Facebook"

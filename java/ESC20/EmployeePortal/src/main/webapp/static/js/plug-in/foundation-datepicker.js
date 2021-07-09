@@ -419,6 +419,9 @@
             if(reg.test(dateString)||regStr.test(dateString)){
                 if(reg.test(dateString)){
                     dateArray = dateString.split(/[^\d]/)
+                    if(dateArray[2]=='0000'){
+                       return false
+                     }
                     newDateString = dateArray[2]+"-"+dateArray[0]+"-"+dateArray[1]
                     return new Date(newDateString)
                 }

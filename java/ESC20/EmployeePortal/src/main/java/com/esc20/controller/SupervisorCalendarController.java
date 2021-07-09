@@ -50,7 +50,7 @@ public class SupervisorCalendarController extends BaseSupervisorController {
 		Boolean isTempApprover = this.indexService.isTempApprover(user.getEmpNbr());
 		session.setAttribute("isSupervisor", isSupervisor);
 		session.setAttribute("isTempApprover", isTempApprover);
-		String district = (String) session.getAttribute("districtId");
+		String district = (String) session.getAttribute("srvcId");
 		District districtInfo = this.indexService.getDistrict(district);
 		demo.setEmpNbr(user.getEmpNbr());
 		demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));

@@ -9,9 +9,23 @@
         </div>
       
         <div class="footer-help">
-                <a class="helpLink" href="" target="_blank" aria-label="${sessionScope.constantJSON.accessHint.goHelp}"
-                        title="${sessionScope.constantJSON.accessHint.goHelp}">
-                        Help <i class="fa fa-question-circle"></i>
-                </a>
+               <a
+		            id="helpLink"
+		            class="helpLink"
+		            href="javascript:void(0);"
+		            aria-label=""
+		            title=""
+		            data-localize="nav.help"
+		            data-localize-notText="true"
+		            tabindex="0"
+		            target="_blank"
+		        >Help&nbsp;
+		            <i class="fa fa-question-circle" aria-hidden="true"></i>
+		            <span class="sr-only" title="" data-localize="login.help">
+		                Help
+		            </span>
+		        </a>
+		       &nbsp;&nbsp;&nbsp;		
         </div>
+ 
 </footer>

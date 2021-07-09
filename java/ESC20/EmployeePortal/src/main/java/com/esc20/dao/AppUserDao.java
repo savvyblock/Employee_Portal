@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.jfree.util.Log;
@@ -872,4 +873,74 @@ public class AppUserDao extends HibernateDaoSupport{
         query.setParameter("lockDate", new Date());
       return   query.executeUpdate();
     }
+    
+    public void UpdateSessionToken(String username, String eSessionID) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Update ");
+        sb.append(" DS_DOC_STOR_TOKEN ");
+        sb.append(" Set ACCESS_L = GetDate() ");
+        sb.append(" Where token = ? ");
+        sb.append(" And usr_name = ? ; ");
+
+        SQLQuery q = this.getSession().createSQLQuery(sb.toString());
+        q.setString(0, eSessionID);
+        q.setString(1, username);
+
+        try {
+            int result = q.executeUpdate();
+            if (result == 0) {
+                StringBuilder insert = new StringBuilder();
+                insert.append("Insert Into ");
+                insert.append(" DS_DOC_STOR_TOKEN ");
+                insert.append(" (TOKEN, USR_NAME, ACCESS_L) ");
+                insert.append(" Values (?, ?, GetDate()) ;");
+
+                SQLQuery inQ = this.getSession().createSQLQuery(insert.toString());
+                inQ.setString(0, eSessionID);
+                inQ.setString(1, username);
+                inQ.executeUpdate();
+            }
+        } catch (Exception e) {
+        	logger.error("Exception", e);
+        }
+    }
+
+    public void DeleteSessionToken(String eSessionID) {
+        StringBuilder delete = new StringBuilder();
+        delete.append("Delete From ");
+        delete.append(" DS_DOC_STOR_TOKEN ");
+        delete.append(" Where token = ? ");
+        SQLQuery q = this.getSession().createSQLQuery(delete.toString());
+        q.setString(0, eSessionID);
+
+        try {
+            q.executeUpdate();
+        } catch (Exception e) {
+        	logger.error("Exception", e);
+        }
+
+    }
+    
+	public Integer getSecUserForEmpNbr(String empNbr) throws Exception{
+		Integer secUserNbr = null;
+		try {
+
+			StringBuilder sql = new StringBuilder();
+			sql.append("Select USR_ID FROM SEC_USERS WHERE EMP_NBR=:empNbr");
+			Query q = this.getSession().createSQLQuery(sql.toString());
+			
+			q.setParameter("empNbr", empNbr);
+			
+			@SuppressWarnings("unchecked")
+			List<Object[]> res = q.list();
+			for (Object rs : res) {
+				secUserNbr = (Integer) rs;
+			}
+		} catch (Exception e) {
+			logger.error("Error occurred on getSecUserFromEmpNbr method while retrieving :", e);
+		}
+		return secUserNbr;
+	}
+    
+    
 }

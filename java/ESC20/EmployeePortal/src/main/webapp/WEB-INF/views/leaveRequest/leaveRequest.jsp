@@ -20,9 +20,9 @@
 					<button class="btn btn-primary"  onclick="showRequestForm()" id="new-btn" data-toggle="modal" <c:if test="${!haveSupervisor}">disabled</c:if> data-target="#requestModal">
 						<span>${sessionScope.languageJSON.label.add}</span>
 					</button>
-					<a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequestCalendar/eventCalendar"  aria-label="${sessionScope.languageJSON.label.switchToCalendarView}">
+					<!-- <a class="btn btn-primary" href="/<%=request.getContextPath().split("/")[1]%>/leaveRequestCalendar/eventCalendar"  aria-label="${sessionScope.languageJSON.label.switchToCalendarView}">
 						<i class="fa fa-calendar"></i>
-					</a>
+					</a>-->
 				</div>
 				
 			</div>

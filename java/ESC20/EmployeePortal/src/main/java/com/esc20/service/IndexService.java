@@ -1,5 +1,6 @@
 package com.esc20.service;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -12,8 +13,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.esc20.model.BhrEapOpt;
 import com.esc20.dao.AlertDao;
 import com.esc20.dao.AppUserDao;
+import com.esc20.dao.CalendarYearToDateDao;
 import com.esc20.dao.OptionsDao;
 import com.esc20.dao.PayDao;
 import com.esc20.dao.PreferencesDao;
@@ -33,7 +36,9 @@ import com.esc20.model.BeaRestrict;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BeaW4;
 import com.esc20.model.BhrEmpDemo;
+import com.esc20.model.BhrEmpJob;
 import com.esc20.model.BhrEmpPay;
+import com.esc20.model.BthrJobCd;
 import com.esc20.nonDBModels.BankChanges;
 import com.esc20.nonDBModels.DemoInfoFields;
 import com.esc20.nonDBModels.DemoOption;
@@ -76,6 +81,9 @@ public class IndexService {
 
 	@Autowired
 	private PreferencesDao preferencesDao;
+	
+	@Autowired
+	private CalendarYearToDateDao calendarYearToDateDao;
 
 	public String getMessage() throws ParseException {
 		String message = "Hello, JBoss has started!";
@@ -357,7 +365,6 @@ public class IndexService {
 	public BeaW4 getBeaW4(BhrEmpDemo demo, String frequency) {
 		BeaW4 result = payDao.getW4(demo.getEmpNbr(), frequency);
 		if (result == null) {
-			System.out.println("freq  =" + frequency);
 			PayInfo info = payDao.getPayInfo(demo.getEmpNbr(), frequency);
 			result = new BeaW4(info, demo, frequency);
 		}
@@ -1638,26 +1645,27 @@ public class IndexService {
 
 		messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
 
-		if (hasPayInfoChanges || hasAccountChanges) {
-			String toEmail = "";
-			if (!"".equals(userWorkEmail)) {
-				toEmail = userWorkEmail;
-			} else if (!"".equals(userHomeEmail)) {
-				toEmail = userHomeEmail;
-			}
+		// if (hasPayInfoChanges || hasAccountChanges) {
+		// 	String toEmail = "";
+		// 	if (!"".equals(userWorkEmail)) {
+		// 		toEmail = userWorkEmail;
+		// 	} else if (!"".equals(userHomeEmail)) {
+		// 		toEmail = userHomeEmail;
+		// 	}
 
-			if (toEmail != null && toEmail.trim().length() > 0) {
-				try {
-					mailUtil.sendEmail(toEmail, subject, messageContents.toString());
-				} catch (Exception ex) {
-					logger.info("Self Service Change Payroll Info: An exception has occured with mailing ");
-				}
-			} else {
-				logger.info(
-						"Self Service Change Payroll Info: Unable to send an email confirmation.  No email address is avaiable");
-			}
-		}
+		// 	if (toEmail != null && toEmail.trim().length() > 0) {
+		// 		try {
+		// 			mailUtil.sendEmail(toEmail, subject, messageContents.toString());
+		// 		} catch (Exception ex) {
+		// 			logger.info("Self Service Change Payroll Info: An exception has occured with mailing ");
+		// 		}
+		// 	} else {
+		// 		logger.info(
+		// 				"Self Service Change Payroll Info: Unable to send an email confirmation.  No email address is avaiable");
+		// 	}
+		// }
 		Integer emailChanges = 0;
+		// pa
 		if (!payrollSame && accountSame)
 			emailChanges = 1;
 		else if (payrollSame && !accountSame)
@@ -1667,36 +1675,35 @@ public class IndexService {
 
 		// Send ApproverEmail
 		autoApprove = this.getBhrEapPayAssgnGrp("BEA_W4");
+	
 		if ((emailChanges == 1 || emailChanges == 3) && !payrollSame) {
+
 			if (!autoApprove) {
+
 				String employeeNumber = referenceDao.getApproverEmployeeNumber(payFreq, "BEA_W4");
-				if (employeeNumber == null || "".equals(employeeNumber)) {
-					return;
-				}
 				BhrEmpDemo approver = userDao.getUserDetail(employeeNumber);
 
-				if (approver == null) {
+				if (employeeNumber == null || "".equals(employeeNumber) || approver == null) {
 					return;
 				}
-
-				String approverFirstName = approver.getNameF() == null ? "" : approver.getNameF();
-				String approverLastName = approver.getNameL() == null ? "" : approver.getNameL();
-
-				messageContents = new StringBuilder();
-				messageContents.append(approverFirstName + " " + approverLastName + ", <br/><br/>");
-				messageContents.append(userFirstName + " " + userLastName
-						+ " has submitted a request to change payroll information. <br/>");
-				messageContents.append("The request is ready for your approval. <br/>");
-				messageContents.append("Login to Human Resources to approve. <br/>");
-
-				messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
-
-				String toApproverEmail = (approver.getEmail() == null || approver.getEmail().equals(""))
-						? approver.getHmEmail()
-						: approver.getHmEmail();
+			
+				String toApproverEmail = approver.getEmail();
 
 				if (toApproverEmail != null && toApproverEmail.trim().length() > 0) {
+					String approverFirstName = approver.getNameF() == null ? "" : approver.getNameF();
+					String approverLastName = approver.getNameL() == null ? "" : approver.getNameL();
+	
+					messageContents = new StringBuilder();
+					messageContents.append(approverFirstName + " " + approverLastName + ", <br/><br/>");
+					messageContents.append(userFirstName + " " + userLastName
+							+ " has submitted a request to change payroll information. <br/>");
+					messageContents.append("The request is ready for your approval. <br/>");
+					messageContents.append("Login to Human Resources to approve. <br/>");
+	
+					messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
+	
 					try {
+
 						mailUtil.sendEmail(toApproverEmail, subject, messageContents.toString());
 					}
 
@@ -1711,35 +1718,33 @@ public class IndexService {
 		}
 
 		else if ((emailChanges == 2 || emailChanges == 3) && !accountSame) {
+
+			
 			if (!autoApproveBank) {
+
 				String employeeNumber = referenceDao.getApproverEmployeeNumber(payFreq, "BEA_DRCT_DPST_BNK_ACCT");
-
-				if (employeeNumber == null || "".equals(employeeNumber)) {
+				BhrEmpDemo approver = null;
+				approver = userDao.getUserDetail(employeeNumber);
+				
+				if (employeeNumber == null || "".equals(employeeNumber) || approver == null) {
 					return;
 				}
-				BhrEmpDemo approver = userDao.getUserDetail(employeeNumber);
-
-				if (approver == null) {
-					return;
-				}
-
-				String approverFirstName = approver.getNameF() == null ? "" : approver.getNameF();
-				String approverLastName = approver.getNameL() == null ? "" : approver.getNameL();
-
-				messageContents = new StringBuilder();
-				messageContents.append(approverFirstName == null ? ""
-						: approverFirstName + " " + approverLastName == null ? "" : approverLastName + ", <br/><br/>");
-				messageContents.append(userFirstName + " " + userLastName + "\t\t has submitted a request<br/>");
-				messageContents.append("to change payroll information. <br/>");
-				messageContents.append("The request is ready for your approval. <br/>");
-				messageContents.append("Login to Human Resources to approve. <br/>");
-				messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
-
-				String toApproverEmail = (approver.getEmail() == null || approver.getEmail().equals(""))
-						? approver.getHmEmail()
-						: approver.getHmEmail();
+				String toApproverEmail = approver.getHmEmail();
 
 				if (toApproverEmail != null && toApproverEmail.trim().length() > 0) {
+					String approverFirstName = approver.getNameF() == null ? "" : approver.getNameF();
+					String approverLastName = approver.getNameL() == null ? "" : approver.getNameL();
+
+					messageContents = new StringBuilder();
+					messageContents.append(approverFirstName == null ? ""
+							: approverFirstName + " " + approverLastName == null ? "" : approverLastName + ", <br/><br/>");
+					messageContents.append(userFirstName + " " + userLastName + "\t\t has submitted a request<br/>");
+					messageContents.append("to change payroll information. <br/>");
+					messageContents.append("The request is ready for your approval. <br/>");
+					messageContents.append("Login to Human Resources to approve. <br/>");
+					messageContents.append("<p>*****THIS IS AN AUTOMATED MESSAGE. PLEASE DO NOT REPLY*****</p>");
+
+
 					try {
 						mailUtil.sendEmail(toApproverEmail, subject, messageContents.toString());
 					}
@@ -1771,4 +1776,17 @@ public class IndexService {
 	public String getTXEISPreferencebyName(String pPreferenceName) {
 		return preferencesDao.getTXEISPreferencebyName(pPreferenceName);
 	}
+	
+	public void UpdateSessionToken(String username, String eSessionID) {
+		userDao.UpdateSessionToken(username, eSessionID);
+	}
+	
+	public void DeleteSessionToken(String eSessionID) {
+		userDao.DeleteSessionToken(eSessionID);
+	}
+
+	public BhrEapOpt getEapOptCal() {
+		return optionsDao.getEapOptCal();
+	}
+	
 }

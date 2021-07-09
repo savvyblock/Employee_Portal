@@ -53,7 +53,7 @@ public class LeaveRequestCalendarController extends BaseLeaveRequestController {
 		BeaUsers user = (BeaUsers) session.getAttribute("user");
 		BhrEmpDemo demo = this.indexService.getUserDetail(user.getEmpNbr());
 
-		String district = (String) session.getAttribute("districtId");
+		String district = (String) session.getAttribute("srvcId");
 		District districtInfo = this.indexService.getDistrict(district);
 		demo.setEmpNbr(user.getEmpNbr());
 		demo.setDob(DateUtil.formatDate(demo.getDob(), "yyyyMMdd", "MM-dd-yyyy"));

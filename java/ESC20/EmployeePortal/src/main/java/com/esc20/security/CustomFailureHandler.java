@@ -23,9 +23,9 @@ public class CustomFailureHandler implements AuthenticationFailureHandler {
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		String database = (String)request.getSession().getAttribute("districtId");
+		String database = (String)request.getSession().getAttribute("srvcId");
 		String returnURL = "/"+request.getContextPath().split("/")[1]+"/login?distid=" + database;
-		request.getSession().setAttribute("districtId", database);
+		request.getSession().setAttribute("srvcId", database);
 		request.getSession().setAttribute("isUserLoginFailure", true);
 		// ALC-26 Lock account on the 5th login failed
 		String username = request.getParameter("username");

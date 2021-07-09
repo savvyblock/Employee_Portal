@@ -192,5 +192,21 @@ public class OptionsDao {
 		
 		return result;
 	}
+	public BhrEapOpt getEapOptCal() {
+		Session session = this.getSession();
+		DemoOption option = new DemoOption();
+		String sql = "SELECT ENBL_LV_REQ,ENBL_WRKJL, ENBL_TRVL FROM BHR_EAP_OPT";
+		Query q = session.createSQLQuery(sql);
+		List<Object[]>  res =  q.list();
+		BhrEapOpt result = new BhrEapOpt();
+	    for(Object[] item : res) {
+	    	
+			result.setEnblLvReq(item[0].toString().charAt(0));
+			result.setEnblWrkjl(item[1].toString().charAt(0));
+			result.setEnblTrvl( item[2].toString().charAt(0));
+	    }
+
+		return result;
+	}
 	
 }

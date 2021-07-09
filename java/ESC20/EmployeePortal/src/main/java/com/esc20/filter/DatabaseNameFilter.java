@@ -24,12 +24,12 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request,
 			HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
-			String database = (String)request.getSession().getAttribute("districtId");
+			String databaseServiceId = (String)request.getSession().getAttribute("srvcId");
 			//added for multi-language change
 			String language = (String)request.getSession().getAttribute("language");
 			try
 			{
-				String districtIdInSession = (String)request.getSession().getAttribute("districtId");
+				String srvcIdInSession = (String) request.getSession().getAttribute("srvcId");
 				String distid = request.getParameter("distid");
 				if (distid != null) {
 					Cookie cookie = new Cookie("district",distid);
@@ -37,18 +37,18 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 					response.addCookie(cookie);
 					System.out.println("cookie is set "+ cookie.getValue());
 					
-					if(!distid.equals(districtIdInSession)) {
-						Enumeration em = request.getSession().getAttributeNames();
+					if(!distid.equals(srvcIdInSession)) {
+						Enumeration<String> em = request.getSession().getAttributeNames();
 						while (em.hasMoreElements()) {
 							request.getSession().removeAttribute(em.nextElement().toString());
 						}
 					}
 					
-					request.getSession().setAttribute("districtId", distid);
+					request.getSession().setAttribute("srvcId", distid);
 					request.getSession().setAttribute("isSwitched", true);
 				}
-				database = (String)request.getSession().getAttribute("districtId");
-				if (database == null || "".equals(database)) {
+				databaseServiceId = (String) request.getSession().getAttribute("srvcId");
+				if (databaseServiceId == null || "".equals(databaseServiceId)) {
 					Cookie[] cookies = request.getCookies();
 					if(cookies != null)
 					{
@@ -58,25 +58,25 @@ public class DatabaseNameFilter extends OncePerRequestFilter {
 					    	{
 					    		System.out.println("load from cookies "+cookie.getValue());
 					    		
-					    		if(districtIdInSession != null && distid !=null) {
-					    			if(!distid.equals(districtIdInSession)) {
-										Enumeration em = request.getSession().getAttributeNames();
+					    		if(srvcIdInSession != null && distid !=null) {
+					    			if(!distid.equals(srvcIdInSession)) {
+										Enumeration<String> em = request.getSession().getAttributeNames();
 										while (em.hasMoreElements()) {
 											request.getSession().removeAttribute(em.nextElement().toString());
 										}
 									}
 					    		}
 					    		
-					    		request.getSession().setAttribute("districtId", cookie.getValue());
+					    		request.getSession().setAttribute("srvcId", cookie.getValue());
 					    		request.getSession().setAttribute("isSwitched", true);
-					    		database = cookie.getValue();
+					    		databaseServiceId = cookie.getValue();
 					    	}
 					    }
 					}
 				}
-				DataSourceContextHolder.setDataSourceType("java:jboss/DB"+database);
-				if (database == null || "".equals(database)) {
-					logger.error("Unable to set county district.");
+				DataSourceContextHolder.setDataSourceType("java:jboss/DB"+databaseServiceId);
+				if (databaseServiceId == null || "".equals(databaseServiceId)) {
+					logger.error("Unable to set service ID.");
 				}
 				
 				Boolean isTimeOut = (Boolean)request.getSession().getAttribute("isTimeOut");

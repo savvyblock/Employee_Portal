@@ -53,6 +53,7 @@ public class BhrEapOpt implements java.io.Serializable {
 	private String msgLvReq;
 	private Character enblTrvl;
 	private String msgTrvl;
+	private Character enblWrkjl;
 	private Character ignCutoffDt;
 	private Character usePmisSpvsrLevels;
 	private Character reqLvHrsReqstd;
@@ -489,6 +490,15 @@ public class BhrEapOpt implements java.io.Serializable {
 
 	public void setEnblTrvl(Character enblTrvl) {
 		this.enblTrvl = enblTrvl;
+	}
+	
+	@Column(name = "ENBL_WRKJL", nullable = false, length = 1)
+	public Character getEnblWrkjl() {
+		return enblWrkjl;
+	}
+
+	public void setEnblWrkjl(Character enblWrkjl) {
+		this.enblWrkjl = enblWrkjl;
 	}
 
 }

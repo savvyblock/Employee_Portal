@@ -48,16 +48,34 @@
 				</ul>
 			</li>
             <li>
-				<a class=" help helpLink" href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank" role="link"
+			<%--<a class=" help helpLink" href="https://tcc-help.net/txeis/employeeaccess/doku.php" target="_blank" role="link"
 				aria-label="${sessionScope.languageJSON.accessHint.goHelp}" title="${sessionScope.languageJSON.accessHint.goHelp}">
 				<span>${sessionScope.languageJSON.nav.help}</span>&nbsp;<i class="fa fa-question-circle"></i>
 		        </a>
-			</li>
+		    --%>
+				<a
+		            id="helpLink"
+		            class="helpLink"
+		            href="javascript:void(0);"
+		            aria-label=""
+		            title=""
+		            data-localize="nav.help"
+		            data-localize-notText="true"
+		            tabindex="0"
+		            target="_blank"
+		        >Help&nbsp;
+		            <i class="fa fa-question-circle" aria-hidden="true"></i>
+		            <span class="sr-only" title="" data-localize="login.help">
+		                Help
+		            </span>
+		        </a>
+		       &nbsp;&nbsp;&nbsp;		
+		    </li>
 			<li>
 				<a 
 				title="Facebook"
 				aria-label="Facebook" 
-				class="link-on-login-header link-color helpLink" 
+				class="link-on-login-header link-color social-media-icon" 
 				href="https://www.facebook.com/Ascendertx/" 
 				target="_blank"><i class="fa fa-facebook-official"></i>
 			</a> 
@@ -66,7 +84,7 @@
 				<a 
 					title="Twitter"
 					aria-label="Twitter" 
-					class="link-on-login-header link-color helpLink" 
+					class="link-on-login-header link-color social-media-icon" 
 					href="https://twitter.com/ascendertx"
 					target="_blank"><i class="fa fa-twitter"></i>
 				</a>	
@@ -75,7 +93,7 @@
 				<a 	
 					title="LinkedIn"
 					aria-label="LinkedIn" 
-					class="link-on-login-header link-color helpLink" 
+					class="link-on-login-header link-color social-media-icon" 
 					href="https://www.linkedin.com/company/ascendertx/"
 					target="_blank"><i class="fa fa-linkedin-square"></i>
 				</a>

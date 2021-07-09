@@ -41,6 +41,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                 </div>
                             	</c:if>
                             </div>
+                    
                        
                             <div class="toPrint content-white EMP-detail earningPage" style="height: auto;">
                                 <div class="exportPDFBox" id="exportPDFBox">
@@ -225,7 +226,7 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                     </div>
                                 </form>
                               
-                                <div class="needToClone">    
+                                <div class="needToClone">  
                                     <div class="earningTitleWrap">
                                         <div class="earningTitleWrap-inner">
                                                 <table
@@ -241,10 +242,20 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                                         >
                                                         ${earnings.info.checkNumber}
                                                         </td>
+                                                        <td>  </td>
+                                                        <th id="periodBeginningDate" style='width:200px;' class="td-title">
+                                                                <span>${sessionScope.languageJSON.earningTable.periodBeginningDate}</span>:
+                                                        </th>
+                                                        <td headers="periodBeginningDate" style='text-align:left;'
+                                                            class="td-content" data-title="${sessionScope.languageJSON.earningTable.periodBeginningDate}"
+                                                           
+                                                        >
+                                                        ${earnings.info.periodBeginningDate}
+                                                        </td>
                                                         <th id="periodEndingDate" class="td-title">
                                                                 <span>${sessionScope.languageJSON.earningTable.periodEndingDate}</span>:
                                                         </th>
-                                                        <td headers="periodEndingDate"
+                                                        <td headers="periodEndingDate" style='text-align:left;'
                                                             class="td-content" data-title="${sessionScope.languageJSON.earningTable.periodEndingDate}"
                                                            
                                                         >
@@ -914,6 +925,9 @@ language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                                             </c:forEach>
                                             </tbody>
                                         </table>
+                                        
+                                        
+                                       
                                   
                                         <div class="show-all-screen hr-black"></div>
                                            <%--    <c:if test ="${!isSupplemental}"> --%>

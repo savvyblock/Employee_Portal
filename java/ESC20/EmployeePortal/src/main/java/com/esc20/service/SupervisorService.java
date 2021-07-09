@@ -9,17 +9,14 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.esc20.dao.AlertDao;
 import com.esc20.dao.AppUserDao;
 import com.esc20.dao.AutoCompleteDao;
 import com.esc20.dao.LeaveRequestDao;
 import com.esc20.dao.OptionsDao;
 import com.esc20.dao.SupervisorDao;
+import com.esc20.dao.TravelRequestDao;
 import com.esc20.model.BeaEmpLvComments;
-import com.esc20.model.BeaEmpLvRqst;
 import com.esc20.model.BeaEmpLvTmpApprovers;
 import com.esc20.model.BhrEmpDemo;
 import com.esc20.model.BhrPmisPosCtrl;
@@ -29,9 +26,13 @@ import com.esc20.nonDBModels.LeaveEmployeeData;
 import com.esc20.nonDBModels.LeaveRequest;
 import com.esc20.nonDBModels.LeaveRequestComment;
 import com.esc20.nonDBModels.Options;
+import com.esc20.nonDBModels.TravelRequest;
 import com.esc20.util.DateUtil;
 import com.esc20.util.MailUtil;
 import com.esc20.util.StringUtil;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 @Service
@@ -45,6 +46,9 @@ public class SupervisorService {
 	
     @Autowired
     private LeaveRequestDao leaveRequestDao;
+
+	@Autowired
+	private TravelRequestDao travelRequestDao;
     
     @Autowired
     private SupervisorDao supervisorDao;
@@ -60,6 +64,9 @@ public class SupervisorService {
     
     @Autowired
     private LeaveRequestService leaveRequestService;
+
+	@Autowired
+    private TravelRequestService travelRequestService;
     
 	public List<LeaveEmployeeData> getDirectReportEmployee(String empNbr, boolean usePMIS, boolean supervisorsOnly,
 			boolean excludeTempApprovers) {
@@ -192,12 +199,11 @@ public class SupervisorService {
 			emailBody.append("<p>Your leave request has been approved by %s.  No action is needed on your part.  The leave dates and times requested are as follows:</p>");
 			emailBody.append("<p style='margin-left: 12pt;'>Dates:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s<br/>Times:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s</p>");		
 
-			emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal if you wish to make changes to the leave requested and resubmit the request.</p>");
 			
 			if (url==null || url.trim().length()==0) {
-				emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal if you wish to make changes to the leave requested and resubmit the request.</p>");
+				emailBody.append("<p style='font-weight:bold'>Please log in to EmployeePortal if you wish to make changes to the leave requested and resubmit the request.</p>");
 			} else {
-				emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal if you wish to make changes to the leave requested and resubmit the request by clicking on this link:<br/>");
+				emailBody.append("<p style='font-weight:bold'>Please log in to EmployeePortal if you wish to make changes to the leave requested and resubmit the request by clicking on this link:<br/>");
 				emailBody.append("<span style='text-decoration: underline;'>%s</span></p>");
 			}
 			
@@ -249,11 +255,11 @@ public class SupervisorService {
 			emailBody.append("<p>%s:</p>");
 			emailBody.append("<p>The leave request you submitted has been disapproved by %s.  The leave dates and times requested are as follows:</p>");
 			emailBody.append("<p style='margin-left: 12pt;'>Dates:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s<br/>Times:&nbsp;&nbsp;%s&nbsp;&nbsp;-&nbsp;&nbsp;%s</p>");		
-			//emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal to view comments entered by the supervisor or if you wish to make changes to the leave requested and resubmit the request.</p>");
+			//emailBody.append("<p style='font-weight:bold'>Please log in to EmployeePortal to view comments entered by the supervisor or if you wish to make changes to the leave requested and resubmit the request.</p>");
 			if (url==null || url.trim().length()==0) {
-				emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal to view comments entered by the supervisor or if you wish to make changes to the leave requested and resubmit the request.</p>");
+				emailBody.append("<p style='font-weight:bold'>Please log in to EmployeePortal to view comments entered by the supervisor or if you wish to make changes to the leave requested and resubmit the request.</p>");
 			} else {
-				emailBody.append("<p style='font-weight:bold'>Please log in to Employee Protal to view comments entered by the supervisor or if you wish to make changes to the leave requested and resubmit the request by clicking on this link:<br/>");
+				emailBody.append("<p style='font-weight:bold'>Please log in to EmployeePortal to view comments entered by the supervisor or if you wish to make changes to the leave requested and resubmit the request by clicking on this link:<br/>");
 				emailBody.append("<span style='text-decoration: underline;'>%s</span></p>");
 			}
 			emailBody.append("<p>Thank You</p>");
@@ -281,6 +287,13 @@ public class SupervisorService {
 			}
 			
 		}
+	}
+
+	public void approveTravel(TravelRequest request) throws MessagingException {
+	}
+
+	public void disapproveTravel(TravelRequest request) throws MessagingException{
+
 	}
 
 	public List<BeaEmpLvTmpApprovers> getBeaEmpLvTmpApprovers(String empNbr) {
