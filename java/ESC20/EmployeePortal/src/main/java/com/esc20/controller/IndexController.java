@@ -30,6 +30,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -110,6 +111,8 @@ public class IndexController {
 	// ALC-35
 	@Autowired
 	LicenseAgreementService licenseAgreementService;
+	@Value("${portal.help.url}")
+	private String helpSettingUrl;
 	
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
@@ -741,7 +744,7 @@ public class IndexController {
 	public JSONObject getLicenseContent(HttpServletRequest req) throws Exception {
 		JSONObject result = new JSONObject();
 		//URL url = new URL("https://help.ascendertx.com/documents/doku.php/ascender/eula");
-		URL url = new URL(helpUrl+"documents/doku.php/ascender/eula");
+		URL url = new URL(helpSettingUrl+"documents/doku.php/ascender/eula");
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
 		String line;
