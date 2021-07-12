@@ -181,7 +181,6 @@
   flex-wrap: wrap;
 }
 
-/*AMP-35*/
 .flexInline.column {
   flex-direction: column;
 }
@@ -505,6 +504,163 @@ body .panel-common .panel-body {
   left: 14px;
   -webkit-animation-delay: 1.04s;
 }
+
 .licensePanel a {
   color: #db813b;
+}
+
+#agreementModal .modal-title {
+  color: #000;
+}
+
+#agreementModal .modal-content > .flexInline {
+  margin-right: 15px;
+}
+
+#agreementModal .modal-content > .flexInline > div {
+  margin-left: 10px;
+}
+
+#agreementModal .modal-dialog {
+  max-width: 800px;
+  font-family: 'Nunito',sans-serif;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.4;
+  padding: 0;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+#agreementModal .modal-dialog .modal-body {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+#agreementModal .modal-dialog #licenseWrap {
+  padding: 15px 15px;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  scrollbar-color: rgba(255, 255, 255, 0.5) #414042;
+  scrollbar-width: thin;
+}
+
+#agreementModal .modal-dialog #licenseWrap::-webkit-scrollbar {
+  width: 5px;
+}
+
+#agreementModal .modal-dialog #licenseWrap::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+#agreementModal .modal-dialog #licenseWrap::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#agreementModal .modal-dialog p {
+  margin-bottom: 1.4em;
+}
+
+#agreementModal .modal-dialog .pageId, #agreementModal .modal-dialog .bookcreator__bookbar, #agreementModal .modal-dialog .docInfo {
+  display: none;
+}
+
+#agreementModal .modal-dialog h1 {
+  font-size: 2em;
+  margin: 0 0 .444em;
+  font-weight: bold;
+}
+
+#agreementModal .modal-dialog h3 {
+  font-size: 1.125em;
+  margin: 0 0 .888em;
+  font-weight: bold;
+}
+
+#agreementModal .modal-dialog .dokuwiki div.page {
+  clear: both;
+  background: #fff;
+  color: inherit;
+  border-radius: 2px;
+  padding: 1.556em 2em 2em;
+  margin-bottom: .5em;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+#agreementModal .modal-dialog ol, #agreementModal .modal-dialog li {
+  list-style: decimal outside;
+}
+
+#step4 {
+  font-family: 'Nunito',sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+#step4 #licenseWrap {
+  padding: 15px 25px;
+}
+
+#step4 p {
+  margin-bottom: 1.4em;
+}
+
+#step4 .pageId, #step4 .bookcreator__bookbar, #step4 .docInfo {
+  display: none;
+}
+
+#step4 h1 {
+  font-size: 2em;
+  margin: 0 0 .444em;
+  font-weight: bold;
+}
+
+#step4 h3 {
+  font-size: 1.125em;
+  margin: 0 0 .888em;
+  font-weight: bold;
+}
+
+#step4 div.page {
+  clear: both;
+  color: inherit;
+  border-radius: 2px;
+  padding: 1.556em 2em 2em;
+  margin-bottom: .5em;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+#step4 ol, #step4 li {
+  list-style: decimal outside;
+}
+
+#step4 a {
+  color: #db813b;
+}
+
+div.footnotes {
+  border-top: 1px solid #aaa;
+  padding: .5em 0 0 0;
+  margin: 1em 0 0 0;
+  clear: both;
+}
+
+div.footnotes .content {
+  display: inline;
+}
+
+.agreeRadio {
+  margin-bottom: 5px;
+  align-items: flex-end;
+}
+
+.agreeRadio > div {
+  min-width: 90px;
+}
+
+.m-t-10 {
+  margin-top: 10px;
 }

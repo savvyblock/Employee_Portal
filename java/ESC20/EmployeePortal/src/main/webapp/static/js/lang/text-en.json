@@ -972,6 +972,7 @@
         "accept":" Accept",
         "notAccept":" Not Accept",
         "licenseWarning":"You can only go on if you accept",
+        "somethingWrong":"There is something wrong! Please try again.",
         "":""
     },
     "buttons":{

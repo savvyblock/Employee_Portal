@@ -201,8 +201,16 @@
                                                 </span>
                                             </a>
                                         </li>
+                                        <!-- ALC-9 -->
                                         <li class="nav-item">
                                             <a class="nav-link" id="step4-tab" role="tab" aria-controls="step4" aria-selected="false" tabindex="0" aria-disabled="true"> 
+                                                <span class="step-number">
+                                                        ${sessionScope.languageJSON.createAccount.licenseAgreement}
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="step5-tab" role="tab" aria-controls="step5" aria-selected="false" tabindex="0" aria-disabled="true"> 
                                                 <span class="step-number">
                                                         ${sessionScope.languageJSON.createAccount.complete}
                                                 </span>
@@ -494,7 +502,8 @@
                                             <hr />
                                             <div class="text-right">
                                                 <button type="button" class="btn btn-success back-step2">${sessionScope.languageJSON.buttons.back}</button>
-                                                <button class="btn btn-success" id="createAccount">
+                                                <!-- ALC-9 -->
+                                                <button class="btn btn-success  next-step3">
                                                         ${sessionScope.languageJSON.buttons.next}
                                                 </button>
                                                 <button type="button" class="btn btn-default-red cancel-btn" onClick="backToLogin('<%=request.getContextPath().split("/")[1]%>', '${sessionScope.districtId}')" >
@@ -503,7 +512,46 @@
                     
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="step4-tab">
+                                        <!-- ALC-9 -->
+                                        <div class="tab-pane fade licensePanel" id="step4" role="tabpanel" aria-labelledby="step4-tab">
+                                            
+                                            <div id="licenseWrap"></div>
+                                            <hr/>
+                                        <div class="flexInline justifyEnd column agreeRadio">
+                                            <div>
+                                                <label class="flexInline"> <input type="radio" name="agreeTerm" value="Y">
+                                                    <span> ${sessionScope.languageJSON.createAccount.accept}</span>
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <label class="flexInline"> 
+                                                    <input type="radio" name="agreeTerm" checked="checked" value="N">
+                                                    <span> ${sessionScope.languageJSON.createAccount.notAccept}</span>
+                                                </label>
+                                            </div>
+                                            <div class="error-hint agreeError" style="display: none;">
+                                                <span> ${sessionScope.languageJSON.createAccount.licenseWarning}</span>
+                                            </div>
+    
+                                            </div>
+                                                                 
+                                            <div class="text-right">
+                                                    <button type="button" class="btn btn-success back-step3">${sessionScope.languageJSON.buttons.back}</button>
+                                                    <button type="button" class="btn btn-success btnAfterAgree" disabled="disabled" id="createAccount">
+                                                            ${sessionScope.languageJSON.buttons.next}
+                                                    </button>
+                                                    <button type="button" class="btn btn-default-red cancel-btn" onClick="backToLogin('<%=request.getContextPath().split("/")[1]%>', '${sessionScope.districtId}')" >
+                                                        ${sessionScope.languageJSON.buttons.cancel}
+                                                    </button>
+    
+                                            </div>
+                                            <div class="alert alert-danger alert-error m-t-10" role="alert" id="errorMsg" style="display: none">
+                                                    ${sessionScope.languageJSON.createAccount.somethingWrong}
+                                            </div>
+    
+    
+                                        </div>
+                                        <div class="tab-pane fade" id="step5" role="tabpanel" aria-labelledby="step5-tab">
                     
                     
                                             <div class="row finish-content">

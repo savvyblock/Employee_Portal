@@ -174,6 +174,36 @@ $(function(){
             $(".sameAnswer").hide()
         }
     })
+    // ALC-9
+    $('.next-step3').click(function(){
+        var hintQuestion = $("#hintQuestion").val();
+        var hintAnswer = $("#hintAnswer").val();
+
+        if(hintQuestion!='' && hintAnswer!='' && hintQuestion == hintAnswer){
+            $("#password").val('')
+            $("#newPassword").val('')
+            $("#hintAnswer").parents('.form-group').removeClass('has-success').addClass('has-error')
+            $(".sameAnswer").show()
+            return
+        }else{
+            $(".sameAnswer").hide()
+        }
+
+        var bootstrapValidator03 = $('#securityForm').data('bootstrapValidator')
+        bootstrapValidator03.validate()
+        if (bootstrapValidator03.isValid()) {
+            $('#step3').removeClass('show active')
+            $('#step3-tab').removeClass('active')
+            $('#step3-tab').addClass('done')
+            $('#step4').addClass('show active')
+            $('#step4-tab').addClass('active')
+            $('#step1-tab').attr("aria-selected",false)
+            $('#step2-tab').attr("aria-selected",false)
+            $('#step3-tab').attr("aria-selected",false)
+            $('#step4-tab').attr("aria-selected",true)
+            
+        }
+    })
     $("#createAccount").click(function(){
         var empNbr = $("#employeeNumber").val();
         var ssn = $("#SSNumber").val();
@@ -189,63 +219,55 @@ $(function(){
         var hintAnswer = $("#hintAnswer").val();
         var wEmail = (workE || workStatic).trim()
         var hEmail = (homeE || homeStatic).trim()
-
-        if(hintQuestion!='' && hintAnswer!='' && hintQuestion == hintAnswer){
-            $("#password").val('')
-            $("#newPassword").val('')
-            $("#hintAnswer").parents('.form-group').removeClass('has-success').addClass('has-error')
-            $(".sameAnswer").show()
-            return
-        }else{
-            $(".sameAnswer").hide()
+        var userObj = {
+            empNbr: empNbr, 
+            ssn:ssn,
+            username: username, 
+            password: password, 
+            workEmail: wEmail,
+            homeEmail: hEmail, 
+            hintQuestion: hintQuestion, 
+            hintAnswer: hintAnswer, 
+            csrfmiddlewaretoken: $("#csrfmiddlewaretoken").val()
         }
-
-        var bootstrapValidator03 = $('#securityForm').data('bootstrapValidator')
-        bootstrapValidator03.validate()
-        if (bootstrapValidator03.isValid()) {
-            var userObj = {
-                empNbr: empNbr, 
-                ssn:ssn,
-                username: username, 
-                password: password, 
-                workEmail: wEmail,
-                homeEmail: hEmail, 
-                hintQuestion: hintQuestion, 
-                hintAnswer: hintAnswer, 
-                csrfmiddlewaretoken: $("#csrfmiddlewaretoken").val()
-            }
-            $.ajax({
-                type: 'post',
-                url: urlMain+'/createUser/saveNewUser',
-                cache: false,
-                data: userObj,
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                    $("#errorTryAgain").hide()
-                    if(data.success == "true"){
-                        $("#loginUsername").val(username)
-                        $("#loginPassword").val(password)
-                        $('#step3').removeClass('show active')
-                        $('#step3-tab').removeClass('active')
-                        $('#step3-tab').addClass('done')
-                        $('#step4').addClass('show active')
-                        $('#step4-tab').addClass('active')
-                        $('#step1-tab').attr("aria-selected",false)
-                        $('#step2-tab').attr("aria-selected",false)
-                        $('#step3-tab').attr("aria-selected",false)
-                        $('#step4-tab').attr("aria-selected",true)
-                    }else{
-                        $("#errorTryAgain").show()
-                    }
-                    
-                },
-                error:function(err){
-                    alert(somethingWrongWord)
+        $.ajax({
+            type: 'post',
+            url: urlMain+'/createUser/saveNewUser',
+            cache: false,
+            data: userObj,
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                $("#errorMsg").hide()
+                if(data.success == "true"){
+                    $("#loginUsername").val(username)
+                    $("#loginPassword").val(password)
+                    $('#step4').removeClass('show active')
+                    $('#step4-tab').removeClass('active')
+                    $('#step4-tab').addClass('done')
+                    $('#step5').addClass('show active')
+                    $('#step5-tab').addClass('active')
+                    $('#step1-tab').attr("aria-selected",false)
+                    $('#step2-tab').attr("aria-selected",false)
+                    $('#step3-tab').attr("aria-selected",false)
+                    $('#step4-tab').attr("aria-selected",false)
+                    $('#step5-tab').attr("aria-selected",true)
+                }else{
+                    $("#errorMsg").show()
                 }
-            })
-            
-        }
+                
+            },
+            error:function(err){
+                alert(somethingWrongWord)
+            }
+        })
+    })
+    $('.back-step3').click(function(){
+        $('#step3').addClass('show active')
+        $('#step3-tab').removeClass('done')
+        $('#step4').removeClass('show active')
+        $('#step3-tab').addClass('active')
+        $('#step4-tab').removeClass('active')
     })
     $(".back-step1").click(function(){
         $('#step1').addClass('show active')
