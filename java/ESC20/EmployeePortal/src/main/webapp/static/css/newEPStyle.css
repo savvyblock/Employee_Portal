@@ -511,6 +511,7 @@ body .panel-common .panel-body {
 
 #agreementModal .modal-title {
   color: #000;
+  width: 100%;
 }
 
 #agreementModal .modal-content > .flexInline {
