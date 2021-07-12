@@ -32,7 +32,7 @@
 					</div>
             <input type="hidden" id="isAdmin" value="${sessionScope.isAdmin}" />
             <div class="modal-footer">
-                <button id="submitBtn" type="button" class="btn btn-primary inlineBlock ui-button" data-dismiss="modal" data-localize="button.submit">${sessionScope.languageJSON.buttons.submit}</button>
+                <button id="submitBtn" type="button" class="btn btn-primary inlineBlock ui-button" data-dismiss="modal">${sessionScope.languageJSON.buttons.submit}</button>
             </div>
             <form action="/<%=request.getContextPath().split("/")[1]%>/logoutEA" method="post" id="logoutForm">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
