@@ -613,5 +613,9 @@
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/plug-in/jquery.maskedinput-1.3.1.js"></script>
         <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/createAccount.js"></script>
     <script src="/<%=request.getContextPath().split("/")[1]%>/js/viewJs/login.js"></script>
-
+      <!-- ALC-35-->
+    <script>
+       var licenseAPIPortal = '/EmployeePortal/getLicenseContent'
+     </script>
+    <script type="text/javascript" language="JavaScript" charset="utf-8" src="<spring:theme code="commonBase"/>scripts/license.js"></script>
 </html>

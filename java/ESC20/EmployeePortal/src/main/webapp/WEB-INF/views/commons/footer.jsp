@@ -29,3 +29,5 @@
         </div>
  
 </footer>
+<!-- ALC-35 -->
+<%@ include file="../modal/agreementModal.jsp"%>  

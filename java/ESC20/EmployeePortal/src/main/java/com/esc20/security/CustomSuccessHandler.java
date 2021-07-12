@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -23,6 +24,7 @@ import com.esc20.nonDBModels.Code;
 import com.esc20.nonDBModels.District;
 import com.esc20.nonDBModels.Options;
 import com.esc20.service.IndexService;
+import com.esc20.service.LicenseAgreementService;
 import com.esc20.service.ReferenceService;
 import com.esc20.util.DateUtil;
 import com.esc20.util.NumberUtil;
@@ -39,11 +41,28 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler{
     @Autowired
 	AppUserDao userDao;
     
+    //ALC-35
+    @Autowired
+    LicenseAgreementService licenseAgreementService;
+
+    @Value("${portal.help.url}")
+    private String helpUrl;
+    
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		User loginUser = (User) authentication.getPrincipal();
 		String userName = loginUser.getUsername();
+		
+		//ALC-35 EP: Display License Agreement at sign-on
+	    if(licenseAgreementService.getLicense(userName)) {
+	        request.getSession().setAttribute("isLicense", "Y");
+	    }else {
+	        request.getSession().setAttribute("isLicense", "N");
+	    }
+	    request.getSession().setAttribute("helpLinkUrl", helpUrl);
+
+	    
 		try {
 			HttpSession session = request.getSession();
 			BeaUsers user = this.indexService.getUserPwd(userName);

@@ -842,6 +842,10 @@
         "homeEmailReMsg":"El correo electrónico personal debe coincidir exactamente con lo ingresado en el campo de Correo electrónico personal",
         "workEmailMsg":"Obligatorio",
         "homeEmailMsg":"Obligatorio",
+		 "licenseAgreement":"acuerdo de licencia",
+        "accept":" Aceptaci¨®n",
+        "notAccept":" No aceptada",
+        "licenseWarning":"S¨®lo puedes seguir aceptando",
         "":""
     },
     "buttons":{

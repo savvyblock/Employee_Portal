@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.InetAddress;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,10 +25,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.esc20.model.BeaEmpLvComments;
 import com.esc20.model.BeaEmpLvRqst;
 import com.esc20.model.BeaEmpLvWorkflow;
-import com.esc20.model.BeaEmpWrkJrnl;
 import com.esc20.model.BeaUsers;
 import com.esc20.model.BhrEapOpt;
 import com.esc20.model.BhrEmpDemo;
@@ -44,6 +57,7 @@ import com.esc20.security.CustomSHA256Encoder;
 import com.esc20.service.IndexService;
 import com.esc20.service.InquiryService;
 import com.esc20.service.LeaveRequestService;
+import com.esc20.service.LicenseAgreementService;
 import com.esc20.service.ReferenceService;
 import com.esc20.service.TravelRequestService;
 import com.esc20.service.WrkjlService;
@@ -55,18 +69,6 @@ import com.esc20.util.SessionKeys;
 import com.esc20.util.StringUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import net.esc20.txeis.WorkflowLibrary.domain.WorkflowType;
 import net.sf.json.JSONArray;
@@ -104,6 +106,11 @@ public class IndexController {
 	
 	@Autowired
 	private WrkjlService wrkjlService;
+	
+	// ALC-35
+	@Autowired
+	LicenseAgreementService licenseAgreementService;
+	
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public ModelAndView getIndexPage(HttpServletRequest req, String Id, HttpServletResponse response) {
@@ -441,10 +448,10 @@ public class IndexController {
 		mav.addObject("trvlReqCalParams", json);
 		
 		//wrkjl
-		
-		List<BeaEmpWrkJrnl> wrkjlList= wrkjlService.getWrkjl(userDetail.getEmpNbr());
+		//Gillian: Need to check back when check in to Bitbucket
+		/*List<BeaEmpWrkJrnl> wrkjlList= wrkjlService.getWrkjl(userDetail.getEmpNbr());
 		mav.addObject("wrkjlList", objectMapper.writeValueAsString(wrkjlList));
-
+*/
 //		EAP OPTION FOR CALENDAR OPTIONS ENABLE
 		BhrEapOpt o = indexService.getEapOptCal();
 		mav.addObject("eapOption", o);
@@ -712,5 +719,38 @@ public class IndexController {
 			}
 		}
 		return purpose;
+	}
+	
+	
+	// ALC-35 EP: Display License Agreement at sign-on
+	@RequestMapping(value = "acceptLicense", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public JSONObject acceptLicense(HttpServletRequest request) {
+		JSONObject result = new JSONObject();
+		HttpSession session = request.getSession();
+		BeaUsers user = (BeaUsers) session.getAttribute("user");
+		String userId = user.getUsrname();
+		boolean acceptLicense = licenseAgreementService.setLicense(userId);
+		result.put("acceptLicense", acceptLicense);
+		request.getSession().setAttribute("isLicense", "Y");
+		return result;
+	}
+
+	@RequestMapping(value = "getLicenseContent", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject getLicenseContent(HttpServletRequest req) throws Exception {
+		JSONObject result = new JSONObject();
+		//URL url = new URL("https://help.ascendertx.com/documents/doku.php/ascender/eula");
+		URL url = new URL(helpUrl+"documents/doku.php/ascender/eula");
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+		String line;
+		List<String> licenseContent = new ArrayList();
+		while ((line = reader.readLine()) != null) {
+			licenseContent.add(line);
+		}
+		reader.close();
+		result.put("data", licenseContent);
+		return result;
 	}
 }

@@ -14,6 +14,9 @@
 <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/button.css"/>
 <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/bar.css"/>
 <link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/content.css"/>
+<!-- ALC-35 -->
+<link rel="stylesheet" href="<spring:theme code="commonPortals"/>css/license.css"/>
+
 <link rel="stylesheet" href="<spring:theme code="commonBase" />styles/login-colors.css" type="text/css" media="all" />
 <link rel="stylesheet" href="<spring:theme code="commonBase" />styles/layout.css" type="text/css" media="all" />
 <link rel="stylesheet" href="<spring:theme code="commonBase" />styles/login-layout.css" type="text/css" media="all" />

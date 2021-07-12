@@ -968,6 +968,10 @@
         "homeEmailReMsg":"Home E-mail must match entry in Home E-mail field exactly",
         "workEmailMsg":"Required",
         "homeEmailMsg":"Required",
+        "licenseAgreement":"License Agreement",
+        "accept":" Accept",
+        "notAccept":" Not Accept",
+        "licenseWarning":"You can only go on if you accept",
         "":""
     },
     "buttons":{

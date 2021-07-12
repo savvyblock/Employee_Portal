@@ -181,6 +181,11 @@
   flex-wrap: wrap;
 }
 
+/*AMP-35*/
+.flexInline.column {
+  flex-direction: column;
+}
+
 .flexInline input[type='checkbox'],
 .flexInline input[type='radio'] {
   margin: 0;
@@ -499,4 +504,7 @@ body .panel-common .panel-body {
   bottom: 14px;
   left: 14px;
   -webkit-animation-delay: 1.04s;
+}
+.licensePanel a {
+  color: #db813b;
 }
